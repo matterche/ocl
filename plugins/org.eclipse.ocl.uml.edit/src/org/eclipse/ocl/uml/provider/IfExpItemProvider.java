@@ -45,9 +45,11 @@ import org.eclipse.ocl.uml.UMLPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IfExpItemProvider extends OCLExpressionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class IfExpItemProvider
+		extends OCLExpressionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -88,9 +90,9 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ExpressionsPackage.Literals.IF_EXP__CONDITION);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION);
+				.add(ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION);
+				.add(ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -116,8 +118,8 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IfExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/IfExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -139,8 +141,9 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((IfExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_IfExp_type") : //$NON-NLS-1$
-				getString("_UI_IfExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_IfExp_type") : //$NON-NLS-1$
+			getString("_UI_IfExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -155,12 +158,12 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IfExp.class)) {
-		case UMLPackage.IF_EXP__CONDITION:
-		case UMLPackage.IF_EXP__THEN_EXPRESSION:
-		case UMLPackage.IF_EXP__ELSE_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.IF_EXP__CONDITION :
+			case UMLPackage.IF_EXP__THEN_EXPRESSION :
+			case UMLPackage.IF_EXP__ELSE_EXPRESSION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -178,538 +181,532 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.IF_EXP__CONDITION,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__CONDITION,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__CONDITION,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 	}
 
 	/**
@@ -725,13 +722,13 @@ public class IfExpItemProvider extends OCLExpressionItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.IF_EXP__CONDITION
-				|| childFeature == ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION
-				|| childFeature == ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION;
+			|| childFeature == ExpressionsPackage.Literals.IF_EXP__THEN_EXPRESSION
+			|| childFeature == ExpressionsPackage.Literals.IF_EXP__ELSE_EXPRESSION;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

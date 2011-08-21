@@ -45,9 +45,11 @@ import org.eclipse.ocl.types.TypesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MessageTypeItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class MessageTypeItemProvider
+		extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -83,15 +85,15 @@ public class MessageTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addReferredOperationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MessageType_referredOperation_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_MessageType_referredOperation_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MessageType_referredOperation_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_MessageType_referredOperation_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -102,15 +104,15 @@ public class MessageTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addReferredSignalPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MessageType_referredSignal_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_MessageType_referredSignal_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MessageType_referredSignal_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_MessageType_referredSignal_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -121,8 +123,8 @@ public class MessageTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/MessageType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,10 +160,10 @@ public class MessageTypeItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MessageType.class)) {
-		case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case TypesPackage.MESSAGE_TYPE__REFERRED_SIGNAL :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

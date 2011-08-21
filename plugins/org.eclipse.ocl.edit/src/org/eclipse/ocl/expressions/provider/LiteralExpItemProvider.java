@@ -37,9 +37,11 @@ import org.eclipse.ocl.expressions.LiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class LiteralExpItemProvider extends OCLExpressionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class LiteralExpItemProvider
+		extends OCLExpressionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,8 +75,8 @@ public class LiteralExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/LiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/LiteralExp")); //$NON-NLS-1$
 	}
 
 	/**

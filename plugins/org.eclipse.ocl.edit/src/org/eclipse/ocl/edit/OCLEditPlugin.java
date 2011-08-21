@@ -26,7 +26,9 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class OCLEditPlugin extends EMFPlugin {
+public final class OCLEditPlugin
+		extends EMFPlugin {
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -50,7 +52,7 @@ public final class OCLEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OCLEditPlugin() {
-		super(new ResourceLocator[] {});
+		super(new ResourceLocator[]{});
 	}
 
 	/**
@@ -82,7 +84,9 @@ public final class OCLEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation
+			extends EclipsePlugin {
+
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->

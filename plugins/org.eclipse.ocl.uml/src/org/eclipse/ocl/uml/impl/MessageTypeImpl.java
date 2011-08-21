@@ -480,8 +480,10 @@ public class MessageTypeImpl
 
 				for (TypedElement next : typedElements) {
 					features
-						.add(reflection.createProperty(next.getName(), TypeUtil
-							.resolveType(env, reflection.getOCLType(next))));
+						.add(reflection.createProperty(
+							next.getName(),
+							TypeUtil.resolveType(env,
+								reflection.getOCLType(next))));
 				}
 			}
 		}

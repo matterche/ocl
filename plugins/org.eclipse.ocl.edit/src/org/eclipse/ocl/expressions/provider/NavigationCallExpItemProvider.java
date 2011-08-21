@@ -43,9 +43,11 @@ import org.eclipse.ocl.expressions.NavigationCallExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
+public class NavigationCallExpItemProvider
+		extends FeatureCallExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,15 +82,15 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 	 */
 	protected void addNavigationSourcePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_NavigationCallExp_navigationSource_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_NavigationCallExp_navigationSource_feature", "_UI_NavigationCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NavigationCallExp_navigationSource_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_NavigationCallExp_navigationSource_feature", "_UI_NavigationCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER);
+				.add(ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER);
 		}
 		return childrenFeatures;
 	}
@@ -131,8 +133,8 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/NavigationCallExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/NavigationCallExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -169,10 +171,10 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NavigationCallExp.class)) {
-		case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case ExpressionsPackage.NAVIGATION_CALL_EXP__QUALIFIER :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -190,94 +192,92 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 	}
 
 	/**
@@ -293,12 +293,12 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.CALL_EXP__SOURCE
-				|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
+			|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

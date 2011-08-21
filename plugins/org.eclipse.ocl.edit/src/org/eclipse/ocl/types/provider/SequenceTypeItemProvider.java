@@ -37,9 +37,11 @@ import org.eclipse.ocl.types.SequenceType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SequenceTypeItemProvider extends CollectionTypeItemProvider
+public class SequenceTypeItemProvider
+		extends CollectionTypeItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,8 +75,8 @@ public class SequenceTypeItemProvider extends CollectionTypeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/SequenceType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/SequenceType")); //$NON-NLS-1$
 	}
 
 	/**

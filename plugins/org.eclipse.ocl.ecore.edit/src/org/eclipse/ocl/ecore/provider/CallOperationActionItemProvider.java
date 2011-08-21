@@ -43,9 +43,11 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CallOperationActionItemProvider extends ItemProviderAdapter
+public class CallOperationActionItemProvider
+		extends ItemProviderAdapter
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,15 +82,15 @@ public class CallOperationActionItemProvider extends ItemProviderAdapter
 	 */
 	protected void addOperationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CallOperationAction_operation_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CallOperationAction_operation_feature", "_UI_CallOperationAction_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.CALL_OPERATION_ACTION__OPERATION,
-						true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CallOperationAction_operation_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CallOperationAction_operation_feature", "_UI_CallOperationAction_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.CALL_OPERATION_ACTION__OPERATION, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -99,8 +101,8 @@ public class CallOperationActionItemProvider extends ItemProviderAdapter
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CallOperationAction")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/CallOperationAction")); //$NON-NLS-1$
 	}
 
 	/**

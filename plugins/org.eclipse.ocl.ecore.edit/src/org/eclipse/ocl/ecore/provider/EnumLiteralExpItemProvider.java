@@ -40,9 +40,11 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EnumLiteralExpItemProvider extends LiteralExpItemProvider
+public class EnumLiteralExpItemProvider
+		extends LiteralExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,15 +79,15 @@ public class EnumLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	protected void addReferredEnumLiteralPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EnumLiteralExp_referredEnumLiteral_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_EnumLiteralExp_referredEnumLiteral_feature", "_UI_EnumLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EnumLiteralExp_referredEnumLiteral_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_EnumLiteralExp_referredEnumLiteral_feature", "_UI_EnumLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -96,8 +98,8 @@ public class EnumLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/EnumLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/EnumLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -119,8 +121,9 @@ public class EnumLiteralExpItemProvider extends LiteralExpItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((EnumLiteralExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_EnumLiteralExp_type") : //$NON-NLS-1$
-				getString("_UI_EnumLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_EnumLiteralExp_type") : //$NON-NLS-1$
+			getString("_UI_EnumLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

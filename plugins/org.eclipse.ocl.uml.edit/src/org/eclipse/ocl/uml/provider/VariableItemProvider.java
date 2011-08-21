@@ -55,9 +55,11 @@ import org.eclipse.uml2.uml.edit.providers.TypedElementItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VariableItemProvider extends TypedElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class VariableItemProvider
+		extends TypedElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -96,16 +98,16 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	protected void addStartPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ASTNode_startPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_ASTNode_startPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.AST_NODE__START_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ASTNode_startPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_ASTNode_startPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.AST_NODE__START_POSITION, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -116,16 +118,15 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	protected void addEndPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ASTNode_endPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_ASTNode_endPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.AST_NODE__END_POSITION, true,
-						false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ASTNode_endPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_ASTNode_endPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.AST_NODE__END_POSITION, true, false,
+				false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -136,16 +137,16 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	protected void addTypeStartPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypedASTNode_typeStartPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeStartPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_START_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypedASTNode_typeStartPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeStartPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_START_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -156,16 +157,16 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	protected void addTypeEndPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypedASTNode_typeEndPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeEndPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_END_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypedASTNode_typeEndPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeEndPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_END_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -176,15 +177,15 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	protected void addRepresentedParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Variable_representedParameter_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_Variable_representedParameter_feature", "_UI_Variable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.VARIABLE__REPRESENTED_PARAMETER,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Variable_representedParameter_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_Variable_representedParameter_feature", "_UI_Variable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.VARIABLE__REPRESENTED_PARAMETER,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -201,7 +202,7 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION);
+				.add(ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -227,8 +228,8 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Variable")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/Variable")); //$NON-NLS-1$
 	}
 
 	/**
@@ -250,8 +251,9 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Variable) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Variable_type") : //$NON-NLS-1$
-				getString("_UI_Variable_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_Variable_type") : //$NON-NLS-1$
+			getString("_UI_Variable_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -266,17 +268,17 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Variable.class)) {
-		case UMLPackage.VARIABLE__START_POSITION:
-		case UMLPackage.VARIABLE__END_POSITION:
-		case UMLPackage.VARIABLE__TYPE_START_POSITION:
-		case UMLPackage.VARIABLE__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case UMLPackage.VARIABLE__INIT_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.VARIABLE__START_POSITION :
+			case UMLPackage.VARIABLE__END_POSITION :
+			case UMLPackage.VARIABLE__TYPE_START_POSITION :
+			case UMLPackage.VARIABLE__TYPE_END_POSITION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
+			case UMLPackage.VARIABLE__INIT_EXPRESSION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -294,182 +296,180 @@ public class VariableItemProvider extends TypedElementItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.VARIABLE__INIT_EXPRESSION,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 	}
 
 	/**

@@ -39,9 +39,11 @@ import org.eclipse.ocl.expressions.PropertyCallExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyCallExpItemProvider extends NavigationCallExpItemProvider
+public class PropertyCallExpItemProvider
+		extends NavigationCallExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,15 +78,15 @@ public class PropertyCallExpItemProvider extends NavigationCallExpItemProvider
 	 */
 	protected void addReferredPropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyCallExp_referredProperty_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_PropertyCallExp_referredProperty_feature", "_UI_PropertyCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyCallExp_referredProperty_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_PropertyCallExp_referredProperty_feature", "_UI_PropertyCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -95,8 +97,8 @@ public class PropertyCallExpItemProvider extends NavigationCallExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/PropertyCallExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/PropertyCallExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -160,12 +162,12 @@ public class PropertyCallExpItemProvider extends NavigationCallExpItemProvider
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.CALL_EXP__SOURCE
-				|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
+			|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

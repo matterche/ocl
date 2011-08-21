@@ -40,9 +40,11 @@ import org.eclipse.ocl.uml.VariableExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class VariableExpItemProvider extends OCLExpressionItemProvider
+public class VariableExpItemProvider
+		extends OCLExpressionItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,15 +79,15 @@ public class VariableExpItemProvider extends OCLExpressionItemProvider
 	 */
 	protected void addReferredVariablePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_VariableExp_referredVariable_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_VariableExp_referredVariable_feature", "_UI_VariableExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_VariableExp_referredVariable_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_VariableExp_referredVariable_feature", "_UI_VariableExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE,
+				true, false, false, null, null, null));
 	}
 
 	/**
@@ -96,8 +98,8 @@ public class VariableExpItemProvider extends OCLExpressionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/VariableExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/VariableExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -119,8 +121,9 @@ public class VariableExpItemProvider extends OCLExpressionItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((VariableExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_VariableExp_type") : //$NON-NLS-1$
-				getString("_UI_VariableExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_VariableExp_type") : //$NON-NLS-1$
+			getString("_UI_VariableExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

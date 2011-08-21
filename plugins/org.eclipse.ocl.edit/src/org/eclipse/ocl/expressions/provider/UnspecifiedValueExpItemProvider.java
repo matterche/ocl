@@ -43,9 +43,11 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
+public class UnspecifiedValueExpItemProvider
+		extends OCLExpressionItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,16 +83,16 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 	 */
 	protected void addTypeStartPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypedASTNode_typeStartPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeStartPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_START_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypedASTNode_typeStartPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeStartPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_START_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -101,16 +103,16 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 	 */
 	protected void addTypeEndPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypedASTNode_typeEndPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeEndPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_END_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypedASTNode_typeEndPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypedASTNode_typeEndPosition_feature", "_UI_TypedASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.TYPED_AST_NODE__TYPE_END_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -121,8 +123,8 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/UnspecifiedValueExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -159,11 +161,11 @@ public class UnspecifiedValueExpItemProvider extends OCLExpressionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnspecifiedValueExp.class)) {
-		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION:
-		case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_START_POSITION :
+			case ExpressionsPackage.UNSPECIFIED_VALUE_EXP__TYPE_END_POSITION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

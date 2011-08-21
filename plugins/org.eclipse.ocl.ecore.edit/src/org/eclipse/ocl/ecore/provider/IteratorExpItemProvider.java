@@ -39,9 +39,11 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IteratorExpItemProvider extends LoopExpItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class IteratorExpItemProvider
+		extends LoopExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -75,8 +77,8 @@ public class IteratorExpItemProvider extends LoopExpItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IteratorExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/IteratorExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -98,8 +100,9 @@ public class IteratorExpItemProvider extends LoopExpItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((IteratorExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_IteratorExp_type") : //$NON-NLS-1$
-				getString("_UI_IteratorExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_IteratorExp_type") : //$NON-NLS-1$
+			getString("_UI_IteratorExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -141,12 +144,12 @@ public class IteratorExpItemProvider extends LoopExpItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.CALL_EXP__SOURCE
-				|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__BODY;
+			|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__BODY;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

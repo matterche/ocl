@@ -37,9 +37,11 @@ import org.eclipse.ocl.types.SetType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SetTypeItemProvider extends CollectionTypeItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class SetTypeItemProvider
+		extends CollectionTypeItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,8 +75,8 @@ public class SetTypeItemProvider extends CollectionTypeItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/SetType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/SetType")); //$NON-NLS-1$
 	}
 
 	/**

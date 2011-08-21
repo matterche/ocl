@@ -48,9 +48,11 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OCLExpressionItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class OCLExpressionItemProvider
+		extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,16 +88,16 @@ public class OCLExpressionItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addStartPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ASTNode_startPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_ASTNode_startPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.AST_NODE__START_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ASTNode_startPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_ASTNode_startPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.AST_NODE__START_POSITION, true,
+				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -106,16 +108,15 @@ public class OCLExpressionItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addEndPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ASTNode_endPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_ASTNode_endPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.AST_NODE__END_POSITION, true,
-						false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ASTNode_endPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_ASTNode_endPosition_feature", "_UI_ASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.AST_NODE__END_POSITION, true, false,
+				false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -152,11 +153,11 @@ public class OCLExpressionItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OCLExpression.class)) {
-		case ExpressionsPackage.OCL_EXPRESSION__START_POSITION:
-		case ExpressionsPackage.OCL_EXPRESSION__END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.OCL_EXPRESSION__START_POSITION :
+			case ExpressionsPackage.OCL_EXPRESSION__END_POSITION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

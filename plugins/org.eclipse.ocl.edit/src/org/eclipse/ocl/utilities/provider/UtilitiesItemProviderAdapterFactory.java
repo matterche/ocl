@@ -46,9 +46,10 @@ import org.eclipse.ocl.utilities.util.UtilitiesAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UtilitiesItemProviderAdapterFactory extends
-		UtilitiesAdapterFactory implements ComposeableAdapterFactory,
-		IChangeNotifier, IDisposable {
+public class UtilitiesItemProviderAdapterFactory
+		extends UtilitiesAdapterFactory
+		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -94,8 +95,9 @@ public class UtilitiesItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null
+			? this
+			: parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -140,7 +142,7 @@ public class UtilitiesItemProviderAdapterFactory extends
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
 			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+				|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

@@ -46,8 +46,10 @@ import org.eclipse.ocl.ecore.util.EcoreAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
+public class EcoreItemProviderAdapterFactory
+		extends EcoreAdapterFactory
 		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -334,7 +336,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createTemplateParameterTypeAdapter() {
 		if (templateParameterTypeItemProvider == null) {
 			templateParameterTypeItemProvider = new TemplateParameterTypeItemProvider(
-					this);
+				this);
 		}
 
 		return templateParameterTypeItemProvider;
@@ -427,7 +429,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createCallOperationActionAdapter() {
 		if (callOperationActionItemProvider == null) {
 			callOperationActionItemProvider = new CallOperationActionItemProvider(
-					this);
+				this);
 		}
 
 		return callOperationActionItemProvider;
@@ -474,7 +476,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createSendSignalActionAdapter() {
 		if (sendSignalActionItemProvider == null) {
 			sendSignalActionItemProvider = new SendSignalActionItemProvider(
-					this);
+				this);
 		}
 
 		return sendSignalActionItemProvider;
@@ -521,7 +523,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createAssociationClassCallExpAdapter() {
 		if (associationClassCallExpItemProvider == null) {
 			associationClassCallExpItemProvider = new AssociationClassCallExpItemProvider(
-					this);
+				this);
 		}
 
 		return associationClassCallExpItemProvider;
@@ -545,7 +547,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createBooleanLiteralExpAdapter() {
 		if (booleanLiteralExpItemProvider == null) {
 			booleanLiteralExpItemProvider = new BooleanLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return booleanLiteralExpItemProvider;
@@ -592,7 +594,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createCollectionLiteralExpAdapter() {
 		if (collectionLiteralExpItemProvider == null) {
 			collectionLiteralExpItemProvider = new CollectionLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return collectionLiteralExpItemProvider;
@@ -685,7 +687,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createIntegerLiteralExpAdapter() {
 		if (integerLiteralExpItemProvider == null) {
 			integerLiteralExpItemProvider = new IntegerLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return integerLiteralExpItemProvider;
@@ -709,7 +711,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createUnlimitedNaturalLiteralExpAdapter() {
 		if (unlimitedNaturalLiteralExpItemProvider == null) {
 			unlimitedNaturalLiteralExpItemProvider = new UnlimitedNaturalLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return unlimitedNaturalLiteralExpItemProvider;
@@ -733,7 +735,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createInvalidLiteralExpAdapter() {
 		if (invalidLiteralExpItemProvider == null) {
 			invalidLiteralExpItemProvider = new InvalidLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return invalidLiteralExpItemProvider;
@@ -872,7 +874,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createOperationCallExpAdapter() {
 		if (operationCallExpItemProvider == null) {
 			operationCallExpItemProvider = new OperationCallExpItemProvider(
-					this);
+				this);
 		}
 
 		return operationCallExpItemProvider;
@@ -965,7 +967,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createStringLiteralExpAdapter() {
 		if (stringLiteralExpItemProvider == null) {
 			stringLiteralExpItemProvider = new StringLiteralExpItemProvider(
-					this);
+				this);
 		}
 
 		return stringLiteralExpItemProvider;
@@ -1012,7 +1014,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createTupleLiteralPartAdapter() {
 		if (tupleLiteralPartItemProvider == null) {
 			tupleLiteralPartItemProvider = new TupleLiteralPartItemProvider(
-					this);
+				this);
 		}
 
 		return tupleLiteralPartItemProvider;
@@ -1059,7 +1061,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	public Adapter createUnspecifiedValueExpAdapter() {
 		if (unspecifiedValueExpItemProvider == null) {
 			unspecifiedValueExpItemProvider = new UnspecifiedValueExpItemProvider(
-					this);
+				this);
 		}
 
 		return unspecifiedValueExpItemProvider;
@@ -1125,13 +1127,12 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @since 3.1
 	 */
 	@Override
 	public Adapter createOppositePropertyCallExpAdapter() {
 		if (oppositePropertyCallExpItemProvider == null) {
 			oppositePropertyCallExpItemProvider = new OppositePropertyCallExpItemProvider(
-					this);
+				this);
 		}
 
 		return oppositePropertyCallExpItemProvider;
@@ -1144,8 +1145,9 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null
+			? this
+			: parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -1190,7 +1192,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
 			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+				|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

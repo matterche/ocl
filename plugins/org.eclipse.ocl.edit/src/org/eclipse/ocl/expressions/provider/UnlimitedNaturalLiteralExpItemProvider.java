@@ -41,10 +41,11 @@ import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class UnlimitedNaturalLiteralExpItemProvider extends
-		NumericLiteralExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class UnlimitedNaturalLiteralExpItemProvider
+		extends NumericLiteralExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,16 +81,16 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 	 */
 	protected void addIntegerSymbolPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_integerSymbol_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -100,16 +101,16 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 	 */
 	protected void addUnlimitedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_UnlimitedNaturalLiteralExp_unlimited_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_unlimited_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED,
-						false, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnlimitedNaturalLiteralExp_unlimited_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_UnlimitedNaturalLiteralExp_unlimited_feature", "_UI_UnlimitedNaturalLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED,
+				false, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -120,7 +121,9 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
+		return overlayImage(
+			object,
+			getResourceLocator().getImage(
 				"full/obj16/UnlimitedNaturalLiteralExp")); //$NON-NLS-1$
 	}
 
@@ -158,11 +161,11 @@ public class UnlimitedNaturalLiteralExpItemProvider extends
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnlimitedNaturalLiteralExp.class)) {
-		case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL:
-		case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__INTEGER_SYMBOL :
+			case ExpressionsPackage.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

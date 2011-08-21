@@ -41,9 +41,11 @@ import org.eclipse.ocl.expressions.FeatureCallExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureCallExpItemProvider extends CallExpItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class FeatureCallExpItemProvider
+		extends CallExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -78,16 +80,16 @@ public class FeatureCallExpItemProvider extends CallExpItemProvider implements
 	 */
 	protected void addMarkedPrePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_FeatureCallExp_markedPre_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_FeatureCallExp_markedPre_feature", "_UI_FeatureCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.FEATURE_CALL_EXP__MARKED_PRE,
-						true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_FeatureCallExp_markedPre_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_FeatureCallExp_markedPre_feature", "_UI_FeatureCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.FEATURE_CALL_EXP__MARKED_PRE, true,
+				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -124,10 +126,10 @@ public class FeatureCallExpItemProvider extends CallExpItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FeatureCallExp.class)) {
-		case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.FEATURE_CALL_EXP__MARKED_PRE :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

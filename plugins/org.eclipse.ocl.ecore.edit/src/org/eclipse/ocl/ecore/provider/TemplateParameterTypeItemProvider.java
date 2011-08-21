@@ -49,9 +49,11 @@ import org.eclipse.ocl.types.TypesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TemplateParameterTypeItemProvider extends EClassifierItemProvider
+public class TemplateParameterTypeItemProvider
+		extends EClassifierItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,16 +88,16 @@ public class TemplateParameterTypeItemProvider extends EClassifierItemProvider
 	 */
 	protected void addSpecificationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TemplateParameterType_specification_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TemplateParameterType_specification_feature", "_UI_TemplateParameterType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.TEMPLATE_PARAMETER_TYPE__SPECIFICATION,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TemplateParameterType_specification_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TemplateParameterType_specification_feature", "_UI_TemplateParameterType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.TEMPLATE_PARAMETER_TYPE__SPECIFICATION,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -106,8 +108,8 @@ public class TemplateParameterTypeItemProvider extends EClassifierItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TemplateParameterType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/TemplateParameterType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -129,8 +131,9 @@ public class TemplateParameterTypeItemProvider extends EClassifierItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((TemplateParameterType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_TemplateParameterType_type") : //$NON-NLS-1$
-				getString("_UI_TemplateParameterType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_TemplateParameterType_type") : //$NON-NLS-1$
+			getString("_UI_TemplateParameterType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -145,10 +148,10 @@ public class TemplateParameterTypeItemProvider extends EClassifierItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TemplateParameterType.class)) {
-		case EcorePackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case EcorePackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

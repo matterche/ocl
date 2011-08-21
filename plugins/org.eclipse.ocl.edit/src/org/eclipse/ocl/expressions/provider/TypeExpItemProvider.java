@@ -39,9 +39,11 @@ import org.eclipse.ocl.expressions.TypeExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeExpItemProvider extends OCLExpressionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class TypeExpItemProvider
+		extends OCLExpressionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,15 +78,15 @@ public class TypeExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	protected void addReferredTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypeExp_referredType_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypeExp_referredType_feature", "_UI_TypeExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.TYPE_EXP__REFERRED_TYPE,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypeExp_referredType_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypeExp_referredType_feature", "_UI_TypeExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.TYPE_EXP__REFERRED_TYPE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -95,8 +97,8 @@ public class TypeExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TypeExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/TypeExp")); //$NON-NLS-1$
 	}
 
 	/**

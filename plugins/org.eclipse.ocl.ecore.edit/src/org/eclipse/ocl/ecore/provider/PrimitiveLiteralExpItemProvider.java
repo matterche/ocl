@@ -37,9 +37,11 @@ import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PrimitiveLiteralExpItemProvider extends LiteralExpItemProvider
+public class PrimitiveLiteralExpItemProvider
+		extends LiteralExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -84,8 +86,9 @@ public class PrimitiveLiteralExpItemProvider extends LiteralExpItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((PrimitiveLiteralExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_PrimitiveLiteralExp_type") : //$NON-NLS-1$
-				getString("_UI_PrimitiveLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_PrimitiveLiteralExp_type") : //$NON-NLS-1$
+			getString("_UI_PrimitiveLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

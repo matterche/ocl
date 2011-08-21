@@ -43,9 +43,11 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ElementTypeItemProvider extends EClassItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ElementTypeItemProvider
+		extends EClassItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -79,8 +81,8 @@ public class ElementTypeItemProvider extends EClassItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ElementType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/ElementType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -102,8 +104,9 @@ public class ElementTypeItemProvider extends EClassItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((ElementType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ElementType_type") : //$NON-NLS-1$
-				getString("_UI_ElementType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_ElementType_type") : //$NON-NLS-1$
+			getString("_UI_ElementType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

@@ -52,9 +52,11 @@ import org.eclipse.uml2.uml.edit.providers.ClassifierItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MessageTypeItemProvider extends ClassifierItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class MessageTypeItemProvider
+		extends ClassifierItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -90,15 +92,15 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	protected void addReferredOperationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MessageType_referredOperation_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_MessageType_referredOperation_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MessageType_referredOperation_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_MessageType_referredOperation_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -109,15 +111,15 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	protected void addReferredSignalPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MessageType_referredSignal_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_MessageType_referredSignal_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_MessageType_referredSignal_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_MessageType_referredSignal_feature", "_UI_MessageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -134,9 +136,9 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(UMLPackage.Literals.MESSAGE_TYPE__OWNED_OPERATION);
+				.add(UMLPackage.Literals.MESSAGE_TYPE__OWNED_OPERATION);
 			childrenFeatures
-					.add(UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE);
+				.add(UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -162,8 +164,8 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/MessageType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -185,8 +187,9 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((MessageType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_MessageType_type") : //$NON-NLS-1$
-				getString("_UI_MessageType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_MessageType_type") : //$NON-NLS-1$
+			getString("_UI_MessageType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -201,15 +204,15 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MessageType.class)) {
-		case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION:
-		case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.MESSAGE_TYPE__REFERRED_SIGNAL :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
+			case UMLPackage.MESSAGE_TYPE__OWNED_OPERATION :
+			case UMLPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -227,20 +230,20 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.MESSAGE_TYPE__OWNED_OPERATION,
-				UMLFactory.eINSTANCE.createOperation()));
+			UMLPackage.Literals.MESSAGE_TYPE__OWNED_OPERATION,
+			UMLFactory.eINSTANCE.createOperation()));
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
-				UMLFactory.eINSTANCE.createProperty()));
+			UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
+			UMLFactory.eINSTANCE.createProperty()));
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
-				UMLFactory.eINSTANCE.createPort()));
+			UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
+			UMLFactory.eINSTANCE.createPort()));
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
-				UMLFactory.eINSTANCE.createExtensionEnd()));
+			UMLPackage.Literals.MESSAGE_TYPE__OWNED_ATTRIBUTE,
+			UMLFactory.eINSTANCE.createExtensionEnd()));
 	}
 
 	/**
@@ -256,12 +259,12 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__REPRESENTATION
-				|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
+			|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

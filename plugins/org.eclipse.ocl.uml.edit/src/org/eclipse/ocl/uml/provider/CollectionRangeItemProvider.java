@@ -46,10 +46,11 @@ import org.eclipse.ocl.uml.UMLPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CollectionRangeItemProvider extends
-		CollectionLiteralPartItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class CollectionRangeItemProvider
+		extends CollectionLiteralPartItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -85,15 +86,15 @@ public class CollectionRangeItemProvider extends
 	 */
 	protected void addFirstPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CollectionRange_first_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CollectionRange_first_feature", "_UI_CollectionRange_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CollectionRange_first_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CollectionRange_first_feature", "_UI_CollectionRange_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -104,15 +105,15 @@ public class CollectionRangeItemProvider extends
 	 */
 	protected void addLastPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CollectionRange_last_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CollectionRange_last_feature", "_UI_CollectionRange_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CollectionRange_last_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CollectionRange_last_feature", "_UI_CollectionRange_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -129,9 +130,9 @@ public class CollectionRangeItemProvider extends
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST);
+				.add(ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.COLLECTION_RANGE__LAST);
+				.add(ExpressionsPackage.Literals.COLLECTION_RANGE__LAST);
 		}
 		return childrenFeatures;
 	}
@@ -157,8 +158,8 @@ public class CollectionRangeItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionRange")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/CollectionRange")); //$NON-NLS-1$
 	}
 
 	/**
@@ -180,8 +181,9 @@ public class CollectionRangeItemProvider extends
 	@Override
 	public String getText(Object object) {
 		String label = ((CollectionRange) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CollectionRange_type") : //$NON-NLS-1$
-				getString("_UI_CollectionRange_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_CollectionRange_type") : //$NON-NLS-1$
+			getString("_UI_CollectionRange_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -196,11 +198,11 @@ public class CollectionRangeItemProvider extends
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CollectionRange.class)) {
-		case UMLPackage.COLLECTION_RANGE__FIRST:
-		case UMLPackage.COLLECTION_RANGE__LAST:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.COLLECTION_RANGE__FIRST :
+			case UMLPackage.COLLECTION_RANGE__LAST :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -218,360 +220,356 @@ public class CollectionRangeItemProvider extends
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				UMLFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			UMLFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.COLLECTION_RANGE__LAST,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 	}
 
 	/**
@@ -587,12 +585,12 @@ public class CollectionRangeItemProvider extends
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.COLLECTION_RANGE__FIRST
-				|| childFeature == ExpressionsPackage.Literals.COLLECTION_RANGE__LAST;
+			|| childFeature == ExpressionsPackage.Literals.COLLECTION_RANGE__LAST;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

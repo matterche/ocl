@@ -37,10 +37,11 @@ import org.eclipse.ocl.uml.NumericLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NumericLiteralExpItemProvider extends
-		PrimitiveLiteralExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class NumericLiteralExpItemProvider
+		extends PrimitiveLiteralExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -85,8 +86,9 @@ public class NumericLiteralExpItemProvider extends
 	@Override
 	public String getText(Object object) {
 		String label = ((NumericLiteralExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_NumericLiteralExp_type") : //$NON-NLS-1$
-				getString("_UI_NumericLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_NumericLiteralExp_type") : //$NON-NLS-1$
+			getString("_UI_NumericLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

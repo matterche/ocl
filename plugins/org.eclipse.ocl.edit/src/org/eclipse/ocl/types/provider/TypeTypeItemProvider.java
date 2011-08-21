@@ -43,9 +43,11 @@ import org.eclipse.ocl.types.TypesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeTypeItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class TypeTypeItemProvider
+		extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,15 +82,15 @@ public class TypeTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addReferredTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypeType_referredType_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypeType_referredType_feature", "_UI_TypeType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.TYPE_TYPE__REFERRED_TYPE, false,
-						false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypeType_referredType_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypeType_referredType_feature", "_UI_TypeType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.TYPE_TYPE__REFERRED_TYPE, false, false,
+				false, null, null, null));
 	}
 
 	/**
@@ -99,8 +101,8 @@ public class TypeTypeItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TypeType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/TypeType")); //$NON-NLS-1$
 	}
 
 	/**

@@ -42,10 +42,11 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OppositePropertyCallExpItemProvider extends
-		NavigationCallExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class OppositePropertyCallExpItemProvider
+		extends NavigationCallExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,15 +81,15 @@ public class OppositePropertyCallExpItemProvider extends
 	 */
 	protected void addReferredOppositePropertyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_OppositePropertyCallExp_referredOppositeProperty_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_OppositePropertyCallExp_referredOppositeProperty_feature", "_UI_OppositePropertyCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
-						true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OppositePropertyCallExp_referredOppositeProperty_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_OppositePropertyCallExp_referredOppositeProperty_feature", "_UI_OppositePropertyCallExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -99,10 +100,8 @@ public class OppositePropertyCallExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(
-				object,
-				getResourceLocator().getImage(
-						"full/obj16/OppositePropertyCallExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/OppositePropertyCallExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -124,8 +123,9 @@ public class OppositePropertyCallExpItemProvider extends
 	@Override
 	public String getText(Object object) {
 		String label = ((OppositePropertyCallExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_OppositePropertyCallExp_type") : //$NON-NLS-1$
-				getString("_UI_OppositePropertyCallExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_OppositePropertyCallExp_type") : //$NON-NLS-1$
+			getString("_UI_OppositePropertyCallExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -167,12 +167,12 @@ public class OppositePropertyCallExpItemProvider extends
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.CALL_EXP__SOURCE
-				|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
+			|| childFeature == ExpressionsPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

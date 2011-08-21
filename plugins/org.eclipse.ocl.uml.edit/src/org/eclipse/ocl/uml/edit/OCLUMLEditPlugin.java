@@ -32,7 +32,9 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class OCLUMLEditPlugin extends EMFPlugin {
+public final class OCLUMLEditPlugin
+		extends EMFPlugin {
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -56,8 +58,8 @@ public final class OCLUMLEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OCLUMLEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				OCLEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{EcoreEditPlugin.INSTANCE,
+			OCLEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE,});
 	}
 
 	/**
@@ -89,7 +91,9 @@ public final class OCLUMLEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation
+			extends EclipsePlugin {
+
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->

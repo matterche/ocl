@@ -50,9 +50,11 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConstraintItemProvider extends ENamedElementItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ConstraintItemProvider
+		extends ENamedElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -88,15 +90,15 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 	 */
 	protected void addConstrainedElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Constraint_constrainedElements_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_Constraint_constrainedElements_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENTS,
-						true, false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Constraint_constrainedElements_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_Constraint_constrainedElements_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENTS, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -107,16 +109,15 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 	 */
 	protected void addStereotypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Constraint_stereotype_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_Constraint_stereotype_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.CONSTRAINT__STEREOTYPE, true,
-						false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Constraint_stereotype_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_Constraint_stereotype_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.CONSTRAINT__STEREOTYPE, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(EcorePackage.Literals.CONSTRAINT__SPECIFICATION);
+				.add(EcorePackage.Literals.CONSTRAINT__SPECIFICATION);
 		}
 		return childrenFeatures;
 	}
@@ -159,8 +160,8 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Constraint")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/Constraint")); //$NON-NLS-1$
 	}
 
 	/**
@@ -182,8 +183,9 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((Constraint) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Constraint_type") : //$NON-NLS-1$
-				getString("_UI_Constraint_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_Constraint_type") : //$NON-NLS-1$
+			getString("_UI_Constraint_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -198,14 +200,14 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Constraint.class)) {
-		case EcorePackage.CONSTRAINT__STEREOTYPE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case EcorePackage.CONSTRAINT__SPECIFICATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case EcorePackage.CONSTRAINT__STEREOTYPE :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
+			case EcorePackage.CONSTRAINT__SPECIFICATION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -223,8 +225,8 @@ public class ConstraintItemProvider extends ENamedElementItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				EcorePackage.Literals.CONSTRAINT__SPECIFICATION,
-				EcoreFactory.eINSTANCE.createExpressionInOCL()));
+			EcorePackage.Literals.CONSTRAINT__SPECIFICATION,
+			EcoreFactory.eINSTANCE.createExpressionInOCL()));
 	}
 
 	/**

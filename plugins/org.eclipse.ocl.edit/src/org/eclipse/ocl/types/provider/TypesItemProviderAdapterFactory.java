@@ -46,8 +46,10 @@ import org.eclipse.ocl.types.util.TypesAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
+public class TypesItemProviderAdapterFactory
+		extends TypesAdapterFactory
 		implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -334,7 +336,7 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
 	public Adapter createTemplateParameterTypeAdapter() {
 		if (templateParameterTypeItemProvider == null) {
 			templateParameterTypeItemProvider = new TemplateParameterTypeItemProvider(
-					this);
+				this);
 		}
 
 		return templateParameterTypeItemProvider;
@@ -416,8 +418,9 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-		return parentAdapterFactory == null ? this : parentAdapterFactory
-				.getRootAdapterFactory();
+		return parentAdapterFactory == null
+			? this
+			: parentAdapterFactory.getRootAdapterFactory();
 	}
 
 	/**
@@ -462,7 +465,7 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
 			if (!(type instanceof Class<?>)
-					|| (((Class<?>) type).isInstance(adapter))) {
+				|| (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}

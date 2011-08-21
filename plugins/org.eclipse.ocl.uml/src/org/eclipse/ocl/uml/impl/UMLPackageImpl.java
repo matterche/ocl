@@ -1902,9 +1902,9 @@ public class UMLPackageImpl
 				.appendFragment("//Classifier/attribute") //$NON-NLS-1$
 			});
 		addAnnotation(getTemplateParameterType_OwnedOperation(), source,
-			new String[]{}, new URI[]{URI.createURI(
-				org.eclipse.uml2.uml.UMLPackage.eNS_URI).appendFragment(
-				"//Classifier/feature") //$NON-NLS-1$
+			new String[]{},
+			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
+				.appendFragment("//Classifier/feature") //$NON-NLS-1$
 			});
 	}
 

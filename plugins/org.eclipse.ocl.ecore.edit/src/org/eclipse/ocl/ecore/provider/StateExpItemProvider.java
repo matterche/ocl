@@ -40,9 +40,11 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StateExpItemProvider extends OCLExpressionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class StateExpItemProvider
+		extends OCLExpressionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,15 +79,15 @@ public class StateExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	protected void addReferredStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_StateExp_referredState_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_StateExp_referredState_feature", "_UI_StateExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.STATE_EXP__REFERRED_STATE,
-						true, false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_StateExp_referredState_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_StateExp_referredState_feature", "_UI_StateExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.STATE_EXP__REFERRED_STATE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -96,8 +98,8 @@ public class StateExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/StateExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/StateExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -119,8 +121,9 @@ public class StateExpItemProvider extends OCLExpressionItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((StateExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_StateExp_type") : //$NON-NLS-1$
-				getString("_UI_StateExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_StateExp_type") : //$NON-NLS-1$
+			getString("_UI_StateExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

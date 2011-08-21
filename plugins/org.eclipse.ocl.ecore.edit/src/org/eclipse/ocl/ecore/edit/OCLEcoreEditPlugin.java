@@ -30,7 +30,9 @@ import org.eclipse.ocl.edit.OCLEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class OCLEcoreEditPlugin extends EMFPlugin {
+public final class OCLEcoreEditPlugin
+		extends EMFPlugin {
+
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -54,8 +56,8 @@ public final class OCLEcoreEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OCLEcoreEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				OCLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{EcoreEditPlugin.INSTANCE,
+			OCLEditPlugin.INSTANCE,});
 	}
 
 	/**
@@ -87,7 +89,9 @@ public final class OCLEcoreEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static class Implementation extends EclipsePlugin {
+	public static class Implementation
+			extends EclipsePlugin {
+
 		/**
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->

@@ -37,10 +37,11 @@ import org.eclipse.ocl.expressions.NumericLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NumericLiteralExpItemProvider extends
-		PrimitiveLiteralExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class NumericLiteralExpItemProvider
+		extends PrimitiveLiteralExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -74,8 +75,8 @@ public class NumericLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/NumericLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/NumericLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**

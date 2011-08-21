@@ -41,10 +41,11 @@ import org.eclipse.ocl.expressions.IntegerLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IntegerLiteralExpItemProvider extends
-		NumericLiteralExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class IntegerLiteralExpItemProvider
+		extends NumericLiteralExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -79,16 +80,16 @@ public class IntegerLiteralExpItemProvider extends
 	 */
 	protected void addIntegerSymbolPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_IntegerLiteralExp_integerSymbol_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_integerSymbol_feature", "_UI_IntegerLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_IntegerLiteralExp_integerSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_integerSymbol_feature", "_UI_IntegerLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -99,8 +100,8 @@ public class IntegerLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IntegerLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/IntegerLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -137,10 +138,10 @@ public class IntegerLiteralExpItemProvider extends
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IntegerLiteralExp.class)) {
-		case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

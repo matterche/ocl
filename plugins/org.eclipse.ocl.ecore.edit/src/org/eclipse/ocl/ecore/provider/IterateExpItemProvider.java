@@ -45,9 +45,11 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IterateExpItemProvider extends LoopExpItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class IterateExpItemProvider
+		extends LoopExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -87,7 +89,7 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.ITERATE_EXP__RESULT);
+				.add(ExpressionsPackage.Literals.ITERATE_EXP__RESULT);
 		}
 		return childrenFeatures;
 	}
@@ -113,8 +115,8 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/IterateExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/IterateExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -136,8 +138,9 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((IterateExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_IterateExp_type") : //$NON-NLS-1$
-				getString("_UI_IterateExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_IterateExp_type") : //$NON-NLS-1$
+			getString("_UI_IterateExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -152,10 +155,10 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IterateExp.class)) {
-		case EcorePackage.ITERATE_EXP__RESULT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case EcorePackage.ITERATE_EXP__RESULT :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -173,12 +176,12 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.ITERATE_EXP__RESULT,
-				EcoreFactory.eINSTANCE.createVariable()));
+			ExpressionsPackage.Literals.ITERATE_EXP__RESULT,
+			EcoreFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.ITERATE_EXP__RESULT,
-				ExpressionsFactory.eINSTANCE.createVariable()));
+			ExpressionsPackage.Literals.ITERATE_EXP__RESULT,
+			ExpressionsFactory.eINSTANCE.createVariable()));
 	}
 
 	/**
@@ -194,14 +197,14 @@ public class IterateExpItemProvider extends LoopExpItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.CALL_EXP__SOURCE
-				|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__BODY
-				|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__ITERATOR
-				|| childFeature == ExpressionsPackage.Literals.ITERATE_EXP__RESULT;
+			|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__BODY
+			|| childFeature == ExpressionsPackage.Literals.LOOP_EXP__ITERATOR
+			|| childFeature == ExpressionsPackage.Literals.ITERATE_EXP__RESULT;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

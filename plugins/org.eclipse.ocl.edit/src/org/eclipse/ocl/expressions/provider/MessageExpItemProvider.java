@@ -48,9 +48,11 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MessageExpItemProvider extends OCLExpressionItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class MessageExpItemProvider
+		extends OCLExpressionItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -86,16 +88,16 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	protected void addPropertyStartPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CallingASTNode_propertyStartPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CallingASTNode_propertyStartPosition_feature", "_UI_CallingASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.CALLING_AST_NODE__PROPERTY_START_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CallingASTNode_propertyStartPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CallingASTNode_propertyStartPosition_feature", "_UI_CallingASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.CALLING_AST_NODE__PROPERTY_START_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -106,16 +108,16 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	protected void addPropertyEndPositionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CallingASTNode_propertyEndPosition_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CallingASTNode_propertyEndPosition_feature", "_UI_CallingASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						UtilitiesPackage.Literals.CALLING_AST_NODE__PROPERTY_END_POSITION,
-						true, false, false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CallingASTNode_propertyEndPosition_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CallingASTNode_propertyEndPosition_feature", "_UI_CallingASTNode_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				UtilitiesPackage.Literals.CALLING_AST_NODE__PROPERTY_END_POSITION,
+				true, false, false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -132,13 +134,13 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.MESSAGE_EXP__TARGET);
+				.add(ExpressionsPackage.Literals.MESSAGE_EXP__TARGET);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT);
+				.add(ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION);
+				.add(ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL);
+				.add(ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL);
 		}
 		return childrenFeatures;
 	}
@@ -164,8 +166,8 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/MessageExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/MessageExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -202,18 +204,18 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MessageExp.class)) {
-		case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION:
-		case ExpressionsPackage.MESSAGE_EXP__PROPERTY_END_POSITION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case ExpressionsPackage.MESSAGE_EXP__TARGET:
-		case ExpressionsPackage.MESSAGE_EXP__ARGUMENT:
-		case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION:
-		case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_START_POSITION :
+			case ExpressionsPackage.MESSAGE_EXP__PROPERTY_END_POSITION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
+			case ExpressionsPackage.MESSAGE_EXP__TARGET :
+			case ExpressionsPackage.MESSAGE_EXP__ARGUMENT :
+			case ExpressionsPackage.MESSAGE_EXP__CALLED_OPERATION :
+			case ExpressionsPackage.MESSAGE_EXP__SENT_SIGNAL :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -231,508 +233,500 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__TARGET,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createCollectionItem()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createCollectionItem()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createCollectionRange()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createCollectionRange()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createVariable()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralPart()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralPart()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createAnyType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createCollectionType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createCollectionType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createBagType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createBagType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createElementType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createElementType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createInvalidType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createInvalidType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createMessageType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createMessageType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createOrderedSetType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createOrderedSetType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createPrimitiveType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createPrimitiveType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createSequenceType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createSequenceType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createSetType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createSetType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createTemplateParameterType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createTemplateParameterType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createTupleType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createTupleType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createTypeType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createTypeType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				TypesFactory.eINSTANCE.createVoidType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+			TypesFactory.eINSTANCE.createVoidType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createAssociationClassCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createCollectionItem()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createCollectionItem()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createCollectionLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createCollectionRange()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createCollectionRange()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createEnumLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createIfExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createIfExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createIntegerLiteralExp()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-						ExpressionsFactory.eINSTANCE
-								.createUnlimitedNaturalLiteralExp()));
+		newChildDescriptors.add(createChildParameter(
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createUnlimitedNaturalLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createInvalidLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createIterateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createIterateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createVariable()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createIteratorExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createIteratorExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createLetExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createLetExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createMessageExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createMessageExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createNullLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createOperationCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createPropertyCallExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createRealLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createStateExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createStateExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createTupleLiteralPart()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createTupleLiteralPart()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createTypeExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createTypeExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createUnspecifiedValueExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				ExpressionsFactory.eINSTANCE.createVariableExp()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			ExpressionsFactory.eINSTANCE.createVariableExp()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createAnyType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createAnyType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createCollectionType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createCollectionType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createBagType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createBagType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createElementType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createElementType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createInvalidType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createInvalidType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createMessageType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createMessageType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createOrderedSetType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createOrderedSetType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createPrimitiveType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createPrimitiveType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createSequenceType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createSequenceType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createSetType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createSetType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createTemplateParameterType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createTemplateParameterType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createTupleType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createTupleType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createTypeType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createTypeType()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				TypesFactory.eINSTANCE.createVoidType()));
+			ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+			TypesFactory.eINSTANCE.createVoidType()));
 	}
 
 	/**
@@ -748,14 +742,14 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__TARGET
-				|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT
-				|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION
-				|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL;
+			|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__ARGUMENT
+			|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION
+			|| childFeature == ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

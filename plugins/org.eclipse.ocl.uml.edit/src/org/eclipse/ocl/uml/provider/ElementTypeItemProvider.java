@@ -45,9 +45,11 @@ import org.eclipse.uml2.uml.edit.providers.ClassifierItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ElementTypeItemProvider extends ClassifierItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class ElementTypeItemProvider
+		extends ClassifierItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -81,8 +83,8 @@ public class ElementTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ElementType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/ElementType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -104,8 +106,9 @@ public class ElementTypeItemProvider extends ClassifierItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((ElementType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_ElementType_type") : //$NON-NLS-1$
-				getString("_UI_ElementType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_ElementType_type") : //$NON-NLS-1$
+			getString("_UI_ElementType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -147,12 +150,12 @@ public class ElementTypeItemProvider extends ClassifierItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == UMLPackage.Literals.CLASSIFIER__REPRESENTATION
-				|| childFeature == UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
+			|| childFeature == UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

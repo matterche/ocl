@@ -37,9 +37,11 @@ import org.eclipse.ocl.ecore.NullLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NullLiteralExpItemProvider extends LiteralExpItemProvider
+public class NullLiteralExpItemProvider
+		extends LiteralExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -73,8 +75,8 @@ public class NullLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/NullLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/NullLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -96,8 +98,9 @@ public class NullLiteralExpItemProvider extends LiteralExpItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((NullLiteralExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_NullLiteralExp_type") : //$NON-NLS-1$
-				getString("_UI_NullLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_NullLiteralExp_type") : //$NON-NLS-1$
+			getString("_UI_NullLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

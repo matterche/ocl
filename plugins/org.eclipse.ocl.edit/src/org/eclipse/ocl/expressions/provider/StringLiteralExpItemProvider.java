@@ -41,10 +41,11 @@ import org.eclipse.ocl.expressions.StringLiteralExp;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StringLiteralExpItemProvider extends
-		PrimitiveLiteralExpItemProvider implements IEditingDomainItemProvider,
-		IStructuredItemContentProvider, ITreeItemContentProvider,
-		IItemLabelProvider, IItemPropertySource {
+public class StringLiteralExpItemProvider
+		extends PrimitiveLiteralExpItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -79,16 +80,16 @@ public class StringLiteralExpItemProvider extends
 	 */
 	protected void addStringSymbolPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_StringLiteralExp_stringSymbol_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_StringLiteralExp_stringSymbol_feature", "_UI_StringLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_StringLiteralExp_stringSymbol_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_StringLiteralExp_stringSymbol_feature", "_UI_StringLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL,
+				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -99,8 +100,8 @@ public class StringLiteralExpItemProvider extends
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/StringLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/StringLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -137,10 +138,10 @@ public class StringLiteralExpItemProvider extends
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StringLiteralExp.class)) {
-		case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExpressionsPackage.STRING_LITERAL_EXP__STRING_SYMBOL :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

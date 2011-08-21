@@ -52,9 +52,11 @@ import org.eclipse.uml2.uml.edit.providers.ClassifierItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeTypeItemProvider extends ClassifierItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class TypeTypeItemProvider
+		extends ClassifierItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -89,15 +91,15 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	protected void addReferredTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_TypeType_referredType_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_TypeType_referredType_feature", "_UI_TypeType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						TypesPackage.Literals.TYPE_TYPE__REFERRED_TYPE, false,
-						false, false, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_TypeType_referredType_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_TypeType_referredType_feature", "_UI_TypeType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				TypesPackage.Literals.TYPE_TYPE__REFERRED_TYPE, false, false,
+				false, null, null, null));
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(UMLPackage.Literals.TYPE_TYPE__OWNED_OPERATION);
+				.add(UMLPackage.Literals.TYPE_TYPE__OWNED_OPERATION);
 		}
 		return childrenFeatures;
 	}
@@ -140,8 +142,8 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TypeType")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/TypeType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -163,8 +165,9 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 	@Override
 	public String getText(Object object) {
 		String label = ((TypeType) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_TypeType_type") : //$NON-NLS-1$
-				getString("_UI_TypeType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_TypeType_type") : //$NON-NLS-1$
+			getString("_UI_TypeType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -179,10 +182,10 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TypeType.class)) {
-		case UMLPackage.TYPE_TYPE__OWNED_OPERATION:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.TYPE_TYPE__OWNED_OPERATION :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -200,8 +203,8 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				UMLPackage.Literals.TYPE_TYPE__OWNED_OPERATION,
-				UMLFactory.eINSTANCE.createOperation()));
+			UMLPackage.Literals.TYPE_TYPE__OWNED_OPERATION,
+			UMLFactory.eINSTANCE.createOperation()));
 	}
 
 	/**
@@ -217,12 +220,12 @@ public class TypeTypeItemProvider extends ClassifierItemProvider implements
 		Object childObject = child;
 
 		boolean qualify = childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__REPRESENTATION
-				|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
+			|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
-					new Object[] { getTypeText(childObject),
-							getFeatureText(childFeature), getTypeText(owner) });
+				new Object[]{getTypeText(childObject),
+					getFeatureText(childFeature), getTypeText(owner)});
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}

@@ -43,9 +43,11 @@ import org.eclipse.ocl.ecore.edit.OCLEcoreEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SendSignalActionItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class SendSignalActionItemProvider
+		extends ItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -80,15 +82,15 @@ public class SendSignalActionItemProvider extends ItemProviderAdapter implements
 	 */
 	protected void addSignalPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_SendSignalAction_signal_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_SendSignalAction_signal_feature", "_UI_SendSignalAction_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, true,
-						false, true, null, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_SendSignalAction_signal_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_SendSignalAction_signal_feature", "_UI_SendSignalAction_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.SEND_SIGNAL_ACTION__SIGNAL, true, false,
+				true, null, null, null));
 	}
 
 	/**
@@ -99,8 +101,8 @@ public class SendSignalActionItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/SendSignalAction")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/SendSignalAction")); //$NON-NLS-1$
 	}
 
 	/**

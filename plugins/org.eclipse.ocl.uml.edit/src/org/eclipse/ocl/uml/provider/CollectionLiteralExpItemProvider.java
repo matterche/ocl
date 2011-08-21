@@ -47,9 +47,11 @@ import org.eclipse.ocl.uml.UMLPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
+public class CollectionLiteralExpItemProvider
+		extends LiteralExpItemProvider
 		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -85,16 +87,16 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	protected void addKindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CollectionLiteralExp_kind_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CollectionLiteralExp_kind_feature", "_UI_CollectionLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__KIND,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CollectionLiteralExp_kind_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CollectionLiteralExp_kind_feature", "_UI_CollectionLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__KIND, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -105,16 +107,16 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	protected void addSimpleRangePropertyDescriptor(Object object) {
 		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CollectionLiteralExp_simpleRange_feature"), //$NON-NLS-1$
-						getString(
-								"_UI_PropertyDescriptor_description", "_UI_CollectionLiteralExp_simpleRange_feature", "_UI_CollectionLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__SIMPLE_RANGE,
-						true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+			.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+					.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CollectionLiteralExp_simpleRange_feature"), //$NON-NLS-1$
+				getString(
+					"_UI_PropertyDescriptor_description", "_UI_CollectionLiteralExp_simpleRange_feature", "_UI_CollectionLiteralExp_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__SIMPLE_RANGE,
+				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART);
+				.add(ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART);
 		}
 		return childrenFeatures;
 	}
@@ -157,8 +159,8 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/CollectionLiteralExp")); //$NON-NLS-1$
+		return overlayImage(object,
+			getResourceLocator().getImage("full/obj16/CollectionLiteralExp")); //$NON-NLS-1$
 	}
 
 	/**
@@ -180,8 +182,9 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((CollectionLiteralExp) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_CollectionLiteralExp_type") : //$NON-NLS-1$
-				getString("_UI_CollectionLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return label == null || label.length() == 0
+			? getString("_UI_CollectionLiteralExp_type") : //$NON-NLS-1$
+			getString("_UI_CollectionLiteralExp_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -196,15 +199,15 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CollectionLiteralExp.class)) {
-		case UMLPackage.COLLECTION_LITERAL_EXP__KIND:
-		case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case UMLPackage.COLLECTION_LITERAL_EXP__PART:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case UMLPackage.COLLECTION_LITERAL_EXP__KIND :
+			case UMLPackage.COLLECTION_LITERAL_EXP__SIMPLE_RANGE :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+				return;
+			case UMLPackage.COLLECTION_LITERAL_EXP__PART :
+				fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -222,20 +225,20 @@ public class CollectionLiteralExpItemProvider extends LiteralExpItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
-				UMLFactory.eINSTANCE.createCollectionItem()));
+			ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
+			UMLFactory.eINSTANCE.createCollectionItem()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
-				UMLFactory.eINSTANCE.createCollectionRange()));
+			ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
+			UMLFactory.eINSTANCE.createCollectionRange()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
-				ExpressionsFactory.eINSTANCE.createCollectionItem()));
+			ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
+			ExpressionsFactory.eINSTANCE.createCollectionItem()));
 
 		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
-				ExpressionsFactory.eINSTANCE.createCollectionRange()));
+			ExpressionsPackage.Literals.COLLECTION_LITERAL_EXP__PART,
+			ExpressionsFactory.eINSTANCE.createCollectionRange()));
 	}
 
 }
