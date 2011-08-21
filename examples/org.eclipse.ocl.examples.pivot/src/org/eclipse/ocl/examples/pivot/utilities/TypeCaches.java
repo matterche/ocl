@@ -936,10 +936,41 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (type.getOwningTemplateParameter() != null) {
 			return iterable;
 		}
-		else {
-//			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
-			return iterable;
+		else  if (type instanceof org.eclipse.ocl.examples.pivot.Class){
+			return (org.eclipse.ocl.examples.pivot.Class) type;
 		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return all constraints applicable to a type and its superclasses.
+	 */
+	public Iterable<Constraint> getAllConstraints(Type type) {
+		Set<Constraint> allConstraints = getAllConstraints(type, null);
+		if (allConstraints != null) {
+			return allConstraints;
+		}
+		else {
+			return Collections.emptyList();
+		}
+	}
+
+	protected Set<Constraint> getAllConstraints(Type type, Set<Constraint> knownConstraints) {
+		for (Constraint constraint : getLocalConstraints(type)) {
+			if (knownConstraints == null) {
+				knownConstraints = new HashSet<Constraint>();
+				knownConstraints.add(constraint);
+			}
+			else if (!knownConstraints.add(constraint)) {	// Already contained implies multiple inheritance second visit
+				return knownConstraints;
+			}
+		}
+		for (Type superType : getSuperClasses(type)) {
+			knownConstraints = getAllConstraints(superType, knownConstraints);
+		}
+		return knownConstraints;
 	}
 
 	public Iterable<Operation> getAllOperations(Operation operation) {

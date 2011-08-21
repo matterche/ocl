@@ -100,6 +100,9 @@ public class OCLinEcoreLeft2RightVisitor
 			
 			OclExpression bodyExpression = context.visitLeft2Right(OclExpression.class, csExpression);		
 			pivotSpecification.setBodyExpression(bodyExpression);
+			if (bodyExpression != null) {
+				pivotSpecification.setType(bodyExpression.getType());
+			}
 			ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS) csConstraint.getMessageSpecification();
 			if (csMessageSpecification != null) {
 				context.reusePivotElement(csMessageSpecification, pivotSpecification);

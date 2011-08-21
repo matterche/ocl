@@ -179,7 +179,7 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		boolean allOk = true;
 		TypeManager typeManager = ecore2Pivot.getTypeManager();
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		for (Constraint constraint : typeManager.getLocalConstraints(type)) {
+		for (Constraint constraint : typeManager.getAllConstraints(type)) {
 			if (UMLReflection.INVARIANT.equals(constraint.getStereotype())) {
 				String constraintName = constraint.getName();
 				ValueSpecification specification = constraint.getSpecification();
@@ -240,6 +240,6 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 				}
 			}
 		}
-		return allOk;
+		return allOk || (diagnostics != null);
 	}
 }
