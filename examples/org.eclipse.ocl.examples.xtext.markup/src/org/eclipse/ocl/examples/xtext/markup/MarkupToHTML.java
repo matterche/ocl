@@ -99,7 +99,8 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	public HTMLBuffer caseFigureRefElement(FigureRefElement object) {
 		FigureElement ref = object.getRef();
 		if (ref.eIsProxy()) {
-			System.err.println("Unresolved proxy '" + ((InternalEObject)ref).eProxyURI() + "'");
+			String message = "Unresolved proxy '" + ((InternalEObject)ref).eProxyURI() + "'";
+			throw new InvalidMarkupException(new IllegalStateException(message));
 		}
 		s.appendLabelRef(ref.getDef());
 		return s;

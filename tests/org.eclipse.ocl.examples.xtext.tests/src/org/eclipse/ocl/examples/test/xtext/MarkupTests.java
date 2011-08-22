@@ -87,7 +87,7 @@ public class MarkupTests extends XtextTestCase
 
 	protected void doHtmlTest(Object context, String expected, String testString) throws Exception {
 		Markup markup = doDecode(testString);
-		System.out.println(MarkupToTree.toString(markup));
+//		System.out.println(MarkupToTree.toString(markup));
 		String testResult = MarkupToHTML.toString(null, context, markup);
 		assertEquals(toPrintable(testString), expected, testResult);
 	}
@@ -131,7 +131,7 @@ public class MarkupTests extends XtextTestCase
 
 	public void testFigureRefs() throws Exception {
 		doHtmlTest(null, "<a href=\"#FigName\"></a> <a name=\"FigName\"></a><img src=\"x.png\">", "figureRef[FigName] figure#FigName[\"x.png\"]");
-		doHtmlTest(null, "<a href=\"#null\"></a> <a name=\"figname\"></a><img src=\"x.png\">", "figureRef[FigName] figure#figname[\"x.png\"]");
+		doBadHtmlTest("figureRef[FigName] figure#figname[\"x.png\"]", IllegalStateException.class);
 	}
 
 	public void testFonts() throws Exception {
