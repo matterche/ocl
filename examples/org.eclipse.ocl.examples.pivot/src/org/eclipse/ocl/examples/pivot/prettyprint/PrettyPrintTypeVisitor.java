@@ -532,27 +532,29 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		int lower = object.getLower().intValue();
 		int upper = object.getUpper().intValue();
 		if (upper != 1) {
+			boolean useParentheses = context.getUseParentheses();
 			if (object.isOrdered()) {
 				if (object.isUnique()) {
-					append("OrderedSet<");
+					append("OrderedSet");
 				}
 				else {
-					append("Sequence<");
+					append("Sequence");
 				}
 			}
 			else {
 				if (object.isUnique()) {
-					append("Set<");
+					append("Set");
 				}
 				else {
-					append("Bag<");
+					append("Bag");
 				}
 			}
+			append(useParentheses ? "(" : "<");
 			appendElement(object.getType());
 			if ((lower > 0) || (upper >= 0)) {
 				appendMultiplicity(lower, upper);
 			}
-			append(">");
+			append(useParentheses ? ")" : ">");
 		}
 		else {
 			appendElement(object.getType());
