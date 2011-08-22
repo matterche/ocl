@@ -21,10 +21,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.examples.xtext.markup.BulletElement;
 import org.eclipse.ocl.examples.xtext.markup.CompoundElement;
-import org.eclipse.ocl.examples.xtext.markup.FigElement;
-import org.eclipse.ocl.examples.xtext.markup.FigRefElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureRefElement;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
+import org.eclipse.ocl.examples.xtext.markup.FootnoteElement;
+import org.eclipse.ocl.examples.xtext.markup.HeadingElement;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
 import org.eclipse.ocl.examples.xtext.markup.MarkupFactory;
@@ -48,7 +51,28 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass bulletElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compoundElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass figureElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass figureRefElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,14 +86,14 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass figElementEClass = null;
+	private EClass footnoteElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass figRefElementEClass = null;
+	private EClass headingElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,6 +217,24 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBulletElement() {
+		return bulletElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBulletElement_Level() {
+		return (EAttribute)bulletElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompoundElement() {
 		return compoundElementEClass;
 	}
@@ -204,6 +246,105 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 */
 	public EReference getCompoundElement_Elements() {
 		return (EReference)compoundElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFigureElement() {
+		return figureElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_Id() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_Src() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_Alt() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_Def() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_RequiredWidth() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_RequiredHeight() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_ActualWidth() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFigureElement_ActualHeight() {
+		return (EAttribute)figureElementEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFigureRefElement() {
+		return figureRefElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFigureRefElement_Ref() {
+		return (EReference)figureRefElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -229,8 +370,8 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFigElement() {
-		return figElementEClass;
+	public EClass getFootnoteElement() {
+		return footnoteElementEClass;
 	}
 
 	/**
@@ -238,8 +379,8 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFigElement_Id() {
-		return (EAttribute)figElementEClass.getEStructuralFeatures().get(0);
+	public EClass getHeadingElement() {
+		return headingElementEClass;
 	}
 
 	/**
@@ -247,44 +388,8 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFigElement_Src() {
-		return (EAttribute)figElementEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFigElement_Alt() {
-		return (EAttribute)figElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFigElement_Def() {
-		return (EAttribute)figElementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getFigRefElement() {
-		return figRefElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getFigRefElement_Ref() {
-		return (EReference)figRefElementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getHeadingElement_Level() {
+		return (EAttribute)headingElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -423,20 +528,32 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		bulletElementEClass = createEClass(BULLET_ELEMENT);
+		createEAttribute(bulletElementEClass, BULLET_ELEMENT__LEVEL);
+
 		compoundElementEClass = createEClass(COMPOUND_ELEMENT);
 		createEReference(compoundElementEClass, COMPOUND_ELEMENT__ELEMENTS);
+
+		figureElementEClass = createEClass(FIGURE_ELEMENT);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__ID);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__SRC);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__ALT);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__DEF);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__REQUIRED_WIDTH);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__REQUIRED_HEIGHT);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__ACTUAL_WIDTH);
+		createEAttribute(figureElementEClass, FIGURE_ELEMENT__ACTUAL_HEIGHT);
+
+		figureRefElementEClass = createEClass(FIGURE_REF_ELEMENT);
+		createEReference(figureRefElementEClass, FIGURE_REF_ELEMENT__REF);
 
 		fontElementEClass = createEClass(FONT_ELEMENT);
 		createEAttribute(fontElementEClass, FONT_ELEMENT__FONT);
 
-		figElementEClass = createEClass(FIG_ELEMENT);
-		createEAttribute(figElementEClass, FIG_ELEMENT__ID);
-		createEAttribute(figElementEClass, FIG_ELEMENT__SRC);
-		createEAttribute(figElementEClass, FIG_ELEMENT__ALT);
-		createEAttribute(figElementEClass, FIG_ELEMENT__DEF);
+		footnoteElementEClass = createEClass(FOOTNOTE_ELEMENT);
 
-		figRefElementEClass = createEClass(FIG_REF_ELEMENT);
-		createEReference(figRefElementEClass, FIG_REF_ELEMENT__REF);
+		headingElementEClass = createEClass(HEADING_ELEMENT);
+		createEAttribute(headingElementEClass, HEADING_ELEMENT__LEVEL);
 
 		markupEClass = createEClass(MARKUP);
 
@@ -487,10 +604,13 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		bulletElementEClass.getESuperTypes().add(this.getCompoundElement());
 		compoundElementEClass.getESuperTypes().add(this.getMarkupElement());
+		figureElementEClass.getESuperTypes().add(this.getMarkupElement());
+		figureRefElementEClass.getESuperTypes().add(this.getMarkupElement());
 		fontElementEClass.getESuperTypes().add(this.getCompoundElement());
-		figElementEClass.getESuperTypes().add(this.getMarkupElement());
-		figRefElementEClass.getESuperTypes().add(this.getMarkupElement());
+		footnoteElementEClass.getESuperTypes().add(this.getCompoundElement());
+		headingElementEClass.getESuperTypes().add(this.getCompoundElement());
 		markupEClass.getESuperTypes().add(this.getCompoundElement());
 		newLineElementEClass.getESuperTypes().add(this.getMarkupElement());
 		nullElementEClass.getESuperTypes().add(this.getCompoundElement());
@@ -500,20 +620,32 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 		textElementEClass.getESuperTypes().add(this.getMarkupElement());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(bulletElementEClass, BulletElement.class, "BulletElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBulletElement_Level(), ecorePackage.getEString(), "level", null, 0, 1, BulletElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
 		initEClass(compoundElementEClass, CompoundElement.class, "CompoundElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundElement_Elements(), this.getMarkupElement(), this.getMarkupElement_Owner(), "elements", null, 0, -1, CompoundElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(figureElementEClass, FigureElement.class, "FigureElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFigureElement_Id(), ecorePackage.getEInt(), "id", null, 0, 1, FigureElement.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_Src(), ecorePackage.getEString(), "src", null, 0, 1, FigureElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_Alt(), ecorePackage.getEString(), "alt", null, 0, 1, FigureElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_Def(), ecorePackage.getEString(), "def", null, 0, 1, FigureElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_RequiredWidth(), ecorePackage.getEString(), "requiredWidth", null, 0, 1, FigureElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_RequiredHeight(), ecorePackage.getEString(), "requiredHeight", null, 0, 1, FigureElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_ActualWidth(), ecorePackage.getEInt(), "actualWidth", null, 0, 1, FigureElement.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFigureElement_ActualHeight(), ecorePackage.getEInt(), "actualHeight", null, 0, 1, FigureElement.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(figureRefElementEClass, FigureRefElement.class, "FigureRefElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFigureRefElement_Ref(), this.getFigureElement(), null, "ref", null, 1, 1, FigureRefElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fontElementEClass, FontElement.class, "FontElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFontElement_Font(), ecorePackage.getEString(), "font", null, 1, 1, FontElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(figElementEClass, FigElement.class, "FigElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFigElement_Id(), ecorePackage.getEString(), "id", null, 0, 1, FigElement.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFigElement_Src(), ecorePackage.getEString(), "src", null, 0, 1, FigElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFigElement_Alt(), ecorePackage.getEString(), "alt", null, 0, 1, FigElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFigElement_Def(), ecorePackage.getEString(), "def", null, 0, 1, FigElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(footnoteElementEClass, FootnoteElement.class, "FootnoteElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(figRefElementEClass, FigRefElement.class, "FigRefElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFigRefElement_Ref(), this.getFigElement(), null, "ref", null, 1, 1, FigRefElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(headingElementEClass, HeadingElement.class, "HeadingElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getHeadingElement_Level(), ecorePackage.getEString(), "level", null, 0, 1, HeadingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(markupEClass, Markup.class, "Markup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

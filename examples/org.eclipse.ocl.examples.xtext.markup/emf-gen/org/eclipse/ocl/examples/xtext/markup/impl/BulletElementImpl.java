@@ -17,42 +17,54 @@
 package org.eclipse.ocl.examples.xtext.markup.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.markup.FigElement;
-import org.eclipse.ocl.examples.xtext.markup.FigRefElement;
+
+import org.eclipse.ocl.examples.xtext.markup.BulletElement;
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Fig Ref Element</b></em>'.
+ * An implementation of the model object '<em><b>Bullet Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.markup.impl.FigRefElementImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.markup.impl.BulletElementImpl#getLevel <em>Level</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FigRefElementImpl extends MarkupElementImpl implements FigRefElement {
+public class BulletElementImpl extends CompoundElementImpl implements BulletElement {
 	/**
-	 * The cached value of the '{@link #getRef() <em>Ref</em>}' reference.
+	 * The default value of the '{@link #getLevel() <em>Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRef()
+	 * @see #getLevel()
 	 * @generated
 	 * @ordered
 	 */
-	protected FigElement ref;
+	protected static final String LEVEL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLevel() <em>Level</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLevel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String level = LEVEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FigRefElementImpl() {
+	protected BulletElementImpl() {
 		super();
 	}
 
@@ -63,7 +75,7 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MarkupPackage.Literals.FIG_REF_ELEMENT;
+		return MarkupPackage.Literals.BULLET_ELEMENT;
 	}
 
 	/**
@@ -71,8 +83,8 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FigElement getRef() {
-		return ref;
+	public String getLevel() {
+		return level;
 	}
 
 	/**
@@ -80,11 +92,11 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRef(FigElement newRef) {
-		FigElement oldRef = ref;
-		ref = newRef;
+	public void setLevel(String newLevel) {
+		String oldLevel = level;
+		level = newLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MarkupPackage.FIG_REF_ELEMENT__REF, oldRef, ref));
+			eNotify(new ENotificationImpl(this, Notification.SET, MarkupPackage.BULLET_ELEMENT__LEVEL, oldLevel, level));
 	}
 
 	/**
@@ -95,8 +107,8 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MarkupPackage.FIG_REF_ELEMENT__REF:
-				return getRef();
+			case MarkupPackage.BULLET_ELEMENT__LEVEL:
+				return getLevel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,8 +121,8 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MarkupPackage.FIG_REF_ELEMENT__REF:
-				setRef((FigElement)newValue);
+			case MarkupPackage.BULLET_ELEMENT__LEVEL:
+				setLevel((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,8 +136,8 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MarkupPackage.FIG_REF_ELEMENT__REF:
-				setRef((FigElement)null);
+			case MarkupPackage.BULLET_ELEMENT__LEVEL:
+				setLevel(LEVEL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -139,10 +151,26 @@ public class FigRefElementImpl extends MarkupElementImpl implements FigRefElemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MarkupPackage.FIG_REF_ELEMENT__REF:
-				return ref != null;
+			case MarkupPackage.BULLET_ELEMENT__LEVEL:
+				return LEVEL_EDEFAULT == null ? level != null : !LEVEL_EDEFAULT.equals(level);
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //FigRefElementImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (level: ");
+		result.append(level);
+		result.append(')');
+		return result.toString();
+	}
+
+} //BulletElementImpl

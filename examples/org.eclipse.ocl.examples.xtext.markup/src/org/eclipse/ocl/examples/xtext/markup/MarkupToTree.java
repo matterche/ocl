@@ -56,6 +56,15 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 		}
 		depth--;
 	}
+
+	@Override
+	public StringBuffer caseBulletElement(BulletElement object) {
+		appendClass(object);
+		s.append(" ");
+		s.append(object.getLevel());
+		appendIndented(object.getElements());
+		return s;
+	}
 	
 	@Override
 	public StringBuffer caseCompoundElement(CompoundElement object) {
@@ -65,10 +74,43 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
+	public StringBuffer caseFigureElement(FigureElement object) {
+		appendClass(object);
+		s.append(" ");
+		s.append(object.getSrc());
+		s.append(" ");
+		s.append(object.getAlt());
+		s.append(" ");
+		s.append(object.getRequiredWidth());
+		s.append(" ");
+		s.append(object.getRequiredHeight());
+		s.append("\n");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseFigureRefElement(FigureRefElement object) {
+		appendClass(object);
+		s.append(" ");
+		s.append(object.getRef().getDef());
+		s.append("\n");
+		return s;
+	}
+
+	@Override
 	public StringBuffer caseFontElement(FontElement object) {
 		String font = object.getFont();
 		appendClass(object);
 		s.append(font);
+		appendIndented(object.getElements());
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseHeadingElement(HeadingElement object) {
+		appendClass(object);
+		s.append(" ");
+		s.append(object.getLevel());
 		appendIndented(object.getElements());
 		return s;
 	}

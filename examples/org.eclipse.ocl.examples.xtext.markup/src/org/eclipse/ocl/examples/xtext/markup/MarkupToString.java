@@ -41,6 +41,20 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 	
 	protected final StringBuffer s = new StringBuffer();
+
+	@Override
+	public StringBuffer caseBulletElement(BulletElement object) {
+		s.append("bullet");
+		String level = object.getLevel();
+		if (level != null) {
+			s.append(":");
+			s.append(level);
+		}
+		s.append("[");
+		caseCompoundElement(object);
+		s.append("]");
+		return s;
+	}
 	
 	@Override
 	public StringBuffer caseCompoundElement(CompoundElement object) {
@@ -51,8 +65,71 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
+	public StringBuffer caseFigureElement(FigureElement object) {
+		s.append("figure");
+		String def = object.getDef();
+		if (def != null) {
+			s.append("#");
+			s.append(def);
+		}
+		s.append("[");
+		s.append("\"");
+		s.append(object.getSrc());
+		s.append("\"");
+		String alt = object.getAlt();
+		if (alt != null) {
+			s.append(",");
+			s.append(alt);
+			String width = object.getRequiredWidth();
+			if (width != null) {
+				s.append(",");
+				s.append(width);
+				String height = object.getRequiredHeight();
+				if (height != null) {
+					s.append(",");
+					s.append(height);
+				}
+			}
+		}
+		s.append("]");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseFigureRefElement(FigureRefElement object) {
+		s.append("figure");
+		s.append("[");
+		s.append(object.getRef().getDef());
+		s.append("]");
+		return s;
+	}
+
+	@Override
 	public StringBuffer caseFontElement(FontElement object) {
 		s.append(object.getFont());
+		s.append("[");
+		caseCompoundElement(object);
+		s.append("]");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseFootnoteElement(FootnoteElement object) {
+		s.append("footnote[");
+		caseCompoundElement(object);
+		s.append("]");
+		return s;
+	}
+
+	@Override
+	public StringBuffer caseHeadingElement(HeadingElement object) {
+		s.append("heading");
+		String level = object.getLevel();
+		if (level != null) {
+			s.append(":");
+			s.append(level);
+		}
+		s.append("[");
 		caseCompoundElement(object);
 		s.append("]");
 		return s;

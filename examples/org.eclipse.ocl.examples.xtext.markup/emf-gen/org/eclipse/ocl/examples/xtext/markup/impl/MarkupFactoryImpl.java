@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.markup.*;
 import org.eclipse.ocl.examples.xtext.markup.CompoundElement;
-import org.eclipse.ocl.examples.xtext.markup.FigElement;
-import org.eclipse.ocl.examples.xtext.markup.FigRefElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureRefElement;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
@@ -77,10 +77,13 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case MarkupPackage.BULLET_ELEMENT: return createBulletElement();
 			case MarkupPackage.COMPOUND_ELEMENT: return createCompoundElement();
+			case MarkupPackage.FIGURE_ELEMENT: return createFigureElement();
+			case MarkupPackage.FIGURE_REF_ELEMENT: return createFigureRefElement();
 			case MarkupPackage.FONT_ELEMENT: return createFontElement();
-			case MarkupPackage.FIG_ELEMENT: return createFigElement();
-			case MarkupPackage.FIG_REF_ELEMENT: return createFigRefElement();
+			case MarkupPackage.FOOTNOTE_ELEMENT: return createFootnoteElement();
+			case MarkupPackage.HEADING_ELEMENT: return createHeadingElement();
 			case MarkupPackage.MARKUP: return createMarkup();
 			case MarkupPackage.MARKUP_ELEMENT: return createMarkupElement();
 			case MarkupPackage.NEW_LINE_ELEMENT: return createNewLineElement();
@@ -99,9 +102,39 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BulletElement createBulletElement() {
+		BulletElementImpl bulletElement = new BulletElementImpl();
+		return bulletElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompoundElement createCompoundElement() {
 		CompoundElementImpl compoundElement = new CompoundElementImpl();
 		return compoundElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FigureElement createFigureElement() {
+		FigureElementImpl figureElement = new FigureElementImpl();
+		return figureElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FigureRefElement createFigureRefElement() {
+		FigureRefElementImpl figureRefElement = new FigureRefElementImpl();
+		return figureRefElement;
 	}
 
 	/**
@@ -119,9 +152,9 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FigElement createFigElement() {
-		FigElementImpl figElement = new FigElementImpl();
-		return figElement;
+	public FootnoteElement createFootnoteElement() {
+		FootnoteElementImpl footnoteElement = new FootnoteElementImpl();
+		return footnoteElement;
 	}
 
 	/**
@@ -129,9 +162,9 @@ public class MarkupFactoryImpl extends EFactoryImpl implements MarkupFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FigRefElement createFigRefElement() {
-		FigRefElementImpl figRefElement = new FigRefElementImpl();
-		return figRefElement;
+	public HeadingElement createHeadingElement() {
+		HeadingElementImpl headingElement = new HeadingElementImpl();
+		return headingElement;
 	}
 
 	/**

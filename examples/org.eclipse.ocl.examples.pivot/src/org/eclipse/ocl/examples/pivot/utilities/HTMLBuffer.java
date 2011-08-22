@@ -39,6 +39,27 @@ public class HTMLBuffer
 		}
 	}
 
+	public void appendFigure(String src, String alt, String width, String height) {
+		s.append("<img");
+		appendValue("src", src);
+		appendValue("alt", alt);
+		appendValue("width", width);
+		appendValue("height", height);
+		s.append(">");		
+	}
+
+	public void appendLabelDef(String value) {
+		s.append("<a");
+		appendValue("name", value);
+		s.append("></a>");
+	}
+
+	public void appendLabelRef(String value) {
+		s.append("<a");
+		appendValue("href", "#" + value);
+		s.append("></a>");
+	}
+
 	protected void appendTag(String tag) {
 		s.append("<");
 		s.append(tag);
@@ -49,6 +70,21 @@ public class HTMLBuffer
 		s.append("</");
 		s.append(tag);
 		s.append(">");
+	}
+
+	protected void appendValue(String name, String value) {
+		if (value != null) {
+			s.append(" ");
+			s.append(name);
+			s.append("=\"");
+			s.append(value);
+			s.append("\"");
+		}
+	}
+
+	public void endBulletLevel(Integer level) {
+		appendUntag("li"); 
+		appendUntag("ul"); 
 	}
 	
 	/**
@@ -63,6 +99,14 @@ public class HTMLBuffer
 	 */
 	public void endFontName(String fontName) {
 		appendUntag(fontName); 
+	}
+
+	public void endFootnote() {
+		appendUntag("footnote"); 
+	}
+
+	public void endHeadingLevel(String level) {
+		appendUntag("h" + level); 
 	}
 	
 	/**
@@ -81,6 +125,11 @@ public class HTMLBuffer
 	public void endUnderline() {
 		appendUntag("u");
 	}
+
+	public void startBulletLevel(Integer level) {
+		appendTag("ul"); 
+		appendTag("li"); 
+	}
 	
 	/**
 	 * Start a colored font by emitting a <font color="colorName"> tag.
@@ -94,6 +143,14 @@ public class HTMLBuffer
 	 */
 	public void startFontName(String fontName) {
 		appendTag(fontName); 
+	}
+
+	public void startFootnote() {
+		appendTag("footnote"); 
+	}
+
+	public void startHeadingLevel(String level) {
+		appendTag("h" + level); 
 	}
 	
 	/**

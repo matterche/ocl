@@ -24,36 +24,76 @@ import "platform:/resource/org.eclipse.ocl.examples.xtext.markup/model/Markup.ec
 Markup:
 	elements+=MarkupElement*;
 	
+terminal fragment NUMBER: '0'..'9';
+terminal fragment LETTER: 'a'..'z' | 'A'..'Z' | '_';
+terminal fragment ESCAPED : '\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\' | '<' | '>'); 
+terminal fragment VERTICAL_WS : '\n' | '\r'; 
+terminal fragment HORIZONTAL_WS : ' ' | '\t'; 
+
+terminal INT: NUMBER+;
+terminal STRING	: '"' ( ESCAPED | !('\\' | '"') )* '"' ; 
+terminal ID: LETTER (LETTER | NUMBER)*;
+terminal WORD: ( ESCAPED | !('\\' | '"' | '[' | ']' | ':' | '#' | ',' | HORIZONTAL_WS | VERTICAL_WS) )+;
+
+terminal NL	: (HORIZONTAL_WS* VERTICAL_WS)+;
+terminal WS	: HORIZONTAL_WS+;
+
+terminal ANY_OTHER: .;
+
+MarkupKeyword:
+	'b'
+|	'e'
+|	'bullet'
+|	'figure'
+|	'figureRef'
+|	'footnote'
+|	'heading'
+|	'oclCode'
+|	'oclEval'
+|	'oclText'
+;
+	
 MarkupElement:
 	FontElement
 |	NewLineElement
-|	TextElement
-|	FigElement
-|	FigRefElement
+|	BulletElement
+|	FigureElement
+|	FigureRefElement
+|	FootnoteElement
+|	HeadingElement
 |	NullElement
 |	OclCodeElement
 |	OclEvalElement
 |	OclTextElement
+|	TextElement				// Last to give everything else a try first
 ;
 
-TextElement:
-	text+=(ID|WORD|WS)+
+BulletElement:
+	{BulletElement} 'bullet' (':' level=INT)? '[' elements+=MarkupElement* ']'
+;
+
+FontElement:
+	font=('b'|'e') '[' elements+=MarkupElement* ']'
+;
+
+FigureElement:
+	'figure' ('#' def=ID)? '[' src=STRING (',' alt=STRING (',' requiredWidth=INT (',' requiredHeight=INT)?)?)? ']'
+;
+
+FigureRefElement:
+	'figureRef' '[' ref=[FigureElement|ID] ']'
+;
+
+FootnoteElement:
+	{FootnoteElement} 'footnote' '[' elements+=MarkupElement* ']'
+;
+
+HeadingElement:
+	{HeadingElement} 'heading' (':' level=INT)? '[' elements+=MarkupElement* ']'
 ;
 
 NewLineElement:
 	text=NL
-;
-
-FontElement:
-	font=('b['|'e[') elements+=MarkupElement* ']'
-;
-
-FigElement:
-	('fig[' | ('fig:' id=ID '[')) src=STRING ']'
-;
-
-FigRefElement:
-	'fig-[' ref=[FigElement|ID] ']'
 ;
 
 NullElement:
@@ -61,43 +101,17 @@ NullElement:
 ;
 
 OclCodeElement:
-	{OclCodeElement} 'oclCode[' elements+=MarkupElement* ']'
+	{OclCodeElement} 'oclCode' '[' elements+=MarkupElement* ']'
 ;
 
 OclEvalElement:
-	{OclEvalElement} 'oclEval[' elements+=MarkupElement* ']'
+	{OclEvalElement} 'oclEval' '[' elements+=MarkupElement* ']'
 ;
 
 OclTextElement:
-	{OclTextElement} 'oclText[' elements+=MarkupElement* ']'
+	{OclTextElement} 'oclText' '[' elements+=MarkupElement* ']'
 ;
 
-MarkupKeyword:
-	'b['
-|	'e['
-|	'fig['
-|	'fig:'
-|	'fig-['
-|	'oclCode['
-|	'oclEval['
-|	'oclText['
-|	']'
+TextElement:
+	text+=(ID|WORD|INT|WS|':'|'#'|',')+ | text+=MarkupKeyword
 ;
-//terminal INT returns ecore::EInt: ('0'..'9')+;
-terminal ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
-terminal WORD: ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\'|'<'|'>'|'['|']') | !('\\'|'['|']'|' '|'\t'|'\n'|'\r') )+;
-terminal STRING	: '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\'|'<'|'>') | !('\\'|'"') )* '"' ; 
-terminal TEXT	: "'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\'|'['|']') | !('\\' | "'" | "[" | "]" | '\n') )* "'" ; 
-
-terminal NL			: ('\n'|'\r') (WS* ('\n'|'\r'))*;
-terminal WS			: (' '|'\t')+;
-
-terminal ANY_OTHER: .;
-
-// section2/3/4
-// sec-ref
-// bullets
-// fig-ref
-// fig:name + cap
-// emphasized-ocl
-// normal-ocl

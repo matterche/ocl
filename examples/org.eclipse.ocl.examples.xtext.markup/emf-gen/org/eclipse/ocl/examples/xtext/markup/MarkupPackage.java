@@ -77,7 +77,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getMarkupElement()
 	 * @generated
 	 */
-	int MARKUP_ELEMENT = 5;
+	int MARKUP_ELEMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -114,7 +114,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getCompoundElement()
 	 * @generated
 	 */
-	int COMPOUND_ELEMENT = 0;
+	int COMPOUND_ELEMENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -153,6 +153,216 @@ public interface MarkupPackage extends EPackage {
 	int COMPOUND_ELEMENT_FEATURE_COUNT = MARKUP_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.BulletElementImpl <em>Bullet Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.BulletElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getBulletElement()
+	 * @generated
+	 */
+	int BULLET_ELEMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BULLET_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BULLET_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BULLET_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BULLET_ELEMENT__LEVEL = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Bullet Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BULLET_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigureElementImpl <em>Figure Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigureElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigureElement()
+	 * @generated
+	 */
+	int FIGURE_ELEMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__OWNER = MARKUP_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__UNIQUE_ID = MARKUP_ELEMENT__UNIQUE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__ID = MARKUP_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__SRC = MARKUP_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Alt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__ALT = MARKUP_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Def</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__DEF = MARKUP_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Required Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__REQUIRED_WIDTH = MARKUP_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Required Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__REQUIRED_HEIGHT = MARKUP_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Actual Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__ACTUAL_WIDTH = MARKUP_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Actual Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT__ACTUAL_HEIGHT = MARKUP_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Figure Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_ELEMENT_FEATURE_COUNT = MARKUP_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigureRefElementImpl <em>Figure Ref Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigureRefElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigureRefElement()
+	 * @generated
+	 */
+	int FIGURE_REF_ELEMENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_REF_ELEMENT__OWNER = MARKUP_ELEMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_REF_ELEMENT__UNIQUE_ID = MARKUP_ELEMENT__UNIQUE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_REF_ELEMENT__REF = MARKUP_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Figure Ref Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIGURE_REF_ELEMENT_FEATURE_COUNT = MARKUP_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FontElementImpl <em>Font Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,7 +370,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFontElement()
 	 * @generated
 	 */
-	int FONT_ELEMENT = 1;
+	int FONT_ELEMENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -208,14 +418,14 @@ public interface MarkupPackage extends EPackage {
 	int FONT_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigElementImpl <em>Fig Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FootnoteElementImpl <em>Footnote Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigElementImpl
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigElement()
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.FootnoteElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFootnoteElement()
 	 * @generated
 	 */
-	int FIG_ELEMENT = 2;
+	int FOOTNOTE_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -224,7 +434,7 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_ELEMENT__OWNER = MARKUP_ELEMENT__OWNER;
+	int FOOTNOTE_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -233,62 +443,35 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_ELEMENT__UNIQUE_ID = MARKUP_ELEMENT__UNIQUE_ID;
+	int FOOTNOTE_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_ELEMENT__ID = MARKUP_ELEMENT_FEATURE_COUNT + 0;
+	int FOOTNOTE_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Src</b></em>' attribute.
+	 * The number of structural features of the '<em>Footnote Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_ELEMENT__SRC = MARKUP_ELEMENT_FEATURE_COUNT + 1;
+	int FOOTNOTE_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Alt</b></em>' attribute.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.HeadingElementImpl <em>Heading Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIG_ELEMENT__ALT = MARKUP_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Def</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIG_ELEMENT__DEF = MARKUP_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Fig Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIG_ELEMENT_FEATURE_COUNT = MARKUP_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigRefElementImpl <em>Fig Ref Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigRefElementImpl
-	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigRefElement()
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.HeadingElementImpl
+	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getHeadingElement()
 	 * @generated
 	 */
-	int FIG_REF_ELEMENT = 3;
+	int HEADING_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -297,7 +480,7 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_REF_ELEMENT__OWNER = MARKUP_ELEMENT__OWNER;
+	int HEADING_ELEMENT__OWNER = COMPOUND_ELEMENT__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
@@ -306,25 +489,34 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_REF_ELEMENT__UNIQUE_ID = MARKUP_ELEMENT__UNIQUE_ID;
+	int HEADING_ELEMENT__UNIQUE_ID = COMPOUND_ELEMENT__UNIQUE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_REF_ELEMENT__REF = MARKUP_ELEMENT_FEATURE_COUNT + 0;
+	int HEADING_ELEMENT__ELEMENTS = COMPOUND_ELEMENT__ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Fig Ref Element</em>' class.
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIG_REF_ELEMENT_FEATURE_COUNT = MARKUP_ELEMENT_FEATURE_COUNT + 1;
+	int HEADING_ELEMENT__LEVEL = COMPOUND_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Heading Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HEADING_ELEMENT_FEATURE_COUNT = COMPOUND_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.MarkupImpl <em>Markup</em>}' class.
@@ -334,7 +526,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getMarkup()
 	 * @generated
 	 */
-	int MARKUP = 4;
+	int MARKUP = 7;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -380,7 +572,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getNewLineElement()
 	 * @generated
 	 */
-	int NEW_LINE_ELEMENT = 6;
+	int NEW_LINE_ELEMENT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -426,7 +618,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getNullElement()
 	 * @generated
 	 */
-	int NULL_ELEMENT = 7;
+	int NULL_ELEMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -472,7 +664,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclCodeElement()
 	 * @generated
 	 */
-	int OCL_CODE_ELEMENT = 8;
+	int OCL_CODE_ELEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -518,7 +710,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclEvalElement()
 	 * @generated
 	 */
-	int OCL_EVAL_ELEMENT = 9;
+	int OCL_EVAL_ELEMENT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -564,7 +756,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getOclTextElement()
 	 * @generated
 	 */
-	int OCL_TEXT_ELEMENT = 10;
+	int OCL_TEXT_ELEMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -610,7 +802,7 @@ public interface MarkupPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getTextElement()
 	 * @generated
 	 */
-	int TEXT_ELEMENT = 11;
+	int TEXT_ELEMENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' container reference.
@@ -650,6 +842,27 @@ public interface MarkupPackage extends EPackage {
 
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.BulletElement <em>Bullet Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bullet Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.BulletElement
+	 * @generated
+	 */
+	EClass getBulletElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.BulletElement#getLevel <em>Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.BulletElement#getLevel()
+	 * @see #getBulletElement()
+	 * @generated
+	 */
+	EAttribute getBulletElement_Level();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.CompoundElement <em>Compound Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -669,6 +882,125 @@ public interface MarkupPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompoundElement_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement <em>Figure Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Figure Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement
+	 * @generated
+	 */
+	EClass getFigureElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getId()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getSrc <em>Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Src</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getSrc()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_Src();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getAlt <em>Alt</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alt</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getAlt()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_Alt();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getDef <em>Def</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Def</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getDef()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_Def();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getRequiredWidth <em>Required Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Required Width</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getRequiredWidth()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_RequiredWidth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getRequiredHeight <em>Required Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Required Height</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getRequiredHeight()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_RequiredHeight();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getActualWidth <em>Actual Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Actual Width</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getActualWidth()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_ActualWidth();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement#getActualHeight <em>Actual Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Actual Height</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement#getActualHeight()
+	 * @see #getFigureElement()
+	 * @generated
+	 */
+	EAttribute getFigureElement_ActualHeight();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FigureRefElement <em>Figure Ref Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Figure Ref Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureRefElement
+	 * @generated
+	 */
+	EClass getFigureRefElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.markup.FigureRefElement#getRef <em>Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ref</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureRefElement#getRef()
+	 * @see #getFigureRefElement()
+	 * @generated
+	 */
+	EReference getFigureRefElement_Ref();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FontElement <em>Font Element</em>}'.
@@ -692,79 +1024,35 @@ public interface MarkupPackage extends EPackage {
 	EAttribute getFontElement_Font();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FigElement <em>Fig Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FootnoteElement <em>Footnote Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fig Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement
+	 * @return the meta object for class '<em>Footnote Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FootnoteElement
 	 * @generated
 	 */
-	EClass getFigElement();
+	EClass getFootnoteElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigElement#getId <em>Id</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.HeadingElement <em>Heading Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement#getId()
-	 * @see #getFigElement()
+	 * @return the meta object for class '<em>Heading Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.HeadingElement
 	 * @generated
 	 */
-	EAttribute getFigElement_Id();
+	EClass getHeadingElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigElement#getSrc <em>Src</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.HeadingElement#getLevel <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Src</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement#getSrc()
-	 * @see #getFigElement()
+	 * @return the meta object for the attribute '<em>Level</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.markup.HeadingElement#getLevel()
+	 * @see #getHeadingElement()
 	 * @generated
 	 */
-	EAttribute getFigElement_Src();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigElement#getAlt <em>Alt</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Alt</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement#getAlt()
-	 * @see #getFigElement()
-	 * @generated
-	 */
-	EAttribute getFigElement_Alt();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.markup.FigElement#getDef <em>Def</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Def</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement#getDef()
-	 * @see #getFigElement()
-	 * @generated
-	 */
-	EAttribute getFigElement_Def();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.FigRefElement <em>Fig Ref Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fig Ref Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigRefElement
-	 * @generated
-	 */
-	EClass getFigRefElement();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.markup.FigRefElement#getRef <em>Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Ref</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigRefElement#getRef()
-	 * @see #getFigRefElement()
-	 * @generated
-	 */
-	EReference getFigRefElement_Ref();
+	EAttribute getHeadingElement_Level();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.markup.Markup <em>Markup</em>}'.
@@ -913,6 +1201,24 @@ public interface MarkupPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.BulletElementImpl <em>Bullet Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.BulletElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getBulletElement()
+		 * @generated
+		 */
+		EClass BULLET_ELEMENT = eINSTANCE.getBulletElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BULLET_ELEMENT__LEVEL = eINSTANCE.getBulletElement_Level();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.CompoundElementImpl <em>Compound Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -929,6 +1235,98 @@ public interface MarkupPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPOUND_ELEMENT__ELEMENTS = eINSTANCE.getCompoundElement_Elements();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigureElementImpl <em>Figure Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigureElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigureElement()
+		 * @generated
+		 */
+		EClass FIGURE_ELEMENT = eINSTANCE.getFigureElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__ID = eINSTANCE.getFigureElement_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Src</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__SRC = eINSTANCE.getFigureElement_Src();
+
+		/**
+		 * The meta object literal for the '<em><b>Alt</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__ALT = eINSTANCE.getFigureElement_Alt();
+
+		/**
+		 * The meta object literal for the '<em><b>Def</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__DEF = eINSTANCE.getFigureElement_Def();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__REQUIRED_WIDTH = eINSTANCE.getFigureElement_RequiredWidth();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__REQUIRED_HEIGHT = eINSTANCE.getFigureElement_RequiredHeight();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__ACTUAL_WIDTH = eINSTANCE.getFigureElement_ActualWidth();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIGURE_ELEMENT__ACTUAL_HEIGHT = eINSTANCE.getFigureElement_ActualHeight();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigureRefElementImpl <em>Figure Ref Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigureRefElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigureRefElement()
+		 * @generated
+		 */
+		EClass FIGURE_REF_ELEMENT = eINSTANCE.getFigureRefElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FIGURE_REF_ELEMENT__REF = eINSTANCE.getFigureRefElement_Ref();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FontElementImpl <em>Font Element</em>}' class.
@@ -949,64 +1347,32 @@ public interface MarkupPackage extends EPackage {
 		EAttribute FONT_ELEMENT__FONT = eINSTANCE.getFontElement_Font();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigElementImpl <em>Fig Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FootnoteElementImpl <em>Footnote Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigElementImpl
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigElement()
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.FootnoteElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFootnoteElement()
 		 * @generated
 		 */
-		EClass FIG_ELEMENT = eINSTANCE.getFigElement();
+		EClass FOOTNOTE_ELEMENT = eINSTANCE.getFootnoteElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.HeadingElementImpl <em>Heading Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.HeadingElementImpl
+		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getHeadingElement()
 		 * @generated
 		 */
-		EAttribute FIG_ELEMENT__ID = eINSTANCE.getFigElement_Id();
+		EClass HEADING_ELEMENT = eINSTANCE.getHeadingElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Src</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Level</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIG_ELEMENT__SRC = eINSTANCE.getFigElement_Src();
-
-		/**
-		 * The meta object literal for the '<em><b>Alt</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FIG_ELEMENT__ALT = eINSTANCE.getFigElement_Alt();
-
-		/**
-		 * The meta object literal for the '<em><b>Def</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FIG_ELEMENT__DEF = eINSTANCE.getFigElement_Def();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.FigRefElementImpl <em>Fig Ref Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.FigRefElementImpl
-		 * @see org.eclipse.ocl.examples.xtext.markup.impl.MarkupPackageImpl#getFigRefElement()
-		 * @generated
-		 */
-		EClass FIG_REF_ELEMENT = eINSTANCE.getFigRefElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Ref</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FIG_REF_ELEMENT__REF = eINSTANCE.getFigRefElement_Ref();
+		EAttribute HEADING_ELEMENT__LEVEL = eINSTANCE.getHeadingElement_Level();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.markup.impl.MarkupImpl <em>Markup</em>}' class.

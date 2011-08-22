@@ -36,6 +36,15 @@ public interface MarkupFactory extends EFactory {
 	MarkupFactory eINSTANCE = org.eclipse.ocl.examples.xtext.markup.impl.MarkupFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Bullet Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bullet Element</em>'.
+	 * @generated
+	 */
+	BulletElement createBulletElement();
+
+	/**
 	 * Returns a new object of class '<em>Compound Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43,6 +52,24 @@ public interface MarkupFactory extends EFactory {
 	 * @generated
 	 */
 	CompoundElement createCompoundElement();
+
+	/**
+	 * Returns a new object of class '<em>Figure Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Figure Element</em>'.
+	 * @generated
+	 */
+	FigureElement createFigureElement();
+
+	/**
+	 * Returns a new object of class '<em>Figure Ref Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Figure Ref Element</em>'.
+	 * @generated
+	 */
+	FigureRefElement createFigureRefElement();
 
 	/**
 	 * Returns a new object of class '<em>Font Element</em>'.
@@ -54,22 +81,22 @@ public interface MarkupFactory extends EFactory {
 	FontElement createFontElement();
 
 	/**
-	 * Returns a new object of class '<em>Fig Element</em>'.
+	 * Returns a new object of class '<em>Footnote Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fig Element</em>'.
+	 * @return a new object of class '<em>Footnote Element</em>'.
 	 * @generated
 	 */
-	FigElement createFigElement();
+	FootnoteElement createFootnoteElement();
 
 	/**
-	 * Returns a new object of class '<em>Fig Ref Element</em>'.
+	 * Returns a new object of class '<em>Heading Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fig Ref Element</em>'.
+	 * @return a new object of class '<em>Heading Element</em>'.
 	 * @generated
 	 */
-	FigRefElement createFigRefElement();
+	HeadingElement createHeadingElement();
 
 	/**
 	 * Returns a new object of class '<em>Markup</em>'.

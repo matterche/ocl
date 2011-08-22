@@ -22,8 +22,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.markup.*;
 import org.eclipse.ocl.examples.xtext.markup.CompoundElement;
-import org.eclipse.ocl.examples.xtext.markup.FigElement;
-import org.eclipse.ocl.examples.xtext.markup.FigRefElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureRefElement;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
@@ -88,20 +88,32 @@ public class MarkupAdapterFactory extends AdapterFactoryImpl {
 	protected MarkupSwitch<Adapter> modelSwitch =
 		new MarkupSwitch<Adapter>() {
 			@Override
+			public Adapter caseBulletElement(BulletElement object) {
+				return createBulletElementAdapter();
+			}
+			@Override
 			public Adapter caseCompoundElement(CompoundElement object) {
 				return createCompoundElementAdapter();
+			}
+			@Override
+			public Adapter caseFigureElement(FigureElement object) {
+				return createFigureElementAdapter();
+			}
+			@Override
+			public Adapter caseFigureRefElement(FigureRefElement object) {
+				return createFigureRefElementAdapter();
 			}
 			@Override
 			public Adapter caseFontElement(FontElement object) {
 				return createFontElementAdapter();
 			}
 			@Override
-			public Adapter caseFigElement(FigElement object) {
-				return createFigElementAdapter();
+			public Adapter caseFootnoteElement(FootnoteElement object) {
+				return createFootnoteElementAdapter();
 			}
 			@Override
-			public Adapter caseFigRefElement(FigRefElement object) {
-				return createFigRefElementAdapter();
+			public Adapter caseHeadingElement(HeadingElement object) {
+				return createHeadingElementAdapter();
 			}
 			@Override
 			public Adapter caseMarkup(Markup object) {
@@ -156,6 +168,20 @@ public class MarkupAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.BulletElement <em>Bullet Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.markup.BulletElement
+	 * @generated
+	 */
+	public Adapter createBulletElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.CompoundElement <em>Compound Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -166,6 +192,34 @@ public class MarkupAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCompoundElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.FigureElement <em>Figure Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureElement
+	 * @generated
+	 */
+	public Adapter createFigureElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.FigureRefElement <em>Figure Ref Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.markup.FigureRefElement
+	 * @generated
+	 */
+	public Adapter createFigureRefElementAdapter() {
 		return null;
 	}
 
@@ -184,30 +238,30 @@ public class MarkupAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.FigElement <em>Fig Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.FootnoteElement <em>Footnote Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigElement
+	 * @see org.eclipse.ocl.examples.xtext.markup.FootnoteElement
 	 * @generated
 	 */
-	public Adapter createFigElementAdapter() {
+	public Adapter createFootnoteElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.FigRefElement <em>Fig Ref Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.markup.HeadingElement <em>Heading Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.markup.FigRefElement
+	 * @see org.eclipse.ocl.examples.xtext.markup.HeadingElement
 	 * @generated
 	 */
-	public Adapter createFigRefElementAdapter() {
+	public Adapter createHeadingElementAdapter() {
 		return null;
 	}
 

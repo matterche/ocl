@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.xtext.markup.*;
 import org.eclipse.ocl.examples.xtext.markup.CompoundElement;
-import org.eclipse.ocl.examples.xtext.markup.FigElement;
-import org.eclipse.ocl.examples.xtext.markup.FigRefElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureElement;
+import org.eclipse.ocl.examples.xtext.markup.FigureRefElement;
 import org.eclipse.ocl.examples.xtext.markup.FontElement;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
@@ -87,10 +87,32 @@ public class MarkupSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MarkupPackage.BULLET_ELEMENT: {
+				BulletElement bulletElement = (BulletElement)theEObject;
+				T result = caseBulletElement(bulletElement);
+				if (result == null) result = caseCompoundElement(bulletElement);
+				if (result == null) result = caseMarkupElement(bulletElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MarkupPackage.COMPOUND_ELEMENT: {
 				CompoundElement compoundElement = (CompoundElement)theEObject;
 				T result = caseCompoundElement(compoundElement);
 				if (result == null) result = caseMarkupElement(compoundElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MarkupPackage.FIGURE_ELEMENT: {
+				FigureElement figureElement = (FigureElement)theEObject;
+				T result = caseFigureElement(figureElement);
+				if (result == null) result = caseMarkupElement(figureElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MarkupPackage.FIGURE_REF_ELEMENT: {
+				FigureRefElement figureRefElement = (FigureRefElement)theEObject;
+				T result = caseFigureRefElement(figureRefElement);
+				if (result == null) result = caseMarkupElement(figureRefElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,17 +124,19 @@ public class MarkupSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MarkupPackage.FIG_ELEMENT: {
-				FigElement figElement = (FigElement)theEObject;
-				T result = caseFigElement(figElement);
-				if (result == null) result = caseMarkupElement(figElement);
+			case MarkupPackage.FOOTNOTE_ELEMENT: {
+				FootnoteElement footnoteElement = (FootnoteElement)theEObject;
+				T result = caseFootnoteElement(footnoteElement);
+				if (result == null) result = caseCompoundElement(footnoteElement);
+				if (result == null) result = caseMarkupElement(footnoteElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MarkupPackage.FIG_REF_ELEMENT: {
-				FigRefElement figRefElement = (FigRefElement)theEObject;
-				T result = caseFigRefElement(figRefElement);
-				if (result == null) result = caseMarkupElement(figRefElement);
+			case MarkupPackage.HEADING_ELEMENT: {
+				HeadingElement headingElement = (HeadingElement)theEObject;
+				T result = caseHeadingElement(headingElement);
+				if (result == null) result = caseCompoundElement(headingElement);
+				if (result == null) result = caseMarkupElement(headingElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +205,21 @@ public class MarkupSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bullet Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bullet Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBulletElement(BulletElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Compound Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -192,6 +231,36 @@ public class MarkupSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCompoundElement(CompoundElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Figure Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Figure Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFigureElement(FigureElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Figure Ref Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Figure Ref Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFigureRefElement(FigureRefElement object) {
 		return null;
 	}
 
@@ -211,32 +280,32 @@ public class MarkupSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fig Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Footnote Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fig Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Footnote Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFigElement(FigElement object) {
+	public T caseFootnoteElement(FootnoteElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fig Ref Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Heading Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fig Ref Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Heading Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFigRefElement(FigRefElement object) {
+	public T caseHeadingElement(HeadingElement object) {
 		return null;
 	}
 

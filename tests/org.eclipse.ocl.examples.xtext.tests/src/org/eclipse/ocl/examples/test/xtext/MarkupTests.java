@@ -16,24 +16,29 @@
  */
 package org.eclipse.ocl.examples.test.xtext;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
+import org.eclipse.ocl.examples.xtext.markup.MarkupStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupToHTML;
 import org.eclipse.ocl.examples.xtext.markup.MarkupToString;
 import org.eclipse.ocl.examples.xtext.markup.MarkupToTree;
 import org.eclipse.ocl.examples.xtext.markup.MarkupUtils;
 import org.eclipse.ocl.examples.xtext.markup.NewLineElement;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.nodemodel.SyntaxErrorMessage;
-import org.eclipse.xtext.parser.IParseResult;
 
 public class MarkupTests extends XtextTestCase
 {	
@@ -42,20 +47,23 @@ public class MarkupTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
 	}
 
-	protected Markup doDecode(String testString) {
-		IParseResult parseResult = MarkupUtils.decode(testString);
-		Markup markup = (Markup) parseResult.getRootASTElement();
-		Iterable<INode> parseErrors = parseResult.getSyntaxErrors();
+	protected Markup doDecode(String testString) throws IOException {
+		Resource resource = new ResourceSetImpl().createResource(URI.createURI("string.markupocl"));
+		InputStream inputStream = new ByteArrayInputStream(testString.getBytes());
+		resource.load(inputStream, null);
+		Markup markup = (Markup) resource.getContents().get(0);
+		Iterable<Diagnostic> parseErrors = resource.getErrors();
 		StringBuffer s = null;
-		for (INode parseError : parseErrors) {
+		for (Diagnostic parseError : parseErrors) {
 			if (s == null) {
 				 s = new StringBuffer("Testing '" + toPrintable(testString) + "'");
 			}
-			SyntaxErrorMessage syntaxErrorMessage = parseError.getSyntaxErrorMessage();
-			s.append("\n  " + syntaxErrorMessage.getMessage());
+			String syntaxErrorMessage = parseError.getMessage();
+			s.append("\n  " + syntaxErrorMessage);
 		}
 		if (s != null) {
 			if (markup != null) {
@@ -79,11 +87,12 @@ public class MarkupTests extends XtextTestCase
 
 	protected void doHtmlTest(Object context, String expected, String testString) throws Exception {
 		Markup markup = doDecode(testString);
+		System.out.println(MarkupToTree.toString(markup));
 		String testResult = MarkupToHTML.toString(null, context, markup);
 		assertEquals(toPrintable(testString), expected, testResult);
 	}
 
-	protected void doNewlineCountTest(int expectedCount, String testString) {
+	protected void doNewlineCountTest(int expectedCount, String testString) throws IOException {
 		Markup markup = doDecode(testString);		
 		List<MarkupElement> elements = markup.getElements();
 		assert elements.size() == 1;
@@ -94,7 +103,7 @@ public class MarkupTests extends XtextTestCase
 		}
 	}
 
-	protected void doStringTest(String testString) {
+	protected void doStringTest(String testString) throws IOException {
 		Markup markup = doDecode(testString);
 		String testResult = MarkupToString.toString(markup);
 		if (!testString.equals(testResult)) {
@@ -114,12 +123,33 @@ public class MarkupTests extends XtextTestCase
 		return testString.replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t");
 	}
 
+	public void testFigures() throws Exception {
+		doHtmlTest(null, "the <img src=\"x.png\"> title", "the figure[\"x.png\"] title");
+		doHtmlTest(null, "the <img src=\"x.png\" alt=\"X\"> title", "the figure[\"x.png\",\"X\"] title");
+		doHtmlTest(null, "the <img src=\"x.png\" alt=\"X\" width=\"22\"> title", "the figure[\"x.png\",\"X\",22] title");
+	}
+
+	public void testFigureRefs() throws Exception {
+		doHtmlTest(null, "<a href=\"#FigName\"></a> <a name=\"FigName\"></a><img src=\"x.png\">", "figureRef[FigName] figure#FigName[\"x.png\"]");
+		doHtmlTest(null, "<a href=\"#null\"></a> <a name=\"figname\"></a><img src=\"x.png\">", "figureRef[FigName] figure#figname[\"x.png\"]");
+	}
+
 	public void testFonts() throws Exception {
 		doHtmlTest(null, "a <b>c</b> d", "a b[c] d");
 		doHtmlTest(null, "<b><i> g </i></b>", "b[e[ g ]]");
 	}
 
-	public void testNewlines() {
+	public void testFootnotes() throws Exception {
+		doHtmlTest(null, "aa <footnote>xx\n<p>\nyy</footnote> bb", "aa footnote[xx\n\nyy] bb");
+	}
+
+	public void testHeadings() throws Exception {
+		doHtmlTest(null, "<h1>xx</h1>", "heading[xx]");
+		doHtmlTest(null, "<h4>xx</h4>", "heading:4[xx]");
+		doHtmlTest(null, "<h2>xx <h3>yy</h3> zz</h2>", "heading:2[xx heading:3[yy] zz]");
+	}
+
+	public void testNewlines() throws IOException {
 		doNewlineCountTest(1, "\r");
 		doNewlineCountTest(1, "\n");
 		doNewlineCountTest(1, "\n\r");
@@ -157,7 +187,7 @@ public class MarkupTests extends XtextTestCase
 		doBadHtmlTest("oclText[null->isBad()]", SemanticException.class);
 	}
 
-	public void testStrings() {
+	public void testStrings() throws IOException {
 		doStringTest("a b[c] d");
 		doStringTest("a\rb\n\rc\t\nd");
 		doStringTest("oclEval[a.c[4]]");

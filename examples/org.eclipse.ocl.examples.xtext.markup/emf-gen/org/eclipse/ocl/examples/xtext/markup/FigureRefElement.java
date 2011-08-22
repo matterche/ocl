@@ -25,15 +25,15 @@ package org.eclipse.ocl.examples.xtext.markup;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.markup.FigRefElement#getRef <em>Ref</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.markup.FigureRefElement#getRef <em>Ref</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.markup.MarkupPackage#getFigRefElement()
+ * @see org.eclipse.ocl.examples.xtext.markup.MarkupPackage#getFigureRefElement()
  * @model
  * @generated
  */
-public interface FigRefElement extends MarkupElement {
+public interface FigureRefElement extends MarkupElement {
 	/**
 	 * Returns the value of the '<em><b>Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -43,21 +43,21 @@ public interface FigRefElement extends MarkupElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ref</em>' reference.
-	 * @see #setRef(FigElement)
-	 * @see org.eclipse.ocl.examples.xtext.markup.MarkupPackage#getFigRefElement_Ref()
-	 * @model resolveProxies="false" required="true"
+	 * @see #setRef(FigureElement)
+	 * @see org.eclipse.ocl.examples.xtext.markup.MarkupPackage#getFigureRefElement_Ref()
+	 * @model required="true"
 	 * @generated
 	 */
-	FigElement getRef();
+	FigureElement getRef();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.markup.FigRefElement#getRef <em>Ref</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.markup.FigureRefElement#getRef <em>Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ref</em>' reference.
 	 * @see #getRef()
 	 * @generated
 	 */
-	void setRef(FigElement value);
+	void setRef(FigureElement value);
 
 } // FigRefElement

@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.markup;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -67,6 +68,15 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		this.typeManager = typeManager;
 		this.context = context;
 	}	
+
+	@Override
+	public HTMLBuffer caseBulletElement(BulletElement object) {
+		Integer level = Integer.valueOf(object.getLevel());
+		s.startBulletLevel(level);
+		caseCompoundElement(object);
+		s.endBulletLevel(level);
+		return s;
+	}
 	
 	@Override
 	public HTMLBuffer caseCompoundElement(CompoundElement object) {
@@ -77,13 +87,32 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 	}
 
 	@Override
+	public HTMLBuffer caseFigureElement(FigureElement object) {
+		if (object.getDef() != null) {
+			s.appendLabelDef(object.getDef());
+		}
+		s.appendFigure(object.getSrc(), object.getAlt(), object.getRequiredWidth(), object.getRequiredHeight());
+		return s;
+	}
+
+	@Override
+	public HTMLBuffer caseFigureRefElement(FigureRefElement object) {
+		FigureElement ref = object.getRef();
+		if (ref.eIsProxy()) {
+			System.err.println("Unresolved proxy '" + ((InternalEObject)ref).eProxyURI() + "'");
+		}
+		s.appendLabelRef(ref.getDef());
+		return s;
+	}
+
+	@Override
 	public HTMLBuffer caseFontElement(FontElement object) {
 		String font = object.getFont();
 		String htmlFont;
-		if ("b[".equals(font)) {
+		if ("b".equals(font)) {
 			htmlFont = "b";
 		}
-		else if ("e[".equals(font)) {
+		else if ("e".equals(font)) {
 			htmlFont = "i";
 		}
 		else {
@@ -92,6 +121,26 @@ public class MarkupToHTML extends MarkupSwitch<HTMLBuffer>
 		s.startFontName(htmlFont);
 		caseCompoundElement(object);
 		s.endFontName(htmlFont);
+		return s;
+	}
+
+	@Override
+	public HTMLBuffer caseFootnoteElement(FootnoteElement object) {
+		s.startFootnote();
+		caseCompoundElement(object);
+		s.endFootnote();
+		return s;
+	}
+
+	@Override
+	public HTMLBuffer caseHeadingElement(HeadingElement object) {
+		String level = object.getLevel();
+		if (level == null) {
+			level = "1";
+		}
+		s.startHeadingLevel(level);
+		caseCompoundElement(object);
+		s.endHeadingLevel(level);
 		return s;
 	}
 

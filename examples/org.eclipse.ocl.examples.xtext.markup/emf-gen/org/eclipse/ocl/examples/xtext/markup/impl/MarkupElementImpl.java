@@ -123,12 +123,17 @@ public class MarkupElementImpl extends MinimalEObjectImpl.Container implements M
 			eNotify(new ENotificationImpl(this, Notification.SET, MarkupPackage.MARKUP_ELEMENT__OWNER, newOwner, newOwner));
 	}
 
+	private static int uniqueIdCounter = 0;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public int getUniqueId() {
+		if (uniqueId == UNIQUE_ID_EDEFAULT) {
+			uniqueId = ++uniqueIdCounter;
+		}
 		return uniqueId;
 	}
 
