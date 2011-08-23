@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -47,8 +46,10 @@ import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
@@ -67,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -116,14 +118,17 @@ import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.actions.ClearOutputAction;
+import org.eclipse.ui.part.IPage;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.ui.progress.IProgressService;
+import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
+import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.osgi.framework.Bundle;
 
@@ -695,12 +700,47 @@ public class OCLConsolePage extends Page
 		input.getTextWidget().setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
 		
 		selectionListener = new ISelectionListener() {
-            public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+            public void selectionChanged(IWorkbenchPart part, final ISelection selection) {
 //				System.out.println("selectionChanged: ");
             	if (part instanceof IConsoleView) {
             		IConsole console = ((IConsoleView)part).getConsole();
                 	if (console instanceof OCLConsole) {
                 		return;
+                	}
+            	}
+            	if (part instanceof ContentOutline) {
+            		ContentOutline contentOutline = (ContentOutline)part;
+            		IPage currentPage = contentOutline.getCurrentPage();
+                	if (currentPage instanceof OutlinePage) {
+                		OutlinePage outlinePage = (OutlinePage)currentPage;
+                		IXtextDocument xtextDocument = outlinePage.getXtextDocument();
+                		Element pivotElement = xtextDocument.readOnly(new IUnitOfWork<Element, XtextResource>()
+                		{
+							public Element exec(XtextResource state) throws Exception {
+								if (selection instanceof IStructuredSelection) {
+									IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+									if (structuredSelection.size() == 1) {
+										Object selectedObject = structuredSelection.getFirstElement();
+										if (selectedObject instanceof EObjectNode) {
+											EObjectNode eObjectNode = (EObjectNode)selectedObject;
+											URI uri = eObjectNode.getEObjectURI();
+											EObject csObject = state.getEObject(uri.fragment());
+											if (csObject instanceof Pivotable) {
+												Element pivotObject = ((Pivotable)csObject).getPivot();
+												if (pivotObject != null) {
+									                return pivotObject;													
+												}
+											}
+										}
+									}
+								}		
+								return null;
+							}
+						});
+                		if (pivotElement != null) {
+                            OCLConsolePage.this.selectionChanged(new StructuredSelection(pivotElement));
+                            return;
+                		}
                 	}
             	}
                 OCLConsolePage.this.selectionChanged(selection);
@@ -1070,9 +1110,8 @@ public class OCLConsolePage extends Page
 		    	    if (selectedObject instanceof EObjectNode) {
 		                EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
 		                URI eObjectURI = selectedObjectNode.getEObjectURI();
-		        		ResourceSet resourceSet = editor.getResourceSet();
-		        		contextObject = resourceSet.getEObject(eObjectURI, true);
-						contextClassifier = selectedObjectNode.getEClass();
+		        		contextObject = typeManager.loadResource(eObjectURI, null);
+		        		contextClassifier = selectedObjectNode.getEClass();
 		    	    }
 		    	    else if (selectedObject instanceof EStructuralFeatureNode) {
 		            	contextObject = null;

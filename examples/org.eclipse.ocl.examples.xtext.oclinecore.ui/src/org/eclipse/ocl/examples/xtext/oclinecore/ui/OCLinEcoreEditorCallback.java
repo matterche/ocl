@@ -105,6 +105,9 @@ public class OCLinEcoreEditorCallback extends ValidatingEditorCallback
 		
 		private EObject getEObject(final URI uri, boolean loadOnDemand) {
 			IXtextDocument document = editor.getDocument();
+			if (document == null) {		// Bug 348256 reports an unreproducible NPE. May be there is/was an editor start up
+				return null;			//  race condition; just return no object rather than an NPE.
+			}
 			EObject eObject = document.readOnly(new IUnitOfWork<EObject, XtextResource>()
 			{
 				public EObject exec(XtextResource state) throws Exception {
