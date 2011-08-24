@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,7 +30,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -260,7 +265,13 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
 //		typeManager = new TypeManager();
 //		typeManager.loadLibrary(OCLstdlib.INSTANCE);
-		doLoad_Concrete("Expression", "oclinecore");
+		Resource pivotResource = doLoad_Concrete("Expression", "oclinecore");
+		String ecoreName = "Expression" + ".saved.ecore";
+		URI ecoreURI = getProjectFileURI(ecoreName);
+		Map<String,Object> options = new HashMap<String,Object>();
+		options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
+		XMLResource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, options);
+		ecoreResource.save(null);
 	}	
 
 	public void testLoad_Imports_ecore() throws IOException, InterruptedException {
@@ -285,8 +296,17 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 //		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
-		Resource resource = doLoad_Concrete("oclstdlib", "oclstdlib");
-		checkMonikers(resource);
+		Resource pivotResource = doLoad_Concrete("oclstdlib", "oclstdlib");
+		checkMonikers(pivotResource);
+		String ecoreName = "oclstdlib" + ".saved.ecore";
+		URI ecoreURI = getProjectFileURI(ecoreName);
+		Map<String,Object> options = new HashMap<String,Object>();
+		options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
+		org.eclipse.ocl.examples.pivot.Package root = PivotFactory.eINSTANCE.createPackage();		// FIXME Avoid this kludge
+		root.getNestedPackages().addAll((Collection<? extends Package>) pivotResource.getContents());
+		pivotResource.getContents().add(root);
+		XMLResource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, options);
+		ecoreResource.save(null);
 	}
 
 	public void testLoad_OCL_ecore() throws IOException, InterruptedException {

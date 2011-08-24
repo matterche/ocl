@@ -65,6 +65,7 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2EcoreDeclarationVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -90,7 +91,10 @@ public class Pivot2EcoreDeclarationVisitor
 				safeVisit(pivotConstraint);		// Results are inserted directly
 			}
 		}
-		Pivot2Ecore.installDelegates(context.getTypeManager(), eClassifier, pivotType);
+		TypeManager typeManager = context.getTypeManager();
+		if (typeManager != null) {
+			Pivot2Ecore.installDelegates(typeManager, eClassifier, pivotType);
+		}
 	}
 
 

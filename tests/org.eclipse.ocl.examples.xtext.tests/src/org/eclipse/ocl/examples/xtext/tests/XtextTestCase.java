@@ -525,7 +525,7 @@ public class XtextTestCase extends TestCase
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-			Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+			Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			ecoreResource.save(null);
 		}
@@ -618,8 +618,11 @@ public class XtextTestCase extends TestCase
 	}
 
 	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
+		return savePivotAsEcore(typeManager, pivotResource, ecoreURI, null, validateSaved);
+	}
+	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options, boolean validateSaved) throws IOException {
 		URI uri = ecoreURI != null ? ecoreURI : URI.createURI("test.ecore");
-		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, uri);
+		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, uri, null);
 		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);

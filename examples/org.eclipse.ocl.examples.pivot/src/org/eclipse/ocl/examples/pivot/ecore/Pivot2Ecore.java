@@ -64,12 +64,19 @@ public class Pivot2Ecore extends AbstractConversion
 {
 	public static final Logger logger = Logger.getLogger(Pivot2Ecore.class);
 	
-	public static XMLResource createResource(TypeManager typeManager, Resource pivotResource, URI ecoreURI) {
+	/**
+	 * String-valued URI prefix of a package defining the primitive types. Proxy references to
+	 * e.g. OCL's String rather than Ecore's EString are constructed by just appending 'String' to
+	 * the prefix.
+	 */
+	public static final String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
+
+	public static XMLResource createResource(TypeManager typeManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 		List<EObject> contents = ecoreResource.getContents();
 		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2Ecore converter = new Pivot2Ecore(typeManager, ecoreURI);
+		Pivot2Ecore converter = new Pivot2Ecore(typeManager, ecoreURI, options);
 		List<? extends EObject> outputObjects = converter.convertAll(pivotRoots);
 		for (EObject eObject : outputObjects) {
 			if ((eObject instanceof EPackage) && !PivotConstants.ORPHANAGE_NAME.equals(((EPackage)eObject).getName())) {
@@ -79,6 +86,30 @@ public class Pivot2Ecore extends AbstractConversion
 			}
 		}
 		return ecoreResource;
+	}
+	
+	public static Boolean getBoolean(Map<String, Object> options, String key) {
+		if (options == null) {
+			return false;
+		}
+		Object value = options.get(key);
+		if (value instanceof Boolean) {
+			return (Boolean) value;
+		}
+		logger.error("Non-Boolean '" + key + "'");
+		return false;
+	}
+	
+	public static String getString(Map<String, Object> options, String key) {
+		if (options == null) {
+			return null;
+		}
+		Object value = options.get(key);
+		if (value instanceof String) {
+			return (String) value;
+		}
+		logger.error("Non-String '" + key + "'");
+		return null;
 	}
 	
 	public static boolean installDelegate(EModelElement eModelElement, Constraint pivotConstraint, URI ecoreURI) {
@@ -200,12 +231,16 @@ public class Pivot2Ecore extends AbstractConversion
 	
 	protected final TypeManager typeManager;
 	protected final URI ecoreURI;
+	protected final Map<String,Object> options;
+	protected final String primitiveTypesUriPrefix;
 	
-	public Pivot2Ecore(TypeManager typeManager, URI ecoreURI) {
+	public Pivot2Ecore(TypeManager typeManager, URI ecoreURI, Map<String,Object> options) {
 		this.typeManager = typeManager;
 		this.ecoreURI = ecoreURI;
+		this.options = options;
+		this.primitiveTypesUriPrefix = getString(options, PRIMITIVE_TYPES_URI_PREFIX);
 	}
-	
+
 	protected EObject convert(Element pivotObject) {
 		EObject eObject = pass1.safeVisit(pivotObject);
 		for (Element eKey : deferMap) {
@@ -254,6 +289,14 @@ public class Pivot2Ecore extends AbstractConversion
 
 	public final URI getEcoreURI() {
 		return ecoreURI;
+	}
+
+	public Map<String, Object> getOptions() {
+		return options;
+	}
+
+	public String getPrimitiveTypesUriPrefix() {
+		return primitiveTypesUriPrefix;
 	}
 	
 	public final TypeManager getTypeManager() {

@@ -19,7 +19,9 @@ package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -87,7 +89,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				public Object exec(XtextResource resource) throws Exception {
 					XMLResource pivotResource = getPivotResouce();
 					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
-					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI);
+					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI, null);
 //					ResourceSetImpl resourceSet = new ResourceSetImpl();
 //					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 //					ecoreResource.getContents().addAll(ecoreContents);
@@ -122,6 +124,25 @@ public class OCLinEcoreDocument extends BaseDocument
 					umlResource.getContents().addAll(umlContents);
 					checkForErrors(umlResource);
 					umlResource.save(writer, null);
+					return null;
+				}
+			});
+	}
+
+	/**
+	 * Write the XMI representation of the Ecore to be saved.
+	 */
+	public void saveInEcore(final Writer writer, final URI ecoreURI) throws IOException, CoreException {
+		readOnly(new IUnitOfWork<Object, XtextResource>()
+			{
+				public Object exec(XtextResource resource) throws Exception {
+					XMLResource pivotResource = getPivotResouce();
+					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+					Map<String,Object> options = new HashMap<String,Object>();
+					options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
+					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI, options);
+					ecoreResource.save(writer, null);
+					checkForErrors(ecoreResource);
 					return null;
 				}
 			});

@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -36,9 +37,9 @@ import org.eclipse.xtext.resource.XtextResource;
 public class SerializeTests extends XtextTestCase
 {
 	public XtextResource doSerialize(String stem) throws Exception {
-		return doSerialize(stem, stem, true);
+		return doSerialize(stem, stem, null, true);
 	}
-	public XtextResource doSerialize(String stem, String referenceStem, boolean doCompare) throws Exception {
+	public XtextResource doSerialize(String stem, String referenceStem, Map<String, Object> options, boolean doCompare) throws Exception {
 		//
 		//	Load as Ecore
 		//
@@ -73,7 +74,7 @@ public class SerializeTests extends XtextTestCase
 			//		
 			String inputName2 = stem + "2.ecore";
 			URI ecoreURI2 = getProjectFileURI(inputName2);
-			Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, true);
+			Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, options, true);
 			//
 			//
 			//
@@ -174,7 +175,7 @@ public class SerializeTests extends XtextTestCase
 	}
 	
 	public void testSerialize_Bug354336() throws Exception {
-		doSerialize("Bug354336", "Bug354336", false);		// FIXME Model check suppressed because of Bug 354621
+		doSerialize("Bug354336", "Bug354336", null, false);		// FIXME Model check suppressed because of Bug 354621
 	}
 
 	public void testSerialize_Company() throws Exception {
@@ -185,7 +186,7 @@ public class SerializeTests extends XtextTestCase
 //		DocumentScopeAdapter.WORK.setState(true);
 //		CS2PivotConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doSerialize("Company", "Company.reference", true);
+		doSerialize("Company", "Company.reference", null, true);
 	}
 
 	public void testSerialize_ConstraintMessages() throws Exception {

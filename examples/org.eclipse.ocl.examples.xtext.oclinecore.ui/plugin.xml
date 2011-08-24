@@ -198,6 +198,8 @@
 	<extension point="org.eclipse.ui.commands">
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	    name="%MF_SaveAsEcore_Command" description="%MF_SaveAsEcore_Description"/>
+	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveInEcoreCommand"
+	    name="%MF_SaveInEcore_Command" description="%MF_SaveInEcore_Description"/>
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    name="%MF_SaveAsOCLinEcore_Command" description="%MF_SaveAsOCLinEcore_Description"/>
 	  <command id="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsPivotCommand"
@@ -210,6 +212,8 @@
 	<extension point="org.eclipse.ui.handlers">
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsEcoreHandler"/>
+	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveInEcoreCommand"
+	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveInEcoreHandler"/>
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	    class="org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.SaveAsOCLinEcoreHandler"/>
 	  <handler commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsPivotCommand"
@@ -236,6 +240,14 @@
 	  <menuContribution locationURI="popup:org.eclipse.ocl.examples.xtext.oclinecore.ui.SaveAs?after=additions">
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	      label="%MF_SaveAsEcore">
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
+	    </command>
+	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveInEcoreCommand"
+	      label="%MF_SaveInEcore">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">

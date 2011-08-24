@@ -53,7 +53,7 @@ import org.eclipse.xtext.resource.XtextResource;
 public class RoundTripTests extends XtextTestCase
 {
 	public Resource createEcoreFromPivot(TypeManager typeManager, PivotResource pivotResource, URI ecoreURI) throws IOException {
-		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI);
+		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, null);
 		assertNoResourceErrors("To Ecore errors", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
@@ -129,7 +129,7 @@ public class RoundTripTests extends XtextTestCase
 			pivotResource.save(null);
 			assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
 			
-			Resource outputResource = Pivot2Ecore.createResource(typeManager, pivotResource, outputURI);
+			Resource outputResource = Pivot2Ecore.createResource(typeManager, pivotResource, outputURI, null);
 			assertNoResourceErrors("Ecore2Pivot failed", outputResource);
 			outputResource.save(null);
 			assertNoValidationErrors("Ecore2Pivot invalid", outputResource);

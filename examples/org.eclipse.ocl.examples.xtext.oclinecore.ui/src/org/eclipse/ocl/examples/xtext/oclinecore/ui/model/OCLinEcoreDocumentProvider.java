@@ -71,7 +71,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocumentProvider.class);
 	
-	public static final String PERSIST_AS_ECORE = "ecore";
+	public static final String PERSIST_AS_ECORE = "as-ecore";
+	public static final String PERSIST_IN_ECORE = "in-ecore";
 	public static final String PERSIST_AS_PIVOT = "pivot";
 	public static final String PERSIST_AS_OCLINECORE = "oclinecore";
 	public static final String PERSIST_AS_UML = "uml";
@@ -127,6 +128,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
 				if (PERSIST_AS_ECORE.equals(saveAs)) {
 					((OCLinEcoreDocument) document).saveAsEcore(xmlWriter, uri);
+				}
+				else if (PERSIST_IN_ECORE.equals(saveAs)) {
+					((OCLinEcoreDocument) document).saveInEcore(xmlWriter, uri);
 				}
 				else if (PERSIST_AS_PIVOT.equals(saveAs)) {
 					((OCLinEcoreDocument) document).saveAsPivot(xmlWriter);

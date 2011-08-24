@@ -18,12 +18,15 @@ package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -76,7 +79,18 @@ public class Pivot2EcoreTypeRefVisitor
 	}	
 
 	@Override
-	public EClassifier visitPrimitiveType(PrimitiveType pivotType) {
+	public EObject visitPrimitiveType(PrimitiveType pivotType) {
+		String uri = context.getPrimitiveTypesUriPrefix();
+		if (uri != null) {
+			EDataType eClassifier = context.getCreated(EDataType.class, pivotType);
+			if (eClassifier == null) {
+				URI proxyURI = URI.createURI(uri + pivotType.getName());
+				eClassifier = EcoreFactory.eINSTANCE.createEDataType();
+				((InternalEObject) eClassifier).eSetProxyURI(proxyURI);
+				context.putCreated(pivotType, eClassifier);
+			}
+			return eClassifier;
+		}
 		if (pivotType == context.getTypeManager().getBooleanType()) {
 			return EcorePackage.Literals.EBOOLEAN;
 		}
