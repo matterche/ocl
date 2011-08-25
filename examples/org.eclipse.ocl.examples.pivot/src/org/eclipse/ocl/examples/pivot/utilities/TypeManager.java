@@ -338,7 +338,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	public TypeManager(ResourceSet pivotResourceSet) {
 //		System.out.println("ctor " + this);
 		this.pivotResourceSet = pivotResourceSet;
-		pivotResourceSet.eAdapters().add(this);
+//		pivotResourceSet.eAdapters().add(this);
 //		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
 //			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + pivotResourceSet.hashCode());		
 	}
