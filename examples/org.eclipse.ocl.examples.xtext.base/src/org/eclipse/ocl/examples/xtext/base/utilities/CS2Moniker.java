@@ -209,7 +209,7 @@ public class CS2Moniker
 	public void appendParentElementCS(EObject parent, String parentSeparator) {
 		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
 			append(OVERFLOW_MARKER);
-		} else {
+/*		} else {
 			if ((parent instanceof MonikeredElementCS)
 				&& ((MonikeredElementCS) parent).hasMoniker()) {
 				append(((MonikeredElementCS) parent).getMoniker()); // FIXME
@@ -222,11 +222,11 @@ public class CS2Moniker
 							emittedTemplateParameterCS(csTemplateParameter);							
 						}
 					}
-				}
+				} */
 			} else if (parent instanceof VisitableCS) {
 				appendElementCS((VisitableCS) parent);
 			}
-		}
+//		}
 		append(parentSeparator);
 	}
 

@@ -25,7 +25,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getMoniker <em>Moniker</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getCsi <em>Csi</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,26 +35,29 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  */
 public interface MonikeredElementCS extends ModelElementCS {
 	/**
-	 * Returns the value of the '<em><b>Moniker</b></em>' attribute.
+	 * Returns the value of the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Moniker</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Csi</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Moniker</em>' attribute.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getMonikeredElementCS_Moniker()
-	 * @model transient="true" changeable="false" derived="true"
+	 * @return the value of the '<em>Csi</em>' attribute.
+	 * @see #setCsi(String)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getMonikeredElementCS_Csi()
+	 * @model transient="true"
 	 * @generated
 	 */
-	String getMoniker();
+	String getCsi();
 
 	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getCsi <em>Csi</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @param value the new value of the '<em>Csi</em>' attribute.
+	 * @see #getCsi()
 	 * @generated
 	 */
-	boolean hasMoniker();
+	void setCsi(String value);
 
 } // NameableElementCS

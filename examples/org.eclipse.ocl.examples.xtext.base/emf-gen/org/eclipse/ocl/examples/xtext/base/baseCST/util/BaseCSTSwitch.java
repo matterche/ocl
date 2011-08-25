@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -221,6 +222,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypedRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(collectionTypeRefCS);
+				if (result == null) result = caseRefCS(collectionTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(collectionTypeRefCS);
 				if (result == null) result = caseModelElementCS(collectionTypeRefCS);
 				if (result == null) result = caseElementCS(collectionTypeRefCS);
@@ -373,6 +375,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypeRefCS(lambdaTypeCS);
 				if (result == null) result = caseModelElementCS(lambdaTypeCS);
 				if (result == null) result = caseParameterableElementCS(lambdaTypeCS);
+				if (result == null) result = caseRefCS(lambdaTypeCS);
 				if (result == null) result = caseMonikeredElementCS(lambdaTypeCS);
 				if (result == null) result = caseElementCS(lambdaTypeCS);
 				if (result == null) result = casePivotable(lambdaTypeCS);
@@ -410,6 +413,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				ModelElementRefCS modelElementRefCS = (ModelElementRefCS)theEObject;
 				T result = caseModelElementRefCS(modelElementRefCS);
 				if (result == null) result = caseModelElementCS(modelElementRefCS);
+				if (result == null) result = caseRefCS(modelElementRefCS);
 				if (result == null) result = caseElementCS(modelElementRefCS);
 				if (result == null) result = casePivotable(modelElementRefCS);
 				if (result == null) result = caseVisitableCS(modelElementRefCS);
@@ -522,11 +526,19 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypeRefCS(primitiveTypeRefCS);
 				if (result == null) result = caseNameable(primitiveTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(primitiveTypeRefCS);
+				if (result == null) result = caseRefCS(primitiveTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseModelElementCS(primitiveTypeRefCS);
 				if (result == null) result = caseElementCS(primitiveTypeRefCS);
 				if (result == null) result = casePivotable(primitiveTypeRefCS);
 				if (result == null) result = caseVisitableCS(primitiveTypeRefCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.REF_CS:
+			{
+				RefCS refCS = (RefCS)theEObject;
+				T result = caseRefCS(refCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -608,6 +620,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				TemplateBindingCS templateBindingCS = (TemplateBindingCS)theEObject;
 				T result = caseTemplateBindingCS(templateBindingCS);
 				if (result == null) result = caseModelElementCS(templateBindingCS);
+				if (result == null) result = caseRefCS(templateBindingCS);
 				if (result == null) result = caseElementCS(templateBindingCS);
 				if (result == null) result = casePivotable(templateBindingCS);
 				if (result == null) result = caseVisitableCS(templateBindingCS);
@@ -633,6 +646,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				TemplateParameterSubstitutionCS templateParameterSubstitutionCS = (TemplateParameterSubstitutionCS)theEObject;
 				T result = caseTemplateParameterSubstitutionCS(templateParameterSubstitutionCS);
 				if (result == null) result = caseModelElementCS(templateParameterSubstitutionCS);
+				if (result == null) result = caseRefCS(templateParameterSubstitutionCS);
 				if (result == null) result = caseElementCS(templateParameterSubstitutionCS);
 				if (result == null) result = casePivotable(templateParameterSubstitutionCS);
 				if (result == null) result = caseVisitableCS(templateParameterSubstitutionCS);
@@ -688,6 +702,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypeRefCS(tupleTypeCS);
 				if (result == null) result = caseModelElementCS(tupleTypeCS);
 				if (result == null) result = caseParameterableElementCS(tupleTypeCS);
+				if (result == null) result = caseRefCS(tupleTypeCS);
 				if (result == null) result = caseMonikeredElementCS(tupleTypeCS);
 				if (result == null) result = caseElementCS(tupleTypeCS);
 				if (result == null) result = casePivotable(tupleTypeCS);
@@ -728,6 +743,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				TypeRefCS typeRefCS = (TypeRefCS)theEObject;
 				T result = caseTypeRefCS(typeRefCS);
 				if (result == null) result = caseParameterableElementCS(typeRefCS);
+				if (result == null) result = caseRefCS(typeRefCS);
 				if (result == null) result = caseMonikeredElementCS(typeRefCS);
 				if (result == null) result = caseModelElementCS(typeRefCS);
 				if (result == null) result = caseElementCS(typeRefCS);
@@ -756,6 +772,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				T result = caseTypedRefCS(typedRefCS);
 				if (result == null) result = caseTypeRefCS(typedRefCS);
 				if (result == null) result = caseParameterableElementCS(typedRefCS);
+				if (result == null) result = caseRefCS(typedRefCS);
 				if (result == null) result = caseMonikeredElementCS(typedRefCS);
 				if (result == null) result = caseModelElementCS(typedRefCS);
 				if (result == null) result = caseElementCS(typedRefCS);
@@ -771,6 +788,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTypedRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(typedTypeRefCS);
+				if (result == null) result = caseRefCS(typedTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(typedTypeRefCS);
 				if (result == null) result = caseModelElementCS(typedTypeRefCS);
 				if (result == null) result = caseElementCS(typedTypeRefCS);
@@ -785,6 +803,7 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				T result = caseWildcardTypeRefCS(wildcardTypeRefCS);
 				if (result == null) result = caseTypeRefCS(wildcardTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(wildcardTypeRefCS);
+				if (result == null) result = caseRefCS(wildcardTypeRefCS);
 				if (result == null) result = caseMonikeredElementCS(wildcardTypeRefCS);
 				if (result == null) result = caseModelElementCS(wildcardTypeRefCS);
 				if (result == null) result = caseElementCS(wildcardTypeRefCS);
@@ -1208,6 +1227,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRefCS(RefCS object)
+	{
 		return null;
 	}
 

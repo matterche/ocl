@@ -114,7 +114,7 @@ public class EssentialOCLCS2MonikerVisitor
 		}
 		assert pivotingFeature.getEContainingClass().isInstance(pivotingParent);
 		assert pivotingFeature.getEReferenceType().isInstance(pivotingChild);
-		context.append(EssentialOCLUtils.getPivotedCS(pivotingParent).getMoniker());
+		context.append(CS2Moniker.toString(EssentialOCLUtils.getPivotedCS(pivotingParent)));
 		context.append(MONIKER_SCOPE_SEPARATOR);
 		if (pivotingFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
 			int iMax = ((LetExpCS) pivotingParent).getVariable().size();

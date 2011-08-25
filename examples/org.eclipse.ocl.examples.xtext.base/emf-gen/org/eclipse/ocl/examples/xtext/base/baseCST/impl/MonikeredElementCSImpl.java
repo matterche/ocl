@@ -16,7 +16,9 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -31,7 +33,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl#getMoniker <em>Moniker</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl#getCsi <em>Csi</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,24 +41,24 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  */
 public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implements MonikeredElementCS {
 	/**
-	 * The default value of the '{@link #getMoniker() <em>Moniker</em>}' attribute.
+	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMoniker()
+	 * @see #getCsi()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MONIKER_EDEFAULT = null;
+	protected static final String CSI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMoniker() <em>Moniker</em>}' attribute.
+	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMoniker()
+	 * @see #getCsi()
 	 * @generated
 	 * @ordered
 	 */
-	protected String moniker = MONIKER_EDEFAULT;
+	protected String csi = CSI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,42 +82,35 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCsi()
+	{
+		return csi;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCsi(String newCsi)
+	{
+		String oldCsi = csi;
+		csi = newCsi;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI, oldCsi, csi));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public String getDescription()
 	{
-		return eClass().getName() + " : " + getMoniker(); //$NON-NLS-1$
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getMoniker() {
-		if (moniker == null) {
-			moniker = CS2Moniker.toString(this);
-		}
-		return moniker;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean hasMoniker() {
-		return moniker != MONIKER_EDEFAULT;
-	}
-
-	/**
-	 * The moniker may be reset for test purposes. It should always recompute the
-	 * same value.
-	 * @generated NOT
-	 */
-	public void resetMoniker() {
-		moniker = MONIKER_EDEFAULT;
+		return eClass().getName() + " : " + getCsi(); //$NON-NLS-1$
 	}
 
 	/**
@@ -127,10 +122,44 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER:
-				return getMoniker();
+			case BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI:
+				return getCsi();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI:
+				setCsi((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI:
+				setCsi(CSI_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -142,8 +171,8 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER:
-				return MONIKER_EDEFAULT == null ? moniker != null : !MONIKER_EDEFAULT.equals(moniker);
+			case BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI:
+				return CSI_EDEFAULT == null ? csi != null : !CSI_EDEFAULT.equals(csi);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -165,11 +194,5 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return visitor.visitMonikeredElementCS(this);
-	}
-
-	@Override
-	public void resetPivot() {
-		super.resetPivot();
-		resetMoniker();
 	}
 } //NameableElementCSImpl

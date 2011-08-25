@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -61,16 +62,16 @@ public class LoadTests extends XtextTestCase
 			String toString = eObject.toString();
 			if (eObject instanceof NamedElementCS) {
 				NamedElementCS namedElementCS = (NamedElementCS)eObject;
-				String moniker = namedElementCS.getMoniker();
+				String moniker = CS2Moniker.toString(namedElementCS);
 				if (sigMap.containsKey(moniker)) {
 					System.out.println("Duplicate moniker " + moniker + " from "  + namedElementCS.eClass().getName());
-					namedElementCS.getMoniker();
+					CS2Moniker.toString(namedElementCS);
 				}
 				sigMap.put(moniker, namedElementCS);
 			}
 			else if (eObject instanceof MonikeredElementCS) {
 				MonikeredElementCS nameableElementCS = (MonikeredElementCS)eObject;
-				String moniker = nameableElementCS.getMoniker();
+				String moniker = CS2Moniker.toString(nameableElementCS);
 				System.out.println(moniker + "                              -> " + nameableElementCS.eClass().getName()); // + " : " + value.toString());
 			}
 		}

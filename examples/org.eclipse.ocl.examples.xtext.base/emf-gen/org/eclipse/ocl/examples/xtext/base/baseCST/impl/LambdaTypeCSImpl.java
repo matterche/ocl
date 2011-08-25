@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -430,6 +431,13 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 				default: return -1;
 			}
 		}
+		if (baseClass == RefCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		if (baseClass == TypeRefCS.class)
 		{
 			switch (derivedFeatureID)
@@ -464,6 +472,13 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
 		if (baseClass == ParameterableElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == RefCS.class)
 		{
 			switch (baseFeatureID)
 			{

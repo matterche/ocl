@@ -57,7 +57,7 @@ public class OCLinEcoreLeft2RightVisitor
 		if (csExpression != null) {
 			ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
 				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
-			context.installPivotElement(csSpecification, pivotSpecification);
+//			context.installPivotElement(csSpecification, pivotSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
 			Variable contextVariable = pivotSpecification.getContextVariable();
@@ -105,7 +105,7 @@ public class OCLinEcoreLeft2RightVisitor
 			}
 			ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS) csConstraint.getMessageSpecification();
 			if (csMessageSpecification != null) {
-				context.reusePivotElement(csMessageSpecification, pivotSpecification);
+//WIP				context.reusePivotElement(csMessageSpecification, pivotSpecification);
 				ExpCS csMessageExpression = csMessageSpecification.getOwnedExpression();
 				if (csMessageExpression != null) {
 					OclExpression messageExpression = context.visitLeft2Right(OclExpression.class, csMessageExpression);		

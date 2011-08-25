@@ -147,13 +147,13 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
+	int OC_LIN_ECORE_CONSTRAINT_CS__CSI = BaseCSTPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -247,13 +247,13 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_SPECIFICATION_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_SPECIFICATION_CS__MONIKER = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__MONIKER;
+	int OC_LIN_ECORE_SPECIFICATION_CS__CSI = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.

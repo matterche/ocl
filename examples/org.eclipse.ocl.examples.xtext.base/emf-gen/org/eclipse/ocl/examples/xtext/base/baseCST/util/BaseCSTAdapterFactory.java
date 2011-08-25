@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -266,6 +267,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter casePrimitiveTypeRefCS(PrimitiveTypeRefCS object)
 			{
 				return createPrimitiveTypeRefCSAdapter();
+			}
+			@Override
+			public Adapter caseRefCS(RefCS object)
+			{
+				return createRefCSAdapter();
 			}
 			@Override
 			public Adapter caseReferenceCS(ReferenceCS object)
@@ -782,6 +788,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPrimitiveTypeRefCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RefCS <em>Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RefCS
+	 * @generated
+	 */
+	public Adapter createRefCSAdapter()
+	{
 		return null;
 	}
 

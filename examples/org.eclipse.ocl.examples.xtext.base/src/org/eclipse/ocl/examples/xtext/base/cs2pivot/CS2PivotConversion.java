@@ -30,7 +30,6 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -81,6 +80,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -102,6 +102,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
@@ -184,18 +185,18 @@ public class CS2PivotConversion extends AbstractConversion
 	protected final CS2Pivot converter;
 	protected final TypeManager typeManager;
 	protected final Collection<? extends Resource> csResources;
-	protected final Map<Pivotable, org.eclipse.ocl.examples.pivot.Package> oldCS2PivotMap = new HashMap<Pivotable, org.eclipse.ocl.examples.pivot.Package>();
-	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
+//	protected final Map<Pivotable, org.eclipse.ocl.examples.pivot.Package> oldCS2PivotMap = new HashMap<Pivotable, org.eclipse.ocl.examples.pivot.Package>();
+//	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
 	/**
 	 * The mapping from monikers to pivot elements prior to the start of the update.
 	 */
-	protected final Map<String, MonikeredElement> oldMoniker2PivotMap;
+//	protected final Map<String, MonikeredElement> oldMoniker2PivotMap;
 	
 	/**
 	 * The evolving mapping from monikers to pivot elements during an update.
 	 */
-	protected final Map<String, MonikeredElement> newMoniker2PivotMap;
+//	protected final Map<String, MonikeredElement> newMoniker2PivotMap;
 	
 	/**
 	 * The per-package Vistors
@@ -218,9 +219,9 @@ public class CS2PivotConversion extends AbstractConversion
 	private final Map<CacheKey<?>, Object> intermediateCache = new HashMap<CacheKey<?>, Object>();
 
 	// CS <-> pivot pairs with identical monikers
-	private Map<MonikeredElementCS, MonikeredElement> debugCheckMap = new HashMap<MonikeredElementCS, MonikeredElement>();
+//	private Map<MonikeredElementCS, MonikeredElement> debugCheckMap = new HashMap<MonikeredElementCS, MonikeredElement>();
 	// CS -> pivot pairs with possibly divergent monikers
-	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
+//	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
 
 	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByName = null;
 	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByQualifiedName = null;
@@ -249,8 +250,8 @@ public class CS2PivotConversion extends AbstractConversion
 			mappedResources.add(converter.getPivotResource(csResource));
 		}
 		mappedResources.add(typeManager.getOrphanPackage().eResource());
-		oldMoniker2PivotMap = typeManager.computeMoniker2PivotMap(mappedResources);
-		newMoniker2PivotMap = new HashMap<String, MonikeredElement>();		
+//		oldMoniker2PivotMap = typeManager.computeMoniker2PivotMap(mappedResources);
+//		newMoniker2PivotMap = new HashMap<String, MonikeredElement>();		
 	}
 
 	/* (non-Javadoc)
@@ -261,8 +262,14 @@ public class CS2PivotConversion extends AbstractConversion
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
 		csElement.eResource().getErrors().add(resourceDiagnostic);
 		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression();
-		installPivotElementInternal(csElement, invalidLiteralExp);
+		csElement.setPivot(invalidLiteralExp);
 		return invalidLiteralExp;
+	}
+
+	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
+		InvalidType invalidType = typeManager.getOclInvalidType();
+		csElement.setPivot(invalidType);
+		return invalidType;
 	}
 
 	public void addDiagnostic(ModelElementCS csElement, Diagnostic diagnostic) {
@@ -275,12 +282,6 @@ public class CS2PivotConversion extends AbstractConversion
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
 		csElement.eResource().getErrors().add(resourceDiagnostic);
-	}
-
-	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
-		InvalidType invalidType = typeManager.getOclInvalidType();
-		installPivotElementInternal(csElement, invalidType);
-		return invalidType;
 	}
 
 	protected void addUnderspecifiedTypedElement(TypedElement pivotElement) {
@@ -333,7 +334,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return hasNoErrors; */
 	}
 
-	public void checkMonikers() {
+/*	public void checkMonikers() {
 		for (Map.Entry<MonikeredElementCS, MonikeredElement> entry : debugCheckMap.entrySet()) {
 			MonikeredElementCS csElement = entry.getKey();
 			MonikeredElement element = entry.getValue();
@@ -347,7 +348,7 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 //		debugCheckQueue.clear();
-	}
+	} */
 	
 	/**
 	 * Compute the transitive closure of all contained elements of Element type in pivotRoots.
@@ -591,7 +592,6 @@ public class CS2PivotConversion extends AbstractConversion
 		Map<EObject, Collection<Setting>> referencesToOrphans = new EcoreUtil.CrossReferencer(allPivotResources)
 		{
 			{ crossReference(); }
-
 			@Override
 			protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
 				Resource eResource = crossReferencedEObject.eResource();
@@ -707,13 +707,13 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			typeManager.kill(referencedOrphan);
 		}
-		for (MonikeredElement element : oldMoniker2PivotMap.values()) {
-			if (element.eResource() == null) {
+//		for (MonikeredElement element : oldMoniker2PivotMap.values()) {
+//			if (element.eResource() == null) {
 //				PivotUtil.debugObjectUsage("Final Old residue ", element);
 				// This is a bit late: a notification of non-containment would be sharper.
-				typeManager.kill(element);
-			}
-		}
+//				typeManager.kill(element);
+//			}
+//		}
 //		for (MonikeredElement element : newMoniker2PivotMap.values()) {
 //			if (element.eResource() == null) {
 //				PivotUtil.debugObjectUsage("Final New residue ", element);
@@ -814,7 +814,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return packagesHaveTypes;
 	}
 
-	public <T extends Element> T getPivotElement(Class<T> pivotClass, String moniker) {
+/*	public <T extends Element> T getPivotElement(Class<T> pivotClass, String moniker) {
 		MonikeredElement nameableElement = getPivotElement(moniker);
 		if (nameableElement == null) {
 			return null;
@@ -825,15 +825,15 @@ public class CS2PivotConversion extends AbstractConversion
 		@SuppressWarnings("unchecked")
 		T castElement = (T) nameableElement;
 		return castElement;
-	}
+	} */
 	
-	public MonikeredElement getPivotElement(String moniker) {
+/*	public MonikeredElement getPivotElement(String moniker) {
 		MonikeredElement element = newMoniker2PivotMap.get(moniker);
 		if (element == null) {
 			element = oldMoniker2PivotMap.get(moniker);
 		}
 		return element;
-	}
+	} */
 
 	public BaseCSVisitor<Continuation<?>, CS2PivotConversion> getPostOrderVisitor(EPackage ePackage) {
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> postOrderVisitor = postOrderVisitorMap.get(ePackage);
@@ -1005,7 +1005,11 @@ public class CS2PivotConversion extends AbstractConversion
 		} */
 	}
 
-	public void installPivotElement(ModelElementCS csElement, Element newPivotElement) {
+	//	public void installPivotDefinition(MonikeredElementCS csElement, MonikeredElement newPivotElement) {
+//	converter.installPivotDefinition(csElement, newPivotElement);
+//}
+
+/*	public void installPivotElement(ModelElementCS csElement, Element newPivotElement) {
 		if (csElement instanceof MonikeredElementCS) {
 			assert !"NavigatingExpCS".equals(csElement.eClass().getName());		// FIXME debugging
 			debugCheckMap.put((MonikeredElementCS) csElement, (MonikeredElement) newPivotElement);
@@ -1014,16 +1018,16 @@ public class CS2PivotConversion extends AbstractConversion
 			debugOtherMap.put(csElement, newPivotElement);
 		}
 		installPivotElementInternal(csElement, newPivotElement);
-	}
+	} */
 	
-	private void installPivotElementInternal(ModelElementCS csElement, Element newPivotElement) {
+/*	private void installPivotElementInternal(ModelElementCS csElement, Element newPivotElement) {
 //		logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$		
 		EObject oldPivotElement = csElement.getPivot();
-		/*if (newPivotElement == null) {
+		/ *if (newPivotElement == null) {
 			if (!(csElement instanceof TemplateBindingCS)) {
 				logger.warn("Missing new pivot element for " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$
 			}
-		} else*/ if (oldPivotElement == null) {
+		} else* / if (oldPivotElement == null) {
 			assert !newPivotElement.eIsProxy();
 			csElement.setPivot(newPivotElement);
 		} else if (oldPivotElement != newPivotElement) {
@@ -1037,9 +1041,9 @@ public class CS2PivotConversion extends AbstractConversion
 		} else {
 //			logger.info("Duplicate pivot element for " + csClassName + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-	}
+	} */
 
-	public void installResidualMonikers(MonikeredElement monikeredElement) {
+/*	public void installResidualMonikers(MonikeredElement monikeredElement) {
 		if (!monikeredElement.hasMoniker()) {
 			putPivotElement(monikeredElement);
 		}
@@ -1056,6 +1060,14 @@ public class CS2PivotConversion extends AbstractConversion
 				assert getElement == childElement;
 			}
 		}
+	} */
+
+	public void installPivotReference(ModelElementCS csElement, Element newPivotElement, EReference eReference) {
+		converter.installPivotReference(csElement, newPivotElement, eReference);
+	}
+	
+	public void installPivotUsage(ModelElementCS csElement, MonikeredElement newPivotElement) {
+		converter.installPivotUsage(csElement, newPivotElement);
 	}
 
 	protected void installRootContents(Resource csResource) {
@@ -1123,12 +1135,12 @@ public class CS2PivotConversion extends AbstractConversion
 		return (T) intermediateCache.put(key, object);
 	}
 	
-	public void putPivotElement(MonikeredElement pivotElement) {
+/*	public void putPivotElement(MonikeredElement pivotElement) {
 		String moniker = pivotElement.getMoniker();
 		putPivotElement(moniker, pivotElement);
-	}
+	} */
 	
-	public void putPivotElement(String moniker, MonikeredElement pivotElement) {
+/*	public void putPivotElement(String moniker, MonikeredElement pivotElement) {
 		MonikeredElement oldElement = oldMoniker2PivotMap.get(moniker);
 //		if (pivotElement != oldElement) {
 			assert (pivotElement == oldElement) || (oldElement == null);
@@ -1137,7 +1149,7 @@ public class CS2PivotConversion extends AbstractConversion
 				assert oldElement == null;
 			}
 //		}
-	}
+	} */
 
 	protected void refreshComments(Element pivotElement, ElementCS csElement) {
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
@@ -1187,7 +1199,7 @@ public class CS2PivotConversion extends AbstractConversion
 	
 	public <T extends OclExpression> T refreshExpression(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
 		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
-		installPivotElement(csElement, pivotElement);
+//		installPivotElement(csElement, pivotElement);
 		return pivotElement;
 	}
 
@@ -1195,10 +1207,10 @@ public class CS2PivotConversion extends AbstractConversion
 		if (!pivotElements.isEmpty() ||!csElements.isEmpty()) {
 			List<T> newPivotElements = new ArrayList<T>();
 			for (MonikeredElementCS csElement : csElements) {
-				String moniker = csElement.getMoniker();
+//				String moniker = csElement.getMoniker();
 				T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
 				if (pivotElement == null) {
-					pivotElement = getPivotElement(pivotClass, moniker);
+					pivotElement = converter.getPivotElement(pivotClass, csElement);
 				}
 				if (pivotElement != null) {
 					newPivotElements.add(pivotElement);
@@ -1219,15 +1231,18 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @return
 	 */
 	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
+		return converter.refreshMonikeredElement(pivotClass, pivotEClass, csElement);
+	}
+/*	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
 		String moniker = csElement.getMoniker();
 		MonikeredElementCS oldElement = moniker2CSmap.put(moniker, csElement);
 		if ((oldElement != null) && (oldElement != csElement)) {
 			logger.warn("Duplicate " + moniker);
 		}
 		return refreshMonikeredElement(pivotClass, pivotEClass, moniker);
-	}
+	} */
 
-	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, String moniker) {
+/*	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, String moniker) {
 		assert pivotClass == pivotEClass.getInstanceClass();
 		assert moniker != null;
 		MonikeredElement pivotElement = getPivotElement(moniker);
@@ -1251,7 +1266,7 @@ public class CS2PivotConversion extends AbstractConversion
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
-	}
+	} */
 
 	public void refreshName(NamedElement pivotNamedElement, String newName) {
 		String oldName = pivotNamedElement.getName();
@@ -1263,7 +1278,7 @@ public class CS2PivotConversion extends AbstractConversion
 	public <T extends NamedElement> T refreshNamedElement(Class<T> pivotClass,
 			EClass pivotEClass, NamedElementCS csElement) {
 		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
-		installPivotElement(csElement, pivotElement);
+//		installPivotElement(csElement, pivotElement);
 		refreshName(pivotElement, csElement.getName());
 		refreshComments(pivotElement, csElement);
 		return pivotElement;
@@ -1272,9 +1287,9 @@ public class CS2PivotConversion extends AbstractConversion
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(Class<T> pivotClass, EClass pivotEClass, PackageCS csElement) {
 		String moniker;
 		Object pivotObject = csElement.getPivot();
-		if (pivotObject == null) {
-			pivotObject = oldCS2PivotMap.get(csElement);
-		}
+//		if (pivotObject == null) {
+//			pivotObject = oldCS2PivotMap.get(csElement);
+//		}
 		if (pivotObject == null) {
 			String qualifiedName = getQualifiedName(new StringBuffer(), csElement);
 			pivotObject = oldPackagesByQualifiedName.get(qualifiedName);
@@ -1311,8 +1326,8 @@ public class CS2PivotConversion extends AbstractConversion
 			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			refreshName(pivotElement, csElement.getName());
 		}
-		putPivotElement(moniker, pivotElement);
-		installPivotElement(csElement, pivotElement);
+//		putPivotElement(moniker, pivotElement);
+		converter.installPivotDefinition(csElement, pivotElement);
 		refreshComments(pivotElement, csElement);
 		return pivotElement;
 	}
@@ -1343,17 +1358,17 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			return;
 		}
-		String moniker = csTemplateSignature.getMoniker();
+		String moniker = CS2Moniker.toString(csTemplateSignature);
 		TemplateSignature pivotTemplateSignature = refreshMonikeredElement(TemplateSignature.class, PivotPackage.Literals.TEMPLATE_SIGNATURE, csTemplateSignature);
 		pivotTemplateSignature.setMoniker(moniker);
 		if (pivotTemplateableElement.getOwnedTemplateSignature() != pivotTemplateSignature) {
 			pivotTemplateableElement.setOwnedTemplateSignature(pivotTemplateSignature);
 		}
-		installPivotElement(csTemplateSignature, pivotTemplateSignature);
+//		installPivotElement(csTemplateSignature, pivotTemplateSignature);
 		List<TemplateParameter> newPivotTemplateParameters = new ArrayList<TemplateParameter>();
 		List<TemplateParameterCS> csTemplateParameters = csTemplateSignature.getOwnedTemplateParameter();
 		for (TemplateParameterCS csTemplateParameter : csTemplateParameters) {
-			moniker = csTemplateParameter.getMoniker();
+			moniker = CS2Moniker.toString(csTemplateParameter);
 			org.eclipse.ocl.examples.pivot.Class pivotTemplateParameterClass = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 				PivotPackage.Literals.CLASS, csTemplateParameter);
 			pivotTemplateParameterClass.setMoniker(moniker);
@@ -1363,7 +1378,7 @@ public class CS2PivotConversion extends AbstractConversion
 //				pivotTemplateParameter.setMoniker(moniker + "xx2");
 				pivotTemplateParameter.setOwnedParameteredElement(pivotTemplateParameterClass);
 			}
-			installPivotElement(csTemplateParameter, pivotTemplateParameterClass);
+//			installPivotElement(csTemplateParameter, pivotTemplateParameterClass);
 			newPivotTemplateParameters.add(pivotTemplateParameter);
 		}
 		PivotUtil.refreshList(pivotTemplateSignature.getOwnedParameters(), newPivotTemplateParameters);
@@ -1384,8 +1399,15 @@ public class CS2PivotConversion extends AbstractConversion
 		pivotElement.setLower(BigInteger.valueOf(lower));
 		pivotElement.setUpper(BigInteger.valueOf(upper));
 	}
+	
+/*	public void reputPivotElement(String moniker, MonikeredElement pivotElement) {
+		@SuppressWarnings("unused")
+		MonikeredElement oldElement = oldMoniker2PivotMap.get(moniker);
+//		assert oldElement == null;
+		oldElement = newMoniker2PivotMap.put(moniker, pivotElement);
+	} */
 
-	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
+/*	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
 		for (Resource csResource : csResources) {
 			for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
 				EObject eObject = tit.next();
@@ -1399,7 +1421,7 @@ public class CS2PivotConversion extends AbstractConversion
 				}				
 			}
 		}
-	}
+	} */
 
 	public void resolveNamespaces(List<Namespace> namespaces) {
 		for (Namespace namespace : namespaces) {
@@ -1452,26 +1474,19 @@ public class CS2PivotConversion extends AbstractConversion
 		throw new UnsupportedOperationException();
 //		return null;
 	}
-	
-	public void reputPivotElement(String moniker, MonikeredElement pivotElement) {
-		@SuppressWarnings("unused")
-		MonikeredElement oldElement = oldMoniker2PivotMap.get(moniker);
-//		assert oldElement == null;
-		oldElement = newMoniker2PivotMap.put(moniker, pivotElement);
-	}
 
 	/**
 	 * Install a CS to Pivot mapping for which the CS element does not have a
 	 * matching moniker. This occurs where the CS requires multiple objects for
 	 * a pivot object and so only one of the CS objects can have a matching moniker.
 	 * e.g. NavigationArgCS
-	 */
+	 *
 	public void reusePivotElement(ModelElementCS csElement, Element newPivotElement) {
 		if (newPivotElement != null) {
 			debugOtherMap.put(csElement, newPivotElement);
 			installPivotElementInternal(csElement, newPivotElement);
 		}
-	}
+	} */
 
 	public void setReferredIteration(LoopExp expression, Iteration iteration) {
 		expression.setReferredIteration(iteration);
@@ -1535,7 +1550,7 @@ public class CS2PivotConversion extends AbstractConversion
 		int csIMax = csTemplateBindings.size();
 		int pivotIMax = templateSignatures.size();
 		if (csIMax != pivotIMax) {
-			logger.warn("Inconsistent template bindings size for " + csTemplateBindings.get(0).getOwningTemplateBindableElement().getMoniker()); //$NON-NLS-1$
+			logger.warn("Inconsistent template bindings size for " + CS2Moniker.toString(csTemplateBindings.get(0).getOwningTemplateBindableElement())); //$NON-NLS-1$
 		}
 		int newMax = Math.min(csIMax, pivotIMax);
 		for (int i = 0; i < newMax; i++) {					// Invariant: lists are equal up to index i
@@ -1566,7 +1581,7 @@ public class CS2PivotConversion extends AbstractConversion
 					templateBindings.add(templateBinding);					
 				}
 			}
-			installPivotElement(csTemplateBinding, templateBinding);
+			installPivotReference(csTemplateBinding, templateBinding, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			specializeTemplateParameterSubstitutions(templateBinding.getParameterSubstitutions(), templateSignature.getOwnedParameters(), csTemplateBinding.getOwnedParameterSubstitution());
 			assert templateSignatures.get(i) == templateBindings.get(i).getSignature();
 		}
@@ -1633,13 +1648,13 @@ public class CS2PivotConversion extends AbstractConversion
 					name += i;
 				}
 				((NamedElement)pivotActualParameter).setName(name);
-				installPivotElement(csActualParameter, pivotActualParameter);
+//				installPivotElement(csActualParameter, pivotActualParameter);
 			}
 			else {
 				ParameterableElement pivotActualParameter = PivotUtil.getPivot(ParameterableElement.class, csActualParameter);
 				templateParameterSubstitution.setActual(pivotActualParameter);
 			}
-			installPivotElement(csTemplateParameterSubstitution, templateParameterSubstitution);
+//			installPivotElement(csTemplateParameterSubstitution, templateParameterSubstitution);
 //			queueResolver(csTemplateParameterSubstitution);		// To resolve actuals
 			assert templateParameters.get(i) == templateParameterSubstitutions.get(i).getFormal();
 		}
@@ -1653,7 +1668,7 @@ public class CS2PivotConversion extends AbstractConversion
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedTemplateBinding();
 		assert ownedTemplateBinding != null;
 		Type unspecializedPivotElement = csElement.getType();
-		String moniker = csElement.getMoniker();
+		String moniker = CS2Moniker.toString(csElement);
 		logger.trace("Specializing " + moniker); //$NON-NLS-1$
 		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			logger.error("Nothing to specialize as " + moniker); //$NON-NLS-1$
@@ -1679,12 +1694,12 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Refresh the pivot specialization root
 		//
-		Type specializedPivotElement = getPivotElement(Type.class, moniker);
+		Type specializedPivotElement = converter.getPivotElement(Type.class, csElement);
 		if (specializedPivotElement == null) {
 			EClass eClass = unspecializedPivotElement.eClass();
 			@SuppressWarnings("unchecked")
 			Class<? extends Type> pivotClazz = (Class<? extends Type>) eClass.getInstanceClass();
-			Type pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
+			Type pivotClass = converter.refreshReferencedElement(pivotClazz, eClass, csElement, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			refreshName(pivotClass, unspecializedPivotElement.getName());
 			pivotClass.setMoniker(moniker);
 			specializedPivotElement = pivotClass;
@@ -1699,7 +1714,7 @@ public class CS2PivotConversion extends AbstractConversion
 			specializedPivotElement.setUnspecializedElement(unspecializedPivotElement);
 			typeManager.addOrphanClass(specializedPivotElement);
 		}
-		installPivotElement(csElement, specializedPivotElement);
+//		installPivotElement(csElement, specializedPivotElement);
 //		specializedPivotElement.toString();			// FIXME debugging
 		if (specializedPivotElement == unspecializedPivotElement) {
 			return null;
@@ -1753,9 +1768,9 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @param csResources 
 	 */
 	public boolean update() {
-		resetPivotMappings(csResources);
-		debugCheckMap.clear();
-		debugOtherMap.clear();
+//		resetPivotMappings(csResources);
+//		debugCheckMap.clear();
+//		debugOtherMap.clear();
 		oldPackagesByName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 		for (Resource resource : converter.cs2pivotResourceMap.values()) {
@@ -1866,13 +1881,13 @@ public class CS2PivotConversion extends AbstractConversion
 				}
 			}
 		}
-		checkMonikers();		
+//		checkMonikers();		
 		//
 		//	Set the monikers as IDs throughout the pivot model.
 		//
 		for (Resource csResource : csResources) {
 			Resource pivotResource = converter.getPivotResource(csResource);
-			TypeManager.setMonikerAsID(Collections.singletonList(pivotResource));	// FIXME purge
+			TypeManager.setMonikerAsID(Collections.singletonList(pivotResource));	// WIP FIXME purge
 		}
 		return true;
 	}

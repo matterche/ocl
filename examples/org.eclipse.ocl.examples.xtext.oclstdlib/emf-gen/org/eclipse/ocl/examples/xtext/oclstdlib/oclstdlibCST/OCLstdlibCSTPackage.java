@@ -190,13 +190,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CLASS_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CLASS_CS__MONIKER = BaseCSTPackage.CLASS_CS__MONIKER;
+	int LIB_CLASS_CS__CSI = BaseCSTPackage.CLASS_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -334,13 +334,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
+	int LIB_CONSTRAINT_CS__CSI = BaseCSTPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -415,13 +415,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_ITERATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.OPERATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ITERATION_CS__MONIKER = BaseCSTPackage.OPERATION_CS__MONIKER;
+	int LIB_ITERATION_CS__CSI = BaseCSTPackage.OPERATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -586,13 +586,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_OPERATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.OPERATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_OPERATION_CS__MONIKER = BaseCSTPackage.OPERATION_CS__MONIKER;
+	int LIB_OPERATION_CS__CSI = BaseCSTPackage.OPERATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -757,13 +757,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_PROPERTY_CS__ORIGINAL_XMI_ID = BaseCSTPackage.ATTRIBUTE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_PROPERTY_CS__MONIKER = BaseCSTPackage.ATTRIBUTE_CS__MONIKER;
+	int LIB_PROPERTY_CS__CSI = BaseCSTPackage.ATTRIBUTE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -901,13 +901,13 @@ public interface OCLstdlibCSTPackage
 	int LIB_ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.ROOT_PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_ROOT_PACKAGE_CS__MONIKER = BaseCSTPackage.ROOT_PACKAGE_CS__MONIKER;
+	int LIB_ROOT_PACKAGE_CS__CSI = BaseCSTPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1056,13 +1056,13 @@ public interface OCLstdlibCSTPackage
 	int PRECEDENCE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRECEDENCE_CS__MONIKER = BaseCSTPackage.NAMED_ELEMENT_CS__MONIKER;
+	int PRECEDENCE_CS__CSI = BaseCSTPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.

@@ -12,9 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.10 2011/05/22 16:42:03 ewillink Exp $
+ * $Id$
  */
-package org.eclipse.ocl.examples.pivot.utilities;
+package org.eclipse.ocl.examples.pivot.multi;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -33,10 +33,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -55,6 +57,12 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
+import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagedAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 import com.google.common.collect.Iterables;
 
@@ -166,7 +174,134 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
-	private static abstract class AbstractTracker<T extends Notifier> implements TypeManagedAdapter
+	/**
+	 * An OrphanServer maintains the set of OrphanClients identifying active references to an orphan element.
+	 * When the final reference is removed the orphan is killed off.
+	 */
+	public static class OrphanServer
+	{
+		protected final Element element;
+		private Set<OrphanClient> clients = null;
+		
+		public OrphanServer(Element element) {
+			this.element = element;
+		}
+
+		public void addClient(OrphanClient client) {
+			if (client != null) {
+				if (clients == null) {
+					clients = new HashSet<OrphanClient>();
+				}
+				clients.add(client);
+			}			
+		}
+
+//		public MonikeredElement getElement() {
+//			return element;
+//		}
+
+		public void removeClient(OrphanClient client) {
+			if (client != null) {
+				if (clients != null) {
+					clients.remove(client);
+					if (clients.isEmpty()) {
+						clients = null;
+						element.eSet(element.eContainmentFeature(), null);
+					}
+				}
+			}			
+		}
+		
+		@Override
+		public String toString() {
+			return "<orphan-node> " + element;
+		}
+	}
+	
+	/**
+	 * An OrphanClient adapts an EObject with an eReference to an OrphanServer within the domina of a TypeCache.
+	 * 
+	 * Changes to eContainer and eReference cause the eReference to be activated and deactivated accordingly so that
+	 * the OrphanServer is aware of how many active clients there are.
+	 */
+	public static class OrphanClient implements Adapter
+	{
+		protected final TypeCaches typeCache;
+		protected final EObject target;
+		protected final EReference eReference;
+		private OrphanServer orphanServer;
+		
+		public OrphanClient(TypeCaches typeCache, EObject target, EReference eReference) {
+			this.typeCache = typeCache;
+			this.target = target;
+			this.eReference = eReference;
+			this.orphanServer = null;
+			target.eAdapters().add(this);
+		}
+
+		protected void activate(NamedElement pivotElement) {
+			orphanServer = typeCache.getOrphanServer(pivotElement);
+			if (orphanServer != null) {
+				orphanServer.addClient(this);
+			}
+		}
+
+		protected void deActivate() {
+			if (orphanServer != null) {
+				orphanServer.removeClient(this);
+				orphanServer = null;
+			}
+		}
+		
+		public Notifier getTarget() {
+			return target;
+		}
+
+		public boolean isAdapterForType(Object type) {
+			return type == OrphanClient.class;
+		}
+
+		public void notifyChanged(Notification notification) {
+			if (notification.getNotifier() == target) {
+				int eventType = notification.getEventType();
+				switch (eventType) {
+					case Notification.SET: {
+						Object oldValue = notification.getOldValue();
+						Object newValue = notification.getNewValue();
+						if (newValue != oldValue) {
+							Object feature = notification.getFeature();
+							if (feature == eReference) {
+								if (oldValue != null) {
+									deActivate();
+								}
+								if (newValue instanceof NamedElement) {
+									activate((NamedElement) newValue);
+								}
+							}
+							else if (feature == target.eContainmentFeature()) {
+								if (oldValue != null) {
+									deActivate();
+								}
+								if (newValue != null) {
+									assert target == newValue;
+									Object orphan = target.eGet(eReference);
+									if (orphan instanceof NamedElement) {
+										activate((NamedElement) orphan);
+									}
+								}
+							}
+						}
+					}
+				}
+			}			
+		}
+
+		public void setTarget(Notifier newTarget) {
+			assert (newTarget == null) || (newTarget == target);
+		}		
+	}
+
+/*	private static abstract class AbstractTracker<T extends Notifier> implements TypeManagedAdapter
 	{
 		public static void uninstall(TypeCaches typeCaches, Notifier value) {
 			if (value != null) {
@@ -435,7 +570,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		
 		/**
 		 * Return the set of all orphans in cluding this one that depend on this element.
-		 */
+		 * /
 		public Set<OrphanNode> getAllDependencies(Set<OrphanNode> orphans) {
 			if (orphans == null) {
 				orphans = new HashSet<OrphanNode>();
@@ -459,13 +594,13 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		public String toString() {
 			return "<orphan-node> " + element.getMoniker();
 		}
-	}
+	} */
 	
 	/**
-	 * Mapping from moniker to the OrphanNode that supervises orphan dependencies on
-	 * the monikered element.
+	 * Mapping from pivot element to the OrphanServer that supervises orphan dependencies on
+	 * the pivot element.
 	 */
-	private Map<String, OrphanNode> moniker2orphan = new HashMap<String, OrphanNode>();
+	private Map<Element, OrphanServer> pivot2orphan = new HashMap<Element, OrphanServer>();
 	
 	/**
 	 * Map from package URI to package moniker. 
@@ -493,8 +628,13 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	/**
 	 * Map from type moniker to the type or a list of types to be treated as merged. 
 	 */
-	private Map<String, Iterable<org.eclipse.ocl.examples.pivot.Class>> class2classes =
-			new HashMap<String, Iterable<org.eclipse.ocl.examples.pivot.Class>>();
+//	private Map<String, Iterable<org.eclipse.ocl.examples.pivot.Class>> class2classes =
+//			new HashMap<String, Iterable<org.eclipse.ocl.examples.pivot.Class>>();
+
+	/**
+	 * Map from type to the ClassTracker that supervises its merge. 
+	 */
+	private Map<Type, ClassTracker> class2tracker = new HashMap<Type, ClassTracker>();
 
 	/**
 	 * Map from type moniker to map of operation moniker to operation. 
@@ -514,7 +654,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 
 	protected org.eclipse.ocl.examples.pivot.Package pivotMetaModel = null;
 	
-	private void addClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
+	void addClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
 		if ((pivotClass instanceof LambdaType) || (pivotClass instanceof TupleType)) {	// FIXME parent not necessarily in place
 			return;
 		}
@@ -550,7 +690,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
-	private void addOperation(Operation pivotOperation) {
+	void addOperation(Operation pivotOperation) {
 		String moniker = pivotOperation.getMoniker();
 		Iterable<Operation> iterable = operation2operations.get(moniker);
 		if (iterable == null) {
@@ -605,7 +745,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 //		if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Class) {
 //			addType((org.eclipse.ocl.examples.pivot.Class)pivotElement);
 //		}
-		getOrphanNode(pivotElement);
+//		getOrphanNode(pivotElement);
 	}
 
 	public void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
@@ -648,7 +788,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
-	private void addProperty(Property pivotProperty) {
+	void addProperty(Property pivotProperty) {
 		String moniker = pivotProperty.getMoniker();
 		Iterable<Property> iterable = property2properties.get(moniker);
 		if (iterable == null) {
@@ -679,7 +819,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
-	public Map<String, MonikeredElement> computeMoniker2PivotMap(
+/*	public Map<String, MonikeredElement> computeMoniker2PivotMap(
 			Collection<? extends Resource> pivotResources) {
 		Map<String, MonikeredElement> map = new HashMap<String, MonikeredElement>();
 		for (Resource pivotResource : pivotResources) {
@@ -715,7 +855,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			}
 		}
 		return map;
-	}
+	} */
 
 	protected abstract Resource createOrphanage(URI uri);
 	
@@ -772,7 +912,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			package2packages.clear();
 			package2packages = null;
 		}
-		if (class2classes != null) {
+/*		if (class2classes != null) {
 			ArrayList<Iterable<org.eclipse.ocl.examples.pivot.Class>> classes
 				= new ArrayList<Iterable<org.eclipse.ocl.examples.pivot.Class>>(class2classes.values());
 			for (Iterable<org.eclipse.ocl.examples.pivot.Class> pivotClasses : classes) {
@@ -785,6 +925,16 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			}
 			class2classes.clear();
 			class2classes = null;
+		} */
+		if (class2tracker != null) {
+			Collection<ClassTracker> classTrackers = class2tracker.values();
+			class2tracker.clear();
+			class2tracker = null;
+			for (ClassTracker classTracker : classTrackers) {
+				if (classTracker instanceof ClassServer) {
+					classTracker.dispose();
+				}
+			}
 		}
 		if (property2properties != null) {
 			property2properties.clear();
@@ -930,7 +1080,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 
 	/**
-	 * REturn all constraints applicable to a type and its superclasses.
+	 * Return all constraints applicable to a type and its superclasses.
 	 */
 	public Iterable<Constraint> getAllConstraints(Type type) {
 		Set<Constraint> allConstraints = getAllConstraints(type, null);
@@ -1179,7 +1329,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		return orphanageClass;
 	}
 	
-	private OrphanNode getOrphanNode(MonikeredElement pivotElement) {
+/*	private OrphanNode getOrphanNode(MonikeredElement pivotElement) {
 		if (pivotElement.eIsProxy()) {
 			return null;
 		}
@@ -1198,7 +1348,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			}
 		}
 		return thisOrphanNode;
-	}
+	} */
 
 	public org.eclipse.ocl.examples.pivot.Package getOrphanPackage() {
 		if (orphanagePackage == null) {
@@ -1215,11 +1365,26 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		return orphanagePackage;
 	}
 
+	public OrphanServer getOrphanServer(Element pivotElement) {
+		if (pivotElement.eIsProxy()) {
+			return null;
+		}
+		if (pivotElement.eContainer() != getOrphanClass()) {
+			return null;
+		}
+		OrphanServer orphanServer = pivot2orphan.get(pivotElement);
+		if (orphanServer == null) {
+			orphanServer = new OrphanServer(pivotElement);
+			pivot2orphan.put(pivotElement, orphanServer);
+		}
+		return orphanServer;
+	}
+
 	public String getPackageMoniker(String uri) {
 		return uri2package.get(uri);
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class getPrimaryClass(String moniker) {
+	public org.eclipse.ocl.examples.pivot.Class zzgetPrimaryClass(String moniker) {
 		Iterable<org.eclipse.ocl.examples.pivot.Class> iterable = class2classes.get(moniker);
 		if (iterable != null) {
 			return iterable.iterator().next();
@@ -1230,9 +1395,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 
 	public org.eclipse.ocl.examples.pivot.Class getPrimaryClass(Type pivotClass) {
-		Iterable<org.eclipse.ocl.examples.pivot.Class> iterable = class2classes.get(pivotClass.getMoniker());
-		if (iterable != null) {
-			return iterable.iterator().next();
+		ClassTracker classTracker = class2tracker.get(pivotClass);
+		if (classTracker != null) {
+			return classTracker.getPrimaryClass();
 		}
 		else {
 			return (org.eclipse.ocl.examples.pivot.Class)pivotClass;
@@ -1251,8 +1416,8 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			primaryElement = property2properties.get(((Property)element).getMoniker());
 		}
 		else if (element instanceof Type) {
-			primaryElement = class2classes.get(((Type)element).getMoniker());
-		}
+			primaryElement = getPrimaryClass((Type)element);
+		} 
 		if (primaryElement != null) {
 			return primaryElement.iterator().next();
 		}
@@ -1427,7 +1592,18 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		thatType.getOwnedAttributes().add(opposite);
 	}
 
+	public void installReference(EObject eObject, Element newPivotElement, EReference eReference) {
+		OrphanServer orphanServer = getOrphanServer(newPivotElement);
+		if (orphanServer != null) {
+			new OrphanClient(this, eObject, eReference);
+		}
+	}
+
 	protected abstract void installResource(Resource resource);
+
+	public boolean isAdapterFor(TypeManager typeManager) {
+		return typeCaches == typeManager;
+	}
 
 	protected boolean isInOrphanage(EObject eObject) {
 		for (EObject eContainer = eObject; eContainer != null; eContainer = eContainer.eContainer()) {
@@ -1447,12 +1623,12 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			if (monikeredObject.hasMoniker()) {
 				String moniker = monikeredObject.getMoniker();
 //				System.out.println("Kill " + anObject.getClass().getName() + "@" + anObject.hashCode() + " " + moniker);
-				@SuppressWarnings("unused")
-				OrphanNode removedOrphan = moniker2orphan.remove(moniker);
+//				@SuppressWarnings("unused")
+//				OrphanNode removedOrphan = moniker2orphan.remove(moniker);
 				@SuppressWarnings("unused")
 				Map<String, Operation> removedType = type2operation2operation.remove(moniker);
-				@SuppressWarnings("unused")
-				Iterable<org.eclipse.ocl.examples.pivot.Class> removedClass = class2classes.remove(moniker);
+//				@SuppressWarnings("unused")
+//				Iterable<org.eclipse.ocl.examples.pivot.Class> removedClass = class2classes.remove(moniker);
 			}
 		}
 	}
@@ -1473,7 +1649,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		addPackage(pivotMetaModel);
 	}
 
-	private void removeClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
+/*	void removeClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
 		String moniker = pivotClass.getMoniker();
 		Iterable<org.eclipse.ocl.examples.pivot.Class> iterable = class2classes.get(moniker);
 		if (iterable == pivotClass) {
@@ -1492,16 +1668,22 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (iterable != null) {
 			assert false : "Unknown iterable " + iterable.getClass().getName();
 		}
-		removeOrphan(pivotClass);
+//		removeOrphan(pivotClass);
 		for (Operation operation : new ArrayList<Operation>(pivotClass.getOwnedOperations())) {
 			removeOperation(operation);
 		}
 		for (Property property : new ArrayList<Property>(pivotClass.getOwnedAttributes())) {
 			removeProperty(property);
 		}
+	} */
+
+	void removeClassTracker(ClassTracker classTracker) {
+		if (class2tracker != null) {
+			class2tracker.remove(classTracker.getTarget());
+		}
 	}
 
-	private void removeOperation(Operation pivotOperation) {
+	void removeOperation(Operation pivotOperation) {
 		String moniker = pivotOperation.getMoniker();
 		Iterable<Operation> iterable = operation2operations.get(moniker);
 		if (iterable == pivotOperation) {
@@ -1520,10 +1702,10 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (iterable != null) {
 			assert false : "Unknown iterable " + iterable.getClass().getName();
 		}
-		removeOrphan(pivotOperation);
+//		removeOrphan(pivotOperation);
 	}
 	
-	private void removeOrphan(MonikeredElement pivotElement) {
+/*	private void removeOrphan(MonikeredElement pivotElement) {
 		String moniker = pivotElement.getMoniker();
 		OrphanNode thisOrphanNode = moniker2orphan.get(moniker);
 		if (thisOrphanNode != null) {
@@ -1551,9 +1733,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 				orphan.dispose();
 			}
 		}
-	}
+	} */
 
-	private void removePackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+	void removePackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		String moniker = pivotPackage.getMoniker();
 		String nsURI = pivotPackage.getNsURI();
 		if (nsURI != null) {
@@ -1576,10 +1758,10 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (iterable != null) {
 			assert false : "Unknown iterable " + iterable.getClass().getName();
 		}
-		removeOrphan(pivotPackage);
+//		removeOrphan(pivotPackage);
 	}
 
-	private void removeProperty(Property pivotProperty) {
+	void removeProperty(Property pivotProperty) {
 		String moniker = pivotProperty.getMoniker();
 		Iterable<Property> iterable = property2properties.get(moniker);
 		if (iterable == pivotProperty) {
@@ -1598,6 +1780,6 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		else if (iterable != null) {
 			assert false : "Unknown iterable " + iterable.getClass().getName();
 		}
-		removeOrphan(pivotProperty);
+//		removeOrphan(pivotProperty);
 	}
 }

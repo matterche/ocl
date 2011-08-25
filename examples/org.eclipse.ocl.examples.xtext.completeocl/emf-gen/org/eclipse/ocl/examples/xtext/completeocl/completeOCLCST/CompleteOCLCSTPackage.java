@@ -109,13 +109,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
+	int CONTEXT_CONSTRAINT_CS__CSI = BaseCSTPackage.CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -319,13 +319,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int BODY_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BODY_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int BODY_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -409,13 +409,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_DECL_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__MONIKER = BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER;
+	int CONTEXT_DECL_CS__CSI = BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -472,13 +472,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CLASSIFIER_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__MONIKER = CONTEXT_DECL_CS__MONIKER;
+	int CLASSIFIER_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -563,13 +563,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int COMPLETE_OCL_DOCUMENT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.ROOT_PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS__MONIKER = BaseCSTPackage.ROOT_PACKAGE_CS__MONIKER;
+	int COMPLETE_OCL_DOCUMENT_CS__CSI = BaseCSTPackage.ROOT_PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -708,13 +708,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_SPECIFICATION_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_SPECIFICATION_CS__MONIKER = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__MONIKER;
+	int CONTEXT_SPECIFICATION_CS__CSI = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -771,13 +771,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int DEF_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int DEF_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -906,13 +906,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int DER_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DER_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int DER_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1006,13 +1006,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__MONIKER = CONTEXT_DECL_CS__MONIKER;
+	int FEATURE_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1097,13 +1097,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int INCLUDE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_CS__MONIKER = BaseCSTPackage.NAMESPACE_CS__MONIKER;
+	int INCLUDE_CS__CSI = BaseCSTPackage.NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1160,13 +1160,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int INIT_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INIT_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int INIT_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1250,13 +1250,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int INV_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INV_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int INV_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1350,13 +1350,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OCL_MESSAGE_ARG_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_MESSAGE_ARG_CS__MONIKER = EssentialOCLCSTPackage.EXP_CS__MONIKER;
+	int OCL_MESSAGE_ARG_CS__CSI = EssentialOCLCSTPackage.EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1413,13 +1413,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OPERATION_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__MONIKER = FEATURE_CONTEXT_DECL_CS__MONIKER;
+	int OPERATION_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1521,13 +1521,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PACKAGE_DECLARATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__MONIKER = BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER;
+	int PACKAGE_DECLARATION_CS__CSI = BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1593,13 +1593,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int POST_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POST_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int POST_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1683,13 +1683,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PRE_CS__ORIGINAL_XMI_ID = CONTEXT_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_CS__MONIKER = CONTEXT_CONSTRAINT_CS__MONIKER;
+	int PRE_CS__CSI = CONTEXT_CONSTRAINT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1783,13 +1783,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PRE_EXP_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_EXP_CS__MONIKER = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__MONIKER;
+	int PRE_EXP_CS__CSI = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1846,13 +1846,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PROPERTY_CONTEXT_DECL_CS__ORIGINAL_XMI_ID = FEATURE_CONTEXT_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__MONIKER = FEATURE_CONTEXT_DECL_CS__MONIKER;
+	int PROPERTY_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.

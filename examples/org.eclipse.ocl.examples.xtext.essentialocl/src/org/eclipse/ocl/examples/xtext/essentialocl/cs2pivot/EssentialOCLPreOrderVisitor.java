@@ -85,7 +85,7 @@ public class EssentialOCLPreOrderVisitor
 			else {
 				type = typeManager.getLibraryType(csElement.getName());
 			}
-			context.reusePivotElement(csElement, type);
+			csElement.setPivot(type);
 			return null;
 		}
 	}
@@ -118,7 +118,7 @@ public class EssentialOCLPreOrderVisitor
 				context.addDiagnostic(csElement, boundMessage);
 				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
 			}
-			context.installPivotElement(csElement, element);
+			csElement.setPivot(element);
 			return null;
 		}
 	}

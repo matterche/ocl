@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstrai
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
@@ -168,7 +167,7 @@ public class CompleteOCLPostOrderVisitor
 			s.append(index);
 		}
 		String moniker = s.toString();
-		((ContextConstraintCSImpl)csNewConstraint).setMoniker(moniker);
+//		((ContextConstraintCSImpl)csNewConstraint).setMoniker(moniker);
 		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csNewConstraint);
 //		context.installPivotElement(csNewConstraint, pivotElement);
 //		context.refreshName(pivotElement, csNewConstraint.getName());

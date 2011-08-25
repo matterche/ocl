@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
@@ -55,7 +56,7 @@ public class MonikerTests extends XtextTestCase
 			if (csElement instanceof MonikeredElementCS) {
 				MonikeredElementCS csMonikeredElement = (MonikeredElementCS) csElement;
 				if (hasUniqueMoniker(csMonikeredElement)) {
-					String moniker = csMonikeredElement.getMoniker();
+					String moniker = CS2Moniker.toString(csMonikeredElement);
 					ElementCS oldElement = monikerMap.get(moniker);
 					if (oldElement != null) {
 						fail("Duplicate moniker " + moniker + " for " + csElement.eClass().getName());
@@ -80,7 +81,7 @@ public class MonikerTests extends XtextTestCase
 			if (eObject instanceof MonikeredElementCS) {
 				MonikeredElementCS csElement = (MonikeredElementCS) eObject;
 				if (hasCorrespondingPivot(csElement)) {
-					String moniker = csElement.getMoniker();
+					String moniker = CS2Moniker.toString(csElement);
 					MonikeredElementCS oldElement = csMonikerMap.get(moniker);
 					Element oldPivot = oldElement != null ? oldElement.getPivot() : null;
 					Element newPivot = csElement.getPivot();

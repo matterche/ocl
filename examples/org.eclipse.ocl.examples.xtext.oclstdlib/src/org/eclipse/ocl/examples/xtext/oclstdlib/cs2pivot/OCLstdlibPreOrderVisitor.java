@@ -104,9 +104,9 @@ public class OCLstdlibPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			String moniker = csElement.getMoniker();
+//			String moniker = csElement.getMoniker();
 			Iteration pivotIteration = context.refreshTypedMultiplicityElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
-			pivotIteration.setMoniker(moniker);
+//			pivotIteration.setMoniker(moniker);
 			context.refreshTemplateSignature(csElement, pivotIteration);
 			refreshParameters(csElement.getOwnedIterator(), pivotIteration.getOwnedIterators());
 			refreshParameters(csElement.getOwnedAccumulator(), pivotIteration.getOwnedAccumulators());
@@ -196,7 +196,7 @@ public class OCLstdlibPreOrderVisitor
 		@SuppressWarnings("unchecked")
 		Class<Type> instanceClass = (Class<Type>)eClass.getInstanceClass();
 		Type type = context.refreshNamedElement(instanceClass, eClass, csLibClass);
-		type.setMoniker(csLibClass.getMoniker());
+//		type.setMoniker(csLibClass.getMoniker());
 		Continuation<?> continuation = super.visitLibClassCS(csLibClass);
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,

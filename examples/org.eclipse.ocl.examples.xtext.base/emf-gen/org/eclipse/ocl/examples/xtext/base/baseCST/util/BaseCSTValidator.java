@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -205,6 +206,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateParameterableElementCS((ParameterableElementCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
+			case BaseCSTPackage.REF_CS:
+				return validateRefCS((RefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_CS:
@@ -520,6 +523,16 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validatePrimitiveTypeRefCS(PrimitiveTypeRefCS primitiveTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(primitiveTypeRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRefCS(RefCS refCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(refCS, diagnostics, context);
 	}
 
 	/**

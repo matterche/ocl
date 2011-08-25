@@ -330,13 +330,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int OPERATOR_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_CS__MONIKER = BaseCSTPackage.NAMED_ELEMENT_CS__MONIKER;
+	int OPERATOR_CS__CSI = BaseCSTPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -412,13 +412,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int BINARY_OPERATOR_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_OPERATOR_CS__MONIKER = OPERATOR_CS__MONIKER;
+	int BINARY_OPERATOR_CS__CSI = OPERATOR_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -493,13 +493,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int EXP_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CS__MONIKER = BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER;
+	int EXP_CS__CSI = BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -547,13 +547,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int LITERAL_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int LITERAL_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -601,13 +601,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS__MONIKER = LITERAL_EXP_CS__MONIKER;
+	int PRIMITIVE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -655,13 +655,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int BOOLEAN_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int BOOLEAN_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -718,13 +718,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_CS__MONIKER = LITERAL_EXP_CS__MONIKER;
+	int COLLECTION_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -790,13 +790,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_LITERAL_PART_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART_CS__MONIKER = BaseCSTPackage.MONIKERED_ELEMENT_CS__MONIKER;
+	int COLLECTION_LITERAL_PART_CS__CSI = BaseCSTPackage.MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
@@ -853,13 +853,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_TYPE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_CS__MONIKER = BaseCSTPackage.NAMED_ELEMENT_CS__MONIKER;
+	int COLLECTION_TYPE_CS__CSI = BaseCSTPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -926,13 +926,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int CONTEXT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_CS__MONIKER = BaseCSTPackage.NAMED_ELEMENT_CS__MONIKER;
+	int CONTEXT_CS__CSI = BaseCSTPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1007,13 +1007,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAMED_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int NAMED_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1071,13 +1071,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECORATED_NAMED_EXP_CS__MONIKER = NAMED_EXP_CS__MONIKER;
+	int DECORATED_NAMED_EXP_CS__CSI = NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1144,13 +1144,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.SPECIFICATION_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_SPECIFICATION_CS__MONIKER = BaseCSTPackage.SPECIFICATION_CS__MONIKER;
+	int EXP_SPECIFICATION_CS__CSI = BaseCSTPackage.SPECIFICATION_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1207,13 +1207,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int IF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int IF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1288,13 +1288,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INDEX_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__MONIKER = DECORATED_NAMED_EXP_CS__MONIKER;
+	int INDEX_EXP_CS__CSI = DECORATED_NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1369,13 +1369,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INFIX_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFIX_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int INFIX_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1441,13 +1441,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INVALID_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int INVALID_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1495,13 +1495,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int LET_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int LET_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1577,13 +1577,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int VARIABLE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_CS__MONIKER = BaseCSTPackage.NAMED_ELEMENT_CS__MONIKER;
+	int VARIABLE_CS__CSI = BaseCSTPackage.NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1659,13 +1659,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int LET_VARIABLE_CS__ORIGINAL_XMI_ID = VARIABLE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_VARIABLE_CS__MONIKER = VARIABLE_CS__MONIKER;
+	int LET_VARIABLE_CS__CSI = VARIABLE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1759,13 +1759,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__MONIKER = NAMED_EXP_CS__MONIKER;
+	int SIMPLE_NAMED_EXP_CS__CSI = NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1813,13 +1813,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAME_EXP_CS__ORIGINAL_XMI_ID = SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__MONIKER = SIMPLE_NAMED_EXP_CS__MONIKER;
+	int NAME_EXP_CS__CSI = SIMPLE_NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1975,13 +1975,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATING_EXP_CS__MONIKER = DECORATED_NAMED_EXP_CS__MONIKER;
+	int NAVIGATING_EXP_CS__CSI = DECORATED_NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2057,13 +2057,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATION_OPERATOR_CS__ORIGINAL_XMI_ID = BINARY_OPERATOR_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_OPERATOR_CS__MONIKER = BINARY_OPERATOR_CS__MONIKER;
+	int NAVIGATION_OPERATOR_CS__CSI = BINARY_OPERATOR_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2138,13 +2138,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NESTED_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int NESTED_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2201,13 +2201,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NULL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int NULL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2255,13 +2255,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NUMBER_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int NUMBER_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2328,13 +2328,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFIX_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int PREFIX_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2410,13 +2410,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int SELF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_EXP_CS__MONIKER = EXP_CS__MONIKER;
+	int SELF_EXP_CS__CSI = EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2473,13 +2473,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int STRING_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int STRING_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2536,13 +2536,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TUPLE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP_CS__MONIKER = LITERAL_EXP_CS__MONIKER;
+	int TUPLE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2609,13 +2609,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TUPLE_LITERAL_PART_CS__ORIGINAL_XMI_ID = VARIABLE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART_CS__MONIKER = VARIABLE_CS__MONIKER;
+	int TUPLE_LITERAL_PART_CS__CSI = VARIABLE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2691,13 +2691,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TYPE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_LITERAL_EXP_CS__MONIKER = LITERAL_EXP_CS__MONIKER;
+	int TYPE_LITERAL_EXP_CS__CSI = LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2754,13 +2754,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TYPE_NAME_EXP_CS__ORIGINAL_XMI_ID = BaseCSTPackage.TYPED_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_NAME_EXP_CS__MONIKER = BaseCSTPackage.TYPED_REF_CS__MONIKER;
+	int TYPE_NAME_EXP_CS__CSI = BaseCSTPackage.TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -2836,13 +2836,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int UNARY_OPERATOR_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_OPERATOR_CS__MONIKER = OPERATOR_CS__MONIKER;
+	int UNARY_OPERATOR_CS__CSI = OPERATOR_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2918,13 +2918,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__MONIKER = PRIMITIVE_LITERAL_EXP_CS__MONIKER;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS__CSI = PRIMITIVE_LITERAL_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.

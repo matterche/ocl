@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id$
+ * org.eclipse.emf.ecore.impl.DynamicEObjectImpl@c80233 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@10894ef (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 

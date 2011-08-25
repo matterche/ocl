@@ -29,6 +29,6 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model abstract="true"
  * @generated
  */
-public interface TypeRefCS extends MonikeredElementCS, ParameterableElementCS {
+public interface TypeRefCS extends MonikeredElementCS, ParameterableElementCS, RefCS {
 
 } // TypeCSRef

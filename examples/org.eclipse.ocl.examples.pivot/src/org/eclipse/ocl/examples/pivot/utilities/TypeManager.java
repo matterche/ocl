@@ -98,6 +98,7 @@ import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
 import org.eclipse.ocl.examples.pivot.library.UnimplementedOperation;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
+import org.eclipse.ocl.examples.pivot.multi.TypeCaches;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -257,7 +258,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	 * 
 	 * @param pivotResources
 	 */
-	public static void setMonikerAsID(Collection<? extends Resource> resources) {
+	public static void setMonikerAsID(Collection<? extends Resource> resources) {	// WIP no monikers
 		for (Resource resource : resources) {
 			if (resource instanceof XMLResource) {
 				XMLResource xmlResource = (XMLResource) resource;
@@ -315,7 +316,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	private int unspecifiedTypeCount = 0;
 	
 	/**
-	 * Map of URI to extertnal resource converter.
+	 * Map of URI to external resource converter.
 	 */
 	private Map<URI, External2Pivot> external2PivotMap = new HashMap<URI, External2Pivot>();
 	
@@ -1160,7 +1161,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	}
 	   
 	public LambdaType getLambdaType(String typeName, Type contextType, List<? extends Type> parameterTypes, Type resultType,
-			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {
+			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {	// WIP moniker
 		if (moniker == null) {
 			Pivot2Moniker s = new Pivot2Moniker(null);
 			s.append(typeName);
@@ -1547,7 +1548,7 @@ public class TypeManager extends TypeCaches implements Adapter
      * @return the new tuple instance
      */
 	public TupleType getTupleType(String typeName, Collection<? extends TypedElement> parts,
-			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {
+			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {	// WIP moniker
 		if (moniker == null) {
 			Pivot2Moniker s = new Pivot2Moniker(null);
 			s.append(typeName);

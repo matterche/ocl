@@ -26,11 +26,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -200,6 +202,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseTypeRefCS(collectionTypeCS);
 				if (result == null) result = caseModelElementCS(collectionTypeCS);
 				if (result == null) result = caseParameterableElementCS(collectionTypeCS);
+				if (result == null) result = caseRefCS(collectionTypeCS);
 				if (result == null) result = caseMonikeredElementCS(collectionTypeCS);
 				if (result == null) result = caseElementCS(collectionTypeCS);
 				if (result == null) result = casePivotable(collectionTypeCS);
@@ -609,6 +612,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseTypeRefCS(typeNameExpCS);
 				if (result == null) result = caseNamedExpCS(typeNameExpCS);
 				if (result == null) result = caseParameterableElementCS(typeNameExpCS);
+				if (result == null) result = caseRefCS(typeNameExpCS);
 				if (result == null) result = caseExpCS(typeNameExpCS);
 				if (result == null) result = caseMonikeredElementCS(typeNameExpCS);
 				if (result == null) result = caseModelElementCS(typeNameExpCS);
@@ -1388,6 +1392,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRefCS(RefCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;

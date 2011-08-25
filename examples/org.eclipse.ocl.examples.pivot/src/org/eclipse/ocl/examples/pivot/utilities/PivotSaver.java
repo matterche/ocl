@@ -224,7 +224,12 @@ public class PivotSaver
 			orphanage.getOwnedTypes().add(resolvedType);
 			types.put(moniker, resolvedType);
 			String newMoniker = resolvedType.getMoniker();
-			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
+//			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
+			if (!moniker.equals(newMoniker)) {
+				String moniker2 = Pivot2Moniker.toString(referredType);
+				String newMoniker2 = Pivot2Moniker.toString(resolvedType);
+				assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
+			}
 			locateSpecializations(Collections.singletonList(resolvedType));
 			return resolvedType;
 		}

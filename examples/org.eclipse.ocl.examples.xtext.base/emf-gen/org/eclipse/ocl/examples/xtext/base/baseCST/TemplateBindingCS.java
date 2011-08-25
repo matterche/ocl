@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TemplateBindingCS extends ModelElementCS {
+public interface TemplateBindingCS extends ModelElementCS, RefCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Template Bindable Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.

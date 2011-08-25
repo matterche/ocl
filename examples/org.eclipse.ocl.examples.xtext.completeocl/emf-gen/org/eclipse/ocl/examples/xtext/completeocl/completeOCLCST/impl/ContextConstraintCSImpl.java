@@ -231,11 +231,4 @@ public abstract class ContextConstraintCSImpl extends ConstraintCSImpl implement
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitContextConstraintCS(this);
 	}
-	
-	public void setMoniker(String moniker) {
-		if (this.moniker != null) {
-			throw new IllegalStateException("Moniker can only be defined once");
-		}
-		this.moniker = moniker;
-	}
 } //ContextConstraintCSImpl

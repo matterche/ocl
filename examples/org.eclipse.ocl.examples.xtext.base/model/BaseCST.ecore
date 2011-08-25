@@ -100,16 +100,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalXmiId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElementRefCS" eSuperTypes="#//ModelElementCS">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElementRefCS" eSuperTypes="#//ModelElementCS #//RefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MonikeredElementCS" abstract="true"
       eSuperTypes="#//ModelElementCS">
-    <eOperations name="hasMoniker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="moniker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="csi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElementCS" abstract="true" eSuperTypes="#//MonikeredElementCS ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -142,6 +141,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ParameterableElementCS" abstract="true"
       interface="true" eSuperTypes="#//MonikeredElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS #//NamedElementCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RefCS" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCS" eSuperTypes="#//StructuralFeatureCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
@@ -176,7 +176,7 @@
         eOpposite="#//ClassCS/ownedProperty"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateBindingCS" eSuperTypes="#//ModelElementCS">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateBindingCS" eSuperTypes="#//ModelElementCS #//RefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateBindableElement"
         eType="#//TypedTypeRefCS" eOpposite="#//TypedTypeRefCS/ownedTemplateBinding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParameterSubstitution"
@@ -188,7 +188,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateSignature"
         lowerBound="1" eType="#//TemplateSignatureCS" eOpposite="#//TemplateSignatureCS/ownedTemplateParameter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterSubstitutionCS" eSuperTypes="#//ModelElementCS">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterSubstitutionCS" eSuperTypes="#//ModelElementCS #//RefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateBinding"
         eType="#//TemplateBindingCS" eOpposite="#//TemplateBindingCS/ownedParameterSubstitution"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedActualParameter" eType="#//ParameterableElementCS"
@@ -218,7 +218,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuper" eType="#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//MonikeredElementCS #//ParameterableElementCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//MonikeredElementCS #//ParameterableElementCS #//RefCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" eSuperTypes="#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>

@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -104,10 +103,11 @@ public class ElementUtil
 		if (cs2Pivot == null) {
 			return null;
 		}
-		String moniker = obj.getMoniker();
-		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
-		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
-		return csMonikeredElement;
+		return cs2Pivot.getCSElement(obj);
+//		String moniker = obj.getMoniker();
+//		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
+//		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
+//		return csMonikeredElement;
 	}
 
 	public static TemplateParameter getFormalTemplateParameter(TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {

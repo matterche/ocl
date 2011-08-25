@@ -106,9 +106,9 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 		String elementName = null;
 		if (csElement instanceof MonikeredElementCS) {
 			MonikeredElementCS csMonikeredElement = (MonikeredElementCS) csElement;
-			if (csMonikeredElement.hasMoniker()) {
-				elementName = csMonikeredElement.getMoniker();
-			}
+//			if (csMonikeredElement.hasMoniker()) {
+//				elementName = csMonikeredElement.getMoniker();
+//			}
 		}
 		if (elementName == null) {
 			elementName = csElement.toString();

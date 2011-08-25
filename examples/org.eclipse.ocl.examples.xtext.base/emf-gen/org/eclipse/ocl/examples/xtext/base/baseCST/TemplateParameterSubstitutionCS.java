@@ -34,7 +34,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model
  * @generated
  */
-public interface TemplateParameterSubstitutionCS extends ModelElementCS {
+public interface TemplateParameterSubstitutionCS extends ModelElementCS, RefCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Template Binding</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS#getOwnedParameterSubstitution <em>Owned Parameter Substitution</em>}'.

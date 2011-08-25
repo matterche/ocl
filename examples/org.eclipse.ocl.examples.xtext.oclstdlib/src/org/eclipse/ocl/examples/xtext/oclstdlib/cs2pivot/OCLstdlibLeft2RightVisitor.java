@@ -59,7 +59,7 @@ public class OCLstdlibLeft2RightVisitor
 		if (csExpression != null) {
 			ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
 				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
-			context.installPivotElement(csSpecification, pivotSpecification);
+//			context.installPivotElement(csSpecification, pivotSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
 			Variable contextVariable = pivotSpecification.getContextVariable();
@@ -67,7 +67,7 @@ public class OCLstdlibLeft2RightVisitor
 				contextVariable = PivotFactory.eINSTANCE.createVariable();
 				pivotSpecification.setContextVariable(contextVariable);
 			}
-			context.putPivotElement(contextVariable);
+//			context.putPivotElement(contextVariable);
 			context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 			EObject eContainer = csConstraint.eContainer();
 			if (eContainer instanceof TypeCS) {
@@ -98,9 +98,9 @@ public class OCLstdlibLeft2RightVisitor
 			        newVariables.add(param);
 		        }
 		        context.refreshList(pivotSpecification.getParameterVariables(), newVariables);
-		        for (Variable parameterVariable : pivotSpecification.getParameterVariables()) {
-					context.putPivotElement(parameterVariable);
-		        }
+//		        for (Variable parameterVariable : pivotSpecification.getParameterVariables()) {
+//					context.putPivotElement(parameterVariable);
+//		        }
 		        if ("post".equals(csConstraint.getStereotype())) {		// FIXME constant
 					Variable resultVariable = pivotSpecification.getResultVariable();
 					if (resultVariable == null) {
@@ -109,7 +109,7 @@ public class OCLstdlibLeft2RightVisitor
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
 					context.setTypeWithMultiplicity(resultVariable, contextOperation);
 					pivotSpecification.setResultVariable(resultVariable);
-					context.putPivotElement(resultVariable);
+//					context.putPivotElement(resultVariable);
 		        }
 			}
 			

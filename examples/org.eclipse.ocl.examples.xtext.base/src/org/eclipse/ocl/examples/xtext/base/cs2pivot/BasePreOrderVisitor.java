@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -160,7 +161,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			String moniker = csElement.getMoniker();
+//			String moniker = csElement.getMoniker();
 			Type contextType = PivotUtil.getPivot(Type.class, csElement.getOwnedContextType());
 			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
 			List<Type> parameterTypes = new ArrayList<Type>();
@@ -168,8 +169,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
 				parameterTypes.add(parameterType);
 			}
-			LambdaType lambdaType = context.getTypeManager().getLambdaType(csElement.getName(), contextType, parameterTypes, resultType, null, moniker);
-			context.reusePivotElement(csElement, lambdaType);
+			LambdaType lambdaType = context.getTypeManager().getLambdaType(csElement.getName(), contextType, parameterTypes, resultType, null, null);
+			context.installPivotReference(csElement, lambdaType, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			return null;
 		}
 	}
@@ -183,9 +184,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			String moniker = csElement.getMoniker();
+//			String moniker = csElement.getMoniker();
 			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-			pivotOperation.setMoniker(moniker);
+//			pivotOperation.setMoniker(moniker);
 			context.refreshTemplateSignature(csElement, pivotOperation);
 			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameters());
 			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedException());
@@ -196,9 +197,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		protected void refreshParameters(List<ParameterCS> csParameters, List<Parameter> pivotParameters) {
 			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
 			for (ParameterCS csParameter : csParameters) {
-				String moniker = csParameter.getMoniker();
+//				String moniker = csParameter.getMoniker();
 				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				pivotParameter.setMoniker(moniker);
+//				pivotParameter.setMoniker(moniker);
 				newPivotParameters.add(pivotParameter);
 			}
 			context.refreshList(pivotParameters, newPivotParameters);
@@ -232,7 +233,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		@Override
 		public BasicContinuation<?> execute() {
 			Type type = context.getTypeManager().getLibraryType(csElement.getName());
-			context.reusePivotElement(csElement, type);
+			context.installPivotReference(csElement, type, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			return null;
 		}
 	}
@@ -360,8 +361,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
 				tupleParts.add(new TypeManager.TuplePart(csTuplePart.getName(), partType));
 			}
-			TupleType tupleType = context.getTypeManager().getTupleType(csElement.getName(), tupleParts, null, csElement.getMoniker());
-			context.reusePivotElement(csElement, tupleType);
+			TupleType tupleType = context.getTypeManager().getTupleType(csElement.getName(), tupleParts, null, null/*csElement.getMoniker()*/);
+			context.installPivotReference(csElement, tupleType, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			return null;
 		}
 	}
@@ -432,7 +433,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Element pivotType = csElement.getType();
+			MonikeredElement pivotType = csElement.getType();
 			if (pivotType.eIsProxy()) {
 				Type badType = context.addBadTypeError(csElement, OCLMessages.UnresolvedType_ERROR_, csElement);
 				csElement.setType(badType);
@@ -443,7 +444,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 					TemplateBinding pivotTemplateBinding = PivotUtil.getPivot(TemplateBinding.class, csTemplateBinding);
 					pivotType = pivotTemplateBinding.getBoundElement();
 				}
-				context.installPivotElement(csElement, pivotType);
+				context.installPivotReference(csElement, pivotType, BaseCSTPackage.Literals.MODEL_ELEMENT_CS__PIVOT);
 			}
 			return null;
 		}
@@ -507,10 +508,10 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	protected void refreshEnumerationLiterals(EnumerationCS csEnumeration, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
 		List<EnumerationLiteral> newPivotLiterals = new ArrayList<EnumerationLiteral>();
 		for (EnumerationLiteralCS csEnumerationLiteral : csEnumeration.getOwnedLiterals()) {
-			String moniker = csEnumerationLiteral.getMoniker();
+//			String moniker = csEnumerationLiteral.getMoniker();
 			EnumerationLiteral pivotEnumerationLiteral = context.refreshNamedElement(EnumerationLiteral.class,
 				PivotPackage.Literals.ENUMERATION_LITERAL, csEnumerationLiteral);
-			pivotEnumerationLiteral.setMoniker(moniker);
+//			pivotEnumerationLiteral.setMoniker(moniker);
 			newPivotLiterals.add(pivotEnumerationLiteral);
 			pivotEnumerationLiteral.setValue(BigInteger.valueOf(csEnumerationLiteral.getValue()));
 		}
@@ -520,9 +521,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	protected void refreshProperties(ClassCS csClass, org.eclipse.ocl.examples.pivot.Class pivotElement) {
 		List<Property> newPivotProperties = new ArrayList<Property>();
 		for (StructuralFeatureCS csProperty : csClass.getOwnedProperty()) {
-			String moniker = csProperty.getMoniker();
+//			String moniker = csProperty.getMoniker();
 			Property pivotProperty = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csProperty);
-			pivotProperty.setMoniker(moniker);
+//			pivotProperty.setMoniker(moniker);
 			newPivotProperties.add(pivotProperty);
 		}
 		context.refreshList(pivotElement.getOwnedAttributes(), newPivotProperties);

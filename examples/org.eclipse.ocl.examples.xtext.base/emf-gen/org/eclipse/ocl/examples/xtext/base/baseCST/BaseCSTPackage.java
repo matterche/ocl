@@ -80,7 +80,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getVisitableCS()
 	 * @generated
 	 */
-	int VISITABLE_CS = 45;
+	int VISITABLE_CS = 46;
 
 	/**
 	 * The number of structural features of the '<em>Visitable CS</em>' class.
@@ -194,13 +194,13 @@ public interface BaseCSTPackage extends EPackage {
 	int MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MONIKERED_ELEMENT_CS__MONIKER = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int MONIKERED_ELEMENT_CS__CSI = MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Monikered Element CS</em>' class.
@@ -279,13 +279,13 @@ public interface BaseCSTPackage extends EPackage {
 	int NAMED_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int NAMED_ELEMENT_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -323,7 +323,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 42;
+	int TYPED_ELEMENT_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS <em>Feature CS</em>}' class.
@@ -343,7 +343,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 31;
+	int STRUCTURAL_FEATURE_CS = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -433,7 +433,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 27;
+	int REFERENCE_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS <em>Type CS</em>}' class.
@@ -443,7 +443,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 39;
+	int TYPE_CS = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -453,7 +453,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 40;
+	int TYPE_PARAMETER_CS = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -463,7 +463,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 44;
+	int TYPED_TYPE_REF_CS = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -473,7 +473,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 46;
+	int WILDCARD_TYPE_REF_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.
@@ -483,7 +483,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 41;
+	int TYPE_REF_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -493,7 +493,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 43;
+	int TYPED_REF_CS = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.CollectionTypeRefCSImpl <em>Collection Type Ref CS</em>}' class.
@@ -533,7 +533,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateBindingCS()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING_CS = 32;
+	int TEMPLATE_BINDING_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -543,7 +543,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateParameterCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_CS = 33;
+	int TEMPLATE_PARAMETER_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -553,7 +553,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 34;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateSignatureCSImpl <em>Template Signature CS</em>}' class.
@@ -563,7 +563,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateSignatureCS()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE_CS = 35;
+	int TEMPLATE_SIGNATURE_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS <em>Templateable Element CS</em>}' class.
@@ -573,7 +573,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT_CS = 36;
+	int TEMPLATEABLE_ELEMENT_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -653,13 +653,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_ELEMENT_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int ANNOTATION_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -716,13 +716,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ANNOTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_CS__MONIKER = ANNOTATION_ELEMENT_CS__MONIKER;
+	int ANNOTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -797,13 +797,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int TYPED_ELEMENT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -905,13 +905,13 @@ public interface BaseCSTPackage extends EPackage {
 	int FEATURE_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CS__MONIKER = TYPED_ELEMENT_CS__MONIKER;
+	int FEATURE_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1013,13 +1013,13 @@ public interface BaseCSTPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCTURAL_FEATURE_CS__MONIKER = FEATURE_CS__MONIKER;
+	int STRUCTURAL_FEATURE_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1139,13 +1139,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ATTRIBUTE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CS__MONIKER = STRUCTURAL_FEATURE_CS__MONIKER;
+	int ATTRIBUTE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1265,13 +1265,13 @@ public interface BaseCSTPackage extends EPackage {
 	int CLASSIFIER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int CLASSIFIER_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1364,13 +1364,13 @@ public interface BaseCSTPackage extends EPackage {
 	int CLASS_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_CS__MONIKER = CLASSIFIER_CS__MONIKER;
+	int CLASS_CS__CSI = CLASSIFIER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1499,13 +1499,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPE_REF_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_REF_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int TYPE_REF_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref CS</em>' class.
@@ -1544,13 +1544,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_REF_CS__ORIGINAL_XMI_ID = TYPE_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_REF_CS__MONIKER = TYPE_REF_CS__MONIKER;
+	int TYPED_REF_CS__CSI = TYPE_REF_CS__CSI;
 
 	/**
 	 * The number of structural features of the '<em>Typed Ref CS</em>' class.
@@ -1589,13 +1589,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_TYPE_REF_CS__MONIKER = TYPED_REF_CS__MONIKER;
+	int TYPED_TYPE_REF_CS__CSI = TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1661,13 +1661,13 @@ public interface BaseCSTPackage extends EPackage {
 	int COLLECTION_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_TYPE_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE_REF_CS__MONIKER = TYPED_TYPE_REF_CS__MONIKER;
+	int COLLECTION_TYPE_REF_CS__CSI = TYPED_TYPE_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1733,13 +1733,13 @@ public interface BaseCSTPackage extends EPackage {
 	int CONSTRAINT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int CONSTRAINT_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1814,13 +1814,13 @@ public interface BaseCSTPackage extends EPackage {
 	int DATA_TYPE_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_CS__MONIKER = CLASSIFIER_CS__MONIKER;
+	int DATA_TYPE_CS__CSI = CLASSIFIER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1922,13 +1922,13 @@ public interface BaseCSTPackage extends EPackage {
 	int DETAIL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DETAIL_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int DETAIL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1985,13 +1985,13 @@ public interface BaseCSTPackage extends EPackage {
 	int DOCUMENTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENTATION_CS__MONIKER = ANNOTATION_ELEMENT_CS__MONIKER;
+	int DOCUMENTATION_CS__CSI = ANNOTATION_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2057,13 +2057,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ENUMERATION_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_CS__MONIKER = CLASSIFIER_CS__MONIKER;
+	int ENUMERATION_CS__CSI = CLASSIFIER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2165,13 +2165,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUMERATION_LITERAL_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int ENUMERATION_LITERAL_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2228,13 +2228,13 @@ public interface BaseCSTPackage extends EPackage {
 	int NAMESPACE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int NAMESPACE_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2282,13 +2282,13 @@ public interface BaseCSTPackage extends EPackage {
 	int IMPORT_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPORT_CS__MONIKER = NAMESPACE_CS__MONIKER;
+	int IMPORT_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2364,13 +2364,13 @@ public interface BaseCSTPackage extends EPackage {
 	int LAMBDA_TYPE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_TYPE_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int LAMBDA_TYPE_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2454,13 +2454,13 @@ public interface BaseCSTPackage extends EPackage {
 	int LIBRARY_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_CS__MONIKER = NAMESPACE_CS__MONIKER;
+	int LIBRARY_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2581,13 +2581,13 @@ public interface BaseCSTPackage extends EPackage {
 	int OPERATION_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CS__MONIKER = FEATURE_CS__MONIKER;
+	int OPERATION_CS__CSI = FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2725,13 +2725,13 @@ public interface BaseCSTPackage extends EPackage {
 	int PACKAGE_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_CS__MONIKER = NAMESPACE_CS__MONIKER;
+	int PACKAGE_CS__CSI = NAMESPACE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2815,13 +2815,13 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CS__MONIKER = TYPED_ELEMENT_CS__MONIKER;
+	int PARAMETER_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2932,13 +2932,13 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETERABLE_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETERABLE_ELEMENT_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int PARAMETERABLE_ELEMENT_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The number of structural features of the '<em>Parameterable Element CS</em>' class.
@@ -2977,13 +2977,13 @@ public interface BaseCSTPackage extends EPackage {
 	int PRIMITIVE_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE_REF_CS__MONIKER = TYPED_REF_CS__MONIKER;
+	int PRIMITIVE_TYPE_REF_CS__CSI = TYPED_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3002,6 +3002,25 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RefCS <em>Ref CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RefCS
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRefCS()
+	 * @generated
+	 */
+	int REF_CS = 27;
+
+	/**
+	 * The number of structural features of the '<em>Ref CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REF_CS_FEATURE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3031,13 +3050,13 @@ public interface BaseCSTPackage extends EPackage {
 	int REFERENCE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_CS__MONIKER = STRUCTURAL_FEATURE_CS__MONIKER;
+	int REFERENCE_CS__CSI = STRUCTURAL_FEATURE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3155,7 +3174,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 28;
+	int ROOT_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3219,7 +3238,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 29;
+	int ROOT_PACKAGE_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3249,13 +3268,13 @@ public interface BaseCSTPackage extends EPackage {
 	int ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROOT_PACKAGE_CS__MONIKER = PACKAGE_CS__MONIKER;
+	int ROOT_PACKAGE_CS__CSI = PACKAGE_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3337,7 +3356,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 30;
+	int SPECIFICATION_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3367,13 +3386,13 @@ public interface BaseCSTPackage extends EPackage {
 	int SPECIFICATION_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int SPECIFICATION_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -3475,13 +3494,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int TEMPLATE_PARAMETER_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3592,13 +3611,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATE_SIGNATURE_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int TEMPLATE_SIGNATURE_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Element</b></em>' container reference.
@@ -3655,13 +3674,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATEABLE_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATEABLE_ELEMENT_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int TEMPLATEABLE_ELEMENT_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -3689,7 +3708,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTuplePartCS()
 	 * @generated
 	 */
-	int TUPLE_PART_CS = 37;
+	int TUPLE_PART_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3719,13 +3738,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TUPLE_PART_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_PART_CS__MONIKER = TYPED_ELEMENT_CS__MONIKER;
+	int TUPLE_PART_CS__CSI = TYPED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3807,7 +3826,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 38;
+	int TUPLE_TYPE_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3837,13 +3856,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TUPLE_TYPE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE_CS__MONIKER = NAMED_ELEMENT_CS__MONIKER;
+	int TUPLE_TYPE_CS__CSI = NAMED_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3900,13 +3919,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPE_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_CS__MONIKER = MONIKERED_ELEMENT_CS__MONIKER;
+	int TYPE_CS__CSI = MONIKERED_ELEMENT_CS__CSI;
 
 	/**
 	 * The number of structural features of the '<em>Type CS</em>' class.
@@ -3945,13 +3964,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPE_PARAMETER_CS__ORIGINAL_XMI_ID = TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_PARAMETER_CS__MONIKER = TEMPLATE_PARAMETER_CS__MONIKER;
+	int TYPE_PARAMETER_CS__CSI = TEMPLATE_PARAMETER_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4026,13 +4045,13 @@ public interface BaseCSTPackage extends EPackage {
 	int WILDCARD_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPE_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WILDCARD_TYPE_REF_CS__MONIKER = TYPE_REF_CS__MONIKER;
+	int WILDCARD_TYPE_REF_CS__CSI = TYPE_REF_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Extends</b></em>' containment reference.
@@ -4070,7 +4089,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getIteratorKind()
 	 * @generated
 	 */
-	int ITERATOR_KIND = 47;
+	int ITERATOR_KIND = 48;
 
 
 	/**
@@ -4604,15 +4623,15 @@ public interface BaseCSTPackage extends EPackage {
 	EClass getMonikeredElementCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getMoniker <em>Moniker</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getCsi <em>Csi</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Moniker</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getMoniker()
+	 * @return the meta object for the attribute '<em>Csi</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS#getCsi()
 	 * @see #getMonikeredElementCS()
 	 * @generated
 	 */
-	EAttribute getMonikeredElementCS_Moniker();
+	EAttribute getMonikeredElementCS_Csi();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS <em>Named Element CS</em>}'.
@@ -4782,6 +4801,16 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPrimitiveTypeRefCS();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RefCS <em>Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ref CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RefCS
+	 * @generated
+	 */
+	EClass getRefCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS <em>Reference CS</em>}'.
@@ -5776,12 +5805,12 @@ public interface BaseCSTPackage extends EPackage {
 		EClass MONIKERED_ELEMENT_CS = eINSTANCE.getMonikeredElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Moniker</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Csi</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MONIKERED_ELEMENT_CS__MONIKER = eINSTANCE.getMonikeredElementCS_Moniker();
+		EAttribute MONIKERED_ELEMENT_CS__CSI = eINSTANCE.getMonikeredElementCS_Csi();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl <em>Named Element CS</em>}' class.
@@ -5924,6 +5953,16 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRIMITIVE_TYPE_REF_CS = eINSTANCE.getPrimitiveTypeRefCS();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RefCS <em>Ref CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RefCS
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRefCS()
+		 * @generated
+		 */
+		EClass REF_CS = eINSTANCE.getRefCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
