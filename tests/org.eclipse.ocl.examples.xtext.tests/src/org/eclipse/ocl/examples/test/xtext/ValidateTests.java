@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -65,6 +66,11 @@ public class ValidateTests extends XtextTestCase
 		if (s != null) {
 			fail("Inconsistent validation: (expected/actual) message" + s);
 		}
+	}	
+
+	public static void checkValidationWithoutDiagnostics(EObject testInstance, boolean expectedState) {
+		boolean actualState = Diagnostician.INSTANCE.validate(testInstance, (DiagnosticChain)null);
+		assertEquals("Inconsistent validation: ", expectedState, actualState);
 	}	
 
 	public Resource doLoadOCLinEcore(String stem, String extension) throws IOException {
@@ -149,6 +155,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l3", "xx");
 		String objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
+		checkValidationWithoutDiagnostics(testInstance, true);
 		//
 		//	CompleteOCL errors all round
 		//
@@ -157,6 +164,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2a", "xxx");
 		eSet(testInstance, "l2b", "xxx");
 		eSet(testInstance, "l3", "xxx");
+		checkValidationWithoutDiagnostics(testInstance, false);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 			NLS.bind(template,  "V1", objectLabel),
 			NLS.bind(template,  "V2a", objectLabel),
@@ -170,6 +178,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2a", "bad");
 		eSet(testInstance, "l2b", "ok");
 		eSet(testInstance, "l3", "ok");
+		checkValidationWithoutDiagnostics(testInstance, false);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 			NLS.bind(template,  "L2a", objectLabel),
 			NLS.bind(template,  "V2a", objectLabel));
@@ -198,6 +207,7 @@ public class ValidateTests extends XtextTestCase
 			NLS.bind(template,  "L2a", objectLabel),
 //BUG355184		NLS.bind(template,  "L2b", objectLabel),
 			NLS.bind(template,  "L3", objectLabel));
+		checkValidationWithoutDiagnostics(testInstance, false);
 		//
 		//	Check OCLinEcoreEObjectValidator warnings and distinct message
 		//
@@ -208,6 +218,7 @@ public class ValidateTests extends XtextTestCase
 			NLS.bind(template,  "L2a", objectLabel),
 //BUG355184		NLS.bind(template,  "L2b", objectLabel),
 			NLS.bind(template,  "L3", objectLabel));
+		checkValidationWithoutDiagnostics(testInstance, false);
 		//
 		//	No errors
 		//
@@ -217,6 +228,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2b", "ok");
 		eSet(testInstance, "l3", "ok");
 		objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+		checkValidationWithoutDiagnostics(testInstance, true);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 		//
 		//	Just one error
@@ -227,6 +239,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2b", "ok");
 		eSet(testInstance, "l3", "ok");
 		objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+		checkValidationWithoutDiagnostics(testInstance, false);
 		checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 			NLS.bind(template,  "L1", objectLabel));
 	}

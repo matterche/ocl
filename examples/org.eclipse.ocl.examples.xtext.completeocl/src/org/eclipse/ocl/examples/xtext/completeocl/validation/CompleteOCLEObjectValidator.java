@@ -194,41 +194,49 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 					int severity = Diagnostic.ERROR;
 					String message = null;
 					if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
+						if (diagnostics == null) {
+							return false;
+						}
 						message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 					}
-					try {
-						Value expressionResult = query.accept(evaluationVisitor);
-						boolean isOk = false;
-						if (!expressionResult.isNull()) {
-							isOk = expressionResult.asBoolean();
-							severity = Diagnostic.WARNING;
-						}
-						if (!isOk) {
-							Object objectLabel = getLabel(eClassifier, object, context);
-							OclExpression messageExpression = query.getMessageExpression();
-							if (messageExpression != null) {
-								try {
-									Value messageResult = messageExpression.accept(evaluationVisitor);
-									if (!messageResult.isNull()) {
-										message = messageResult.asString();
+					else {
+						try {
+							Value expressionResult = query.accept(evaluationVisitor);
+							boolean isOk = false;
+							if (!expressionResult.isNull()) {
+								isOk = expressionResult.asBoolean();
+								severity = Diagnostic.WARNING;
+							}
+							if (!isOk) {
+								if (diagnostics == null) {
+									return false;
+								}
+								Object objectLabel = getLabel(eClassifier, object, context);
+								OclExpression messageExpression = query.getMessageExpression();
+								if (messageExpression != null) {
+									try {
+										Value messageResult = messageExpression.accept(evaluationVisitor);
+										if (!messageResult.isNull()) {
+											message = messageResult.asString();
+										}
+									} catch (InvalidValueException e) {
+										message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+										severity = Diagnostic.ERROR;
 									}
-								} catch (InvalidValueException e) {
-									message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
-									severity = Diagnostic.ERROR;
+									catch (Exception e) {
+										message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
+										severity = Diagnostic.ERROR;
+									}
 								}
-								catch (Exception e) {
-									message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
-									severity = Diagnostic.ERROR;
+								if (message == null) {
+									message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 								}
 							}
-							if (message == null) {
-								message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
-							}
+						} catch (InvalidValueException e) {
+							message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+						} catch (InvalidEvaluationException e) {
+							message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 						}
-					} catch (InvalidValueException e) {
-						message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
-					} catch (InvalidEvaluationException e) {
-						message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 					}
 					if (message != null) {
 						diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
@@ -240,6 +248,6 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 				}
 			}
 		}
-		return allOk || (diagnostics != null);
+		return allOk;
 	}
 }
