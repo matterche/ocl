@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -66,8 +66,8 @@ public class BaseReferenceFinder extends DefaultReferenceFinder
 			Predicate<IReferenceDescription> filter, IProgressMonitor monitor) {
 		Set<EObject> csTargets = new HashSet<EObject>(targets);
 		for (EObject target : targets) {			
-			if (target instanceof MonikeredElement) {
-				target = ElementUtil.getCsElement((MonikeredElement) target);
+			if (target instanceof Element) {
+				target = ElementUtil.getCsElement((Element) target);
 				if (target != null) {
 					csTargets.add(target);
 				}

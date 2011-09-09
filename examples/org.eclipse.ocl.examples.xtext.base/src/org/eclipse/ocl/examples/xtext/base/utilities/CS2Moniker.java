@@ -29,11 +29,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -60,13 +59,10 @@ public class CS2Moniker
 		csFactoryMap.put(ePackage, factory);
 	}
 
-	public static String toString(MonikeredElementCS csElement) {
+	public static String toString(ElementCS csElement) {
 		CS2Moniker moniker = new CS2Moniker(csElement);
 		moniker.appendElementCS(csElement);
 		String string = moniker.toString();
-		if (TRACE_MONIKERS.isActive()) {
-			TRACE_MONIKERS.println(csElement.eClass().getName() + " ==> " + string);
-		}
 		assert !"".equals(string);
 		return string;
 	}
@@ -93,7 +89,7 @@ public class CS2Moniker
 	 */
 	private Map<EPackage, BaseCSVisitor<?, ?>> csVisitorMap = new HashMap<EPackage, BaseCSVisitor<?, ?>>();
 
-	public CS2Moniker(MonikeredElementCS target) {
+	public CS2Moniker(ElementCS target) {
 		super(target);
 	}
 
@@ -160,7 +156,7 @@ public class CS2Moniker
 		}
 	}
 
-	public void appendNameCS(NamedElementCS csNamedElement) {
+	public void appendNameCS(Nameable csNamedElement) {
 		append(csNamedElement != null
 			? csNamedElement.getName()
 			: null);
@@ -209,24 +205,9 @@ public class CS2Moniker
 	public void appendParentElementCS(EObject parent, String parentSeparator) {
 		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
 			append(OVERFLOW_MARKER);
-/*		} else {
-			if ((parent instanceof MonikeredElementCS)
-				&& ((MonikeredElementCS) parent).hasMoniker()) {
-				append(((MonikeredElementCS) parent).getMoniker()); // FIXME
-																	// Always
-																	// getMoniker
-				if (parent instanceof TemplateableElementCS) {
-					TemplateSignatureCS csTemplateSignature = ((TemplateableElementCS)parent).getOwnedTemplateSignature();
-					if (csTemplateSignature != null) {
-						for (TemplateParameterCS csTemplateParameter : csTemplateSignature.getOwnedTemplateParameter()) {
-							emittedTemplateParameterCS(csTemplateParameter);							
-						}
-					}
-				} */
-			} else if (parent instanceof VisitableCS) {
-				appendElementCS((VisitableCS) parent);
-			}
-//		}
+		} else if (parent instanceof VisitableCS) {
+			appendElementCS((VisitableCS) parent);
+		}
 		append(parentSeparator);
 	}
 

@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.markup;
 import java.io.Reader;
 import java.io.StringReader;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.markup.parser.antlr.MarkupParser;
 import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
 import org.eclipse.xtext.parser.IParseResult;
@@ -80,8 +80,8 @@ public class MarkupUtils extends MarkupSwitch<StringBuffer>
 		return lineCount;
 	}
 
-	public static String toHTML(TypeManager typeManager, Object context, Markup markup) throws Exception {
-		return MarkupToHTML.toString(typeManager, context, markup);
+	public static String toHTML(MetaModelManager metaModelManager, Object context, Markup markup) throws Exception {
+		return MarkupToHTML.toString(metaModelManager, context, markup);
 	}
 }
 

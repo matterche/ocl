@@ -22,13 +22,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
@@ -36,14 +36,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends MonikeredElementCSScopeAdapter<CS, P>
+public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends ModelElementCSScopeAdapter<CS, P>
 {	
-	protected BaseCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csElement, pivotClass);
+	protected BaseCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csElement, pivotClass);
 	}
 
-	protected BaseCSScopeAdapter(TypeManager typeManager, EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csDocumentElement, csElement, pivotClass);
+	protected BaseCSScopeAdapter(MetaModelManager metaModelManager, EObject csDocumentElement, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csDocumentElement, csElement, pivotClass);
 	}
 
 	protected Type commonConformantType(Type firstTypeCS, Type secondTypeCS) {
@@ -76,7 +76,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			}
 		} */
 		else {
-			candidateType = typeManager.getClassifierType();
+			candidateType = metaModelManager.getClassifierType();
 			if (candidateType == requiredType) {
 				return true;
 			}
@@ -88,7 +88,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		List<TypedRefCS> superTypes = csClass.getOwnedSuperType();
 		int size = superTypes.size();
 		if (size == 0) {
-			Type libType = typeManager.getClassifierType();
+			Type libType = metaModelManager.getClassifierType();
 			return Collections.singletonList(libType);
 		} else if (size == 1) {
 			Type result = getLibraryType(superTypes.get(0));
@@ -130,7 +130,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 	 * @return
 	 *
 	protected Type getLibraryType(String name) { // FIXME Change to private
-		return getTypeManager().getLibraryType(name, null);
+		return getMetaModelManager().getLibraryType(name, null);
 	} */
 
 	public Type getLibraryType(ElementCS csElement) {
@@ -147,31 +147,31 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		else if (csElement instanceof ClassifierCS) {		// DataType
 			EObject eObject = ((ClassifierCS) csElement).getPivot();
 			if (eObject == EcorePackage.Literals.EBIG_DECIMAL) {
-				return typeManager.getRealType();
+				return metaModelManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EBIG_INTEGER) {
-				return typeManager.getIntegerType();
+				return metaModelManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN) {
-				return typeManager.getBooleanType();
+				return metaModelManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EBOOLEAN_OBJECT) {
-				return typeManager.getBooleanType();
+				return metaModelManager.getBooleanType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE) {
-				return typeManager.getRealType();
+				return metaModelManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EDOUBLE_OBJECT) {
-				return typeManager.getRealType();
+				return metaModelManager.getRealType();
 			}
 			else if (eObject == EcorePackage.Literals.EINT) {
-				return typeManager.getIntegerType();
+				return metaModelManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.EINTEGER_OBJECT) {
-				return typeManager.getIntegerType();
+				return metaModelManager.getIntegerType();
 			}
 			else if (eObject == EcorePackage.Literals.ESTRING) {
-				return typeManager.getStringType();
+				return metaModelManager.getStringType();
 			}
 			return (Type) ((ClassifierCS) csElement).getPivot();
 		}
@@ -186,7 +186,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			String collectionTypeName = ElementUtil.getCollectionTypeName(typedElement);
 			Type csType = getLibraryType(type);
 			if (collectionTypeName != null) {
-				return typeManager.getCollectionType(collectionTypeName, csType);
+				return metaModelManager.getCollectionType(collectionTypeName, csType);
 			}
 			else {
 				return csType;
@@ -195,7 +195,7 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 		else if (csElement instanceof PrimitiveTypeRefCS) {
 			PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)csElement;
 			String name = primitiveTypeRefCS.getName();
-			return typeManager.getLibraryType(name);
+			return metaModelManager.getLibraryType(name);
 		}
 //		else if (csElement instanceof QualifiedTypeRefCS) {
 //			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;

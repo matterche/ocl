@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
  * @model
  * @generated
  */
-public interface TypeNameExpCS extends TypedRefCS, SimpleNamedExpCS
+public interface TypeNameExpCS extends TypedRefCS
 {
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.

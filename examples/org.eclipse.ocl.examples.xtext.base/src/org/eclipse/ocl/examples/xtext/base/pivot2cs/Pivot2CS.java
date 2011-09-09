@@ -18,21 +18,18 @@ package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -41,8 +38,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
  */
 public class Pivot2CS extends AbstractConversion implements Adapter
 {	
-//	private static final Logger logger = Logger.getLogger(Pivot2CS.class);
-
 	public static interface Factory {
 		BaseDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter);
 		BaseReferenceVisitor createReferenceVisitor(Pivot2CSConversion converter);
@@ -68,7 +63,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return PivotUtil.getAdapter(Pivot2CS.class, resourceSet);
 	}
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
@@ -78,59 +73,18 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	/**
 	 * The pivot element for CS monikers
 	 */
-//	protected final Map<String, MonikeredElement> moniker2PivotMap;
+	protected Map<String, ModelElementCS> moniker2PivotCSMap1 = null;
 	
-	/**
-	 * The pivot element for CS monikers
-	 */
-	protected Map<String, MonikeredElementCS> moniker2PivotCSMap1 = null;
-	
-	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
+	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
-		this.typeManager = typeManager;
-//		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
-		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
+		this.metaModelManager = metaModelManager;
+		metaModelManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	
 	public Pivot2CS(Pivot2CS aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
-		this.typeManager = aConverter.typeManager;
-//		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+		this.metaModelManager = aConverter.metaModelManager;
 	}
-
-//	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
-//		if (moniker2PivotCSMap == null) {
-//			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
-//		}
-//		return moniker2PivotCSMap;
-//	}
-
-/*	public Map<String, MonikeredElementCS> computeMoniker2CSMap(Collection<? extends Resource> csResources) {
-		Map<String, MonikeredElementCS> map = new HashMap<String, MonikeredElementCS>();
-		for (Resource csResource : csResources) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementCS) {
-					MonikeredElementCS monikeredElement = (MonikeredElementCS) eObject;
-					String moniker = monikeredElement.getMoniker();
-					assert moniker != null;
-					MonikeredElementCS oldMonikeredElement = map.get(moniker);
-					if (monikeredElement instanceof NamedElementCS) {
-						if (oldMonikeredElement instanceof NamedElementCS) {
-							logger.warn("Duplicate CS '" + moniker + "'");
-						}
-						else {
-							map.put(moniker, monikeredElement);
-						}
-					}
-					else if (oldMonikeredElement == null){
-						map.put(moniker, monikeredElement);
-					}
-				}
-			}
-		}
-		return map;
-	} */
 
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();
@@ -140,13 +94,9 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		return factoryMap.get(eClass);
 	}
 
-//	public Set<String> getMonikers() {
-//		return moniker2PivotMap.keySet();
-//	}
-	
-//	public MonikeredElement getPivotElement(String moniker) {
-//		return moniker2PivotMap.get(moniker);
-//	}
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
 
 	public Resource getPivotResource(Resource csResource) {
 		return cs2pivotResourceMap.get(csResource);
@@ -157,11 +107,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	}
 
 	public Notifier getTarget() {
-		return typeManager.getPivotResourceSet();
-	}
-
-	public TypeManager getTypeManager() {
-		return typeManager;
+		return metaModelManager.getPivotResourceSet();
 	}
 
 	public boolean isAdapterForType(Object type) {
@@ -171,50 +117,9 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	public void notifyChanged(Notification notification) {
 		// Do nothing.
 	}
-	
-//	public MonikeredElement putPivotElement(String moniker, MonikeredElement pivotElement) {
-//		MonikeredElement oldElement = moniker2PivotMap.put(moniker, pivotElement);
-//		if (oldElement != null) {
-//			assert oldElement == pivotElement;
-//		}
-//		return oldElement;
-//	}
-
-//	public void refreshAliasMap(Resource csResource) {
-//		Resource pivotResource = cs2pivotResourceMap.get(csResource);
-//		AliasAdapter.getAdapter(pivotResource).refreshMap(aliasMap);
-//	}
-
-	/**
-	 * Reset all the CS monikers for test purposes.
-	 *
-	public void resetCSMonikers() {
-		for (Resource pivotResource : getCSResources()) {
-			for (Iterator<EObject> it = pivotResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementCSImpl) {
-					((MonikeredElementCSImpl)eObject).resetMoniker();
-				}
-			}
-		}
-	} */
-
-	/**
-	 * Reset all the pivot monikers for test purposes.
-	 */
-	public void resetPivotMonikers() {
-		for (Resource pivotResource : getPivotResources()) {
-			for (Iterator<EObject> it = pivotResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementImpl) {
-					((MonikeredElementImpl)eObject).resetMoniker();
-				}
-			}
-		}
-	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == typeManager.getPivotResourceSet();
+		assert newTarget == metaModelManager.getPivotResourceSet();
 	}
 	
 	public void update() {

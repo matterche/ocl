@@ -22,14 +22,14 @@ import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class IteratorExpScopeAdapter extends AbstractPivotScopeAdapter<IteratorExp>
 {
-	public IteratorExpScopeAdapter(TypeManager typeManager, IteratorExp pivotElement) {
-		super(typeManager, pivotElement);
+	public IteratorExpScopeAdapter(MetaModelManager metaModelManager, IteratorExp pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 
 	@Override

@@ -21,8 +21,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -40,27 +40,33 @@ public class SerializeTests extends XtextTestCase
 		return doSerialize(stem, stem, null, true);
 	}
 	public XtextResource doSerialize(String stem, String referenceStem, Map<String, Object> options, boolean doCompare) throws Exception {
+		String inputName = stem + ".ecore";
+		String outputName = stem + ".serialized.oclinecore";
+		URI inputURI = getProjectFileURI(inputName);
+		URI outputURI = getProjectFileURI(outputName);
 		//
 		//	Load as Ecore
 		//
-		String inputName = stem + ".ecore";
-		URI inputURI = getProjectFileURI(inputName);
 		Resource ecoreResource = loadEcore(inputURI);
 		//
 		//	Ecore to Pivot
 		//		
-		TypeManager typeManager = new TypeManager();
+		MetaModelManager metaModelManager = new MetaModelManager();
 		XtextResource xtextResource = null;
 		try {
-			Resource pivotResource = getPivotFromEcore(typeManager, ecoreResource);
+			Resource pivotResource = getPivotFromEcore(metaModelManager, ecoreResource);
 			//
 			//	Pivot to CS
 			//		
-			String outputName = stem + ".serialized.oclinecore";
-			URI outputURI = getProjectFileURI(outputName);
-			xtextResource = savePivotAsCS(typeManager, pivotResource, outputURI);
+			xtextResource = savePivotAsCS(metaModelManager, pivotResource, outputURI);
 			resourceSet.getResources().clear();
-			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
+		}
+		finally {
+			metaModelManager.dispose();
+		}
+		BaseCSResource xtextResource2 = null;
+		try {
+			xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
 			assertNoResourceErrors("Reload failed", xtextResource2);
 			assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
 			//
@@ -68,13 +74,13 @@ public class SerializeTests extends XtextTestCase
 			//	
 			String pivotName2 = stem + "2.ecore.pivot";
 			URI pivotURI2 = getProjectFileURI(pivotName2);
-			Resource pivotResource2 = savePivotFromCS(typeManager, xtextResource2, pivotURI2);
+			Resource pivotResource2 = savePivotFromCS(metaModelManager, xtextResource2, pivotURI2);
 			//
 			//	Pivot to Ecore
 			//		
 			String inputName2 = stem + "2.ecore";
 			URI ecoreURI2 = getProjectFileURI(inputName2);
-			Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, options, true);
+			Resource ecoreResource2 = savePivotAsEcore(metaModelManager, pivotResource2, ecoreURI2, options, true);
 			//
 			//
 			//
@@ -88,12 +94,13 @@ public class SerializeTests extends XtextTestCase
 			return xtextResource;
 		}
 		finally {
-			unloadCS(resourceSet);
-			if (xtextResource instanceof BaseCSResource) {
-				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
-				adapter.dispose();
+			if (xtextResource2 != null) {
+				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(xtextResource2);
+				if (adapter != null) {
+					MetaModelManager metaModelManager2 = adapter.getMetaModelManager();
+					metaModelManager2.dispose();
+				}
 			}
-			unloadPivot(typeManager);
 		}
 	}
 	
@@ -108,14 +115,14 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	Ecore to Pivot
 		//		
-		TypeManager typeManager = new TypeManager();
-		Resource pivotResource = getPivotFromUML(typeManager, umlResource);
+		MetaModelManager metaModelManager = new MetaModelManager();
+		Resource pivotResource = getPivotFromUML(metaModelManager, umlResource);
 		//
 		//	Pivot to CS
 		//		
 		String outputName = stem + ".serialized.oclinecore";
 		URI outputURI = getProjectFileURI(outputName);
-		XtextResource xtextResource = savePivotAsCS(typeManager, pivotResource, outputURI);
+		XtextResource xtextResource = savePivotAsCS(metaModelManager, pivotResource, outputURI);
 		resourceSet.getResources().clear();
 		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
 		assertNoResourceErrors("Reload failed", xtextResource2);
@@ -125,25 +132,25 @@ public class SerializeTests extends XtextTestCase
 		//	
 		String pivotName2 = stem + "2.ecore.pivot";
 		URI pivotURI2 = getProjectFileURI(pivotName2);
-		Resource pivotResource2 = savePivotFromCS(typeManager, xtextResource2, pivotURI2);
+		Resource pivotResource2 = savePivotFromCS(metaModelManager, xtextResource2, pivotURI2);
 		//
 		//	Pivot to Ecore
 		//		
 		String inputName2 = stem + "2.ecore";
 		URI ecoreURI2 = getProjectFileURI(inputName2);
-		Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, true);
+		Resource ecoreResource2 = savePivotAsEcore(metaModelManager, pivotResource2, ecoreURI2, true);
 		//
 		//
 		//
 //		assertSameModel(pivotResource, pivotResource2);
-		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, typeManager);
+		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);
 		Resource ecoreResource = uml2Ecore2Pivot.getEcoreResource();
 		assertSameModel(ecoreResource, ecoreResource2);		
 		return xtextResource;
 	}
 
-	protected Resource getPivotFromUML(TypeManager typeManager, Resource umlResource) {
-		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, typeManager);
+	protected Resource getPivotFromUML(MetaModelManager metaModelManager, Resource umlResource) {
+		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
 		assertNoResourceErrors("Normalisation failed", pivotResource);
@@ -152,7 +159,7 @@ public class SerializeTests extends XtextTestCase
 	}
 
 	protected Resource loadUML(URI inputURI) {
-//		ResourceSet resourceSet = typeManager.getExternalResourceSet();
+//		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 		assertNull(UML2Ecore2Pivot.initialize(resourceSet));
 		Resource umlResource = resourceSet.getResource(inputURI, true);
 		mapOwnURI(umlResource);

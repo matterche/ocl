@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constraint>
 {
-	public PostScopeAdapter(TypeManager typeManager, PostCS csElement) {
-		super(typeManager, csElement, Constraint.class);
+	public PostScopeAdapter(MetaModelManager metaModelManager, PostCS csElement) {
+		super(metaModelManager, csElement, Constraint.class);
 	}
 
 	@Override

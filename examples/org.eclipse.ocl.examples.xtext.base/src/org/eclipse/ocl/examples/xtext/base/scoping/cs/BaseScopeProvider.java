@@ -46,6 +46,6 @@ public class BaseScopeProvider
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(scopeAdapter.getTypeManager(), scopeAdapter, null, reference, reference);
+		return new BaseScopeView(scopeAdapter.getMetaModelManager(), scopeAdapter, null, reference, reference);
 	}
 }

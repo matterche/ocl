@@ -39,11 +39,11 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
  * </p>
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement()
- * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot.MonikeredElement org.eclipse.ocl.examples.pivot.Nameable"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.pivot.Element org.eclipse.ocl.examples.pivot.Nameable"
  * @generated
  */
 public interface NamedElement
-		extends MonikeredElement, Nameable {
+		extends Element, Nameable {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.

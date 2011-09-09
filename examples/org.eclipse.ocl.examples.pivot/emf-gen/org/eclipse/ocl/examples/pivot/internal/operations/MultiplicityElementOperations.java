@@ -45,8 +45,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class MultiplicityElementOperations
-		extends MonikeredElementOperations {
+public class MultiplicityElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

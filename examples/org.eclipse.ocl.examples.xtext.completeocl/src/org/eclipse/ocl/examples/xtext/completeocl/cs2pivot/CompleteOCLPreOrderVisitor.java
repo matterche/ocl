@@ -26,9 +26,9 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -83,16 +83,16 @@ public class CompleteOCLPreOrderVisitor
 				return null;
 			}
 //			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)type;
-			org.eclipse.ocl.examples.pivot.Class classifier = getContextClassifier(type, csElement);
+			Type classifier = getContextClassifier(type, csElement);
 			Operation pivotOperation = null;
 			Property pivotProperty = null;
 			Feature pivotFeature = null;
 			if (csElement.isOperation()) {
-				pivotOperation = context.refreshMonikeredElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+				pivotOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 				pivotFeature = pivotOperation;
 			}
 			else {
-				pivotProperty = context.refreshMonikeredElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
+				pivotProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 				pivotFeature = pivotProperty;
 			}
 //			context.installPivotElement(csElement, pivotFeature);
@@ -133,10 +133,10 @@ public class CompleteOCLPreOrderVisitor
 					newPivotParameters.add(pivotParameter);
 				}
 				context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
-				classifier.getOwnedOperations().add(pivotOperation);
+				((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedOperations().add(pivotOperation);
 			}
 			else {
-				classifier.getOwnedAttributes().add(pivotProperty);
+				((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedAttributes().add(pivotProperty);
 			}
 			return null;
 		}
@@ -171,21 +171,19 @@ public class CompleteOCLPreOrderVisitor
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
 			}
-			org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelOperation.getClass_(), csElement);
+			Type contextType = getContextClassifier(modelOperation.getClass_(), csElement);
 //			completeEnvironmentManager.getCompleteOperation(element);
 //			if ((element == null) || element.eIsProxy()) {
 //				context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
-//				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
+//				element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //			}
-			Operation contextOperation = context.refreshMonikeredElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-//			String moniker = csElement.getMoniker();
-//			contextOperation.setMoniker(moniker);
+			Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 			contextOperation.setName(modelOperation.getName());
 			List<Parameter> modelParameters = modelOperation.getOwnedParameters();
 			List<VariableCS> csParameters = csElement.getParameters();
 			for (int i = 0; i < csParameters.size(); i++) {
 				VariableCS csParameter = csParameters.get(i);
-				Parameter contextParameter = context.refreshMonikeredElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+				Parameter contextParameter = context.refreshModelElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
 				Parameter modelParameter = modelParameters.get(i);
 				contextParameter.setName(csParameter.getName());
 //				contextParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
@@ -198,55 +196,54 @@ public class CompleteOCLPreOrderVisitor
 				contextOperation.setType(modelOperation.getType());			// FIXME consistency check
 			}
 //			context.installPivotElement(csElement, contextOperation);
-			contextType.getOwnedOperations().add(contextOperation);
-//			typeManager.addContextOperation(modelOperation, contextOperation);
+			((org.eclipse.ocl.examples.pivot.Class)contextType).getOwnedOperations().add(contextOperation);
+//			metaModelManager.addContextOperation(modelOperation, contextOperation);
 			return null;
 		}
 	}
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 
 	public CompleteOCLPreOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPreOrderVisitor(context), context);
-		typeManager = context.getTypeManager();
+		metaModelManager = context.getMetaModelManager();
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Class getContextClassifier(Type modelType, MonikeredElementCS csElement) {
+	protected Type getContextClassifier(Type modelType, ModelElementCS csElement) {
 		Resource pivotResource = context.getConverter().getPivotResource(csElement.eResource());
-		for (org.eclipse.ocl.examples.pivot.Class aClass : typeManager.getAllClasses(modelType)) {
-			if (aClass.eResource() == pivotResource) {
-				return aClass;
+		for (Type aType : metaModelManager.getAllTypes(modelType)) {
+			if (aType.eResource() == pivotResource) {
+				return aType;
 			}
 		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelType.getPackage(), csElement.eResource(), csElement);
-		org.eclipse.ocl.examples.pivot.Class contextType = context.refreshMonikeredElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
+		org.eclipse.ocl.examples.pivot.Class contextType = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
 		contextType.setName(modelType.getName());
 		contextPackage.getOwnedTypes().add(contextType);
 		// WIP Install class synonym
 		return contextType;
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Package getContextPackage(org.eclipse.ocl.examples.pivot.Package modelPackage, Resource csResource, MonikeredElementCS csElement) {
+	protected org.eclipse.ocl.examples.pivot.Package getContextPackage(org.eclipse.ocl.examples.pivot.Package modelPackage, Resource csResource, ModelElementCS csElement) {
 		if (modelPackage == null) {
 			return null;
 		}
 		Resource pivotResource = context.getConverter().getPivotResource(csResource);
-		for (org.eclipse.ocl.examples.pivot.Package aPackage : typeManager.getAllPackages(modelPackage)) {
+		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager.getAllPackages(modelPackage, true)) {
 			if (aPackage.eResource() == pivotResource) {	// WIP FIXME A CS2P cache would avoid searching
 				return aPackage;
 			}
 		}
 		org.eclipse.ocl.examples.pivot.Package contextNestingPackage = getContextPackage(modelPackage.getNestingPackage(), csResource, null);
-		org.eclipse.ocl.examples.pivot.Package contextPackage = context.refreshMonikeredElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
+		org.eclipse.ocl.examples.pivot.Package contextPackage = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 		contextPackage.setName(modelPackage.getName());
-		contextPackage.setMoniker(modelPackage.getMoniker());		// WIP
 		if (contextNestingPackage != null) {
 			contextNestingPackage.getNestedPackages().add(contextPackage);
 		}
 		else {
 			pivotResource.getContents().add(contextPackage);
 		}
-		typeManager.installPackage(contextPackage);
+		metaModelManager.installPackage(contextPackage);
 		return contextPackage;
 	}
 
@@ -260,7 +257,7 @@ public class CompleteOCLPreOrderVisitor
 		Type contextClassifier = getContextClassifier(modelClassifier, object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
-//			element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
+//			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
 //WIP		context.installPivotElement(object, contextClassifier);
 		return null;
@@ -297,7 +294,7 @@ public class CompleteOCLPreOrderVisitor
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, csElement.eResource(), csElement);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
-//			element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
+//			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
 //		context.installPivotElement(object, contextPackage);
 		return null; //new CompletePackageContentContinuation(context, csElement);
@@ -310,17 +307,16 @@ public class CompleteOCLPreOrderVisitor
 		if ((modelProperty == null) || modelProperty.eIsProxy()) {
 			return null;
 		}
-		org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelProperty.getClass_(), object);
+		Type contextType = getContextClassifier(modelProperty.getClass_(), object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
-//			element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
+//			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-		Property contextProperty = context.refreshMonikeredElement(Property.class, PivotPackage.Literals.PROPERTY, object);
+		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, object);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
-//		context.installPivotElement(object, contextProperty);
-		contextType.getOwnedAttributes().add(contextProperty);
-//		typeManager.addContextProperty(modelProperty, contextProperty);
+		((org.eclipse.ocl.examples.pivot.Class)contextType).getOwnedAttributes().add(contextProperty);
+//		metaModelManager.addContextProperty(modelProperty, contextProperty);
 		return null;
 	}
 }

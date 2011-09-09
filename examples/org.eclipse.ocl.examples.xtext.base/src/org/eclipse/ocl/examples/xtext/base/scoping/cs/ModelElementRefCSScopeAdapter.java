@@ -18,16 +18,16 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ModelElementRefCSScopeAdapter extends ModelElementCSScopeAdapter<ModelElementRefCS, Element>
+public class ModelElementRefCSScopeAdapter extends ElementRefCSScopeAdapter<ModelElementRefCS, Element>
 {
-	public ModelElementRefCSScopeAdapter(TypeManager typeManager, ModelElementRefCS csElement) {
-		super(typeManager, csElement, Element.class);
+	public ModelElementRefCSScopeAdapter(MetaModelManager metaModelManager, ModelElementRefCS csElement) {
+		super(metaModelManager, csElement, Element.class);
 	}
 
 	@Override

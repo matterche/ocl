@@ -39,8 +39,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class ConstraintOperations
-		extends MonikeredElementOperations {
+public class ConstraintOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

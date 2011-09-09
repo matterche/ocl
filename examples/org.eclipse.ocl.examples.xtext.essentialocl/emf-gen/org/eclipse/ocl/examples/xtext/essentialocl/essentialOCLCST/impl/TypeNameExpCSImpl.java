@@ -31,10 +31,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
@@ -45,7 +41,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeNameExpCSImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeNameExpCSImpl#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeNameExpCSImpl#getElement <em>Element</em>}</li>
  * </ul>
@@ -55,16 +50,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  */
 public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 {
-	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected OperatorCS parent;
-
 	/**
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -104,29 +89,6 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	protected EClass eStaticClass()
 	{
 		return EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OperatorCS getParent()
-	{
-		return parent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParent(OperatorCS newParent)
-	{
-		OperatorCS oldParent = parent;
-		parent = newParent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT, oldParent, parent));
 	}
 
 	/**
@@ -199,16 +161,6 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public SimpleNamedExpCS getSimpleNamedExp()
-	{
-		return this;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -216,8 +168,6 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT:
-				return getParent();
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__NAMESPACE:
 				return getNamespace();
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__ELEMENT:
@@ -238,9 +188,6 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT:
-				setParent((OperatorCS)newValue);
-				return;
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__NAMESPACE:
 				getNamespace().clear();
 				getNamespace().addAll((Collection<? extends Namespace>)newValue);
@@ -262,9 +209,6 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT:
-				setParent((OperatorCS)null);
-				return;
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__NAMESPACE:
 				getNamespace().clear();
 				return;
@@ -285,80 +229,12 @@ public class TypeNameExpCSImpl extends TypedRefCSImpl implements TypeNameExpCS
 	{
 		switch (featureID)
 		{
-			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT:
-				return parent != null;
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__NAMESPACE:
 				return namespace != null && !namespace.isEmpty();
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__ELEMENT:
 				return element != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == ExpCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT: return EssentialOCLCSTPackage.EXP_CS__PARENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == NamedExpCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == SimpleNamedExpCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-	{
-		if (baseClass == ExpCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				case EssentialOCLCSTPackage.EXP_CS__PARENT: return EssentialOCLCSTPackage.TYPE_NAME_EXP_CS__PARENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == NamedExpCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == SimpleNamedExpCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	@SuppressWarnings("unchecked")

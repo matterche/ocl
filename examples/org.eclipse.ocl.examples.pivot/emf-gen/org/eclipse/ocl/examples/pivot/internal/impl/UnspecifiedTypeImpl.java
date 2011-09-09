@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -195,8 +196,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 		{
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.UNSPECIFIED_TYPE__MONIKER:
-				return getMoniker();
 			case PivotPackage.UNSPECIFIED_TYPE__NAME:
 				return getName();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
@@ -256,9 +255,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__NAME:
 				setName((String)newValue);
@@ -341,9 +337,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -417,8 +410,6 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 		{
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.UNSPECIFIED_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_RULE:
@@ -464,5 +455,12 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitUnspecifiedType(this);
+	}
+
+	@Override
+	public NotificationChain eBasicSetContainer(InternalEObject newContainer,
+			int newContainerFeatureID, NotificationChain msgs) {
+		// TODO Auto-generated method stub
+		return super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
 	}
 } //UnspecifiedTypeImpl

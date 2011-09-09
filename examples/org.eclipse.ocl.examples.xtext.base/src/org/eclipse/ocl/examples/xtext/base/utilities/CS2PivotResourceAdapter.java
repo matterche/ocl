@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
@@ -38,13 +38,13 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
  * to support synchronization with a Pivot model representation.
  */
-public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
+public class CS2PivotResourceAdapter extends MetaModelManagerResourceAdapter
 {		
 	public static CS2PivotResourceAdapter findAdapter(BaseCSResource csResource) {
 		if (csResource == null) {
 			return null;
 		}
-		TypeManagerResourceAdapter adapter = PivotUtil.getAdapter(TypeManagerResourceAdapter.class, csResource);
+		MetaModelManagerResourceAdapter adapter = PivotUtil.getAdapter(MetaModelManagerResourceAdapter.class, csResource);
 		if (adapter == null) {
 			return null;
 		}
@@ -53,26 +53,26 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		}
 		List<Adapter> eAdapters = csResource.eAdapters();
 		eAdapters.remove(adapter);
-		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getTypeManager());
+		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getMetaModelManager());
 		eAdapters.add(derivedAdapter);
 		return derivedAdapter;
 	}
 	
-	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, TypeManager typeManager) {
+	public static CS2PivotResourceAdapter getAdapter(BaseCSResource csResource, MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = csResource.eAdapters();
 		CS2PivotResourceAdapter adapter = findAdapter(csResource);
 		if (adapter == null) {
-			if (typeManager == null) {
-				TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(csResource.getResourceSet());
+			if (metaModelManager == null) {
+				MetaModelManagerResourceSetAdapter rsAdapter = MetaModelManagerResourceSetAdapter.findAdapter(csResource.getResourceSet());
 				if (rsAdapter != null) {
-					typeManager = rsAdapter.getTypeManager();					
+					metaModelManager = rsAdapter.getMetaModelManager();					
 				}
-				if (typeManager == null) {
-					typeManager = csResource.createTypeManager();
+				if (metaModelManager == null) {
+					metaModelManager = csResource.createMetaModelManager();
 				}
-				typeManager.addClassLoader(csResource.getClass().getClassLoader());
+				metaModelManager.addClassLoader(csResource.getClass().getClassLoader());
 			}
-			adapter = new CS2PivotResourceAdapter(csResource, typeManager);
+			adapter = new CS2PivotResourceAdapter(csResource, metaModelManager);
 			eAdapters.add(adapter);
 		}
 		return adapter;
@@ -80,15 +80,15 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 	
 	private final CS2Pivot converter;
 	
-	public CS2PivotResourceAdapter(BaseCSResource csResource, TypeManager typeManager) {
-		super(csResource, typeManager);
+	public CS2PivotResourceAdapter(BaseCSResource csResource, MetaModelManager metaModelManager) {
+		super(csResource, metaModelManager);
 		Map<Resource, Resource> cs2pivotResourceMap = computeCS2PivotResourceMap(
-			csResource, typeManager);
-		converter = csResource.createCS2Pivot(cs2pivotResourceMap, typeManager);
+			csResource, metaModelManager);
+		converter = csResource.createCS2Pivot(cs2pivotResourceMap, metaModelManager);
 	}
 
-	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, TypeManager typeManager) {
-		ResourceSet pivotResourceSet = typeManager.getTarget();
+	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, MetaModelManager metaModelManager) {
+		ResourceSet pivotResourceSet = metaModelManager.getTarget();
 		Map<Resource,Resource> cs2pivotResourceMap = new HashMap<Resource,Resource>();
 	//	ResourceSet csResourceSet = csResource.getResourceSet();
 	//	if (csResourceSet != null) {

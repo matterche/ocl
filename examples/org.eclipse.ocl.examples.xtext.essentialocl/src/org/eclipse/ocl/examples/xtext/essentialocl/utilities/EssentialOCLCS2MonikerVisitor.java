@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -33,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCS2MonikerVisitor;
@@ -104,9 +103,9 @@ public class EssentialOCLCS2MonikerVisitor
 			context.append(OVERFLOW_MARKER);
 			return;
 		}
-		MonikeredElementCS pivotedChild = EssentialOCLUtils.getPivotedCS(object);
+		ModelElementCS pivotedChild = EssentialOCLUtils.getPivotedCS(object);
 		ElementCS pivotingChild = EssentialOCLUtils.getPivotingChildCS(pivotedChild);
-		MonikeredElementCS pivotingParent = EssentialOCLUtils.getPivotingParentCS(pivotingChild);
+		ModelElementCS pivotingParent = EssentialOCLUtils.getPivotingParentCS(pivotingChild);
 		EReference pivotingFeature = EssentialOCLUtils.getPivotingFeature(pivotingChild, pivotingParent);
 		if (pivotingFeature == null) {
 			context.append(NULL_MARKER);
@@ -404,7 +403,7 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitTypeNameExpCS(TypeNameExpCS object) {
-		context.append(((MonikeredElement) object.getPivot()).getMoniker());
+		context.appendElement(object.getPivot());
 		return true;
 	}
 

@@ -36,10 +36,10 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
@@ -55,9 +55,9 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.VoidTypeScopeAdapter;
 
-public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, TypeManager> implements PivotConstants
+public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, MetaModelManager> implements PivotConstants
 {	
-	public PivotScopeVisitor(TypeManager context) {
+	public PivotScopeVisitor(MetaModelManager context) {
 		super(context);
 		assert context != null;
 	}

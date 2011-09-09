@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TemplateParameterSubstitutionCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateParameterSubstitutionCS, TemplateParameterSubstitution>
 {
-	public TemplateParameterSubstitutionCSScopeAdapter(TypeManager typeManager, TemplateParameterSubstitutionCS csElement) {
-		super(typeManager, csElement, TemplateParameterSubstitution.class);
+	public TemplateParameterSubstitutionCSScopeAdapter(MetaModelManager metaModelManager, TemplateParameterSubstitutionCS csElement) {
+		super(metaModelManager, csElement, TemplateParameterSubstitution.class);
 	}
 
 	@Override

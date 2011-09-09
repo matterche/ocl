@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -39,45 +39,45 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
-public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<MonikeredElement, CS2PivotConversion>
+public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Element, CS2PivotConversion>
 {
 	public BaseLeft2RightVisitor(CS2PivotConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 	}
 
 	@Override
-	public MonikeredElement visitAnnotationCS(AnnotationCS object) {
+	public Element visitAnnotationCS(AnnotationCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitClassifierCS(ClassifierCS object) {
+	public Element visitClassifierCS(ClassifierCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitConstraintCS(ConstraintCS object) {
+	public Element visitConstraintCS(ConstraintCS object) {
 		return context.visitLeft2Right(Constraint.class, object.getSpecification());
 	}
 
 	@Override
-	public MonikeredElement visitDetailCS(DetailCS object) {
+	public Element visitDetailCS(DetailCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitOperationCS(OperationCS object) {
+	public Element visitOperationCS(OperationCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitParameterCS(ParameterCS object) {
+	public Element visitParameterCS(ParameterCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitSpecificationCS(SpecificationCS object) {
-		OpaqueExpression pivotElement = context.refreshMonikeredElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, object);
+	public Element visitSpecificationCS(SpecificationCS object) {
+		OpaqueExpression pivotElement = context.refreshModelElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, object);
 		pivotElement.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 		pivotElement.getBodies().add(object.getExprString());
 		pivotElement.getMessages().add(null);
@@ -85,46 +85,46 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 	}
 
 	@Override
-	public MonikeredElement visitStructuralFeatureCS(StructuralFeatureCS object) {
+	public Element visitStructuralFeatureCS(StructuralFeatureCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTemplateBindingCS(TemplateBindingCS object) {
+	public Element visitTemplateBindingCS(TemplateBindingCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTemplateParameterCS(TemplateParameterCS object) {
+	public Element visitTemplateParameterCS(TemplateParameterCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTemplateParameterSubstitutionCS(TemplateParameterSubstitutionCS object) {
+	public Element visitTemplateParameterSubstitutionCS(TemplateParameterSubstitutionCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTemplateSignatureCS(TemplateSignatureCS object) {
+	public Element visitTemplateSignatureCS(TemplateSignatureCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTuplePartCS(TuplePartCS object) {
+	public Element visitTuplePartCS(TuplePartCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTupleTypeCS(TupleTypeCS object) {
+	public Element visitTupleTypeCS(TupleTypeCS object) {
 		return null;
 	}
 
 	@Override
-	public MonikeredElement visitTypeRefCS(TypeRefCS object) {
+	public Element visitTypeRefCS(TypeRefCS object) {
 		return null;
 	}
 
-	public MonikeredElement visiting(VisitableCS visitable) {
+	public Element visiting(VisitableCS visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot Left2Right pass");
 	}
 }

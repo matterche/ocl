@@ -76,6 +76,7 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 	}
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues issues) {
+//        CS2PivotConversion.CONTINUATION.setState(true);
 		URI fileURI = URI.createPlatformResourceURI(libraryFile, true);
 		String rootPath = StandaloneSetup.getPlatformRootPath();
 		File folder = new File(rootPath + javaFolder + '/' + javaPackageName.replace('.', '/'));
@@ -89,7 +90,6 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 				return;
 			}
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-			adapter.refreshPivotMappings(null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);

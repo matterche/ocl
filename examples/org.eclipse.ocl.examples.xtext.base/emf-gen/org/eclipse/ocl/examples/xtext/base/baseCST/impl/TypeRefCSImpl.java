@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public abstract class TypeRefCSImpl extends MonikeredElementCSImpl implements TypeRefCS {
+public abstract class TypeRefCSImpl extends ElementRefCSImpl implements TypeRefCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

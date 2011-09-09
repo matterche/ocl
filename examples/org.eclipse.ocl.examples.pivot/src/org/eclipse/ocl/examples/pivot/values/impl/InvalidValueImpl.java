@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -40,7 +40,7 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 		return obj instanceof InvalidValue;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		return staticType; // standardLibrary.getInvalidType();
 	}
 

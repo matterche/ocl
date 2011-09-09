@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class TemplateBindingCSImpl extends ModelElementCSImpl implements TemplateBindingCS {
+public class TemplateBindingCSImpl extends ElementRefCSImpl implements TemplateBindingCS {
 	/**
 	 * The cached value of the '{@link #getOwnedParameterSubstitution() <em>Owned Parameter Substitution</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

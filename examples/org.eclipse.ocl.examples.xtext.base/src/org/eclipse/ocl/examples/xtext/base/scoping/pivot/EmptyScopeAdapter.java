@@ -17,11 +17,11 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class EmptyScopeAdapter extends AbstractPivotScopeAdapter<Element>
 {
-	public EmptyScopeAdapter(TypeManager typeManager, Element pivotElement) {
-		super(typeManager, pivotElement);
+	public EmptyScopeAdapter(MetaModelManager metaModelManager, Element pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 }

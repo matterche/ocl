@@ -16,23 +16,23 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Enumeration>
 {
-	public EnumerationScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		super(typeManager, pivotElement);
+	public EnumerationScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		TypeManager typeManager = environmentView.getTypeManager();
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addElements(target.getOwnedLiterals());
-		environmentView.addElementsOfScope(typeManager.getEnumerationType(), scopeView);
+		environmentView.addElementsOfScope(metaModelManager.getEnumerationType(), scopeView);
 		if (!environmentView.hasFinalResult()) {
-			environmentView.addElementsOfScope(typeManager.getOclAnyType(), scopeView);
+			environmentView.addElementsOfScope(metaModelManager.getOclAnyType(), scopeView);
 		}	// FIXME Use ClassScopeAdapter.addInheritedContents consistently
 		return scopeView.getOuterScope();
 	}

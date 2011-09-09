@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BasePivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
@@ -51,7 +51,7 @@ public class EssentialOCLPivot2CS extends BasePivot2CS
 
 	public static Pivot2CS.Factory FACTORY = new Factory();
 		
-	public EssentialOCLPivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
-		super(cs2pivotResourceMap, typeManager);
+	public EssentialOCLPivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
+		super(cs2pivotResourceMap, metaModelManager);
 	}
 }

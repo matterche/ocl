@@ -46,6 +46,6 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 			return null;
 		}
 		CS2PivotResourceAdapter csAdapter = (CS2PivotResourceAdapter) CS2PivotResourceAdapter.findAdapter(csContext.eResource());
-		return new BaseScopeView(csAdapter.getTypeManager(), scopeAdapter, null, reference, reference);
+		return new BaseScopeView(csAdapter.getMetaModelManager(), scopeAdapter, null, reference, reference);
 	}
 }

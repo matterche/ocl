@@ -47,7 +47,7 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = typeManager.createPackage("Smalltalk", null);
+        smalltalk = metaModelManager.createPackage("Smalltalk", null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
         org.eclipse.ocl.examples.pivot.Class object = createOwnedClass(smalltalk, "Object", false);
@@ -68,11 +68,11 @@ public abstract class GenericKeywordsTest
         createOwnedLiteral(visibilityKind, "package");
         createOwnedLiteral(visibilityKind, "private");
         
-        createOwnedAttribute(clazz, "name", typeManager.getStringType());
+        createOwnedAttribute(clazz, "name", metaModelManager.getStringType());
         createOwnedAttribute(clazz, "visibility", visibilityKind);
         createOwnedReference(clazz, "package", object);
-        createOwnedAttribute(property, "isUnique", typeManager.getBooleanType());
-        createOwnedAttribute(property, "upper", typeManager.getIntegerType());
+        createOwnedAttribute(property, "isUnique", metaModelManager.getBooleanType());
+        createOwnedAttribute(property, "upper", metaModelManager.getIntegerType());
         createOwnedReference(constraint, "context", clazz);
         
         EList<String> names = new BasicEList<String>(1);
@@ -86,14 +86,14 @@ public abstract class GenericKeywordsTest
         names.set(0, "block");
         types.set(0, block);
         createOwnedOperation(collection, "isUnique",
-        	names, types, typeManager.getBooleanType(), true);
+        	names, types, metaModelManager.getBooleanType(), true);
         createOwnedOperation(collection, "select", 
         	names, types, collection, true);
 
         names.clear();
         types.clear();
         createOwnedOperation(collection, "isEmpty",
-        	names, types, typeManager.getBooleanType(), true);
+        	names, types, metaModelManager.getBooleanType(), true);
 
         // create some qualified classifier and package names that need
         // escaping of one or more segments. Likewise state names

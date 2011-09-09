@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -25,15 +25,15 @@ public class RootPackageScopeAdapter
 extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 implements RootScopeAdapter
 {
-	public RootPackageScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(typeManager, null, pivotElement);
+	public RootPackageScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
+		super(metaModelManager, null, pivotElement);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		TypeManager typeManager = environmentView.getTypeManager();
-		environmentView.addNamedElements(typeManager.getLocalPackages(target));
-		environmentView.addNamedElements(typeManager.getLocalClasses(target));
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		environmentView.addNamedElements(metaModelManager.getLocalPackages(target));
+		environmentView.addNamedElements(metaModelManager.getLocalClasses(target));
 		environmentView.addNamedElements(target.getOwnedPrecedences());
 		return scopeView.getOuterScope();
 	}

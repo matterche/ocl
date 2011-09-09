@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -41,14 +40,14 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getPivot <em>Pivot</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getCsi <em>Csi</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelElementCS {
+public abstract class ModelElementCSImpl extends PivotableElementCSImpl implements ModelElementCS {
 	/**
 	 * The cached value of the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -58,16 +57,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * @ordered
 	 */
 	protected EList<AnnotationElementCS> ownedAnnotation;
-
-	/**
-	 * The cached value of the '{@link #getPivot() <em>Pivot</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPivot()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element pivot;
 
 	/**
 	 * The default value of the '{@link #getOriginalXmiId() <em>Original Xmi Id</em>}' attribute.
@@ -88,6 +77,26 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * @ordered
 	 */
 	protected String originalXmiId = ORIGINAL_XMI_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCsi()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CSI_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCsi() <em>Csi</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCsi()
+	 * @generated
+	 * @ordered
+	 */
+	protected String csi = CSI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,28 +136,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getPivot() {
-		return pivot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPivot(Element newPivot)
-	{
-		Element oldPivot = pivot;
-		pivot = newPivot;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT, oldPivot, pivot));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getOriginalXmiId() {
 		return originalXmiId;
 	}
@@ -163,6 +150,29 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 		originalXmiId = newOriginalXmiId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID, oldOriginalXmiId, originalXmiId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCsi()
+	{
+		return csi;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCsi(String newCsi)
+	{
+		String oldCsi = csi;
+		csi = newCsi;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_CS__CSI, oldCsi, csi));
 	}
 
 	/**
@@ -191,10 +201,10 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
 				return getOwnedAnnotation();
-			case BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT:
-				return getPivot();
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return getOriginalXmiId();
+			case BaseCSTPackage.MODEL_ELEMENT_CS__CSI:
+				return getCsi();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,11 +223,11 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 				getOwnedAnnotation().clear();
 				getOwnedAnnotation().addAll((Collection<? extends AnnotationElementCS>)newValue);
 				return;
-			case BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT:
-				setPivot((Element)newValue);
-				return;
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId((String)newValue);
+				return;
+			case BaseCSTPackage.MODEL_ELEMENT_CS__CSI:
+				setCsi((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,11 +245,11 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 			case BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
 				getOwnedAnnotation().clear();
 				return;
-			case BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT:
-				setPivot((Element)null);
-				return;
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId(ORIGINAL_XMI_ID_EDEFAULT);
+				return;
+			case BaseCSTPackage.MODEL_ELEMENT_CS__CSI:
+				setCsi(CSI_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,10 +266,10 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 		{
 			case BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION:
 				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
-			case BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT:
-				return pivot != null;
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
+			case BaseCSTPackage.MODEL_ELEMENT_CS__CSI:
+				return CSI_EDEFAULT == null ? csi != null : !CSI_EDEFAULT.equals(csi);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -272,10 +282,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	@Override
 	public String toString() {
 		return super.toString();
-	}
-
-	public void resetPivot() {
-		setPivot(null);
 	}
 
 	@Override

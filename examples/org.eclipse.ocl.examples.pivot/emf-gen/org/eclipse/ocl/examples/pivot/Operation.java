@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation</b></em>'.
- * @implements Iterable<Operation>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -47,7 +46,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Operation
-		extends Feature, Namespace, TemplateableElement, ParameterableElement, Iterable<Operation> {
+		extends Feature, Namespace, TemplateableElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.

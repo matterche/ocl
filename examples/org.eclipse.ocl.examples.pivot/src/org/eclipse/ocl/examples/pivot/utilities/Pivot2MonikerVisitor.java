@@ -193,8 +193,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		else if (!object.getTemplateBindings().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
-//			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
-//			context.append(SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
 			context.appendTemplateBindings(object, templateBindings);
 		}
@@ -202,7 +200,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			TemplateParameter formal = ((TemplateParameterSubstitution)object.eContainer()).getFormal();
 			int index = formal.getSignature().getParameters().indexOf(formal);
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
-//			context.append(WILDCARD_INDICATOR + (index > 1 ? index : ""));
 			context.append(WILDCARD_INDICATOR + index);
 		}
 		else {
@@ -375,8 +372,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		}
 		else if (!object.getTemplateBindings().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
-//			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
-//			context.append(SCOPE_SEPARATOR);
 			context.appendName(object);
 			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
 			if (templateBindings != null) {
@@ -409,10 +404,10 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitPackage(org.eclipse.ocl.examples.pivot.Package object) {
-		if (!object.hasMoniker()) {
-			throw new IllegalStateException("No moniker has been configured for " + object);
-		}
-		context.append(object.getMoniker());
+//		if (!object.hasMoniker()) {
+//			throw new IllegalStateException("No moniker has been configured for " + object);
+//		}
+		context.append(PivotUtil.getNsURI(object));
 		return true;
 	}
 

@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -61,8 +61,8 @@ public class StringValueImpl extends AbstractValue implements StringValue
 		return value.equals(((StringValue)obj).stringValue());
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
-		return typeManager.getStringType();
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
+		return metaModelManager.getStringType();
 	}
 
 	@Override

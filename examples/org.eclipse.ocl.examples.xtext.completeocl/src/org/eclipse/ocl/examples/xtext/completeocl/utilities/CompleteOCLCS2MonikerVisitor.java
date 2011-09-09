@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -93,12 +93,12 @@ public class CompleteOCLCS2MonikerVisitor
 		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
-	public void safeAppendMonikerOf(MonikeredElement element) {
+	public void safeAppendMonikerOf(Element element) {
 		if (element.eIsProxy()) {
 			context.append(UNRESOLVED_PROXY_MARKER);
 		}
 		else {
-			context.append(element.getMoniker());
+			context.appendElement(element);
 		}
 	}
 

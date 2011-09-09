@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
@@ -58,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2Ecore extends AbstractConversion
 {
@@ -71,12 +71,12 @@ public class Pivot2Ecore extends AbstractConversion
 	 */
 	public static final String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
 
-	public static XMLResource createResource(TypeManager typeManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options) {
+	public static XMLResource createResource(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 		List<EObject> contents = ecoreResource.getContents();
 		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2Ecore converter = new Pivot2Ecore(typeManager, ecoreURI, options);
+		Pivot2Ecore converter = new Pivot2Ecore(metaModelManager, ecoreURI, options);
 		List<? extends EObject> outputObjects = converter.convertAll(pivotRoots);
 		for (EObject eObject : outputObjects) {
 			if ((eObject instanceof EPackage) && !PivotConstants.ORPHANAGE_NAME.equals(((EPackage)eObject).getName())) {
@@ -172,9 +172,9 @@ public class Pivot2Ecore extends AbstractConversion
 		return true;
 	}
 	
-	public static void installDelegates(TypeManager typeManager, EClassifier eClassifier, Type pivotType) {
+	public static void installDelegates(MetaModelManager metaModelManager, EClassifier eClassifier, Type pivotType) {
 		StringBuffer s = null;
-		for (Constraint pivotConstraint : typeManager.getLocalConstraints((org.eclipse.ocl.examples.pivot.Class) pivotType)) {
+		for (Constraint pivotConstraint : metaModelManager.getLocalConstraints((org.eclipse.ocl.examples.pivot.Class) pivotType)) {
 			String constraintName = pivotConstraint.getName();
 			if (!pivotConstraint.isCallable() && (constraintName != null)) {
 				if (s == null) {
@@ -229,13 +229,13 @@ public class Pivot2Ecore extends AbstractConversion
 	protected final Pivot2EcoreDeclarationVisitor pass1 = new Pivot2EcoreDeclarationVisitor(this);	
 	protected final Pivot2EcoreReferenceVisitor pass2 = new Pivot2EcoreReferenceVisitor(this);
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final URI ecoreURI;
 	protected final Map<String,Object> options;
 	protected final String primitiveTypesUriPrefix;
 	
-	public Pivot2Ecore(TypeManager typeManager, URI ecoreURI, Map<String,Object> options) {
-		this.typeManager = typeManager;
+	public Pivot2Ecore(MetaModelManager metaModelManager, URI ecoreURI, Map<String,Object> options) {
+		this.metaModelManager = metaModelManager;
 		this.ecoreURI = ecoreURI;
 		this.options = options;
 		this.primitiveTypesUriPrefix = getString(options, PRIMITIVE_TYPES_URI_PREFIX);
@@ -290,6 +290,10 @@ public class Pivot2Ecore extends AbstractConversion
 	public final URI getEcoreURI() {
 		return ecoreURI;
 	}
+	
+	public final MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
 
 	public Map<String, Object> getOptions() {
 		return options;
@@ -297,10 +301,6 @@ public class Pivot2Ecore extends AbstractConversion
 
 	public String getPrimitiveTypesUriPrefix() {
 		return primitiveTypesUriPrefix;
-	}
-	
-	public final TypeManager getTypeManager() {
-		return typeManager;
 	}
 
 	public void putCreated(Element pivotElement, EModelElement eModelElement) {

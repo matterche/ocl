@@ -961,8 +961,6 @@ public class PropertyImpl
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.PROPERTY__MONIKER:
-				return getMoniker();
 			case PivotPackage.PROPERTY__NAME:
 				return getName();
 			case PivotPackage.PROPERTY__OWNED_RULE:
@@ -1038,9 +1036,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.PROPERTY__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName((String)newValue);
@@ -1142,9 +1137,6 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.PROPERTY__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.PROPERTY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -1241,8 +1233,6 @@ public class PropertyImpl
 		{
 			case PivotPackage.PROPERTY__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.PROPERTY__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.PROPERTY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PROPERTY__OWNED_RULE:
@@ -1368,8 +1358,6 @@ public class PropertyImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.PROPERTY___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:
 				return validateLowerGe0((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP:

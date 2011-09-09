@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -51,7 +51,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected ParameterableElementCS ownedActualParameter;
+	protected TypeRefCS ownedActualParameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +142,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterableElementCS getOwnedActualParameter() {
+	public TypeRefCS getOwnedActualParameter() {
 		return ownedActualParameter;
 	}
 
@@ -151,8 +151,9 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedActualParameter(ParameterableElementCS newOwnedActualParameter, NotificationChain msgs) {
-		ParameterableElementCS oldOwnedActualParameter = ownedActualParameter;
+	public NotificationChain basicSetOwnedActualParameter(TypeRefCS newOwnedActualParameter, NotificationChain msgs)
+	{
+		TypeRefCS oldOwnedActualParameter = ownedActualParameter;
 		ownedActualParameter = newOwnedActualParameter;
 		if (eNotificationRequired())
 		{
@@ -167,7 +168,8 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedActualParameter(ParameterableElementCS newOwnedActualParameter) {
+	public void setOwnedActualParameter(TypeRefCS newOwnedActualParameter)
+	{
 		if (newOwnedActualParameter != ownedActualParameter)
 		{
 			NotificationChain msgs = null;
@@ -261,7 +263,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 				setOwningTemplateBinding((TemplateBindingCS)newValue);
 				return;
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER:
-				setOwnedActualParameter((ParameterableElementCS)newValue);
+				setOwnedActualParameter((TypeRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -280,7 +282,7 @@ public class TemplateParameterSubstitutionCSImpl extends ModelElementCSImpl impl
 				setOwningTemplateBinding((TemplateBindingCS)null);
 				return;
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS__OWNED_ACTUAL_PARAMETER:
-				setOwnedActualParameter((ParameterableElementCS)null);
+				setOwnedActualParameter((TypeRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);

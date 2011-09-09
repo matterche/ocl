@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class TemplateSignatureCSImpl extends MonikeredElementCSImpl implements TemplateSignatureCS {
+public class TemplateSignatureCSImpl extends ModelElementCSImpl implements TemplateSignatureCS {
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateParameter() <em>Owned Template Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

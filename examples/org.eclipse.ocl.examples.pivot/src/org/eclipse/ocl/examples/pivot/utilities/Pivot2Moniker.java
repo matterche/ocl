@@ -20,13 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 
 public class Pivot2Moniker extends Abstract2Moniker
 {
-	public static String toString(MonikeredElement pivotElement) {
+	public static String toString(Element pivotElement) {
 		Pivot2Moniker moniker = new Pivot2Moniker(pivotElement);
 		moniker.appendElement(pivotElement);
 		String string = moniker.toString();

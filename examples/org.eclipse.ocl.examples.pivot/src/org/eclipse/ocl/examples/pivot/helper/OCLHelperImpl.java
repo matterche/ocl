@@ -22,10 +22,10 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * Implementation of the {@link OclMetaModel.Helper} convenience interface.
@@ -64,9 +64,9 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 
 	protected ExpressionInOcl createSpecification(String expression) throws ParserException {
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
-		TypeManager typeManager = environment.getTypeManager();
+		MetaModelManager metaModelManager = environment.getMetaModelManager();
 		Type contextClassifier = environment.getContextClassifier();
-		URI uri = typeManager.getResourceIdentifier(expression, null);
-		return PivotUtil.resolveSpecification(typeManager, uri, contextClassifier, expression);
+		URI uri = metaModelManager.getResourceIdentifier(expression, null);
+		return PivotUtil.resolveSpecification(metaModelManager, uri, contextClassifier, expression);
 	}
 }

@@ -38,8 +38,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class PropertyOperations
-		extends MonikeredElementOperations {
+public class PropertyOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

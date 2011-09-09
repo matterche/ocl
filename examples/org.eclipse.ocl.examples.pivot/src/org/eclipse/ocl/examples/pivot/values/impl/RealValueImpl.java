@@ -22,7 +22,7 @@ import java.math.RoundingMode;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -147,8 +147,8 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return integerValue;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
-		return typeManager.getRealType();
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
+		return metaModelManager.getRealType();
 	}
 
 	@Override

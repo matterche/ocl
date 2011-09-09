@@ -49,6 +49,8 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
@@ -80,12 +82,13 @@ import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
@@ -221,13 +224,22 @@ public class DelegatesTest extends PivotTestSuite
 		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);			
 	}
 
-	protected void configureTypeManagerForDelegate(EPackage ePackage) {
-		if (typeManager != null) {
-			typeManager.dispose();
+	@Override
+	protected void tearDown() throws Exception {
+		if (testResource != null) {
+			testResource.unload();
+		}
+		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
+		super.tearDown();
+	}
+
+	protected void configureMetaModelManagerForDelegate(EPackage ePackage) {
+		if (metaModelManager != null) {
+			metaModelManager.dispose();
 		}
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
 		DelegateDomain delegateDomain = adapter.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		typeManager = ((OCLDelegateDomain)delegateDomain).getOCL().getTypeManager();
+		metaModelManager = ((OCLDelegateDomain)delegateDomain).getOCL().getMetaModelManager();
 	}
 
 	protected void initModel(String testModelName) {
@@ -261,7 +273,7 @@ public class DelegatesTest extends PivotTestSuite
 		sizeLarge = sizeKind.getEEnumLiteral("large").getInstance();
 
 		employees = new java.util.HashMap<String, EObject>();
-		TypeManagerResourceAdapter.getAdapter(companyPackage.eResource(), typeManager);
+		MetaModelManagerResourceAdapter.getAdapter(companyPackage.eResource(), metaModelManager);
 	}
 
 	protected Resource initModelWithErrors() {
@@ -279,12 +291,12 @@ public class DelegatesTest extends PivotTestSuite
 	protected void initModelWithErrorsAndOcl() {
 		CompleteOCLStandaloneSetup.doSetup();
 		Resource ecoreResource = initModelWithErrors();
-		configureTypeManagerForDelegate(companyPackage);
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		configureMetaModelManagerForDelegate(companyPackage);
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
 		if (message != null)
 			fail(message);
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		Package pivotRoot = ecore2Pivot.getPivotRoot();
 		message = PivotUtil.formatResourceDiagnostics(pivotRoot.eResource().getErrors(), "Pivot load", "\n\t");
 		if (message != null)
@@ -294,18 +306,25 @@ public class DelegatesTest extends PivotTestSuite
 		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "OCL load", "\n\t");
 		if (message != null)
 			fail(message);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		message = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Pivot OCL load", "\n\t");
 		if (message != null)
 			fail(message);
-		PivotInstaller.installDelegates(typeManager, pivotRoot);
+		PivotInstaller.installDelegates(metaModelManager, pivotRoot);
 	}
 
 	protected void initPackageRegistrations() {
 		if (!eclipseIsRunning) {
 			resourceSet.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
 			resourceSet.getPackageRegistry().put(NoreflectioncompanyPackage.eNS_URI, NoreflectioncompanyPackage.eINSTANCE);
+		}
+	}
+
+	protected void removePackageRegistrations() {
+		if (!eclipseIsRunning) {
+			resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);
+			resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);
 		}
 	}
 
@@ -407,7 +426,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void doTest_queryExecution(String modelName) {
 		initModel(modelName);
-		configureTypeManagerForDelegate(companyPackage);
+		configureMetaModelManagerForDelegate(companyPackage);
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
@@ -426,7 +445,7 @@ public class DelegatesTest extends PivotTestSuite
 		Map<String, Object> badArguments = new HashMap<String, Object>();
 		badArguments.put(n, amy);
 		executeWithException(delegate, acme, badArguments,
-			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(typeManager, EcorePackage.Literals.ESTRING));
+			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(metaModelManager, EcorePackage.Literals.ESTRING));
 
 		Map<String, Object> arguments = new HashMap<String, Object>();
 		arguments.put(n, "Amy");
@@ -460,7 +479,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void doTest_queryExecutionWithExceptions(String modelName) throws InvocationTargetException {
 		initModel(modelName);
-		configureTypeManagerForDelegate(companyPackage);
+		configureMetaModelManagerForDelegate(companyPackage);
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
@@ -538,7 +557,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivation");
-		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
@@ -547,7 +566,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
-		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
@@ -556,7 +575,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToInvalid");
-		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
 			getBoundMessage(OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
 	}
@@ -760,7 +779,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
-		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
 	}
@@ -769,7 +788,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
-		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
 	}
@@ -778,7 +797,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
-		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
 			OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
 	}
@@ -841,7 +860,7 @@ public class DelegatesTest extends PivotTestSuite
 		Operation o = oce.getReferredOperation();
 		try {
 			@SuppressWarnings("unused")
-			ExpressionInOcl body = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, o);
+			ExpressionInOcl body = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, o);
 			fail("Expected to catch OCLDelegateException");
 		}
 		catch (OCLDelegateException e) {		
@@ -849,7 +868,7 @@ public class DelegatesTest extends PivotTestSuite
 		// and again, now reading from cache
 		try {
 			@SuppressWarnings("unused")
-			ExpressionInOcl bodyStillNull = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, o);
+			ExpressionInOcl bodyStillNull = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, o);
 			fail("Expected to catch OCLDelegateException");
 		}
 		catch (OCLDelegateException e) {		
@@ -1041,33 +1060,35 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	public void validateTutorial(String ecoreURI, String message) {
-		typeManager = new TypeManager();
-		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
-		URI xmiURI = getTestModelURI("model/Tutorial.xmi");
-		Resource ecoreResource = resourceSet.getResource(getTestModelURI(ecoreURI), true);
-		EPackage ePackage = (EPackage) ecoreResource.getContents().get(0);
-		resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
-		Resource xmiResource = resourceSet.getResource(xmiURI, true);
-		EObject rootContent = xmiResource.getContents().get(0);
-		EObject book = null;
-		for (EObject eObject : rootContent.eContents()) {
-			EClass eClass = eObject.eClass();
-			if ("Book".equals(eClass.getName())) {
-				for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
-					if ("name".equals(eFeature.getName())) {
-						String name = (String) eObject.eGet(eFeature);
-						if ("b2".equals(name)) {
-							book = eObject;
-							break;
+		MetaModelManager metaModelManager = new MetaModelManager();
+		try {
+			ResourceSet resourceSet = new ResourceSetImpl();
+			MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+			URI xmiURI = getTestModelURI("model/Tutorial.xmi");
+			Resource ecoreResource = resourceSet.getResource(getTestModelURI(ecoreURI), true);
+			EPackage ePackage = (EPackage) ecoreResource.getContents().get(0);
+			resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+			Resource xmiResource = resourceSet.getResource(xmiURI, true);
+			EObject rootContent = xmiResource.getContents().get(0);
+			EObject book = null;
+			for (EObject eObject : rootContent.eContents()) {
+				EClass eClass = eObject.eClass();
+				if ("Book".equals(eClass.getName())) {
+					for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
+						if ("name".equals(eFeature.getName())) {
+							String name = (String) eObject.eGet(eFeature);
+							if ("b2".equals(name)) {
+								book = eObject;
+								break;
+							}
 						}
 					}
 				}
 			}
+			validateWithWarning("ValidationWithMessage", book,  message);
+		} finally {
+			metaModelManager.dispose();
 		}
-		validateWithWarning("ValidationWithMessage", book,  message);
-		resourceSet.getResources().remove(xmiResource);
-		resourceSet.getResources().remove(ecoreResource);
-		resourceSet.eAdapters().remove(adapter);
 	}
 	
 	void add(EObject owner, EStructuralFeature feature, Object value) {
@@ -1149,7 +1170,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected Type getType(EObject eObject) {
-		return valueFactory.valueOf(eObject).getType(typeManager, null);
+		return valueFactory.valueOf(eObject).getType(metaModelManager, null);
 	}
 
 	public void getWithException(EObject eObject, String featureName, String expectedMessage) {

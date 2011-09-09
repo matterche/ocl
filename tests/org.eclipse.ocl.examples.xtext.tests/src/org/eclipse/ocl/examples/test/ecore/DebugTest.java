@@ -31,7 +31,7 @@ public class DebugTest extends GenericDebugTest {
     @Override
     protected void setUp() {
         super.setUp();
-        pkg1 = typeManager.createPackage("pkg1", null);
+        pkg1 = metaModelManager.createPackage("pkg1", null);
         helper.setContext(getMetaclass(denormalize("%Package")));
     }
 

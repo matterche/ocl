@@ -31,9 +31,9 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * The PrettyPrintNameVisitor supports pretty printing of a name-like description.
@@ -101,7 +101,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 	}
 	
 	protected final PrettyPrintTypeVisitor delegate;
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	
 	/**
 	 * Initializes me.
@@ -112,7 +112,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 		Namespace scope = options.getScope();
 		Resource resource = scope != null ? scope.eResource() : null;
 		ResourceSet resourceSet = resource !=  null ? resource.getResourceSet() : null;
-		typeManager = TypeManager.getAdapter(resourceSet);
+		metaModelManager = MetaModelManager.getAdapter(resourceSet);
 	}
 
 	@Override

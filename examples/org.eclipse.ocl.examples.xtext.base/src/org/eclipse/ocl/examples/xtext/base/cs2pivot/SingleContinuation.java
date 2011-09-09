@@ -16,6 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -25,5 +27,10 @@ public abstract class SingleContinuation<T extends EObject> extends BasicContinu
 	public SingleContinuation(CS2PivotConversion context, Element pivotParent, EStructuralFeature pivotFeature,
 			T csElement, Dependency... dependencies) {
 		super(context, pivotParent, pivotFeature, csElement, dependencies);
+	}
+	
+	public SingleContinuation(CS2PivotConversion context, Element pivotParent, EStructuralFeature pivotFeature,
+			T csElement, List<Dependency> dependencies) {
+		super(context, pivotParent, pivotFeature, csElement, dependencies.toArray(new Dependency[dependencies.size()]));
 	}
 }

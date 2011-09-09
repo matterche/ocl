@@ -45,7 +45,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface MultiplicityElement
-		extends MonikeredElement {
+		extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Is Ordered</b></em>' attribute.

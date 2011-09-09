@@ -16,15 +16,15 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class OCLinEcoreCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends EssentialOCLCSScopeAdapter<CS, P>
+public class OCLinEcoreCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends EssentialOCLCSScopeAdapter<CS, P>
 {
-	public OCLinEcoreCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csElement, pivotClass);
+	public OCLinEcoreCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csElement, pivotClass);
 	}
 	
 }

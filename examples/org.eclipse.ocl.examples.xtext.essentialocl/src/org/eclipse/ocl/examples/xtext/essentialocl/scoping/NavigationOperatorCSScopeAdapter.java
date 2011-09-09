@@ -22,9 +22,9 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -35,8 +35,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 
 public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<NavigationOperatorCS, CallExp>
 {
-	public NavigationOperatorCSScopeAdapter(TypeManager typeManager, NavigationOperatorCS eObject) {
-		super(typeManager, eObject, CallExp.class);
+	public NavigationOperatorCSScopeAdapter(MetaModelManager metaModelManager, NavigationOperatorCS eObject) {
+		super(metaModelManager, eObject, CallExp.class);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 						environmentView.addElementsOfScope(type, scopeView);
 					}
 					else {										// object.oclAsSet()->collection-operation
-						Type setType = typeManager.getSetType(type);
+						Type setType = metaModelManager.getSetType(type);
 						environmentView.addElementsOfScope(setType, scopeView);
 					}
 				}
@@ -82,7 +82,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
-				BaseScopeView baseScopeView = new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
+				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;
 			}

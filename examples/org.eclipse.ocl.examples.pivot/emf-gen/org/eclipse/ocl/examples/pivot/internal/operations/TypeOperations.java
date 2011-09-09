@@ -32,8 +32,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @generated
  */
-public class TypeOperations
-		extends MonikeredElementOperations {
+public class TypeOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

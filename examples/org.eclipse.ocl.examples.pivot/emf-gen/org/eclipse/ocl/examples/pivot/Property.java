@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property</b></em>'.
- * @implements Iterable<Property>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -57,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property
-		extends Feature, ParameterableElement, Iterable<Property> {
+		extends Feature, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.

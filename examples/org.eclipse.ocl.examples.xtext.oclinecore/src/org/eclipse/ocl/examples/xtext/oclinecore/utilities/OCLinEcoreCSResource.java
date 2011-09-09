@@ -21,7 +21,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
@@ -31,8 +31,8 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 	@Override
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			TypeManager typeManager) {
-		return new OCLinEcoreCS2Pivot(cs2pivotResourceMap, typeManager);
+			MetaModelManager metaModelManager) {
+		return new OCLinEcoreCS2Pivot(cs2pivotResourceMap, metaModelManager);
 	}
 
 	@Override

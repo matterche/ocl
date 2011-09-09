@@ -25,33 +25,33 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_NL", "RULE_WORD", "RULE_WS", "RULE_NUMBER", "RULE_LETTER", "RULE_ESCAPED", "RULE_VERTICAL_WS", "RULE_HORIZONTAL_WS", "RULE_ANY_OTHER", "'b'", "'e'", "'bullet'", "'figure'", "'figureRef'", "'footnote'", "'heading'", "'oclCode'", "'oclEval'", "'oclText'", "':'", "'['", "']'", "'#'", "','"
     };
     public static final int RULE_ID=5;
-    public static final int T__29=29;
     public static final int T__28=28;
-    public static final int T__27=27;
-    public static final int T__26=26;
-    public static final int RULE_HORIZONTAL_WS=14;
-    public static final int T__25=25;
-    public static final int T__24=24;
     public static final int T__23=23;
-    public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=15;
-    public static final int T__21=21;
+    public static final int RULE_NUMBER=10;
     public static final int T__20=20;
+    public static final int RULE_STRING=6;
+    public static final int RULE_WORD=8;
+    public static final int T__21=21;
+    public static final int RULE_ESCAPED=12;
+    public static final int T__19=19;
+    public static final int T__22=22;
+    public static final int T__29=29;
+    public static final int RULE_HORIZONTAL_WS=14;
+    public static final int T__30=30;
+    public static final int RULE_WS=9;
+    public static final int T__17=17;
     public static final int RULE_NL=7;
     public static final int EOF=-1;
-    public static final int RULE_LETTER=11;
-    public static final int T__19=19;
-    public static final int T__30=30;
-    public static final int RULE_STRING=6;
-    public static final int T__16=16;
-    public static final int T__18=18;
-    public static final int T__17=17;
-    public static final int RULE_NUMBER=10;
-    public static final int RULE_VERTICAL_WS=13;
-    public static final int RULE_ESCAPED=12;
     public static final int RULE_INT=4;
-    public static final int RULE_WS=9;
-    public static final int RULE_WORD=8;
+    public static final int T__27=27;
+    public static final int T__16=16;
+    public static final int T__24=24;
+    public static final int RULE_VERTICAL_WS=13;
+    public static final int RULE_ANY_OTHER=15;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int RULE_LETTER=11;
+    public static final int T__18=18;
 
     // delegates
     // delegators
@@ -3731,20 +3731,6 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
 
     // Delegated rules
 
-    public final boolean synpred21_InternalMarkup() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred21_InternalMarkup_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred20_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
@@ -3764,6 +3750,20 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         int start = input.mark();
         try {
             synpred17_InternalMarkup_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred16_InternalMarkup() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred16_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3801,20 +3801,6 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred16_InternalMarkup() {
-        state.backtracking++;
-        int start = input.mark();
-        try {
-            synpred16_InternalMarkup_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !state.failed;
-        input.rewind(start);
-        state.backtracking--;
-        state.failed=false;
-        return success;
-    }
     public final boolean synpred15_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
@@ -3829,11 +3815,11 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred14_InternalMarkup() {
+    public final boolean synpred21_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred14_InternalMarkup_fragment(); // can never throw exception
+            synpred21_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3862,6 +3848,20 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         int start = input.mark();
         try {
             synpred11_InternalMarkup_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
+    public final boolean synpred14_InternalMarkup() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred14_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -4127,7 +4127,7 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
     static final String DFA20_acceptS =
         "\1\uffff\1\2\7\uffff\1\1";
     static final String DFA20_specialS =
-        "\2\uffff\1\4\1\1\1\2\1\3\1\0\1\5\1\6\1\uffff}>";
+        "\2\uffff\1\6\1\0\1\3\1\2\1\1\1\4\1\5\1\uffff}>";
     static final String[] DFA20_transitionS = {
             "\1\4\1\2\1\uffff\1\1\1\3\1\5\6\uffff\12\1\1\6\2\1\1\7\1\10",
             "",
@@ -4178,21 +4178,6 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA20_6 = input.LA(1);
-
-                         
-                        int index20_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred43_InternalMarkup()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index20_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA20_3 = input.LA(1);
 
                          
@@ -4207,11 +4192,11 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
                         input.seek(index20_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA20_4 = input.LA(1);
+                    case 1 : 
+                        int LA20_6 = input.LA(1);
 
                          
-                        int index20_4 = input.index();
+                        int index20_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred43_InternalMarkup()) ) {s = 9;}
@@ -4219,10 +4204,10 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index20_4);
+                        input.seek(index20_6);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
+                    case 2 : 
                         int LA20_5 = input.LA(1);
 
                          
@@ -4237,11 +4222,11 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
                         input.seek(index20_5);
                         if ( s>=0 ) return s;
                         break;
-                    case 4 : 
-                        int LA20_2 = input.LA(1);
+                    case 3 : 
+                        int LA20_4 = input.LA(1);
 
                          
-                        int index20_2 = input.index();
+                        int index20_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred43_InternalMarkup()) ) {s = 9;}
@@ -4249,10 +4234,10 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index20_2);
+                        input.seek(index20_4);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 4 : 
                         int LA20_7 = input.LA(1);
 
                          
@@ -4267,7 +4252,7 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
                         input.seek(index20_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
+                    case 5 : 
                         int LA20_8 = input.LA(1);
 
                          
@@ -4280,6 +4265,21 @@ public class InternalMarkupParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index20_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA20_2 = input.LA(1);
+
+                         
+                        int index20_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred43_InternalMarkup()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index20_2);
                         if ( s>=0 ) return s;
                         break;
             }

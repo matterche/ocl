@@ -197,8 +197,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 		{
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.ITERATION__MONIKER:
-				return getMoniker();
 			case PivotPackage.ITERATION__NAME:
 				return getName();
 			case PivotPackage.ITERATION__OWNED_RULE:
@@ -264,9 +262,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.ITERATION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.ITERATION__NAME:
 				setName((String)newValue);
@@ -358,9 +353,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.ITERATION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.ITERATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -443,8 +435,6 @@ public class IterationImpl extends OperationImpl implements Iteration
 		{
 			case PivotPackage.ITERATION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.ITERATION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.ITERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ITERATION__OWNED_RULE:

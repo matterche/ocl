@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -56,8 +56,8 @@ public class ElementValueImpl<E extends Element>
 	}
 
 	@Override
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		EClass eClass = ((EObject)object).eClass();
-		return typeManager.getPivotType(eClass.getName());
+		return metaModelManager.getPivotType(eClass.getName());
 	}
 }

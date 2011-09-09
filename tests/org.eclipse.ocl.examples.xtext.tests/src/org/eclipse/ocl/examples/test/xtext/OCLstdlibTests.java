@@ -20,26 +20,18 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -51,13 +43,6 @@ import com.google.common.collect.Iterables;
  */
 public class OCLstdlibTests extends XtextTestCase
 {
-	public static class MonikeredComparator implements Comparator<MonikeredElement>
-	{
-		public int compare(MonikeredElement o1, MonikeredElement o2) {
-			return o1.getMoniker().compareTo(o2.getMoniker());
-		}
-	}
-
 	/**
 	 * Checks that the local oclstdlib.oclstdlib is the same as the pre-compiled
 	 * Java implementation.
@@ -72,7 +57,6 @@ public class OCLstdlibTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings(null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
@@ -80,7 +64,7 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
-		Resource javaResource = OCLstdlib.INSTANCE;
+		Resource javaResource = OCLstdlib.getDefault();
 //		PivotAliasCreator.refreshPackageAliases(javaResource);
 		assertNoResourceErrors("Java Model", javaResource);
 		assertNoUnresolvedProxies("Java Model", javaResource);
@@ -88,11 +72,11 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		//	Check similar content
 		//
-/*WIP		Map<String,MonikeredElement> fileMoniker2PivotMap = new TypeManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
+/*WIP		Map<String,MonikeredElement> fileMoniker2PivotMap = new MetaModelManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
 //		for (String moniker : fileMoniker2PivotMap.keySet()) {
 //			System.out.println("File : " + moniker);
 //		}
-		Map<String,MonikeredElement> javaMoniker2PivotMap = new TypeManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
+		Map<String,MonikeredElement> javaMoniker2PivotMap = new MetaModelManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
 //		for (String moniker : javaMoniker2PivotMap.keySet()) {
 //			System.out.println("Java : " + moniker);
 //		}
@@ -152,7 +136,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
+		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(1, p1b.getOrder().intValue());
 		assertEquals(3, p1c.getOrder().intValue());
@@ -172,7 +156,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2a = createPrecedence(root2, "B", AssociativityKind.LEFT);
 		Precedence p2b = createPrecedence(root2, "A", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
+		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(1, p1b.getOrder().intValue());
 		assertEquals(1, p2a.getOrder().intValue());
@@ -188,7 +172,7 @@ public class OCLstdlibTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
 		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.RIGHT);
 		rootPackages.add(root2);
-		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
+		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(0, p2a.getOrder().intValue());
 		assertEquals(1, errors.size());
@@ -210,12 +194,11 @@ public class OCLstdlibTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		unloadCS(resourceSet);
-		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			TypeManager typeManager = adapter.getTypeManager();
-			if (typeManager != null) {
-				typeManager.dispose();
+			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			if (metaModelManager != null) {
+				metaModelManager.dispose();
 			}
 		}
 		super.tearDown();
@@ -233,7 +216,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
+		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(2, p1b.getOrder().intValue());
 		assertEquals(3, p1c.getOrder().intValue());
@@ -253,7 +236,7 @@ public class OCLstdlibTests extends XtextTestCase
 		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.LEFT);
 		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
 		rootPackages.add(root2);
-		List<String> errors = new TypeManager().compilePrecedences(rootPackages);
+		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
 		assertEquals(0, p1a.getOrder().intValue());
 		assertEquals(2, p1b.getOrder().intValue());
 		assertEquals(0, p2a.getOrder().intValue());
@@ -278,10 +261,12 @@ public class OCLstdlibTests extends XtextTestCase
 			"           post a: elem;\n"+
 			"       }\n"+
 			"    }\n"+
+			"    type Class conformsTo OclAny {}\n"+	
 			"    type Classifier<T> : ClassifierType conformsTo OclAny {}\n"+
 			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
 			"    type Enumeration conformsTo OclAny {}\n"+
 			"    type Integer : PrimitiveType conformsTo Real {}\n"+
+			"    type OclElement conformsTo OclAny {}\n"+
 			"    type OclInvalid : InvalidType {}\n"+
 			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
 			"    type String : PrimitiveType conformsTo OclAny {}\n"+
@@ -303,11 +288,11 @@ public class OCLstdlibTests extends XtextTestCase
 			"}\n";		
 		doLoadFromString("string.oclstdlib", testFile);
 // FIXME		doLoadFromString("string.oclstdlib", testFile);
-		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
-		TypeManager typeManager = adapter.getTypeManager();
-		AnyType oclAnyType = typeManager.getOclAnyType();
-		Iterable<Operation> ownedOperations = typeManager.getLocalOperations(oclAnyType, null);
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetaModelManager metaModelManager = adapter.getMetaModelManager();
+		AnyType oclAnyType = metaModelManager.getOclAnyType();
+		Iterable<Operation> ownedOperations = metaModelManager.getLocalOperations(oclAnyType, null);
 		assertEquals(1, Iterables.size(ownedOperations));
-		unloadPivot(typeManager);
+		metaModelManager.dispose();
 	}
 }

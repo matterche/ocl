@@ -24,13 +24,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 
-public abstract class StandardDocumentScopeAdapter<CS extends RootPackageCS, P extends MonikeredElement> extends AbstractRootCSScopeAdapter<CS, P>
+public abstract class StandardDocumentScopeAdapter<CS extends RootPackageCS, P extends Element> extends AbstractRootCSScopeAdapter<CS, P>
 {
 //	public static final String OCLSTDLIB_URI = "platform:/plugin/org.eclipse.ocl.examples.xtext.essentialocl/model/oclstdlib.oclstdlib";
 	private static final Logger log = Logger.getLogger(StandardDocumentScopeAdapter.class);
@@ -38,8 +38,8 @@ public abstract class StandardDocumentScopeAdapter<CS extends RootPackageCS, P e
 //	protected Map<String, org.eclipse.ocl.examples.pivot.Package> libraryNameMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 //	protected Map<String, Type> libraryTypeMap = new HashMap<String, Type>();
 
-	public StandardDocumentScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csElement, pivotClass);
+	public StandardDocumentScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csElement, pivotClass);
 	}
 
 	@Override

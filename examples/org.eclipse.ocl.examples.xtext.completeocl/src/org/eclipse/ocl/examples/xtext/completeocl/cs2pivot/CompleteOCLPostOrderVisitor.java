@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
@@ -154,20 +153,6 @@ public class CompleteOCLPostOrderVisitor
 			intermediate.put(constrainedPivot, csConstraints);
 		}
 		csConstraints.add(csNewConstraint);
-		StringBuffer s = new StringBuffer();
-		s.append(constrainedPivot.getMoniker());
-		s.append(PivotConstants.MONIKER_SCOPE_SEPARATOR);
-		s.append(stereotype);
-		s.append(PivotConstants.MONIKER_OPERATOR_SEPARATOR);
-		if (newName != null) {
-			s.append(newName);
-		}
-		if (index != 0) {
-			s.append(PivotConstants.MONIKER_OPERATOR_SEPARATOR);
-			s.append(index);
-		}
-		String moniker = s.toString();
-//		((ContextConstraintCSImpl)csNewConstraint).setMoniker(moniker);
 		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csNewConstraint);
 //		context.installPivotElement(csNewConstraint, pivotElement);
 //		context.refreshName(pivotElement, csNewConstraint.getName());

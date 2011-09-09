@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class ImplicitCollectFilter extends AbstractOperationFilter
@@ -37,8 +37,8 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 	/**
 	 * Configure an OperationFilter for an implicit collect.
 	 */
-	public ImplicitCollectFilter(TypeManager typeManager, CollectionType sourceType, Type iteratorType) {
-		super(typeManager, sourceType);
+	public ImplicitCollectFilter(MetaModelManager metaModelManager, CollectionType sourceType, Type iteratorType) {
+		super(metaModelManager, sourceType);
 		this.iteratorType = iteratorType;
 	}
 

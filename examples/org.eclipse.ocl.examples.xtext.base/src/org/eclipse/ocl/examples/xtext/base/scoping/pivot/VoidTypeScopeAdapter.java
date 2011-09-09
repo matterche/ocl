@@ -17,30 +17,29 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class VoidTypeScopeAdapter extends ClassScopeAdapter
 {
-	public VoidTypeScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(typeManager, pivotElement);
+	public VoidTypeScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		super.computeLookup(environmentView, scopeView);
 		if (!environmentView.hasFinalResult()) {
-			TypeManager typeManager = environmentView.getTypeManager();
-			for (String packageMoniker : typeManager.getAllPackages()) {
-				org.eclipse.ocl.examples.pivot.Package primaryPackage = typeManager.getPrimaryPackage(packageMoniker);
-				if (primaryPackage != typeManager.getOrphanPackage()) {
-					for (Type aType : typeManager.getLocalClasses(primaryPackage)) {
-						org.eclipse.ocl.examples.pivot.Class primaryClass = typeManager.getPrimaryClass(aType);
-						environmentView.addNamedElements(typeManager.getLocalOperations(primaryClass, Boolean.FALSE));
-						environmentView.addNamedElements(typeManager.getLocalProperties(primaryClass, Boolean.FALSE));
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+			for (org.eclipse.ocl.examples.pivot.Package primaryPackage : metaModelManager.getAllPackages()) {
+//				if (primaryPackage != metaModelManager.getOrphanPackage()) {
+					for (Type aType : metaModelManager.getLocalClasses(primaryPackage)) {
+						Type primaryType = metaModelManager.getPrimaryType(aType);
+						environmentView.addNamedElements(metaModelManager.getLocalOperations(primaryType, Boolean.FALSE));
+						environmentView.addNamedElements(metaModelManager.getLocalProperties(primaryType, Boolean.FALSE));
 					}
-				}
+//				}
 			}
 		}
 		return scopeView.getOuterScope();

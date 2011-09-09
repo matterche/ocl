@@ -28,15 +28,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2UML extends AbstractConversion
 {
-	public static List<EObject> createResource(TypeManager typeManager, Resource pivotResource) {
+	public static List<EObject> createResource(MetaModelManager metaModelManager, Resource pivotResource) {
 		List<EObject> pivotRoots = pivotResource.getContents();
-		Pivot2UML converter = new Pivot2UML(typeManager);
+		Pivot2UML converter = new Pivot2UML(metaModelManager);
 		return converter.convertAll(pivotRoots);
 	}
 
@@ -56,14 +56,14 @@ public class Pivot2UML extends AbstractConversion
 	protected final Pivot2UMLDeclarationVisitor pass1 = new Pivot2UMLDeclarationVisitor(this);	
 	protected final Pivot2UMLReferenceVisitor pass2 = new Pivot2UMLReferenceVisitor(this);
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 //	protected final ResourceSet resourceSet;
 //	protected final Resource csResource;
 //	protected final XMLResource eResource;
 	
 
-	public Pivot2UML(TypeManager typeManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
-		this.typeManager = typeManager;
+	public Pivot2UML(MetaModelManager metaModelManager/*ResourceSet resourceSet, Resource csResource, URI ecoreURI*/) {
+		this.metaModelManager = metaModelManager;
 //		this.resourceSet = resourceSet;
 //		this.csResource = csResource;
 //		this.eResource = (XMLResource) new EcoreResourceFactoryImpl().createResource(ecoreURI);
@@ -124,8 +124,8 @@ public class Pivot2UML extends AbstractConversion
 		return castElement;
 	}
 	
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 
 	public void putCreated(Element pivotElement, EModelElement eModelElement) {

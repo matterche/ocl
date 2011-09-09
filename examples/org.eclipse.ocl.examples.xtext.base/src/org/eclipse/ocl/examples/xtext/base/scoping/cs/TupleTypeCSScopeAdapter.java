@@ -17,20 +17,20 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TupleTypeCSScopeAdapter extends BaseCSScopeAdapter<TupleTypeCS, TupleType>
+public class TupleTypeCSScopeAdapter extends ElementRefCSScopeAdapter<TupleTypeCS, TupleType>
 {
-	public TupleTypeCSScopeAdapter(TypeManager typeManager, TupleTypeCS csElement) {
-		super(typeManager, csElement, TupleType.class);
+	public TupleTypeCSScopeAdapter(MetaModelManager metaModelManager, TupleTypeCS csElement) {
+		super(metaModelManager, csElement, TupleType.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		environmentView.addNamedElements(target.getOwnedParts());
+		environmentView.addNamedElements(target.getOwnedParts());		// FIXME Pivot lookup
 		return scopeView.getOuterScope();
 	}
 }

@@ -17,13 +17,13 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 
-public class TemplateBindingCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateBindingCS, TemplateBinding>
+public class TemplateBindingCSScopeAdapter extends ElementRefCSScopeAdapter<TemplateBindingCS, TemplateBinding>
 {
-	public TemplateBindingCSScopeAdapter(TypeManager typeManager, TemplateBindingCS csElement) {
-		super(typeManager, csElement, TemplateBinding.class);
+	public TemplateBindingCSScopeAdapter(MetaModelManager metaModelManager, TemplateBindingCS csElement) {
+		super(metaModelManager, csElement, TemplateBinding.class);
 	}
 
 /*	@Override

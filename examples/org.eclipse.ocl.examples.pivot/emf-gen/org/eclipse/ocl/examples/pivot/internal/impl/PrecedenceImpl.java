@@ -177,8 +177,6 @@ public class PrecedenceImpl
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.PRECEDENCE__MONIKER:
-				return getMoniker();
 			case PivotPackage.PRECEDENCE__NAME:
 				return getName();
 			case PivotPackage.PRECEDENCE__OWNED_RULE:
@@ -208,9 +206,6 @@ public class PrecedenceImpl
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.PRECEDENCE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.PRECEDENCE__NAME:
 				setName((String)newValue);
@@ -248,9 +243,6 @@ public class PrecedenceImpl
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.PRECEDENCE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.PRECEDENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -284,8 +276,6 @@ public class PrecedenceImpl
 		{
 			case PivotPackage.PRECEDENCE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.PRECEDENCE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.PRECEDENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PRECEDENCE__OWNED_RULE:

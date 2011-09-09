@@ -21,7 +21,7 @@ package org.eclipse.ocl.examples.pivot.evaluation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -38,8 +38,8 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     /**
      * Initializes me.
      */
-    public PivotEvaluationEnvironment(TypeManager typeManager) {
-        super(typeManager);
+    public PivotEvaluationEnvironment(MetaModelManager metaModelManager) {
+        super(metaModelManager);
     }
 
     /**
@@ -327,7 +327,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
             object = ((ObjectValue) object).getObject();
         }
         if (object instanceof EObject) {
-            return new PivotModelManager(typeManager, (EObject) object);
+            return new PivotModelManager(metaModelManager, (EObject) object);
         }
         return ModelManager.NULL;
     }
@@ -425,6 +425,6 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 //    }
 
 	public ValueFactory getValueFactory() {
-		return typeManager.getValueFactory();
+		return metaModelManager.getValueFactory();
 	}
 }

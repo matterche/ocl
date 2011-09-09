@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -52,7 +52,8 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 		this.pivotParent = pivotParent;
 		this.pivotFeature = pivotFeature;
 		this.csElement = csElement;
-		this.dependencies = dependencies;
+		this.dependencies = dependencies != null ? dependencies : new Dependency[0];
+		assert csElement != null;
 	}
 
 	public void addError(String message) {
@@ -90,6 +91,8 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 	public String toString() {
 		StringBuffer s = new StringBuffer();
 		s.append(getClass().getSimpleName());		
+		s.append("@");		
+		s.append(Integer.toHexString(hashCode()));		
 		s.append(" : ");		
 		if (pivotParent != null) {
 			s.append(pivotParent.eClass().getName());		
@@ -104,11 +107,9 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 		s.append(pivotFeature != null ? pivotFeature.getName() : "*");
 		s.append(" : ");
 		String elementName = null;
-		if (csElement instanceof MonikeredElementCS) {
-			MonikeredElementCS csMonikeredElement = (MonikeredElementCS) csElement;
-//			if (csMonikeredElement.hasMoniker()) {
-//				elementName = csMonikeredElement.getMoniker();
-//			}
+		if (csElement instanceof ModelElementCS) {
+			ModelElementCS csModelElement = (ModelElementCS) csElement;
+			elementName = CS2Moniker.toString(csModelElement);
 		}
 		if (elementName == null) {
 			elementName = csElement.toString();

@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,7 +33,6 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -57,15 +55,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
+import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -81,15 +78,12 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagedAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.test.xtext.DiffToText;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -113,8 +107,12 @@ import org.eclipse.xtext.resource.XtextResource;
 
 public class XtextTestCase extends TestCase
 {	
-	private static final class TestCaseAppender extends ConsoleAppender {
+	public static final class TestCaseAppender extends ConsoleAppender
+	{
+		private static Logger rootLogger = Logger.getRootLogger();
 
+		private boolean installed = false;
+		
 		public TestCaseAppender() {
 			super(new SimpleLayout(), SYSTEM_OUT); 
 			setName("TestHarness");
@@ -130,7 +128,23 @@ public class XtextTestCase extends TestCase
 			}
 //			super.append(event);
 		}
+		
+		public void install() {
+			if (!installed) {
+				rootLogger.addAppender(this);
+				installed = true;
+			}
+		}
+		
+		public void uninstall() {
+			rootLogger.removeAppender(this);
+			installed = false;
+		}
 	}
+	
+	public static TestCaseAppender testCaseAppender = new TestCaseAppender();
+	
+	protected static boolean noDebug = false;
 
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
@@ -171,6 +185,12 @@ public class XtextTestCase extends TestCase
 			fail(s.toString());
 		}
 	}
+	
+	public static void debugPrintln(String string) {
+		if (!noDebug) {
+			System.out.println(string);
+		}		
+	}
 
 	protected void assertNoValidationErrors(String string, Resource resource) {
 		for (EObject eObject : resource.getContents()) {
@@ -197,12 +217,12 @@ public class XtextTestCase extends TestCase
 		ResourceSet reloadResourceSet = new ResourceSetImpl();
 		reloadResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
 		Resource reloadedPivotResource = reloadResourceSet.getResource(pivotURI, true);
-		TypeManager typeManager = new TypeManager();
+		MetaModelManager metaModelManager = new MetaModelManager();
 		for (TreeIterator<EObject> tit = reloadedPivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
 				org.eclipse.ocl.examples.pivot.Package pkg = (org.eclipse.ocl.examples.pivot.Package) eObject;
-				typeManager.installPackageMoniker(pkg, false);
+				metaModelManager.addPackage(pkg);
 			}
 			else {
 				tit.prune();
@@ -212,7 +232,7 @@ public class XtextTestCase extends TestCase
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
 				org.eclipse.ocl.examples.pivot.Package pkg = (org.eclipse.ocl.examples.pivot.Package) eObject;
-				typeManager.addPackage(pkg);
+				metaModelManager.addPackage(pkg);
 			}
 			else {
 				tit.prune();
@@ -317,7 +337,7 @@ public class XtextTestCase extends TestCase
 		return s != null ? s.toString() : null;
 	}
 
-	protected static boolean hasCorrespondingCS(MonikeredElement pivotElement) {
+	protected static boolean hasCorrespondingCS(Element pivotElement) {
 		if (!isValidPivot(pivotElement)) {
 			return false;
 		}
@@ -347,7 +367,7 @@ public class XtextTestCase extends TestCase
 //		return true;
 //	}
 
-	protected static boolean hasCorrespondingPivot(MonikeredElementCS csElement) {
+	protected static boolean hasCorrespondingPivot(ModelElementCS csElement) {
 		if (csElement instanceof TupleTypeCS) {
 			return true;
 		}
@@ -384,7 +404,7 @@ public class XtextTestCase extends TestCase
 		return true;
 	}
 
-	protected static boolean hasUniqueMoniker(MonikeredElementCS csElement) {
+	protected static boolean hasUniqueMoniker(ModelElementCS csElement) {
 		if (csElement instanceof TupleTypeCS) {
 			return false;
 		}
@@ -433,7 +453,7 @@ public class XtextTestCase extends TestCase
 			return false;
 		}
 		if (pivotElement instanceof TupleType) {
-			return TypeManager.isLibraryType((TupleType)pivotElement);
+			return PivotUtil.isLibraryType((TupleType)pivotElement);
 		}
 		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
 			return false;
@@ -443,39 +463,10 @@ public class XtextTestCase extends TestCase
 		}
 		return true;
 	}
-
-	public static void unloadCS(ResourceSet resourceSet) {
-		for (Resource resource : resourceSet.getResources()) {
-			TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
-			if (adapter != null) {
-				adapter.dispose();
-			}
-		}
-	}
-
-	public static void unloadPivot(TypeManager typeManager) {
-		List<TypeManagedAdapter> adapters = new ArrayList<TypeManagedAdapter>();
-		for (Resource resource : typeManager.getPivotResourceSet().getResources()) {
-			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				for (Adapter adapter : eObject.eAdapters()) {
-					if (adapter instanceof TypeManagedAdapter) {
-						adapters.add((TypeManagedAdapter)adapter);
-					}
-				}
-			}
-		}
-		for (TypeManagedAdapter adapter : adapters) {
-			adapter.dispose();
-		}
-		typeManager.dispose();
-	}
 	
 	protected ResourceSet resourceSet;
-	protected Logger rootLogger = Logger.getRootLogger();
-	protected TestCaseAppender testCaseAppender = new TestCaseAppender();
 
-	protected XtextResource savePivotAsCS(TypeManager typeManager, Resource pivotResource, URI outputURI) throws IOException {
+	protected XtextResource savePivotAsCS(MetaModelManager metaModelManager, Resource pivotResource, URI outputURI) throws IOException {
 //		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
 //		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
 //		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
@@ -484,7 +475,7 @@ public class XtextTestCase extends TestCase
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 		cs2PivotResourceMap.put(xtextResource, pivotResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, metaModelManager);
 		pivot2cs.update();
 		assertNoResourceErrors("Conversion failed", xtextResource);
 //		csResource.save(null);
@@ -511,21 +502,21 @@ public class XtextTestCase extends TestCase
 		return xtextResource;
 	}
 	
-	public void createEcoreFile(TypeManager typeManager, String fileName, String fileContent) throws IOException {
+	public void createEcoreFile(MetaModelManager metaModelManager, String fileName, String fileContent) throws IOException {
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(fileName);
 		CS2PivotResourceAdapter adapter = null;
 		try {
-			ResourceSet resourceSet2 = typeManager.getExternalResourceSet();
+			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(inputURI, true);
 			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-			Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, null);
+			Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, null);
 			assertNoResourceErrors("To Ecore errors", ecoreResource);
 			ecoreResource.save(null);
 		}
@@ -543,8 +534,8 @@ public class XtextTestCase extends TestCase
 		writer.close();
 	}
 
-	protected Resource getPivotFromEcore(TypeManager typeManager, Resource ecoreResource) {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+	protected Resource getPivotFromEcore(MetaModelManager metaModelManager, Resource ecoreResource) {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
 		assertNoResourceErrors("Normalisation failed", pivotResource);
@@ -617,12 +608,12 @@ public class XtextTestCase extends TestCase
 		}
 	}
 
-	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
-		return savePivotAsEcore(typeManager, pivotResource, ecoreURI, null, validateSaved);
+	protected Resource savePivotAsEcore(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
+		return savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, null, validateSaved);
 	}
-	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options, boolean validateSaved) throws IOException {
+	protected Resource savePivotAsEcore(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options, boolean validateSaved) throws IOException {
 		URI uri = ecoreURI != null ? ecoreURI : URI.createURI("test.ecore");
-		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, uri, null);
+		Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, uri, null);
 		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
@@ -633,8 +624,8 @@ public class XtextTestCase extends TestCase
 		return ecoreResource;
 	}
 
-	protected Resource savePivotFromCS(TypeManager typeManager, BaseCSResource xtextResource, URI pivotURI) throws IOException {
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
+	protected Resource savePivotFromCS(MetaModelManager metaModelManager, BaseCSResource xtextResource, URI pivotURI) throws IOException {
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
 		if (pivotURI != null) {
@@ -646,10 +637,8 @@ public class XtextTestCase extends TestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-//		System.out.println("---------------Starting " + getName() + "---------------");
-//		rootLogger.setLevel(Level.TRACE);
-		rootLogger.addAppender(testCaseAppender);
-//		rootLogger.removeAppender("default");
+    	testCaseAppender.install();
+//    	System.out.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
 		CompleteOCLStandaloneSetup.doSetup();
 		OCLinEcoreStandaloneSetup.doSetup();
 		OCLstdlibStandaloneSetup.doSetup();
@@ -664,7 +653,7 @@ public class XtextTestCase extends TestCase
 //		URI projectURI = getProjectFileURI("dummy");
 //		URI projectOCLstdlibURI = URI.createURI("oclstdlib.oclstdlib").resolve(projectURI);
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
-		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
+		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
 
         String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
         EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
@@ -679,40 +668,11 @@ public class XtextTestCase extends TestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
-		try {
-			if (rsAdapter != null) {
-				TypeManager typeManager = rsAdapter.getTypeManager();
-				if (typeManager != null) {
-					ResourceSet pivotResourceSet = typeManager.getPivotResourceSet();
-					for (Resource resource : pivotResourceSet.getResources()) {
-						for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-							EObject eObject = tit.next();
-							for (Adapter adapter : eObject.eAdapters()) {
-								assert !(adapter instanceof TypeManagedAdapter);
-							}
-						}
-					}
-				}
-			}
-			for (Resource resource : resourceSet.getResources()) {
-				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
-					EObject eObject = tit.next();
-					for (Adapter adapter : eObject.eAdapters()) {
-						assert !(adapter instanceof TypeManagedAdapter);
-					}
-				}
-			}		
-			resourceSet.getResources().clear();
-			resourceSet = null;
-		} finally {
-			if (resourceSet != null) {
-				unloadCS(resourceSet);
-			}
-			if (rsAdapter != null) {
-				unloadPivot(rsAdapter.getTypeManager());
-			}
-			super.tearDown();
-		}
+		resourceSet = null;
+//		OCLstdlib.uninstall();	
+//		System.gc();
+//		System.runFinalization();
+//		debugPrintln("==> Finish " + getName());
+		super.tearDown();
 	}
 }

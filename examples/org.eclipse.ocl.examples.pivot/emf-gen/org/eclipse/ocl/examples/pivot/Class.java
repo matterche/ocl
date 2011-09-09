@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
- * @implements Iterable<Class>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -46,7 +45,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Class
-		extends Type, Namespace, Iterable<Class> {
+		extends Type, Namespace {
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.

@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * org.eclipse.emf.ecore.impl.DynamicEObjectImpl@c80233 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@10894ef (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))
+ * $Id$
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -58,6 +58,7 @@ public interface BaseCSVisitor<R, C>
 	R visitDetailCS(org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS object);
 	R visitDocumentationCS(org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS object);
 	R visitElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS object);
+	R visitElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS object);
 	R visitEnumerationCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS object);
 	R visitEnumerationLiteralCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS object);
 	R visitImportCS(org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS object);
@@ -65,11 +66,11 @@ public interface BaseCSVisitor<R, C>
 	R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object);
 	R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object);
 	R visitModelElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS object);
-	R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object);
 	R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object);
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);
 	R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object);
 	R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object);
+	R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object);
 	R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object);
 	R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object);
 	R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object);

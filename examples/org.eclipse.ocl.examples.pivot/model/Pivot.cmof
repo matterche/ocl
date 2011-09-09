@@ -64,9 +64,6 @@
     <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_E9CvYMpCEd-ZL8lMORCEkg" receivingPackage="_0">
       <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_431tkMpAEd-ZL8lMORCEkg"/>
     </packageMerge>
-    <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_PyUKkMinEd-sJIf4tYBt-g" receivingPackage="_0">
-      <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_ReAs0MimEd-sJIf4tYBt-g"/>
-    </packageMerge>
     <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_9WAj4MlBEd-bx742yyafXQ" receivingPackage="_0">
       <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_t35skMlAEd-bx742yyafXQ"/>
     </packageMerge>

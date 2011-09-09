@@ -93,6 +93,14 @@ public interface StandardLibrary
 	AnyType getOclAnyType();
 	
     /**
+     * Obtains the single instance of the {@link Class} metatype, named
+     * <tt>OclElement</tt>.
+     * 
+     * @return the <tt>OclElement</tt> type (an instance of {@link Class})
+     */
+	org.eclipse.ocl.examples.pivot.Class getOclElementType();
+	
+    /**
      * Obtains the single instance of the {@link InvalidType} metatype, named
      * <tt>OclInvalid</tt>.
      * 

@@ -34,7 +34,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface TemplateableElementCS extends MonikeredElementCS {
+public interface TemplateableElementCS extends ElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS#getOwningTemplateElement <em>Owning Template Element</em>}'.

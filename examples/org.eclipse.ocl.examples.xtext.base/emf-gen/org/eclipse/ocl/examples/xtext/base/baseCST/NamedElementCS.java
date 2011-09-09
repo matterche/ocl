@@ -33,10 +33,11 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getNamedElementCS()
- * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS org.eclipse.ocl.examples.pivot.Nameable"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS org.eclipse.ocl.examples.pivot.Nameable"
  * @generated
  */
-public interface NamedElementCS extends MonikeredElementCS, Nameable {
+public interface NamedElementCS extends ModelElementCS, Nameable {
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

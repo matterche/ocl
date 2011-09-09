@@ -124,19 +124,19 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			sourceValue = source.accept(undecoratedVisitor);
 		}
 		catch (InvalidEvaluationException e) {
-			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
+			sourceValue = metaModelManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
  		Operation dynamicOperation = staticOperation;
 		if (!staticOperation.isStatic()) {
-			Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
-			dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
+			Type dynamicSourceType = sourceValue.getType(metaModelManager, staticSourceType);
+			dynamicOperation = metaModelManager.getDynamicOperation(dynamicSourceType, staticOperation);
 	 		if (dynamicOperation == null) {
 	 			dynamicOperation = staticOperation;
 	 		}
 		}
 		CallableImplementation implementation;
 		try {
-			implementation = typeManager.getImplementation(dynamicOperation);
+			implementation = metaModelManager.getImplementation(dynamicOperation);
 		} catch (Exception e) {
 			String implementationClass = dynamicOperation.getImplementationClass();
 			if (implementationClass != null) {
@@ -173,21 +173,21 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			sourceValue = source.accept(undecoratedVisitor);
 		}
 		catch (InvalidEvaluationException e) {
-			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
+			sourceValue = metaModelManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
- 		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
+ 		Type dynamicSourceType = sourceValue.getType(metaModelManager, staticSourceType);
 		List<OclExpression> args = ((OperationCallExp)callExp).getArguments();
 		OclExpression arg = args.get(0);
 		Value argValue =  arg.accept(undecoratedVisitor);
-		Type argType = argValue.getType(typeManager, arg.getType());
-		Type commonType = typeManager.getCommonType(dynamicSourceType, argType, null);
-		Operation dynamicOperation = typeManager.getDynamicOperation(commonType, staticOperation);
+		Type argType = argValue.getType(metaModelManager, arg.getType());
+		Type commonType = metaModelManager.getCommonType(dynamicSourceType, argType, null);
+		Operation dynamicOperation = metaModelManager.getDynamicOperation(commonType, staticOperation);
  		if (dynamicOperation == null) {
  			dynamicOperation = staticOperation;
  		}
  		Value.BinaryOperation implementation;
 		try {
-			implementation = (Value.BinaryOperation)typeManager.getImplementation(dynamicOperation);
+			implementation = (Value.BinaryOperation)metaModelManager.getImplementation(dynamicOperation);
 		} catch (Exception e) {
 			String implementationClass = dynamicOperation.getImplementationClass();
 			if (implementationClass != null) {
@@ -199,7 +199,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		Value result = null;
 		try {
-			result = implementation.evaluate(typeManager.getValueFactory(), sourceValue, argValue);
+			result = implementation.evaluate(metaModelManager.getValueFactory(), sourceValue, argValue);
 		}
 		catch (EvaluationException e) {
 			throw e;
@@ -538,7 +538,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Property property = propertyCallExp.getReferredProperty();
 		CallableImplementation implementation;
 		try {
-			implementation = typeManager.getImplementation(property);
+			implementation = metaModelManager.getImplementation(property);
 		} catch (Exception e) {
 			String implementationClass = property.getImplementationClass();
 			if (implementationClass != null) {
@@ -616,7 +616,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part, part.accept(getUndecoratedVisitor()));
 		}
-//		TupleType tupleType = typeManager.getTupleType(type.getName(), propertyValues.keySet());
+//		TupleType tupleType = metaModelManager.getTupleType(type.getName(), propertyValues.keySet());
 		return valueFactory.createTupleValue((TupleType) type, propertyValues);
 	}
 	

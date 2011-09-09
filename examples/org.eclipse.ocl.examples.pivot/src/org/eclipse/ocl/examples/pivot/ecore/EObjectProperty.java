@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /** 
@@ -52,7 +52,7 @@ public class EObjectProperty implements CallableImplementation
 		return evaluationVisitor.getValueFactory().valueOf(eValue, eFeature);
 	}
 
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		return null;
 	}
 }

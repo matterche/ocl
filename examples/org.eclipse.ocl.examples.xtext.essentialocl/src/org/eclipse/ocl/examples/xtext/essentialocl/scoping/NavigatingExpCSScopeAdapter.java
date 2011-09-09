@@ -25,9 +25,9 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -42,8 +42,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, CallExp>
 {
-	public NavigatingExpCSScopeAdapter(TypeManager typeManager, NavigatingExpCS eObject) {
-		super(typeManager, eObject, CallExp.class);
+	public NavigatingExpCSScopeAdapter(MetaModelManager metaModelManager, NavigatingExpCS eObject) {
+		super(metaModelManager, eObject, CallExp.class);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
-				BaseScopeView baseScopeView = new BaseScopeView(typeManager, getParent(), target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, getParent(), target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;
 			}
@@ -138,10 +138,10 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					type = source.getType();
 				}
 			}
-			EnvironmentView.Filter filter = new OperationFilter(typeManager, type, target);
+			EnvironmentView.Filter filter = new OperationFilter(metaModelManager, type, target);
 			try {
 				environmentView.addFilter(filter);
-				BaseScopeView baseScopeView = new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
+				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;
 			}

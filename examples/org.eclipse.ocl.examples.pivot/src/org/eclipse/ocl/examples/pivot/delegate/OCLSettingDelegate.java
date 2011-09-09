@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
@@ -36,7 +36,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
-	protected final OCLDelegateDomain delegateDomain;
+	protected OCLDelegateDomain delegateDomain;
 	private Property property;
 	private ExpressionInOcl specification;
 
@@ -54,17 +54,17 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		OCL ocl = delegateDomain.getOCL();
-		TypeManager typeManager = ocl.getEnvironment().getTypeManager();
+		MetaModelManager metaModelManager = ocl.getEnvironment().getMetaModelManager();
 		if (specification == null) {
 			if (property == null) {
 				property = delegateDomain.getPivot(Property.class, eStructuralFeature);
 			}
-			specification = SettingBehavior.INSTANCE.getExpressionInOcl(typeManager, property);
+			specification = SettingBehavior.INSTANCE.getExpressionInOcl(metaModelManager, property);
 		}
 		OCL.Query query = ocl.createQuery(specification);
 		try {
 			Value result = query.evaluate(owner);
-			ValueFactory valueFactory = typeManager.getValueFactory();
+			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			return valueFactory.getEcoreValueOf(result);
 		}
 		catch (EvaluationException e) {

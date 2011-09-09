@@ -23,7 +23,7 @@ import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -125,13 +125,13 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 		return (List<Value>)elements;
 	}
 
-    public Type getType(TypeManager typeManager, Type staticType) {
+    public Type getType(MetaModelManager metaModelManager, Type staticType) {
     	if (type == null) {
     		if ((elements.getFirst() >= 0) && (elements.getLast() >= 0)) {
-    			type = typeManager.getCollectionType(true, false, typeManager.getUnlimitedNaturalType());
+    			type = metaModelManager.getCollectionType(true, false, metaModelManager.getUnlimitedNaturalType());
     		}
     		else{
-    			type = typeManager.getCollectionType(true, false, typeManager.getIntegerType());
+    			type = metaModelManager.getCollectionType(true, false, metaModelManager.getIntegerType());
     		}
     	}
 		return type;

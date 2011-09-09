@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  *
  * @generated
  */
-public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements PackageDeclarationCS {
+public class PackageDeclarationCSImpl extends ModelElementCSImpl implements PackageDeclarationCS {
 	/**
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
 	 * <!-- begin-user-doc -->

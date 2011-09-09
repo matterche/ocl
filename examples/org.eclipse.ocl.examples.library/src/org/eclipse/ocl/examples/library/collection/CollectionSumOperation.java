@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -39,12 +39,12 @@ public class CollectionSumOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		ValueFactory valueFactory = typeManager.getValueFactory();
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+		ValueFactory valueFactory = metaModelManager.getValueFactory();
 		// FIXME Bug 301351 Look for user-defined zero
 		Type resultType = operationCall.getType();
 //		resultType.getZero();
-		if (typeManager.conformsTo(resultType, typeManager.getIntegerType(), null)) {
+		if (metaModelManager.conformsTo(resultType, metaModelManager.getIntegerType(), null)) {
 			return collectionValue.sum(IntegerPlusOperation.INSTANCE, valueFactory.integerValueOf(0));
 		}
 		else {

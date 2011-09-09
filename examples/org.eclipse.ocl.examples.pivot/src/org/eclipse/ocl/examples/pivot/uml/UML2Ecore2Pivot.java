@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -40,11 +40,11 @@ import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 public class UML2Ecore2Pivot extends Ecore2Pivot
 {
-	private static final class Factory implements TypeManager.Factory
+	private static final class Factory implements MetaModelManager.Factory
 	{
 		private Factory() {
 			UMLPackage.eINSTANCE.getClass();
-			TypeManager.addFactory(this);
+			MetaModelManager.addFactory(this);
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -55,11 +55,11 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			UML2Ecore2Pivot.initialize(resourceSet);
 		}
 
-		public Element importFromResource(TypeManager typeManager, Resource umlResource, String uriFragment) {
+		public Element importFromResource(MetaModelManager metaModelManager, Resource umlResource, String uriFragment) {
 			if (umlResource == null) {
 				return null;
 			}
-			UML2Ecore2Pivot conversion = getAdapter(umlResource, typeManager);
+			UML2Ecore2Pivot conversion = getAdapter(umlResource, metaModelManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 			if (uriFragment == null) {
 				return pivotRoot;
@@ -74,13 +74,13 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		}
 	}
 
-	public static TypeManager.Factory FACTORY = new Factory();
+	public static MetaModelManager.Factory FACTORY = new Factory();
 //	private static final Logger logger = Logger.getLogger(UML2Ecore2Pivot.class);
 
 	// FIXME this is a prehistoric value
 //	private static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
 
-	public static UML2Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
+	public static UML2Ecore2Pivot getAdapter(Resource resource, MetaModelManager metaModelManager) {
 		if (resource == null) {
 			return null;
 		}
@@ -89,7 +89,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		if (adapter != null) {
 			return adapter;
 		}
-		adapter = new UML2Ecore2Pivot(resource, typeManager);
+		adapter = new UML2Ecore2Pivot(resource, metaModelManager);
 		eAdapters.add(adapter);
 		return adapter;
 	}
@@ -102,11 +102,11 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static org.eclipse.ocl.examples.pivot.Package importFromUML(TypeManager typeManager, String alias, Resource umlResource) {
+	public static org.eclipse.ocl.examples.pivot.Package importFromUML(MetaModelManager metaModelManager, String alias, Resource umlResource) {
 		if (umlResource == null) {
 			return null;
 		}
-		UML2Ecore2Pivot conversion = getAdapter(umlResource, typeManager);
+		UML2Ecore2Pivot conversion = getAdapter(umlResource, metaModelManager);
 		return conversion.getPivotRoot();
 	}
 
@@ -173,12 +173,12 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * 
 	 * @return the pivot element
 	 *
-	public static Element importFromUML(TypeManager typeManager, String alias, EObject eObject) {
+	public static Element importFromUML(MetaModelManager metaModelManager, String alias, EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
 		Resource ecoreResource = eObject.eResource();
-		UML2Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
+		UML2Ecore2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 		if (pivotRoot == null) {
 			return null;
@@ -190,10 +190,15 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	private UML2EcoreConverter uml2EcoreConverter = null;
 	private Map<String, String> options = null;
 
-	public UML2Ecore2Pivot(Resource umlResource, TypeManager typeManager) {
-		super(typeManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension(".ecore")), typeManager);
+	public UML2Ecore2Pivot(Resource umlResource, MetaModelManager metaModelManager) {
+		super(metaModelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension(".ecore")), metaModelManager);
 		this.umlResource = umlResource;
-		typeManager.addExternalResource(this);
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+//		CacheAdapter.INSTANCE.clear(umlResource);
 	}
 
 	@Override
@@ -259,5 +264,10 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	@Override
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || (newTarget == umlResource);
+	}
+
+	@Override
+	public void unsetTarget(Notifier oldTarget) {
+		assert (oldTarget == umlResource);
 	}
 }

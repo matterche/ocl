@@ -26,8 +26,8 @@ import java.util.List;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -170,7 +170,7 @@ public class OrderedSetValueImpl
 	    return CollectionKind.ORDERED_SET;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		return staticType; // standardLibrary.getOrderedSetType();
 	}
 

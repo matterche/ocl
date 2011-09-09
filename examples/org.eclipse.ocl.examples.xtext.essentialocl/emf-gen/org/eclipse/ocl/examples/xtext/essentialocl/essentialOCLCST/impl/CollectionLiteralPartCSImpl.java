@@ -21,7 +21,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  *
  * @generated
  */
-public class CollectionLiteralPartCSImpl extends MonikeredElementCSImpl implements CollectionLiteralPartCS {
+public class CollectionLiteralPartCSImpl extends ModelElementCSImpl implements CollectionLiteralPartCS {
 	/**
 	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->

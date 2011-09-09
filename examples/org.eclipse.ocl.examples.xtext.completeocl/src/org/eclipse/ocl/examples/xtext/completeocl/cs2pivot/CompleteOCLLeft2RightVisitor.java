@@ -18,10 +18,10 @@ package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -46,21 +46,21 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
 public class CompleteOCLLeft2RightVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<MonikeredElement, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
+	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Element, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
 {
 	public CompleteOCLLeft2RightVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLLeft2RightVisitor(context), context);
 	}
 
 	@Override
-	public MonikeredElement visitContextConstraintCS(ContextConstraintCS csConstraint) {		// FIXME Share code with EssentialOCL
+	public Element visitContextConstraintCS(ContextConstraintCS csConstraint) {		// FIXME Share code with EssentialOCL
 		Constraint pivotConstraint = PivotUtil.getPivot(Constraint.class, csConstraint);
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csConstraint.getSpecification();
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		if (csExpression != null) {
-			ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
+			ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
 				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
-//			context.installPivotElement(csSpecification, pivotSpecification);
+//			context.installPivotUsage(csSpecification, pivotSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
 			Variable contextVariable = pivotSpecification.getContextVariable();
@@ -123,7 +123,7 @@ public class CompleteOCLLeft2RightVisitor
 			pivotSpecification.setType(bodyExpression.getType());
 			ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS) csConstraint.getMessageSpecification();
 			if (csMessageSpecification != null) {
-//WIP				context.reusePivotElement(csMessageSpecification, pivotSpecification);
+				context.installPivotUsage(csMessageSpecification, pivotSpecification);		//WIP
 				ExpCS csMessageExpression = csMessageSpecification.getOwnedExpression();
 				if (csMessageExpression != null) {
 					OclExpression messageExpression = context.visitLeft2Right(OclExpression.class, csMessageExpression);		
@@ -139,7 +139,7 @@ public class CompleteOCLLeft2RightVisitor
 	}
 
 	@Override
-	public MonikeredElement visitDefCS(DefCS csDef) {
+	public Element visitDefCS(DefCS csDef) {
 		Feature contextFeature;
 		Operation contextOperation = null;
 		Property contextProperty = null;
@@ -151,21 +151,16 @@ public class CompleteOCLLeft2RightVisitor
 			contextProperty = PivotUtil.getPivot(Property.class, csDef);
 			contextFeature = contextProperty;
 		}
-//		String csDefMoniker = csDef.getMoniker();
-//		String constraintMoniker = csDefMoniker + PivotConstants.MONIKER_SCOPE_SEPARATOR + UMLReflection.BODY + PivotConstants.MONIKER_OPERATOR_SEPARATOR;
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csDef.getSpecification();
-//		Constraint pivotConstraint = context.refreshMonikeredElement(Constraint.class,
-//			PivotPackage.Literals.CONSTRAINT, constraintMoniker);
-		ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
+		ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
 			PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
-//		context.installPivotElement(csSpecification, pivotSpecification);
 		EObject pivotSpecificationContainer = pivotSpecification.eContainer();
 		Constraint pivotConstraint;
 		if (pivotSpecificationContainer instanceof Constraint) {
 			pivotConstraint = (Constraint) pivotSpecificationContainer;
 		}
 		else {
-			pivotConstraint = context.refreshMonikeredElement(Constraint.class,
+			pivotConstraint = context.refreshModelElement(Constraint.class,
 				PivotPackage.Literals.CONSTRAINT, null);
 		}
 		pivotConstraint.setSpecification(pivotSpecification);

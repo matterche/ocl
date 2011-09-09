@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface ClassifierCS extends NamedElementCS, TypeCS, TemplateableElementCS, ParameterableElementCS {
+public interface ClassifierCS extends NamedElementCS, TypeCS, TemplateableElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS#getOwnedType <em>Owned Type</em>}'.

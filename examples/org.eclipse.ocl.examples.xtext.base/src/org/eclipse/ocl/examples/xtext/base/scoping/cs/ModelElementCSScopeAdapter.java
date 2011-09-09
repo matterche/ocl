@@ -16,21 +16,13 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 
 /**
  * A ModelElementCSScopeAdapter provides the basic behaviour for a family of derived
@@ -48,17 +40,17 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected ModelElementCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		this(typeManager, csElement.eContainer(), csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		this(metaModelManager, csElement.eContainer(), csElement, pivotClass);
 	}
 	
-	protected ModelElementCSScopeAdapter(TypeManager typeManager, EObject csParent, CS csElement, Class<P> pivotClass) {
-		this(typeManager, csParent != null ? getScopeCSAdapter((ElementCS) csParent) : null, csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(MetaModelManager metaModelManager, EObject csParent, CS csElement, Class<P> pivotClass) {
+		this(metaModelManager, csParent != null ? getScopeCSAdapter((ElementCS) csParent) : null, csElement, pivotClass);
 	}
 
 	@SuppressWarnings("unchecked")
-	private ModelElementCSScopeAdapter(TypeManager typeManager, ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
-		super(typeManager, parentScopeAdapter, csElement);
+	private ModelElementCSScopeAdapter(MetaModelManager metaModelManager, ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, parentScopeAdapter, csElement);
 		this.csClass = (Class<CS>) csElement.getClass();
 		this.pivotClass = pivotClass;
 	}
@@ -76,67 +68,8 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 		return castPivot;
 	}
 
-	/**
-	 * Return the scope in which to resolve an element following a list of namespaces.
-	 */
-	protected ScopeView getNamespaceScope(EnvironmentView environmentView,
-			ScopeView scopeView, List<Namespace> namespaces) {
-		int namespaceCount = namespaces.size();
-		if (namespaceCount > 0) {
-			Namespace namespace = namespaces.get(namespaceCount-1);
-			if ((namespace == null) || namespace.eIsProxy()) {
-				return null;
-			}
-			ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespace);
-			if (scopeAdapter != null) {
-				BaseScopeView nestedScopeView = new BaseScopeView(typeManager, scopeAdapter, null, scopeView.getTargetReference(), null);
-				environmentView.computeLookups(nestedScopeView);
-			}				
-			return null;
-		}
-		return scopeView.getOuterScope();
-	}
-
-	/**
-	 * Return the scope in which to resolve a member of a list of namespaces.
-	 * <p>
-	 * This code assumes that the calling context attempts to resolve namespaces
-	 * from the outer most, so that the first proxy denotes the next namespace to resolve.
-	 */
-	protected ScopeView getNextNamespaceScope(EnvironmentView environmentView,
-			ScopeView scopeView, EList<Namespace> namespaces) {
-		// FIXME Use this for all namespace lists and all nested qualified names
-		InternalEList<Namespace> internalNamespaces = (InternalEList<Namespace>)namespaces;
-		int iMax = internalNamespaces.size();
-		//
-		//	A normal parse traverses unresolved proxies.
-		//
-		for (int i = 0; i < iMax; i++) {
-			Namespace namespace = internalNamespaces.basicGet(i);
-			if (namespace.eIsProxy()) {
-				if (i <= 0) {
-					return scopeView.getOuterScope();
-				}
-				else {
-					Namespace parentNamespace = internalNamespaces.get(i-1);
-					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, parentNamespace);
-					if (scopeAdapter != null) {
-						BaseScopeView nestedScopeView = new BaseScopeView(typeManager, scopeAdapter, null, scopeView.getTargetReference(), null);
-						environmentView.computeLookups(nestedScopeView);
-					}
-					return null;
-				}
-			}
-		}
-		//
-		//	A serialization traverses them all again just for fun.
-		//
-		for (Namespace namespace : namespaces) {
-			environmentView.addNamedElement(namespace);
-			if (environmentView.hasFinalResult()) {
-				break;
-			}
-		}
-		return null;		// FIXME Import alias names
+	@Override
+	public String toString() {
+		return CS2Moniker.toString(target);
 	}
 }

@@ -352,8 +352,6 @@ public abstract class ValueSpecificationImpl
 		{
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.VALUE_SPECIFICATION__MONIKER:
-				return getMoniker();
 			case PivotPackage.VALUE_SPECIFICATION__NAME:
 				return getName();
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_RULE:
@@ -387,9 +385,6 @@ public abstract class ValueSpecificationImpl
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.VALUE_SPECIFICATION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.VALUE_SPECIFICATION__NAME:
 				setName((String)newValue);
@@ -430,9 +425,6 @@ public abstract class ValueSpecificationImpl
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.VALUE_SPECIFICATION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.VALUE_SPECIFICATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -469,8 +461,6 @@ public abstract class ValueSpecificationImpl
 		{
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.VALUE_SPECIFICATION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.VALUE_SPECIFICATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VALUE_SPECIFICATION__OWNED_RULE:
@@ -555,8 +545,6 @@ public abstract class ValueSpecificationImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.VALUE_SPECIFICATION___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.VALUE_SPECIFICATION___IS_COMPUTABLE:

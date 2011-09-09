@@ -17,7 +17,6 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
-
 /**
  * Tests for Boolean operations.
  */

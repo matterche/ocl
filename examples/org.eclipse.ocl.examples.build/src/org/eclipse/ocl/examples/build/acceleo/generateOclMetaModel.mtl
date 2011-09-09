@@ -55,9 +55,16 @@ public class [javaClass/] extends XMLResourceImpl
 	 */
 	public static final String PIVOT_URI = "[uri/]";
 
-	public [javaClass/](StandardLibrary standardLibrary) {
+	public [javaClass/](StandardLibrary standardLibrary, String name, String nsURI) {
 		super(URI.createURI(PIVOT_URI));
-		getContents().add(create(standardLibrary));
+		Package metaModel = create(standardLibrary);
+		getContents().add(metaModel);
+		if (name != null) {
+			metaModel.setName(name);
+		}
+		if (nsURI != null) {
+			metaModel.setNsURI(nsURI);
+		}
 	}
 	
 	/**
@@ -65,20 +72,20 @@ public class [javaClass/] extends XMLResourceImpl
 	 */
 	public static Package create(StandardLibrary standardLibrary)
 	{
-		Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
+		Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.getMoniker()/]
 		[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
 		[if (ownedType.name = 'Boolean')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getBooleanType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getBooleanType(); // [ownedType.getMoniker()/]
 		[elseif (ownedType.name = 'Classifier')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getClassifierType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getClassifierType(); // [ownedType.getMoniker()/]
 		[elseif (ownedType.name = 'Integer')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getIntegerType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getIntegerType(); // [ownedType.getMoniker()/]
 		[elseif (ownedType.name = 'Real')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getRealType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getRealType(); // [ownedType.getMoniker()/]
 		[elseif (ownedType.name = 'String')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getStringType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getStringType(); // [ownedType.getMoniker()/]
 		[elseif (ownedType.name = 'UnlimitedNatural')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getUnlimitedNaturalType(); // [ownedType.moniker/]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getUnlimitedNaturalType(); // [ownedType.getMoniker()/]
 		[else]
 		[declareType(ownedType)/]
 		[/if]
@@ -117,12 +124,12 @@ public class [javaClass/] extends XMLResourceImpl
 					superClasses.add(standardLibrary.getEnumerationType());
 				}
 			}
-			else if (pivotClass instanceof Class) {
-				List<Class> superClasses = ((Class) pivotClass).getSuperClasses();
-				if (superClasses.isEmpty()) {
-					superClasses.add(standardLibrary.getClassifierType());
-				}
-			}
+//			else if (pivotClass instanceof Class) {
+//				List<Class> superClasses = ((Class) pivotClass).getSuperClasses();
+//				if (superClasses.isEmpty()) {
+//					superClasses.add(standardLibrary.getClassifierType());
+//				}
+//			}
 		}
 		
 		return [pkg.getSymbolName()/];

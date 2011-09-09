@@ -16,11 +16,11 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagedAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * A AbstractScopeAdapter provides the basic behaviour for a family of derived
@@ -29,11 +29,10 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
  *
  * @param <T>
  */
-public interface ScopeAdapter extends TypeManagedAdapter
+public interface ScopeAdapter extends Adapter.Internal
 {	
 	public static interface Switch {
 		ScopeAdapter createVisitor(EObject eObject);
-//		ScopeAdapter doInPackageSwitch(EObject eObject);
 	}
 	
 	/**
@@ -57,13 +56,13 @@ public interface ScopeAdapter extends TypeManagedAdapter
 
 	void computeLookup(EnvironmentView environmentView, EReference targetReference);
 
-	ScopeView getInnerScopeView(TypeManager typeManager, EReference targetReference);
+	ScopeView getInnerScopeView(MetaModelManager metaModelManager, EReference targetReference);
 
-	ScopeView getOuterScopeView(TypeManager typeManager, EReference targetReference);
+	ScopeView getOuterScopeView(MetaModelManager metaModelManager, EReference targetReference);
 	
 	ScopeAdapter getParent();
 
-//	TypeManager getTypeManager();
+//	MetaModelManager getMetaModelManager();
 
 	RootScopeAdapter getRootScopeAdapter();
 	

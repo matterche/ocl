@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -182,7 +182,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	    return CollectionKind.SET;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		return staticType; // standardLibrary.getSetType();
 	}
 

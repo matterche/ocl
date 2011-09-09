@@ -23,17 +23,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -337,14 +335,14 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createPivotableAdapter();
 			}
 			@Override
+			public Adapter casePivotableElementCS(PivotableElementCS object)
+			{
+				return createPivotableElementCSAdapter();
+			}
+			@Override
 			public Adapter caseModelElementCS(ModelElementCS object)
 			{
 				return createModelElementCSAdapter();
-			}
-			@Override
-			public Adapter caseMonikeredElementCS(MonikeredElementCS object)
-			{
-				return createMonikeredElementCSAdapter();
 			}
 			@Override
 			public Adapter caseNameable(Nameable object)
@@ -357,14 +355,9 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createNamedElementCSAdapter();
 			}
 			@Override
-			public Adapter caseParameterableElementCS(ParameterableElementCS object)
+			public Adapter caseElementRefCS(ElementRefCS object)
 			{
-				return createParameterableElementCSAdapter();
-			}
-			@Override
-			public Adapter caseRefCS(RefCS object)
-			{
-				return createRefCSAdapter();
+				return createElementRefCSAdapter();
 			}
 			@Override
 			public Adapter caseTypeRefCS(TypeRefCS object)
@@ -1009,6 +1002,21 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS <em>Pivotable Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS
+	 * @generated
+	 */
+	public Adapter createPivotableElementCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS <em>Model Element CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1024,21 +1032,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS <em>Monikered Element CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS
-	 * @generated
-	 */
-	public Adapter createMonikeredElementCSAdapter()
-	{
-		return null;
-	}
-
-/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1069,31 +1062,16 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS <em>Parameterable Element CS</em>}'.
-	 * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS
-	 * @generated
-	 */
-  public Adapter createParameterableElementCSAdapter()
-  {
-		return null;
-	}
-
-  /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RefCS <em>Ref CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS <em>Element Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RefCS
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS
 	 * @generated
 	 */
-	public Adapter createRefCSAdapter()
+	public Adapter createElementRefCSAdapter()
 	{
 		return null;
 	}

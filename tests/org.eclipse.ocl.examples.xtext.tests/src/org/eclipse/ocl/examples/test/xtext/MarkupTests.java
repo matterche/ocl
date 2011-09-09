@@ -16,19 +16,17 @@
  */
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.pivot.SemanticException;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupElement;
 import org.eclipse.ocl.examples.xtext.markup.MarkupPackage;
@@ -42,7 +40,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 public class MarkupTests extends XtextTestCase
 {	
-	protected TypeManager typeManager = null;
+	protected MetaModelManager metaModelManager = null;
 
 	@Override
 	protected void setUp() throws Exception {
@@ -52,9 +50,11 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected Markup doDecode(String testString) throws IOException {
-		Resource resource = new ResourceSetImpl().createResource(URI.createURI("string.markupocl"));
-		InputStream inputStream = new ByteArrayInputStream(testString.getBytes());
-		resource.load(inputStream, null);
+		Resource resource = PivotUtil.createXtextResource(metaModelManager, URI.createURI("string.markupocl"), null, testString);
+		
+//		Resource resource = new ResourceSetImpl().createResource(URI.createURI("string.markupocl"));
+//		InputStream inputStream = new ByteArrayInputStream(testString.getBytes());
+//		resource.load(inputStream, null);
 		Markup markup = (Markup) resource.getContents().get(0);
 		Iterable<Diagnostic> parseErrors = resource.getErrors();
 		StringBuffer s = null;
@@ -86,10 +86,15 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doHtmlTest(Object context, String expected, String testString) throws Exception {
-		Markup markup = doDecode(testString);
-//		System.out.println(MarkupToTree.toString(markup));
-		String testResult = MarkupToHTML.toString(null, context, markup);
-		assertEquals(toPrintable(testString), expected, testResult);
+		MetaModelManager metaModelManager = new MetaModelManager();
+		try {
+			Markup markup = doDecode(testString);
+			//		System.out.println(MarkupToTree.toString(markup));
+			String testResult = MarkupToHTML.toString(metaModelManager, context, markup);
+			assertEquals(toPrintable(testString), expected, testResult);
+		} finally {
+			metaModelManager.dispose();
+		}
 	}
 
 	protected void doNewlineCountTest(int expectedCount, String testString) throws IOException {

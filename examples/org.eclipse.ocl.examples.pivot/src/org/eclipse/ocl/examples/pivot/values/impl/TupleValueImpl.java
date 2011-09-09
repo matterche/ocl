@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -53,7 +53,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
-//        System.out.println(this + " : " + getTupleType().getMoniker() + " @* " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
     
     /**
@@ -69,7 +68,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
-//        System.out.println(this + " : " + getTupleType().getMoniker() + " @2 " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
 
 	public Object asObject() {
@@ -110,7 +108,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         return result;
     }
 
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		return type;
 	}
 

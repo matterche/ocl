@@ -33,7 +33,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -52,7 +55,6 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
@@ -73,9 +75,12 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
@@ -340,7 +345,7 @@ public class PivotUtil
 
 	/**
 	 * Create an Xtext resource containing the parsed expression within
-	 * a typeContext and supervised by a typeManager.
+	 * a typeContext and supervised by a metaModelManager.
 	 * 
 	 * Provided an EssentialOCL resource registration has been made the
 	 * created resource named internal.essentialocl may be cast to an
@@ -348,19 +353,19 @@ public class PivotUtil
 	 * and may be converted to ParseExceptions by invoking
 	 * checkResourceErrors.
 	 * 
-	 * @param typeManager the overall type / meta-model domain
+	 * @param metaModelManager the overall type / meta-model domain
 	 * @param typeContext the type that provides the scope of expression
 	 * @param expression to be parsed
 	 * @return the Xtext resource which may be cast to XtextResource
 	 * 
 	 * @throws IOException if resource loading fails
 	 */
-	public static Resource createXtextResource(TypeManager typeManager, URI uri,
+	public static Resource createXtextResource(MetaModelManager metaModelManager, URI uri,
 			NamedElement typeContext, String expression) throws IOException {
 		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(uri);
-		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
+		MetaModelManagerResourceAdapter.getAdapter(resource, metaModelManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setContext(typeContext, null);
 		}
@@ -376,9 +381,9 @@ public class PivotUtil
 			s.append("@");
 			s.append(Integer.toHexString(element.hashCode()));
 			Resource eResource = element.eResource();
-			if ((element instanceof MonikeredElement) && (((MonikeredElement)element).hasMoniker() || (eResource != null))) {
+			if (element instanceof Element) {
 				s.append(" ");
-				s.append(((MonikeredElement) element).getMoniker());
+				s.append(Pivot2Moniker.toString((Element) element));
 			}
 			if (eResource != null) {
 				s.append(" ");
@@ -405,10 +410,10 @@ public class PivotUtil
 		return true;
 	}
 
-	public static Type findTypeOf(TypeManager typeManager, EClassifier eClass) {
+	public static Type findTypeOf(MetaModelManager metaModelManager, EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
-			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource, typeManager);
+			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource, metaModelManager);
 			if (adapter != null) {
 				Type type = adapter.getCreated(Type.class, eClass);
 				if (type != null) {
@@ -576,12 +581,14 @@ public class PivotUtil
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> bindings,
 		Type argumentType, LambdaType lambdaType) {
 		Type resultType = lambdaType.getResultType();
-		TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
-		if (resultTemplateParameter != null) {
-			if (bindings == null) {
-				bindings = new HashMap<TemplateParameter, ParameterableElement>();
+		if (resultType != null) {
+			TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
+			if (resultTemplateParameter != null) {
+				if (bindings == null) {
+					bindings = new HashMap<TemplateParameter, ParameterableElement>();
+				}
+				bindings.put(resultTemplateParameter, argumentType);
 			}
-			bindings.put(resultTemplateParameter, argumentType);
 		}
 		// FIXME There is much more to do
 		// FIXME Conflict checking
@@ -783,11 +790,11 @@ public class PivotUtil
 		return results;
 	}
 
-	public static TypeManager getTypeManager(Resource resource) {
-		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(resource, null);
-		TypeManager typeManager = adapter.getTypeManager();
-		assert typeManager != null;
-		return typeManager;
+	public static MetaModelManager getMetaModelManager(Resource resource) {
+		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(resource, null);
+		MetaModelManager metaModelManager = adapter.getMetaModelManager();
+		assert metaModelManager != null;
+		return metaModelManager;
 	}
 
 	public static List<Type> getTypeTemplateParameterables(TemplateableElement templateableElement) {
@@ -812,6 +819,99 @@ public class PivotUtil
 		return results;
 	}
 
+	/**
+	 * Return a URI based on the nsURI of the immediate parent package.
+	 */
+	public static String getNsURI(EModelElement element) {
+		if (element instanceof EPackage) {
+			String nsURI = ((EPackage)element).getNsURI();
+			if (nsURI != null) {
+				return nsURI;
+			}
+		}
+		StringBuffer s = new StringBuffer();
+		getNsURI(s, element);
+		return s.toString();
+	}
+
+	/**
+	 * Return a URI based on the nsURI of the immediate parent package.
+	 */
+	public static String getNsURI(Element element) {
+		if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
+			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
+			if (nsURI != null) {
+				return nsURI;
+			}
+		}
+		StringBuffer s = new StringBuffer();
+		getNsURI(s, element);
+		return s.toString();
+	}
+
+	private static void getNsURI(StringBuffer s, EObject element) {
+		if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
+			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
+			if (nsURI != null) {
+				s.append(nsURI);
+				return;
+			}
+		}
+		else if (element instanceof EPackage) {
+			String nsURI = ((EPackage)element).getNsURI();
+			if (nsURI != null) {
+				s.append(nsURI);
+				return;
+			}
+		}
+		EObject eContainer = element.eContainer();
+		if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
+			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
+			if (nsURI != null) {
+				s.append(nsURI);
+				s.append("#/");
+			}
+			else {
+				getNsURI(s, eContainer);
+			}
+		}
+		else if (eContainer instanceof EPackage) {
+			String nsURI = ((EPackage)element).getNsURI();
+			if (nsURI != null) {
+				s.append(nsURI);
+				s.append("#/");
+			}
+			else {
+				getNsURI(s, eContainer);
+			}
+		}
+		else if (eContainer == null) {
+			String name = null;
+			if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
+				name = ((org.eclipse.ocl.examples.pivot.Package)element).getName();
+			}
+			else if (element instanceof EPackage) {
+				name = ((EPackage)element).getName();
+			}
+			if (name == null) {
+				name = "$null$";
+			}
+			s.append(name);
+			return;
+		}
+		else {
+			getNsURI(s, eContainer);
+		}
+		EReference eFeature = element.eContainmentFeature();
+		s.append("@");
+		s.append(eFeature.getName());
+		if (eFeature.isMany()) {
+			int index = ((List<?>) eContainer.eGet(element.eContainingFeature())).indexOf(element);
+			s.append(".");
+			s.append(index);
+		}
+	}
+
 	public static <T extends Type> T getUnspecializedTemplateableElement(T templateableElement) {
 		if (templateableElement == null) {
 			return null;
@@ -823,6 +923,18 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castUnspecializedElement = (T) unspecializedElement;
 		return (T) castUnspecializedElement;
+	}
+
+	public static boolean isLibraryType(Type type) {
+		if (type instanceof LambdaType) {
+			return false;
+		}
+		else if (type instanceof TupleType) {
+			return false;			
+		}
+		else {
+			return type.getTemplateBindings().isEmpty();			
+		}
 	}
 
 	public static boolean isPivotURI(URI uri) {
@@ -919,21 +1031,21 @@ public class PivotUtil
 		}
 	}
 
-	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, URI uri, NamedElement contextClassifier, String expression) throws ParserException {
+	public static ExpressionInOcl resolveSpecification(MetaModelManager metaModelManager, URI uri, NamedElement contextClassifier, String expression) throws ParserException {
 		Resource resource = null;
 		try {
-			resource = createXtextResource(typeManager, uri, contextClassifier, expression);
+			resource = createXtextResource(metaModelManager, uri, contextClassifier, expression);
 			checkResourceErrors("Errors in '" + expression + "'", resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
-			OclExpression invalidValueBody = typeManager.createInvalidExpression();
+			OclExpression invalidValueBody = metaModelManager.createInvalidExpression();
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
 		} finally {
 			if (resource != null) {
-				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
 				if (adapter != null) {
 					adapter.dispose();
 				}
@@ -941,14 +1053,14 @@ public class PivotUtil
 		}
 	}
 
-	public static ExpressionInOcl resolveMessage(TypeManager typeManager, URI uri, ExpressionInOcl specification, String expression) throws ParserException {
+	public static ExpressionInOcl resolveMessage(MetaModelManager metaModelManager, URI uri, ExpressionInOcl specification, String expression) throws ParserException {
 		try {
-			Resource resource = createXtextResource(typeManager, uri, specification, expression);
+			Resource resource = createXtextResource(metaModelManager, uri, specification, expression);
 			checkResourceErrors("Errors in '" + expression + "'", resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
-			OclExpression invalidValueBody = typeManager.createInvalidExpression();
+			OclExpression invalidValueBody = metaModelManager.createInvalidExpression();
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
 		}			
@@ -971,16 +1083,6 @@ public class PivotUtil
 			}
 		}
 		throw new ParserException("Non-expression ignored");
-	}
-
-	public static <T extends MonikeredElement> List<T> sortByMoniker(List<T> list) {
-		Collections.sort(list, new Comparator<MonikeredElement>()
-		{
-			public int compare(MonikeredElement o1, MonikeredElement o2) {
-				return o1.getMoniker().compareTo(o2.getMoniker());
-			}
-		});
-		return list;
 	}
 
 	/**

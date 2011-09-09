@@ -30,10 +30,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 
@@ -60,13 +60,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		csRef.setPivot(type);		// FIXME object ??
 		if (!(type instanceof PrimitiveType)) {
 			org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);
-			if (objectPackage.eResource() == scopePackage.eResource()) {
-				// No need to import when in same resource
-			}
-			else if (objectPackage == context.getTypeManager().getOrphanPackage()) {
-				// No need to import orphans
-			}
-			else {
+			if (objectPackage.eResource() != scopePackage.eResource()) {
 				context.importPackage(objectPackage);
 			}
 		}
@@ -83,7 +77,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
 					TemplateParameterSubstitutionCS csTemplateParameterSubstitution = BaseCSTFactory.eINSTANCE.createTemplateParameterSubstitutionCS();
-					ParameterableElementCS csParameterable = context.visitReference(ParameterableElementCS.class, templateParameterSubstitution.getActual());
+					TypeRefCS csParameterable = context.visitReference(TypeRefCS.class, templateParameterSubstitution.getActual());
 					csTemplateParameterSubstitution.setOwnedActualParameter(csParameterable);
 					csParameterSubstitutions.add(csTemplateParameterSubstitution);
 					csTemplateParameterSubstitution.setPivot(templateParameterSubstitution);

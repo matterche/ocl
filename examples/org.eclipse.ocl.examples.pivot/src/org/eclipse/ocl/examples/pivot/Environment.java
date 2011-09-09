@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.pivot;
 
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.EnvironmentRegistryImpl;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * An Environment stores the variables created while evaluating an OCL expression,
@@ -158,7 +158,7 @@ public interface Environment {
      */
 	StandardLibrary getOCLStandardLibrary();
 
-	TypeManager getTypeManager();
+	MetaModelManager getMetaModelManager();
 	
 	/**
 	 * Retrieves a list of all possible states of the specified <code>owner</code>

@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
@@ -35,14 +35,14 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
+public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public ImportScopeAdapter(TypeManager typeManager, ImportCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public ImportScopeAdapter(MetaModelManager metaModelManager, ImportCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS,
 			return;
 		}
 		try {
-			importedElement = typeManager.loadResource(uri, target.getName());				
+			importedElement = metaModelManager.loadResource(uri, target.getName());				
 			Resource importedResource = importedElement.eResource();
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 			if (warnings.size() > 0) {

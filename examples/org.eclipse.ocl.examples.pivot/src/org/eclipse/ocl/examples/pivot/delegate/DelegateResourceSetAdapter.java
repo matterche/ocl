@@ -33,7 +33,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @since 3.0
  */
 public class DelegateResourceSetAdapter extends AdapterImpl
-{
+{	
+	public static DelegateResourceSetAdapter findAdapter(ResourceSet resourceSet) {
+		return (DelegateResourceSetAdapter) EcoreUtil.getAdapter(resourceSet.eAdapters(), DelegateResourceSetAdapter.class);
+	}
+
 	public static DelegateResourceSetAdapter getAdapter(EModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 		if (resource == null) {

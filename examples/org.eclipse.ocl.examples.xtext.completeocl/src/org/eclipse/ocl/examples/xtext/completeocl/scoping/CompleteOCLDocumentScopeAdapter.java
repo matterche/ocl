@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -27,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScope
 
 public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public CompleteOCLDocumentScopeAdapter(TypeManager typeManager, CompleteOCLDocumentCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public CompleteOCLDocumentScopeAdapter(MetaModelManager metaModelManager, CompleteOCLDocumentCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 			}
 		}
 		if (!environmentView.hasFinalResult()) {
-			typeManager.getOclAnyType();
-			for (Library library : typeManager.getLibraries()) {
+			metaModelManager.getOclAnyType();
+			for (Library library : metaModelManager.getLibraries()) {
 				environmentView.addNamedElement(library);
 			}
 		}

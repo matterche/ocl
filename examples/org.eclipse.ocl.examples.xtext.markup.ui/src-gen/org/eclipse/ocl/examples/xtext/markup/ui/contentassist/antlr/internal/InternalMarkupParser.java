@@ -26,33 +26,33 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WORD", "RULE_INT", "RULE_WS", "RULE_STRING", "RULE_NL", "RULE_NUMBER", "RULE_LETTER", "RULE_ESCAPED", "RULE_VERTICAL_WS", "RULE_HORIZONTAL_WS", "RULE_ANY_OTHER", "'b'", "'e'", "'bullet'", "'figure'", "'figureRef'", "'footnote'", "'heading'", "'oclCode'", "'oclEval'", "'oclText'", "':'", "'#'", "','", "'['", "']'"
     };
     public static final int RULE_ID=4;
-    public static final int T__29=29;
     public static final int T__28=28;
-    public static final int T__27=27;
-    public static final int T__26=26;
-    public static final int RULE_HORIZONTAL_WS=14;
-    public static final int T__25=25;
-    public static final int T__24=24;
     public static final int T__23=23;
-    public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=15;
-    public static final int T__21=21;
-    public static final int T__20=20;
-    public static final int RULE_NL=9;
-    public static final int EOF=-1;
-    public static final int RULE_LETTER=11;
-    public static final int T__19=19;
-    public static final int T__30=30;
-    public static final int RULE_STRING=8;
-    public static final int T__16=16;
-    public static final int T__18=18;
-    public static final int T__17=17;
     public static final int RULE_NUMBER=10;
-    public static final int RULE_VERTICAL_WS=13;
-    public static final int RULE_ESCAPED=12;
-    public static final int RULE_INT=6;
-    public static final int RULE_WS=7;
+    public static final int T__20=20;
+    public static final int RULE_STRING=8;
     public static final int RULE_WORD=5;
+    public static final int T__21=21;
+    public static final int RULE_ESCAPED=12;
+    public static final int T__19=19;
+    public static final int T__22=22;
+    public static final int T__29=29;
+    public static final int RULE_HORIZONTAL_WS=14;
+    public static final int T__30=30;
+    public static final int RULE_WS=7;
+    public static final int T__17=17;
+    public static final int RULE_NL=9;
+    public static final int RULE_INT=6;
+    public static final int EOF=-1;
+    public static final int T__27=27;
+    public static final int T__16=16;
+    public static final int T__24=24;
+    public static final int RULE_VERTICAL_WS=13;
+    public static final int RULE_ANY_OTHER=15;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int RULE_LETTER=11;
+    public static final int T__18=18;
 
     // delegates
     // delegators
@@ -8970,11 +8970,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
 
     // Delegated rules
 
-    public final boolean synpred21_InternalMarkup() {
+    public final boolean synpred23_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred21_InternalMarkup_fragment(); // can never throw exception
+            synpred23_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9012,11 +9012,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred19_InternalMarkup() {
+    public final boolean synpred16_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred19_InternalMarkup_fragment(); // can never throw exception
+            synpred16_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9026,11 +9026,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred16_InternalMarkup() {
+    public final boolean synpred19_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred16_InternalMarkup_fragment(); // can never throw exception
+            synpred19_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9054,11 +9054,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred14_InternalMarkup() {
+    public final boolean synpred21_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred14_InternalMarkup_fragment(); // can never throw exception
+            synpred21_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9082,11 +9082,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred23_InternalMarkup() {
+    public final boolean synpred11_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred23_InternalMarkup_fragment(); // can never throw exception
+            synpred11_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9096,11 +9096,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
-    public final boolean synpred11_InternalMarkup() {
+    public final boolean synpred14_InternalMarkup() {
         state.backtracking++;
         int start = input.mark();
         try {
-            synpred11_InternalMarkup_fragment(); // can never throw exception
+            synpred14_InternalMarkup_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9366,7 +9366,7 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
     static final String DFA5_acceptS =
         "\1\uffff\1\2\7\uffff\1\1";
     static final String DFA5_specialS =
-        "\2\uffff\1\5\1\6\1\0\1\1\1\3\1\4\1\2\1\uffff}>";
+        "\2\uffff\1\4\1\3\1\6\1\2\1\5\1\0\1\1\1\uffff}>";
     static final String[] DFA5_transitionS = {
             "\1\2\1\3\1\4\1\5\1\uffff\1\1\6\uffff\12\1\1\6\1\7\1\10\2\1",
             "",
@@ -9417,66 +9417,6 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA5_4 = input.LA(1);
-
-                         
-                        int index5_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index5_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA5_5 = input.LA(1);
-
-                         
-                        int index5_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index5_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA5_8 = input.LA(1);
-
-                         
-                        int index5_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index5_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA5_6 = input.LA(1);
-
-                         
-                        int index5_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index5_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
                         int LA5_7 = input.LA(1);
 
                          
@@ -9491,7 +9431,52 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                         input.seek(index5_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 1 : 
+                        int LA5_8 = input.LA(1);
+
+                         
+                        int index5_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index5_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA5_5 = input.LA(1);
+
+                         
+                        int index5_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index5_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA5_3 = input.LA(1);
+
+                         
+                        int index5_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index5_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
                         int LA5_2 = input.LA(1);
 
                          
@@ -9506,11 +9491,11 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                         input.seek(index5_2);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
-                        int LA5_3 = input.LA(1);
+                    case 5 : 
+                        int LA5_6 = input.LA(1);
 
                          
-                        int index5_3 = input.index();
+                        int index5_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred23_InternalMarkup()) ) {s = 9;}
@@ -9518,7 +9503,22 @@ public class InternalMarkupParser extends AbstractInternalContentAssistParser {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index5_3);
+                        input.seek(index5_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA5_4 = input.LA(1);
+
+                         
+                        int index5_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred23_InternalMarkup()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index5_4);
                         if ( s>=0 ) return s;
                         break;
             }

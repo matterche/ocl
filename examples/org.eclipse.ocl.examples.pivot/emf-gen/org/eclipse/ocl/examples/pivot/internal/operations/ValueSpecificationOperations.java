@@ -39,8 +39,7 @@ import org.eclipse.ocl.examples.pivot.ValueSpecification;
  *
  * @generated
  */
-public class ValueSpecificationOperations
-		extends MonikeredElementOperations {
+public class ValueSpecificationOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

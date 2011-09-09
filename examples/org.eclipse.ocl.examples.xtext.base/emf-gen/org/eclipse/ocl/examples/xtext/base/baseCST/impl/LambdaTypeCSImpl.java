@@ -20,24 +20,17 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
@@ -49,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LambdaTypeCSImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LambdaTypeCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LambdaTypeCSImpl#getOwnedContextType <em>Owned Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LambdaTypeCSImpl#getOwnedParameterType <em>Owned Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.LambdaTypeCSImpl#getOwnedResultType <em>Owned Result Type</em>}</li>
@@ -57,7 +51,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
+public class LambdaTypeCSImpl extends TypedRefCSImpl implements LambdaTypeCS
 {
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
@@ -68,6 +62,26 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 	 * @ordered
 	 */
 	protected TemplateSignatureCS ownedTemplateSignature;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedContextType() <em>Owned Context Type</em>}' containment reference.
@@ -166,6 +180,29 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE, newOwnedTemplateSignature, newOwnedTemplateSignature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.LAMBDA_TYPE_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -330,6 +367,8 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 		{
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
+			case BaseCSTPackage.LAMBDA_TYPE_CS__NAME:
+				return getName();
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				return getOwnedContextType();
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
@@ -353,6 +392,9 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 		{
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignatureCS)newValue);
+				return;
+			case BaseCSTPackage.LAMBDA_TYPE_CS__NAME:
+				setName((String)newValue);
 				return;
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				setOwnedContextType((TypedRefCS)newValue);
@@ -381,6 +423,9 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignatureCS)null);
 				return;
+			case BaseCSTPackage.LAMBDA_TYPE_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				setOwnedContextType((TypedRefCS)null);
 				return;
@@ -406,6 +451,8 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 		{
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
+			case BaseCSTPackage.LAMBDA_TYPE_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_CONTEXT_TYPE:
 				return ownedContextType != null;
 			case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_PARAMETER_TYPE:
@@ -424,39 +471,18 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == ParameterableElementCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == RefCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == TypeRefCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedRefCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElementCS.class)
 		{
 			switch (derivedFeatureID)
 			{
 				case BaseCSTPackage.LAMBDA_TYPE_CS__OWNED_TEMPLATE_SIGNATURE: return BaseCSTPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE;
+				default: return -1;
+			}
+		}
+		if (baseClass == Nameable.class)
+		{
+			switch (derivedFeatureID)
+			{
 				default: return -1;
 			}
 		}
@@ -471,34 +497,6 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == ParameterableElementCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == RefCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == TypeRefCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedRefCS.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == TemplateableElementCS.class)
 		{
 			switch (baseFeatureID)
@@ -507,7 +505,31 @@ public class LambdaTypeCSImpl extends NamedElementCSImpl implements LambdaTypeCS
 				default: return -1;
 			}
 		}
+		if (baseClass == Nameable.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: "); //$NON-NLS-1$
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

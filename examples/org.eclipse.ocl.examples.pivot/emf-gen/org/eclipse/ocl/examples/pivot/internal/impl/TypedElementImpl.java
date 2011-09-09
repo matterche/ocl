@@ -128,8 +128,6 @@ public abstract class TypedElementImpl
 		{
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TYPED_ELEMENT__MONIKER:
-				return getMoniker();
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return getName();
 			case PivotPackage.TYPED_ELEMENT__OWNED_RULE:
@@ -158,9 +156,6 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TYPED_ELEMENT__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				setName((String)newValue);
@@ -195,9 +190,6 @@ public abstract class TypedElementImpl
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TYPED_ELEMENT__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -228,8 +220,6 @@ public abstract class TypedElementImpl
 		{
 			case PivotPackage.TYPED_ELEMENT__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TYPED_ELEMENT__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TYPED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPED_ELEMENT__OWNED_RULE:

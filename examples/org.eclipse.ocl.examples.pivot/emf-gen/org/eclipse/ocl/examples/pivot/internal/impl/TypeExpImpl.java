@@ -128,8 +128,6 @@ public class TypeExpImpl
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TYPE_EXP__MONIKER:
-				return getMoniker();
 			case PivotPackage.TYPE_EXP__NAME:
 				return getName();
 			case PivotPackage.TYPE_EXP__OWNED_RULE:
@@ -161,9 +159,6 @@ public class TypeExpImpl
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TYPE_EXP__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TYPE_EXP__NAME:
 				setName((String)newValue);
@@ -201,9 +196,6 @@ public class TypeExpImpl
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TYPE_EXP__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TYPE_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -237,8 +229,6 @@ public class TypeExpImpl
 		{
 			case PivotPackage.TYPE_EXP__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TYPE_EXP__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TYPE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPE_EXP__OWNED_RULE:

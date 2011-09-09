@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -36,9 +36,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegati
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
 
 public class CompleteOCLScopeVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<ScopeCSAdapter, TypeManager, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<ScopeCSAdapter, MetaModelManager, EssentialOCLScopeVisitor>
 {
-	public CompleteOCLScopeVisitor(TypeManager context) {
+	public CompleteOCLScopeVisitor(MetaModelManager context) {
 		super(new EssentialOCLScopeVisitor(context), context);
 	}
 

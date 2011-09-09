@@ -29,11 +29,11 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -127,8 +127,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				//	Use the name rather than the alias if within the same resource
 				//
 				Resource objectResource = objectElement.eResource();
-				TypeManager typeManager = TypeManager.findAdapter(objectResource.getResourceSet());
-				Resource orphanage = typeManager != null ? typeManager.getOrphanPackage().eResource() : null;
+				MetaModelManager metaModelManager = MetaModelManager.findAdapter(objectResource.getResourceSet());
+				Resource orphanage = null; // WIP metaModelManager != null ? metaModelManager.getOrphanPackage().eResource() : null;
 				Resource contextResource = contextElement.eResource();
 				if ((objectResource == contextResource) || (contextResource == orphanage)) {
 					objectName = ((NamedElement)objectElement).getName();

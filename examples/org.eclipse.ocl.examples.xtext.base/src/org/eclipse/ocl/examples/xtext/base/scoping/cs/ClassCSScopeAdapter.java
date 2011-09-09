@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
 {
-	public ClassCSScopeAdapter(TypeManager typeManager, ClassCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Class.class);
+	public ClassCSScopeAdapter(MetaModelManager metaModelManager, ClassCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Class.class);
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
@@ -42,7 +42,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 			}
 		}
 		else {
-			Type libType = typeManager.getClassifierType();
+			Type libType = metaModelManager.getClassifierType();
 			environmentView.addLibContents(libType, scopeView);
 		}
 	}
@@ -57,22 +57,22 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
-//				environmentView.addNamedElement(typeManager.getBagTypeType());				
-//				environmentView.addNamedElement(typeManager.getCollectionTypeType());
-//				environmentView.addNamedElement(typeManager.getOrderedSetTypeType());
-//				environmentView.addNamedElement(typeManager.getSequenceTypeType());
-//				environmentView.addNamedElement(typeManager.getSetTypeType());
-//				environmentView.addNamedElement(typeManager.getPrimitiveTypeType());
+//				environmentView.addNamedElement(metaModelManager.getBagTypeType());				
+//				environmentView.addNamedElement(metaModelManager.getCollectionTypeType());
+//				environmentView.addNamedElement(metaModelManager.getOrderedSetTypeType());
+//				environmentView.addNamedElement(metaModelManager.getSequenceTypeType());
+//				environmentView.addNamedElement(metaModelManager.getSetTypeType());
+//				environmentView.addNamedElement(metaModelManager.getPrimitiveTypeType());
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
 				if (pivot instanceof ClassifierType) {
 					Type instanceType = ((ClassifierType)pivot).getInstanceType();
-					environmentView.addNamedElements(typeManager.getLocalOperations(instanceType, true));
-					environmentView.addNamedElements(typeManager.getLocalProperties(instanceType, true));
+					environmentView.addNamedElements(metaModelManager.getLocalOperations(instanceType, true));
+					environmentView.addNamedElements(metaModelManager.getLocalProperties(instanceType, true));
 				}
-				environmentView.addNamedElements(typeManager.getLocalOperations(pivot, false));
-				environmentView.addNamedElements(typeManager.getLocalProperties(pivot, false));
+				environmentView.addNamedElements(metaModelManager.getLocalOperations(pivot, false));
+				environmentView.addNamedElements(metaModelManager.getLocalProperties(pivot, false));
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters

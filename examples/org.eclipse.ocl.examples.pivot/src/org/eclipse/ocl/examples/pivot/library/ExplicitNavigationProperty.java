@@ -29,9 +29,9 @@ import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -45,7 +45,7 @@ public class ExplicitNavigationProperty extends AbstractCallableImplementation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
 		PropertyCallExp propertyCall = (PropertyCallExp) callExp;
 		Property property = propertyCall.getReferredProperty();
 		Object object = sourceValue.asObject();
@@ -68,7 +68,7 @@ public class ExplicitNavigationProperty extends AbstractCallableImplementation
 			if (eValue instanceof Enumerator) {
 				Enumerator eEnumerator = (Enumerator) eValue;
 				EClassifier eEnum = eFeature.getEType();
-				org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = typeManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
+				org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = metaModelManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
 				EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
 				return valueFactory.createElementValue(pivotEnumLiteral);
 			}

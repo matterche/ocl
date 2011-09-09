@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /** 
@@ -59,9 +59,9 @@ public class EObjectOperation implements CallableImplementation
 			Operation operation = PivotUtil.getReferredOperation(callExp);
 			String string = PivotUtil.getBody((OpaqueExpression) specification);
 			try {
-				TypeManager typeManager = evaluationVisitor.getTypeManager();
-				URI uri = typeManager.getResourceIdentifier(operation, null);
-				specification = PivotUtil.resolveSpecification(typeManager, uri, operation, string);
+				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+				URI uri = metaModelManager.getResourceIdentifier(operation, null);
+				specification = PivotUtil.resolveSpecification(metaModelManager, uri, operation, string);
 			} catch (ParserException e) {
 				return evaluationVisitor.throwInvalidEvaluation(e, callExp, sourceValue, "parse failure");
 			}
@@ -122,7 +122,7 @@ public class EObjectOperation implements CallableImplementation
 		return valueFactory.createInvalidValue(sourceValue, operationCallExp, "Failed to load '" + feature.getImplementationClass() + "'", null);
 	} */
 
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		return null;
 	}
 }

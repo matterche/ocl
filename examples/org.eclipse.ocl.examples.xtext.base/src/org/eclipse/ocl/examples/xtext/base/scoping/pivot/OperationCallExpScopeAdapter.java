@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class OperationCallExpScopeAdapter extends AbstractPivotScopeAdapter<OperationCallExp>
 {
-	public OperationCallExpScopeAdapter(TypeManager typeManager, OperationCallExp pivotElement) {
-		super(typeManager, pivotElement);
+	public OperationCallExpScopeAdapter(MetaModelManager metaModelManager, OperationCallExp pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 
 	@Override

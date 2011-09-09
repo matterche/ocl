@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -41,12 +41,12 @@ import org.eclipse.osgi.util.NLS;
 
 public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 {	
-	private static final class Factory implements CS2Pivot.Factory, TypeManager.Factory
+	private static final class Factory implements CS2Pivot.Factory, MetaModelManager.Factory
 	{
 		private Factory() {
 			EssentialOCLCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
-			TypeManager.addFactory(this);
+			MetaModelManager.addFactory(this);
 			addUnresolvedProxyMessageProvider(new IncludeCSNamespaceUnresolvedProxyMessageProvider());			
 		}
 
@@ -68,16 +68,16 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 			return new CompleteOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
-			return new CompleteOCLScopeVisitor(typeManager);
+		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
+			return new CompleteOCLScopeVisitor(metaModelManager);
 		}
 
 		public EPackage getEPackage() {
 			return CompleteOCLCSTPackage.eINSTANCE;
 		}
 
-		public Element importFromResource(TypeManager typeManager, Resource resource, String uriFragment) {
-			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((CompleteOCLCSResource)resource, typeManager);
+		public Element importFromResource(MetaModelManager metaModelManager, Resource resource, String uriFragment) {
+			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((CompleteOCLCSResource)resource, metaModelManager);
 			Resource pivotResource = adapter.getPivotResource(resource);
 			if (pivotResource == null) {
 				return null;
@@ -116,7 +116,7 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 		
-	public CompleteOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
-		super(cs2pivotResourceMap, typeManager);
+	public CompleteOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
+		super(cs2pivotResourceMap, metaModelManager);
 	}
 }

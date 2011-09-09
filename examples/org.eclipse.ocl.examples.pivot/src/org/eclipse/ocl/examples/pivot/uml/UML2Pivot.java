@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,7 +48,6 @@ import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -60,13 +58,13 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class UML2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
@@ -76,7 +74,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	// FIXME this is a prehistoric value
 	private static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
 
-	public static UML2Pivot getAdapter(Resource resource, TypeManager typeManager) {
+	public static UML2Pivot getAdapter(Resource resource, MetaModelManager metaModelManager) {
 		if (resource == null) {
 			return null;
 		}
@@ -85,7 +83,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		if (adapter != null) {
 			return adapter;
 		}
-		adapter = new UML2Pivot(resource, typeManager);
+		adapter = new UML2Pivot(resource, metaModelManager);
 		eAdapters.add(adapter);
 		return adapter;
 	}
@@ -98,11 +96,11 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static org.eclipse.ocl.examples.pivot.Package importFromUML(TypeManager typeManager, String alias, Resource ecoreResource) {
+	public static org.eclipse.ocl.examples.pivot.Package importFromUML(MetaModelManager metaModelManager, String alias, Resource ecoreResource) {
 		if (ecoreResource == null) {
 			return null;
 		}
-		UML2Pivot conversion = getAdapter(ecoreResource, typeManager);
+		UML2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 		return conversion.getPivotRoot();
 	}
 
@@ -153,11 +151,11 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		return null;
 	}
 
-/*	public static Ecore2Pivot createConverter(TypeManager typeManager, Resource ecoreResource) {
+/*	public static Ecore2Pivot createConverter(MetaModelManager metaModelManager, Resource ecoreResource) {
 		EList<Adapter> eAdapters = ecoreResource.eAdapters();
 		Ecore2Pivot conversion = (Ecore2Pivot) EcoreUtil.getAdapter(eAdapters, Ecore2Pivot.class);
 		if (conversion == null) {
-			conversion = new Ecore2Pivot(typeManager);
+			conversion = new Ecore2Pivot(metaModelManager);
 			eAdapters.add(conversion);
 		}
 		return conversion;
@@ -170,12 +168,12 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	 * 
 	 * @return the pivot element
 	 */
-	public static Element importFromUML(TypeManager typeManager, String alias, EObject eObject) {
+	public static Element importFromUML(MetaModelManager metaModelManager, String alias, EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
 		Resource ecoreResource = eObject.eResource();
-		UML2Pivot conversion = getAdapter(ecoreResource, typeManager);
+		UML2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 		if (pivotRoot == null) {
 			return null;
@@ -210,47 +208,23 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	
 	private List<Resource.Diagnostic> errors = null;
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final Resource umlResource;					// Set via eAdapters.add()
 	
 	protected org.eclipse.ocl.examples.pivot.Package pivotRoot = null;	// Set by importResource
 	protected final UML2PivotDeclarationSwitch declarationPass = new UML2PivotDeclarationSwitch(this);	
 	protected final UML2PivotReferenceSwitch referencePass = new UML2PivotReferenceSwitch(this);
 	
-//	private Map<String, MonikeredElement> moniker2PivotMap = null;
-	
-	public UML2Pivot(Resource umlResource, TypeManager typeManager) {
+	public UML2Pivot(Resource umlResource, MetaModelManager metaModelManager) {
 		this.umlResource = umlResource;
-		this.typeManager = typeManager;
-		typeManager.addExternalResource(this);
+		this.metaModelManager = metaModelManager;
+		metaModelManager.addExternalResource(this);
+		metaModelManager.addListener(this);
 	}
 	
 	public void addCreated(EModelElement umlElement, Element pivotElement) {
 		createMap.put(umlElement, pivotElement);
 	}
-
-//	public void addGenericType(EGenericType eObject) {
-//		genericTypes.add(eObject);
-//	}
-
-	public Map<String, MonikeredElement> computeMoniker2PivotMap() {
-		Map<String, MonikeredElement> map = new HashMap<String, MonikeredElement>();
-		for (Iterator<EObject> it = umlResource.getAllContents(); it.hasNext(); ) {
-			EObject eObject = it.next();
-			if (eObject instanceof EModelElement) {
-				Element pElement = createMap.get(eObject);
-				if (pElement instanceof MonikeredElement) {
-					String moniker = ((MonikeredElement)pElement).getMoniker();
-					MonikeredElement oldElement = map.get(moniker);
-					if (oldElement != null) {
-						logger.warn("Duplicate moniker " + moniker + " for " + pElement.eClass().getName());
-					}
-					map.put(moniker, (MonikeredElement)pElement);
-				}
-			}
-		}
-		return map;
-	}	
 
 	protected void copyAnnotatedElement(NamedElement pivotElement,
 			EModelElement umlElement, List<EAnnotation> excludedAnnotations) {
@@ -338,6 +312,11 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		}
 	}
 
+	public void dispose() {
+		metaModelManager.removeExternalResource(this);
+		getTarget().eAdapters().remove(this);
+	}
+
 	protected void error(String message) {
 		if (errors == null) {
 			errors = new ArrayList<Resource.Diagnostic>();
@@ -358,27 +337,17 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		T castElement = (T) element;
 		return castElement;
 	}
-
-/*	public MonikeredElement getMoniker(String moniker) {
-		if (moniker2PivotMap == null) {
-			moniker2PivotMap = computeMoniker2PivotMap();
-		}
-		return moniker2PivotMap.get(moniker);
-	}
 	
-	public Map<String, MonikeredElement> getMoniker2PivotMap() {
-		if (moniker2PivotMap == null) {
-			moniker2PivotMap = computeMoniker2PivotMap();
-		}
-		return moniker2PivotMap;
-	} */
+	protected MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
 	
 	public Type getPivotType(EObject eObject) {
 		Element pivotElement = createMap.get(eObject);
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != umlResource) && (resource != null)) {
-				UML2Pivot converter = getAdapter(resource, typeManager);
+				UML2Pivot converter = getAdapter(resource, metaModelManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotRoot();
 //					allEClassifiers.addAll(converter.allEClassifiers);
@@ -426,7 +395,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 					pivotAliasMap.put(element, alias);
 				}
 			}
-			typeManager.installResource(pivotResource);
+			metaModelManager.installResource(pivotResource);
 		}
 		return pivotRoot;
 	}
@@ -438,18 +407,14 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	public Notifier getTarget() {
 		return umlResource;
 	}
-	
-	protected TypeManager getTypeManager() {
-		return typeManager;
-	}
 
 	public URI getURI() {
 		return umlResource.getURI();
 	}
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
-		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment(), null);
+		Resource pivotResource = metaModelManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
+		pivotRoot = metaModelManager.createPackage(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {
@@ -468,7 +433,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 //		}
 //		for (List<TemplateableElement> pivotElements : specializations.values()) {
 //			for (TemplateableElement pivotElement : pivotElements) {
-//				typeManager.addOrphanType((Type)pivotElement);
+//				metaModelManager.addOrphanType((Type)pivotElement);
 //			}
 //		}
 		for (EObject eObject : referencers) {
@@ -480,8 +445,16 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		return pivotResource;
 	}
 
+	public boolean isAdapterFor(MetaModelManager metaModelManager) {
+		return this.metaModelManager == metaModelManager;
+	}
+
 	public boolean isAdapterForType(Object type) {
 		return type == UML2Pivot.class;
+	}
+
+	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
+		dispose();
 	}
 
 	public void notifyChanged(Notification notification) {}
@@ -510,7 +483,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		pivotAnnotation.getOwnedDetails().add(pivotDetail);
 	} */
 
-	protected <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass,
+	protected <T extends Element> T refreshElement(Class<T> pivotClass,
 			EClass pivotEClass, org.eclipse.uml2.uml.Element umlElement) {
 		EFactory eFactoryInstance = pivotEClass.getEPackage().getEFactoryInstance();
 		EObject pivotElement = eFactoryInstance.create(pivotEClass);
@@ -541,16 +514,16 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		Type pivotType = null;
 		if (eClassifier.getEPackage() == EcorePackage.eINSTANCE) {
 			if (eClassifier == EcorePackage.Literals.EBOOLEAN) {
-				pivotType = typeManager.getBooleanType();
+				pivotType = metaModelManager.getBooleanType();
 			}
 			else if (eClassifier == EcorePackage.Literals.EBIG_INTEGER) {
-				pivotType = typeManager.getIntegerType();
+				pivotType = metaModelManager.getIntegerType();
 			}
 			else if (eClassifier == EcorePackage.Literals.EBIG_DECIMAL) {
-				pivotType = typeManager.getRealType();
+				pivotType = metaModelManager.getRealType();
 			}
 			else if (eClassifier == EcorePackage.Literals.ESTRING) {
-				pivotType = typeManager.getStringType();
+				pivotType = metaModelManager.getStringType();
 			}
 //			if (primitiveTypeName != null) {
 //				PrimitiveTypeRefCS csTypeRef = BaseCSTFactory.eINSTANCE.createPrimitiveTypeRefCS();
@@ -720,5 +693,9 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == umlResource;
+	}
+
+	public void unsetTarget(Notifier oldTarget) {
+		assert (oldTarget == umlResource);
 	}
 }

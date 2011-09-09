@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -96,14 +96,14 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
 	public Object setContext(EssentialOCLCSResource resource, EClassifier ecoreContext, Map<String, EClassifier> ecoreParameters) {
 		CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter(resource, null);
-		TypeManager typeManager = csAdapter.getTypeManager();
-		NamedElement pivotContext = ecoreContext != null ? typeManager.getPivotOfEcore(NamedElement.class, ecoreContext) : null;
+		MetaModelManager metaModelManager = csAdapter.getMetaModelManager();
+		NamedElement pivotContext = ecoreContext != null ? metaModelManager.getPivotOfEcore(NamedElement.class, ecoreContext) : null;
 		Map<String, Type> pivotParameters = null;
 		if (ecoreParameters != null) {
 			pivotParameters = new HashMap<String, Type>();
 			for (String key : ecoreParameters.keySet()) {
 				EClassifier ecoreParameterType = ecoreParameters.get(key);
-				Type pivotParameterType = typeManager.getPivotOfEcore(Type.class, ecoreParameterType);
+				Type pivotParameterType = metaModelManager.getPivotOfEcore(Type.class, ecoreParameterType);
 				pivotParameters.put(key, pivotParameterType);
 			}
 		}

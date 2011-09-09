@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
  * @model
  * @generated
  */
-public interface PackageDeclarationCS extends MonikeredElementCS {
+public interface PackageDeclarationCS extends ModelElementCS {
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.

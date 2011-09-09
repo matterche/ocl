@@ -91,19 +91,19 @@ public class Pivot2EcoreTypeRefVisitor
 			}
 			return eClassifier;
 		}
-		if (pivotType == context.getTypeManager().getBooleanType()) {
+		if (pivotType == context.getMetaModelManager().getBooleanType()) {
 			return EcorePackage.Literals.EBOOLEAN;
 		}
-		else if (pivotType == context.getTypeManager().getIntegerType()) {
+		else if (pivotType == context.getMetaModelManager().getIntegerType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
-		else if (pivotType == context.getTypeManager().getRealType()) {
+		else if (pivotType == context.getMetaModelManager().getRealType()) {
 			return EcorePackage.Literals.EBIG_DECIMAL;
 		}
-		else if (pivotType == context.getTypeManager().getStringType()) {
+		else if (pivotType == context.getMetaModelManager().getStringType()) {
 			return EcorePackage.Literals.ESTRING;
 		}
-		else if (pivotType == context.getTypeManager().getUnlimitedNaturalType()) {
+		else if (pivotType == context.getMetaModelManager().getUnlimitedNaturalType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
 		else {

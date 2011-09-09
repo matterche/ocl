@@ -28,9 +28,9 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -57,7 +57,7 @@ public abstract class AbstractEvaluationVisitor
 	
 	protected final EvaluationEnvironment evaluationEnvironment;
 	protected final Environment environment;
-	protected final TypeManager typeManager;	
+	protected final MetaModelManager metaModelManager;	
 	protected final ModelManager modelManager;
 	protected final ValueFactory valueFactory;;
 
@@ -84,7 +84,7 @@ public abstract class AbstractEvaluationVisitor
         super(null);
         this.evaluationEnvironment = evalEnv;
         this.environment = env;
-        this.typeManager = env.getTypeManager();
+        this.metaModelManager = env.getMetaModelManager();
         this.modelManager = modelManager;
 		this.valueFactory = evalEnv.getValueFactory();
         this.undecoratedVisitor = this;  // assume I have no decorator
@@ -99,14 +99,14 @@ public abstract class AbstractEvaluationVisitor
 	public EvaluationEnvironment getEvaluationEnvironment() {
 		return evaluationEnvironment;
 	}
+
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
 	
     // implements the interface method
 	public ModelManager getModelManager() {
 		return modelManager;
-	}
-
-	public TypeManager getTypeManager() {
-		return typeManager;
 	}
    
     /**
@@ -211,7 +211,7 @@ public abstract class AbstractEvaluationVisitor
 			throw new IllegalArgumentException("constraint has no body expression"); //$NON-NLS-1$
 		}
 		
-		if (isBoolean && !(body.getType() != typeManager.getBooleanType())) {
+		if (isBoolean && !(body.getType() != metaModelManager.getBooleanType())) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 		

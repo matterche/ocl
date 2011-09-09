@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * @model
  * @generated
  */
-public interface ModelElementRefCS extends ModelElementCS, RefCS
+public interface ModelElementRefCS extends ElementRefCS
 {
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.

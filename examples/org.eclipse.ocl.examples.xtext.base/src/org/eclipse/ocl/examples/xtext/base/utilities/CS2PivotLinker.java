@@ -67,7 +67,7 @@ public class CS2PivotLinker extends LazyLinker
 			BaseCSResource csResource = (BaseCSResource) eResource;
 			try {
 				CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
-				resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
+				resourceAdapter.refreshPivotMappings(diagnosticsConsumer);		// FIXME redundant
 /*				Resource pivotResource = resourceAdapter.getPivotResource(csResource);
 				ResourceSet resourceSet = csResource.getResourceSet();
 				if (resourceSet instanceof ResourceSetImpl) {

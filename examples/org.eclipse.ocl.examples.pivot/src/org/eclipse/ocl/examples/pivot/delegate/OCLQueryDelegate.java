@@ -30,9 +30,9 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
@@ -45,7 +45,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLQueryDelegate implements QueryDelegate
 {
-	protected final OCLDelegateDomain delegateDomain;
+	protected OCLDelegateDomain delegateDomain;
 	protected final ExpressionInOcl specification;
 
 	/**
@@ -66,25 +66,6 @@ public class OCLQueryDelegate implements QueryDelegate
 	public OCLQueryDelegate(OCLDelegateDomain delegateDomain, ExpressionInOcl specification) {
 		this.delegateDomain = delegateDomain;
 		this.specification = specification;
-	}
-
-	/**
-	 * Prepares the query wrapping any exceptions as InvocationTargetException.
-	 * This method is lazily invoked from execute, but may be invoked eagerly
-	 * to detect compilation errors earlier or incur compilation costs at a more
-	 * convenient time.
-	 *  
-	 * @throws InvocationTargetException wrapping any parser, io exceptions
-	 */
-	public void prepare() throws InvocationTargetException {
-		TypeManager typeManager = delegateDomain.getTypeManager();
-		try {
-			String expression = PivotUtil.getBody(specification);
-			URI uri = typeManager.getResourceIdentifier(this, null);
-			PivotUtil.resolveSpecification(typeManager, uri, specification, expression);
-		} catch (Exception e) {
-			throw new InvocationTargetException(e);
-		}
 	}
 
 	/**
@@ -111,12 +92,12 @@ public class OCLQueryDelegate implements QueryDelegate
 		}
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			TypeManager typeManager = ocl.getTypeManager();
-			ValueFactory valueFactory = typeManager.getValueFactory();
+			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			Value targetValue = valueFactory.valueOf(target);
-			Type targetType = targetValue.getType(typeManager, null);
+			Type targetType = targetValue.getType(metaModelManager, null);
 			Type requiredType = specification.getContextVariable().getType();
-			if (!typeManager.conformsTo(targetType, requiredType, null)) {
+			if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
 				String message = NLS.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(message);
 			}
@@ -138,9 +119,9 @@ public class OCLQueryDelegate implements QueryDelegate
 					throw new OCLDelegateException(message);
 				}
 				Value value = valueFactory.valueOf(object);
-				targetType = value.getType(typeManager, null);
+				targetType = value.getType(metaModelManager, null);
 				requiredType = parameterVariable.getType();
-				if (!typeManager.conformsTo(targetType, requiredType, null)) {
+				if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
 					String message = NLS.bind(OCLMessages.MismatchedArgumentType_ERROR_, new Object[]{name, targetType, requiredType});
 					throw new OCLDelegateException(message);
 				}
@@ -163,6 +144,25 @@ public class OCLQueryDelegate implements QueryDelegate
 			throw new InvocationTargetException(new OCLDelegateException(message));
 		}
 		catch (OCLDelegateException e) {
+			throw new InvocationTargetException(e);
+		}
+	}
+
+	/**
+	 * Prepares the query wrapping any exceptions as InvocationTargetException.
+	 * This method is lazily invoked from execute, but may be invoked eagerly
+	 * to detect compilation errors earlier or incur compilation costs at a more
+	 * convenient time.
+	 *  
+	 * @throws InvocationTargetException wrapping any parser, io exceptions
+	 */
+	public void prepare() throws InvocationTargetException {
+		MetaModelManager metaModelManager = delegateDomain.getMetaModelManager();
+		try {
+			String expression = PivotUtil.getBody(specification);
+			URI uri = metaModelManager.getResourceIdentifier(this, null);
+			PivotUtil.resolveSpecification(metaModelManager, uri, specification, expression);
+		} catch (Exception e) {
 			throw new InvocationTargetException(e);
 		}
 	}

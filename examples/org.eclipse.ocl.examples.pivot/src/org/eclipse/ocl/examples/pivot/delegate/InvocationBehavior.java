@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -59,10 +59,10 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * definition.
 	 * @throws OCLDelegateException 
 	 */
-	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, Operation operation) throws OCLDelegateException {
+	public ExpressionInOcl getExpressionInOcl(MetaModelManager metaModelManager, Operation operation) throws OCLDelegateException {
 		Constraint constraint = getConstraintForStereotype(operation, UMLReflection.BODY);
 		if (constraint != null) {
-			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, operation, constraint);
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(metaModelManager, operation, constraint);
 			if (expressionInOcl != null) {
 				return expressionInOcl;
 			}

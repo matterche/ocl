@@ -28,9 +28,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.QueryBaseImpl;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -654,12 +654,12 @@ public abstract class OCLBase {
 		return problems;
 	}
 
-	public TypeManager getTypeManager() {
-		return rootEnvironment.getTypeManager();
+	public MetaModelManager getMetaModelManager() {
+		return rootEnvironment.getMetaModelManager();
 	}
 
 	public ValueFactory getValueFactory() {
-		return getTypeManager().getValueFactory();
+		return getMetaModelManager().getValueFactory();
 	}
 	
 	/**
@@ -700,6 +700,6 @@ public abstract class OCLBase {
 			Environment.Internal env = (Environment.Internal) getEnvironment();
 			env.dispose();
 		}
-		getTypeManager().dispose();
+		getMetaModelManager().dispose();
 	}
 }

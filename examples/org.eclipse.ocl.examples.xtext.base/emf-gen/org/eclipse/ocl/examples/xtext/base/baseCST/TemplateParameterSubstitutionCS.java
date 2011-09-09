@@ -34,7 +34,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model
  * @generated
  */
-public interface TemplateParameterSubstitutionCS extends ModelElementCS, RefCS {
+public interface TemplateParameterSubstitutionCS extends ModelElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Template Binding</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS#getOwnedParameterSubstitution <em>Owned Parameter Substitution</em>}'.
@@ -87,12 +87,12 @@ public interface TemplateParameterSubstitutionCS extends ModelElementCS, RefCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Actual Parameter</em>' containment reference.
-	 * @see #setOwnedActualParameter(ParameterableElementCS)
+	 * @see #setOwnedActualParameter(TypeRefCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTemplateParameterSubstitutionCS_OwnedActualParameter()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ParameterableElementCS getOwnedActualParameter();
+	TypeRefCS getOwnedActualParameter();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS#getOwnedActualParameter <em>Owned Actual Parameter</em>}' containment reference.
@@ -102,6 +102,6 @@ public interface TemplateParameterSubstitutionCS extends ModelElementCS, RefCS {
 	 * @see #getOwnedActualParameter()
 	 * @generated
 	 */
-	void setOwnedActualParameter(ParameterableElementCS value);
+	void setOwnedActualParameter(TypeRefCS value);
 
 } // TemplateParameterSubstitutionCS

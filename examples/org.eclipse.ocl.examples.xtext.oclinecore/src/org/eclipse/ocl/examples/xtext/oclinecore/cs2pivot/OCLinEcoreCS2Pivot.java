@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -36,12 +36,12 @@ import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 
 public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot 
 {	
-	private static final class Factory implements CS2Pivot.Factory, TypeManager.Factory
+	private static final class Factory implements CS2Pivot.Factory, MetaModelManager.Factory
 	{
 		private Factory() {
 			EssentialOCLCS2Pivot.FACTORY.getClass();
 			CS2Pivot.addFactory(this);
-			TypeManager.addFactory(this);
+			MetaModelManager.addFactory(this);
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -62,16 +62,16 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 			return new OCLinEcorePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
-			return new OCLinEcoreScopeVisitor(typeManager);
+		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
+			return new OCLinEcoreScopeVisitor(metaModelManager);
 		}
 
 		public EPackage getEPackage() {
 			return OCLinEcoreCSTPackage.eINSTANCE;
 		}
 
-		public Element importFromResource(TypeManager typeManager, Resource resource, String uriFragment) {
-			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((OCLinEcoreCSResource)resource, typeManager);
+		public Element importFromResource(MetaModelManager metaModelManager, Resource resource, String uriFragment) {
+			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((OCLinEcoreCSResource)resource, metaModelManager);
 			Resource pivotResource = adapter.getPivotResource(resource);
 			if (pivotResource == null) {
 				return null;
@@ -91,7 +91,7 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 		
-	public OCLinEcoreCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
-		super(cs2pivotResourceMap, typeManager);
+	public OCLinEcoreCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
+		super(cs2pivotResourceMap, metaModelManager);
 	}
 }

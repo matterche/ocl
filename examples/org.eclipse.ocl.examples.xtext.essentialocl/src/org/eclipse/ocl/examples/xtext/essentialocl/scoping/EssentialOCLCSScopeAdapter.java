@@ -17,11 +17,11 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -30,25 +30,25 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTyp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
-public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends BaseCSScopeAdapter<CS, P>
+public abstract class EssentialOCLCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends BaseCSScopeAdapter<CS, P>
 {	
-	protected EssentialOCLCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csElement, pivotClass);
+	protected EssentialOCLCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csElement, pivotClass);
 	}	
 
-	protected EssentialOCLCSScopeAdapter(TypeManager typeManager, EObject eParent, CS csElement, Class<P> pivotClass) {
-		super(typeManager, eParent, csElement, pivotClass);
+	protected EssentialOCLCSScopeAdapter(MetaModelManager metaModelManager, EObject eParent, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, eParent, csElement, pivotClass);
 	}	
 
 	@Override
 	public Type getLibraryType(ElementCS csElement) {
 		if (csElement instanceof PrimitiveTypeRefCS) {
-			return typeManager.getLibraryType(((PrimitiveTypeRefCS)csElement).getName());
+			return metaModelManager.getLibraryType(((PrimitiveTypeRefCS)csElement).getName());
 		}
 		else if (csElement instanceof CollectionTypeCS) {
 			CollectionTypeCS collectionType = (CollectionTypeCS)csElement;
 			Type elementType = getLibraryType(collectionType.getOwnedType());
-			return typeManager.getCollectionType(collectionType.getName(), elementType);
+			return metaModelManager.getCollectionType(collectionType.getName(), elementType);
 		}
 		else if (csElement instanceof TupleTypeCS) {			
 			TupleTypeCS tupleType = (TupleTypeCS)csElement;

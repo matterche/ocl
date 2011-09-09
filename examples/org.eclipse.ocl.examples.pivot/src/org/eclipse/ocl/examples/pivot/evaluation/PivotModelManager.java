@@ -28,16 +28,16 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class PivotModelManager extends LazyModelManager
 {
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	private Ecore2Pivot ecoreConverter = null;
 	
-	public PivotModelManager(TypeManager typeManager, EObject context) {
+	public PivotModelManager(MetaModelManager metaModelManager, EObject context) {
 		super(context);
-		this.typeManager = typeManager;
+		this.metaModelManager = metaModelManager;
 	}
 
 	// implements the inherited specification
@@ -47,21 +47,21 @@ public class PivotModelManager extends LazyModelManager
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType;
 		if (ePackage == PivotPackage.eINSTANCE) {
-			objectType = typeManager.getPivotType(eClass.getName());
+			objectType = metaModelManager.getPivotType(eClass.getName());
 		}
 		else {
 			Resource resource = eClass.eResource();
 			if (resource != null) {
-				Ecore2Pivot ecoreConverter = Ecore2Pivot.getAdapter(resource, typeManager);
+				Ecore2Pivot ecoreConverter = Ecore2Pivot.getAdapter(resource, metaModelManager);
 				objectType = ecoreConverter.getPivotType(eClass);
 			}
 			else {
 				Collection<EObject> roots = Collections.singletonList(EcoreUtil.getRootContainer(eClass));
-				ecoreConverter = new Ecore2Pivot(null, typeManager);
+				ecoreConverter = new Ecore2Pivot(null, metaModelManager);
 				ecoreConverter.importObjects(roots, URI.createURI("temp://eval"));
 				objectType = ecoreConverter.getPivotType(eClass);
 			}
 		}
-	    return typeManager.conformsTo(objectType, requiredType, null);
+	    return metaModelManager.conformsTo(objectType, requiredType, null);
 	}
 }

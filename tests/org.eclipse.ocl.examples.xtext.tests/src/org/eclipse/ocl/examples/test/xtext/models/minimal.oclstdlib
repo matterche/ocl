@@ -2,11 +2,13 @@ library lib : lib = 'http://minimal.oclstdlib'
 {
 	type Bag<T> : BagType conformsTo Collection<T> {}
 	type Boolean : PrimitiveType conformsTo OclAny {}
+	type Class conformsTo OclAny {}	
 	type Classifier<T> : ClassifierType conformsTo OclAny {}
 	type Collection<T> : CollectionType conformsTo OclAny {}
 	type Enumeration conformsTo OclAny {}
 	type Integer : PrimitiveType conformsTo Real {}
 	type OclAny : AnyType {}
+	type OclElement conformsTo OclAny {}	
 	type OclInvalid : InvalidType conformsTo OclVoid {}
 	type OclVoid : VoidType conformsTo OclAny {}
 	type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {}

@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseScopeVisitor;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
@@ -52,9 +52,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TypeNameExpCSScopeAda
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
 public class EssentialOCLScopeVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, TypeManager, BaseScopeVisitor>
+	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, MetaModelManager, BaseScopeVisitor>
 {
-	public EssentialOCLScopeVisitor(TypeManager context) {
+	public EssentialOCLScopeVisitor(MetaModelManager context) {
 		super(new BaseScopeVisitor(context), context);
 	}
 	

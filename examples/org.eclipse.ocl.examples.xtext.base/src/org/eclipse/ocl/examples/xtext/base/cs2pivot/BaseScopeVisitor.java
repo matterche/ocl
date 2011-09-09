@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -61,9 +61,9 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.TypedTypeRefCSScopeAdapter
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
-public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdapter, TypeManager>
+public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdapter, MetaModelManager>
 {
-	public BaseScopeVisitor(TypeManager context) {
+	public BaseScopeVisitor(MetaModelManager context) {
 		super(context);
 		assert context != null;
 	}

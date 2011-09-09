@@ -223,8 +223,6 @@ public class OpaqueExpressionImpl
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.OPAQUE_EXPRESSION__MONIKER:
-				return getMoniker();
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				return getName();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
@@ -267,9 +265,6 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.OPAQUE_EXPRESSION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				setName((String)newValue);
@@ -325,9 +320,6 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.OPAQUE_EXPRESSION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -376,8 +368,6 @@ public class OpaqueExpressionImpl
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.OPAQUE_EXPRESSION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
@@ -415,8 +405,6 @@ public class OpaqueExpressionImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPAQUE_EXPRESSION___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.OPAQUE_EXPRESSION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.OPAQUE_EXPRESSION___IS_COMPUTABLE:

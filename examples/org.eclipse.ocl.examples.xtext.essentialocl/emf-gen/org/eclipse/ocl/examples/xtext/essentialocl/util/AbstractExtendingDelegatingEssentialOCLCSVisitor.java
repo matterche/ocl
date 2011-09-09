@@ -57,11 +57,11 @@ public abstract class AbstractExtendingDelegatingEssentialOCLCSVisitor<R, C, D e
 	}
 
 	public R visitCollectionLiteralPartCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS object) {
-		return delegate.visitMonikeredElementCS(object);
+		return delegate.visitModelElementCS(object);
 	}
 
 	public R visitCollectionTypeCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS object) {
-		return delegate.visitNamedElementCS(object);
+		return delegate.visitTypedRefCS(object);
 	}
 
 	public R visitContextCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS object) {
@@ -73,7 +73,7 @@ public abstract class AbstractExtendingDelegatingEssentialOCLCSVisitor<R, C, D e
 	}
 
 	public R visitExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS object) {
-		return delegate.visitMonikeredElementCS(object);
+		return delegate.visitModelElementCS(object);
 	}
 
 	public R visitExpSpecificationCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS object) {

@@ -37,8 +37,8 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -122,7 +122,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return null;
 	}
 
-	protected ExpressionInOcl getExpressionInOcl(TypeManager typeManager, NamedElement namedElement, Constraint constraint) {
+	protected ExpressionInOcl getExpressionInOcl(MetaModelManager metaModelManager, NamedElement namedElement, Constraint constraint) {
 		ValueSpecification valueSpecification = constraint.getSpecification();
 		if (valueSpecification instanceof ExpressionInOcl) {
 			return (ExpressionInOcl) valueSpecification;
@@ -136,14 +136,14 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			try {
 				String expression = PivotUtil.getBody(opaqueExpression);
 				if (expression != null) {
-					URI uriBody = typeManager.getResourceIdentifier(constraint, "body");
-					expressionInOcl = PivotUtil.resolveSpecification(typeManager, uriBody, namedElement, expression);
+					URI uriBody = metaModelManager.getResourceIdentifier(constraint, "body");
+					expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uriBody, namedElement, expression);
 					if (expressionInOcl != null) {
 						opaqueExpression.setValueExpression(expressionInOcl);
 						String message = PivotUtil.getMessage(opaqueExpression);
 						if ((message != null) && (message.length() > 0)) {
-							URI uriMessage = typeManager.getResourceIdentifier(constraint, "message");
-							ExpressionInOcl resolveSpecification = PivotUtil.resolveSpecification(typeManager, uriMessage, namedElement, message);
+							URI uriMessage = metaModelManager.getResourceIdentifier(constraint, "message");
+							ExpressionInOcl resolveSpecification = PivotUtil.resolveSpecification(metaModelManager, uriMessage, namedElement, message);
 							OclExpression messageExpression = resolveSpecification.getBodyExpression();
 							for (TreeIterator<EObject> tit = messageExpression.eAllContents(); tit.hasNext(); ) {
 								EObject eObject = tit.next();

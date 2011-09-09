@@ -18,9 +18,9 @@ package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -42,22 +42,21 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstra
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreLeft2RightVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<MonikeredElement, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
+	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Element, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
 {
 	public OCLinEcoreLeft2RightVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLLeft2RightVisitor(context), context);
 	}
 
 	@Override
-	public MonikeredElement visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
+	public Element visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
 		Constraint pivotConstraint = PivotUtil.getPivot(Constraint.class, csConstraint);
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csConstraint.getSpecification();
 		pivotConstraint.setIsCallable(csConstraint.isCallable());
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		if (csExpression != null) {
-			ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
+			ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
 				PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
-//			context.installPivotElement(csSpecification, pivotSpecification);
 			pivotConstraint.setSpecification(pivotSpecification);
 	
 			Variable contextVariable = pivotSpecification.getContextVariable();

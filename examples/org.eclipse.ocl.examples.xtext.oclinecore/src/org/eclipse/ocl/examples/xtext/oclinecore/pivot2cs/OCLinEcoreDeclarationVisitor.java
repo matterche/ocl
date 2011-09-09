@@ -47,7 +47,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 			OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 			String message = PivotUtil.getMessage(opaqueExpression);
 			if ((message != null) && (message.length() > 0)) {
-				OCLinEcoreSpecificationCS csMessageElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, opaqueExpression);
+				OCLinEcoreSpecificationCS csMessageElement = context.refreshElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, opaqueExpression);
 				csMessageElement.setExprString(message);
 				csElement.setMessageSpecification(csMessageElement);
 			}
@@ -57,7 +57,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 
 	@Override
 	public ElementCS visitExpressionInOcl(ExpressionInOcl object) {
-		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
+		OCLinEcoreSpecificationCS csElement = context.refreshElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		csElement.setOwnedExpression(context.visitDeclaration(ExpCS.class, object.getBodyExpression()));
 		return csElement;
 	}
@@ -68,7 +68,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 		if (body == null) {
 			return null;
 		}
-		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
+		OCLinEcoreSpecificationCS csElement = context.refreshElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		csElement.setExprString(body);
 		return csElement;
 	}	

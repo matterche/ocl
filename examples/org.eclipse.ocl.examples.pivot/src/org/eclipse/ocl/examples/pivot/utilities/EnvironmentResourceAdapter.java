@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * A EnvironmentResourceAdapter enhances the Resource to idenify its environment.
@@ -53,8 +54,8 @@ public class EnvironmentResourceAdapter implements Adapter
 		this.environment = environment;
 	}
 
-	public TypeManager createTypeManager() {
-		return new TypeManager();
+	public MetaModelManager createMetaModelManager() {
+		return new MetaModelManager();
 	}
 
 	public Resource getTarget() {
@@ -65,8 +66,8 @@ public class EnvironmentResourceAdapter implements Adapter
 		return environment;
 	}
 	
-//	public TypeManager getTypeManager() {
-//		return typeManager;
+//	public MetaModelManager getMetaModelManager() {
+//		return metaModelManager;
 //	}
 
 	public boolean isAdapterForType(Object type) {

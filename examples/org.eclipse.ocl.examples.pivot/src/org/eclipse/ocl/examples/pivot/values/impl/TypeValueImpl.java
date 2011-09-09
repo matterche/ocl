@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -42,7 +42,7 @@ public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 	}
 
 	@Override
-	public ClassifierType getType(TypeManager typeManager, Type staticType) {
+	public ClassifierType getType(MetaModelManager metaModelManager, Type staticType) {
 		return (ClassifierType) object;
 	}
 

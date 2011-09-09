@@ -20,8 +20,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -35,18 +35,18 @@ public class BaseLocationInFileProvider extends DefaultLocationInFileProvider
 {
 	@Override
 	protected ITextRegion getTextRegion(EObject obj, boolean isSignificant) {
-		if (obj instanceof MonikeredElement) {
-			MonikeredElementCS csMonikeredElement = ElementUtil.getCsElement((MonikeredElement) obj);
-			if (csMonikeredElement != null) {
-				return super.getTextRegion(csMonikeredElement, isSignificant);
+		if (obj instanceof Element) {
+			ModelElementCS csModelElement = ElementUtil.getCsElement((Element) obj);
+			if (csModelElement != null) {
+				return super.getTextRegion(csModelElement, isSignificant);
 			}
 		}
 		else if (obj instanceof Comment) {
 			EObject eContainer = obj.eContainer();
-			if (eContainer instanceof MonikeredElement) {
-				MonikeredElementCS csMonikeredElement = ElementUtil.getCsElement((MonikeredElement) eContainer);
-				if (csMonikeredElement != null) {
-					ICompositeNode node = NodeModelUtils.getNode(csMonikeredElement);
+			if (eContainer instanceof Element) {
+				ModelElementCS csModelElement = ElementUtil.getCsElement((Element) eContainer);
+				if (csModelElement != null) {
+					ICompositeNode node = NodeModelUtils.getNode(csModelElement);
 					List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
 					ILeafNode first = documentationNodes.get(0);
 					ILeafNode last = documentationNodes.get(documentationNodes.size()-1);

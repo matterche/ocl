@@ -407,8 +407,6 @@ public class ClassImpl
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.CLASS__MONIKER:
-				return getMoniker();
 			case PivotPackage.CLASS__NAME:
 				return getName();
 			case PivotPackage.CLASS__OWNED_RULE:
@@ -461,9 +459,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.CLASS__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.CLASS__NAME:
 				setName((String)newValue);
@@ -539,9 +534,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CLASS__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.CLASS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -608,8 +600,6 @@ public class ClassImpl
 		{
 			case PivotPackage.CLASS__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CLASS__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.CLASS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CLASS__OWNED_RULE:

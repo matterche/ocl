@@ -38,8 +38,7 @@ import org.eclipse.ocl.examples.pivot.util.PivotValidator;
  *
  * @generated
  */
-public class TemplateSignatureOperations
-		extends MonikeredElementOperations {
+public class TemplateSignatureOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

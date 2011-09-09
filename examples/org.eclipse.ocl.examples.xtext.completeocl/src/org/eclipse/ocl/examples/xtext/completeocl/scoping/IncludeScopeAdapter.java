@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.MonikeredElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class IncludeScopeAdapter extends MonikeredElementCSScopeAdapter<IncludeCS, Namespace>
+public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, Namespace>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public IncludeScopeAdapter(TypeManager typeManager, IncludeCS csElement) {
-		super(typeManager, csElement, Namespace.class);
+	public IncludeScopeAdapter(MetaModelManager metaModelManager, IncludeCS csElement) {
+		super(metaModelManager, csElement, Namespace.class);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class IncludeScopeAdapter extends MonikeredElementCSScopeAdapter<IncludeC
 			return;
 		}
 		try {
-			importedElement = typeManager.loadResource(uri, target.getName());				
+			importedElement = metaModelManager.loadResource(uri, target.getName());				
 			Resource importedResource = importedElement.eResource();
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 			if (warnings.size() > 0) {

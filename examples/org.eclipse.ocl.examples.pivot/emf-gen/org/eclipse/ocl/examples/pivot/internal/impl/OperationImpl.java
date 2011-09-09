@@ -656,8 +656,6 @@ public class OperationImpl
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.OPERATION__MONIKER:
-				return getMoniker();
 			case PivotPackage.OPERATION__NAME:
 				return getName();
 			case PivotPackage.OPERATION__OWNED_RULE:
@@ -718,9 +716,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.OPERATION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.OPERATION__NAME:
 				setName((String)newValue);
@@ -803,9 +798,6 @@ public class OperationImpl
 			case PivotPackage.OPERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.OPERATION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.OPERATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -881,8 +873,6 @@ public class OperationImpl
 		{
 			case PivotPackage.OPERATION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.OPERATION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.OPERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION__OWNED_RULE:
@@ -1044,8 +1034,6 @@ public class OperationImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPERATION___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:
 				return validateLowerGe0((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP:

@@ -201,10 +201,6 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
-	public R visitMonikeredElement(org.eclipse.ocl.examples.pivot.MonikeredElement object) {
-		return null;
-	}
-
 	public R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object) {
 		return null;
 	}

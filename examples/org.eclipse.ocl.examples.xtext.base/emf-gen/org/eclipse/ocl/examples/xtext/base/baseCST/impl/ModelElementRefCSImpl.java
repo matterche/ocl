@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class ModelElementRefCSImpl extends ModelElementCSImpl implements ModelElementRefCS
+public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElementRefCS
 {
 	/**
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.

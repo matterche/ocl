@@ -89,7 +89,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				public Object exec(XtextResource resource) throws Exception {
 					XMLResource pivotResource = getPivotResouce();
 					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
-					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI, null);
+					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getMetaModelManager(), pivotResource, ecoreURI, null);
 //					ResourceSetImpl resourceSet = new ResourceSetImpl();
 //					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 //					ecoreResource.getContents().addAll(ecoreContents);
@@ -117,7 +117,7 @@ public class OCLinEcoreDocument extends BaseDocument
 				public Object exec(XtextResource resource) throws Exception {
 					XMLResource pivotResource = getPivotResouce();
 					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
-					List<EObject> umlContents = Pivot2UML.createResource(adapter.getTypeManager(), pivotResource);
+					List<EObject> umlContents = Pivot2UML.createResource(adapter.getMetaModelManager(), pivotResource);
 					ResourceSetImpl resourceSet = new ResourceSetImpl();
 	//				URI umlURI = URI.createURI("internal.uml");
 					UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
@@ -140,7 +140,7 @@ public class OCLinEcoreDocument extends BaseDocument
 					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
 					Map<String,Object> options = new HashMap<String,Object>();
 					options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI, options);
+					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getMetaModelManager(), pivotResource, ecoreURI, options);
 					ecoreResource.save(writer, null);
 					checkForErrors(ecoreResource);
 					return null;

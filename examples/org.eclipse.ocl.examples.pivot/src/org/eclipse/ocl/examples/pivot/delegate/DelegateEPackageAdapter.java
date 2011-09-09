@@ -189,7 +189,7 @@ public class DelegateEPackageAdapter extends AdapterImpl
 				delegateDomains = new ArrayList<DelegateDomain>(delegateDomainMap.values());
 			}
 			for (DelegateDomain delegateDomain : delegateDomains) {
-				delegateDomain.dispose();
+				delegateDomain.reset();
 			}
 		}
 	}

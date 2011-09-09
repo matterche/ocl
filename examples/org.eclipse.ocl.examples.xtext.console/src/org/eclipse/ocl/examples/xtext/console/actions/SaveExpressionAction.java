@@ -90,7 +90,7 @@ public class SaveExpressionAction extends Action
 					{
 						public Object exec(XtextResource resource) throws Exception {
 							CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
-							csAdapter.refreshPivotMappings(null);
+							csAdapter.refreshPivotMappings(null);		// FIXME redundant
 							Resource pivotResource = csAdapter.getPivotResource(resource);
 							pivotResource.setURI(URI.createFileURI(file));
 							pivotResource.save(saveOptions);

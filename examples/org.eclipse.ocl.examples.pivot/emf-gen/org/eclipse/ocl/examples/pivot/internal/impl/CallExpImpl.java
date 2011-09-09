@@ -220,8 +220,6 @@ public abstract class CallExpImpl
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.CALL_EXP__MONIKER:
-				return getMoniker();
 			case PivotPackage.CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.CALL_EXP__OWNED_RULE:
@@ -254,9 +252,6 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.CALL_EXP__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.CALL_EXP__NAME:
 				setName((String)newValue);
@@ -297,9 +292,6 @@ public abstract class CallExpImpl
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CALL_EXP__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -336,8 +328,6 @@ public abstract class CallExpImpl
 		{
 			case PivotPackage.CALL_EXP__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CALL_EXP__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CALL_EXP__OWNED_RULE:

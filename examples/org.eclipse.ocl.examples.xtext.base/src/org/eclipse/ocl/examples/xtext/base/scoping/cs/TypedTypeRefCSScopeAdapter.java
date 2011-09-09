@@ -18,24 +18,24 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<TypedTypeRefCS, Type>
+public class TypedTypeRefCSScopeAdapter extends ElementRefCSScopeAdapter<TypedTypeRefCS, Type>
 {
-	public TypedTypeRefCSScopeAdapter(TypeManager typeManager, TypedTypeRefCS csElement) {
-		super(typeManager, csElement, Type.class);
+	public TypedTypeRefCSScopeAdapter(MetaModelManager metaModelManager, TypedTypeRefCS csElement) {
+		super(metaModelManager, csElement, Type.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING) {
-			TypeManager typeManager = environmentView.getTypeManager();
-			return getOuterScopeView(typeManager, null);
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+			return getOuterScopeView(metaModelManager, null);
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) {
 			return getNamespaceScope(environmentView, scopeView, target.getNamespace());

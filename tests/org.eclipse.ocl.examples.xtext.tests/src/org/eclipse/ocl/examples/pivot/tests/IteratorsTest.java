@@ -66,7 +66,7 @@ public class IteratorsTest extends PivotTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-		typeManager.addGlobalNamespace(PivotConstants.OCL_NAME, typeManager.getPivotMetaModel());
+		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getPivotMetaModel());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -87,7 +87,7 @@ public class IteratorsTest extends PivotTestSuite
         pkg4 = createPackage(pkg3, "pkg4");
         pkg5 = createPackage(pkg3, "pkg5");
         george = createPackage(pkg5, "george");
-        helper.setContext(typeManager.getPivotType("Package"));
+        helper.setContext(metaModelManager.getPivotType("Package"));
     }
 
     /**
@@ -376,7 +376,7 @@ public class IteratorsTest extends PivotTestSuite
      * Tests that the closure() iterator handles cycles.
      */
     public void test_closure_cycles() {
-        Type packageMetaclass = typeManager.getPivotType("Package");
+        Type packageMetaclass = metaModelManager.getPivotType("Package");
         Property nestedPackage = getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
         Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
         SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
@@ -389,10 +389,10 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closure_operations() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake", null);
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
-        createGeneralization(fake, typeManager.getOclAnyType());
+        createGeneralization(fake, metaModelManager.getOclAnyType());
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
         getFakes.setUpper(BigInteger.valueOf(-1));
 
@@ -416,7 +416,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closureValidation_typeConformance_154695() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake", null);
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
@@ -425,7 +425,7 @@ public class IteratorsTest extends PivotTestSuite
         // subclass the Fake class
         org.eclipse.ocl.examples.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
         createGeneralization(subFake, fake);
-        createGeneralization(fake, typeManager.getOclAnyType());
+        createGeneralization(fake, metaModelManager.getOclAnyType());
 
         // get sub-fakes from a fake
         Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, subFake, true);
@@ -703,8 +703,8 @@ public class IteratorsTest extends PivotTestSuite
      * the body expression type has a <tt>&lt;</tt> operation.
      */
     public void test_sortedByRequiresComparability_192729() {
-    	Type context = typeManager.getPivotType("Package");
-    	Type type = typeManager.getPivotType("Type");
+    	Type context = metaModelManager.getPivotType("Package");
+    	Type type = metaModelManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
         	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + "");
@@ -719,7 +719,7 @@ public class IteratorsTest extends PivotTestSuite
     }
 	
 	public void loadEPackage(String alias, EPackage ePackage) {		
-		Element ecoreElement = Ecore2Pivot.importFromEcore(typeManager, alias, ePackage);
-		typeManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
+		Element ecoreElement = Ecore2Pivot.importFromEcore(metaModelManager, alias, ePackage);
+		metaModelManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
 	}
 }

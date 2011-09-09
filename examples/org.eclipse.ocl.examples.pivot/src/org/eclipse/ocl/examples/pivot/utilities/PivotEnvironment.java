@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.State;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * Implementation of the {@link Environment} for parsing OCL expressions on
@@ -81,18 +82,18 @@ public class PivotEnvironment extends AbstractEnvironment {
     } */
 	
 	private final EnvironmentFactory factory;
-	private TypeManager typeManager;
+	private MetaModelManager metaModelManager;
 	
 	/**
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
 	 *
-	public PivotEnvironment(EPackage.Registry reg, TypeManager typeManager) {
+	public PivotEnvironment(EPackage.Registry reg, MetaModelManager metaModelManager) {
 		registry = reg;
 		typeResolver = createTypeResolver();
-		this.typeManager = typeManager;
-		uml = new PivotReflectionImpl(typeManager);
+		this.metaModelManager = metaModelManager;
+		uml = new PivotReflectionImpl(metaModelManager);
 	} */
 	
     /**
@@ -121,7 +122,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 */
 	protected PivotEnvironment(PivotEnvironmentFactory factory, Resource resource) {
 		this.factory = factory;
-		this.typeManager = factory.getTypeManager();
+		this.metaModelManager = factory.getMetaModelManager();
 	}
 
     /**
@@ -133,7 +134,7 @@ public class PivotEnvironment extends AbstractEnvironment {
 	protected PivotEnvironment(PivotEnvironment parent) {		
 		super(parent);
 		factory = parent.factory;
-		typeManager = parent.typeManager;
+		metaModelManager = parent.metaModelManager;
 	}
 
     // implements the inherited specification
@@ -210,12 +211,12 @@ public class PivotEnvironment extends AbstractEnvironment {
     	return result;
 	}
 
-	public StandardLibrary getOCLStandardLibrary() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public StandardLibrary getOCLStandardLibrary() {
+		return metaModelManager;
 	}
 
 	public OCLFactory getOCLFactory() {

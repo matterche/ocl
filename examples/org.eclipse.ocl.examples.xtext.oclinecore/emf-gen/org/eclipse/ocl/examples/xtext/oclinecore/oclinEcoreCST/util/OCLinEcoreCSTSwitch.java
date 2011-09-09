@@ -24,14 +24,14 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,9 +102,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseOCLinEcoreConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseNamedElementCS(ocLinEcoreConstraintCS);
-				if (result == null) result = caseMonikeredElementCS(ocLinEcoreConstraintCS);
-				if (result == null) result = caseNameable(ocLinEcoreConstraintCS);
 				if (result == null) result = caseModelElementCS(ocLinEcoreConstraintCS);
+				if (result == null) result = caseNameable(ocLinEcoreConstraintCS);
+				if (result == null) result = casePivotableElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = casePivotable(ocLinEcoreConstraintCS);
 				if (result == null) result = caseVisitableCS(ocLinEcoreConstraintCS);
@@ -117,8 +117,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseOCLinEcoreSpecificationCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = caseExpSpecificationCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = caseSpecificationCS(ocLinEcoreSpecificationCS);
-				if (result == null) result = caseMonikeredElementCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = caseModelElementCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = casePivotableElementCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = caseElementCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = casePivotable(ocLinEcoreSpecificationCS);
 				if (result == null) result = caseVisitableCS(ocLinEcoreSpecificationCS);
@@ -210,6 +210,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePivotableElementCS(PivotableElementCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -226,22 +242,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonikeredElementCS(MonikeredElementCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;

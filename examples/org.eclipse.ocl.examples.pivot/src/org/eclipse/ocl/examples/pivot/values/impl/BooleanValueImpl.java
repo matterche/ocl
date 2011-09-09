@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -49,8 +49,8 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 		return this;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
-		return typeManager.getBooleanType();
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
+		return metaModelManager.getBooleanType();
 	}
 
 	@Override

@@ -32,8 +32,8 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -49,9 +49,9 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
 		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = typeManager.isOrdered(sourceType);
+		boolean isOrdered = metaModelManager.isOrdered(sourceType);
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, true);
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
@@ -88,14 +88,14 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 	}
 
 	@Override
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		Type bodyType = ((IteratorExp)callExp).getBody().getType();
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
 		}
 		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
 		Map<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
-		if (!typeManager.conformsTo(bodyType, iteratorType, bindings)) {
+		if (!metaModelManager.conformsTo(bodyType, iteratorType, bindings)) {
 			return new ValidationWarning(OCLMessages.IncompatibleBodyType_WARNING_, bodyType, iteratorType);
 		}
 		return null;

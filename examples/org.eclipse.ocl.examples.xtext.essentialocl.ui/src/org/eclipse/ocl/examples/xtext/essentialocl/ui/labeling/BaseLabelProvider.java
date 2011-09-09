@@ -57,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NavigationCallExp;
@@ -99,6 +98,8 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -176,7 +177,11 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendOptionalName(StringBuffer s, NamedElementCS csElement) {
+	protected void appendName(StringBuffer s, Nameable csElement) {
+		appendString(s, csElement.getName());
+	}
+
+	protected void appendOptionalName(StringBuffer s, Nameable csElement) {
 		if (csElement != null) {
 			appendOptionalString(s, csElement.getName());
 		}	
@@ -277,12 +282,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected void appendType(StringBuffer s, TypeRefCS type) {
 		Element pivot = type.getPivot();
-		if (pivot instanceof MonikeredElement) {
-			appendString(s, safeGetMoniker((MonikeredElement)pivot));
-		}
-		else {
-			appendString(s, "null");
-		}
+		appendString(s, safeGetMoniker(pivot));
 	}
 	
 	@Override
@@ -322,7 +322,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return object;
 	}
 
-	protected String safeGetMoniker(MonikeredElement element) {
+	protected String safeGetMoniker(Element element) {
 		if (element == null) {
 			return "<null-element>";
 		}
@@ -330,7 +330,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			return "<unresolved-proxy>";
 		}
 		else {
-			return element.getMoniker();
+			return Pivot2Moniker.toString(element);
 		}
 	}
 

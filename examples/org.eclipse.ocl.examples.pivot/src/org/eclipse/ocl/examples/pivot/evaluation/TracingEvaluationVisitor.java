@@ -46,8 +46,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -75,8 +75,8 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return new TracingEvaluationVisitor(super.createNestedVisitor());
 	}
 
-	public TypeManager getTypeManager() {
-		return getDelegate().getTypeManager();
+	public MetaModelManager getMetaModelManager() {
+		return getDelegate().getMetaModelManager();
 	}
 
 	public ValueFactory getValueFactory() {

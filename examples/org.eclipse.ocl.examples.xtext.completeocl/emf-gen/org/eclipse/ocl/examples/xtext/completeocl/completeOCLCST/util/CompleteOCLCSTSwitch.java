@@ -24,24 +24,25 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
@@ -126,9 +127,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(bodyCS);
 				if (result == null) result = caseConstraintCS(bodyCS);
 				if (result == null) result = caseNamedElementCS(bodyCS);
-				if (result == null) result = caseMonikeredElementCS(bodyCS);
-				if (result == null) result = caseNameable(bodyCS);
 				if (result == null) result = caseModelElementCS(bodyCS);
+				if (result == null) result = caseNameable(bodyCS);
+				if (result == null) result = casePivotableElementCS(bodyCS);
 				if (result == null) result = caseElementCS(bodyCS);
 				if (result == null) result = casePivotable(bodyCS);
 				if (result == null) result = caseVisitableCS(bodyCS);
@@ -140,8 +141,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				ClassifierContextDeclCS classifierContextDeclCS = (ClassifierContextDeclCS)theEObject;
 				T result = caseClassifierContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
-				if (result == null) result = caseMonikeredElementCS(classifierContextDeclCS);
 				if (result == null) result = caseModelElementCS(classifierContextDeclCS);
+				if (result == null) result = casePivotableElementCS(classifierContextDeclCS);
 				if (result == null) result = caseElementCS(classifierContextDeclCS);
 				if (result == null) result = casePivotable(classifierContextDeclCS);
 				if (result == null) result = caseVisitableCS(classifierContextDeclCS);
@@ -157,9 +158,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseRootCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamespaceCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamedElementCS(completeOCLDocumentCS);
-				if (result == null) result = caseMonikeredElementCS(completeOCLDocumentCS);
-				if (result == null) result = caseNameable(completeOCLDocumentCS);
 				if (result == null) result = caseModelElementCS(completeOCLDocumentCS);
+				if (result == null) result = caseNameable(completeOCLDocumentCS);
+				if (result == null) result = casePivotableElementCS(completeOCLDocumentCS);
 				if (result == null) result = caseElementCS(completeOCLDocumentCS);
 				if (result == null) result = casePivotable(completeOCLDocumentCS);
 				if (result == null) result = caseVisitableCS(completeOCLDocumentCS);
@@ -172,9 +173,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseContextConstraintCS(contextConstraintCS);
 				if (result == null) result = caseConstraintCS(contextConstraintCS);
 				if (result == null) result = caseNamedElementCS(contextConstraintCS);
-				if (result == null) result = caseMonikeredElementCS(contextConstraintCS);
-				if (result == null) result = caseNameable(contextConstraintCS);
 				if (result == null) result = caseModelElementCS(contextConstraintCS);
+				if (result == null) result = caseNameable(contextConstraintCS);
+				if (result == null) result = casePivotableElementCS(contextConstraintCS);
 				if (result == null) result = caseElementCS(contextConstraintCS);
 				if (result == null) result = casePivotable(contextConstraintCS);
 				if (result == null) result = caseVisitableCS(contextConstraintCS);
@@ -185,8 +186,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				ContextDeclCS contextDeclCS = (ContextDeclCS)theEObject;
 				T result = caseContextDeclCS(contextDeclCS);
-				if (result == null) result = caseMonikeredElementCS(contextDeclCS);
 				if (result == null) result = caseModelElementCS(contextDeclCS);
+				if (result == null) result = casePivotableElementCS(contextDeclCS);
 				if (result == null) result = caseElementCS(contextDeclCS);
 				if (result == null) result = casePivotable(contextDeclCS);
 				if (result == null) result = caseVisitableCS(contextDeclCS);
@@ -199,8 +200,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseContextSpecificationCS(contextSpecificationCS);
 				if (result == null) result = caseExpSpecificationCS(contextSpecificationCS);
 				if (result == null) result = caseSpecificationCS(contextSpecificationCS);
-				if (result == null) result = caseMonikeredElementCS(contextSpecificationCS);
 				if (result == null) result = caseModelElementCS(contextSpecificationCS);
+				if (result == null) result = casePivotableElementCS(contextSpecificationCS);
 				if (result == null) result = caseElementCS(contextSpecificationCS);
 				if (result == null) result = casePivotable(contextSpecificationCS);
 				if (result == null) result = caseVisitableCS(contextSpecificationCS);
@@ -214,9 +215,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(defCS);
 				if (result == null) result = caseConstraintCS(defCS);
 				if (result == null) result = caseNamedElementCS(defCS);
-				if (result == null) result = caseMonikeredElementCS(defCS);
-				if (result == null) result = caseNameable(defCS);
 				if (result == null) result = caseModelElementCS(defCS);
+				if (result == null) result = caseNameable(defCS);
+				if (result == null) result = casePivotableElementCS(defCS);
 				if (result == null) result = caseElementCS(defCS);
 				if (result == null) result = casePivotable(defCS);
 				if (result == null) result = caseVisitableCS(defCS);
@@ -230,9 +231,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(derCS);
 				if (result == null) result = caseConstraintCS(derCS);
 				if (result == null) result = caseNamedElementCS(derCS);
-				if (result == null) result = caseMonikeredElementCS(derCS);
-				if (result == null) result = caseNameable(derCS);
 				if (result == null) result = caseModelElementCS(derCS);
+				if (result == null) result = caseNameable(derCS);
+				if (result == null) result = casePivotableElementCS(derCS);
 				if (result == null) result = caseElementCS(derCS);
 				if (result == null) result = casePivotable(derCS);
 				if (result == null) result = caseVisitableCS(derCS);
@@ -244,8 +245,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				FeatureContextDeclCS featureContextDeclCS = (FeatureContextDeclCS)theEObject;
 				T result = caseFeatureContextDeclCS(featureContextDeclCS);
 				if (result == null) result = caseContextDeclCS(featureContextDeclCS);
-				if (result == null) result = caseMonikeredElementCS(featureContextDeclCS);
 				if (result == null) result = caseModelElementCS(featureContextDeclCS);
+				if (result == null) result = casePivotableElementCS(featureContextDeclCS);
 				if (result == null) result = caseElementCS(featureContextDeclCS);
 				if (result == null) result = casePivotable(featureContextDeclCS);
 				if (result == null) result = caseVisitableCS(featureContextDeclCS);
@@ -258,9 +259,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseIncludeCS(includeCS);
 				if (result == null) result = caseNamespaceCS(includeCS);
 				if (result == null) result = caseNamedElementCS(includeCS);
-				if (result == null) result = caseMonikeredElementCS(includeCS);
-				if (result == null) result = caseNameable(includeCS);
 				if (result == null) result = caseModelElementCS(includeCS);
+				if (result == null) result = caseNameable(includeCS);
+				if (result == null) result = casePivotableElementCS(includeCS);
 				if (result == null) result = caseElementCS(includeCS);
 				if (result == null) result = casePivotable(includeCS);
 				if (result == null) result = caseVisitableCS(includeCS);
@@ -274,9 +275,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(initCS);
 				if (result == null) result = caseConstraintCS(initCS);
 				if (result == null) result = caseNamedElementCS(initCS);
-				if (result == null) result = caseMonikeredElementCS(initCS);
-				if (result == null) result = caseNameable(initCS);
 				if (result == null) result = caseModelElementCS(initCS);
+				if (result == null) result = caseNameable(initCS);
+				if (result == null) result = casePivotableElementCS(initCS);
 				if (result == null) result = caseElementCS(initCS);
 				if (result == null) result = casePivotable(initCS);
 				if (result == null) result = caseVisitableCS(initCS);
@@ -290,9 +291,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(invCS);
 				if (result == null) result = caseConstraintCS(invCS);
 				if (result == null) result = caseNamedElementCS(invCS);
-				if (result == null) result = caseMonikeredElementCS(invCS);
-				if (result == null) result = caseNameable(invCS);
 				if (result == null) result = caseModelElementCS(invCS);
+				if (result == null) result = caseNameable(invCS);
+				if (result == null) result = casePivotableElementCS(invCS);
 				if (result == null) result = caseElementCS(invCS);
 				if (result == null) result = casePivotable(invCS);
 				if (result == null) result = caseVisitableCS(invCS);
@@ -304,8 +305,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				OclMessageArgCS oclMessageArgCS = (OclMessageArgCS)theEObject;
 				T result = caseOclMessageArgCS(oclMessageArgCS);
 				if (result == null) result = caseExpCS(oclMessageArgCS);
-				if (result == null) result = caseMonikeredElementCS(oclMessageArgCS);
 				if (result == null) result = caseModelElementCS(oclMessageArgCS);
+				if (result == null) result = casePivotableElementCS(oclMessageArgCS);
 				if (result == null) result = caseElementCS(oclMessageArgCS);
 				if (result == null) result = casePivotable(oclMessageArgCS);
 				if (result == null) result = caseVisitableCS(oclMessageArgCS);
@@ -318,8 +319,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseOperationContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseFeatureContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseContextDeclCS(operationContextDeclCS);
-				if (result == null) result = caseMonikeredElementCS(operationContextDeclCS);
 				if (result == null) result = caseModelElementCS(operationContextDeclCS);
+				if (result == null) result = casePivotableElementCS(operationContextDeclCS);
 				if (result == null) result = caseElementCS(operationContextDeclCS);
 				if (result == null) result = casePivotable(operationContextDeclCS);
 				if (result == null) result = caseVisitableCS(operationContextDeclCS);
@@ -330,8 +331,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				PackageDeclarationCS packageDeclarationCS = (PackageDeclarationCS)theEObject;
 				T result = casePackageDeclarationCS(packageDeclarationCS);
-				if (result == null) result = caseMonikeredElementCS(packageDeclarationCS);
 				if (result == null) result = caseModelElementCS(packageDeclarationCS);
+				if (result == null) result = casePivotableElementCS(packageDeclarationCS);
 				if (result == null) result = caseElementCS(packageDeclarationCS);
 				if (result == null) result = casePivotable(packageDeclarationCS);
 				if (result == null) result = caseVisitableCS(packageDeclarationCS);
@@ -345,9 +346,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(postCS);
 				if (result == null) result = caseConstraintCS(postCS);
 				if (result == null) result = caseNamedElementCS(postCS);
-				if (result == null) result = caseMonikeredElementCS(postCS);
-				if (result == null) result = caseNameable(postCS);
 				if (result == null) result = caseModelElementCS(postCS);
+				if (result == null) result = caseNameable(postCS);
+				if (result == null) result = casePivotableElementCS(postCS);
 				if (result == null) result = caseElementCS(postCS);
 				if (result == null) result = casePivotable(postCS);
 				if (result == null) result = caseVisitableCS(postCS);
@@ -361,9 +362,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseContextConstraintCS(preCS);
 				if (result == null) result = caseConstraintCS(preCS);
 				if (result == null) result = caseNamedElementCS(preCS);
-				if (result == null) result = caseMonikeredElementCS(preCS);
-				if (result == null) result = caseNameable(preCS);
 				if (result == null) result = caseModelElementCS(preCS);
+				if (result == null) result = caseNameable(preCS);
+				if (result == null) result = casePivotableElementCS(preCS);
 				if (result == null) result = caseElementCS(preCS);
 				if (result == null) result = casePivotable(preCS);
 				if (result == null) result = caseVisitableCS(preCS);
@@ -377,8 +378,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseDecoratedNamedExpCS(preExpCS);
 				if (result == null) result = caseNamedExpCS(preExpCS);
 				if (result == null) result = caseExpCS(preExpCS);
-				if (result == null) result = caseMonikeredElementCS(preExpCS);
 				if (result == null) result = caseModelElementCS(preExpCS);
+				if (result == null) result = casePivotableElementCS(preExpCS);
 				if (result == null) result = caseElementCS(preExpCS);
 				if (result == null) result = casePivotable(preExpCS);
 				if (result == null) result = caseVisitableCS(preExpCS);
@@ -391,8 +392,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = casePropertyContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseFeatureContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseContextDeclCS(propertyContextDeclCS);
-				if (result == null) result = caseMonikeredElementCS(propertyContextDeclCS);
 				if (result == null) result = caseModelElementCS(propertyContextDeclCS);
+				if (result == null) result = casePivotableElementCS(propertyContextDeclCS);
 				if (result == null) result = caseElementCS(propertyContextDeclCS);
 				if (result == null) result = casePivotable(propertyContextDeclCS);
 				if (result == null) result = caseVisitableCS(propertyContextDeclCS);
@@ -772,6 +773,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePivotableElementCS(PivotableElementCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -788,22 +805,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonikeredElementCS(MonikeredElementCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;

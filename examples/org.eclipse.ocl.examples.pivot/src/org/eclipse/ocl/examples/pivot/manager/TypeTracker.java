@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.pivot.multi;
+package org.eclipse.ocl.examples.pivot.manager;
 
 import java.util.List;
 
@@ -22,57 +22,70 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 
-abstract class ClassTracker extends AbstractTracker<org.eclipse.ocl.examples.pivot.Class>
+abstract class TypeTracker extends AbstractTracker<Type>
 {
-	protected ClassTracker(TypeCaches typeCaches, org.eclipse.ocl.examples.pivot.Class target) {
-		super(typeCaches, target);
-		for (Operation pivotOperation : target.getOwnedOperations()) {
-			typeCaches.addOperation(pivotOperation);
-		}
-		for (Property pivotProperty : target.getOwnedAttributes()) {
-			typeCaches.addProperty(pivotProperty);
-		}
-	}		
+	protected TypeTracker(MetaModelManager metaModelManager, Type target) {
+		super(metaModelManager, target);
+		metaModelManager.addTypeTracker(target, this);
+	}
 
 	@Override
 	public void dispose() {
-		if (target != null) {
-			typeCaches.removeClass(target);
-			target.eAdapters().remove(this);
-		}
+		metaModelManager.removeTypeTracker(this);
+		super.dispose();
 	}
 
-	abstract org.eclipse.ocl.examples.pivot.Class getPrimaryClass();
+	abstract TypeServer getTypeServer();
+
+	Type getPrimaryType() {
+		TypeServer typeServer = getTypeServer();
+		return typeServer != null ? typeServer.getTarget() : null;
+	}
+
+	protected void initializeContents() {
+		TypeServer typeServer = getTypeServer();
+		for (Operation pivotOperation : ((org.eclipse.ocl.examples.pivot.Class)target).getOwnedOperations()) {
+			typeServer.addOperation(pivotOperation);
+		}
+		for (Property pivotProperty : ((org.eclipse.ocl.examples.pivot.Class)target).getOwnedAttributes()) {
+			typeServer.addProperty(pivotProperty);
+		}
+	}		
 
 	public void notifyChanged(Notification notification) {
+		TypeServer typeServer = getTypeServer();
+		if (typeServer == null) {
+			return;
+		}
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
 		if (feature == PivotPackage.Literals.CLASS__OWNED_OPERATION) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
-					typeCaches.addOperation((Operation)value);
+					typeServer.addedOperation(value);
 					break;
 				}
 				case Notification.ADD_MANY: {
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getNewValue();
 					for (Object value : values) {
-						typeCaches.addOperation((Operation)value);
+						typeServer.addedOperation(value);
 					}
 					break;
 				}
 				case Notification.REMOVE: {
 					Object value = notification.getOldValue();
-					typeCaches.removeOperation((Operation)value);
+					typeServer.removedOperation(value);
 					break;
 				}
 				case Notification.REMOVE_MANY: {
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getOldValue();
 					for (Object value : values) {
-						typeCaches.removeOperation((Operation)value);
+						typeServer.removedOperation(value);
 					}
 					break;
 				}
@@ -82,27 +95,27 @@ abstract class ClassTracker extends AbstractTracker<org.eclipse.ocl.examples.piv
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
-					typeCaches.addProperty((Property)value);
+					typeServer.addedProperty(value);
 					break;
 				}
 				case Notification.ADD_MANY: {
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getNewValue();
 					for (Object value : values) {
-						typeCaches.addProperty((Property)value);
+						typeServer.addedProperty(value);
 					}
 					break;
 				}
 				case Notification.REMOVE: {
 					Object value = notification.getOldValue();
-					typeCaches.removeProperty((Property)value);
+					typeServer.removedProperty(value);
 					break;
 				}
 				case Notification.REMOVE_MANY: {
 					@SuppressWarnings("unchecked")
 					List<Object> values = (List<Object>)notification.getOldValue();
 					for (Object value : values) {
-						typeCaches.removeProperty((Property)value);
+						typeServer.removedProperty(value);
 					}
 					break;
 				}

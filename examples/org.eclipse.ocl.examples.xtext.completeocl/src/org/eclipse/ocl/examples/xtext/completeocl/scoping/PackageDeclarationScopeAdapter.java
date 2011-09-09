@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageDeclarationScopeAdapter(TypeManager typeManager, PackageDeclarationCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public PackageDeclarationScopeAdapter(MetaModelManager metaModelManager, PackageDeclarationCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 			org.eclipse.ocl.examples.pivot.Package pkg = target.getPackage();
 			if ((pkg != null) && !pkg.eIsProxy()) {
-				environmentView.addNamedElements(null, typeManager.getLocalPackages(pkg));
-				environmentView.addNamedElements(null, typeManager.getLocalClasses(pkg));
+				environmentView.addNamedElements(null, metaModelManager.getLocalPackages(pkg));
+				environmentView.addNamedElements(null, metaModelManager.getLocalClasses(pkg));
 //				environmentView.addNamedElements(pkge.getOwnedPrecedences());
 			}
 		}

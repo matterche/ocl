@@ -18,17 +18,17 @@ package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementRefCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
-public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNameExpCS, Element>
+public class TypeNameExpCSScopeAdapter extends ElementRefCSScopeAdapter<TypeNameExpCS, Element>
 {
-	public TypeNameExpCSScopeAdapter(TypeManager typeManager, TypeNameExpCS csElement) {
-		super(typeManager, csElement, Element.class);	// FIXME
+	public TypeNameExpCSScopeAdapter(MetaModelManager metaModelManager, TypeNameExpCS csElement) {
+		super(metaModelManager, csElement, Element.class);	// FIXME
 	}
 
 	@Override

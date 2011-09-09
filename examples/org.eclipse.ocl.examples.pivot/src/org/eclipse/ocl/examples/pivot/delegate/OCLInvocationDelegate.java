@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
@@ -43,7 +43,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLInvocationDelegate extends BasicInvocationDelegate
 {
-	protected final OCLDelegateDomain delegateDomain;
+	protected OCLDelegateDomain delegateDomain;
 	private Operation operation;
 	private ExpressionInOcl specification;
 
@@ -63,13 +63,13 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			throws InvocationTargetException {
 		try {
 			OCL ocl = delegateDomain.getOCL();
-			TypeManager typeManager = ocl.getTypeManager();
-			ValueFactory valueFactory = typeManager.getValueFactory();
+			MetaModelManager metaModelManager = ocl.getMetaModelManager();
+			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			if (specification == null) {
 				if (operation == null) {
-					operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+					operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 				}
-				specification = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
+				specification = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, operation);
 			}
 			OCL.Query query = ocl.createQuery(specification);
 			EvaluationEnvironment env = query.getEvaluationEnvironment();

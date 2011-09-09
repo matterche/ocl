@@ -29,12 +29,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
@@ -42,7 +41,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
@@ -132,10 +130,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNamedElementCS(libClassCS);
 				if (result == null) result = caseTypeCS(libClassCS);
 				if (result == null) result = caseTemplateableElementCS(libClassCS);
-				if (result == null) result = caseParameterableElementCS(libClassCS);
-				if (result == null) result = caseMonikeredElementCS(libClassCS);
-				if (result == null) result = caseNameable(libClassCS);
 				if (result == null) result = caseModelElementCS(libClassCS);
+				if (result == null) result = caseNameable(libClassCS);
+				if (result == null) result = casePivotableElementCS(libClassCS);
 				if (result == null) result = caseElementCS(libClassCS);
 				if (result == null) result = casePivotable(libClassCS);
 				if (result == null) result = caseVisitableCS(libClassCS);
@@ -148,9 +145,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				T result = caseLibConstraintCS(libConstraintCS);
 				if (result == null) result = caseConstraintCS(libConstraintCS);
 				if (result == null) result = caseNamedElementCS(libConstraintCS);
-				if (result == null) result = caseMonikeredElementCS(libConstraintCS);
-				if (result == null) result = caseNameable(libConstraintCS);
 				if (result == null) result = caseModelElementCS(libConstraintCS);
+				if (result == null) result = caseNameable(libConstraintCS);
+				if (result == null) result = casePivotableElementCS(libConstraintCS);
 				if (result == null) result = caseElementCS(libConstraintCS);
 				if (result == null) result = casePivotable(libConstraintCS);
 				if (result == null) result = caseVisitableCS(libConstraintCS);
@@ -167,9 +164,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTemplateableElementCS(libIterationCS);
 				if (result == null) result = caseTypedElementCS(libIterationCS);
 				if (result == null) result = caseNamedElementCS(libIterationCS);
-				if (result == null) result = caseMonikeredElementCS(libIterationCS);
-				if (result == null) result = caseNameable(libIterationCS);
 				if (result == null) result = caseModelElementCS(libIterationCS);
+				if (result == null) result = caseNameable(libIterationCS);
+				if (result == null) result = casePivotableElementCS(libIterationCS);
 				if (result == null) result = caseElementCS(libIterationCS);
 				if (result == null) result = casePivotable(libIterationCS);
 				if (result == null) result = caseVisitableCS(libIterationCS);
@@ -186,9 +183,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseTemplateableElementCS(libOperationCS);
 				if (result == null) result = caseTypedElementCS(libOperationCS);
 				if (result == null) result = caseNamedElementCS(libOperationCS);
-				if (result == null) result = caseMonikeredElementCS(libOperationCS);
-				if (result == null) result = caseNameable(libOperationCS);
 				if (result == null) result = caseModelElementCS(libOperationCS);
+				if (result == null) result = caseNameable(libOperationCS);
+				if (result == null) result = casePivotableElementCS(libOperationCS);
 				if (result == null) result = caseElementCS(libOperationCS);
 				if (result == null) result = casePivotable(libOperationCS);
 				if (result == null) result = caseVisitableCS(libOperationCS);
@@ -205,9 +202,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseFeatureCS(libPropertyCS);
 				if (result == null) result = caseTypedElementCS(libPropertyCS);
 				if (result == null) result = caseNamedElementCS(libPropertyCS);
-				if (result == null) result = caseMonikeredElementCS(libPropertyCS);
-				if (result == null) result = caseNameable(libPropertyCS);
 				if (result == null) result = caseModelElementCS(libPropertyCS);
+				if (result == null) result = caseNameable(libPropertyCS);
+				if (result == null) result = casePivotableElementCS(libPropertyCS);
 				if (result == null) result = caseElementCS(libPropertyCS);
 				if (result == null) result = casePivotable(libPropertyCS);
 				if (result == null) result = caseVisitableCS(libPropertyCS);
@@ -223,9 +220,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRootCS(libRootPackageCS);
 				if (result == null) result = caseNamespaceCS(libRootPackageCS);
 				if (result == null) result = caseNamedElementCS(libRootPackageCS);
-				if (result == null) result = caseMonikeredElementCS(libRootPackageCS);
-				if (result == null) result = caseNameable(libRootPackageCS);
 				if (result == null) result = caseModelElementCS(libRootPackageCS);
+				if (result == null) result = caseNameable(libRootPackageCS);
+				if (result == null) result = casePivotableElementCS(libRootPackageCS);
 				if (result == null) result = caseElementCS(libRootPackageCS);
 				if (result == null) result = casePivotable(libRootPackageCS);
 				if (result == null) result = caseVisitableCS(libRootPackageCS);
@@ -246,9 +243,9 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				PrecedenceCS precedenceCS = (PrecedenceCS)theEObject;
 				T result = casePrecedenceCS(precedenceCS);
 				if (result == null) result = caseNamedElementCS(precedenceCS);
-				if (result == null) result = caseMonikeredElementCS(precedenceCS);
-				if (result == null) result = caseNameable(precedenceCS);
 				if (result == null) result = caseModelElementCS(precedenceCS);
+				if (result == null) result = caseNameable(precedenceCS);
+				if (result == null) result = casePivotableElementCS(precedenceCS);
 				if (result == null) result = caseElementCS(precedenceCS);
 				if (result == null) result = casePivotable(precedenceCS);
 				if (result == null) result = caseVisitableCS(precedenceCS);
@@ -442,6 +439,22 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePivotableElementCS(PivotableElementCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -453,21 +466,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModelElementCS(ModelElementCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonikeredElementCS(MonikeredElementCS object) {
 		return null;
 	}
 
@@ -513,22 +511,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTemplateableElementCS(TemplateableElementCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameterableElementCS(ParameterableElementCS object)
-	{
 		return null;
 	}
 

@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
-import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -58,19 +57,25 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 
 	private BagType bagType = null;
 	private PrimitiveType booleanType = null;
+	private org.eclipse.ocl.examples.pivot.Class classType = null;
+	private ClassifierType classClassifierType = null;
 	private ClassifierType classifierType = null;
+	private ClassifierType collectionClassifierType = null;
 	private CollectionType collectionType = null;
 	private org.eclipse.ocl.examples.pivot.Class enumerationType = null;
+	private ClassifierType enumerationClassifierType = null;
 	private PrimitiveType integerType = null;
 	private AnyType oclAnyType = null;
+	private org.eclipse.ocl.examples.pivot.Class oclElementType = null;
 	private InvalidType oclInvalidType = null;
+	private org.eclipse.ocl.examples.pivot.Class oclLambdaType = null;
+	private org.eclipse.ocl.examples.pivot.Class oclTupleType = null;
 	private VoidType oclVoidType = null;
 	private OrderedSetType orderedSetType = null;
 	private PrimitiveType realType = null;
 	private SequenceType sequenceType = null;
 	private SetType setType = null;
 	private PrimitiveType stringType = null;
-	private TupleType tupleType = null;
 	private PrimitiveType unlimitedNaturalType = null;
 	
 	private Map<String, Type> nameToLibraryTypeMap = null;
@@ -84,6 +89,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if ((oldType != null) && (oldType != pivotType)) {
 			logger.warn("Conflicting pivot type '" + name + "'");
 		}
+	}
+
+	public void dispose() {
+		resetLibrary();	
 	}
 
 	public BagType getBagType() {
@@ -118,6 +127,38 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return booleanType;
 	}
 
+	public org.eclipse.ocl.examples.pivot.Class getClassType() {
+		if (classType == null) {
+			Type type = getRequiredLibraryType("Class");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				classType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("Class is not a Class");
+			}		
+		}
+		return classType;
+	}
+
+	public ClassifierType getClassClassifierType() {
+		if (classClassifierType == null) {
+			Type type = getRequiredLibraryType("ClassClassifier");
+			if (type instanceof ClassifierType) {
+				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("ClassClassifier is not a templated type");
+				}
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("ClassClassifier is not a templated type with a single argument");
+				}
+				classClassifierType = (ClassifierType) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("ClassClassifier is not a ClassifierType");
+			}		
+		}
+		return classClassifierType;
+	}
+
 	public ClassifierType getClassifierType() {
 		if (classifierType == null) {
 			Type type = getRequiredLibraryType("Classifier");
@@ -137,6 +178,25 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return classifierType;
 	}
 
+	public ClassifierType getCollectionClassifierType() {
+		if (collectionClassifierType == null) {
+			Type type = getRequiredLibraryType("CollectionClassifier");
+			if (type instanceof ClassifierType) {
+				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("CollectionClassifier is not a templated type");
+				}
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 2) {
+					throw new IllegalLibraryException("CollectionClassifier is not a templated type with two arguments");
+				}
+				collectionClassifierType = (ClassifierType) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("CollectionClassifier is not a ClassifierType");
+			}		
+		}
+		return collectionClassifierType;
+	}
+
 	public CollectionType getCollectionType() {
 		if (collectionType == null) {
 			Type type = getRequiredLibraryType("Collection");
@@ -154,6 +214,25 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			}		
 		}
 		return collectionType;
+	}
+
+	public ClassifierType getEnumerationClassifierType() {
+		if (enumerationClassifierType == null) {
+			Type type = getRequiredLibraryType("EnumerationClassifier");
+			if (type instanceof ClassifierType) {
+				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("EnumerationClassifier is not a templated type");
+				}
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("EnumerationClassifier is not a templated type with a single argument");
+				}
+				enumerationClassifierType = (ClassifierType) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("EnumerationClassifier is not a ClassifierType");
+			}		
+		}
+		return enumerationClassifierType;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
@@ -203,6 +282,19 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return oclAnyType;
 	}
 
+	public org.eclipse.ocl.examples.pivot.Class getOclElementType() {
+		if (oclElementType == null) {
+			Type type = getRequiredLibraryType("OclElement");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				oclElementType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclElement is not a Class");
+			}		
+		}
+		return oclElementType;
+	}
+
 	public InvalidType getOclInvalidType() {
 		if (oclInvalidType == null) {
 			Type type = getRequiredLibraryType("OclInvalid");
@@ -216,8 +308,34 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return oclInvalidType;
 	}
 
+	public org.eclipse.ocl.examples.pivot.Class getOclLambdaType() {
+		if (oclLambdaType == null) {
+			Type type = getRequiredLibraryType("OclLambda");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				oclLambdaType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclLambda is not a Class");
+			}		
+		}
+		return oclLambdaType;
+	}
+
 	public Type getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class getOclTupleType() {
+		if (oclTupleType == null) {
+			Type type = getRequiredLibraryType("OclTuple");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				oclTupleType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclTuple is not a Class");
+			}		
+		}
+		return oclTupleType;
 	}
 
 	public VoidType getOclVoidType() {
@@ -268,7 +386,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	public Type getRequiredLibraryType(String typeName) {
 		Type type = getLibraryType(typeName);
 		if (type == null) {
-			nameToLibraryTypeMap = null;
+//			nameToLibraryTypeMap = null;
 			type = getLibraryType(typeName);	// FIXME just a debug retry
 			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
 				throw new IllegalLibraryException(OCLMessages.EmptyLibrary_ERROR_);
@@ -331,19 +449,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return stringType;
 	}
 
-	public TupleType getTupleType() {
-		if (tupleType == null) {
-			Type type = getRequiredLibraryType("Tuple");
-			if (type instanceof TupleType) {
-				tupleType = (TupleType) type;
-			}
-			else if (type != null) {
-				throw new IllegalLibraryException("Tuple is not a TupleType");
-			}		
-		}
-		return tupleType;
-	}
-
 	public PrimitiveType getUnlimitedNaturalType() {
 		if (unlimitedNaturalType == null) {
 			Type type = getRequiredLibraryType("UnlimitedNatural");
@@ -382,19 +487,25 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	public void resetLibrary() {
 		bagType = null;
 		booleanType = null;
+		classType = null;
+		classClassifierType = null;
 		classifierType = null;
+		collectionClassifierType = null;
 		collectionType = null;
+		enumerationClassifierType = null;
 		enumerationType = null;
 		integerType = null;
 		oclAnyType = null;
+		oclElementType = null;
 		oclInvalidType = null;
+		oclLambdaType = null;
+		oclTupleType = null;
 		oclVoidType = null;
 		orderedSetType = null;
 		realType = null;
 		sequenceType = null;
 		setType = null;
 		stringType = null;
-		tupleType = null;
 		unlimitedNaturalType = null;
 		nameToLibraryTypeMap = null;
 	}

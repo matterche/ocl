@@ -20,13 +20,14 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
 public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 {	
@@ -49,8 +50,8 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 			return new OCLstdlibPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
-			return new OCLstdlibScopeVisitor(typeManager);
+		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
+			return new OCLstdlibScopeVisitor(metaModelManager);
 		}
 
 		public EPackage getEPackage() {
@@ -60,7 +61,14 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 		
-	public OCLstdlibCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
-		super(cs2pivotResourceMap, typeManager);
+	public OCLstdlibCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
+		super(cs2pivotResourceMap, metaModelManager);
+	}
+
+	@Override
+	public synchronized void update(IDiagnosticConsumer diagnosticsConsumer) {
+		metaModelManager.setLibraryLoadInProgress(true);
+		super.update(diagnosticsConsumer);
+		metaModelManager.setLibraryLoadInProgress(false);
 	}
 }

@@ -28,5 +28,5 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface TypeCS extends MonikeredElementCS {
+public interface TypeCS extends ModelElementCS {
 } // TypeCS

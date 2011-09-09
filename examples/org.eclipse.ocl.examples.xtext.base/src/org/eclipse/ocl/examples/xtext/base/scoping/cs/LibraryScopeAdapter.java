@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
@@ -42,14 +42,14 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryCS, org.eclipse.ocl.examples.pivot.Package>
+public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public LibraryScopeAdapter(TypeManager typeManager, LibraryCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public LibraryScopeAdapter(MetaModelManager metaModelManager, LibraryCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryC
 				List<Resource.Diagnostic> errors = importedResource.getErrors();
 				if (errors.size() == 0) {
 					environmentView.addElement(name, importedElement);
-//					typeManager.loadLibrary(importedResource);
+//					metaModelManager.loadLibrary(importedResource);
 				}
 			}
 			return null;
@@ -95,7 +95,7 @@ public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryC
 		if (contribution != null) {
 			Resource resource = contribution.getResource();
 			try {
-				typeManager.loadLibrary(resource);
+				metaModelManager.loadLibrary(resource);
 				environmentView.addElement(name, resource.getContents().get(0));
 			} catch (IllegalLibraryException e) {
 				throwable = e;
@@ -121,7 +121,7 @@ public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryC
 		}
 		List<EObject> importedElements = new ArrayList<EObject>();
 		ResourceSet csResourceSet = csResource.getResourceSet();
-		TypeManagerResourceSetAdapter.getAdapter(csResourceSet, typeManager);
+		MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 		try {
 			BaseCSResource importedResource = (BaseCSResource)csResourceSet.getResource(uri, true);
 			List<EObject> contents = importedResource.getContents();

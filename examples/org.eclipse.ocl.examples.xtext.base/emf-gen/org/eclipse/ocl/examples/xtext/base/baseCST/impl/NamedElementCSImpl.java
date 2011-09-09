@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implements NamedElementCS {
+public abstract class NamedElementCSImpl extends ModelElementCSImpl implements NamedElementCS {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,7 +47,6 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,7 +81,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
@@ -91,7 +91,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
@@ -104,7 +105,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
 		switch (featureID)
 		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
@@ -119,7 +121,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
+	public void eSet(int featureID, Object newValue)
+	{
 		switch (featureID)
 		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
@@ -135,7 +138,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
+	public void eUnset(int featureID)
+	{
 		switch (featureID)
 		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:
@@ -151,7 +155,8 @@ public abstract class NamedElementCSImpl extends MonikeredElementCSImpl implemen
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSet(int featureID)
+	{
 		switch (featureID)
 		{
 			case BaseCSTPackage.NAMED_ELEMENT_CS__NAME:

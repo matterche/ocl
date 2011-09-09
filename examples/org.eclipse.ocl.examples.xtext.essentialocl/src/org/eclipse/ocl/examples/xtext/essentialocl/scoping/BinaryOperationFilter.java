@@ -27,16 +27,16 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class BinaryOperationFilter extends AbstractOperationFilter
 {
 	protected final Type argumentType;
 	
-	public BinaryOperationFilter(TypeManager typeManager, Type sourceType, Type argumentType) {
-		super(typeManager, sourceType);
+	public BinaryOperationFilter(MetaModelManager metaModelManager, Type sourceType, Type argumentType) {
+		super(metaModelManager, sourceType);
 		this.argumentType = PivotUtil.getBehavioralType(argumentType);
 	}
 
@@ -55,7 +55,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 			if (candidateType instanceof SelfType) {
 				candidateType = candidateOperation.getClass_();
 			}
-			if (!typeManager.conformsTo(argumentType, candidateType, null)) {
+			if (!metaModelManager.conformsTo(argumentType, candidateType, null)) {
 				return false;
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(candidateOperation);

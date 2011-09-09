@@ -95,22 +95,6 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_2kURMDAZEeCQxbz5jr7q5g" name="upperBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
       </ownedMember>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Package" xmi:id="_ReAs0MimEd-sJIf4tYBt-g" name="MDT_OCL_Monikers">
-      <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_xJoxEMimEd-sJIf4tYBt-g" name="Boolean"/>
-      <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_9RpEsMimEd-sJIf4tYBt-g" name="String"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_XOhS4MimEd-sJIf4tYBt-g" name="Element" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_XEGyoMimEd-sJIf4tYBt-g" name="MonikeredElement" isAbstract="true" superClass="_XOhS4MimEd-sJIf4tYBt-g">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_6GtZwMimEd-sJIf4tYBt-g" name="moniker" type="_9RpEsMimEd-sJIf4tYBt-g" isDerived="true"/>
-        <ownedOperation xmi:type="cmof:Operation" xmi:id="_tRCH0MimEd-sJIf4tYBt-g" name="hasMoniker" class="_XEGyoMimEd-sJIf4tYBt-g">
-          <ownedParameter xmi:type="cmof:Parameter" xmi:id="_1ExJ4MimEd-sJIf4tYBt-g" type="_xJoxEMimEd-sJIf4tYBt-g" direction="return"/>
-        </ownedOperation>
-      </ownedMember>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_mXNT0MinEd-sJIf4tYBt-g" name="MultiplicityElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_d5WMIMimEd-sJIf4tYBt-g" name="NamedElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_eKLoAMinEd-sJIf4tYBt-g" name="ParameterableElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_J9DAUMinEd-sJIf4tYBt-g" name="TemplateSignature" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_UZfKAMinEd-sJIf4tYBt-g" name="TemplateableElement" isAbstract="true" superClass="_XEGyoMimEd-sJIf4tYBt-g"/>
-    </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_t35skMlAEd-bx742yyafXQ" name="MDT_OCL_Precedences">
       <ownedMember xmi:type="cmof:Enumeration" xmi:id="_2eERIMlAEd-bx742yyafXQ" name="AssociativityKind">
         <ownedLiteral xmi:type="cmof:EnumerationLiteral" xmi:id="_5uMlIMlAEd-bx742yyafXQ" name="Left" enumeration="_2eERIMlAEd-bx742yyafXQ"/>
@@ -187,7 +171,7 @@
     <Ecore:EGenericType xmi:id="_2l8NIMezEd-sJIf4tYBt-g"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EAttribute xmi:id="_FjatoMinEd-sJIf4tYBt-g" isTransient="true" base_Property="_6GtZwMimEd-sJIf4tYBt-g"/>
+    <Ecore:EAttribute xmi:id="_FjatoMinEd-sJIf4tYBt-g" isTransient="true"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EAttribute xmi:id="_eid-MMlBEd-bx742yyafXQ" base_Property="_TUMH4MlBEd-bx742yyafXQ"/>
@@ -282,10 +266,12 @@
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EReference xmi:id="_CoMyoHSeEeC3-tVPqYIPdQ" isTransient="true" base_Property="_5M7LAHSdEeC3-tVPqYIPdQ" isResolveProxies="false"/>
   </xmi:Extension>
-  <cmof:Tag xmi:id="_34" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_rfGIcBNKEeCpr6XKiuQP7w"/>
-  <cmof:Tag xmi:id="_35" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_BIn1oBNLEeCpr6XKiuQP7w"/>
-  <cmof:Tag xmi:id="_36" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
-  <cmof:Tag xmi:id="_37" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_xJoxEMimEd-sJIf4tYBt-g"/>
+  <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
+    <Ecore:EAttribute xmi:id="_F9V88NZbEeCmbIcdzXDskg" isTransient="true" isVolatile="true"/>
+  </xmi:Extension>
+  <cmof:Tag xmi:id="_35" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_rfGIcBNKEeCpr6XKiuQP7w"/>
+  <cmof:Tag xmi:id="_36" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_BIn1oBNLEeCpr6XKiuQP7w"/>
+  <cmof:Tag xmi:id="_37" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_zVCV0PlzEd-EJPIg-mDVJA"/>
   <cmof:Tag xmi:id="_38" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_XXNRYMlBEd-bx742yyafXQ"/>
   <cmof:Tag xmi:id="_39" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_Pk2YYMo-Ed-ZL8lMORCEkg"/>
   <cmof:Tag xmi:id="_40" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#integer" element="_SUQk8Mo-Ed-ZL8lMORCEkg"/>

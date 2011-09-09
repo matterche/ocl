@@ -22,7 +22,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.ExceptionAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -84,8 +85,8 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			if (eObjectDescription != null) {
 				EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
 				if (traceLookup) {
-					if (eObjectOrProxy instanceof MonikeredElementCS) {
-						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + CS2Moniker.toString((MonikeredElementCS)eObjectOrProxy));
+					if (eObjectOrProxy instanceof ModelElementCS) {
+						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + CS2Moniker.toString((ModelElementCS)eObjectOrProxy));
 					}
 					else {
 						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									
@@ -100,6 +101,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			return Collections.emptyList();
 		}
 		catch (IllegalLibraryException e) {
+			context.eAdapters().add(new ExceptionAdapter(e));
 			return Collections.emptyList();
 		}
 		finally {

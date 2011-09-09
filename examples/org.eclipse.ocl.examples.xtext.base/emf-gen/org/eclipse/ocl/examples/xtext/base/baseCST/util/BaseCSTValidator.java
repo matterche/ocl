@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -37,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
@@ -46,13 +46,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -174,6 +173,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateDocumentationCS((DocumentationCS)value, diagnostics, context);
 			case BaseCSTPackage.ELEMENT_CS:
 				return validateElementCS((ElementCS)value, diagnostics, context);
+			case BaseCSTPackage.ELEMENT_REF_CS:
+				return validateElementRefCS((ElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.ENUMERATION_CS:
 				return validateEnumerationCS((EnumerationCS)value, diagnostics, context);
 			case BaseCSTPackage.ENUMERATION_LITERAL_CS:
@@ -190,8 +191,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
 				return validateModelElementRefCS((ModelElementRefCS)value, diagnostics, context);
-			case BaseCSTPackage.MONIKERED_ELEMENT_CS:
-				return validateMonikeredElementCS((MonikeredElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMED_ELEMENT_CS:
 				return validateNamedElementCS((NamedElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMESPACE_CS:
@@ -202,12 +201,10 @@ public class BaseCSTValidator extends EObjectValidator
 				return validatePackageCS((PackageCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETER_CS:
 				return validateParameterCS((ParameterCS)value, diagnostics, context);
-			case BaseCSTPackage.PARAMETERABLE_ELEMENT_CS:
-				return validateParameterableElementCS((ParameterableElementCS)value, diagnostics, context);
+			case BaseCSTPackage.PIVOTABLE_ELEMENT_CS:
+				return validatePivotableElementCS((PivotableElementCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
-			case BaseCSTPackage.REF_CS:
-				return validateRefCS((RefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_CS:
@@ -370,6 +367,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateElementRefCS(ElementRefCS elementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(elementRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEnumerationCS(EnumerationCS enumerationCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(enumerationCS, diagnostics, context);
@@ -450,16 +457,6 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMonikeredElementCS(MonikeredElementCS monikeredElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(monikeredElementCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateNamedElementCS(NamedElementCS namedElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(namedElementCS, diagnostics, context);
@@ -510,9 +507,9 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateParameterableElementCS(ParameterableElementCS parameterableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validatePivotableElementCS(PivotableElementCS pivotableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint(parameterableElementCS, diagnostics, context);
+		return validate_EveryDefaultConstraint(pivotableElementCS, diagnostics, context);
 	}
 
 	/**
@@ -523,16 +520,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validatePrimitiveTypeRefCS(PrimitiveTypeRefCS primitiveTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(primitiveTypeRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRefCS(RefCS refCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(refCS, diagnostics, context);
 	}
 
 	/**

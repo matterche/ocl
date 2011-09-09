@@ -45,7 +45,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface TemplateSignature
-		extends MonikeredElement {
+		extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.

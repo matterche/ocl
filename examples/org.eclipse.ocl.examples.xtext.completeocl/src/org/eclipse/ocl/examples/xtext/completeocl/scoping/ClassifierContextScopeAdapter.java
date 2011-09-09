@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
@@ -27,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 
 public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<ClassifierContextDeclCS, Type>
 {
-	public ClassifierContextScopeAdapter(TypeManager typeManager, ClassifierContextDeclCS csElement) {
-		super(typeManager, csElement, Type.class);
+	public ClassifierContextScopeAdapter(MetaModelManager metaModelManager, ClassifierContextDeclCS csElement) {
+		super(metaModelManager, csElement, Type.class);
 	}
 
 	@Override

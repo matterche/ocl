@@ -18,10 +18,12 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -36,14 +38,33 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TupleTypeCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TupleTypeCSImpl#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
+public class TupleTypeCSImpl extends TypedRefCSImpl implements TupleTypeCS
 {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getOwnedParts() <em>Owned Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -73,6 +94,29 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
 	protected EClass eStaticClass()
 	{
 		return BaseCSTPackage.Literals.TUPLE_TYPE_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TUPLE_TYPE_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -115,6 +159,8 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TUPLE_TYPE_CS__NAME:
+				return getName();
 			case BaseCSTPackage.TUPLE_TYPE_CS__OWNED_PARTS:
 				return getOwnedParts();
 		}
@@ -132,6 +178,9 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TUPLE_TYPE_CS__NAME:
+				setName((String)newValue);
+				return;
 			case BaseCSTPackage.TUPLE_TYPE_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				getOwnedParts().addAll((Collection<? extends TuplePartCS>)newValue);
@@ -150,6 +199,9 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TUPLE_TYPE_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case BaseCSTPackage.TUPLE_TYPE_CS__OWNED_PARTS:
 				getOwnedParts().clear();
 				return;
@@ -167,10 +219,29 @@ public class TupleTypeCSImpl extends NamedElementCSImpl implements TupleTypeCS
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TUPLE_TYPE_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case BaseCSTPackage.TUPLE_TYPE_CS__OWNED_PARTS:
 				return ownedParts != null && !ownedParts.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: "); //$NON-NLS-1$
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 	@Override

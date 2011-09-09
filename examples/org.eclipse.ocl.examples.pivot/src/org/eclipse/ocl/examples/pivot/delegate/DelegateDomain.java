@@ -94,15 +94,15 @@ public interface DelegateDomain {
 	}
 
 	/**
-	 * Dispose of this delegate domain releasing any resources cached to support
-	 * delegated behaviour for the associated package.
-	 */
-	void dispose();
-
-	/**
 	 * Get the delegate domain name.
 	 * 
 	 * @return the delegate URI
 	 */
 	String getURI();
+
+	/**
+	 * Reset this delegate domain releasing any resources cached to support
+	 * delegated behaviour for the associated package. They can be lazily recreated.
+	 */
+	void reset();
 }

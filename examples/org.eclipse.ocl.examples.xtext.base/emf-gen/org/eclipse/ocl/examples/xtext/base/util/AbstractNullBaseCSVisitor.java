@@ -85,6 +85,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS object) {
+		return null;
+	}
+
 	public R visitEnumerationCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS object) {
 		return null;
 	}
@@ -113,10 +117,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object) {
-		return null;
-	}
-
 	public R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object) {
 		return null;
 	}
@@ -130,6 +130,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object) {
+		return null;
+	}
+
+	public R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object) {
 		return null;
 	}
 

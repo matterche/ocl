@@ -41,7 +41,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface TemplateableElement
-		extends MonikeredElement {
+		extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' containment reference list.

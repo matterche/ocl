@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -54,13 +54,13 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * create the relevant parsing environment for a textual definition..
 	 * @throws OCLDelegateException 
 	 */
-	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, Property property) throws OCLDelegateException {
+	public ExpressionInOcl getExpressionInOcl(MetaModelManager metaModelManager, Property property) throws OCLDelegateException {
 		Constraint constraint = getConstraintForStereotype(property, UMLReflection.DERIVATION);
 		if (constraint == null) {
 			constraint = getConstraintForStereotype(property, UMLReflection.INITIAL);
 		}
 		if (constraint != null) {
-			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, property, constraint);
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(metaModelManager, property, constraint);
 			if (expressionInOcl != null) {
 				return expressionInOcl;
 			}

@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 
 
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
  * @model
  * @generated
  */
-public interface CollectionLiteralPartCS extends MonikeredElementCS {
+public interface CollectionLiteralPartCS extends ModelElementCS {
 	/**
 	 * Returns the value of the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

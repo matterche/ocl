@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -39,34 +39,34 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 public class BaseScopeView extends AbstractScope implements ScopeView
 {
 	@Deprecated
-	private static ScopeView getParent(TypeManager typeManager, ScopeAdapter scopeAdapter, EReference targetReference) {
+	private static ScopeView getParent(MetaModelManager metaModelManager, ScopeAdapter scopeAdapter, EReference targetReference) {
 		ScopeAdapter parent = scopeAdapter.getParent();
 		if (parent == null) {
 			return ScopeView.NULLSCOPEVIEW;
 		}
 		EObject target = scopeAdapter.getTarget();
 		EStructuralFeature eContainingFeature = target.eContainingFeature();
-		return new BaseScopeView(typeManager, parent, target, eContainingFeature, targetReference);
+		return new BaseScopeView(metaModelManager, parent, target, eContainingFeature, targetReference);
 	}
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final ScopeAdapter scopeAdapter;					// Adapting the CST node
 	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
 	
-	public BaseScopeView(TypeManager typeManager, ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
-		super(getParent(typeManager, scopeAdapter, targetReference), false);
-		this.typeManager = typeManager;
+	public BaseScopeView(MetaModelManager metaModelManager, ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		super(getParent(metaModelManager, scopeAdapter, targetReference), false);
+		this.metaModelManager = metaModelManager;
 		this.scopeAdapter = scopeAdapter;
 		this.child = child;
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
 
-	public BaseScopeView(TypeManager typeManager, ScopeView scopeView) {
-		super(getParent(typeManager, scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
-		this.typeManager = typeManager;
+	public BaseScopeView(MetaModelManager metaModelManager, ScopeView scopeView) {
+		super(getParent(metaModelManager, scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
+		this.metaModelManager = metaModelManager;
 		this.scopeAdapter = scopeView.getScopeAdapter();
 		this.child = scopeView.getChild();
 		this.containmentFeature = scopeView.getContainmentFeature();
@@ -85,7 +85,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
-		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
 		try {
 			computeLookupWithParents(environmentView);
 		} catch (IllegalLibraryException e) {			
@@ -113,7 +113,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	public Iterable<IEObjectDescription> getElements(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
@@ -147,7 +147,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
@@ -178,13 +178,13 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return targetReference;
 	}
 
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
-		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
 		scopeAdapter.computeLookup(environmentView, this);
 		return environmentView.getDescriptions();
 	}

@@ -49,7 +49,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public abstract class MultiplicityElementImpl
-		extends MonikeredElementImpl
+		extends ElementImpl
 		implements MultiplicityElement {
 
 	/**
@@ -312,8 +312,6 @@ public abstract class MultiplicityElementImpl
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.MULTIPLICITY_ELEMENT__MONIKER:
-				return getMoniker();
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:
@@ -339,9 +337,6 @@ public abstract class MultiplicityElementImpl
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.MULTIPLICITY_ELEMENT__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
@@ -371,9 +366,6 @@ public abstract class MultiplicityElementImpl
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.MULTIPLICITY_ELEMENT__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -401,8 +393,6 @@ public abstract class MultiplicityElementImpl
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.MULTIPLICITY_ELEMENT__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:
@@ -426,8 +416,6 @@ public abstract class MultiplicityElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.MULTIPLICITY_ELEMENT___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:
 				return validateLowerGe0((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP:

@@ -778,7 +778,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootPackageCS());
 		contextConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
-		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
+		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 		defCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		derCSEClass.getESuperTypes().add(this.getContextConstraintCS());
@@ -788,7 +788,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		invCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
-		packageDeclarationCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
+		packageDeclarationCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		postCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preExpCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getDecoratedNamedExpCS());

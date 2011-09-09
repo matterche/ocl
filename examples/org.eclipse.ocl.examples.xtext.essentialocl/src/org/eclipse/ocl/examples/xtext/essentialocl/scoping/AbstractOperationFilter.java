@@ -26,26 +26,26 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public abstract class AbstractOperationFilter implements EnvironmentView.Filter
 {
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final Type sourceType;
 	
-	public AbstractOperationFilter(TypeManager typeManager, Type sourceType) {
-		this.typeManager = typeManager;
+	public AbstractOperationFilter(MetaModelManager metaModelManager, Type sourceType) {
+		this.metaModelManager = metaModelManager;
 		this.sourceType = PivotUtil.getBehavioralType(sourceType);
 	}
 
 	public int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1,
 			EObject match2, Map<TemplateParameter, ParameterableElement> bindings2) {
-		int comparison = typeManager.compareOperationMatches((Operation)match1, bindings1,
+		int comparison = metaModelManager.compareOperationMatches((Operation)match1, bindings1,
 			(Operation)match2, bindings2);
 //		if (comparison == 0) {
-//			typeManager.compareOperationMatches((Operation)match1, bindings1,
+//			metaModelManager.compareOperationMatches((Operation)match1, bindings1,
 //				(Operation)match2, bindings2);	// FIXME Debugging
 //		}
 		return comparison;
@@ -54,7 +54,7 @@ public abstract class AbstractOperationFilter implements EnvironmentView.Filter
 	protected Map<TemplateParameter, ParameterableElement> getOperationBindings(Operation candidateOperation) {
 		Type sourceType = this.sourceType;
 		if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
-			sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+			sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 		}			
 		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
 //			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);

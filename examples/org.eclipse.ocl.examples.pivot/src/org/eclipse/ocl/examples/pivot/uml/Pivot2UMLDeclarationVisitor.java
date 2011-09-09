@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -111,7 +110,7 @@ public class Pivot2UMLDeclarationVisitor
 		}
 	}
 
-	protected void copyModelElement(EModelElement umlElement, MonikeredElement pivotModelElement) {
+	protected void copyModelElement(EModelElement umlElement, Element pivotModelElement) {
 		context.putCreated(pivotModelElement, umlElement);
 	}
 

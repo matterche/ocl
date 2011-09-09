@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
@@ -71,7 +71,7 @@ public abstract class JavaComparisonOperation implements CallableImplementation,
 		throw new InvalidValueException(boundMessage);
 	}
 
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		return null;
 	}
 	

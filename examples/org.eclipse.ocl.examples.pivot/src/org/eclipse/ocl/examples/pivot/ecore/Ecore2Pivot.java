@@ -20,12 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -46,30 +44,24 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
-import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
-	private static final class Factory implements TypeManager.Factory
+	private static final class Factory implements MetaModelManager.Factory
 	{
 		private Factory() {
-			TypeManager.addFactory(this);
+			MetaModelManager.addFactory(this);
 		}
 
 		public boolean canHandle(Resource resource) {
@@ -78,11 +70,11 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 		public void configure(ResourceSet resourceSet) {}
 
-		public Element importFromResource(TypeManager typeManager, Resource ecoreResource, String uriFragment) {
+		public Element importFromResource(MetaModelManager metaModelManager, Resource ecoreResource, String uriFragment) {
 			if (ecoreResource == null) {
 				return null;
 			}
-			Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
+			Ecore2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 			if (uriFragment == null) {
 				return pivotRoot;
@@ -97,18 +89,17 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 	}
 
-	public static TypeManager.Factory FACTORY = new Factory();
-	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
+	public static MetaModelManager.Factory FACTORY = new Factory();
 
-	public static Ecore2Pivot findAdapter(Resource resource, TypeManager typeManager) {
-		assert typeManager != null;
+	public static Ecore2Pivot findAdapter(Resource resource, MetaModelManager metaModelManager) {
+		assert metaModelManager != null;
 		if (resource == null) {
 			return null;
 		}
 		for (Adapter adapter : resource.eAdapters()) {
 			if (adapter instanceof Ecore2Pivot) {
 				Ecore2Pivot ecore2Pivot = (Ecore2Pivot)adapter;
-				if (ecore2Pivot.getTypeManager() == typeManager) {
+				if (ecore2Pivot.getMetaModelManager() == metaModelManager) {
 					return ecore2Pivot;
 				}
 			}
@@ -116,21 +107,21 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return null;
 	}
 
-	public static Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
+	public static Ecore2Pivot getAdapter(Resource resource, MetaModelManager metaModelManager) {
 		if (resource == null) {
 			return null;
 		}
 		Ecore2Pivot adapter;
-		if (typeManager == null) {
-			typeManager = new TypeManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
 		else {
-			adapter = findAdapter(resource, typeManager);
+			adapter = findAdapter(resource, metaModelManager);
 			if (adapter != null) {
 				return adapter;
 			}
 		}
-		adapter = new Ecore2Pivot(resource, typeManager);
+		adapter = new Ecore2Pivot(resource, metaModelManager);
 		List<Adapter> eAdapters = resource.eAdapters();
 		eAdapters.add(adapter);
 		return adapter;
@@ -144,11 +135,11 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	 * 
 	 * @return the Pivot root package
 	 */
-	public static org.eclipse.ocl.examples.pivot.Package importFromEcore(TypeManager typeManager, String alias, Resource ecoreResource) {
+	public static org.eclipse.ocl.examples.pivot.Package importFromEcore(MetaModelManager metaModelManager, String alias, Resource ecoreResource) {
 		if (ecoreResource == null) {
 			return null;
 		}
-		Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
+		Ecore2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 		return conversion.getPivotRoot();
 	}
 
@@ -162,11 +153,11 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return false;
 	}
 
-/*	public static Ecore2Pivot createConverter(TypeManager typeManager, Resource ecoreResource) {
+/*	public static Ecore2Pivot createConverter(MetaModelManager metaModelManager, Resource ecoreResource) {
 		EList<Adapter> eAdapters = ecoreResource.eAdapters();
 		Ecore2Pivot conversion = (Ecore2Pivot) EcoreUtil.getAdapter(eAdapters, Ecore2Pivot.class);
 		if (conversion == null) {
-			conversion = new Ecore2Pivot(typeManager);
+			conversion = new Ecore2Pivot(metaModelManager);
 			eAdapters.add(conversion);
 		}
 		return conversion;
@@ -179,12 +170,12 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	 * 
 	 * @return the pivot element
 	 */
-	public static Element importFromEcore(TypeManager typeManager, String alias, EObject eObject) {
+	public static Element importFromEcore(MetaModelManager metaModelManager, String alias, EObject eObject) {
 		if (eObject == null) {
 			return null;
 		}
 		Resource ecoreResource = eObject.eResource();
-		Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
+		Ecore2Pivot conversion = getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 		if (pivotRoot == null) {
 			return null;
@@ -212,14 +203,9 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	 */
 	private List<EGenericType> genericTypes = new ArrayList<EGenericType>();
 	
-	/**
-	 * List of all specializations for each specializable type.
-	 */
-	private Map<TemplateableElement, List<TemplateableElement>> specializations = new HashMap<TemplateableElement, List<TemplateableElement>>();
-	
 	private List<Resource.Diagnostic> errors = null;
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final Resource ecoreResource;					// Set via eAdapters.add()
 	
 	protected org.eclipse.ocl.examples.pivot.Package pivotRoot = null;	// Set by importResource
@@ -227,15 +213,14 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	protected final Ecore2PivotReferenceSwitch referencePass = new Ecore2PivotReferenceSwitch(this);
 	private HashMap<EClassifier, Type> ecore2PivotMap = null;
 	
-//	private Map<String, MonikeredElement> moniker2PivotMap = null;
-	
-	public Ecore2Pivot(Resource ecoreResource, TypeManager typeManager) {
+	public Ecore2Pivot(Resource ecoreResource, MetaModelManager metaModelManager) {
 		this.ecoreResource = ecoreResource;
-		if (typeManager == null) {
-			typeManager = new TypeManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
-		this.typeManager = typeManager;
-		typeManager.addExternalResource(this);
+		this.metaModelManager = metaModelManager;
+		metaModelManager.addExternalResource(this);
+		metaModelManager.addListener(this);
 	}
 	
 	public void addCreated(EObject eObject, Element pivotElement) {
@@ -252,24 +237,10 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		genericTypes.add(eObject);
 	}
 
-	public Map<String, MonikeredElement> computeMoniker2PivotMap() {
-		Map<String, MonikeredElement> map = new HashMap<String, MonikeredElement>();
-		for (Iterator<EObject> it = ecoreResource.getAllContents(); it.hasNext(); ) {
-			EObject eObject = it.next();
-			if (eObject instanceof EModelElement) {
-				Element pElement = createMap.get(eObject);
-				if (pElement instanceof MonikeredElement) {
-					String moniker = ((MonikeredElement)pElement).getMoniker();
-					MonikeredElement oldElement = map.get(moniker);
-					if (oldElement != null) {
-						logger.warn("Duplicate moniker " + moniker + " for " + pElement.eClass().getName());
-					}
-					map.put(moniker, (MonikeredElement)pElement);
-				}
-			}
-		}
-		return map;
-	}	
+	public void dispose() {
+		metaModelManager.removeExternalResource(this);
+		getTarget().eAdapters().remove(this);
+	}
 
 	protected void error(String message) {
 		if (errors == null) {
@@ -294,19 +265,9 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return ecoreResource;
 	}
 
-/*	public MonikeredElement getMoniker(String moniker) {
-		if (moniker2PivotMap == null) {
-			moniker2PivotMap = computeMoniker2PivotMap();
-		}
-		return moniker2PivotMap.get(moniker);
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
-	
-	public Map<String, MonikeredElement> getMoniker2PivotMap() {
-		if (moniker2PivotMap == null) {
-			moniker2PivotMap = computeMoniker2PivotMap();
-		}
-		return moniker2PivotMap;
-	} */
 
 	public <T extends Element> T getPivotOfEcore(Class<T> requiredClass, EObject eObject) {
 		if (pivotRoot == null) {
@@ -332,7 +293,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		if (element == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2Pivot converter = getAdapter(resource, typeManager);
+				Ecore2Pivot converter = getAdapter(resource, metaModelManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotRoot();
 					for (Map.Entry<EObject, Element> entry : converter.createMap.entrySet()) {
@@ -358,7 +319,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		if (pivotElement == null) {
 			Resource resource = eObject.eResource();
 			if ((resource != ecoreResource) && (resource != null)) {
-				Ecore2Pivot converter = getAdapter(resource, typeManager);
+				Ecore2Pivot converter = getAdapter(resource, metaModelManager);
 				if (allConverters.add(converter)) {
 					converter.getPivotRoot();
 //					allEClassifiers.addAll(converter.allEClassifiers);
@@ -398,19 +359,19 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			for (EObject eObject : ecoreResource.getContents()) {
 				if (eObject instanceof EPackage) {
 					String nsURI = ((EPackage)eObject).getNsURI();
-					String moniker = typeManager.getPackageMoniker(nsURI);
+					String moniker = null; // WIP metaModelManager.getPackageMoniker(nsURI);
 					if (moniker != null) {
 //						logger.error("Unsupported '" + nsURI + "' conflict");
 						pivotRoot = PivotFactory.eINSTANCE.createPackage();
 						pivotRoot.setNsURI(nsURI);
-						String uri = EcoreUtil.generateUUID() + ".pivot";
-						pivotRoot.setMoniker(uri);
+						String uri = EcoreUtil.generateUUID() + ".pivot";		// WIP use pivot::
+//						pivotRoot.setMoniker(uri);
 						URI dummyURI = URI.createURI(uri);
-						pivotResource = typeManager.getPivotResourceSet().createResource(dummyURI);
+						pivotResource = metaModelManager.getPivotResourceSet().createResource(dummyURI);
 						pivotResource.getContents().add(pivotRoot);
 						pivotResource.getErrors().add(new XMIException("Unsupported '" + nsURI + "' conflict"));		// FIXME better class
 						return pivotRoot;	// FIXME Need Ecore2Pivot to be able to refresh 2 Ecores to 1 Pivot
-/*						org.eclipse.ocl.examples.pivot.Package existingPackage = typeManager.getPrimaryPackage(moniker);
+/*						org.eclipse.ocl.examples.pivot.Package existingPackage = metaModelManager.getPrimaryPackage(moniker);
 						if (existingPackage != null) {
 							Resource existingResource = existingPackage.eResource();
 							if (pivotResource == null) {
@@ -441,7 +402,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 						pivotAliasMap.put(element, alias);
 					}
 				}
-				typeManager.installResource(pivotResource);
+				metaModelManager.installResource(pivotResource);
 			}
 		}
 		return pivotRoot;
@@ -455,17 +416,13 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return ecoreResource;
 	}
 
-	public TypeManager getTypeManager() {
-		return typeManager;
-	}
-
 	public URI getURI() {
 		return ecoreResource.getURI();
 	}
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
-		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment(), null);
+		Resource pivotResource = metaModelManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
+		pivotRoot = metaModelManager.createPackage(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {
@@ -482,11 +439,6 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			Type pivotType = resolveType(resolvedSpecializations, eGenericType);
 			createMap.put(eGenericType, pivotType);
 		}
-		for (List<TemplateableElement> pivotElements : specializations.values()) {
-			for (TemplateableElement pivotElement : pivotElements) {
-				typeManager.addOrphanClass((Type)pivotElement);
-			}
-		}
 		for (EObject eObject : referencers) {
 			referencePass.doInPackageSwitch(eObject);
 		}
@@ -497,14 +449,22 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	}
 
 	public void initializeEcore2PivotMap() {
-		ecore2PivotMap.put(EcorePackage.Literals.EBOOLEAN, typeManager.getBooleanType());
-		ecore2PivotMap.put(EcorePackage.Literals.EBIG_INTEGER, typeManager.getIntegerType());
-		ecore2PivotMap.put(EcorePackage.Literals.EBIG_DECIMAL, typeManager.getRealType());
-		ecore2PivotMap.put(EcorePackage.Literals.ESTRING, typeManager.getStringType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBOOLEAN, metaModelManager.getBooleanType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBIG_INTEGER, metaModelManager.getIntegerType());
+		ecore2PivotMap.put(EcorePackage.Literals.EBIG_DECIMAL, metaModelManager.getRealType());
+		ecore2PivotMap.put(EcorePackage.Literals.ESTRING, metaModelManager.getStringType());
+	}
+
+	public boolean isAdapterFor(MetaModelManager metaModelManager) {
+		return this.metaModelManager == metaModelManager;
 	}
 
 	public boolean isAdapterForType(Object type) {
 		return type == Ecore2Pivot.class;
+	}
+
+	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
+		dispose();
 	}
 
 	public void notifyChanged(Notification notification) {}
@@ -577,47 +537,12 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		if (unspecializedPivotType == null) {
 			return null;
 		}
-		String moniker = Ecore2Moniker.toString(eGenericType);
-		Type specializedPivotElement = typeManager.findOrphanClass(unspecializedPivotType.getClass(), moniker);
-		if (specializedPivotElement != null) {
-			return specializedPivotElement;
-		}	
-		if (unspecializedPivotType instanceof DataType) {
-			specializedPivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, null);
-		}
-		else {
-			specializedPivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
-		}
-		specializedPivotElement.setName(unspecializedPivotType.getName());
-		specializedPivotElement.setMoniker(moniker);
-		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		TemplateSignature templateSignature = unspecializedPivotType.getOwnedTemplateSignature();
-		templateBinding.setSignature(templateSignature);
-		specializedPivotElement.getTemplateBindings().add(templateBinding);
-		for (int i = 0; i < eTypeParameters.size(); i++) {
-			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-			templateParameterSubstitution.setFormal(templateSignature.getParameters().get(i));
-			EGenericType eTypeArgument = eTypeArguments.get(i);
+ 		List<Type> templateArguments = new ArrayList<Type>();
+		for (EGenericType eTypeArgument : eTypeArguments) {
 			Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
-			if (typeArgument.eContainer() == null) {
-				templateParameterSubstitution.setOwnedActual(typeArgument);
-			}
-			else {
-				templateParameterSubstitution.setActual(typeArgument);
-			}
-			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+			templateArguments.add(typeArgument);
 		}
-		specializedPivotElement.setUnspecializedElement(unspecializedPivotType);
-		//
-		//	Cache the pivot specialization
-		//
-		List<TemplateableElement> specializationList = specializations.get(unspecializedPivotType);
-		if (specializationList == null) {
-			specializationList = new ArrayList<TemplateableElement>();
-			specializations.put(unspecializedPivotType, specializationList);
-		}
-		specializationList.add(specializedPivotElement);
-		return specializedPivotElement;
+		return metaModelManager.getLibraryType(unspecializedPivotType, templateArguments);
 	}
 
 	protected Type resolveSimpleType(EGenericType eGenericType) {
@@ -719,5 +644,9 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 	public void setTarget(Notifier newTarget) {
 		assert (newTarget == null) || (newTarget == ecoreResource);
+	}
+
+	public void unsetTarget(Notifier oldTarget) {
+		assert (oldTarget == ecoreResource);
 	}
 }

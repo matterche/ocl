@@ -31,9 +31,9 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.Option;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.osgi.util.NLS;
@@ -57,22 +57,26 @@ import org.eclipse.osgi.util.NLS;
 public abstract class AbstractEvaluationEnvironment
 		implements EvaluationEnvironment, Adaptable, Customizable {
 	
-    protected final TypeManager typeManager;
+    protected final MetaModelManager metaModelManager;
 
 	private final EvaluationEnvironment parent;
     private final Map<VariableDeclaration, Value> variableValues = new HashMap<VariableDeclaration, Value>();
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
     
-    protected AbstractEvaluationEnvironment(TypeManager typeManager) {
-    	this.typeManager = typeManager;
+    protected AbstractEvaluationEnvironment(MetaModelManager metaModelManager) {
+    	this.metaModelManager = metaModelManager;
     	this.parent = null;
     }
     
     protected AbstractEvaluationEnvironment(EvaluationEnvironment parent) {	
-    	this.typeManager = parent.getTypeManager();
+    	this.metaModelManager = parent.getMetaModelManager();
     	this.parent = parent;
     }
+    
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
     
     /**
      * Obtains my parent (nesting) environment.
@@ -82,10 +86,6 @@ public abstract class AbstractEvaluationEnvironment
     protected EvaluationEnvironment getParent() {
     	return parent;
     }
-    
-	public TypeManager getTypeManager() {
-		return typeManager;
-	}
     
     /**
      * Returns the value associated with the supplied name

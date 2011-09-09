@@ -266,8 +266,6 @@ public class VariableImpl
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.VARIABLE__MONIKER:
-				return getMoniker();
 			case PivotPackage.VARIABLE__NAME:
 				return getName();
 			case PivotPackage.VARIABLE__OWNED_RULE:
@@ -303,9 +301,6 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.VARIABLE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.VARIABLE__NAME:
 				setName((String)newValue);
@@ -349,9 +344,6 @@ public class VariableImpl
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.VARIABLE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -391,8 +383,6 @@ public class VariableImpl
 		{
 			case PivotPackage.VARIABLE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.VARIABLE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.VARIABLE__OWNED_RULE:

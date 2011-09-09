@@ -16,6 +16,9 @@
  */
 package org.eclipse.ocl.examples.build.acceleo;
 
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
+
 public class NameQueries
 {
 	private static int counter = 1;
@@ -30,6 +33,10 @@ public class NameQueries
 	 */
 	public static String getClassName(Class<?> javaClass) {
 		return javaClass.getCanonicalName();
+	}
+	
+	public static String getMoniker(Element element) {
+		return Pivot2Moniker.toString(element);
 	}
 	
 	/**

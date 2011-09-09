@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
@@ -39,19 +39,19 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 
 	@Override
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+		Type sourceType = sourceVal.getType(metaModelManager, operationCall.getSource().getType());
 		if (sourceType == null) {
 			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
 		Type argType = typeVal.getInstanceType();
-		if (typeManager.conformsTo(sourceType, argType, null)) {
-			if (sourceVal.isUnlimited() && ((argType == typeManager.getIntegerType()) || (argType == typeManager.getRealType()))) {
+		if (metaModelManager.conformsTo(sourceType, argType, null)) {
+			if (sourceVal.isUnlimited() && ((argType == metaModelManager.getIntegerType()) || (argType == metaModelManager.getRealType()))) {
 				return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonFiniteIntegerValue);
 			}
-			else if ((sourceVal instanceof IntegerValue) && (argType == typeManager.getRealType())) {
+			else if ((sourceVal instanceof IntegerValue) && (argType == metaModelManager.getRealType())) {
 				return ((IntegerValue)sourceVal).toRealValue();
 			}
 			else {
@@ -61,13 +61,13 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		else {
 			RealValue realValue = sourceVal.asRealValue();
 			if (realValue != null) {
-				if (argType == typeManager.getUnlimitedNaturalType()) {
+				if (argType == metaModelManager.getUnlimitedNaturalType()) {
 					if (realValue.signum() < 0) {
 						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
 					}
 					return realValue.toIntegerValue();
 				}
-				else if (argType == typeManager.getIntegerType()) {
+				else if (argType == metaModelManager.getIntegerType()) {
 					return realValue.toIntegerValue();
 				}
 				else {
@@ -76,7 +76,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 			}
 			IntegerValue integerValue = sourceVal.asIntegerValue();
 			if (integerValue != null) {
-				if (argType == typeManager.getUnlimitedNaturalType()) {
+				if (argType == metaModelManager.getUnlimitedNaturalType()) {
 					if (integerValue.signum() < 0) {
 						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
 					}

@@ -78,13 +78,12 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -140,6 +139,12 @@ public abstract class PivotTestSuite
 //			super.append(event);
 		}
 	}
+	
+	protected static Logger rootLogger = Logger.getRootLogger();
+	protected static TestCaseAppender testCaseAppender = new TestCaseAppender();
+	{
+		rootLogger.addAppender(testCaseAppender);
+	}
     
 	protected static boolean noDebug = false;
 	protected static ResourceSet resourceSet;
@@ -169,7 +174,7 @@ public abstract class PivotTestSuite
 		initialized = true;
 	}
 
-	protected TypeManager typeManager;
+	protected MetaModelManager metaModelManager;
 	protected ValueFactory valueFactory;
 	protected OCL ocl;
 	protected Environment environment;
@@ -190,10 +195,10 @@ public abstract class PivotTestSuite
 		Resource resource = null;
         try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
-    		TypeManager typeManager = environment.getTypeManager();
+    		MetaModelManager metaModelManager = environment.getMetaModelManager();
     		Type contextClassifier = environment.getContextClassifier();
-    		URI uri = typeManager.getResourceIdentifier(expression, null);
-			resource = PivotUtil.createXtextResource(typeManager, uri, contextClassifier, expression);
+    		URI uri = metaModelManager.getResourceIdentifier(expression, null);
+			resource = PivotUtil.createXtextResource(metaModelManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
@@ -208,7 +213,7 @@ public abstract class PivotTestSuite
 			fail(e.getMessage());
 		} finally {
 			if (resource != null) {
-				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
 				if (adapter != null) {
 					adapter.dispose();
 				}
@@ -228,10 +233,10 @@ public abstract class PivotTestSuite
 		Resource resource = null;
 		try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
-    		TypeManager typeManager = environment.getTypeManager();
+    		MetaModelManager metaModelManager = environment.getMetaModelManager();
     		Type contextClassifier = environment.getContextClassifier();
-    		URI uri = typeManager.getResourceIdentifier(expression, null);
-			resource = PivotUtil.createXtextResource(typeManager, uri, contextClassifier, expression);
+    		URI uri = metaModelManager.getResourceIdentifier(expression, null);
+			resource = PivotUtil.createXtextResource(metaModelManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
@@ -246,7 +251,7 @@ public abstract class PivotTestSuite
 			fail(e.getMessage());
 		} finally {
 			if (resource != null) {
-				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
 				if (adapter != null) {
 					adapter.dispose();
 				}
@@ -381,7 +386,7 @@ public abstract class PivotTestSuite
 		try {
 			if (expected instanceof EEnumLiteral) {
 				Resource resource = ((EEnumLiteral)expected).eResource();
-				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
 				expected = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)expected);
 			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
@@ -887,17 +892,17 @@ public abstract class PivotTestSuite
 
 	protected OCL createOCL() {
 		Registry packageRegistry = resourceSet.getPackageRegistry();
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
+		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, metaModelManager);
 		return OCL.newInstance(envFactory);
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package createPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String name) {
-		org.eclipse.ocl.examples.pivot.Package aPackage = typeManager.createPackage(name, null);
+		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(name, null);
 		if (parentPackage != null) {
 			parentPackage.getNestedPackages().add(aPackage);
 		}
 		else {
-			typeManager.installPackage(aPackage);
+			metaModelManager.installPackage(aPackage);
 		}
 		return aPackage;
 	}
@@ -1032,10 +1037,10 @@ public abstract class PivotTestSuite
             String expression) throws ParserException {
 		if (context instanceof EObject) {
 			EClass eClass = ((EObject)context).eClass();
-			Type pivotType = typeManager.getPivotType(eClass.getName());
+			Type pivotType = metaModelManager.getPivotType(eClass.getName());
 			if (pivotType == null) {
 				Resource resource = eClass.eResource();
-				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
 				pivotType = ecore2Pivot.getCreated(Type.class, eClass);
 			}
 			aHelper.setContext(pivotType);
@@ -1046,7 +1051,7 @@ public abstract class PivotTestSuite
         try {
         	return ocl.evaluate(context, query);
         } finally {
-			typeManager.getPivotResourceSet().getResources().remove(query.eResource());
+			metaModelManager.getPivotResourceSet().getResources().remove(query.eResource());
 		}
     }
 	
@@ -1091,8 +1096,8 @@ public abstract class PivotTestSuite
 	}
 
 	public ClassifierType getClassifierType(Type type) {
-		ClassifierType classifierType = typeManager.getClassifierType(type);
-		typeManager.addLockedElement(classifierType);
+		ClassifierType classifierType = metaModelManager.getClassifierType(type);
+		metaModelManager.addLockedElement(classifierType);
 		return classifierType;
 	}
    
@@ -1108,7 +1113,7 @@ public abstract class PivotTestSuite
     }
     
 	protected Type getMetaclass(String name) {
-		return typeManager.getRequiredLibraryType(name);
+		return metaModelManager.getRequiredLibraryType(name);
 	}
 	
 	protected Object getNull() {
@@ -1153,7 +1158,7 @@ public abstract class PivotTestSuite
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package getUMLMetamodel() {
-		return typeManager.getPivotMetaModel();
+		return metaModelManager.getPivotMetaModel();
 	}
 	
 	protected Type getUMLString() {
@@ -1295,14 +1300,10 @@ public abstract class PivotTestSuite
 	@Override
     protected void setUp() {
 //    	System.out.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
-		Logger rootLogger = Logger.getRootLogger();
-//		rootLogger.setLevel(Level.TRACE);
-		rootLogger.addAppender(new TestCaseAppender());
-//		rootLogger.removeAppender("default");
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		typeManager = new TypeManager();
-		valueFactory = typeManager.getValueFactory();
+		metaModelManager = new MetaModelManager();
+		valueFactory = metaModelManager.getValueFactory();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();
         }
@@ -1329,12 +1330,7 @@ public abstract class PivotTestSuite
 	}
 
 	@Override
-    protected void tearDown()
-		throws Exception {
-		TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
-		if (rsAdapter != null) {
-			resourceSet.eAdapters().remove(rsAdapter);
-		}
+    protected void tearDown() throws Exception {
 		//
 		//	Unload any resources that a test may have loaded.
 		//
@@ -1383,7 +1379,9 @@ public abstract class PivotTestSuite
 				}
 			}
 		}
-		
+//		OCLstdlib.uninstall();	
+//		System.gc();
+//		System.runFinalization();
 //		debugPrintln("==> Finish " + getName());
 	}
 
@@ -1406,7 +1404,7 @@ public abstract class PivotTestSuite
 	protected void tearDown_ocl() {
 		ocl.dispose();
 		ocl = null;
-		typeManager = null;
+		metaModelManager = null;
 		valueFactory = null;
 	}
     

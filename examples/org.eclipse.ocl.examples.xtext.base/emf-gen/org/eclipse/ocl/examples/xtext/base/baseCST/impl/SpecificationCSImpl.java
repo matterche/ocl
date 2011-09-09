@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *
  * @generated
  */
-public class SpecificationCSImpl extends MonikeredElementCSImpl implements SpecificationCS
+public class SpecificationCSImpl extends ModelElementCSImpl implements SpecificationCS
 {
 	/**
 	 * The default value of the '{@link #getExprString() <em>Expr String</em>}' attribute.

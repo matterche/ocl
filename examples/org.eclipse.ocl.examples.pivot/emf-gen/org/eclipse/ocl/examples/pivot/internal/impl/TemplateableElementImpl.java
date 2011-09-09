@@ -51,7 +51,7 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  * @generated
  */
 public abstract class TemplateableElementImpl
-		extends MonikeredElementImpl
+		extends ElementImpl
 		implements TemplateableElement {
 
 	/**
@@ -278,8 +278,6 @@ public abstract class TemplateableElementImpl
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TEMPLATEABLE_ELEMENT__MONIKER:
-				return getMoniker();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
@@ -303,9 +301,6 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
@@ -333,9 +328,6 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TEMPLATEABLE_ELEMENT__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
 				return;
@@ -360,8 +352,6 @@ public abstract class TemplateableElementImpl
 		{
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TEMPLATEABLE_ELEMENT__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
@@ -382,8 +372,6 @@ public abstract class TemplateableElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATEABLE_ELEMENT___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.TEMPLATEABLE_ELEMENT___IS_TEMPLATE:

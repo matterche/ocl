@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 
 
@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
  * @model
  * @generated
  */
-public interface ExpCS extends MonikeredElementCS {
+public interface ExpCS extends ModelElementCS {
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' reference.

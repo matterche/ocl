@@ -45,18 +45,18 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type>");
 		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Classifier<Type>");
-		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Classifier<Type>");
-		assertSemanticErrorQuery("Set<Type>.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Classifier<Set<Type>>");
-		assertSemanticErrorQuery("Set<Type>.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Classifier<Set<Type>>");
+		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "ClassClassifier<Type>");
+		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "ClassClassifier<Type>");
+		assertSemanticErrorQuery("Set<Type>.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
+		assertSemanticErrorQuery("Set<Type>.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
 		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type>");
 		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Classifier<Type>");
-		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Classifier<Type>");
-		assertSemanticErrorQuery("Set<Type>->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Classifier<Set<Type>>");
-		assertSemanticErrorQuery("Set<Type>->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Classifier<Set<Type>>");
+		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "ClassClassifier<Type>");
+		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "ClassClassifier<Type>");
+		assertSemanticErrorQuery("Set<Type>->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
+		assertSemanticErrorQuery("Set<Type>->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
 		assertSemanticErrorQuery("let a : Type = null in a.if", "missing EOF at ''.''");
 		assertSemanticErrorQuery("let a : Type = null in a->if", "missing EOF at ''->''");
 	}
@@ -83,7 +83,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	 */
 	public void test_container_navigation() throws InvocationTargetException {
 		initFruitPackage();
-		typeManager.addGlobalNamespace("fruit", fruitPackage);
+		metaModelManager.addGlobalNamespace("fruit", fruitPackage);
 		//
 		//	Simple model: aTree contains redApple
 		//
@@ -96,7 +96,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		List<Object> treeFruits = (List<Object>) aTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
 		//
-		Type pivotTree = typeManager.getPivotOfEcore(Type.class, tree);
+		Type pivotTree = metaModelManager.getPivotOfEcore(Type.class, tree);
 		//
 		assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
 		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "let aTree : fruit::Tree = self in aTree.fruits");
@@ -107,7 +107,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		//
 		//	type/property ambiguity is resolved to type.
 		//
-		assertQueryEquals(redApple, typeManager.getClassifierType(pivotTree), "Tree");
+		assertQueryEquals(redApple, metaModelManager.getClassifierType(pivotTree), "Tree");
 		//
 		//	type/property ambiguity is resolved to type.
 		//
@@ -147,7 +147,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "fruit::Tree.allInstances()");
 		assertQueryEquals(null, valueFactory.getEmptySetValue(), "fruit::Tree.allInstances()");
 //
-		typeManager.addGlobalNamespace("zz", fruitPackage);
+		metaModelManager.addGlobalNamespace("zz", fruitPackage);
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "zz::Tree.allInstances()");
 //
 //BUG 344931		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Fruit.allInstances()->oclAsType(Set<Apple>)");		

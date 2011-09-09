@@ -18,35 +18,35 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.Map;
 
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.MonikeredElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 
-public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredElementCS, P extends MonikeredElement>
-	extends MonikeredElementCSScopeAdapter<CS, P>
+public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElementCS, P extends Element>
+	extends ModelElementCSScopeAdapter<CS, P>
 	implements RootCSScopeAdapter
 {
-	public AbstractRootCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
-		super(typeManager, csElement, pivotClass);
+	public AbstractRootCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
+		super(metaModelManager, csElement, pivotClass);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		TypeManager typeManager = environmentView.getTypeManager();
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
-			for (Type type : typeManager.getGlobalTypes()) {
+			for (Type type : metaModelManager.getGlobalTypes()) {
 				environmentView.addNamedElement(type);
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (Map.Entry<String, Namespace> entry : typeManager.getGlobalNamespaces()) {
+			for (Map.Entry<String, Namespace> entry : metaModelManager.getGlobalNamespaces()) {
 				environmentView.addElement(entry.getKey(), null, entry.getValue());
 			}
 		}

@@ -138,8 +138,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 		{
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.CLASSIFIER_TYPE__MONIKER:
-				return getMoniker();
 			case PivotPackage.CLASSIFIER_TYPE__NAME:
 				return getName();
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_RULE:
@@ -201,9 +199,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.CLASSIFIER_TYPE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.CLASSIFIER_TYPE__NAME:
 				setName((String)newValue);
@@ -289,9 +284,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CLASSIFIER_TYPE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.CLASSIFIER_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -368,8 +360,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 		{
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CLASSIFIER_TYPE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.CLASSIFIER_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_RULE:

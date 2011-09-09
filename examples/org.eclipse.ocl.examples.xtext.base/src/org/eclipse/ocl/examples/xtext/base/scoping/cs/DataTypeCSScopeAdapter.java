@@ -17,20 +17,20 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.DataType;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class DataTypeCSScopeAdapter extends BaseCSScopeAdapter<DataTypeCS, DataType>
 {
-	public DataTypeCSScopeAdapter(TypeManager typeManager, DataTypeCS csElement) {
-		super(typeManager, csElement, DataType.class);
+	public DataTypeCSScopeAdapter(MetaModelManager metaModelManager, DataTypeCS csElement) {
+		super(metaModelManager, csElement, DataType.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		environmentView.addLibContents(typeManager.getOclAnyType(), scopeView);
+		environmentView.addLibContents(metaModelManager.getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }

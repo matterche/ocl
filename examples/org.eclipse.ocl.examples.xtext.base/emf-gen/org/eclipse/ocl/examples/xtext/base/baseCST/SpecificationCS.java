@@ -33,7 +33,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model
  * @generated
  */
-public interface SpecificationCS extends MonikeredElementCS
+public interface SpecificationCS extends ModelElementCS
 {
 	/**
 	 * Returns the value of the '<em><b>Expr String</b></em>' attribute.

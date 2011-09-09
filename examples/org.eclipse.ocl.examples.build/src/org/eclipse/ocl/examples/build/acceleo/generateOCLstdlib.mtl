@@ -49,7 +49,7 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
  * This Standard Library may be registered as the definition of a Standard Library for
  * the OCL evaluation framework by invoking {@link #install}.
  * <p>
- * The Standard Library is normally activated when the TypeManager attempts
+ * The Standard Library is normally activated when the MetaModelManager attempts
  * to locate a library type when its default Standard Library URI is the same
  * as this Standard Library.
  */
@@ -59,12 +59,7 @@ public class [javaClass/] extends XMLResourceImpl
 	/**
 	 *	The static package-of-types pivot model of the Standard Library.
 	 */
-	public static final [javaClass/] INSTANCE = new [javaClass/]();
-	
-	/**
-	 *	The static library loader instance
-	 */
-	public static final Loader LOADER = new Loader();
+	private static [javaClass/] INSTANCE = null;
 	
 	/**
 	 *	The URI of this Standard Library.
@@ -77,8 +72,31 @@ public class [javaClass/] extends XMLResourceImpl
 	 * the registration that should appear as a standard_library plugin
 	 * extension when running within Eclipse. 
 	 */
+	public static OCLstdlib getDefault() {
+		if (INSTANCE == null) {
+			INSTANCE = new OCLstdlib();
+		}
+		return INSTANCE;
+	}
+
+	/**
+	 * Install this library in the {@link StandardLibraryContribution#REGISTRY}.
+	 * This method may be invoked by standalone applications to replicate
+	 * the registration that should appear as a standard_library plugin
+	 * extension when running within Eclipse. 
+	 */
 	public static void install() {
-		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, LOADER);
+		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
+	}
+
+	/**
+	 * Unnstall this library from the {@link StandardLibraryContribution#REGISTRY}.
+	 * This method may be invoked by standalone applications to release the library
+	 * resources for garbage collection and memory leakage detection. 
+	 */
+	public static void uninstall() {
+		StandardLibraryContribution.REGISTRY.remove(STDLIB_URI);
+		INSTANCE = null;
 	}
 	
 	/**
@@ -93,7 +111,7 @@ public class [javaClass/] extends XMLResourceImpl
 		}
 		
 		public Resource getResource() {
-			return INSTANCE;
+			return getDefault();
 		}
 	}
 	
@@ -109,11 +127,11 @@ public class [javaClass/] extends XMLResourceImpl
 	 */
 	public static Library create()
 	{
-		Library [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createLibrary(); // [pkg.moniker/]
+		Library [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createLibrary(); // [pkg.getMoniker()/]
 		[for (precedence : Precedence | pkg.ownedPrecedence)]
 		[declarePrecedence(precedence)/]
 		[/for]
-		[for (ownedType : Type | pkg.ownedType->sortedBy(moniker))]
+		[for (ownedType : Type | pkg.ownedType->sortedBy(getMoniker()))]
 		[declareType(ownedType)/]
 		[/for]
 		[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
@@ -121,7 +139,6 @@ public class [javaClass/] extends XMLResourceImpl
 		[/for]
 
 		[pkg.getSymbolName()/].setName("[pkg.name/]");
-		[pkg.getSymbolName()/].setMoniker("[pkg.moniker/]");
 		[if (pkg.nsPrefix <> null)]
 		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
 		[/if]
@@ -131,7 +148,7 @@ public class [javaClass/] extends XMLResourceImpl
 		[for (precedence : Precedence | pkg.ownedPrecedence)]
 		[emitPrecedence(precedence)/]
 		[/for]
-	[for (ownedType : Type | pkg.ownedType->sortedBy(moniker))]
+	[for (ownedType : Type | pkg.ownedType->sortedBy(getMoniker()))]
 		[emitType(ownedType)/]
 	[/for]
 	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]

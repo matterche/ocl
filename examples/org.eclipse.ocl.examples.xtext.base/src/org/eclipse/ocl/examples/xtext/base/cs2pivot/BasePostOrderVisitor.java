@@ -39,10 +39,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
@@ -187,6 +188,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	@Override
+	public Continuation<?> visitLambdaTypeCS(LambdaTypeCS object) {
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitLibraryCS(LibraryCS object) {
 		return null;
 	}
@@ -198,11 +204,6 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(ModelElementRefCS object) {
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitMonikeredElementCS(MonikeredElementCS csMonikeredElement) {
 		return null;
 	}
 
@@ -237,7 +238,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		BasicContinuation<?> continuation = visitTypedElementCS(csReference);
 		assert continuation == null;
 		if (pivotOpposite == null) {
-			context.getTypeManager().installPropertyDeclaration(pivotElement);
+			context.getMetaModelManager().installPropertyDeclaration(pivotElement);
 		}
 		return null;
 	}
@@ -264,6 +265,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitTuplePartCS(TuplePartCS object) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTupleTypeCS(TupleTypeCS object) {
 		return null;
 	}
 

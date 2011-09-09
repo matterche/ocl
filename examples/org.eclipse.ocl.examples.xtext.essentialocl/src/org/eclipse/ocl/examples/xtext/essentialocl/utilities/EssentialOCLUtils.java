@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -38,7 +38,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 * @param csElement
 	 * @return the csElement with a matching pivot element
 	 */
-	public static MonikeredElementCS getPivotedCS(EObject csElement) {
+	public static ModelElementCS getPivotedCS(EObject csElement) {
 		if (csElement instanceof InfixExpCS) {
 			OperatorCS csOperator = ((InfixExpCS)csElement).getOwnedOperator().get(0);
 			while (csOperator.getParent() != null) {
@@ -69,8 +69,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csElement instanceof PrefixExpCS) {
 			return getPivotedCS(((PrefixExpCS)csElement).getOwnedOperator().get(0));
 		}
-		else if (csElement instanceof MonikeredElementCS) {
-			return (MonikeredElementCS) csElement;
+		else if (csElement instanceof ModelElementCS) {
+			return (ModelElementCS) csElement;
 		}
 		else {
 			return null;
@@ -132,7 +132,7 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	}
 
 	// FIXME Simplify since csElement is the immediate child
-	public static MonikeredElementCS getPivotingParentCS(ElementCS csElement) {
+	public static ModelElementCS getPivotingParentCS(ElementCS csElement) {
 		if (csElement == null) {
 			return null;
 		}
@@ -166,8 +166,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csParent instanceof PrefixExpCS) {
 			return getPivotingParentCS((PrefixExpCS)csParent);
 		}
-		else*/ if (csParent instanceof MonikeredElementCS) {
-			return (MonikeredElementCS) csParent;
+		else*/ if (csParent instanceof ModelElementCS) {
+			return (ModelElementCS) csParent;
 		}
 		else {
 			return null;

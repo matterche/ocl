@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.pivot.library;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * AbstractCallableImplementation provides the foundation for callable implementation of
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
  */
 public abstract class AbstractCallableImplementation implements CallableImplementation
 {
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		return null;
 	}
 	

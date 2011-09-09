@@ -357,8 +357,6 @@ public class ConstraintImpl
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.CONSTRAINT__MONIKER:
-				return getMoniker();
 			case PivotPackage.CONSTRAINT__NAME:
 				return getName();
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
@@ -395,9 +393,6 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.CONSTRAINT__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName((String)newValue);
@@ -445,9 +440,6 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.CONSTRAINT__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -490,8 +482,6 @@ public class ConstraintImpl
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.CONSTRAINT__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.CONSTRAINT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
@@ -525,8 +515,6 @@ public class ConstraintImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.CONSTRAINT___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP:
 				return validateNotApplyToSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP:

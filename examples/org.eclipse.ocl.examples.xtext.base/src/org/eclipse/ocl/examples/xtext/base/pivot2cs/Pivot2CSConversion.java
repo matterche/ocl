@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -40,10 +40,10 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -52,7 +52,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -69,7 +69,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	private static final Logger logger = Logger.getLogger(Pivot2CSConversion.class);
 
 	protected final Pivot2CS converter;
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final BaseDeclarationVisitor defaultDeclarationVisitor;
 	protected final BaseReferenceVisitor defaultReferenceVisitor;
 	
@@ -81,7 +81,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	
 	public Pivot2CSConversion(Pivot2CS converter) {
 		this.converter = converter;
-		this.typeManager = converter.getTypeManager();
+		this.metaModelManager = converter.getMetaModelManager();
 		this.defaultDeclarationVisitor = converter.createDefaultDeclarationVisitor(this);
 		this.defaultReferenceVisitor = converter.createDefaultReferenceVisitor(this);
 	}
@@ -137,8 +137,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return declarationVisitor;
 	}
 	
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 
 	public BaseReferenceVisitor getReferenceVisitor(EClass eClass) {
@@ -203,10 +203,10 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElement;
 	}
 
-	public <T extends MonikeredElementCS> T refreshMonikeredElement(Class<T> csClass, EClass csEClass, MonikeredElement object) {
+	public <T extends ModelElementCS> T refreshElement(Class<T> csClass, EClass csEClass, Element object) {
 		assert csClass == csEClass.getInstanceClass();
 		EFactory eFactoryInstance = csEClass.getEPackage().getEFactoryInstance();
-		MonikeredElementCS csElement = (MonikeredElementCS) eFactoryInstance.create(csEClass);
+		ModelElementCS csElement = (ModelElementCS) eFactoryInstance.create(csEClass);
 		if (!csClass.isAssignableFrom(csElement.getClass())) {
 			throw new ClassCastException();
 		}
@@ -217,7 +217,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	}
 
 	public <T extends NamedElementCS> T refreshNamedElement(Class<T> csClass, EClass csEClass, NamedElement object) {
-		T csElement = refreshMonikeredElement(csClass, csEClass, object);
+		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
 		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));

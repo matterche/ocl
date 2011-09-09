@@ -134,8 +134,6 @@ public class CollectionTypeImpl
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.COLLECTION_TYPE__MONIKER:
-				return getMoniker();
 			case PivotPackage.COLLECTION_TYPE__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:
@@ -196,9 +194,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.COLLECTION_TYPE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.COLLECTION_TYPE__NAME:
 				setName((String)newValue);
@@ -283,9 +278,6 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.COLLECTION_TYPE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.COLLECTION_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -361,8 +353,6 @@ public class CollectionTypeImpl
 		{
 			case PivotPackage.COLLECTION_TYPE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.COLLECTION_TYPE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.COLLECTION_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_TYPE__OWNED_RULE:

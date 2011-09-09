@@ -38,7 +38,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface ParameterableElement
-		extends MonikeredElement {
+		extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Template Parameter</b></em>' reference.

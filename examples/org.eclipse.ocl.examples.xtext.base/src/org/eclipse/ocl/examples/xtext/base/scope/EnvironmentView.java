@@ -32,10 +32,10 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -78,7 +78,7 @@ public class EnvironmentView
 		boolean matches(EnvironmentView environmentView, Type forType, EObject eObject);
 	}
 
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	protected final EStructuralFeature reference;
 	protected final String name;
 
@@ -93,8 +93,8 @@ public class EnvironmentView
 	private List<Filter> matchers = null;	// Prevailing filters for matching
 	private Set<Filter> resolvers = null;	// Successful filters for resolving
 
-	public EnvironmentView(TypeManager typeManager, EStructuralFeature reference, String name) {
-		this.typeManager = typeManager;
+	public EnvironmentView(MetaModelManager metaModelManager, EStructuralFeature reference, String name) {
+		this.metaModelManager = metaModelManager;
 		this.reference = reference;
 		this.name = name;
 	}
@@ -119,7 +119,7 @@ public class EnvironmentView
 		if (element == null) {
 			return 0;
 		}
-		element = typeManager.getPrimaryElement(element);
+		element = metaModelManager.getPrimaryElement(element);
 		if ((name != null) && !name.equals(elementName)) {
 			return 0;
 		}
@@ -186,7 +186,7 @@ public class EnvironmentView
 
 	public void addElementsOfScope(Element element, ScopeView scopeView) {
 		if (element !=  null) {
-			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
+			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(metaModelManager, element);
 			if (scopeAdapter != null) {
 				scopeAdapter.computeLookup(this, scopeView);
 			}
@@ -245,8 +245,8 @@ public class EnvironmentView
 	}
 
 	public int computeLookups(Type type) {
-		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(typeManager, type);
-		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(typeManager, null);
+		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(metaModelManager, type);
+		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(metaModelManager, null);
 		return computeLookups(innerScopeView);
 	}
 	
@@ -346,8 +346,8 @@ public class EnvironmentView
 		return contentsSize;
 	}
 
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 
 	/**

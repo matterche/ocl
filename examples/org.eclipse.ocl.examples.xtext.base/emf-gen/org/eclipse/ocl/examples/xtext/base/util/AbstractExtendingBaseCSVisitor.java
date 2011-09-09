@@ -89,6 +89,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visiting(object);
 	}
 
+	public R visitElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS object) {
+		return visitPivotableElementCS(object);
+	}
+
 	public R visitEnumerationCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS object) {
 		return visitClassifierCS(object);
 	}
@@ -102,7 +106,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object) {
-		return visitNamedElementCS(object);
+		return visitTypedRefCS(object);
 	}
 
 	public R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object) {
@@ -110,19 +114,15 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object) {
-		return visitElementCS(object);
+		return visitPivotableElementCS(object);
 	}
 
 	public R visitModelElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS object) {
-		return visitModelElementCS(object);
-	}
-
-	public R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object) {
-		return visitModelElementCS(object);
+		return visitElementRefCS(object);
 	}
 
 	public R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object) {
-		return visitMonikeredElementCS(object);
+		return visitModelElementCS(object);
 	}
 
 	public R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object) {
@@ -135,6 +135,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object) {
 		return visitTypedElementCS(object);
+	}
+
+	public R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object) {
+		return visitElementCS(object);
 	}
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
@@ -150,7 +154,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitSpecificationCS(org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS object) {
-		return visitMonikeredElementCS(object);
+		return visitModelElementCS(object);
 	}
 
 	public R visitStructuralFeatureCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS object) {
@@ -158,7 +162,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitTemplateBindingCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS object) {
-		return visitModelElementCS(object);
+		return visitElementRefCS(object);
 	}
 
 	public R visitTemplateParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS object) {
@@ -170,7 +174,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitTemplateSignatureCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS object) {
-		return visitMonikeredElementCS(object);
+		return visitModelElementCS(object);
 	}
 
 	public R visitTuplePartCS(org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS object) {
@@ -178,7 +182,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitTupleTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS object) {
-		return visitNamedElementCS(object);
+		return visitTypedRefCS(object);
 	}
 
 	public R visitTypeParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS object) {
@@ -186,7 +190,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS object) {
-		return visitMonikeredElementCS(object);
+		return visitElementRefCS(object);
 	}
 
 	public R visitTypedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS object) {

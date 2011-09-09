@@ -38,11 +38,11 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -120,11 +120,11 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	//		}
 			// create result from the sorted collection
 			Type sourceType = iteratorExp.getSource().getType();
-			boolean isUnique = evaluationEnvironment.getTypeManager().isUnique(sourceType);
+			boolean isUnique = evaluationEnvironment.getMetaModelManager().isUnique(sourceType);
 			return valueFactory.createCollectionValue(true, isUnique, result);
 		}
 
-		public Type getType(TypeManager typeManager, Type staticType) {
+		public Type getType(MetaModelManager metaModelManager, Type staticType) {
 			return staticType;
 		}
 
@@ -142,21 +142,21 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
-		TypeManager typeManager = evaluationEnvironment.getTypeManager();
+		MetaModelManager metaModelManager = evaluationEnvironment.getMetaModelManager();
 		OclExpression body = iteratorExp.getBody();		
 		Type staticValueType = PivotUtil.getBehavioralType(body.getType());
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
-		Operation staticLessThanOperation = typeManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
+		Operation staticLessThanOperation = metaModelManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
 			return evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.UndefinedOperation, PivotConstants.LESS_THAN_OPERATOR);
 		}
-//		CompleteOperation staticCompleteOperation = typeManager.getCompleteOperation(staticLessThanOperation);
+//		CompleteOperation staticCompleteOperation = metaModelManager.getCompleteOperation(staticLessThanOperation);
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
 //		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
 //		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
 		CallableImplementation implementation = null;
 		try {
-			implementation = typeManager.getImplementation(staticLessThanOperation);
+			implementation = metaModelManager.getImplementation(staticLessThanOperation);
 		} catch (Exception e) {
 			evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceVal, EvaluatorMessages.ImplementationClassLoadFailure, staticLessThanOperation.getImplementationClass());
 		}
@@ -195,7 +195,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	}
 
 	@Override
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		Type type = ((LoopExp)callExp).getBody().getType();
 		TemplateParameter templateParameter = type.getOwningTemplateParameter();
 		if (templateParameter != null) {
@@ -204,12 +204,12 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			type = (Type) templateParameterSubstitutions.get(templateParameter);
 		}
 		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
-		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
+		Operation operation = metaModelManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		if (operation == null) {
 			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, String.valueOf(type));
 		}
 		try {
-			CallableImplementation implementation = typeManager.getImplementation(operation);
+			CallableImplementation implementation = metaModelManager.getImplementation(operation);
 			if (implementation == null) {
 				return new ValidationWarning(EvaluatorMessages.ImplementationClassLoadFailure, operation.getImplementationClass());
 			}

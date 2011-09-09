@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -53,8 +53,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 {	
 	private static final Logger logger = Logger.getLogger(AbstractScopeAdapter.class);
 
-	public static RootScopeAdapter getDocumentScopeAdapter(TypeManager typeManager, Element context) {
-		for (ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
+	public static RootScopeAdapter getDocumentScopeAdapter(MetaModelManager metaModelManager, Element context) {
+		for (ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
 			if (scopeAdapter instanceof RootScopeAdapter) {
 				return (RootScopeAdapter) scopeAdapter;
 			}
@@ -71,7 +71,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return null;
 	}
 
-	public static ScopeAdapter getScopeAdapter(TypeManager typeManager, Element eObject) {
+	public static ScopeAdapter getScopeAdapter(MetaModelManager metaModelManager, Element eObject) {
 		if (eObject == null) {
 			logger.warn("getScopeAdapter for null");
 			return null;
@@ -86,7 +86,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		}
 //		Resource resource = eObject.eResource();
 //		ResourceSet resourceSet = resource.getResourceSet();
-		PivotScopeVisitor visitor = new PivotScopeVisitor(typeManager);
+		PivotScopeVisitor visitor = new PivotScopeVisitor(metaModelManager);
 		return eObject.accept(visitor);	
 	}
 
@@ -108,7 +108,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		CS2Pivot converter = resourceAdapter.getConverter();		
 		EClass eClass = csElement.eClass();
 		EPackage ePackage = eClass.getEPackage();
-		BaseCSVisitor<ScopeCSAdapter, TypeManager> visitor = converter.getScopeVisitor(ePackage);		
+		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> visitor = converter.getScopeVisitor(ePackage);		
 		return csElement.accept(visitor);	
 	}
 
@@ -119,7 +119,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	protected final ScopeAdapter parent;
 
-	protected AbstractScopeAdapter(TypeManager typeManager, ScopeAdapter parent, T target) {
+	protected AbstractScopeAdapter(MetaModelManager metaModelManager, ScopeAdapter parent, T target) {
 		this.parent = parent;
 		this.target = target;
 		target.eAdapters().add(this);
@@ -130,23 +130,21 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public final void computeLookup(EnvironmentView environmentView, EReference targetReference) {
-		ScopeView scopeView = getInnerScopeView(environmentView.getTypeManager(), targetReference);
+		ScopeView scopeView = getInnerScopeView(environmentView.getMetaModelManager(), targetReference);
 		computeLookup(environmentView, scopeView);
 	}
 
 	public void dispose() {
-		if (target != null) {
-			target.eAdapters().remove(this);
-		}		
+		target.eAdapters().remove(this);
 	}
 
-	public ScopeView getInnerScopeView(TypeManager typeManager, EReference targetReference) {
-		return new BaseScopeView(typeManager, this, null, null, targetReference);
+	public ScopeView getInnerScopeView(MetaModelManager metaModelManager, EReference targetReference) {
+		return new BaseScopeView(metaModelManager, this, null, null, targetReference);
 	}
 
-	public ScopeView getOuterScopeView(TypeManager typeManager, EReference targetReference) {
+	public ScopeView getOuterScopeView(MetaModelManager metaModelManager, EReference targetReference) {
 		ScopeAdapter parent = getParent();
-		return new BaseScopeView(typeManager, parent, target, target.eContainingFeature(), targetReference);
+		return new BaseScopeView(metaModelManager, parent, target, target.eContainingFeature(), targetReference);
 	}
 
 	public ScopeAdapter getParent() {
@@ -161,11 +159,11 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return target;
 	}
 
-//	public final TypeManager getTypeManager() {
-//		return typeManager;
+//	public final MetaModelManager getMetaModelManager() {
+//		return metaModelManager;
 //	}
 
-	public boolean isAdapterFor(TypeManager typeManager) {
+	public boolean isAdapterFor(MetaModelManager metaModelManager) {
 		return false;
 	}
 	

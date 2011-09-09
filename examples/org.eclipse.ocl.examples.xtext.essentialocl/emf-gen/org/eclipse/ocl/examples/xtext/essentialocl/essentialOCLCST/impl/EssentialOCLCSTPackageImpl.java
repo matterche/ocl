@@ -473,9 +473,19 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCollectionTypeCS_Name()
+	{
+		return (EAttribute)collectionTypeCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getCollectionTypeCS_OwnedType()
 	{
-		return (EReference)collectionTypeCSEClass.getEStructuralFeatures().get(0);
+		return (EReference)collectionTypeCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1241,6 +1251,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEReference(collectionLiteralPartCSEClass, COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS);
 
 		collectionTypeCSEClass = createEClass(COLLECTION_TYPE_CS);
+		createEAttribute(collectionTypeCSEClass, COLLECTION_TYPE_CS__NAME);
 		createEReference(collectionTypeCSEClass, COLLECTION_TYPE_CS__OWNED_TYPE);
 
 		contextCSEClass = createEClass(CONTEXT_CS);
@@ -1385,13 +1396,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		binaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		booleanLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		collectionLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
-		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
-		collectionTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
+		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
+		collectionTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		decoratedNamedExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
-		expCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
+		expCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		expSpecificationCSEClass.getESuperTypes().add(theBaseCSTPackage.getSpecificationCS());
 		ifExpCSEClass.getESuperTypes().add(this.getExpCS());
 		indexExpCSEClass.getESuperTypes().add(this.getDecoratedNamedExpCS());
@@ -1420,7 +1431,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		tupleLiteralPartCSEClass.getESuperTypes().add(this.getVariableCS());
 		typeLiteralExpCSEClass.getESuperTypes().add(this.getLiteralExpCS());
 		typeNameExpCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
-		typeNameExpCSEClass.getESuperTypes().add(this.getSimpleNamedExpCS());
 		unaryOperatorCSEClass.getESuperTypes().add(this.getOperatorCS());
 		unlimitedNaturalLiteralExpCSEClass.getESuperTypes().add(this.getPrimitiveLiteralExpCS());
 		variableCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
@@ -1441,6 +1451,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEReference(getCollectionLiteralPartCS_LastExpressionCS(), this.getExpCS(), null, "lastExpressionCS", null, 0, 1, CollectionLiteralPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionTypeCSEClass, CollectionTypeCS.class, "CollectionTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getCollectionTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionTypeCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextCSEClass, ContextCS.class, "ContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -18,14 +18,14 @@ package org.eclipse.ocl.examples.library;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * @since 3.1
  */
 public abstract class AbstractFeature implements LibraryFeature
 {
-	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
+	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
 		return null;
 	}
 }

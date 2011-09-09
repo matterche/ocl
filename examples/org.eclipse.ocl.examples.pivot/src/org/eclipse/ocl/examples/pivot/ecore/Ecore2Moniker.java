@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
@@ -42,19 +41,10 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  */
 public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 {
-//	public static String toSignature(EModelElement eElement) {
-//		Ecore2Moniker moniker = new Ecore2Moniker(true);
-//		moniker.appendElement(eElement);
-//		return moniker.toString();
-//	}
-	
 	public static String toString(EModelElement eElement) {
 		Ecore2Moniker moniker = new Ecore2Moniker(false);
 		moniker.appendElement(eElement);
 		String string = moniker.toString();
-		if (Abstract2Moniker.TRACE_MONIKERS.isActive()) {
-			Abstract2Moniker.TRACE_MONIKERS.println(eElement.eClass().getName() + " ==> " + string);
-		}
 		return string;
 	}
 	
@@ -62,9 +52,6 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 		Ecore2Moniker moniker = new Ecore2Moniker(false);
 		moniker.appendType(eElement);
 		String string = moniker.toString();
-		if (Abstract2Moniker.TRACE_MONIKERS.isActive()) {
-			Abstract2Moniker.TRACE_MONIKERS.println(eElement.eClass().getName() + " ==> " + string);
-		}
 		return string;
 	}
 	

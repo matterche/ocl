@@ -195,8 +195,6 @@ public class EnumerationImpl
 		{
 			case PivotPackage.ENUMERATION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.ENUMERATION__MONIKER:
-				return getMoniker();
 			case PivotPackage.ENUMERATION__NAME:
 				return getName();
 			case PivotPackage.ENUMERATION__OWNED_RULE:
@@ -256,9 +254,6 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.ENUMERATION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.ENUMERATION__NAME:
 				setName((String)newValue);
@@ -344,9 +339,6 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.ENUMERATION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.ENUMERATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -422,8 +414,6 @@ public class EnumerationImpl
 		{
 			case PivotPackage.ENUMERATION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.ENUMERATION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.ENUMERATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ENUMERATION__OWNED_RULE:

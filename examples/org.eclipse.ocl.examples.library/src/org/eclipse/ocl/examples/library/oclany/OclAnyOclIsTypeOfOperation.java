@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -37,11 +37,11 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+		Type sourceType = sourceVal.getType(metaModelManager, operationCall.getSource().getType());
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue argTypeValue = argVal.asTypeValue();
 		Type argType = argTypeValue.getInstanceType();
-		return valueFactory.booleanValueOf(typeManager.conformsTo(sourceType, argType, null) && typeManager.conformsTo(argType, sourceType, null));
+		return valueFactory.booleanValueOf(metaModelManager.conformsTo(sourceType, argType, null) && metaModelManager.conformsTo(argType, sourceType, null));
 	}
 }

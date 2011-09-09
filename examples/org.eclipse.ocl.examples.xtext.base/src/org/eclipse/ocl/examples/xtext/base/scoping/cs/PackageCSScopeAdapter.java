@@ -16,23 +16,23 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class PackageCSScopeAdapter extends MonikeredElementCSScopeAdapter<PackageCS, org.eclipse.ocl.examples.pivot.Package>
+public class PackageCSScopeAdapter extends ModelElementCSScopeAdapter<PackageCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageCSScopeAdapter(TypeManager typeManager, PackageCS csElement) {
-		super(typeManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public PackageCSScopeAdapter(MetaModelManager metaModelManager, PackageCS csElement) {
+		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
 		if (pivot != null) {
-			environmentView.addNamedElements(typeManager.getLocalPackages(pivot));
-			environmentView.addNamedElements(typeManager.getLocalClasses(pivot));
+			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivot));
+			environmentView.addNamedElements(metaModelManager.getLocalClasses(pivot));
 		}
 		return scopeView.getOuterScope();
 	}

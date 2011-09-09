@@ -119,7 +119,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			doSwitch(umlType);
 			Type pivotObject = (Type) doSwitch(umlType);
 			if (pivotObject != null) {
-				converter.getTypeManager().addOrphanClass(pivotObject);
+// WIP				converter.getMetaModelManager().addOrphanClass(pivotObject);
 			}
 		}
 //		doSwitchAll(pivotElement.getOwnedTypes(), umlClass.getOwnedTypes(), null);
@@ -252,7 +252,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package casePackage(org.eclipse.uml2.uml.Package umlPackage) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, umlPackage);
-		converter.getTypeManager().installPackageMoniker(pivotElement, true);
+		converter.getMetaModelManager().addPackage(pivotElement);
 		EAnnotation eAnnotation = umlPackage.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		converter.copyNamedElement(pivotElement, umlPackage);

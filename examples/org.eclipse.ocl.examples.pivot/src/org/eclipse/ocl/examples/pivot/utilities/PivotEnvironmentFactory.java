@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 
 
@@ -42,6 +43,16 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	 */
     private static PivotEnvironmentFactory globalRegistryInstance = null;
 	
+    /**
+     * Dispose of the global instance; this is intended for leakage detection in tests.
+     */
+	public static void disposeGlobalRegistryInstance() {
+		if (globalRegistryInstance != null) {
+			globalRegistryInstance.getMetaModelManager().dispose();
+			globalRegistryInstance = null;
+		}
+	}
+	
 	public static PivotEnvironmentFactory getGlobalRegistryInstance() {
 		if (globalRegistryInstance == null) {
 			globalRegistryInstance = new PivotEnvironmentFactory();
@@ -49,7 +60,7 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 		return globalRegistryInstance;
 	}
 	
-    protected final TypeManager typeManager;
+    protected final MetaModelManager metaModelManager;
 
 	private final EPackage.Registry registry;
 
@@ -66,12 +77,12 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
      * environments I create will use to look up packages.
      * 
      * @param reg my package registry (must not be <code>null</code>)
-	 * @param typeManager 
+	 * @param metaModelManager 
 	 */
-	public PivotEnvironmentFactory(EPackage.Registry reg, TypeManager typeManager) {
+	public PivotEnvironmentFactory(EPackage.Registry reg, MetaModelManager metaModelManager) {
 		super();
 		this.registry = reg;
-		this.typeManager = typeManager != null ? typeManager : new TypeManager();
+		this.metaModelManager = metaModelManager != null ? metaModelManager : new MetaModelManager();
 	}
 	
     // implements the inherited specification
@@ -109,21 +120,21 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 
     // implements the inherited specification
 	public PivotEvaluationEnvironment createEvaluationEnvironment() {
-		return new PivotEvaluationEnvironment(typeManager);
+		return new PivotEvaluationEnvironment(metaModelManager);
 	}
 
     // implements the inherited specification
 	public PivotEvaluationEnvironment createEvaluationEnvironment(EvaluationEnvironment parent) {
 		return new PivotEvaluationEnvironment(parent);
 	}
-	
-	public TypeManager getTypeManager() {
-		return typeManager;
-	}
 
 	@Override
 	protected Type getClassifier(Object context) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 }

@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TemplateSignatureCS extends MonikeredElementCS {
+public interface TemplateSignatureCS extends ModelElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Template Element</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS#getOwnedTemplateSignature <em>Owned Template Signature</em>}'.

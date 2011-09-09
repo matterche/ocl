@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: TypeManagedAdapter.java,v 1.1 2011/04/20 19:02:46 ewillink Exp $
+ * $Id$
  */
-package org.eclipse.ocl.examples.pivot.utilities;
+package org.eclipse.ocl.examples.pivot.manager;
 
 import org.eclipse.emf.common.notify.Adapter;
 
-public interface TypeManagedAdapter extends Adapter.Internal
+public interface MetaModelManagedAdapter extends Adapter.Internal, MetaModelManagerListener
 {		
-	void dispose();
-	boolean isAdapterFor(TypeManager typeManager);
+	boolean isAdapterFor(MetaModelManager metaModelManager);
 }

@@ -22,17 +22,15 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -142,9 +140,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseOperatorCS(binaryOperatorCS);
 				if (result == null) result = caseNamedElementCS(binaryOperatorCS);
 				if (result == null) result = caseExpCS(binaryOperatorCS);
-				if (result == null) result = caseMonikeredElementCS(binaryOperatorCS);
-				if (result == null) result = caseNameable(binaryOperatorCS);
 				if (result == null) result = caseModelElementCS(binaryOperatorCS);
+				if (result == null) result = caseNameable(binaryOperatorCS);
+				if (result == null) result = casePivotableElementCS(binaryOperatorCS);
 				if (result == null) result = caseElementCS(binaryOperatorCS);
 				if (result == null) result = casePivotable(binaryOperatorCS);
 				if (result == null) result = caseVisitableCS(binaryOperatorCS);
@@ -158,8 +156,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(booleanLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(booleanLiteralExpCS);
 				if (result == null) result = caseExpCS(booleanLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(booleanLiteralExpCS);
 				if (result == null) result = caseModelElementCS(booleanLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(booleanLiteralExpCS);
 				if (result == null) result = caseElementCS(booleanLiteralExpCS);
 				if (result == null) result = casePivotable(booleanLiteralExpCS);
 				if (result == null) result = caseVisitableCS(booleanLiteralExpCS);
@@ -172,8 +170,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseCollectionLiteralExpCS(collectionLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(collectionLiteralExpCS);
 				if (result == null) result = caseExpCS(collectionLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(collectionLiteralExpCS);
 				if (result == null) result = caseModelElementCS(collectionLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(collectionLiteralExpCS);
 				if (result == null) result = caseElementCS(collectionLiteralExpCS);
 				if (result == null) result = casePivotable(collectionLiteralExpCS);
 				if (result == null) result = caseVisitableCS(collectionLiteralExpCS);
@@ -184,8 +182,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				CollectionLiteralPartCS collectionLiteralPartCS = (CollectionLiteralPartCS)theEObject;
 				T result = caseCollectionLiteralPartCS(collectionLiteralPartCS);
-				if (result == null) result = caseMonikeredElementCS(collectionLiteralPartCS);
 				if (result == null) result = caseModelElementCS(collectionLiteralPartCS);
+				if (result == null) result = casePivotableElementCS(collectionLiteralPartCS);
 				if (result == null) result = caseElementCS(collectionLiteralPartCS);
 				if (result == null) result = casePivotable(collectionLiteralPartCS);
 				if (result == null) result = caseVisitableCS(collectionLiteralPartCS);
@@ -196,14 +194,11 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				CollectionTypeCS collectionTypeCS = (CollectionTypeCS)theEObject;
 				T result = caseCollectionTypeCS(collectionTypeCS);
-				if (result == null) result = caseNamedElementCS(collectionTypeCS);
 				if (result == null) result = caseTypedRefCS(collectionTypeCS);
 				if (result == null) result = caseNameable(collectionTypeCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeCS);
-				if (result == null) result = caseModelElementCS(collectionTypeCS);
-				if (result == null) result = caseParameterableElementCS(collectionTypeCS);
-				if (result == null) result = caseRefCS(collectionTypeCS);
-				if (result == null) result = caseMonikeredElementCS(collectionTypeCS);
+				if (result == null) result = caseElementRefCS(collectionTypeCS);
+				if (result == null) result = casePivotableElementCS(collectionTypeCS);
 				if (result == null) result = caseElementCS(collectionTypeCS);
 				if (result == null) result = casePivotable(collectionTypeCS);
 				if (result == null) result = caseVisitableCS(collectionTypeCS);
@@ -216,9 +211,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseContextCS(contextCS);
 				if (result == null) result = caseNamedElementCS(contextCS);
 				if (result == null) result = caseRootCS(contextCS);
-				if (result == null) result = caseMonikeredElementCS(contextCS);
-				if (result == null) result = caseNameable(contextCS);
 				if (result == null) result = caseModelElementCS(contextCS);
+				if (result == null) result = caseNameable(contextCS);
+				if (result == null) result = casePivotableElementCS(contextCS);
 				if (result == null) result = caseElementCS(contextCS);
 				if (result == null) result = casePivotable(contextCS);
 				if (result == null) result = caseVisitableCS(contextCS);
@@ -231,8 +226,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseDecoratedNamedExpCS(decoratedNamedExpCS);
 				if (result == null) result = caseNamedExpCS(decoratedNamedExpCS);
 				if (result == null) result = caseExpCS(decoratedNamedExpCS);
-				if (result == null) result = caseMonikeredElementCS(decoratedNamedExpCS);
 				if (result == null) result = caseModelElementCS(decoratedNamedExpCS);
+				if (result == null) result = casePivotableElementCS(decoratedNamedExpCS);
 				if (result == null) result = caseElementCS(decoratedNamedExpCS);
 				if (result == null) result = casePivotable(decoratedNamedExpCS);
 				if (result == null) result = caseVisitableCS(decoratedNamedExpCS);
@@ -243,8 +238,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				ExpCS expCS = (ExpCS)theEObject;
 				T result = caseExpCS(expCS);
-				if (result == null) result = caseMonikeredElementCS(expCS);
 				if (result == null) result = caseModelElementCS(expCS);
+				if (result == null) result = casePivotableElementCS(expCS);
 				if (result == null) result = caseElementCS(expCS);
 				if (result == null) result = casePivotable(expCS);
 				if (result == null) result = caseVisitableCS(expCS);
@@ -256,8 +251,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				ExpSpecificationCS expSpecificationCS = (ExpSpecificationCS)theEObject;
 				T result = caseExpSpecificationCS(expSpecificationCS);
 				if (result == null) result = caseSpecificationCS(expSpecificationCS);
-				if (result == null) result = caseMonikeredElementCS(expSpecificationCS);
 				if (result == null) result = caseModelElementCS(expSpecificationCS);
+				if (result == null) result = casePivotableElementCS(expSpecificationCS);
 				if (result == null) result = caseElementCS(expSpecificationCS);
 				if (result == null) result = casePivotable(expSpecificationCS);
 				if (result == null) result = caseVisitableCS(expSpecificationCS);
@@ -269,8 +264,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				IfExpCS ifExpCS = (IfExpCS)theEObject;
 				T result = caseIfExpCS(ifExpCS);
 				if (result == null) result = caseExpCS(ifExpCS);
-				if (result == null) result = caseMonikeredElementCS(ifExpCS);
 				if (result == null) result = caseModelElementCS(ifExpCS);
+				if (result == null) result = casePivotableElementCS(ifExpCS);
 				if (result == null) result = caseElementCS(ifExpCS);
 				if (result == null) result = casePivotable(ifExpCS);
 				if (result == null) result = caseVisitableCS(ifExpCS);
@@ -284,8 +279,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseDecoratedNamedExpCS(indexExpCS);
 				if (result == null) result = caseNamedExpCS(indexExpCS);
 				if (result == null) result = caseExpCS(indexExpCS);
-				if (result == null) result = caseMonikeredElementCS(indexExpCS);
 				if (result == null) result = caseModelElementCS(indexExpCS);
+				if (result == null) result = casePivotableElementCS(indexExpCS);
 				if (result == null) result = caseElementCS(indexExpCS);
 				if (result == null) result = casePivotable(indexExpCS);
 				if (result == null) result = caseVisitableCS(indexExpCS);
@@ -297,8 +292,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				InfixExpCS infixExpCS = (InfixExpCS)theEObject;
 				T result = caseInfixExpCS(infixExpCS);
 				if (result == null) result = caseExpCS(infixExpCS);
-				if (result == null) result = caseMonikeredElementCS(infixExpCS);
 				if (result == null) result = caseModelElementCS(infixExpCS);
+				if (result == null) result = casePivotableElementCS(infixExpCS);
 				if (result == null) result = caseElementCS(infixExpCS);
 				if (result == null) result = casePivotable(infixExpCS);
 				if (result == null) result = caseVisitableCS(infixExpCS);
@@ -312,8 +307,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(invalidLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(invalidLiteralExpCS);
 				if (result == null) result = caseExpCS(invalidLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(invalidLiteralExpCS);
 				if (result == null) result = caseModelElementCS(invalidLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(invalidLiteralExpCS);
 				if (result == null) result = caseElementCS(invalidLiteralExpCS);
 				if (result == null) result = casePivotable(invalidLiteralExpCS);
 				if (result == null) result = caseVisitableCS(invalidLiteralExpCS);
@@ -325,8 +320,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				LetExpCS letExpCS = (LetExpCS)theEObject;
 				T result = caseLetExpCS(letExpCS);
 				if (result == null) result = caseExpCS(letExpCS);
-				if (result == null) result = caseMonikeredElementCS(letExpCS);
 				if (result == null) result = caseModelElementCS(letExpCS);
+				if (result == null) result = casePivotableElementCS(letExpCS);
 				if (result == null) result = caseElementCS(letExpCS);
 				if (result == null) result = casePivotable(letExpCS);
 				if (result == null) result = caseVisitableCS(letExpCS);
@@ -340,9 +335,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseVariableCS(letVariableCS);
 				if (result == null) result = caseExpCS(letVariableCS);
 				if (result == null) result = caseNamedElementCS(letVariableCS);
-				if (result == null) result = caseMonikeredElementCS(letVariableCS);
-				if (result == null) result = caseNameable(letVariableCS);
 				if (result == null) result = caseModelElementCS(letVariableCS);
+				if (result == null) result = caseNameable(letVariableCS);
+				if (result == null) result = casePivotableElementCS(letVariableCS);
 				if (result == null) result = caseElementCS(letVariableCS);
 				if (result == null) result = casePivotable(letVariableCS);
 				if (result == null) result = caseVisitableCS(letVariableCS);
@@ -354,8 +349,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				LiteralExpCS literalExpCS = (LiteralExpCS)theEObject;
 				T result = caseLiteralExpCS(literalExpCS);
 				if (result == null) result = caseExpCS(literalExpCS);
-				if (result == null) result = caseMonikeredElementCS(literalExpCS);
 				if (result == null) result = caseModelElementCS(literalExpCS);
+				if (result == null) result = casePivotableElementCS(literalExpCS);
 				if (result == null) result = caseElementCS(literalExpCS);
 				if (result == null) result = casePivotable(literalExpCS);
 				if (result == null) result = caseVisitableCS(literalExpCS);
@@ -369,8 +364,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseSimpleNamedExpCS(nameExpCS);
 				if (result == null) result = caseNamedExpCS(nameExpCS);
 				if (result == null) result = caseExpCS(nameExpCS);
-				if (result == null) result = caseMonikeredElementCS(nameExpCS);
 				if (result == null) result = caseModelElementCS(nameExpCS);
+				if (result == null) result = casePivotableElementCS(nameExpCS);
 				if (result == null) result = caseElementCS(nameExpCS);
 				if (result == null) result = casePivotable(nameExpCS);
 				if (result == null) result = caseVisitableCS(nameExpCS);
@@ -382,8 +377,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				NamedExpCS namedExpCS = (NamedExpCS)theEObject;
 				T result = caseNamedExpCS(namedExpCS);
 				if (result == null) result = caseExpCS(namedExpCS);
-				if (result == null) result = caseMonikeredElementCS(namedExpCS);
 				if (result == null) result = caseModelElementCS(namedExpCS);
+				if (result == null) result = casePivotableElementCS(namedExpCS);
 				if (result == null) result = caseElementCS(namedExpCS);
 				if (result == null) result = casePivotable(namedExpCS);
 				if (result == null) result = caseVisitableCS(namedExpCS);
@@ -395,6 +390,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				NavigatingArgCS navigatingArgCS = (NavigatingArgCS)theEObject;
 				T result = caseNavigatingArgCS(navigatingArgCS);
 				if (result == null) result = caseModelElementCS(navigatingArgCS);
+				if (result == null) result = casePivotableElementCS(navigatingArgCS);
 				if (result == null) result = caseElementCS(navigatingArgCS);
 				if (result == null) result = casePivotable(navigatingArgCS);
 				if (result == null) result = caseVisitableCS(navigatingArgCS);
@@ -408,8 +404,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseDecoratedNamedExpCS(navigatingExpCS);
 				if (result == null) result = caseNamedExpCS(navigatingExpCS);
 				if (result == null) result = caseExpCS(navigatingExpCS);
-				if (result == null) result = caseMonikeredElementCS(navigatingExpCS);
 				if (result == null) result = caseModelElementCS(navigatingExpCS);
+				if (result == null) result = casePivotableElementCS(navigatingExpCS);
 				if (result == null) result = caseElementCS(navigatingExpCS);
 				if (result == null) result = casePivotable(navigatingExpCS);
 				if (result == null) result = caseVisitableCS(navigatingExpCS);
@@ -424,9 +420,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseOperatorCS(navigationOperatorCS);
 				if (result == null) result = caseNamedElementCS(navigationOperatorCS);
 				if (result == null) result = caseExpCS(navigationOperatorCS);
-				if (result == null) result = caseMonikeredElementCS(navigationOperatorCS);
-				if (result == null) result = caseNameable(navigationOperatorCS);
 				if (result == null) result = caseModelElementCS(navigationOperatorCS);
+				if (result == null) result = caseNameable(navigationOperatorCS);
+				if (result == null) result = casePivotableElementCS(navigationOperatorCS);
 				if (result == null) result = caseElementCS(navigationOperatorCS);
 				if (result == null) result = casePivotable(navigationOperatorCS);
 				if (result == null) result = caseVisitableCS(navigationOperatorCS);
@@ -438,8 +434,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				NestedExpCS nestedExpCS = (NestedExpCS)theEObject;
 				T result = caseNestedExpCS(nestedExpCS);
 				if (result == null) result = caseExpCS(nestedExpCS);
-				if (result == null) result = caseMonikeredElementCS(nestedExpCS);
 				if (result == null) result = caseModelElementCS(nestedExpCS);
+				if (result == null) result = casePivotableElementCS(nestedExpCS);
 				if (result == null) result = caseElementCS(nestedExpCS);
 				if (result == null) result = casePivotable(nestedExpCS);
 				if (result == null) result = caseVisitableCS(nestedExpCS);
@@ -453,8 +449,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(nullLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(nullLiteralExpCS);
 				if (result == null) result = caseExpCS(nullLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(nullLiteralExpCS);
 				if (result == null) result = caseModelElementCS(nullLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(nullLiteralExpCS);
 				if (result == null) result = caseElementCS(nullLiteralExpCS);
 				if (result == null) result = casePivotable(nullLiteralExpCS);
 				if (result == null) result = caseVisitableCS(nullLiteralExpCS);
@@ -468,8 +464,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(numberLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(numberLiteralExpCS);
 				if (result == null) result = caseExpCS(numberLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(numberLiteralExpCS);
 				if (result == null) result = caseModelElementCS(numberLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(numberLiteralExpCS);
 				if (result == null) result = caseElementCS(numberLiteralExpCS);
 				if (result == null) result = casePivotable(numberLiteralExpCS);
 				if (result == null) result = caseVisitableCS(numberLiteralExpCS);
@@ -482,9 +478,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseOperatorCS(operatorCS);
 				if (result == null) result = caseNamedElementCS(operatorCS);
 				if (result == null) result = caseExpCS(operatorCS);
-				if (result == null) result = caseMonikeredElementCS(operatorCS);
-				if (result == null) result = caseNameable(operatorCS);
 				if (result == null) result = caseModelElementCS(operatorCS);
+				if (result == null) result = caseNameable(operatorCS);
+				if (result == null) result = casePivotableElementCS(operatorCS);
 				if (result == null) result = caseElementCS(operatorCS);
 				if (result == null) result = casePivotable(operatorCS);
 				if (result == null) result = caseVisitableCS(operatorCS);
@@ -496,8 +492,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				PrefixExpCS prefixExpCS = (PrefixExpCS)theEObject;
 				T result = casePrefixExpCS(prefixExpCS);
 				if (result == null) result = caseExpCS(prefixExpCS);
-				if (result == null) result = caseMonikeredElementCS(prefixExpCS);
 				if (result == null) result = caseModelElementCS(prefixExpCS);
+				if (result == null) result = casePivotableElementCS(prefixExpCS);
 				if (result == null) result = caseElementCS(prefixExpCS);
 				if (result == null) result = casePivotable(prefixExpCS);
 				if (result == null) result = caseVisitableCS(prefixExpCS);
@@ -510,8 +506,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = casePrimitiveLiteralExpCS(primitiveLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(primitiveLiteralExpCS);
 				if (result == null) result = caseExpCS(primitiveLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(primitiveLiteralExpCS);
 				if (result == null) result = caseModelElementCS(primitiveLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(primitiveLiteralExpCS);
 				if (result == null) result = caseElementCS(primitiveLiteralExpCS);
 				if (result == null) result = casePivotable(primitiveLiteralExpCS);
 				if (result == null) result = caseVisitableCS(primitiveLiteralExpCS);
@@ -523,8 +519,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				SelfExpCS selfExpCS = (SelfExpCS)theEObject;
 				T result = caseSelfExpCS(selfExpCS);
 				if (result == null) result = caseExpCS(selfExpCS);
-				if (result == null) result = caseMonikeredElementCS(selfExpCS);
 				if (result == null) result = caseModelElementCS(selfExpCS);
+				if (result == null) result = casePivotableElementCS(selfExpCS);
 				if (result == null) result = caseElementCS(selfExpCS);
 				if (result == null) result = casePivotable(selfExpCS);
 				if (result == null) result = caseVisitableCS(selfExpCS);
@@ -537,8 +533,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseSimpleNamedExpCS(simpleNamedExpCS);
 				if (result == null) result = caseNamedExpCS(simpleNamedExpCS);
 				if (result == null) result = caseExpCS(simpleNamedExpCS);
-				if (result == null) result = caseMonikeredElementCS(simpleNamedExpCS);
 				if (result == null) result = caseModelElementCS(simpleNamedExpCS);
+				if (result == null) result = casePivotableElementCS(simpleNamedExpCS);
 				if (result == null) result = caseElementCS(simpleNamedExpCS);
 				if (result == null) result = casePivotable(simpleNamedExpCS);
 				if (result == null) result = caseVisitableCS(simpleNamedExpCS);
@@ -552,8 +548,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(stringLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(stringLiteralExpCS);
 				if (result == null) result = caseExpCS(stringLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(stringLiteralExpCS);
 				if (result == null) result = caseModelElementCS(stringLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(stringLiteralExpCS);
 				if (result == null) result = caseElementCS(stringLiteralExpCS);
 				if (result == null) result = casePivotable(stringLiteralExpCS);
 				if (result == null) result = caseVisitableCS(stringLiteralExpCS);
@@ -566,8 +562,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseTupleLiteralExpCS(tupleLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(tupleLiteralExpCS);
 				if (result == null) result = caseExpCS(tupleLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(tupleLiteralExpCS);
 				if (result == null) result = caseModelElementCS(tupleLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(tupleLiteralExpCS);
 				if (result == null) result = caseElementCS(tupleLiteralExpCS);
 				if (result == null) result = casePivotable(tupleLiteralExpCS);
 				if (result == null) result = caseVisitableCS(tupleLiteralExpCS);
@@ -580,9 +576,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseTupleLiteralPartCS(tupleLiteralPartCS);
 				if (result == null) result = caseVariableCS(tupleLiteralPartCS);
 				if (result == null) result = caseNamedElementCS(tupleLiteralPartCS);
-				if (result == null) result = caseMonikeredElementCS(tupleLiteralPartCS);
-				if (result == null) result = caseNameable(tupleLiteralPartCS);
 				if (result == null) result = caseModelElementCS(tupleLiteralPartCS);
+				if (result == null) result = caseNameable(tupleLiteralPartCS);
+				if (result == null) result = casePivotableElementCS(tupleLiteralPartCS);
 				if (result == null) result = caseElementCS(tupleLiteralPartCS);
 				if (result == null) result = casePivotable(tupleLiteralPartCS);
 				if (result == null) result = caseVisitableCS(tupleLiteralPartCS);
@@ -595,8 +591,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseTypeLiteralExpCS(typeLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(typeLiteralExpCS);
 				if (result == null) result = caseExpCS(typeLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(typeLiteralExpCS);
 				if (result == null) result = caseModelElementCS(typeLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(typeLiteralExpCS);
 				if (result == null) result = caseElementCS(typeLiteralExpCS);
 				if (result == null) result = casePivotable(typeLiteralExpCS);
 				if (result == null) result = caseVisitableCS(typeLiteralExpCS);
@@ -608,14 +604,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				TypeNameExpCS typeNameExpCS = (TypeNameExpCS)theEObject;
 				T result = caseTypeNameExpCS(typeNameExpCS);
 				if (result == null) result = caseTypedRefCS(typeNameExpCS);
-				if (result == null) result = caseSimpleNamedExpCS(typeNameExpCS);
 				if (result == null) result = caseTypeRefCS(typeNameExpCS);
-				if (result == null) result = caseNamedExpCS(typeNameExpCS);
-				if (result == null) result = caseParameterableElementCS(typeNameExpCS);
-				if (result == null) result = caseRefCS(typeNameExpCS);
-				if (result == null) result = caseExpCS(typeNameExpCS);
-				if (result == null) result = caseMonikeredElementCS(typeNameExpCS);
-				if (result == null) result = caseModelElementCS(typeNameExpCS);
+				if (result == null) result = caseElementRefCS(typeNameExpCS);
+				if (result == null) result = casePivotableElementCS(typeNameExpCS);
 				if (result == null) result = caseElementCS(typeNameExpCS);
 				if (result == null) result = casePivotable(typeNameExpCS);
 				if (result == null) result = caseVisitableCS(typeNameExpCS);
@@ -629,9 +620,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseOperatorCS(unaryOperatorCS);
 				if (result == null) result = caseNamedElementCS(unaryOperatorCS);
 				if (result == null) result = caseExpCS(unaryOperatorCS);
-				if (result == null) result = caseMonikeredElementCS(unaryOperatorCS);
-				if (result == null) result = caseNameable(unaryOperatorCS);
 				if (result == null) result = caseModelElementCS(unaryOperatorCS);
+				if (result == null) result = caseNameable(unaryOperatorCS);
+				if (result == null) result = casePivotableElementCS(unaryOperatorCS);
 				if (result == null) result = caseElementCS(unaryOperatorCS);
 				if (result == null) result = casePivotable(unaryOperatorCS);
 				if (result == null) result = caseVisitableCS(unaryOperatorCS);
@@ -645,8 +636,8 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = casePrimitiveLiteralExpCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseLiteralExpCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseExpCS(unlimitedNaturalLiteralExpCS);
-				if (result == null) result = caseMonikeredElementCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseModelElementCS(unlimitedNaturalLiteralExpCS);
+				if (result == null) result = casePivotableElementCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseElementCS(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = casePivotable(unlimitedNaturalLiteralExpCS);
 				if (result == null) result = caseVisitableCS(unlimitedNaturalLiteralExpCS);
@@ -658,9 +649,9 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				VariableCS variableCS = (VariableCS)theEObject;
 				T result = caseVariableCS(variableCS);
 				if (result == null) result = caseNamedElementCS(variableCS);
-				if (result == null) result = caseMonikeredElementCS(variableCS);
-				if (result == null) result = caseNameable(variableCS);
 				if (result == null) result = caseModelElementCS(variableCS);
+				if (result == null) result = caseNameable(variableCS);
+				if (result == null) result = casePivotableElementCS(variableCS);
 				if (result == null) result = caseElementCS(variableCS);
 				if (result == null) result = casePivotable(variableCS);
 				if (result == null) result = caseVisitableCS(variableCS);
@@ -1312,6 +1303,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
+	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePivotableElementCS(PivotableElementCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Model Element CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1328,22 +1335,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonikeredElementCS(MonikeredElementCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Nameable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1376,33 +1367,17 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
-	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-  public T caseParameterableElementCS(ParameterableElementCS object)
-  {
-		return null;
-	}
-
-  /**
-	 * Returns the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Element Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ref CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Element Ref CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRefCS(RefCS object)
+	public T caseElementRefCS(ElementRefCS object)
 	{
 		return null;
 	}

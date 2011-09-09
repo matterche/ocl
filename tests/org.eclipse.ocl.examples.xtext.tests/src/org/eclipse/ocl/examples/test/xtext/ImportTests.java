@@ -22,14 +22,16 @@ import java.io.InputStream;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.impl.BagImpl;
@@ -53,7 +55,7 @@ public class ImportTests extends XtextTestCase
 		}
 	}
 	
-	protected TypeManager typeManager = null;
+	protected MetaModelManager metaModelManager = null;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -64,25 +66,24 @@ public class ImportTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		unloadCS(resourceSet);
-		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			TypeManager typeManager = adapter.getTypeManager();
-			if (typeManager != null) {
-				typeManager.dispose();
+			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			if (metaModelManager != null) {
+				metaModelManager.dispose();
 			}
 		}
-		if (typeManager != null) {
-			typeManager.dispose();
-			typeManager = null;
+		if (metaModelManager != null) {
+			metaModelManager.dispose();
+			metaModelManager = null;
 		}
-		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
+		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 		super.tearDown();
 	}
 
 	protected void createTestImport_OCLinEcore_Bug353793_Files()
 			throws IOException {
-		TypeManager typeManager = new TypeManager();
+		MetaModelManager metaModelManager = new MetaModelManager();
 		String testFileA =
 				"package A1 : A2 = 'A3'{\n" +
 				"    class A;\n" +
@@ -97,20 +98,20 @@ public class ImportTests extends XtextTestCase
 				"package E1 : E2 = 'E3'{\n" +
 				"    class E;\n" +
 				"}\n";
-		createEcoreFile(typeManager, "Bug353793E.ecore", testFileE);
+		createEcoreFile(metaModelManager, "Bug353793E.ecore", testFileE);
 		String testFileF =
 				"package F1 : F2 = 'F3'{\n" +
 				"    class F;\n" +
 				"}\n";
-		createEcoreFile(typeManager, "Bug353793F.ecore", testFileF);
+		createEcoreFile(metaModelManager, "Bug353793F.ecore", testFileF);
 	}	
 
 	protected void doBadLoadFromString(String fileName, String testFile, Bag<String> expectedErrorMessages) throws Exception {
-		if (typeManager == null) {
-			typeManager = new TypeManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
 		try {
-			TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+			MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 			URI libraryURI = getProjectFileURI(fileName);
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 			InputStream inputStream = new ByteArrayInputStream(testFile.getBytes());
@@ -124,30 +125,39 @@ public class ImportTests extends XtextTestCase
 				fail("Inconsistent load errors (expected/actual) message" + s);
 			}
 		} finally {
-			unloadCS(resourceSet);
-//			adapter.dispose();
-			unloadPivot(typeManager);
+			metaModelManager.dispose();
 		}
 	}
 
 	protected void doLoadFromString(String fileName, String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		if (typeManager == null) {
-			typeManager = new TypeManager();
-		}
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		MetaModelManager metaModelManager = new MetaModelManager();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new ByteArrayInputStream(testFile.getBytes());
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
 		assertNoValidationErrors("File Model", fileResource);
-		unloadCS(resourceSet);
+//		MetaModelManagerResourceSetAdapter adapter2 = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+//		if (adapter2 != null) {
+//			MetaModelManager metaModelManager2 = adapter2.getMetaModelManager();
+//			if (metaModelManager2 != null) {
+//				metaModelManager2.dispose();
+//				metaModelManager2 = null;
+//			}
+//			adapter2 = null;
+//		}
 		adapter.dispose();
-		unloadPivot(typeManager);
+		metaModelManager.dispose();
+		metaModelManager = null;
+		resourceSet = null;
+		adapter = null;
+		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 	}
 
 	protected String getNoSuchFileMessage() {
@@ -161,7 +171,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_CompleteOCL() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String moreCompleteOCL =
 			"package ocl\n" +
 			"context _'Integer'\n" +
@@ -183,7 +193,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_Ecore() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'Names.ecore'\n" +
 			"package names\n" +
@@ -194,7 +204,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_OCLinEcore() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'Names.oclinecore'\n" +
 			"package EMOF\n" +
@@ -205,7 +215,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_OCLstdlib() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"library 'minimal.oclstdlib'\n" +
 			"import 'Names.ecore'\n" +
@@ -222,7 +232,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_custom_OCLstdlib() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String customLibrary =
 			"library lib {\n" +
 			"type Real : PrimitiveType {\n" +
@@ -245,7 +255,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_UML() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'Names.uml'\n" +
 			"package unames\n" +
@@ -256,7 +266,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_CompleteOCL_NoSuchFile() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'NoSuchFile1'\n" + 
 			"import 'NoSuchFile2.ocl'\n" +
@@ -337,7 +347,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_Ecore() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'Names.ecore';\n" +
 			"import nnnn : 'Names.ecore#/';\n" +
@@ -357,7 +367,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_OCLinEcore() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'Names.oclinecore';\n" +
 //FIXME			"import nnnn : 'Names.oclinecore#/';\n" +
@@ -377,7 +387,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLinEcore_NoSuchFile() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'NoSuchFile1';\n" + 
 			"import 'NoSuchFile2.ecore';\n" +
@@ -392,7 +402,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_OCLstdlib() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String customLibrary =
 			"library ocl {\n" +
 			"type Complex : PrimitiveType {\n" +
@@ -415,7 +425,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_NoSuchFile() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
 			"import 'NoSuchFile1';\n" + 
@@ -432,7 +442,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_NoURI() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"library anotherOne{}\n";
 		Bag<String> bag = new BagImpl<String>();
@@ -441,7 +451,7 @@ public class ImportTests extends XtextTestCase
 	}
 	
 	public void testImport_OCLstdlib_WrongURI() throws Exception {
-		rootLogger.removeAppender(testCaseAppender);
+		testCaseAppender.uninstall();
 		String testFile =
 			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
 			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1/OCL.oclstdlib'{}\n";

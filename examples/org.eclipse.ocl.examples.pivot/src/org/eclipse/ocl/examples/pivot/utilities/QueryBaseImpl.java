@@ -161,7 +161,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-//			result = environment.getTypeManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
+//			result = environment.getMetaModelManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
 			throw e;
 		}
 		

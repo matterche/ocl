@@ -71,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -610,13 +609,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass templateableElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass monikeredElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2403,33 +2395,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMonikeredElement() {
-		return monikeredElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMonikeredElement_Moniker() {
-		return (EAttribute)monikeredElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getMonikeredElement__HasMoniker() {
-		return monikeredElementEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTemplateBinding() {
 		return templateBindingEClass;
 	}
@@ -3782,10 +3747,6 @@ public class PivotPackageImpl
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
 
-		monikeredElementEClass = createEClass(MONIKERED_ELEMENT);
-		createEAttribute(monikeredElementEClass, MONIKERED_ELEMENT__MONIKER);
-		createEOperation(monikeredElementEClass, MONIKERED_ELEMENT___HAS_MONIKER);
-
 		multiplicityElementEClass = createEClass(MULTIPLICITY_ELEMENT);
 		createEAttribute(multiplicityElementEClass, MULTIPLICITY_ELEMENT__IS_ORDERED);
 		createEAttribute(multiplicityElementEClass, MULTIPLICITY_ELEMENT__IS_UNIQUE);
@@ -4096,9 +4057,8 @@ public class PivotPackageImpl
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
 		messageExpEClass.getESuperTypes().add(this.getOclExpression());
 		messageTypeEClass.getESuperTypes().add(this.getType());
-		monikeredElementEClass.getESuperTypes().add(this.getElement());
-		multiplicityElementEClass.getESuperTypes().add(this.getMonikeredElement());
-		namedElementEClass.getESuperTypes().add(this.getMonikeredElement());
+		multiplicityElementEClass.getESuperTypes().add(this.getElement());
+		namedElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getNameable());
 		namespaceEClass.getESuperTypes().add(this.getNamedElement());
 		navigationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
@@ -4118,7 +4078,7 @@ public class PivotPackageImpl
 		packageableElementEClass.getESuperTypes().add(this.getParameterableElement());
 		parameterEClass.getESuperTypes().add(this.getTypedMultiplicityElement());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
-		parameterableElementEClass.getESuperTypes().add(this.getMonikeredElement());
+		parameterableElementEClass.getESuperTypes().add(this.getElement());
 		precedenceEClass.getESuperTypes().add(this.getNamedElement());
 		primitiveLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		primitiveTypeEClass.getESuperTypes().add(this.getDataType());
@@ -4138,8 +4098,8 @@ public class PivotPackageImpl
 		templateParameterEClass.getESuperTypes().add(this.getElement());
 		templateParameterSubstitutionEClass.getESuperTypes().add(this.getElement());
 		templateParameterTypeEClass.getESuperTypes().add(this.getType());
-		templateSignatureEClass.getESuperTypes().add(this.getMonikeredElement());
-		templateableElementEClass.getESuperTypes().add(this.getMonikeredElement());
+		templateSignatureEClass.getESuperTypes().add(this.getElement());
+		templateableElementEClass.getESuperTypes().add(this.getElement());
 		tupleLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		tupleLiteralPartEClass.getESuperTypes().add(this.getVariableDeclaration());
 		tupleTypeEClass.getESuperTypes().add(this.getDataType());
@@ -4325,11 +4285,6 @@ public class PivotPackageImpl
 		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredSignal(), this.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredOperation(), this.getOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(monikeredElementEClass, MonikeredElement.class, "MonikeredElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getMonikeredElement_Moniker(), this.getString(), "moniker", null, 1, 1, MonikeredElement.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEOperation(getMonikeredElement__HasMoniker(), this.getBoolean(), "hasMoniker", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(multiplicityElementEClass, MultiplicityElement.class, "MultiplicityElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getMultiplicityElement_IsOrdered(), this.getBoolean(), "isOrdered", "false", 1, 1, MultiplicityElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$

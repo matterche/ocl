@@ -30,14 +30,14 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.markup.Markup;
 import org.eclipse.ocl.examples.xtext.markup.MarkupUtils;
@@ -49,12 +49,12 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 {
 	@Override
 	protected String getDocumentation(EObject o) {
-		TypeManager typeManager = null;
+		MetaModelManager metaModelManager = null;
 		Resource resource = o.eResource();
 		if (resource != null) {
-			TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+			MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
 			if (adapter != null) {
-				typeManager = adapter.getTypeManager();
+				metaModelManager = adapter.getMetaModelManager();
 			}
 		}
 		String documentation = super.getDocumentation(o);
@@ -98,7 +98,7 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			o = ((Pivotable)o).getPivot();
 		}
 		try {
-			return MarkupUtils.toHTML(typeManager, o, markup);
+			return MarkupUtils.toHTML(metaModelManager, o, markup);
 		} catch (Exception e) {
 			StringWriter s = new StringWriter();
 			e.printStackTrace(new PrintWriter(s));

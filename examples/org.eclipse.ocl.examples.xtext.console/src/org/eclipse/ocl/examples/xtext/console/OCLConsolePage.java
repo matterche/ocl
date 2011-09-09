@@ -68,12 +68,12 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -277,12 +277,12 @@ public class OCLConsolePage extends Page
 		}
 	}
     
-    protected static class CancelableTypeManager extends TypeManager
+    protected static class CancelableMetaModelManager extends MetaModelManager
     {       
 		private IProgressMonitor monitor = null;
 		private final ValueFactory valueFactory;
 
-		public CancelableTypeManager() {
+		public CancelableMetaModelManager() {
 			this.valueFactory = new ValueFactoryImpl(ConsoleMessages.ValueFactory_Cancelable)
 			{		      	
 	        	@Override
@@ -406,8 +406,8 @@ public class OCLConsolePage extends Page
 			monitor.beginTask(NLS.bind(ConsoleMessages.Progress_Title, expression), 10);
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
-//			CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, typeManager);
-			ValueFactory valueFactory = typeManager.getValueFactory();
+//			CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, metaModelManager);
+			ValueFactory valueFactory = metaModelManager.getValueFactory();
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
 //				csAdapter.refreshPivotMappings();
@@ -427,7 +427,7 @@ public class OCLConsolePage extends Page
 			}
 //			monitor.worked(2);
 			monitor.subTask(ConsoleMessages.Progress_Extent);
-			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, typeManager);
+			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metaModelManager);
 			PivotEnvironment environment = envFactory.createEnvironment();
 			PivotEvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
 			Value contextValue = valueFactory.valueOf(contextObject);
@@ -439,7 +439,7 @@ public class OCLConsolePage extends Page
 			monitor.worked(2);
 			monitor.subTask(ConsoleMessages.Progress_Evaluating);
 			try {
-				typeManager.setMonitor(monitor);
+				metaModelManager.setMonitor(monitor);
 				EvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager);
 		        value = evaluationVisitor.visitExpressionInOcl(expressionInOcl);
 			} catch (EvaluationHaltedException e) {
@@ -447,7 +447,7 @@ public class OCLConsolePage extends Page
 			} catch (InvalidEvaluationException e) {
 				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationFailure, e);
 			} finally {
-				typeManager.setMonitor(null);
+				metaModelManager.setMonitor(null);
 			}
 			monitor.worked(4);
 		}
@@ -546,7 +546,7 @@ public class OCLConsolePage extends Page
 	private EObject contextObject;
 	private EClassifier contextClassifier;
 	
-	private final CancelableTypeManager typeManager;
+	private final CancelableMetaModelManager metaModelManager;
 	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -597,7 +597,7 @@ public class OCLConsolePage extends Page
 	 */
 	OCLConsolePage(OCLConsole console) {
 		super();
-		this.typeManager = new CancelableTypeManager();
+		this.metaModelManager = new CancelableMetaModelManager();
 		this.console = console;
 	}
 
@@ -824,7 +824,7 @@ public class OCLConsolePage extends Page
 		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
 		editor = new EmbeddedXtextEditor(editorComposite, injector, /*SWT.BORDER |*/ SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
-		TypeManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), typeManager);
+		MetaModelManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), metaModelManager);
 
 /*		editor.getViewer().getTextWidget().addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -1110,7 +1110,7 @@ public class OCLConsolePage extends Page
 		    	    if (selectedObject instanceof EObjectNode) {
 		                EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
 		                URI eObjectURI = selectedObjectNode.getEObjectURI();
-		        		contextObject = typeManager.loadResource(eObjectURI, null);
+		        		contextObject = metaModelManager.loadResource(eObjectURI, null);
 		        		contextClassifier = selectedObjectNode.getEClass();
 		    	    }
 		    	    else if (selectedObject instanceof EStructuralFeatureNode) {

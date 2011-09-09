@@ -26,11 +26,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -47,7 +45,6 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 public abstract class Abstract2Moniker implements PivotConstants
 {			
 	private static final Logger logger = Logger.getLogger(Abstract2Moniker.class);
-	public static final TracingOption TRACE_MONIKERS = new TracingOption("org.eclipse.ocl.examples.pivot", "traceMonikers");  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The CS element for which a moniker is required.
@@ -144,20 +141,20 @@ public abstract class Abstract2Moniker implements PivotConstants
 
 	public void appendLambdaType(Type contextType, List<? extends Type> parameterTypes,
 			Type resultType, Map<TemplateParameter, ParameterableElement> bindings) {
-		append(MONIKER_OPERATOR_SEPARATOR);
 		if (contextType != null) {
+			append(MONIKER_OPERATOR_SEPARATOR);
 			appendElement(contextType, bindings);
-		}
-		append(PARAMETER_PREFIX);
-		String prefix = ""; //$NON-NLS-1$
-		for (Type parameterType : parameterTypes) {
-			append(prefix);
-			appendElement(parameterType, bindings);
-			prefix = PARAMETER_SEPARATOR;
-		}
-		append(PARAMETER_SUFFIX);
-		if (resultType != null) {
-			appendElement(resultType, bindings);
+			append(PARAMETER_PREFIX);
+			String prefix = ""; //$NON-NLS-1$
+			for (Type parameterType : parameterTypes) {
+				append(prefix);
+				appendElement(parameterType, bindings);
+				prefix = PARAMETER_SEPARATOR;
+			}
+			append(PARAMETER_SUFFIX);
+			if (resultType != null) {
+				appendElement(resultType, bindings);
+			}
 		}
 	}
 
@@ -174,7 +171,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 	}
 
-	public void appendName(MonikeredElement monikeredElement) {
+	public void appendName(Element monikeredElement) {
 		if (monikeredElement instanceof Type) {		// FIXME migrate to more specific location
 			TemplateableElement unspecializedElement = ((Type)monikeredElement).getUnspecializedElement();
 			if (unspecializedElement != null) {
@@ -235,8 +232,8 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 		else {
 			EObject parent = element.eContainer();
-			if (parent instanceof MonikeredElement) {
-				append(((MonikeredElement) parent).getMoniker());
+			if (parent instanceof Element) {
+				appendElement((Element) parent);
 				if (parent instanceof TemplateableElement) {
 					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedTemplateSignature();
 					if (ownedTemplateSignature != null) {
@@ -245,9 +242,6 @@ public abstract class Abstract2Moniker implements PivotConstants
 					}
 					}
 				}
-			}
-			else if (parent instanceof Element) {
-				appendElement((Element) parent);	
 			}
 			else if (element.eIsProxy()) {
 				append("<<unresolved-proxy>>");	

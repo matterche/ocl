@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -35,13 +35,32 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class CollectionTypeCSImpl extends NamedElementCSImpl implements CollectionTypeCS {
+public class CollectionTypeCSImpl extends TypedRefCSImpl implements CollectionTypeCS {
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -68,6 +87,29 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	@Override
 	protected EClass eStaticClass() {
 		return EssentialOCLCSTPackage.Literals.COLLECTION_TYPE_CS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_TYPE_CS__NAME, oldName, name));
 	}
 
 	/**
@@ -142,6 +184,8 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__NAME:
+				return getName();
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
 				return getOwnedType();
 		}
@@ -157,6 +201,9 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__NAME:
+				setName((String)newValue);
+				return;
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
 				return;
@@ -173,6 +220,9 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
 				return;
@@ -189,10 +239,29 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
 				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: "); //$NON-NLS-1$
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 	@SuppressWarnings("unchecked")

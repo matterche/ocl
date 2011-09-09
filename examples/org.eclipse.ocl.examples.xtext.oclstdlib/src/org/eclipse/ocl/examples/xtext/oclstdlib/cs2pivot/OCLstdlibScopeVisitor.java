@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ConstraintCSScopeAdapter;
@@ -32,9 +32,9 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.LibRootPackageScopeAdapt
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
 public class OCLstdlibScopeVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<ScopeCSAdapter, TypeManager, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<ScopeCSAdapter, MetaModelManager, EssentialOCLScopeVisitor>
 {
-	public OCLstdlibScopeVisitor(TypeManager context) {
+	public OCLstdlibScopeVisitor(MetaModelManager context) {
 		super(new EssentialOCLScopeVisitor(context), context);
 	}
 	

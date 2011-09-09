@@ -351,8 +351,6 @@ public class MessageExpImpl
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.MESSAGE_EXP__MONIKER:
-				return getMoniker();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return getName();
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
@@ -389,9 +387,6 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.MESSAGE_EXP__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName((String)newValue);
@@ -439,9 +434,6 @@ public class MessageExpImpl
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.MESSAGE_EXP__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -484,8 +476,6 @@ public class MessageExpImpl
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.MESSAGE_EXP__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:

@@ -16,11 +16,11 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 
-public class PivotDependency extends AbstractDependency<ModelElementCS>
+public class PivotDependency extends AbstractDependency<PivotableElementCS>
 {
-	public PivotDependency(ModelElementCS csElement) {
+	public PivotDependency(PivotableElementCS csElement) {
 		super(csElement);
 	}
 

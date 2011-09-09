@@ -16,18 +16,17 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ref CS</b></em>'.
+ * A representation of the model object '<em><b>Pivotable Ref CS</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getRefCS()
- * @model interface="true" abstract="true"
+ * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getElementRefCS()
+ * @model abstract="true"
  * @generated
  */
-public interface RefCS extends EObject
+public interface ElementRefCS extends PivotableElementCS
 {
-} // RefCS
+} // PivotableRefCS

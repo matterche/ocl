@@ -197,8 +197,6 @@ public class AnnotationImpl
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.ANNOTATION__MONIKER:
-				return getMoniker();
 			case PivotPackage.ANNOTATION__NAME:
 				return getName();
 			case PivotPackage.ANNOTATION__OWNED_RULE:
@@ -230,9 +228,6 @@ public class AnnotationImpl
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.ANNOTATION__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.ANNOTATION__NAME:
 				setName((String)newValue);
@@ -276,9 +271,6 @@ public class AnnotationImpl
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.ANNOTATION__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.ANNOTATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -315,8 +307,6 @@ public class AnnotationImpl
 		{
 			case PivotPackage.ANNOTATION__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.ANNOTATION__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.ANNOTATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ANNOTATION__OWNED_RULE:

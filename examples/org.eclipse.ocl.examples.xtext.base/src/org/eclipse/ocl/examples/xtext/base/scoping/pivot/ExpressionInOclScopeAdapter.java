@@ -19,14 +19,14 @@ package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<ExpressionInOcl>
 {
-	public ExpressionInOclScopeAdapter(TypeManager typeManager, ExpressionInOcl pivotElement) {
-		super(typeManager, pivotElement);
+	public ExpressionInOclScopeAdapter(MetaModelManager metaModelManager, ExpressionInOcl pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 
 	@Override

@@ -32,8 +32,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
  *
  * @generated
  */
-public class ParameterableElementOperations
-		extends MonikeredElementOperations {
+public class ParameterableElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

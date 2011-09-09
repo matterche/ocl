@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.Enumeration;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumeration>
 {
-	public EnumCSScopeAdapter(TypeManager typeManager, EnumerationCS csElement) {
-		super(typeManager, csElement, Enumeration.class);
+	public EnumCSScopeAdapter(MetaModelManager metaModelManager, EnumerationCS csElement) {
+		super(metaModelManager, csElement, Enumeration.class);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumer
 			environmentView.addNamedElements(pivot.getOwnedLiterals());
 			environmentView.addElements(PivotUtil.getTemplateParameters(pivot));
 		}
-		environmentView.addLibContents(typeManager.getOclAnyType(), scopeView);
+		environmentView.addLibContents(metaModelManager.getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
 }

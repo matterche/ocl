@@ -37,11 +37,11 @@ import org.eclipse.ocl.examples.modelregistry.standalone.ModelFileResolver;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -80,18 +80,18 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			TypeManager typeManager) {
-		return new EssentialOCLCS2Pivot(cs2pivotResourceMap, typeManager);
+			MetaModelManager metaModelManager) {
+		return new EssentialOCLCS2Pivot(cs2pivotResourceMap, metaModelManager);
 	}
 
-	public TypeManager createTypeManager() {
+	public MetaModelManager createMetaModelManager() {
 		ResourceSet resourceSet = getResourceSet();
-		TypeManagerResourceSetAdapter resourceSetAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (resourceSetAdapter != null) {
-			return resourceSetAdapter.getTypeManager();
+			return resourceSetAdapter.getMetaModelManager();
 		}
 		else {
-			return new TypeManager();
+			return new MetaModelManager();
 		}
 	}
 
@@ -155,90 +155,100 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 				return;
 			}
 		}
-		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(this);
+		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(this);
 		if (adapter != null) {
-			TypeManager typeManager = adapter.getTypeManager();
-			if (typeManager != null) {
-//				if (typeManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
-//					typeManager.resetLibrary();		// FIXME is this needed; if so test it
+			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			if (metaModelManager != null) {
+//				if (metaModelManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
+//					metaModelManager.resetLibrary();		// FIXME is this needed; if so test it
 //				}
 				try {
-					typeManager.getOclAnyType();
+					metaModelManager.getOclAnyType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getOclVoidType();
+					metaModelManager.getOclElementType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getOclInvalidType();
+					metaModelManager.getOclVoidType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getClassifierType();
+					metaModelManager.getOclInvalidType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getBooleanType();
+					metaModelManager.getClassifierType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getRealType();
+					metaModelManager.getBooleanType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getIntegerType();
+					metaModelManager.getRealType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getUnlimitedNaturalType();
+					metaModelManager.getIntegerType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getStringType();
+					metaModelManager.getUnlimitedNaturalType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getCollectionType();
+					metaModelManager.getStringType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getBagType();
+					metaModelManager.getCollectionType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getSequenceType();
+					metaModelManager.getBagType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getSetType();
+					metaModelManager.getSequenceType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getOrderedSetType();
+					metaModelManager.getSetType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getEnumerationType();
+					metaModelManager.getOrderedSetType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}
 				try {
-					typeManager.getTupleType();
+					metaModelManager.getEnumerationType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					metaModelManager.getOclTupleType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					metaModelManager.getOclLambdaType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}

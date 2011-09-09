@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
@@ -33,8 +33,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, Constraint>
 {
-	public ConstraintCSScopeAdapter(TypeManager typeManager, ConstraintCS csElement) {
-		super(typeManager, csElement, Constraint.class);
+	public ConstraintCSScopeAdapter(MetaModelManager metaModelManager, ConstraintCS csElement) {
+		super(metaModelManager, csElement, Constraint.class);
 	}
 
 	@Override

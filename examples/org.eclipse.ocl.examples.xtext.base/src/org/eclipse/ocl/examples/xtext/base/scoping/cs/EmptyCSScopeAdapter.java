@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 
 /**
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  */
 public class EmptyCSScopeAdapter extends ElementCSScopeAdapter<ElementCS>
 {
-	public EmptyCSScopeAdapter(TypeManager typeManager, ElementCS csElement) {
-		super(typeManager, csElement);
+	public EmptyCSScopeAdapter(MetaModelManager metaModelManager, ElementCS csElement) {
+		super(metaModelManager, csElement);
 	}
 }

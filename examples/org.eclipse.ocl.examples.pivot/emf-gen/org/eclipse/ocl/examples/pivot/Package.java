@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package</b></em>'.
- * @implements Iterable<Package>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -47,7 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Package
-		extends Namespace, TemplateableElement, Iterable<Package> {
+		extends Namespace, TemplateableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.

@@ -17,15 +17,15 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 
 public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLiteralExpCS, TupleLiteralExp>
 {
-	public TupleLiteralExpCSScopeAdapter(TypeManager typeManager, TupleLiteralExpCS csElement) {
-		super(typeManager, csElement, TupleLiteralExp.class);
+	public TupleLiteralExpCSScopeAdapter(MetaModelManager metaModelManager, TupleLiteralExpCS csElement) {
+		super(metaModelManager, csElement, TupleLiteralExp.class);
 	}
 
 	@Override

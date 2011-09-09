@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -62,10 +61,10 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2EcoreDeclarationVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -91,9 +90,9 @@ public class Pivot2EcoreDeclarationVisitor
 				safeVisit(pivotConstraint);		// Results are inserted directly
 			}
 		}
-		TypeManager typeManager = context.getTypeManager();
-		if (typeManager != null) {
-			Pivot2Ecore.installDelegates(typeManager, eClassifier, pivotType);
+		MetaModelManager metaModelManager = context.getMetaModelManager();
+		if (metaModelManager != null) {
+			Pivot2Ecore.installDelegates(metaModelManager, eClassifier, pivotType);
 		}
 	}
 
@@ -113,7 +112,7 @@ public class Pivot2EcoreDeclarationVisitor
 		}
 	}
 
-	protected void copyModelElement(EModelElement eModelElement, MonikeredElement pivotModelElement) {
+	protected void copyModelElement(EModelElement eModelElement, Element pivotModelElement) {
 		context.putCreated(pivotModelElement, eModelElement);
 	}
 

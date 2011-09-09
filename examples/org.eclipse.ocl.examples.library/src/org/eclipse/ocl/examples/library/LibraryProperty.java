@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.library;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -27,5 +28,5 @@ public interface LibraryProperty extends LibraryFeature
 {
 	/**
 	 */
-	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, PropertyCallExp propertyCall);
+	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, PropertyCallExp propertyCall) throws InvalidValueException;
 }

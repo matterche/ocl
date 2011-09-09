@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -51,8 +51,8 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 		}
 	}
 	
-	public ContextCSScopeAdapter(TypeManager typeManager, ContextCS csElement) {
-		super(typeManager, csElement, ExpressionInOcl.class);
+	public ContextCSScopeAdapter(MetaModelManager metaModelManager, ContextCS csElement) {
+		super(metaModelManager, csElement, ExpressionInOcl.class);
 	}
 
 	@Override
@@ -85,16 +85,16 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				if (resource instanceof EvaluationContext) {
 					NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
 					if (specificationContext != null) {
-						ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
+						ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, specificationContext);
 						if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
-							ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(typeManager, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+							ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(metaModelManager, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 							environmentView.computeLookups(ruleScopeView);
 						}	
 					}
 				}
 			}
 			if (!environmentView.hasFinalResult()) {
-				environmentView.addElementsOfScope(typeManager.getOclAnyType().getPackage(), scopeView);
+				environmentView.addElementsOfScope(metaModelManager.getOclAnyType().getPackage(), scopeView);
 			}
 			return super.computeLookup(environmentView, scopeView);
 		}

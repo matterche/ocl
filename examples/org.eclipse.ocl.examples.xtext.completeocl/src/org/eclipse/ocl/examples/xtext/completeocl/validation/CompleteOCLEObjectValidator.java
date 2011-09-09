@@ -52,11 +52,11 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -73,6 +73,7 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 
 	protected final EPackage ePackage;
 	protected final URI oclURI;
+	protected final MetaModelManager metaModelManager;
 	private Ecore2Pivot ecore2Pivot = null;
 	private EnvironmentFactory environmentFactory = null;
 	private Environment rootEnvironment = null;
@@ -80,9 +81,18 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 	/**
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
 	 */
+	@Deprecated
 	public CompleteOCLEObjectValidator(EPackage ePackage, URI oclURI) {
+		this(ePackage, oclURI, null);
+	}
+	
+	/**
+	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
+	 */
+	public CompleteOCLEObjectValidator(EPackage ePackage, URI oclURI, MetaModelManager metaModelManager) {
 		this.ePackage =  ePackage;
 		this.oclURI =  oclURI;
+		this.metaModelManager =  metaModelManager != null ? metaModelManager : new MetaModelManager();
 	}
 	
 	@Override
@@ -103,17 +113,15 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 	}
 	
 	protected void initialize() {
-		ecore2Pivot = Ecore2Pivot.getAdapter(ePackage.eResource(), null);
-		TypeManager typeManager = ecore2Pivot.getTypeManager();
-				
+		ecore2Pivot = Ecore2Pivot.getAdapter(ePackage.eResource(), metaModelManager);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		Resource ecoreResource = ePackage.eResource();
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
 		}
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		Package pivotRoot = ecore2Pivot.getPivotRoot();
 		message = PivotUtil.formatResourceDiagnostics(pivotRoot.eResource().getErrors(), "", "\n");
 		if (message != null) {
@@ -145,13 +153,13 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		if (message != null) {
 			logger.error("Failed to load '" + oclURI + message);
 		}
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		message = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + oclURI + message);
 		}
-		environmentFactory = new PivotEnvironmentFactory(null, typeManager);
+		environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
 		rootEnvironment = environmentFactory.createEnvironment();
 	}
 
@@ -177,23 +185,23 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 			initialize();
 		}
 		boolean allOk = true;
-		TypeManager typeManager = ecore2Pivot.getTypeManager();
+		MetaModelManager metaModelManager = ecore2Pivot.getMetaModelManager();
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		for (Constraint constraint : typeManager.getAllConstraints(type)) {
+		for (Constraint constraint : metaModelManager.getAllConstraints(type)) {
 			if (UMLReflection.INVARIANT.equals(constraint.getStereotype())) {
 				String constraintName = constraint.getName();
 				ValueSpecification specification = constraint.getSpecification();
 				if (specification instanceof ExpressionInOcl) {			// Ignore OpaqueExpression -- probably from EAnnotations
 					ExpressionInOcl query = (ExpressionInOcl)specification;
 					EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment();
-					ValueFactory valueFactory = typeManager.getValueFactory();
+					ValueFactory valueFactory = metaModelManager.getValueFactory();
 					Value value = valueFactory.valueOf(object);
 					evaluationEnvironment.add(query.getContextVariable(), value);
 					ModelManager extents = evaluationEnvironment.createModelManager(object);
 					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, evaluationEnvironment, extents);
 					int severity = Diagnostic.ERROR;
 					String message = null;
-					if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
+					if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
 						message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 					}
 					try {

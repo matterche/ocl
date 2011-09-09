@@ -17,11 +17,11 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public abstract class ExpressionScopeAdapter<P extends OclExpression> extends AbstractPivotScopeAdapter<P>
 {
-	public ExpressionScopeAdapter(TypeManager typeManager, P pivotElement) {
-		super(typeManager, pivotElement);
+	public ExpressionScopeAdapter(MetaModelManager metaModelManager, P pivotElement) {
+		super(metaModelManager, pivotElement);
 	}
 }

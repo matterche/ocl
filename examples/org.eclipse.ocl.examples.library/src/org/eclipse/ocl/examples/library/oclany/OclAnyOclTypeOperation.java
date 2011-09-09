@@ -21,7 +21,7 @@ import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -34,10 +34,10 @@ public class OclAnyOclTypeOperation extends AbstractOperation
 	public static final OclAnyOclTypeOperation INSTANCE = new OclAnyOclTypeOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
 		Type staticType = operationCall.getSource().getType();
-		Type sourceType = sourceVal.getType(typeManager, staticType);
-		ClassifierType classifierType = typeManager.getClassifierType(sourceType);
+		Type sourceType = sourceVal.getType(metaModelManager, staticType);
+		ClassifierType classifierType = metaModelManager.getClassifierType(sourceType);
 		return evaluationVisitor.getValueFactory().createTypeValue(classifierType);
 	}
 }

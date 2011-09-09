@@ -24,12 +24,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
@@ -64,16 +65,16 @@ public class EssentialOCLPostOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			context.visitLeft2Right(MonikeredElement.class, csElement);
+			context.visitLeft2Right(Element.class, csElement);
 			return null;
 		}
 	}
 
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	
 	public EssentialOCLPostOrderVisitor(CS2PivotConversion context) {
 		super(new BasePostOrderVisitor(context), context);
-		this.typeManager = context.getTypeManager();
+		this.metaModelManager = context.getMetaModelManager();
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class EssentialOCLPostOrderVisitor
 		Map<Precedence, List<Integer>> precedenceToOperatorIndex = new HashMap<Precedence, List<Integer>>();
 		for (int operatorIndex = 0; operatorIndex < operatorCount; operatorIndex++) {
 			BinaryOperatorCS csOperator = csOperators.get(operatorIndex);
-			Precedence precedence = typeManager.getInfixPrecedence(csOperator.getName());
+			Precedence precedence = metaModelManager.getInfixPrecedence(csOperator.getName());
 			List<Integer> indexesList = precedenceToOperatorIndex.get(precedence);
 			if (indexesList == null) {
 				indexesList = new ArrayList<Integer>();
@@ -183,8 +184,8 @@ public class EssentialOCLPostOrderVisitor
 			if (!(csParent instanceof BinaryOperatorCS)) {
 				break;
 			}
-			Precedence parentPrecedence = typeManager.getInfixPrecedence(csParent.getName());
-			Precedence unaryPrecedence = typeManager.getPrefixPrecedence(csOperator.getName());
+			Precedence parentPrecedence = metaModelManager.getInfixPrecedence(csParent.getName());
+			Precedence unaryPrecedence = metaModelManager.getPrefixPrecedence(csOperator.getName());
 			int parentOrder = parentPrecedence != null ? parentPrecedence.getOrder().intValue() : -1;
 			int unaryOrder = unaryPrecedence != null ? unaryPrecedence.getOrder().intValue() : -1;
 			if (unaryOrder < parentOrder) {
@@ -260,15 +261,15 @@ public class EssentialOCLPostOrderVisitor
 	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
 		// FIXME untemplated collections need type deduction here
-/*		TypeManager typeManager = context.getTypeManager();
+/*		MetaModelManager metaModelManager = context.getMetaModelManager();
 		TypedRefCS csElementType = csCollectionType.getOwnedType();
 		Type type;
 		if (csElementType != null) {
 			Type elementType = PivotUtil.getPivot(Type.class, csElementType);
-			type = typeManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
+			type = metaModelManager.getLibraryType(csCollectionType.getName(), Collections.singletonList(elementType));
 		}
 		else {
-			type = typeManager.getLibraryType(csCollectionType.getName());
+			type = metaModelManager.getLibraryType(csCollectionType.getName());
 		}
 		context.reusePivotElement(csCollectionType, type);
 */		return null;
@@ -363,6 +364,11 @@ public class EssentialOCLPostOrderVisitor
 		String exprString = csSpecification.getExprString();
 		pivotSpecification.getBodies().add(exprString);
 		pivotSpecification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS object) {
 		return null;
 	}
 

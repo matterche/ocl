@@ -26,13 +26,13 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class UnaryOperationFilter extends AbstractOperationFilter
 {
-	public UnaryOperationFilter(TypeManager typeManager, Type sourceType) {
-		super(typeManager, sourceType);
+	public UnaryOperationFilter(MetaModelManager metaModelManager, Type sourceType) {
+		super(metaModelManager, sourceType);
 	}
 
 	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {

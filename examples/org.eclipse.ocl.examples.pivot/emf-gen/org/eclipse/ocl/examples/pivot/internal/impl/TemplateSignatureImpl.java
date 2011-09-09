@@ -56,7 +56,7 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
  * @generated
  */
 public class TemplateSignatureImpl
-		extends MonikeredElementImpl
+		extends ElementImpl
 		implements TemplateSignature {
 
 	/**
@@ -285,8 +285,6 @@ public class TemplateSignatureImpl
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TEMPLATE_SIGNATURE__MONIKER:
-				return getMoniker();
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
 				return getParameters();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
@@ -310,9 +308,6 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
 				getParameters().clear();
@@ -341,9 +336,6 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TEMPLATE_SIGNATURE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
 				getParameters().clear();
 				return;
@@ -368,8 +360,6 @@ public class TemplateSignatureImpl
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TEMPLATE_SIGNATURE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
 				return parameters != null && !parameters.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
@@ -391,8 +381,6 @@ public class TemplateSignatureImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TEMPLATE_SIGNATURE___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.TEMPLATE_SIGNATURE___VALIDATE_OWN_ELEMENTS__DIAGNOSTICCHAIN_MAP:
 				return validateOwnElements((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

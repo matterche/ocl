@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
@@ -485,13 +484,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 				default: return -1;
 			}
 		}
-		if (baseClass == ParameterableElementCS.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -514,13 +506,6 @@ public abstract class ClassifierCSImpl extends NamedElementCSImpl implements Cla
 			switch (baseFeatureID)
 			{
 				case BaseCSTPackage.TEMPLATEABLE_ELEMENT_CS__OWNED_TEMPLATE_SIGNATURE: return BaseCSTPackage.CLASSIFIER_CS__OWNED_TEMPLATE_SIGNATURE;
-				default: return -1;
-			}
-		}
-		if (baseClass == ParameterableElementCS.class)
-		{
-			switch (baseFeatureID)
-			{
 				default: return -1;
 			}
 		}

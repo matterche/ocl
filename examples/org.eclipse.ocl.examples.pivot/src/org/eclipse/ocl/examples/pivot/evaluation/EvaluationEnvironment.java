@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -236,7 +236,7 @@ public interface EvaluationEnvironment {
 	 */
 //	Value getValue(EnumerationLiteral enumerationLiteral);
 
-	TypeManager getTypeManager();
+	MetaModelManager getMetaModelManager();
 
 	ValueFactory getValueFactory();
 

@@ -28,14 +28,14 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 
 public class ImplicitCollectionFilter extends AbstractOperationFilter
 {
-	public ImplicitCollectionFilter(TypeManager typeManager, Type sourceType) {
-		super(typeManager, sourceType);
+	public ImplicitCollectionFilter(MetaModelManager metaModelManager, Type sourceType) {
+		super(metaModelManager, sourceType);
 	}
 
 	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {

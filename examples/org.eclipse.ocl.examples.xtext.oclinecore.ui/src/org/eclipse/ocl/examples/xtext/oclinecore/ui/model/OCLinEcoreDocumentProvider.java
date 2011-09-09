@@ -47,11 +47,11 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
@@ -83,7 +83,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 
 	private Map<IDocument, URI> uriMap = new HashMap<IDocument, URI>();		// Helper for setDocumentContent
 	
-	private final TypeManager typeManager = new TypeManager();
+	private final MetaModelManager metaModelManager = new MetaModelManager();
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -182,7 +182,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 
 	@Override
 	protected void loadResource(XtextResource resource, String document, String encoding) throws CoreException {
-		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
+		MetaModelManagerResourceAdapter.getAdapter(resource, metaModelManager);
 		super.loadResource(resource, document, encoding);
 	}
 
@@ -202,7 +202,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 			boolean isXML = isXML(inputStream);		
 			String persistAs = PERSIST_AS_OCLINECORE;
 			if (isXML) {
-				ResourceSet resourceSet = typeManager.getExternalResourceSet();
+				ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 				URI uri = uriMap.get(document);
 				Resource xmiResource = resourceSet.createResource(uri, null);
 				xmiResource.load(inputStream, null);
@@ -229,7 +229,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				if (xmiResource.getContents().size() > 0) {
 					EObject xmiRoot = xmiResource.getContents().get(0);
 					if (xmiRoot instanceof EPackage) {
-						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, typeManager);
+						Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(xmiResource, metaModelManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
 						diagnoseErrors(pivotResource);
@@ -240,7 +240,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 						persistAs = PERSIST_AS_PIVOT;
 					}
 					else if (xmiRoot instanceof org.eclipse.uml2.uml.Package) {
-						UML2Ecore2Pivot uml2Pivot = UML2Ecore2Pivot.getAdapter(xmiResource, typeManager);
+						UML2Ecore2Pivot uml2Pivot = UML2Ecore2Pivot.getAdapter(xmiResource, metaModelManager);
 						org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Pivot.getPivotRoot();
 						pivotResource = pivotRoot.eResource();
 						persistAs = PERSIST_AS_OCLINECORE;		// FIXME
@@ -258,7 +258,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				if (pivotResource != null) {
 					cs2PivotResourceMap.put(csResource, pivotResource);
 				}
-				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
+				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, metaModelManager);
 				pivot2cs.update();
 //				csResource.save(null);
 				Resource xtextResource = csResource;		

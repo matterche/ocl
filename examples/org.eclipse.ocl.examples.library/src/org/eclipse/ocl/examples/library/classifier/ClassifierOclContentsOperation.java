@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -40,8 +40,8 @@ public class ClassifierOclContentsOperation extends AbstractOperation
 	public static final ClassifierOclContentsOperation INSTANCE = new ClassifierOclContentsOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		ValueFactory valueFactory = typeManager.getValueFactory();
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+		ValueFactory valueFactory = metaModelManager.getValueFactory();
 		ObjectValue objectVal = sourceVal.asObjectValue();
 		Object object = objectVal.getObject();
 		if (!(object instanceof EObject)) {

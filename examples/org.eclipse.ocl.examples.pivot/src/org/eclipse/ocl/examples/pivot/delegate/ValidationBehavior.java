@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -36,11 +36,11 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public static final ValidationBehavior INSTANCE = new ValidationBehavior();
 	public static final String NAME = "validationDelegates"; //$NON-NLS-1$
 	
-	public Constraint getConstraint(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
+	public Constraint getConstraint(MetaModelManager metaModelManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
 		Resource ecoreMetaModel = eClassifier.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, metaModelManager);
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		Constraint constraint = PivotUtil.getNamedElement(typeManager.getLocalConstraints(type), constraintName);
+		Constraint constraint = PivotUtil.getNamedElement(metaModelManager.getLocalConstraints(type), constraintName);
 		if (constraint != null) {
 			return constraint;
 		}
@@ -60,13 +60,13 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		return eClassifier.getEPackage();
 	}
 	
-/*	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
+/*	public ExpressionInOcl getExpressionInOcl(MetaModelManager metaModelManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
 		Resource ecoreMetaModel = eClassifier.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, metaModelManager);
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
 		Constraint constraint = PivotUtil.getNamedElement(type.getOwnedRules(), constraintName);
 		if (constraint != null) {
-			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, type, constraint);
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(metaModelManager, type, constraint);
 			if (expressionInOcl != null) {
 				return expressionInOcl;
 			}

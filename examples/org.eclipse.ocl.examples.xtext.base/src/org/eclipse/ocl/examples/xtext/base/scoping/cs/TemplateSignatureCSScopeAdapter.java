@@ -17,15 +17,15 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TemplateSignatureCSScopeAdapter extends MonikeredElementCSScopeAdapter<TemplateSignatureCS, TemplateSignature>
+public class TemplateSignatureCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateSignatureCS, TemplateSignature>
 {
-	public TemplateSignatureCSScopeAdapter(TypeManager typeManager, TemplateSignatureCS csElement) {
-		super(typeManager, csElement, TemplateSignature.class);
+	public TemplateSignatureCSScopeAdapter(MetaModelManager metaModelManager, TemplateSignatureCS csElement) {
+		super(metaModelManager, csElement, TemplateSignature.class);
 	}
 
 	@Override

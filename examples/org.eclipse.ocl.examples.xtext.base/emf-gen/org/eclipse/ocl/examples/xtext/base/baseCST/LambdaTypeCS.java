@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS#getOwnedContextType <em>Owned Context Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS#getOwnedParameterType <em>Owned Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS#getOwnedResultType <em>Owned Result Type</em>}</li>
@@ -33,11 +35,37 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getLambdaTypeCS()
- * @model
+ * @model superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS org.eclipse.ocl.examples.pivot.Nameable"
  * @generated
  */
-public interface LambdaTypeCS extends NamedElementCS, TypedRefCS, TemplateableElementCS
+public interface LambdaTypeCS extends TypedRefCS, TemplateableElementCS, Nameable
 {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getLambdaTypeCS_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Owned Context Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

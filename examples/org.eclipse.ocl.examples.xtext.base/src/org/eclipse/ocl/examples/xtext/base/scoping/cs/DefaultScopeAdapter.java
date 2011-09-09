@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 
@@ -29,8 +29,8 @@ public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 {
 	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
 
-	public DefaultScopeAdapter(TypeManager typeManager, EObject eObject) {
-		super(typeManager, null, eObject);
+	public DefaultScopeAdapter(MetaModelManager metaModelManager, EObject eObject) {
+		super(metaModelManager, null, eObject);
 		logger.warn("Using DefaultScopeAdapter for '" + eObject.eClass().getName() + "'");
 	}
 

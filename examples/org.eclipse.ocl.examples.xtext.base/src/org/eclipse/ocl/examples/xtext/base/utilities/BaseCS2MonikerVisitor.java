@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -217,9 +218,9 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 
 	@Override
 	public Boolean visitPackageCS(PackageCS object) {
-		MonikeredElement pivot = PivotUtil.getPivot(MonikeredElement.class, object);
+		Element pivot = PivotUtil.getPivot(Element.class, object);
 		assert pivot != null;
-		context.append(pivot.getMoniker());
+		context.appendElement(pivot);
 		return true;
 	}
 
@@ -273,7 +274,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	public Boolean visitTemplateParameterSubstitutionCS(TemplateParameterSubstitutionCS object) {
 		context.appendElementCS(object.getOwningTemplateBinding());
 		TemplateParameter formalTemplateParameter = ElementUtil.getFormalTemplateParameter(object);	
-		context.append(formalTemplateParameter.getParameteredElement().getMoniker());
+		context.appendElement(formalTemplateParameter.getParameteredElement());
 		return true;
 	}
 
@@ -332,7 +333,12 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 				}
 			}
 			else {
-				Type type = object.getType();
+//				Type type = object.getType();
+				Type type = ((TypedTypeRefCSImpl)object).basicGetType();	// Don't resolve types referenced in diagnostics.
+				if (type.eIsProxy()) {										// It can break to OCL stdlib generator
+					context.append("???");
+					return true;
+				}
 				TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
 				if (owningTemplateParameter != null) {
 					context.appendElement(type);

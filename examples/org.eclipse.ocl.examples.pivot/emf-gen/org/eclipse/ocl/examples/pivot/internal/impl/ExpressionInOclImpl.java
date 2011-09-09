@@ -427,8 +427,6 @@ public class ExpressionInOclImpl
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.EXPRESSION_IN_OCL__MONIKER:
-				return getMoniker();
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return getName();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
@@ -481,9 +479,6 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.EXPRESSION_IN_OCL__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName((String)newValue);
@@ -555,9 +550,6 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.EXPRESSION_IN_OCL__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -621,8 +613,6 @@ public class ExpressionInOclImpl
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.EXPRESSION_IN_OCL__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:

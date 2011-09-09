@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -34,9 +34,6 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * See the {@link Environment} class for a description of the
  * generic type parameters of this class. 
  * </p>
- * 
- * @author Tim Klinger (tklinger)
- * @author Christian W. Damus (cdamus)
  */
 public interface EvaluationVisitor extends Visitor<Value, Object> {
 
@@ -65,7 +62,7 @@ public interface EvaluationVisitor extends Visitor<Value, Object> {
 	 */
 	public ModelManager getModelManager();
 
-	public TypeManager getTypeManager();
+	public MetaModelManager getMetaModelManager();
 
 	public ValueFactory getValueFactory();
     

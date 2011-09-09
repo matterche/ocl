@@ -35,8 +35,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
  *
  * @generated
  */
-public class TemplateableElementOperations
-		extends MonikeredElementOperations {
+public class TemplateableElementOperations {
 
 	/**
 	 * <!-- begin-user-doc -->

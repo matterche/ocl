@@ -221,10 +221,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 		return delegate.visitMessageType(object);
 	}
 
-	public R visitMonikeredElement(org.eclipse.ocl.examples.pivot.MonikeredElement object) {
-		return delegate.visitMonikeredElement(object);
-	}
-
 	public R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object) {
 		return delegate.visitMultiplicityElement(object);
 	}

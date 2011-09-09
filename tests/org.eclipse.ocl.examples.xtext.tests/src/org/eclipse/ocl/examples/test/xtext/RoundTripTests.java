@@ -33,11 +33,11 @@ import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -52,23 +52,23 @@ import org.eclipse.xtext.resource.XtextResource;
  */
 public class RoundTripTests extends XtextTestCase
 {
-	public Resource createEcoreFromPivot(TypeManager typeManager, PivotResource pivotResource, URI ecoreURI) throws IOException {
-		Resource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, null);
+	public Resource createEcoreFromPivot(MetaModelManager metaModelManager, PivotResource pivotResource, URI ecoreURI) throws IOException {
+		Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, null);
 		assertNoResourceErrors("To Ecore errors", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
 		}
 		return ecoreResource;
 	}
-	public PivotResource createPivotFromEcore(TypeManager typeManager, Resource ecoreResource) throws IOException {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+	public PivotResource createPivotFromEcore(MetaModelManager metaModelManager, Resource ecoreResource) throws IOException {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		PivotResource pivotResource = (PivotResource) pivotRoot.eResource();
 		assertNoResourceErrors("Ecore2Pivot failed", pivotResource);
 		assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
 		return pivotResource;
 	}
-	public PivotResource createPivotFromXtext(TypeManager typeManager, BaseCSResource xtextResource) throws IOException {
+	public PivotResource createPivotFromXtext(MetaModelManager metaModelManager, BaseCSResource xtextResource) throws IOException {
 		CS2PivotResourceAdapter adapter = null;
 		try {
 			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
@@ -86,19 +86,19 @@ public class RoundTripTests extends XtextTestCase
 			}
 		}
 	}
-	public BaseCSResource createXtextFromPivot(TypeManager typeManager, PivotResource pivotResource, URI xtextURI) throws IOException {
+	public BaseCSResource createXtextFromPivot(MetaModelManager metaModelManager, PivotResource pivotResource, URI xtextURI) throws IOException {
 		XtextResource xtextResource = (XtextResource) resourceSet.createResource(xtextURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 		cs2PivotResourceMap.put(xtextResource, pivotResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
+		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, metaModelManager);
 		pivot2cs.update();
 		xtextResource.save(null);
 		assertNoResourceErrors("Conversion failed", xtextResource);
 		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
 		return (BaseCSResource) xtextResource;
 	}
-	public BaseCSResource createXtextFromURI(TypeManager typeManager, URI xtextURI) throws IOException {
-		ResourceSet resourceSet2 = typeManager.getExternalResourceSet();
+	public BaseCSResource createXtextFromURI(MetaModelManager metaModelManager, URI xtextURI) throws IOException {
+		ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(xtextURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		return xtextResource;
@@ -119,9 +119,9 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("Ecore load", inputResource);
 		assertNoValidationErrors("Ecore load", inputResource);
 		
-		TypeManager typeManager = new TypeManager();
+		MetaModelManager metaModelManager = new MetaModelManager();
 		try {
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, typeManager);
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, metaModelManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Resource pivotResource = pivotRoot.eResource();
 			pivotResource.setURI(pivotURI);
@@ -129,7 +129,7 @@ public class RoundTripTests extends XtextTestCase
 			pivotResource.save(null);
 			assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
 			
-			Resource outputResource = Pivot2Ecore.createResource(typeManager, pivotResource, outputURI, null);
+			Resource outputResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, outputURI, null);
 			assertNoResourceErrors("Ecore2Pivot failed", outputResource);
 			outputResource.save(null);
 			assertNoValidationErrors("Ecore2Pivot invalid", outputResource);
@@ -150,11 +150,11 @@ public class RoundTripTests extends XtextTestCase
 			Resource referenceResource = new ResourceSetImpl().getResource(referenceURI, true);
 			assertSameModel(referenceResource, outputResource);
 		} finally {
-			typeManager.dispose();
+			metaModelManager.dispose();
 		}
 	}
 	
-	public void doRoundTripFromOCLinEcore(TypeManager typeManager1, String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromOCLinEcore(MetaModelManager metaModelManager1, String stem) throws IOException, InterruptedException {
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
 		String outputName = stem + ".regenerated.oclinecore";
@@ -162,23 +162,23 @@ public class RoundTripTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
 
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager1);
-		BaseCSResource xtextResource1 = createXtextFromURI(typeManager1, inputURI);
-		PivotResource pivotResource1 = createPivotFromXtext(typeManager1, xtextResource1);
-		Resource ecoreResource = createEcoreFromPivot(typeManager1, pivotResource1, ecoreURI);
-		TypeManager typeManager2 = new TypeManager();
-		PivotResource pivotResource2 = createPivotFromEcore(typeManager2, ecoreResource);
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager1);
+		BaseCSResource xtextResource1 = createXtextFromURI(metaModelManager1, inputURI);
+		PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1);
+		Resource ecoreResource = createEcoreFromPivot(metaModelManager1, pivotResource1, ecoreURI);
+		MetaModelManager metaModelManager2 = new MetaModelManager();
+		PivotResource pivotResource2 = createPivotFromEcore(metaModelManager2, ecoreResource);
 		@SuppressWarnings("unused")
-		BaseCSResource xtextResource2 = createXtextFromPivot(typeManager2, pivotResource2, outputURI);
-		TypeManager typeManager3 = new TypeManager();
-		BaseCSResource xtextResource3 = createXtextFromURI(typeManager3, outputURI);
-		PivotResource pivotResource3 = createPivotFromXtext(typeManager3, xtextResource3);
+		BaseCSResource xtextResource2 = createXtextFromPivot(metaModelManager2, pivotResource2, outputURI);
+		MetaModelManager metaModelManager3 = new MetaModelManager();
+		BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
+		PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
 		((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
     	assertSameModel(pivotResource1, pivotResource3, options);
-		unloadPivot(typeManager1);
+		metaModelManager1.dispose();
 	}
 	
 	public void doRoundTripFromUml(String stem) throws IOException, InterruptedException {
@@ -207,7 +207,7 @@ public class RoundTripTests extends XtextTestCase
 		assertNoResourceErrors("UML load", inputResource);
 		assertNoValidationErrors("UML load", inputResource);
 		
-		TypeManager pivotManager = new TypeManager();
+		MetaModelManager pivotManager = new MetaModelManager();
 		UML2Pivot uml2Pivot = UML2Pivot.getAdapter(inputResource, pivotManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
@@ -246,7 +246,7 @@ public class RoundTripTests extends XtextTestCase
 				"{\n" +
 				"class A;\n" +
 				"}\n";
-		createEcoreFile(new TypeManager(), "Bug350894A.ecore", testFileA);
+		createEcoreFile(new MetaModelManager(), "Bug350894A.ecore", testFileA);
 		String testFileB = 
 				"import aa : 'Bug350894A.ecore#/';\n" +
 				"package b : bb = 'bbb'\n" +
@@ -257,7 +257,7 @@ public class RoundTripTests extends XtextTestCase
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
-		doRoundTripFromOCLinEcore(new TypeManager(), "Bug350894B");
+		doRoundTripFromOCLinEcore(new MetaModelManager(), "Bug350894B");
 	}
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {

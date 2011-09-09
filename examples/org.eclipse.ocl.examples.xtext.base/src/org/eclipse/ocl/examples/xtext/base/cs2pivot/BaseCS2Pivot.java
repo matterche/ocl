@@ -21,8 +21,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -98,8 +98,8 @@ public class BaseCS2Pivot extends CS2Pivot
 			return new BasePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager) {
-			return new BaseScopeVisitor(typeManager);
+		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
+			return new BaseScopeVisitor(metaModelManager);
 		}
 
 		public EPackage getEPackage() {
@@ -160,7 +160,7 @@ public class BaseCS2Pivot extends CS2Pivot
 	public static CS2Pivot.Factory FACTORY = new Factory();
 
 	public BaseCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
-			TypeManager typeManager) {
-		super(cs2pivotResourceMap, typeManager);
+			MetaModelManager metaModelManager) {
+		super(cs2pivotResourceMap, metaModelManager);
 	}
 }

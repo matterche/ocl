@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
-import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.xmi.XMLHelper;
@@ -40,7 +39,6 @@ public final class PivotSaveImpl extends XMISaveImpl
 	@Override
 	protected void init(XMLResource resource, Map<?, ?> options) {
 		PivotUtil.localizeSpecializations(resource);
-		TypeManager.setMonikerAsID(Collections.singletonList(resource));
 		super.init(resource, options);
 	}
 }

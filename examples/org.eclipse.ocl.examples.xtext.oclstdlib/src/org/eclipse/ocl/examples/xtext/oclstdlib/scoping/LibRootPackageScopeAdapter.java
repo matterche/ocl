@@ -22,7 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -35,8 +35,8 @@ public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 {
 	private static List<MetaTypeName> metaTypeNames = null;
 	
-	public LibRootPackageScopeAdapter(TypeManager typeManager, RootPackageCS csElement) {
-		super(typeManager, csElement);
+	public LibRootPackageScopeAdapter(MetaModelManager metaModelManager, RootPackageCS csElement) {
+		super(metaModelManager, csElement);
 	}
 
 	@Override

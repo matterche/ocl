@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOp
  * @generated
  */
 public abstract class ParameterableElementImpl
-		extends MonikeredElementImpl
+		extends ElementImpl
 		implements ParameterableElement {
 
 	/**
@@ -287,8 +287,6 @@ public abstract class ParameterableElementImpl
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
-				return getMoniker();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
@@ -312,9 +310,6 @@ public abstract class ParameterableElementImpl
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
 				return;
-			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
-				setMoniker((String)newValue);
-				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
 				return;
@@ -337,9 +332,6 @@ public abstract class ParameterableElementImpl
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
 				return;
@@ -361,8 +353,6 @@ public abstract class ParameterableElementImpl
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
@@ -381,8 +371,6 @@ public abstract class ParameterableElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.PARAMETERABLE_ELEMENT___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 		}

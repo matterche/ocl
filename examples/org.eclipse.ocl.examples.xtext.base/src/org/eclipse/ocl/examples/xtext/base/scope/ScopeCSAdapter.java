@@ -16,12 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public interface ScopeCSAdapter extends ScopeAdapter
 {	
+	MetaModelManager getMetaModelManager();
 	RootCSScopeAdapter getRootScopeAdapter();
-
-	TypeManager getTypeManager();
 }

@@ -24,22 +24,21 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
@@ -90,7 +89,7 @@ public class ElementUtil
 		}
 	}
 	
-	public static MonikeredElementCS getCsElement(MonikeredElement obj) {
+	public static ModelElementCS getCsElement(Element obj) {
 		Resource resource = obj.eResource();
 		if (resource == null) {
 			return null;
@@ -104,10 +103,6 @@ public class ElementUtil
 			return null;
 		}
 		return cs2Pivot.getCSElement(obj);
-//		String moniker = obj.getMoniker();
-//		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
-//		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
-//		return csMonikeredElement;
 	}
 
 	public static TemplateParameter getFormalTemplateParameter(TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {
@@ -181,8 +176,8 @@ public class ElementUtil
 		}
 	}
 
-	public static ScopeAdapter getScopeAdapter(TypeManager typeManager, Element element) {
-		return ModelElementCSScopeAdapter.getScopeAdapter(typeManager, element);
+	public static ScopeAdapter getScopeAdapter(MetaModelManager metaModelManager, Element element) {
+		return ModelElementCSScopeAdapter.getScopeAdapter(metaModelManager, element);
 	}
 
 	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
@@ -263,7 +258,7 @@ public class ElementUtil
 		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
 		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
-			ParameterableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
+			TypeRefCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
 			}

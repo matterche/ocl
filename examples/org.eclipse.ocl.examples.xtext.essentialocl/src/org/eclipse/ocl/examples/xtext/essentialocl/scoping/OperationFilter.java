@@ -34,8 +34,8 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
@@ -48,8 +48,8 @@ public class OperationFilter extends AbstractOperationFilter
 	private final int accumulators;
 	private final int expressions;
 	
-	public OperationFilter(TypeManager typeManager, Type sourceType, NavigatingExpCS csNavigatingExp) {
-		super(typeManager, sourceType);
+	public OperationFilter(MetaModelManager metaModelManager, Type sourceType, NavigatingExpCS csNavigatingExp) {
+		super(metaModelManager, sourceType);
 		int accumulators = 0;
 		int iterators = 0;
 		int expressions = 0;
@@ -86,7 +86,7 @@ public class OperationFilter extends AbstractOperationFilter
 	protected Map<TemplateParameter, ParameterableElement> getIterationBindings(Iteration candidateIteration) {
 		Type sourceType = this.sourceType;
 		if (!(sourceType instanceof CollectionType) && (candidateIteration.getClass_() instanceof CollectionType)) {
-			sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+			sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 		}
 		if (!(sourceType instanceof CollectionType)) {			// May be InvalidType
 			return null;
@@ -120,14 +120,14 @@ public class OperationFilter extends AbstractOperationFilter
 		Class containingType = candidateOperation.getClass_();
 		if (containingType instanceof CollectionType) {
 			if (!(sourceType instanceof CollectionType)) {
-				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+				sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 			}			
 			Type elementType;
 			if (sourceType instanceof CollectionType) {
 				elementType = ((CollectionType)sourceType).getElementType();
 			}
 			else {
-				elementType = typeManager.getOclInvalidType();
+				elementType = metaModelManager.getOclInvalidType();
 			}
 			bindings = new HashMap<TemplateParameter, ParameterableElement>();
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
@@ -202,13 +202,13 @@ public class OperationFilter extends AbstractOperationFilter
 				if (expression == null) {
 					return false;
 				}
-				Type candidateType = typeManager.getTypeWithMultiplicity(candidateParameter);
+				Type candidateType = metaModelManager.getTypeWithMultiplicity(candidateParameter);
 				if (candidateType instanceof SelfType) {
 					candidateType = candidateOperation.getClass_();
 				}
 				Type expressionType = expression.getType();
 				expressionType = PivotUtil.getBehavioralType(expressionType);			// FIXME make this a general facility
-				if (!typeManager.conformsTo(expressionType, candidateType, bindings)) {
+				if (!metaModelManager.conformsTo(expressionType, candidateType, bindings)) {
 					return false;
 				}
 			}

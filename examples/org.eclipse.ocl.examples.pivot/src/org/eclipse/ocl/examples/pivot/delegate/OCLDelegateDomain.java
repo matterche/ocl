@@ -24,9 +24,10 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerListener;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -34,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
  * 
  * @since 3.0
  */
-public class OCLDelegateDomain implements DelegateDomain
+public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListener
 {
 	/**
 	 * The EAnnotation source URI for delegate OCL annotations.
@@ -71,8 +72,7 @@ public class OCLDelegateDomain implements DelegateDomain
 
 	protected final String uri;
 	protected final EPackage ePackage;
-	protected final OCL ocl;
-	protected final TypeManager typeManager;
+	protected OCL ocl = null;				// Lazily initialized and re-initialized
 	// FIXME Introduce a lightweight function (? a lambda function) to avoid the need for a CompleteEnvironment for queries
 //	private Map<CompletePackage, org.eclipse.ocl.examples.pivot.Package> queryPackages = null;
 //	private Map<CompleteType, org.eclipse.ocl.examples.pivot.Class> queryTypes = null;
@@ -91,38 +91,22 @@ public class OCLDelegateDomain implements DelegateDomain
 	public OCLDelegateDomain(String delegateURI, EPackage ePackage) {
 		this.uri = delegateURI;
 		this.ePackage = ePackage;
-		// Delegates are an application-independent extension of EMF
-		//  so we must use the neutral/global context see Bug 338501
-		this.ocl = OCL.newInstance(getEnvironmentFactory());
-		this.typeManager = ocl.getEnvironment().getTypeManager();
-	}
-
-	public void dispose() {
-		if (ocl != null) {
-			ocl.dispose();
-		}
 	}
 
 	private PivotEnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
 		PivotEnvironmentFactory envFactory = null;
 		if (res != null) {
-			TypeManager typeManager = null;
-//			Ecore2Pivot ecore2Pivot = null; //Ecore2Pivot.findAdapter(res);
-//			if (ecore2Pivot != null) {
-//				typeManager = ecore2Pivot.getTypeManager();
-//			}
+			MetaModelManager metaModelManager = null;
 			ResourceSet resourceSet = res.getResourceSet();
 			if (resourceSet != null) {
-//				if (typeManager != null) {
-					TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
-					if (rsAdapter != null) {
-						typeManager = rsAdapter.getTypeManager();
-					}
-//				}
+				MetaModelManagerResourceSetAdapter rsAdapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+				if (rsAdapter != null) {
+					metaModelManager = rsAdapter.getMetaModelManager();
+				}
 				// it's a dynamic package. Use the local package registry
 				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-				envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
+				envFactory = new PivotEnvironmentFactory(packageRegistry, metaModelManager);
 				DelegateResourceAdapter.getAdapter(res);
 			}
 		}
@@ -133,61 +117,38 @@ public class OCLDelegateDomain implements DelegateDomain
 		return envFactory;
 	}
 
+	public final MetaModelManager getMetaModelManager() {
+		return getOCL().getMetaModelManager();
+	}
+
 	public OCL getOCL() {
+		if (ocl == null) {
+			// Delegates are an application-independent extension of EMF
+			//  so we must use the neutral/global context see Bug 338501
+			ocl = OCL.newInstance(getEnvironmentFactory());
+			ocl.getMetaModelManager().addListener(this);
+		}
 		return ocl;
 	}
 	
 	public <T extends Element> T getPivot(Class<T> requiredClass, EObject eObject) {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eObject.eResource(), typeManager);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eObject.eResource(), getOCL().getMetaModelManager());
 		return ecore2Pivot.getCreated(requiredClass, eObject);
 	}
-
-/*	public org.eclipse.ocl.examples.pivot.Package getQueryPackage(org.eclipse.ocl.examples.pivot.Package modelPackage) {
-		CompleteEnvironmentManager completeEnvironmentManager = typeManager.useCompleteEnvironmentManager();
-		CompletePackage completePackage = typeManager.getCompletePackage(modelPackage);
-		if (queryPackages == null) {
-			queryPackages = new HashMap<CompletePackage, org.eclipse.ocl.examples.pivot.Package>();
-		}
-		org.eclipse.ocl.examples.pivot.Package queryPackage = queryPackages.get(completePackage);
-		if (queryPackage == null) {
-			queryPackage = PivotFactory.eINSTANCE.createPackage();
-			queryPackage.setName(modelPackage.getName());
-			queryPackage.setMoniker(modelPackage.getMoniker());
-			queryPackages.put(completePackage, queryPackage);
-			completeEnvironmentManager.addPackage(completePackage, queryPackage);
-			org.eclipse.ocl.examples.pivot.Package nestingModelPackage = modelPackage.getNestingPackage();
-			if (nestingModelPackage != null) {
-				org.eclipse.ocl.examples.pivot.Package nestingQueryPackage = getQueryPackage(nestingModelPackage);
-				nestingQueryPackage.getNestedPackages().add(queryPackage);
-			}
-		}
-		return queryPackage;
-	} */
-
-/*	public org.eclipse.ocl.examples.pivot.Class getQueryType(Type modelType) {
-		CompleteEnvironmentManager completeEnvironmentManager = typeManager.useCompleteEnvironmentManager();
-		org.eclipse.ocl.examples.pivot.Package contextPackage = getQueryPackage(modelType.getPackage());
-		CompleteType completeType = typeManager.getCompleteType(modelType);
-		if (queryTypes == null) {
-			queryTypes = new HashMap<CompleteType, org.eclipse.ocl.examples.pivot.Class>();
-		}
-		org.eclipse.ocl.examples.pivot.Class queryType = queryTypes.get(completeType);
-		if (queryType == null) {
-			queryType = PivotFactory.eINSTANCE.createClass();
-			queryType.setName(modelType.getName());
-			queryTypes.put(completeType, queryType);
-			contextPackage.getOwnedTypes().add(queryType);
-			completeEnvironmentManager.addType(completeType, queryType);
-		}
-		return queryType;
-	} */
-
-	public TypeManager getTypeManager() {
-		return typeManager;
-	}
 	
-	public String getURI() {
+	public final String getURI() {
 		return uri;
+	}
+
+	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
+		reset();
+	}
+
+	public void reset() {
+		if (ocl != null) {
+			ocl.dispose();
+			ocl = null;
+		}
 	}
 
 	@Override

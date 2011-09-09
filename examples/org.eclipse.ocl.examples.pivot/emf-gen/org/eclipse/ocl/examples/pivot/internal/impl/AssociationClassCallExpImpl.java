@@ -133,8 +133,6 @@ public class AssociationClassCallExpImpl
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__MONIKER:
-				return getMoniker();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_RULE:
@@ -177,9 +175,6 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName((String)newValue);
@@ -233,9 +228,6 @@ public class AssociationClassCallExpImpl
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -284,8 +276,6 @@ public class AssociationClassCallExpImpl
 		{
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__OWNED_RULE:

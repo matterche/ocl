@@ -566,8 +566,6 @@ public class TypeImpl
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				return getOwnedComments();
-			case PivotPackage.TYPE__MONIKER:
-				return getMoniker();
 			case PivotPackage.TYPE__NAME:
 				return getName();
 			case PivotPackage.TYPE__OWNED_RULE:
@@ -608,9 +606,6 @@ public class TypeImpl
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case PivotPackage.TYPE__MONIKER:
-				setMoniker((String)newValue);
 				return;
 			case PivotPackage.TYPE__NAME:
 				setName((String)newValue);
@@ -664,9 +659,6 @@ public class TypeImpl
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				getOwnedComments().clear();
 				return;
-			case PivotPackage.TYPE__MONIKER:
-				setMoniker(MONIKER_EDEFAULT);
-				return;
 			case PivotPackage.TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -715,8 +707,6 @@ public class TypeImpl
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
-			case PivotPackage.TYPE__MONIKER:
-				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPE__OWNED_RULE:
@@ -838,8 +828,6 @@ public class TypeImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPE___HAS_MONIKER:
-				return hasMoniker();
 			case PivotPackage.TYPE___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.TYPE___IS_TEMPLATE:

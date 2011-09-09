@@ -19,9 +19,9 @@ package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 import java.util.Collections;
 
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
@@ -75,15 +75,15 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			TypeManager typeManager = context.getTypeManager();
+			MetaModelManager metaModelManager = context.getMetaModelManager();
 			TypedRefCS csElementType = csElement.getOwnedType();
 			Type type;
 			if (csElementType != null) {
 				Type elementType = PivotUtil.getPivot(Type.class, csElementType);
-				type = typeManager.getLibraryType(csElement.getName(), Collections.singletonList(elementType));
+				type = metaModelManager.getLibraryType(csElement.getName(), Collections.singletonList(elementType));
 			}
 			else {
-				type = typeManager.getLibraryType(csElement.getName());
+				type = metaModelManager.getLibraryType(csElement.getName());
 			}
 			csElement.setPivot(type);
 			return null;
@@ -116,7 +116,7 @@ public class EssentialOCLPreOrderVisitor
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = NLS.bind(OCLMessages.UnresolvedType_ERROR_, csElement.toString());
 				context.addDiagnostic(csElement, boundMessage);
-				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
+				element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 			}
 			csElement.setPivot(element);
 			return null;

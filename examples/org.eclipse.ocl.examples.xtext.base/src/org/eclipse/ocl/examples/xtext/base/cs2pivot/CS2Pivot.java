@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
@@ -36,20 +35,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
@@ -68,15 +61,15 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * and their corresponding Pivot Resources creating a CS2PivotConversion
  * to update.
  */
-public class CS2Pivot extends AbstractConversion implements Adapter
+public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdapter
 {	
 	private static final Logger logger = Logger.getLogger(CS2Pivot.class);
 
 	public static interface Factory {
-		BaseCSVisitor<MonikeredElement, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
+		BaseCSVisitor<Element, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager);
+		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager);
 		EPackage getEPackage();
 	}
 	
@@ -112,6 +105,10 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}	
 
 	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
+		ExceptionAdapter exceptionAdapter = PivotUtil.getAdapter(ExceptionAdapter.class, csContext);
+		if (exceptionAdapter != null) {
+			return exceptionAdapter.getException().getLocalizedMessage();
+		}
 		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
 		if (unresolvedProxyMessageProvider != null) {
 			String message = unresolvedProxyMessageProvider.getMessage(csContext, linkText);
@@ -170,7 +167,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return documentationNodes;
 	}
 	
-	protected final TypeManager typeManager;
+	protected final MetaModelManager metaModelManager;
 	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
@@ -181,91 +178,49 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 * Mapping of each CS resource to a short alias used in URI maps.
 	 */
 	protected final Map<Resource, String> csResource2aliasMap;
-	
-	/**
-	 * The moniker to CS element map, which is computed lazily to support the
-	 * BaseLocationInFileProvider navigation from pivot to CS to line. The mapping
-	 * is destroyed by each CS to Pivot update.
-	 */
-//	protected Map<String, MonikeredElementCS> moniker2PivotCSMap = null;
 
-	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>>();
+	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, MetaModelManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, MetaModelManager>>();
 
 	/**
 	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
 	 * the next update from a potentially different CS Resource and elements but the same URIs to re-use the pivot elements
 	 * and to kill off the obsolete elements. 
 	 */
-	private Map<String, MonikeredElement> csi2pivot = new HashMap<String, MonikeredElement>();
+	private Map<String, Element> csi2pivot = new HashMap<String, Element>();
 
 	/**
 	 * A lazily created inverse map that may be required for navigation from an outline.
 	 */
-	private Map<MonikeredElement, MonikeredElementCS> pivot2cs = null;
+	private Map<Element, ModelElementCS> pivot2cs = null;
 
-	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
+	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.csResource2aliasMap = new HashMap<Resource, String>();
 		int i = 0;
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
-			csResource2aliasMap.put(csResource, Integer.toString(i));
+			csResource2aliasMap.put(csResource, Integer.toString(i++));
 		}
-		this.typeManager = typeManager;
-		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
+		this.metaModelManager = metaModelManager;
+		metaModelManager.addListener(this);
 	}
 	
 	public CS2Pivot(CS2Pivot aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
 		this.csResource2aliasMap = aConverter.csResource2aliasMap;
-		this.typeManager = aConverter.typeManager;
+		this.metaModelManager = aConverter.metaModelManager;
+		for (Map.Entry<String, Element> entry : aConverter.csi2pivot.entrySet()) {
+			csi2pivot.put(entry.getKey(), entry.getValue());
+		}
 	}
 
-/*	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
-		if (moniker2PivotCSMap == null) {
-			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
-		}
-		return moniker2PivotCSMap;
-	} */
-
-/*	public Map<String, MonikeredElementCS> computeMoniker2CSMap(Collection<? extends Resource> csResources) {
-		Map<String, MonikeredElementCS> map = new HashMap<String, MonikeredElementCS>();
-		for (Resource csResource : csResources) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementCS) {
-					MonikeredElementCS monikeredElement = (MonikeredElementCS) eObject;
-					String moniker = monikeredElement.getMoniker();
-					assert moniker != null;
-					MonikeredElementCS oldMonikeredElement = map.get(moniker);
-					if ((monikeredElement instanceof NamedElementCS) 
-					&& !(monikeredElement instanceof TypeRefCS)
-					&& !(monikeredElement instanceof TuplePartCS)) {
-						if ((oldMonikeredElement instanceof NamedElementCS)
-						&& !(oldMonikeredElement instanceof TypeRefCS)
-						&& !(oldMonikeredElement instanceof TuplePartCS)) {
-							logger.warn("Duplicate CS '" + moniker + "'");
-						}
-						else {
-							map.put(moniker, monikeredElement);
-						}
-					}
-					else if (oldMonikeredElement == null){
-						map.put(moniker, monikeredElement);
-					}
-				}
-			}
-		}
-		return map;
-	} */
-
-	public Map<String, MonikeredElement> computeCSI2PivotMap() {
-		Map<String, MonikeredElement> map = new HashMap<String, MonikeredElement>();
+	public Map<String, Element> computeCSI2PivotMap() {
+		Map<String, Element> map = new HashMap<String, Element>();
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
-				if ((eObject instanceof MonikeredElementCS) && !(eObject instanceof RefCS)) {	// WIP remove the overlap
-					MonikeredElementCS csElement = (MonikeredElementCS)eObject;
-					MonikeredElement pivotElement = (MonikeredElement)csElement.getPivot();
+				if (eObject instanceof ModelElementCS) {
+					ModelElementCS csElement = (ModelElementCS)eObject;
+					Element pivotElement = csElement.getPivot();
 					String csURI = getCSI(csElement);
 					map.put(csURI, pivotElement);
 				}
@@ -279,8 +234,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
-				if ((eObject instanceof MonikeredElementCS) && !(eObject instanceof RefCS)) {	// WIP remove the overlap
-					MonikeredElementCS csElement = (MonikeredElementCS)eObject;
+				if (eObject instanceof ModelElementCS) {
+					ModelElementCS csElement = (ModelElementCS)eObject;
 					String csURI = getCSI(csElement);
 					map.add(csURI);
 				}
@@ -289,14 +244,14 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return map;
 	}
 
-	public Map<MonikeredElement, MonikeredElementCS> computePivot2CSMap() {
-		Map<MonikeredElement, MonikeredElementCS> map = new HashMap<MonikeredElement, MonikeredElementCS>();
+	public Map<Element, ModelElementCS> computePivot2CSMap() {
+		Map<Element, ModelElementCS> map = new HashMap<Element, ModelElementCS>();
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
 			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
-				if ((eObject instanceof MonikeredElementCS) && !(eObject instanceof RefCS)) {	// WIP remove the overlap
-					MonikeredElementCS csElement = (MonikeredElementCS)eObject;
-					MonikeredElement pivotElement = (MonikeredElement)csElement.getPivot();
+				if (eObject instanceof ModelElementCS) {
+					ModelElementCS csElement = (ModelElementCS)eObject;
+					Element pivotElement = csElement.getPivot();
 					map.put(pivotElement, csElement);
 				}
 			}
@@ -304,7 +259,16 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return map;
 	}
 
-	public MonikeredElementCS getCSElement(MonikeredElement pivotElement) {
+	public void dispose() {
+		cs2pivotResourceMap.clear();
+		csResource2aliasMap.clear();
+		scopeVisitorMap.clear();
+		csi2pivot.clear();
+		pivot2cs = null;
+		metaModelManager.getPivotResourceSet().eAdapters().remove(this);
+	}
+
+	public ModelElementCS getCSElement(Element pivotElement) {
 		if (pivot2cs == null) {
 			pivot2cs = computePivot2CSMap();
 		}
@@ -315,7 +279,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 * Get the Concrete Syntax Identifier for a CS element. This is a form of URI. It is significantly compacted to
 	 * save on memory.
 	 */
-	public String getCSI(MonikeredElementCS csElement) {
+	public String getCSI(ModelElementCS csElement) {
 		String csi = csElement.getCsi();
 		if (csi == null) {
 			Resource csResource = csElement.eResource();
@@ -334,14 +298,14 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return factoryMap.get(ePackage);
 	}
 
-	public MonikeredElement getPivotElement(MonikeredElementCS csElement) {
+	public Element getPivotElement(ModelElementCS csElement) {
 		String csi = getCSI(csElement);
 		return csi2pivot.get(csi);
 	}
 
-	public <T extends Element> T getPivotElement(Class<T> pivotClass, MonikeredElementCS csElement) {
+	public <T extends Element> T getPivotElement(Class<T> pivotClass, ModelElementCS csElement) {
 		String csi = getCSI(csElement);
-		Element pivotElement =csi2pivot.get(csi);
+		Element pivotElement = csi2pivot.get(csi);
 		if (pivotElement == null) {
 			return null;
 		}
@@ -358,15 +322,15 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public Collection<? extends Resource> getPivotResources() {
-		return typeManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
+		return metaModelManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
 	}
 
-	public BaseCSVisitor<ScopeCSAdapter, TypeManager> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<ScopeCSAdapter, TypeManager> scopeVisitor = scopeVisitorMap.get(ePackage);
+	public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> getScopeVisitor(EPackage ePackage) {
+		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> scopeVisitor = scopeVisitorMap.get(ePackage);
 		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
 			Factory factory = getFactory(ePackage);
 			if (factory != null) {
-				scopeVisitor = factory.createScopeVisitor(typeManager);
+				scopeVisitor = factory.createScopeVisitor(metaModelManager);
 				if (scopeVisitor == null) {
 					logger.error("No Scope Visitor created for " + ePackage.getName());
 				}
@@ -380,19 +344,18 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public Notifier getTarget() {
-		return typeManager.getPivotResourceSet();
+		return metaModelManager.getPivotResourceSet();
 	}
 
-	public TypeManager getTypeManager() {
-		return typeManager;
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 	
 	/**
 	 * Install the mapping from a CS element that defines a pivot element to the defined pivot element. The definition
 	 * is 'owned' by the CS element, so if the CS element vanishes, so does the pivot element.
 	 */
-	public void installPivotDefinition(MonikeredElementCS csElement, MonikeredElement newPivotElement) {
-		assert !(csElement instanceof RefCS);
+	public void installPivotDefinition(ModelElementCS csElement, Element newPivotElement) {
 	//	logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$	
 		EObject oldPivotElement = csElement.getPivot();	
 		if (oldPivotElement != newPivotElement) {
@@ -410,25 +373,22 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 * Install the mapping from a CS element to a completely independent pivot element. If the pivot element vanishes, the
 	 * reference is stale, if the CS element the pivot element is less referenced.
 	 */
-	public void installPivotReference(ModelElementCS csElement, Element newPivotElement, EReference eReference) {
-		assert csElement instanceof RefCS;
+	public void installPivotReference(ElementRefCS csElement, Element newPivotElement, EReference eReference) {
 		assert eReference.getEContainingClass().isSuperTypeOf(csElement.eClass());
 	//	logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$	
 		EObject oldPivotElement = csElement.getPivot();	
 		if (oldPivotElement != newPivotElement) {
 			assert !newPivotElement.eIsProxy();
 			csElement.setPivot(newPivotElement);
-			typeManager.installReference(csElement, newPivotElement, eReference);
 		}
 	}
 	
 	/**
 	 * Install the mapping from a CS element to a related pivot element. This normally arises when more than one CS element
-	 * are associated with a single pivot element. In this case one of the CS elements isdthe defining CS element and the
+	 * are associated with a single pivot element. In this case one of the CS elements is the defining CS element and the
 	 * others are users.
 	 */
-	public void installPivotUsage(ModelElementCS csElement, MonikeredElement newPivotElement) {
-		assert !(csElement instanceof RefCS);
+	public void installPivotUsage(ModelElementCS csElement, Element newPivotElement) {
 	//	logger.trace("Installing " + csElement.getDescription()); //$NON-NLS-1$ //$NON-NLS-2$	
 		EObject oldPivotElement = csElement.getPivot();	
 		if (oldPivotElement != newPivotElement) {
@@ -446,30 +406,28 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		}
 	}
 
+	public boolean isAdapterFor(MetaModelManager metaModelManager) {
+		return this.metaModelManager == metaModelManager;
+	}
+
+	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
+		dispose();
+	}
+
 	public void notifyChanged(Notification notification) {
 		// Do nothing.
 	}
 	
-	public <T extends MonikeredElement> T refreshMonikeredElement(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
-		assert !(csElement instanceof RefCS);			// WIP rename as refreshDefinedElement
-//		String moniker = CS2Moniker.toString(csElement);
-		MonikeredElement pivotElement = csElement != null ? getPivotElement(csElement) : null;
+	public <T extends Element> T refreshModelElement(Class<T> pivotClass, EClass pivotEClass, ModelElementCS csElement) {
+		Element pivotElement = csElement != null ? getPivotElement(csElement) : null;
 		if (pivotElement == null) {
 //			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
-//			pivotElement.setMoniker(moniker);
-//			putPivotElement(moniker, pivotElement);
+			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
 		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
 //			logger.trace("Recreating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
-//			reputPivotElement(moniker, pivotElement);
+			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
-//		else {
-//			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
-//			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-//			newMoniker2PivotMap.put(moniker, pivotElement);
-//		}
 		if (csElement != null) {
 			installPivotDefinition(csElement, pivotElement);
 		}
@@ -477,72 +435,19 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		T castElement = (T) pivotElement;
 		return castElement;
 	}
-	
-	public <T extends MonikeredElement> T refreshReferencedElement(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement, EReference eReference) {
-		assert csElement instanceof RefCS;
-//		String moniker = CS2Moniker.toString(csElement);
-		MonikeredElement pivotElement = csElement != null ? getPivotElement(csElement) : null;
-		if (pivotElement == null) {
-//			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
-//			pivotElement.setMoniker(moniker);
-//			putPivotElement(moniker, pivotElement);
-		}
-		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-//			logger.trace("Recreating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
-//			reputPivotElement(moniker, pivotElement);
-		}
-//		else {
-//			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
-//			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-//			newMoniker2PivotMap.put(moniker, pivotElement);
-//		}
-		if (csElement != null) {
-			installPivotReference(csElement, pivotElement, eReference);
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) pivotElement;
-		return castElement;
-	}
-
-	/**
-	 * Reset all the CS monikers for test purposes.
-	 *
-	public void resetCSMonikers() {
-		for (Resource pivotResource : getCSResources()) {
-			for (Iterator<EObject> it = pivotResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementCSImpl) {
-					((MonikeredElementCSImpl)eObject).resetMoniker();
-				}
-			}
-		}
-	} */
-
-	/**
-	 * Reset all the pivot monikers for test purposes.
-	 */
-	public void resetPivotMonikers() {
-		for (Resource pivotResource : getPivotResources()) {
-			for (Iterator<EObject> it = pivotResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof MonikeredElementImpl) {
-					((MonikeredElementImpl)eObject).resetMoniker();
-				}
-			}
-		}
-	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == typeManager.getPivotResourceSet();
+		assert newTarget == metaModelManager.getPivotResourceSet();
+	}
+
+	public void unsetTarget(Notifier oldTarget) {
+		assert oldTarget == metaModelManager.getPivotResourceSet();
 	}
 	
 	public synchronized void update(IDiagnosticConsumer diagnosticsConsumer) {
-		Map<String, MonikeredElement> oldCSI2Pivot = csi2pivot;
+		Map<String, Element> oldCSI2Pivot = csi2pivot;
 		Set<String> newCSIs  = computeCSIs();
 //		System.out.println("==========================================================================");
-//		moniker2PivotCSMap = null;			// Recomputation necessary
 		Collection<? extends Resource> csResources = getCSResources();
 //		for (Resource csResource : csResources) {
 //			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " " + csResource.getURI());
@@ -559,11 +464,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		Set<String> deadCSIs = new HashSet<String>(oldCSI2Pivot.keySet());
 		deadCSIs.removeAll(newCSIs);
 		for (String deadCSI : deadCSIs) {
-			Element deadPivot = oldCSI2Pivot.get(deadCSI);
-			typeManager.kill(deadPivot);
+			Element deadPivot = oldCSI2Pivot.get(deadCSI);	// WIP
+//			metaModelManager.kill(deadPivot);
 		}
 		conversion.garbageCollect(cs2pivotResourceMap);
-		csi2pivot  = computeCSI2PivotMap();
+		csi2pivot = computeCSI2PivotMap();
 		pivot2cs = null;
 	}
 }

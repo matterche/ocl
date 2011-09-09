@@ -87,7 +87,6 @@ public interface Visitor<R, C>
 	R visitLoopExp(org.eclipse.ocl.examples.pivot.LoopExp object);
 	R visitMessageExp(org.eclipse.ocl.examples.pivot.MessageExp object);
 	R visitMessageType(org.eclipse.ocl.examples.pivot.MessageType object);
-	R visitMonikeredElement(org.eclipse.ocl.examples.pivot.MonikeredElement object);
 	R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object);
 	R visitNamedElement(org.eclipse.ocl.examples.pivot.NamedElement object);
 	R visitNamespace(org.eclipse.ocl.examples.pivot.Namespace object);

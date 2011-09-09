@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -58,14 +58,14 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 		return object;
 	}
 
-	public Type getType(TypeManager typeManager, Type staticType) {
+	public Type getType(MetaModelManager metaModelManager, Type staticType) {
 		if (object instanceof EObject) {
-			Type type = PivotUtil.findTypeOf(typeManager, ((EObject)object).eClass());
+			Type type = PivotUtil.findTypeOf(metaModelManager, ((EObject)object).eClass());
 			if (type != null) {
 				return type;
 			}
 		}
-		return typeManager.getClassifierType();
+		return metaModelManager.getClassifierType();
 	}
 
 	@Override

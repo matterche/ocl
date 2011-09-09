@@ -36,10 +36,10 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class LoadTests extends XtextTestCase
 {	
-	protected TypeManager typeManager = null;
+	protected MetaModelManager metaModelManager = null;
 
 	public void checkMonikers(Resource resource) {
 		Map<String, NamedElementCS> sigMap = new HashMap<String, NamedElementCS>();
@@ -69,8 +69,8 @@ public class LoadTests extends XtextTestCase
 				}
 				sigMap.put(moniker, namedElementCS);
 			}
-			else if (eObject instanceof MonikeredElementCS) {
-				MonikeredElementCS nameableElementCS = (MonikeredElementCS)eObject;
+			else if (eObject instanceof ModelElementCS) {
+				ModelElementCS nameableElementCS = (ModelElementCS)eObject;
 				String moniker = CS2Moniker.toString(nameableElementCS);
 				System.out.println(moniker + "                              -> " + nameableElementCS.eClass().getName()); // + " : " + value.toString());
 			}
@@ -78,7 +78,7 @@ public class LoadTests extends XtextTestCase
 		List<String> keys = new ArrayList<String>(sigMap.keySet());
 		Collections.sort(keys);
 		for (String key : keys) {
-			MonikeredElementCS value = sigMap.get(key);
+			ModelElementCS value = sigMap.get(key);
 			System.out.println(key + "                              => " + value.eClass().getName()); // + " : " + value.toString());
 		}
 	}	
@@ -92,10 +92,10 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		if (typeManager == null) {
-			typeManager = new TypeManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		Resource xtextResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -114,12 +114,11 @@ public class LoadTests extends XtextTestCase
 			assertNoResourceErrors("Save failed", xtextResource);
 		}
 		finally {
-			unloadCS(resourceSet);
 			if (xtextResource instanceof BaseCSResource) {
 				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
 				adapter.dispose();
 			}
-			unloadPivot(typeManager);
+			metaModelManager.dispose();
 		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
@@ -139,8 +138,8 @@ public class LoadTests extends XtextTestCase
 		URI cstURI = getProjectFileURI(cstName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
-//		TypeManager typeManager = new TypeManager();
-//		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+//		MetaModelManager metaModelManager = new MetaModelManager();
+//		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		CS2PivotResourceAdapter adapter = null;
 		try {
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
@@ -164,7 +163,7 @@ public class LoadTests extends XtextTestCase
 		finally {
 			if (adapter != null) {
 				adapter.dispose();
-				adapter.getTypeManager().dispose();
+				adapter.getMetaModelManager().dispose();
 			}
 		}
 	}
@@ -178,10 +177,10 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		if (typeManager == null) {
-			typeManager = new TypeManager();
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
 		}
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		Resource pivotResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
@@ -205,7 +204,7 @@ public class LoadTests extends XtextTestCase
 //				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
 //				adapter.dispose();
 //			}
-//			unloadPivot(typeManager);
+//			unloadPivot(metaModelManager);
 		}
 		return pivotResource;
 	}
@@ -231,19 +230,18 @@ public class LoadTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		unloadCS(resourceSet);
-		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
-			TypeManager typeManager = adapter.getTypeManager();
-			if (typeManager != null) {
-				typeManager.dispose();
+			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			if (metaModelManager != null) {
+				metaModelManager.dispose();
 			}
 		}
-		if (typeManager != null) {
-			typeManager.dispose();
-			typeManager = null;
+		if (metaModelManager != null) {
+			metaModelManager.dispose();
+			metaModelManager = null;
 		}
-		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
+		StandardLibraryContribution.REGISTRY.remove(MetaModelManager.DEFAULT_OCL_STDLIB_URI);
 		super.tearDown();
 	}
 
@@ -264,14 +262,14 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-//		typeManager = new TypeManager();
-//		typeManager.loadLibrary(OCLstdlib.INSTANCE);
+//		metaModelManager = new MetaModelManager();
+//		metaModelManager.loadLibrary(OCLstdlib.INSTANCE);
 		Resource pivotResource = doLoad_Concrete("Expression", "oclinecore");
 		String ecoreName = "Expression" + ".saved.ecore";
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
-		XMLResource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, options);
+		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}	
 
@@ -296,7 +294,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-//		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
+//		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource pivotResource = doLoad_Concrete("oclstdlib", "oclstdlib");
 		checkMonikers(pivotResource);
 		String ecoreName = "oclstdlib" + ".saved.ecore";
@@ -306,7 +304,7 @@ public class LoadTests extends XtextTestCase
 		org.eclipse.ocl.examples.pivot.Package root = PivotFactory.eINSTANCE.createPackage();		// FIXME Avoid this kludge
 		root.getNestedPackages().addAll((Collection<? extends Package>) pivotResource.getContents());
 		pivotResource.getContents().add(root);
-		XMLResource ecoreResource = Pivot2Ecore.createResource(typeManager, pivotResource, ecoreURI, options);
+		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, options);
 		ecoreResource.save(null);
 	}
 
@@ -371,8 +369,8 @@ public class LoadTests extends XtextTestCase
 	}
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
-		typeManager = new TypeManager();
-		ResourceSet resourceSet = typeManager.getExternalResourceSet();
+		metaModelManager = new MetaModelManager();
+		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 		assertNull(UML2Ecore2Pivot.initialize(resourceSet));
 		UMLPackage.eINSTANCE.getClass();
 		doLoad("Fruit", "ocl");

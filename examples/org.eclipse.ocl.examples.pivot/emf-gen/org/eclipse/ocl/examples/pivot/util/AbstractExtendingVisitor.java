@@ -205,16 +205,12 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitType(object);
 	}
 
-	public R visitMonikeredElement(org.eclipse.ocl.examples.pivot.MonikeredElement object) {
+	public R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object) {
 		return visitElement(object);
 	}
 
-	public R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object) {
-		return visitMonikeredElement(object);
-	}
-
 	public R visitNamedElement(org.eclipse.ocl.examples.pivot.NamedElement object) {
-		return visitMonikeredElement(object);
+		return visitElement(object);
 	}
 
 	public R visitNamespace(org.eclipse.ocl.examples.pivot.Namespace object) {
@@ -270,7 +266,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitParameterableElement(org.eclipse.ocl.examples.pivot.ParameterableElement object) {
-		return visitMonikeredElement(object);
+		return visitElement(object);
 	}
 
 	public R visitPrecedence(org.eclipse.ocl.examples.pivot.Precedence object) {
@@ -346,11 +342,11 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitTemplateSignature(org.eclipse.ocl.examples.pivot.TemplateSignature object) {
-		return visitMonikeredElement(object);
+		return visitElement(object);
 	}
 
 	public R visitTemplateableElement(org.eclipse.ocl.examples.pivot.TemplateableElement object) {
-		return visitMonikeredElement(object);
+		return visitElement(object);
 	}
 
 	public R visitTupleLiteralExp(org.eclipse.ocl.examples.pivot.TupleLiteralExp object) {

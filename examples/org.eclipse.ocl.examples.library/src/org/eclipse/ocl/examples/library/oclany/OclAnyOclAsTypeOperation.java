@@ -21,8 +21,8 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -36,15 +36,15 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 	public static final OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
+		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+		Type sourceType = sourceVal.getType(metaModelManager, operationCall.getSource().getType());
 		if (sourceType == null) {
 			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
 		Type argType = typeVal.getInstanceType();
-		if (typeManager.conformsTo(sourceType, argType, null)) {
+		if (metaModelManager.conformsTo(sourceType, argType, null)) {
 			return sourceVal;
 		}
 		else {

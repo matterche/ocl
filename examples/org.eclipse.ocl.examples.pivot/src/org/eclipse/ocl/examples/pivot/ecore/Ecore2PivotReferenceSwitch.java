@@ -70,14 +70,14 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
 		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
 		if (pivotElement.getSuperClasses().isEmpty()) {
-			org.eclipse.ocl.examples.pivot.Class classifierType = converter.getTypeManager().getClassifierType();
-			if (classifierType != null) {
-				pivotElement.getSuperClasses().add(classifierType);
+			org.eclipse.ocl.examples.pivot.Class oclElementType = converter.getMetaModelManager().getOclElementType();
+			if (oclElementType != null) {
+				pivotElement.getSuperClasses().add(oclElementType);
 			}		// FIXME Why aren't these synonymous
-			org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)converter.getTypeManager().getPivotType("Class");
-			if (classType != null) {
-				pivotElement.getSuperClasses().add(classType);
-			}
+//			org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)converter.getMetaModelManager().getPivotType("Class");
+//			if (classType != null) {
+//				pivotElement.getSuperClasses().add(classType);
+//			}
 		}
 		return null;
 	}
@@ -136,7 +136,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 			pivotElement.setOpposite(oppositeProperty);
 		}
 		else if (eObject.eContainer() instanceof EClass) {		// Skip annotation references
-			converter.getTypeManager().installPropertyDeclaration(pivotElement);
+			converter.getMetaModelManager().installPropertyDeclaration(pivotElement);
 		}
 		return pivotElement;
 	}
