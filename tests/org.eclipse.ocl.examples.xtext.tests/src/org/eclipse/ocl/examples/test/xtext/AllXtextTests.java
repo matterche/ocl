@@ -58,6 +58,7 @@ public class AllXtextTests
 		result.addTestSuite(MonikerTests.class);
 		result.addTestSuite(PivotTests.class);
 		result.addTestSuite(OCLstdlibTests.class);
+		result.addTestSuite(PrecedenceTests.class);
 		result.addTestSuite(EvaluateBooleanOperationsTest.class);
 		result.addTestSuite(EvaluateClassifierOperationsTest.class);
 		result.addTestSuite(EvaluateCollectionOperationsTest.class);

@@ -16,22 +16,32 @@
  */
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.AssociativityKind;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -43,153 +53,50 @@ import com.google.common.collect.Iterables;
  */
 public class OCLstdlibTests extends XtextTestCase
 {
-	/**
-	 * Checks that the local oclstdlib.oclstdlib is the same as the pre-compiled
-	 * Java implementation.
-	 * 
-	 * FIXME check the library/model version instead.
-	 */
-	public void testOCLstdlib() throws Exception {
-		//
-		//	Load oclstdlib.oclstdlib as a file.
-		//
-		URI libraryURI = getProjectFileURI("oclstdlib.oclstdlib");
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
-		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		Resource fileResource = adapter.getPivotResource(xtextResource);
-		assertNoResourceErrors("File Model", fileResource);
-		assertNoUnresolvedProxies("File Model", fileResource);
-		assertNoValidationErrors("File Model", fileResource);
-		//
-		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
-		//
-		Resource javaResource = OCLstdlib.getDefault();
-//		PivotAliasCreator.refreshPackageAliases(javaResource);
-		assertNoResourceErrors("Java Model", javaResource);
-		assertNoUnresolvedProxies("Java Model", javaResource);
-		assertNoValidationErrors("Java Model", javaResource);
-		//
-		//	Check similar content
-		//
-/*WIP		Map<String,MonikeredElement> fileMoniker2PivotMap = new MetaModelManager().computeMoniker2PivotMap(Collections.singletonList(fileResource));
-//		for (String moniker : fileMoniker2PivotMap.keySet()) {
-//			System.out.println("File : " + moniker);
-//		}
-		Map<String,MonikeredElement> javaMoniker2PivotMap = new MetaModelManager().computeMoniker2PivotMap(Collections.singletonList(javaResource));
-//		for (String moniker : javaMoniker2PivotMap.keySet()) {
-//			System.out.println("Java : " + moniker);
-//		}
-//		assertEquals(fileMoniker2PivotMap.size(), javaMoniker2PivotMap.size());
-		for (String moniker : fileMoniker2PivotMap.keySet()) {
-			MonikeredElement fileElement = fileMoniker2PivotMap.get(moniker);
-			MonikeredElement javaElement = javaMoniker2PivotMap.get(moniker);
-			assertNotNull("Missing java element for '" + moniker + "'", javaElement);
-			assertEquals(fileElement.getClass(), javaElement.getClass());
-			if (fileElement instanceof TypedElement) {
-				Type fileType = ((TypedElement)fileElement).getType();
-				Type javaType = ((TypedElement)javaElement).getType();
-				assertEquals(fileType.getClass(), javaType.getClass());
-				assertEquals(fileType.getMoniker(), javaType.getMoniker());
-			}
-			if (fileElement instanceof Feature) {
-				String fileClass = ((Feature)fileElement).getImplementationClass();
-				String javaClass = ((Feature)javaElement).getImplementationClass();
-				if (fileClass == null) {
-					CallableImplementation implementation = ((Feature)fileElement).getImplementation();
-					if (implementation != null) {
-						fileClass = implementation.getClass().getCanonicalName();
-					}
-				}
-				if (javaClass == null) {
-					CallableImplementation implementation = ((Feature)javaElement).getImplementation();
-					if (implementation != null) {
-						javaClass = implementation.getClass().getCanonicalName();
-					}
-				}
-				assertEquals(fileClass, javaClass);
-			}
-			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
-				List<MonikeredElement> fileTypes = new ArrayList<MonikeredElement>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClasses());
-				List<MonikeredElement> javaTypes = new ArrayList<MonikeredElement>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClasses());
-				Collections.sort(fileTypes, new MonikeredComparator());
-				Collections.sort(javaTypes, new MonikeredComparator());
-				assertEquals(fileTypes.size(), javaTypes.size());
-				for (int i = 0; i < fileTypes.size(); i++) {
-					MonikeredElement fileType = fileTypes.get(i);
-					MonikeredElement javaType = javaTypes.get(i);
-					assertEquals(fileType.getMoniker(), javaType.getMoniker());
-				}
-			}
-		} */
-	}
-	
-	public void testOkAssignPrecedences() {
-		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		org.eclipse.ocl.examples.pivot.Package root1 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p1a = createPrecedence(root1, "A", AssociativityKind.LEFT);
-		Precedence p1b = createPrecedence(root1, "B", AssociativityKind.LEFT);
-		Precedence p1c = createPrecedence(root1, "D", AssociativityKind.LEFT);
-		rootPackages.add(root1);
-		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p2a = createPrecedence(root2, "B", AssociativityKind.LEFT);
-		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
-		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
-		rootPackages.add(root2);
-		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
-		assertEquals(0, p1a.getOrder().intValue());
-		assertEquals(1, p1b.getOrder().intValue());
-		assertEquals(3, p1c.getOrder().intValue());
-		assertEquals(1, p2a.getOrder().intValue());
-		assertEquals(2, p2b.getOrder().intValue());
-		assertEquals(3, p2c.getOrder().intValue());
-		assertEquals(0, errors.size());
-	}
-	
-	public void testBadOrderingAssignPrecedences() {
-		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		org.eclipse.ocl.examples.pivot.Package root1 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p1a = createPrecedence(root1, "A", AssociativityKind.LEFT);
-		Precedence p1b = createPrecedence(root1, "B", AssociativityKind.LEFT);
-		rootPackages.add(root1);
-		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p2a = createPrecedence(root2, "B", AssociativityKind.LEFT);
-		Precedence p2b = createPrecedence(root2, "A", AssociativityKind.LEFT);
-		rootPackages.add(root2);
-		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
-		assertEquals(0, p1a.getOrder().intValue());
-		assertEquals(1, p1b.getOrder().intValue());
-		assertEquals(1, p2a.getOrder().intValue());
-		assertEquals(0, p2b.getOrder().intValue());
-		assertEquals(1, errors.size());
-	}
-	
-	public void testBadAssociativityAssignPrecedences() {
-		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		org.eclipse.ocl.examples.pivot.Package root1 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p1a = createPrecedence(root1, "A", AssociativityKind.LEFT);
-		rootPackages.add(root1);
-		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.RIGHT);
-		rootPackages.add(root2);
-		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
-		assertEquals(0, p1a.getOrder().intValue());
-		assertEquals(0, p2a.getOrder().intValue());
-		assertEquals(1, errors.size());
+	public static class MonikeredComparator implements Comparator<Element>
+	{
+		public static final Comparator<? super Element> INSTANCE = new MonikeredComparator();
+
+		public int compare(Element o1, Element o2) {
+			String m1 = Pivot2Moniker.toString(o1);
+			String m2 = Pivot2Moniker.toString(o2);
+			return m1.compareTo(m2);
+		}
 	}
 
-	protected void doLoadFromString(String fileName, String testFile) throws Exception {
+	public Map<String, Element> computeMoniker2PivotMap(Collection<? extends Resource> pivotResources) {
+		Map<String, Element> map = new HashMap<String, Element>();
+		for (Resource pivotResource : pivotResources) {
+			for (Iterator<EObject> it = pivotResource.getAllContents(); it.hasNext();) {
+				EObject eObject = it.next();
+				assert eObject.eResource() == pivotResource;
+				if ((eObject instanceof Element) && !(eObject instanceof TemplateParameter) && !(eObject instanceof Comment) /*&& (eObject != orphanagePackage)*/) {
+					Element newElement = (Element) eObject;
+					String moniker = Pivot2Moniker.toString(newElement);
+					assert moniker != null;
+					Element oldElement = map.get(moniker);
+					if (oldElement == null) {
+						map.put(moniker, newElement);
+					}
+					else {
+						assert newElement.getClass() == oldElement.getClass();
+					}
+				}
+			}
+		}
+		return map;
+	}
+
+	protected Resource doLoadFromString(String fileName, String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
-		InputStream inputStream = new ByteArrayInputStream(testFile.getBytes());
-		xtextResource.load(inputStream, null);
+		BaseCSResource xtextResource = (BaseCSResource) PivotUtil.createXtextResource(null, libraryURI, null, testFile);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-//FIXME		adapter.refreshPivotMappings();
-		Resource fileResource = adapter.getPivotResource(xtextResource);
-		assertNoResourceErrors("File Model", fileResource);
-		assertNoUnresolvedProxies("File Model", fileResource);
-		assertNoValidationErrors("File Model", fileResource);
+		Resource pivotResource = adapter.getPivotResource(xtextResource);
+		assertNoResourceErrors("File Model", pivotResource);
+		assertNoUnresolvedProxies("File Model", pivotResource);
+		assertNoValidationErrors("File Model", pivotResource);
+		return pivotResource;
 	}
 
 	@Override
@@ -203,55 +110,6 @@ public class OCLstdlibTests extends XtextTestCase
 		}
 		super.tearDown();
 	}
-	
-	public void testAmbiguousInternalAssignPrecedences() {
-		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		org.eclipse.ocl.examples.pivot.Package root1 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p1a = createPrecedence(root1, "A", AssociativityKind.LEFT);
-		Precedence p1b = createPrecedence(root1, "B", AssociativityKind.LEFT);
-		Precedence p1c = createPrecedence(root1, "D", AssociativityKind.LEFT);
-		rootPackages.add(root1);
-		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.LEFT);
-		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
-		Precedence p2c = createPrecedence(root2, "D", AssociativityKind.LEFT);
-		rootPackages.add(root2);
-		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
-		assertEquals(0, p1a.getOrder().intValue());
-		assertEquals(2, p1b.getOrder().intValue());
-		assertEquals(3, p1c.getOrder().intValue());
-		assertEquals(0, p2a.getOrder().intValue());
-		assertEquals(1, p2b.getOrder().intValue());
-		assertEquals(3, p2c.getOrder().intValue());
-		assertEquals(1, errors.size());
-	}
-	
-	public void testAmbiguousTailAssignPrecedences() {
-		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-		org.eclipse.ocl.examples.pivot.Package root1 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p1a = createPrecedence(root1, "A", AssociativityKind.LEFT);
-		Precedence p1b = createPrecedence(root1, "B", AssociativityKind.LEFT);
-		rootPackages.add(root1);
-		org.eclipse.ocl.examples.pivot.Package root2 = PivotFactory.eINSTANCE.createPackage();
-		Precedence p2a = createPrecedence(root2, "A", AssociativityKind.LEFT);
-		Precedence p2b = createPrecedence(root2, "C", AssociativityKind.LEFT);
-		rootPackages.add(root2);
-		List<String> errors = new MetaModelManager().compilePrecedences(rootPackages);
-		assertEquals(0, p1a.getOrder().intValue());
-		assertEquals(2, p1b.getOrder().intValue());
-		assertEquals(0, p2a.getOrder().intValue());
-		assertEquals(1, p2b.getOrder().intValue());
-		assertEquals(1, errors.size());
-	}
-
-	protected Precedence createPrecedence(org.eclipse.ocl.examples.pivot.Package root1, String name, AssociativityKind associativity) {
-		Precedence precedence = PivotFactory.eINSTANCE.createPrecedence();
-		precedence.setName(name);
-		precedence.setAssociativity(associativity);
-		root1.getOwnedPrecedences().add(precedence);
-		return precedence;
-	}
-	
 	
 	public void testLoadAsString() throws Exception {
 		String testFile =
@@ -286,13 +144,96 @@ public class OCLstdlibTests extends XtextTestCase
 			"       }\n"+
 			"    }\n"+
 			"}\n";		
-		doLoadFromString("string.oclstdlib", testFile);
-// FIXME		doLoadFromString("string.oclstdlib", testFile);
-		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
-		MetaModelManager metaModelManager = adapter.getMetaModelManager();
+		Resource pivotResource = doLoadFromString("string.oclstdlib", testFile);
+		MetaModelManager metaModelManager = MetaModelManager.getAdapter(pivotResource.getResourceSet());
 		AnyType oclAnyType = metaModelManager.getOclAnyType();
 		Iterable<Operation> ownedOperations = metaModelManager.getLocalOperations(oclAnyType, null);
 		assertEquals(1, Iterables.size(ownedOperations));
 		metaModelManager.dispose();
+	}
+	
+	/**
+	 * Checks that the local oclstdlib.oclstdlib is the same as the pre-compiled
+	 * Java implementation.
+	 * 
+	 * FIXME check the library/model version instead.
+	 */
+	public void testOCLstdlib() throws Exception {
+		//
+		//	Load oclstdlib.oclstdlib as a file.
+		//
+		URI libraryURI = getProjectFileURI("oclstdlib.oclstdlib");
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
+		assertNoResourceErrors("Load failed", xtextResource);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+		Resource fileResource = adapter.getPivotResource(xtextResource);
+		assertNoResourceErrors("File Model", fileResource);
+		assertNoUnresolvedProxies("File Model", fileResource);
+		assertNoValidationErrors("File Model", fileResource);
+		//
+		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
+		//
+		Resource javaResource = OCLstdlib.getDefault();
+//		PivotAliasCreator.refreshPackageAliases(javaResource);
+		assertNoResourceErrors("Java Model", javaResource);
+		assertNoUnresolvedProxies("Java Model", javaResource);
+		assertNoValidationErrors("Java Model", javaResource);
+		//
+		//	Check similar content
+		//
+		Map<String,Element> fileMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(fileResource));
+//		for (String moniker : fileMoniker2PivotMap.keySet()) {
+//			System.out.println("File : " + moniker);
+//		}
+		Map<String,Element> javaMoniker2PivotMap = computeMoniker2PivotMap(Collections.singletonList(javaResource));
+//		for (String moniker : javaMoniker2PivotMap.keySet()) {
+//			System.out.println("Java : " + moniker);
+//		}
+//		assertEquals(fileMoniker2PivotMap.size(), javaMoniker2PivotMap.size());
+		for (String moniker : fileMoniker2PivotMap.keySet()) {
+			Element fileElement = fileMoniker2PivotMap.get(moniker);
+			Element javaElement = javaMoniker2PivotMap.get(moniker);
+			assertNotNull("Missing java element for '" + moniker + "'", javaElement);
+			assertEquals(fileElement.getClass(), javaElement.getClass());
+			if (fileElement instanceof TypedElement) {
+				Type fileType = ((TypedElement)fileElement).getType();
+				Type javaType = ((TypedElement)javaElement).getType();
+				assertEquals(fileType.getClass(), javaType.getClass());
+				String fileMoniker = Pivot2Moniker.toString(fileType);
+				String javaMoniker = Pivot2Moniker.toString(javaType);
+				assertEquals(fileMoniker, javaMoniker);
+			}
+			if (fileElement instanceof Feature) {
+				String fileClass = ((Feature)fileElement).getImplementationClass();
+				String javaClass = ((Feature)javaElement).getImplementationClass();
+				if (fileClass == null) {
+					CallableImplementation implementation = ((Feature)fileElement).getImplementation();
+					if (implementation != null) {
+						fileClass = implementation.getClass().getCanonicalName();
+					}
+				}
+				if (javaClass == null) {
+					CallableImplementation implementation = ((Feature)javaElement).getImplementation();
+					if (implementation != null) {
+						javaClass = implementation.getClass().getCanonicalName();
+					}
+				}
+				assertEquals(fileClass, javaClass);
+			}
+			if (fileElement instanceof org.eclipse.ocl.examples.pivot.Class) {
+				List<Element> fileTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)fileElement).getSuperClasses());
+				List<Element> javaTypes = new ArrayList<Element>(((org.eclipse.ocl.examples.pivot.Class)javaElement).getSuperClasses());
+				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
+				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
+				assertEquals(fileTypes.size(), javaTypes.size());
+				for (int i = 0; i < fileTypes.size(); i++) {
+					Element fileType = fileTypes.get(i);
+					Element javaType = javaTypes.get(i);
+					String fileMoniker = Pivot2Moniker.toString(fileType);
+					String javaMoniker = Pivot2Moniker.toString(javaType);
+					assertEquals(fileMoniker, javaMoniker);
+				}
+			}
+		}
 	}
 }

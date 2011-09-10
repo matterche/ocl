@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -441,6 +442,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	private final PackageManager packageManager = createPackageManager();
 	
 	/**
+	 * The known precedences.
+	 */
+	private PrecedenceManager precedenceManager = null;			// Lazily created
+	
+	/**
 	 * The known tuple types.
 	 */
 	private TupleTypeManager tupleManager = null;			// Lazily created
@@ -476,21 +482,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	protected Resource pivotLibraryResource = null;
 
 	protected ResourceSetImpl externalResourceSet = null;
-
-	/**
-	 * Map of precedence name to precedence objects. Multiple precedence objects
-	 * may be associated with a single name since alternate contributions
-	 * provide independent lists that must be successfully interleaved so that
-	 * all same-named precedence objects get the same compiled ordering.
-	 * <p>
-	 * e.g. <tt> precedence A B D</tt> and <tt>precedence B C D</tt> merge to
-	 * <tt>A B C D</tt> with duplicate precedence objects for B and D.
-	 */
-	private Map<String, List<Precedence>> nameToPrecedencesMap = null;
-
-	private Map<String, String> infixToPrecedenceNameMap = null;
-
-	private Map<String, String> prefixToPrecedenceNameMap = null;
 	
 	private final Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
 	private final Set<Type> globalTypes = new HashSet<Type>();
@@ -667,120 +658,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * Interleave the ownedPrecedences of the rootPackages to establish a merged
-	 * ordering and assign the index in that ordering to each
-	 * rootPackages.ownedPrecedences. Any inconsistent ordering and
-	 * associativity is diagnosed.
-	 */
-	public List<String> compilePrecedences(
-			Collection<? extends org.eclipse.ocl.examples.pivot.Package> rootPackages) {
-		List<String> errors = new ArrayList<String>();
-		List<String> orderedPrecedences = new ArrayList<String>();
-		nameToPrecedencesMap = new HashMap<String, List<Precedence>>();
-		infixToPrecedenceNameMap = new HashMap<String, String>();
-		prefixToPrecedenceNameMap = new HashMap<String, String>();
-		for (org.eclipse.ocl.examples.pivot.Package rootPackage : rootPackages) {
-			List<Precedence> precedences = rootPackage.getOwnedPrecedences();
-			if (precedences.size() > 0) {
-				compilePrecedencePackage(rootPackage);
-				int prevIndex = -1;
-				List<Precedence> list = null;
-				String name = null;
-				for (Precedence precedence : precedences) {
-					name = precedence.getName();
-					int index = orderedPrecedences.indexOf(name);
-					if (index < 0) {
-						index = prevIndex < 0
-							? orderedPrecedences.size()
-							: prevIndex + 1;
-						orderedPrecedences.add(index, name);
-						list = new ArrayList<Precedence>();
-						nameToPrecedencesMap.put(name, list);
-					} else {
-						list = nameToPrecedencesMap.get(name);
-						if (index <= prevIndex) {
-							errors.add("Inconsistent precedence ordering for '"
-								+ name + "'");
-						} else if ((prevIndex >= 0) && (index != prevIndex + 1)) {
-							errors.add("Ambiguous precedence ordering for '"
-								+ name + "'");
-						}
-						if (precedence.getAssociativity() != list.get(0)
-							.getAssociativity()) {
-							errors
-								.add("Inconsistent precedence associativity for '"
-									+ name + "'");
-						}
-					}
-					prevIndex = index;
-					list.add(precedence);
-				}
-				if ((list != null) && (list.size() == 1)
-					&& (prevIndex != orderedPrecedences.size() - 1)) {
-					errors.add("Ambiguous precedence ordering for '" + name
-						+ "' at tail");
-				}
-			}
-		}
-		for (int i = 0; i < orderedPrecedences.size(); i++) {
-			String name = orderedPrecedences.get(i);
-			BigInteger order = BigInteger.valueOf(i);
-			for (Precedence precedence : nameToPrecedencesMap.get(name)) {
-				precedence.setOrder(order);
-			}
-		}
-		return errors;
-	}
-
-	protected void compilePrecedenceOperation(Operation operation) {
-		Precedence precedence = operation.getPrecedence();
-		if (precedence != null) {
-			List<Parameter> parameters = operation.getOwnedParameters();
-			if (parameters.size() == 0) {
-				String newName = precedence.getName();
-				String operatorName = operation.getName();
-				String oldName = prefixToPrecedenceNameMap.put(operatorName,
-					newName);
-				if ((oldName != null) && !oldName.equals(newName)) {
-					logger
-						.warn("Conflicting precedences for prefix operation '"
-							+ operatorName + "'");
-				}
-			} else if (parameters.size() == 1) {
-				String newName = precedence.getName();
-				String operatorName = operation.getName();
-				String oldName = infixToPrecedenceNameMap.put(operatorName,
-					newName);
-				if ((oldName != null) && !oldName.equals(newName)) {
-					logger.warn("Conflicting precedences for infix operation '"
-						+ operatorName + "'");
-				}
-			}
-		}
-	}
-
-	protected void compilePrecedencePackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
-			compilePrecedencePackage(nestedPackage);
-		}
-		for (Type type : pivotPackage.getOwnedTypes()) {
-			if (PivotUtil.isLibraryType(type)) {
-				compilePrecedenceType(type);
-			}
-		}
-	}
-
-	protected void compilePrecedenceType(Type pivotType) {
-		defineLibraryType(pivotType);
-		if (pivotType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class) pivotType)
-				.getOwnedOperations()) {
-				compilePrecedenceOperation(operation);
-			}
-		}
 	}
 
 	@Deprecated
@@ -1129,6 +1006,16 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return new PackageManager(this);
 	}
 
+	protected PrecedenceManager createPrecedenceManager() {
+		PrecedenceManager precedenceManager = new PrecedenceManager();
+		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = computePivotRootPackages();
+		List<String> errors = precedenceManager.compilePrecedences(rootPackages);
+		for (String error : errors) {
+			logger.error(error);
+		}
+		return precedenceManager;
+	}
+
 	public Resource createResource(URI uri, String contentType) {
 		return pivotResourceSet.createResource(uri, contentType);
 	}
@@ -1162,9 +1049,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		pivotLibraries.clear();	
 		pivotLibraryResource = null;
 		externalResourceSet = null;
-		nameToPrecedencesMap = null;
-		infixToPrecedenceNameMap = null;
-		prefixToPrecedenceNameMap = null;
 		globalNamespaces.clear();
 		globalTypes.clear();
 		external2PivotMap.clear();
@@ -1179,6 +1063,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (lambdaManager != null) {
 			lambdaManager.dispose();
 			lambdaManager = null;
+		}
+		if (precedenceManager != null) {
+			precedenceManager.dispose();
+			precedenceManager = null;
 		}
 		type2tracker.clear();
 		orphanage = null;
@@ -1684,20 +1572,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		return implementation;
 	}
-
+	
 	public Precedence getInfixPrecedence(String operatorName) {
-		if (infixToPrecedenceNameMap == null) {
-			compilePrecedences(computePivotRootPackages());
-		}
-		String precedenceName = infixToPrecedenceNameMap.get(operatorName);
-		if (precedenceName == null) {
-			return null;
-		}
-		List<Precedence> precedences = nameToPrecedencesMap.get(precedenceName);
-		if (precedences == null) {
-			return null;
-		}
-		return precedences.get(0);
+		PrecedenceManager precedenceManager = getPrecedenceManager();
+		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
 	public LambdaTypeManager getLambdaManager() {
@@ -1893,23 +1771,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return PivotUtil.getNamedElement(pivotMetaModel.getOwnedTypes(), className);
 	}	
 
+	protected PrecedenceManager getPrecedenceManager() {
+		if (precedenceManager == null) {
+			precedenceManager = createPrecedenceManager();
+		}
+		return precedenceManager;
+	}
+
 	public Iterable<? extends Nameable> getPrecedences(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		return pivotPackage.getOwnedPrecedences(); // FIXME make package independent
 	}
-
+	
 	public Precedence getPrefixPrecedence(String operatorName) {
-		if (prefixToPrecedenceNameMap == null) {
-			compilePrecedences(computePivotRootPackages());
-		}
-		String precedenceName = prefixToPrecedenceNameMap.get(operatorName);
-		if (precedenceName == null) {
-			return null;
-		}
-		List<Precedence> precedences = nameToPrecedencesMap.get(precedenceName);
-		if (precedences == null) {
-			return null;
-		}
-		return precedences.get(0);
+		PrecedenceManager precedenceManager = getPrecedenceManager();
+		return precedenceManager.getPrefixPrecedence(operatorName);
 	}
 
 	public EObject getPrimaryElement(EObject element) {
