@@ -68,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
@@ -438,14 +439,6 @@ public class XtextTestCase extends TestCase
 				return false;
 			}
 		}
-		if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Class) {
-			EObject eContainer = pivotElement.eContainer();
-			if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) && (eContainer.eContainer() == null)
-					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())
-					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) eContainer).getName())) {
-				return false;
-			}
-		}
 		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
 			return false;
 		}
@@ -454,6 +447,14 @@ public class XtextTestCase extends TestCase
 		}
 		if (pivotElement instanceof TupleType) {
 			return PivotUtil.isLibraryType((TupleType)pivotElement);
+		}
+		if (pivotElement instanceof Type) {
+			EObject eContainer = pivotElement.eContainer();
+			if ((eContainer instanceof org.eclipse.ocl.examples.pivot.Package) && (eContainer.eContainer() == null)
+					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) pivotElement).getName())
+					&& PivotConstants.ORPHANAGE_NAME.equals(((NamedElement) eContainer).getName())) {
+				return false;
+			}
 		}
 		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
 			return false;

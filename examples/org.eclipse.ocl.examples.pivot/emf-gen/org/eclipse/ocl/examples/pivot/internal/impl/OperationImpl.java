@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -56,8 +55,6 @@ import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOp
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
-import com.google.common.collect.Iterators;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Operation</b></em>'.
@@ -72,6 +69,7 @@ import com.google.common.collect.Iterators;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getRaisedExceptions <em>Raised Exception</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwnedParameters <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getClass_ <em>Class</em>}</li>
  * </ul>
@@ -484,9 +482,10 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class getClass_() {
-		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
-		return (org.eclipse.ocl.examples.pivot.Class)eContainer();
+	public Type getOwningType()
+	{
+		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TYPE) return null;
+		return (Type)eContainer();
 	}
 
 	/**
@@ -494,10 +493,9 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetClass_(
-			org.eclipse.ocl.examples.pivot.Class newClass,
-			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newClass, PivotPackage.OPERATION__CLASS, msgs);
+	public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newOwningType, PivotPackage.OPERATION__OWNING_TYPE, msgs);
 		return msgs;
 	}
 
@@ -506,21 +504,42 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass_(org.eclipse.ocl.examples.pivot.Class newClass) {
-		if (newClass != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__CLASS && newClass != null))
+	public void setOwningType(Type newOwningType)
+	{
+		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TYPE && newOwningType != null))
 		{
-			if (EcoreUtil.isAncestor(this, (EObject)newClass))
+			if (EcoreUtil.isAncestor(this, (EObject)newOwningType))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newClass != null)
-				msgs = ((InternalEObject)newClass).eInverseAdd(this, PivotPackage.CLASS__OWNED_OPERATION, org.eclipse.ocl.examples.pivot.Class.class, msgs);
-			msgs = basicSetClass_(newClass, msgs);
+			if (newOwningType != null)
+				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, PivotPackage.TYPE__OWNED_OPERATION, Type.class, msgs);
+			msgs = basicSetOwningType(newOwningType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__CLASS, newClass, newClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__OWNING_TYPE, newOwningType, newOwningType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.eclipse.ocl.examples.pivot.Class getClass_() {
+		org.eclipse.ocl.examples.pivot.Class class_ = basicGetClass_();
+		return class_ != null && ((EObject)class_).eIsProxy() ? (org.eclipse.ocl.examples.pivot.Class)eResolveProxy((InternalEObject)class_) : class_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public org.eclipse.ocl.examples.pivot.Class basicGetClass_()
+	{
+		return null;		// FIXME Eliminate this field altogether
 	}
 
 	/**
@@ -587,10 +606,10 @@ public class OperationImpl
 				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
-			case PivotPackage.OPERATION__CLASS:
+			case PivotPackage.OPERATION__OWNING_TYPE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetClass_((org.eclipse.ocl.examples.pivot.Class)otherEnd, msgs);
+				return basicSetOwningType((Type)otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -621,8 +640,8 @@ public class OperationImpl
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
-			case PivotPackage.OPERATION__CLASS:
-				return basicSetClass_(null, msgs);
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				return basicSetOwningType(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -639,8 +658,8 @@ public class OperationImpl
 		{
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-			case PivotPackage.OPERATION__CLASS:
-				return eInternalContainer().eInverseRemove(this, PivotPackage.CLASS__OWNED_OPERATION, org.eclipse.ocl.examples.pivot.Class.class, msgs);
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.TYPE__OWNED_OPERATION, Type.class, msgs);
 		}
 		return eDynamicBasicRemoveFromContainer(msgs);
 	}
@@ -694,11 +713,14 @@ public class OperationImpl
 				return getRaisedExceptions();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				return getOwnedParameters();
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				return getOwningType();
 			case PivotPackage.OPERATION__PRECEDENCE:
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
 			case PivotPackage.OPERATION__CLASS:
-				return getClass_();
+				if (resolve) return getClass_();
+				return basicGetClass_();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -776,11 +798,11 @@ public class OperationImpl
 				getOwnedParameters().clear();
 				getOwnedParameters().addAll((Collection<? extends Parameter>)newValue);
 				return;
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				setOwningType((Type)newValue);
+				return;
 			case PivotPackage.OPERATION__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
-				return;
-			case PivotPackage.OPERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -852,11 +874,11 @@ public class OperationImpl
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				getOwnedParameters().clear();
 				return;
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				setOwningType((Type)null);
+				return;
 			case PivotPackage.OPERATION__PRECEDENCE:
 				setPrecedence((Precedence)null);
-				return;
-			case PivotPackage.OPERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -909,10 +931,12 @@ public class OperationImpl
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.OPERATION__OWNED_PARAMETER:
 				return ownedParameters != null && !ownedParameters.isEmpty();
+			case PivotPackage.OPERATION__OWNING_TYPE:
+				return getOwningType() != null;
 			case PivotPackage.OPERATION__PRECEDENCE:
 				return precedence != null;
 			case PivotPackage.OPERATION__CLASS:
-				return getClass_() != null;
+				return basicGetClass_() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -1073,9 +1097,5 @@ public class OperationImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOperation(this);
-	}
-
-	public Iterator<Operation> iterator() {
-		return Iterators.singletonIterator((Operation)this);
 	}
 } //OperationImpl

@@ -29,11 +29,13 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Signal;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -205,6 +207,12 @@ public class MessageTypeImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				return getPackage();
+			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+				return getOwnedAttributes();
+			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATION:
+				return getOwnedOperations();
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
+				return getSuperClasses();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:
@@ -264,6 +272,18 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttributes().clear();
+				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -319,6 +339,15 @@ public class MessageTypeImpl
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttributes().clear();
+				return;
+			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				return;
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
+				getSuperClasses().clear();
+				return;
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -363,6 +392,12 @@ public class MessageTypeImpl
 				return isSetTemplateParameter();
 			case PivotPackage.MESSAGE_TYPE__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.MESSAGE_TYPE__OWNED_ATTRIBUTE:
+				return ownedAttributes != null && !ownedAttributes.isEmpty();
+			case PivotPackage.MESSAGE_TYPE__OWNED_OPERATION:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+			case PivotPackage.MESSAGE_TYPE__SUPER_CLASS:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.MESSAGE_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.MESSAGE_TYPE__REFERRED_SIGNAL:

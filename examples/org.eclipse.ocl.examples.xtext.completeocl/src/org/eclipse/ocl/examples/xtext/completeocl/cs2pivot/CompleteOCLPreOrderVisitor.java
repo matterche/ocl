@@ -133,10 +133,10 @@ public class CompleteOCLPreOrderVisitor
 					newPivotParameters.add(pivotParameter);
 				}
 				context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
-				((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedOperations().add(pivotOperation);
+				classifier.getOwnedOperations().add(pivotOperation);
 			}
 			else {
-				((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedAttributes().add(pivotProperty);
+				classifier.getOwnedAttributes().add(pivotProperty);
 			}
 			return null;
 		}
@@ -171,7 +171,7 @@ public class CompleteOCLPreOrderVisitor
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
 			}
-			Type contextType = getContextClassifier(modelOperation.getClass_(), csElement);
+			Type contextType = getContextClassifier(modelOperation.getOwningType(), csElement);
 //			completeEnvironmentManager.getCompleteOperation(element);
 //			if ((element == null) || element.eIsProxy()) {
 //				context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -196,7 +196,7 @@ public class CompleteOCLPreOrderVisitor
 				contextOperation.setType(modelOperation.getType());			// FIXME consistency check
 			}
 //			context.installPivotElement(csElement, contextOperation);
-			((org.eclipse.ocl.examples.pivot.Class)contextType).getOwnedOperations().add(contextOperation);
+			contextType.getOwnedOperations().add(contextOperation);
 //			metaModelManager.addContextOperation(modelOperation, contextOperation);
 			return null;
 		}
@@ -307,7 +307,7 @@ public class CompleteOCLPreOrderVisitor
 		if ((modelProperty == null) || modelProperty.eIsProxy()) {
 			return null;
 		}
-		Type contextType = getContextClassifier(modelProperty.getClass_(), object);
+		Type contextType = getContextClassifier(modelProperty.getOwningType(), object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
@@ -315,7 +315,7 @@ public class CompleteOCLPreOrderVisitor
 		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, object);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
-		((org.eclipse.ocl.examples.pivot.Class)contextType).getOwnedAttributes().add(contextProperty);
+		contextType.getOwnedAttributes().add(contextProperty);
 //		metaModelManager.addContextProperty(modelProperty, contextProperty);
 		return null;
 	}

@@ -31,7 +31,7 @@ abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.p
 
 	private void addedType(Object pivotType) {
 		if (pivotType instanceof Type) {
-			getPackageServer().addType((org.eclipse.ocl.examples.pivot.Class)pivotType);
+			getPackageServer().addType((Type)pivotType);
 		}
 	}
 

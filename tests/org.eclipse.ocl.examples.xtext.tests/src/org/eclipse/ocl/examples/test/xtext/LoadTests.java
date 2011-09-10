@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
@@ -302,7 +300,9 @@ public class LoadTests extends XtextTestCase
 		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 		org.eclipse.ocl.examples.pivot.Package root = PivotFactory.eINSTANCE.createPackage();		// FIXME Avoid this kludge
-		root.getNestedPackages().addAll((Collection<? extends Package>) pivotResource.getContents());
+		for (EObject aPackage : pivotResource.getContents()) {
+			root.getNestedPackages().add((org.eclipse.ocl.examples.pivot.Package) aPackage);
+		}
 		pivotResource.getContents().add(root);
 		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, options);
 		ecoreResource.save(null);

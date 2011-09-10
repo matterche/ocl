@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 
-abstract class TypeTracker extends AbstractTracker<Type>
+public abstract class TypeTracker extends AbstractTracker<Type>
 {
 	protected TypeTracker(MetaModelManager metaModelManager, Type target) {
 		super(metaModelManager, target);
@@ -37,19 +37,19 @@ abstract class TypeTracker extends AbstractTracker<Type>
 		super.dispose();
 	}
 
-	abstract TypeServer getTypeServer();
+	public abstract TypeServer getTypeServer();
 
-	Type getPrimaryType() {
+	public Type getPrimaryType() {
 		TypeServer typeServer = getTypeServer();
 		return typeServer != null ? typeServer.getTarget() : null;
 	}
 
 	protected void initializeContents() {
 		TypeServer typeServer = getTypeServer();
-		for (Operation pivotOperation : ((org.eclipse.ocl.examples.pivot.Class)target).getOwnedOperations()) {
+		for (Operation pivotOperation : target.getOwnedOperations()) {
 			typeServer.addOperation(pivotOperation);
 		}
-		for (Property pivotProperty : ((org.eclipse.ocl.examples.pivot.Class)target).getOwnedAttributes()) {
+		for (Property pivotProperty : target.getOwnedAttributes()) {
 			typeServer.addProperty(pivotProperty);
 		}
 	}		
@@ -61,7 +61,7 @@ abstract class TypeTracker extends AbstractTracker<Type>
 		}
 		int eventType = notification.getEventType();
 		Object feature = notification.getFeature();
-		if (feature == PivotPackage.Literals.CLASS__OWNED_OPERATION) {
+		if (feature == PivotPackage.Literals.TYPE__OWNED_OPERATION) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();
@@ -91,7 +91,7 @@ abstract class TypeTracker extends AbstractTracker<Type>
 				}
 			}
 		}
-		else if (feature == PivotPackage.Literals.CLASS__OWNED_ATTRIBUTE) {
+		else if (feature == PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE) {
 			switch (eventType) {
 				case Notification.ADD: {
 					Object value = notification.getNewValue();

@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
@@ -33,16 +34,16 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 		super(metaModelManager, csElement, Property.class);
 	}
 
-	public void addAllReferences(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class csClass) {
+	public void addAllReferences(EnvironmentView environmentView, Type csClass) {
 		int oldSize = environmentView.getSize();
 		environmentView.addNamedElements(csClass.getOwnedAttributes());
 		int newSize = environmentView.getSize();
 		if ((newSize <= oldSize) || (environmentView.getName() == null)) {
-			for (org.eclipse.ocl.examples.pivot.Class csTypeRef : csClass.getSuperClasses()) {
+			for (Type csTypeRef : csClass.getSuperClasses()) {
 				if (csTypeRef instanceof TypedTypeRefCS) {
 					Element type = ((TypedTypeRefCS)csTypeRef).getPivot();
-					if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-						addAllReferences(environmentView, (org.eclipse.ocl.examples.pivot.Class)type);
+					if (type instanceof Type) {
+						addAllReferences(environmentView, (Type)type);
 					}
 				}
 			}
@@ -56,8 +57,8 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 			TypedRefCS typeRef = target.getOwnedType();
 			if (typeRef instanceof TypedTypeRefCS) {
 				Element type = ((TypedTypeRefCS)typeRef).getPivot();
-				if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-					addAllReferences(environmentView, (org.eclipse.ocl.examples.pivot.Class)type);
+				if (type instanceof Type) {
+					addAllReferences(environmentView, (Type)type);
 				}
 			}
 			return null;

@@ -55,7 +55,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		if (accumulatorCount != 0) {
 			return false;
 		}
-		TemplateSignature templateSignature = candidateIteration.getClass_().getOwnedTemplateSignature();
+		TemplateSignature templateSignature = candidateIteration.getOwningType().getOwnedTemplateSignature();
 		if (templateSignature == null) {
 			return false;
 		}

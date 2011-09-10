@@ -35,9 +35,9 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
+		List<Type> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
+			for (Type superClass : superClasses) {
 					environmentView.addElementsOfScope(superClass, scopeView);
 			}
 		}

@@ -212,10 +212,8 @@ public class EnvironmentView
 			return;
 		}
 		addElementsOfScope(libType, scopeView);
-		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
-				addLibContents(superClass, scopeView);
-			}
+		for (Type superClass : libType.getSuperClasses()) {
+			addLibContents(superClass, scopeView);
 		}
 	}
 

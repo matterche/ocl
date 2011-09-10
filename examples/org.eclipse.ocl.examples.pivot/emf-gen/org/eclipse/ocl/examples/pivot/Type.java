@@ -16,6 +16,9 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
@@ -30,6 +33,9 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperations <em>Owned Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getSuperClasses <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
@@ -67,6 +73,89 @@ public interface Type
 	 * @generated
 	 */
 	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Attribute</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Attribute</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedAttribute()
+	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningType
+	 * @model opposite="owningType" containment="true"
+	 * @generated
+	 */
+	EList<Property> getOwnedAttributes();
+
+	/**
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
+	 * @see #getOwnedAttributes()
+	 * @generated
+	 */
+	Property createOwnedAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Operation</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Operation</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedOperation()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningType
+	 * @model opposite="owningType" containment="true"
+	 * @generated
+	 */
+	EList<Operation> getOwnedOperations();
+
+	/**
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Operation} and appends it to the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Operation} to create.
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
+	 * @see #getOwnedOperations()
+	 * @generated
+	 */
+	Operation createOwnedOperation(EClass eClass);
+
+	/**
+	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Operation} and appends it to the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
+	 * @see #getOwnedOperations()
+	 * @generated
+	 */
+	Operation createOwnedOperation();
+
+	/**
+	 * Returns the value of the '<em><b>Super Class</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Super Class</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Super Class</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_SuperClass()
+	 * @model
+	 * @generated
+	 */
+	EList<Type> getSuperClasses();
 
 	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.

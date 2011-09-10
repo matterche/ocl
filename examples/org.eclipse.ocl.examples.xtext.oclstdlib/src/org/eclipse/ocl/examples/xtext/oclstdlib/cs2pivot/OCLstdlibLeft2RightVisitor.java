@@ -75,11 +75,11 @@ public class OCLstdlibLeft2RightVisitor
 			}
 			else if (eContainer instanceof StructuralFeatureCS) {
 				Property contextProperty = PivotUtil.getPivot(Property.class, (StructuralFeatureCS)eContainer);
-				context.setType(contextVariable, contextProperty.getClass_());
+				context.setType(contextVariable, contextProperty.getOwningType());
 			}
 			else if (eContainer instanceof OperationCS) {
 				Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);
-				context.setType(contextVariable, contextOperation.getClass_());
+				context.setType(contextVariable, contextOperation.getOwningType());
 				List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariables());
 				List<Variable> newVariables = new ArrayList<Variable>();
 		        for (Parameter parameter : contextOperation.getOwnedParameters()) {

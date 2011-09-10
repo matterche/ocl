@@ -54,13 +54,13 @@ public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends El
 		if (candidateType == requiredType) {
 			return true;
 		}
-		if (candidateType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class) candidateType).getSuperClasses()) {
+//		if (candidateType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (Type superType : candidateType.getSuperClasses()) {
 				if (conformsTo(superType, requiredType)) {
 					return true;
 				}
 			}
-		}
+//		}
 	/*	else if (candidateType instanceof LibBoundClassCS) {
 			LibBoundClassCS boundCandidateType = (LibBoundClassCS) candidateType;
 			LibClassCS superType = boundCandidateType.getBinds();
@@ -75,12 +75,12 @@ public abstract class BaseCSScopeAdapter<CS extends ModelElementCS, P extends El
 				return true;
 			}
 		} */
-		else {
+//		else {
 			candidateType = metaModelManager.getClassifierType();
 			if (candidateType == requiredType) {
 				return true;
 			}
-		}
+//		}
 		return false;
 	}
 

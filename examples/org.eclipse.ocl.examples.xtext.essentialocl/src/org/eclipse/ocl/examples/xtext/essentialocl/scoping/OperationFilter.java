@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
@@ -85,14 +84,14 @@ public class OperationFilter extends AbstractOperationFilter
 
 	protected Map<TemplateParameter, ParameterableElement> getIterationBindings(Iteration candidateIteration) {
 		Type sourceType = this.sourceType;
-		if (!(sourceType instanceof CollectionType) && (candidateIteration.getClass_() instanceof CollectionType)) {
+		if (!(sourceType instanceof CollectionType) && (candidateIteration.getOwningType() instanceof CollectionType)) {
 			sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 		}
 		if (!(sourceType instanceof CollectionType)) {			// May be InvalidType
 			return null;
 		}
 		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
-		bindings.put(candidateIteration.getClass_().getOwnedTemplateSignature().getOwnedParameters().get(0), ((CollectionType)sourceType).getElementType());
+		bindings.put(candidateIteration.getOwningType().getOwnedTemplateSignature().getOwnedParameters().get(0), ((CollectionType)sourceType).getElementType());
 		PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
 		TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
 		if (templateSignature != null) {
@@ -117,7 +116,7 @@ public class OperationFilter extends AbstractOperationFilter
 	protected Map<TemplateParameter, ParameterableElement> getOperationBindings(Operation candidateOperation) {
 		Type sourceType = this.sourceType;
 		Map<TemplateParameter, ParameterableElement> bindings = null;
-		Class containingType = candidateOperation.getClass_();
+		Type containingType = candidateOperation.getOwningType();
 		if (containingType instanceof CollectionType) {
 			if (!(sourceType instanceof CollectionType)) {
 				sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
@@ -204,7 +203,7 @@ public class OperationFilter extends AbstractOperationFilter
 				}
 				Type candidateType = metaModelManager.getTypeWithMultiplicity(candidateParameter);
 				if (candidateType instanceof SelfType) {
-					candidateType = candidateOperation.getClass_();
+					candidateType = candidateOperation.getOwningType();
 				}
 				Type expressionType = expression.getType();
 				expressionType = PivotUtil.getBehavioralType(expressionType);			// FIXME make this a general facility

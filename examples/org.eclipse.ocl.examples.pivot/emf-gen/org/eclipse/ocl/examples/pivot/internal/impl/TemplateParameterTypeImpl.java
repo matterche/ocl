@@ -24,12 +24,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterType;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -141,6 +144,12 @@ public class TemplateParameterTypeImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				return getPackage();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:
+				return getOwnedAttributes();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
+				return getOwnedOperations();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
+				return getSuperClasses();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:
@@ -196,6 +205,18 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttributes().clear();
+				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
+				getSuperClasses().clear();
+				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
 				return;
@@ -248,6 +269,15 @@ public class TemplateParameterTypeImpl
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:
+				getOwnedAttributes().clear();
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
+				getOwnedOperations().clear();
+				return;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
+				getSuperClasses().clear();
+				return;
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
 				return;
@@ -289,6 +319,12 @@ public class TemplateParameterTypeImpl
 				return isSetTemplateParameter();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_ATTRIBUTE:
+				return ownedAttributes != null && !ownedAttributes.isEmpty();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION:
+				return ownedOperations != null && !ownedOperations.isEmpty();
+			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SUPER_CLASS:
+				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 			case PivotPackage.TEMPLATE_PARAMETER_TYPE__SPECIFICATION:

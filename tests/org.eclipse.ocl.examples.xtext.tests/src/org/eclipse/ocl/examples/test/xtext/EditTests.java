@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.test.xtext;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +28,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.SpecializeableTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.SpecializedTypeServer;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.osgi.util.NLS;
@@ -322,4 +328,33 @@ public class EditTests extends XtextTestCase
 		//
 		adapter.dispose();
 	}
+
+/*	public void testEdit_StaleSpecialization() throws Exception {
+		String testDocument = 
+			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
+			"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
+			"type MyType conformsTo OclAny{\n" +
+			"operation testFunction() : Boolean;\n" +
+			"}\n" +
+			"}\n";
+		URI outputURI = getProjectFileURI("test.oclstdlib");
+		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) PivotUtil.createXtextResource(metaModelManager, outputURI, null, testDocument);
+		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
+		assertResourceErrors("Loading input", xtextResource);
+		assertNoResourceErrors("Loading input", pivotResource);
+		//
+		Type myType = metaModelManager.getPrimaryType("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "MyType");
+		SequenceType sequenceType = metaModelManager.getSequenceType();
+		SpecializeableTypeServer typeServer = (SpecializeableTypeServer) metaModelManager.getTypeTracker(sequenceType).getTypeServer();
+		SpecializedTypeServer sequenceMyTypeServer = typeServer.findSpecializedTypeServer(Collections.singletonList(myType));
+		assertNull(sequenceMyTypeServer); 
+		//
+		doRename(xtextResource, pivotResource, "Boolean", "Sequence<MyType>");
+		sequenceMyTypeServer = typeServer.findSpecializedTypeServer(Collections.singletonList(myType));
+		assertNotNull(sequenceMyTypeServer); 
+		//		
+		doRename(xtextResource, pivotResource, "Sequence<MyType>", "Set<MyType>");
+		sequenceMyTypeServer = typeServer.findSpecializedTypeServer(Collections.singletonList(myType));
+		assertNull(sequenceMyTypeServer); 
+	} */
 }

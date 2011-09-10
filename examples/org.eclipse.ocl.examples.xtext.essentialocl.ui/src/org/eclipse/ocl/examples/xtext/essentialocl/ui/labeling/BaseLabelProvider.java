@@ -227,10 +227,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendSuperTypes(StringBuffer s, List<org.eclipse.ocl.examples.pivot.Class> superTypes) {
+	protected void appendSuperTypes(StringBuffer s, List<? extends Type> superTypes) {
 		if (!superTypes.isEmpty()) {
 			String prefix = " -> ";
-			for (org.eclipse.ocl.examples.pivot.Class superType : superTypes) {
+			for (Type superType : superTypes) {
 				s.append(prefix);
 				appendType(s, superType);
 				prefix = ", ";

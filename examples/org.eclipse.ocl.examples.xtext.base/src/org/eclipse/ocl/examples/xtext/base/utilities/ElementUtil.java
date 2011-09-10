@@ -262,7 +262,7 @@ public class ElementUtil
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {
 				return true;
 			}
-			org.eclipse.ocl.examples.pivot.Class actualParameterClass = (org.eclipse.ocl.examples.pivot.Class) ownedActualParameter.getPivot();
+			Type actualParameterClass = (Type) ownedActualParameter.getPivot();
 			TemplateParameter owningTemplateParameter = actualParameterClass.getOwningTemplateParameter();
 			if (owningTemplateParameter == null) {
 				return true;

@@ -86,7 +86,7 @@ public class CompleteOCLLeft2RightVisitor
 				PropertyContextDeclCS csPropertyContextDecl = (PropertyContextDeclCS)contextDecl;
 				Property contextProperty = csPropertyContextDecl.getProperty();
 				if ((contextProperty != null) && !contextProperty.eIsProxy()) {
-					context.setType(contextVariable, contextProperty.getClass_());
+					context.setType(contextVariable, contextProperty.getOwningType());
 				}
 			}
 			else if (contextDecl instanceof OperationContextDeclCS) {
@@ -94,7 +94,7 @@ public class CompleteOCLLeft2RightVisitor
 				Operation contextOperation = csOperationContextDecl.getOperation();
 		        pivotSpecification.getParameterVariables().clear();
 				if ((contextOperation != null) && !contextOperation.eIsProxy()) {
-					context.setType(contextVariable, contextOperation.getClass_());
+					context.setType(contextVariable, contextOperation.getOwningType());
 			        for (Parameter parameter : contextOperation.getOwnedParameters()) {
 						if ((parameter != null) && !parameter.eIsProxy()) {
 					        Variable param = PivotFactory.eINSTANCE.createVariable();
@@ -173,7 +173,7 @@ public class CompleteOCLLeft2RightVisitor
 		}
 		String selfVariableName = Environment.SELF_VARIABLE_NAME;
 		if (contextOperation != null) {
-			context.setType(contextVariable, contextOperation.getClass_());
+			context.setType(contextVariable, contextOperation.getOwningType());
 	        pivotSpecification.getParameterVariables().clear();
 	        for (Parameter parameter : contextOperation.getOwnedParameters()) {
 		        Variable param = PivotFactory.eINSTANCE.createVariable();
@@ -193,7 +193,7 @@ public class CompleteOCLLeft2RightVisitor
 		       } */
 		}
 		else if (contextProperty != null) {
-			context.setType(contextVariable, contextProperty.getClass_());
+			context.setType(contextVariable, contextProperty.getOwningType());
 		}
 		context.refreshName(contextVariable, selfVariableName);
 		ExpCS csExpression = csSpecification.getOwnedExpression();

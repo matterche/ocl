@@ -175,8 +175,8 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return basicSetTemplateParameter(null, msgs);
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
-			case PivotPackage.ITERATION__CLASS:
-				return basicSetClass_(null, msgs);
+			case PivotPackage.ITERATION__OWNING_TYPE:
+				return basicSetOwningType(null, msgs);
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				return ((InternalEList<?>)getOwnedIterators()).basicRemove(otherEnd, msgs);
 			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
@@ -235,11 +235,14 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return getRaisedExceptions();
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return getOwnedParameters();
+			case PivotPackage.ITERATION__OWNING_TYPE:
+				return getOwningType();
 			case PivotPackage.ITERATION__PRECEDENCE:
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
 			case PivotPackage.ITERATION__CLASS:
-				return getClass_();
+				if (resolve) return getClass_();
+				return basicGetClass_();
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				return getOwnedIterators();
 			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
@@ -322,11 +325,11 @@ public class IterationImpl extends OperationImpl implements Iteration
 				getOwnedParameters().clear();
 				getOwnedParameters().addAll((Collection<? extends Parameter>)newValue);
 				return;
+			case PivotPackage.ITERATION__OWNING_TYPE:
+				setOwningType((Type)newValue);
+				return;
 			case PivotPackage.ITERATION__PRECEDENCE:
 				setPrecedence((Precedence)newValue);
-				return;
-			case PivotPackage.ITERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				getOwnedIterators().clear();
@@ -407,11 +410,11 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				getOwnedParameters().clear();
 				return;
+			case PivotPackage.ITERATION__OWNING_TYPE:
+				setOwningType((Type)null);
+				return;
 			case PivotPackage.ITERATION__PRECEDENCE:
 				setPrecedence((Precedence)null);
-				return;
-			case PivotPackage.ITERATION__CLASS:
-				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				getOwnedIterators().clear();
@@ -471,10 +474,12 @@ public class IterationImpl extends OperationImpl implements Iteration
 				return raisedExceptions != null && !raisedExceptions.isEmpty();
 			case PivotPackage.ITERATION__OWNED_PARAMETER:
 				return ownedParameters != null && !ownedParameters.isEmpty();
+			case PivotPackage.ITERATION__OWNING_TYPE:
+				return getOwningType() != null;
 			case PivotPackage.ITERATION__PRECEDENCE:
 				return precedence != null;
 			case PivotPackage.ITERATION__CLASS:
-				return getClass_() != null;
+				return basicGetClass_() != null;
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				return ownedIterators != null && !ownedIterators.isEmpty();
 			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:

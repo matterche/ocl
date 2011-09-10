@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * A TypeClient adapts a secondary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
  */
-class TypeClient extends TypeTracker
+public class TypeClient extends TypeTracker
 {
 	static TypeClient install(TypeServer typeServer, Type secondaryType) {
 		Adapter tracker = EcoreUtil.getAdapter(secondaryType.eAdapters(), typeServer.getTypeCaches());
@@ -51,7 +51,7 @@ class TypeClient extends TypeTracker
 	}
 	
 	@Override
-	TypeServer getTypeServer() {
+	public TypeServer getTypeServer() {
 		return typeServer.getTypeServer();
 	}
 }

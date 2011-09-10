@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * A SpecializedTypeServer adapts the primary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
  */
-class SpecializedTypeServer extends TypeServer
+public class SpecializedTypeServer extends TypeServer
 {	
 	static SpecializedTypeServer install(SpecializeableTypeServer specializeableClassServer, List<? extends ParameterableElement> templateArguments) {
 		Type unspecializedType = specializeableClassServer.getTarget();
@@ -68,11 +68,7 @@ class SpecializedTypeServer extends TypeServer
 			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
 		}
 		specializedType.getTemplateBindings().add(templateBinding);
-		if (unspecializedType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			org.eclipse.ocl.examples.pivot.Class libraryClass = (org.eclipse.ocl.examples.pivot.Class)unspecializedType;
-			org.eclipse.ocl.examples.pivot.Class specializedClass = (org.eclipse.ocl.examples.pivot.Class)specializedType;
-			resolveSuperClasses(specializeableClassServer.getTypeCaches(), specializedClass, libraryClass, allBindings);
-		}
+		resolveSuperClasses(specializeableClassServer.getTypeCaches(), specializedType, unspecializedType, allBindings);
 		if (specializedType instanceof CollectionType) {
 			ParameterableElement templateArgument = templateArguments.get(0);
 			CollectionType specializedCollectionType = (CollectionType)specializedType;
@@ -88,8 +84,8 @@ class SpecializedTypeServer extends TypeServer
 		return new SpecializedTypeServer(specializeableClassServer, specializedType, templateArguments);
 	}
 
-	static void resolveSuperClasses(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Class specializedClass,
-			org.eclipse.ocl.examples.pivot.Class libraryClass, Map<TemplateParameter, ParameterableElement> allBindings) {
+	static void resolveSuperClasses(MetaModelManager metaModelManager, Type specializedClass,
+			Type libraryClass, Map<TemplateParameter, ParameterableElement> allBindings) {
 		for (Type superType : libraryClass.getSuperClasses()) {
 			Map<TemplateParameter, ParameterableElement> superTemplateArguments = null;
 			List<TemplateBinding> superTemplateBindings = superType.getTemplateBindings();
@@ -107,7 +103,7 @@ class SpecializedTypeServer extends TypeServer
 			}
 			Type unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(superType);
 			Type specializedSuperType = metaModelManager.getSpecializedType(unspecializedSuperType, superTemplateArguments);
-			specializedClass.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)specializedSuperType);
+			specializedClass.getSuperClasses().add(specializedSuperType);
 		}
 	}
 

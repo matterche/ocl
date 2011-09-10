@@ -200,20 +200,18 @@ public class DataTypeImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage();
-			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
-				return isAbstract();
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
 				return getOwnedOperations();
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				return getSuperClasses();
+			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
+			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
+				return isAbstract();
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.DATA_TYPE__SUB_CLASS:
-				return getSubClasses();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
@@ -271,12 +269,6 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
-				return;
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
@@ -287,14 +279,16 @@ public class DataTypeImpl
 				return;
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				getSuperClasses().clear();
-				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.DATA_TYPE__SUB_CLASS:
-				getSubClasses().clear();
-				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
@@ -349,12 +343,6 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
-				return;
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				return;
@@ -364,11 +352,14 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
+			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
-				return;
-			case PivotPackage.DATA_TYPE__SUB_CLASS:
-				getSubClasses().clear();
 				return;
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
@@ -412,20 +403,18 @@ public class DataTypeImpl
 				return isSetTemplateParameter();
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
+				return isSetOwnedAttributes();
+			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
+				return isSetOwnedOperations();
+			case PivotPackage.DATA_TYPE__SUPER_CLASS:
+				return isSetSuperClasses();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
-			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
-			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
-			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.DATA_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.DATA_TYPE__SUB_CLASS:
-				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
 			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:

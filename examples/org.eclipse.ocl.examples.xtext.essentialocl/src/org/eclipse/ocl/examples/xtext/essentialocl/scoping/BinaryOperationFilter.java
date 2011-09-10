@@ -53,7 +53,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 			Parameter candidateParameter = candidateParameters.get(0);
 			Type candidateType = candidateParameter.getType();
 			if (candidateType instanceof SelfType) {
-				candidateType = candidateOperation.getClass_();
+				candidateType = candidateOperation.getOwningType();
 			}
 			if (!metaModelManager.conformsTo(argumentType, candidateType, null)) {
 				return false;

@@ -29,13 +29,13 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
 	private static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
-			org.eclipse.ocl.examples.pivot.Class pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
+			Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addNamedElements(forType, metaModelManager.getLocalOperations(pivotClass, selectStatic));
 		environmentView.addNamedElements(forType, metaModelManager.getLocalProperties(pivotClass, selectStatic));
 		alreadyVisited.add(pivotClass);
 		if (!environmentView.hasFinalResult()) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : metaModelManager.getSuperClasses(pivotClass)) {
+			for (Type superClass : metaModelManager.getSuperClasses(pivotClass)) {
 				if (!alreadyVisited.contains(superClass)) {
 					addAllContents(environmentView, forType, scopeView, superClass, selectStatic, alreadyVisited);
 				}
@@ -58,7 +58,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (target instanceof ClassifierType) {
 			Type instanceType = ((ClassifierType)target).getInstanceType();
-			if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
+			if ((instanceType != null) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
 				environmentView.addNamedElements(instanceType, metaModelManager.getLocalOperations(instanceType, Boolean.TRUE));
 				environmentView.addNamedElements(instanceType, metaModelManager.getLocalProperties(instanceType, Boolean.TRUE));
 			}
@@ -69,13 +69,13 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 			if (target instanceof ClassifierType) {
 				Set<Type> alreadyVisitedMetaTypes = new HashSet<Type>();
 				Type instanceType = ((ClassifierType)target).getInstanceType();
-				if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
-					addAllContents(environmentView, instanceType, scopeView, (org.eclipse.ocl.examples.pivot.Class)instanceType, Boolean.TRUE, alreadyVisitedMetaTypes);
+				if ((instanceType != null) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
+					addAllContents(environmentView, instanceType, scopeView, instanceType, Boolean.TRUE, alreadyVisitedMetaTypes);
 				}
 			}	// FIXME don't shorten non-static search after static match
 			Set<Type> alreadyVisitedTypes = new HashSet<Type>();
 //			org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
-			for (org.eclipse.ocl.examples.pivot.Class superClass : metaModelManager.getSuperClasses(target)) {
+			for (Type superClass : metaModelManager.getSuperClasses(target)) {
 				addAllContents(environmentView, target, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 			}
 		}

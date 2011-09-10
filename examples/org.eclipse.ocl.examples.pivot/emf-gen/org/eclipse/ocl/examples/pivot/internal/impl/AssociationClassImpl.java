@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -203,20 +204,18 @@ public class AssociationClassImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				return getPackage();
-			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
-				return isAbstract();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
 				return getOwnedOperations();
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				return getSuperClasses();
+			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
+			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
+				return isAbstract();
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
-				return getSubClasses();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return getUnownedAttributes();
 		}
@@ -270,12 +269,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
@@ -286,14 +279,16 @@ public class AssociationClassImpl
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
-				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
-				getSubClasses().clear();
-				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttributes().clear();
@@ -345,12 +340,6 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
-				return;
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				return;
@@ -360,11 +349,14 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
+			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
-				return;
-			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
-				getSubClasses().clear();
 				return;
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				getUnownedAttributes().clear();
@@ -404,20 +396,18 @@ public class AssociationClassImpl
 				return isSetTemplateParameter();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
+				return isSetOwnedAttributes();
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
+				return isSetOwnedOperations();
+			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
+				return isSetSuperClasses();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
-			case PivotPackage.ASSOCIATION_CLASS__SUPER_CLASS:
-				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.ASSOCIATION_CLASS__SUB_CLASS:
-				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE:
 				return unownedAttributes != null && !unownedAttributes.isEmpty();
 		}

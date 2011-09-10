@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * An UnspecializeableTypeServer adapts the primary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
  */
-class UnspecializeableTypeServer extends TypeServer
+public class UnspecializeableTypeServer extends TypeServer
 {
 	UnspecializeableTypeServer(MetaModelManager metaModelManager, Type primaryType) {
 		super(metaModelManager, primaryType);

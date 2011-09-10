@@ -49,7 +49,7 @@ public class ExplicitNavigationProperty extends AbstractCallableImplementation
 		PropertyCallExp propertyCall = (PropertyCallExp) callExp;
 		Property property = propertyCall.getReferredProperty();
 		Object object = sourceValue.asObject();
-		if ((object instanceof ClassifierType) && !(property.getClass_() instanceof ClassifierType)) {
+		if ((object instanceof ClassifierType) && !(property.getOwningType() instanceof ClassifierType)) {
 			object = ((ClassifierType)object).getInstanceType();	
 		}
 		if (object instanceof EObject) {

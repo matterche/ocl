@@ -53,7 +53,7 @@ public abstract class AbstractOperationFilter implements EnvironmentView.Filter
 
 	protected Map<TemplateParameter, ParameterableElement> getOperationBindings(Operation candidateOperation) {
 		Type sourceType = this.sourceType;
-		if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
+		if (!(sourceType instanceof CollectionType) && (candidateOperation.getOwningType() instanceof CollectionType)) {
 			sourceType = metaModelManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 		}			
 		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);

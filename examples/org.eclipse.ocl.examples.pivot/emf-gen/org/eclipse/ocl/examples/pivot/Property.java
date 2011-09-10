@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isImplicit <em>Implicit</em>}</li>
@@ -47,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isTransient <em>Is Transient</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isUnsettable <em>Is Unsettable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isVolatile <em>Is Volatile</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -393,31 +394,46 @@ public interface Property
 	void setIsVolatile(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttributes <em>Owned Attribute</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes <em>Owned Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @see #setOwningType(Type)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_OwningType()
+	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes
+	 * @model opposite="ownedAttribute" transient="false" ordered="false"
+	 * @generated
+	 */
+	Type getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getOwningType <em>Owning Type</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the property, and of which the property is an attribute.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Class</em>' container reference.
-	 * @see #setClass_(org.eclipse.ocl.examples.pivot.Class)
+	 * @return the value of the '<em>Class</em>' reference.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Class()
-	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedAttributes
-	 * @model opposite="ownedAttribute" transient="false" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" ordered="false"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' container reference.
-	 * @see #getClass_()
-	 * @generated
-	 */
-	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
 
 	/**
 	 * <!-- begin-user-doc -->

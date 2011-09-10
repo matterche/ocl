@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getRaisedExceptions <em>Raised Exception</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getPrecedence <em>Precedence</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}</li>
  * </ul>
@@ -117,31 +118,46 @@ public interface Operation
 	Parameter createOwnedParameter();
 
 	/**
-	 * Returns the value of the '<em><b>Class</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations <em>Owned Operation</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperations <em>Owned Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @see #setOwningType(Type)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_OwningType()
+	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedOperations
+	 * @model opposite="ownedOperation" transient="false" ordered="false"
+	 * @generated
+	 */
+	Type getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The class that owns the operation.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Class</em>' container reference.
-	 * @see #setClass_(org.eclipse.ocl.examples.pivot.Class)
+	 * @return the value of the '<em>Class</em>' reference.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Class()
-	 * @see org.eclipse.ocl.examples.pivot.Class#getOwnedOperations
-	 * @model opposite="ownedOperation" transient="false" ordered="false"
+	 * @model transient="true" changeable="false" volatile="true" ordered="false"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Operation#getClass_ <em>Class</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class</em>' container reference.
-	 * @see #getClass_()
-	 * @generated
-	 */
-	void setClass_(org.eclipse.ocl.examples.pivot.Class value);
 
 	/**
 	 * <!-- begin-user-doc -->

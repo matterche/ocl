@@ -119,7 +119,7 @@ public class [javaClass/] extends XMLResourceImpl
 		elementClass.getSuperClasses().clear();
 		for (Type pivotClass : [pkg.getSymbolName()/].getOwnedTypes()) {
 			if (pivotClass instanceof Enumeration) {
-				List<Class> superClasses = ((Enumeration) pivotClass).getSuperClasses();
+				List<Type> superClasses = ((Enumeration) pivotClass).getSuperClasses();
 				if (superClasses.isEmpty()) {
 					superClasses.add(standardLibrary.getEnumerationType());
 				}

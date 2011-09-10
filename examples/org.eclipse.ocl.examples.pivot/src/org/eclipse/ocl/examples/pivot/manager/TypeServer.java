@@ -41,10 +41,8 @@ import com.google.common.collect.Iterables;
  * A TypeServer adapts the primary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
  */
-abstract class TypeServer extends TypeTracker
+public abstract class TypeServer extends TypeTracker
 {
-//	private static final Logger logger = Logger.getLogger(ClassServer.class);
-
 	public static Function<TypeTracker, Type> tracker2class = new Function<TypeTracker, Type>()
 	{
 		public Type apply(TypeTracker typeTracker) {
@@ -195,7 +193,7 @@ abstract class TypeServer extends TypeTracker
 	}
 	
 	@Override
-	TypeServer getTypeServer() {
+	public TypeServer getTypeServer() {
 		return this;
 	}
 

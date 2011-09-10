@@ -43,7 +43,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 {	
 	public static Namespace getNamespace(EObject element) {
 		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
+			if (eObject instanceof Type) {
 				return (Namespace) eObject;
 			}
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {

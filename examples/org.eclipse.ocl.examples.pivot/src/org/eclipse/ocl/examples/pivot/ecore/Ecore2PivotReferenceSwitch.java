@@ -68,7 +68,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 	@Override
 	public Object caseEClass(EClass eObject) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
-		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
+		doSwitchAll(Type.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
 		if (pivotElement.getSuperClasses().isEmpty()) {
 			org.eclipse.ocl.examples.pivot.Class oclElementType = converter.getMetaModelManager().getOclElementType();
 			if (oclElementType != null) {
@@ -108,7 +108,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty = PivotFactory.eINSTANCE.createProperty();
 					oppositeProperty.setName(oppositeName);
 					oppositeProperty.setImplicit(true);
-					org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();
+					Type remoteType = pivotElement.getType();
 					Type localType = PivotUtil.getFeaturingClass(pivotElement);
 					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);

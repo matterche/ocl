@@ -151,11 +151,6 @@
         </xmi:Extension>
       </ownedMember>
     </ownedMember>
-    <ownedMember xmi:type="cmof:Package" xmi:id="_-P7ogO5vEd-sIMHRp27srQ" name="MDT_OCL_SubClasses">
-      <ownedMember xmi:type="cmof:Class" xmi:id="_-P7ogu5vEd-sIMHRp27srQ" name="Class">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_OQds4O5wEd-sIMHRp27srQ" name="subClass" type="_-P7ogu5vEd-sIMHRp27srQ" upper="*" lower="0"/>
-      </ownedMember>
-    </ownedMember>
     <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
       <profileApplication xmi:type="cmof:ProfileApplication" xmi:id="_0zzhIMezEd-sJIf4tYBt-g" applyingPackage="_0">
         <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -219,7 +214,7 @@
     <Ecore:EClass xmi:id="_KhzAgOfSEd-IXbTaV_5Nsg" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="_GklkEOfSEd-IXbTaV_5Nsg"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" base_Property="_OQds4O5wEd-sIMHRp27srQ" isResolveProxies="false"/>
+    <Ecore:EReference xmi:id="_zmnm0O53Ed-sIMHRp27srQ" isTransient="true" isResolveProxies="false"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EDataType xmi:id="_W_mzkPPcEd-7P5P8zTFtow" instanceClassName="" dataTypeName="boolean"/>

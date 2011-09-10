@@ -40,10 +40,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (type instanceof AnyType) {
 			return true;
 		}
-		if (!(type instanceof org.eclipse.ocl.examples.pivot.Class)) {
-			return true;
-		}
-		List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClasses();
+		List<Type> superClasses = type.getSuperClasses();
 		return !superClasses.isEmpty();
 	}
 }

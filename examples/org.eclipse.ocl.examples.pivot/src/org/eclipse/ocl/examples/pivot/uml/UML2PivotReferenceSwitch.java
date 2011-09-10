@@ -59,7 +59,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 				Property pivotOpposite = converter.getCreated(Property.class, umlOpposite);
 				org.eclipse.uml2.uml.Type umlContainerType = umlOpposite.getType();
 				if (umlContainerType != null) {
-					org.eclipse.ocl.examples.pivot.Class pivotContainerType = (org.eclipse.ocl.examples.pivot.Class)converter.getPivotType(umlContainerType);
+					Type pivotContainerType = converter.getPivotType(umlContainerType);
 					pivotContainerType.getOwnedAttributes().add(pivotElement);
 				}
 				pivotOpposite.setOpposite(pivotElement);
@@ -71,7 +71,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClass);
-		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
+		doSwitchAll(Type.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
 		return null;
 	}
 

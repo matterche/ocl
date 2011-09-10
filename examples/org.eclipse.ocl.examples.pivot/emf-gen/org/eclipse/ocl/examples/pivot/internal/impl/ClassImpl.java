@@ -17,18 +17,13 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -39,9 +34,8 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
-
-import com.google.common.collect.Iterators;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,12 +45,11 @@ import com.google.common.collect.Iterators;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isAbstract <em>Is Abstract</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedAttributes <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedOperations <em>Owned Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSuperClasses <em>Super Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#isInterface <em>Is Interface</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getSubClasses <em>Sub Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl#getOwnedAttributes <em>Owned Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,36 +80,6 @@ public class ClassImpl
 	protected static final int IS_ABSTRACT_EFLAG = 1 << 9;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attribute</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Property> ownedAttributes;
-
-	/**
-	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Operation> ownedOperations;
-
-	/**
-	 * The cached value of the '{@link #getSuperClasses() <em>Super Class</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSuperClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> superClasses;
-
-	/**
 	 * The default value of the '{@link #isInterface() <em>Is Interface</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,16 +98,6 @@ public class ClassImpl
 	 * @ordered
 	 */
 	protected static final int IS_INTERFACE_EFLAG = 1 << 10;
-
-	/**
-	 * The cached value of the '{@link #getSubClasses() <em>Sub Class</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubClasses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<org.eclipse.ocl.examples.pivot.Class> subClasses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,10 +177,11 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Property> getOwnedAttributes() {
 		if (ownedAttributes == null)
 		{
-			ownedAttributes = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.CLASS__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__CLASS);
+			ownedAttributes = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.CLASS__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__OWNING_TYPE);
 		}
 		return ownedAttributes;
 	}
@@ -237,6 +191,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property createOwnedAttribute() {
 		Property newOwnedAttribute = (Property) create(PivotPackage.Literals.PROPERTY);
 		getOwnedAttributes().add(newOwnedAttribute);
@@ -248,10 +203,21 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetOwnedAttributes()
+	{
+		return ownedAttributes != null && !ownedAttributes.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null)
 		{
-			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATION, PivotPackage.OPERATION__CLASS);
+			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATION, PivotPackage.OPERATION__OWNING_TYPE);
 		}
 		return ownedOperations;
 	}
@@ -261,6 +227,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation createOwnedOperation(EClass eClass) {
 		Operation newOwnedOperation = (Operation) create(eClass);
 		getOwnedOperations().add(newOwnedOperation);
@@ -272,6 +239,7 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Operation createOwnedOperation() {
 		return createOwnedOperation(PivotPackage.Literals.OPERATION);
 	}
@@ -281,12 +249,33 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<org.eclipse.ocl.examples.pivot.Class> getSuperClasses() {
+	public boolean isSetOwnedOperations()
+	{
+		return ownedOperations != null && !ownedOperations.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getSuperClasses() {
 		if (superClasses == null)
 		{
-			superClasses = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASS);
+			superClasses = new EObjectResolvingEList<Type>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUPER_CLASS);
 		}
 		return superClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSuperClasses()
+	{
+		return superClasses != null && !superClasses.isEmpty();
 	}
 
 	/**
@@ -310,90 +299,6 @@ public class ClassImpl
 		if (newIsInterface) eFlags |= IS_INTERFACE_EFLAG; else eFlags &= ~IS_INTERFACE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CLASS__IS_INTERFACE, oldIsInterface, newIsInterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<org.eclipse.ocl.examples.pivot.Class> getSubClasses() {
-		if (subClasses == null)
-		{
-			subClasses = new EObjectEList<org.eclipse.ocl.examples.pivot.Class>(org.eclipse.ocl.examples.pivot.Class.class, this, PivotPackage.CLASS__SUB_CLASS);
-		}
-		return subClasses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
-			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (ownedTemplateSignature != null)
-					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE, null, msgs);
-				return basicSetOwnedTemplateSignature((TemplateSignature)otherEnd, msgs);
-			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
-				if (templateParameter != null)
-					msgs = ((InternalEObject)templateParameter).eInverseRemove(this, PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
-				return basicSetTemplateParameter((TemplateParameter)otherEnd, msgs);
-			case PivotPackage.CLASS__PACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttributes()).basicAdd(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
-		}
-		return eDynamicInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID)
-		{
-			case PivotPackage.CLASS__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBindings()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				return basicSetOwnedTemplateSignature(null, msgs);
-			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
-				return basicSetOwningTemplateParameter(null, msgs);
-			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
-				return basicSetTemplateParameter(null, msgs);
-			case PivotPackage.CLASS__PACKAGE:
-				return basicSetPackage(null, msgs);
-			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttributes()).basicRemove(otherEnd, msgs);
-			case PivotPackage.CLASS__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
-		}
-		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -428,20 +333,18 @@ public class ClassImpl
 				return basicGetTemplateParameter();
 			case PivotPackage.CLASS__PACKAGE:
 				return getPackage();
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				return getInstanceClassName();
-			case PivotPackage.CLASS__IS_ABSTRACT:
-				return isAbstract();
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				return getOwnedAttributes();
 			case PivotPackage.CLASS__OWNED_OPERATION:
 				return getOwnedOperations();
 			case PivotPackage.CLASS__SUPER_CLASS:
 				return getSuperClasses();
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				return getInstanceClassName();
+			case PivotPackage.CLASS__IS_ABSTRACT:
+				return isAbstract();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.CLASS__SUB_CLASS:
-				return getSubClasses();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -493,12 +396,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName((String)newValue);
-				return;
-			case PivotPackage.CLASS__IS_ABSTRACT:
-				setIsAbstract((Boolean)newValue);
-				return;
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
@@ -509,14 +406,16 @@ public class ClassImpl
 				return;
 			case PivotPackage.CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
-				getSuperClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
+				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				return;
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName((String)newValue);
+				return;
+			case PivotPackage.CLASS__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
 				return;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
-				return;
-			case PivotPackage.CLASS__SUB_CLASS:
-				getSubClasses().clear();
-				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -564,12 +463,6 @@ public class ClassImpl
 			case PivotPackage.CLASS__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
-			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
-				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
-				return;
-			case PivotPackage.CLASS__IS_ABSTRACT:
-				setIsAbstract(IS_ABSTRACT_EDEFAULT);
-				return;
 			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
 				getOwnedAttributes().clear();
 				return;
@@ -579,11 +472,14 @@ public class ClassImpl
 			case PivotPackage.CLASS__SUPER_CLASS:
 				getSuperClasses().clear();
 				return;
+			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
+				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
+				return;
+			case PivotPackage.CLASS__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
 			case PivotPackage.CLASS__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
-				return;
-			case PivotPackage.CLASS__SUB_CLASS:
-				getSubClasses().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -620,20 +516,18 @@ public class ClassImpl
 				return isSetTemplateParameter();
 			case PivotPackage.CLASS__PACKAGE:
 				return getPackage() != null;
+			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
+				return isSetOwnedAttributes();
+			case PivotPackage.CLASS__OWNED_OPERATION:
+				return isSetOwnedOperations();
+			case PivotPackage.CLASS__SUPER_CLASS:
+				return isSetSuperClasses();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
-			case PivotPackage.CLASS__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
-			case PivotPackage.CLASS__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
-			case PivotPackage.CLASS__SUPER_CLASS:
-				return superClasses != null && !superClasses.isEmpty();
 			case PivotPackage.CLASS__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.CLASS__SUB_CLASS:
-				return subClasses != null && !subClasses.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -651,9 +545,5 @@ public class ClassImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitClass(this);
-	}
-
-	public Iterator<org.eclipse.ocl.examples.pivot.Class> iterator() {
-		return Iterators.singletonIterator((org.eclipse.ocl.examples.pivot.Class)this);
 	}
 } //ClassImpl

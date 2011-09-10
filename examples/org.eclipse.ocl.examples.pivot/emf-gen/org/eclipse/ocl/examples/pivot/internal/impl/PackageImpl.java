@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,8 +42,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
-
-import com.google.common.collect.Iterators;
 
 /**
  * <!-- begin-user-doc -->
@@ -859,9 +856,5 @@ public class PackageImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitPackage(this);
-	}
-
-	public Iterator<org.eclipse.ocl.examples.pivot.Package> iterator() {
-		return Iterators.singletonIterator((org.eclipse.ocl.examples.pivot.Package)this);
 	}
 } //PackageImpl

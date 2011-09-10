@@ -61,7 +61,7 @@ public class PivotSaver
 
 		@Override
 		public Object visitClass(org.eclipse.ocl.examples.pivot.Class object) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : object.getSuperClasses()) {
+			for (Type superClass : object.getSuperClasses()) {
 				if (superClass.getTemplateBindings().size() > 0) {
 					specializingElements.add(object);
 					break;
@@ -241,10 +241,10 @@ public class PivotSaver
 
 		@Override
 		public Object visitClass(org.eclipse.ocl.examples.pivot.Class object) {
-			List<org.eclipse.ocl.examples.pivot.Class> superClasses = object.getSuperClasses();
+			List<Type> superClasses = object.getSuperClasses();
 			for (int i = 0; i < superClasses.size(); i++) {
-				org.eclipse.ocl.examples.pivot.Class referredClass = superClasses.get(i);
-				org.eclipse.ocl.examples.pivot.Class resolvedClass = resolveType(referredClass);
+				Type referredClass = superClasses.get(i);
+				Type resolvedClass = resolveType(referredClass);
 				if (resolvedClass != null) {
 					superClasses.set(i, resolvedClass);
 				}

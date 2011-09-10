@@ -618,7 +618,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitIteration(Iteration iteration) {
-		appendQualifiedName(iteration.getClass_(), ".", iteration);
+		appendQualifiedName(iteration.getOwningType(), ".", iteration);
 		appendTemplateBindings(iteration.getTemplateBindings());
 		appendTemplateSignature(iteration.getOwnedTemplateSignature());
 		append("(");
@@ -752,7 +752,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitOperation(Operation operation) {
-		appendQualifiedName(operation.getClass_(), ".", operation);
+		appendQualifiedName(operation.getOwningType(), ".", operation);
 		appendTemplateBindings(operation.getTemplateBindings());
 		appendTemplateSignature(operation.getOwnedTemplateSignature());
 		append("(");
@@ -828,7 +828,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitProperty(Property property) {
-		appendQualifiedName(property.getClass_(), ".", property);
+		appendQualifiedName(property.getOwningType(), ".", property);
 		return null;
 	}
 

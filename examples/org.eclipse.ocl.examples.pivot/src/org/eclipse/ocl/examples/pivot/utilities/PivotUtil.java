@@ -569,8 +569,8 @@ public class PivotUtil
 					}
 				}
 			}
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Class) {
-				for (org.eclipse.ocl.examples.pivot.Class superType : ((org.eclipse.ocl.examples.pivot.Class)eObject).getSuperClasses()) {
+			if (eObject instanceof Type) {
+				for (Type superType : ((Type)eObject).getSuperClasses()) {
 					map = getAllTemplateParameterSubstitutions(map, superType);
 				}		
 			}
@@ -639,13 +639,13 @@ public class PivotUtil
 		}
 	}
 
-	public static org.eclipse.ocl.examples.pivot.Class getFeaturingClass(Feature feature) {
-		org.eclipse.ocl.examples.pivot.Class owner = null;
+	public static Type getFeaturingClass(Feature feature) {
+		Type owner = null;
 		if (feature instanceof Property) {
-			owner = ((Property)feature).getClass_();
+			owner = ((Property)feature).getOwningType();
 		}
 		else if (feature instanceof Operation) {
-			owner = ((Operation)feature).getClass_();
+			owner = ((Operation)feature).getOwningType();
 		}
 		return owner;
 	}
