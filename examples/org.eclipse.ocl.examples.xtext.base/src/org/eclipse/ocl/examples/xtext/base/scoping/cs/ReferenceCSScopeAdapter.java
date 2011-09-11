@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
@@ -30,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Property>
 {
-	public ReferenceCSScopeAdapter(MetaModelManager metaModelManager, ReferenceCS csElement) {
-		super(metaModelManager, csElement, Property.class);
+	public ReferenceCSScopeAdapter(ReferenceCS csElement) {
+		super(csElement, Property.class);
 	}
 
 	public void addAllReferences(EnvironmentView environmentView, Type csClass) {

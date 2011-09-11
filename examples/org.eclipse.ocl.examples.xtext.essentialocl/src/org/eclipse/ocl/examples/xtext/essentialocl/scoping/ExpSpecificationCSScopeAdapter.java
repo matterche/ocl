@@ -19,15 +19,14 @@ package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
 public class ExpSpecificationCSScopeAdapter extends EssentialOCLCSScopeAdapter<ExpSpecificationCS, ExpressionInOcl>
 {
-	public ExpSpecificationCSScopeAdapter(MetaModelManager metaModelManager, ExpSpecificationCS csElement) {
-		super(metaModelManager, csElement, ExpressionInOcl.class);
+	public ExpSpecificationCSScopeAdapter(ExpSpecificationCS csElement) {
+		super(csElement, ExpressionInOcl.class);
 	}
 
 	@Override

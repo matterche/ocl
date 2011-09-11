@@ -186,7 +186,7 @@ public class EnvironmentView
 
 	public void addElementsOfScope(Element element, ScopeView scopeView) {
 		if (element !=  null) {
-			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(metaModelManager, element);
+			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
 			if (scopeAdapter != null) {
 				scopeAdapter.computeLookup(this, scopeView);
 			}
@@ -243,7 +243,7 @@ public class EnvironmentView
 	}
 
 	public int computeLookups(Type type) {
-		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(metaModelManager, type);
+		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(type);
 		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(metaModelManager, null);
 		return computeLookups(innerScopeView);
 	}

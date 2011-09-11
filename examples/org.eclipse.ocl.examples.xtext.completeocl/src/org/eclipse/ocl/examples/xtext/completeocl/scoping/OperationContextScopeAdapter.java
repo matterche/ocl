@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView.Filter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -29,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContex
 
 public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<OperationContextDeclCS, Operation>
 {
-	public OperationContextScopeAdapter(MetaModelManager metaModelManager, OperationContextDeclCS csElement) {
-		super(metaModelManager, csElement, Operation.class);
+	public OperationContextScopeAdapter(OperationContextDeclCS csElement) {
+		super(csElement, Operation.class);
 	}
 
 	@Override

@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseScopeVisitor;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
@@ -52,104 +51,104 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TypeNameExpCSScopeAda
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
 public class EssentialOCLScopeVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, MetaModelManager, BaseScopeVisitor>
+	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<ScopeCSAdapter, Object, BaseScopeVisitor>
 {
-	public EssentialOCLScopeVisitor(MetaModelManager context) {
-		super(new BaseScopeVisitor(context), context);
+	public EssentialOCLScopeVisitor() {
+		super(new BaseScopeVisitor(), null);
 	}
 	
 	@Override
 	public ScopeCSAdapter visitBinaryOperatorCS(BinaryOperatorCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitCollectionLiteralExpCS(CollectionLiteralExpCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitCollectionLiteralPartCS(CollectionLiteralPartCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitCollectionTypeCS(CollectionTypeCS object) {
-		return new EmptyCSScopeAdapter(context, object);
+		return new EmptyCSScopeAdapter(object);
 	}
 
 	@Override
 	public ScopeCSAdapter visitContextCS(ContextCS object) {
-		return new ContextCSScopeAdapter(context, object);
+		return new ContextCSScopeAdapter(object);
 	}
 
 	@Override
 	public ScopeCSAdapter visitExpCS(ExpCS eObject) {
-		return new ExpCSScopeAdapter<ExpCS, OclExpression>(context, eObject, OclExpression.class);
+		return new ExpCSScopeAdapter<ExpCS, OclExpression>(eObject, OclExpression.class);
 	}
 
 	@Override
 	public ScopeCSAdapter visitExpSpecificationCS(ExpSpecificationCS object) {
-		return new ExpSpecificationCSScopeAdapter(context, object);
+		return new ExpSpecificationCSScopeAdapter(object);
 	}
 
 	@Override
 	public ScopeCSAdapter visitInfixExpCS(InfixExpCS object) {
-		return new EmptyCSScopeAdapter(context, object);
+		return new EmptyCSScopeAdapter(object);
 	}
 
 	@Override
 	public LetExpCSScopeAdapter visitLetExpCS(LetExpCS eObject) {
-		return new LetExpCSScopeAdapter(context, eObject);
+		return new LetExpCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitNameExpCS(NameExpCS eObject) {
-		return new NameExpCSScopeAdapter(context, eObject);
+		return new NameExpCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitNavigatingArgCS(NavigatingArgCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);		// FIXME iterators
+		return new EmptyCSScopeAdapter(eObject);		// FIXME iterators
 	}
 
 	@Override
 	public ScopeCSAdapter visitNavigatingExpCS(NavigatingExpCS eObject) {
-		return new NavigatingExpCSScopeAdapter(context, eObject);
+		return new NavigatingExpCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitNavigationOperatorCS(NavigationOperatorCS eObject) {
-		return new NavigationOperatorCSScopeAdapter(context, eObject);
+		return new NavigationOperatorCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitSelfExpCS(SelfExpCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTupleLiteralExpCS(TupleLiteralExpCS eObject) {
-		return new TupleLiteralExpCSScopeAdapter(context, eObject);
+		return new TupleLiteralExpCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTupleLiteralPartCS(TupleLiteralPartCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTypeNameExpCS(TypeNameExpCS eObject) {
-		return new TypeNameExpCSScopeAdapter(context, eObject);
+		return new TypeNameExpCSScopeAdapter(eObject);
 	}
 	
 	@Override
 	public ScopeCSAdapter visitUnaryOperatorCS(UnaryOperatorCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitVariableCS(VariableCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 }

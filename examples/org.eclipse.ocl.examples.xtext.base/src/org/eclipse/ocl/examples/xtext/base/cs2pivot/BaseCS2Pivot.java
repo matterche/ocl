@@ -98,8 +98,8 @@ public class BaseCS2Pivot extends CS2Pivot
 			return new BasePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
-			return new BaseScopeVisitor(metaModelManager);
+		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+			return new BaseScopeVisitor();
 		}
 
 		public EPackage getEPackage() {

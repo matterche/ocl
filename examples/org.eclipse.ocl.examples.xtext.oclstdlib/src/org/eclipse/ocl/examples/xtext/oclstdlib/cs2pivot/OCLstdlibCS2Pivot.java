@@ -50,8 +50,8 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 			return new OCLstdlibPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
-			return new OCLstdlibScopeVisitor(metaModelManager);
+		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+			return new OCLstdlibScopeVisitor();
 		}
 
 		public EPackage getEPackage() {

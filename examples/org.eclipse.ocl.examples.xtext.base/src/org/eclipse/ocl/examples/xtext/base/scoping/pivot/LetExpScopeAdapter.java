@@ -19,14 +19,13 @@ package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
 {
-	public LetExpScopeAdapter(MetaModelManager metaModelManager, LetExp pivotElement) {
-		super(metaModelManager, pivotElement);
+	public LetExpScopeAdapter(LetExp pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

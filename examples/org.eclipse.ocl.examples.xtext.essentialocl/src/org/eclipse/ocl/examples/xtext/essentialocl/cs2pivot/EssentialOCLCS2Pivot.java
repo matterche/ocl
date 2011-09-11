@@ -70,8 +70,8 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			return new EssentialOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
-			return new EssentialOCLScopeVisitor(metaModelManager);
+		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+			return new EssentialOCLScopeVisitor();
 		}
 
 		public EPackage getEPackage() {

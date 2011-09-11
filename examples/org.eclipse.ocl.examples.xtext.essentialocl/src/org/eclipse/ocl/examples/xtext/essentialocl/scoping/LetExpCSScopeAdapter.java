@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -30,8 +29,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 {
-	public LetExpCSScopeAdapter(MetaModelManager metaModelManager, LetExpCS csElement) {
-		super(metaModelManager, csElement, LetExp.class);
+	public LetExpCSScopeAdapter(LetExpCS csElement) {
+		super(csElement, LetExp.class);
 	}
 
 	@Override

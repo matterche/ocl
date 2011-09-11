@@ -43,8 +43,8 @@ public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, N
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public IncludeScopeAdapter(MetaModelManager metaModelManager, IncludeCS csElement) {
-		super(metaModelManager, csElement, Namespace.class);
+	public IncludeScopeAdapter(IncludeCS csElement) {
+		super(csElement, Namespace.class);
 	}
 
 	@Override
@@ -103,6 +103,7 @@ public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, N
 			return;
 		}
 		try {
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			importedElement = metaModelManager.loadResource(uri, target.getName());				
 			Resource importedResource = importedElement.eResource();
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();

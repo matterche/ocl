@@ -17,15 +17,14 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TemplateSignatureCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateSignatureCS, TemplateSignature>
 {
-	public TemplateSignatureCSScopeAdapter(MetaModelManager metaModelManager, TemplateSignatureCS csElement) {
-		super(metaModelManager, csElement, TemplateSignature.class);
+	public TemplateSignatureCSScopeAdapter(TemplateSignatureCS csElement) {
+		super(csElement, TemplateSignature.class);
 	}
 
 	@Override

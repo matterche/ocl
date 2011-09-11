@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -61,8 +60,8 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 	private static EnvironmentView.Filter noOperationsFilter = new NoOperations();
 //	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
 	
-	public NameExpCSScopeAdapter(MetaModelManager metaModelManager, NameExpCS csElement) {
-		super(metaModelManager, csElement, OclExpression.class);
+	public NameExpCSScopeAdapter(NameExpCS csElement) {
+		super(csElement, OclExpression.class);
 	}
 
 	@Override

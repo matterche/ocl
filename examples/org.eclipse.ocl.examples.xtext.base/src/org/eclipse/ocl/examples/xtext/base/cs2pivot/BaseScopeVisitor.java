@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -61,121 +60,120 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.TypedTypeRefCSScopeAdapter
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
-public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdapter, MetaModelManager>
+public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdapter, Object>
 {
-	public BaseScopeVisitor(MetaModelManager context) {
-		super(context);
-		assert context != null;
+	public BaseScopeVisitor() {
+		super(null);
 	}
 	
 	@Override
 	public ScopeCSAdapter visitAnnotationCS(AnnotationCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitAttributeCS(AttributeCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitClassCS(ClassCS eObject) {
-		return new ClassCSScopeAdapter(context, eObject);
+		return new ClassCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitConstraintCS(ConstraintCS eObject) {
-		return new ConstraintCSScopeAdapter(context, eObject);
+		return new ConstraintCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitDataTypeCS(DataTypeCS eObject) {
-		return new DataTypeCSScopeAdapter(context, eObject);
+		return new DataTypeCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitEnumerationCS(EnumerationCS eObject) {
-		return new EnumCSScopeAdapter(context, eObject);
+		return new EnumCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitImportCS(ImportCS eObject) {
-		return new ImportScopeAdapter(context, eObject);
+		return new ImportScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitLambdaTypeCS(LambdaTypeCS eObject) {
-		return new LambdaTypeCSScopeAdapter(context, eObject);
+		return new LambdaTypeCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitLibraryCS(LibraryCS eObject) {
-		return new LibraryScopeAdapter(context, eObject);
+		return new LibraryScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitModelElementRefCS(ModelElementRefCS eObject) {
-		return new ModelElementRefCSScopeAdapter(context, eObject);
+		return new ModelElementRefCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitOperationCS(OperationCS eObject) {
-		return new OperationCSScopeAdapter(context, eObject);
+		return new OperationCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitPackageCS(PackageCS eObject) {
-		return new PackageCSScopeAdapter(context, eObject);
+		return new PackageCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitParameterCS(ParameterCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitReferenceCS(ReferenceCS eObject) {
-		return new ReferenceCSScopeAdapter(context, eObject);
+		return new ReferenceCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitRootPackageCS(RootPackageCS eObject) {
-		return new RootPackageCSScopeAdapter(context, eObject);
+		return new RootPackageCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTemplateBindingCS(TemplateBindingCS eObject) {
-		return new TemplateBindingCSScopeAdapter(context, eObject);
+		return new TemplateBindingCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTemplateParameterSubstitutionCS(TemplateParameterSubstitutionCS eObject) {
-		return new TemplateParameterSubstitutionCSScopeAdapter(context, eObject);
+		return new TemplateParameterSubstitutionCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTemplateSignatureCS(TemplateSignatureCS eObject) {
-		return new TemplateSignatureCSScopeAdapter(context, eObject);
+		return new TemplateSignatureCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTuplePartCS(TuplePartCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTupleTypeCS(TupleTypeCS eObject) {
-		return new TupleTypeCSScopeAdapter(context, eObject);
+		return new TupleTypeCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTypeParameterCS(TypeParameterCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitTypedTypeRefCS(TypedTypeRefCS eObject) {
-		return new TypedTypeRefCSScopeAdapter(context, eObject);
+		return new TypedTypeRefCSScopeAdapter(eObject);
 	}
 
 	public ScopeCSAdapter visiting(VisitableCS visitable) {

@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
@@ -25,8 +24,8 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstra
 
 public class PostconditionScopeAdapter extends EssentialOCLCSScopeAdapter<OCLinEcoreConstraintCS, Constraint>
 {
-	public PostconditionScopeAdapter(MetaModelManager metaModelManager, OCLinEcoreConstraintCS csElement) {
-		super(metaModelManager, csElement, Constraint.class);
+	public PostconditionScopeAdapter(OCLinEcoreConstraintCS csElement) {
+		super(csElement, Constraint.class);
 	}
 
 	@Override

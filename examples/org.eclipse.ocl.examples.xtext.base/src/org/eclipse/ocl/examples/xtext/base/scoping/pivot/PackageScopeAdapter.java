@@ -22,8 +22,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class PackageScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(metaModelManager, pivotElement);
+	public PackageScopeAdapter(org.eclipse.ocl.examples.pivot.Package pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

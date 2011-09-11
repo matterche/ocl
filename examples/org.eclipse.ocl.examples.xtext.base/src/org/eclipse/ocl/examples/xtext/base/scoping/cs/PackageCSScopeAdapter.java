@@ -23,14 +23,15 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class PackageCSScopeAdapter extends ModelElementCSScopeAdapter<PackageCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageCSScopeAdapter(MetaModelManager metaModelManager, PackageCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public PackageCSScopeAdapter(PackageCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
 		if (pivot != null) {
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivot));
 			environmentView.addNamedElements(metaModelManager.getLocalClasses(pivot));
 		}

@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -55,28 +54,27 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.VoidTypeScopeAdapter;
 
-public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, MetaModelManager> implements PivotConstants
+public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Object> implements PivotConstants
 {	
-	public PivotScopeVisitor(MetaModelManager context) {
-		super(context);
-		assert context != null;
+	public PivotScopeVisitor() {
+		super(null);
 	}
 	
 	@Override
 	public ScopeAdapter visitClass(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		return new ClassScopeAdapter(context, pivotElement);
+		return new ClassScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitConstraint(Constraint pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 	
 	@Override
 	public ScopeAdapter visitDataType(DataType pivotElement) {
 		Type behavioralType = pivotElement.getBehavioralType();
 		if (behavioralType != null) {
-			return AbstractScopeAdapter.getScopeAdapter(context, behavioralType);
+			return AbstractScopeAdapter.getScopeAdapter(behavioralType);
 		}
 		else {
 			return super.visitDataType(pivotElement);
@@ -85,102 +83,102 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Me
 
 	@Override
 	public ScopeAdapter visitEnumeration(org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		return new EnumerationScopeAdapter(context, pivotElement);
+		return new EnumerationScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitExpressionInOcl(ExpressionInOcl pivotElement) {
-		return new ExpressionInOclScopeAdapter(context, pivotElement);
+		return new ExpressionInOclScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitIfExp(IfExp pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitInvalidLiteralExp(InvalidLiteralExp pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);		// FIXME
+		return new EmptyScopeAdapter(pivotElement);		// FIXME
 	}
 
 	@Override
 	public ScopeAdapter visitInvalidType(InvalidType pivotElement) {
-		return new VoidTypeScopeAdapter(context, pivotElement);
+		return new VoidTypeScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitIterateExp(IterateExp pivotElement) {
-		return new IterateExpScopeAdapter(context, pivotElement);
+		return new IterateExpScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitIteratorExp(IteratorExp pivotElement) {
-		return new IteratorExpScopeAdapter(context, pivotElement);
+		return new IteratorExpScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitLetExp(LetExp pivotElement) {
-		return new LetExpScopeAdapter(context, pivotElement);
+		return new LetExpScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitOperation(Operation pivotElement) {
-		return new OperationScopeAdapter(context, pivotElement);
+		return new OperationScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitOperationCallExp(OperationCallExp pivotElement) {
-		return new OperationCallExpScopeAdapter(context, pivotElement);
+		return new OperationCallExpScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitPackage(org.eclipse.ocl.examples.pivot.Package pivotElement) {
 		if (pivotElement.eContainer() == null) {
-			return new RootPackageScopeAdapter(context, pivotElement);
+			return new RootPackageScopeAdapter(pivotElement);
 		}
 		else {
-			return new PackageScopeAdapter(context, pivotElement);
+			return new PackageScopeAdapter(pivotElement);
 		}
 	}
 
 	@Override
 	public ScopeAdapter visitProperty(Property pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitPropertyCallExp(PropertyCallExp pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitTemplateSignature(TemplateSignature pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitTypeTemplateParameter(TypeTemplateParameter pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitUnspecifiedType(UnspecifiedType pivotElement) {
-		return AbstractScopeAdapter.getScopeAdapter(context, pivotElement.getLowerBound());
+		return AbstractScopeAdapter.getScopeAdapter(pivotElement.getLowerBound());
 	}
 
 	@Override
 	public ScopeAdapter visitVariable(Variable pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitVariableExp(VariableExp pivotElement) {
-		return new EmptyScopeAdapter(context, pivotElement);
+		return new EmptyScopeAdapter(pivotElement);
 	}
 
 	@Override
 	public ScopeAdapter visitVoidType(VoidType pivotElement) {
-		return new VoidTypeScopeAdapter(context, pivotElement);
+		return new VoidTypeScopeAdapter(pivotElement);
 	}
 
 	public ScopeAdapter visiting(Visitable visitable) {

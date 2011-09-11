@@ -22,8 +22,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Enumeration>
 {
-	public EnumerationScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		super(metaModelManager, pivotElement);
+	public EnumerationScopeAdapter(org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

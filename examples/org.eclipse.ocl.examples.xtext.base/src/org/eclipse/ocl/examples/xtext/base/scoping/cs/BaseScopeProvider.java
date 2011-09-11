@@ -18,7 +18,10 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -41,11 +44,14 @@ public class BaseScopeProvider
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
+		Resource csResource = context.eResource();
+		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(csResource);
+		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		ElementCS csElement = (ElementCS) context;
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(scopeAdapter.getMetaModelManager(), scopeAdapter, null, reference, reference);
+		return new BaseScopeView(metaModelManager, scopeAdapter, null, reference, reference);
 	}
 }

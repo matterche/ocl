@@ -30,8 +30,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
 {
-	public ClassCSScopeAdapter(MetaModelManager metaModelManager, ClassCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Class.class);
+	public ClassCSScopeAdapter(ClassCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Class.class);
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
@@ -42,6 +42,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 			}
 		}
 		else {
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			Type libType = metaModelManager.getClassifierType();
 			environmentView.addLibContents(libType, scopeView);
 		}
@@ -66,6 +67,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				if (pivot instanceof ClassifierType) {
 					Type instanceType = ((ClassifierType)pivot).getInstanceType();
 					environmentView.addNamedElements(metaModelManager.getLocalOperations(instanceType, true));

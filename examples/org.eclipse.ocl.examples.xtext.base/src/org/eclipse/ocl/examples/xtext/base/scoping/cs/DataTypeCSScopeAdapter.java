@@ -24,12 +24,13 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class DataTypeCSScopeAdapter extends BaseCSScopeAdapter<DataTypeCS, DataType>
 {
-	public DataTypeCSScopeAdapter(MetaModelManager metaModelManager, DataTypeCS csElement) {
-		super(metaModelManager, csElement, DataType.class);
+	public DataTypeCSScopeAdapter(DataTypeCS csElement) {
+		super(csElement, DataType.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addLibContents(metaModelManager.getOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}

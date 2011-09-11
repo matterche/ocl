@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -36,44 +35,44 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegati
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
 
 public class CompleteOCLScopeVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<ScopeCSAdapter, MetaModelManager, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<ScopeCSAdapter, Object, EssentialOCLScopeVisitor>
 {
-	public CompleteOCLScopeVisitor(MetaModelManager context) {
-		super(new EssentialOCLScopeVisitor(context), context);
+	public CompleteOCLScopeVisitor() {
+		super(new EssentialOCLScopeVisitor(), null);
 	}
 
 	@Override
 	public ScopeCSAdapter visitClassifierContextDeclCS(ClassifierContextDeclCS eObject) {
-		return new ClassifierContextScopeAdapter(context, eObject);
+		return new ClassifierContextScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitCompleteOCLDocumentCS(CompleteOCLDocumentCS eObject) {
-		return new CompleteOCLDocumentScopeAdapter(context, eObject);
+		return new CompleteOCLDocumentScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitContextConstraintCS(ContextConstraintCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 	
 	@Override
 	public ScopeCSAdapter visitIncludeCS(IncludeCS eObject) {
-		return new IncludeScopeAdapter(context, eObject);
+		return new IncludeScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitOperationContextDeclCS(OperationContextDeclCS eObject) {
-		return new OperationContextScopeAdapter(context, eObject);
+		return new OperationContextScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitPackageDeclarationCS(PackageDeclarationCS eObject) {
-		return new PackageDeclarationScopeAdapter(context, eObject);
+		return new PackageDeclarationScopeAdapter(eObject);
 	}
 
 	@Override
 	public ScopeCSAdapter visitPropertyContextDeclCS(PropertyContextDeclCS eObject) {
-		return new PropertyContextScopeAdapter(context, eObject);
+		return new PropertyContextScopeAdapter(eObject);
 	}
 }

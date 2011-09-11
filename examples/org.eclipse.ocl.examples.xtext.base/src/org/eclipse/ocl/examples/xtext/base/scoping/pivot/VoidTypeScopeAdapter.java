@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class VoidTypeScopeAdapter extends ClassScopeAdapter
 {
-	public VoidTypeScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(metaModelManager, pivotElement);
+	public VoidTypeScopeAdapter(org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

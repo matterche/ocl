@@ -48,8 +48,8 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public LibraryScopeAdapter(MetaModelManager metaModelManager, LibraryCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public LibraryScopeAdapter(LibraryCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -95,6 +95,7 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 		if (contribution != null) {
 			Resource resource = contribution.getResource();
 			try {
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				metaModelManager.loadLibrary(resource);
 				environmentView.addElement(name, resource.getContents().get(0));
 			} catch (IllegalLibraryException e) {
@@ -121,6 +122,7 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 		}
 		List<EObject> importedElements = new ArrayList<EObject>();
 		ResourceSet csResourceSet = csResource.getResourceSet();
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 		try {
 			BaseCSResource importedResource = (BaseCSResource)csResourceSet.getResource(uri, true);

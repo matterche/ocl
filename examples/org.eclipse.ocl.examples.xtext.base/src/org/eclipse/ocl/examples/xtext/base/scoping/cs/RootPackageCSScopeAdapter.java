@@ -30,12 +30,13 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPackageCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public RootPackageCSScopeAdapter(MetaModelManager metaModelManager, RootPackageCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public RootPackageCSScopeAdapter(RootPackageCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = getPivot();
 		if (pivotPackage != null) {
 			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivotPackage));

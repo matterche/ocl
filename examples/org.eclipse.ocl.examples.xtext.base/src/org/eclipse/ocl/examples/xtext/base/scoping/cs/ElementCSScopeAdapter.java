@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -40,22 +39,19 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
  *
  * @param <T>
  */
-public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter, MetaModelManagedAdapter
+public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
 {	
-	protected final RootCSScopeAdapter root;	
-	protected final MetaModelManager metaModelManager;
+//	protected final RootCSScopeAdapter root;	
 	
-	protected ElementCSScopeAdapter(MetaModelManager metaModelManager, CS csElement) {
-		this(metaModelManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
+	protected ElementCSScopeAdapter(CS csElement) {
+		this(getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
 	}
 
-	protected ElementCSScopeAdapter(MetaModelManager metaModelManager, ScopeCSAdapter parent, CS target) {
-		super(metaModelManager, parent, target);
-		this.metaModelManager = metaModelManager;
-		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
+	protected ElementCSScopeAdapter(ScopeCSAdapter parent, CS target) {
+		super(parent, target);
+//		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
+		RootCSScopeAdapter root = getRootScopeAdapter();
 		assert (root != null) || (target instanceof RootCS);
-//		metaModelManager.debugAddAdapter(this);
-		metaModelManager.addListener(this);
 	}	
 
 	/**
@@ -69,8 +65,9 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 			if ((namespace == null) || namespace.eIsProxy()) {
 				return null;
 			}
-			ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, namespace);
+			ScopeAdapter scopeAdapter = getScopeAdapter(namespace);
 			if (scopeAdapter != null) {
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, scopeAdapter, null, scopeView.getTargetReference(), null);
 				environmentView.computeLookups(nestedScopeView);
 			}				
@@ -101,8 +98,9 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 				}
 				else {
 					Namespace parentNamespace = internalNamespaces.get(i-1);
-					ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, parentNamespace);
+					ScopeAdapter scopeAdapter = getScopeAdapter(parentNamespace);
 					if (scopeAdapter != null) {
+						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 						BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, scopeAdapter, null, scopeView.getTargetReference(), null);
 						environmentView.computeLookups(nestedScopeView);
 					}
@@ -123,16 +121,9 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 	}
 
 	public RootCSScopeAdapter getRootScopeAdapter() {
-		return root;
-	}
+//		return root;
+		return parent != null ? ((ScopeCSAdapter)parent).getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 
-	public final MetaModelManager getMetaModelManager() {
-		return metaModelManager;
-	}
-
-	@Override
-	public boolean isAdapterFor(MetaModelManager metaModelManager) {
-		return this.metaModelManager == metaModelManager;
 	}
 
 	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {

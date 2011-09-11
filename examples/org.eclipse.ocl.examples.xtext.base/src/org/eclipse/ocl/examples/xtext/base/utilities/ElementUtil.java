@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -176,8 +175,8 @@ public class ElementUtil
 		}
 	}
 
-	public static ScopeAdapter getScopeAdapter(MetaModelManager metaModelManager, Element element) {
-		return ModelElementCSScopeAdapter.getScopeAdapter(metaModelManager, element);
+	public static ScopeAdapter getScopeAdapter(Element element) {
+		return ModelElementCSScopeAdapter.getScopeAdapter(element);
 	}
 
 	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {

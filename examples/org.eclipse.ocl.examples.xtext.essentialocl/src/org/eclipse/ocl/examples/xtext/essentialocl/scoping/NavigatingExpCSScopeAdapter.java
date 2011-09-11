@@ -42,8 +42,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
 public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExpCS, CallExp>
 {
-	public NavigatingExpCSScopeAdapter(MetaModelManager metaModelManager, NavigatingExpCS eObject) {
-		super(metaModelManager, eObject, CallExp.class);
+	public NavigatingExpCSScopeAdapter(NavigatingExpCS eObject) {
+		super(eObject, CallExp.class);
 	}
 
 	@Override
@@ -107,6 +107,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, getParent(), target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;
@@ -138,6 +139,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					type = source.getType();
 				}
 			}
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			EnvironmentView.Filter filter = new OperationFilter(metaModelManager, type, target);
 			try {
 				environmentView.addFilter(filter);

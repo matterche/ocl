@@ -1515,7 +1515,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (isUnspecialized) {
 			return libraryType;	
 		}
-		return getSpecializedTypeServer(libraryType, templateArguments);
+		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(libraryType);
+		return (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
 	}
 
 	public Iterable<Type> getLocalClasses(org.eclipse.ocl.examples.pivot.Package pkg) {
@@ -1923,10 +1924,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	protected <T extends Type> T getSpecializedTypeServer(T unspecializedType, List<? extends ParameterableElement> templateArguments) {
-		SpecializeableTypeServer typeServer = (SpecializeableTypeServer) getTypeTracker(unspecializedType).getTypeServer();
-		SpecializedTypeServer specializedTypeServer = typeServer.getSpecializedTypeServer(templateArguments);
-		Type target = specializedTypeServer.getTarget();
-		return (T) target;
+		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(unspecializedType);
+		return (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
 	}
 	
 	

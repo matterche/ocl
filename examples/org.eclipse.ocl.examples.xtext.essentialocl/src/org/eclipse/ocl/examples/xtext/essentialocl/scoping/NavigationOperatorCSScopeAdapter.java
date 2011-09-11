@@ -35,8 +35,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 
 public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<NavigationOperatorCS, CallExp>
 {
-	public NavigationOperatorCSScopeAdapter(MetaModelManager metaModelManager, NavigationOperatorCS eObject) {
-		super(metaModelManager, eObject, CallExp.class);
+	public NavigationOperatorCSScopeAdapter(NavigationOperatorCS eObject) {
+		super(eObject, CallExp.class);
 	}
 
 	@Override
@@ -57,6 +57,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 						environmentView.addElementsOfScope(type, scopeView);
 					}
 					else {										// object.oclAsSet()->collection-operation
+						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 						Type setType = metaModelManager.getSetType(type);
 						environmentView.addElementsOfScope(setType, scopeView);
 					}
@@ -82,6 +83,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;

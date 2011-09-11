@@ -17,14 +17,13 @@
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
 public class OCLinEcoreCSScopeAdapter<CS extends ModelElementCS, P extends Element> extends EssentialOCLCSScopeAdapter<CS, P>
 {
-	public OCLinEcoreCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
-		super(metaModelManager, csElement, pivotClass);
+	public OCLinEcoreCSScopeAdapter(CS csElement, Class<P> pivotClass) {
+		super(csElement, pivotClass);
 	}
 	
 }

@@ -51,8 +51,8 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 		}
 	}
 	
-	public ContextCSScopeAdapter(MetaModelManager metaModelManager, ContextCS csElement) {
-		super(metaModelManager, csElement, ExpressionInOcl.class);
+	public ContextCSScopeAdapter(ContextCS csElement) {
+		super(csElement, ExpressionInOcl.class);
 	}
 
 	@Override
@@ -85,8 +85,9 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				if (resource instanceof EvaluationContext) {
 					NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
 					if (specificationContext != null) {
-						ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, specificationContext);
+						ScopeAdapter scopeAdapter = getScopeAdapter(specificationContext);
 						if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
+							MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 							ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(metaModelManager, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 							environmentView.computeLookups(ruleScopeView);
 						}	
@@ -94,6 +95,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				}
 			}
 			if (!environmentView.hasFinalResult()) {
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addElementsOfScope(metaModelManager.getOclAnyType().getPackage(), scopeView);
 			}
 			return super.computeLookup(environmentView, scopeView);

@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -37,16 +36,16 @@ public abstract class AbstractPivotScopeAdapter<P extends Element> extends Abstr
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected AbstractPivotScopeAdapter(MetaModelManager metaModelManager, P pivotElement) {
-		this(metaModelManager, (Element)pivotElement.eContainer(), pivotElement);
+	protected AbstractPivotScopeAdapter(P pivotElement) {
+		this((Element)pivotElement.eContainer(), pivotElement);
 	}
 	
-	protected AbstractPivotScopeAdapter(MetaModelManager metaModelManager, Element parentElement, P pivotElement) {
-		this(metaModelManager, parentElement != null ? getScopeAdapter(metaModelManager, parentElement) : null, pivotElement);
+	protected AbstractPivotScopeAdapter(Element parentElement, P pivotElement) {
+		this(parentElement != null ? getScopeAdapter(parentElement) : null, pivotElement);
 	}
 
-	private AbstractPivotScopeAdapter(MetaModelManager metaModelManager, ScopeAdapter containerScopeAdapter, P pivotElement) {
-		super(metaModelManager, containerScopeAdapter, pivotElement);
+	private AbstractPivotScopeAdapter(ScopeAdapter containerScopeAdapter, P pivotElement) {
+		super(containerScopeAdapter, pivotElement);
 		this.document = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 //		this.pivotClass = (Class<P>) pivotElement.getClass();
 //		assert (document != null) || (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) : "Null parent for a " + pivotElement.getClass().getName();

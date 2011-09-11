@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAd
 
 public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageDeclarationScopeAdapter(MetaModelManager metaModelManager, PackageDeclarationCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public PackageDeclarationScopeAdapter(PackageDeclarationCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 			org.eclipse.ocl.examples.pivot.Package pkg = target.getPackage();
 			if ((pkg != null) && !pkg.eIsProxy()) {
+				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(null, metaModelManager.getLocalPackages(pkg));
 				environmentView.addNamedElements(null, metaModelManager.getLocalClasses(pkg));
 //				environmentView.addNamedElements(pkge.getOwnedPrecedences());

@@ -33,8 +33,8 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElemen
 	extends ModelElementCSScopeAdapter<CS, P>
 	implements RootCSScopeAdapter
 {
-	public AbstractRootCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
-		super(metaModelManager, csElement, pivotClass);
+	public AbstractRootCSScopeAdapter(CS csElement, Class<P> pivotClass) {
+		super(csElement, pivotClass);
 	}
 
 	@Override

@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -40,17 +39,17 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 	 * Creates an instance.
 	 * @param parent 
 	 */
-	protected ModelElementCSScopeAdapter(MetaModelManager metaModelManager, CS csElement, Class<P> pivotClass) {
-		this(metaModelManager, csElement.eContainer(), csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(CS csElement, Class<P> pivotClass) {
+		this(csElement.eContainer(), csElement, pivotClass);
 	}
 	
-	protected ModelElementCSScopeAdapter(MetaModelManager metaModelManager, EObject csParent, CS csElement, Class<P> pivotClass) {
-		this(metaModelManager, csParent != null ? getScopeCSAdapter((ElementCS) csParent) : null, csElement, pivotClass);
+	protected ModelElementCSScopeAdapter(EObject csParent, CS csElement, Class<P> pivotClass) {
+		this(csParent != null ? getScopeCSAdapter((ElementCS) csParent) : null, csElement, pivotClass);
 	}
 
 	@SuppressWarnings("unchecked")
-	private ModelElementCSScopeAdapter(MetaModelManager metaModelManager, ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
-		super(metaModelManager, parentScopeAdapter, csElement);
+	private ModelElementCSScopeAdapter(ScopeCSAdapter parentScopeAdapter, CS csElement, Class<P> pivotClass) {
+		super(parentScopeAdapter, csElement);
 		this.csClass = (Class<CS>) csElement.getClass();
 		this.pivotClass = pivotClass;
 	}

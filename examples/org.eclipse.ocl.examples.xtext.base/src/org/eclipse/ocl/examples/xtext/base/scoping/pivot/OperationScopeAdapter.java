@@ -19,15 +19,14 @@ package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
 {
-	public OperationScopeAdapter(MetaModelManager metaModelManager, Operation pivotElement) {
-		super(metaModelManager, pivotElement);
+	public OperationScopeAdapter(Operation pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

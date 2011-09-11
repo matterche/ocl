@@ -41,8 +41,8 @@ public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org
 	private Element importedElement = null;
 	private Throwable throwable = null;
 	
-	public ImportScopeAdapter(MetaModelManager metaModelManager, ImportCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public ImportScopeAdapter(ImportCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
@@ -101,6 +101,7 @@ public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org
 			return;
 		}
 		try {
+			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			importedElement = metaModelManager.loadResource(uri, target.getName());				
 			Resource importedResource = importedElement.eResource();
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();

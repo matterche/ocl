@@ -25,8 +25,8 @@ public class RootPackageScopeAdapter
 extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 implements RootScopeAdapter
 {
-	public RootPackageScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(metaModelManager, null, pivotElement);
+	public RootPackageScopeAdapter(org.eclipse.ocl.examples.pivot.Package pivotElement) {
+		super(null, pivotElement);
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		BaseCSVisitor<Element, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager);
+		BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor();
 		EPackage getEPackage();
 	}
 	
@@ -179,7 +179,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	 */
 	protected final Map<Resource, String> csResource2aliasMap;
 
-	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, MetaModelManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, MetaModelManager>>();
+	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, Object>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, Object>>();
 
 	/**
 	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
@@ -325,12 +325,12 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		return metaModelManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
 	}
 
-	public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> scopeVisitor = scopeVisitorMap.get(ePackage);
+	public BaseCSVisitor<ScopeCSAdapter, Object> getScopeVisitor(EPackage ePackage) {
+		BaseCSVisitor<ScopeCSAdapter, Object> scopeVisitor = scopeVisitorMap.get(ePackage);
 		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
 			Factory factory = getFactory(ePackage);
 			if (factory != null) {
-				scopeVisitor = factory.createScopeVisitor(metaModelManager);
+				scopeVisitor = factory.createScopeVisitor();
 				if (scopeVisitor == null) {
 					logger.error("No Scope Visitor created for " + ePackage.getName());
 				}

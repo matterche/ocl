@@ -62,8 +62,8 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 			return new OCLinEcorePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, MetaModelManager> createScopeVisitor(MetaModelManager metaModelManager) {
-			return new OCLinEcoreScopeVisitor(metaModelManager);
+		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+			return new OCLinEcoreScopeVisitor();
 		}
 
 		public EPackage getEPackage() {

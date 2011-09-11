@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -29,8 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class OperationCSScopeAdapter extends BaseCSScopeAdapter<OperationCS, Operation>
 {
-	public OperationCSScopeAdapter(MetaModelManager metaModelManager, OperationCS csElement) {
-		super(metaModelManager, csElement, Operation.class);
+	public OperationCSScopeAdapter(OperationCS csElement) {
+		super(csElement, Operation.class);
 	}
 
 	@Override

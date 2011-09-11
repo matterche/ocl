@@ -16,15 +16,14 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreScopeVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<ScopeCSAdapter, MetaModelManager, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<ScopeCSAdapter, Object, EssentialOCLScopeVisitor>
 {
-	public OCLinEcoreScopeVisitor(MetaModelManager context) {
-		super(new EssentialOCLScopeVisitor(context), context);
+	public OCLinEcoreScopeVisitor() {
+		super(new EssentialOCLScopeVisitor(), null);
 	}
 }

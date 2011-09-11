@@ -53,8 +53,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 {	
 	private static final Logger logger = Logger.getLogger(AbstractScopeAdapter.class);
 
-	public static RootScopeAdapter getDocumentScopeAdapter(MetaModelManager metaModelManager, Element context) {
-		for (ScopeAdapter scopeAdapter = getScopeAdapter(metaModelManager, context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
+	public static RootScopeAdapter getDocumentScopeAdapter(Element context) {
+		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
 			if (scopeAdapter instanceof RootScopeAdapter) {
 				return (RootScopeAdapter) scopeAdapter;
 			}
@@ -71,7 +71,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return null;
 	}
 
-	public static ScopeAdapter getScopeAdapter(MetaModelManager metaModelManager, Element eObject) {
+	public static ScopeAdapter getScopeAdapter(Element eObject) {
 		if (eObject == null) {
 			logger.warn("getScopeAdapter for null");
 			return null;
@@ -86,7 +86,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		}
 //		Resource resource = eObject.eResource();
 //		ResourceSet resourceSet = resource.getResourceSet();
-		PivotScopeVisitor visitor = new PivotScopeVisitor(metaModelManager);
+		PivotScopeVisitor visitor = new PivotScopeVisitor();
 		return eObject.accept(visitor);	
 	}
 
@@ -108,7 +108,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		CS2Pivot converter = resourceAdapter.getConverter();		
 		EClass eClass = csElement.eClass();
 		EPackage ePackage = eClass.getEPackage();
-		BaseCSVisitor<ScopeCSAdapter, MetaModelManager> visitor = converter.getScopeVisitor(ePackage);		
+		BaseCSVisitor<ScopeCSAdapter, Object> visitor = converter.getScopeVisitor(ePackage);		
 		return csElement.accept(visitor);	
 	}
 
@@ -119,7 +119,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	protected final ScopeAdapter parent;
 
-	protected AbstractScopeAdapter(MetaModelManager metaModelManager, ScopeAdapter parent, T target) {
+	protected AbstractScopeAdapter(ScopeAdapter parent, T target) {
 		this.parent = parent;
 		this.target = target;
 		target.eAdapters().add(this);
@@ -157,14 +157,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	public T getTarget() {
 		return target;
-	}
-
-//	public final MetaModelManager getMetaModelManager() {
-//		return metaModelManager;
-//	}
-
-	public boolean isAdapterFor(MetaModelManager metaModelManager) {
-		return false;
 	}
 	
 	public boolean isAdapterForType(Object type) {

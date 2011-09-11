@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TypedTypeRefCSScopeAdapter extends ElementRefCSScopeAdapter<TypedTypeRefCS, Type>
 {
-	public TypedTypeRefCSScopeAdapter(MetaModelManager metaModelManager, TypedTypeRefCS csElement) {
-		super(metaModelManager, csElement, Type.class);
+	public TypedTypeRefCSScopeAdapter(TypedTypeRefCS csElement) {
+		super(csElement, Type.class);
 	}
 
 	@Override

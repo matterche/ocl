@@ -43,8 +43,8 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		}
 	}
 	
-	public ClassScopeAdapter(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(metaModelManager, pivotElement);
+	public ClassScopeAdapter(org.eclipse.ocl.examples.pivot.Class pivotElement) {
+		super(pivotElement);
 	}
 
 	@Override

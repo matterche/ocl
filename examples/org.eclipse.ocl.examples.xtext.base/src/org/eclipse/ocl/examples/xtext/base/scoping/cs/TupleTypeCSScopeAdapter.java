@@ -17,15 +17,14 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class TupleTypeCSScopeAdapter extends ElementRefCSScopeAdapter<TupleTypeCS, TupleType>
 {
-	public TupleTypeCSScopeAdapter(MetaModelManager metaModelManager, TupleTypeCS csElement) {
-		super(metaModelManager, csElement, TupleType.class);
+	public TupleTypeCSScopeAdapter(TupleTypeCS csElement) {
+		super(csElement, TupleType.class);
 	}
 
 	@Override

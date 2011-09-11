@@ -27,12 +27,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScope
 
 public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
 {
-	public CompleteOCLDocumentScopeAdapter(MetaModelManager metaModelManager, CompleteOCLDocumentCS csElement) {
-		super(metaModelManager, csElement, org.eclipse.ocl.examples.pivot.Package.class);
+	public CompleteOCLDocumentScopeAdapter(CompleteOCLDocumentCS csElement) {
+		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		for (ImportCS anImport : getTarget().getOwnedImport()) {
 			Namespace namespace = anImport.getNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {

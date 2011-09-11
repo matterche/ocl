@@ -25,14 +25,9 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -41,7 +36,7 @@ import com.google.common.collect.Iterables;
  * A TypeServer adapts the primary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
  */
-public abstract class TypeServer extends TypeTracker
+public class TypeServer extends TypeTracker
 {
 	public static Function<TypeTracker, Type> tracker2class = new Function<TypeTracker, Type>()
 	{
@@ -56,26 +51,7 @@ public abstract class TypeServer extends TypeTracker
 			return (TypeServer)tracker;
 		}
 		else {
-			TemplateSignature templateSignature = primaryType.getOwnedTemplateSignature();
-			List<TemplateBinding> templateBindings = primaryType.getTemplateBindings();
-			if (templateSignature != null) {
-				return new SpecializeableTypeServer(metaModelManager, primaryType);
-			}
-			else if (!templateBindings.isEmpty()) {
-				Type unspecializedType = PivotUtil.getUnspecializedTemplateableElement(primaryType);
-				SpecializeableTypeServer specializeableTypeServer = (SpecializeableTypeServer) metaModelManager.getTypeTracker(unspecializedType).getTypeServer();
-				List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
-				for (TemplateBinding templateBinding : templateBindings) {
-					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitutions()) {
-						ParameterableElement templateArgument = parameterSubstitution.getActual();
-						templateArguments.add(templateArgument);
-					}
-				}
-				return specializeableTypeServer.getSpecializedTypeServer(templateArguments);
-			}
-			else {
-				return new UnspecializeableTypeServer(metaModelManager, primaryType);
-			}
+			return new TypeServer(metaModelManager, primaryType);
 		}
 	}
 	
@@ -94,6 +70,7 @@ public abstract class TypeServer extends TypeTracker
 	protected TypeServer(MetaModelManager metaModelManager, Type primaryType) {
 		super(metaModelManager, primaryType);
 		trackers.add(this);
+		initializeContents();
 	}
 
 	void addOperation(Operation pivotOperation) {
