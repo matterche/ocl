@@ -20,12 +20,12 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.StandardDocumentScopeAdapter;
 
-public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
+public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	public CompleteOCLDocumentScopeAdapter(CompleteOCLDocumentCS csElement) {
 		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);

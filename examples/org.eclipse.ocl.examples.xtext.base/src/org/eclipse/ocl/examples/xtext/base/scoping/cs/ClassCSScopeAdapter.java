@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
+public class ClassCSScopeAdapter extends ModelElementCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
 {
 	public ClassCSScopeAdapter(ClassCS csElement) {
 		super(csElement, org.eclipse.ocl.examples.pivot.Class.class);

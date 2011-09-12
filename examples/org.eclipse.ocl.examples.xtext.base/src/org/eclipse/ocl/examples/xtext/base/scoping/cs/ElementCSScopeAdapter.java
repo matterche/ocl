@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -50,7 +50,7 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 	protected ElementCSScopeAdapter(ScopeCSAdapter parent, CS target) {
 		super(parent, target);
 //		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
-		RootCSScopeAdapter root = getRootScopeAdapter();
+		RootScopeAdapter root = getRootScopeAdapter();
 		assert (root != null) || (target instanceof RootCS);
 	}	
 
@@ -120,14 +120,10 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		return null;		// FIXME Import alias names
 	}
 
-	public RootCSScopeAdapter getRootScopeAdapter() {
+	public RootScopeAdapter getRootScopeAdapter() {
 //		return root;
 		return parent != null ? ((ScopeCSAdapter)parent).getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 
-	}
-
-	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
-		dispose();
 	}
 
 	@Override

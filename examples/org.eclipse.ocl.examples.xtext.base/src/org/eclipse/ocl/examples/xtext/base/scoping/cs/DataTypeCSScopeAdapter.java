@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class DataTypeCSScopeAdapter extends BaseCSScopeAdapter<DataTypeCS, DataType>
+public class DataTypeCSScopeAdapter extends ModelElementCSScopeAdapter<DataTypeCS, DataType>
 {
 	public DataTypeCSScopeAdapter(DataTypeCS csElement) {
 		super(csElement, DataType.class);

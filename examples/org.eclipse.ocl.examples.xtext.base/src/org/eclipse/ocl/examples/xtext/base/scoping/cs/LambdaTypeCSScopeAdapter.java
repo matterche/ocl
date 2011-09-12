@@ -18,18 +18,10 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LambdaTypeCSScopeAdapter extends ElementRefCSScopeAdapter<LambdaTypeCS, LambdaType>
 {
 	public LambdaTypeCSScopeAdapter(LambdaTypeCS csElement) {
 		super(csElement, LambdaType.class);
-	}
-
-	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		environmentView.addNamedElements(target.getOwnedParts());
-		return scopeView.getOuterScope();
 	}
 }

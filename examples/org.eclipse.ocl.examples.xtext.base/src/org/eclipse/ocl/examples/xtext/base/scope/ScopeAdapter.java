@@ -62,8 +62,6 @@ public interface ScopeAdapter extends Adapter.Internal
 	
 	ScopeAdapter getParent();
 
-//	MetaModelManager getMetaModelManager();
-
 	RootScopeAdapter getRootScopeAdapter();
 	
 	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);

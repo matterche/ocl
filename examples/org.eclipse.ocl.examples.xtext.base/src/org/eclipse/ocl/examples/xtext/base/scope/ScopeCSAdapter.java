@@ -18,5 +18,5 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 
 public interface ScopeCSAdapter extends ScopeAdapter
 {	
-	RootCSScopeAdapter getRootScopeAdapter();
+//	RootCSScopeAdapter getRootScopeAdapter();
 }

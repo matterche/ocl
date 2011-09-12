@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Property>
+public class ReferenceCSScopeAdapter extends ModelElementCSScopeAdapter<ReferenceCS, Property>
 {
 	public ReferenceCSScopeAdapter(ReferenceCS csElement) {
 		super(csElement, Property.class);

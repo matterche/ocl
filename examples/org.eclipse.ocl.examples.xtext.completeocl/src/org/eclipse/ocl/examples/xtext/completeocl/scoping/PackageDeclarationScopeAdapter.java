@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
+public class PackageDeclarationScopeAdapter extends ModelElementCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
 {
 	public PackageDeclarationScopeAdapter(PackageDeclarationCS csElement) {
 		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);

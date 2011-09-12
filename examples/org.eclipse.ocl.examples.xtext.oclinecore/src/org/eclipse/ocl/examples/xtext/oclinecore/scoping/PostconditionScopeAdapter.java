@@ -19,10 +19,10 @@ package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 
-public class PostconditionScopeAdapter extends EssentialOCLCSScopeAdapter<OCLinEcoreConstraintCS, Constraint>
+public class PostconditionScopeAdapter extends ModelElementCSScopeAdapter<OCLinEcoreConstraintCS, Constraint>
 {
 	public PostconditionScopeAdapter(OCLinEcoreConstraintCS csElement) {
 		super(csElement, Constraint.class);

@@ -21,9 +21,10 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
-public class ExpSpecificationCSScopeAdapter extends EssentialOCLCSScopeAdapter<ExpSpecificationCS, ExpressionInOcl>
+public class ExpSpecificationCSScopeAdapter extends ModelElementCSScopeAdapter<ExpSpecificationCS, ExpressionInOcl>
 {
 	public ExpSpecificationCSScopeAdapter(ExpSpecificationCS csElement) {
 		super(csElement, ExpressionInOcl.class);

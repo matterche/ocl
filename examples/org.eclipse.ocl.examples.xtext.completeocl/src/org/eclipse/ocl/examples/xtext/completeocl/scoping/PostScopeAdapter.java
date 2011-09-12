@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLCSScopeAdapter;
 
-public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constraint>
+public class PostScopeAdapter extends ModelElementCSScopeAdapter<PostCS, Constraint>
 {
 	public PostScopeAdapter(PostCS csElement) {
 		super(csElement, Constraint.class);

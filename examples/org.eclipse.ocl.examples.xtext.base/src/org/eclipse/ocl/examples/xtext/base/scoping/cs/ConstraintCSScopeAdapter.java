@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, Constraint>
+public class ConstraintCSScopeAdapter extends ModelElementCSScopeAdapter<ConstraintCS, Constraint>
 {
 	public ConstraintCSScopeAdapter(ConstraintCS csElement) {
 		super(csElement, Constraint.class);

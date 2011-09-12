@@ -23,15 +23,13 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 
 public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElementCS, P extends Element>
 	extends ModelElementCSScopeAdapter<CS, P>
-	implements RootCSScopeAdapter
+	implements RootScopeAdapter
 {
 	public AbstractRootCSScopeAdapter(CS csElement, Class<P> pivotClass) {
 		super(csElement, pivotClass);
@@ -53,20 +51,8 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElemen
 		return super.computeLookup(environmentView, scopeView);
 	}
 
-	public String getAlias(PackageCS csPackage) {
-		for (ImportCS csImport : target.getOwnedImport()) {
-			Namespace namespace = csImport.getNamespace();
-			if (!namespace.eIsProxy()) {
-				if (csPackage.getPivot() == namespace) {
-					return csImport.getName();
-				}
-			}
-		}
-		return csPackage.getName();
-	}
-
 	@Override
-	public AbstractRootCSScopeAdapter<?,?> getRootScopeAdapter() {
+	public RootScopeAdapter getRootScopeAdapter() {
 		return this;
 	}
 }

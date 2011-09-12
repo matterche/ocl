@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class EnumCSScopeAdapter extends BaseCSScopeAdapter<EnumerationCS, Enumeration>
+public class EnumCSScopeAdapter extends ModelElementCSScopeAdapter<EnumerationCS, Enumeration>
 {
 	public EnumCSScopeAdapter(EnumerationCS csElement) {
 		super(csElement, Enumeration.class);

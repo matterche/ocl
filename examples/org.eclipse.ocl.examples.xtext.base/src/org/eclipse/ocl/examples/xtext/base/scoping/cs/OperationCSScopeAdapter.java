@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class OperationCSScopeAdapter extends BaseCSScopeAdapter<OperationCS, Operation>
+public class OperationCSScopeAdapter extends ModelElementCSScopeAdapter<OperationCS, Operation>
 {
 	public OperationCSScopeAdapter(OperationCS csElement) {
 		super(csElement, Operation.class);

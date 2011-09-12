@@ -27,9 +27,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 
-public class LibOperationScopeAdapter extends BaseCSScopeAdapter<OperationCS, Operation>
+public class LibOperationScopeAdapter extends ModelElementCSScopeAdapter<OperationCS, Operation>
 {
 	public LibOperationScopeAdapter(OperationCS csElement) {
 		super(csElement, Operation.class);

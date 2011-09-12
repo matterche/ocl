@@ -52,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.OperationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.PackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ReferenceCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateBindingCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateParameterSubstitutionCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateSignatureCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TupleTypeCSScopeAdapter;
@@ -143,7 +142,7 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 
 	@Override
 	public ScopeCSAdapter visitTemplateBindingCS(TemplateBindingCS eObject) {
-		return new TemplateBindingCSScopeAdapter(eObject);
+		return new EmptyCSScopeAdapter(eObject);
 	}
 
 	@Override
