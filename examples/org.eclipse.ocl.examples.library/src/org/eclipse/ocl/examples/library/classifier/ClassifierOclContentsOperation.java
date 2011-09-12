@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -51,6 +52,6 @@ public class ClassifierOclContentsOperation extends AbstractOperation
 		for (Object eContent : ((EObject)object).eContents()) {
 			collection.add(valueFactory.valueOf(eContent));
     	}
-    	return valueFactory.createSetValue(collection);
+    	return valueFactory.createSetValue((CollectionType)operationCall.getType(), collection);
 	}
 }

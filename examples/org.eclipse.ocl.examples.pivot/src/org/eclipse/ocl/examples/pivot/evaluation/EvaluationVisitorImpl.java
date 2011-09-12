@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -59,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -118,7 +120,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	protected Value handleCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
 		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
 		OclExpression source = callExp.getSource();
-		Type staticSourceType = source.getType();
 		Value sourceValue;
 		try {
 			sourceValue = source.accept(undecoratedVisitor);
@@ -128,7 +129,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
  		Operation dynamicOperation = staticOperation;
 		if (!staticOperation.isStatic()) {
-			Type dynamicSourceType = sourceValue.getType(metaModelManager, staticSourceType);
+			Type dynamicSourceType = sourceValue.getType();
 			dynamicOperation = metaModelManager.getDynamicOperation(dynamicSourceType, staticOperation);
 	 		if (dynamicOperation == null) {
 	 			dynamicOperation = staticOperation;
@@ -167,7 +168,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	protected Value handleOclSelfCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
 		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
 		OclExpression source = callExp.getSource();
-		Type staticSourceType = source.getType();
 		Value sourceValue;
 		try {
 			sourceValue = source.accept(undecoratedVisitor);
@@ -175,11 +175,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		catch (InvalidEvaluationException e) {
 			sourceValue = metaModelManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
- 		Type dynamicSourceType = sourceValue.getType(metaModelManager, staticSourceType);
+ 		Type dynamicSourceType = sourceValue.getType();
 		List<OclExpression> args = ((OperationCallExp)callExp).getArguments();
 		OclExpression arg = args.get(0);
 		Value argValue =  arg.accept(undecoratedVisitor);
-		Type argType = argValue.getType(metaModelManager, arg.getType());
+		Type argType = argValue.getType();
 		Type commonType = metaModelManager.getCommonType(dynamicSourceType, argType, null);
 		Operation dynamicOperation = metaModelManager.getDynamicOperation(commonType, staticOperation);
  		if (dynamicOperation == null) {
@@ -277,6 +277,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
+		CollectionType type = (CollectionType) cl.getType();
 		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
@@ -306,24 +307,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			} catch (InvalidValueException e) {
 				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
 			}
-			Integer firstInt;
-			try {
-				firstInt = firstInteger.asInteger();
-			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstInteger, "Out of range first element");
-			}
-			Integer lastInt;
-			try {
-				lastInt = lastInteger.asInteger();
-			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastInteger, "Out of range last element");
-			}
-//			if (firstInt > lastInt) {
-//                return result;
-//            }
-
 			// construct a lazy integer list for the range
-			return new IntegerRangeValueImpl(valueFactory, firstInt, lastInt);
+			try {
+				return new IntegerRangeValueImpl(valueFactory, type, firstInteger, lastInteger);
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Bad integer range");
+			}
 		} else
 		{
 			List<Value> results = new ArrayList<Value>();
@@ -389,7 +378,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				} // end of collection range
 
 			} // end of parts iterator
-			return valueFactory.createCollectionValue(kind, results);
+			StandardLibrary standardLibrary = getStandardLibrary();
+			return valueFactory.createCollectionValue(standardLibrary.isOrdered(type), standardLibrary.isUnique(type), type.getElementType(), results);
 		} // end of not-simple range case
 	} // end of Set, OrderedSet, Bag Literals
 

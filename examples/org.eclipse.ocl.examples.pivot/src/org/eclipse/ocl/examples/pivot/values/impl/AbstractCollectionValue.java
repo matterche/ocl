@@ -22,8 +22,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -31,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
+import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -41,8 +44,8 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 {
 	protected final C elements;
 	
-	protected AbstractCollectionValue(ValueFactory valueFactory, C elements) {
-		super(valueFactory);
+	protected AbstractCollectionValue(ValueFactory valueFactory, CollectionType type, C elements) {
+		super(valueFactory, type);
 		this.elements = elements;
 		assert elements != null;
 	}
@@ -57,6 +60,26 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 //	protected boolean add(C values, Value value) {
 //		return values.add(value);
 //	}
+
+    @Override
+    public BagValue asBagValue() {
+        return valueFactory.createBagValue(getBagType(), getElements());
+    }
+
+    @Override
+	public OrderedSetValue asOrderedSetValue() {
+        return valueFactory.createOrderedSetValue(getOrderedSetType(), getElements());
+    }
+
+    @Override
+    public SequenceValue asSequenceValue() {
+        return valueFactory.createSequenceValue(getSequenceType(), getElements());
+    }
+
+    @Override
+    public SetValue asSetValue() {
+        return valueFactory.createSetValue(getSetType(), getElements());
+    }
 
     /**
      * Implementation of the OCL
@@ -129,9 +152,33 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 		return flattened;
 	}
 
+	public CollectionType getBagType() {
+		return valueFactory.getStandardLibrary().getBagType(getElementType());
+	}
+
+	public CollectionType getCollectionType() {
+		return (CollectionType) getType();
+	}
+
+	protected Type getElementType() {
+		return getCollectionType().getElementType();
+	}
+
 	@Override
 	protected Collection<Value> getElements() {
 		return elements;
+	}
+
+	public CollectionType getOrderedSetType() {
+		return valueFactory.getStandardLibrary().getOrderedSetType(getElementType());
+	}
+
+	public CollectionType getSequenceType() {
+		return valueFactory.getStandardLibrary().getSequenceType(getElementType());
+	}
+
+	public CollectionType getSetType() {
+		return valueFactory.getStandardLibrary().getSetType(getElementType());
 	}
 
 	@Override
@@ -167,11 +214,11 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 	}
 
 	public CollectionValue intersection(CollectionValue c) throws InvalidValueException {
-        if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
-            return SetValueImpl.intersection(valueFactory, this, c);
+		if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
+            return SetValueImpl.intersection(valueFactory, getSetType(), this, c);
         }
         else {
-            return BagValueImpl.intersection(valueFactory, this, c);
+            return BagValueImpl.intersection(valueFactory, getBagType(), this, c);
         }
 	}
 
@@ -261,16 +308,16 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     public CollectionValue union(CollectionValue c) throws InvalidValueException {
         if (this instanceof BagValue || c instanceof BagValue) {
-            return BagValueImpl.union(valueFactory, this, c);
+            return BagValueImpl.union(valueFactory, getBagType(), this, c);
         }
         else if (this instanceof SequenceValue || c instanceof SequenceValue) {
-            return SequenceValueImpl.union(valueFactory, this, c);
+            return SequenceValueImpl.union(valueFactory, getSequenceType(), this, c);
         }
         else if (this instanceof OrderedSetValue || c instanceof OrderedSetValue) {
-            return OrderedSetValueImpl.union(valueFactory, this, c);
+            return OrderedSetValueImpl.union(valueFactory, getOrderedSetType(), this, c);
         }
         else {
-            return SetValueImpl.union(valueFactory, this, c);
+            return SetValueImpl.union(valueFactory, getSetType(), this, c);
         }
     }
 }

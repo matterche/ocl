@@ -24,11 +24,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
-import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -46,7 +43,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	implements SetValue
 {
-    public static SetValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException
+    public static SetValue intersection(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -54,7 +51,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return valueFactory.getEmptySetValue();
+            return valueFactory.createSetValue(type);
         }    	
         Set<Value> results = new HashSet<Value>();
         // loop over the smaller collection and add only elements
@@ -67,10 +64,10 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
             results = new HashSet<Value>(rightElements);
         	results.retainAll(leftElements);
         }
-    	return results.size() > 0 ? new SetValueImpl(valueFactory, results) : valueFactory.getEmptySetValue();
+    	return results.size() > 0 ? valueFactory.createSetValue(type, results) : valueFactory.createSetValue(type);
     }
 
-	public static SetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
+	public static SetValue union(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -83,30 +80,14 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     	else {
 			Set<Value> result = new HashSet<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new SetValueImpl(valueFactory, result);
+    		return new SetValueImpl(valueFactory, type, result);
         } 
     }   
-
-	public static SetValue valueOfElements(ValueFactory valueFactory, Collection<? extends Element> elements) {
-		Set<Value> results = new HashSet<Value>();
-		for (Element element : elements) {
-			results.add(valueFactory.createElementValue(element));
-		}
-		return new SetValueImpl(valueFactory, results);
-	}
-
-	public static SetValue valueOfObjects(ValueFactory valueFactory, Collection<? extends Object> objects) {
-		Set<Value> results = new HashSet<Value>();
-		for (Object object : objects) {
-			results.add(valueFactory.createObjectValue(object));
-		}
-		return new SetValueImpl(valueFactory, results);
-	}
 	
 	public static class Accumulator extends SetValueImpl implements CollectionValue.Accumulator
 	{
-		public Accumulator(ValueFactory valueFactory) {
-			super(valueFactory);
+		public Accumulator(ValueFactory valueFactory, CollectionType type) {
+			super(valueFactory, type);
 		}
 
 		public boolean add(Value value) {
@@ -114,8 +95,8 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		}		
 	}
 	
-	public SetValueImpl(ValueFactory valueFactory, Value... elements) {
-		super(valueFactory, new HashSet<Value>());
+	public SetValueImpl(ValueFactory valueFactory, CollectionType type, Value... elements) {
+		super(valueFactory, type, new HashSet<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);			// FIXME equals
@@ -123,16 +104,16 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		}
 	}
 
-	public SetValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
-		super(valueFactory, new HashSet<Value>(elements));
+	public SetValueImpl(ValueFactory valueFactory, CollectionType type, Collection<? extends Value> elements) {
+		super(valueFactory, type, new HashSet<Value>(elements));
 	}
 
 //	public SetValue(CollectionValue c) {
 //		this(c.asCollection());
 //	}
 
-	public SetValueImpl(ValueFactory valueFactory, Set<Value> elements) {
-		super(valueFactory, elements);
+	public SetValueImpl(ValueFactory valueFactory, CollectionType type, Set<Value> elements) {
+		super(valueFactory, type, elements);
 	}
 
     @Override
@@ -161,7 +142,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new SetValueImpl(valueFactory, result);
+			return new SetValueImpl(valueFactory, getCollectionType(), result);
 		}
 		else {
 			return this;
@@ -171,19 +152,15 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     public SetValue flatten() throws InvalidValueException {
     	Set<Value> flattened = new HashSet<Value>();
     	if (flatten(flattened)) {
-    		return new SetValueImpl(valueFactory, flattened);
+    		return new SetValueImpl(valueFactory, getCollectionType(), flattened);
     	}
     	else {
     		return this;
     	}
     }
 	
-	public CollectionKind getKind() {
-	    return CollectionKind.SET;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return staticType; // standardLibrary.getSetType();
+	public String getKind() {
+	    return "Set";
 	}
 
 	public SetValue including(Value value) throws InvalidValueException {
@@ -192,19 +169,19 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		}
 		Set<Value> result = new HashSet<Value>(elements);
 		result.add(value);
-		return new SetValueImpl(valueFactory, result);
+		return new SetValueImpl(valueFactory, getCollectionType(), result);
 	}
 
     public SetValue minus(UniqueCollectionValue set) throws InvalidValueException {
     	Set<Value> result = new HashSet<Value>(elements);
         result.removeAll(set.asCollection());
-        return new SetValueImpl(valueFactory, result);
+        return new SetValueImpl(valueFactory, getCollectionType(), result);
     }
     
     public OrderedSetValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new OrderedSetValueImpl(valueFactory, values);
+    	return new OrderedSetValueImpl(valueFactory, getOrderedSetType(), values);
     }
 
     public SetValue symmetricDifference(UniqueCollectionValue set) {       
@@ -216,11 +193,11 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
                 result.add(e);
             }
         }        
-        return new SetValueImpl(valueFactory, result);
+        return new SetValueImpl(valueFactory, getCollectionType(), result);
     }
     
 	public OrderedCollectionValue toOrderedCollectionValue() {
-		return new OrderedSetValueImpl(valueFactory, elements);
+		return new OrderedSetValueImpl(valueFactory, getOrderedSetType(), elements);
 	}
 
 	@Override

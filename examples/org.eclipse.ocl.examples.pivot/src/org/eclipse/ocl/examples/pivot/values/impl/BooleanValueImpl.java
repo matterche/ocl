@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -26,8 +25,8 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 {
 	private final boolean value;
 	
-	public BooleanValueImpl(ValueFactory valueFactory, boolean value) {
-		super(valueFactory);
+	public BooleanValueImpl(ValueFactory valueFactory, Type type, boolean value) {
+		super(valueFactory, type);
 		this.value = value;
 	}
 
@@ -47,10 +46,6 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 
 	public Value asValidValue() {
 		return this;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return metaModelManager.getBooleanType();
 	}
 
 	@Override

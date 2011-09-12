@@ -46,7 +46,7 @@ public class ClassifierOclContainerOperation extends AbstractOperation
 		}
 		EObject eContainer = ((EObject)object).eContainer();
 		if (eContainer != null) {
-			return valueFactory.createObjectValue(eContainer);
+			return valueFactory.valueOf(eContainer);
 		}
 		else {
 			return valueFactory.getNull();

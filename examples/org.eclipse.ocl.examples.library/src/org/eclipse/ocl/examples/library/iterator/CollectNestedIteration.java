@@ -19,9 +19,7 @@ package org.eclipse.ocl.examples.library.iterator;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -37,10 +35,7 @@ public class CollectNestedIteration extends AbstractIteration<CollectionValue.Ac
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = metaModelManager.isOrdered(sourceType);
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, false);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
 	}

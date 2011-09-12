@@ -46,6 +46,6 @@ public class CollectionProductOperation extends AbstractOperation // FIXME Make 
 		CollectionType collType = (CollectionType) operationCall.getType();
 		TupleType tupleType = (TupleType) collType.getElementType();
 		Set<TupleValue> product = sourceValue.product(argumentValue, tupleType);
-        return valueFactory.createSetValue(product);
+        return valueFactory.createSetValue((CollectionType)operationCall.getType(), product);
 	}
 }

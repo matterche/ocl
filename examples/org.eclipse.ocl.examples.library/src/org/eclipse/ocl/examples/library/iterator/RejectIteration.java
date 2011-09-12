@@ -19,9 +19,7 @@ package org.eclipse.ocl.examples.library.iterator;
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -38,11 +36,7 @@ public class RejectIteration extends AbstractIteration<CollectionValue.Accumulat
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = metaModelManager.isOrdered(sourceType);
-		boolean isUnique = metaModelManager.isUnique(sourceType);
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, isUnique);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
 	}

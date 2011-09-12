@@ -43,6 +43,11 @@ public interface StandardLibrary
      * @return the <tt>Bag(T)</tt> type (an instance of {@link BagType})
      */
 	BagType getBagType();
+
+	/**
+	 * Return the instance of the Bag metatype whose elements are of elementType.
+	 */
+	CollectionType getBagType(Type elementType);
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -131,6 +136,11 @@ public interface StandardLibrary
      * @return the <tt>OrderedSet(T)</tt> type (an instance of {@link OrderedSetType})
      */
 	OrderedSetType getOrderedSetType();
+
+	/**
+	 * Return the instance of the OrderedSet metatype whose elements are of elementType.
+	 */
+	CollectionType getOrderedSetType(Type elementType);
 	
 	Type getPivotType(String className);
 	
@@ -149,6 +159,11 @@ public interface StandardLibrary
      * @return the <tt>Sequence(T)</tt> type (an instance of {@link SequenceType})
      */
 	SequenceType getSequenceType();
+
+	/**
+	 * Return the instance of the Sequence metatype whose elements are of elementType.
+	 */
+	CollectionType getSequenceType(Type elementType);
 	
     /**
      * Obtains the generic instance of the {@link SetType} metatype, named
@@ -157,6 +172,11 @@ public interface StandardLibrary
      * @return the <tt>Set(T)</tt> type (an instance of {@link SetType})
      */
 	SetType getSetType();
+
+	/**
+	 * Return the instance of the Set metatype whose elements are of elementType.
+	 */
+	CollectionType getSetType(Type elementType);
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named

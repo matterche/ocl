@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -43,12 +44,11 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 		ModelManager modelManager = evaluationVisitor.getModelManager();
 		Set<Value> results = new HashSet<Value>();
 		Set<?> instances = modelManager.get(typeVal.getInstanceType());
-		if (instances == null) {
-			return valueFactory.getEmptySetValue();
+		if (instances != null) {
+			for (Object instance : instances) {
+				results.add(valueFactory.valueOf(instance));	// FIXME Move to model manager
+			}
 		}
-		for (Object instance : instances) {
-			results.add(valueFactory.createObjectValue(instance));	// FIXME Move to model manager
-		}
-		return valueFactory.createSetValue(results);
+		return valueFactory.createSetValue((CollectionType)operationCall.getType(), results);
 	}
 }

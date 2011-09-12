@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.pivot.values;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * asXXX returns an XXX if self is an XXX and not Null (and is not Invalid),
@@ -58,7 +57,7 @@ public interface Value
 	TypeValue asTypeValue() throws InvalidValueException;
 	UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException;
 	Value asValidValue() throws InvalidValueException;
-	Type getType(MetaModelManager metaModelManager, Type staticType);
+	Type getType();
 	ValueFactory getValueFactory();	
 	CollectionValue isCollectionValue();
 	boolean isFalse();

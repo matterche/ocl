@@ -22,7 +22,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -36,8 +36,8 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 	extends AbstractCollectionValue<L>
 	implements SequenceValue
 {
-	public AbstractSequenceValue(ValueFactory valueFactory, L elements) {
-		super(valueFactory, elements);
+	public AbstractSequenceValue(ValueFactory valueFactory, CollectionType type, L elements) {
+		super(valueFactory, type, elements);
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 		}
     	List<Value> result = new ArrayList<Value>(elements);
         result.add(object);
-        return valueFactory.createSequenceValue(result);
+        return valueFactory.createSequenceValue(getCollectionType(), result);
     }
 
     public Value at(int index) throws InvalidValueException {
@@ -105,7 +105,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 			}
 		}
 		if (result.size() < elements.size()) {
-			return valueFactory.createSequenceValue(result);
+			return valueFactory.createSequenceValue(getCollectionType(), result);
 		}
 		else {
 			return this;
@@ -122,15 +122,15 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
     public SequenceValue flatten() throws InvalidValueException {
     	List<Value> flattened = new ArrayList<Value>();
     	if (flatten(flattened)) {
-    		return valueFactory.createSequenceValue(flattened);
+    		return valueFactory.createSequenceValue(getCollectionType(), flattened);
     	}
     	else {
     		return this;
     	}
     }
 	
-	public CollectionKind getKind() {
-	    return CollectionKind.SEQUENCE;
+	public String getKind() {
+	    return "Sequence";
 	}
 	   
 	public SequenceValue including(Value value) throws InvalidValueException {
@@ -139,7 +139,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 		}
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(value);
-		return valueFactory.createSequenceValue(result);
+		return valueFactory.createSequenceValue(getCollectionType(), result);
 	}
 
     public IntegerValue indexOf(Value object) throws InvalidValueException {
@@ -160,7 +160,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
         }        
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(index, object);
-		return valueFactory.createSequenceValue(result);
+		return valueFactory.createSequenceValue(getCollectionType(), result);
     }
     
     public Value last() throws InvalidValueException {
@@ -178,19 +178,19 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
     	List<Value> result = new ArrayList<Value>();
         result.add(object);
         result.addAll(elements);
-        return valueFactory.createSequenceValue(result);
+        return valueFactory.createSequenceValue(getCollectionType(), result);
     }
 
-	public SequenceValue reverse() {
+	public SequenceValue reverse() throws InvalidValueException {
 		List<Value> elements = new ArrayList<Value>(this.elements);
 		Collections.reverse(elements);
-        return valueFactory.createSequenceValue(elements);
+        return valueFactory.createSequenceValue(getCollectionType(), elements);
     }
 	   
     public SequenceValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return valueFactory.createSequenceValue(values);
+    	return valueFactory.createSequenceValue(getCollectionType(), values);
     }
 	
     /**
@@ -231,7 +231,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
             }
             curr++;
         }
-        return valueFactory.createSequenceValue(result);
+        return valueFactory.createSequenceValue(getCollectionType(), result);
     }
 
 	public OrderedCollectionValue toOrderedCollectionValue() {

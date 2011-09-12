@@ -22,7 +22,6 @@ import java.math.RoundingMode;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -49,12 +48,12 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	private final BigDecimal value;
 	private Object integerValue = null;	// Lazily computed exact IntegerValue or Exception
 	
-	public RealValueImpl(ValueFactory valueFactory, double value) {
-		this(valueFactory, BigDecimal.valueOf(value));
+	public RealValueImpl(ValueFactory valueFactory, Type type, double value) {
+		this(valueFactory, type, BigDecimal.valueOf(value));
 	}
 
-	public RealValueImpl(ValueFactory valueFactory, BigDecimal value) {
-		super(valueFactory);
+	public RealValueImpl(ValueFactory valueFactory, Type type, BigDecimal value) {
+		super(valueFactory, type);
 		this.value = value;
 		assert value != null;
 	}
@@ -145,10 +144,6 @@ public class RealValueImpl extends AbstractValue implements RealValue
 			}
 		}
 		return integerValue;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return metaModelManager.getRealType();
 	}
 
 	@Override

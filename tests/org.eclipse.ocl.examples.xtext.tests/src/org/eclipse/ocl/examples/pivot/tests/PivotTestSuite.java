@@ -1108,6 +1108,22 @@ public abstract class PivotTestSuite
     	org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic = resource.getErrors().get(0);
 		return diagnostic;
     }
+
+    protected Value getEmptyBagValue() {
+		return valueFactory.createBagValue(metaModelManager.getBagType(metaModelManager.getOclVoidType()));
+	}
+
+	protected Value getEmptyOrderedSetValue() {
+		return valueFactory.createOrderedSetValue(metaModelManager.getOrderedSetType(metaModelManager.getOclVoidType()));
+	}
+
+	protected Value getEmptySequenceValue() {
+		return valueFactory.createSequenceValue(metaModelManager.getSequenceType(metaModelManager.getOclVoidType()));
+	}
+
+	protected Value getEmptySetValue() {
+		return valueFactory.createSetValue(metaModelManager.getSetType(metaModelManager.getOclVoidType()));
+	}
     
 	protected Type getMetaclass(String name) {
 		return metaModelManager.getRequiredLibraryType(name);

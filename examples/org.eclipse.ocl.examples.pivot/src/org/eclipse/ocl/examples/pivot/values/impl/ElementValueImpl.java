@@ -16,11 +16,8 @@
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -28,8 +25,8 @@ public class ElementValueImpl<E extends Element>
 		extends ObjectValueImpl
 		implements ElementValue<E> {
 
-	public ElementValueImpl(ValueFactory valueFactory, E element) {
-		super(valueFactory, element);
+	public ElementValueImpl(ValueFactory valueFactory, Type type, E element) {
+		super(valueFactory, type, element);
 	}
 
 	@Override
@@ -53,11 +50,5 @@ public class ElementValueImpl<E extends Element>
 	@SuppressWarnings("unchecked")
 	public E getElement() {
 		return (E) object;
-	}
-
-	@Override
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		EClass eClass = ((EObject)object).eClass();
-		return metaModelManager.getPivotType(eClass.getName());
 	}
 }

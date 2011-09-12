@@ -92,6 +92,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 import org.eclipse.osgi.util.NLS;
 
 public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal
@@ -448,6 +449,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * The known implementation load capabilities.
 	 */
 	private ImplementationManager implementationManager = null;			// Lazily created
+
+	/**
+	 * The value creation capabilities.
+	 */
+	private ValueFactory valueFactory = null;			// Lazily created
 
 	/**
 	 * Map from each merged type to the TypeTracker that supervises its merge (and its specializations). TypeTrackers are only
@@ -959,6 +965,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return unspecifiedType;
 	}
 
+	protected ValueFactory createValueFactory() {
+		return new ValueFactoryImpl(this);
+	}
+
 	@Override
 	public void dispose() {
 		if (listeners != null) {
@@ -995,6 +1005,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (implementationManager != null) {
 			implementationManager.dispose();
 			implementationManager = null;
+		}
+		if (valueFactory != null) {
+			valueFactory.dispose();
+			valueFactory = null;
 		}
 		type2tracker.clear();
 		orphanage = null;
@@ -1227,16 +1241,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	}
 
-	public ClassifierType getClassifierType(Type type) {
+	public CollectionType getBagType(Type elementType) {
+		return getLibraryType(getBagType(), Collections.singletonList(elementType));
+	}
+
+	public ClassifierType getClassifierType(Type instanceType) {
 		ClassifierType classifierType;
  		List<Type> templateArguments = new ArrayList<Type>();
- 		templateArguments.add((Type) type);
-		if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+ 		templateArguments.add(instanceType);
+		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
  			classifierType = getEnumerationClassifierType();
  		}
- 		else if (type instanceof CollectionType) {
+ 		else if (instanceType instanceof CollectionType) {
  			classifierType = getCollectionClassifierType();
- 	 		templateArguments.add(((CollectionType) type).getElementType());
+ 	 		templateArguments.add(((CollectionType) instanceType).getElementType());
 		}
  		else {
  			classifierType =  getClassClassifierType();
@@ -1616,6 +1634,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return lockingAnnotation;
 	}
 
+	public CollectionType getOrderedSetType(Type elementType) {
+		return getLibraryType(getOrderedSetType(), Collections.singletonList(elementType));
+	}
+
 	private Resource getOrphanResource() {
 		if (orphanage == null) {
 			URI uri = URI.createURI(PivotConstants.ORPHANAGE_URI);
@@ -1836,6 +1858,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return uri;
 	}
 
+	public CollectionType getSequenceType(Type elementType) {
+		return getLibraryType(getSequenceType(), Collections.singletonList(elementType));
+	}
+
 	public CollectionType getSetType(Type elementType) {
 		return getLibraryType(getSetType(), Collections.singletonList(elementType));
 	}
@@ -2028,7 +2054,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public ValueFactory getValueFactory() {
-		return ValueFactory.INSTANCE;
+		if (valueFactory == null) {
+			valueFactory = createValueFactory();
+		}
+		return valueFactory;
 	}
 
 	protected void installLibrary(Library pivotLibrary) {

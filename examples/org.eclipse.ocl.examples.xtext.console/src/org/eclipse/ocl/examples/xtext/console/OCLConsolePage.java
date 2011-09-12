@@ -283,7 +283,7 @@ public class OCLConsolePage extends Page
 		private final ValueFactory valueFactory;
 
 		public CancelableMetaModelManager() {
-			this.valueFactory = new ValueFactoryImpl(ConsoleMessages.ValueFactory_Cancelable)
+			this.valueFactory = new ValueFactoryImpl(this)
 			{		      	
 	        	@Override
 				public BooleanValue booleanValueOf(boolean value) {
@@ -363,7 +363,7 @@ public class OCLConsolePage extends Page
     	private final Exception exception;
     	
 		protected ExceptionValue(ValueFactory valueFactory, String message, Exception exception) {
-			super(valueFactory);
+			super(valueFactory, valueFactory.getStandardLibrary().getOclInvalidType());
 			this.message = message;
 			this.exception = exception;
 		}

@@ -38,7 +38,7 @@ public class OclAnyOclIsTypeOfOperation extends AbstractOperation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = sourceVal.getType(metaModelManager, operationCall.getSource().getType());
+		Type sourceType = sourceVal.getType();
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue argTypeValue = argVal.asTypeValue();
 		Type argType = argTypeValue.getInstanceType();

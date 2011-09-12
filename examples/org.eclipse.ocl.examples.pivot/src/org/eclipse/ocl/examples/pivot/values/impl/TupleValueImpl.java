@@ -22,9 +22,7 @@ import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -37,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  */
 public class TupleValueImpl extends AbstractValue implements TupleValue
 {
-    private final TupleType type;
     private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
     private Integer hashCode = null;
 
@@ -48,9 +45,8 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param values my parts
      */
     public TupleValueImpl(ValueFactory valueFactory, TupleType type, Map<? extends TypedElement, Value> values) {
-		super(valueFactory);
-        this.type = type;
-        for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
+		super(valueFactory, type);
+         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
     }
@@ -64,8 +60,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param secondValue my second value
      */
     public TupleValueImpl(ValueFactory valueFactory, TupleType type, Value firstValue, Value secondValue) {
-		super(valueFactory);
-        this.type = type;						// FIXME use optimised ProductTupleImpl
+		super(valueFactory, type);
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
     }
@@ -77,21 +72,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 	public Value asValidValue() {
 		return this;
 	}
-
-    // implements the inherited specification
-    public TupleType getTupleType() {
-        return type;
-    }
-
-    // implements the inherited specification
-    public Value getValue(String partName) {
-        return parts.get(partName);
-    }
-
-    // implements the inherited specification
-    public Value getValue(Property part) {
-        return getValue(part.getName());
-    }
 
     // overrides the inherited implementation
     @Override
@@ -108,9 +88,20 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         return result;
     }
 
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return type;
-	}
+    // implements the inherited specification
+    public TupleType getTupleType() {
+        return (TupleType) type;
+    }
+
+    // implements the inherited specification
+    public Value getValue(String partName) {
+        return parts.get(partName);
+    }
+
+    // implements the inherited specification
+    public Value getValue(Property part) {
+        return getValue(part.getName());
+    }
 
     // overrides the inherited implementation
     @Override
@@ -173,7 +164,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 	public static String toString(CollectionValue c) {
 	    StringBuilder result = new StringBuilder();
 	    
-        result.append(c.getKind().getName());
+        result.append(c.getKind());
         result.append('{');
         
         boolean notFirst = false;

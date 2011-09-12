@@ -145,7 +145,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		//
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Tree.allInstances()");
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "fruit::Tree.allInstances()");
-		assertQueryEquals(null, valueFactory.getEmptySetValue(), "fruit::Tree.allInstances()");
+		assertQueryEquals(null, getEmptySetValue(), "fruit::Tree.allInstances()");
 //
 		metaModelManager.addGlobalNamespace("zz", fruitPackage);
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "zz::Tree.allInstances()");

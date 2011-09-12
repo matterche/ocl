@@ -37,7 +37,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = sourceVal.getType(metaModelManager, operationCall.getSource().getType());
+		Type sourceType = sourceVal.getType();
 		if (sourceType == null) {
 			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
 		}

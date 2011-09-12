@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -108,7 +109,11 @@ public abstract class AbstractEvaluationVisitor
 	public ModelManager getModelManager() {
 		return modelManager;
 	}
-   
+
+	public StandardLibrary getStandardLibrary() {
+		return metaModelManager;
+	}
+  
     /**
      * Obtains the visitor on which I perform nested
      * {@link Visitable#accept(org.eclipse.ocl.utilities.Visitor)} calls.  This

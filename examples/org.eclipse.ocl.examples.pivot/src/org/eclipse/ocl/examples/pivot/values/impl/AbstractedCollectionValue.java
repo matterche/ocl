@@ -20,13 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.values.BagValue;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -34,14 +31,9 @@ public abstract class AbstractedCollectionValue
 	extends AbstractValue
 	implements CollectionValue
 {
-	protected AbstractedCollectionValue(ValueFactory valueFactory) {
-		super(valueFactory);
+	protected AbstractedCollectionValue(ValueFactory valueFactory, CollectionType type) {
+		super(valueFactory, type);
 	}
-
-    @Override
-    public BagValue asBagValue() {
-        return valueFactory.createBagValue(getElements());
-    }
 
 	public Collection<Value> asCollection() {
 		return getElements();
@@ -59,21 +51,6 @@ public abstract class AbstractedCollectionValue
 	public Object asObject() {
 		return getElements();
 	}
-
-    @Override
-	public OrderedSetValue asOrderedSetValue() {
-        return valueFactory.createOrderedSetValue(getElements());
-    }
-
-    @Override
-    public SequenceValue asSequenceValue() {
-        return valueFactory.createSequenceValue(getElements());
-    }
-
-    @Override
-    public SetValue asSetValue() {
-        return valueFactory.createSetValue(getElements());
-    }
 
 	public Value asValidValue() {
 		return this;

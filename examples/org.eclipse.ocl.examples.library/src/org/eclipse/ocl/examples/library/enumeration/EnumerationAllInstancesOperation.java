@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
@@ -45,8 +46,8 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 		Type sourceType = sourceTypeValue.getInstanceType();
 		Set<Value> results = new HashSet<Value>();
 		for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiterals()) {
-			results.add(valueFactory.createObjectValue(instance));
+			results.add(valueFactory.valueOf(instance));
 		}
-		return valueFactory.createSetValue(results);
+		return valueFactory.createSetValue((CollectionType)operationCall.getType(), results);
 	}
 }

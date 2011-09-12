@@ -35,8 +35,7 @@ public class OclAnyOclTypeOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type staticType = operationCall.getSource().getType();
-		Type sourceType = sourceVal.getType(metaModelManager, staticType);
+		Type sourceType = sourceVal.getType();
 		ClassifierType classifierType = metaModelManager.getClassifierType(sourceType);
 		return evaluationVisitor.getValueFactory().createTypeValue(classifierType);
 	}

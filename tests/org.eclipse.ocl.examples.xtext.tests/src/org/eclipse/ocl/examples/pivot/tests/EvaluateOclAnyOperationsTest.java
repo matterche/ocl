@@ -538,7 +538,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for Collections.
      */
     public void test_oclType_Collection() {   	
-    	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation->select(name = 'flatten')->size()");
+     	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation->select(name = 'flatten')->size()");
     	assertQueryEquals(null, getClassifierType(metaModelManager.getSetType(metaModelManager.getOclAnyType())), "Set{}->oclType()");
     	assertQueryEquals(null, getClassifierType(metaModelManager.getSetType(metaModelManager.getUnlimitedNaturalType())), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
@@ -589,7 +589,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      */
     public void test_oclType_OclAny() {
     	ClassifierType classifierType = getClassifierType(metaModelManager.getOclAnyType());
-    	assertQueryEquals(null, classifierType, "null.oclAsType(OclAny).oclType()");
+    	assertQueryEquals(null, getClassifierType(metaModelManager.getOclVoidType()), "null.oclAsType(OclAny).oclType()");		// Cast does not change the dynamic type
 //    	assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
 		assertQueryEquals(null, classifierType, "OclAny");
     	assertQueryEquals(null, "OclAny", "OclAny.name");
@@ -651,7 +651,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      */
     public void test_oclType() {
 		assertQueryEquals(null, getClassifierType(metaModelManager.getStringType()), "'string'.oclType()");
-		assertQueryEquals(null, getClassifierType(metaModelManager.getOclAnyType()), "self.oclType()");
+		assertQueryEquals(null, getClassifierType(metaModelManager.getOclVoidType()), "self.oclType()");
     	assertQueryEquals(null, getClassifierType(getClassifierType(metaModelManager.getUnlimitedNaturalType())), "3.oclType().oclType()");
     	assertQueryEquals(null, getClassifierType(getClassifierType(getClassifierType(metaModelManager.getUnlimitedNaturalType()))), "3.oclType().oclType().oclType()");
     	assertQueryEquals(null, getClassifierType(getClassifierType(metaModelManager.getBooleanType())), "Boolean.oclType()");

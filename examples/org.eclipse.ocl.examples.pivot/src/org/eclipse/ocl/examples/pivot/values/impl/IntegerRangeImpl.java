@@ -20,6 +20,7 @@ import java.util.AbstractList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -31,28 +32,26 @@ class IntegerRangeImpl extends AbstractList<Value>
 	// for this range set
 	class IntegerRangeIterator implements Iterator<Value>
 	{
-		private int curr;
-		private boolean initialized;
-
-		public IntegerRangeIterator() {
-			curr = first;
-			initialized = false;
-		}
+		private IntegerValue curr = null;		// null, first, .... last
 
 		public IntegerValue next() {
-			if (!initialized) {
-				curr = first - getDelta();
-				initialized = true;
+			if (curr == null) {
+				curr = first;
 			}
-			if (hasNext()) {
-				curr = curr + getDelta();
-                return valueFactory.integerValueOf(curr);
+			else if (!curr.equals(last)) {
+				try {
+					curr = curr.add(one);
+				} catch (InvalidValueException e) {
+				}
             }
-			throw new NoSuchElementException();
+			else {
+				throw new NoSuchElementException();
+			}
+            return curr;
 		}
 
 		public boolean hasNext() {
-			return !initialized || (curr != last);
+			return !last.equals(curr);
 		}
 
 		public void remove() {
@@ -60,40 +59,48 @@ class IntegerRangeImpl extends AbstractList<Value>
 		}
 	}
 
-	protected final ValueFactory valueFactory;
-	protected final int first;
-	protected final int last;
-	protected final int delta;
+	protected final IntegerValue first;
+	protected final IntegerValue last;
+	protected final IntegerValue one;
 	protected final int size;
 	
-	public IntegerRangeImpl(ValueFactory valueFactory, int first, int last) {
-		this.valueFactory = valueFactory;
+	public IntegerRangeImpl(IntegerValue first, IntegerValue last) throws InvalidValueException {
 		this.first = first;
 		this.last = last;
-		if (last > first) {
-			this.delta = 1;
-			this.size = last - first + 1;
+		this.one = first.getValueFactory().getOne();
+		Integer delta = last.subtract(first).asInteger();
+		if (delta >= 0) {
+			this.size = delta + 1;
 		}
 		else {
-			this.delta = -1;
-			this.size = first - last + 1;
+			this.size = 0;
 		}
 	}
 
 	@Override
-	public IntegerValue get(int index) {
-		return valueFactory.integerValueOf(first + index * getDelta());
+	public IntegerValue get(int index) {		// 0-based
+		ValueFactory valueFactory = first.getValueFactory();
+		if ((0 <= index) && (index < size)) {
+			try {
+				return first.add(valueFactory.integerValueOf(index));
+			} catch (InvalidValueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return valueFactory.getInvalid();
+			}
+		}
+		else {
+			return valueFactory.getInvalid();
+//			valueFactory.throwInvalidValueException("Out of IntegerRange {0}", index);
+		}
 	}
 
-	public int getDelta() {
-		return delta;
-	}
 
-	public int getFirst() {
+	public IntegerValue getFirst() {
 		return first;
 	}
 
-	public int getLast() {
+	public IntegerValue getLast() {
 		return last;
 	}
 

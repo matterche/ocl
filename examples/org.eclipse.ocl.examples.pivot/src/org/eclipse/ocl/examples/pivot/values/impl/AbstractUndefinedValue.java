@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public abstract class AbstractUndefinedValue extends AbstractValue implements NullValue
 {	
-	protected AbstractUndefinedValue(ValueFactory valueFactory) {
-		super(valueFactory);
+	protected AbstractUndefinedValue(ValueFactory valueFactory, Type type) {
+		super(valueFactory, type);
 	}
 
 	public NullValue abs() throws InvalidValueException {
@@ -104,10 +104,6 @@ public abstract class AbstractUndefinedValue extends AbstractValue implements Nu
 	}
 
 	public Object getObject() {
-		return null;
-	}
-
-	public Type getType() {
 		return null;
 	}
 

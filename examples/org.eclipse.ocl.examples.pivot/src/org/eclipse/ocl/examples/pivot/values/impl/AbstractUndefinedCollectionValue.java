@@ -21,9 +21,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -50,8 +51,8 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		}
 	}
 	
-	protected AbstractUndefinedCollectionValue(ValueFactory valueFactory) {
-		super(valueFactory);
+	protected AbstractUndefinedCollectionValue(ValueFactory valueFactory, Type type) {
+		super(valueFactory, type);
 	}
 
 	public OrderedCollectionValue append(Value object) throws InvalidValueException {
@@ -107,9 +108,13 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 	public boolean flatten(Collection<Value> flattenedElements) {
 		return false;
 	}
+
+	public CollectionType getCollectionType() {
+		return (CollectionType) getType();
+	}
 	
-	public CollectionKind getKind() {
-	    return CollectionKind.COLLECTION;		// FIXME UOE ??
+	public String getKind() {
+	    return "Collection";		// FIXME UOE ??
 	}
 
     public BooleanValue includes(Value value) throws InvalidValueException {

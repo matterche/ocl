@@ -49,10 +49,7 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = metaModelManager.isOrdered(sourceType);
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, true);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
 	}

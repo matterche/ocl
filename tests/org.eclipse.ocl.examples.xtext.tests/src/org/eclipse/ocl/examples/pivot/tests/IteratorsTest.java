@@ -142,7 +142,7 @@ public class IteratorsTest extends PivotTestSuite
         // shortest form
         assertQueryEquals(pkg1, expected, "nestedPackage->reject(name = 'bob')");
 
-        expected = valueFactory.getEmptySetValue();
+        expected = valueFactory.createSetValue(expected.getCollectionType());
         assertQueryEquals(pkg1, expected, "nestedPackage->reject(true)");
     }
 
@@ -367,9 +367,9 @@ public class IteratorsTest extends PivotTestSuite
         assertQueryEquals(pkg1, expected3, "self->closure(nestedPackage->asBag())");
 
         // empty closure
-        assertQueryEquals(pkg1, valueFactory.getEmptySetValue(), "self->closure(nestingPackage)");
+        assertQueryEquals(pkg1, getEmptySetValue(), "self->closure(nestingPackage)");
         // empty closure
-        assertQueryEquals(pkg1, valueFactory.getEmptyOrderedSetValue(), "self->asSequence()->closure(nestingPackage)");
+        assertQueryEquals(pkg1, getEmptyOrderedSetValue(), "self->asSequence()->closure(nestingPackage)");
     }
 
     /**

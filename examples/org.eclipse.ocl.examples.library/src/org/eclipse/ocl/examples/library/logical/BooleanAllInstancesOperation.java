@@ -31,15 +31,10 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public class BooleanAllInstancesOperation extends AbstractOperation
 {
 	public static final BooleanAllInstancesOperation INSTANCE = new BooleanAllInstancesOperation();
-
-	private static SetValue allInstances = null;
 	
 	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		// Boolean has two instances: false, true
-		if (allInstances == null) {
-			ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-			allInstances = valueFactory.createSetValue(valueFactory.getFalse(), valueFactory.getTrue());
-		}
-		return allInstances;
+		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+		return valueFactory.createSetValue(valueFactory.getFalse(), valueFactory.getTrue());
 	}
 }

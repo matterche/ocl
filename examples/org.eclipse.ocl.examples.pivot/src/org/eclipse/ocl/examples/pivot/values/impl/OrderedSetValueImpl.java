@@ -23,10 +23,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -41,7 +39,7 @@ public class OrderedSetValueImpl
 	extends AbstractCollectionValue<OrderedSet<Value>>
 	implements OrderedSetValue
 {
-    public static OrderedSetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
+    public static OrderedSetValue union(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -54,14 +52,14 @@ public class OrderedSetValueImpl
     	else {
 			OrderedSet<Value> result = new OrderedSetImpl<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new OrderedSetValueImpl(valueFactory, result);
+    		return new OrderedSetValueImpl(valueFactory, type, result);
         } 
     }
 	
 	public static class Accumulator extends OrderedSetValueImpl implements CollectionValue.Accumulator
 	{
-		public Accumulator(ValueFactory valueFactory) {
-			super(valueFactory);
+		public Accumulator(ValueFactory valueFactory, CollectionType type) {
+			super(valueFactory, type);
 		}
 
 		public boolean add(Value value) {
@@ -69,8 +67,8 @@ public class OrderedSetValueImpl
 		}		
 	}
     
-	public OrderedSetValueImpl(ValueFactory valueFactory, Value... elements) {
-		super(valueFactory, new OrderedSetImpl<Value>());
+	public OrderedSetValueImpl(ValueFactory valueFactory, CollectionType type, Value... elements) {
+		super(valueFactory, type, new OrderedSetImpl<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);
@@ -78,12 +76,12 @@ public class OrderedSetValueImpl
 		}
 	}
 
-	public OrderedSetValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
-		super(valueFactory, new OrderedSetImpl<Value>(elements));
+	public OrderedSetValueImpl(ValueFactory valueFactory, CollectionType type, Collection<? extends Value> elements) {
+		super(valueFactory, type, new OrderedSetImpl<Value>(elements));
 	}
 
-	public OrderedSetValueImpl(ValueFactory valueFactory, OrderedSet<Value> elements) {
-		super(valueFactory, elements);
+	public OrderedSetValueImpl(ValueFactory valueFactory, CollectionType type, OrderedSet<Value> elements) {
+		super(valueFactory, type, elements);
 	}
 
     public OrderedSetValue append(Value object) throws InvalidValueException {
@@ -93,7 +91,7 @@ public class OrderedSetValueImpl
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
         result.remove(object);  // appended object must be last
         result.add(object);
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
 	@Override
@@ -142,7 +140,7 @@ public class OrderedSetValueImpl
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new OrderedSetValueImpl(valueFactory, result);
+			return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
 		}
 		else {
 			return this;
@@ -159,19 +157,15 @@ public class OrderedSetValueImpl
     public OrderedSetValue flatten() throws InvalidValueException {
     	OrderedSet<Value> flattened = new OrderedSetImpl<Value>();
     	if (flatten(flattened)) {
-    		return new OrderedSetValueImpl(valueFactory, flattened);
+    		return new OrderedSetValueImpl(valueFactory, getCollectionType(), flattened);
     	}
     	else {
     		return this;
     	}
     }
 	
-	public CollectionKind getKind() {
-	    return CollectionKind.ORDERED_SET;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return staticType; // standardLibrary.getOrderedSetType();
+	public String getKind() {
+	    return "OrderedSet";
 	}
 
 	public OrderedSetValue including(Value value) throws InvalidValueException {
@@ -180,7 +174,7 @@ public class OrderedSetValueImpl
 		}
 		OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
 		result.add(value);
-		return new OrderedSetValueImpl(valueFactory, result);
+		return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
 	}
 
 
@@ -224,7 +218,7 @@ public class OrderedSetValueImpl
         	// the loop finished before we could add the object
         	result.add(object);
         }
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
     public Value last() throws InvalidValueException {
@@ -241,7 +235,7 @@ public class OrderedSetValueImpl
     public OrderedSetValue minus(UniqueCollectionValue set) throws InvalidValueException {
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
         result.removeAll(set.asCollection());
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
     public OrderedSetValue prepend(Value object) throws InvalidValueException {
@@ -251,19 +245,19 @@ public class OrderedSetValueImpl
     	OrderedSet<Value> result = new OrderedSetImpl<Value>();
         result.add(object);
         result.addAll(elements);
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
 	public OrderedSetValue reverse() {
 		List<Value> elements = asList();
 		Collections.reverse(elements);
-        return new OrderedSetValueImpl(valueFactory, elements);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), elements);
     }
     
     public OrderedSetValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new OrderedSetValueImpl(valueFactory, values);
+    	return new OrderedSetValueImpl(valueFactory, getCollectionType(), values);
     }
 
     public OrderedSetValue subOrderedSet(int lower, int upper) {
@@ -291,7 +285,7 @@ public class OrderedSetValueImpl
             }
             curr++;
         }
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
     public OrderedSetValue symmetricDifference(UniqueCollectionValue set) {       
@@ -303,7 +297,7 @@ public class OrderedSetValueImpl
                 result.add(e);
             }
         }        
-        return new OrderedSetValueImpl(valueFactory, result);
+        return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
 	public OrderedCollectionValue toOrderedCollectionValue() {

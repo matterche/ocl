@@ -37,7 +37,7 @@ public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
+		Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
 	}

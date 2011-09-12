@@ -118,7 +118,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = myEnv.getValueFactory();
-		myEnv.add(specification.getContextVariable(), valueFactory.createObjectValue(obj));
+		myEnv.add(specification.getContextVariable(), valueFactory.valueOf(obj));
 //		Variable resultVariable = specification.getResultVariable();
 //		if (resultVariable != null) {
 //			myEnv.add(resultVariable, null);

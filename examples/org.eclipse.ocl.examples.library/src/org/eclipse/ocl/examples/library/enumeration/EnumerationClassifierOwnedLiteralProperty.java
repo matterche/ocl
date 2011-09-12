@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.library.enumeration;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractProperty;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
@@ -44,6 +45,6 @@ public class EnumerationClassifierOwnedLiteralProperty extends AbstractProperty
 		for (EnumerationLiteral instance : ((org.eclipse.ocl.examples.pivot.Enumeration)sourceType).getOwnedLiterals()) {
 			results.add(valueFactory.valueOf(instance));
 		}
-		return valueFactory.createOrderedSetValue(results);
+		return valueFactory.createOrderedSetValue((CollectionType)callExp.getType(), results);
 	}
 }

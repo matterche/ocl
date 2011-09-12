@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -39,9 +40,11 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public abstract class AbstractValue implements Value
 {
 	protected final ValueFactory valueFactory;
+	protected final Type type;
 
-	protected AbstractValue(ValueFactory valueFactory) {
+	protected AbstractValue(ValueFactory valueFactory, Type type) {
 		this.valueFactory = valueFactory;
+		this.type = type;
 	}
 
 	public BagValue asBagValue() throws InvalidValueException {
@@ -122,6 +125,10 @@ public abstract class AbstractValue implements Value
 
 	public UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException {
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection");
+	}
+
+	public Type getType() {
+		return type;
 	}
 	
 	public ValueFactory getValueFactory() {

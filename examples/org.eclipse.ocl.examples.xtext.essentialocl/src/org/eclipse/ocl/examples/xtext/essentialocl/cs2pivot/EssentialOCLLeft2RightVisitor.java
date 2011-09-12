@@ -487,7 +487,7 @@ public class EssentialOCLLeft2RightVisitor
 				bodyType = ((CollectionType)bodyType).getElementType();
 			}
 			if (bodyType != null) {
-				iteratorExp.setType(metaModelManager.getCollectionType(feature.isOrdered(), feature.isUnique(), bodyType));
+				iteratorExp.setType(metaModelManager.getCollectionType(feature.isOrdered(), false, bodyType));
 			}
 			navigationExp = iteratorExp;
 		}

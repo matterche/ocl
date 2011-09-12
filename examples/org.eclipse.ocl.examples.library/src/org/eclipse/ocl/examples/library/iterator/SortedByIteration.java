@@ -59,15 +59,15 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	protected static class SortingValue extends AbstractValue implements Comparator<Value>
 	{
 		private final EvaluationEnvironment evaluationEnvironment;
-//		private final Value sourceVal;
 		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
+		private final Type sourceType;
 		private final LoopExp iteratorExp;
 		private final Value.BinaryOperation binaryImplementation;
 
 		public SortingValue(EvaluationEnvironment env, Value sourceVal, LoopExp iteratorExp, Value.BinaryOperation binaryImplementation) {
-			super(env.getValueFactory());
+			super(env.getValueFactory(), iteratorExp.getType());
 			this.evaluationEnvironment = env;
-//			this.sourceVal = sourceVal;
+			this.sourceType = sourceVal.getType();
 			this.iteratorExp = iteratorExp;
 			this.binaryImplementation = binaryImplementation;
 		}
@@ -119,13 +119,8 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	//			evaluationEnvironment.throwInvalidEvaluation(sourceVal, iteratorExp, "'<' evaluation failed", e);
 	//		}
 			// create result from the sorted collection
-			Type sourceType = iteratorExp.getSource().getType();
 			boolean isUnique = evaluationEnvironment.getMetaModelManager().isUnique(sourceType);
 			return valueFactory.createCollectionValue(true, isUnique, result);
-		}
-
-		public Type getType(MetaModelManager metaModelManager, Type staticType) {
-			return staticType;
 		}
 
 		public void put(Value iterVal, Value comparable) {

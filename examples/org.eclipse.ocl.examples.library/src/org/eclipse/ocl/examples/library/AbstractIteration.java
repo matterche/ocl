@@ -18,9 +18,12 @@ package org.eclipse.ocl.examples.library;
 
 
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -37,22 +40,31 @@ import org.eclipse.ocl.examples.pivot.values.impl.SetValueImpl;
  */
 public abstract class AbstractIteration<ACC extends Value> extends AbstractFeature implements LibraryIteration
 {
-	protected CollectionValue.Accumulator createAccumulationValue(ValueFactory valueFactory, boolean isOrdered, boolean isUnique) {
-		if (isOrdered) {
-			if (isUnique) {
-				return new OrderedSetValueImpl.Accumulator(valueFactory);
+	protected CollectionValue.Accumulator createAccumulationValue(ValueFactory valueFactory, Type type) {
+		StandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+		if (type instanceof CollectionType) {
+			CollectionType collectionValueType = (CollectionType)type;
+			boolean isOrdered = standardLibrary.isOrdered(collectionValueType);
+			boolean isUnique = standardLibrary.isUnique(collectionValueType);
+			if (isOrdered) {
+				if (isUnique) {
+					return new OrderedSetValueImpl.Accumulator(valueFactory, collectionValueType);
+				}
+				else {
+					return new SequenceValueImpl.Accumulator(valueFactory, collectionValueType);
+				}
 			}
 			else {
-				return new SequenceValueImpl.Accumulator(valueFactory);
+				if (isUnique) {
+					return new SetValueImpl.Accumulator(valueFactory, collectionValueType);
+				}
+				else {
+					return new BagValueImpl.Accumulator(valueFactory, collectionValueType);
+				}
 			}
 		}
 		else {
-			if (isUnique) {
-				return new SetValueImpl.Accumulator(valueFactory);
-			}
-			else {
-				return new BagValueImpl.Accumulator(valueFactory);
-			}
+			return new SetValueImpl.Accumulator(valueFactory, standardLibrary.getSetType(type));		// WIP used by "any"
 		}
 	}
 

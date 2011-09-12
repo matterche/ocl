@@ -95,7 +95,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
 			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			Value targetValue = valueFactory.valueOf(target);
-			Type targetType = targetValue.getType(metaModelManager, null);
+			Type targetType = targetValue.getType();
 			Type requiredType = specification.getContextVariable().getType();
 			if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
 				String message = NLS.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
@@ -119,7 +119,7 @@ public class OCLQueryDelegate implements QueryDelegate
 					throw new OCLDelegateException(message);
 				}
 				Value value = valueFactory.valueOf(object);
-				targetType = value.getType(metaModelManager, null);
+				targetType = value.getType();
 				requiredType = parameterVariable.getType();
 				if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
 					String message = NLS.bind(OCLMessages.MismatchedArgumentType_ERROR_, new Object[]{name, targetType, requiredType});

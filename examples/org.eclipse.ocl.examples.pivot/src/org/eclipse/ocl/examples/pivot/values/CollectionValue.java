@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 
@@ -40,7 +40,8 @@ public interface CollectionValue extends Value, Iterable<Value>
 	CollectionValue excluding(Value value) throws InvalidValueException;
     CollectionValue flatten() throws InvalidValueException;
 	boolean flatten(Collection<Value> flattenedElements) throws InvalidValueException;
-	CollectionKind getKind();
+	CollectionType getCollectionType();
+	String getKind();
     BooleanValue includes(Value value) throws InvalidValueException;	
     BooleanValue includesAll(CollectionValue c) throws InvalidValueException;
 	CollectionValue including(Value value) throws InvalidValueException;

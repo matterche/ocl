@@ -36,7 +36,7 @@ public class IsUniqueIteration extends AbstractIteration<CollectionValue.Accumul
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
+		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
 	}

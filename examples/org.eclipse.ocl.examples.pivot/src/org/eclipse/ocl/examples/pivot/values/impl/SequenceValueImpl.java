@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
 {
-	public static SequenceValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
+	public static SequenceValue union(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -43,14 +42,14 @@ public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
     	else {
     		List<Value> result = new ArrayList<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new SequenceValueImpl(valueFactory, result);
+    		return new SequenceValueImpl(valueFactory, type, result);
         } 
     }
 	
 	public static class Accumulator extends SequenceValueImpl implements CollectionValue.Accumulator
 	{
-		public Accumulator(ValueFactory valueFactory) {
-			super(valueFactory);
+		public Accumulator(ValueFactory valueFactory, CollectionType type) {
+			super(valueFactory, type);
 		}
 
 		public boolean add(Value value) {
@@ -58,8 +57,8 @@ public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
 		}		
 	}
     
-	public SequenceValueImpl(ValueFactory valueFactory, Value... elements) {
-		super(valueFactory, new ArrayList<Value>());
+	public SequenceValueImpl(ValueFactory valueFactory, CollectionType type, Value... elements) {
+		super(valueFactory, type, new ArrayList<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);
@@ -67,12 +66,12 @@ public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
 		}
 	}
 
-	public SequenceValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
-		super(valueFactory, new ArrayList<Value>(elements));
+	public SequenceValueImpl(ValueFactory valueFactory, CollectionType type, Collection<? extends Value> elements) {
+		super(valueFactory, type, new ArrayList<Value>(elements));
 	}
 
-	public SequenceValueImpl(ValueFactory valueFactory, List<Value> elements) {
-		super(valueFactory, elements);
+	public SequenceValueImpl(ValueFactory valueFactory, CollectionType type, List<Value> elements) {
+		super(valueFactory, type, elements);
 	}
 
 	@Override
@@ -83,9 +82,5 @@ public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
 		else {
 			return super.equals(obj);
 		}
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return staticType; // standardLibrary.getSequenceType();
 	}
 }

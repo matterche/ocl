@@ -36,7 +36,6 @@ import java.math.BigDecimal;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
@@ -45,8 +44,8 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 {
-	public UnlimitedValueImpl(ValueFactory valueFactory) {
-		super(valueFactory);
+	public UnlimitedValueImpl(ValueFactory valueFactory, Type type) {
+		super(valueFactory, type);
 	}
 
 	public UnlimitedValueImpl abs() {
@@ -73,10 +72,6 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 
 	public double doubleValue() {
 		throw new UnsupportedOperationException(getClass().getName()+ ".doubleValue");
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return metaModelManager.getUnlimitedNaturalType();
 	}
 
 	@Override

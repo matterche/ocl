@@ -35,7 +35,7 @@ public class ImplicitCompositionProperty extends AbstractCallableImplementation
 		EObject thisObject = (EObject) sourceValue.asObject();
 		Object thatObject = thisObject.eContainer();
 		if (thatObject != null) {
-			return valueFactory.createObjectValue(thatObject);
+			return valueFactory.valueOf(thatObject);
 		}
 		else {
 			return valueFactory.getNull();

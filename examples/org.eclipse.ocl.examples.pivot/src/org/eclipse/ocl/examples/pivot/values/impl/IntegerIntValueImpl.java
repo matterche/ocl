@@ -21,7 +21,6 @@ import java.math.BigInteger;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -38,8 +37,8 @@ public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
 	private final int value;			// The value.
 	private BigInteger bigValue = null;	// Lazily computed BigInteger counterpart.
 	
-	public IntegerIntValueImpl(ValueFactory valueFactory, int value) {
-		super(valueFactory);
+	public IntegerIntValueImpl(ValueFactory valueFactory, Type type, int value) {
+		super(valueFactory, type);
 		this.value = value;
 	}
 
@@ -167,10 +166,6 @@ public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
 			return (bigDecimalValue != null) && (bigDecimalValue().compareTo(bigDecimalValue) == 0);
 		}
 		return false;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return value >= 0 ? metaModelManager.getUnlimitedNaturalType() : metaModelManager.getIntegerType();
 	}
 
 	@Override

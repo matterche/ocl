@@ -19,30 +19,30 @@ package org.eclipse.ocl.examples.pivot.values;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 
 public interface ValueFactory
 {
-	public static final ValueFactory INSTANCE = new ValueFactoryImpl("Default");
+	BooleanValue booleanValueOf(boolean value);
 	
-	public BooleanValue booleanValueOf(boolean value);
-	
-    public BagValue createBagOf(Object... objects);
-	public BagValue createBagValue(Value... values);
-	public BagValue createBagValue(Bag<? extends Value> values);
-	public BagValue createBagValue(Collection<? extends Value> values);
+    BagValue createBagOf(Object... objects);
+    BagValue createBagOf(Iterable<?> objects);
+	BagValue createBagValue(CollectionType type, Value... values);
+	BagValue createBagValue(CollectionType type, Bag<? extends Value> values);
+	BagValue createBagValue(CollectionType type, Collection<? extends Value> values);
+	BagValue createBagValue(Value... values);
     
 	/**
 	 * Creates a new OCL <tt>Collection</tt> of the specified ordering and uniqueness.
@@ -51,62 +51,77 @@ public interface ValueFactory
 	 * @param isUnique the required collection uniqueness
 	 * @return the new collection
 	 */
-	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Value... values);
-	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values);
-	public CollectionValue createCollectionValue(CollectionKind kind, Value... values);
-	public CollectionValue createCollectionValue(CollectionKind kind, Collection<Value> values);
+	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Value... values);
+	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values);
+	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Type elementType, Value... values);
+	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Type elementType, Collection<Value> values);
 	
-	public <E extends Element> ElementValue<E> createElementValue(E element);
-	
-	public ObjectValue createObjectValue(Object object);
+	<E extends Element> ElementValue<E> createElementValue(E element);
 
-    public OrderedSetValue createOrderedSetOf(Object... objects);
-	public OrderedSetValue createOrderedSetValue(Value... values);
-	public OrderedSetValue createOrderedSetValue(LinkedHashSet<? extends Value> values);
-	public OrderedSetValue createOrderedSetValue(Collection<? extends Value> values);
+//	IntegerRange createRange(IntegerValue firstInteger, IntegerValue lastInteger) throws InvalidValueException;
+	
+//	ObjectValue createObjectValue(Object object);
 
-    public SequenceValue createSequenceOf(Object... objects);
-	public SequenceValue createSequenceValue(Value... values);
-	public SequenceValue createSequenceValue(List<? extends Value> values);
-	public SequenceValue createSequenceValue(Collection<? extends Value> values);
-	
-    public SetValue createSetOf(Object... objects);
-	public SetValue createSetValue(Value... values);
-	public SetValue createSetValue(Set<? extends Value> values);
-	public SetValue createSetValue(Collection<? extends Value> values);
-	
-	public Value createTupleValue(TupleType type, Map<? extends TypedElement, Value> values);
+    OrderedSetValue createOrderedSetOf(Object... objects);
+    OrderedSetValue createOrderedSetOf(Iterable<?> objects);
+	OrderedSetValue createOrderedSetValue(CollectionType type, Value... values);
+	OrderedSetValue createOrderedSetValue(CollectionType type, OrderedSet<? extends Value> values);
+	OrderedSetValue createOrderedSetValue(CollectionType type, Collection<? extends Value> values);
+	OrderedSetValue createOrderedSetValue(Value... value);
 
-	public Value createTypeValue(ClassifierType type);
+//	SequenceValue createSequenceAccumulatorValue(CollectionType type, List<Value> values);
+    SequenceValue createSequenceOf(Object... objects);
+    SequenceValue createSequenceOf(Iterable<?> objects);
+//	SequenceValue createSequenceRange(CollectionType type, IntegerRange range);
+	SequenceValue createSequenceValue(CollectionType type, Value... values);
+	SequenceValue createSequenceValue(CollectionType type, List<? extends Value> values);
+	SequenceValue createSequenceValue(CollectionType type, Collection<? extends Value> values);
+	SequenceValue createSequenceValue(Value... value);
+	
+    SetValue createSetOf(Object... objects);
+    SetValue createSetOf(Iterable<?> objects);
+	SetValue createSetValue(CollectionType type, Value... values);
+	SetValue createSetValue(CollectionType type, Set<? extends Value> values);
+	SetValue createSetValue(CollectionType type, Collection<? extends Value> values);
+	SetValue createSetValue(Value... value);
+	
+	Value createTupleValue(TupleType type, Map<? extends TypedElement, Value> values);
 
-	public Object getEcoreValueOf(Value result);
+	Value createTypeValue(ClassifierType type);
 
-	public BagValue getEmptyBagValue();
-	public OrderedSetValue getEmptyOrderedSetValue();
-	public SequenceValue getEmptySequenceValue();	
-	public SetValue getEmptySetValue();
-	public BooleanValue getFalse();
-	public InvalidValue getInvalid();
-	public NullValue getNull();
-	public BooleanValue getTrue();
-	public UnlimitedValue getUnlimited();
-	public NumericValue getZero();
-	
-	public IntegerValue integerValueOf(int value);
-	public IntegerValue integerValueOf(long value);
-	public IntegerValue integerValueOf(BigInteger value);
-	public IntegerValue integerValueOf(String aValue) throws InvalidValueException;
-	
-	public RealValue realValueOf(double value);
-	public RealValue realValueOf(BigDecimal value);
-	public RealValue realValueOf(IntegerValue integerValue);	
-	public RealValue realValueOf(String aValue) throws InvalidValueException;
-	
-	public StringValue stringValueOf(String value) ;
-	
-	public InvalidValue throwInvalidValueException(String message, Object... bindings) throws InvalidValueException;
+	void dispose();
 
-	public Value valueOf(Object object);
-	public Value valueOf(Object eValue, ETypedElement eFeature);
+	Type getCommonType(Type firstType, Type secondType);
+	Object getEcoreValueOf(Value result);
+    Type getElementType(Value... values);
+    Type getElementType(Iterable<Value> values);
+
+	BooleanValue getFalse();
+	InvalidValue getInvalid();
+	NullValue getNull();
+	IntegerValue getOne();
+	StandardLibrary getStandardLibrary();
+	BooleanValue getTrue();
+	UnlimitedValue getUnlimited();
+	IntegerValue getZero();
+	
+	IntegerValue integerValueOf(int value);
+	IntegerValue integerValueOf(long value);
+	IntegerValue integerValueOf(BigInteger value);
+	IntegerValue integerValueOf(String aValue) throws InvalidValueException;
+	
+	RealValue realValueOf(double value);
+	RealValue realValueOf(BigDecimal value);
+	RealValue realValueOf(IntegerValue integerValue);	
+	RealValue realValueOf(String aValue) throws InvalidValueException;
+	
+	StringValue stringValueOf(String value) ;
+	
+	InvalidValue throwInvalidValueException(String message, Object... bindings) throws InvalidValueException;
+
+	Type typeOf(Value value, Value... values);
+
+	Value valueOf(Object object);
+	Value valueOf(Object eValue, ETypedElement eFeature);
 }
  

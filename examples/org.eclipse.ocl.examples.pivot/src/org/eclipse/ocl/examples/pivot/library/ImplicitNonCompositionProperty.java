@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -52,9 +53,9 @@ public class ImplicitNonCompositionProperty extends AbstractCallableImplementati
 			EStructuralFeature eFeature = eClass.getEStructuralFeature(thatProperty.getName());
 			Object eGet = eObject.eGet(eFeature);
 			if (eGet == sourceValue) {
-				results.add(valueFactory.createObjectValue(eObject));
+				results.add(valueFactory.valueOf(eObject));
 			}
 		}
-		return valueFactory.createBagValue(results);
+		return valueFactory.createBagValue((CollectionType)callExp.getType(), results);
 	}
 }

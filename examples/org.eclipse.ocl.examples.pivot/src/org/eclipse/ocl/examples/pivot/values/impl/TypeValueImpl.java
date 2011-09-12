@@ -18,14 +18,13 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 {
 	public TypeValueImpl(ValueFactory valueFactory, ClassifierType type) {
-		super(valueFactory, type);
+		super(valueFactory, type, type);
 	}
 
 	@Override
@@ -35,15 +34,6 @@ public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 
 	public Type getInstanceType() {
 		return ((ClassifierType) object).getInstanceType();
-	}
-
-	public ClassifierType getType() {
-		return (ClassifierType) object;
-	}
-
-	@Override
-	public ClassifierType getType(MetaModelManager metaModelManager, Type staticType) {
-		return (ClassifierType) object;
 	}
 
 	@Override

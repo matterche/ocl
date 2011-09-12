@@ -41,6 +41,6 @@ public class StringCharactersOperation extends AbstractUnaryOperation
 			String s = sourceString.substring(i, i+1);
 			results.add(valueFactory.stringValueOf(s));
 		}
-		return valueFactory.createSequenceValue(results);
+		return valueFactory.createSequenceValue(valueFactory.getStandardLibrary().getSequenceType(sourceVal.getType()), results);
 	}
 }

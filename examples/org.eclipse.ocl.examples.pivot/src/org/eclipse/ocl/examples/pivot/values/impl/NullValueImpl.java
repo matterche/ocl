@@ -18,15 +18,14 @@ package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class NullValueImpl extends AbstractUndefinedCollectionValue implements NullValue
 {
-	public NullValueImpl(ValueFactory valueFactory) {
-		super(valueFactory);
+	public NullValueImpl(ValueFactory valueFactory, Type type) {
+		super(valueFactory, type);
 	}
 
 	@Override
@@ -41,10 +40,6 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NullValue;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return staticType; // standardLibrary.getNullType();
 	}
 
 	@Override

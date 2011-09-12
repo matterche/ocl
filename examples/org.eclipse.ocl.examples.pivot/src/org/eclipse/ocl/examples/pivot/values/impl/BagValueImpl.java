@@ -24,10 +24,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
@@ -42,7 +40,7 @@ public class BagValueImpl
 	extends AbstractCollectionValue<Bag<Value>>
 	implements BagValue
 {
-    public static BagValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException
+    public static BagValue intersection(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -50,7 +48,7 @@ public class BagValueImpl
         int leftSize = leftElements.size();
         int rightSize = rightElements.size();
     	if ((leftSize == 0) || (rightSize == 0)) {
-            return valueFactory.getEmptyBagValue();
+            return new BagValueImpl(valueFactory, type);
         }    	
         Bag<Value> results = new BagImpl<Value>();
         // loop over the smaller collection and add only elements
@@ -63,10 +61,10 @@ public class BagValueImpl
         		results.add(e);
         	}
         }
-    	return results.size() > 0 ? new BagValueImpl(valueFactory, results) : valueFactory.getEmptyBagValue();
+    	return results.size() > 0 ? new BagValueImpl(valueFactory, type, results) : new BagValueImpl(valueFactory, type);
     }
 
-    public static BagValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
+    public static BagValue union(ValueFactory valueFactory, CollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -79,14 +77,14 @@ public class BagValueImpl
     	else {
 			Bag<Value> result = new BagImpl<Value>(leftElements);
 			result.addAll(rightElements);
-    		return new BagValueImpl(valueFactory, result);
+    		return new BagValueImpl(valueFactory, type, result);
         } 
     }
 	
 	public static class Accumulator extends BagValueImpl implements CollectionValue.Accumulator
 	{
-		public Accumulator(ValueFactory valueFactory) {
-			super(valueFactory);
+		public Accumulator(ValueFactory valueFactory, CollectionType type) {
+			super(valueFactory, type);
 		}
 
 		public boolean add(Value value) {
@@ -94,8 +92,8 @@ public class BagValueImpl
 		}		
 	}
 	
-	public BagValueImpl(ValueFactory valueFactory, Value... elements) {
-		super(valueFactory, new BagImpl<Value>());
+	public BagValueImpl(ValueFactory valueFactory, CollectionType type, Value... elements) {
+		super(valueFactory, type, new BagImpl<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
 				this.elements.add(element);
@@ -103,16 +101,16 @@ public class BagValueImpl
 		}
 	}
 
-	public BagValueImpl(ValueFactory valueFactory, Collection<? extends Value> elements) {
-		super(valueFactory, new BagImpl<Value>(elements));
+	public BagValueImpl(ValueFactory valueFactory, CollectionType type, Collection<? extends Value> elements) {
+		super(valueFactory, type, new BagImpl<Value>(elements));
 	}
 
 //	public BagValue(CollectionValue c) {
 //		this(c.asCollection());
 //	}
 
-	public BagValueImpl(ValueFactory valueFactory, Bag<Value> elements) {
-		super(valueFactory, elements);
+	public BagValueImpl(ValueFactory valueFactory, CollectionType type, Bag<Value> elements) {
+		super(valueFactory, type, elements);
 	}
 
     @Override
@@ -136,7 +134,7 @@ public class BagValueImpl
 			}
 		}
 		if (result.size() < elements.size()) {
-			return new BagValueImpl(valueFactory, result);
+			return new BagValueImpl(valueFactory, getCollectionType(), result);
 		}
 		else {
 			return this;
@@ -146,19 +144,15 @@ public class BagValueImpl
     public BagValue flatten() throws InvalidValueException {
     	Bag<Value> flattened = new BagImpl<Value>();
     	if (flatten(flattened)) {
-    		return new BagValueImpl(valueFactory, flattened);
+    		return new BagValueImpl(valueFactory, getCollectionType(), flattened);
     	}
     	else {
     		return this;
     	}
     }
 	
-	public CollectionKind getKind() {
-	    return CollectionKind.BAG;
-	}
-
-	public Type getType(MetaModelManager metaModelManager, Type staticType) {
-		return staticType; // standardLibrary.getBagType();
+	public String getKind() {
+	    return "Bag";
 	}
 
 	public BagValue including(Value value) throws InvalidValueException {
@@ -167,17 +161,17 @@ public class BagValueImpl
 		}
 		Bag<Value> result = new BagImpl<Value>(elements);
 		result.add(value);
-		return new BagValueImpl(valueFactory, result);
+		return new BagValueImpl(valueFactory, getCollectionType(), result);
 	}
 	   
     public SequenceValue sort(Comparator<Value> comparator) {
     	List<Value> values = new ArrayList<Value>(elements);
     	Collections.sort(values, comparator);
-    	return new SequenceValueImpl(valueFactory, values);
+    	return new SequenceValueImpl(valueFactory, getSequenceType(), values);
     }
     
 	public OrderedCollectionValue toOrderedCollectionValue() {
-		return new SequenceValueImpl(valueFactory, elements);
+		return new SequenceValueImpl(valueFactory, getSequenceType(), elements);
 	}
 
 	@Override

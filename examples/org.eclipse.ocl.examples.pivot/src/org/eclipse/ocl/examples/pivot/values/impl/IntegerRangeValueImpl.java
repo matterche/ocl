@@ -17,13 +17,11 @@
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -31,24 +29,21 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImpl>
 {	// FIXME Should be AbstractOrderedSet ...
-	private Type type = null;
-	
-	public IntegerRangeValueImpl(ValueFactory valueFactory, int first, int last) {
-		super(valueFactory, new IntegerRangeImpl(valueFactory, first, last));
+	public IntegerRangeValueImpl(ValueFactory valueFactory, CollectionType type, IntegerValue first, IntegerValue last) throws InvalidValueException {
+		super(valueFactory, type, new IntegerRangeImpl(first, last));
 	}
 
 	@Override
 	public SequenceValue append(Value value) throws InvalidValueException {
 		IntegerValue integerValue = value.asIntegerValue();
-		int intValue = integerValue.asInteger();
-		int nextValue = elements.getLast() + elements.getDelta();
-		if (intValue == nextValue) {
-			return new IntegerRangeValueImpl(valueFactory, elements.getFirst(), nextValue);
+		IntegerValue nextValue = elements.getLast().add(valueFactory.getOne());
+		if (integerValue.equals(nextValue)) {
+			return new IntegerRangeValueImpl(valueFactory, getCollectionType(), elements.getFirst(), nextValue);
 		}
 		else {
 			List<Value> elements = createElements();
 			elements.add(value);
-			return valueFactory.createSequenceValue(elements);
+			return valueFactory.createSequenceValue(getCollectionType(), elements);
 		}
 	}
 
@@ -56,21 +51,13 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 	public IntegerValue count(Value value) throws InvalidValueException {
 		IntegerValue integerValue = value.isIntegerValue();
 		if ((integerValue != null) && !integerValue.isUndefined()) {
-			BigInteger first = BigInteger.valueOf(elements.getFirst());
-			BigInteger last = BigInteger.valueOf(elements.getLast());
-			BigInteger val = integerValue.bigIntegerValue();
-			if (elements.getDelta() > 0) {
-				if ((first.compareTo(val) <= 0) && (val.compareTo(last) <= 0)) {
-					return valueFactory.integerValueOf(1);
-				}
-			}
-			else {
-				if ((last.compareTo(val) <= 0) && (val.compareTo(first) <= 0)) {
-					return valueFactory.integerValueOf(1);
-				}
+			IntegerValue first = elements.getFirst();
+			IntegerValue last = elements.getLast();
+			if ((first.compareTo(integerValue) <= 0) && (integerValue.compareTo(last) <= 0)) {
+				return valueFactory.getOne();
 			}
 		}
-		return valueFactory.integerValueOf(0);
+		return valueFactory.getZero();
 	}
 
 	protected List<Value> createElements() {
@@ -109,7 +96,7 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 
 	@Override
 	public Value first() {
-		return valueFactory.integerValueOf(elements.getFirst());
+		return elements.getFirst();
 	}
 
 	@Override
@@ -123,18 +110,6 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 			createElements();
 		}
 		return (List<Value>)elements;
-	}
-
-    public Type getType(MetaModelManager metaModelManager, Type staticType) {
-    	if (type == null) {
-    		if ((elements.getFirst() >= 0) && (elements.getLast() >= 0)) {
-    			type = metaModelManager.getCollectionType(true, false, metaModelManager.getUnlimitedNaturalType());
-    		}
-    		else{
-    			type = metaModelManager.getCollectionType(true, false, metaModelManager.getIntegerType());
-    		}
-    	}
-		return type;
 	}
 
 //	public BooleanValue includes(Value value) {
@@ -164,27 +139,26 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 
 	@Override
 	public Value last() {
-		return valueFactory.integerValueOf(elements.getLast());
+		return elements.getLast();
 	}
 
 	@Override
 	public SequenceValue prepend(Value value) throws InvalidValueException {
 		IntegerValue integerValue = value.asIntegerValue();
-		int intValue = integerValue.asInteger();
-		int previousValue = elements.getFirst() - elements.getDelta();
-		if (intValue == previousValue) {
-			return new IntegerRangeValueImpl(valueFactory, previousValue, elements.getLast());
+		IntegerValue previousValue = elements.getFirst().subtract(valueFactory.getOne());
+		if (integerValue.equals(previousValue)) {
+			return new IntegerRangeValueImpl(valueFactory, getCollectionType(), previousValue, elements.getLast());
 		}
 		else {
 			List<Value> elements = createElements();
 			elements.add(0, value);
-			return valueFactory.createSequenceValue(elements);
+			return valueFactory.createSequenceValue(getCollectionType(), elements);
 		}
 	}
 
 	@Override
-	public SequenceValue reverse() {
-		return new IntegerRangeValueImpl(valueFactory, elements.getLast(), elements.getFirst());
+	public SequenceValue reverse() throws InvalidValueException {
+		return new IntegerRangeValueImpl(valueFactory, getCollectionType(), elements.getLast(), elements.getFirst());
 	}
 
 //	public SequenceValue subSequence(int lower, int upper) {
