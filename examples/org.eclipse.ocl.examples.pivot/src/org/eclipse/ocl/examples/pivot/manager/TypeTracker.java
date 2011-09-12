@@ -18,31 +18,45 @@ package org.eclipse.ocl.examples.pivot.manager;
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 
-public abstract class TypeTracker extends AbstractTracker<Type>
+public abstract class TypeTracker implements Adapter.Internal
 {
-	protected TypeTracker(MetaModelManager metaModelManager, Type target) {
-		super(metaModelManager, target);
-		metaModelManager.addTypeTracker(target, this);
+	protected final PackageManager packageManager;
+	protected final Type target;
+
+	protected TypeTracker(PackageManager packageManager, Type target) {
+		this.packageManager = packageManager;
+		this.target = target;
+		target.eAdapters().add(this);
+		packageManager.addTypeTracker(target, this);
 	}
 
-	@Override
 	public void dispose() {
-		metaModelManager.removeTypeTracker(this);
-		super.dispose();
+		packageManager.removeTypeTracker(this);
+		target.eAdapters().remove(this);
 	}
 
-	public abstract TypeServer getTypeServer();
+	public PackageManager getPackageManager() {
+		return packageManager;
+	}
 
 	public Type getPrimaryType() {
 		TypeServer typeServer = getTypeServer();
 		return typeServer != null ? typeServer.getTarget() : null;
 	}
+
+	public Type getTarget() {
+		return target;
+	}
+
+	public abstract TypeServer getTypeServer();
 
 	protected void initializeContents() {
 		TypeServer typeServer = getTypeServer();
@@ -53,6 +67,10 @@ public abstract class TypeTracker extends AbstractTracker<Type>
 			typeServer.addProperty(pivotProperty);
 		}
 	}		
+	
+	public final boolean isAdapterForType(Object type) {
+		return type == packageManager;
+	}
 
 	public void notifyChanged(Notification notification) {
 		TypeServer typeServer = getTypeServer();
@@ -121,5 +139,18 @@ public abstract class TypeTracker extends AbstractTracker<Type>
 				}
 			}
 		}
+	}
+
+	public void setTarget(Notifier newTarget) {
+		assert target == newTarget;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(target);
+	}
+
+	public void unsetTarget(Notifier oldTarget) {
+		assert target == oldTarget;
 	}
 }

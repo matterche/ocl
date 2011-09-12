@@ -16,30 +16,18 @@
  */
 package org.eclipse.ocl.examples.pivot.manager;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
  * A PackageClient adapts a secondary Package to coordinate the coherent behaviour of a primary and one or more
  * secondary Packages as required for Complete OCL package extension.
  */
-class PackageClient extends PackageTracker
+public class PackageClient extends PackageTracker
 {
-	static PackageClient install(PackageServer packageServer, org.eclipse.ocl.examples.pivot.Package secondaryPackage) {
-		Adapter tracker = EcoreUtil.getAdapter(secondaryPackage.eAdapters(), packageServer.getTypeCaches());
-		if (tracker != null) {
-			return (PackageClient)tracker;
-		}
-		else {
-			return new PackageClient(packageServer, secondaryPackage);
-		}
-	}
-	
 	protected final PackageServer packageServer;
 	
-	private PackageClient(PackageServer packageServer, org.eclipse.ocl.examples.pivot.Package target) {
-		super(packageServer.getTypeCaches(), target);
+	protected PackageClient(PackageServer packageServer, org.eclipse.ocl.examples.pivot.Package target) {
+		super(packageServer.getPackageManager(), target);
 		assert packageServer != null;
 		this.packageServer = packageServer;
 		initContents(packageServer);
@@ -52,12 +40,12 @@ class PackageClient extends PackageTracker
 	}
 
 	@Override
-	TypeTracker getTypeTracker(Type pivotType) {
-		return getPackageServer().getTypeTracker(pivotType);
+	public TypeTracker getTypeTracker(Type pivotType) {
+		return packageServer.getTypeTracker(pivotType);
 	}
 	
 	@Override
-	PackageServer getPackageServer() {
-		return packageServer.getPackageServer();
+	public PackageServer getPackageServer() {
+		return packageServer;
 	}
 }

@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -45,16 +44,6 @@ public class TypeServer extends TypeTracker
 		}
 	};
 	
-	public static TypeServer install(MetaModelManager metaModelManager, Type primaryType) {
-		Adapter tracker = EcoreUtil.getAdapter(primaryType.eAdapters(), metaModelManager);
-		if (tracker != null) {
-			return (TypeServer)tracker;
-		}
-		else {
-			return new TypeServer(metaModelManager, primaryType);
-		}
-	}
-	
 	private final List<TypeTracker> trackers = new ArrayList<TypeTracker>();
 
 	/**
@@ -67,8 +56,8 @@ public class TypeServer extends TypeTracker
 	 */
 	private final Map<String, List<Property>> property2properties = new HashMap<String, List<Property>>();
 	
-	protected TypeServer(MetaModelManager metaModelManager, Type primaryType) {
-		super(metaModelManager, primaryType);
+	protected TypeServer(PackageManager packageManager, Type primaryType) {
+		super(packageManager, primaryType);
 		trackers.add(this);
 		initializeContents();
 	}
@@ -103,7 +92,10 @@ public class TypeServer extends TypeTracker
 	}
 	
 	public TypeClient addSecondaryType(Type secondaryType) {
-		TypeClient typeClient = TypeClient.install(this, secondaryType);
+		TypeClient typeClient = (TypeClient) EcoreUtil.getAdapter(secondaryType.eAdapters(), packageManager);
+		if (typeClient == null) {
+			typeClient = new TypeClient(this, secondaryType);
+		}
 		if (!trackers.contains(typeClient)) {
 			trackers.add(typeClient);
 		}
@@ -126,11 +118,13 @@ public class TypeServer extends TypeTracker
 
 	@Override
 	public void dispose() {
-		Collection<TypeTracker> typeTrackers = trackers;
-		trackers.clear();
-		for (TypeTracker typeTracker : typeTrackers) {
-			if (typeTracker instanceof TypeClient) {
-				typeTracker.dispose();
+		if (!trackers.isEmpty()) {
+			Collection<TypeTracker> savedTypeTrackers = new ArrayList<TypeTracker>(trackers);
+			trackers.clear();
+			for (TypeTracker typeTracker : savedTypeTrackers) {
+				if (typeTracker instanceof TypeClient) {
+					typeTracker.dispose();
+				}
 			}
 		}
 		property2properties.clear();
@@ -219,7 +213,7 @@ public class TypeServer extends TypeTracker
 	}
 
 	void removedType(Type pivotType) {
-		TypeTracker typeTracker = metaModelManager.getTypeTracker(pivotType);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 		if (typeTracker == this) {
 			dispose();
 		}

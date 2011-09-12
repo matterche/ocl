@@ -22,13 +22,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * PackageManager encapsulates the knowledge about known packages and their nsURIs.
  */
 public class PackageManager
 {
+	/**
+	 * The MetaModelManager for which this PackageManager manages the packages.
+	 */
 	protected final MetaModelManager metaModelManager;
 
 	/**
@@ -43,56 +48,138 @@ public class PackageManager
 	private final Map<String, List<String>> name2uris = new HashMap<String, List<String>>();
 
 	/**
-	 * Map from each merged package to the PackageTracker that supervises its merge. 
+	 * Map from each merged package to the PackageTracker that supervises its merge. PackageTrackers are only
+	 * created for merged packages, so a missing entry just denotes an unmerged package. 
 	 */
 	private final Map<org.eclipse.ocl.examples.pivot.Package, PackageTracker> package2tracker = new HashMap<org.eclipse.ocl.examples.pivot.Package, PackageTracker>();
+
+	/**
+	 * Map from each merged type to the TypeTracker that supervises its merge. TypeTrackers are only
+	 * created for merged types, so a missing entry just denotes an unmerged type. 
+	 */
+	private final Map<Type, TypeTracker> type2tracker = new HashMap<Type, TypeTracker>();
 	
 	protected PackageManager(MetaModelManager metaModelManager) {
 		this.metaModelManager = metaModelManager;
 	}
 
-	void addTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage, PackageTracker packageTracker) {
-		assert package2tracker.put(pivotPackage, packageTracker) == null;
+	public void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		String nsURI = pivotPackage.getNsURI();
+		org.eclipse.ocl.examples.pivot.Package primaryPackage = null;
+		if (nsURI != null) {										// Explicit nsURI for explicit package (merge)
+			primaryPackage = getPackageByURI(nsURI);
+		}
+		else {
+			String name = pivotPackage.getName();
+			if (name != null) {										// Null nsURI can merge into same named package
+				primaryPackage = getPackageByName(name);
+			}
+			if (primaryPackage == null) {							// Null URI distinct package, so invent a default nsURI
+				nsURI = PivotUtil.getNsURI(pivotPackage);
+				primaryPackage = getPackageByURI(nsURI);
+			}
+		}
+		if (primaryPackage != pivotPackage) {						// Skip recursive call
+			if (primaryPackage != null) {
+				PackageTracker packageTracker = getPackageTracker(primaryPackage);
+				packageTracker.getPackageServer().addSecondaryPackage(pivotPackage);
+			}
+			else {
+				putPackage(nsURI, pivotPackage);
+			}
+		}
+	}
+
+	void addPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage, PackageTracker packageTracker) {
+		PackageTracker oldTracker = package2tracker.put(pivotPackage, packageTracker);
+		assert oldTracker == null;
+	}
+
+	void addTypeTracker(Type pivotType, TypeTracker typeTracker) {
+		TypeTracker oldTracker = type2tracker.put(pivotType, typeTracker);
+		assert oldTracker == null;
+	}
+
+	void addedNestedPrimaryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		String nsURI = PivotUtil.getNsURI(pivotPackage);
+		org.eclipse.ocl.examples.pivot.Package primaryPackage = getPackageByURI(nsURI);
+		if (primaryPackage == pivotPackage) {
+			// Recursive call
+		}
+		else if (primaryPackage != null) {
+			throw new IllegalArgumentException("Duplicate nsURI '" + nsURI + "'");
+		}
+		else {
+			putPackage(nsURI, pivotPackage);
+		}
 	}
 
 	public void dispose() {
-		Collection<PackageTracker> packageTrackers = package2tracker.values();
-		package2tracker.clear();
-		for (PackageTracker packageTracker : packageTrackers) {
-			if (packageTracker instanceof PackageServer) {
-				packageTracker.dispose();
+		if (!package2tracker.isEmpty()) {
+			Collection<PackageTracker> savedPackageTrackers = new ArrayList<PackageTracker>(package2tracker.values());
+			package2tracker.clear();
+			for (PackageTracker packageTracker : savedPackageTrackers) {
+				if (packageTracker instanceof PackageServer) {
+					packageTracker.dispose();
+				}
+			}
+		}
+		if (!type2tracker.isEmpty()) {
+			Collection<TypeTracker> savedTypeTrackers = new ArrayList<TypeTracker>(type2tracker.values());
+			type2tracker.clear();
+			for (TypeTracker typeTracker : savedTypeTrackers) {
+				typeTracker.dispose();
 			}
 		}
 		uri2package.clear();
 		name2uris.clear();
 	}
 
-	public Package get(String nsURI) {
-		return uri2package.get(nsURI);
+	public PackageTracker findPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		return package2tracker.get(pivotPackage);
+	}
+	
+	public TypeTracker findTypeTracker(Type pivotType) {
+		return type2tracker.get(pivotType);
 	}
 
 	public Iterable<org.eclipse.ocl.examples.pivot.Package> getAllPackages() {
 		return uri2package.values();
 	}
 
-	public Package getByName(String name) {
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Package getPackageByName(String name) {
 		List<String> uriList = name2uris.get(name);
 		if ((uriList == null) || uriList.isEmpty()) {
 			return null;
 		}
 		else if (uriList.size() == 1) {
-			return get(uriList.get(0));
+			return getPackageByURI(uriList.get(0));
 		}
 		else {
 			throw new IllegalArgumentException("Ambiguous package name '" + name + "'");
 		}
 	}
 
-	PackageTracker getTracker(Package pivotPackage) {
-		return package2tracker.get(pivotPackage);
+	public org.eclipse.ocl.examples.pivot.Package getPackageByURI(String nsURI) {
+		return uri2package.get(nsURI);
 	}
 
-	public void put(String nsURI, Package pivotPackage) {
+	public PackageTracker getPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		PackageTracker packageTracker = findPackageTracker(pivotPackage);
+		if (packageTracker == null) {
+			packageTracker = (PackageTracker) EcoreUtil.getAdapter(pivotPackage.eAdapters(), this);
+			if (packageTracker == null) {
+				packageTracker = new PackageServer(this, pivotPackage);
+			}
+		}
+		return packageTracker;
+	}
+
+	protected void putPackage(String nsURI, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		uri2package.put(nsURI, pivotPackage);
 		String name = pivotPackage.getName();
 		if (name != null) {
@@ -107,7 +194,11 @@ public class PackageManager
 		}
 	}
 
-	void removeTracker(PackageTracker packageTracker) {
+	void removePackageTracker(PackageTracker packageTracker) {
 		package2tracker.remove(packageTracker.getTarget());
+	}
+
+	void removeTypeTracker(TypeTracker typeTracker) {
+		type2tracker.remove(typeTracker.getTarget());
 	}
 }

@@ -86,7 +86,6 @@ import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
@@ -454,12 +453,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * The value creation capabilities.
 	 */
 	private ValueFactory valueFactory = null;			// Lazily created
-
-	/**
-	 * Map from each merged type to the TypeTracker that supervises its merge (and its specializations). TypeTrackers are only
-	 * created for merged or specialized types, so a missing entry just denotes a simple self-standing type. 
-	 */
-	private final Map<Type, TypeTracker> type2tracker = new HashMap<Type, TypeTracker>();
 		
 	private Resource orphanage = null;
 
@@ -575,52 +568,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		String nsURI = pivotPackage.getNsURI();
-		org.eclipse.ocl.examples.pivot.Package primaryPackage = null;
-		if (nsURI != null) {										// Explicit nsURI for explicit package (merge)
-			primaryPackage = packageManager.get(nsURI);
-		}
-		else {
-			String name = pivotPackage.getName();
-			if (name != null) {										// Null nsURI can merge into same named package
-				primaryPackage = packageManager.getByName(name);
-			}
-			if (primaryPackage == null) {							// Null URI distinct package, so invent a default nsURI
-				nsURI = PivotUtil.getNsURI(pivotPackage);
-				primaryPackage = packageManager.get(nsURI);
-			}
-		}
-		if (primaryPackage != pivotPackage) {						// Skip recursive call
-			if (primaryPackage != null) {
-				PackageTracker packageTracker = getPackageTracker(primaryPackage);
-				packageTracker.getPackageServer().addSecondaryPackage(pivotPackage);
-			}
-			else {
-				packageManager.put(nsURI, pivotPackage);
-			}
-		}
-	}
-
-	void addPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage, PackageTracker packageTracker) {
-		packageManager.addTracker(pivotPackage, packageTracker);
-	}
-
-	void addedPrimaryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		String nsURI = PivotUtil.getNsURI(pivotPackage);
-		org.eclipse.ocl.examples.pivot.Package primaryPackage = packageManager.get(nsURI);
-		if (primaryPackage == pivotPackage) {
-			// Recursive call
-		}
-		else if (primaryPackage != null) {
-			throw new IllegalArgumentException("Duplicate nsURI '" + nsURI + "'");
-		}
-		else {
-			packageManager.put(nsURI, pivotPackage);
-		}
-	}
-
-	void addTypeTracker(Type pivotType, TypeTracker typeTracker) {
-		assert type2tracker.put(pivotType, typeTracker) == null;
+		packageManager.addPackage(pivotPackage);
 	}
 
 	/**
@@ -914,8 +862,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return new LambdaTypeManager(this);
 	}
 
-	protected Resource createOrphanage(URI uri) {
-		return pivotResourceSet.createResource(uri);
+	protected Resource createOrphanage() {
+		return Orphanage.getOrphanage(pivotResourceSet);
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package createPackage(String string, String nsURI) {
@@ -1010,7 +958,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			valueFactory.dispose();
 			valueFactory = null;
 		}
-		type2tracker.clear();
 		orphanage = null;
 		pivotMetaModel = null;
 		super.dispose();
@@ -1141,11 +1088,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	} */
 	
 	public PackageTracker findPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		return packageManager.getTracker(pivotPackage);
+		return packageManager.findPackageTracker(pivotPackage);
 	}
 	
 	public TypeTracker findTypeTracker(Type pivotType) {
-		return type2tracker.get(pivotType);
+		return packageManager.findTypeTracker(pivotType);
 	}
 
 	/**
@@ -1185,7 +1132,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.emptyList();
 		}
 		Type pivotClass = pivotOperation.getOwningType();
-		TypeTracker typeTracker = type2tracker.get(pivotClass);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotClass);
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer().getOperations(pivotOperation);
 		}
@@ -1205,7 +1152,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (!libraryLoadInProgress && loadPivotMetaModelFirst && (pivotMetaModel == null)) {
 			lazyLoadPivotMetaModel();
 		}
-		PackageTracker packageTracker = packageManager.getTracker(pkg);
+		PackageTracker packageTracker = packageManager.findPackageTracker(pkg);
 		if (packageTracker != null) {
 			return packageTracker.getPackageServer().getPackages();
 		}
@@ -1219,7 +1166,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.emptyList();
 		}
 		Type pivotClass = pivotProperty.getOwningType();
-		TypeTracker typeTracker = type2tracker.get(pivotClass);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotClass);
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer().getProperties(pivotProperty);
 		}
@@ -1232,7 +1179,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (pivotType == null) {
 			return Collections.emptyList();
 		}
-		TypeTracker typeTracker = type2tracker.get(pivotType);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer().getTypes();
 		}
@@ -1534,7 +1481,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return libraryType;	
 		}
 		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(libraryType);
-		return (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		@SuppressWarnings("unchecked")
+		T specializedType = (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		return specializedType;
 	}
 
 	public Iterable<Type> getLocalClasses(org.eclipse.ocl.examples.pivot.Package pkg) {
@@ -1640,19 +1589,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	private Resource getOrphanResource() {
 		if (orphanage == null) {
-			URI uri = URI.createURI(PivotConstants.ORPHANAGE_URI);
-			orphanage = createOrphanage(uri);
-//			installResource(orphanage);
+			orphanage = createOrphanage();
 		}
 		return orphanage;
 	}
+
+	public PackageManager getPackageManager() {
+		return packageManager;
+	}
 	
 	public PackageTracker getPackageTracker(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		PackageTracker packageTracker = packageManager.getTracker(pivotPackage);
-		if (packageTracker == null) {
-			packageTracker = PackageServer.install(this, pivotPackage);
-		}
-		return packageTracker;
+		return packageManager.getPackageTracker(pivotPackage);
 	}
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {	// WIP duplication
@@ -1723,7 +1670,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public Operation getPrimaryOperation(Operation pivotOperation) {
 		Type pivotClass = pivotOperation.getOwningType();
-		TypeTracker typeTracker = type2tracker.get(pivotClass);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotClass);
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer().getOperation(pivotOperation);
 		}
@@ -1736,7 +1683,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Lookup a primary package by its URI and optionally a sub-package path.
 	 */
 	public org.eclipse.ocl.examples.pivot.Package getPrimaryPackage(String nsURI, String... subPackagePath) {
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = packageManager.get(nsURI);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = packageManager.getPackageByURI(nsURI);
 		if (pivotPackage == null) {
 			return null;
 		}
@@ -1755,7 +1702,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Lookup a primary sub-package.
 	 */
 	public org.eclipse.ocl.examples.pivot.Package getPrimaryPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String subPackageName) {
-		PackageTracker packageTracker = packageManager.getTracker(parentPackage);
+		PackageTracker packageTracker = packageManager.findPackageTracker(parentPackage);
 		if (packageTracker != null) {
 			return packageTracker.getPackageServer().getNestedPackage(subPackageName);
 		}
@@ -1765,7 +1712,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package getPrimaryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		PackageTracker packageTracker = packageManager.getTracker(pivotPackage);
+		PackageTracker packageTracker = packageManager.findPackageTracker(pivotPackage);
 		if (packageTracker != null) {
 			return packageTracker.getPrimaryPackage();
 		}
@@ -1776,7 +1723,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public Property getPrimaryProperty(Property pivotProperty) {
 		Type pivotClass = pivotProperty.getOwningType();
-		TypeTracker typeTracker = type2tracker.get(pivotClass);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotClass);
 		if (typeTracker != null) {
 			return typeTracker.getTypeServer().getProperty(pivotProperty.getName());
 		}
@@ -1786,7 +1733,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Type getPrimaryType(Type pivotType) {
-		TypeTracker typeTracker = type2tracker.get(pivotType);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 		if (typeTracker != null) {
 			return typeTracker.getPrimaryType();
 		}
@@ -1796,7 +1743,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public org.eclipse.ocl.examples.pivot.Type getPrimaryType(String nsURI, String path, String... extraPath) {
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = packageManager.get(nsURI);
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = packageManager.getPackageByURI(nsURI);
 		if (pivotPackage == null) {
 			return null;
 		}
@@ -1823,7 +1770,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Lookup a primary type.
 	 */
 	public Type getPrimaryType(org.eclipse.ocl.examples.pivot.Package parentPackage, String typeName) {
-		PackageTracker packageTracker = packageManager.getTracker(parentPackage);
+		PackageTracker packageTracker = packageManager.findPackageTracker(parentPackage);
 		if (packageTracker != null) {
 			return packageTracker.getPackageServer().getType(typeName);
 		}
@@ -1951,7 +1898,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	
 	protected <T extends Type> T getSpecializedTypeServer(T unspecializedType, List<? extends ParameterableElement> templateArguments) {
 		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(unspecializedType);
-		return (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		@SuppressWarnings("unchecked")
+		T specializedType = (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		return specializedType;
 	}
 	
 	
@@ -2016,7 +1965,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public TypeTracker getTypeTracker(Type pivotType) {
-		TypeTracker typeTracker = type2tracker.get(pivotType);
+		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
 		if (typeTracker == null) {
 			PackageTracker packageTracker = getPackageTracker(pivotType.getPackage());
 			typeTracker = packageTracker.getTypeTracker(pivotType);
@@ -2374,16 +2323,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (listeners != null) {
 			listeners.remove(listener);
 		}
-	}
-
-	void removeTypeTracker(TypeTracker typeTracker) {
-		if (type2tracker != null) {
-			type2tracker.remove(typeTracker.getTarget());
-		}
-	}
-
-	void removePackageTracker(PackageTracker packageTracker) {
-		packageManager.removeTracker(packageTracker);
 	}
 
 	/**

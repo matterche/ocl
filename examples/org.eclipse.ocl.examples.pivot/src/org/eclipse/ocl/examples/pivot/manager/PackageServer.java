@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -35,7 +34,7 @@ import com.google.common.collect.Iterables;
  * A PackageServer adapts the primary Package to coordinate the coherent behaviour of a primary and one or more
  * secondary Packages as required for Complete OCL package extension.
  */
-class PackageServer extends PackageTracker
+public class PackageServer extends PackageTracker
 {
 	public static Function<PackageTracker, org.eclipse.ocl.examples.pivot.Package> tracker2package = new Function<PackageTracker, org.eclipse.ocl.examples.pivot.Package>()
 	{
@@ -43,16 +42,6 @@ class PackageServer extends PackageTracker
 			return packageTracker.getTarget();
 		}
 	};
-	
-	public static PackageServer install(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
-		Adapter tracker = EcoreUtil.getAdapter(primaryPackage.eAdapters(), metaModelManager);
-		if (tracker != null) {
-			return (PackageServer)tracker;
-		}
-		else {
-			return new PackageServer(metaModelManager, primaryPackage);
-		}
-	}
 	
 	/**
 	 * List of all package extensions including this.
@@ -69,8 +58,8 @@ class PackageServer extends PackageTracker
 	 */
 	private Map<String, PackageServer> nestedPackageServers = null;
 	
-	private PackageServer(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
-		super(metaModelManager, primaryPackage);
+	protected PackageServer(PackageManager packageManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
+		super(packageManager, primaryPackage);
 		trackers.add(this);
 		initContents(this);
 	}
@@ -80,23 +69,29 @@ class PackageServer extends PackageTracker
 			nestedPackageServers = new HashMap<String, PackageServer>();
 		}
 		String packageName = pivotPackage.getName();
-		PackageServer packageServer = nestedPackageServers.get(packageName);
-		if (packageServer == null) {
-			packageServer = PackageServer.install(metaModelManager, pivotPackage);
-			nestedPackageServers.put(packageName, packageServer);
-			metaModelManager.addedPrimaryPackage(pivotPackage);
+		PackageServer nestedPackageServer = nestedPackageServers.get(packageName);
+		if (nestedPackageServer == null) {
+			nestedPackageServer = (PackageServer) EcoreUtil.getAdapter(pivotPackage.eAdapters(), packageManager);
+			if (nestedPackageServer == null) {
+				nestedPackageServer = new PackageServer(packageManager, pivotPackage);
+			}
+			nestedPackageServers.put(packageName, nestedPackageServer);
+			packageManager.addedNestedPrimaryPackage(pivotPackage);
 		}
 		else {
-			packageServer.addSecondaryPackage(pivotPackage);
+			nestedPackageServer.addSecondaryPackage(pivotPackage);
 		}
 	}
 	
 	public void addSecondaryPackage(org.eclipse.ocl.examples.pivot.Package secondaryPackage) {
-		PackageClient packageClient = PackageClient.install(this, secondaryPackage);
+		PackageClient packageClient = (PackageClient)EcoreUtil.getAdapter(secondaryPackage.eAdapters(), packageManager);
+		if (packageClient == null) {
+			packageClient = new PackageClient(this, secondaryPackage);
+		}
 		if (!trackers.contains(packageClient)) {
 			trackers.add(packageClient);
 		}
-	}
+	}	
 	
 	void addType(Type pivotType) {
 		if ((pivotType instanceof LambdaType) || (pivotType instanceof TupleType)) {	// FIXME parent not necessarily in place
@@ -108,7 +103,10 @@ class PackageServer extends PackageTracker
 		String className = pivotType.getName();
 		TypeServer typeServer = typeServers.get(className);
 		if (typeServer == null) {
-			typeServer = TypeServer.install(metaModelManager, pivotType);
+			typeServer = (TypeServer) EcoreUtil.getAdapter(pivotType.eAdapters(), packageManager);
+			if (typeServer == null) {
+				typeServer = new TypeServer(packageManager, pivotType);
+			}
 			if (pivotType.getUnspecializedElement() == null) {
 				typeServers.put(className, typeServer);
 			}
@@ -127,15 +125,17 @@ class PackageServer extends PackageTracker
 
 	@Override
 	public void dispose() {
-		Collection<PackageTracker> packageTrackers = trackers;
-		trackers.clear();
-		for (PackageTracker packageTracker : packageTrackers) {
-			if (packageTracker instanceof PackageClient) {
-				packageTracker.dispose();
+		if (!trackers.isEmpty()) {
+			Collection<PackageTracker> savedPackageTrackers = new ArrayList<PackageTracker>(trackers);
+			trackers.clear();
+			for (PackageTracker tracker : savedPackageTrackers) {
+				if (tracker instanceof PackageClient) {
+					tracker.dispose();
+				}
 			}
 		}
 		if (typeServers != null) {
-			Collection<TypeServer> savedTypeServers = typeServers.values();
+			Collection<TypeServer> savedTypeServers = new ArrayList<TypeServer>(typeServers.values());
 			typeServers.clear();
 			for (TypeServer typeServer : savedTypeServers) {
 				typeServer.dispose();
@@ -143,7 +143,7 @@ class PackageServer extends PackageTracker
 			typeServers = null;
 		}
 		if (nestedPackageServers != null) {
-			Collection<PackageServer> savedPackageServers = nestedPackageServers.values();
+			Collection<PackageServer> savedPackageServers = new ArrayList<PackageServer>(nestedPackageServers.values());
 			nestedPackageServers.clear();
 			for (PackageServer packageServer : savedPackageServers) {
 				packageServer.dispose();
@@ -159,7 +159,7 @@ class PackageServer extends PackageTracker
 	}
 	
 	@Override
-	PackageServer getPackageServer() {
+	public PackageServer getPackageServer() {
 		return this;
 	}
 
@@ -180,12 +180,14 @@ class PackageServer extends PackageTracker
 		String className = pivotType.getName();
 		TypeServer typeServer = typeServers.get(className);
 		if (typeServer == null) {
-			typeServer = TypeServer.install(metaModelManager, pivotType);
+			typeServer = (TypeServer) EcoreUtil.getAdapter(pivotType.eAdapters(), packageManager);
+			if (typeServer == null) {
+				typeServer = new TypeServer(packageManager, pivotType);
+			}
 			typeServers.put(className, typeServer);
 		}
 		return typeServer.getTypeTracker(pivotType);
 	}
-
 	
 	void removedClient(PackageClient packageClient) {
 		trackers.remove(packageClient);
@@ -200,7 +202,7 @@ class PackageServer extends PackageTracker
 	}
 
 	void removedPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		PackageTracker packageTracker = metaModelManager.getPackageTracker(pivotPackage);
+		PackageTracker packageTracker = packageManager.findPackageTracker(pivotPackage);
 		if (packageTracker == this) {
 			dispose();
 		}

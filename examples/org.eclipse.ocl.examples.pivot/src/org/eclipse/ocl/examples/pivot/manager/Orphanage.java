@@ -27,14 +27,16 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
 /**
- * An Orphanage provides a Resouerce that weakly contains elements such as type specializations that
+ * An Orphanage provides a Resource that weakly contains elements such as type specializations that
  * should require a container for the purposes of validation, but which should be eligible for
  * garbage collection whenever no longer in use.
- * 
- * 
  */
 public class Orphanage extends ResourceImpl
 {
+	/**
+	 * WeakContentsEList is used in place of the conventional ContentsEList<EObject> to provide the
+	 * weak references to the orphanage Resource.contents using a WeakHashMap.
+	 */
 	protected class WeakContentsEList extends ContentsEList<EObject>
 	{
 		private static final long serialVersionUID = 1L;
@@ -52,15 +54,12 @@ public class Orphanage extends ResourceImpl
 		}
 	}
 
-	private static final URI THE_URI = URI.createURI(PivotConstants.ORPHANAGE_URI);
-	public static final Orphanage INSTANCE = new Orphanage(THE_URI);
+	public static final URI ORPHANAGE_URI = URI.createURI(PivotConstants.ORPHANAGE_URI);
+	public static final Orphanage INSTANCE = new Orphanage(ORPHANAGE_URI);
 
 	/**
 	 * Return the Orphanage for an eObject, which is the Orphanage resource in the same ResourceSet as
 	 * the eObject, else the global Orphanage.
-	 * 
-	 * @param eObject
-	 * @return
 	 */
 	public static Orphanage getOrphanage(EObject eObject) {
 		if (eObject == null) {
@@ -71,6 +70,14 @@ public class Orphanage extends ResourceImpl
 			return null;
 		}
 		ResourceSet resourceSet = resource.getResourceSet();
+		return getOrphanage(resourceSet);
+	}
+
+	/**
+	 * Return the Orphanage for an eObject, which is the Orphanage resource in the resourceSet
+	 * if non-null, else the global Orphanage.
+	 */
+	public static Orphanage getOrphanage(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return Orphanage.INSTANCE;
 		}
@@ -79,7 +86,7 @@ public class Orphanage extends ResourceImpl
 				return (Orphanage) aResource;
 			}
 		}
-		Orphanage orphanage = new Orphanage(THE_URI);
+		Orphanage orphanage = new Orphanage(ORPHANAGE_URI);
 		resourceSet.getResources().add(orphanage);
 		return orphanage;
 	}

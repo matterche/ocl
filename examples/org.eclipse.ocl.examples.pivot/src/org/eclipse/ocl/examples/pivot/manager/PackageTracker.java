@@ -18,15 +18,25 @@ package org.eclipse.ocl.examples.pivot.manager;
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 
-abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.pivot.Package>
-{
-	protected PackageTracker(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package target) {
-		super(metaModelManager, target);
-		metaModelManager.addPackageTracker(target, this);
+/**
+ * A PackageTracker adapts a Package to keep the overall managed meta-model in tune with any changes.
+ */
+public abstract class PackageTracker implements Adapter.Internal
+{	
+	protected final PackageManager packageManager;
+	protected final org.eclipse.ocl.examples.pivot.Package target;
+
+	protected PackageTracker(PackageManager packageManager, org.eclipse.ocl.examples.pivot.Package target) {
+		this.packageManager = packageManager;
+		this.target = target;
+		target.eAdapters().add(this);
+		packageManager.addPackageTracker(target, this);
 	}
 
 	private void addedType(Object pivotType) {
@@ -35,16 +45,23 @@ abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.p
 		}
 	}
 
-	@Override
 	public void dispose() {
-		metaModelManager.removePackageTracker(this);
-		super.dispose();
+		packageManager.removePackageTracker(this);
+		target.eAdapters().remove(this);
+	}
+
+	public MetaModelManager getMetaModelManager() {
+		return packageManager.getMetaModelManager();
+	}
+
+	public PackageManager getPackageManager() {
+		return packageManager;
 	}
 
 	/**
 	 * Return the PackageServer supervising this package merge.
 	 */
-	abstract PackageServer getPackageServer();
+	public abstract PackageServer getPackageServer();
 
 	/**
 	 * Return the primary Package of this package merge.
@@ -52,6 +69,10 @@ abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.p
 	org.eclipse.ocl.examples.pivot.Package getPrimaryPackage() {
 		PackageServer packageServer = getPackageServer();
 		return packageServer != null ? packageServer.getTarget() : null;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Package getTarget() {
+		return target;
 	}
 
 	/**
@@ -67,6 +88,10 @@ abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.p
 			packageServer.addNestedPackage(nestedPackage);
 		}
 	}		
+
+	public boolean isAdapterForType(Object type) {
+		return packageManager == type;
+	}
 
 	public void notifyChanged(Notification notification) {
 		int eventType = notification.getEventType();
@@ -132,11 +157,25 @@ abstract class PackageTracker extends AbstractTracker<org.eclipse.ocl.examples.p
 
 	private void removedType(Object pivotType) {
 		if (pivotType instanceof Type) {
-			TypeTracker typeTracker = metaModelManager.findTypeTracker((Type)pivotType);
+			TypeTracker typeTracker = packageManager.getMetaModelManager().findTypeTracker((Type)pivotType);
 			if (typeTracker != null) {
 				TypeServer typeServer = typeTracker.getTypeServer();
 				typeServer.removedType((Type)pivotType);
 			}
 		}
+	}
+
+	public void setTarget(Notifier newTarget) {
+		assert target == newTarget;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(target);
+	}
+
+	public void unsetTarget(Notifier oldTarget) {
+		assert target == oldTarget;
+//		target = null;
 	}
 }

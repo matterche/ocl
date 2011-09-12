@@ -16,8 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot.manager;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -26,20 +24,10 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 public class TypeClient extends TypeTracker
 {
-	static TypeClient install(TypeServer typeServer, Type secondaryType) {
-		Adapter tracker = EcoreUtil.getAdapter(secondaryType.eAdapters(), typeServer.getTypeCaches());
-		if (tracker != null) {
-			return (TypeClient)tracker;
-		}
-		else {
-			return new TypeClient(typeServer, secondaryType);
-		}
-	}
-	
 	protected final TypeServer typeServer;
 	
-	private TypeClient(TypeServer typeServer, Type target) {
-		super(typeServer.getTypeCaches(), target);
+	protected TypeClient(TypeServer typeServer, Type target) {
+		super(typeServer.getPackageManager(), target);
 		this.typeServer = typeServer;
 		initializeContents();
 	}
