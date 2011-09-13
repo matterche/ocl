@@ -1,0 +1,137 @@
+[comment encoding = UTF-8 /]
+[module generateStandardLibraryAsTextile(
+'http://www.eclipse.org/emf/2002/Ecore',
+'http://www.eclipse.org/ocl/3.1.0/Pivot',
+'http://www.eclipse.org/ocl/3.2.0/Markup')/]
+
+[template public generate1(root : Package) ? (root.eContainer() = null)]
+[comment @main /]
+[let pPackages : Sequence(Package) = root->asSequence()]
+[let pClasses : Sequence(Class) = pPackages.ownedType->asSequence()]
+[file ('2000-ocl-standard-library.textile', false, 'UTF-8')]
+h1(#StandardLibrary). The OCL Standard Library
+
+This documentation on the OCL Standard Library is auto-generated from the
+org.eclipse.ocl.examples.library/model/OCL-2.4.oclstdlib that defines
+the behaviour of the Pivot evaluator and the Xtext editors. It is similar to the OCL 2.3 functionality.
+It is a prototype of functionality for OCL 2.4 where the use of models amy eliminate ambiguities.
+
+Precedences: [for (pPrecedence : Precedence | pPackages.ownedPrecedence->asSequence()) separator(' > ') ] @[pPrecedence.name/]@ [/for]
+
+[for (pClass : Class | pClasses->sortedBy(name)) ]
+h2(#[pClass.name/]). **@[pClass.prettyPrint(pClass)/]@**
+
+[pClass.ownedComment._body/]
+
+[pClass.generateSuperTypes()/]
+[pClass.generateAttributes()/]
+[pClass.generateAssociations()/]
+[pClass.generateOperations()/]
+[pClass.generateIterations()/]
+[/for]
+[/file]
+[/let]
+[/let]
+[/template]
+
+[template public generateSuperTypes(pClass : Class)]
+[if (pClass.superClass->notEmpty())]
+conformsTo [for (pSuperClass : Class | pClass.superClass) separator(', ')]"@[pSuperClass.prettyPrint(pSuperClass)/]@":#[pSuperClass.name/][/for]
+[/if]
+[/template]
+
+[template public generateAttributes(pClass : Class)]
+[let pAttributes : Sequence(Property) = pClass.ownedAttribute->select(e | e.type.oclIsKindOf(DataType) or e.type.owningTemplateParameter->notEmpty())->asSequence()]
+[if (pAttributes->notEmpty())]
+*Attributes*
+
+[for (pProperty : Property | pAttributes->sortedBy(name)) ]
+@[pProperty.prettyPrint(pClass)/]@
+
+[pProperty.ownedComment._body/]
+
+[for (pConstraint : Constraint | pProperty.ownedRule->sortedBy(getName())) ]
+bc.. 
+[pConstraint.prettyPrint(pClass)/]
+p. 
+
+[/for]
+[/for]
+[/if]
+[/let]
+[/template]
+
+[template public generateAssociations(pClass : Class)]
+[let pAssociations : Sequence(Property) = pClass.ownedAttribute->select(e | not e.type.oclIsKindOf(DataType) and e.type.owningTemplateParameter->isEmpty())->asSequence()]
+[if (pAssociations->notEmpty())]
+*Associations*
+
+[for (pProperty : Property | pAssociations->sortedBy(name)) ]
+@[prettyPrint(pClass)/]@
+
+[pProperty.ownedComment._body/]
+
+[for (pConstraint : Constraint | pProperty.ownedRule->sortedBy(getName())) ]
+bc.. 
+[pConstraint.prettyPrint(pClass)/]
+p. 
+
+[/for]
+[/for]
+[/if]
+[/let]
+[/template]
+
+[template public generateIterations(pClass : Class)]
+[let pIterations : Sequence(Operation) = pClass.ownedOperation->select(oclIsKindOf(Iteration))->asSequence()]
+[if (pIterations->notEmpty())]
+*Iterations*
+
+[for (pIteration : Operation | pIterations->sortedBy(name)) ]
+@[prettyPrint(pClass)/]@
+
+[pIteration.ownedComment._body/]
+
+[for (pConstraint : Constraint | pIteration.ownedRule->sortedBy(getName())) ]
+bc.. 
+[pConstraint.prettyPrint(pClass)/]
+p. 
+
+[/for]
+[/for]
+[/if]
+[/let]
+[/template]
+
+[template public generateOperations(pClass : Class)]
+[let pOperations : Sequence(Operation) = pClass.ownedOperation->select(oclIsTypeOf(Operation))->asSequence()]
+[if (pOperations->notEmpty())]
+*Operations*
+
+[for (pOperation : Operation | pOperations) ]
+@[prettyPrint(pClass)/]@
+[if (pOperation.precedence->notEmpty())]
+precedence: @[pOperation.precedence.name/]@
+[/if]
+
+[pOperation.ownedComment._body/]
+
+[for (pConstraint : Constraint | pOperation.ownedRule->sortedBy(getName())) ]
+bc.. 
+[pConstraint.prettyPrint(pClass)/]
+p. 
+
+[/for]
+[/for]
+[/if]
+[/let]
+[/template]
+
+[query public getName(constraint : Constraint) : String =
+if constraint.name->notEmpty() then constraint.name else '' endif /]
+
+[query public prettyPrint(constraint : Constraint, scope : Namespace) : String =
+invoke('org.eclipse.ocl.examples.build.utilities.TextilePrettyPrinter$Expr', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable, org.eclipse.ocl.examples.pivot.Namespace)', Sequence{constraint, scope})/]
+
+[query public prettyPrint(element : Element, scope : Namespace) : String =
+invoke('org.eclipse.ocl.examples.build.utilities.TextilePrettyPrinter$Name', 'prettyPrint(org.eclipse.ocl.examples.pivot.util.Visitable, org.eclipse.ocl.examples.pivot.Namespace)', Sequence{element, scope})/]
