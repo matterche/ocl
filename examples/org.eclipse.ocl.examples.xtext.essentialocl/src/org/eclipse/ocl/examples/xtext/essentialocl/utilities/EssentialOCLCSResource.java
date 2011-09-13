@@ -134,7 +134,13 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		} catch (Exception e) {
 			logger.warn("Failed to resolve '" + uri + "'", e);
 		}
-		return uri.resolve(getURI());
+		URI csURI = getURI();
+		if (csURI.isRelative()) {
+			File csRelative = new File(csURI.toFileString());
+			File csAbsolute = csRelative.getAbsoluteFile();
+			csURI = URI.createFileURI(csAbsolute.toString());
+		}
+		return uri.resolve(csURI);
 	}
 
 	@Override
