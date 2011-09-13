@@ -639,7 +639,16 @@ public class PivotUtil
 		}
 	}
 
-	public static Type getFeaturingClass(Feature feature) {
+	public static <T extends NamedElement> T getNamedElement(Iterable<T> elements, String name) {
+		if (elements == null)
+			return null;
+		for (T element : elements)
+			if (ClassUtils.equals(name, element.getName()))
+				return element;
+		return null;				
+	}
+
+	public static Type getOwningType(Feature feature) {
 		Type owner = null;
 		if (feature instanceof Property) {
 			owner = ((Property)feature).getOwningType();
@@ -648,15 +657,6 @@ public class PivotUtil
 			owner = ((Operation)feature).getOwningType();
 		}
 		return owner;
-	}
-
-	public static <T extends NamedElement> T getNamedElement(Iterable<T> elements, String name) {
-		if (elements == null)
-			return null;
-		for (T element : elements)
-			if (ClassUtils.equals(name, element.getName()))
-				return element;
-		return null;				
 	}
 
 	public static org.eclipse.ocl.examples.pivot.Package getPackage(EObject object) {

@@ -109,7 +109,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty.setName(oppositeName);
 					oppositeProperty.setImplicit(true);
 					Type remoteType = pivotElement.getType();
-					Type localType = PivotUtil.getFeaturingClass(pivotElement);
+					Type localType = PivotUtil.getOwningType(pivotElement);
 					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);
 					if (uniqueValue != null) {

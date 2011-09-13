@@ -779,10 +779,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	 */
 	@Override
 	public String visitOperationCallExp(OperationCallExp oc) {
-        safeVisit(oc.getSource());
+        OclExpression source = oc.getSource();
+		safeVisit(source);
 		Operation oper = oc.getReferredOperation();
 		if (oper != null) {
-			append(PivotUtil.getFeaturingClass(oper) instanceof CollectionType
+	        Type sourceType = source != null ? source.getType() : null;
+			append(sourceType instanceof CollectionType
 					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 			appendName(oper);
@@ -843,10 +845,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	public String visitPropertyCallExp(PropertyCallExp pc) {
         // source is null when the property call expression is an
         //    association class navigation qualifier
-		safeVisit(pc.getSource());
+        OclExpression source = pc.getSource();
+		safeVisit(source);
 		Property property = pc.getReferredProperty();
-		result
-			.append(PivotUtil.getFeaturingClass(property) instanceof CollectionType
+        Type sourceType = source != null ? source.getType() : null;
+		result.append(sourceType instanceof CollectionType
 				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
 				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);

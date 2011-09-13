@@ -214,7 +214,7 @@ public class EssentialOCLLeft2RightVisitor
 			EReference eContainmentFeature = csExp.eContainmentFeature();
 			if ((eContainmentFeature == EssentialOCLCSTPackage.Literals.DECORATED_NAMED_EXP_CS__NAMED_EXP)
 			 || (eContainmentFeature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT)) {
-				Type namedElementType = PivotUtil.getFeaturingClass(feature);
+				Type namedElementType = PivotUtil.getOwningType(feature);
 				NavigatingExpCS csNavigatingExp = (NavigatingExpCS) eContainer;
 				CallExp iteratorExp = PivotUtil.getPivot(CallExp.class, csNavigatingExp);
 				if (iteratorExp instanceof LoopExp) {
@@ -455,7 +455,7 @@ public class EssentialOCLLeft2RightVisitor
 	protected CallExp resolveNavigationFeature(NamedExpCS csElement, OclExpression source, Feature feature, CallExp callExp) {
 		CallExp navigationExp = callExp;
 		Type actualSourceType = source.getType();
-		Type requiredSourceType = PivotUtil.getFeaturingClass(feature);
+		Type requiredSourceType = PivotUtil.getOwningType(feature);
 		boolean isDotNavigation = false;
 		if (csElement.getParent() instanceof NavigationOperatorCS) {
 			isDotNavigation = PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csElement.getParent()).getName());
@@ -947,7 +947,7 @@ public class EssentialOCLLeft2RightVisitor
 				contextType = (Type) specificationContext;
 			}
 			else if (specificationContext instanceof Feature) {
-				contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
+				contextType = PivotUtil.getOwningType((Feature)specificationContext);
 				if (specificationContext instanceof Operation) {
 					context.setType(contextVariable, contextType);
 					for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {

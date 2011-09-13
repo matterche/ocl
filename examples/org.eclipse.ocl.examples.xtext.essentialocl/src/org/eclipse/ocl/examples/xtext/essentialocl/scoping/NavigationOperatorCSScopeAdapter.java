@@ -47,9 +47,11 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			if (source != null) {
 				Type type = source.getType();
 				if (!target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-					environmentView.addElementsOfScope(type, scopeView);			// object.object-operation, collection.collection-as-object-operation		
-					if (type instanceof CollectionType) {
-						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView); // collection->collect(object-operation)
+					if (type instanceof CollectionType) {		// collection->implicit-collect(object-operation)
+						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
+					}
+					else {										// object.object-operation
+						environmentView.addElementsOfScope(type, scopeView);		
 					}
 				}
 				else if (scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT){

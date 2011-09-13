@@ -775,7 +775,6 @@ type Real : PrimitiveType conformsTo Comparable, Summable {
 	The minimum of self and r.
 	**/
 	operation min(r : OclSelf) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
-	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation';
 	/**
 	The integer that is closest to self. When there are two such integers, the largest one.
 	**/
@@ -1022,7 +1021,7 @@ Note that although UnlimitedNatural is a subclass of Integer, the unlimited valu
 Any use of the unlimited value as an integer or real is replaced by the invalid value.
 **/
 type UnlimitedNatural : PrimitiveType conformsTo Integer {
---	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 }
 
 }

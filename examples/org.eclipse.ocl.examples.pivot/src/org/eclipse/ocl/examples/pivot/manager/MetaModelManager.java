@@ -582,8 +582,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (iteratorCountDelta != 0) {
 				return iteratorCountDelta;
 			}
-			Type referenceType = PivotUtil.getFeaturingClass((Iteration)reference);
-			Type candidateType = PivotUtil.getFeaturingClass((Iteration)candidate);
+			Type referenceType = PivotUtil.getOwningType((Iteration)reference);
+			Type candidateType = PivotUtil.getOwningType((Iteration)candidate);
 			Type specializedReferenceType = getSpecializedType(referenceType, referenceBindings);
 			Type specializedCandidateType = getSpecializedType(candidateType, candidateBindings);
 			if (referenceType != candidateType) {
@@ -1344,8 +1344,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 						conformantIteration = completeIteration;
 					}
 					else {
-						Type completeClass = PivotUtil.getFeaturingClass(completeIteration);
-						Type conformantClass = PivotUtil.getFeaturingClass(conformantIteration);
+						Type completeClass = PivotUtil.getOwningType(completeIteration);
+						Type conformantClass = PivotUtil.getOwningType(conformantIteration);
 						if (conformsTo(completeClass, conformantClass, bindings)) {
 							conformantIteration = completeIteration;
 						}
