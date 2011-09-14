@@ -2240,7 +2240,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		addPackage(pivotMetaModel);
 	}
 
-	public Element loadResource(URI uri, String alias) {
+	public Element loadResource(URI uri, String alias, ResourceSet resourceSet) {
 		// if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
 		// return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
 		Resource resource;
@@ -2260,7 +2260,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					resource = external2Pivot.getResource();
 				}
 				else {
-					ResourceSet resourceSet = getExternalResourceSet();
+					if (resourceSet == null) {
+						resourceSet = getExternalResourceSet();
+					}
 					try {
 						resource = resourceSet.getResource(resourceURI, true);
 					}

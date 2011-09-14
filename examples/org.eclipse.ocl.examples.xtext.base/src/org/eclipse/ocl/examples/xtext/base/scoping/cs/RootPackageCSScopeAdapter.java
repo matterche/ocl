@@ -67,7 +67,7 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
                 		String name = environmentView.getName();
 						URI uri = URI.createURI(name).resolve(baseURI);
 						try {
-							Element importedElement = metaModelManager.loadResource(uri, null);				
+							Element importedElement = metaModelManager.loadResource(uri, null, null);				
 							environmentView.addElement(name, importedElement);
 						} catch (Exception e) {
 							// if it doesn't load just treat it as unresolved

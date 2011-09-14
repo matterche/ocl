@@ -1110,7 +1110,7 @@ public class OCLConsolePage extends Page
 		    	    if (selectedObject instanceof EObjectNode) {
 		                EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
 		                URI eObjectURI = selectedObjectNode.getEObjectURI();
-		        		contextObject = metaModelManager.loadResource(eObjectURI, null);
+		        		contextObject = metaModelManager.loadResource(eObjectURI, null, null);
 		        		contextClassifier = selectedObjectNode.getEClass();
 		    	    }
 		    	    else if (selectedObject instanceof EStructuralFeatureNode) {

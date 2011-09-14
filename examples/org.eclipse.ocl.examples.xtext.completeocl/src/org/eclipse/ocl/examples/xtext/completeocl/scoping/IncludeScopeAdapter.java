@@ -104,7 +104,7 @@ public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, N
 		}
 		try {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			importedElement = metaModelManager.loadResource(uri, target.getName());				
+			importedElement = metaModelManager.loadResource(uri, target.getName(), csResource.getResourceSet());				
 			Resource importedResource = importedElement.eResource();
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 			if (warnings.size() > 0) {
