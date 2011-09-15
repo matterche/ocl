@@ -30,8 +30,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * DelegateEClassifierAdapter extends an EClassifier to cache its ValidationDelegate.
- * 
- * @since 3.0
  */
 public class DelegateEClassifierAdapter extends AdapterImpl {
 

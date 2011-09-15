@@ -16,39 +16,33 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * ExistsIteration realises the Collection::exists() library iteration.
- * 
- * @since 3.1
  */
-public class ExistsIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class ExistsIteration extends AbstractIteration
 {
 	public static final ExistsIteration INSTANCE = new ExistsIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		return evaluator.getValueFactory().createBooleanAccumulatorValue();
+	}
+
+	@Override
+	protected Value resolveTerminalValue(DomainIterationManager iterationManager) {
+		return iterationManager.getValueFactory().getFalse();
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		return iterationManager.getFalse();
-	}
-	
-	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "exists"); 	// Null body is invalid //$NON-NLS-1$
 		}
@@ -56,7 +50,7 @@ public class ExistsIteration extends AbstractIteration<CollectionValue.Accumulat
 			return null;							// Carry on for nothing found
 		}
 		else {
-			return iterationManager.getTrue();		// Abort after a find
+			return iterationManager.getValueFactory().getTrue();		// Abort after a find
 		}
 	}
 }

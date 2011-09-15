@@ -20,30 +20,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.ObjectValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * ClassifierOclContentsOperation realises the Classifier::oclContents() library operation.
- * 
- * @since 3.1
  */
-public class ClassifierOclContentsOperation extends AbstractOperation
+public class ClassifierOclContentsOperation extends AbstractUnaryOperation
 {
 	public static final ClassifierOclContentsOperation INSTANCE = new ClassifierOclContentsOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		ValueFactory valueFactory = metaModelManager.getValueFactory();
-		ObjectValue objectVal = sourceVal.asObjectValue();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		ObjectValue objectVal = sourceValue.asObjectValue();
 		Object object = objectVal.getObject();
 		if (!(object instanceof EObject)) {
 			return valueFactory.throwInvalidValueException(EvaluatorMessages.EObjectRequired, object.getClass().getName());
@@ -52,6 +48,6 @@ public class ClassifierOclContentsOperation extends AbstractOperation
 		for (Object eContent : ((EObject)object).eContents()) {
 			collection.add(valueFactory.valueOf(eContent));
     	}
-    	return valueFactory.createSetValue((CollectionType)operationCall.getType(), collection);
+    	return valueFactory.createSetValue((DomainCollectionType)returnType, collection);
 	}
 }

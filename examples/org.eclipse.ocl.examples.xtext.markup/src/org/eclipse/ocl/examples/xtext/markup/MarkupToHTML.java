@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.values.StringValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -33,8 +35,6 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
 
 /**

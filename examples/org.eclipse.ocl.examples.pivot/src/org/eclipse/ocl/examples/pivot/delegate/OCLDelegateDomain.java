@@ -32,8 +32,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
  * maintains an OCL facade to be shared by all delegates within the package.
- * 
- * @since 3.0
  */
 public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListener
 {

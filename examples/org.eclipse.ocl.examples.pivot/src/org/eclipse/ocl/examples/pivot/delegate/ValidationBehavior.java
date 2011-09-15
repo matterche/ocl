@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @since 3.0
  */
 public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, EValidator.ValidationDelegate.Registry, ValidationDelegate.Factory>
 {

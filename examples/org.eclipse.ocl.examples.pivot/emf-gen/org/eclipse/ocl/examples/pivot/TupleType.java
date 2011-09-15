@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.domain.types.DomainTupleType;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tuple Type</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.types.DomainTupleType
  * <!-- end-user-doc -->
  *
  *
@@ -27,5 +30,5 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface TupleType
-		extends DataType {
+		extends DataType, DomainTupleType {
 } // TupleType

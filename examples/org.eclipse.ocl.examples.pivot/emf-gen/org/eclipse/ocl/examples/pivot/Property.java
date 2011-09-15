@@ -20,10 +20,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainProperty
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -57,7 +59,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property
-		extends Feature, ParameterableElement {
+		extends Feature, ParameterableElement, DomainProperty {
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.

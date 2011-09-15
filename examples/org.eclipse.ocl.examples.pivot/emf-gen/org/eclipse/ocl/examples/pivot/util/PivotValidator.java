@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
@@ -118,7 +119,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -498,12 +498,12 @@ public class PivotValidator
 				return validateCollectionKind((CollectionKind)value, diagnostics, context);
 			case PivotPackage.BOOLEAN:
 				return validateBoolean((Boolean)value, diagnostics, context);
-			case PivotPackage.CALLABLE_IMPLEMENTATION:
-				return validateCallableImplementation((CallableImplementation)value, diagnostics, context);
 			case PivotPackage.INT:
 				return validateInt((Integer)value, diagnostics, context);
 			case PivotPackage.INTEGER:
 				return validateInteger((BigInteger)value, diagnostics, context);
+			case PivotPackage.LIBRARY_FEATURE:
+				return validateLibraryFeature((LibraryFeature)value, diagnostics, context);
 			case PivotPackage.OBJECT:
 				return validateObject(value, diagnostics, context);
 			case PivotPackage.REAL:
@@ -1165,17 +1165,6 @@ public class PivotValidator
 			CallOperationAction callOperationAction,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)callOperationAction, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCallableImplementation(
-			CallableImplementation callableImplementation,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
 	}
 
 	/**
@@ -1894,6 +1883,16 @@ public class PivotValidator
 	 */
 	public boolean validateInteger(BigInteger integer,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLibraryFeature(LibraryFeature libraryFeature, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
 		return true;
 	}
 

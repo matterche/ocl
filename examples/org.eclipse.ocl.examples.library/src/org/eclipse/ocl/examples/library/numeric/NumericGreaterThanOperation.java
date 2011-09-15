@@ -16,34 +16,35 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * GreaterThanOperation realises the >() library operation.
- * 
- * @since 3.1
  */
 public class NumericGreaterThanOperation extends AbstractNumericBinaryOperation
 {
 	public static final NumericGreaterThanOperation INSTANCE = new NumericGreaterThanOperation();
 
 	@Override
-	protected BooleanValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
+	protected BooleanValue evaluateInteger(DomainEvaluator evaluator, IntegerValue left, IntegerValue right) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.booleanValueOf(left.compareTo(right) > 0);
 	}
 
 	@Override
-	protected BooleanValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
+	protected BooleanValue evaluateReal(DomainEvaluator evaluator, RealValue left, RealValue right) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.booleanValueOf(left.compareTo(right) > 0);
 	}
 
 	@Override
-	protected BooleanValue evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
+	protected BooleanValue evaluateUnlimited(DomainEvaluator evaluator, Value left, Value right) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.booleanValueOf(left.isUnlimited() && !right.isUnlimited());
 	}
 }

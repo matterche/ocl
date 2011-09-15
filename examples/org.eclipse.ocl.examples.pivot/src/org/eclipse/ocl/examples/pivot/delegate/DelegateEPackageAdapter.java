@@ -34,15 +34,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 /**
  * DelegateEPackageAdapter extends an EPackage to cache its DelegateDomain
  * that supervises installation of OCL annotations from an OCL document.
- * 
- * @since 3.0
  */
 public class DelegateEPackageAdapter extends AdapterImpl
 {
 	/**
 	 *	Return the DelegateEPackageAdapter for ePackage, if there is one, or null if none.
-	 *
-	 * @since 3.1
 	 */
 	public static DelegateEPackageAdapter findAdapter(EPackage ePackage) {
 		return (DelegateEPackageAdapter) EcoreUtil.getAdapter(ePackage.eAdapters(), DelegateEPackageAdapter.class);

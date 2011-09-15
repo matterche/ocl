@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.impl.ValidationDelegateRegistryImpl;
  * A revised interface for delegating validation expression evaluation
  * adopting the same Factory, Registry, Descriptor architecture as the
  * invocation and setting delegates.
- * 
- * @since 3.0
  */
 public interface ValidationDelegate extends ValidationDelegateExtension // waiting for Bug 337792
 {

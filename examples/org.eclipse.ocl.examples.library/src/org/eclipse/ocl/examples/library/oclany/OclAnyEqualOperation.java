@@ -16,28 +16,29 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclAnyEqualOperation realises the OCLAny::=() library operation and
  * regular derived implementations since the Value classes exhibit
  * OCL value semantics.
- * 
- * @since 3.1
  */
 public class OclAnyEqualOperation extends AbstractBinaryOperation
 {
 	public static final OclAnyEqualOperation INSTANCE = new OclAnyEqualOperation();
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
 		//
 		//	A.2.2 is clear. 11.3.1 is vague.
 		//
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		if (left.isInvalid()) {
 			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "="); //$NON-NLS-1$
 		}

@@ -16,25 +16,24 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractTernaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * OrderedCollectionInsertAtOperation realises the OrderedCollection::insertAt() library operation.
- * 
- * @since 3.1
  */
 public class OrderedCollectionInsertAtOperation extends AbstractTernaryOperation
 {
 	public static final OrderedCollectionInsertAtOperation INSTANCE = new OrderedCollectionInsertAtOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value source, Value arg1, Value arg2) throws InvalidValueException {
-		OrderedCollectionValue selfValue = source.asOrderedCollectionValue();
-		Integer indexValue = arg1.asInteger();
-		Value insertValue = arg2.asValidValue();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException {
+		OrderedCollectionValue selfValue = sourceValue.asOrderedCollectionValue();
+		Integer indexValue = firstArgumentValue.asInteger();
+		Value insertValue = secondArgumentValue.asValidValue();
 		return selfValue.insertAt(indexValue, insertValue);
 	}
 }

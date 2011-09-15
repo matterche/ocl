@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
@@ -28,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.examples.pivot.library.ConstrainedProperty;
 import org.eclipse.ocl.examples.pivot.library.ExplicitNavigationProperty;
@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.library.ImplicitCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
 import org.eclipse.ocl.examples.pivot.library.UnimplementedOperation;
-
 
 /**
  * ImplementationManager encapsulates the knowledge about known feature implementations.
@@ -63,8 +62,8 @@ public class ImplementationManager
 		}
 	}
 
-	protected CallableImplementation getOperationImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = operation.getImplementation();
+	protected LibraryFeature getOperationImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = operation.getImplementation();
 		String implementationClassName = operation.getImplementationClass();
 		if (implementationClassName != null) {
 			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
@@ -82,8 +81,8 @@ public class ImplementationManager
 		return UnimplementedOperation.INSTANCE;
 	}
 
-	protected CallableImplementation getPropertyImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = property.getImplementation();
+	protected LibraryFeature getPropertyImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = property.getImplementation();
 		String implementationClassName = property.getImplementationClass();
 		if (implementationClassName != null) {
 			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
@@ -133,8 +132,8 @@ public class ImplementationManager
 	 * @throws IllegalAccessException if the implementation class is not accessible
 	 * @throws IllegalArgumentException if the implementation class is not accessible
 	 */
-	public CallableImplementation loadImplementation(Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = feature.getImplementation();
+	public LibraryFeature loadImplementation(Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = feature.getImplementation();
 		if (implementation == null) {
 			String implementationClassName = feature.getImplementationClass();
 			if (implementationClassName != null) {
@@ -161,7 +160,7 @@ public class ImplementationManager
 				}
 				@SuppressWarnings("null")
 				Field field = theClass.getField("INSTANCE");
-				implementation = (CallableImplementation) field.get(null);
+				implementation = (LibraryFeature) field.get(null);
 			}
 		}
 		return implementation;

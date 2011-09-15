@@ -75,7 +75,6 @@ public enum ProblemOption implements Option<ProblemHandler.Severity> {
 	 * Severity of making use of an operation name conceptually as
 	 * in 7.4.8 .
 	 * The default severity is <tt>OK</tt>.
-	 * @since 3.0
 	 */
 	CONCEPTUAL_OPERATION_NAME("conceptual.operation.name", ProblemHandler.Severity.ERROR); //$NON-NLS-1$
 	

@@ -306,9 +306,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 [/for]
 }
 [/if]
-[let superClasses : Set(Class) = type.superClass->select(_package.getRootPackage() = type._package.getRootPackage())]
+[let superClasses : OrderedSet(Type) = type.superClass->select(_package.getRootPackage() = type._package.getRootPackage())]
 [if (superClasses->notEmpty())]
-[for (superClass : Class | superClasses)]
+[for (superClass : Type | superClasses)]
 [type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.getMoniker()/]
 [/for]
 [elseif (not type.oclIsKindOf(AnyType))]
@@ -333,7 +333,7 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 // [type.getSignature()/] [type.getMoniker()/]
 //
 [type.getSymbolName()/].setName("[type.name/]");
-[for (superClass : Class | type.superClass)]
+[for (superClass : Type | type.superClass)]
 [if (type._package.getRootPackage() = superClass._package.getRootPackage())]
 [type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.getMoniker()/]
 [/if]

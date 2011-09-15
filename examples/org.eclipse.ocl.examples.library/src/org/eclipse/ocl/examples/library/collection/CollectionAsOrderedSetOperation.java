@@ -16,21 +16,20 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * CollectionAsOrderedSetOperation realises the Collection::asOrderedSet() library operation.
- * 
- * @since 3.1
  */
 public class CollectionAsOrderedSetOperation extends AbstractUnaryOperation
 {
 	public static final CollectionAsOrderedSetOperation INSTANCE = new CollectionAsOrderedSetOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value argument) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value argument) throws InvalidValueException {
 		return argument.asOrderedSetValue();
 	}
 }

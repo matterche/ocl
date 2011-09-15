@@ -28,7 +28,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -37,9 +37,9 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -207,13 +207,13 @@ public class OCLstdlibTests extends XtextTestCase
 				String fileClass = ((Feature)fileElement).getImplementationClass();
 				String javaClass = ((Feature)javaElement).getImplementationClass();
 				if (fileClass == null) {
-					CallableImplementation implementation = ((Feature)fileElement).getImplementation();
+					LibraryFeature implementation = ((Feature)fileElement).getImplementation();
 					if (implementation != null) {
 						fileClass = implementation.getClass().getCanonicalName();
 					}
 				}
 				if (javaClass == null) {
-					CallableImplementation implementation = ((Feature)javaElement).getImplementation();
+					LibraryFeature implementation = ((Feature)javaElement).getImplementation();
 					if (implementation != null) {
 						javaClass = implementation.getClass().getCanonicalName();
 					}

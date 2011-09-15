@@ -190,8 +190,6 @@ public interface OCLHelper {
      * @see #setContext(Object)
      * @see #setOperationContext(Object, Object)
      * @see #setAttributeContext(Object, Object)
-     * 
-     * @since 1.2
      */
     Environment getEnvironment();
     
@@ -377,8 +375,6 @@ public interface OCLHelper {
      * query expression.
      * 
      * @return parsing problems or <code>null</code> if all was OK
-     * 
-     * @since 1.2
      */
     Diagnostic getProblems();
 }

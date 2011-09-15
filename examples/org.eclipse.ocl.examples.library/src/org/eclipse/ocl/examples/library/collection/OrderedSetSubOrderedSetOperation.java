@@ -16,25 +16,24 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractTernaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
- * 
- * @since 3.1
  */
 public class OrderedSetSubOrderedSetOperation extends AbstractTernaryOperation
 {
 	public static final OrderedSetSubOrderedSetOperation INSTANCE = new OrderedSetSubOrderedSetOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value source, Value arg1, Value arg2) throws InvalidValueException {
-		OrderedSetValue selfValue = source.asOrderedSetValue();
-		Integer fromValue = arg1.asInteger();
-		Integer toValue = arg2.asInteger();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException {
+		OrderedSetValue selfValue = sourceValue.asOrderedSetValue();
+		Integer fromValue = firstArgumentValue.asInteger();
+		Integer toValue = secondArgumentValue.asInteger();
 		return selfValue.subOrderedSet(fromValue, toValue);
 	}
 }

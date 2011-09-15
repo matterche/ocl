@@ -27,34 +27,32 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
  * of compiled constraints and invariants.
- * 
- * @since 3.0
  */
 public class OCLValidationDelegate implements ValidationDelegate
 {	
-	protected OCLDelegateDomain delegateDomain;
+	protected final OCLDelegateDomain delegateDomain;
 	protected final EClassifier eClassifier;
 	  
 	/**
@@ -79,7 +77,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 //			if ((value != null) && !value.isUndefined()) {
 //				expression.getContextVariable().setValue(value);
 //			}
-		ModelManager extents = evaluationEnvironment.createModelManager(object);
+		DomainModelManager extents = evaluationEnvironment.createModelManager(object);
 
 		EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, evaluationEnvironment, extents);
 		return evaluationVisitor;

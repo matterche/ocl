@@ -30,6 +30,15 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BagValue;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
+import org.eclipse.ocl.examples.domain.values.SetValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -39,12 +48,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.values.BagValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * Tests for iterator expressions.
@@ -367,9 +370,13 @@ public class IteratorsTest extends PivotTestSuite
         assertQueryEquals(pkg1, expected3, "self->closure(nestedPackage->asBag())");
 
         // empty closure
-        assertQueryEquals(pkg1, getEmptySetValue(), "self->closure(nestingPackage)");
+        DomainCollectionType collectionType = expected1.getCollectionType();
+        DomainType elementType = collectionType.getElementType();
+		assertQueryEquals(pkg1, valueFactory.createSetValue(collectionType), "self->closure(nestingPackage)");
+//WIP        assertQueryNotEquals(pkg1, getEmptySetValue(), "self->closure(nestingPackage)");
         // empty closure
         assertQueryEquals(pkg1, getEmptyOrderedSetValue(), "self->asSequence()->closure(nestingPackage)");
+//WIP 		assertQueryNotEquals(pkg1, valueFactory.createOrderedSetValue(metaModelManager.getOrderedSetType(elementType)), "self->asSequence()->closure(nestingPackage)");
     }
 
     /**
@@ -707,14 +714,14 @@ public class IteratorsTest extends PivotTestSuite
     	Type type = metaModelManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
-        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + "");
+        	OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, type + "");
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         
-        // EDate defines '<' by having a Comparable instance class
+        // EDate defines an OclComparable::compareTo by having a java.lang.Comparable instance class
         assertQuery(context, "let dates : Sequence(ecore::EDate) = Sequence{} in dates->sortedBy(e | e)");
-        // EInt defines '<' by having a behavioral mapping to the Integer type
+        // EInt defines OclComparable::compareTo by having a behavioral mapping to the Integer type
         assertQueryResults(context, "Sequence{1,7,9}", "let values : Sequence<ecore::EInt> = Sequence{1,9,7} in values->sortedBy(e | e)");
     }
 	

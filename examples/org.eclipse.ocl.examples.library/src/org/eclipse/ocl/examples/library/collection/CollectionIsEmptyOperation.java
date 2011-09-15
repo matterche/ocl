@@ -16,22 +16,21 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * CollectionIsEmptyOperation realises the Collection::isEmpty() library operation.
- * 
- * @since 3.1
  */
 public class CollectionIsEmptyOperation extends AbstractUnaryOperation
 {
 	public static final CollectionIsEmptyOperation INSTANCE = new CollectionIsEmptyOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value argument) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value argument) throws InvalidValueException {
 		CollectionValue collectionValue = argument.asCollectionValue();
 		return collectionValue.isEmpty();
 	}

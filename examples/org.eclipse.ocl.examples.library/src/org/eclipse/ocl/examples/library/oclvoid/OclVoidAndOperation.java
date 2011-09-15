@@ -16,21 +16,22 @@
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclVoidAndOperation realises the OclVoid::and() library operation.
- * 
- * @since 3.1
  */
 public class OclVoidAndOperation extends AbstractBinaryOperation
 {
 	public static final OclVoidAndOperation INSTANCE = new OclVoidAndOperation();
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		if (right == valueFactory.getFalse()) {
 			return valueFactory.getFalse();
 		}

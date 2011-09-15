@@ -53,7 +53,6 @@ public class OCL extends OCLBase {
 	 * @param resourceSet to be initialized or null for global initialization
 	 * @return a failure reason, null if successful
 	 * 
-	 * @since 3.0
 	 */
 	public static String initialize(ResourceSet resourceSet) {
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null

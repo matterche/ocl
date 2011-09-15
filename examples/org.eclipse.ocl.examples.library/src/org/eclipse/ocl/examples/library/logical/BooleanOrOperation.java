@@ -16,34 +16,28 @@
  */
 package org.eclipse.ocl.examples.library.logical;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OrOperation realises the or() library operation.
- * 
- * @since 3.1
  */
 public class BooleanOrOperation extends AbstractBinaryOperation
 {
 	public static final BooleanOrOperation INSTANCE = new BooleanOrOperation();
 
 	@Override
-	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		if (sourceVal.isTrue()) {
-			return valueFactory.getTrue();
-		}
-		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		return evaluate(valueFactory, sourceVal, argVal);
+	public boolean argumentsMayBeInvalid() {
+		return true;
 	}
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		if (left.isTrue() || right.isTrue()) {
 			return valueFactory.getTrue();
 		}

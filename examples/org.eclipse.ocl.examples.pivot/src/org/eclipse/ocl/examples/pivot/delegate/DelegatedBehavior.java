@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
- * @since 3.0
  */
 public interface DelegatedBehavior<E, R, F>
 {

@@ -18,20 +18,24 @@ package org.eclipse.ocl.examples.pivot.library;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * An instance of ConstrainedOperation supports evaluation of
  * an operation defined by constraints.
  */
-public class ConstrainedOperation extends AbstractCallableImplementation
+public class ConstrainedOperation extends AbstractOperation
 {
 	protected final ExpressionInOcl expressionInOcl;
 	
@@ -39,7 +43,8 @@ public class ConstrainedOperation extends AbstractCallableImplementation
 		this.expressionInOcl = expressionInOcl;
 	}
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
+	public Value evaluate(DomainEvaluator evaluator, DomainCallExp callExp, Value sourceValue, Value... argumentValues) throws InvalidEvaluationException, InvalidValueException {
+		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator.getEvaluationVisitor();
 		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedVisitor();
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);

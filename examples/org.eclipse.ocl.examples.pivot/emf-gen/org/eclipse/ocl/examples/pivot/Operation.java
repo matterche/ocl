@@ -20,10 +20,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainOperation
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -47,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Operation
-		extends Feature, Namespace, TemplateableElement, ParameterableElement {
+		extends Feature, Namespace, TemplateableElement, ParameterableElement, DomainOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.

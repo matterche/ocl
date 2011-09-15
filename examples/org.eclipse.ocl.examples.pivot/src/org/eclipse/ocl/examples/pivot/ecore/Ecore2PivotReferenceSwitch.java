@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -31,14 +33,19 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.library.JavaCompareToOperation;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
@@ -73,11 +80,32 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 			org.eclipse.ocl.examples.pivot.Class oclElementType = converter.getMetaModelManager().getOclElementType();
 			if (oclElementType != null) {
 				pivotElement.getSuperClasses().add(oclElementType);
-			}		// FIXME Why aren't these synonymous
-//			org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)converter.getMetaModelManager().getPivotType("Class");
-//			if (classType != null) {
-//				pivotElement.getSuperClasses().add(classType);
-//			}
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Object caseEDataType(EDataType eObject) {
+		super.caseEDataType(eObject);
+		Class<?> instanceClass = eObject.getInstanceClass();
+		if (instanceClass != null) {
+			DataType pivotElement = converter.getCreated(DataType.class, eObject);
+			try {
+				MetaModelManager metaModelManager = converter.getMetaModelManager();
+				Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
+				Operation operation = PivotFactory.eINSTANCE.createOperation();
+				operation.setName(EvaluatorMessages.CompareToOperation);
+				operation.setImplementation(new JavaCompareToOperation(declaredMethod));
+				Parameter parameter = PivotFactory.eINSTANCE.createParameter();
+				parameter.setName("that");
+				parameter.setType(metaModelManager.getRequiredLibraryType("OclSelf"));
+				operation.getOwnedParameters().add(parameter);
+				operation.setType(metaModelManager.getIntegerType());
+				pivotElement.getOwnedOperations().add(operation);
+				pivotElement.getSuperClasses().add(metaModelManager.getOclComparableType());
+			} catch (Exception e) {
+			}
 		}
 		return null;
 	}

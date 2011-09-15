@@ -58,4 +58,16 @@
        class = "org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory$Global" />
   </extension>
 
+   <extension point="org.eclipse.ocl.examples.pivot.standard_library"
+         id="ocl_stdlib" name="OCL Stdlib">
+     <library uri="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib"
+     	class="org.eclipse.ocl.examples.pivot.model.OCLstdlib$Loader"/>
+   </extension>
+
+   <extension point="org.eclipse.ocl.examples.pivot.standard_library"
+         id="ocl_stdlib" name="OCL Stdlib">
+     <library uri="http://www.eclipse.org/ocl/3.2.0/OCL.oclstdlib"
+     	class="org.eclipse.ocl.examples.pivot.model.OCLstdlib$Loader"/>
+   </extension>
+
 </plugin>

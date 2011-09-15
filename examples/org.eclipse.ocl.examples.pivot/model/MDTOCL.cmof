@@ -65,7 +65,7 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_3M8_UN9YEd-5RuvZBdnt0A" name="implementationClass" type="_7Yq00Mk-Ed-bx742yyafXQ" lower="0"/>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_ZQ3woN9ZEd-5RuvZBdnt0A" name="implementation" type="_0Xb0cAFqEeCxa8jNFLJGww" lower="0"/>
       </ownedMember>
-      <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_0Xb0cAFqEeCxa8jNFLJGww" name="CallableImplementation"/>
+      <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_0Xb0cAFqEeCxa8jNFLJGww" name="LibraryFeature"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_jtMXsMhyEd-sJIf4tYBt-g" name="Object"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_7Yq00Mk-Ed-bx742yyafXQ" name="String"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_ijfAsNPCEd-Vct1SlsNNwg" name="Throwable"/>
@@ -223,7 +223,7 @@
     <Ecore:EAttribute xmi:id="_1hNtAPPiEd-7P5P8zTFtow" isUnsettable="true" base_Property="_ttCmEPPiEd-7P5P8zTFtow"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EDataType xmi:id="_51mtUAFqEeCxa8jNFLJGww" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation" base_PrimitiveType="_0Xb0cAFqEeCxa8jNFLJGww"/>
+    <Ecore:EDataType xmi:id="_51mtUAFqEeCxa8jNFLJGww" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature" base_PrimitiveType="_0Xb0cAFqEeCxa8jNFLJGww"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EAttribute xmi:id="_VZMlMAFrEeCxa8jNFLJGww" isTransient="true" base_Property="_ZQ3woN9ZEd-5RuvZBdnt0A"/>

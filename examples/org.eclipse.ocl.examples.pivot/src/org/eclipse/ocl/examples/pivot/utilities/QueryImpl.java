@@ -21,6 +21,8 @@ package org.eclipse.ocl.examples.pivot.utilities;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLBase;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
@@ -29,8 +31,6 @@ import org.eclipse.ocl.examples.pivot.ProblemAware;
 import org.eclipse.ocl.examples.pivot.QueryBase;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * Implementation of the {@link OCLBase.QueryBase} convenience interface.
@@ -78,7 +78,7 @@ public class QueryImpl implements OCL.Query, ProblemAware {
 		return (OclExpression) delegate.getExpression();
 	}
 
-	public ModelManager getModelManager() {
+	public DomainModelManager getModelManager() {
 		return delegate.getModelManager();
 	}
 

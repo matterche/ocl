@@ -254,8 +254,6 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment
     /**
      * I dispose my type resolver, if it is an {@link AbstractTypeResolver}
      * and I am the root environment (which owns the resolver).
-     * 
-     * @since 1.2
      */
     public void dispose() {
     }    

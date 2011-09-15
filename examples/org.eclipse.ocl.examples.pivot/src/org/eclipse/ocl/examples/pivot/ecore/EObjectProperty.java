@@ -16,24 +16,25 @@
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /** 
- * An EObjectProperty provides the standard CallableImplementation to implement a
+ * An EObjectProperty provides the standard LibraryProperty to implement a
  * PropertyCallExp. When constructed with a null specification, the call just accesses
  * the property field in a source object. When constructed with a non-null specification,
  * the specification defines the access algorithm, which if provided as an OpaqueExpression
  * is lazily compiled from OCL source text.
  */
-public class EObjectProperty implements CallableImplementation
+public class EObjectProperty extends AbstractProperty
 {
 	protected final EStructuralFeature eFeature;
 	protected ValueSpecification specification;
@@ -43,16 +44,13 @@ public class EObjectProperty implements CallableImplementation
 		this.specification = specification;
 	}
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		Object object = sourceValue.asObject();
 		if (!(object instanceof EObject)) {
-			return evaluationVisitor.throwInvalidEvaluation(null, callExp, object, "non-EObject");
+			return evaluator.throwInvalidEvaluation(null, null, object, "non-EObject");
 		}
 		Object eValue = ((EObject)object).eGet(eFeature);
-		return evaluationVisitor.getValueFactory().valueOf(eValue, eFeature);
-	}
-
-	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
-		return null;
+		return valueFactory.valueOf(eValue, eFeature);
 	}
 }

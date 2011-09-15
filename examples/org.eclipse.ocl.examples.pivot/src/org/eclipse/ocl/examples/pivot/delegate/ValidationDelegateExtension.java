@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EValidator;
 
 /**
  * An extended interface allowing validators to generate custom diagnostics.
- * 
- * @since 3.1
  */
 //FIXME this class will be obsoleted by Bug 337792 resolution 
 public interface ValidationDelegateExtension extends EValidator.ValidationDelegate //, EValidator.ValidationDelegate.Extension

@@ -16,22 +16,21 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * OrderedCollectionAtOperation realises the OrderedCollection::at() library operation.
- * 
- * @since 3.1
  */
 public class OrderedCollectionAtOperation extends AbstractBinaryOperation
 {
 	public static final OrderedCollectionAtOperation INSTANCE = new OrderedCollectionAtOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
 		OrderedCollectionValue leftOrderedCollectionValue = left.asOrderedCollectionValue();
 		Integer atValue = right.asInteger();
 		return leftOrderedCollectionValue.at(atValue.intValue());

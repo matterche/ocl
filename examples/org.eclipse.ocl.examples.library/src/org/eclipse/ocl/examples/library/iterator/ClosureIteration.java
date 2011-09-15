@@ -16,85 +16,73 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.library.ValidationWarning;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.library.LibraryValidator;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * ClosureIteration realizes the Collection::closure() library iteration.
- * 
- * @since 3.1
  */
-public class ClosureIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class ClosureIteration extends AbstractIteration
 {
 	public static final ClosureIteration INSTANCE = new ClosureIteration();
+	private static LibraryValidator validator = null; 
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		return evaluator.getValueFactory().createCollectionAccumulatorValue((DomainCollectionType) accumulatorType);
+	}
+
+	@Override
+	public LibraryValidator getValidator(DomainStandardLibrary standardLibrary) {
+		if (validator == null) {
+			validator = getLibraryValidator(standardLibrary, "org.eclipse.ocl.examples.pivot.library.validators.ValidateClosureIteration"); //$NON-NLS-1$
+		}
+		return validator;
 	}
 
 	/**
 	 * Recursively evaluates the iterator body expression.
 	 */
     @Override
-	protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
+	protected Value updateAccumulator(DomainIterationManager iterationManager) {
 		if (!iterationManager.isOuterIteration()) {
 			// If there is the parent is the iterator
-			Value value = iterationManager.get(0);
+			Value value = iterationManager.get();
+			CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 			if (!accumulatorValue.add(value)) {
 				return accumulatorValue;
 			}
 		}
-		Value bodyVal = iterationManager.getBodyValue();		
+		Value bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal.isInvalid()) {
 			return bodyVal;									// Invalid body is invalid
 		}
 		else if (bodyVal.isUndefined()) {
-			return accumulatorValue;						// Null body is termination
+			return iterationManager.getAccumulatorValue();		// Null body is termination
 		}
 		else {
 			try {
-				evaluateIteration(new IterationManager<CollectionValue.Accumulator>(iterationManager, bodyVal));
+				CollectionValue collectionValue;
+				if (bodyVal instanceof CollectionValue) {
+					collectionValue = (CollectionValue) bodyVal;
+				}
+				else {
+					ValueFactory valueFactory = iterationManager.getValueFactory();
+					collectionValue = valueFactory.createSequenceValue(valueFactory.getStandardLibrary().getSequenceType(bodyVal.getType()), bodyVal);
+				}
+				evaluateIteration(iterationManager.createNestedIterationManager(collectionValue));
 			} catch (InvalidValueException e) {
 				iterationManager.throwInvalidEvaluation(e);
 			}
 			return null;
 		}
-	}
-
-	@Override
-	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
-		Type bodyType = ((IteratorExp)callExp).getBody().getType();
-		if (bodyType instanceof CollectionType) {
-			bodyType = ((CollectionType)bodyType).getElementType();
-		}
-		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
-		Map<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
-		if (!metaModelManager.conformsTo(bodyType, iteratorType, bindings)) {
-			return new ValidationWarning(OCLMessages.IncompatibleBodyType_WARNING_, bodyType, iteratorType);
-		}
-		return null;
 	}
 }

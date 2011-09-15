@@ -16,55 +16,45 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
- * OneIteration realises the Collection::one() library iteration.
- * 
- * @since 3.1
+ * OneIteration realizes the Collection::one() library iteration.
  */
-public class OneIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class OneIteration extends AbstractIteration
 {
 	public static final OneIteration INSTANCE = new OneIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		return valueFactory.createBooleanAccumulatorValue();
 	}
-	
+
 	@Override
-	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		return iterationManager.getValueFactory().booleanValueOf(accumulatorValue.intSize() > 0);
-	}
-	
-	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "one"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal.isFalse()) {
 			return null;									// Carry on for nothing found
 		}
-		else if (accumulatorValue.intSize() > 0) {
-			return iterationManager.getFalse();				// Abort after second find
-		}
 		else {
-			// should be exactly one iterator
-			Value value = iterationManager.get(0);		
-			accumulatorValue.add(value);
-			return null;									// Carry on after first find
+			Value accumulatorValue = iterationManager.getAccumulatorValue();
+			if (accumulatorValue.isTrue()) {
+				return iterationManager.getValueFactory().getFalse();				// Abort after second find
+			}
+			else {
+				((BooleanValue.Accumulator)accumulatorValue).setValue(true);
+				return null;									// Carry on after first find
+			}
 		}
 	}
 }

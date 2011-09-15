@@ -17,21 +17,24 @@
 package org.eclipse.ocl.examples.pivot.library;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * The static instance of ImplicitCompositionProperty supports evaluation of
  * implicit properties for opposites of composition relationships.
  */
-public class ImplicitCompositionProperty extends AbstractCallableImplementation
+public class ImplicitCompositionProperty extends AbstractProperty
 {
 	public static final ImplicitCompositionProperty INSTANCE = new ImplicitCompositionProperty();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		EObject thisObject = (EObject) sourceValue.asObject();
 		Object thatObject = thisObject.eContainer();
 		if (thatObject != null) {

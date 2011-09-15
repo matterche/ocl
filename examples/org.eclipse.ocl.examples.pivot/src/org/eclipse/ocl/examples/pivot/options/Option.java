@@ -26,8 +26,6 @@ import org.eclipse.ocl.examples.pivot.Customizable;
  * 
  * @author Christian W. Damus (cdamus)
  * 
- * @since 1.2
- * 
  * @see Customizable
  */
 public interface Option<T> {

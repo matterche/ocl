@@ -16,34 +16,31 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * MaxOperation realises the max() library operation.
- * 
- * @since 3.1
  */
 public class NumericMaxOperation extends AbstractNumericBinaryOperation
 {
 	public static final NumericMaxOperation INSTANCE = new NumericMaxOperation();
 
 	@Override
-	protected IntegerValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
+	protected IntegerValue evaluateInteger(DomainEvaluator evaluator, IntegerValue left, IntegerValue right) throws InvalidValueException {
 		return left.max(right);
 	}
 
 	@Override
-	protected RealValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) throws InvalidValueException {
+	protected RealValue evaluateReal(DomainEvaluator evaluator, RealValue left, RealValue right) throws InvalidValueException {
 		return left.max(right);
 	}
 
 	@Override
-	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
+	protected Value evaluateUnlimited(DomainEvaluator evaluator, Value left, Value right) {
 		if (!left.isUnlimitedNatural() || !right.isUnlimitedNatural()) {
 			return null;
 		}

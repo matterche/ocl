@@ -27,8 +27,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
  * {@linkplain Customizable customize} their evaluation behaviour.
  * 
  * @author Christian W. Damus (cdamus)
- * 
- * @since 1.2
  */
 public class EvaluationOptions {
 
@@ -47,8 +45,6 @@ public class EvaluationOptions {
      * value of this option is <tt>true</tt>.  For strict conformance to the
      * specification, use <tt>false</tt>.
      * </p>
-     * 
-     * @since 1.2
      */
     public static final Option<Boolean> LAX_NULL_HANDLING = new BasicOption<Boolean>(
             "lax.null.handling", true); //$NON-NLS-1$

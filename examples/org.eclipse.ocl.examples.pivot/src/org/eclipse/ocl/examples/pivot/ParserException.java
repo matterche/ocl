@@ -63,8 +63,6 @@ public class ParserException extends Exception {
 	 * Initializes me with a diagnostic obtained from a problem handler.
 	 * 
 	 * @param problem the diagnostic
-	 * 
-	 * @since 1.2
 	 */
 	public ParserException(Diagnostic problem) {
 		super(problem.getMessage());
@@ -78,8 +76,6 @@ public class ParserException extends Exception {
 	 * 
 	 * @return the diagnostic, which may be a chain of multiple problems or
 	 * even just an "OK" diagnostic indicating an absence of parse problems
-	 * 
-	 * @since 1.2
 	 */
 	public Diagnostic getDiagnostic() {
 		return diagnostic;

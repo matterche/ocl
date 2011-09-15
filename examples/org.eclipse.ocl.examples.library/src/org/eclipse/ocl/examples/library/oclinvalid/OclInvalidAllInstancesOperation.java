@@ -16,22 +16,24 @@
  */
 package org.eclipse.ocl.examples.library.oclinvalid;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclInvalidAllInstancesOperation realises the OclInvalid::allInstances() library operation.
- * 
- * @since 3.1
  */
-public class OclInvalidAllInstancesOperation extends AbstractOperation
+public class OclInvalidAllInstancesOperation extends AbstractUnaryOperation
 {
 	public static final OclInvalidAllInstancesOperation INSTANCE = new OclInvalidAllInstancesOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		// OclInvalid has a single instance: invalid that cannot be returned in a collection
-		return null;
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidLiteral);
 	}
 }

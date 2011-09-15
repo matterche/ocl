@@ -21,7 +21,7 @@ package org.eclipse.ocl.examples.xtext.console;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.console.AbstractConsole;
@@ -91,7 +91,7 @@ public class OCLConsole
 
 	public void setSelection(EClassifier contextClassifier, EObject contextObject) {
 		String typeName = contextClassifier != null ? contextClassifier.getName() : "null"; //$NON-NLS-1$
-		String objectName = contextObject != null ? PivotUtil.getLabel(contextObject) : "null"; //$NON-NLS-1$
+		String objectName = contextObject != null ? DomainUtil.getLabel(contextObject) : "null"; //$NON-NLS-1$
 		setName(NLS.bind(ConsoleMessages.Console_TitleWithContext, objectName, typeName));		
 	}
 }

@@ -25,16 +25,18 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.values.Bag;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.Bag;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.impl.BagImpl;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -49,9 +51,11 @@ public class ImportTests extends XtextTestCase
 	{
 		public static final SpacedOut INSTANCE = new SpacedOut();
 
-		public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-			String string = sourceVal == null?  Value.INVALID_NAME : sourceVal.oclToString();
-			return evaluationVisitor.getValueFactory().stringValueOf(string);
+		public Value evaluate(DomainEvaluator evaluator, DomainCallExp callExp,
+				Value sourceValue, Value... argumentValues)
+				throws InvalidEvaluationException, InvalidValueException {
+			String string = sourceValue == null?  Value.INVALID_NAME : sourceValue.oclToString();
+			return evaluator.getValueFactory().stringValueOf(string);
 		}
 	}
 	

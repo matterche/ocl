@@ -58,6 +58,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -65,7 +66,6 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateEPackageAdapter;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateResourceSetAdapter;
@@ -1170,7 +1170,7 @@ public class DelegatesTest extends PivotTestSuite
 		return null;
 	}
 
-	protected Type getType(EObject eObject) {
+	protected DomainType getType(EObject eObject) {
 		return valueFactory.valueOf(eObject).getType();
 	}
 

@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EPackage;
 /**
  * A pluggable, dynamic implementation of a delegate domain supervising
  * delegated behavior.
- * 
- * @since 3.0
  */
 public interface DelegateDomain {
 

@@ -1,0 +1,442 @@
+[comment encoding = UTF-8 /]
+[module generateJavaOperations('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+[import codeGenUtils/]
+[import genPackageUtils/]
+[import genUtils/]
+
+[template public generate(genModel : GenModel)]
+[comment @main /]
+[for (genPackage : GenPackage | genModel.genPackages)]
+[let ePackage : EPackage = genPackage.ecorePackage]
+[let pPackage : Package = cgGetPivotPackage(ePackage)]
+[generate2(genPackage, pPackage)/]
+[/let]
+[/let]
+[/for]
+[/template]
+
+[template public generate2(genPackage : GenPackage, pkg : Package) ? (pkg.eContainer() <> null)]
+[let packagePathPrefix : String = if genPackage.basePackage.size() > 0 then genPackage.basePackage.replaceAll('\\.', '/') + '/' else '' endif]
+[let packagePrefix : String = packagePathPrefix.replaceAll('/', '.')]
+[for (type : Type | pkg.ownedType->sortedBy(getMoniker()))]
+[file (packagePathPrefix + pkg.name + '/operations/' + type.name + 'Operations.java', false, 'UTF-8')]
+package [packagePrefix/][pkg.name/].operations;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.ocl.examples.domain.elements.*;
+import org.eclipse.ocl.examples.domain.evaluation.*;
+import org.eclipse.ocl.examples.domain.library.*;
+import org.eclipse.ocl.examples.domain.types.*;
+import org.eclipse.ocl.examples.domain.values.*;
+import org.eclipse.ocl.examples.library.ecore.*;
+import org.eclipse.ocl.examples.library.executor.*;
+import [packagePrefix/][pkg.name/].[type.name/];
+import [packagePrefix/][genPackage.ecorePackage.name/].[genPackage.prefix/]Tables;
+
+@SuppressWarnings("unused")
+public class [type.name/]Operations
+{
+	public static void suppressThrowWarnings()  throws InvalidValueException {}
+
+[for (rule : Constraint | type.ownedRule->sortedBy(name)) before ('\n') separator ('\n')]
+	[generateInvariant(genPackage, type, rule)/]
+[/for]
+[if (type.oclIsKindOf(Class))]
+[for (operation : Operation | type.oclAsType(Class).ownedOperation->sortedBy(getMoniker())) before ('\n') separator ('\n')]
+[for (rule : Constraint | operation.ownedRule) separator ('\n')]
+[if (rule.stereotype = 'body')]
+	public static [operation.type.name/] [operation.name/]([type.name/] self[for (parameter : Parameter | operation.ownedParameter)], [parameter.type.name/] [parameter.name/][/for]) {
+		final ExecutorManager evaluator = EcoreExecutorManager.INSTANCE;
+		final ValueFactory valueFactory = evaluator.getValueFactory();
+		Library[getOperationAritySuffix(operation.ownedParameter->size())/] codeGen = [type.name + '_' + operation.name + '_' + rule.stereotype + '_' + rule.name/].INSTANCE;
+		try {
+			final Value result = codeGen.evaluate(evaluator, null, valueFactory.valueOf(self)[for (parameter : Parameter | operation.ownedParameter)], valueFactory.valueOf([parameter.name/])[/for]);
+			return ([operation.type.name/]) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException(e);
+		}
+	}
+
+[/if]
+	[generateFeatureConstraint(genPackage, type, operation, rule)/]
+[/for]
+[/for]
+[for (property : Property | type.oclAsType(Class).ownedAttribute->sortedBy(name)) before ('\n') separator ('\n')]
+[for (rule : Constraint | property.ownedRule) separator ('\n')]
+	[generateFeatureConstraint(genPackage, type, property, rule)/]
+[/for]
+[/for]
+[/if]
+}
+[/file]
+[/for]
+[/let]
+[/let]
+[/template]
+
+[template public generateInvariant(genPackage : GenPackage, type : Type, constraint : Constraint)]
+[let className : String = type.name + '_inv_' + constraint.name]
+/** 
+ * Implementation of the [type.name/] '[constraint.name/]' invariant.
+ *
+ * [constraint.specification.toString()/]
+ */
+[generateSpecification(genPackage, className, type, constraint.specification, type._'package')/][/let][/template]
+
+[template public generateFeatureConstraint(genPackage : GenPackage, type : Type, feature : Feature, constraint : Constraint)]
+[let className : String = type.name + '_' + feature.name + '_' + constraint.stereotype + '_' + constraint.name]
+/** 
+ * Implementation of the [type.name/]::[feature.name/] '[constraint.name/]' <[constraint.stereotype/]>.
+ *
+ * [constraint.specification.toString()/]
+ */
+[generateSpecification(genPackage, className, feature, constraint.specification, type._'package')/][/let][/template]
+
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, specification : ValueSpecification, pkg : Package)]
+public static class [className/] extends LibraryOperation
+{
+	public Value evaluate(DomainEvaluator domainEvaluator, DomainCallExp callExp, Value sourceValue, Value... argValues) throws InvalidValueException {
+		return null;
+	}
+}[/template]
+
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, specification : OpaqueExpression, pkg : Package)]
+[let spec : ExpressionInOcl = cgGetExpressionInOcl(contextElement, specification)]
+[generateSpecification(genPackage, className, contextElement, spec, pkg)/][/let][/template]
+
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, specification : ExpressionInOcl, pkg : Package)]
+[let arity : Integer = specification.parameterVariable->size()]
+public static class [className/] extends Abstract[getOperationAritySuffix(arity)/]
+{
+	public static [className/] INSTANCE = new [className/]();
+
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value [defineSymbolName(specification.contextVariable, 'self')/][if specification.parameterVariable->notEmpty()]
+[for (parameter : Variable | specification.parameterVariable)]
+, Value [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws InvalidValueException {
+		final ValueFactory valueFactory = evaluator.getValueFactory();
+		[generateConstantLiterals(genPackage, specification.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, specification.bodyExpression, pkg)/][generateExpression('Value ', 'result', specification.bodyExpression, pkg)/]
+		return result;
+	}
+}[/let][/template]
+
+[template public generateConstantLiterals(genPackage : GenPackage, ast : OclExpression, pkg : Package)]
+[let expressions : Sequence(OclExpression) = ast.eAllContents(OclExpression)->including(ast)]
+[let constants : Set(Element) = expressions->collect(e : OclExpression | gatherConstants(e))->asSet()->excluding(null)]
+[for (e : Boolean | constants->collect(e : Element | if e.oclIsKindOf(BooleanLiteralExp) then e.oclAsType(BooleanLiteralExp).booleanSymbol else null endif)->asSet()->excluding(null))]
+final BooleanValue [defineSymbolName(e, if e then 'trueValue' else 'falseValue' endif)/] = valueFactory.booleanValueOf([if (e)]true[else]false[/if]);
+[/for]  
+[for (e : String | constants->collect(e : Element | asIntegerStringOrNull(e))->asSet()->excluding(null)->sortedBy(s : String | s))]
+final IntegerValue [defineSymbolName(e, getPrefixedSymbolName('integerValue_', e))/] = valueFactory.integerValueOf([e/]);
+[/for]
+[for (e : String | constants->collect(e : Element | asRealStringOrNull(e))->asSet()->excluding(null)->sortedBy(s : String | s))]
+final RealValue [defineSymbolName(e, getPrefixedSymbolName('realValue_', e))/] = valueFactory.realValueOf([e/]);
+[/for]
+[for (e : String | constants->collect(e : Element | if e.oclIsKindOf(StringLiteralExp) then e.oclAsType(StringLiteralExp).stringSymbol else null endif)->asSet()->excluding(null))]
+final StringValue [defineSymbolName(e, getPrefixedSymbolName('stringValue_', e))/] = valueFactory.stringValueOf("[javaString(e)/]");
+[/for]  
+[if (constants->exists(oclIsKindOf(InvalidLiteralExp)))]
+final InvalidValue invalidValue = valueFactory.getInvalid();
+[/if]  
+[if (constants->exists(oclIsKindOf(NullLiteralExp)))]
+final NullValue nullValue = valueFactory.getNull();
+[/if]  
+[if (constants->exists(e : Element | e.oclIsKindOf(UnlimitedNaturalLiteralExp) and (asIntegerStringOrNull(e) = null)))]
+final UnlimitedValue unlimitedValue = valueFactory.getUnlimited();
+[/if]  
+[for (ast : IterateExp | constants->collect(e : Element | if e.oclIsKindOf(IterateExp) then e.oclAsType(IterateExp) else null endif)->asSet()->excluding(null))]
+final DomainType [getSymbolName(ast.result)/]_type = [genPackageGetQualifiedLiteralName(genPackage, ast._'body'.type, pkg)/];
+[/for]  
+[/let]
+[/let]
+[/template]
+
+[template public generateConstantTupleParts(genPackage : GenPackage, ast : OclExpression, pkg : Package)]
+[let parts : Sequence(TupleLiteralPart) = ast.eAllContents(TupleLiteralPart)]
+[let decls : Set(String) = parts->iterate(part : TupleLiteralPart; acc : Set(String) = Set{} | acc->including(genPackageGetTupleLiteralPartLookup(genPackage, part, pkg)))]
+[for (decl : String | decls)] 
+final DomainTypedElement [getPrefixedSymbolName('tuple_part_', decl)/] = [decl/];
+[/for]
+[/let]
+[/let]
+[let tuples : Sequence(TupleLiteralExp) = ast.eAllContents(TupleLiteralExp)]
+[let decls : Set(OrderedSet(String)) = tuples->iterate(tuple : TupleLiteralExp; acc : Set(OrderedSet(String)) = Set{} | acc->including(genPackageGetTupleLiteralExpLookup(tuple, pkg)))]
+[for (decl : OrderedSet(String) | decls)] 
+List<DomainTypedElement> [getPrefixedSymbolName('tuple_type_', decl)/]_parts = new ArrayList<DomainTypedElement>();
+[for (part : String | decl)] 
+[getPrefixedSymbolName('tuple_type_', decl)/]_parts.add([part/]);
+[/for]
+final DomainTupleType [getPrefixedSymbolName('tuple_type_', decl)/] = valueFactory.getStandardLibrary().getTupleType([getPrefixedSymbolName('tuple_type_', decl)/]_parts);
+[/for]
+[/let]
+[/let]
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : BooleanLiteralExp, pkg : Package)]
+[resultType/][result/] = [getSymbolName(ast.booleanSymbol)/];
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : CollectionLiteralExp, pkg : Package) ? ((ast.part->size() = 1) and (ast.part->filter(CollectionRange)->size() = 1))]
+[let range : CollectionRange = ast.part->at(1).oclAsType(CollectionRange)]
+[let firstVarName : String = getSymbolName(range)+'_first']
+[let lastVarName : String = getSymbolName(range)+'_last']
+[generateExpression('Value ', firstVarName, range.first, pkg)/]
+[generateExpression('Value ', lastVarName, range.last, pkg)/]
+[let rangeVarName : String = getSymbolName(ast) + '_range']
+[let typeVarName : String = getSymbolName(ast) + '_type']
+IntegerRange [rangeVarName/] = valueFactory.createRange([firstVarName/].asIntegerValue(), [lastVarName/].asIntegerValue());
+[generateType(typeVarName, ast.type, pkg)/]
+[resultType/][result/] = valueFactory.create[ast.kind.toString()/]Range([typeVarName/], [rangeVarName/]);[/let][/let][/let][/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : CollectionLiteralExp, pkg : Package) ? ((ast.part->size() <> 1) or (ast.part->filter(CollectionRange)->size() <> 1))]
+[let listVarName : String = getSymbolName(ast) + '_values']
+[let typeVarName : String = getSymbolName(ast) + '_type']
+List<Value> [listVarName/] = new ArrayList<Value>(); 
+[for (part : CollectionLiteralPart | ast.part)]
+[generateExpression(genPackage, '', listVarName, part, pkg)/]
+[/for]
+[generateType(typeVarName, ast.type, pkg)/]
+[resultType/][result/] = valueFactory.create[ast.kind.toString()/]Value([typeVarName/], [listVarName/]);[/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, item : CollectionItem, pkg : Package)]
+[let itemVarName : String = 'item_'+getSymbolName(item)]
+[generateExpression('Value ', itemVarName, item.item, pkg)/]
+[result/].add([itemVarName/]);[/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, range : CollectionRange, pkg : Package)]
+[let firstVarName : String = getSymbolName(range)+'_first']
+[let lastVarName : String = getSymbolName(range)+'_last']
+[generateExpression('Value ', firstVarName, range.first, pkg)/]
+[generateExpression('Value ', lastVarName, range.last, pkg)/]
+long [getSymbolName(range)/]_end = [lastVarName/].asInteger();
+for (long [getSymbolName(range)/] = [firstVarName/].asInteger(); [getSymbolName(range)/] <= [getSymbolName(range)/]_end; [getSymbolName(range)/]++) {
+	[result/].add(valueFactory.integerValueOf([getSymbolName(range)/]));
+}[/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : Element, pkg : Package)]
+[resultType/][result/] = <[ast.eClass().name/]>;[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IfExp, pkg : Package)]
+[let resultVarName : String = getPrefixedSymbolName('if_', ast)]
+[let condVarName : String = resultVarName+'_test']
+Value [resultVarName/];
+[generateExpression('Value ', condVarName, ast.condition, pkg)/]
+if ([condVarName/].isTrue()) {
+	[generateExpression('', resultVarName, ast.thenExpression, pkg)/]
+}
+else if ([condVarName/].isFalse()) {
+	[generateExpression('', resultVarName, ast.elseExpression, pkg)/]
+}
+else if ([condVarName/].isNull()) {
+	[resultVarName/] = valueFactory.throwInvalidValueException("null if condition");
+}
+else {
+	[resultVarName/] = valueFactory.throwInvalidValueException("invalid if condition");
+}
+[resultType/][result/] = [resultVarName/];[/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IntegerLiteralExp, pkg : Package)]
+[resultType/][result/] = [getSymbolName(asIntegerStringOrNull(ast))/];
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : InvalidLiteralExp, pkg : Package)]
+[resultType/][result/] = invalidValue;
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IterateExp, pkg : Package)]
+[let arity : Integer = ast.iterator->size()]
+[let leftVarName : String = getSymbolName(ast.source)]
+[let accVarName : String = getSymbolName(ast.result)]
+[let bodyName : String = getSymbolName(ast)+'_body']
+[generateExpression('Value ', leftVarName, ast.source, pkg)/]
+[generateExpression('Value ', getSymbolName(ast.result.initExpression), ast.result.initExpression, pkg)/]
+[for (i : Variable | ast.iterator)]
+//Iterator<Value> [getSymbolName(i)/]_var = [leftVarName/].toIteratorValue();	// iterator: [i.name/]
+[/for]  
+
+/** 
+ * Implementation of the iterate body.
+ *
+ * [ast._'body'.toString()/]
+ */
+AbstractBinaryOperation [bodyName/] = new AbstractBinaryOperation()
+{
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value [getSymbolName(ast.result)/][for (i : Variable | ast.iterator)], Value [getSymbolName(i)/][/for]) throws InvalidValueException {
+		[generateExpression('Value ', 'result', ast._'body', pkg)/]
+		return result;
+	}
+
+	public DomainType getType() {
+		return [getSymbolName(ast.result)/]_type;
+	}
+};
+DomainType type_[getSymbolName(ast.source)/] = [getSymbolName(ast.source)/].getType();
+LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
+Executor[getArityMultiple(arity)/]IterationManager [getSymbolName(ast)/]_manager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [getSymbolName(ast.result)/]_type, [bodyName/], (CollectionValue)[leftVarName/], [getSymbolName(ast.result.initExpression)/]);
+[resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluateIteration([getSymbolName(ast)/]_manager);[/let][/let][/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IteratorExp, pkg : Package)]
+[let arity : Integer = ast.iterator->size()]
+[let leftVarName : String = getSymbolName(ast.source)]
+[let bodyVarName : String = 'body_'+getSymbolName(ast)]
+[generateExpression('Value ', leftVarName, ast.source, pkg)/]
+
+/** 
+ * Implementation of the iterator body.
+ *
+ * [ast._'body'.toString()/]
+ */
+Abstract[getOperationAritySuffix(arity)/] [bodyVarName/] = new Abstract[getOperationAritySuffix(arity)/]()
+{
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue[for (i : Integer | Sequence{1..arity})]
+, Value iterator[i/][/for]) throws InvalidValueException {
+[for (i : Integer | Sequence{1..arity})]
+		Value [getSymbolName(ast.iterator->at(i))/] = iterator[i/];	// iterator: [ast.iterator->at(i).name/]
+[/for]  
+		[generateExpression('Value ', 'result', ast._'body', pkg)/]
+		return result;
+	}
+
+	public DomainType getType() {
+		return [genPackageGetQualifiedLiteralName(genPackage, ast._'body'.type, pkg)/];
+	}
+};
+DomainType type_[getSymbolName(ast.source)/] = [getSymbolName(ast.source)/].getType();
+LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
+Value acc_[getSymbolName(ast.source)/] = dynamic_[getSymbolName(ast.source)/].createAccumulatorValue(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/]);
+Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [bodyVarName/], (CollectionValue)[getSymbolName(ast.source)/], acc_[getSymbolName(ast.source)/]);
+[resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluateIteration(iterationManager);[/let][/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : LetExp, pkg : Package)]
+[generateExpression('final Value ', getSymbolName(ast.variable), ast.variable.initExpression, pkg)/]
+[generateExpression(resultType, result, ast._in, pkg)/][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : NullLiteralExp, pkg : Package)]
+[resultType/][result/] = nullValue;
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.class.name = 'Boolean') and (ast.referredOperation.ownedParameter->size() = 1))]
+[let leftVarName : String = getSymbolName(ast.source)]
+[let rightVarName : String = getSymbolName(ast.argument->at(1))]
+Value [leftVarName/];
+try {
+	suppressThrowWarnings();
+	[generateExpression('', leftVarName, ast.source, pkg)/]
+} catch (InvalidValueException e) {
+	[leftVarName/] = valueFactory.getInvalid();
+}
+Value [rightVarName/];
+try {
+	suppressThrowWarnings();
+	[generateExpression('', rightVarName, ast.argument->at(1), pkg)/]
+} catch (InvalidValueException e) {
+	[rightVarName/] = valueFactory.getInvalid();
+}
+[generateCall(resultType, result, ast, pkg)/][/let][/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.class.name <> 'Boolean') or (ast.referredOperation.ownedParameter->size() <> 1))]
+[generateExpression('Value ', getSymbolName(ast.source), ast.source, pkg)/]
+[for (argument : OclExpression | ast.argument)]
+[generateExpression(genPackage, 'Value ', getSymbolName(argument), argument, pkg)/]
+[/for]
+[generateCall(resultType, result, ast, pkg)/][/template]
+
+[template public generateCall(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package)]
+[let arity : Integer = ast.referredOperation.ownedParameter->size()]
+DomainType type_[getSymbolName(ast.source)/] = valueFactory.typeOf([getSymbolName(ast.source)/][if arity > 0]
+[for (index : Integer | Sequence{1..arity})]
+[if ast.referredOperation.ownedParameter->at(index).type.oclIsKindOf(SelfType)]
+, [getSymbolName(ast.argument->at(index))/][/if][/for][/if]);
+Library[getOperationAritySuffix(arity)/] dynamic_[getSymbolName(ast.source)/] = (Library[getOperationAritySuffix(arity)/])type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredOperation, pkg)/]);
+[resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluate(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [getSymbolName(ast.source)/][for (argument : OclExpression | ast.argument) before (', ') separator (', ')][getSymbolName(argument)/][/for]);[/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : PropertyCallExp, pkg : Package)]
+[generateExpression('Value ', getSymbolName(ast.source), ast.source, pkg)/]
+ExecutorProperty [getSymbolName(ast)/]_prop = [genPackageGetQualifiedLiteralName(genPackage, ast.referredProperty, pkg)/];
+LibraryProperty [getSymbolName(ast)/]_impl = [getSymbolName(ast)/]_prop.getImplementation();
+[resultType/][result/] = [getSymbolName(ast)/]_impl.evaluate(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [getSymbolName(ast.source)/], [getSymbolName(ast)/]_prop);[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : RealLiteralExp, pkg : Package)]
+[resultType/][result/] = [getSymbolName(asRealStringOrNull(ast))/];
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : StringLiteralExp, pkg : Package)]
+[resultType/][result/] = [getSymbolName(ast.stringSymbol)/];
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : TupleLiteralExp, pkg : Package)]
+[let mapVarName : String = getSymbolName(ast)]
+Map<DomainTypedElement, Value> part_values_[mapVarName/] = new HashMap<DomainTypedElement, Value>();
+[for (part : TupleLiteralPart | ast.part)]
+[generateExpression(genPackage, 'Value ', getSymbolName(part), part.initExpression, pkg)/]
+part_values_[mapVarName/].put([getPrefixedSymbolName('tuple_part_', genPackageGetTupleLiteralPartLookup(genPackage, part, pkg))/], [getSymbolName(part)/]);
+[/for]
+[resultType/][result/] = valueFactory.createTupleValue([getPrefixedSymbolName('tuple_type_', genPackageGetTupleLiteralExpLookup(genPackage, ast, pkg))/], part_values_[mapVarName/]);[/let][/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : TypeExp, pkg : Package)]
+[resultType/][result/] = valueFactory.createTypeValue([genPackageGetQualifiedLiteralName(genPackage, ast.referredType, pkg)/]);[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : UnlimitedNaturalLiteralExp, pkg : Package)]
+[let val : String = asIntegerStringOrNull(ast)]
+[resultType/][result/] = [if val = null]nullValue][else][getSymbolName(val)/][/if];[/let]
+[/template]
+
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : VariableExp, pkg : Package)]
+[resultType/][result/] = [getSymbolName(ast.referredVariable)/]; // [ast.referredVariable.name/][/template]
+
+[template public generateType(genPackage : GenPackage, result : String, ast : BagType, pkg : Package)]
+[let typeVarName : String = getSymbolName(ast) + '_type']
+[generateType(typeVarName, ast.elementType, pkg)/]
+DomainCollectionType [result/] = valueFactory.getStandardLibrary().getBagType([typeVarName/]);[/let][/template]
+
+[template public generateType(genPackage : GenPackage, result : String, ast : OrderedSetType, pkg : Package)]
+[let typeVarName : String = getSymbolName(ast) + '_type']
+[generateType(typeVarName, ast.elementType, pkg)/]
+DomainCollectionType [result/] = valueFactory.getStandardLibrary().getOrderedSetType([typeVarName/]);[/let][/template]
+
+[template public generateType(genPackage : GenPackage, result : String, ast : SequenceType, pkg : Package)]
+[let typeVarName : String = getSymbolName(ast) + '_type']
+[generateType(typeVarName, ast.elementType, pkg)/]
+DomainCollectionType [result/] = valueFactory.getStandardLibrary().getSequenceType([typeVarName/]);[/let][/template]
+
+[template public generateType(genPackage : GenPackage, result : String, ast : SetType, pkg : Package)]
+[let typeVarName : String = getSymbolName(ast) + '_type']
+[generateType(typeVarName, ast.elementType, pkg)/]
+DomainCollectionType [result/] = valueFactory.getStandardLibrary().getSetType([typeVarName/]);[/let][/template]
+
+[template public generateType(genPackage : GenPackage, result : String, ast : Type, pkg : Package)]
+DomainType [result/] = [genPackageGetQualifiedLiteralName(genPackage, ast, pkg)/];[/template]
+
+[query public gatherConstants(ast : OclExpression) : Element =
+if ast.oclIsKindOf(PrimitiveLiteralExp) then ast
+else if ast.oclIsKindOf(InvalidLiteralExp) then ast
+else if ast.oclIsKindOf(IterateExp) then ast
+else null endif endif endif/]
+
+[query public getArityMultiple(arity : Integer) : String = 
+if arity = 1 then 'Single'
+else if arity = 2 then 'Double'
+else 'Multiple' endif endif/]
+
+[query public getAritySuffix(arity : Integer) : String = 
+if arity > 2 then 'N' else arity.toString() endif/]
+
+[query public getOperationAritySuffix(arity : Integer) : String = 
+if arity = 0 then 'UnaryOperation'
+else if arity = 1 then 'BinaryOperation'
+else if arity = 2 then 'TernaryOperation'
+else 'TernaryOperation' endif endif endif/]
+
+[query public asIntegerStringOrNull(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'asIntegerStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public asRealStringOrNull(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'asRealStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public isBinarySelf(callExp : OperationCallExp) : Boolean = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'isBinarySelf(org.eclipse.ocl.examples.pivot.OperationCallExp)', Sequence{callExp}) /]

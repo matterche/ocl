@@ -42,6 +42,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -76,7 +81,6 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
@@ -90,8 +94,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal
@@ -763,9 +766,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return rootPackages;
 	}
 
-	protected boolean conformsToLambdaType(LambdaType firstType, LambdaType secondType,
-			Map<TemplateParameter, ParameterableElement> bindings) {
-		throw new UnsupportedOperationException();
+	@Override
+	public boolean conformsToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType) {
+		return conformsToCollectionType((CollectionType)firstCollectionType, (CollectionType)secondCollectionType, null);	// FIXME cast
 	}
 
 	protected boolean conformsToCollectionType(CollectionType firstType, CollectionType secondType,
@@ -824,6 +827,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		else {
 			return conformsTo(firstElementType, secondElementType, bindings);
 		}
+	}
+
+	protected boolean conformsToLambdaType(LambdaType firstType, LambdaType secondType,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		throw new UnsupportedOperationException();
 	}
 
 	protected boolean conformsToTupleType(TupleType actualType, TupleType requiredType,
@@ -914,7 +922,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	protected ValueFactory createValueFactory() {
-		return new ValueFactoryImpl(this);
+		return new PivotValueFactory(this);
 	}
 
 	@Override
@@ -1192,10 +1200,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getLibraryType(getBagType(), Collections.singletonList(elementType));
 	}
 
-	public ClassifierType getClassifierType(Type instanceType) {
+	@Override
+	public ClassifierType getClassifierType(DomainType instanceType) {
 		ClassifierType classifierType;
  		List<Type> templateArguments = new ArrayList<Type>();
- 		templateArguments.add(instanceType);
+ 		templateArguments.add((Type)instanceType);			// FIXME cast
 		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
  			classifierType = getEnumerationClassifierType();
  		}
@@ -1239,6 +1248,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
 	
+	@Override
+	public CollectionType getCollectionType(DomainType genericType, DomainType elementType) {
+		return getLibraryType((CollectionType)genericType, Collections.singletonList((Type)elementType));			// FIXME cast
+	}
+
 	public List<Type> getCommonClasses(Type leftClass, Type rightClass) {
 		List<Type> commonClasses = null;
 		if (conformsTo(rightClass, leftClass, null)) {
@@ -1259,9 +1273,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return commonClasses;
 	}
 
-    @Deprecated
-	public Type getCommonType(Type leftType, Type rightType) {
-		return getCommonType(leftType, rightType, null);
+	@Override
+	public Type getCommonType(DomainType leftType, DomainType rightType) {
+		return getCommonType((Type)leftType, (Type)rightType, null);			// FIXME Eliminate casts
 	}
 	
 	public Type getCommonType(Type leftType, Type rightType, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
@@ -1397,8 +1411,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return globalTypes;
 	}
 	
-	public CallableImplementation getImplementation(Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = feature.getImplementation();
+	public LibraryFeature getImplementation(Feature feature) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = feature.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
 			implementation = implementationManager.loadImplementation(feature);
@@ -1406,8 +1420,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return implementation;
 	}
 	
-	public CallableImplementation getImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = operation.getImplementation();
+	public LibraryFeature getImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = operation.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
 			implementation = implementationManager.getOperationImplementation(operation);
@@ -1416,8 +1430,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return implementation;
 	}
 
-	public CallableImplementation getImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-		CallableImplementation implementation = property.getImplementation();
+	public LibraryFeature getImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		LibraryFeature implementation = property.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
 			implementation = implementationManager.getPropertyImplementation(property);
@@ -2123,8 +2137,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type == MetaModelManager.class;
 	}
 
-	public boolean isSuperClassOf(Type unspecializedFirstType, Type secondType) {
-		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);
+	@Override
+	public boolean isSuperClassOf(DomainType unspecializedFirstType, DomainType secondType) {
+		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement((Type)secondType);	// FIXME cast
 		if (unspecializedFirstType == unspecializedSecondType) {
 			return true;
 		}
@@ -2314,6 +2329,30 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return null;
 	}
 
+	public LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+		return getImplementation((Operation) dynamicOperation);
+	}
+
+	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
+		return getDynamicOperation((Type)type, (Operation) staticOperation);
+	}
+
+	public DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes) {
+		if (argumentTypes == null) {
+			return resolveOperation((Type)type, operationName);
+		}
+		else if (argumentTypes.length == 1) {
+			return resolveOperation((Type)type, operationName, (Type)argumentTypes[0]);
+		}
+		else {
+			Type[] types = new Type[argumentTypes.length];
+			for (int i = 0; i < argumentTypes.length; i++) {
+				types[i] = (Type) argumentTypes[i];
+			}
+			return resolveOperation((Type)type, operationName, types);
+		}
+	}
+
 	public void notifyChanged(Notification notification) {
 	}
 
@@ -2409,8 +2448,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Operation resolveOperation(Type leftType, String operationName, Type... rightTypes) {
-		Set<Operation> candidateOperations = resolveOperations(leftType, operationName,
-			rightTypes);
+		Set<Operation> candidateOperations = resolveOperations(leftType, operationName, rightTypes);
 		if (candidateOperations == null) {
 			return null;
 		}

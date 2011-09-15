@@ -55,8 +55,6 @@ public class SemanticException
 	 * Initializes me with a diagnostic obtained from a problem handler.
 	 * 
 	 * @param problem the diagnostic
-	 * 
-	 * @since 1.2
 	 */
 	public SemanticException(Diagnostic problem) {
 		super(problem);

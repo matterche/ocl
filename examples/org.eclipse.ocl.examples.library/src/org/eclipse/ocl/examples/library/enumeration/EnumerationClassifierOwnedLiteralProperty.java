@@ -18,17 +18,18 @@ package org.eclipse.ocl.examples.library.enumeration;
 
 import java.util.Set;
 
-import org.eclipse.ocl.examples.library.AbstractProperty;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.OrderedSetImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainEnumeration;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.TypeValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.values.impl.OrderedSetImpl;
 
 /**
  * EnumerationClassifierOwnedLiteralProperty realizes the EnumerationClassifier::ownedLiteral() library property.
@@ -37,14 +38,14 @@ public class EnumerationClassifierOwnedLiteralProperty extends AbstractProperty
 {
 	public static final EnumerationClassifierOwnedLiteralProperty INSTANCE = new EnumerationClassifierOwnedLiteralProperty();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, PropertyCallExp callExp) throws InvalidValueException {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		TypeValue sourceTypeValue = sourceValue.asTypeValue();
-		Type sourceType = sourceTypeValue.getInstanceType();
+		DomainType sourceType = sourceTypeValue.getInstanceType();
 		Set<Value> results = new OrderedSetImpl<Value>();
-		for (EnumerationLiteral instance : ((org.eclipse.ocl.examples.pivot.Enumeration)sourceType).getOwnedLiterals()) {
+		for (DomainElement instance : ((DomainEnumeration)sourceType).getOwnedLiterals()) {
 			results.add(valueFactory.valueOf(instance));
 		}
-		return valueFactory.createOrderedSetValue((CollectionType)callExp.getType(), results);
+		return valueFactory.createOrderedSetValue((DomainCollectionType)returnType, results);
 	}
 }

@@ -20,9 +20,11 @@ package org.eclipse.ocl.examples.pivot;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -141,7 +143,7 @@ public interface QueryBase {
 	/**
 	 * Obtains the OCL result type of the query.  This may be a classifier
 	 * in the user model, or it may represent a pre-defined OCL data type
-	 * such as {@link StandardLibrary#getBoolean() Boolean}.
+	 * such as {@link DomainStandardLibrary#getBoolean() Boolean}.
 	 * 
 	 * @return the query's result type
 	 */
@@ -161,7 +163,7 @@ public interface QueryBase {
      *    
      * @see OCLBase#setModelManager
 	 */
-	public ModelManager getModelManager();
+	public DomainModelManager getModelManager();
 	
 	/**
 	 * Obtains the expression that I evaluate (or check as a boolean constraint).

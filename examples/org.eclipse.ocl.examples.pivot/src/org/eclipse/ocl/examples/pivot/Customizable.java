@@ -34,8 +34,6 @@ import org.eclipse.ocl.examples.pivot.options.Option;
  * {@link EvaluationEnvironment}s.
  * 
  * @author Christian W. Damus (cdamus)
- * 
- * @since 1.2
  */
 public interface Customizable {
     /**

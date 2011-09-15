@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.acceleo.ide.ui.launching.launchConfigurationType">
+<stringAttribute key="org.eclipse.acceleo.ide.ui.ARGUMENTS" value=""/>
+<booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_PROFILING" value="false"/>
+<booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_TRACEABILITY" value="false"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.LAUNCHING_STRATEGY_DESCRIPTION" value="Java Application"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.MODEL_PATH" value="/org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.TARGET_PATH" value="/org.eclipse.ocl.examples.pivot/emf-gen"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.eclipse.ocl.examples.build/src/org/eclipse/ocl/examples/build/acceleo/GenerateJavaTables.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.examples.build.acceleo.GenerateJavaTables"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel&quot; &quot;C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/emf-gen&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.examples.build"/>
+</launchConfiguration>

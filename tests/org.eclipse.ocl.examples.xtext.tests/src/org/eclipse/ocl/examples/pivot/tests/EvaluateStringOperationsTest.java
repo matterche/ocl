@@ -17,9 +17,8 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.osgi.util.NLS;
-
 
 /**
  * Tests for String operations.

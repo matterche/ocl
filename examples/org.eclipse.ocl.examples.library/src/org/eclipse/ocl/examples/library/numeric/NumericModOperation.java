@@ -16,23 +16,20 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * ModOperation realises the mod() library operation.
- * 
- * @since 3.1
  */
 public class NumericModOperation extends AbstractNumericBinaryOperation
 {
 	public static final NumericModOperation INSTANCE = new NumericModOperation();
 
 	@Override
-	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
+	protected Value evaluateInteger(DomainEvaluator evaluator, IntegerValue left, IntegerValue right) throws InvalidValueException {
 		return left.mod(right);
 	}
 }

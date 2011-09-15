@@ -18,6 +18,7 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -26,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.TracingEvaluationVisitor;
 
 /**
@@ -134,7 +134,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 		if (result instanceof AbstractEnvironment) {
 			((AbstractEnvironment) result).setContextOperation(operation);
 		}
-		OCLFactory oclFactory = parent.getOCLFactory();		
+		PivotFactory oclFactory = parent.getOCLFactory();		
         for (Parameter next : operation.getOwnedParameters()) {
 			// ensure that we use the OCL primitive types wherever possible
 			Variable var = oclFactory.createVariable();
@@ -166,7 +166,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
     // implements the interface method
 	public EvaluationVisitor createEvaluationVisitor(Environment env,
 			EvaluationEnvironment evalEnv,
-			ModelManager modelManager) {
+			DomainModelManager modelManager) {
         EvaluationVisitor result =
             new EvaluationVisitorImpl(env, evalEnv, modelManager);
         
@@ -230,8 +230,6 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	 * <p>
 	 * Subclasses may override or extend this implementation.
 	 * </p>
-	 * 
-	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getAdapter(java.lang.Class<T> adapterType) {

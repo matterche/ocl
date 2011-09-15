@@ -36,8 +36,6 @@ public class ObjectUtil {
 	 * adapter-lists cleared.
 	 * 
 	 * @param object an object to dispose
-	 * 
-	 * @since 1.2
 	 */
 	public static void dispose(Object object) {
 	    if (object instanceof EObject) {

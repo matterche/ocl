@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,12 +73,12 @@ public interface Feature
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation</em>' attribute.
-	 * @see #setImplementation(CallableImplementation)
+	 * @see #setImplementation(LibraryFeature)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeature_Implementation()
-	 * @model dataType="org.eclipse.ocl.examples.pivot.CallableImplementation" transient="true" ordered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.LibraryFeature" transient="true" ordered="false"
 	 * @generated
 	 */
-	CallableImplementation getImplementation();
+	LibraryFeature getImplementation();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Feature#getImplementation <em>Implementation</em>}' attribute.
@@ -88,6 +88,6 @@ public interface Feature
 	 * @see #getImplementation()
 	 * @generated
 	 */
-	void setImplementation(CallableImplementation value);
+	void setImplementation(LibraryFeature value);
 
 } // Feature

@@ -17,6 +17,9 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -56,5 +59,15 @@ public class VoidTypeImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitVoidType(this);
+	}
+
+	@Override
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (type instanceof InvalidType) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 } //VoidTypeImpl

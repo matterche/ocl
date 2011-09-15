@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 @SuppressWarnings("nls")
 public class EvaluateCollectionOperationsTest extends PivotTestSuite
 {
-
     @Override
     protected void setUp() {
         super.setUp();
@@ -201,6 +200,7 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count(-(-4))");
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count(4.0)");
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count('test')");
+		assertQueryEquals(null, 1, "Sequence{-4..-4}->count(-4)");
 		assertQueryEquals(null, 1, "Sequence{-4..-1}->count(-4)");
 		assertQueryEquals(null, 0, "Sequence{-1..-4}->count(-4)");
 		assertQueryEquals(null, 1, "Sequence{-4..-1}->count(-1)");

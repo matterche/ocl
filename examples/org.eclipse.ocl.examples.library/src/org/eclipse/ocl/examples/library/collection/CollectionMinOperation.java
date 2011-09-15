@@ -16,26 +16,24 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.library.numeric.NumericMinOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * CollectionMinOperation realises the Collection::min() library operation.
- * 
- * @since 3.1
  */
-public class CollectionMinOperation extends AbstractOperation
+public class CollectionMinOperation extends AbstractUnaryOperation
 {
 	public static final CollectionMinOperation INSTANCE = new CollectionMinOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
 		// FIXME Bug 301351 Look for user-defined min
-		return collectionValue.maxMin(NumericMinOperation.INSTANCE);
+		return collectionValue.maxMin(evaluator, returnType, NumericMinOperation.INSTANCE);
 	}
 }

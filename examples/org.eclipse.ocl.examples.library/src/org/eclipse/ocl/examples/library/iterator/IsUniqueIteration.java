@@ -16,43 +16,41 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
- * IsUniqueIteration realises the Collection::isUnique() library iteration.
- * 
- * @since 3.1
+ * IsUniqueIteration realizes the Collection::isUnique() library iteration.
  */
-public class IsUniqueIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class IsUniqueIteration extends AbstractIteration
 {
 	public static final IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+		return valueFactory.createCollectionAccumulatorValue(standardLibrary.getSetType(accumulatorType));
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		return iterationManager.getTrue();
+	protected Value resolveTerminalValue(DomainIterationManager iterationManager) {
+		return iterationManager.getValueFactory().getTrue();
 	}
 	
 	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
+		Value bodyVal = iterationManager.evaluateBody();		
 		try {
 			if (accumulatorValue.includes(bodyVal).isTrue()) {
-				return iterationManager.getFalse();		// Abort after second find
+				return iterationManager.getValueFactory().getFalse();		// Abort after second find
 			}
 			else {
 				accumulatorValue.add(bodyVal);

@@ -30,8 +30,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
  * Miscellaneous utilities for use by the OCL parser/interpreter and by clients.
  * 
  * @author Christian W. Damus (cdamus)
- * 
- * @since 1.2
  */
 public final class OCLUtil {
     /** Use weak references as the keys to avoid memory leaks. */
@@ -251,8 +249,7 @@ public final class OCLUtil {
 	 *    abstract syntax 
 	 * 
 	 * @see #checkForErrors(ProblemHandler)
-     * @since 3.0
-	 *
+     *
 	public static Diagnostic checkForErrorsOrWarnings(
 			PivotEnvironment env)
 			throws SyntaxException, SemanticException {
@@ -271,7 +268,6 @@ public final class OCLUtil {
 	 *    syntax
 	 * @throws SemanticException if there are any errors in analyzing the
 	 *    abstract syntax 
-	 * @since 3.0
 	 */
 	public static Diagnostic checkForErrorsOrWarnings(ProblemHandler problemHandler)
 			throws SyntaxException, SemanticException {
@@ -333,8 +329,6 @@ public final class OCLUtil {
 	 *            a query to check for evaluation problems
 	 * @return the diagnostic object encapsulating the problem details or
 	 *         <code>null</code> if no problems are available
-	 * 
-	 * @since 1.3
 	 */
 	public static Diagnostic getEvaluationProblems(QueryBase query) {
 

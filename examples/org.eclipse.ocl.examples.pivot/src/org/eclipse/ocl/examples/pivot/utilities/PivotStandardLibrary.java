@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -30,13 +31,12 @@ import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
-public abstract class PivotStandardLibrary implements StandardLibrary
+public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 {
 	private static final Logger logger = Logger.getLogger(PivotStandardLibrary.class);
 
@@ -66,9 +66,11 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private ClassifierType enumerationClassifierType = null;
 	private PrimitiveType integerType = null;
 	private AnyType oclAnyType = null;
+	private org.eclipse.ocl.examples.pivot.Class oclComparableType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclElementType = null;
 	private InvalidType oclInvalidType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclLambdaType = null;
+	private org.eclipse.ocl.examples.pivot.Class oclSummableType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclTupleType = null;
 	private VoidType oclVoidType = null;
 	private OrderedSetType orderedSetType = null;
@@ -282,6 +284,19 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return oclAnyType;
 	}
 
+	public org.eclipse.ocl.examples.pivot.Class getOclComparableType() {
+		if (oclComparableType == null) {
+			Type type = getRequiredLibraryType("OclComparable");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				oclComparableType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclComparable is not a Class");
+			}		
+		}
+		return oclComparableType;
+	}
+
 	public org.eclipse.ocl.examples.pivot.Class getOclElementType() {
 		if (oclElementType == null) {
 			Type type = getRequiredLibraryType("OclElement");
@@ -323,6 +338,19 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 
 	public Type getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
+	}
+
+	public org.eclipse.ocl.examples.pivot.Class getOclSummableType() {
+		if (oclSummableType == null) {
+			Type type = getRequiredLibraryType("OclSummable");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				oclSummableType = (org.eclipse.ocl.examples.pivot.Class) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclSummable is not a Class");
+			}		
+		}
+		return oclSummableType;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Class getOclTupleType() {

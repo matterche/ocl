@@ -57,4 +57,9 @@ public class SequenceTypeImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitSequenceType(this);
 	}
+
+	@Override
+	public boolean isOrdered() {
+		return true;
+	}
 } //SequenceTypeImpl

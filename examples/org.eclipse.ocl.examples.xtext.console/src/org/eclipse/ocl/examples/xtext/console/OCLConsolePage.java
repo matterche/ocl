@@ -47,6 +47,16 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.StringValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -54,8 +64,6 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -65,7 +73,6 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -74,14 +81,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotValueFactory;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
@@ -216,7 +216,7 @@ public class OCLConsolePage extends Page
     {
 		private final IProgressMonitor monitor;
 		
-		protected CancelableEvaluationVisitor(IProgressMonitor monitor, Environment env, EvaluationEnvironment evalEnv, ModelManager modelManager) {
+		protected CancelableEvaluationVisitor(IProgressMonitor monitor, Environment env, EvaluationEnvironment evalEnv, DomainModelManager modelManager) {
 			super(env, evalEnv, modelManager);
 			this.monitor = monitor;
 		}
@@ -283,7 +283,7 @@ public class OCLConsolePage extends Page
 		private final ValueFactory valueFactory;
 
 		public CancelableMetaModelManager() {
-			this.valueFactory = new ValueFactoryImpl(this)
+			this.valueFactory = new PivotValueFactory(this)
 			{		      	
 	        	@Override
 				public BooleanValue booleanValueOf(boolean value) {
@@ -547,7 +547,7 @@ public class OCLConsolePage extends Page
 	private EClassifier contextClassifier;
 	
 	private final CancelableMetaModelManager metaModelManager;
-	private ModelManager modelManager = null;
+	private DomainModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();

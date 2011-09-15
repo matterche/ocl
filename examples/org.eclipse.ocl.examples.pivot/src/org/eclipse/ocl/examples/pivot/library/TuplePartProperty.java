@@ -16,19 +16,20 @@
  */
 package org.eclipse.ocl.examples.pivot.library;
 
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.TupleValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.TupleValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
-public class TuplePartProperty extends AbstractCallableImplementation
+public class TuplePartProperty extends AbstractProperty
 {
-	public static final CallableImplementation INSTANCE = new TuplePartProperty();
+	public static final LibraryFeature INSTANCE = new TuplePartProperty();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
 /*		if (!(sourceValue instanceof TupleValue) || sourceValue.isUndefined()) {
 			if (sourceValue.isInvalid()) {
 				return sourceValue;
@@ -38,8 +39,6 @@ public class TuplePartProperty extends AbstractCallableImplementation
 				return valueFactory.createInvalidValue("non-tuple source");
 			}
 		} */
-		PropertyCallExp propertyCallExp = (PropertyCallExp) callExp;
-		Property property = propertyCallExp.getReferredProperty();
 		Value resultValue = ((TupleValue)sourceValue).getValue(property);
 		return resultValue;		// null is a static type error so no need to diagnose dynamically
 	}

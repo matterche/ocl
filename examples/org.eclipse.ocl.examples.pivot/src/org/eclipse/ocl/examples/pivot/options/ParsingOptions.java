@@ -30,8 +30,6 @@ import org.eclipse.ocl.examples.pivot.Type;
  * {@linkplain Customizable customize} their parsing behaviour.
  * 
  * @author Christian W. Damus (cdamus)
- * 
- * @since 1.2
  */
 public class ParsingOptions {
 
@@ -76,7 +74,6 @@ public class ParsingOptions {
      * compatibility with the OCL 2.0  behaviour in the MDT-OCL 1.x release,
      * set this option <tt>true</tt>.
      * </p>
-     * @since 3.0
      */
     public static final Option<Boolean> WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE =
         new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
@@ -99,8 +96,6 @@ public class ParsingOptions {
 	 * The default value of this option is <tt>true</tt>. To disable
 	 * backslash escaping support, set this option <tt>false</tt>.
 	 * </p>
-	 * 
-	 * @since 1.3
 	 */
     public static final Option<Boolean> USE_BACKSLASH_ESCAPE_PROCESSING =
         new BasicOption<Boolean>("use.backslash.escape.processing", true); //$NON-NLS-1$
@@ -145,8 +140,6 @@ public class ParsingOptions {
      * The default value of this option is <tt>true</tt>.  For stricter compatibility
      * with OCL 2.0, set this option <tt>false</tt>.
      * </p>
-     * @since 3.0
-     * 
      * @see UMLReflection#setIsStatic(Object, boolean)
      */
     public static final Option<Boolean> SUPPORT_STATIC_FEATURES =

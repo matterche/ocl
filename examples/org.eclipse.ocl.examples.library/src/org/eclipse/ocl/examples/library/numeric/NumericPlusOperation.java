@@ -16,16 +16,13 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
 
 /**
  * PlusOperation realises the +() library operation.
- * 
- * @since 3.1
  */
 @Deprecated
 public class NumericPlusOperation extends AbstractNumericBinaryOperation
@@ -33,12 +30,12 @@ public class NumericPlusOperation extends AbstractNumericBinaryOperation
 	public static final NumericPlusOperation INSTANCE = new NumericPlusOperation();
 
 	@Override
-	protected IntegerValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
+	protected IntegerValue evaluateInteger(DomainEvaluator evaluator, IntegerValue left, IntegerValue right) throws InvalidValueException {
 		return left.add(right);
 	}
 
 	@Override
-	protected RealValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) throws InvalidValueException {
+	protected RealValue evaluateReal(DomainEvaluator evaluator, RealValue left, RealValue right) throws InvalidValueException {
 		return left.add(right);
 	}
 }

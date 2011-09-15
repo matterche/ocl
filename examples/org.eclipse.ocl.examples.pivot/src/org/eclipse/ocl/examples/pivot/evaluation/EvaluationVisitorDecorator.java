@@ -17,6 +17,8 @@
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -46,7 +48,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * A visitor that decorates another {@link EvaluationVisitor}, to intercept
@@ -109,7 +110,7 @@ public abstract class EvaluationVisitorDecorator extends AbstractExtendingVisito
     /**
      * Obtains my delegate's extent map.
      */
-    public ModelManager getModelManager() {
+    public DomainModelManager getModelManager() {
         return getDelegate().getModelManager();
     }
 

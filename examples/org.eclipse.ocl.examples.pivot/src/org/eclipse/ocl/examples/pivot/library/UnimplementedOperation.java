@@ -16,23 +16,23 @@
  */
 package org.eclipse.ocl.examples.pivot.library;
 
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * The static instance of UnimplementedOperation supports evaluation of
  * an operation that has not been implemented.
  */
-public class UnimplementedOperation extends AbstractCallableImplementation
+public class UnimplementedOperation extends AbstractUnaryOperation
 {
 	public static final UnimplementedOperation INSTANCE = new UnimplementedOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
-		OperationCallExp operationCall = (OperationCallExp) callExp;
-		Operation operation = operationCall.getReferredOperation();
-		return evaluationVisitor.throwInvalidEvaluation(null, callExp, null, "No implementation for '" + operation + "'");
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		return valueFactory.throwInvalidValueException("No implementation");
 	}
 }

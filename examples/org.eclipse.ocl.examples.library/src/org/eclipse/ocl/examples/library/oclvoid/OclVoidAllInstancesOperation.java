@@ -16,25 +16,24 @@
  */
 package org.eclipse.ocl.examples.library.oclvoid;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclVoidAllInstancesOperation realises the OclVoid::allInstances() library operation.
- * 
- * @since 3.1
  */
-public class OclVoidAllInstancesOperation extends AbstractOperation
+public class OclVoidAllInstancesOperation extends AbstractUnaryOperation
 {
 	public static final OclVoidAllInstancesOperation INSTANCE = new OclVoidAllInstancesOperation();
 
-	public SetValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		// OclVoid has a single instance: null
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		return valueFactory.createSetValue(valueFactory.getNull());
+		return valueFactory.createSetValue((DomainCollectionType)returnType, valueFactory.getNull());
 	}
 }

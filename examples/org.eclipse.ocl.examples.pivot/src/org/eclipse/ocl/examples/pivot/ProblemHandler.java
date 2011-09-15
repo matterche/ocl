@@ -40,8 +40,6 @@ public interface ProblemHandler {
      * custom processes.
 	 * 
 	 * @author Christian W. Damus
-	 * 
-	 * @since 1.2
 	 */
 	class Phase implements Comparable<Phase> {
 		/** Identifies problems found in the tokenizing (lexing) phase. */
@@ -125,8 +123,6 @@ public interface ProblemHandler {
 	 * order of their severity.
 	 * 
 	 * @author Christian W. Damus
-	 * 
-	 * @since 1.2
 	 */
 	enum Severity {
 		/**

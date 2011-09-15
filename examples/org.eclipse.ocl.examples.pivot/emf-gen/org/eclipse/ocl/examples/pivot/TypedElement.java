@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Typed Element</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainTypedElement
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -37,7 +40,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface TypedElement
-		extends NamedElement {
+		extends NamedElement, DomainTypedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

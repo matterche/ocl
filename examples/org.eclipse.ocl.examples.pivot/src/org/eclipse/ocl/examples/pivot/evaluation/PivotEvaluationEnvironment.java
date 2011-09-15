@@ -19,12 +19,17 @@
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.values.ObjectValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
@@ -322,14 +327,14 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     } */
 
     // implements the inherited specification
-    public ModelManager createModelManager(Object object) {
+    public DomainModelManager createModelManager(Object object) {
         if (object instanceof ObjectValue) {
             object = ((ObjectValue) object).getObject();
         }
         if (object instanceof EObject) {
             return new PivotModelManager(metaModelManager, (EObject) object);
         }
-        return ModelManager.NULL;
+        return DomainModelManager.NULL;
     }
 
 //    public Map<org.eclipse.ocl.examples.pivot.Class, Set<Object>> createExtentMap(
@@ -391,6 +396,13 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 //    		throws IllegalArgumentException {
 //    	throw new UnsupportedOperationException(getClass().getName() + ".navigateProperty");
 //    }
+
+	public DomainTypedElement createVariable(String name, DomainType type) {
+		Variable variable = PivotFactory.eINSTANCE.createVariable();
+		variable.setName(name);
+		variable.setType((Type) type);
+		return variable;
+	}	
 
     public Value navigateAssociationClass(Type associationClass,
     		Property navigationSource, Object source)

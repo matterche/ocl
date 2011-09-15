@@ -26,7 +26,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 
 /**
  * A self-populating map that lazily creates the extent of a class when asked
@@ -53,9 +54,9 @@ import org.eclipse.ocl.examples.pivot.Type;
  *
  * @author Christian W. Damus (cdamus)
  */
-public abstract class LazyModelManager implements ModelManager {
+public abstract class LazyModelManager implements DomainModelManager {
 
-	private final Map<Type, Set<EObject>> modelManager = new HashMap<Type, Set<EObject>>();
+	private final Map<DomainType, Set<EObject>> modelManager = new HashMap<DomainType, Set<EObject>>();
 	private Collection<EObject> roots;
 	
 	/**
@@ -79,7 +80,7 @@ public abstract class LazyModelManager implements ModelManager {
 	 * 
 	 * @param key a class in the model
 	 */
-	public Set<EObject> get(Type type) {
+	public Set<EObject> get(DomainType type) {
 		// TODO: Optimize by parsing ahead of time to find all EClasses that we will query
 		Set<EObject> result = modelManager.get(type);		
 		if (result == null) {
@@ -106,7 +107,7 @@ public abstract class LazyModelManager implements ModelManager {
      * @return <code>true</code> if this element is an instance of the given
      *    class; <code>false</code> otherwise
      */
-	protected abstract boolean isInstance(Type type, EObject element);
+	protected abstract boolean isInstance(DomainType type, EObject element);
 	
 	@Override
     public String toString() {

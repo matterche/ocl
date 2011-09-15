@@ -16,15 +16,15 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.TypeValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * UnlimitedNaturalOclAsTypeOperation realizes the UnlimitedNatural::oclAsType() library operation.
@@ -34,23 +34,23 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	public static final UnlimitedNaturalOclAsTypeOperation INSTANCE = new UnlimitedNaturalOclAsTypeOperation();
 
 	@Override
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = sourceVal.getType();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal, Value argVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		DomainType sourceType = sourceVal.getType();
 		if (sourceType == null) {
-			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.MissingSourceType);
 		}
-		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		TypeValue typeVal = argVal.asTypeValue();
-		Type argType = typeVal.getInstanceType();
-		if (metaModelManager.conformsTo(sourceType, argType, null)) {
-			if (sourceVal.isUnlimited() && ((argType == metaModelManager.getIntegerType()) || (argType == metaModelManager.getRealType()))) {
-				return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonFiniteIntegerValue);
+		DomainType argType = typeVal.getInstanceType();
+		if (sourceType.conformsTo(argType, standardLibrary)) {
+			if (sourceVal.isUnlimited() && ((argType == standardLibrary.getRealType()) || (argType == standardLibrary.getIntegerType()))) {
+				return valueFactory.throwInvalidValueException(EvaluatorMessages.NonFiniteIntegerValue);
 			}
 			return sourceVal;
 		}
 		else {
-			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, argType, EvaluatorMessages.IncompatibleArgumentType, argType);
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.IncompatibleArgumentType, argType);
 		}
 	}
 }

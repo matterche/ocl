@@ -16,41 +16,37 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
- * IsUniqueIteration realizes the Collection::isUnique() library iteration.
- * 
- * @since 3.1
+ * IterateIteration realizes the Collection::iterate() library iteration.
  */
-public class IterateIteration extends AbstractIteration<Value>
+public class IterateIteration extends AbstractIteration
 {
 	public static final IterateIteration INSTANCE = new IterateIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iterateExp) throws InvalidValueException {
-		Variable accumulator = ((IterateExp)iterateExp).getResult();
-		Value initValue = accumulator.getInitExpression().accept(evaluationVisitor);
-		if (initValue.isUndefined()) {
-			return evaluationVisitor.throwInvalidEvaluation(null, iterateExp, initValue, EvaluatorMessages.UndefinedInitialiser);
+	public Value createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		throw new UnsupportedOperationException();		// Never used since values are assigned directly as the accumulator
+	}
+	
+	@Override
+	public Value evaluateIteration(DomainIterationManager iterationManager) throws InvalidValueException {
+		for ( ; iterationManager.hasCurrent(); iterationManager.advanceIterators()) {
+			Value resultVal = iterationManager.updateBody();
+			if (resultVal != null) {
+				return resultVal;
+			}
 		}
-//		CollectionValue accumulatorValue = initValue.asCollectionValue();
-		return evaluateIteration(new IterationManager<Value>(evaluationVisitor,
-				iterateExp, sourceVal, initValue));
+		return resolveTerminalValue(iterationManager);			
 	}
 
 	@Override
-    protected Value updateAccumulator(IterationManager<Value> iterationManager) {
-		Value bodyVal = iterationManager.getBodyValue();		
-		iterationManager.replaceAccumulator(bodyVal);		
-		return null;					// carry on
+	protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		throw new UnsupportedOperationException();		// Never used since evaluateIteration overwritten
 	}
 }

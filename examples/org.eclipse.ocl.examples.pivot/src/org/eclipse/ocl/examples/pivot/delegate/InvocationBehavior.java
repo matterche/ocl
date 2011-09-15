@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @since 3.0
  */
 public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, InvocationDelegate.Factory.Registry, InvocationDelegate.Factory>
 {

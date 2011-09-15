@@ -75,7 +75,6 @@ public final class PivotPlugin
 	/**
 	 * In stand-alone use, whether all tracing is turned on.
 	 * This is compatible with the usage of 1.2 and earlier.
-	 * @since 1.3
 	 */
 	private static boolean traceAll = Boolean
 		.getBoolean("org.eclipse.ocl.debug"); //$NON-NLS-1$;

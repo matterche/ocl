@@ -16,22 +16,21 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * OrderedCollectionAppendOperation realises the OrderedCollection::append() library operation.
- * 
- * @since 3.1
  */
 public class OrderedCollectionAppendOperation extends AbstractBinaryOperation
 {
 	public static final OrderedCollectionAppendOperation INSTANCE = new OrderedCollectionAppendOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
 		OrderedCollectionValue leftOrderedCollectionValue = left.asOrderedCollectionValue();
 		Value rightValue = right.asValidValue();
 		return leftOrderedCollectionValue.append(rightValue);

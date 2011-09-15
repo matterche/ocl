@@ -18,12 +18,14 @@ package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Element</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainElement
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -43,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * @generated
  */
 public interface Element
-		extends PivotObject, Visitable {
+		extends PivotObject, Visitable, DomainElement {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Comment</b></em>' containment reference list.

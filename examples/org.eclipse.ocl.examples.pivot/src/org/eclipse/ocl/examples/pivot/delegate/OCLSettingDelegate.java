@@ -19,14 +19,14 @@ package org.eclipse.ocl.examples.pivot.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -36,7 +36,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 {
-	protected OCLDelegateDomain delegateDomain;
+	protected final OCLDelegateDomain delegateDomain;
 	private Property property;
 	private ExpressionInOcl specification;
 
@@ -67,7 +67,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			return valueFactory.getEcoreValueOf(result);
 		}
-		catch (EvaluationException e) {
+		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 			throw new OCLDelegateException(message);
 		}

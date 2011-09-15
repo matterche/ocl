@@ -22,31 +22,29 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractProperty;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * The static instance of ImplicitNonCompositionProperty supports evaluation of
  * implicit properties for opposites of non-composition relationships.
  */
-public class ImplicitNonCompositionProperty extends AbstractCallableImplementation
+public class ImplicitNonCompositionProperty extends AbstractProperty
 {
 	public static final ImplicitNonCompositionProperty INSTANCE = new ImplicitNonCompositionProperty();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		ModelManager modelManager = evaluationVisitor.getModelManager();
-		PropertyCallExp propertyCall = (PropertyCallExp) callExp;
-		Property thisProperty = propertyCall.getReferredProperty();
-		Property thatProperty = thisProperty.getOpposite();
-		Type thatType = thisProperty.getType();		
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty thisProperty) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		DomainModelManager modelManager = evaluator.getModelManager();
+		DomainProperty thatProperty = thisProperty.getOpposite();
+		DomainType thatType = thisProperty.getType();		
 		List<Value> results = new ArrayList<Value>();
 		for (EObject eObject : modelManager.get(thatType)) {	// FIXME Use a cache
 			EClass eClass = eObject.eClass();
@@ -56,6 +54,6 @@ public class ImplicitNonCompositionProperty extends AbstractCallableImplementati
 				results.add(valueFactory.valueOf(eObject));
 			}
 		}
-		return valueFactory.createBagValue((CollectionType)callExp.getType(), results);
+		return valueFactory.createBagValue((DomainCollectionType)returnType, results);
 	}
 }

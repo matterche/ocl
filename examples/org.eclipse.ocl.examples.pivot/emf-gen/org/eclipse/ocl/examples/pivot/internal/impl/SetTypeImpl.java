@@ -57,4 +57,9 @@ public class SetTypeImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitSetType(this);
 	}
+
+	@Override
+	public boolean isUnique() {
+		return true;
+	}
 } //SetTypeImpl

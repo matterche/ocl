@@ -19,9 +19,9 @@
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -128,14 +128,14 @@ public interface EnvironmentFactory {
      * context classifier (as an OCL type or classifier) will be
      * inferred from the context instance according to the metamodel that the
      * environment factory supports, if possible.  If not possible, then the
-     * {@link StandardLibrary#getOclAny() OclAny} type is assumed.
+     * {@link DomainStandardLibrary#getOclAny() OclAny} type is assumed.
      * </p>
      * 
      * @param context the context object or value
      * @return the environment
      * 
      * @see #createClassifierContext(Environment, Object)
-     * @see StandardLibrary#getOclAny()
+     * @see DomainStandardLibrary#getOclAny()
      */
     Environment createInstanceContext(Environment parent, Object context);
     
@@ -205,5 +205,5 @@ public interface EnvironmentFactory {
      */
 	EvaluationVisitor createEvaluationVisitor(Environment env,
 			EvaluationEnvironment evalEnv,
-			ModelManager modelManager);
+			DomainModelManager modelManager);
 }

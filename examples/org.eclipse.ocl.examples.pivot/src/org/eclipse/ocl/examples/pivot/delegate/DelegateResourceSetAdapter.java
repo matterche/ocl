@@ -29,8 +29,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 /**
  * DelegateResourceSetAdapter extends a ResourceSet to support a registry of local
  * registries.
- * 
- * @since 3.0
  */
 public class DelegateResourceSetAdapter extends AdapterImpl
 {	

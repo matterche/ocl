@@ -16,32 +16,26 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.TypeValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclAnyOclIsKindOfOperation realises the OclAny::oclIsKindOf() library operation.
- * 
- * @since 3.1
  */
-public class OclAnyOclIsKindOfOperation extends AbstractOperation
+public class OclAnyOclIsKindOfOperation extends AbstractBinaryOperation
 {
 	public static final OclAnyOclIsKindOfOperation INSTANCE = new OclAnyOclIsKindOfOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		Type sourceType = sourceVal.getType();
-		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal, Value argVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		DomainType sourceType = sourceVal.getType();
 		TypeValue argTypeValue = argVal.asTypeValue();
-		Type argType = argTypeValue.getInstanceType();
-		return valueFactory.booleanValueOf(metaModelManager.conformsTo(sourceType, argType, null));
+		DomainType argType = argTypeValue.getInstanceType();
+		return valueFactory.booleanValueOf(sourceType.conformsTo(argType, valueFactory.getStandardLibrary()));
 	}
 }

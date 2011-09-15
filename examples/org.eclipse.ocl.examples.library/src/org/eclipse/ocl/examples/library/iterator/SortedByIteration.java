@@ -23,53 +23,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.library.ValidationWarning;
-import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
-import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
+import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryValidator;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.impl.AbstractValue;
 
 /**
- * SelectIteration realises the Collection::sortedBy() library iteration.
- * 
- * @since 3.1
+ * SelectIteration realizes the Collection::sortedBy() library iteration.
  */
-public class SortedByIteration extends AbstractIteration<SortedByIteration.SortingValue>
+public class SortedByIteration extends AbstractIteration
 {
 	protected static class SortingValue extends AbstractValue implements Comparator<Value>
 	{
-		private final EvaluationEnvironment evaluationEnvironment;
+		private final DomainEvaluator evaluator;
 		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
-		private final Type sourceType;
-		private final LoopExp iteratorExp;
-		private final Value.BinaryOperation binaryImplementation;
+		private final DomainType iteratorType;
+		private final LibraryBinaryOperation implementation;
 
-		public SortingValue(EvaluationEnvironment env, Value sourceVal, LoopExp iteratorExp, Value.BinaryOperation binaryImplementation) {
-			super(env.getValueFactory(), iteratorExp.getType());
-			this.evaluationEnvironment = env;
-			this.sourceType = sourceVal.getType();
-			this.iteratorExp = iteratorExp;
-			this.binaryImplementation = binaryImplementation;
+		public SortingValue(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation implementation) {
+			super(evaluator.getValueFactory(), returnType);
+			this.evaluator = evaluator;
+			this.iteratorType = evaluator.getEvaluationVisitor().getStandardLibrary().getIntegerType();
+			this.implementation = implementation;
 		}
 
 		public Object asObject() {
@@ -90,37 +75,19 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 				return 0;
 			}
 			try {
-				BooleanValue lessThan = binaryImplementation.evaluate(valueFactory, v1, v2).asBooleanValue();
-				if (lessThan.isTrue()) {
-					return -1;
-				}
-				BooleanValue greaterThan = binaryImplementation.evaluate(valueFactory, v2, v1).asBooleanValue();
-				if (greaterThan.isTrue()) {
-					return 1;
-				}
-				return 0;
+				IntegerValue comparison = implementation.evaluate(evaluator, iteratorType, v1, v2).asIntegerValue();
+				return comparison.signum();
 			} catch (InvalidValueException e) {
-	//			evaluationEnvironment.throwInvalidEvaluation("'<' evaluation failed", e);
-				evaluationEnvironment.throwInvalidEvaluation(e);
-				return 0;
+				evaluator.throwInvalidEvaluation(e);
 			}
+			return 0;
 		}
 
 		public Value createSortedValue() {
 			List<Value> result = new ArrayList<Value>(content.keySet());
-	//		try {
-				Collections.sort(result, this);
-	//		}
-	//		catch (WrappedInvalidValueException e) {
-//	//			evaluationEnvironment.throwInvalidEvaluation(sourceVal, iteratorExp, "'<' evaluation failed", e);
-	//			evaluationEnvironment.throwInvalidEvaluation(e);
-	//		}
-	//		catch (Exception e) {
-	//			evaluationEnvironment.throwInvalidEvaluation(sourceVal, iteratorExp, "'<' evaluation failed", e);
-	//		}
-			// create result from the sorted collection
-			boolean isUnique = evaluationEnvironment.getMetaModelManager().isUnique(sourceType);
-			return valueFactory.createCollectionValue(true, isUnique, result);
+			Collections.sort(result, this);
+			boolean isUnique = type.isUnique();
+			return valueFactory.createCollectionValue(true, isUnique, type, result);
 		}
 
 		public void put(Value iterVal, Value comparable) {
@@ -134,88 +101,45 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	}
 
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
+	private static LibraryValidator validator = null; 
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
-		MetaModelManager metaModelManager = evaluationEnvironment.getMetaModelManager();
-		OclExpression body = iteratorExp.getBody();		
-		Type staticValueType = PivotUtil.getBehavioralType(body.getType());
-//		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
-		Operation staticLessThanOperation = metaModelManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
-		if (staticLessThanOperation == null) {
-			return evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.UndefinedOperation, PivotConstants.LESS_THAN_OPERATOR);
-		}
-//		CompleteOperation staticCompleteOperation = metaModelManager.getCompleteOperation(staticLessThanOperation);
-//		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-//		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-//		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-		CallableImplementation implementation = null;
+	public SortedByIteration.SortingValue createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) throws InvalidValueException {
+		DomainStandardLibrary standardLibrary = evaluator.getEvaluationVisitor().getStandardLibrary();
+		DomainType comparableType = standardLibrary.getOclComparableType();
+		DomainOperation staticOperation = standardLibrary.lookupOperation(comparableType, EvaluatorMessages.CompareToOperation, comparableType);
+		DomainOperation dynamicOperation = standardLibrary.lookupDynamicOperation(iteratorType, staticOperation);
 		try {
-			implementation = metaModelManager.getImplementation(staticLessThanOperation);
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) standardLibrary.lookupImplementation(dynamicOperation);
+			return new SortingValue(evaluator, accumulatorType, implementation);
 		} catch (Exception e) {
-			evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceVal, EvaluatorMessages.ImplementationClassLoadFailure, staticLessThanOperation.getImplementationClass());
+			throw new InvalidValueException(e);
 		}
-		if (implementation == null) {
-			evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.ImplementationClassLoadFailure, staticLessThanOperation.getImplementationClass());
+	}
+
+	@Override
+	public LibraryValidator getValidator(DomainStandardLibrary standardLibrary) {
+		if (validator == null) {
+			validator = getLibraryValidator(standardLibrary, "org.eclipse.ocl.examples.pivot.library.validators.ValidateSortedByIteration"); //$NON-NLS-1$
 		}
-		if (!(implementation instanceof Value.BinaryOperation)) {
-			evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.NonBinaryOperation, staticValueType, PivotConstants.LESS_THAN_OPERATOR);
-		}
-		Value.BinaryOperation binaryImplementation = (BinaryOperation) implementation;
-		SortingValue accumulatorValue = new SortingValue(evaluationEnvironment, sourceVal, iteratorExp, binaryImplementation);
-//		IterationManager iterationManager = new IterationManager(evaluationVisitor, iteratorExp, (CollectionValue) sourceVal);
-//		return evaluateIteration(iterationManager, accumulatorValue);
-//		Accumulator accumulatorValue = createAccumulationValue(valueFactory, true, false);
-		return evaluateIteration(new IterationManager<SortingValue>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+		return validator;
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(IterationManager<SortingValue> iterationManager) {
-		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
+	protected Value resolveTerminalValue(DomainIterationManager iterationManager) {
+		SortingValue accumulatorValue = (SortingValue) iterationManager.getAccumulatorValue();
 		return accumulatorValue.createSortedValue();
 	}
 
 	@Override
-    protected Value updateAccumulator(IterationManager<SortingValue> iterationManager) {
-		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$
-	}
-		// must have exactly one iterator
-		Value iterValue = iterationManager.get(0);
+		}
+		EvaluatorSingleIterationManager singleIterationManager = (EvaluatorSingleIterationManager) iterationManager;
+		Value iterValue = singleIterationManager.get();		
+		SortingValue accumulatorValue = (SortingValue) iterationManager.getAccumulatorValue();
 		accumulatorValue.put(iterValue, bodyVal);
 		return null;										// Carry on
-	}
-
-	@Override
-	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
-		Type type = ((LoopExp)callExp).getBody().getType();
-		TemplateParameter templateParameter = type.getOwningTemplateParameter();
-		if (templateParameter != null) {
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, callExp.getSource().getType());
-//			templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, callExp.getReferredOperation());
-			type = (Type) templateParameterSubstitutions.get(templateParameter);
-		}
-		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
-		Operation operation = metaModelManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
-		if (operation == null) {
-			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, String.valueOf(type));
-		}
-		try {
-			CallableImplementation implementation = metaModelManager.getImplementation(operation);
-			if (implementation == null) {
-				return new ValidationWarning(EvaluatorMessages.ImplementationClassLoadFailure, operation.getImplementationClass());
-			}
-			else if (!(implementation instanceof Value.BinaryOperation)) {
-				return new ValidationWarning(EvaluatorMessages.NonBinaryOperation, type, PivotConstants.LESS_THAN_OPERATOR);
-			}
-			else {
-				return null;
-			}
-		} catch (Exception e) {
-			return new ValidationWarning(EvaluatorMessages.ImplementationClassLoadFailure, operation.getImplementationClass());  //, e);
-		}
 	}
 }

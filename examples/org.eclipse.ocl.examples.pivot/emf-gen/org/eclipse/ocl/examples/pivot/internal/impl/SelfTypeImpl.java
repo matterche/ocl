@@ -17,7 +17,8 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -59,4 +60,8 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 		return visitor.visitSelfType(this);
 	}
 
+	@Override
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();		// WIP
+	}
 } //SelfTypeImpl

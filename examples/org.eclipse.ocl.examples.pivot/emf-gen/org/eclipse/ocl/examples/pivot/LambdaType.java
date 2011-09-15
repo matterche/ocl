@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Lambda Type</b></em>'.
+ * @implements org.eclipse.ocl.examples.domain.types.DomainLambdaType
  * <!-- end-user-doc -->
  *
  * <p>
@@ -36,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface LambdaType extends DataType
+public interface LambdaType extends DataType, org.eclipse.ocl.examples.domain.types.DomainLambdaType
 {
 	/**
 	 * Returns the value of the '<em><b>Context Type</b></em>' reference.

@@ -52,13 +52,13 @@
       <ecoreDataType href="pivot.ecore#//Boolean"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
-      <ecoreDataType href="pivot.ecore#//CallableImplementation"/>
-    </genDataTypes>
-    <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Int"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Integer"/>
+    </genDataTypes>
+    <genDataTypes xsi:type="genmodel:GenDataType">
+      <ecoreDataType href="pivot.ecore#//LibraryFeature"/>
     </genDataTypes>
     <genDataTypes xsi:type="genmodel:GenDataType">
       <ecoreDataType href="pivot.ecore#//Object"/>

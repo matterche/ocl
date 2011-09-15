@@ -57,4 +57,14 @@ public class OrderedSetTypeImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOrderedSetType(this);
 	}
+
+	@Override
+	public boolean isOrdered() {
+		return true;
+	}
+
+	@Override
+	public boolean isUnique() {
+		return true;
+	}
 } //OrderedSetTypeImpl

@@ -846,16 +846,6 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS = 2;
 
 	/**
-	 * The meta object id for the '<em>Callable Implementation</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCallableImplementation()
-	 * @generated
-	 */
-	int CALLABLE_IMPLEMENTATION = 99;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl <em>Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13088,7 +13078,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInt()
 	 * @generated
 	 */
-	int INT = 100;
+	int INT = 99;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -13098,7 +13088,17 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 101;
+	int INTEGER = 100;
+
+	/**
+	 * The meta object id for the '<em>Library Feature</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.domain.library.LibraryFeature
+	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
+	 * @generated
+	 */
+	int LIBRARY_FEATURE = 101;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -15595,17 +15595,6 @@ public interface PivotPackage
 	EReference getAssociationClass_UnownedAttribute();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation <em>Callable Implementation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Callable Implementation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation
-	 * @model instanceClass="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"
-	 * @generated
-	 */
-	EDataType getCallableImplementation();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Operation <em>Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16117,6 +16106,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EDataType getInteger();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.domain.library.LibraryFeature <em>Library Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Library Feature</em>'.
+	 * @see org.eclipse.ocl.examples.domain.library.LibraryFeature
+	 * @model instanceClass="org.eclipse.ocl.examples.domain.library.LibraryFeature"
+	 * @generated
+	 */
+	EDataType getLibraryFeature();
 
 	/**
 	 * Returns the meta object for data type '{@link java.lang.Object <em>Object</em>}'.
@@ -18208,16 +18208,6 @@ public interface PivotPackage
 		EReference ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE = eINSTANCE.getAssociationClass_UnownedAttribute();
 
 		/**
-		 * The meta object literal for the '<em>Callable Implementation</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCallableImplementation()
-		 * @generated
-		 */
-		EDataType CALLABLE_IMPLEMENTATION = eINSTANCE.getCallableImplementation();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl <em>Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18646,6 +18636,16 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EDataType INTEGER = eINSTANCE.getInteger();
+
+		/**
+		 * The meta object literal for the '<em>Library Feature</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.domain.library.LibraryFeature
+		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibraryFeature()
+		 * @generated
+		 */
+		EDataType LIBRARY_FEATURE = eINSTANCE.getLibraryFeature();
 
 		/**
 		 * The meta object literal for the '<em>Object</em>' data type.

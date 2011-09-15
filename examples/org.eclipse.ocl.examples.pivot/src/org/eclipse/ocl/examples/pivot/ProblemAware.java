@@ -22,8 +22,6 @@ import org.eclipse.emf.common.util.Diagnostic;
  * A mix-in interface indicating that implementations can provide problem
  * diagnostics.
  * 
- * @since 1.3
- * 
  * @author dvorak
  */
 public interface ProblemAware {

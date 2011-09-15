@@ -16,22 +16,21 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.UniqueCollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * SetSymmetricDifferenceOperation realises the Set::symmetricDifference() library operation.
- * 
- * @since 3.1
  */
 public class SetSymmetricDifferenceOperation extends AbstractBinaryOperation
 {
 	public static final SetSymmetricDifferenceOperation INSTANCE = new SetSymmetricDifferenceOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
 		UniqueCollectionValue leftValue = left.asUniqueCollectionValue();
 		UniqueCollectionValue rightValue = right.asUniqueCollectionValue();
 		return leftValue.symmetricDifference(rightValue);

@@ -16,34 +16,29 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
- * CollectNestedIteration realises the Collection::collectNested() library iteration.
- * 
- * @since 3.1
+ * CollectNestedIteration realizes the Collection::collectNested() library iteration.
  */
-public class CollectNestedIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class CollectNestedIteration extends AbstractIteration
 {
 	public static final CollectNestedIteration INSTANCE = new CollectNestedIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		return evaluator.getValueFactory().createCollectionAccumulatorValue((DomainCollectionType) accumulatorType);
 	}
-
+	
 	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();		
+		CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 		accumulatorValue.add(bodyVal);
 		return null;								// Carry on
 	}

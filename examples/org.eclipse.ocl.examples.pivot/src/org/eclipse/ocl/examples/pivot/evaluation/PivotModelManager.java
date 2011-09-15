@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
@@ -42,7 +43,7 @@ public class PivotModelManager extends LazyModelManager
 
 	// implements the inherited specification
 	@Override
-	protected boolean isInstance(Type requiredType, EObject eObject) {
+	protected boolean isInstance(DomainType requiredType, EObject eObject) {
 		EClass eClass = eObject.eClass();
 		EPackage ePackage = eClass.getEPackage();
 		Type objectType;
@@ -62,6 +63,6 @@ public class PivotModelManager extends LazyModelManager
 				objectType = ecoreConverter.getPivotType(eClass);
 			}
 		}
-	    return metaModelManager.conformsTo(objectType, requiredType, null);
+	    return objectType.conformsTo(requiredType, metaModelManager);
 	}
 }

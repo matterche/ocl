@@ -16,22 +16,23 @@
  */
 package org.eclipse.ocl.examples.library.logical;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * NotOperation realises the not() library operation.
- * 
- * @since 3.1
  */
 public class BooleanNotOperation extends AbstractUnaryOperation
 {
 	public static final BooleanNotOperation INSTANCE = new BooleanNotOperation();
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value argument) throws InvalidValueException {
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value argument) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.booleanValueOf(!argument.asBoolean());
 	}
 }

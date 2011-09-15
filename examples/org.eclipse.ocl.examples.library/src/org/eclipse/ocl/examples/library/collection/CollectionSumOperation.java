@@ -16,39 +16,35 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.integer.IntegerPlusOperation;
 import org.eclipse.ocl.examples.library.real.RealPlusOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * CollectionSumOperation realises the Collection::sum() library operation.
- * 
- * @since 3.1
  */
-public class CollectionSumOperation extends AbstractOperation
+public class CollectionSumOperation extends AbstractUnaryOperation
 {
 	public static final CollectionSumOperation INSTANCE = new CollectionSumOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
-		MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-		ValueFactory valueFactory = metaModelManager.getValueFactory();
 		// FIXME Bug 301351 Look for user-defined zero
-		Type resultType = operationCall.getType();
-//		resultType.getZero();
-		if (metaModelManager.conformsTo(resultType, metaModelManager.getIntegerType(), null)) {
-			return collectionValue.sum(IntegerPlusOperation.INSTANCE, valueFactory.integerValueOf(0));
+//			resultType.getZero();
+		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+		if (returnType.conformsTo(standardLibrary.getIntegerType(), valueFactory.getStandardLibrary())) {
+			return collectionValue.sum(evaluator, returnType, IntegerPlusOperation.INSTANCE, valueFactory.integerValueOf(0));
 		}
 		else {
-			return collectionValue.sum(RealPlusOperation.INSTANCE, valueFactory.realValueOf(0.0));
+			return collectionValue.sum(evaluator, returnType, RealPlusOperation.INSTANCE, valueFactory.realValueOf(0.0));
 		}
 	}
 }

@@ -16,42 +16,36 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
- * SelectIteration realises the Collection::select() library iteration.
- * 
- * @since 3.1
+ * SelectIteration realizes the Collection::select() library iteration.
  */
-public class SelectIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class SelectIteration extends AbstractIteration
 {
 	public static final SelectIteration INSTANCE = new SelectIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		return evaluator.getValueFactory().createCollectionAccumulatorValue((DomainCollectionType) accumulatorType);
 	}
 	
 	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "select"); 	// Null body is invalid //$NON-NLS-1$
 		}
-		// should be exactly one iterator
 		else if (bodyVal.isTrue()) {
-			Value value = iterationManager.get(0);		
-			accumulatorValue.add(value);
+			Value value = ((EvaluatorSingleIterationManager)iterationManager).get();		
+			((CollectionValue.Accumulator)iterationManager.getAccumulatorValue()).add(value);
 		}
 		return null;
 	}

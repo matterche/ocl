@@ -16,21 +16,22 @@
  */
 package org.eclipse.ocl.examples.library.string;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
- * 
- * @since 3.1
  */
 public class StringEqualsIgnoreCaseOperation extends AbstractBinaryOperation
 {
 	public static final StringEqualsIgnoreCaseOperation INSTANCE = new StringEqualsIgnoreCaseOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		String leftString = left.asString();
 		String rightString = right.asString();
 		return valueFactory.booleanValueOf(leftString.equalsIgnoreCase(rightString));

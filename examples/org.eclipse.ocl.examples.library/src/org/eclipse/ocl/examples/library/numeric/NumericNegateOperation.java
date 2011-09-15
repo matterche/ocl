@@ -16,15 +16,12 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.NumericValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.NumericValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * NegateOperation realises the unary -() library operation.
- * 
- * @since 3.1
  */
 public class NumericNegateOperation extends AbstractNumericUnaryOperation
 {

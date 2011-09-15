@@ -31,8 +31,6 @@ import java.util.List;
  * 
  * @see AmbiguousLookupException
  * @see InvalidLookupException
- * 
- * @since 1.2
  */
 public class LookupException
 	extends SemanticException {

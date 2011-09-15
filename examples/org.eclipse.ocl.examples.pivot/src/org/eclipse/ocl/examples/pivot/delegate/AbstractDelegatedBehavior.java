@@ -42,8 +42,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * A basic implementation of a delegated behavior.
- * 
- * @since 3.0
  */
 public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		implements DelegatedBehavior<E, R, F> {

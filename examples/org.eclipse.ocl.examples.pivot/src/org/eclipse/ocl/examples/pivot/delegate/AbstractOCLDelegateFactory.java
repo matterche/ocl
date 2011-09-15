@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Partial implementation of a factory of OCL delegates for Ecore features.
- * 
- * @since 3.0
  */
 public abstract class AbstractOCLDelegateFactory
 {
@@ -50,8 +48,6 @@ public abstract class AbstractOCLDelegateFactory
 
 	/**
 	 * Return the DelegateDomain for this package, creating one if it does not already exist. 
-	 *
-	 * @since 3.2
 	 */
 	protected OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
 		DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);

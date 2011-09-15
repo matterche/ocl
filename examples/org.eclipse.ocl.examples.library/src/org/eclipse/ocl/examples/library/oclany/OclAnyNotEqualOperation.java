@@ -16,25 +16,26 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 
 /**
  * OclAnyNotEqualOperation realises the OCLAny::<>() library operation and
  * regular derived implementations since the Value classes exhibit
  * OCL value semantics.
- * 
- * @since 3.1
  */
 public class OclAnyNotEqualOperation extends OclAnyEqualOperation
 {
 	public static final OclAnyNotEqualOperation INSTANCE = new OclAnyNotEqualOperation();
 
 	@Override
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
-		return valueFactory.booleanValueOf(!super.evaluate(valueFactory, left, right).asBoolean());
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		return valueFactory.booleanValueOf(!super.evaluate(evaluator, returnType, left, right).asBoolean());
 	}
 }

@@ -19,14 +19,12 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -447,9 +445,7 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	}
 
 	@Override
-	public NotificationChain eBasicSetContainer(InternalEObject newContainer,
-			int newContainerFeatureID, NotificationChain msgs) {
-		// TODO Auto-generated method stub
-		return super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();		// WIP
 	}
 } //UnspecifiedTypeImpl

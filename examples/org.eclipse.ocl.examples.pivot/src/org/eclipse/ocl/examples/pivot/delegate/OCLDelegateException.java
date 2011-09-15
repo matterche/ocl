@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.pivot.delegate;
 import org.eclipse.emf.common.util.WrappedException;
 
 /**
- * @since 3.0
  */
 public class OCLDelegateException extends WrappedException {
 

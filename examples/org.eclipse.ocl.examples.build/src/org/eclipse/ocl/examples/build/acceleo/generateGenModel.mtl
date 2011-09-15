@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module generateGenModel('http://www.eclipse.org/emf/2002/Ecore',
+ 'http://www.eclipse.org/emf/2002/GenModel')/]
+
+[template public generate(genModel : GenModel)]
+[comment @main /]
+[for (genPackage : GenPackage | genModel.genPackages)]
+[let ePackage : EPackage = genPackage.ecorePackage]
+[/let]
+[/for]
+[/template]

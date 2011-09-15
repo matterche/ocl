@@ -13,13 +13,13 @@
       <details key="documentation" value="A Boolean type is used for logical expression, consisting of the predefined values true and false."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="CallableImplementation" instanceClassName="org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Int" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="java.math.BigInteger">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An integer is a primitive type representing integer values."/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="LibraryFeature" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Object" instanceClassName="java.lang.Object"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Real" instanceClassName="java.math.BigDecimal"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String">
@@ -292,7 +292,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationClass" ordered="false"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
-        eType="#//CallableImplementation" transient="true"/>
+        eType="#//LibraryFeature" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"

@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ocl Expression</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainExpression
  * <!-- end-user-doc -->
  *
  *
@@ -27,7 +30,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface OclExpression
-		extends TypedElement {
+		extends TypedElement, DomainExpression {
 
 } // OclExpression
 

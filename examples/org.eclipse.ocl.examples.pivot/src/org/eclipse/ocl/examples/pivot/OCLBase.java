@@ -25,14 +25,16 @@ import java.util.List;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.QueryBaseImpl;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * <p>
@@ -65,7 +67,7 @@ public abstract class OCLBase {
 
 	private EvaluationEnvironment evalEnv;
 
-	private ModelManager modelManager;
+	private DomainModelManager modelManager;
 
 	private List<Constraint> constraints = new java.util.ArrayList<Constraint>();
 
@@ -228,7 +230,7 @@ public abstract class OCLBase {
 	 * @return the client-provided custom model manager, or <code>null</code> if
 	 *         thie OCL is using the default dynamic extent map implementation
 	 */
-	public ModelManager getModelManager() {
+	public DomainModelManager getModelManager() {
 		return modelManager;
 	}
 
@@ -241,7 +243,7 @@ public abstract class OCLBase {
 	 *            a custom extent map, or <code>null</code> to use the default
 	 *            dynamic extent map implementation
 	 */
-	public void setModelManager(ModelManager modelManager) {
+	public void setModelManager(DomainModelManager modelManager) {
 		this.modelManager = modelManager;
 	}
 
@@ -345,7 +347,7 @@ public abstract class OCLBase {
 	 * @see #isInvalid(Object)
 	 * @see #check(Object, Object)
 	 */
-	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, ExpressionInOcl expression) {
+	public org.eclipse.ocl.examples.domain.values.Value evaluate(Object context, ExpressionInOcl expression) {
 		evaluationProblems = null;
 		
 		// can determine a more appropriate context from the context
@@ -358,7 +360,7 @@ public abstract class OCLBase {
 //		if ((value != null) && !value.isUndefined()) {
 //			expression.getContextVariable().setValue(value);
 //		}
-		ModelManager extents = getModelManager();
+		DomainModelManager extents = getModelManager();
 		if (extents == null) {
 			// let the evaluation environment create one
 			extents = localEvalEnv.createModelManager(context);
@@ -367,7 +369,7 @@ public abstract class OCLBase {
 		EvaluationVisitor ev = environmentFactory
 			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
 
-		org.eclipse.ocl.examples.pivot.values.Value result;
+		org.eclipse.ocl.examples.domain.values.Value result;
 
 		try {
 			result = expression.accept(ev);
@@ -448,7 +450,7 @@ public abstract class OCLBase {
 	 *             if the constraint expression is not boolean-valued
 	 */
 	public boolean check(Object context, ExpressionInOcl specification) {
-		StandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
+		DomainStandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
 		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
@@ -566,7 +568,6 @@ public abstract class OCLBase {
 	 * @return the number of repairs to be attempted
 	 * 
 	 * @see #setParserRepairCount(int)
-	 * @since 1.3
 	 */
 	public int getParserRepairCount() {
 		return parserRepairCount;
@@ -592,7 +593,6 @@ public abstract class OCLBase {
 	 *             if the <tt>parserRepairCount</tt> is negative
 	 * 
 	 * @see #getParserRepairCount()
-	 * @since 1.3
 	 */
 	public void setParserRepairCount(int parserRepairCount) {
 		if (parserRepairCount < 0) {
@@ -647,8 +647,6 @@ public abstract class OCLBase {
 	 * query expression.
 	 * 
 	 * @return parsing problems or <code>null</code> if all was OK
-	 * 
-	 * @since 1.2
 	 */
 	public Diagnostic getProblems() {
 		return problems;
@@ -667,8 +665,6 @@ public abstract class OCLBase {
 	 * constraint or query expression.
 	 * 
 	 * @return evaluation problems or <code>null</code> if all was OK
-	 * 
-	 * @since 1.3
 	 */
 	public Diagnostic getEvaluationProblems() {
 		return evaluationProblems;
@@ -679,8 +675,6 @@ public abstract class OCLBase {
 	 * includes disposing of any {@link #getConstraints() constraints} that I
 	 * have parsed and {@linkplain Environment.Internal#dispose() disposing} of
 	 * my environment.
-	 * 
-	 * @since 1.2
 	 */
 	public void dispose() {
 		// dispose of constraints by clearing their adapters

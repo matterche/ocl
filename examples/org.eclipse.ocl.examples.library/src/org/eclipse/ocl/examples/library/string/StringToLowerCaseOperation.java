@@ -16,21 +16,22 @@
  */
 package org.eclipse.ocl.examples.library.string;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * StringToLowerCaseOperation realises the String::toLowerCase() library operation.
- * 
- * @since 3.1
  */
 public class StringToLowerCaseOperation extends AbstractUnaryOperation
 {
 	public static final StringToLowerCaseOperation INSTANCE = new StringToLowerCaseOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value sourceVal) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		String sourceString = sourceVal.asString();
 		return valueFactory.stringValueOf(sourceString.toLowerCase());
 	}

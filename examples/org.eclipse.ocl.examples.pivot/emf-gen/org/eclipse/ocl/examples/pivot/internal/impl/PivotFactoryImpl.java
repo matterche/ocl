@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
@@ -98,7 +99,6 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 
 /**
  * <!-- begin-user-doc -->
@@ -242,12 +242,12 @@ public class PivotFactoryImpl
 				return createCollectionKindFromString(eDataType, initialValue);
 			case PivotPackage.BOOLEAN:
 				return createBooleanFromString(eDataType, initialValue);
-			case PivotPackage.CALLABLE_IMPLEMENTATION:
-				return createCallableImplementationFromString(eDataType, initialValue);
 			case PivotPackage.INT:
 				return createIntFromString(eDataType, initialValue);
 			case PivotPackage.INTEGER:
 				return createIntegerFromString(eDataType, initialValue);
+			case PivotPackage.LIBRARY_FEATURE:
+				return createLibraryFeatureFromString(eDataType, initialValue);
 			case PivotPackage.OBJECT:
 				return createObjectFromString(eDataType, initialValue);
 			case PivotPackage.REAL:
@@ -278,12 +278,12 @@ public class PivotFactoryImpl
 				return convertCollectionKindToString(eDataType, instanceValue);
 			case PivotPackage.BOOLEAN:
 				return convertBooleanToString(eDataType, instanceValue);
-			case PivotPackage.CALLABLE_IMPLEMENTATION:
-				return convertCallableImplementationToString(eDataType, instanceValue);
 			case PivotPackage.INT:
 				return convertIntToString(eDataType, instanceValue);
 			case PivotPackage.INTEGER:
 				return convertIntegerToString(eDataType, instanceValue);
+			case PivotPackage.LIBRARY_FEATURE:
+				return convertLibraryFeatureToString(eDataType, instanceValue);
 			case PivotPackage.OBJECT:
 				return convertObjectToString(eDataType, instanceValue);
 			case PivotPackage.REAL:
@@ -1087,26 +1087,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation createCallableImplementationFromString(EDataType eDataType, String initialValue)
-	{
-		return (CallableImplementation)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCallableImplementationToString(EDataType eDataType, Object instanceValue)
-	{
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Integer createIntFromString(EDataType eDataType, String initialValue) {
 		return (Integer)super.createFromString(eDataType, initialValue);
 	}
@@ -1137,6 +1117,26 @@ public class PivotFactoryImpl
 	 */
 	public String convertIntegerToString(EDataType eDataType,
 			Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LibraryFeature createLibraryFeatureFromString(EDataType eDataType, String initialValue)
+	{
+		return (LibraryFeature)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLibraryFeatureToString(EDataType eDataType, Object instanceValue)
+	{
 		return super.convertToString(eDataType, instanceValue);
 	}
 

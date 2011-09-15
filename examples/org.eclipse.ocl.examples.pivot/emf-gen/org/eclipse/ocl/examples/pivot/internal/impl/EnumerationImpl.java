@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -452,4 +454,8 @@ public class EnumerationImpl
 		return visitor.visitEnumeration(this);
 	}
 
+	@Override
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();		// WIP
+	}
 } //EnumerationImpl

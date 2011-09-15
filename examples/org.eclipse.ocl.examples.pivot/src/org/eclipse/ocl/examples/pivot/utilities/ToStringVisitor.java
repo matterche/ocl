@@ -55,7 +55,6 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -347,7 +346,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			appendName(cls);
 		}
 		else {
-			Package pkg = cls.getPackage();
+			org.eclipse.ocl.examples.pivot.Package pkg = cls.getPackage();
 			if (pkg == null) {
 				append("null::");
 				appendName(cls);

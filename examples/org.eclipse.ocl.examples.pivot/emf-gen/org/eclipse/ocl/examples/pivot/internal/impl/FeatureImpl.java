@@ -18,16 +18,17 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.math.BigInteger;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -75,7 +76,7 @@ public abstract class FeatureImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final CallableImplementation IMPLEMENTATION_EDEFAULT = null;
+	protected static final LibraryFeature IMPLEMENTATION_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,7 +85,7 @@ public abstract class FeatureImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected CallableImplementation implementation = IMPLEMENTATION_EDEFAULT;
+	protected LibraryFeature implementation = IMPLEMENTATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,7 +134,7 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallableImplementation getImplementation()
+	public LibraryFeature getImplementation()
 	{
 		return implementation;
 	}
@@ -143,9 +144,9 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImplementation(CallableImplementation newImplementation)
+	public void setImplementation(LibraryFeature newImplementation)
 	{
-		CallableImplementation oldImplementation = implementation;
+		LibraryFeature oldImplementation = implementation;
 		implementation = newImplementation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.FEATURE__IMPLEMENTATION, oldImplementation, implementation));
@@ -270,7 +271,7 @@ public abstract class FeatureImpl
 				setImplementationClass((String)newValue);
 				return;
 			case PivotPackage.FEATURE__IMPLEMENTATION:
-				setImplementation((CallableImplementation)newValue);
+				setImplementation((LibraryFeature)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);

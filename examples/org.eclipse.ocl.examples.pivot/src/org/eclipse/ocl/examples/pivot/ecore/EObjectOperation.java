@@ -18,111 +18,118 @@ package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /** 
- * An EObjectOperation provides the standard CallableImplementation to implement an
+ * An EObjectOperation provides the standard LibraryOperation to implement an
  * OperationCallExp. When constructed with a null specification, the call returns
  * an invalid. When constructed with a non-null specification,
  * the specification defines the operation body, which if provided as an OpaqueExpression
  * is lazily compiled from OCL source text.
  */
-public class EObjectOperation implements CallableImplementation
+public class EObjectOperation extends AbstractOperation implements LibraryUnaryOperation, LibraryBinaryOperation, LibraryTernaryOperation
 {
 	protected final EOperation eFeature;
 	protected ValueSpecification specification;
+	private ExpressionInOcl expressionInOcl = null;
 
 	public EObjectOperation(EOperation eFeature, ValueSpecification specification) {
 		this.eFeature = eFeature;
 		this.specification = specification;
 	}
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
-		if (!(specification instanceof ExpressionInOcl) && (specification instanceof OpaqueExpression)) {
-			Operation operation = PivotUtil.getReferredOperation(callExp);
-			String string = PivotUtil.getBody((OpaqueExpression) specification);
-			try {
-				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
-				URI uri = metaModelManager.getResourceIdentifier(operation, null);
-				specification = PivotUtil.resolveSpecification(metaModelManager, uri, operation, string);
-			} catch (ParserException e) {
-				return evaluationVisitor.throwInvalidEvaluation(e, callExp, sourceValue, "parse failure");
-			}
-		}
-		if (specification instanceof ExpressionInOcl) {
-			ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;
-			EvaluationVisitor nestedEvaluationVisitor = evaluationVisitor.createNestedVisitor();
-			EvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluationVisitor.getEvaluationEnvironment();
-			nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-			OperationCallExp operationCall = (OperationCallExp) callExp;	// FIXME iterators
-			List<OclExpression> arguments = operationCall.getArguments();
-			List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
-			int iMax = Math.min(parameterVariables.size(), arguments.size());
-			for (int i = 0; i < iMax; i++) {
-				Value argumentValue = arguments.get(i).accept(evaluationVisitor);
-				nestedEvaluationEnvironment.add(parameterVariables.get(i).getRepresentedParameter(), argumentValue);
-			}
-			return expressionInOcl.getBodyExpression().accept(nestedEvaluationVisitor);
-		}
-		else {
-			// FIXME eInvoke for alternate protocols ???
-			
-			/*		for (EOperation eOperation : eClass.getEAllOperations()) {
-						if (eOperation.getName().equals(name)) {
-							EList<Object> eArguments = new BasicEList<Object>();
-							try {
-								Object eValue = ((EObject)element).eInvoke(eOperation, eArguments);
-								return defaultReturnValue(eOperation, eValue);
-							} catch (InvocationTargetException e) {
-								return valueFactory.createInvalidValue(sourceValue, operationCallExp, "Failed to load '" + feature.getImplementationClass() + "'", e);
-							}
-						}
-					} */
-			Operation operation = PivotUtil.getReferredOperation(callExp);
-			return evaluationVisitor.throwInvalidEvaluation(null, callExp, sourceValue, "No specification for '" + operation + "'");
-		}
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue) throws InvalidValueException {
+//		if (expressionInOcl == null) {		
+//			resolveExpressionInOcl(evaluator, returnType, sourceValue);
+//		}
+		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
+		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
+		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
 	}
 
-/*	protected Value defaultOperationCall(Feature feature, Value sourceValue, OperationCallExp operationCallExp) {
-		Object element = sourceValue.asObject();
-		if (!(element instanceof EObject)) {
-			return sourceValue.toInvalidValue();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value argumentValue) throws InvalidValueException {
+//		if (expressionInOcl == null) {		
+//			resolveExpressionInOcl(evaluator, returnType, sourceValue);
+//		}
+		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
+		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
+		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		nestedEvaluationEnvironment.add(parameterVariables.get(0).getRepresentedParameter(), argumentValue);
+		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
+	}
+
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException {
+//		if (expressionInOcl == null) {		
+//			resolveExpressionInOcl(evaluator, returnType, sourceValue);
+//		}
+		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
+		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
+		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		nestedEvaluationEnvironment.add(parameterVariables.get(0).getRepresentedParameter(), firstArgumentValue);
+		nestedEvaluationEnvironment.add(parameterVariables.get(1).getRepresentedParameter(), secondArgumentValue);
+		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
+	}
+
+	public Value evaluate(DomainEvaluator evaluator, DomainCallExp callExp, Value sourceValue, Value... argumentValues) throws InvalidValueException {
+		if (expressionInOcl == null) {		
+			resolveExpressionInOcl(evaluator, callExp, sourceValue);
 		}
-		EClass eClass = ((EObject)element).eClass();
-		Operation referredOperation = operationCallExp.getReferredOperation();
-		String name = referredOperation.getName();
-		for (EOperation eOperation : eClass.getEAllOperations()) {
-			if (eOperation.getName().equals(name)) {
-				EList<Object> eArguments = new BasicEList<Object>();
+		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
+		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
+		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		int iMax = Math.min(parameterVariables.size(), argumentValues.length);
+		for (int i = 0; i < iMax; i++) {
+			nestedEvaluationEnvironment.add(parameterVariables.get(i).getRepresentedParameter(), argumentValues[i]);
+		}
+		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
+	}
+
+	protected void resolveExpressionInOcl(DomainEvaluator evaluator, DomainCallExp callExp, Value sourceValue) {
+		if (specification instanceof ExpressionInOcl) {
+			expressionInOcl = (ExpressionInOcl) specification;
+		}
+		else {
+			if (specification instanceof OpaqueExpression) {
+				Operation operation = ((OperationCallExp)callExp).getReferredOperation();
+				String string = PivotUtil.getBody((OpaqueExpression) specification);
+				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator.getEvaluationVisitor();
+				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
+				URI uri = metaModelManager.getResourceIdentifier(operation, null);
 				try {
-					Object eValue = ((EObject)element).eInvoke(eOperation, eArguments);
-					return defaultReturnValue(eOperation, eValue);
-				} catch (InvocationTargetException e) {
-					return valueFactory.createInvalidValue(sourceValue, operationCallExp, "Failed to load '" + feature.getImplementationClass() + "'", e);
+					expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, operation, string);
+				} catch (ParserException e) {
+					evaluator.throwInvalidEvaluation(e, callExp, sourceValue, "parse failure");
 				}
 			}
+			if (expressionInOcl == null) {
+				Operation operation = ((OperationCallExp)callExp).getReferredOperation();
+				evaluator.throwInvalidEvaluation(null, callExp, sourceValue, "No specification for '" + operation + "'");
+			}
 		}
-		return valueFactory.createInvalidValue(sourceValue, operationCallExp, "Failed to load '" + feature.getImplementationClass() + "'", null);
-	} */
-
-	public Diagnostic validate(MetaModelManager metaModelManager, CallExp callExp) {
-		return null;
 	}
 }

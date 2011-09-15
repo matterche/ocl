@@ -28,8 +28,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
- * 
- * @since 3.0
  */
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		implements ValidationDelegate.Factory, ValidationDelegate

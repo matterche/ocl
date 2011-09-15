@@ -24,8 +24,11 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -34,12 +37,9 @@ import org.eclipse.ocl.examples.pivot.QueryBase;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  */
 public class QueryBaseImpl implements QueryBase, ProblemAware {
 	
-	private ModelManager modelManager = null;
+	private DomainModelManager modelManager = null;
 
 	private final ExpressionInOcl specification;
 	private final OclExpression expression;
@@ -76,7 +76,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 	 */
 	public QueryBaseImpl(Environment environment,
 			ExpressionInOcl specification,
-			ModelManager modelManager) {
+			DomainModelManager modelManager) {
 		
 		this.environment = environment;
 		this.specification = specification;
@@ -84,7 +84,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		this.modelManager = modelManager;
 	}
 
-	public ModelManager getModelManager() {
+	public DomainModelManager getModelManager() {
 		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			
@@ -100,7 +100,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		return expression;
 	}
 
-	public Value evaluate(Object obj) throws EvaluationException {
+	public Value evaluate(Object obj) throws DomainException {
 		evalProblems = null;
 		
 		if (obj == null) {
@@ -146,7 +146,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		return result;
 	}
 
-	public Value evaluate() throws EvaluationException {
+	public Value evaluate() throws DomainException {
 		evalProblems = null;
 		
 		// lazily create the evaluation environment, if not already done by

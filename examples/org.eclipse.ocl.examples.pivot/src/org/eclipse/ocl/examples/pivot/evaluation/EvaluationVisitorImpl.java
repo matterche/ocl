@@ -27,27 +27,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationVisitor;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.EvaluatorMultipleIterationManager;
+import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
+import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.library.LibraryIteration;
+import org.eclipse.ocl.examples.domain.library.LibraryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryProperty;
+import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.NullValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.values.impl.SequenceRangeImpl;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -60,7 +85,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -74,12 +98,8 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.impl.IntegerRangeValueImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -95,7 +115,52 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		return false;
 	}
+
+	public class VisitingEvaluator implements DomainEvaluator
+	{
+		public DomainEvaluator createNestedEvaluator() {
+			return EvaluationVisitorImpl.this.createNestedVisitor().getEvaluator();
+		}
+
+		public Value evaluate(DomainExpression body) {
+			return ((OclExpression) body).accept(EvaluationVisitorImpl.this);
+		}
+
+		public DomainEvaluationEnvironment getEvaluationEnvironment() {
+			return EvaluationVisitorImpl.this.getEvaluationEnvironment();
+		}
+
+		public DomainEvaluationVisitor getEvaluationVisitor() {
+			return EvaluationVisitorImpl.this;
+		}	
+
+		public DomainModelManager getModelManager() {
+			return EvaluationVisitorImpl.this.getModelManager();
+		}
+
+		public ValueFactory getValueFactory() {
+			return EvaluationVisitorImpl.this.getValueFactory();
+		}
+
+		public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+			return EvaluationVisitorImpl.this.throwInvalidEvaluation(e);
+		}
+
+		public NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context, String message,
+				Object... bindings) throws InvalidEvaluationException {
+			return EvaluationVisitorImpl.this.throwInvalidEvaluation(e, expression, context, message, bindings);
+		}
+
+		public Value evaluateIteration(DomainType returnType, CollectionValue sourceVal, DomainTypedElement accumulator,
+				DomainExpression body, DomainTypedElement[] iterators) {
+//			Accumulator accumulatorValue = createAccumulationValue(evaluator, returnType);
+//			return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluator,
+//					body, sourceVal, accumulatorValue, iterators));
+			return null;
+		}
+	}
 	
+	protected final DomainEvaluator evaluator = new VisitingEvaluator();
 	
 	/**
 	 * Constructor
@@ -105,9 +170,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 * @param modelManager
 	 *            a map of classes to their instance lists
 	 */
-	public EvaluationVisitorImpl(Environment env,
-			EvaluationEnvironment evalEnv,
-			ModelManager modelManager) {
+	public EvaluationVisitorImpl(Environment env, EvaluationEnvironment evalEnv, DomainModelManager modelManager) {
 		super(env, evalEnv, modelManager);
 	}
 
@@ -116,105 +179,15 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
 		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
 	}
-	
-	protected Value handleCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
-		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-		OclExpression source = callExp.getSource();
-		Value sourceValue;
-		try {
-			sourceValue = source.accept(undecoratedVisitor);
-		}
-		catch (InvalidEvaluationException e) {
-			sourceValue = metaModelManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
-		}
- 		Operation dynamicOperation = staticOperation;
-		if (!staticOperation.isStatic()) {
-			Type dynamicSourceType = sourceValue.getType();
-			dynamicOperation = metaModelManager.getDynamicOperation(dynamicSourceType, staticOperation);
-	 		if (dynamicOperation == null) {
-	 			dynamicOperation = staticOperation;
-	 		}
-		}
-		CallableImplementation implementation;
-		try {
-			implementation = metaModelManager.getImplementation(dynamicOperation);
-		} catch (Exception e) {
-			String implementationClass = dynamicOperation.getImplementationClass();
-			if (implementationClass != null) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
-			}
-			else {
-				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
-			}
-		}
-		Value result = null;
-		try {
-			result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
-		}
-		catch (EvaluationException e) {
-			throw e;
-		}
-		catch (Exception e) {
-			// This is a backstop. Library operations should catch their own exceptions
-			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation(e, callExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
-		}
-		if (result == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", callExp, sourceValue);
-		}
-		return result;
-	}
-	
-	protected Value handleOclSelfCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
-		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-		OclExpression source = callExp.getSource();
-		Value sourceValue;
-		try {
-			sourceValue = source.accept(undecoratedVisitor);
-		}
-		catch (InvalidEvaluationException e) {
-			sourceValue = metaModelManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
-		}
- 		Type dynamicSourceType = sourceValue.getType();
-		List<OclExpression> args = ((OperationCallExp)callExp).getArguments();
-		OclExpression arg = args.get(0);
-		Value argValue =  arg.accept(undecoratedVisitor);
-		Type argType = argValue.getType();
-		Type commonType = metaModelManager.getCommonType(dynamicSourceType, argType, null);
-		Operation dynamicOperation = metaModelManager.getDynamicOperation(commonType, staticOperation);
- 		if (dynamicOperation == null) {
- 			dynamicOperation = staticOperation;
- 		}
- 		Value.BinaryOperation implementation;
-		try {
-			implementation = (Value.BinaryOperation)metaModelManager.getImplementation(dynamicOperation);
-		} catch (Exception e) {
-			String implementationClass = dynamicOperation.getImplementationClass();
-			if (implementationClass != null) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
-			}
-			else {
-				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
-			}
-		}
-		Value result = null;
-		try {
-			result = implementation.evaluate(metaModelManager.getValueFactory(), sourceValue, argValue);
-		}
-		catch (EvaluationException e) {
-			throw e;
-		}
-		catch (Exception e) {
-			// This is a backstop. Library operations should catch their own exceptions
-			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation(e, callExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
-		}
-		if (result == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", callExp, sourceValue);
-		}
-		return result;
-	}
 
+//	public Value evaluate(DomainExpression body) {
+//		return ((OclExpression) body).accept(this);
+//	}
+
+	public DomainEvaluator getEvaluator() {
+		return evaluator;
+	}
+	
 	@Override
 	public Value safeVisit(Visitable v) {
 		if (v == null) {
@@ -222,7 +195,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		try {
 			return v.accept(this);
-		} catch (EvaluationException e) {
+		} catch (DomainException e) {
 			throw e;
 		} catch (Exception e) {
 			return evaluationEnvironment.throwInvalidEvaluation(e, null, v, "Evaluation Failure");
@@ -277,7 +250,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
-		CollectionType type = (CollectionType) cl.getType();
+		DomainCollectionType type = (DomainCollectionType) cl.getType();
 		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
@@ -309,9 +282,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 			// construct a lazy integer list for the range
 			try {
-				return new IntegerRangeValueImpl(valueFactory, type, firstInteger, lastInteger);
+				return new SequenceRangeImpl(valueFactory, type, valueFactory.createRange(firstInteger, lastInteger));
 			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Bad integer range");
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer first or last element");
 			}
 		} else
 		{
@@ -378,8 +351,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				} // end of collection range
 
 			} // end of parts iterator
-			StandardLibrary standardLibrary = getStandardLibrary();
-			return valueFactory.createCollectionValue(standardLibrary.isOrdered(type), standardLibrary.isUnique(type), type.getElementType(), results);
+			return valueFactory.createCollectionValue(type.isOrdered(), type.isUnique(), type.getElementType(), results);
 		} // end of not-simple range case
 	} // end of Set, OrderedSet, Bag Literals
 
@@ -454,7 +426,70 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitIterateExp(IterateExp iterateExp) {
-		return handleCallExp(iterateExp, iterateExp.getReferredIteration());
+		Iteration staticIteration = iterateExp.getReferredIteration();
+		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
+		CollectionValue sourceValue;
+		try {
+			OclExpression source = iterateExp.getSource();
+			sourceValue = source.accept(undecoratedVisitor).asCollectionValue();
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		}
+		DomainType dynamicSourceType = sourceValue.getType();
+		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
+ 		if (dynamicIteration == null) {
+ 			dynamicIteration = staticIteration;
+ 		}
+ 		LibraryIteration implementation;
+		try {
+			implementation = (LibraryIteration) metaModelManager.getImplementation(dynamicIteration);
+		} catch (Exception e) {
+			String implementationClass = dynamicIteration.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
+			}
+			else {
+				return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, null, "Failed to load implementation for '" + dynamicIteration + "'");
+			}
+		}
+		Value result = null;
+		try {
+			Variable accumulator = iterateExp.getResult();
+			Value initValue = accumulator.getInitExpression().accept(undecoratedVisitor);
+			if (initValue.isUndefined()) {
+				return evaluationEnvironment.throwInvalidEvaluation(null, iterateExp, initValue, EvaluatorMessages.UndefinedInitialiser);
+			}
+			DomainIterationManager iterationManager;
+			VariableDeclaration accumulatorVariable = accumulator.getRepresentedParameter();
+			OclExpression body = iterateExp.getBody();
+			List<Variable> iterators = iterateExp.getIterators();
+			int iSize = iterators.size();
+			if (iSize == 1) {
+				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
+				iterationManager = new EvaluatorSingleIterationManager(evaluator, body, sourceValue, accumulatorVariable, initValue, firstIterator);
+			}
+			else {
+				VariableDeclaration[] variables = new VariableDeclaration[iSize];
+				for (int i = 0; i < iSize; i++) {
+					variables[i] = iterators.get(i).getRepresentedParameter();
+				}
+				iterationManager = new EvaluatorMultipleIterationManager(evaluator, body, sourceValue, accumulatorVariable, initValue, variables);
+			}
+			result = implementation.evaluateIteration(iterationManager);
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		} catch (DomainException e) {
+			throw e;
+		} catch (Exception e) {
+			// This is a backstop. Library iterations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, sourceValue, "Failed to evaluate '" + dynamicIteration + "'");
+		}
+		if (result == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicIteration + "'", iterateExp, sourceValue);
+		}
+		return result;
 	}
 
 	/**
@@ -462,7 +497,66 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitIteratorExp(IteratorExp iteratorExp) {
-		return handleCallExp(iteratorExp, iteratorExp.getReferredIteration());
+		Iteration staticIteration = iteratorExp.getReferredIteration();
+		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
+		CollectionValue sourceValue;
+		try {
+			OclExpression source = iteratorExp.getSource();
+			Value sourceVal = source.accept(undecoratedVisitor);
+			sourceValue = sourceVal.asCollectionValue();
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		}
+		DomainType dynamicSourceType = sourceValue.getType();
+		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
+ 		if (dynamicIteration == null) {
+ 			dynamicIteration = staticIteration;
+ 		}
+ 		LibraryIteration implementation;
+		try {
+			implementation = (LibraryIteration) metaModelManager.getImplementation(dynamicIteration);
+		} catch (Exception e) {
+			String implementationClass = dynamicIteration.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
+			}
+			else {
+				return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, null, "Failed to load implementation for '" + dynamicIteration + "'");
+			}
+		}
+		Value result = null;
+		try {
+			DomainIterationManager iterationManager;
+			OclExpression body = iteratorExp.getBody();
+			Value accumulatorValue = implementation.createAccumulatorValue(evaluator, PivotUtil.getBehavioralType(iteratorExp.getType()), PivotUtil.getBehavioralType(body.getType()));
+			List<Variable> iterators = iteratorExp.getIterators();
+			int iSize = iterators.size();
+			if (iSize == 1) {
+				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
+				iterationManager = new EvaluatorSingleIterationManager(evaluator, body, sourceValue, null, accumulatorValue, firstIterator);
+			}
+			else {
+				VariableDeclaration[] variables = new VariableDeclaration[iSize];
+				for (int i = 0; i < iSize; i++) {
+					variables[i] = iterators.get(i).getRepresentedParameter();
+				}
+				iterationManager = new EvaluatorMultipleIterationManager(evaluator, body, sourceValue, null, accumulatorValue, variables);
+			}
+			result = implementation.evaluateIteration(iterationManager);
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		} catch (DomainException e) {
+			throw e;
+		} catch (Exception e) {
+			// This is a backstop. Library iterations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceValue, "Failed to evaluate '" + dynamicIteration + "'");
+		}
+		if (result == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicIteration + "'", iteratorExp, sourceValue);
+		}
+		return result;
 	}
 
 	/**
@@ -511,12 +605,113 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-		Operation referredOperation = operationCallExp.getReferredOperation();
-		List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
+		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
+		Operation staticOperation = operationCallExp.getReferredOperation();
+		//
+		//	Resolve source value
+		//
+ 		Value sourceValue;
+		OclExpression source = operationCallExp.getSource();
+		try {
+			sourceValue = source.accept(undecoratedVisitor);
+		}
+		catch (InvalidEvaluationException e) {
+			sourceValue = valueFactory.getInvalid();	// FIXME ?? propagate part of environment
+		}
+		//
+		//	Resolve source dispatch type
+		//
+ 		DomainType dynamicSourceType = sourceValue.getType();
+		List<OclExpression> arguments = operationCallExp.getArguments();
+		Value firstArgument = null;
+		List<Parameter> ownedParameters = staticOperation.getOwnedParameters();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
-			return handleOclSelfCallExp(operationCallExp, referredOperation); }
-		else {
-			return handleCallExp(operationCallExp, referredOperation);
+			firstArgument =  arguments.get(0).accept(undecoratedVisitor);
+			DomainType argType = firstArgument.getType();
+			dynamicSourceType = dynamicSourceType.getCommonType(argType, metaModelManager);
+	 	}
+		//
+		//	Resolve operation to dispatch
+		//
+		Operation dynamicOperation = staticOperation;
+		if (!staticOperation.isStatic()) {
+			dynamicOperation = metaModelManager.getDynamicOperation((Type) dynamicSourceType, staticOperation);
+	 		if (dynamicOperation == null) {
+	 			dynamicOperation = staticOperation;
+	 		}
+		}
+		//
+		//	Resolve implementation of operation
+		//
+		LibraryFeature implementation;
+		try {
+			implementation = metaModelManager.getImplementation(dynamicOperation);
+		} catch (Exception e) {
+			String implementationClass = dynamicOperation.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
+			}
+			else {
+				return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
+			}
+		}
+		//
+		//	Dispatch implementation avoiding variable argument list where possible
+		//
+		try {
+			Value result = null; //evaluator.evaluate((LibraryOperation)implementation, returnType, sourceValue);
+			int iSize = arguments.size();
+			switch (iSize) {
+				case 0: {
+					result = ((LibraryUnaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue);
+					break;
+				}
+				case 1: {
+					LibraryBinaryOperation binaryOperation = (LibraryBinaryOperation)implementation;
+					Value argument;
+					if (binaryOperation.argumentsMayBeInvalid()) {
+						try {
+							argument = arguments.get(0).accept(undecoratedVisitor);
+						} catch (InvalidEvaluationException e) {
+							argument = valueFactory.getInvalid();
+						}
+					}
+					else {
+						argument = arguments.get(0).accept(undecoratedVisitor);
+					}
+					result = binaryOperation.evaluate(evaluator, operationCallExp, sourceValue, argument);
+					break;
+				}
+				case 2: {
+					if (firstArgument == null) {
+						firstArgument = arguments.get(0).accept(undecoratedVisitor);
+					}
+					Value secondArgument = arguments.get(1).accept(undecoratedVisitor);
+					result = ((LibraryTernaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, firstArgument, secondArgument);
+					break;
+				}
+				default: {
+					Value[] values = new Value[iSize];
+					for (int i = 0; i < iSize; i++) {
+						values[i] = arguments.get(i).accept(undecoratedVisitor);
+					}
+					result = ((LibraryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, values);
+					break;
+				}
+			}
+			if (result == null) {
+				return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", operationCallExp, sourceValue);
+			}
+			return result;
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		} catch (DomainException e) {
+			throw e;
+		} catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
 		}
 	}
 
@@ -526,9 +721,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	@Override
     public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
 		Property property = propertyCallExp.getReferredProperty();
-		CallableImplementation implementation;
+		LibraryProperty implementation;
 		try {
-			implementation = metaModelManager.getImplementation(property);
+			implementation = (LibraryProperty) metaModelManager.getImplementation(property);
 		} catch (Exception e) {
 			String implementationClass = property.getImplementationClass();
 			if (implementationClass != null) {
@@ -539,12 +734,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 		}
 		OclExpression source = propertyCallExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
+		EvaluationVisitor evaluationVisitor = getUndecoratedVisitor();
+		Value sourceValue = source.accept(evaluationVisitor);
 		Value resultValue = null;
 		try {
-			resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+			resultValue = implementation.evaluate(evaluator, propertyCallExp.getType(), sourceValue, propertyCallExp.getReferredProperty());
 		}
-		catch (EvaluationException e) {
+		catch (DomainException e) {
 			throw e;
 		}
 		catch (Exception e) {
@@ -600,7 +796,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitTupleLiteralExp(TupleLiteralExp tl) {
-		Type type = tl.getType();
+		DomainType type = tl.getType();
 		Map<TypedElement, Value> propertyValues = new HashMap<TypedElement, Value>();		
 		for (TupleLiteralPart part : tl.getParts()) {
 			// Set the tuple field with the value of the init expression

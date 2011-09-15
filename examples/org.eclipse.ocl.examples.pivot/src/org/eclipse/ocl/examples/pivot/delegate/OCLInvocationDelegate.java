@@ -23,7 +23,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -31,19 +33,15 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of an operation-invocation delegate for OCL body
  * expressions.
- * 
- * @since 3.0
  */
 public class OCLInvocationDelegate extends BasicInvocationDelegate
 {
-	protected OCLDelegateDomain delegateDomain;
+	protected final OCLDelegateDomain delegateDomain;
 	private Operation operation;
 	private ExpressionInOcl specification;
 
@@ -85,7 +83,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			Value result = query.evaluate(target);
 			return valueFactory.getEcoreValueOf(result);
 		}
-		catch (EvaluationException e) {
+		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
 			throw new InvocationTargetException(new OCLDelegateException(message));
 		}

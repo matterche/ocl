@@ -23,6 +23,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -389,5 +392,31 @@ public class CollectionTypeImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitCollectionType(this);
+	}
+	
+	@Override
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (this == type) {
+			return true;
+		}
+		if (!(type instanceof DomainCollectionType)) {
+			return false;
+		}
+		return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
+	}
+
+	public Type getContainerType() {
+		return unspecializedElement != null ? (Type)unspecializedElement : this;
+	}
+
+	@Override
+	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (this == type) {
+			return true;
+		}
+		if (!(type instanceof DomainCollectionType)) {
+			return false;
+		}
+		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
 	}
 } //CollectionTypeImpl

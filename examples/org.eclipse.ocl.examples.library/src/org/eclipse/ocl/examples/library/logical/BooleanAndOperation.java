@@ -16,34 +16,28 @@
  */
 package org.eclipse.ocl.examples.library.logical;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * AndOperation realises the and() library operation.
- * 
- * @since 3.1
  */
 public class BooleanAndOperation extends AbstractBinaryOperation
 {
 	public static final BooleanAndOperation INSTANCE = new BooleanAndOperation();
 
 	@Override
-	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		if (sourceVal.isFalse()) {
-			return valueFactory.getFalse();
-		}
-		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
-		return evaluate(valueFactory, sourceVal, argVal);
+	public boolean argumentsMayBeInvalid() {
+		return true;
 	}
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public BooleanValue evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		if (left.isFalse() || right.isFalse()) {
 			return valueFactory.getFalse();
 		}

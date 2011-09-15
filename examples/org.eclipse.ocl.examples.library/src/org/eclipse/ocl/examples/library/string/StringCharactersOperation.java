@@ -19,28 +19,30 @@ package org.eclipse.ocl.examples.library.string;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.StringValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
- * 
- * @since 3.1
  */
 public class StringCharactersOperation extends AbstractUnaryOperation
 {
 	public static final StringCharactersOperation INSTANCE = new StringCharactersOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value sourceVal) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		String sourceString = sourceVal.asString();
 		List<StringValue> results = new ArrayList<StringValue>(sourceString.length());
 		for (int i = 0; i < sourceString.length(); i++) {
 			String s = sourceString.substring(i, i+1);
 			results.add(valueFactory.stringValueOf(s));
 		}
-		return valueFactory.createSequenceValue(valueFactory.getStandardLibrary().getSequenceType(sourceVal.getType()), results);
+		return valueFactory.createSequenceValue((DomainCollectionType)returnType, results);
 	}
 }

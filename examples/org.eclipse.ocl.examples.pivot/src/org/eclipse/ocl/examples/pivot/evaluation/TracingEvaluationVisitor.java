@@ -17,6 +17,14 @@
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.values.NullValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -27,13 +35,10 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -48,9 +53,6 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.values.NullValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 
 /**
@@ -75,17 +77,21 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 		return new TracingEvaluationVisitor(super.createNestedVisitor());
 	}
 
+	public DomainEvaluator getEvaluator() {
+		return getDelegate().getEvaluator();
+	}
+
 	public MetaModelManager getMetaModelManager() {
 		return getDelegate().getMetaModelManager();
+	}
+
+	public DomainStandardLibrary getStandardLibrary() {
+		return getDelegate().getStandardLibrary();
 	}
 
 	public ValueFactory getValueFactory() {
 		return getDelegate().getValueFactory();
 	}
-
-//    private boolean isInvalid(Object value) {
-//        return value == getEnvironment().getOCLStandardLibrary().getInvalidValue();
-//    }
 
 	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
 	       return getDelegate().throwInvalidEvaluation(e);
@@ -95,7 +101,7 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
         return getDelegate().throwInvalidEvaluation(message);
 	}
 
-	public NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object value, String message, Object... bindings) {
+	public NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object value, String message, Object... bindings) {
 	       return getDelegate().throwInvalidEvaluation(e, expression, value, message, bindings);
 	}
     

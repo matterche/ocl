@@ -1,0 +1,23 @@
+[comment encoding = UTF-8 /]
+[module genUtils('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[query public cgEncodeName(elem : NamedElement) : String =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'encodeName(org.eclipse.ocl.examples.pivot.NamedElement)', Sequence{elem}) /]
+
+[query public cgGetUnspecializedClass(elem : Type) : Class = 
+if elem.unspecializedElement->notEmpty() then elem.unspecializedElement.oclAsType(Type) else elem endif /]
+
+[query public defineSymbolName(elem : OclAny, symbol : String) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'defineSymbolName(java.lang.Object, java.lang.String)', Sequence{elem, symbol}) /]
+
+[query public getMoniker(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getMoniker(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public getSymbolName(elem : OclAny) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
+
+[query public getPrefixedSymbolName(prefix : String, elem : OclAny) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getPrefixedSymbolName(java.lang.String, java.lang.Object)', Sequence{prefix, elem}) /]
+
+[query public javaString(rawString : String) : String = 
+invoke('org.eclipse.xtext.util.Strings', 'convertToJavaString(java.lang.String)', Sequence{rawString}) /]

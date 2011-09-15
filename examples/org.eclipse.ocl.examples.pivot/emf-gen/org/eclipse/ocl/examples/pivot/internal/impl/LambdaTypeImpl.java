@@ -30,6 +30,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.ocl.examples.domain.types.DomainLambdaType;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -504,5 +507,16 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitLambdaType(this);
+	}
+	
+	@Override
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (this == type) {
+			return true;
+		}
+		if (!(type instanceof DomainLambdaType)) {
+			return false;
+		}
+		return standardLibrary.conformsToLambdaType(this, (DomainLambdaType)type);
 	}
 } //LambdaTypeImpl

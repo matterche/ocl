@@ -16,35 +16,33 @@
  */
 package org.eclipse.ocl.examples.library.iterator;
 
-import org.eclipse.ocl.examples.library.AbstractIteration;
-import org.eclipse.ocl.examples.library.IterationManager;
-import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
+import org.eclipse.ocl.examples.domain.library.AbstractIteration;
+import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
- * AnyIteration realises the Collection::any() library iteration.
- * 
- * @since 3.1
+ * AnyIteration realizes the Collection::any() library iteration.
  */
-public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
+public class AnyIteration extends AbstractIteration
 {
 	public static final AnyIteration INSTANCE = new AnyIteration();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		Accumulator accumulatorValue = createAccumulationValue(valueFactory, iteratorExp.getType());
-		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
-				iteratorExp, sourceVal, accumulatorValue));
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+		return valueFactory.createCollectionAccumulatorValue(standardLibrary.getSequenceType(accumulatorType));
 	}
 	
 	@Override
-	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
+	protected Value resolveTerminalValue(DomainIterationManager iterationManager) {
+		CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
 		if (accumulatorValue.intSize() > 0) {
 			return accumulatorValue.asList().get(0);		// Normal something found result.
 		}
@@ -54,23 +52,25 @@ public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
 	}
 	
 	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
-		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		Value bodyVal = iterationManager.getBodyValue();		
+    protected Value updateAccumulator(DomainIterationManager iterationManager) {
+		Value bodyVal = iterationManager.evaluateBody();		
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "any"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal.isFalse()) {
 			return null;									// Carry on for nothing found
 		}
-		else if (accumulatorValue.intSize() > 0) {
-			return iterationManager.getFalse();				// Abort after second find
-		}
 		else {
-			// should be exactly one iterator
-			Value value = iterationManager.get(0);		
-			accumulatorValue.add(value);
-			return null;									// Carry on after first find
+			CollectionValue.Accumulator accumulatorValue = (CollectionValue.Accumulator)iterationManager.getAccumulatorValue();
+			if (accumulatorValue.intSize() > 0) {
+				return iterationManager.getValueFactory().getFalse();				// Abort after second find
+			}
+			else {
+				EvaluatorSingleIterationManager singleIterationManager = (EvaluatorSingleIterationManager) iterationManager;
+				Value value = singleIterationManager.get();		
+				accumulatorValue.add(value);
+				return null;									// Carry on after first find
+			}
 		}
 	}
 }

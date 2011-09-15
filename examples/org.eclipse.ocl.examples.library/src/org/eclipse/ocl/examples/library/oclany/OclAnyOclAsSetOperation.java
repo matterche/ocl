@@ -16,31 +16,32 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclAnyOclAsSetOperation realises the OclAny::oclAsSet() library operation.
- * 
- * @since 3.1
  */
 public class OclAnyOclAsSetOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyOclAsSetOperation INSTANCE = new OclAnyOclAsSetOperation();
 
-	public SetValue evaluate(ValueFactory valueFactory, Value argument) throws InvalidValueException {
-		if (argument.isInvalid()) {
-			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "oclAsSet"); //$NON-NLS-1$
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
+		ValueFactory valueFactory = evaluator.getValueFactory();
+		if (sourceVal.isInvalid()) {
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "oclAsSet"); //$NON-NLS-1$
 		}
-		if (argument.isNull()) {
-			return valueFactory.createSetValue();
+		if (sourceVal.isNull()) {
+			return valueFactory.createSetValue((DomainCollectionType)returnType);
 		}
 		else {
-			return valueFactory.createSetValue(argument);
+			return valueFactory.createSetValue((DomainCollectionType)returnType, sourceVal);
 		}
 	}
 }

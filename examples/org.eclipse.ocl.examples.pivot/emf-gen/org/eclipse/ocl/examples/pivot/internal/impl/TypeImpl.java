@@ -31,6 +31,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -1004,5 +1009,45 @@ public class TypeImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitType(this);
+	}
+	
+	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+//		return ((TypeManager)valueFactory.getStandardLibrary()).conformsTo(this, (Type)type, null);
+		throw new UnsupportedOperationException();		// WIP
+	}
+
+	public DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary) {
+		return standardLibrary.getCommonType(this, type);
+	}
+
+	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (this == type) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isOrdered() {
+		return false;
+	}
+
+	public boolean isUnique() {
+		return false;
+	}
+
+	public boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary) {
+		if (this == type) {
+			return true;
+		}
+		return standardLibrary.isSuperClassOf(this, type);
+	}
+
+	public boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary) {
+		return isSuperClassOf(inheritance.getType(), standardLibrary);
+	}
+
+	public LibraryFeature lookupImplementation(DomainOperation operation) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 } //TypeImpl

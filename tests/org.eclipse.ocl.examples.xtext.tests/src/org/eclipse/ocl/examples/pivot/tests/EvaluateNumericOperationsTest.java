@@ -20,9 +20,9 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.examples.pivot.values.impl.IntegerIntValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.IntegerLongValueImpl;
-import org.eclipse.ocl.examples.pivot.values.impl.IntegerValueImpl;
+import org.eclipse.ocl.examples.domain.values.impl.IntegerIntValueImpl;
+import org.eclipse.ocl.examples.domain.values.impl.IntegerLongValueImpl;
+import org.eclipse.ocl.examples.domain.values.impl.IntegerValueImpl;
 
 
 /**

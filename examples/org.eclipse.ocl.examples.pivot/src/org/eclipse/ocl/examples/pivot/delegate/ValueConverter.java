@@ -20,14 +20,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.BasicEList;
 
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
  * An object that converts values according to their declared multiplicities,
  * as collections or not.
- * 
- * @since 3.0
  */
 interface ValueConverter {
 

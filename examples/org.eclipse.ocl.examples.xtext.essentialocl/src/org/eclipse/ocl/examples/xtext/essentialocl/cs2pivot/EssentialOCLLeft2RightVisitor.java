@@ -29,6 +29,8 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.library.LibraryValidator;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -76,7 +78,6 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -150,16 +151,19 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected OclExpression checkImplementation(NamedExpCS csNavigatingExp,
 			Feature feature, CallExp callExp, OclExpression expression) {
-		CallableImplementation implementation;
+		LibraryFeature implementation;
 		try {
 			implementation = metaModelManager.getImplementation(feature);
 		} catch (Exception e) {
 			return context.addBadExpressionError(csNavigatingExp, "Failed to load '" + feature.getImplementationClass() + "': " + e);
 		}
 		if (implementation != null) {
-			Diagnostic diagnostic = implementation.validate(metaModelManager, callExp);
-			if (diagnostic != null) {
-				context.addDiagnostic(csNavigatingExp, diagnostic);
+			LibraryValidator validator = implementation.getValidator(metaModelManager);
+			if (validator != null) {
+				Diagnostic diagnostic = validator.validate(metaModelManager, callExp);
+				if (diagnostic != null) {
+					context.addDiagnostic(csNavigatingExp, diagnostic);
+				}
 			}
 		}
 		return expression;
@@ -394,7 +398,6 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected void resolveIterationIterators(NavigatingExpCS csNavigatingExp,
 			OclExpression source, LoopExp expression) {
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 		Iteration iteration = expression.getReferredIteration();
 		List<Variable> pivotIterators = new ArrayList<Variable>();
 		//

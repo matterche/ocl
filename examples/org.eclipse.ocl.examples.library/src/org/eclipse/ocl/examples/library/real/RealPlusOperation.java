@@ -16,22 +16,21 @@
  */
 package org.eclipse.ocl.examples.library.real;
 
-import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * RealPlusOperation realizes the Real::+() library operation.
- * 
- * @since 3.1
  */
 public class RealPlusOperation extends AbstractBinaryOperation
 {
 	public static final RealPlusOperation INSTANCE = new RealPlusOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
 		RealValue leftValue = left.toRealValue();
 		RealValue rightValue = right.toRealValue();
 		if ((leftValue != null) && (rightValue != null)) {

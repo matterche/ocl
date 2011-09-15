@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -43,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -1092,7 +1092,7 @@ public class PropertyImpl
 				setImplementationClass((String)newValue);
 				return;
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
-				setImplementation((CallableImplementation)newValue);
+				setImplementation((LibraryFeature)newValue);
 				return;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);

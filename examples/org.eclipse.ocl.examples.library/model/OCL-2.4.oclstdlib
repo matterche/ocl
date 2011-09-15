@@ -208,14 +208,14 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	operation isEmpty() : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation';
 	/**
 	The element with the maximum value of all elements in self.
-	Elements must be of a Comparable type to provide the compareTo operation.
+	Elements must be of an OclComparable type to provide the compareTo operation.
 	The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
 	UnlimitedNatural, Integer and Real fulfill this condition.
 	**/
 	operation max() : T => 'org.eclipse.ocl.examples.library.collection.CollectionMaxOperation';
 	/**
 	The element with the minimum value of all elements in self.
-	Elements must be of a Comparable type to provide the compareTo operation.
+	Elements must be of an OclComparable type to provide the compareTo operation.
 	The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
 	UnlimitedNatural, Integer and Real fulfill this condition.
 	**/
@@ -240,7 +240,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	operation size() : Integer => 'org.eclipse.ocl.examples.library.collection.CollectionSizeOperation';
 	/**
 	The addition of all elements in self.
-	Elements must be of a Summable type to provide the zero() and sum() operations.
+	Elements must be of an OclSummable type to provide the zero() and sum() operations.
 	The sum operation must be both associative: a.sum(b).sum(c) = a.sum(b.sum(c)), and commutative: a.sum(b) = b.sum(a).
 	UnlimitedNatural, Integer and Real fulfill this condition.
 
@@ -258,15 +258,6 @@ type CollectionClassifier<T,E> : ClassifierType conformsTo Classifier<T> {
 	Evaluates to the type of the collection elements.
 	**/
 	property elementType : E => 'org.eclipse.ocl.examples.library.collection.CollectionClassifierElementTypeProperty';
-}
-
-type Comparable conformsTo OclAny {
-	/**
-	Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.
-
-	The compareTo operation should be commutative.
-	*/
---	operation compareTo(that : OclSelf) : Boolean  => 'org.eclipse.ocl.examples.library.oclany.ComparableCompareToOperation';	
 }
 
 /**
@@ -330,6 +321,7 @@ type Integer : PrimitiveType conformsTo Real {
 	The absolute value of self.
 	**/
 	operation abs() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericAbsOperation';
+	operation compareTo(that : OclSelf) : Integer  => 'org.eclipse.ocl.examples.library.integer.IntegerCompareToOperation';	
 	/**
 	The number of times that i fits completely within self.
 	**/
@@ -473,6 +465,23 @@ type OclAny : AnyType {
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
+/**
+The type OclComparable defines the compareTo operation used by the sortedBy iteration. Only types that provide a derived
+compareTo implementation may be sorted. 
+*/
+type OclComparable conformsTo OclAny {
+	/**
+	Return -ve, 0, +ve according to whether self is less than, equal to , or greater than that.
+
+	The compareTo operation should be commutative.
+	*/
+	operation compareTo(that : OclSelf) : Integer;	
+}
+
+/**
+The type OclElement is the implicit supertype of any user-defined type that has no explicit supertypes. Operations defined
+for OclElement are therefore applicable to all user-defined types.
+*/
 type OclElement conformsTo OclAny {
 	/**
 	Return a set of all instances of the type and derived types of self.
@@ -562,6 +571,25 @@ and Iteration signatures. Instances of OclSelf are never created.
 type OclSelf : SelfType conformsTo OclAny {}
 
 type OclState conformsTo OclAny {
+}
+
+/**
+The type OclSummable defines the sum and zero operations used by the Collection::sum iteration. Only types that provide derived
+sum and zero implementations may be summed. 
+*/
+type OclSummable conformsTo OclAny {
+	/**
+	Return the sum of self and that.
+
+	The sum operation should be associative.
+	*/
+	operation sum(that : OclSelf) : OclSelf;	
+	/**
+	Return the 'zero'  value of self to initialize a summation.
+
+	zero().sum(self) = self.
+	*/
+	operation zero() : OclSelf;	
 }
 
 type OclTuple conformsTo OclAny {
@@ -714,7 +742,7 @@ Note that UnlimitedNatural is a subclass of Integer and that Integer is a subcla
 so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
 Real is itself an instance of the metatype PrimitiveType (from UML).
 **/
-type Real : PrimitiveType conformsTo Comparable, Summable {
+type Real : PrimitiveType conformsTo OclComparable, OclSummable {
 	/**
 	Returns true if the numeric value of self is the same as the numeric value of object2, false otherwise.
 	*/
@@ -763,6 +791,7 @@ type Real : PrimitiveType conformsTo Comparable, Summable {
 	The absolute value of self.
 	**/
 	operation abs() : Real => 'org.eclipse.ocl.examples.library.numeric.NumericAbsOperation';
+	operation compareTo(that : OclSelf) : Integer  => 'org.eclipse.ocl.examples.library.real.RealCompareToOperation';	
 	/**
 	The largest integer that is less than or equal to self.
 	**/
@@ -893,7 +922,7 @@ type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 The standard type String represents strings, which can be both ASCII or Unicode.
 String is itself an instance of the metatype PrimitiveType (from UML).
 **/
-type String : PrimitiveType conformsTo Comparable, Summable {
+type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
@@ -908,6 +937,7 @@ type String : PrimitiveType conformsTo Comparable, Summable {
 	Obtains the characters of self as a sequence.
 	**/
 	operation characters() : Sequence<String>  => 'org.eclipse.ocl.examples.library.string.StringCharactersOperation';
+	operation compareTo(that : OclSelf) : Integer  => 'org.eclipse.ocl.examples.library.string.StringCompareToOperation';	
 	/**
 	The concatenation of self and s.
 	**/
@@ -980,21 +1010,6 @@ type String : PrimitiveType conformsTo Comparable, Summable {
 	True if self is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 	**/
 	operation ">="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
-}
-
-type Summable conformsTo OclAny {
-	/**
-	Return the sum of self and that.
-
-	The sum operation should be associative.
-	*/
---	operation sum(that : OclSelf) : OclSelf  => 'org.eclipse.ocl.examples.library.oclany.SummableSumOperation';	
-	/**
-	Return the 'zero'  value of self to initialize a summation.
-
-	zero().sum(self) = self.
-	*/
---	operation zero() : OclSelf  => 'org.eclipse.ocl.examples.library.oclany.SummableZeroOperation';	
 }
 
 /**

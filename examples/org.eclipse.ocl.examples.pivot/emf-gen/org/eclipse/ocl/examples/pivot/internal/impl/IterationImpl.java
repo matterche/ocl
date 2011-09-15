@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -37,7 +38,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -299,7 +299,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 				setImplementationClass((String)newValue);
 				return;
 			case PivotPackage.ITERATION__IMPLEMENTATION:
-				setImplementation((CallableImplementation)newValue);
+				setImplementation((LibraryFeature)newValue);
 				return;
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				getTemplateBindings().clear();

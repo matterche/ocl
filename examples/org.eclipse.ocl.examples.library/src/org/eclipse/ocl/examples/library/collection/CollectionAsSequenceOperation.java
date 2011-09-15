@@ -16,21 +16,20 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * CollectionAsSequenceOperation realises the Collection::asSequence() library operation.
- * 
- * @since 3.1
  */
 public class CollectionAsSequenceOperation extends AbstractUnaryOperation
 {
 	public static final CollectionAsSequenceOperation INSTANCE = new CollectionAsSequenceOperation();
 
-	public Value evaluate(ValueFactory valueFactory, Value argument) throws InvalidValueException {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value argument) throws InvalidValueException {
 		return argument.asSequenceValue();
 	}
 }

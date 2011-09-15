@@ -27,7 +27,6 @@ import java.util.List;
  * @see LookupException#getAmbiguousMatches()
  * 
  * @author Christian W. Damus (cdamus)
- * @since 1.2
  */
 public class AmbiguousLookupException
     extends LookupException {

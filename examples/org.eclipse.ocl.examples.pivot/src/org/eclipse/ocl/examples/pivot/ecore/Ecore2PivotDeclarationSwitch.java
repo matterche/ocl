@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -70,11 +69,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
-import org.eclipse.ocl.examples.pivot.library.JavaComparisonOperation;
-import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOperation;
-import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOrEqualOperation;
-import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
-import org.eclipse.ocl.examples.pivot.library.JavaLessThanOrEqualOperation;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -166,68 +161,63 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		Class<?> instanceClass = eObject.getInstanceClass();
 		if (instanceClass != null) {
 			try {
+				MetaModelManager metaModelManager = converter.getMetaModelManager();
 				if (instanceClass == boolean.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getBooleanType());
+					pivotElement.setBehavioralType(metaModelManager.getBooleanType());
 				}
 				else if (instanceClass == byte.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == double.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getRealType());
+					pivotElement.setBehavioralType(metaModelManager.getRealType());
 				}
 				else if (instanceClass == float.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getRealType());
+					pivotElement.setBehavioralType(metaModelManager.getRealType());
 				}
 				else if (instanceClass == int.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == long.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 				}
 				else if (instanceClass == short.class) {
-					pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 				}
 				else {
 					if (instanceClass == BigDecimal.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getRealType());
+						pivotElement.setBehavioralType(metaModelManager.getRealType());
 					}
 					else if (instanceClass == BigInteger.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Boolean.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getBooleanType());
+						pivotElement.setBehavioralType(metaModelManager.getBooleanType());
 					}
 					else if (instanceClass == Byte.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Double.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getRealType());
+						pivotElement.setBehavioralType(metaModelManager.getRealType());
 					}
 					else if (instanceClass == Float.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getRealType());
+						pivotElement.setBehavioralType(metaModelManager.getRealType());
 					}
 					else if (instanceClass == Integer.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Long.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Short.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getIntegerType());
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == String.class) {
-						pivotElement.setBehavioralType(converter.getMetaModelManager().getStringType());
+						pivotElement.setBehavioralType(metaModelManager.getStringType());
 					}
-					Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
-					List<Operation> ownedOperations = pivotElement.getOwnedOperations();
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
+					else {
+						instanceClass.getDeclaredMethod("compareTo", instanceClass);
+						converter.queueReference(eObject);			// Defer synthesis till supertypes resolved
+					}
 				}
 			} catch (Exception e) {
 			}
@@ -483,18 +473,6 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyDataTypeOrEnum(DataType pivotElement, EDataType eDataType) {
 		copyClassifier(pivotElement, eDataType);
 		pivotElement.setIsSerializable(eDataType.isSerializable());
-	}
-
-	protected Operation createJavaComparisonOperation(String operator, JavaComparisonOperation javaOperation) {
-		Operation operation = PivotFactory.eINSTANCE.createOperation();
-		operation.setName(operator);
-		operation.setImplementation(javaOperation);
-		Parameter parameter = PivotFactory.eINSTANCE.createParameter();
-		parameter.setName("that");
-		parameter.setType(converter.getMetaModelManager().getOclAnyType());
-		operation.getOwnedParameters().add(parameter);
-		operation.setType(converter.getMetaModelManager().getBooleanType());
-		return operation;
 	}
 
 	protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {

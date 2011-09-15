@@ -18,10 +18,12 @@ package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.types.DomainType
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -45,7 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Type
-		extends NamedElement, TemplateableElement, ParameterableElement {
+		extends NamedElement, TemplateableElement, ParameterableElement, DomainType {
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.

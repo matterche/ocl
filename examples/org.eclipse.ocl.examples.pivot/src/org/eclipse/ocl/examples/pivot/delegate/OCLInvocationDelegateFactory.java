@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Factory for OCL operation-invocation delegates.
- * 
- * @since 3.0
  */
 public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		implements EOperation.Internal.InvocationDelegate.Factory

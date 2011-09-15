@@ -28,8 +28,6 @@ import org.eclipse.ocl.examples.pivot.options.Option;
 /**
  * Partial implementation of the {@link BasicEnvironment} interface, providing
  * default behaviours for most features.
- * 
- * @since 1.2
  */
 public abstract class AbstractBasicEnvironment implements BasicEnvironment {
 	private BasicEnvironment parent;					// parent in environment hierarchy

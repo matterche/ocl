@@ -22,19 +22,19 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.QueryDelegate;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -95,9 +95,9 @@ public class OCLQueryDelegate implements QueryDelegate
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
 			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			Value targetValue = valueFactory.valueOf(target);
-			Type targetType = targetValue.getType();
-			Type requiredType = specification.getContextVariable().getType();
-			if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
+			DomainType targetType = targetValue.getType();
+			DomainType requiredType = specification.getContextVariable().getType();
+			if (!targetType.conformsTo(requiredType, metaModelManager)) {
 				String message = NLS.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(message);
 			}
@@ -121,7 +121,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				Value value = valueFactory.valueOf(object);
 				targetType = value.getType();
 				requiredType = parameterVariable.getType();
-				if (!metaModelManager.conformsTo(targetType, requiredType, null)) {
+				if (!targetType.conformsTo(requiredType, metaModelManager)) {
 					String message = NLS.bind(OCLMessages.MismatchedArgumentType_ERROR_, new Object[]{name, targetType, requiredType});
 					throw new OCLDelegateException(message);
 				}
@@ -139,7 +139,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	//		return converter.convert(ocl, result);
 			return valueFactory.getEcoreValueOf(result);
 		}
-		catch (EvaluationException e) {
+		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));
 			throw new InvocationTargetException(new OCLDelegateException(message));
 		}

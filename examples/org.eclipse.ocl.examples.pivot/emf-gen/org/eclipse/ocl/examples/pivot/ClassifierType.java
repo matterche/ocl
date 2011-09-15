@@ -16,10 +16,14 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.domain.types.DomainClassifierType;
+
+
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier Type</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.types.DomainClassifierType
  * <!-- end-user-doc -->
  *
  * <p>
@@ -33,7 +37,7 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface ClassifierType extends DataType
+public interface ClassifierType extends DataType, DomainClassifierType
 {
 	/**
 	 * Returns the value of the '<em><b>Instance Type</b></em>' reference.

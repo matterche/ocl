@@ -16,21 +16,20 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * OclAnyOclIsInvalidOperation realises the OclAny::oclIsInvalid() library operation.
- * 
- * @since 3.1
  */
-public class OclAnyOclIsInStateOperation extends AbstractOperation
+public class OclAnyOclIsInStateOperation extends AbstractBinaryOperation
 {
 	public static final OclAnyOclIsInStateOperation INSTANCE = new OclAnyOclIsInStateOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		throw new UnsupportedOperationException();
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal, Value argVal) throws InvalidValueException {
+		throw new UnsupportedOperationException();			// FIXME
 	}
 }

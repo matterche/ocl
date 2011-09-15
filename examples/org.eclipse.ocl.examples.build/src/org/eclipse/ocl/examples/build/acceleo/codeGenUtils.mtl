@@ -1,0 +1,68 @@
+[comment encoding = UTF-8 /]
+[module codeGenUtils('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+[import genPackageUtils/]
+[import genUtils/]
+
+[query public cgGetAllProperSuperClasses(elem : Class) : Set(Class) = 
+elem->closure(c : Class | cgGetSuperClasses(c)) /]
+
+[query public cgGetAllProperSuperClasses(elem : Collection(Class)) : Set(Class) = 
+elem->closure(c : Class | cgGetSuperClasses(c)) /]
+
+[query public cgGetAllPropertiesOf(cls : Class) : Set(Property) = 
+cgGetAllSuperClasses(cls).ownedAttribute->asSet()/]
+
+[query public cgGetAllSuperClasses(elem : Class) : Set(Class) = 
+elem->closure(c : Class | cgGetSuperClasses(c))->including(elem)->asSet() /]
+
+[query public cgGetDepth(elem : Class) : Integer = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getDepth(org.eclipse.ocl.examples.pivot.Class)', Sequence{elem}) /]
+
+[query public cgGetLiteralName(elem : Package) : String = 
+'_' + cgEncodeName(elem) /]
+
+[query public cgGetLiteralName(elem : Type) : String = 
+'Classes._' + elem.name /]
+
+[query public cgGetLiteralName(elem : Set(Class)) : String =
+cgEncodeName(elem->any(true)) /]
+
+[query public cgGetLiteralName(elem : Operation) : String = 
+if elem.oclIsUndefined() then 'null' else '_' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+
+[query public cgGetLiteralName(elem : Property) : String = 
+if elem.oclIsUndefined() then 'null' else '_' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+
+[query public cgGetLocalOperationsOf(cls : Class) : Set(Operation) = 
+let superSignatures : Set(String) = cgGetSuperSignatures(cls) in
+cls.ownedOperation->asSet()->reject(op : Operation | false and superSignatures->includes(cgGetSignature(op)))/]
+
+[query public cgGetLocalPropertiesOf(cls : Class) : Set(Property) = 
+cls.ownedAttribute->asSet()/]
+
+[query public cgGetOverloadOp(cls : Class, superOp : Operation) : Operation = 
+let allOps : Set(Operation) = cgGetAllSuperClasses(cls).ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
+in let allOpSupers : Set(Class) = cgGetAllProperSuperClasses(allOps.class)
+in let allSuperOps : Set(Operation) = allOpSupers.ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
+in (allOps - allSuperOps)->asSequence()->first()/]
+
+[query public cgGetOverloadedOperationsOf(cls : Class, superCls : Class) : Bag(Operation) = 
+let superOperations : Set(Operation) = cgGetLocalOperationsOf(superCls)
+in superOperations->collectNested(superOp : Operation |
+let overloadOperations : OrderedSet(Operation) = cls.ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))
+in if overloadOperations->notEmpty() then overloadOperations->first() else null endif)/]
+
+[query public cgGetPivotPackage(ePackage : EPackage) : Package =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getPivotPackage(org.eclipse.emf.ecore.EPackage)', Sequence{ePackage}) /]
+
+[query public cgGetSignature(elem : Operation) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSignature(org.eclipse.ocl.examples.pivot.Operation)', Sequence{elem}) /]
+
+[query public cgGetExpressionInOcl(contextElement : NamedElement, specification : OpaqueExpression) : ExpressionInOcl =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getExpressionInOcl(org.eclipse.ocl.examples.pivot.NamedElement, org.eclipse.ocl.examples.pivot.OpaqueExpression)', Sequence{contextElement, specification}) /]
+
+[query public cgGetSuperClasses(elem : Class) : Set(Class) = 
+elem.superClass->collect(c : Type | cgGetUnspecializedClass(c))->asSet()/]
+
+[query public cgGetSuperSignatures(elem : Class) : Set(String) = 
+elem->closure(c : Class | cgGetSuperClasses(c)).ownedOperation->collect(op : Operation | cgGetSignature(op))->asSet()/]

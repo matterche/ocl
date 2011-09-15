@@ -1,0 +1,295 @@
+[comment encoding = UTF-8 /]
+[module generateJavaTables('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+[import codeGenUtils/]
+[import genPackageUtils/]
+[import genUtils/]
+
+[template public generate(genModel : GenModel)]
+[comment @main /]
+[for (genPackage : GenPackage | genModel.genPackages)]
+[let ePackage : EPackage = genPackage.ecorePackage]
+[let pPackage : Package = cgGetPivotPackage(ePackage)]
+[generate2(genPackage, pPackage)/]
+[/let]
+[/let]
+[/for]
+[/template]
+
+[template public generate2(genPackage : GenPackage, pkg : Package)]
+[let tablesClassName : String = genPackageGetTablesClassName(genPackage)]
+[let packagePathPrefix : String = if genPackage.basePackage.size() > 0 then genPackage.basePackage.replaceAll('\\.', '/') + '/' else '' endif]
+[let packagePrefix : String = packagePathPrefix.replaceAll('/', '.')]
+[file (packagePathPrefix + pkg.name + '/' + tablesClassName + '.java', false, 'UTF-8')]
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * This code is auto-generated
+ * from: [pkg.name/]
+ * by: org.eclipse.ocl.examples.build.acceleo.GenerateJavaTables
+ * defined by: org.eclipse.ocl.examples.build.acceleo.generateJavaTables.mtl
+ *
+ * Do not edit it.
+ *
+ * ['$' + 'I' + 'd' + '$'/]
+ */
+package [packagePrefix/][pkg.name/];
+
+import org.eclipse.ocl.examples.library.executor.ExecutorClass;
+import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
+import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
+import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
+import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
+import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
+import org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty;
+import [genPackage.basePackage/].[genPackage.ecorePackage.name/].[genPackage.prefix/]Package;
+
+/**
+ * [tablesClassName/] provides the dispatch tables for the [pkg.name/] for use by the OCL dispatcher.
+ *
+ * In order to ensure correct static initialization, a top level class element must be accessed
+ * before any nested class element. Therefore an access to PACKAGE.getClass() is recommended.
+ */
+@SuppressWarnings("nls")
+public class [tablesClassName/]
+{
+	/**
+	 *	The package descriptor for the package.
+	 */
+	public static final ExecutorPackage PACKAGE = new ExecutorPackage("[pkg.name/]", null);
+
+	[declareClasses(pkg)/]
+
+	[declareFragments(genPackage, pkg)/]
+
+	[declareOperations(genPackage, pkg)/]
+
+	[declareProperties(genPackage, pkg)/]
+
+	[declareClassFragments(pkg)/]
+
+	[declareFragmentOperations(genPackage, pkg)/]
+
+	[declareFragmentProperties(pkg)/]
+}
+[/file]
+[/let]
+[/let]
+[/let]
+[/template]
+
+[template public declareClasses(pkg : Package)]
+/**
+ *	The class descriptors for each class.
+ */
+public static class Classes {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
+    [declareClass(cls)/]
+[/for]
+
+	private static final ExecutorClass['[]'/] classes = {
+[for (type : Type | pkg.ownedType->sortedBy(getMoniker())) separator(',\n') after('\n')]
+	    _[type.name/][/for]
+	};
+
+	/*
+	 *	Install the class descriptors in the package descriptor.
+	 */
+	static {
+		PACKAGE.init(classes);
+		ClassFragments.init();
+		FragmentOperations.init();
+		FragmentProperties.init();
+	}
+}
+[/template]
+
+[template public declareClass(cls : Class)]
+public static final ExecutorClass _[cls.name/] = new ExecutorClass("[cls.name/]", PACKAGE, [getClassFlags(cls)/], null, null);[for (superCls : Class | cgGetSuperClasses(cls)->sortedBy(name)) before(' // ') separator(',')][superCls.name/][/for]
+[/template]
+
+[template public declareFragments(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The fragment descriptors for the local elements of each class and its superclasses.
+ */
+public static class Fragments {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
+	[declareFragment(genPackage, cls, pkg)/]
+[/for]}
+[/template]
+
+[template public declareFragment(genPackage : GenPackage, cls : Class, pkg : Package)]
+[for (superCls : Class | cgGetAllSuperClasses(cls)->sortedBy(name))]
+public static final ExecutorFragment _[cls.name/]__[superCls.name/] = new ExecutorFragment([cgGetLiteralName(cls)/], [genPackageGetQualifiedTypeLiteralName(genPackage, superCls, pkg)/], null, null);
+[/for]
+[/template]
+
+[template public declareOperations(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The operation descriptors for each operation of each class.
+ */
+public static class Operations {[for (cls : Class | pkg.ownedType->filter(Class)->select(ownedOperation->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
+	[declareOperations(genPackage, cls)/]
+[/for]}
+[/template]
+
+[template public declareOperations(genPackage : GenPackage, cls : Class)]
+[let ops : OrderedSet(Operation) = cls.ownedOperation->asOrderedSet()->sortedBy(getMoniker())]
+[for (i : Integer | Sequence{1..ops->size()}) separator('\n')]
+[let op : Operation = ops->at(i)]
+public static final ExecutorOperation [cgGetLiteralName(op)/] = new ExecutorOperation("[op.name/]", [cgGetLiteralName(cls)/], [i-1/], [genPackageGetImplementationName(genPackage, op)/]);[/let][/for][/let]
+[/template]
+
+[template public declareProperties(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The property descriptors for each property of each class.
+ */
+public static class Properties {[for (cls : Class | pkg.ownedType->filter(Class)->select(ownedAttribute->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
+	[declareProperties(genPackage, cls)/]
+[/for]}
+[/template]
+
+[template public declareProperties(genPackage : GenPackage, cls : Class)]
+[let props : OrderedSet(Property) = cls.ownedAttribute->select(prop : Property | genPackageIsProperty(genPackage, prop))->sortedBy(name)]
+[for (i : Integer | Sequence{1..props->size()}) separator('\n')]
+[let prop : Property = props->at(i)]
+public static final ExecutorProperty [cgGetLiteralName(prop)/] = new ExecutorProperty("[prop.name/]", [cgGetLiteralName(cls)/], [i-1/], [genPackageGetImplementationName(genPackage, prop)/]);[/let][/for][/let]
+[/template]
+
+[template public declareClassFragments(pkg : Package)]
+/**
+ *	The fragments for all base classes in depth order: OclAny first, OclSelf last.
+ */
+public static class ClassFragments {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n') separator('\n')]
+	[declareClassFragment(cls)/]
+[/for]
+
+	/**
+	 *	Install the fragment descriptors in the class descriptors.
+	 */
+	static {
+[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name))]
+		[cgGetLiteralName(cls)/].initFragments(_[cls.name/], __[cls.name/]);
+[/for]
+	}
+
+	public static void init() {}
+}
+[/template]
+
+[template public declareClassFragment(cls : Class)]
+private static final ExecutorFragment['[]'/] _[cls.name/] =
+[let superClasses : OrderedSet(Class) = cgGetAllSuperClasses(cls)->asOrderedSet()->sortedBy(c : Class | cgGetDepth(c))]
+{
+[for (superClass : Class | superClasses) separator(',\n')]    Fragments._[cls.name/]__[superClass.name/] /* [cgGetDepth(superClass)/] */[/for]
+};
+[/let]
+private static final int['[]'/] __[cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperClasses(cls)->select(c : Class | cgGetDepth(c) = i)->size()/][/for] };
+[/template]
+
+[template public declareClassIndexes(pkg : Package)]
+/**
+ *	The number of base classes at each inheritance depth: OclAny first, OclSelf last.
+ */
+public static class ClassIndexes {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
+	[declareClassIndex(cls)/]
+[/for]}
+[/template]
+
+[template public declareClassIndex(cls : Class)]
+public static final int['[]'/] [cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperClasses(cls)->select(c : Class | cgGetDepth(c) = i)->size()/][/for] };
+[/template]
+
+[template public declareFragmentOperations(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The lists of local operations or local operation overrides for each fragment of each class.
+ */
+public static class FragmentOperations {
+[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) separator('\n')]
+	[declareLocalFragmentOperations(genPackage, cls, pkg)/]
+[for (superCls : Class | cgGetAllProperSuperClasses(cls)->sortedBy(name))]
+	[declareSuperFragmentOperations(genPackage, superCls, cls, pkg)/]
+[/for]
+[/for]
+
+	/*
+	 *	Install the operation descriptors in the fragment descriptors.
+	 */
+	static {
+[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) separator('\n')]
+[for (superCls : Class | cgGetAllSuperClasses(cls)->sortedBy(name))]
+		Fragments._[cls.name/]__[superCls.name/].initOperations(_[cls.name/]__[superCls.name/]);
+[/for][/for]
+	}
+
+	public static void init() {}
+}
+[/template]
+
+[template public declareLocalFragmentOperations(genPackage : GenPackage, cls : Class, pkg : Package)]
+[let ops : OrderedSet(Operation) = cgGetLocalOperationsOf(cls)->sortedBy(getMoniker())]
+private static final ExecutorOperation['[]'/] _[cls.name/]__[cls.name/] = [if ops->isEmpty()]{[else]
+{
+[for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
+    [genPackageGetQualifiedLiteralName(genPackage, ops->at(i), pkg)/] /* [cgGetSignature(ops->at(i))/] */[/for]
+[/if]};[/let]
+[/template]
+
+[template public declareSuperFragmentOperations(genPackage : GenPackage, superCls: Class, cls : Class, pkg : Package)]
+[let ops : OrderedSet(Operation) = cgGetLocalOperationsOf(superCls)->sortedBy(getMoniker())]
+private static final ExecutorOperation['[]'/] _[cls.name/]__[superCls.name/] = [if ops->isEmpty()]{[else]
+{
+[for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
+[let overloadOp : Operation = cgGetOverloadOp(cls, ops->at(i))]
+    [genPackageGetQualifiedLiteralName(genPackage, overloadOp, pkg)/] /* [cgGetSignature(overloadOp)/] */[/let][/for]
+[/if]};[/let]
+[/template]
+
+[template public declareFragmentProperties(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The lists of local properties for the local fragment of each class.
+ */
+public static class FragmentProperties {
+[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) separator('\n')]
+	[declareFragmentProperty(genPackage, cls, pkg)/]
+[/for]
+
+	/**
+	 *	Install the property descriptors in the fragment descriptors.
+	 */
+	static {
+[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name))]
+  	 	Fragments._[cls.name/]__[cls.name/].initProperties(_[cls.name/]);
+[/for]
+	}
+
+	public static void init() {}
+}
+[/template]
+
+[template public declareFragmentProperty(genPackage : GenPackage, cls : Class, pkg : Package)]
+[let props : OrderedSet(Property) = cgGetAllPropertiesOf(cls)->select(prop : Property | genPackageIsProperty(genPackage, prop))->sortedBy(name)]
+private static final ExecutorProperty['[]'/] _[cls.name/] = [if props->isEmpty()]{[else]
+{
+[for (i : Integer | Sequence{1..props->size()}) separator (',\n') after ('\n')]
+    [genPackageGetQualifiedLiteralName(genPackage, props->at(i), pkg)/][/for]
+[/if]};[/let]
+[/template]
+
+[query public getClassFlags(elem : Class) : String =
+if (elem.oclIsKindOf(OrderedSetType)) then 'ExecutorClass.ORDERED | ExecutorClass.UNIQUE'
+else if (elem.oclIsKindOf(SetType)) then 'ExecutorClass.UNIQUE'
+else if (elem.oclIsKindOf(SequenceType)) then 'ExecutorClass.ORDERED'
+else '0'
+endif endif endif/]
+
+[query public printClasses(elem : Collection(Class)) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'printClasses(java.lang.Object)', Sequence{elem}) /]

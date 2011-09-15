@@ -19,19 +19,22 @@ package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
+import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.NullValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.values.NullValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * The evaluation environment keeps track of the current values of variables
@@ -53,7 +56,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
-public interface EvaluationEnvironment {
+public interface EvaluationEnvironment extends DomainEvaluationEnvironment {
     /**
      * Returns the value associated with the supplied variable declaration
      * 
@@ -71,7 +74,7 @@ public interface EvaluationEnvironment {
      * @param value
      *            the new value
      */
-    void replace(VariableDeclaration referredVariable, Value value);
+    void replace(DomainTypedElement referredVariable, Value value);
 
     /**
      * Adds the supplied variable declaration and value binding to the environment.  The variable declaration
@@ -84,7 +87,7 @@ public interface EvaluationEnvironment {
      *            
      * @see #replace(String, Object)
      */
-    void add(VariableDeclaration referredVariable, Value value);
+    void add(DomainTypedElement referredVariable, Value value);
  
     /**
      * Removes the supplied variable declaration and binding from the environment (if it exists)
@@ -97,7 +100,7 @@ public interface EvaluationEnvironment {
      * @deprecated let expiry of a nested evaluation environment remove automatically
      */
     @Deprecated
-    Value remove(VariableDeclaration referredVariable);
+    Value remove(DomainTypedElement referredVariable);
 
     /**
      * Clears the environment of variables.
@@ -195,7 +198,7 @@ public interface EvaluationEnvironment {
 	 *     classifier extents
 	 * @return the extent map
 	 */
-    ModelManager createModelManager(Object object);
+    DomainModelManager createModelManager(Object object);
     
     /**
      * Queries whether an object is an instance of the specified classifier or
@@ -246,9 +249,9 @@ public interface EvaluationEnvironment {
 
 	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
 
-	NullValue throwInvalidEvaluation(String message, OclExpression expression) throws InvalidEvaluationException;
+	NullValue throwInvalidEvaluation(String message, DomainExpression expression) throws InvalidEvaluationException;
 
-	NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException;
+	NullValue throwInvalidEvaluation(String message, DomainExpression expression, Object context) throws InvalidEvaluationException;
 
-	NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object context, String message, Object... bindings) throws InvalidEvaluationException;
+	NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context, String message, Object... bindings) throws InvalidEvaluationException;
 }

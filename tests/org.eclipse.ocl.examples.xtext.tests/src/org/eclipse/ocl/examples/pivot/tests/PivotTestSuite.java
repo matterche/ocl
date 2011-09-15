@@ -54,7 +54,15 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.BooleanValue;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -62,9 +70,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -73,23 +79,17 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.BooleanValue;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
@@ -276,9 +276,9 @@ public abstract class PivotTestSuite
 			ExpressionInOcl result = helper.createInvariant(denormalized);
 			return result;
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage());
+			failOn(denormalized, e);
 			return null;
-		}		
+		}
 	}
 
 	/**
@@ -290,8 +290,8 @@ public abstract class PivotTestSuite
 			Object value = check(helper, context, denormalized);
 			assertEquals(denormalized, false, value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -305,8 +305,8 @@ public abstract class PivotTestSuite
 			Object value = check(helper, context, denormalized);
 			assertEquals(denormalized, true, value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -317,8 +317,6 @@ public abstract class PivotTestSuite
 	 * 
 	 * @param diagnostic a diagnostic
 	 * @param excType an exception that must not be indicated by the diagnostic
-	 * 
-	 * @since 1.2
 	 */
     protected void assertNoException(Resource.Diagnostic diagnostic, java.lang.Class<? extends Throwable> excType) {
     	if (diagnostic instanceof ExceptionDiagnostic) {
@@ -355,8 +353,7 @@ public abstract class PivotTestSuite
 			ExpressionInOcl result = helper.createQuery(denormalized);
 			return result;
 		} catch (Exception e) {
-//			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage());
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -371,8 +368,8 @@ public abstract class PivotTestSuite
 			Value value = evaluate(helper, context, denormalized);
 			assertFalse(denormalized + " expected defined: ", value.isUndefined());
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -390,6 +387,7 @@ public abstract class PivotTestSuite
 				expected = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)expected);
 			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
+//			typeManager.addLockedElement(expectedValue.getType());
 			Value value = evaluate(helper, context, denormalized);
 //			String expectedAsString = String.valueOf(expected);
 //			String valueAsString = String.valueOf(value);
@@ -406,8 +404,8 @@ public abstract class PivotTestSuite
 				}
 			}
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -422,8 +420,8 @@ public abstract class PivotTestSuite
 			BigDecimal value = (BigDecimal) evaluate(helper, context, denormalized);
 			assertTrue(denormalized, (value.compareTo(expected.add(delta)) >= 0) && (value.compareTo(expected.subtract(delta)) >= 0));
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -444,8 +442,8 @@ public abstract class PivotTestSuite
 				assertEquals(denormalized, expected, value);
 			}
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -458,9 +456,9 @@ public abstract class PivotTestSuite
 		try {
 			Object value = evaluate(helper, context, denormalized);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
-            return null;
+		} catch (Exception e) {
+			failOn(denormalized, e);
+			return null;
 		}
 	}
 
@@ -474,8 +472,8 @@ public abstract class PivotTestSuite
 			Value value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, valueFactory.getFalse(), value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -489,11 +487,11 @@ public abstract class PivotTestSuite
 		try {
 			Value value = evaluate(helper, context, denormalized);
 			fail(denormalized + " expected: invalid but was: " + value);
-		} catch (EvaluationException e) {
+		} catch (DomainException e) {
 //			assertEquals("Invalid Value Reason", reason, e.getMessage());
 //			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 		}
 		return null;
 	}
@@ -505,11 +503,11 @@ public abstract class PivotTestSuite
 			Value value = evaluate(helper, context, denormalized);
 			fail(denormalized + " expected: invalid but was: " + value);
 //           fail("Expected invalid for \"" + denormalized + "\"");
-		} catch (EvaluationException e) {
+		} catch (DomainException e) {
 			assertEquals("Invalid Value Reason", reason, e.getMessage());
 			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 		}
 		return null;
 	}
@@ -524,8 +522,8 @@ public abstract class PivotTestSuite
 			Object value = evaluate(helper, context, denormalized);
 			assertNotNull(denormalized, value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -540,8 +538,8 @@ public abstract class PivotTestSuite
 			Object value = evaluate(helper, context, denormalized);
 			assertNotSame(denormalized, expected, value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -558,8 +556,8 @@ public abstract class PivotTestSuite
 				assertEquals(denormalized, valueFactory.getNull(), value);
 			}
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -585,8 +583,8 @@ public abstract class PivotTestSuite
 			Object expectedResultQuery = evaluate(helper, context, denormalizedExpectedResultExpression);
 			Object result = assertQueryEquals(context, expectedResultQuery, expression);
 			return result;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpectedResultExpression + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalizedExpectedResultExpression, e);
 			return null;
 		}
 	}
@@ -610,12 +608,10 @@ public abstract class PivotTestSuite
 			BooleanValue actualResult = ((CollectionValue) result).includesAll(expectedResult);
 			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult.isTrue());
 			return result;
-		} catch (InvalidValueException e) {
-	        fail("Failed to evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalizedExpression, e);
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -637,8 +633,8 @@ public abstract class PivotTestSuite
 			assertTrue(expectedResultQuery instanceof CollectionValue);
 			Object result = assertResultContainsAll(context, (CollectionValue) expectedResultQuery, expression);
 			return result;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalizedExpectedResultExpression + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalizedExpectedResultExpression, e);
 			return null;
 		}
 	}
@@ -669,8 +665,8 @@ public abstract class PivotTestSuite
 			Value value = evaluate(helper, context, denormalized);
 			assertEquals(denormalized, valueFactory.getTrue(), value);
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -687,8 +683,8 @@ public abstract class PivotTestSuite
 				assertEquals(denormalized, valueFactory.getUnlimited(), value);
 			}
 			return value;
-		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+		} catch (Exception e) {
+			failOn(denormalized, e);
 			return null;
 		}
 	}
@@ -787,11 +783,8 @@ public abstract class PivotTestSuite
 	/**
 	 * Return an isOrdered,isUnique collection containing args.
 	 */
-	protected CollectionValue createCollection(boolean isOrdered, boolean isUnique, Value... args) {
-		if (isOrdered)
-			return isUnique ? valueFactory.createOrderedSetValue(args) : valueFactory.createSequenceValue(args);
-		else
-			return isUnique ? valueFactory.createSetValue(args) : valueFactory.createBagValue(args);
+	protected CollectionValue createCollection(boolean isOrdered, boolean isUnique, Type type, Value... args) {
+		return valueFactory.createCollectionValue(isOrdered, isUnique, type, args);
 	}
 
 	public Comment createComment() {
@@ -1077,6 +1070,23 @@ public abstract class PivotTestSuite
 		
 		return result;
 	}
+
+	protected Value failOn(String expression, Throwable e) {
+		if (e instanceof DomainException) {
+			Throwable eCause = e.getCause();
+			if (eCause != null) {
+				return failOn(expression, eCause);
+			}
+	        fail("Failed to evaluate \"" + expression + "\": " + e.getLocalizedMessage());
+		}
+		else if (e instanceof DomainException) {
+	        fail("Failed to parse or evaluate \"" + expression + "\": " + e.getLocalizedMessage());
+		}
+		else {
+	        fail("Failure for \"" + expression + "\": " + e.getLocalizedMessage());
+		}
+		return null;
+	}
 	
 	/**
 	 * Retrieves the first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Attribute</b></em>' reference list.
@@ -1133,7 +1143,7 @@ public abstract class PivotTestSuite
 		return valueFactory.getNull();
 	}
 	
-	protected StandardLibrary getOCLStandardLibrary() {
+	protected DomainStandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
 	}
 	
@@ -1162,11 +1172,11 @@ public abstract class PivotTestSuite
 		return PLUGIN_ID;
 	}
 	
-	protected Type getUMLBoolean() {
+	protected DomainType getUMLBoolean() {
 		return getOCLStandardLibrary().getBooleanType();
 	}
 	
-	protected Type getUMLInteger() {
+	protected DomainType getUMLInteger() {
 		return getOCLStandardLibrary().getIntegerType();
 	}
 
@@ -1174,11 +1184,11 @@ public abstract class PivotTestSuite
 		return metaModelManager.getPivotMetaModel();
 	}
 	
-	protected Type getUMLString() {
+	protected DomainType getUMLString() {
 		return getOCLStandardLibrary().getStringType();
 	}
 	
-	protected Type getUMLUnlimitedNatural() {
+	protected DomainType getUMLUnlimitedNatural() {
 		return getOCLStandardLibrary().getUnlimitedNaturalType();
 	}
 

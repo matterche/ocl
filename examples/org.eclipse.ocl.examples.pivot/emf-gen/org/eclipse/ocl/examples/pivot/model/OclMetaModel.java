@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -48,7 +49,7 @@ public class OclMetaModel extends XMLResourceImpl
 	 */
 	public static final String PIVOT_URI = "http://www.eclipse.org/ocl/3.1.0/Pivot";
 
-	public OclMetaModel(StandardLibrary standardLibrary, String name, String nsURI) {
+	public OclMetaModel(PivotStandardLibrary standardLibrary, String name, String nsURI) {
 		super(URI.createURI(PIVOT_URI));
 		Package metaModel = create(standardLibrary);
 		getContents().add(metaModel);
@@ -63,7 +64,7 @@ public class OclMetaModel extends XMLResourceImpl
 	/**
 	 *	Create and return a pivot model of the Pivot Model.
 	 */
-	public static Package create(StandardLibrary standardLibrary)
+	public static Package create(PivotStandardLibrary standardLibrary)
 	{
 		Package symbol_1 = PivotFactory.eINSTANCE.createPackage(); // http://www.eclipse.org/ocl/3.1.0/Pivot
 		Class symbol_2 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation

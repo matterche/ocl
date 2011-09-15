@@ -16,22 +16,22 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
  * OclAnyToStringOperation realises the OclAny::toString() library operation.
- * 
- * @since 3.1
  */
-public class OclAnyToStringOperation extends AbstractOperation
+public class OclAnyToStringOperation extends AbstractUnaryOperation
 {
 	public static final OclAnyToStringOperation INSTANCE = new OclAnyToStringOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) {
+		ValueFactory valueFactory = evaluator.getValueFactory();
 		String string = sourceVal == null?  Value.INVALID_NAME : sourceVal.oclToString();
-		return evaluationVisitor.getValueFactory().stringValueOf(string);
+		return valueFactory.stringValueOf(string);
 	}
 }

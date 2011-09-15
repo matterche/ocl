@@ -110,8 +110,6 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 	 * OCL environments.
 	 * 
 	 * @author cdamus
-	 * 
-	 * @since 1.1
 	 */
 	class RegistryReader implements IRegistryChangeListener {
 		private final String namespace;
@@ -246,8 +244,6 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 	 * Eclipse extension registry.
 	 * 
 	 * @author cdamus
-	 *
-	 * @since 1.1
 	 */
 	private abstract class EnvironmentDescriptor {
 		private final Set<String> packageURIs = new java.util.HashSet<String>();

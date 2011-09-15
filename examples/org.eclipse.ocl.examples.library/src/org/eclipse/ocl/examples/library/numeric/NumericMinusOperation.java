@@ -16,17 +16,14 @@
  */
 package org.eclipse.ocl.examples.library.numeric;
 
-import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.RealValue;
+import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
  * MinusOperation realises the -() library operation.
- * 
- * @since 3.1
  */
 @Deprecated
 public class NumericMinusOperation extends AbstractNumericBinaryOperation
@@ -34,12 +31,12 @@ public class NumericMinusOperation extends AbstractNumericBinaryOperation
 	public static final NumericMinusOperation INSTANCE = new NumericMinusOperation();
 
 	@Override
-	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
+	protected Value evaluateInteger(DomainEvaluator evaluator, IntegerValue left, IntegerValue right) throws InvalidValueException {
 		return left.subtract(right);
 	}
 
 	@Override
-	protected Value evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) throws InvalidValueException {
+	protected Value evaluateReal(DomainEvaluator evaluator, RealValue left, RealValue right) throws InvalidValueException {
 		return left.subtract(right);
 	}
 }

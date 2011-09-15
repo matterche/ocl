@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
- * 
- * @since 3.0
  */
 public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		implements EStructuralFeature.Internal.SettingDelegate.Factory
