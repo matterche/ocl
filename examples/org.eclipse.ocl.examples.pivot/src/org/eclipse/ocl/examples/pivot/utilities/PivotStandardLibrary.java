@@ -55,11 +55,11 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 	 */
 	protected String defaultStandardLibraryURI = DEFAULT_OCL_STDLIB_URI;
 
+	private ClassifierType anyClassifierType = null;
 	private BagType bagType = null;
 	private PrimitiveType booleanType = null;
 	private org.eclipse.ocl.examples.pivot.Class classType = null;
 	private ClassifierType classClassifierType = null;
-	private ClassifierType classifierType = null;
 	private ClassifierType collectionClassifierType = null;
 	private CollectionType collectionType = null;
 	private org.eclipse.ocl.examples.pivot.Class enumerationType = null;
@@ -95,6 +95,25 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 
 	public void dispose() {
 		resetLibrary();	
+	}
+
+	public ClassifierType getAnyClassifierType() {
+		if (anyClassifierType == null) {
+			Type type = getRequiredLibraryType("AnyClassifier");
+			if (type instanceof ClassifierType) {
+				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("AnyClassifier is not a templated type");
+				}
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("AnyClassifier is not a templated type with a single argument");
+				}
+				anyClassifierType = (ClassifierType) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("AnyClassifier is not a ClassifierType");
+			}		
+		}
+		return anyClassifierType;
 	}
 
 	public BagType getBagType() {
@@ -159,25 +178,6 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 			}		
 		}
 		return classClassifierType;
-	}
-
-	public ClassifierType getClassifierType() {
-		if (classifierType == null) {
-			Type type = getRequiredLibraryType("Classifier");
-			if (type instanceof ClassifierType) {
-				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
-					throw new IllegalLibraryException("Classifier is not a templated type");
-				}
-				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
-					throw new IllegalLibraryException("Classifier is not a templated type with a single argument");
-				}
-				classifierType = (ClassifierType) type;
-			}
-			else if (type != null) {
-				throw new IllegalLibraryException("Classifier is not a ClassifierType");
-			}		
-		}
-		return classifierType;
 	}
 
 	public ClassifierType getCollectionClassifierType() {
@@ -517,7 +517,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 		booleanType = null;
 		classType = null;
 		classClassifierType = null;
-		classifierType = null;
+		anyClassifierType = null;
 		collectionClassifierType = null;
 		collectionType = null;
 		enumerationClassifierType = null;

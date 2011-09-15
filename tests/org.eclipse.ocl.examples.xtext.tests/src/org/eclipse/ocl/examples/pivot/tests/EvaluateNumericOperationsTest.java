@@ -37,7 +37,7 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
     protected void setUp() {
         super.setUp();
 //        helper.setContext(getMetaclass(denormalize("%Package")));
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(metaModelManager.getAnyClassifierType());
     }
 
 	public void testIntValue() {

@@ -1478,7 +1478,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public <T extends Type> T getLibraryType(T libraryType, List<? extends ParameterableElement> templateArguments) {
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
-		if ((libraryType == getClassifierType()) && (templateArguments != null) && (templateArguments.size() == 1) && (templateArguments.get(0) == libraryType)) {
+		if ((libraryType == getAnyClassifierType()) && (templateArguments != null) && (templateArguments.size() == 1) && (templateArguments.get(0) == libraryType)) {
 			return libraryType;
 		}
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();

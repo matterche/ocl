@@ -115,7 +115,7 @@ public class PivotValueFactory extends AbstractValueFactory
 //	}
 //
 //	public ObjectValue createObjectValue(ValueType type, Object object) {
-		return new ObjectValueImpl(this, getStandardLibrary().getClassifierType(), object);	// WIP A better type
+		return new ObjectValueImpl(this, getStandardLibrary().getAnyClassifierType(), object);	// WIP A better type
 	}
 }
  

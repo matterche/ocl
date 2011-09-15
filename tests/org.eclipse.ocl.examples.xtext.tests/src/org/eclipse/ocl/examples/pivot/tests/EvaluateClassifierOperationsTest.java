@@ -28,7 +28,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(metaModelManager.getAnyClassifierType());
     }
 
 	/**

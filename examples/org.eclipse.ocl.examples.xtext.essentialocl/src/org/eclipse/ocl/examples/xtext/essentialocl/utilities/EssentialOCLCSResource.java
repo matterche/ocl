@@ -189,7 +189,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 					addLibraryError(errors, e);
 				}
 				try {
-					metaModelManager.getClassifierType();
+					metaModelManager.getAnyClassifierType();
 				} catch (IllegalLibraryException e) {			
 					addLibraryError(errors, e);
 				}

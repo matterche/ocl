@@ -2,6 +2,8 @@ library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
 {
 precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
 
+type AnyClassifier<T> : ClassifierType conformsTo Class {}
+
 type Bag<T> : BagType conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
 	/**
 	The sub-bag of the source bag for which body is false.
@@ -81,9 +83,7 @@ type Class conformsTo OclAny {
 	operation oclType() : ClassClassifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';	
 }
 
-type ClassClassifier<T> : ClassifierType conformsTo Classifier<T> {}
-
-type Classifier<T> : ClassifierType conformsTo Class {}
+type ClassClassifier<T> : ClassifierType conformsTo AnyClassifier<T> {}
 
 /**
 Collection is the abstract supertype of all collection types in the OCL Standard Library.
@@ -253,7 +253,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 --	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
-type CollectionClassifier<T,E> : ClassifierType conformsTo Classifier<T> {
+type CollectionClassifier<T,E> : ClassifierType conformsTo AnyClassifier<T> {
 	/**
 	Evaluates to the type of the collection elements.
 	**/
@@ -282,7 +282,7 @@ type EnumerationLiteral conformsTo OclAny {}
 /**
  The standard type EnumerationClassifier represents the metatype of an Enumeration.
  **/
-type EnumerationClassifier<T> : ClassifierType conformsTo Classifier<T> {
+type EnumerationClassifier<T> : ClassifierType conformsTo AnyClassifier<T> {
 	/**
 	Evaluates to the literals of the enumeration.
 	**/
@@ -431,7 +431,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
+	operation oclAsType<TT>(type : AnyClassifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
 	/**
 	Evaluates to true if the self is in the state indentified by statespec. 
 	**/
@@ -444,7 +444,7 @@ type OclAny : AnyType {
 	Evaluates to true if the type of self conforms to t.
 	That is, self is of type t or a subtype of t. 
 	**/
-	operation oclIsKindOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
+	operation oclIsKindOf<T>(type : AnyClassifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
 	/**
 	Can only be used in a postcondition.
 	Evaluates to true if the self is created during performing the operation (for instance, it didn’t exist at precondition time). 
@@ -453,7 +453,7 @@ type OclAny : AnyType {
 	/**
 	Evaluates to true if self is of the type t but not a subtype of t 
 	*/
-	operation oclIsTypeOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
+	operation oclIsTypeOf<T>(type : AnyClassifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
 	/**
 	Evaluates to true if the self is equal to invalid or equal to null. 
 	**/
@@ -461,7 +461,7 @@ type OclAny : AnyType {
 	/**
 	Evaluates to the type of which self is an instance.
 	**/
-	operation oclType() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : AnyClassifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
@@ -490,11 +490,11 @@ type OclElement conformsTo OclAny {
 	/**
 	Returns the object for which self is a composed content or null if there is no such object.
 	*/
-	operation oclContainer<U>() : Classifier<U> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
+	operation oclContainer<U>() : AnyClassifier<U> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
 	/**
 	Returns the composed contents of self.
 	*/
-	operation oclContents<U>() : Set<Classifier<U>> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
+	operation oclContents<U>() : Set<AnyClassifier<U>> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
 }
 
 /**
@@ -1036,7 +1036,7 @@ Note that although UnlimitedNatural is a subclass of Integer, the unlimited valu
 Any use of the unlimited value as an integer or real is replaced by the invalid value.
 **/
 type UnlimitedNatural : PrimitiveType conformsTo Integer {
-	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType<TT>(type : AnyClassifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 }
 
 }

@@ -32,7 +32,7 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(metaModelManager.getAnyClassifierType());
     }
     
 	protected Object assertPrintResults(Object context, String expression) {

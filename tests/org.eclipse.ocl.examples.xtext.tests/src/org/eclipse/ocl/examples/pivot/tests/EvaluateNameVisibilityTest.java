@@ -34,7 +34,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(metaModelManager.getAnyClassifierType());
     }
 
 	/**

@@ -43,7 +43,7 @@ public class ClassCSScopeAdapter extends ModelElementCSScopeAdapter<ClassCS, org
 		}
 		else {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			Type libType = metaModelManager.getClassifierType();
+			Type libType = metaModelManager.getAnyClassifierType();
 			environmentView.addLibContents(libType, scopeView);
 		}
 	}

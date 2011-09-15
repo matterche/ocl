@@ -38,6 +38,14 @@ public interface DomainStandardLibrary
 	boolean conformsToTupleType(DomainTupleType firstTupleType, DomainTupleType secondTupleType);
 	
     /**
+     * Obtains the single instance of the {@link DomainClassifierType} metatype, named
+     * <tt>AnyClassifier</tt>.
+     * 
+     * @return the <tt>Classifier</tt> type (an instance of {@link AnyClassifier})
+     */
+	DomainType getAnyClassifierType();
+	
+    /**
      * Obtains the generic instance of the {@link BagType} metatype, named
      * <tt>Bag(T)</tt>.
      * 
@@ -57,14 +65,6 @@ public interface DomainStandardLibrary
      * @return the <tt>Boolean</tt> type (an instance of {@link PrimitiveType})
      */
 	DomainType getBooleanType();
-	
-    /**
-     * Obtains the single instance of the {@link DomainClassifierType} metatype, named
-     * <tt>Classifier</tt>.
-     * 
-     * @return the <tt>Classifier</tt> type (an instance of {@link Classifier})
-     */
-	DomainType getClassifierType();
 
 	/**
 	 * Return the instance of the Classifier metatype whose class is classType.
