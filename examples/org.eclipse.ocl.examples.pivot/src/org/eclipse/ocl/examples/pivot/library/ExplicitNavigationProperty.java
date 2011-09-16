@@ -47,7 +47,7 @@ public class ExplicitNavigationProperty extends AbstractProperty
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		Object object = sourceValue.asObject(); // FIXME pin down semantics, ?? TypeValue always return instanceType
-		if ((object instanceof ClassifierType) && !(property.getClass_() instanceof ClassifierType)) {
+		if ((object instanceof ClassifierType) && !(property.getOwningType() instanceof ClassifierType)) {
 			object = ((ClassifierType)object).getInstanceType();	
 		}
 		if (object instanceof EObject) {

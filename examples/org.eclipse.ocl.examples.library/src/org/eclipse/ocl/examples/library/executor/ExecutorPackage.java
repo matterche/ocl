@@ -19,15 +19,19 @@ package org.eclipse.ocl.examples.library.executor;
 public class ExecutorPackage
 {
 	protected final String name;
+	protected final String nsURI;
 	private ExecutorClass[] classes;
 
-	@Deprecated
-	public ExecutorPackage(String name, String moniker, ExecutorClass[] classes) {
-		this(name, classes);
+	public ExecutorPackage(String name, String nsURI, ExecutorClass[] classes) {
+		this.name = name;
+		this.nsURI = nsURI;
+		this.classes = classes;
 	}
 
+	@Deprecated
 	public ExecutorPackage(String name, ExecutorClass[] classes) {
 		this.name = name;
+		this.nsURI = null;
 		this.classes = classes;
 	}
 	

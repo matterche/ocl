@@ -22,7 +22,7 @@ import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.DomainType;
 
-public abstract class ExecutorType extends AbstractInheritance implements DomainType
+public abstract class ExecutorType extends AbstractInheritance implements DomainType, ExecutorTypeArgument
 {
 //	public abstract ExecutorType getCommonType(DomainType type, ValueFactory valueFactory);
 

@@ -36,10 +36,6 @@ public class ExecutorProperty implements DomainProperty
 		this.opposite = null;
 	}
 
-	public DomainType getClass_() {
-		return evaluationClass;
-	}
-
 	public LibraryProperty getImplementation() {
 		return implementation;
 	}
@@ -50,6 +46,10 @@ public class ExecutorProperty implements DomainProperty
 
 	public DomainProperty getOpposite() {
 		return opposite;
+	}
+
+	public DomainType getOwningType() {
+		return evaluationClass;
 	}
 
 	public ExecutorClass getType() {

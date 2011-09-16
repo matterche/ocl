@@ -8,8 +8,8 @@ if elem.implementationClass->notEmpty() then elem.implementationClass + '.INSTAN
 [query public genPackageGetImplementationName(genPackage : GenPackage, elem : Property) : String = 
 if elem.implementationClass->notEmpty()
 then elem.implementationClass + '.INSTANCE'
-else if genPackageHasEcore(genPackage, elem) then 'new EcoreLibraryProperty(' + genPackage.prefix + 'Package.Literals.' + genPackageUpperName(elem.class.name) + '__' + genPackageUpperName(elem.name) + ')'
-else if (elem.opposite <> null) and genPackageHasEcore(genPackage, elem.opposite) then 'new EcoreLibraryOppositeProperty(' + genPackage.prefix + 'Package.Literals.' + genPackageUpperName(elem.opposite.class.name) + '__' + genPackageUpperName(elem.opposite.name) + ')'
+else if genPackageHasEcore(genPackage, elem) then 'new EcoreLibraryProperty(' + genPackage.prefix + 'Package.Literals.' + genPackageUpperName(elem.owningType.name) + '__' + genPackageUpperName(elem.name) + ')'
+else if (elem.opposite <> null) and genPackageHasEcore(genPackage, elem.opposite) then 'new EcoreLibraryOppositeProperty(' + genPackage.prefix + 'Package.Literals.' + genPackageUpperName(elem.opposite.owningType.name) + '__' + genPackageUpperName(elem.opposite.name) + ')'
 else 'null'
 endif endif endif/]
 
@@ -27,10 +27,10 @@ let rawCls : Class = cgGetUnspecializedClass(elem) in
 if rawCls.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, rawCls, scope) + 'Classes._' + rawCls.name endif /]
 
 [query public genPackageGetQualifiedLiteralName(genPackage : GenPackage, elem : Operation, scope : Package) : String = 
-if elem.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, elem.class, scope) + 'Operations._' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+if elem.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, elem.owningType, scope) + 'Operations._' + elem.owningType.name + '__' + cgEncodeName(elem) endif /]
 
 [query public genPackageGetQualifiedLiteralName(genPackage : GenPackage, elem : Property, scope : Package) : String = 
-if elem.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, elem.class, scope) + 'Properties._' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+if elem.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, elem.owningType, scope) + 'Properties._' + elem.owningType.name + '__' + cgEncodeName(elem) endif /]
 
 [query public genPackageGetQualifiedLiteralName(genPackage : GenPackage, elem : Type, scope : Package) : String = 
 if elem.oclIsUndefined() then 'null'
@@ -42,10 +42,10 @@ else if elem.oclIsKindOf(TupleType) then getPrefixedSymbolName('tuple_type_', ge
 else genPackageGetQualifiedPrefix(genPackage, elem.oclAsType(Class), scope) + 'Classes._' + cgEncodeName(elem)
 endif endif endif endif endif endif /]
 
-[query public genPackageGetQualifiedPrefix(genPackage : GenPackage, cls : Class, scope : Package) : String = 
+[query public genPackageGetQualifiedPrefix(genPackage : GenPackage, cls : Type, scope : Package) : String = 
 if cls._'package' = scope then genPackage.prefix + 'Tables.'
 else let gPackage : GenPackage = genPackageGetGenPackage(genPackage, cls._'package') in
- if gPackage->notEmpty() then gPackage.basePackage + '.' + gPackage.ecorePackage.name + '.' + gPackage.prefix + 'Tables.' else '???Tables.' endif
+ if gPackage->notEmpty() then gPackage.basePackage + '.' + gPackage.ecorePackage.name + '.' + gPackage.prefix + 'Tables.' else 'UnknownMetaModelTables.' endif
 endif/]
 
 [query public genPackageGetTablesClassName(genPackage : GenPackage) : String = 

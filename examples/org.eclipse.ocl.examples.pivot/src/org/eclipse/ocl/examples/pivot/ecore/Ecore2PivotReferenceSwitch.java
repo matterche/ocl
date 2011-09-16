@@ -99,7 +99,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 				operation.setImplementation(new JavaCompareToOperation(declaredMethod));
 				Parameter parameter = PivotFactory.eINSTANCE.createParameter();
 				parameter.setName("that");
-				parameter.setType(metaModelManager.getRequiredLibraryType("OclSelf"));
+				parameter.setType(metaModelManager.getOclSelfType());
 				operation.getOwnedParameters().add(parameter);
 				operation.setType(metaModelManager.getIntegerType());
 				pivotElement.getOwnedOperations().add(operation);

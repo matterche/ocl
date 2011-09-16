@@ -28,7 +28,7 @@ public class ExecutorOperation implements DomainOperation
 	protected final int index;
 	protected final LibraryFeature implementation;
 	
-	public ExecutorOperation(String name, DomainInheritance inheritance, int index, LibraryFeature implementation) {
+	public ExecutorOperation(String name, DomainInheritance inheritance, int index, LibraryFeature implementation, ExecutorTypeArgument... parameterTypes) {
 		this.name = name;
 		this.inheritance = inheritance;
 		this.index = index;

@@ -12,14 +12,10 @@
  *
  * </copyright>
  *
- * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id$
  */
-package org.eclipse.ocl.examples.domain.elements;
+package org.eclipse.ocl.examples.library.executor;
 
-import org.eclipse.ocl.examples.domain.types.DomainType;
+public interface ExecutorTypeArgument {
 
-public interface DomainProperty extends DomainTypedElement
-{
-	DomainProperty getOpposite();
-	DomainType getOwningType();
 }

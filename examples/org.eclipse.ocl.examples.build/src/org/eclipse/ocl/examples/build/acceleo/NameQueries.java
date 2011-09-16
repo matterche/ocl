@@ -31,11 +31,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -64,7 +66,7 @@ public class NameQueries
 		if (element instanceof Operation) {
 			int sameNames = 0;
 			int myIndex = 0;
-			for (Operation operation : ((Operation)element).getClass_().getOwnedOperations()) {
+			for (Operation operation : ((Operation)element).getOwningType().getOwnedOperations()) {
 				String rawName = rawEncodeName(operation);
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {
@@ -229,7 +231,7 @@ public class NameQueries
 		if (anOperation == null) {
 			return "null";
 		}
-		String qualifiedSignature = PrettyPrintTypeVisitor.prettyPrint(anOperation, anOperation.getClass_());
+		String qualifiedSignature = PrettyPrintTypeVisitor.prettyPrint(anOperation, (Namespace)anOperation.getOwningType());	// FIXME cast
 		int index = qualifiedSignature.indexOf("::");
 		return index > 0 ? qualifiedSignature.substring(index+2) : qualifiedSignature;	// FIXME with PrettyPrintOptions
 	}
@@ -263,9 +265,12 @@ public class NameQueries
 		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, resourceSetAdapter.getMetaModelManager());
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
-		if (pivotPackage.getNsURI().equals(PivotPackage.eNS_URI)) {
+		if (pivotPackage.getNsURI().equals(OCLstdlibPackage.eNS_URI)) {		// If generating OCLstdlibTables ...
 			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
 		}
+//		if (pivotPackage.getNsURI().equals(PivotPackage.eNS_URI)) {
+//			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
+//		}
 //		else if (pivotPackage.getNsURI().equals(OCLPackage.eNS_URI)) {
 //			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
 //		}
@@ -336,7 +341,7 @@ public class NameQueries
 	}  
 	
 	public Boolean hasEcore(GenPackage genPackage, Property property) {
-		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), property.getClass_().getName());
+		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), property.getOwningType().getName());
 		if (genClass == null) {
 			return false;
 		}
@@ -375,7 +380,6 @@ public class NameQueries
 	}
 	
 	public GenPackage getGenPackage(GenPackage genPackage, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-//		pivotPackage.getOwnedTypes()
 		if (genPackage.getEcorePackage().getName().equals(pivotPackage.getName())) {
 			return genPackage;
 		}
@@ -386,7 +390,7 @@ public class NameQueries
 		if (usedGenPackage != null) {
 			return usedGenPackage;
 		}
-		if (nsURI.endsWith(".oclstdlib")) {
+		if ((nsURI != null) && nsURI.endsWith(".oclstdlib")) {
 			nsURI = nsURI.substring(0, nsURI.length() - 10);
 			usedGenPackage = getNamedElementByNsURI(usedGenPackages, nsURI);
 			if (usedGenPackage != null) {

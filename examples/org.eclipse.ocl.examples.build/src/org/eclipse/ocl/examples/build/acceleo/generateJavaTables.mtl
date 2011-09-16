@@ -45,10 +45,10 @@
  */
 package [packagePrefix/][pkg.name/];
 
-import org.eclipse.ocl.examples.domain.types.DomainType;
+//import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.library.ecore.*;
 import org.eclipse.ocl.examples.library.executor.*;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
+//import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
 import [genPackage.basePackage/].[genPackage.ecorePackage.name/].[genPackage.prefix/]Package;
 
 /**
@@ -63,7 +63,7 @@ public class [tablesClassName/]
 	/**
 	 *	The package descriptor for the package.
 	 */
-	public static final ExecutorPackage PACKAGE = new ExecutorPackage("[pkg.name/]", "$[pkg.name/]", null);
+	public static final ExecutorPackage PACKAGE = new ExecutorPackage("[pkg.name/]", "[pkg.nsURI/]", null);
 
 	[declareClasses(pkg)/]
 
@@ -169,7 +169,7 @@ public static final ExecutorTypeParameter _[cgGetLiteralName(op)/]_[parameteredE
 [/for]
 [/if]
 public static final ExecutorOperation [cgGetLiteralName(op)/] = new ExecutorOperation("[op.name/]",
-	[cgGetLiteralName(op._class)/], [opIndex-1/], [genPackageGetImplementationName(genPackage, op)/][declareParameterTypes(genPackage, op.ownedParameter.type->asOrderedSet(), scope)/]);
+	[cgGetLiteralName(op.owningType)/], [opIndex-1/], [genPackageGetImplementationName(genPackage, op)/][declareParameterTypes(genPackage, op.ownedParameter.type->asOrderedSet(), scope)/]);
 [/template]
 
 [template public declareParameterTypes(genPackage : GenPackage, types : OrderedSet(Type), scope : Package)]
@@ -185,9 +185,9 @@ public static final ExecutorOperation [cgGetLiteralName(op)/] = new ExecutorOper
 (DomainType)null/*[containerType._package.name/]*/[else]
 [prefix/]Classes._[cgEncodeName(containerType)/]_[cgEncodeName(type)/][/if][/let][/let][elseif (_template.oclIsKindOf(Operation))]
 [let containerOperation : Operation = _template.oclAsType(Operation)]
-[let prefix : String = genPackageGetQualifiedPrefix(genPackage, containerOperation._class, scope)]
+[let prefix : String = genPackageGetQualifiedPrefix(genPackage, containerOperation.owningType, scope)]
 [if (prefix.size() <= 0)]
-(DomainType)null/*[containerOperation._class._package.name/]*/[else]
+(DomainType)null/*[containerOperation.owningType._package.name/]*/[else]
 [prefix/]Operations._[cgGetLiteralName(containerOperation)/]_[cgEncodeName(type)/][/if][/let][/let][else]
 (DomainType)null/*[type.name/]*/[/if][/let][/template]
 

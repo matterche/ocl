@@ -134,6 +134,14 @@ public interface DomainStandardLibrary
      * @return the <tt>OclMessage</tt> type (an instance of {@link MessageType})
      */
 	DomainType getOclMessageType();
+
+    /**
+     * Obtains the single instance of the {@link OclSelf} pseudo-metatype, named
+     * <tt>OclSelf</tt>.
+     * 
+     * @return the <tt>OclSelf</tt> type (an instance of {@link SelfType})
+     */
+	DomainType getOclSelfType();
 	
     /**
      * Obtains the single instance of the {@link OclSummable} metatype, named
@@ -230,19 +238,23 @@ public interface DomainStandardLibrary
 
 	boolean isEqualToTupleType(DomainTupleType firstTupleType, DomainTupleType secondTupleType);
 
+	// FIXME use getInheritance
 	DomainType getCommonType(DomainType firstType, DomainType secondType);
 
-	DomainType getRequiredLibraryType(String typeName);
-
+	// FIXME use getInheritance
 	Iterable<? extends DomainType> getSuperClasses(DomainType type);
 
-	DomainInheritance getInheritance(DomainType superClass);
+	DomainInheritance getInheritance(DomainType type);
 	
+	// FIXME use getInheritance
 	boolean isSuperClassOf(DomainType firstType, DomainType secondType);
 
+	// FIXME use getInheritance
 	DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes);
 
-	LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException;
+	// FIXME use getInheritance
+	LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws Exception;
 
+	// FIXME use getInheritance
 	DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation);
 }

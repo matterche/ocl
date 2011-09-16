@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -70,6 +71,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 	private org.eclipse.ocl.examples.pivot.Class oclElementType = null;
 	private InvalidType oclInvalidType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclLambdaType = null;
+	private SelfType oclSelfType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclSummableType = null;
 	private org.eclipse.ocl.examples.pivot.Class oclTupleType = null;
 	private VoidType oclVoidType = null;
@@ -338,6 +340,19 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 
 	public Type getOclMessageType() {
 		return getRequiredLibraryType("OclMessage");
+	}
+
+	public SelfType getOclSelfType() {
+		if (oclSelfType == null) {
+			Type type = getRequiredLibraryType("OclSelf");
+			if (type instanceof SelfType) {
+				oclSelfType = (SelfType) type;
+			}
+			else if (type != null) {
+				throw new IllegalLibraryException("OclSelf is not a SelfType");
+			}		
+		}
+		return oclSelfType;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Class getOclSummableType() {

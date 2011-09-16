@@ -3,11 +3,11 @@
 [import genPackageUtils/]
 [import genUtils/]
 
-[query public cgGetAllProperSuperClasses(elem : Class) : Set(Class) = 
-elem->closure(c : Class | cgGetSuperClasses(c)) /]
+[query public cgGetAllProperSuperClasses(elem : Type) : Set(Class) = 
+elem->closure(c : Type | cgGetSuperClasses(c)) /]
 
-[query public cgGetAllProperSuperClasses(elem : Collection(Class)) : Set(Class) = 
-elem->closure(c : Class | cgGetSuperClasses(c)) /]
+[query public cgGetAllProperSuperClasses(elem : Collection(Type)) : Set(Class) = 
+elem->closure(c : Type | cgGetSuperClasses(c)) /]
 
 [query public cgGetAllPropertiesOf(cls : Class) : Set(Property) = 
 cgGetAllSuperClasses(cls).ownedAttribute->asSet()/]
@@ -30,10 +30,10 @@ endif /]
 cgEncodeName(elem->any(true)) /]
 
 [query public cgGetLiteralName(elem : Operation) : String = 
-if elem.oclIsUndefined() then 'null' else '_' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + cgEncodeName(elem) endif /]
 
 [query public cgGetLiteralName(elem : Property) : String = 
-if elem.oclIsUndefined() then 'null' else '_' + elem.class.name + '__' + cgEncodeName(elem) endif /]
+if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + cgEncodeName(elem) endif /]
 
 [query public cgGetLocalOperationsOf(cls : Class) : Set(Operation) = 
 let superSignatures : Set(String) = cgGetSuperSignatures(cls) in
@@ -44,7 +44,7 @@ cls.ownedAttribute->asSet()/]
 
 [query public cgGetOverloadOp(cls : Class, superOp : Operation) : Operation = 
 let allOps : Set(Operation) = cgGetAllSuperClasses(cls).ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
-in let allOpSupers : Set(Class) = cgGetAllProperSuperClasses(allOps.class)
+in let allOpSupers : Set(Class) = cgGetAllProperSuperClasses(allOps.owningType)
 in let allSuperOps : Set(Operation) = allOpSupers.ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
 in (allOps - allSuperOps)->asSequence()->first()/]
 
@@ -63,7 +63,7 @@ invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSignature(org.e
 [query public cgGetExpressionInOcl(contextElement : NamedElement, specification : OpaqueExpression) : ExpressionInOcl =
 invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getExpressionInOcl(org.eclipse.ocl.examples.pivot.NamedElement, org.eclipse.ocl.examples.pivot.OpaqueExpression)', Sequence{contextElement, specification}) /]
 
-[query public cgGetSuperClasses(elem : Class) : Set(Class) = 
+[query public cgGetSuperClasses(elem : Type) : Set(Class) = 
 elem.superClass->collect(c : Type | cgGetUnspecializedClass(c))->asSet()/]
 
 [query public cgGetSuperSignatures(elem : Class) : Set(String) = 

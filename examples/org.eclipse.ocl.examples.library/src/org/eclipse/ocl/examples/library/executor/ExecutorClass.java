@@ -30,16 +30,17 @@ public class ExecutorClass extends ExecutorType implements DomainClassifierType
 	protected final ExecutorPackage evaluationPackage;
 	protected final int flags;
 	
-	@Deprecated
-	public ExecutorClass(String name, ExecutorPackage evaluationPackage, int flags) {
-		this(name, evaluationPackage, flags, null, null);
+	public ExecutorClass(String name, ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
+		this.name = name;
+		this.evaluationPackage = evaluationPackage;
+		this.flags = flags;
 	}
 	
+	@Deprecated
 	public ExecutorClass(String name, ExecutorPackage evaluationPackage, int flags, ExecutorFragment[] fragments, int[] depthCounts) {
 		this.name = name;
 		this.evaluationPackage = evaluationPackage;
 		this.flags = flags;
-//		this.fragments = null;
 		initFragments(fragments, depthCounts);
 	}
 
