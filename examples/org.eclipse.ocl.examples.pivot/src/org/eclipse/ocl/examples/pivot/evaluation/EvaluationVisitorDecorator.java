@@ -80,8 +80,8 @@ public abstract class EvaluationVisitorDecorator extends AbstractExtendingVisito
     /**
      * Delegates to my decorated visitor.
      */
-	public EvaluationVisitor createNestedVisitor() {
-        return getDelegate().createNestedVisitor();
+	public EvaluationVisitor createNestedEvaluator() {
+        return getDelegate().createNestedEvaluator();
 	}
   
     /**

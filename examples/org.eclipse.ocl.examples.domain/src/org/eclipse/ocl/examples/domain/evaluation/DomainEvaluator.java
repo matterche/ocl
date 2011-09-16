@@ -17,9 +17,6 @@
 package org.eclipse.ocl.examples.domain.evaluation;
 
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.DomainType;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -29,9 +26,8 @@ public interface DomainEvaluator
 	DomainEvaluator createNestedEvaluator();
 	Value evaluate(DomainExpression body);
 	DomainEvaluationEnvironment getEvaluationEnvironment();
-	DomainEvaluationVisitor getEvaluationVisitor();
 	/**
-	 * Return the manger of all model instances for use by allInstances() and hidden opposite support.
+	 * Return the manager of all model instances for use by allInstances() and hidden opposite support.
 	 */
 	DomainModelManager getModelManager();
 
@@ -41,12 +37,7 @@ public interface DomainEvaluator
 	 */
 	ValueFactory getValueFactory();
 
-//	LibraryFeature lookupImplementation(DomainType dynamicType, DomainOperation operation);
-
 	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
 
 	NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context, String message, Object... bindings) throws InvalidEvaluationException;
-
-	Value evaluateIteration(DomainType returnType, CollectionValue sourceVal,
-			DomainTypedElement accumulator, DomainExpression body, DomainTypedElement[] iterators);
 }

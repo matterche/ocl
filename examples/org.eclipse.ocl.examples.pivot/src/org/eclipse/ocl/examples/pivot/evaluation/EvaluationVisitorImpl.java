@@ -28,9 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationVisitor;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
@@ -48,13 +46,12 @@ import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.domain.values.impl.SequenceRangeImpl;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -115,52 +112,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		return false;
 	}
-
-	public class VisitingEvaluator implements DomainEvaluator
-	{
-		public DomainEvaluator createNestedEvaluator() {
-			return EvaluationVisitorImpl.this.createNestedVisitor().getEvaluator();
-		}
-
-		public Value evaluate(DomainExpression body) {
-			return ((OclExpression) body).accept(EvaluationVisitorImpl.this);
-		}
-
-		public DomainEvaluationEnvironment getEvaluationEnvironment() {
-			return EvaluationVisitorImpl.this.getEvaluationEnvironment();
-		}
-
-		public DomainEvaluationVisitor getEvaluationVisitor() {
-			return EvaluationVisitorImpl.this;
-		}	
-
-		public DomainModelManager getModelManager() {
-			return EvaluationVisitorImpl.this.getModelManager();
-		}
-
-		public ValueFactory getValueFactory() {
-			return EvaluationVisitorImpl.this.getValueFactory();
-		}
-
-		public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
-			return EvaluationVisitorImpl.this.throwInvalidEvaluation(e);
-		}
-
-		public NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context, String message,
-				Object... bindings) throws InvalidEvaluationException {
-			return EvaluationVisitorImpl.this.throwInvalidEvaluation(e, expression, context, message, bindings);
-		}
-
-		public Value evaluateIteration(DomainType returnType, CollectionValue sourceVal, DomainTypedElement accumulator,
-				DomainExpression body, DomainTypedElement[] iterators) {
-//			Accumulator accumulatorValue = createAccumulationValue(evaluator, returnType);
-//			return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluator,
-//					body, sourceVal, accumulatorValue, iterators));
-			return null;
-		}
-	}
-	
-	protected final DomainEvaluator evaluator = new VisitingEvaluator();
 	
 	/**
 	 * Constructor
@@ -173,6 +124,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	public EvaluationVisitorImpl(Environment env, EvaluationEnvironment evalEnv, DomainModelManager modelManager) {
 		super(env, evalEnv, modelManager);
 	}
+	
+	public EvaluationVisitor createNestedEvaluator() {
+		EnvironmentFactory factory = environment.getFactory();
+    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
+		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
+	}
 
 	public EvaluationVisitor createNestedVisitor() {
 		EnvironmentFactory factory = environment.getFactory();
@@ -180,14 +137,21 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
 	}
 
-//	public Value evaluate(DomainExpression body) {
-//		return ((OclExpression) body).accept(this);
-//	}
-
-	public DomainEvaluator getEvaluator() {
-		return evaluator;
+	public Value evaluate(DomainExpression body) {
+		return ((OclExpression) body).accept(this);
 	}
-	
+
+	public EvaluationVisitor getEvaluator() {
+		return this;
+	}
+
+	public LibraryFeature lookupImplementation(DomainType dynamicType, DomainOperation staticOperation) {
+		DomainInheritance inheritance = metaModelManager.getInheritance(dynamicType);
+//		Operation dynamicOperation = inheritance.getDynamicOperation(staticOperation);
+//		return (LibraryOperation) dynamicOperation.getImplementation();	// WIP
+		return inheritance.lookupImplementation(staticOperation);
+	}
+
 	@Override
 	public Value safeVisit(Visitable v) {
 		if (v == null) {
@@ -428,7 +392,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitIterateExp(IterateExp iterateExp) {
 		Iteration staticIteration = iterateExp.getReferredIteration();
 		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
 		CollectionValue sourceValue;
 		try {
 			OclExpression source = iterateExp.getSource();
@@ -467,14 +430,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
-				iterationManager = new EvaluatorSingleIterationManager(evaluator, body, sourceValue, accumulatorVariable, initValue, firstIterator);
+				iterationManager = new EvaluatorSingleIterationManager(undecoratedVisitor, body, sourceValue, accumulatorVariable, initValue, firstIterator);
 			}
 			else {
 				VariableDeclaration[] variables = new VariableDeclaration[iSize];
 				for (int i = 0; i < iSize; i++) {
 					variables[i] = iterators.get(i).getRepresentedParameter();
 				}
-				iterationManager = new EvaluatorMultipleIterationManager(evaluator, body, sourceValue, accumulatorVariable, initValue, variables);
+				iterationManager = new EvaluatorMultipleIterationManager(undecoratedVisitor, body, sourceValue, accumulatorVariable, initValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
 		} catch (InvalidValueException e) {
@@ -499,7 +462,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitIteratorExp(IteratorExp iteratorExp) {
 		Iteration staticIteration = iteratorExp.getReferredIteration();
 		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-		DomainEvaluator evaluator = undecoratedVisitor.getEvaluator();
 		CollectionValue sourceValue;
 		try {
 			OclExpression source = iteratorExp.getSource();
@@ -529,19 +491,19 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		try {
 			DomainIterationManager iterationManager;
 			OclExpression body = iteratorExp.getBody();
-			Value accumulatorValue = implementation.createAccumulatorValue(evaluator, PivotUtil.getBehavioralType(iteratorExp.getType()), PivotUtil.getBehavioralType(body.getType()));
+			Value accumulatorValue = implementation.createAccumulatorValue(undecoratedVisitor, PivotUtil.getBehavioralType(iteratorExp.getType()), PivotUtil.getBehavioralType(body.getType()));
 			List<Variable> iterators = iteratorExp.getIterators();
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
-				iterationManager = new EvaluatorSingleIterationManager(evaluator, body, sourceValue, null, accumulatorValue, firstIterator);
+				iterationManager = new EvaluatorSingleIterationManager(undecoratedVisitor, body, sourceValue, null, accumulatorValue, firstIterator);
 			}
 			else {
 				VariableDeclaration[] variables = new VariableDeclaration[iSize];
 				for (int i = 0; i < iSize; i++) {
 					variables[i] = iterators.get(i).getRepresentedParameter();
 				}
-				iterationManager = new EvaluatorMultipleIterationManager(evaluator, body, sourceValue, null, accumulatorValue, variables);
+				iterationManager = new EvaluatorMultipleIterationManager(undecoratedVisitor, body, sourceValue, null, accumulatorValue, variables);
 			}
 			result = implementation.evaluateIteration(iterationManager);
 		} catch (InvalidValueException e) {
@@ -573,7 +535,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		catch (InvalidEvaluationException e) {
 			value = valueFactory.getInvalid();
 		}
-    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
+    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedEvaluator();		
 		nestedVisitor.getEvaluationEnvironment().add(variable, value);
 		return expression.accept(nestedVisitor);
 	}
@@ -738,7 +700,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Value sourceValue = source.accept(evaluationVisitor);
 		Value resultValue = null;
 		try {
-			resultValue = implementation.evaluate(evaluator, propertyCallExp.getType(), sourceValue, propertyCallExp.getReferredProperty());
+			resultValue = implementation.evaluate(this, propertyCallExp.getType(), sourceValue, propertyCallExp.getReferredProperty());
 		}
 		catch (DomainException e) {
 			throw e;

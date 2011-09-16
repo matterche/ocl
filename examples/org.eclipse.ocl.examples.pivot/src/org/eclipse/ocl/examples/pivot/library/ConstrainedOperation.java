@@ -44,8 +44,8 @@ public class ConstrainedOperation extends AbstractOperation
 	}
 
 	public Value evaluate(DomainEvaluator evaluator, DomainCallExp callExp, Value sourceValue, Value... argumentValues) throws InvalidEvaluationException, InvalidValueException {
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator.getEvaluationVisitor();
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedVisitor();
+		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
+		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
 		List<Variable> parameters = expressionInOcl.getParameterVariables();

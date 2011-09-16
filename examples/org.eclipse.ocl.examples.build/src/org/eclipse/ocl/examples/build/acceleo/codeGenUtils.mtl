@@ -15,14 +15,16 @@ cgGetAllSuperClasses(cls).ownedAttribute->asSet()/]
 [query public cgGetAllSuperClasses(elem : Class) : Set(Class) = 
 elem->closure(c : Class | cgGetSuperClasses(c))->including(elem)->asSet() /]
 
-[query public cgGetDepth(elem : Class) : Integer = 
-invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getDepth(org.eclipse.ocl.examples.pivot.Class)', Sequence{elem}) /]
+[query public cgGetDepth(elem : Type) : Integer = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getDepth(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
 
 [query public cgGetLiteralName(elem : Package) : String = 
 '_' + cgEncodeName(elem) /]
 
 [query public cgGetLiteralName(elem : Type) : String = 
-'Classes._' + elem.name /]
+if not elem.owningTemplateParameter.oclIsUndefined() then 'null/*' + elem.name + '*/' 
+else 'Classes._' + elem.name
+endif /]
 
 [query public cgGetLiteralName(elem : Set(Class)) : String =
 cgEncodeName(elem->any(true)) /]

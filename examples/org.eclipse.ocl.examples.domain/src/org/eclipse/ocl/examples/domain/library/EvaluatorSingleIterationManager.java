@@ -36,20 +36,17 @@ public class EvaluatorSingleIterationManager
 			DomainExpression body, CollectionValue collectionValue,
 			DomainTypedElement accumulator, Value accumulatorValue,
 			DomainTypedElement referredIterator) {
-		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue,
-			accumulator, accumulatorValue);
+		super(invokingEvaluator.createNestedEvaluator(), body, collectionValue, accumulator, accumulatorValue);
 		this.depth = 0;
 		this.referredIterator = referredIterator;
-		this.iterator = new ValueIterator(evaluator, collectionValue,
-			referredIterator);
+		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
 	}
 
 	protected EvaluatorSingleIterationManager(EvaluatorSingleIterationManager iterationManager, CollectionValue value) {
 		super(iterationManager, value);
 		this.depth = iterationManager.depth + 1;
 		this.referredIterator = iterationManager.referredIterator;
-		this.iterator = new ValueIterator(evaluator, collectionValue,
-			referredIterator);
+		this.iterator = new ValueIterator(evaluator, collectionValue, referredIterator);
 	}
 
 	public boolean advanceIterators() {

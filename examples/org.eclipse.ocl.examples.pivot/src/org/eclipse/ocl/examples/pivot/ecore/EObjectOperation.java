@@ -117,7 +117,7 @@ public class EObjectOperation extends AbstractOperation implements LibraryUnaryO
 			if (specification instanceof OpaqueExpression) {
 				Operation operation = ((OperationCallExp)callExp).getReferredOperation();
 				String string = PivotUtil.getBody((OpaqueExpression) specification);
-				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator.getEvaluationVisitor();
+				EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
 				MetaModelManager metaModelManager = evaluationVisitor.getMetaModelManager();
 				URI uri = metaModelManager.getResourceIdentifier(operation, null);
 				try {

@@ -345,7 +345,10 @@ public class GenerateJavaOperations extends AbstractAcceleoGenerator {
             resourceSet.getPackageRegistry().put(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(), org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
         }
         resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
-        resourceSet.getURIConverter().getURIMap().put(URI.createPlatformPluginURI("org.eclipse.ocl.examples.pivot/model/", true), URI.createFileURI("C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/model/"));
+        resourceSet.getURIConverter().getURIMap().put(URI.createPlatformPluginURI("org.eclipse.ocl.examples.pivot/model/", true),
+        		URI.createFileURI("C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/model/")); // WIP
+        resourceSet.getURIConverter().getURIMap().put(URI.createPlatformPluginURI("org.eclipse.ocl.examples.library/model/", true),
+        		URI.createFileURI("C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.library/model/")); // WIP
     }
 
     /**

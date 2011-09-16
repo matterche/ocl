@@ -18,10 +18,11 @@
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationVisitor;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -38,9 +39,11 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * generic type parameters of this class. 
  * </p>
  */
-public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluationVisitor {
+public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluator
+{
+	EvaluationVisitor createNestedEvaluator();
 
-	EvaluationVisitor createNestedVisitor();
+	Value evaluate(DomainExpression body);
 	
 	/**
      * Obtains the environment that provides the metamodel semantics for the
@@ -48,7 +51,7 @@ public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluat
      *  
 	 * @return the environment
 	 */
-	public Environment getEnvironment();
+	Environment getEnvironment();
 
 	/**
      * Obtains the evaluation environment that keeps track of variable values
@@ -56,18 +59,22 @@ public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluat
      * 
 	 * @return the evaluation environment
 	 */
-	public EvaluationEnvironment getEvaluationEnvironment();
+	EvaluationEnvironment getEvaluationEnvironment();
+
+	EvaluationVisitor getEvaluator();
 	
 	/**
      * Obtains the mapping of model classes to their extents.
      * 
 	 * @return the model manager
 	 */
-	public DomainModelManager getModelManager();
+	DomainModelManager getModelManager();
 
-	public MetaModelManager getMetaModelManager();
+	MetaModelManager getMetaModelManager();
 
-	public ValueFactory getValueFactory();
+	DomainStandardLibrary getStandardLibrary();
+
+	ValueFactory getValueFactory();
     
     /**
      * Configures the specified decorated visitor to correctly handle the
@@ -79,7 +86,7 @@ public interface EvaluationVisitor extends Visitor<Value, Object>, DomainEvaluat
      * 
      * @param decorator the decorator that is not decorated/
      */
-	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor);
+	void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor);
 
 	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
 

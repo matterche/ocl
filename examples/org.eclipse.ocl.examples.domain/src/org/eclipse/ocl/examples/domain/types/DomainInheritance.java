@@ -18,6 +18,9 @@ package org.eclipse.ocl.examples.domain.types;
 
 import java.util.List;
 
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+
 /**
  * An Inheritance provides access to the transitive inheritance relationships of a type
  * with respect to a particular type regime, noting that the complexities of CompleteOCL allow
@@ -66,4 +69,6 @@ public interface DomainInheritance
 	DomainInheritance getCommonInheritance(DomainInheritance inheritance);
 
 	boolean isUndefined();
+
+	LibraryFeature lookupImplementation(DomainOperation staticOperation);
 }

@@ -18,7 +18,6 @@
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
@@ -73,11 +72,15 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     }
 
 	@Override
-	public EvaluationVisitor createNestedVisitor() {
-		return new TracingEvaluationVisitor(super.createNestedVisitor());
+	public EvaluationVisitor createNestedEvaluator() {
+		return new TracingEvaluationVisitor(super.createNestedEvaluator());
 	}
 
-	public DomainEvaluator getEvaluator() {
+	public Value evaluate(DomainExpression body) {
+		return getDelegate().evaluate(body);
+	}
+	
+	public EvaluationVisitor getEvaluator() {
 		return getDelegate().getEvaluator();
 	}
 
@@ -92,7 +95,7 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	public ValueFactory getValueFactory() {
 		return getDelegate().getValueFactory();
 	}
-
+	
 	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
 	       return getDelegate().throwInvalidEvaluation(e);
 	}

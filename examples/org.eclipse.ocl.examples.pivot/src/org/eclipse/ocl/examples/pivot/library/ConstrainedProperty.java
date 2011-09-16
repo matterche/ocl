@@ -39,8 +39,8 @@ public class ConstrainedProperty extends AbstractProperty
 	}
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
-		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator.getEvaluationVisitor();
-		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedVisitor();
+		EvaluationVisitor evaluationVisitor = (EvaluationVisitor)evaluator;
+		EvaluationVisitor nestedVisitor = evaluationVisitor.createNestedEvaluator();
 		EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
 		return expressionInOcl.accept(nestedVisitor);

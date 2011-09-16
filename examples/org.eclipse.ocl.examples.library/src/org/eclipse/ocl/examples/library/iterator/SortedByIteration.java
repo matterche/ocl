@@ -53,7 +53,7 @@ public class SortedByIteration extends AbstractIteration
 		public SortingValue(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation implementation) {
 			super(evaluator.getValueFactory(), returnType);
 			this.evaluator = evaluator;
-			this.iteratorType = evaluator.getEvaluationVisitor().getStandardLibrary().getIntegerType();
+			this.iteratorType = valueFactory.getStandardLibrary().getIntegerType();
 			this.implementation = implementation;
 		}
 
@@ -104,7 +104,7 @@ public class SortedByIteration extends AbstractIteration
 	private static LibraryValidator validator = null; 
 
 	public SortedByIteration.SortingValue createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) throws InvalidValueException {
-		DomainStandardLibrary standardLibrary = evaluator.getEvaluationVisitor().getStandardLibrary();
+		DomainStandardLibrary standardLibrary = evaluator.getValueFactory().getStandardLibrary();
 		DomainType comparableType = standardLibrary.getOclComparableType();
 		DomainOperation staticOperation = standardLibrary.lookupOperation(comparableType, EvaluatorMessages.CompareToOperation, comparableType);
 		DomainOperation dynamicOperation = standardLibrary.lookupDynamicOperation(iteratorType, staticOperation);
