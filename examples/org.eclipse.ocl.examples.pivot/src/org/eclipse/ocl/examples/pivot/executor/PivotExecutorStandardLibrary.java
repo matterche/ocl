@@ -14,17 +14,19 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.library.executor;
+package org.eclipse.ocl.examples.pivot.executor;
 import org.eclipse.ocl.examples.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.library.executor.ExecutorClass;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 
-public class ExecutorStandardLibrary extends AbstractStandardLibrary
+public class PivotExecutorStandardLibrary extends AbstractStandardLibrary
 {
-	public static final ExecutorStandardLibrary INSTANCE = new ExecutorStandardLibrary();
-	
-	public ExecutorStandardLibrary() {
-		OCLstdlibTables.PACKAGE.getClass();
+	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary();
+
+	public PivotExecutorStandardLibrary() {
+		PivotTables.PACKAGE.getClass();
 	}
 
 	public DomainType getAnyClassifierType() {
@@ -36,7 +38,7 @@ public class ExecutorStandardLibrary extends AbstractStandardLibrary
 	}
 
 	public DomainType getBooleanType() {
-		return OCLstdlibTables.Classes._Boolean;
+		return PivotTables.Classes._Boolean;
 	}
 
 	public DomainType getCollectionType() {

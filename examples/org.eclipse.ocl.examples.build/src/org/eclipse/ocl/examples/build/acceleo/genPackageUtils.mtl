@@ -22,7 +22,7 @@ genPackageHasEcore(genPackage, property) or ((property.opposite <> null) and gen
 [query public genPackageGetGenPackage(genPackage : GenPackage, pkge : Package) : GenPackage = 
 invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getGenPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Package)', Sequence{genPackage, pkge}) /]
 
-[query public genPackageGetQualifiedTypeLiteralName(genPackage : GenPackage, elem : Class, scope : Package) : String = 
+[query public genPackageGetQualifiedTypeLiteralName(genPackage : GenPackage, elem : Type, scope : Package) : String = 
 let rawCls : Class = cgGetUnspecializedClass(elem) in
 if rawCls.oclIsUndefined() then 'null' else genPackageGetQualifiedPrefix(genPackage, rawCls, scope) + 'Classes._' + rawCls.name endif /]
 

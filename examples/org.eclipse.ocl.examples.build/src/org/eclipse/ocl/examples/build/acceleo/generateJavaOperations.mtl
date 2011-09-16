@@ -129,7 +129,7 @@ public static class [className/] extends Abstract[getOperationAritySuffix(arity)
 [let expressions : Sequence(OclExpression) = ast.eAllContents(OclExpression)->including(ast)]
 [let constants : Set(Element) = expressions->collect(e : OclExpression | gatherConstants(e))->asSet()->excluding(null)]
 [for (e : Boolean | constants->collect(e : Element | if e.oclIsKindOf(BooleanLiteralExp) then e.oclAsType(BooleanLiteralExp).booleanSymbol else null endif)->asSet()->excluding(null))]
-final BooleanValue [defineSymbolName(e, if e then 'trueValue' else 'falseValue' endif)/] = valueFactory.booleanValueOf([if (e)]true[else]false[/if]);
+final BooleanValue [defineSymbolName(e, if e then 'trueValue' else 'falseValue' endif)/] = valueFactory.get[if (e)]True[else]False[/if]());
 [/for]  
 [for (e : String | constants->collect(e : Element | asIntegerStringOrNull(e))->asSet()->excluding(null)->sortedBy(s : String | s))]
 final IntegerValue [defineSymbolName(e, getPrefixedSymbolName('integerValue_', e))/] = valueFactory.integerValueOf([e/]);
@@ -219,7 +219,7 @@ for (long [getSymbolName(range)/] = [firstVarName/].asInteger(); [getSymbolName(
 }[/let][/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : Element, pkg : Package)]
-[resultType/][result/] = <[ast.eClass().name/]>;[/template]
+[resultType/][result/] = <<[ast.eClass().name/]>>;[/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IfExp, pkg : Package)]
 [let resultVarName : String = getPrefixedSymbolName('if_', ast)]
@@ -308,7 +308,7 @@ Abstract[getOperationAritySuffix(arity)/] [bodyVarName/] = new Abstract[getOpera
 };
 DomainType type_[getSymbolName(ast.source)/] = [getSymbolName(ast.source)/].getType();
 LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
-Value acc_[getSymbolName(ast.source)/] = dynamic_[getSymbolName(ast.source)/].createAccumulatorValue(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/]);
+Value acc_[getSymbolName(ast.source)/] = dynamic_[getSymbolName(ast.source)/].createAccumulatorValue(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [genPackageGetQualifiedLiteralName(genPackage, ast.iterator->at(1).type, pkg)/]);
 Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [bodyVarName/], (CollectionValue)[getSymbolName(ast.source)/], acc_[getSymbolName(ast.source)/]);
 [resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluateIteration(iterationManager);[/let][/let][/let][/template]
 
@@ -320,7 +320,7 @@ Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Execut
 [resultType/][result/] = nullValue;
 [/template]
 
-[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.class.name = 'Boolean') and (ast.referredOperation.ownedParameter->size() = 1))]
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.owningType.name = 'Boolean') and (ast.referredOperation.ownedParameter->size() = 1))]
 [let leftVarName : String = getSymbolName(ast.source)]
 [let rightVarName : String = getSymbolName(ast.argument->at(1))]
 Value [leftVarName/];
@@ -339,7 +339,7 @@ try {
 }
 [generateCall(resultType, result, ast, pkg)/][/let][/let][/template]
 
-[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.class.name <> 'Boolean') or (ast.referredOperation.ownedParameter->size() <> 1))]
+[template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.owningType.name <> 'Boolean') or (ast.referredOperation.ownedParameter->size() <> 1))]
 [generateExpression('Value ', getSymbolName(ast.source), ast.source, pkg)/]
 [for (argument : OclExpression | ast.argument)]
 [generateExpression(genPackage, 'Value ', getSymbolName(argument), argument, pkg)/]

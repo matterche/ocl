@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -43,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
@@ -53,8 +53,8 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class NameQueries
 {
@@ -265,10 +265,10 @@ public class NameQueries
 		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, resourceSetAdapter.getMetaModelManager());
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
-		if (pivotPackage.getNsURI().equals(OCLstdlibPackage.eNS_URI)) {		// If generating OCLstdlibTables ...
+		if (pivotPackage.getNsURI().equals(OCLstdlibPackage.eNS_URI)) {				// If generating OCLstdlibTables ...
 			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
 		}
-//		if (pivotPackage.getNsURI().equals(PivotPackage.eNS_URI)) {
+//		else if (pivotPackage.getNsURI().equals(PivotPackage.eNS_URI)) {			// If generating PivotTables ...
 //			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
 //		}
 //		else if (pivotPackage.getNsURI().equals(OCLPackage.eNS_URI)) {
@@ -293,6 +293,14 @@ public class NameQueries
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public Type getBehavioralType(Type type) {
+		if (type instanceof DataType) {
+			DataType dataType = (DataType) type;
+			return dataType.getBehavioralType();
+		}
+		return null;
 	}
 	
 	public void mergeLibrary(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {

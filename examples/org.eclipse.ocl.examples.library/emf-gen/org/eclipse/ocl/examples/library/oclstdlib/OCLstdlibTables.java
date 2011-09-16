@@ -24,10 +24,14 @@
 package org.eclipse.ocl.examples.library.oclstdlib;
 
 //import org.eclipse.ocl.examples.domain.types.DomainType;
-import org.eclipse.ocl.examples.library.ecore.*;
-import org.eclipse.ocl.examples.library.executor.*;
-//import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
+import org.eclipse.ocl.examples.library.executor.ExecutorClass;
+import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
+import org.eclipse.ocl.examples.library.executor.ExecutorLambdaType;
+import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
+import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
+import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
+import org.eclipse.ocl.examples.library.executor.ExecutorSpecializedType;
+import org.eclipse.ocl.examples.library.executor.ExecutorTypeParameter;
 
 /**
  * OCLstdlibTables provides the dispatch tables for the oclstdlib for use by the OCL dispatcher.
@@ -966,8 +970,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Integer =
 		{
 		    Fragments._Integer__OclAny /* 0 */,
-		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__OclSummable /* 1 */,
+		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__Real /* 2 */,
 		    Fragments._Integer__Integer /* 3 */
 		};
@@ -1078,8 +1082,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._OrderedSet__OclAny /* 0 */,
 		    Fragments._OrderedSet__Collection /* 1 */,
-		    Fragments._OrderedSet__OrderedCollection /* 2 */,
 		    Fragments._OrderedSet__UniqueCollection /* 2 */,
+		    Fragments._OrderedSet__OrderedCollection /* 2 */,
 		    Fragments._OrderedSet__OrderedSet /* 3 */
 		};
 		private static final int[] __OrderedSet = { 1,1,2,1 };
@@ -1087,8 +1091,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Real =
 		{
 		    Fragments._Real__OclAny /* 0 */,
-		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__OclSummable /* 1 */,
+		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__Real /* 2 */
 		};
 		private static final int[] __Real = { 1,2,1 };
@@ -1097,8 +1101,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Sequence__OclAny /* 0 */,
 		    Fragments._Sequence__Collection /* 1 */,
-		    Fragments._Sequence__OrderedCollection /* 2 */,
 		    Fragments._Sequence__NonUniqueCollection /* 2 */,
+		    Fragments._Sequence__OrderedCollection /* 2 */,
 		    Fragments._Sequence__Sequence /* 3 */
 		};
 		private static final int[] __Sequence = { 1,1,2,1 };
@@ -1116,8 +1120,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _String =
 		{
 		    Fragments._String__OclAny /* 0 */,
-		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__OclSummable /* 1 */,
+		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__String /* 2 */
 		};
 		private static final int[] __String = { 1,2,1 };
@@ -1133,8 +1137,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _UnlimitedNatural =
 		{
 		    Fragments._UnlimitedNatural__OclAny /* 0 */,
-		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__OclSummable /* 1 */,
+		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__Real /* 2 */,
 		    Fragments._UnlimitedNatural__Integer /* 3 */,
 		    Fragments._UnlimitedNatural__UnlimitedNatural /* 4 */
@@ -1188,6 +1192,7 @@ public class OCLstdlibTables
 	
 		public static void init() {}
 	}
+	
 
 	/**
 	 *	The lists of local operations or local operation overrides for each fragment of each class.

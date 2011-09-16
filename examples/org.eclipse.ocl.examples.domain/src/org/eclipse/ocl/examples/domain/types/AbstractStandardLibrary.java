@@ -21,7 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 {
@@ -120,7 +122,6 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	public Iterable<? extends DomainType> getSuperClasses(DomainType type) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -228,7 +229,18 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	public boolean isSuperClassOf(DomainType firstType, DomainType secondType) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException();
+	}
+
+	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
+		throw new UnsupportedOperationException();
+	}
+
+	public LibraryFeature lookupImplementation(DomainOperation dynamicOperation)throws Exception {
+		throw new UnsupportedOperationException();
+	}
+
+	public DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes) {
+		throw new UnsupportedOperationException();
 	}
 }

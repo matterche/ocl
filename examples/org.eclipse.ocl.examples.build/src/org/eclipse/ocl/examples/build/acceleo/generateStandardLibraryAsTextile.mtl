@@ -36,7 +36,7 @@ h2(#[pClass.name/]). **@[pClass.prettyPrint(pClass)/]@**
 
 [template public generateSuperTypes(pClass : Class)]
 [if (pClass.superClass->notEmpty())]
-conformsTo [for (pSuperClass : Class | pClass.superClass) separator(', ')]"@[pSuperClass.prettyPrint(pSuperClass)/]@":#[pSuperClass.name/][/for]
+conformsTo [for (pSuperClass : Type | pClass.superClass) separator(', ')]"@[pSuperClass.prettyPrint(pSuperClass.oclAsType(Namespace))/]@":#[pSuperClass.name/][/for]
 [/if]
 [/template]
 

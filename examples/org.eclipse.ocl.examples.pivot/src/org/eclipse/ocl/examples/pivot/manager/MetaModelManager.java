@@ -81,6 +81,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.executor.PivotInheritance;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
@@ -1447,6 +1448,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return implementationManager;
 	}
 
+	@Override
+	public PivotInheritance getInheritance(DomainType type) {
+		return (PivotInheritance) type;
+	}
+
 	public Precedence getInfixPrecedence(String operatorName) {
 		PrecedenceManager precedenceManager = getPrecedenceManager();
 		return precedenceManager.getInfixPrecedence(operatorName);
@@ -2329,14 +2335,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return null;
 	}
 
+	@Override
 	public LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
 		return getImplementation((Operation) dynamicOperation);
 	}
 
+	@Override
 	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
 		return getDynamicOperation((Type)type, (Operation) staticOperation);
 	}
 
+	@Override
 	public DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes) {
 		if (argumentTypes == null) {
 			return resolveOperation((Type)type, operationName);

@@ -12,8 +12,11 @@ elem->closure(c : Type | cgGetSuperClasses(c)) /]
 [query public cgGetAllPropertiesOf(cls : Class) : Set(Property) = 
 cgGetAllSuperClasses(cls).ownedAttribute->asSet()/]
 
-[query public cgGetAllSuperClasses(elem : Class) : Set(Class) = 
-elem->closure(c : Class | cgGetSuperClasses(c))->including(elem)->asSet() /]
+[query public cgGetAllSuperClasses(elem : Type) : Set(Type) = 
+elem->closure(c : Type | cgGetSuperClasses(c))->including(elem)->asSet() /]
+
+[query public cgGetBehavioralType(elem : Type) : Type =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getBehavioralType(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
 
 [query public cgGetDepth(elem : Type) : Integer = 
 invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getDepth(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
@@ -35,14 +38,14 @@ if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + cg
 [query public cgGetLiteralName(elem : Property) : String = 
 if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + cgEncodeName(elem) endif /]
 
-[query public cgGetLocalOperationsOf(cls : Class) : Set(Operation) = 
+[query public cgGetLocalOperationsOf(cls : Type) : Set(Operation) = 
 let superSignatures : Set(String) = cgGetSuperSignatures(cls) in
 cls.ownedOperation->asSet()->reject(op : Operation | false and superSignatures->includes(cgGetSignature(op)))/]
 
-[query public cgGetLocalPropertiesOf(cls : Class) : Set(Property) = 
+[query public cgGetLocalPropertiesOf(cls : Type) : Set(Property) = 
 cls.ownedAttribute->asSet()/]
 
-[query public cgGetOverloadOp(cls : Class, superOp : Operation) : Operation = 
+[query public cgGetOverloadOp(cls : Type, superOp : Operation) : Operation = 
 let allOps : Set(Operation) = cgGetAllSuperClasses(cls).ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
 in let allOpSupers : Set(Class) = cgGetAllProperSuperClasses(allOps.owningType)
 in let allSuperOps : Set(Operation) = allOpSupers.ownedOperation->select(op : Operation | cgGetSignature(op) = cgGetSignature(superOp))->asSet()
@@ -66,5 +69,5 @@ invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getExpressionInOcl
 [query public cgGetSuperClasses(elem : Type) : Set(Class) = 
 elem.superClass->collect(c : Type | cgGetUnspecializedClass(c))->asSet()/]
 
-[query public cgGetSuperSignatures(elem : Class) : Set(String) = 
-elem->closure(c : Class | cgGetSuperClasses(c)).ownedOperation->collect(op : Operation | cgGetSignature(op))->asSet()/]
+[query public cgGetSuperSignatures(elem : Type) : Set(String) = 
+elem->closure(c : Type | cgGetSuperClasses(c)).ownedOperation->collect(op : Operation | cgGetSignature(op))->asSet()/]

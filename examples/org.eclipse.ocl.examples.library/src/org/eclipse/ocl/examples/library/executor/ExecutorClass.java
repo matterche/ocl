@@ -35,14 +35,6 @@ public class ExecutorClass extends ExecutorType implements DomainClassifierType
 		this.evaluationPackage = evaluationPackage;
 		this.flags = flags;
 	}
-	
-	@Deprecated
-	public ExecutorClass(String name, ExecutorPackage evaluationPackage, int flags, ExecutorFragment[] fragments, int[] depthCounts) {
-		this.name = name;
-		this.evaluationPackage = evaluationPackage;
-		this.flags = flags;
-		initFragments(fragments, depthCounts);
-	}
 
 	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
 		if (this == type) {

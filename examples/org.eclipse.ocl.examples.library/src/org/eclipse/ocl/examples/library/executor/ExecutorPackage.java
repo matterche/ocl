@@ -27,13 +27,6 @@ public class ExecutorPackage
 		this.nsURI = nsURI;
 		this.classes = classes;
 	}
-
-	@Deprecated
-	public ExecutorPackage(String name, ExecutorClass[] classes) {
-		this.name = name;
-		this.nsURI = null;
-		this.classes = classes;
-	}
 	
 	public void init(ExecutorClass[] classes) {
 		assert this.classes == null;
