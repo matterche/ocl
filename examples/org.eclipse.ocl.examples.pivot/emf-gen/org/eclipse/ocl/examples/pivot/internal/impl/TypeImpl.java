@@ -1013,16 +1013,25 @@ public class TypeImpl
 		return visitor.visitType(this);
 	}
 	
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
-//		return ((TypeManager)valueFactory.getStandardLibrary()).conformsTo(this, (Type)type, null);
-		throw new UnsupportedOperationException();		// WIP
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		return metaModelManager.conformsTo(this, metaModelManager.getType(type), null);
 	}
 
-	public DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary) {
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
 		return standardLibrary.getCommonType(this, type);
 	}
 
-	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		return metaModelManager.getInheritance(this);
+	}
+
+	protected MetaModelManager getMetaModelManager(DomainStandardLibrary standardLibrary) {
+		return (MetaModelManager) standardLibrary;			// FIXME cast
+	}
+
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -1037,19 +1046,20 @@ public class TypeImpl
 		return false;
 	}
 
-	public boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
-		return standardLibrary.isSuperClassOf(this, type);
+		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		return metaModelManager.isSuperClassOf(this, metaModelManager.getType(type));
 	}
 
-	public boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary) {
-		return isSuperClassOf(inheritance.getType(), standardLibrary);
+	public boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance) {
+		return isSuperClassOf(standardLibrary, inheritance.getType());
 	}
 
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
-		MetaModelManager metaModelManager = (MetaModelManager) standardLibrary;
+		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
 		DomainOperation dynamicOperation = metaModelManager.lookupDynamicOperation(this, staticOperation);
 		try {
 			return metaModelManager.lookupImplementation(dynamicOperation);
@@ -1059,17 +1069,17 @@ public class TypeImpl
 	}
 
 	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		MetaModelManager metaModelManager = (MetaModelManager) standardLibrary;
+		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
 		if (argumentTypes == null) {
 			return metaModelManager.resolveOperation(this, operationName);
 		}
 		else if (argumentTypes.length == 1) {
-			return metaModelManager.resolveOperation(this, operationName, (Type)argumentTypes[0]);
+			return metaModelManager.resolveOperation(this, operationName, metaModelManager.getType(argumentTypes[0]));
 		}
 		else {
 			Type[] types = new Type[argumentTypes.length];
 			for (int i = 0; i < argumentTypes.length; i++) {
-				types[i] = (Type) argumentTypes[i];
+				types[i] = metaModelManager.getType(argumentTypes[i]);
 			}
 			return metaModelManager.resolveOperation(this, operationName, types);
 		}

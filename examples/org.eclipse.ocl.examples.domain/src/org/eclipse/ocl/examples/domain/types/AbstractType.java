@@ -25,7 +25,11 @@ public abstract class AbstractType implements DomainType
 		this.name = name;
 	}
 
-	public abstract DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary);
+	public abstract DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type);
+
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
 	
 	public final String getName() {
 		return name;
@@ -39,14 +43,7 @@ public abstract class AbstractType implements DomainType
 		return false;
 	}
 
-	public boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary) {
-		if (this == type) {
-			return true;
-		}
-		return standardLibrary.isSuperClassOf(this, type);
-	}
-
-	public boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary) {
-		return isSuperClassOf(inheritance.getType(), standardLibrary);
+	public boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance) {
+		return isSuperClassOf(standardLibrary, inheritance.getType());
 	}
 }

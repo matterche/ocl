@@ -23,14 +23,14 @@ import org.eclipse.ocl.examples.domain.types.DomainType;
 public class ExecutorProperty implements DomainProperty
 {
 	protected final String name;
-	protected final ExecutorClass evaluationClass;
+	protected final ExecutorType executorType;
 	protected final int propertyIndex;
 	protected final LibraryProperty implementation;
 	protected ExecutorProperty opposite;
 	
-	public ExecutorProperty(String name, ExecutorClass evaluationClass, int propertyIndex, LibraryProperty implementation) {
+	public ExecutorProperty(String name, ExecutorType executorType, int propertyIndex, LibraryProperty implementation) {
 		this.name = name;
-		this.evaluationClass = evaluationClass;
+		this.executorType = executorType;
 		this.propertyIndex = propertyIndex;
 		this.implementation = implementation;
 		this.opposite = null;
@@ -49,11 +49,11 @@ public class ExecutorProperty implements DomainProperty
 	}
 
 	public DomainType getOwningType() {
-		return evaluationClass;
+		return executorType;
 	}
 
-	public ExecutorClass getType() {
-		return evaluationClass;
+	public ExecutorType getType() {
+		return executorType;
 	}
 
 	void initOpposite(ExecutorProperty opposite) {
@@ -62,6 +62,6 @@ public class ExecutorProperty implements DomainProperty
 	
 	@Override
 	public String toString() {
-		return String.valueOf(evaluationClass) + "::" + String.valueOf(name); //$NON-NLS-1$
+		return String.valueOf(executorType) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

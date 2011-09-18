@@ -97,7 +97,7 @@ public class OCLQueryDelegate implements QueryDelegate
 			Value targetValue = valueFactory.valueOf(target);
 			DomainType targetType = targetValue.getType();
 			DomainType requiredType = specification.getContextVariable().getType();
-			if (!targetType.conformsTo(requiredType, metaModelManager)) {
+			if (!targetType.conformsTo(metaModelManager, requiredType)) {
 				String message = NLS.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(message);
 			}
@@ -121,7 +121,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				Value value = valueFactory.valueOf(object);
 				targetType = value.getType();
 				requiredType = parameterVariable.getType();
-				if (!targetType.conformsTo(requiredType, metaModelManager)) {
+				if (!targetType.conformsTo(metaModelManager, requiredType)) {
 					String message = NLS.bind(OCLMessages.MismatchedArgumentType_ERROR_, new Object[]{name, targetType, requiredType});
 					throw new OCLDelegateException(message);
 				}

@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +39,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
  * @generated
  */
 public interface TypedElement
-		extends NamedElement, DomainTypedElement {
+		extends NamedElement, org.eclipse.ocl.examples.domain.elements.DomainTypedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

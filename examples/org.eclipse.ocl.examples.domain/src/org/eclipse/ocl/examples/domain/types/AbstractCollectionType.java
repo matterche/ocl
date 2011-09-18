@@ -31,7 +31,7 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 		this.elementClass = elementClass;
 	}
 
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -42,14 +42,14 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 	}
 
 	@Override
-	public DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary) {
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (!(type instanceof AbstractCollectionType)) {
 			return standardLibrary.getOclAnyType();
 		}
 		AbstractCollectionType thatClass = (AbstractCollectionType) type;
 		// FIXME kind
 		DomainType commonContainerClass = containerClass;		// FIXME WIP
-		DomainType commonElementClass = elementClass.getCommonType(thatClass.elementClass, standardLibrary);
+		DomainType commonElementClass = elementClass.getCommonType(standardLibrary, thatClass.elementClass);
 		if ((commonContainerClass == containerClass) && (commonElementClass == elementClass)) {
 			return this;
 		}
@@ -89,7 +89,7 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 //		throw new UnsupportedOperationException();
 //	}
 
-	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -97,6 +97,13 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 			return false;
 		}
 		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
+	}
+
+	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		return standardLibrary.isSuperClassOf(this, type);
 	}
 
 	@Override

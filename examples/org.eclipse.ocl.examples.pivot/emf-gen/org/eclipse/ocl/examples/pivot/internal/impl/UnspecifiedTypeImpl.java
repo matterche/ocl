@@ -445,7 +445,7 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 	}
 
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		throw new UnsupportedOperationException();		// WIP
 	}
 } //UnspecifiedTypeImpl

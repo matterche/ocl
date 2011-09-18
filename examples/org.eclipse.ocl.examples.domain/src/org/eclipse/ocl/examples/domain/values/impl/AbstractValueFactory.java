@@ -369,7 +369,7 @@ public abstract class AbstractValueFactory implements ValueFactory
     public DomainType getElementType(Value... values) {
     	DomainType elementType = standardLibrary.getOclVoidType();
     	for (Value value : values) {
-    		elementType = elementType.getCommonType(value.getType(), standardLibrary);
+    		elementType = elementType.getCommonType(standardLibrary, value.getType());
     	}
      	return elementType;
     }
@@ -377,7 +377,7 @@ public abstract class AbstractValueFactory implements ValueFactory
     public DomainType getElementType(Iterable<Value> values) {
     	DomainType elementType = standardLibrary.getOclVoidType();
     	for (Value value : values) {
-    		elementType = elementType.getCommonType(value.getType(), standardLibrary);
+    		elementType = elementType.getCommonType(standardLibrary, value.getType());
     	}
      	return elementType;
     }
@@ -537,7 +537,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 		DomainType type = value.getType();
 		if (values != null) {
 			for (Value anotherValue : values) {
-				type = type.getCommonType(anotherValue.getType(), standardLibrary);
+				type = type.getCommonType(standardLibrary, anotherValue.getType());
 			}		
 		}
 		return type;

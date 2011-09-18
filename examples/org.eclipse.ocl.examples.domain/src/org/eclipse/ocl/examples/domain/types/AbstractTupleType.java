@@ -32,7 +32,7 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 		this.parts = parts;
 	}
 
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -43,7 +43,7 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 	}
 
 	@Override
-	public DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary) {
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (type != this) {
 			return standardLibrary.getOclAnyType();
 		}
@@ -54,7 +54,7 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 		return parts;
 	}
 
-	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -62,6 +62,13 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 			return false;
 		}
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
+	}
+
+	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		return standardLibrary.isSuperClassOf(this, type);
 	}
 
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {

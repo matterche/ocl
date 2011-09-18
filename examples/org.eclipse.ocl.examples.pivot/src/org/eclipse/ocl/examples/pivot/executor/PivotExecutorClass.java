@@ -16,10 +16,9 @@
  */
 package org.eclipse.ocl.examples.pivot.executor;
 
-import org.eclipse.ocl.examples.library.executor.ExecutorClass;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
 
-
-public class PivotExecutorClass extends ExecutorClass
+public class PivotExecutorClass extends ExecutorType
 {
 	protected final org.eclipse.ocl.examples.pivot.Class pivotClass;
 	

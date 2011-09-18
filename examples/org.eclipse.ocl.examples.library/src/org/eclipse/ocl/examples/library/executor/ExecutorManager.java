@@ -55,7 +55,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 		DomainType type = value.getType();
 		for (Value anotherValue : values) {
 			DomainType anotherType = anotherValue.getType();
-			type = type.getCommonType(anotherType, valueFactory.getStandardLibrary());
+			type = type.getCommonType(valueFactory.getStandardLibrary(), anotherType);
 		}
 		return type;
 	}

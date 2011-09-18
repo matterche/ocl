@@ -19,33 +19,110 @@ package org.eclipse.ocl.examples.library.executor;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.domain.types.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.types.DomainFragment;
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.DomainType;
 
-public abstract class ExecutorType extends AbstractInheritance implements DomainType, ExecutorTypeArgument
+public class ExecutorType extends AbstractInheritance implements DomainClassifierType, ExecutorTypeArgument
 {
-//	public abstract ExecutorType getCommonType(DomainType type, ValueFactory valueFactory);
-
+	public static final int ORDERED = 1 << 0;
+	public static final int UNIQUE = 1 << 1;
+	
+	protected final String name;
+	protected final ExecutorPackage evaluationPackage;
+	protected final int flags;
+	
+	public ExecutorType(String name, ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
+		this.name = name;
+		this.evaluationPackage = evaluationPackage;
+		this.flags = flags;
+	}
+	
+	public final ExecutorPackage getEvaluationPackage() {
+		return evaluationPackage;
+	}
+	
 	@Override
 	protected AbstractFragment createFragment(DomainInheritance baseInheritance) {
 		return new ExecutorFragment(this, baseInheritance, null, null);
 	}
 
-//	public ExecutorType getOclAnyType(ValueFactory valueFactory) {
-//		return (ExecutorType) valueFactory.getStandardLibrary().getOclAnyType(); 	// FIXME cast
-//	}
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		return type.isSuperInheritanceOf(standardLibrary, this);
+	}
+	
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
+		DomainInheritance firstInheritance = this;
+		DomainInheritance secondInheritance = type.getInheritance(standardLibrary);
+		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
+		return commonInheritance.getType();
+	}
+
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		return this;
+	}
+
+	public DomainType getInstanceType() {
+		return this;
+	}
+
+	public final String getName() {
+		return name;
+	}
+
+	public DomainStandardLibrary getStandardLibrary() {
+		return ExecutorStandardLibrary.INSTANCE;
+	}
+
+	@Override
+	protected Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+		throw new UnsupportedOperationException();		// Not called since fragments already in place
+	}
 
 	public DomainType getType() {
 		return this;
 	}
 
-	public boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary) {
+	public void initFragments(ExecutorFragment[] fragments, int[] depthCounts) {
+		if (fragments != null) {
+			int[] indexes = new int[depthCounts.length+1];
+			indexes[0] = 0;
+			for (int i = 0; i <  depthCounts.length; i++) {
+				indexes[i+1] = indexes[i] + depthCounts[i];
+			}
+			super.initFragments(fragments, indexes);
+		}
+		else {
+			super.initFragments(null, null);
+		}
+	}
+
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		throw new UnsupportedOperationException();		// WIP
+//		return false;
+	}
+
+	public boolean isOrdered() {
+		return (flags & ORDERED) != 0;
+	}
+
+	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
 		return standardLibrary.isSuperClassOf(this, type);
+	}
+
+	public boolean isUnique() {
+		return (flags & UNIQUE) != 0;
 	}
 
 	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
@@ -56,5 +133,10 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

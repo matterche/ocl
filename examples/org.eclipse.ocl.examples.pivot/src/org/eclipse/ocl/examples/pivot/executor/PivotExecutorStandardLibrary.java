@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.pivot.executor;
 import org.eclipse.ocl.examples.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.DomainType;
-import org.eclipse.ocl.examples.library.executor.ExecutorClass;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 
@@ -30,86 +29,86 @@ public class PivotExecutorStandardLibrary extends AbstractStandardLibrary
 	}
 
 	public DomainType getAnyClassifierType() {
-		return OCLstdlibTables.Classes._AnyClassifier;
+		return OCLstdlibTables.Types._AnyClassifier;
 	}
 	
-	public ExecutorClass getBagType() {
-		return OCLstdlibTables.Classes._Bag;
+	public DomainType getBagType() {
+		return OCLstdlibTables.Types._Bag;
 	}
 
 	public DomainType getBooleanType() {
-		return PivotTables.Classes._Boolean;
+		return OCLstdlibTables.Types._Boolean;
 	}
 
 	public DomainType getCollectionType() {
-		return OCLstdlibTables.Classes._Collection;
+		return OCLstdlibTables.Types._Collection;
 	}
 
 	public DomainType getEnumerationType() {
-		return OCLstdlibTables.Classes._Enumeration;
+		return OCLstdlibTables.Types._Enumeration;
 	}
 
 	public DomainType getIntegerType() {
-		return OCLstdlibTables.Classes._Integer;
+		return OCLstdlibTables.Types._Integer;
 	}
 
 	public DomainType getOclAnyType() {
-		return OCLstdlibTables.Classes._OclAny;
+		return OCLstdlibTables.Types._OclAny;
 	}
 
 	public DomainType getOclComparableType() {
-		return OCLstdlibTables.Classes._OclComparable;
+		return OCLstdlibTables.Types._OclComparable;
 	}
 
 	public DomainType getOclElementType() {
-		return OCLstdlibTables.Classes._OclElement;
+		return OCLstdlibTables.Types._OclElement;
 	}
 
 	public DomainType getOclInvalidType() {
-		return OCLstdlibTables.Classes._OclInvalid;
+		return OCLstdlibTables.Types._OclInvalid;
 	}
 
 	public DomainType getOclMessageType() {
-		return OCLstdlibTables.Classes._OclMessage;
+		return OCLstdlibTables.Types._OclMessage;
 	}
 
 	public DomainType getOclSelfType() {
-		return OCLstdlibTables.Classes._OclSelf;
+		return OCLstdlibTables.Types._OclSelf;
 	}
 
 	public DomainType getOclSummableType() {
-		return OCLstdlibTables.Classes._OclSummable;
+		return OCLstdlibTables.Types._OclSummable;
 	}
 
 	public DomainType getOclTupleType() {
-		return OCLstdlibTables.Classes._OclTuple;
+		return OCLstdlibTables.Types._OclTuple;
 	}
 
 	public DomainType getOclVoidType() {
-		return OCLstdlibTables.Classes._OclVoid;
+		return OCLstdlibTables.Types._OclVoid;
 	}
 
-	public ExecutorClass getOrderedSetType() {
-		return OCLstdlibTables.Classes._OrderedSet;
+	public DomainType getOrderedSetType() {
+		return OCLstdlibTables.Types._OrderedSet;
 	}
 
 	public DomainType getRealType() {
-		return OCLstdlibTables.Classes._Real;
+		return OCLstdlibTables.Types._Real;
 	}
 
-	public ExecutorClass getSequenceType() {
-		return OCLstdlibTables.Classes._Sequence;
+	public DomainType getSequenceType() {
+		return OCLstdlibTables.Types._Sequence;
 	}
 
-	public ExecutorClass getSetType() {
-		return OCLstdlibTables.Classes._Set;
+	public DomainType getSetType() {
+		return OCLstdlibTables.Types._Set;
 	}
 
 	public DomainType getStringType() {
-		return OCLstdlibTables.Classes._String;
+		return OCLstdlibTables.Types._String;
 	}
 
 	public DomainType getUnlimitedNaturalType() {
-		return OCLstdlibTables.Classes._UnlimitedNatural;
+		return OCLstdlibTables.Types._UnlimitedNatural;
 	}
 }

@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +35,7 @@ import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
  * @generated
  */
 public interface CollectionType
-		extends DataType, DomainCollectionType {
+		extends DataType, org.eclipse.ocl.examples.domain.types.DomainCollectionType {
 
 	/**
 	 * Returns the value of the '<em><b>Element Type</b></em>' reference.

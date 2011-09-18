@@ -395,7 +395,7 @@ public class CollectionTypeImpl
 	}
 	
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -410,7 +410,7 @@ public class CollectionTypeImpl
 	}
 
 	@Override
-	public boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}

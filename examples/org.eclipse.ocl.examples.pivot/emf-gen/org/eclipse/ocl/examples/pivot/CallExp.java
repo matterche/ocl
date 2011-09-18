@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +37,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
  * @generated
  */
 public interface CallExp
-		extends OclExpression, DomainCallExp {
+		extends OclExpression, org.eclipse.ocl.examples.domain.elements.DomainCallExp {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.

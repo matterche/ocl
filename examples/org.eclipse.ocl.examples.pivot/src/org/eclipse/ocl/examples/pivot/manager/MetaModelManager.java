@@ -1203,9 +1203,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	@Override
 	public ClassifierType getClassifierType(DomainType instanceType) {
+		return getClassifierType(getType(instanceType));
+	}
+
+	public ClassifierType getClassifierType(Type instanceType) {
 		ClassifierType classifierType;
  		List<Type> templateArguments = new ArrayList<Type>();
- 		templateArguments.add((Type)instanceType);			// FIXME cast
+ 		templateArguments.add(instanceType);
 		if (instanceType instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
  			classifierType = getEnumerationClassifierType();
  		}
@@ -1251,7 +1255,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	
 	@Override
 	public CollectionType getCollectionType(DomainType genericType, DomainType elementType) {
-		return getLibraryType((CollectionType)genericType, Collections.singletonList((Type)elementType));			// FIXME cast
+		return getLibraryType((CollectionType)getType(genericType), Collections.singletonList(getType(elementType)));
 	}
 
 	public List<Type> getCommonClasses(Type leftClass, Type rightClass) {
@@ -1276,7 +1280,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	@Override
 	public Type getCommonType(DomainType leftType, DomainType rightType) {
-		return getCommonType((Type)leftType, (Type)rightType, null);			// FIXME Eliminate casts
+		return getCommonType(getType(leftType), getType(rightType), null);
 	}
 	
 	public Type getCommonType(Type leftType, Type rightType, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
@@ -1454,14 +1458,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return implementationManager;
 	}
 
-	@Override
-	public PivotInheritance getInheritance(DomainType type) {
-		return (PivotInheritance) type;
-	}
-
 	public Precedence getInfixPrecedence(String operatorName) {
 		PrecedenceManager precedenceManager = getPrecedenceManager();
 		return precedenceManager.getInfixPrecedence(operatorName);
+	}
+
+	public PivotInheritance getInheritance(DomainType type) {
+		Type type2 = getType(type);
+		TypeServer typeServer = getTypeTracker(type2).getTypeServer();
+		return typeServer.getInheritance();
 	}
 
 	public LambdaTypeManager getLambdaManager() {
@@ -1989,6 +1994,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		TupleTypeManager tupleManager = getTupleManager();
 		return tupleManager.getTupleType(tupleType, bindings);
 	}
+
+	public Type getType(DomainType type) {
+		return (Type) type;					// FIXME cast
+	}
 	
 	public TypeTracker getTypeTracker(Type pivotType) {
 		TypeTracker typeTracker = packageManager.findTypeTracker(pivotType);
@@ -2149,9 +2158,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return type == MetaModelManager.class;
 	}
 
-	@Override
-	public boolean isSuperClassOf(DomainType unspecializedFirstType, DomainType secondType) {
-		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement((Type)secondType);	// FIXME cast
+	public boolean isSuperClassOf(Type unspecializedFirstType, Type secondType) {
+		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);	// FIXME cast
 		if (unspecializedFirstType == unspecializedSecondType) {
 			return true;
 		}
@@ -2346,7 +2354,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
-		return getDynamicOperation((Type)type, (Operation) staticOperation);
+		return getDynamicOperation(getType(type), (Operation) staticOperation);
 	}
 
 	public void notifyChanged(Notification notification) {

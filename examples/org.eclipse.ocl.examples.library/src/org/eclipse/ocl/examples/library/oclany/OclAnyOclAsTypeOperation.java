@@ -40,7 +40,7 @@ public class OclAnyOclAsTypeOperation extends AbstractBinaryOperation
 		}
 		TypeValue typeVal = argVal.asTypeValue();
 		DomainType argType = typeVal.getInstanceType();
-		if (sourceType.conformsTo(argType, valueFactory.getStandardLibrary())) {
+		if (sourceType.conformsTo(valueFactory.getStandardLibrary(), argType)) {
 			return sourceVal;
 		}
 		else {

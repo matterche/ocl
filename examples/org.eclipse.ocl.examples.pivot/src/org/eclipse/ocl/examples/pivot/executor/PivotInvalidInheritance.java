@@ -22,8 +22,8 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 public class PivotInvalidInheritance extends PivotInheritance
 {
-	public PivotInvalidInheritance(InvalidType type, MetaModelManager metaModelManager) {
-		super(type, metaModelManager);
+	public PivotInvalidInheritance(MetaModelManager metaModelManager, InvalidType type) {
+		super(metaModelManager, type);
 	}
 
 	@Override

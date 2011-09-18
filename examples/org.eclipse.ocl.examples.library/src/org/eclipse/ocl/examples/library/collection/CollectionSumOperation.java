@@ -40,7 +40,7 @@ public class CollectionSumOperation extends AbstractUnaryOperation
 		// FIXME Bug 301351 Look for user-defined zero
 //			resultType.getZero();
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
-		if (returnType.conformsTo(standardLibrary.getIntegerType(), valueFactory.getStandardLibrary())) {
+		if (returnType.conformsTo(standardLibrary, standardLibrary.getIntegerType())) {
 			return collectionValue.sum(evaluator, returnType, IntegerPlusOperation.INSTANCE, valueFactory.integerValueOf(0));
 		}
 		else {

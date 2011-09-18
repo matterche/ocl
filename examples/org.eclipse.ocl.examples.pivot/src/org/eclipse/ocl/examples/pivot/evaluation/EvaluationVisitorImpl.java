@@ -589,7 +589,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			firstArgument =  arguments.get(0).accept(undecoratedVisitor);
 			DomainType argType = firstArgument.getType();
-			dynamicSourceType = dynamicSourceType.getCommonType(argType, metaModelManager);
+			dynamicSourceType = dynamicSourceType.getCommonType(metaModelManager, argType);
 	 	}
 		//
 		//	Resolve operation to dispatch

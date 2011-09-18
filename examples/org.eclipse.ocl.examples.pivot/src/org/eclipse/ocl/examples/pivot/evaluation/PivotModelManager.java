@@ -63,6 +63,6 @@ public class PivotModelManager extends LazyModelManager
 				objectType = ecoreConverter.getPivotType(eClass);
 			}
 		}
-	    return objectType.conformsTo(requiredType, metaModelManager);
+	    return objectType.conformsTo(metaModelManager, requiredType);
 	}
 }

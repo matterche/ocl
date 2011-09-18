@@ -62,7 +62,7 @@ public class VoidTypeImpl
 	}
 
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (type instanceof InvalidType) {
 			return false;
 		}

@@ -22,11 +22,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.executor.PivotAnyInheritance;
+import org.eclipse.ocl.examples.pivot.executor.PivotInheritance;
+import org.eclipse.ocl.examples.pivot.executor.PivotInvalidInheritance;
+import org.eclipse.ocl.examples.pivot.executor.PivotVoidInheritance;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -55,6 +64,11 @@ public class TypeServer extends TypeTracker
 	 * Map from property name to the list of properties to be treated as merged. 
 	 */
 	private final Map<String, List<Property>> property2properties = new HashMap<String, List<Property>>();
+	
+	/**
+	 * Compiled inheritance relationships used by compiled expressions.
+	 */
+	private PivotInheritance inheritance = null;
 	
 	protected TypeServer(PackageManager packageManager, Type primaryType) {
 		super(packageManager, primaryType);
@@ -129,6 +143,10 @@ public class TypeServer extends TypeTracker
 		}
 		property2properties.clear();
 		operation2operations.clear();
+		if (inheritance != null) {
+			inheritance.dispose();
+			inheritance = null;
+		}
 		super.dispose();
 	}
 	
@@ -159,22 +177,23 @@ public class TypeServer extends TypeTracker
 		return null;
 	}
 
-	public Iterable<Type> getTypes() {
-		return Iterables.transform(trackers, tracker2class);
-	}
-	
-	@Override
-	public TypeServer getTypeServer() {
-		return this;
-	}
-
-	public TypeTracker getTypeTracker(Type pivotType) {
-		for (TypeTracker typeTracker : trackers) {
-			if (typeTracker.getTarget() == pivotType) {
-				return typeTracker;
+	public PivotInheritance getInheritance() {
+		if (inheritance == null) {
+			MetaModelManager metaModelManager = getMetaModelManager();
+			if (target instanceof InvalidType) {
+				inheritance = new PivotInvalidInheritance(metaModelManager, (InvalidType)target);
+			}
+			else if (target instanceof VoidType) {
+				inheritance = new PivotVoidInheritance(metaModelManager, (VoidType)target);
+			}
+			else if (target instanceof AnyType) {
+				inheritance = new PivotAnyInheritance(metaModelManager, (AnyType)target);
+			}
+			else {
+				inheritance = new PivotInheritance(metaModelManager, target);
 			}
 		}
-		return addSecondaryType(pivotType);
+		return inheritance;
 	}
 
 	public Operation getOperation(Operation pivotOperation) {
@@ -210,6 +229,48 @@ public class TypeServer extends TypeTracker
 			return null;
 		}
 		return properties.isEmpty() ? null : properties.get(0);
+	}
+
+	public Iterable<Type> getTypes() {
+		return Iterables.transform(trackers, tracker2class);
+	}
+	
+	@Override
+	public TypeServer getTypeServer() {
+		return this;
+	}
+
+	public TypeTracker getTypeTracker(Type pivotType) {
+		for (TypeTracker typeTracker : trackers) {
+			if (typeTracker.getTarget() == pivotType) {
+				return typeTracker;
+			}
+		}
+		return addSecondaryType(pivotType);
+	}
+
+	/**
+	 * Observe any superclass changes and uninstall all affected Inheritances.
+	 */
+	@Override
+	public void notifyChanged(Notification msg) {
+		if ((inheritance != null) && (msg.getNotifier() == target)) {
+			if (msg.getFeature() == PivotPackage.Literals.TYPE__SUPER_CLASS) {
+				switch (msg.getEventType()) {
+					case Notification.ADD:
+					case Notification.ADD_MANY:
+					case Notification.REMOVE:
+					case Notification.REMOVE_MANY:
+					case Notification.RESOLVE:
+					case Notification.SET:
+					case Notification.UNSET:
+						inheritance.uninstall();
+						inheritance = null;
+						break;
+				}
+			}
+		}
+		super.notifyChanged(msg);
 	}
 
 	void removedType(Type pivotType) {

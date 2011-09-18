@@ -20,21 +20,21 @@ public class ExecutorPackage
 {
 	protected final String name;
 	protected final String nsURI;
-	private ExecutorClass[] classes;
+	private ExecutorType[] types;
 
-	public ExecutorPackage(String name, String nsURI, ExecutorClass[] classes) {
+	public ExecutorPackage(String name, String nsURI, ExecutorType[] types) {
 		this.name = name;
 		this.nsURI = nsURI;
-		this.classes = classes;
+		this.types = types;
 	}
 	
-	public void init(ExecutorClass[] classes) {
-		assert this.classes == null;
-		this.classes = classes;
+	public void init(ExecutorType[] types) {
+		assert this.types == null;
+		this.types = types;
 	}
 	
-	public ExecutorClass lookupClass(int classIndex) {
-		return classes[classIndex];
+	public ExecutorType lookupType(int classIndex) {
+		return types[classIndex];
 	}
 
 	@Override

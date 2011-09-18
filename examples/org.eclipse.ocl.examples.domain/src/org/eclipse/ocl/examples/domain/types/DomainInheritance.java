@@ -53,7 +53,7 @@ public interface DomainInheritance
 
 
 	boolean isSubInheritanceOf(DomainInheritance thatInheritance);
-	boolean isSuperInheritanceOf(DomainInheritance thatInheritance, DomainStandardLibrary standardLibrary);
+	boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance thatInheritance);
 	
 	void addSubInheritance(DomainInheritance subInheritance);
 	void gatherUninstalledInheritances(List<DomainInheritance> inheritances);

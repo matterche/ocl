@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,27 +12,39 @@
  *
  * </copyright>
  *
- * $Id: Nameable.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.pivot.executor;
 
+import java.util.Collections;
+
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotVoidInheritance extends PivotInheritance
+public class PivotAnyInheritance extends PivotInheritance
 {
-	public PivotVoidInheritance(MetaModelManager metaModelManager, VoidType type) {
+	public PivotAnyInheritance(MetaModelManager metaModelManager, AnyType type) {
 		super(metaModelManager, type);
 	}
 
 	@Override
 	public DomainInheritance getCommonInheritance(DomainInheritance thatInheritance) {
-		return thatInheritance.isUndefined() ? this : thatInheritance;
+		return this;
+	}
+
+	@Override
+	protected Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public boolean isInstallable() {
+		return true;
 	}
 
 	@Override
 	public boolean isUndefined() {
-		return true;
+		return false;
 	}
 }

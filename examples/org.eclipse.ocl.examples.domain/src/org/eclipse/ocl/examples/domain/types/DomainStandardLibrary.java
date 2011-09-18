@@ -246,11 +246,6 @@ public interface DomainStandardLibrary
 
 	// FIXME use getInheritance
 	DomainType getCommonType(DomainType firstType, DomainType secondType);
-
-	// FIXME use getInheritance
-	Iterable<? extends DomainType> getSuperClasses(DomainType type);
-
-	DomainInheritance getInheritance(DomainType type);
 	
 	// FIXME use getInheritance
 	boolean isSuperClassOf(DomainType firstType, DomainType secondType);

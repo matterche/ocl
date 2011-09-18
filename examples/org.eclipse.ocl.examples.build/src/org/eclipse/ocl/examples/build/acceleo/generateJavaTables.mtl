@@ -66,7 +66,7 @@ public class [tablesClassName/]
 	 */
 	public static final ExecutorPackage PACKAGE = new ExecutorPackage("[pkg.name/]", "[pkg.nsURI/]", null);
 
-	[declareClasses(genPackage, pkg)/]
+	[declareTypes(genPackage, pkg)/]
 
 	[declareFragments(genPackage, pkg)/]
 
@@ -74,14 +74,14 @@ public class [tablesClassName/]
 
 	[declareProperties(genPackage, pkg)/]
 
-	[declareClassFragments(pkg)/]
+	[declareTypeFragments(pkg)/]
 
 	[declareFragmentOperations(genPackage, pkg)/]
 
 	[declareFragmentProperties(pkg)/]
 	
 //	static {
-//		Classes.classes['[0]'/].getClass();
+//		Types.types['[0]'/].getClass();
 //	}
 }
 [/file]
@@ -90,42 +90,42 @@ public class [tablesClassName/]
 [/let]
 [/template]
 
-[template public declareClasses(genPackage : GenPackage, pkg : Package)]
+[template public declareTypes(genPackage : GenPackage, pkg : Package)]
 /**
- *	The class descriptors for each class.
+ *	The type descriptors for each type.
  */
-public static class Classes {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
-    [declareClass(genPackage, cls)/]
+public static class Types {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
+    [declareType(genPackage, cls)/]
 [/for]
 
-	private static final ExecutorClass['[]'/] classes = {
+	private static final ExecutorType['[]'/] types = {
 [for (type : Type | pkg.ownedType->sortedBy(getMoniker())) separator(',\n') after('\n')]
 	    _[type.name/][/for]
 	};
 
 	/*
-	 *	Install the class descriptors in the package descriptor.
+	 *	Install the type descriptors in the package descriptor.
 	 */
 	static {
-		PACKAGE.init(classes);
-		ClassFragments.init();
+		PACKAGE.init(types);
+		TypeFragments.init();
 		FragmentOperations.init();
 		FragmentProperties.init();
 	}
 }
 [/template]
 
-[template public declareClass(genPackage : GenPackage, cls : Class)]
+[template public declareType(genPackage : GenPackage, cls : Class)]
 [if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
-public static final ExecutorTypeParameter _[cls.name/]_[parameteredElement.name/] = new ExecutorTypeParameter("[parameteredElement.name/]");
+private static final ExecutorTypeParameter _[cls.name/]_[parameteredElement.name/] = new ExecutorTypeParameter("[parameteredElement.name/]");
 [/let]
 [/for]
 [/if]
 [if (cgGetBehavioralType(cls)->notEmpty())]
-public static final ExecutorClass _[cls.name/] = [genPackageGetQualifiedTypeLiteralName(genPackage, cgGetBehavioralType(cls), cls._package)/];[else]
-public static final ExecutorClass _[cls.name/] = new ExecutorClass("[cls.name/]", PACKAGE, [getClassFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
+public static final ExecutorType _[cls.name/] = [genPackageGetQualifiedTypeLiteralName(genPackage, cgGetBehavioralType(cls), cls._package)/];[else]
+public static final ExecutorType _[cls.name/] = new ExecutorType("[cls.name/]", PACKAGE, [getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
 , _[cls.name/]_[parameteredElement.name/][/let][/for]
@@ -134,7 +134,7 @@ public static final ExecutorClass _[cls.name/] = new ExecutorClass("[cls.name/]"
 
 [template public declareFragments(genPackage : GenPackage, pkg : Package)]
 /**
- *	The fragment descriptors for the local elements of each class and its superclasses.
+ *	The fragment descriptors for the local elements of each type and its supertypes.
  */
 public static class Fragments {[for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) before('\n')]
 	[declareFragment(genPackage, cls, pkg)/]
@@ -142,14 +142,14 @@ public static class Fragments {[for (cls : Class | pkg.ownedType->filter(Class)-
 [/template]
 
 [template public declareFragment(genPackage : GenPackage, cls : Class, pkg : Package)]
-[for (superCls : Type | cgGetAllSuperClasses(cls)->sortedBy(name))]
+[for (superCls : Type | cgGetAllSuperTypes(cls)->sortedBy(name))]
 public static final ExecutorFragment _[cls.name/]__[superCls.name/] = new ExecutorFragment([cgGetLiteralName(cls)/], [genPackageGetQualifiedTypeLiteralName(genPackage, superCls, pkg)/], null, null);
 [/for]
 [/template]
 
 [template public declareOperations(genPackage : GenPackage, pkg : Package)]
 /**
- *	The operation descriptors for each operation of each class.
+ *	The operation descriptors for each operation of each type.
  */
 public static class Operations {[for (cls : Class | pkg.ownedType->filter(Class)->select(ownedOperation->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
 	[declareOperations(genPackage, cls, pkg)/]
@@ -186,7 +186,7 @@ public static final ExecutorOperation [cgGetLiteralName(op)/] = new ExecutorOper
 [let prefix : String = genPackageGetQualifiedPrefix(genPackage, containerType, scope)]
 [if (prefix.size() <= 0)]
 (DomainType)null/*[containerType._package.name/]*/[else]
-[prefix/]Classes._[cgEncodeName(containerType)/]_[cgEncodeName(type)/][/if][/let][/let][elseif (_template.oclIsKindOf(Operation))]
+[prefix/]Types._[cgEncodeName(containerType)/]_[cgEncodeName(type)/][/if][/let][/let][elseif (_template.oclIsKindOf(Operation))]
 [let containerOperation : Operation = _template.oclAsType(Operation)]
 [let prefix : String = genPackageGetQualifiedPrefix(genPackage, containerOperation.owningType, scope)]
 [if (prefix.size() <= 0)]
@@ -211,11 +211,11 @@ new ExecutorTupleType("[type.name/]"[declareTupleParts(genPackage, type.ownedAtt
 [let prefix : String = genPackageGetQualifiedPrefix(genPackage, type.oclAsType(Class), scope)]
 [if (prefix.size() <= 0)]
 (DomainType)null/*[type.oclAsType(Class)._package.name/]*/[else]
-[prefix/]Classes._[cgEncodeName(type)/][/if][/let][/template]
+[prefix/]Types._[cgEncodeName(type)/][/if][/let][/template]
 
 [template public declareProperties(genPackage : GenPackage, pkg : Package)]
 /**
- *	The property descriptors for each property of each class.
+ *	The property descriptors for each property of each type.
  */
 public static class Properties {[for (cls : Class | pkg.ownedType->filter(Class)->select(ownedAttribute->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
 	[declareProperties(genPackage, cls)/]
@@ -229,13 +229,13 @@ public static class Properties {[for (cls : Class | pkg.ownedType->filter(Class)
 public static final ExecutorProperty [cgGetLiteralName(prop)/] = new ExecutorProperty("[prop.name/]", [cgGetLiteralName(cls)/], [i-1/], [genPackageGetImplementationName(genPackage, prop)/]);[/let][/for][/let]
 [/template]
 
-[template public declareClassFragments(pkg : Package)]
+[template public declareTypeFragments(pkg : Package)]
 [let types : OrderedSet(Type) = pkg.ownedType->select(c : Type | cgGetBehavioralType(c)->isEmpty())->sortedBy(name)]
 /**
- *	The fragments for all base classes in depth order: OclAny first, OclSelf last.
+ *	The fragments for all base types in depth order: OclAny first, OclSelf last.
  */
-public static class ClassFragments {[for (cls : Type | types) before('\n') separator('\n')]
-	[declareClassFragment(cls)/]
+public static class TypeFragments {[for (cls : Type | types) before('\n') separator('\n')]
+	[declareTypeFragment(cls)/]
 [/for]
 
 	/**
@@ -252,37 +252,37 @@ public static class ClassFragments {[for (cls : Type | types) before('\n') separ
 [/let]
 [/template]
 
-[template public declareClassFragment(cls : Type)]
+[template public declareTypeFragment(cls : Type)]
 private static final ExecutorFragment['[]'/] _[cls.name/] =
-[let superClasses : OrderedSet(Type) = cgGetAllSuperClasses(cls)->asOrderedSet()->sortedBy(c : Type | cgGetDepth(c))]
+[let superTypes : OrderedSet(Type) = cgGetAllSuperTypes(cls)->asOrderedSet()->sortedBy(c : Type | cgGetDepth(c))]
 {
-[for (superClass : Type | superClasses) separator(',\n')]    Fragments._[cls.name/]__[superClass.name/] /* [cgGetDepth(superClass)/] */[/for]
+[for (superClass : Type | superTypes) separator(',\n')]    Fragments._[cls.name/]__[superClass.name/] /* [cgGetDepth(superClass)/] */[/for]
 };
 [/let]
-private static final int['[]'/] __[cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperClasses(cls)->select(c : Type | cgGetDepth(c) = i)->size()/][/for] };
+private static final int['[]'/] __[cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperTypes(cls)->select(c : Type | cgGetDepth(c) = i)->size()/][/for] };
 [/template]
 
-[template public declareClassIndexes(pkg : Package)]
+[template public declareTypeIndexes(pkg : Package)]
 /**
- *	The number of base classes at each inheritance depth: OclAny first, OclSelf last.
+ *	The number of base types at each inheritance depth: OclAny first, OclSelf last.
  */
-public static class ClassIndexes {[for (cls : Type | pkg.ownedType->sortedBy(name)) before('\n')]
-	[declareClassIndex(cls)/]
+public static class TypeIndexes {[for (cls : Type | pkg.ownedType->sortedBy(name)) before('\n')]
+	[declareTypeIndex(cls)/]
 [/for]}
 [/template]
 
-[template public declareClassIndex(cls : Type)]
-public static final int['[]'/] [cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperClasses(cls)->select(c : Type | cgGetDepth(c) = i)->size()/][/for] };
+[template public declareTypeIndex(cls : Type)]
+public static final int['[]'/] [cls.name/] = { [for (i : Integer | Sequence{0..cgGetDepth(cls)}) separator(',')][cgGetAllSuperTypes(cls)->select(c : Type | cgGetDepth(c) = i)->size()/][/for] };
 [/template]
 
 [template public declareFragmentOperations(genPackage : GenPackage, pkg : Package)]
 /**
- *	The lists of local operations or local operation overrides for each fragment of each class.
+ *	The lists of local operations or local operation overrides for each fragment of each type.
  */
 public static class FragmentOperations {
 [for (cls : Type | pkg.ownedType->select(c : Type | cgGetBehavioralType(c)->isEmpty())->sortedBy(name)) separator('\n')]
 	[declareLocalFragmentOperations(genPackage, cls, pkg)/]
-[for (superCls : Type | cgGetAllProperSuperClasses(cls)->sortedBy(name))]
+[for (superCls : Type | cgGetAllProperSuperTypes(cls)->sortedBy(name))]
 	[declareSuperFragmentOperations(genPackage, superCls, cls, pkg)/]
 [/for]
 [/for]
@@ -292,7 +292,7 @@ public static class FragmentOperations {
 	 */
 	static {
 [for (cls : Type | pkg.ownedType->sortedBy(name)) separator('\n')]
-[for (superCls : Type | cgGetAllSuperClasses(cls)->select(c : Type | cgGetBehavioralType(c)->isEmpty())->sortedBy(name))]
+[for (superCls : Type | cgGetAllSuperTypes(cls)->select(c : Type | cgGetBehavioralType(c)->isEmpty())->sortedBy(name))]
 		Fragments._[cls.name/]__[superCls.name/].initOperations(_[cls.name/]__[superCls.name/]);
 [/for][/for]
 	}
@@ -322,7 +322,7 @@ private static final ExecutorOperation['[]'/] _[cls.name/]__[superCls.name/] = [
 
 [template public declareFragmentProperties(genPackage : GenPackage, pkg : Package)]
 /**
- *	The lists of local properties for the local fragment of each class.
+ *	The lists of local properties for the local fragment of each type.
  */
 public static class FragmentProperties {
 [for (cls : Class | pkg.ownedType->filter(Class)->sortedBy(name)) separator('\n')]
@@ -351,12 +351,12 @@ private static final ExecutorProperty['[]'/] _[cls.name/] = [if props->isEmpty()
 [/if]};[/let]
 [/template]
 
-[query public getClassFlags(elem : Class) : String =
-if (elem.oclIsKindOf(OrderedSetType)) then 'ExecutorClass.ORDERED | ExecutorClass.UNIQUE'
-else if (elem.oclIsKindOf(SetType)) then 'ExecutorClass.UNIQUE'
-else if (elem.oclIsKindOf(SequenceType)) then 'ExecutorClass.ORDERED'
+[query public getTypeFlags(elem : Type) : String =
+if (elem.oclIsKindOf(OrderedSetType)) then 'ExecutorType.ORDERED | ExecutorType.UNIQUE'
+else if (elem.oclIsKindOf(SetType)) then 'ExecutorType.UNIQUE'
+else if (elem.oclIsKindOf(SequenceType)) then 'ExecutorType.ORDERED'
 else '0'
 endif endif endif/]
 
-[query public printClasses(elem : Collection(Class)) : String = 
+[query public printTypes(elem : Collection(Class)) : String = 
 invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'printClasses(java.lang.Object)', Sequence{elem}) /]

@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateNameVisibilityTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateNumericOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateOclAnyOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateStringOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.InheritanceTests;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 
@@ -74,6 +75,7 @@ public class AllXtextTests
 		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(EditTests.class);
+		result.addTestSuite(InheritanceTests.class);
 		result.addTestSuite(MarkupTests.class);
 		result.addTestSuite(ValidateTests.class);
 		return result;

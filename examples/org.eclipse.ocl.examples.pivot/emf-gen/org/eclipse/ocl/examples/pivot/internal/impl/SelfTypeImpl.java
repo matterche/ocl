@@ -61,7 +61,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	}
 
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		throw new UnsupportedOperationException();		// WIP
 	}
 } //SelfTypeImpl

@@ -43,7 +43,11 @@ public abstract class TypeTracker implements Adapter.Internal
 		target.eAdapters().remove(this);
 	}
 
-	public PackageManager getPackageManager() {
+	public final MetaModelManager getMetaModelManager() {
+		return packageManager.getMetaModelManager();
+	}
+
+	public final PackageManager getPackageManager() {
 		return packageManager;
 	}
 
@@ -52,7 +56,7 @@ public abstract class TypeTracker implements Adapter.Internal
 		return typeServer != null ? typeServer.getTarget() : null;
 	}
 
-	public Type getTarget() {
+	public final Type getTarget() {
 		return target;
 	}
 

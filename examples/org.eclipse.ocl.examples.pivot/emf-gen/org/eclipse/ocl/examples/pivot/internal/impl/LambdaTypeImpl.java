@@ -510,7 +510,7 @@ public class LambdaTypeImpl extends DataTypeImpl implements LambdaType
 	}
 	
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}

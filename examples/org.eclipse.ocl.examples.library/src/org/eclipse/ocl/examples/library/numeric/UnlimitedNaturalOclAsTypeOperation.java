@@ -43,7 +43,7 @@ public class UnlimitedNaturalOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		TypeValue typeVal = argVal.asTypeValue();
 		DomainType argType = typeVal.getInstanceType();
-		if (sourceType.conformsTo(argType, standardLibrary)) {
+		if (sourceType.conformsTo(standardLibrary, argType)) {
 			if (sourceVal.isUnlimited() && ((argType == standardLibrary.getRealType()) || (argType == standardLibrary.getIntegerType()))) {
 				return valueFactory.throwInvalidValueException(EvaluatorMessages.NonFiniteIntegerValue);
 			}

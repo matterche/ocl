@@ -45,120 +45,120 @@ public class PivotTables
 	public static final ExecutorPackage PACKAGE = new ExecutorPackage("pivot", "http://www.eclipse.org/ocl/3.1.0/Pivot", null);
 
 	/**
-	 *	The class descriptors for each class.
+	 *	The type descriptors for each type.
 	 */
-	public static class Classes {
-	    public static final ExecutorClass _Annotation = new ExecutorClass("Annotation", PACKAGE, 0);
-	    public static final ExecutorClass _AnyType = new ExecutorClass("AnyType", PACKAGE, 0);
-	    public static final ExecutorClass _AssociationClass = new ExecutorClass("AssociationClass", PACKAGE, 0);
-	    public static final ExecutorClass _AssociationClassCallExp = new ExecutorClass("AssociationClassCallExp", PACKAGE, 0);
-	    public static final ExecutorClass _AssociativityKind = new ExecutorClass("AssociativityKind", PACKAGE, 0);
-	    public static final ExecutorClass _BagType = new ExecutorClass("BagType", PACKAGE, 0);
-	    public static final ExecutorClass _Boolean = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._Boolean;
-	    public static final ExecutorClass _BooleanLiteralExp = new ExecutorClass("BooleanLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _CallExp = new ExecutorClass("CallExp", PACKAGE, 0);
-	    public static final ExecutorClass _CallOperationAction = new ExecutorClass("CallOperationAction", PACKAGE, 0);
-	    public static final ExecutorClass _Class = new ExecutorClass("Class", PACKAGE, 0);
-	    public static final ExecutorClass _ClassifierType = new ExecutorClass("ClassifierType", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionItem = new ExecutorClass("CollectionItem", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionKind = new ExecutorClass("CollectionKind", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionLiteralExp = new ExecutorClass("CollectionLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionLiteralPart = new ExecutorClass("CollectionLiteralPart", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionRange = new ExecutorClass("CollectionRange", PACKAGE, 0);
-	    public static final ExecutorClass _CollectionType = new ExecutorClass("CollectionType", PACKAGE, 0);
-	    public static final ExecutorClass _Comment = new ExecutorClass("Comment", PACKAGE, 0);
-	    public static final ExecutorClass _Constraint = new ExecutorClass("Constraint", PACKAGE, 0);
-	    public static final ExecutorClass _DataType = new ExecutorClass("DataType", PACKAGE, 0);
-	    public static final ExecutorClass _Detail = new ExecutorClass("Detail", PACKAGE, 0);
-	    public static final ExecutorClass _Element = new ExecutorClass("Element", PACKAGE, 0);
-	    public static final ExecutorClass _EnumLiteralExp = new ExecutorClass("EnumLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _Enumeration = new ExecutorClass("Enumeration", PACKAGE, 0);
-	    public static final ExecutorClass _EnumerationLiteral = new ExecutorClass("EnumerationLiteral", PACKAGE, 0);
-	    public static final ExecutorClass _ExpressionInOcl = new ExecutorClass("ExpressionInOcl", PACKAGE, 0);
-	    public static final ExecutorClass _Feature = new ExecutorClass("Feature", PACKAGE, 0);
-	    public static final ExecutorClass _FeatureCallExp = new ExecutorClass("FeatureCallExp", PACKAGE, 0);
-	    public static final ExecutorClass _IfExp = new ExecutorClass("IfExp", PACKAGE, 0);
-	    public static final ExecutorClass _Int = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._Integer;
-	    public static final ExecutorClass _Integer = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._Integer;
-	    public static final ExecutorClass _IntegerLiteralExp = new ExecutorClass("IntegerLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _InvalidLiteralExp = new ExecutorClass("InvalidLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _InvalidType = new ExecutorClass("InvalidType", PACKAGE, 0);
-	    public static final ExecutorClass _IterateExp = new ExecutorClass("IterateExp", PACKAGE, 0);
-	    public static final ExecutorClass _Iteration = new ExecutorClass("Iteration", PACKAGE, 0);
-	    public static final ExecutorClass _IteratorExp = new ExecutorClass("IteratorExp", PACKAGE, 0);
-	    public static final ExecutorClass _LambdaType = new ExecutorClass("LambdaType", PACKAGE, 0);
-	    public static final ExecutorClass _LetExp = new ExecutorClass("LetExp", PACKAGE, 0);
-	    public static final ExecutorClass _Library = new ExecutorClass("Library", PACKAGE, 0);
-	    public static final ExecutorClass _LibraryFeature = new ExecutorClass("LibraryFeature", PACKAGE, 0);
-	    public static final ExecutorClass _LiteralExp = new ExecutorClass("LiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _LoopExp = new ExecutorClass("LoopExp", PACKAGE, 0);
-	    public static final ExecutorClass _MessageExp = new ExecutorClass("MessageExp", PACKAGE, 0);
-	    public static final ExecutorClass _MessageType = new ExecutorClass("MessageType", PACKAGE, 0);
-	    public static final ExecutorClass _MultiplicityElement = new ExecutorClass("MultiplicityElement", PACKAGE, 0);
-	    public static final ExecutorClass _Nameable = new ExecutorClass("Nameable", PACKAGE, 0);
-	    public static final ExecutorClass _NamedElement = new ExecutorClass("NamedElement", PACKAGE, 0);
-	    public static final ExecutorClass _Namespace = new ExecutorClass("Namespace", PACKAGE, 0);
-	    public static final ExecutorClass _NavigationCallExp = new ExecutorClass("NavigationCallExp", PACKAGE, 0);
-	    public static final ExecutorClass _NullLiteralExp = new ExecutorClass("NullLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _NumericLiteralExp = new ExecutorClass("NumericLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _Object = new ExecutorClass("Object", PACKAGE, 0);
-	    public static final ExecutorClass _OclExpression = new ExecutorClass("OclExpression", PACKAGE, 0);
-	    public static final ExecutorClass _OpaqueExpression = new ExecutorClass("OpaqueExpression", PACKAGE, 0);
-	    public static final ExecutorClass _Operation = new ExecutorClass("Operation", PACKAGE, 0);
-	    public static final ExecutorClass _OperationCallExp = new ExecutorClass("OperationCallExp", PACKAGE, 0);
-	    public static final ExecutorClass _OperationTemplateParameter = new ExecutorClass("OperationTemplateParameter", PACKAGE, 0);
-	    public static final ExecutorClass _OrderedSetType = new ExecutorClass("OrderedSetType", PACKAGE, 0);
-	    public static final ExecutorClass _Package = new ExecutorClass("Package", PACKAGE, 0);
-	    public static final ExecutorClass _PackageableElement = new ExecutorClass("PackageableElement", PACKAGE, 0);
-	    public static final ExecutorClass _Parameter = new ExecutorClass("Parameter", PACKAGE, 0);
-	    public static final ExecutorClass _ParameterableElement = new ExecutorClass("ParameterableElement", PACKAGE, 0);
-	    public static final ExecutorClass _Pivotable = new ExecutorClass("Pivotable", PACKAGE, 0);
-	    public static final ExecutorClass _Precedence = new ExecutorClass("Precedence", PACKAGE, 0);
-	    public static final ExecutorClass _PrimitiveLiteralExp = new ExecutorClass("PrimitiveLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _PrimitiveType = new ExecutorClass("PrimitiveType", PACKAGE, 0);
-	    public static final ExecutorClass _Property = new ExecutorClass("Property", PACKAGE, 0);
-	    public static final ExecutorClass _PropertyCallExp = new ExecutorClass("PropertyCallExp", PACKAGE, 0);
-	    public static final ExecutorClass _Real = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._Real;
-	    public static final ExecutorClass _RealLiteralExp = new ExecutorClass("RealLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _SelfType = new ExecutorClass("SelfType", PACKAGE, 0);
-	    public static final ExecutorClass _SendSignalAction = new ExecutorClass("SendSignalAction", PACKAGE, 0);
-	    public static final ExecutorClass _SequenceType = new ExecutorClass("SequenceType", PACKAGE, 0);
-	    public static final ExecutorClass _SetType = new ExecutorClass("SetType", PACKAGE, 0);
-	    public static final ExecutorClass _Signal = new ExecutorClass("Signal", PACKAGE, 0);
-	    public static final ExecutorClass _State = new ExecutorClass("State", PACKAGE, 0);
-	    public static final ExecutorClass _StateExp = new ExecutorClass("StateExp", PACKAGE, 0);
-	    public static final ExecutorClass _String = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._String;
-	    public static final ExecutorClass _StringLiteralExp = new ExecutorClass("StringLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateBinding = new ExecutorClass("TemplateBinding", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateParameter = new ExecutorClass("TemplateParameter", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateParameterSubstitution = new ExecutorClass("TemplateParameterSubstitution", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateParameterType = new ExecutorClass("TemplateParameterType", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateSignature = new ExecutorClass("TemplateSignature", PACKAGE, 0);
-	    public static final ExecutorClass _TemplateableElement = new ExecutorClass("TemplateableElement", PACKAGE, 0);
-	    public static final ExecutorClass _Throwable = new ExecutorClass("Throwable", PACKAGE, 0);
-	    public static final ExecutorClass _TupleLiteralExp = new ExecutorClass("TupleLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _TupleLiteralPart = new ExecutorClass("TupleLiteralPart", PACKAGE, 0);
-	    public static final ExecutorClass _TupleType = new ExecutorClass("TupleType", PACKAGE, 0);
-	    public static final ExecutorClass _Type = new ExecutorClass("Type", PACKAGE, 0);
-	    public static final ExecutorClass _TypeExp = new ExecutorClass("TypeExp", PACKAGE, 0);
-	    public static final ExecutorClass _TypeTemplateParameter = new ExecutorClass("TypeTemplateParameter", PACKAGE, 0);
-	    public static final ExecutorClass _TypedElement = new ExecutorClass("TypedElement", PACKAGE, 0);
-	    public static final ExecutorClass _TypedMultiplicityElement = new ExecutorClass("TypedMultiplicityElement", PACKAGE, 0);
-	    public static final ExecutorClass _UnlimitedNatural = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._Integer;
-	    public static final ExecutorClass _UnlimitedNaturalLiteralExp = new ExecutorClass("UnlimitedNaturalLiteralExp", PACKAGE, 0);
-	    public static final ExecutorClass _UnspecifiedType = new ExecutorClass("UnspecifiedType", PACKAGE, 0);
-	    public static final ExecutorClass _UnspecifiedValueExp = new ExecutorClass("UnspecifiedValueExp", PACKAGE, 0);
-	    public static final ExecutorClass _ValueSpecification = new ExecutorClass("ValueSpecification", PACKAGE, 0);
-	    public static final ExecutorClass _Variable = new ExecutorClass("Variable", PACKAGE, 0);
-	    public static final ExecutorClass _VariableDeclaration = new ExecutorClass("VariableDeclaration", PACKAGE, 0);
-	    public static final ExecutorClass _VariableExp = new ExecutorClass("VariableExp", PACKAGE, 0);
-	    public static final ExecutorClass _Visitable = new ExecutorClass("Visitable", PACKAGE, 0);
-	    public static final ExecutorTypeParameter _Visitor_R = new ExecutorTypeParameter("R");
-	    public static final ExecutorTypeParameter _Visitor_C = new ExecutorTypeParameter("C");
-	    public static final ExecutorClass _Visitor = new ExecutorClass("Visitor", PACKAGE, 0, _Visitor_R, _Visitor_C);
-	    public static final ExecutorClass _VoidType = new ExecutorClass("VoidType", PACKAGE, 0);
+	public static class Types {
+	    public static final ExecutorType _Annotation = new ExecutorType("Annotation", PACKAGE, 0);
+	    public static final ExecutorType _AnyType = new ExecutorType("AnyType", PACKAGE, 0);
+	    public static final ExecutorType _AssociationClass = new ExecutorType("AssociationClass", PACKAGE, 0);
+	    public static final ExecutorType _AssociationClassCallExp = new ExecutorType("AssociationClassCallExp", PACKAGE, 0);
+	    public static final ExecutorType _AssociativityKind = new ExecutorType("AssociativityKind", PACKAGE, 0);
+	    public static final ExecutorType _BagType = new ExecutorType("BagType", PACKAGE, 0);
+	    public static final ExecutorType _Boolean = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._Boolean;
+	    public static final ExecutorType _BooleanLiteralExp = new ExecutorType("BooleanLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _CallExp = new ExecutorType("CallExp", PACKAGE, 0);
+	    public static final ExecutorType _CallOperationAction = new ExecutorType("CallOperationAction", PACKAGE, 0);
+	    public static final ExecutorType _Class = new ExecutorType("Class", PACKAGE, 0);
+	    public static final ExecutorType _ClassifierType = new ExecutorType("ClassifierType", PACKAGE, 0);
+	    public static final ExecutorType _CollectionItem = new ExecutorType("CollectionItem", PACKAGE, 0);
+	    public static final ExecutorType _CollectionKind = new ExecutorType("CollectionKind", PACKAGE, 0);
+	    public static final ExecutorType _CollectionLiteralExp = new ExecutorType("CollectionLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _CollectionLiteralPart = new ExecutorType("CollectionLiteralPart", PACKAGE, 0);
+	    public static final ExecutorType _CollectionRange = new ExecutorType("CollectionRange", PACKAGE, 0);
+	    public static final ExecutorType _CollectionType = new ExecutorType("CollectionType", PACKAGE, 0);
+	    public static final ExecutorType _Comment = new ExecutorType("Comment", PACKAGE, 0);
+	    public static final ExecutorType _Constraint = new ExecutorType("Constraint", PACKAGE, 0);
+	    public static final ExecutorType _DataType = new ExecutorType("DataType", PACKAGE, 0);
+	    public static final ExecutorType _Detail = new ExecutorType("Detail", PACKAGE, 0);
+	    public static final ExecutorType _Element = new ExecutorType("Element", PACKAGE, 0);
+	    public static final ExecutorType _EnumLiteralExp = new ExecutorType("EnumLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _Enumeration = new ExecutorType("Enumeration", PACKAGE, 0);
+	    public static final ExecutorType _EnumerationLiteral = new ExecutorType("EnumerationLiteral", PACKAGE, 0);
+	    public static final ExecutorType _ExpressionInOcl = new ExecutorType("ExpressionInOcl", PACKAGE, 0);
+	    public static final ExecutorType _Feature = new ExecutorType("Feature", PACKAGE, 0);
+	    public static final ExecutorType _FeatureCallExp = new ExecutorType("FeatureCallExp", PACKAGE, 0);
+	    public static final ExecutorType _IfExp = new ExecutorType("IfExp", PACKAGE, 0);
+	    public static final ExecutorType _Int = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._Integer;
+	    public static final ExecutorType _Integer = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._Integer;
+	    public static final ExecutorType _IntegerLiteralExp = new ExecutorType("IntegerLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _InvalidLiteralExp = new ExecutorType("InvalidLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _InvalidType = new ExecutorType("InvalidType", PACKAGE, 0);
+	    public static final ExecutorType _IterateExp = new ExecutorType("IterateExp", PACKAGE, 0);
+	    public static final ExecutorType _Iteration = new ExecutorType("Iteration", PACKAGE, 0);
+	    public static final ExecutorType _IteratorExp = new ExecutorType("IteratorExp", PACKAGE, 0);
+	    public static final ExecutorType _LambdaType = new ExecutorType("LambdaType", PACKAGE, 0);
+	    public static final ExecutorType _LetExp = new ExecutorType("LetExp", PACKAGE, 0);
+	    public static final ExecutorType _Library = new ExecutorType("Library", PACKAGE, 0);
+	    public static final ExecutorType _LibraryFeature = new ExecutorType("LibraryFeature", PACKAGE, 0);
+	    public static final ExecutorType _LiteralExp = new ExecutorType("LiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _LoopExp = new ExecutorType("LoopExp", PACKAGE, 0);
+	    public static final ExecutorType _MessageExp = new ExecutorType("MessageExp", PACKAGE, 0);
+	    public static final ExecutorType _MessageType = new ExecutorType("MessageType", PACKAGE, 0);
+	    public static final ExecutorType _MultiplicityElement = new ExecutorType("MultiplicityElement", PACKAGE, 0);
+	    public static final ExecutorType _Nameable = new ExecutorType("Nameable", PACKAGE, 0);
+	    public static final ExecutorType _NamedElement = new ExecutorType("NamedElement", PACKAGE, 0);
+	    public static final ExecutorType _Namespace = new ExecutorType("Namespace", PACKAGE, 0);
+	    public static final ExecutorType _NavigationCallExp = new ExecutorType("NavigationCallExp", PACKAGE, 0);
+	    public static final ExecutorType _NullLiteralExp = new ExecutorType("NullLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _NumericLiteralExp = new ExecutorType("NumericLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _Object = new ExecutorType("Object", PACKAGE, 0);
+	    public static final ExecutorType _OclExpression = new ExecutorType("OclExpression", PACKAGE, 0);
+	    public static final ExecutorType _OpaqueExpression = new ExecutorType("OpaqueExpression", PACKAGE, 0);
+	    public static final ExecutorType _Operation = new ExecutorType("Operation", PACKAGE, 0);
+	    public static final ExecutorType _OperationCallExp = new ExecutorType("OperationCallExp", PACKAGE, 0);
+	    public static final ExecutorType _OperationTemplateParameter = new ExecutorType("OperationTemplateParameter", PACKAGE, 0);
+	    public static final ExecutorType _OrderedSetType = new ExecutorType("OrderedSetType", PACKAGE, 0);
+	    public static final ExecutorType _Package = new ExecutorType("Package", PACKAGE, 0);
+	    public static final ExecutorType _PackageableElement = new ExecutorType("PackageableElement", PACKAGE, 0);
+	    public static final ExecutorType _Parameter = new ExecutorType("Parameter", PACKAGE, 0);
+	    public static final ExecutorType _ParameterableElement = new ExecutorType("ParameterableElement", PACKAGE, 0);
+	    public static final ExecutorType _Pivotable = new ExecutorType("Pivotable", PACKAGE, 0);
+	    public static final ExecutorType _Precedence = new ExecutorType("Precedence", PACKAGE, 0);
+	    public static final ExecutorType _PrimitiveLiteralExp = new ExecutorType("PrimitiveLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _PrimitiveType = new ExecutorType("PrimitiveType", PACKAGE, 0);
+	    public static final ExecutorType _Property = new ExecutorType("Property", PACKAGE, 0);
+	    public static final ExecutorType _PropertyCallExp = new ExecutorType("PropertyCallExp", PACKAGE, 0);
+	    public static final ExecutorType _Real = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._Real;
+	    public static final ExecutorType _RealLiteralExp = new ExecutorType("RealLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _SelfType = new ExecutorType("SelfType", PACKAGE, 0);
+	    public static final ExecutorType _SendSignalAction = new ExecutorType("SendSignalAction", PACKAGE, 0);
+	    public static final ExecutorType _SequenceType = new ExecutorType("SequenceType", PACKAGE, 0);
+	    public static final ExecutorType _SetType = new ExecutorType("SetType", PACKAGE, 0);
+	    public static final ExecutorType _Signal = new ExecutorType("Signal", PACKAGE, 0);
+	    public static final ExecutorType _State = new ExecutorType("State", PACKAGE, 0);
+	    public static final ExecutorType _StateExp = new ExecutorType("StateExp", PACKAGE, 0);
+	    public static final ExecutorType _String = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._String;
+	    public static final ExecutorType _StringLiteralExp = new ExecutorType("StringLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _TemplateBinding = new ExecutorType("TemplateBinding", PACKAGE, 0);
+	    public static final ExecutorType _TemplateParameter = new ExecutorType("TemplateParameter", PACKAGE, 0);
+	    public static final ExecutorType _TemplateParameterSubstitution = new ExecutorType("TemplateParameterSubstitution", PACKAGE, 0);
+	    public static final ExecutorType _TemplateParameterType = new ExecutorType("TemplateParameterType", PACKAGE, 0);
+	    public static final ExecutorType _TemplateSignature = new ExecutorType("TemplateSignature", PACKAGE, 0);
+	    public static final ExecutorType _TemplateableElement = new ExecutorType("TemplateableElement", PACKAGE, 0);
+	    public static final ExecutorType _Throwable = new ExecutorType("Throwable", PACKAGE, 0);
+	    public static final ExecutorType _TupleLiteralExp = new ExecutorType("TupleLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _TupleLiteralPart = new ExecutorType("TupleLiteralPart", PACKAGE, 0);
+	    public static final ExecutorType _TupleType = new ExecutorType("TupleType", PACKAGE, 0);
+	    public static final ExecutorType _Type = new ExecutorType("Type", PACKAGE, 0);
+	    public static final ExecutorType _TypeExp = new ExecutorType("TypeExp", PACKAGE, 0);
+	    public static final ExecutorType _TypeTemplateParameter = new ExecutorType("TypeTemplateParameter", PACKAGE, 0);
+	    public static final ExecutorType _TypedElement = new ExecutorType("TypedElement", PACKAGE, 0);
+	    public static final ExecutorType _TypedMultiplicityElement = new ExecutorType("TypedMultiplicityElement", PACKAGE, 0);
+	    public static final ExecutorType _UnlimitedNatural = org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._Integer;
+	    public static final ExecutorType _UnlimitedNaturalLiteralExp = new ExecutorType("UnlimitedNaturalLiteralExp", PACKAGE, 0);
+	    public static final ExecutorType _UnspecifiedType = new ExecutorType("UnspecifiedType", PACKAGE, 0);
+	    public static final ExecutorType _UnspecifiedValueExp = new ExecutorType("UnspecifiedValueExp", PACKAGE, 0);
+	    public static final ExecutorType _ValueSpecification = new ExecutorType("ValueSpecification", PACKAGE, 0);
+	    public static final ExecutorType _Variable = new ExecutorType("Variable", PACKAGE, 0);
+	    public static final ExecutorType _VariableDeclaration = new ExecutorType("VariableDeclaration", PACKAGE, 0);
+	    public static final ExecutorType _VariableExp = new ExecutorType("VariableExp", PACKAGE, 0);
+	    public static final ExecutorType _Visitable = new ExecutorType("Visitable", PACKAGE, 0);
+	    private static final ExecutorTypeParameter _Visitor_R = new ExecutorTypeParameter("R");
+	    private static final ExecutorTypeParameter _Visitor_C = new ExecutorTypeParameter("C");
+	    public static final ExecutorType _Visitor = new ExecutorType("Visitor", PACKAGE, 0, _Visitor_R, _Visitor_C);
+	    public static final ExecutorType _VoidType = new ExecutorType("VoidType", PACKAGE, 0);
 	
-		private static final ExecutorClass[] classes = {
+		private static final ExecutorType[] types = {
 		    _Annotation,
 		    _AnyType,
 		    _AssociationClass,
@@ -269,1353 +269,1353 @@ public class PivotTables
 		};
 	
 		/*
-		 *	Install the class descriptors in the package descriptor.
+		 *	Install the type descriptors in the package descriptor.
 		 */
 		static {
-			PACKAGE.init(classes);
-			ClassFragments.init();
+			PACKAGE.init(types);
+			TypeFragments.init();
 			FragmentOperations.init();
 			FragmentProperties.init();
 		}
 	}
 
 	/**
-	 *	The fragment descriptors for the local elements of each class and its superclasses.
+	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
-		public static final ExecutorFragment _Annotation__Annotation = new ExecutorFragment(Classes._Annotation, PivotTables.Classes._Annotation, null, null);
-		public static final ExecutorFragment _Annotation__Element = new ExecutorFragment(Classes._Annotation, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Annotation__Nameable = new ExecutorFragment(Classes._Annotation, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Annotation__NamedElement = new ExecutorFragment(Classes._Annotation, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Annotation__OclAny = new ExecutorFragment(Classes._Annotation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Annotation__OclElement = new ExecutorFragment(Classes._Annotation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Annotation__Visitable = new ExecutorFragment(Classes._Annotation, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _AnyType__AnyType = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._AnyType, null, null);
-		public static final ExecutorFragment _AnyType__Class = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _AnyType__Element = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _AnyType__Nameable = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _AnyType__NamedElement = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _AnyType__Namespace = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _AnyType__OclAny = new ExecutorFragment(Classes._AnyType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _AnyType__OclElement = new ExecutorFragment(Classes._AnyType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _AnyType__ParameterableElement = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _AnyType__TemplateableElement = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _AnyType__Type = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _AnyType__Visitable = new ExecutorFragment(Classes._AnyType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociationClass__AssociationClass = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._AssociationClass, null, null);
-		public static final ExecutorFragment _AssociationClass__Class = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _AssociationClass__Element = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _AssociationClass__Nameable = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _AssociationClass__NamedElement = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _AssociationClass__Namespace = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _AssociationClass__OclAny = new ExecutorFragment(Classes._AssociationClass, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _AssociationClass__OclElement = new ExecutorFragment(Classes._AssociationClass, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _AssociationClass__ParameterableElement = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _AssociationClass__TemplateableElement = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _AssociationClass__Type = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _AssociationClass__Visitable = new ExecutorFragment(Classes._AssociationClass, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociationClassCallExp__AssociationClassCallExp = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._AssociationClassCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__CallExp = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Element = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__FeatureCallExp = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._FeatureCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Nameable = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__NamedElement = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__NavigationCallExp = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._NavigationCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclAny = new ExecutorFragment(Classes._AssociationClassCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclElement = new ExecutorFragment(Classes._AssociationClassCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclExpression = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__TypedElement = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Visitable = new ExecutorFragment(Classes._AssociationClassCallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociativityKind__AssociativityKind = new ExecutorFragment(Classes._AssociativityKind, PivotTables.Classes._AssociativityKind, null, null);
-		
-		public static final ExecutorFragment _BagType__BagType = new ExecutorFragment(Classes._BagType, PivotTables.Classes._BagType, null, null);
-		public static final ExecutorFragment _BagType__Class = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _BagType__CollectionType = new ExecutorFragment(Classes._BagType, PivotTables.Classes._CollectionType, null, null);
-		public static final ExecutorFragment _BagType__DataType = new ExecutorFragment(Classes._BagType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _BagType__Element = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _BagType__Nameable = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _BagType__NamedElement = new ExecutorFragment(Classes._BagType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _BagType__Namespace = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _BagType__OclAny = new ExecutorFragment(Classes._BagType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _BagType__OclElement = new ExecutorFragment(Classes._BagType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _BagType__ParameterableElement = new ExecutorFragment(Classes._BagType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _BagType__TemplateableElement = new ExecutorFragment(Classes._BagType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _BagType__Type = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _BagType__Visitable = new ExecutorFragment(Classes._BagType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Classes._Boolean, PivotTables.Classes._Boolean, null, null);
-		
-		public static final ExecutorFragment _BooleanLiteralExp__BooleanLiteralExp = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._BooleanLiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Element = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__LiteralExp = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Nameable = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__NamedElement = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclAny = new ExecutorFragment(Classes._BooleanLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclElement = new ExecutorFragment(Classes._BooleanLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclExpression = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__TypedElement = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Visitable = new ExecutorFragment(Classes._BooleanLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CallExp__CallExp = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _CallExp__Element = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CallExp__Nameable = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CallExp__NamedElement = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CallExp__OclAny = new ExecutorFragment(Classes._CallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CallExp__OclElement = new ExecutorFragment(Classes._CallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CallExp__OclExpression = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _CallExp__TypedElement = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _CallExp__Visitable = new ExecutorFragment(Classes._CallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CallOperationAction__CallOperationAction = new ExecutorFragment(Classes._CallOperationAction, PivotTables.Classes._CallOperationAction, null, null);
-		public static final ExecutorFragment _CallOperationAction__Element = new ExecutorFragment(Classes._CallOperationAction, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CallOperationAction__Nameable = new ExecutorFragment(Classes._CallOperationAction, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CallOperationAction__NamedElement = new ExecutorFragment(Classes._CallOperationAction, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CallOperationAction__OclAny = new ExecutorFragment(Classes._CallOperationAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CallOperationAction__OclElement = new ExecutorFragment(Classes._CallOperationAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CallOperationAction__Visitable = new ExecutorFragment(Classes._CallOperationAction, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Classes._Class, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _Class__Element = new ExecutorFragment(Classes._Class, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Class__Nameable = new ExecutorFragment(Classes._Class, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Class__NamedElement = new ExecutorFragment(Classes._Class, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Class__Namespace = new ExecutorFragment(Classes._Class, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Classes._Class, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Class__OclElement = new ExecutorFragment(Classes._Class, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Class__ParameterableElement = new ExecutorFragment(Classes._Class, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Class__TemplateableElement = new ExecutorFragment(Classes._Class, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Class__Type = new ExecutorFragment(Classes._Class, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _Class__Visitable = new ExecutorFragment(Classes._Class, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _ClassifierType__Class = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _ClassifierType__ClassifierType = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._ClassifierType, null, null);
-		public static final ExecutorFragment _ClassifierType__DataType = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _ClassifierType__Element = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _ClassifierType__Nameable = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _ClassifierType__NamedElement = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _ClassifierType__Namespace = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _ClassifierType__OclAny = new ExecutorFragment(Classes._ClassifierType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _ClassifierType__OclElement = new ExecutorFragment(Classes._ClassifierType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _ClassifierType__ParameterableElement = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _ClassifierType__TemplateableElement = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _ClassifierType__Type = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _ClassifierType__Visitable = new ExecutorFragment(Classes._ClassifierType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionItem__CollectionItem = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._CollectionItem, null, null);
-		public static final ExecutorFragment _CollectionItem__CollectionLiteralPart = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionItem__Element = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CollectionItem__Nameable = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CollectionItem__NamedElement = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionItem__OclAny = new ExecutorFragment(Classes._CollectionItem, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CollectionItem__OclElement = new ExecutorFragment(Classes._CollectionItem, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CollectionItem__TypedElement = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionItem__Visitable = new ExecutorFragment(Classes._CollectionItem, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionKind__CollectionKind = new ExecutorFragment(Classes._CollectionKind, PivotTables.Classes._CollectionKind, null, null);
-		
-		public static final ExecutorFragment _CollectionLiteralExp__CollectionLiteralExp = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._CollectionLiteralExp, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Element = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__LiteralExp = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Nameable = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__NamedElement = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclAny = new ExecutorFragment(Classes._CollectionLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclElement = new ExecutorFragment(Classes._CollectionLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclExpression = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__TypedElement = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Visitable = new ExecutorFragment(Classes._CollectionLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionLiteralPart__CollectionLiteralPart = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Element = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Nameable = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__NamedElement = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__OclAny = new ExecutorFragment(Classes._CollectionLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__OclElement = new ExecutorFragment(Classes._CollectionLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__TypedElement = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Visitable = new ExecutorFragment(Classes._CollectionLiteralPart, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionRange__CollectionLiteralPart = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionRange__CollectionRange = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._CollectionRange, null, null);
-		public static final ExecutorFragment _CollectionRange__Element = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CollectionRange__Nameable = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CollectionRange__NamedElement = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionRange__OclAny = new ExecutorFragment(Classes._CollectionRange, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CollectionRange__OclElement = new ExecutorFragment(Classes._CollectionRange, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CollectionRange__TypedElement = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionRange__Visitable = new ExecutorFragment(Classes._CollectionRange, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionType__Class = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _CollectionType__CollectionType = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._CollectionType, null, null);
-		public static final ExecutorFragment _CollectionType__DataType = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _CollectionType__Element = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _CollectionType__Nameable = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _CollectionType__NamedElement = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionType__Namespace = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _CollectionType__OclAny = new ExecutorFragment(Classes._CollectionType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _CollectionType__OclElement = new ExecutorFragment(Classes._CollectionType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _CollectionType__ParameterableElement = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _CollectionType__TemplateableElement = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _CollectionType__Type = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _CollectionType__Visitable = new ExecutorFragment(Classes._CollectionType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Comment__Comment = new ExecutorFragment(Classes._Comment, PivotTables.Classes._Comment, null, null);
-		public static final ExecutorFragment _Comment__Element = new ExecutorFragment(Classes._Comment, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Comment__OclAny = new ExecutorFragment(Classes._Comment, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Comment__OclElement = new ExecutorFragment(Classes._Comment, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Comment__Visitable = new ExecutorFragment(Classes._Comment, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Constraint__Constraint = new ExecutorFragment(Classes._Constraint, PivotTables.Classes._Constraint, null, null);
-		public static final ExecutorFragment _Constraint__Element = new ExecutorFragment(Classes._Constraint, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Constraint__Nameable = new ExecutorFragment(Classes._Constraint, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Constraint__NamedElement = new ExecutorFragment(Classes._Constraint, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Classes._Constraint, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Classes._Constraint, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Classes._Constraint, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _DataType__Class = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _DataType__DataType = new ExecutorFragment(Classes._DataType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _DataType__Element = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _DataType__Nameable = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _DataType__NamedElement = new ExecutorFragment(Classes._DataType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _DataType__Namespace = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _DataType__OclAny = new ExecutorFragment(Classes._DataType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _DataType__OclElement = new ExecutorFragment(Classes._DataType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _DataType__ParameterableElement = new ExecutorFragment(Classes._DataType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _DataType__TemplateableElement = new ExecutorFragment(Classes._DataType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _DataType__Type = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _DataType__Visitable = new ExecutorFragment(Classes._DataType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Detail__Detail = new ExecutorFragment(Classes._Detail, PivotTables.Classes._Detail, null, null);
-		public static final ExecutorFragment _Detail__Element = new ExecutorFragment(Classes._Detail, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Detail__Nameable = new ExecutorFragment(Classes._Detail, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Detail__NamedElement = new ExecutorFragment(Classes._Detail, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Detail__OclAny = new ExecutorFragment(Classes._Detail, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Detail__OclElement = new ExecutorFragment(Classes._Detail, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Detail__Visitable = new ExecutorFragment(Classes._Detail, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Element__Element = new ExecutorFragment(Classes._Element, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Element__OclAny = new ExecutorFragment(Classes._Element, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Element__OclElement = new ExecutorFragment(Classes._Element, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Element__Visitable = new ExecutorFragment(Classes._Element, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _EnumLiteralExp__Element = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__EnumLiteralExp = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._EnumLiteralExp, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__LiteralExp = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__Nameable = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__NamedElement = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclAny = new ExecutorFragment(Classes._EnumLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclElement = new ExecutorFragment(Classes._EnumLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclExpression = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__TypedElement = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__Visitable = new ExecutorFragment(Classes._EnumLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Enumeration__Class = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _Enumeration__DataType = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _Enumeration__Element = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Enumeration, null, null);
-		public static final ExecutorFragment _Enumeration__Nameable = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Enumeration__NamedElement = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Enumeration__Namespace = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Classes._Enumeration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Enumeration__OclElement = new ExecutorFragment(Classes._Enumeration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Enumeration__ParameterableElement = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Enumeration__TemplateableElement = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Enumeration__Type = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _Enumeration__Visitable = new ExecutorFragment(Classes._Enumeration, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _EnumerationLiteral__Element = new ExecutorFragment(Classes._EnumerationLiteral, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Classes._EnumerationLiteral, PivotTables.Classes._EnumerationLiteral, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__Nameable = new ExecutorFragment(Classes._EnumerationLiteral, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__NamedElement = new ExecutorFragment(Classes._EnumerationLiteral, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Classes._EnumerationLiteral, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__OclElement = new ExecutorFragment(Classes._EnumerationLiteral, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__Visitable = new ExecutorFragment(Classes._EnumerationLiteral, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _ExpressionInOcl__Element = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ExpressionInOcl = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._ExpressionInOcl, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__Nameable = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__NamedElement = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OclAny = new ExecutorFragment(Classes._ExpressionInOcl, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OclElement = new ExecutorFragment(Classes._ExpressionInOcl, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OpaqueExpression = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._OpaqueExpression, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ParameterableElement = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__TypedElement = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ValueSpecification = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._ValueSpecification, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__Visitable = new ExecutorFragment(Classes._ExpressionInOcl, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Feature__Element = new ExecutorFragment(Classes._Feature, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Feature__Feature = new ExecutorFragment(Classes._Feature, PivotTables.Classes._Feature, null, null);
-		public static final ExecutorFragment _Feature__MultiplicityElement = new ExecutorFragment(Classes._Feature, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Feature__Nameable = new ExecutorFragment(Classes._Feature, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Feature__NamedElement = new ExecutorFragment(Classes._Feature, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Feature__OclAny = new ExecutorFragment(Classes._Feature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Feature__OclElement = new ExecutorFragment(Classes._Feature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Feature__TypedElement = new ExecutorFragment(Classes._Feature, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Feature__TypedMultiplicityElement = new ExecutorFragment(Classes._Feature, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Feature__Visitable = new ExecutorFragment(Classes._Feature, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _FeatureCallExp__CallExp = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Element = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _FeatureCallExp__FeatureCallExp = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._FeatureCallExp, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Nameable = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _FeatureCallExp__NamedElement = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclAny = new ExecutorFragment(Classes._FeatureCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclElement = new ExecutorFragment(Classes._FeatureCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclExpression = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _FeatureCallExp__TypedElement = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Visitable = new ExecutorFragment(Classes._FeatureCallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _IfExp__Element = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _IfExp__IfExp = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._IfExp, null, null);
-		public static final ExecutorFragment _IfExp__Nameable = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _IfExp__NamedElement = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _IfExp__OclAny = new ExecutorFragment(Classes._IfExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _IfExp__OclElement = new ExecutorFragment(Classes._IfExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _IfExp__OclExpression = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _IfExp__TypedElement = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _IfExp__Visitable = new ExecutorFragment(Classes._IfExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Int__Int = new ExecutorFragment(Classes._Int, PivotTables.Classes._Int, null, null);
-		
-		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Classes._Integer, PivotTables.Classes._Integer, null, null);
-		
-		public static final ExecutorFragment _IntegerLiteralExp__Element = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__IntegerLiteralExp = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._IntegerLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__LiteralExp = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__Nameable = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__NamedElement = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__NumericLiteralExp = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclAny = new ExecutorFragment(Classes._IntegerLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclElement = new ExecutorFragment(Classes._IntegerLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclExpression = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__TypedElement = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__Visitable = new ExecutorFragment(Classes._IntegerLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _InvalidLiteralExp__Element = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__InvalidLiteralExp = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._InvalidLiteralExp, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__LiteralExp = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__Nameable = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__NamedElement = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclAny = new ExecutorFragment(Classes._InvalidLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclElement = new ExecutorFragment(Classes._InvalidLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclExpression = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__TypedElement = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__Visitable = new ExecutorFragment(Classes._InvalidLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _InvalidType__Class = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _InvalidType__Element = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _InvalidType__InvalidType = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._InvalidType, null, null);
-		public static final ExecutorFragment _InvalidType__Nameable = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _InvalidType__NamedElement = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _InvalidType__Namespace = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _InvalidType__OclAny = new ExecutorFragment(Classes._InvalidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _InvalidType__OclElement = new ExecutorFragment(Classes._InvalidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _InvalidType__ParameterableElement = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _InvalidType__TemplateableElement = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _InvalidType__Type = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _InvalidType__Visitable = new ExecutorFragment(Classes._InvalidType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _IterateExp__CallExp = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _IterateExp__Element = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _IterateExp__IterateExp = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._IterateExp, null, null);
-		public static final ExecutorFragment _IterateExp__LoopExp = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._LoopExp, null, null);
-		public static final ExecutorFragment _IterateExp__Nameable = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _IterateExp__NamedElement = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _IterateExp__OclAny = new ExecutorFragment(Classes._IterateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _IterateExp__OclElement = new ExecutorFragment(Classes._IterateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _IterateExp__OclExpression = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _IterateExp__TypedElement = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _IterateExp__Visitable = new ExecutorFragment(Classes._IterateExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Iteration__Element = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Iteration__Feature = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Feature, null, null);
-		public static final ExecutorFragment _Iteration__Iteration = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Iteration, null, null);
-		public static final ExecutorFragment _Iteration__MultiplicityElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Iteration__Nameable = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Iteration__NamedElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Iteration__Namespace = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Iteration__OclAny = new ExecutorFragment(Classes._Iteration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Iteration__OclElement = new ExecutorFragment(Classes._Iteration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Iteration__Operation = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Operation, null, null);
-		public static final ExecutorFragment _Iteration__ParameterableElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Iteration__TemplateableElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Iteration__TypedElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Iteration__TypedMultiplicityElement = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Iteration__Visitable = new ExecutorFragment(Classes._Iteration, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _IteratorExp__CallExp = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _IteratorExp__Element = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _IteratorExp__IteratorExp = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._IteratorExp, null, null);
-		public static final ExecutorFragment _IteratorExp__LoopExp = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._LoopExp, null, null);
-		public static final ExecutorFragment _IteratorExp__Nameable = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _IteratorExp__NamedElement = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _IteratorExp__OclAny = new ExecutorFragment(Classes._IteratorExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _IteratorExp__OclElement = new ExecutorFragment(Classes._IteratorExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _IteratorExp__OclExpression = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _IteratorExp__TypedElement = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _IteratorExp__Visitable = new ExecutorFragment(Classes._IteratorExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _LambdaType__Class = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _LambdaType__DataType = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _LambdaType__Element = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _LambdaType__LambdaType = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._LambdaType, null, null);
-		public static final ExecutorFragment _LambdaType__Nameable = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _LambdaType__NamedElement = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _LambdaType__Namespace = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _LambdaType__OclAny = new ExecutorFragment(Classes._LambdaType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _LambdaType__OclElement = new ExecutorFragment(Classes._LambdaType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _LambdaType__ParameterableElement = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _LambdaType__TemplateableElement = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _LambdaType__Type = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _LambdaType__Visitable = new ExecutorFragment(Classes._LambdaType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _LetExp__Element = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _LetExp__LetExp = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._LetExp, null, null);
-		public static final ExecutorFragment _LetExp__Nameable = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _LetExp__NamedElement = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _LetExp__OclAny = new ExecutorFragment(Classes._LetExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _LetExp__OclElement = new ExecutorFragment(Classes._LetExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _LetExp__OclExpression = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _LetExp__TypedElement = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _LetExp__Visitable = new ExecutorFragment(Classes._LetExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Library__Element = new ExecutorFragment(Classes._Library, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Library__Library = new ExecutorFragment(Classes._Library, PivotTables.Classes._Library, null, null);
-		public static final ExecutorFragment _Library__Nameable = new ExecutorFragment(Classes._Library, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Library__NamedElement = new ExecutorFragment(Classes._Library, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Library__Namespace = new ExecutorFragment(Classes._Library, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Library__OclAny = new ExecutorFragment(Classes._Library, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Library__OclElement = new ExecutorFragment(Classes._Library, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Library__Package = new ExecutorFragment(Classes._Library, PivotTables.Classes._Package, null, null);
-		public static final ExecutorFragment _Library__TemplateableElement = new ExecutorFragment(Classes._Library, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Library__Visitable = new ExecutorFragment(Classes._Library, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _LibraryFeature__LibraryFeature = new ExecutorFragment(Classes._LibraryFeature, PivotTables.Classes._LibraryFeature, null, null);
-		
-		public static final ExecutorFragment _LiteralExp__Element = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _LiteralExp__LiteralExp = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _LiteralExp__Nameable = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _LiteralExp__NamedElement = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _LiteralExp__OclAny = new ExecutorFragment(Classes._LiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _LiteralExp__OclElement = new ExecutorFragment(Classes._LiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _LiteralExp__OclExpression = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _LiteralExp__TypedElement = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _LiteralExp__Visitable = new ExecutorFragment(Classes._LiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _LoopExp__CallExp = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _LoopExp__Element = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _LoopExp__LoopExp = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._LoopExp, null, null);
-		public static final ExecutorFragment _LoopExp__Nameable = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _LoopExp__NamedElement = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _LoopExp__OclAny = new ExecutorFragment(Classes._LoopExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _LoopExp__OclElement = new ExecutorFragment(Classes._LoopExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _LoopExp__OclExpression = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _LoopExp__TypedElement = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _LoopExp__Visitable = new ExecutorFragment(Classes._LoopExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _MessageExp__Element = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _MessageExp__MessageExp = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._MessageExp, null, null);
-		public static final ExecutorFragment _MessageExp__Nameable = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _MessageExp__NamedElement = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _MessageExp__OclAny = new ExecutorFragment(Classes._MessageExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _MessageExp__OclElement = new ExecutorFragment(Classes._MessageExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _MessageExp__OclExpression = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _MessageExp__TypedElement = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _MessageExp__Visitable = new ExecutorFragment(Classes._MessageExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _MessageType__Element = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _MessageType__MessageType = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._MessageType, null, null);
-		public static final ExecutorFragment _MessageType__Nameable = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _MessageType__NamedElement = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _MessageType__OclAny = new ExecutorFragment(Classes._MessageType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _MessageType__OclElement = new ExecutorFragment(Classes._MessageType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _MessageType__ParameterableElement = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _MessageType__TemplateableElement = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _MessageType__Type = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _MessageType__Visitable = new ExecutorFragment(Classes._MessageType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _MultiplicityElement__Element = new ExecutorFragment(Classes._MultiplicityElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _MultiplicityElement__MultiplicityElement = new ExecutorFragment(Classes._MultiplicityElement, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _MultiplicityElement__OclAny = new ExecutorFragment(Classes._MultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _MultiplicityElement__OclElement = new ExecutorFragment(Classes._MultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _MultiplicityElement__Visitable = new ExecutorFragment(Classes._MultiplicityElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Nameable__Nameable = new ExecutorFragment(Classes._Nameable, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Nameable__OclAny = new ExecutorFragment(Classes._Nameable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Nameable__OclElement = new ExecutorFragment(Classes._Nameable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		
-		public static final ExecutorFragment _NamedElement__Element = new ExecutorFragment(Classes._NamedElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _NamedElement__Nameable = new ExecutorFragment(Classes._NamedElement, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _NamedElement__NamedElement = new ExecutorFragment(Classes._NamedElement, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _NamedElement__OclAny = new ExecutorFragment(Classes._NamedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _NamedElement__OclElement = new ExecutorFragment(Classes._NamedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _NamedElement__Visitable = new ExecutorFragment(Classes._NamedElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Namespace__Element = new ExecutorFragment(Classes._Namespace, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Namespace__Nameable = new ExecutorFragment(Classes._Namespace, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Namespace__NamedElement = new ExecutorFragment(Classes._Namespace, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Namespace__Namespace = new ExecutorFragment(Classes._Namespace, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Namespace__OclAny = new ExecutorFragment(Classes._Namespace, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Namespace__OclElement = new ExecutorFragment(Classes._Namespace, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Namespace__Visitable = new ExecutorFragment(Classes._Namespace, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _NavigationCallExp__CallExp = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Element = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _NavigationCallExp__FeatureCallExp = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._FeatureCallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Nameable = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _NavigationCallExp__NamedElement = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__NavigationCallExp = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._NavigationCallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclAny = new ExecutorFragment(Classes._NavigationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclElement = new ExecutorFragment(Classes._NavigationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclExpression = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _NavigationCallExp__TypedElement = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Visitable = new ExecutorFragment(Classes._NavigationCallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _NullLiteralExp__Element = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _NullLiteralExp__LiteralExp = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__Nameable = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _NullLiteralExp__NamedElement = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__NullLiteralExp = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._NullLiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclAny = new ExecutorFragment(Classes._NullLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclElement = new ExecutorFragment(Classes._NullLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclExpression = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _NullLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__TypedElement = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__Visitable = new ExecutorFragment(Classes._NullLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _NumericLiteralExp__Element = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__LiteralExp = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__Nameable = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__NamedElement = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__NumericLiteralExp = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclAny = new ExecutorFragment(Classes._NumericLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclElement = new ExecutorFragment(Classes._NumericLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclExpression = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__TypedElement = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__Visitable = new ExecutorFragment(Classes._NumericLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Object__Object = new ExecutorFragment(Classes._Object, PivotTables.Classes._Object, null, null);
-		
-		public static final ExecutorFragment _OclExpression__Element = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _OclExpression__Nameable = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _OclExpression__NamedElement = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _OclExpression__OclAny = new ExecutorFragment(Classes._OclExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _OclExpression__OclElement = new ExecutorFragment(Classes._OclExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _OclExpression__OclExpression = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _OclExpression__TypedElement = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _OclExpression__Visitable = new ExecutorFragment(Classes._OclExpression, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _OpaqueExpression__Element = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _OpaqueExpression__Nameable = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _OpaqueExpression__NamedElement = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OclAny = new ExecutorFragment(Classes._OpaqueExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OclElement = new ExecutorFragment(Classes._OpaqueExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OpaqueExpression = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._OpaqueExpression, null, null);
-		public static final ExecutorFragment _OpaqueExpression__ParameterableElement = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__TypedElement = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__ValueSpecification = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._ValueSpecification, null, null);
-		public static final ExecutorFragment _OpaqueExpression__Visitable = new ExecutorFragment(Classes._OpaqueExpression, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Operation__Element = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Operation__Feature = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Feature, null, null);
-		public static final ExecutorFragment _Operation__MultiplicityElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Operation__Nameable = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Operation__NamedElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Operation__Namespace = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Operation__OclAny = new ExecutorFragment(Classes._Operation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Operation__OclElement = new ExecutorFragment(Classes._Operation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Operation__Operation = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Operation, null, null);
-		public static final ExecutorFragment _Operation__ParameterableElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Operation__TemplateableElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Operation__TypedElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Operation__TypedMultiplicityElement = new ExecutorFragment(Classes._Operation, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Operation__Visitable = new ExecutorFragment(Classes._Operation, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _OperationCallExp__CallExp = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__Element = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _OperationCallExp__FeatureCallExp = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._FeatureCallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__Nameable = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _OperationCallExp__NamedElement = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclAny = new ExecutorFragment(Classes._OperationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclElement = new ExecutorFragment(Classes._OperationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclExpression = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _OperationCallExp__OperationCallExp = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._OperationCallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__TypedElement = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__Visitable = new ExecutorFragment(Classes._OperationCallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _OperationTemplateParameter__Element = new ExecutorFragment(Classes._OperationTemplateParameter, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OclAny = new ExecutorFragment(Classes._OperationTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OclElement = new ExecutorFragment(Classes._OperationTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OperationTemplateParameter = new ExecutorFragment(Classes._OperationTemplateParameter, PivotTables.Classes._OperationTemplateParameter, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__TemplateParameter = new ExecutorFragment(Classes._OperationTemplateParameter, PivotTables.Classes._TemplateParameter, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__Visitable = new ExecutorFragment(Classes._OperationTemplateParameter, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _OrderedSetType__Class = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _OrderedSetType__CollectionType = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._CollectionType, null, null);
-		public static final ExecutorFragment _OrderedSetType__DataType = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _OrderedSetType__Element = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _OrderedSetType__Nameable = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _OrderedSetType__NamedElement = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__Namespace = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _OrderedSetType__OclAny = new ExecutorFragment(Classes._OrderedSetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _OrderedSetType__OclElement = new ExecutorFragment(Classes._OrderedSetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__OrderedSetType = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._OrderedSetType, null, null);
-		public static final ExecutorFragment _OrderedSetType__ParameterableElement = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__TemplateableElement = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__Type = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _OrderedSetType__Visitable = new ExecutorFragment(Classes._OrderedSetType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Package__Element = new ExecutorFragment(Classes._Package, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Package__Nameable = new ExecutorFragment(Classes._Package, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Package__NamedElement = new ExecutorFragment(Classes._Package, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Package__Namespace = new ExecutorFragment(Classes._Package, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _Package__OclAny = new ExecutorFragment(Classes._Package, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Package__OclElement = new ExecutorFragment(Classes._Package, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Package__Package = new ExecutorFragment(Classes._Package, PivotTables.Classes._Package, null, null);
-		public static final ExecutorFragment _Package__TemplateableElement = new ExecutorFragment(Classes._Package, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Package__Visitable = new ExecutorFragment(Classes._Package, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _PackageableElement__Element = new ExecutorFragment(Classes._PackageableElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _PackageableElement__OclAny = new ExecutorFragment(Classes._PackageableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _PackageableElement__OclElement = new ExecutorFragment(Classes._PackageableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _PackageableElement__PackageableElement = new ExecutorFragment(Classes._PackageableElement, PivotTables.Classes._PackageableElement, null, null);
-		public static final ExecutorFragment _PackageableElement__ParameterableElement = new ExecutorFragment(Classes._PackageableElement, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _PackageableElement__Visitable = new ExecutorFragment(Classes._PackageableElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Parameter__Element = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Parameter__MultiplicityElement = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Parameter__Nameable = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Parameter__NamedElement = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Parameter__OclAny = new ExecutorFragment(Classes._Parameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Parameter__OclElement = new ExecutorFragment(Classes._Parameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Parameter__Parameter = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._Parameter, null, null);
-		public static final ExecutorFragment _Parameter__TypedElement = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Parameter__TypedMultiplicityElement = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Parameter__VariableDeclaration = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._VariableDeclaration, null, null);
-		public static final ExecutorFragment _Parameter__Visitable = new ExecutorFragment(Classes._Parameter, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _ParameterableElement__Element = new ExecutorFragment(Classes._ParameterableElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _ParameterableElement__OclAny = new ExecutorFragment(Classes._ParameterableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _ParameterableElement__OclElement = new ExecutorFragment(Classes._ParameterableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _ParameterableElement__ParameterableElement = new ExecutorFragment(Classes._ParameterableElement, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _ParameterableElement__Visitable = new ExecutorFragment(Classes._ParameterableElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Pivotable__OclAny = new ExecutorFragment(Classes._Pivotable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Pivotable__OclElement = new ExecutorFragment(Classes._Pivotable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Pivotable__Pivotable = new ExecutorFragment(Classes._Pivotable, PivotTables.Classes._Pivotable, null, null);
-		
-		public static final ExecutorFragment _Precedence__Element = new ExecutorFragment(Classes._Precedence, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Precedence__Nameable = new ExecutorFragment(Classes._Precedence, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Precedence__NamedElement = new ExecutorFragment(Classes._Precedence, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Precedence__OclAny = new ExecutorFragment(Classes._Precedence, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Precedence__OclElement = new ExecutorFragment(Classes._Precedence, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Precedence__Precedence = new ExecutorFragment(Classes._Precedence, PivotTables.Classes._Precedence, null, null);
-		public static final ExecutorFragment _Precedence__Visitable = new ExecutorFragment(Classes._Precedence, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _PrimitiveLiteralExp__Element = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__LiteralExp = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__Nameable = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__NamedElement = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclAny = new ExecutorFragment(Classes._PrimitiveLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclElement = new ExecutorFragment(Classes._PrimitiveLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclExpression = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__TypedElement = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__Visitable = new ExecutorFragment(Classes._PrimitiveLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _PrimitiveType__Class = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _PrimitiveType__DataType = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _PrimitiveType__Element = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _PrimitiveType__Nameable = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _PrimitiveType__NamedElement = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__Namespace = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _PrimitiveType__OclAny = new ExecutorFragment(Classes._PrimitiveType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _PrimitiveType__OclElement = new ExecutorFragment(Classes._PrimitiveType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__ParameterableElement = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__PrimitiveType = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._PrimitiveType, null, null);
-		public static final ExecutorFragment _PrimitiveType__TemplateableElement = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__Type = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _PrimitiveType__Visitable = new ExecutorFragment(Classes._PrimitiveType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Property__Element = new ExecutorFragment(Classes._Property, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Property__Feature = new ExecutorFragment(Classes._Property, PivotTables.Classes._Feature, null, null);
-		public static final ExecutorFragment _Property__MultiplicityElement = new ExecutorFragment(Classes._Property, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Property__Nameable = new ExecutorFragment(Classes._Property, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Property__NamedElement = new ExecutorFragment(Classes._Property, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Property__OclAny = new ExecutorFragment(Classes._Property, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Property__OclElement = new ExecutorFragment(Classes._Property, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Property__ParameterableElement = new ExecutorFragment(Classes._Property, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Property__Property = new ExecutorFragment(Classes._Property, PivotTables.Classes._Property, null, null);
-		public static final ExecutorFragment _Property__TypedElement = new ExecutorFragment(Classes._Property, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Property__TypedMultiplicityElement = new ExecutorFragment(Classes._Property, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Property__Visitable = new ExecutorFragment(Classes._Property, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _PropertyCallExp__CallExp = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._CallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Element = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _PropertyCallExp__FeatureCallExp = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._FeatureCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Nameable = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _PropertyCallExp__NamedElement = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__NavigationCallExp = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._NavigationCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclAny = new ExecutorFragment(Classes._PropertyCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclElement = new ExecutorFragment(Classes._PropertyCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclExpression = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _PropertyCallExp__PropertyCallExp = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._PropertyCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__TypedElement = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Visitable = new ExecutorFragment(Classes._PropertyCallExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Classes._Real, PivotTables.Classes._Real, null, null);
-		
-		public static final ExecutorFragment _RealLiteralExp__Element = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _RealLiteralExp__LiteralExp = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__Nameable = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _RealLiteralExp__NamedElement = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__NumericLiteralExp = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclAny = new ExecutorFragment(Classes._RealLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclElement = new ExecutorFragment(Classes._RealLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclExpression = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _RealLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__RealLiteralExp = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._RealLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__TypedElement = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__Visitable = new ExecutorFragment(Classes._RealLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _SelfType__Class = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _SelfType__Element = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _SelfType__Nameable = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _SelfType__NamedElement = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _SelfType__Namespace = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _SelfType__OclAny = new ExecutorFragment(Classes._SelfType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _SelfType__OclElement = new ExecutorFragment(Classes._SelfType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _SelfType__ParameterableElement = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _SelfType__SelfType = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._SelfType, null, null);
-		public static final ExecutorFragment _SelfType__TemplateableElement = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _SelfType__Type = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _SelfType__Visitable = new ExecutorFragment(Classes._SelfType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _SendSignalAction__Element = new ExecutorFragment(Classes._SendSignalAction, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _SendSignalAction__Nameable = new ExecutorFragment(Classes._SendSignalAction, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _SendSignalAction__NamedElement = new ExecutorFragment(Classes._SendSignalAction, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _SendSignalAction__OclAny = new ExecutorFragment(Classes._SendSignalAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _SendSignalAction__OclElement = new ExecutorFragment(Classes._SendSignalAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _SendSignalAction__SendSignalAction = new ExecutorFragment(Classes._SendSignalAction, PivotTables.Classes._SendSignalAction, null, null);
-		public static final ExecutorFragment _SendSignalAction__Visitable = new ExecutorFragment(Classes._SendSignalAction, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _SequenceType__Class = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _SequenceType__CollectionType = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._CollectionType, null, null);
-		public static final ExecutorFragment _SequenceType__DataType = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _SequenceType__Element = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _SequenceType__Nameable = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _SequenceType__NamedElement = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _SequenceType__Namespace = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _SequenceType__OclAny = new ExecutorFragment(Classes._SequenceType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _SequenceType__OclElement = new ExecutorFragment(Classes._SequenceType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _SequenceType__ParameterableElement = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _SequenceType__SequenceType = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._SequenceType, null, null);
-		public static final ExecutorFragment _SequenceType__TemplateableElement = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _SequenceType__Type = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _SequenceType__Visitable = new ExecutorFragment(Classes._SequenceType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _SetType__Class = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _SetType__CollectionType = new ExecutorFragment(Classes._SetType, PivotTables.Classes._CollectionType, null, null);
-		public static final ExecutorFragment _SetType__DataType = new ExecutorFragment(Classes._SetType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _SetType__Element = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _SetType__Nameable = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _SetType__NamedElement = new ExecutorFragment(Classes._SetType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _SetType__Namespace = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _SetType__OclAny = new ExecutorFragment(Classes._SetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _SetType__OclElement = new ExecutorFragment(Classes._SetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _SetType__ParameterableElement = new ExecutorFragment(Classes._SetType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _SetType__SetType = new ExecutorFragment(Classes._SetType, PivotTables.Classes._SetType, null, null);
-		public static final ExecutorFragment _SetType__TemplateableElement = new ExecutorFragment(Classes._SetType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _SetType__Type = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _SetType__Visitable = new ExecutorFragment(Classes._SetType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Signal__Element = new ExecutorFragment(Classes._Signal, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Signal__Nameable = new ExecutorFragment(Classes._Signal, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Signal__NamedElement = new ExecutorFragment(Classes._Signal, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Signal__OclAny = new ExecutorFragment(Classes._Signal, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Signal__OclElement = new ExecutorFragment(Classes._Signal, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Signal__Signal = new ExecutorFragment(Classes._Signal, PivotTables.Classes._Signal, null, null);
-		public static final ExecutorFragment _Signal__Visitable = new ExecutorFragment(Classes._Signal, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _State__Element = new ExecutorFragment(Classes._State, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _State__Nameable = new ExecutorFragment(Classes._State, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _State__NamedElement = new ExecutorFragment(Classes._State, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _State__OclAny = new ExecutorFragment(Classes._State, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _State__OclElement = new ExecutorFragment(Classes._State, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _State__State = new ExecutorFragment(Classes._State, PivotTables.Classes._State, null, null);
-		public static final ExecutorFragment _State__Visitable = new ExecutorFragment(Classes._State, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _StateExp__Element = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _StateExp__Nameable = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _StateExp__NamedElement = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _StateExp__OclAny = new ExecutorFragment(Classes._StateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _StateExp__OclElement = new ExecutorFragment(Classes._StateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _StateExp__OclExpression = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _StateExp__StateExp = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._StateExp, null, null);
-		public static final ExecutorFragment _StateExp__TypedElement = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _StateExp__Visitable = new ExecutorFragment(Classes._StateExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _String__String = new ExecutorFragment(Classes._String, PivotTables.Classes._String, null, null);
-		
-		public static final ExecutorFragment _StringLiteralExp__Element = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _StringLiteralExp__LiteralExp = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__Nameable = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _StringLiteralExp__NamedElement = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclAny = new ExecutorFragment(Classes._StringLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclElement = new ExecutorFragment(Classes._StringLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclExpression = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _StringLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__StringLiteralExp = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._StringLiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__TypedElement = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__Visitable = new ExecutorFragment(Classes._StringLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateBinding__Element = new ExecutorFragment(Classes._TemplateBinding, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateBinding__OclAny = new ExecutorFragment(Classes._TemplateBinding, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateBinding__OclElement = new ExecutorFragment(Classes._TemplateBinding, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateBinding__TemplateBinding = new ExecutorFragment(Classes._TemplateBinding, PivotTables.Classes._TemplateBinding, null, null);
-		public static final ExecutorFragment _TemplateBinding__Visitable = new ExecutorFragment(Classes._TemplateBinding, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameter__Element = new ExecutorFragment(Classes._TemplateParameter, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateParameter__OclAny = new ExecutorFragment(Classes._TemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameter__OclElement = new ExecutorFragment(Classes._TemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameter__TemplateParameter = new ExecutorFragment(Classes._TemplateParameter, PivotTables.Classes._TemplateParameter, null, null);
-		public static final ExecutorFragment _TemplateParameter__Visitable = new ExecutorFragment(Classes._TemplateParameter, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameterSubstitution__Element = new ExecutorFragment(Classes._TemplateParameterSubstitution, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__OclAny = new ExecutorFragment(Classes._TemplateParameterSubstitution, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__OclElement = new ExecutorFragment(Classes._TemplateParameterSubstitution, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__TemplateParameterSubstitution = new ExecutorFragment(Classes._TemplateParameterSubstitution, PivotTables.Classes._TemplateParameterSubstitution, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__Visitable = new ExecutorFragment(Classes._TemplateParameterSubstitution, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameterType__Element = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Nameable = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TemplateParameterType__NamedElement = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__OclAny = new ExecutorFragment(Classes._TemplateParameterType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameterType__OclElement = new ExecutorFragment(Classes._TemplateParameterType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__ParameterableElement = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__TemplateParameterType = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._TemplateParameterType, null, null);
-		public static final ExecutorFragment _TemplateParameterType__TemplateableElement = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Type = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Visitable = new ExecutorFragment(Classes._TemplateParameterType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateSignature__Element = new ExecutorFragment(Classes._TemplateSignature, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateSignature__OclAny = new ExecutorFragment(Classes._TemplateSignature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateSignature__OclElement = new ExecutorFragment(Classes._TemplateSignature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateSignature__TemplateSignature = new ExecutorFragment(Classes._TemplateSignature, PivotTables.Classes._TemplateSignature, null, null);
-		public static final ExecutorFragment _TemplateSignature__Visitable = new ExecutorFragment(Classes._TemplateSignature, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateableElement__Element = new ExecutorFragment(Classes._TemplateableElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TemplateableElement__OclAny = new ExecutorFragment(Classes._TemplateableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TemplateableElement__OclElement = new ExecutorFragment(Classes._TemplateableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TemplateableElement__TemplateableElement = new ExecutorFragment(Classes._TemplateableElement, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _TemplateableElement__Visitable = new ExecutorFragment(Classes._TemplateableElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Throwable__Throwable = new ExecutorFragment(Classes._Throwable, PivotTables.Classes._Throwable, null, null);
-		
-		public static final ExecutorFragment _TupleLiteralExp__Element = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__LiteralExp = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__Nameable = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__NamedElement = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclAny = new ExecutorFragment(Classes._TupleLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclElement = new ExecutorFragment(Classes._TupleLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclExpression = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__TupleLiteralExp = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._TupleLiteralExp, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__TypedElement = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__Visitable = new ExecutorFragment(Classes._TupleLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TupleLiteralPart__Element = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__Nameable = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__NamedElement = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__OclAny = new ExecutorFragment(Classes._TupleLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__OclElement = new ExecutorFragment(Classes._TupleLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__TupleLiteralPart = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._TupleLiteralPart, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__TypedElement = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__VariableDeclaration = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._VariableDeclaration, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__Visitable = new ExecutorFragment(Classes._TupleLiteralPart, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TupleType__Class = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _TupleType__DataType = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._DataType, null, null);
-		public static final ExecutorFragment _TupleType__Element = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TupleType__Nameable = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TupleType__NamedElement = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TupleType__Namespace = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _TupleType__OclAny = new ExecutorFragment(Classes._TupleType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TupleType__OclElement = new ExecutorFragment(Classes._TupleType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TupleType__ParameterableElement = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _TupleType__TemplateableElement = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _TupleType__TupleType = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._TupleType, null, null);
-		public static final ExecutorFragment _TupleType__Type = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _TupleType__Visitable = new ExecutorFragment(Classes._TupleType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Type__Element = new ExecutorFragment(Classes._Type, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Type__Nameable = new ExecutorFragment(Classes._Type, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Type__NamedElement = new ExecutorFragment(Classes._Type, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Type__OclAny = new ExecutorFragment(Classes._Type, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Type__OclElement = new ExecutorFragment(Classes._Type, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Type__ParameterableElement = new ExecutorFragment(Classes._Type, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _Type__TemplateableElement = new ExecutorFragment(Classes._Type, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Classes._Type, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _Type__Visitable = new ExecutorFragment(Classes._Type, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypeExp__Element = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TypeExp__Nameable = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TypeExp__NamedElement = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TypeExp__OclAny = new ExecutorFragment(Classes._TypeExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TypeExp__OclElement = new ExecutorFragment(Classes._TypeExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TypeExp__OclExpression = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _TypeExp__TypeExp = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._TypeExp, null, null);
-		public static final ExecutorFragment _TypeExp__TypedElement = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _TypeExp__Visitable = new ExecutorFragment(Classes._TypeExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypeTemplateParameter__Element = new ExecutorFragment(Classes._TypeTemplateParameter, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__OclAny = new ExecutorFragment(Classes._TypeTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__OclElement = new ExecutorFragment(Classes._TypeTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__TemplateParameter = new ExecutorFragment(Classes._TypeTemplateParameter, PivotTables.Classes._TemplateParameter, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__TypeTemplateParameter = new ExecutorFragment(Classes._TypeTemplateParameter, PivotTables.Classes._TypeTemplateParameter, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__Visitable = new ExecutorFragment(Classes._TypeTemplateParameter, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypedElement__Element = new ExecutorFragment(Classes._TypedElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TypedElement__Nameable = new ExecutorFragment(Classes._TypedElement, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TypedElement__NamedElement = new ExecutorFragment(Classes._TypedElement, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TypedElement__OclAny = new ExecutorFragment(Classes._TypedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TypedElement__OclElement = new ExecutorFragment(Classes._TypedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TypedElement__TypedElement = new ExecutorFragment(Classes._TypedElement, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _TypedElement__Visitable = new ExecutorFragment(Classes._TypedElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypedMultiplicityElement__Element = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__MultiplicityElement = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._MultiplicityElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__Nameable = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__NamedElement = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__OclAny = new ExecutorFragment(Classes._TypedMultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__OclElement = new ExecutorFragment(Classes._TypedMultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__TypedElement = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__TypedMultiplicityElement = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__Visitable = new ExecutorFragment(Classes._TypedMultiplicityElement, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Classes._UnlimitedNatural, PivotTables.Classes._UnlimitedNatural, null, null);
-		
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Element = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__LiteralExp = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._LiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Nameable = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NamedElement = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NumericLiteralExp = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclAny = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclElement = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclExpression = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__TypedElement = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._UnlimitedNaturalLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Visitable = new ExecutorFragment(Classes._UnlimitedNaturalLiteralExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnspecifiedType__Class = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Element = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Nameable = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _UnspecifiedType__NamedElement = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Namespace = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _UnspecifiedType__OclAny = new ExecutorFragment(Classes._UnspecifiedType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _UnspecifiedType__OclElement = new ExecutorFragment(Classes._UnspecifiedType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__ParameterableElement = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__TemplateableElement = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Type = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _UnspecifiedType__UnspecifiedType = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._UnspecifiedType, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Visitable = new ExecutorFragment(Classes._UnspecifiedType, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnspecifiedValueExp__Element = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__Nameable = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__NamedElement = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclAny = new ExecutorFragment(Classes._UnspecifiedValueExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclElement = new ExecutorFragment(Classes._UnspecifiedValueExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclExpression = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__TypedElement = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__UnspecifiedValueExp = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._UnspecifiedValueExp, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__Visitable = new ExecutorFragment(Classes._UnspecifiedValueExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _ValueSpecification__Element = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _ValueSpecification__Nameable = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _ValueSpecification__NamedElement = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__OclAny = new ExecutorFragment(Classes._ValueSpecification, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _ValueSpecification__OclElement = new ExecutorFragment(Classes._ValueSpecification, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__ParameterableElement = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__TypedElement = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__ValueSpecification = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._ValueSpecification, null, null);
-		public static final ExecutorFragment _ValueSpecification__Visitable = new ExecutorFragment(Classes._ValueSpecification, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Variable__Element = new ExecutorFragment(Classes._Variable, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _Variable__Nameable = new ExecutorFragment(Classes._Variable, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _Variable__NamedElement = new ExecutorFragment(Classes._Variable, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _Variable__OclAny = new ExecutorFragment(Classes._Variable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Variable__OclElement = new ExecutorFragment(Classes._Variable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Variable__TypedElement = new ExecutorFragment(Classes._Variable, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _Variable__Variable = new ExecutorFragment(Classes._Variable, PivotTables.Classes._Variable, null, null);
-		public static final ExecutorFragment _Variable__VariableDeclaration = new ExecutorFragment(Classes._Variable, PivotTables.Classes._VariableDeclaration, null, null);
-		public static final ExecutorFragment _Variable__Visitable = new ExecutorFragment(Classes._Variable, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _VariableDeclaration__Element = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _VariableDeclaration__Nameable = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _VariableDeclaration__NamedElement = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__OclAny = new ExecutorFragment(Classes._VariableDeclaration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _VariableDeclaration__OclElement = new ExecutorFragment(Classes._VariableDeclaration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__TypedElement = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__VariableDeclaration = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._VariableDeclaration, null, null);
-		public static final ExecutorFragment _VariableDeclaration__Visitable = new ExecutorFragment(Classes._VariableDeclaration, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _VariableExp__Element = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _VariableExp__Nameable = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _VariableExp__NamedElement = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _VariableExp__OclAny = new ExecutorFragment(Classes._VariableExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _VariableExp__OclElement = new ExecutorFragment(Classes._VariableExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _VariableExp__OclExpression = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._OclExpression, null, null);
-		public static final ExecutorFragment _VariableExp__TypedElement = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._TypedElement, null, null);
-		public static final ExecutorFragment _VariableExp__VariableExp = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._VariableExp, null, null);
-		public static final ExecutorFragment _VariableExp__Visitable = new ExecutorFragment(Classes._VariableExp, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Visitable__OclAny = new ExecutorFragment(Classes._Visitable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Visitable__OclElement = new ExecutorFragment(Classes._Visitable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Visitable__Visitable = new ExecutorFragment(Classes._Visitable, PivotTables.Classes._Visitable, null, null);
-		
-		public static final ExecutorFragment _Visitor__OclAny = new ExecutorFragment(Classes._Visitor, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _Visitor__OclElement = new ExecutorFragment(Classes._Visitor, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _Visitor__Visitor = new ExecutorFragment(Classes._Visitor, PivotTables.Classes._Visitor, null, null);
-		
-		public static final ExecutorFragment _VoidType__Class = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Class, null, null);
-		public static final ExecutorFragment _VoidType__Element = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Element, null, null);
-		public static final ExecutorFragment _VoidType__Nameable = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Nameable, null, null);
-		public static final ExecutorFragment _VoidType__NamedElement = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._NamedElement, null, null);
-		public static final ExecutorFragment _VoidType__Namespace = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Namespace, null, null);
-		public static final ExecutorFragment _VoidType__OclAny = new ExecutorFragment(Classes._VoidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclAny, null, null);
-		public static final ExecutorFragment _VoidType__OclElement = new ExecutorFragment(Classes._VoidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Classes._OclElement, null, null);
-		public static final ExecutorFragment _VoidType__ParameterableElement = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._ParameterableElement, null, null);
-		public static final ExecutorFragment _VoidType__TemplateableElement = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._TemplateableElement, null, null);
-		public static final ExecutorFragment _VoidType__Type = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Type, null, null);
-		public static final ExecutorFragment _VoidType__Visitable = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._Visitable, null, null);
-		public static final ExecutorFragment _VoidType__VoidType = new ExecutorFragment(Classes._VoidType, PivotTables.Classes._VoidType, null, null);
+		public static final ExecutorFragment _Annotation__Annotation = new ExecutorFragment(Types._Annotation, PivotTables.Types._Annotation, null, null);
+		public static final ExecutorFragment _Annotation__Element = new ExecutorFragment(Types._Annotation, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Annotation__Nameable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Annotation__NamedElement = new ExecutorFragment(Types._Annotation, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Annotation__OclAny = new ExecutorFragment(Types._Annotation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Annotation__OclElement = new ExecutorFragment(Types._Annotation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Annotation__Visitable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _AnyType__AnyType = new ExecutorFragment(Types._AnyType, PivotTables.Types._AnyType, null, null);
+		public static final ExecutorFragment _AnyType__Class = new ExecutorFragment(Types._AnyType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _AnyType__Element = new ExecutorFragment(Types._AnyType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _AnyType__Nameable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _AnyType__NamedElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _AnyType__Namespace = new ExecutorFragment(Types._AnyType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _AnyType__OclAny = new ExecutorFragment(Types._AnyType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _AnyType__OclElement = new ExecutorFragment(Types._AnyType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _AnyType__ParameterableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _AnyType__TemplateableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _AnyType__Type = new ExecutorFragment(Types._AnyType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _AnyType__Visitable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _AssociationClass__AssociationClass = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._AssociationClass, null, null);
+		public static final ExecutorFragment _AssociationClass__Class = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _AssociationClass__Element = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _AssociationClass__Nameable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _AssociationClass__NamedElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _AssociationClass__Namespace = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _AssociationClass__OclAny = new ExecutorFragment(Types._AssociationClass, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _AssociationClass__OclElement = new ExecutorFragment(Types._AssociationClass, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _AssociationClass__ParameterableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _AssociationClass__TemplateableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _AssociationClass__Type = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _AssociationClass__Visitable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _AssociationClassCallExp__AssociationClassCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._AssociationClassCallExp, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__CallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__Element = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__FeatureCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._FeatureCallExp, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__Nameable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__NamedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__NavigationCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NavigationCallExp, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__OclAny = new ExecutorFragment(Types._AssociationClassCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__OclElement = new ExecutorFragment(Types._AssociationClassCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__OclExpression = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__TypedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _AssociationClassCallExp__Visitable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _AssociativityKind__AssociativityKind = new ExecutorFragment(Types._AssociativityKind, PivotTables.Types._AssociativityKind, null, null);
+		
+		public static final ExecutorFragment _BagType__BagType = new ExecutorFragment(Types._BagType, PivotTables.Types._BagType, null, null);
+		public static final ExecutorFragment _BagType__Class = new ExecutorFragment(Types._BagType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _BagType__CollectionType = new ExecutorFragment(Types._BagType, PivotTables.Types._CollectionType, null, null);
+		public static final ExecutorFragment _BagType__DataType = new ExecutorFragment(Types._BagType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _BagType__Element = new ExecutorFragment(Types._BagType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _BagType__Nameable = new ExecutorFragment(Types._BagType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _BagType__NamedElement = new ExecutorFragment(Types._BagType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _BagType__Namespace = new ExecutorFragment(Types._BagType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _BagType__OclAny = new ExecutorFragment(Types._BagType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _BagType__OclElement = new ExecutorFragment(Types._BagType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _BagType__ParameterableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _BagType__TemplateableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _BagType__Type = new ExecutorFragment(Types._BagType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _BagType__Visitable = new ExecutorFragment(Types._BagType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, PivotTables.Types._Boolean, null, null);
+		
+		public static final ExecutorFragment _BooleanLiteralExp__BooleanLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._BooleanLiteralExp, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__Element = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__LiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__Nameable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__NamedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__OclAny = new ExecutorFragment(Types._BooleanLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__OclElement = new ExecutorFragment(Types._BooleanLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__OclExpression = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__TypedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _BooleanLiteralExp__Visitable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CallExp__CallExp = new ExecutorFragment(Types._CallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _CallExp__Element = new ExecutorFragment(Types._CallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CallExp__Nameable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CallExp__NamedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CallExp__OclAny = new ExecutorFragment(Types._CallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CallExp__OclElement = new ExecutorFragment(Types._CallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CallExp__OclExpression = new ExecutorFragment(Types._CallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _CallExp__TypedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _CallExp__Visitable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CallOperationAction__CallOperationAction = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._CallOperationAction, null, null);
+		public static final ExecutorFragment _CallOperationAction__Element = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CallOperationAction__Nameable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CallOperationAction__NamedElement = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CallOperationAction__OclAny = new ExecutorFragment(Types._CallOperationAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CallOperationAction__OclElement = new ExecutorFragment(Types._CallOperationAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CallOperationAction__Visitable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Types._Class, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _Class__Element = new ExecutorFragment(Types._Class, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Class__Nameable = new ExecutorFragment(Types._Class, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Class__NamedElement = new ExecutorFragment(Types._Class, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Class__Namespace = new ExecutorFragment(Types._Class, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Types._Class, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Class__OclElement = new ExecutorFragment(Types._Class, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Class__ParameterableElement = new ExecutorFragment(Types._Class, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Class__TemplateableElement = new ExecutorFragment(Types._Class, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Class__Type = new ExecutorFragment(Types._Class, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _Class__Visitable = new ExecutorFragment(Types._Class, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _ClassifierType__Class = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _ClassifierType__ClassifierType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ClassifierType, null, null);
+		public static final ExecutorFragment _ClassifierType__DataType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _ClassifierType__Element = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _ClassifierType__Nameable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _ClassifierType__NamedElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _ClassifierType__Namespace = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _ClassifierType__OclAny = new ExecutorFragment(Types._ClassifierType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _ClassifierType__OclElement = new ExecutorFragment(Types._ClassifierType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _ClassifierType__ParameterableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _ClassifierType__TemplateableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _ClassifierType__Type = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _ClassifierType__Visitable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CollectionItem__CollectionItem = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionItem, null, null);
+		public static final ExecutorFragment _CollectionItem__CollectionLiteralPart = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionLiteralPart, null, null);
+		public static final ExecutorFragment _CollectionItem__Element = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CollectionItem__Nameable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CollectionItem__NamedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CollectionItem__OclAny = new ExecutorFragment(Types._CollectionItem, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionItem__OclElement = new ExecutorFragment(Types._CollectionItem, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CollectionItem__TypedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _CollectionItem__Visitable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CollectionKind__CollectionKind = new ExecutorFragment(Types._CollectionKind, PivotTables.Types._CollectionKind, null, null);
+		
+		public static final ExecutorFragment _CollectionLiteralExp__CollectionLiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._CollectionLiteralExp, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__Element = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__LiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__Nameable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__NamedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__OclAny = new ExecutorFragment(Types._CollectionLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__OclElement = new ExecutorFragment(Types._CollectionLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__OclExpression = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__TypedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralExp__Visitable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CollectionLiteralPart__CollectionLiteralPart = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._CollectionLiteralPart, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__Element = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__Nameable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__NamedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__OclAny = new ExecutorFragment(Types._CollectionLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__OclElement = new ExecutorFragment(Types._CollectionLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__TypedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _CollectionLiteralPart__Visitable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CollectionRange__CollectionLiteralPart = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionLiteralPart, null, null);
+		public static final ExecutorFragment _CollectionRange__CollectionRange = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionRange, null, null);
+		public static final ExecutorFragment _CollectionRange__Element = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CollectionRange__Nameable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CollectionRange__NamedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CollectionRange__OclAny = new ExecutorFragment(Types._CollectionRange, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionRange__OclElement = new ExecutorFragment(Types._CollectionRange, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CollectionRange__TypedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _CollectionRange__Visitable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _CollectionType__Class = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _CollectionType__CollectionType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._CollectionType, null, null);
+		public static final ExecutorFragment _CollectionType__DataType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _CollectionType__Element = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _CollectionType__Nameable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _CollectionType__NamedElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _CollectionType__Namespace = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _CollectionType__OclAny = new ExecutorFragment(Types._CollectionType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionType__OclElement = new ExecutorFragment(Types._CollectionType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _CollectionType__ParameterableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _CollectionType__TemplateableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _CollectionType__Type = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _CollectionType__Visitable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Comment__Comment = new ExecutorFragment(Types._Comment, PivotTables.Types._Comment, null, null);
+		public static final ExecutorFragment _Comment__Element = new ExecutorFragment(Types._Comment, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Comment__OclAny = new ExecutorFragment(Types._Comment, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Comment__OclElement = new ExecutorFragment(Types._Comment, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Comment__Visitable = new ExecutorFragment(Types._Comment, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Constraint__Constraint = new ExecutorFragment(Types._Constraint, PivotTables.Types._Constraint, null, null);
+		public static final ExecutorFragment _Constraint__Element = new ExecutorFragment(Types._Constraint, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Constraint__Nameable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Constraint__NamedElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Types._Constraint, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Types._Constraint, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _DataType__Class = new ExecutorFragment(Types._DataType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _DataType__DataType = new ExecutorFragment(Types._DataType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _DataType__Element = new ExecutorFragment(Types._DataType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _DataType__Nameable = new ExecutorFragment(Types._DataType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _DataType__NamedElement = new ExecutorFragment(Types._DataType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _DataType__Namespace = new ExecutorFragment(Types._DataType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _DataType__OclAny = new ExecutorFragment(Types._DataType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _DataType__OclElement = new ExecutorFragment(Types._DataType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _DataType__ParameterableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _DataType__TemplateableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _DataType__Type = new ExecutorFragment(Types._DataType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _DataType__Visitable = new ExecutorFragment(Types._DataType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Detail__Detail = new ExecutorFragment(Types._Detail, PivotTables.Types._Detail, null, null);
+		public static final ExecutorFragment _Detail__Element = new ExecutorFragment(Types._Detail, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Detail__Nameable = new ExecutorFragment(Types._Detail, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Detail__NamedElement = new ExecutorFragment(Types._Detail, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Detail__OclAny = new ExecutorFragment(Types._Detail, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Detail__OclElement = new ExecutorFragment(Types._Detail, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Detail__Visitable = new ExecutorFragment(Types._Detail, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Element__Element = new ExecutorFragment(Types._Element, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Element__OclAny = new ExecutorFragment(Types._Element, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Element__OclElement = new ExecutorFragment(Types._Element, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Element__Visitable = new ExecutorFragment(Types._Element, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _EnumLiteralExp__Element = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__EnumLiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._EnumLiteralExp, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__LiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__Nameable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__NamedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__OclAny = new ExecutorFragment(Types._EnumLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__OclElement = new ExecutorFragment(Types._EnumLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__OclExpression = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__TypedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _EnumLiteralExp__Visitable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Enumeration__Class = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _Enumeration__DataType = new ExecutorFragment(Types._Enumeration, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _Enumeration__Element = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Enumeration, null, null);
+		public static final ExecutorFragment _Enumeration__Nameable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Enumeration__NamedElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Enumeration__Namespace = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Types._Enumeration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Enumeration__OclElement = new ExecutorFragment(Types._Enumeration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Enumeration__ParameterableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Enumeration__TemplateableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Enumeration__Type = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _Enumeration__Visitable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _EnumerationLiteral__Element = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._EnumerationLiteral, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__Nameable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__NamedElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__OclElement = new ExecutorFragment(Types._EnumerationLiteral, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__Visitable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _ExpressionInOcl__Element = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__ExpressionInOcl = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ExpressionInOcl, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__Nameable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__NamedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__OclAny = new ExecutorFragment(Types._ExpressionInOcl, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__OclElement = new ExecutorFragment(Types._ExpressionInOcl, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__OpaqueExpression = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._OpaqueExpression, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__ParameterableElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__TypedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__ValueSpecification = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ValueSpecification, null, null);
+		public static final ExecutorFragment _ExpressionInOcl__Visitable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Feature__Element = new ExecutorFragment(Types._Feature, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Feature__Feature = new ExecutorFragment(Types._Feature, PivotTables.Types._Feature, null, null);
+		public static final ExecutorFragment _Feature__MultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _Feature__Nameable = new ExecutorFragment(Types._Feature, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Feature__NamedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Feature__OclAny = new ExecutorFragment(Types._Feature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Feature__OclElement = new ExecutorFragment(Types._Feature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Feature__TypedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Feature__TypedMultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _Feature__Visitable = new ExecutorFragment(Types._Feature, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _FeatureCallExp__CallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _FeatureCallExp__Element = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _FeatureCallExp__FeatureCallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._FeatureCallExp, null, null);
+		public static final ExecutorFragment _FeatureCallExp__Nameable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _FeatureCallExp__NamedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _FeatureCallExp__OclAny = new ExecutorFragment(Types._FeatureCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _FeatureCallExp__OclElement = new ExecutorFragment(Types._FeatureCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _FeatureCallExp__OclExpression = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _FeatureCallExp__TypedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _FeatureCallExp__Visitable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _IfExp__Element = new ExecutorFragment(Types._IfExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _IfExp__IfExp = new ExecutorFragment(Types._IfExp, PivotTables.Types._IfExp, null, null);
+		public static final ExecutorFragment _IfExp__Nameable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _IfExp__NamedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _IfExp__OclAny = new ExecutorFragment(Types._IfExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _IfExp__OclElement = new ExecutorFragment(Types._IfExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _IfExp__OclExpression = new ExecutorFragment(Types._IfExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _IfExp__TypedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _IfExp__Visitable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Int__Int = new ExecutorFragment(Types._Int, PivotTables.Types._Int, null, null);
+		
+		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Types._Integer, PivotTables.Types._Integer, null, null);
+		
+		public static final ExecutorFragment _IntegerLiteralExp__Element = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__IntegerLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._IntegerLiteralExp, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__LiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__Nameable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__NamedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__OclAny = new ExecutorFragment(Types._IntegerLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__OclElement = new ExecutorFragment(Types._IntegerLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__OclExpression = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__TypedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _IntegerLiteralExp__Visitable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _InvalidLiteralExp__Element = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__InvalidLiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._InvalidLiteralExp, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__LiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__Nameable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__NamedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__OclAny = new ExecutorFragment(Types._InvalidLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__OclElement = new ExecutorFragment(Types._InvalidLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__OclExpression = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__TypedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _InvalidLiteralExp__Visitable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _InvalidType__Class = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _InvalidType__Element = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _InvalidType__InvalidType = new ExecutorFragment(Types._InvalidType, PivotTables.Types._InvalidType, null, null);
+		public static final ExecutorFragment _InvalidType__Nameable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _InvalidType__NamedElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _InvalidType__Namespace = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _InvalidType__OclAny = new ExecutorFragment(Types._InvalidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _InvalidType__OclElement = new ExecutorFragment(Types._InvalidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _InvalidType__ParameterableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _InvalidType__TemplateableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _InvalidType__Type = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _InvalidType__Visitable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _IterateExp__CallExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _IterateExp__Element = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _IterateExp__IterateExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._IterateExp, null, null);
+		public static final ExecutorFragment _IterateExp__LoopExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._LoopExp, null, null);
+		public static final ExecutorFragment _IterateExp__Nameable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _IterateExp__NamedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _IterateExp__OclAny = new ExecutorFragment(Types._IterateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _IterateExp__OclElement = new ExecutorFragment(Types._IterateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _IterateExp__OclExpression = new ExecutorFragment(Types._IterateExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _IterateExp__TypedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _IterateExp__Visitable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Iteration__Element = new ExecutorFragment(Types._Iteration, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Iteration__Feature = new ExecutorFragment(Types._Iteration, PivotTables.Types._Feature, null, null);
+		public static final ExecutorFragment _Iteration__Iteration = new ExecutorFragment(Types._Iteration, PivotTables.Types._Iteration, null, null);
+		public static final ExecutorFragment _Iteration__MultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _Iteration__Nameable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Iteration__NamedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Iteration__Namespace = new ExecutorFragment(Types._Iteration, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Iteration__OclAny = new ExecutorFragment(Types._Iteration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Iteration__OclElement = new ExecutorFragment(Types._Iteration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Iteration__Operation = new ExecutorFragment(Types._Iteration, PivotTables.Types._Operation, null, null);
+		public static final ExecutorFragment _Iteration__ParameterableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Iteration__TemplateableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Iteration__TypedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Iteration__TypedMultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _Iteration__Visitable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _IteratorExp__CallExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _IteratorExp__Element = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _IteratorExp__IteratorExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._IteratorExp, null, null);
+		public static final ExecutorFragment _IteratorExp__LoopExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._LoopExp, null, null);
+		public static final ExecutorFragment _IteratorExp__Nameable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _IteratorExp__NamedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _IteratorExp__OclAny = new ExecutorFragment(Types._IteratorExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _IteratorExp__OclElement = new ExecutorFragment(Types._IteratorExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _IteratorExp__OclExpression = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _IteratorExp__TypedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _IteratorExp__Visitable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _LambdaType__Class = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _LambdaType__DataType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _LambdaType__Element = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _LambdaType__LambdaType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._LambdaType, null, null);
+		public static final ExecutorFragment _LambdaType__Nameable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _LambdaType__NamedElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _LambdaType__Namespace = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _LambdaType__OclAny = new ExecutorFragment(Types._LambdaType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _LambdaType__OclElement = new ExecutorFragment(Types._LambdaType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _LambdaType__ParameterableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _LambdaType__TemplateableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _LambdaType__Type = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _LambdaType__Visitable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _LetExp__Element = new ExecutorFragment(Types._LetExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _LetExp__LetExp = new ExecutorFragment(Types._LetExp, PivotTables.Types._LetExp, null, null);
+		public static final ExecutorFragment _LetExp__Nameable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _LetExp__NamedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _LetExp__OclAny = new ExecutorFragment(Types._LetExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _LetExp__OclElement = new ExecutorFragment(Types._LetExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _LetExp__OclExpression = new ExecutorFragment(Types._LetExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _LetExp__TypedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _LetExp__Visitable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Library__Element = new ExecutorFragment(Types._Library, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Library__Library = new ExecutorFragment(Types._Library, PivotTables.Types._Library, null, null);
+		public static final ExecutorFragment _Library__Nameable = new ExecutorFragment(Types._Library, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Library__NamedElement = new ExecutorFragment(Types._Library, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Library__Namespace = new ExecutorFragment(Types._Library, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Library__OclAny = new ExecutorFragment(Types._Library, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Library__OclElement = new ExecutorFragment(Types._Library, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Library__Package = new ExecutorFragment(Types._Library, PivotTables.Types._Package, null, null);
+		public static final ExecutorFragment _Library__TemplateableElement = new ExecutorFragment(Types._Library, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Library__Visitable = new ExecutorFragment(Types._Library, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _LibraryFeature__LibraryFeature = new ExecutorFragment(Types._LibraryFeature, PivotTables.Types._LibraryFeature, null, null);
+		
+		public static final ExecutorFragment _LiteralExp__Element = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _LiteralExp__LiteralExp = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _LiteralExp__Nameable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _LiteralExp__NamedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _LiteralExp__OclAny = new ExecutorFragment(Types._LiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _LiteralExp__OclElement = new ExecutorFragment(Types._LiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _LiteralExp__OclExpression = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _LiteralExp__TypedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _LiteralExp__Visitable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _LoopExp__CallExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _LoopExp__Element = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _LoopExp__LoopExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._LoopExp, null, null);
+		public static final ExecutorFragment _LoopExp__Nameable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _LoopExp__NamedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _LoopExp__OclAny = new ExecutorFragment(Types._LoopExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _LoopExp__OclElement = new ExecutorFragment(Types._LoopExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _LoopExp__OclExpression = new ExecutorFragment(Types._LoopExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _LoopExp__TypedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _LoopExp__Visitable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _MessageExp__Element = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _MessageExp__MessageExp = new ExecutorFragment(Types._MessageExp, PivotTables.Types._MessageExp, null, null);
+		public static final ExecutorFragment _MessageExp__Nameable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _MessageExp__NamedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _MessageExp__OclAny = new ExecutorFragment(Types._MessageExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _MessageExp__OclElement = new ExecutorFragment(Types._MessageExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _MessageExp__OclExpression = new ExecutorFragment(Types._MessageExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _MessageExp__TypedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _MessageExp__Visitable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _MessageType__Element = new ExecutorFragment(Types._MessageType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _MessageType__MessageType = new ExecutorFragment(Types._MessageType, PivotTables.Types._MessageType, null, null);
+		public static final ExecutorFragment _MessageType__Nameable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _MessageType__NamedElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _MessageType__OclAny = new ExecutorFragment(Types._MessageType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _MessageType__OclElement = new ExecutorFragment(Types._MessageType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _MessageType__ParameterableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _MessageType__TemplateableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _MessageType__Type = new ExecutorFragment(Types._MessageType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _MessageType__Visitable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _MultiplicityElement__Element = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _MultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _MultiplicityElement__OclAny = new ExecutorFragment(Types._MultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _MultiplicityElement__OclElement = new ExecutorFragment(Types._MultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _MultiplicityElement__Visitable = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Nameable__Nameable = new ExecutorFragment(Types._Nameable, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Nameable__OclAny = new ExecutorFragment(Types._Nameable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Nameable__OclElement = new ExecutorFragment(Types._Nameable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		
+		public static final ExecutorFragment _NamedElement__Element = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _NamedElement__Nameable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _NamedElement__NamedElement = new ExecutorFragment(Types._NamedElement, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _NamedElement__OclAny = new ExecutorFragment(Types._NamedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _NamedElement__OclElement = new ExecutorFragment(Types._NamedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _NamedElement__Visitable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Namespace__Element = new ExecutorFragment(Types._Namespace, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Namespace__Nameable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Namespace__NamedElement = new ExecutorFragment(Types._Namespace, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Namespace__Namespace = new ExecutorFragment(Types._Namespace, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Namespace__OclAny = new ExecutorFragment(Types._Namespace, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Namespace__OclElement = new ExecutorFragment(Types._Namespace, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Namespace__Visitable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _NavigationCallExp__CallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _NavigationCallExp__Element = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _NavigationCallExp__FeatureCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._FeatureCallExp, null, null);
+		public static final ExecutorFragment _NavigationCallExp__Nameable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _NavigationCallExp__NamedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _NavigationCallExp__NavigationCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NavigationCallExp, null, null);
+		public static final ExecutorFragment _NavigationCallExp__OclAny = new ExecutorFragment(Types._NavigationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _NavigationCallExp__OclElement = new ExecutorFragment(Types._NavigationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _NavigationCallExp__OclExpression = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _NavigationCallExp__TypedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _NavigationCallExp__Visitable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _NullLiteralExp__Element = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _NullLiteralExp__LiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _NullLiteralExp__Nameable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _NullLiteralExp__NamedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _NullLiteralExp__NullLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NullLiteralExp, null, null);
+		public static final ExecutorFragment _NullLiteralExp__OclAny = new ExecutorFragment(Types._NullLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _NullLiteralExp__OclElement = new ExecutorFragment(Types._NullLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _NullLiteralExp__OclExpression = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _NullLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _NullLiteralExp__TypedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _NullLiteralExp__Visitable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _NumericLiteralExp__Element = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__LiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__Nameable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__NamedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__OclAny = new ExecutorFragment(Types._NumericLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__OclElement = new ExecutorFragment(Types._NumericLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__OclExpression = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__TypedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _NumericLiteralExp__Visitable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Object__Object = new ExecutorFragment(Types._Object, PivotTables.Types._Object, null, null);
+		
+		public static final ExecutorFragment _OclExpression__Element = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _OclExpression__Nameable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _OclExpression__NamedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _OclExpression__OclAny = new ExecutorFragment(Types._OclExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OclExpression__OclElement = new ExecutorFragment(Types._OclExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OclExpression__OclExpression = new ExecutorFragment(Types._OclExpression, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _OclExpression__TypedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _OclExpression__Visitable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _OpaqueExpression__Element = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _OpaqueExpression__Nameable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _OpaqueExpression__NamedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _OpaqueExpression__OclAny = new ExecutorFragment(Types._OpaqueExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OpaqueExpression__OclElement = new ExecutorFragment(Types._OpaqueExpression, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OpaqueExpression__OpaqueExpression = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._OpaqueExpression, null, null);
+		public static final ExecutorFragment _OpaqueExpression__ParameterableElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _OpaqueExpression__TypedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _OpaqueExpression__ValueSpecification = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ValueSpecification, null, null);
+		public static final ExecutorFragment _OpaqueExpression__Visitable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Operation__Element = new ExecutorFragment(Types._Operation, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Operation__Feature = new ExecutorFragment(Types._Operation, PivotTables.Types._Feature, null, null);
+		public static final ExecutorFragment _Operation__MultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _Operation__Nameable = new ExecutorFragment(Types._Operation, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Operation__NamedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Operation__Namespace = new ExecutorFragment(Types._Operation, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Operation__OclAny = new ExecutorFragment(Types._Operation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Operation__OclElement = new ExecutorFragment(Types._Operation, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Operation__Operation = new ExecutorFragment(Types._Operation, PivotTables.Types._Operation, null, null);
+		public static final ExecutorFragment _Operation__ParameterableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Operation__TemplateableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Operation__TypedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Operation__TypedMultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _Operation__Visitable = new ExecutorFragment(Types._Operation, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _OperationCallExp__CallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _OperationCallExp__Element = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _OperationCallExp__FeatureCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._FeatureCallExp, null, null);
+		public static final ExecutorFragment _OperationCallExp__Nameable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _OperationCallExp__NamedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _OperationCallExp__OclAny = new ExecutorFragment(Types._OperationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OperationCallExp__OclElement = new ExecutorFragment(Types._OperationCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OperationCallExp__OclExpression = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _OperationCallExp__OperationCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OperationCallExp, null, null);
+		public static final ExecutorFragment _OperationCallExp__TypedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _OperationCallExp__Visitable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _OperationTemplateParameter__Element = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _OperationTemplateParameter__OclAny = new ExecutorFragment(Types._OperationTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OperationTemplateParameter__OclElement = new ExecutorFragment(Types._OperationTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OperationTemplateParameter__OperationTemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._OperationTemplateParameter, null, null);
+		public static final ExecutorFragment _OperationTemplateParameter__TemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._TemplateParameter, null, null);
+		public static final ExecutorFragment _OperationTemplateParameter__Visitable = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _OrderedSetType__Class = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _OrderedSetType__CollectionType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._CollectionType, null, null);
+		public static final ExecutorFragment _OrderedSetType__DataType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _OrderedSetType__Element = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _OrderedSetType__Nameable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _OrderedSetType__NamedElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _OrderedSetType__Namespace = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _OrderedSetType__OclAny = new ExecutorFragment(Types._OrderedSetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OrderedSetType__OclElement = new ExecutorFragment(Types._OrderedSetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OrderedSetType__OrderedSetType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._OrderedSetType, null, null);
+		public static final ExecutorFragment _OrderedSetType__ParameterableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _OrderedSetType__TemplateableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _OrderedSetType__Type = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _OrderedSetType__Visitable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Package__Element = new ExecutorFragment(Types._Package, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Package__Nameable = new ExecutorFragment(Types._Package, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Package__NamedElement = new ExecutorFragment(Types._Package, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Package__Namespace = new ExecutorFragment(Types._Package, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _Package__OclAny = new ExecutorFragment(Types._Package, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Package__OclElement = new ExecutorFragment(Types._Package, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Package__Package = new ExecutorFragment(Types._Package, PivotTables.Types._Package, null, null);
+		public static final ExecutorFragment _Package__TemplateableElement = new ExecutorFragment(Types._Package, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Package__Visitable = new ExecutorFragment(Types._Package, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _PackageableElement__Element = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _PackageableElement__OclAny = new ExecutorFragment(Types._PackageableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _PackageableElement__OclElement = new ExecutorFragment(Types._PackageableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _PackageableElement__PackageableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._PackageableElement, null, null);
+		public static final ExecutorFragment _PackageableElement__ParameterableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _PackageableElement__Visitable = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Parameter__Element = new ExecutorFragment(Types._Parameter, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Parameter__MultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _Parameter__Nameable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Parameter__NamedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Parameter__OclAny = new ExecutorFragment(Types._Parameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Parameter__OclElement = new ExecutorFragment(Types._Parameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Parameter__Parameter = new ExecutorFragment(Types._Parameter, PivotTables.Types._Parameter, null, null);
+		public static final ExecutorFragment _Parameter__TypedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Parameter__TypedMultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _Parameter__VariableDeclaration = new ExecutorFragment(Types._Parameter, PivotTables.Types._VariableDeclaration, null, null);
+		public static final ExecutorFragment _Parameter__Visitable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _ParameterableElement__Element = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _ParameterableElement__OclAny = new ExecutorFragment(Types._ParameterableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _ParameterableElement__OclElement = new ExecutorFragment(Types._ParameterableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _ParameterableElement__ParameterableElement = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _ParameterableElement__Visitable = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Pivotable__OclAny = new ExecutorFragment(Types._Pivotable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Pivotable__OclElement = new ExecutorFragment(Types._Pivotable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Pivotable__Pivotable = new ExecutorFragment(Types._Pivotable, PivotTables.Types._Pivotable, null, null);
+		
+		public static final ExecutorFragment _Precedence__Element = new ExecutorFragment(Types._Precedence, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Precedence__Nameable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Precedence__NamedElement = new ExecutorFragment(Types._Precedence, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Precedence__OclAny = new ExecutorFragment(Types._Precedence, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Precedence__OclElement = new ExecutorFragment(Types._Precedence, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Precedence__Precedence = new ExecutorFragment(Types._Precedence, PivotTables.Types._Precedence, null, null);
+		public static final ExecutorFragment _Precedence__Visitable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _PrimitiveLiteralExp__Element = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__LiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__Nameable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__NamedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclAny = new ExecutorFragment(Types._PrimitiveLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclElement = new ExecutorFragment(Types._PrimitiveLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclExpression = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__TypedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _PrimitiveLiteralExp__Visitable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _PrimitiveType__Class = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _PrimitiveType__DataType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _PrimitiveType__Element = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _PrimitiveType__Nameable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _PrimitiveType__NamedElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _PrimitiveType__Namespace = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _PrimitiveType__OclAny = new ExecutorFragment(Types._PrimitiveType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _PrimitiveType__OclElement = new ExecutorFragment(Types._PrimitiveType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _PrimitiveType__ParameterableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _PrimitiveType__PrimitiveType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._PrimitiveType, null, null);
+		public static final ExecutorFragment _PrimitiveType__TemplateableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _PrimitiveType__Type = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _PrimitiveType__Visitable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Property__Element = new ExecutorFragment(Types._Property, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Property__Feature = new ExecutorFragment(Types._Property, PivotTables.Types._Feature, null, null);
+		public static final ExecutorFragment _Property__MultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _Property__Nameable = new ExecutorFragment(Types._Property, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Property__NamedElement = new ExecutorFragment(Types._Property, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Property__OclAny = new ExecutorFragment(Types._Property, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Property__OclElement = new ExecutorFragment(Types._Property, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Property__ParameterableElement = new ExecutorFragment(Types._Property, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Property__Property = new ExecutorFragment(Types._Property, PivotTables.Types._Property, null, null);
+		public static final ExecutorFragment _Property__TypedElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Property__TypedMultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _Property__Visitable = new ExecutorFragment(Types._Property, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _PropertyCallExp__CallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._CallExp, null, null);
+		public static final ExecutorFragment _PropertyCallExp__Element = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _PropertyCallExp__FeatureCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._FeatureCallExp, null, null);
+		public static final ExecutorFragment _PropertyCallExp__Nameable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _PropertyCallExp__NamedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _PropertyCallExp__NavigationCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NavigationCallExp, null, null);
+		public static final ExecutorFragment _PropertyCallExp__OclAny = new ExecutorFragment(Types._PropertyCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _PropertyCallExp__OclElement = new ExecutorFragment(Types._PropertyCallExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _PropertyCallExp__OclExpression = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _PropertyCallExp__PropertyCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._PropertyCallExp, null, null);
+		public static final ExecutorFragment _PropertyCallExp__TypedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _PropertyCallExp__Visitable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, PivotTables.Types._Real, null, null);
+		
+		public static final ExecutorFragment _RealLiteralExp__Element = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _RealLiteralExp__LiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _RealLiteralExp__Nameable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _RealLiteralExp__NamedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _RealLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
+		public static final ExecutorFragment _RealLiteralExp__OclAny = new ExecutorFragment(Types._RealLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _RealLiteralExp__OclElement = new ExecutorFragment(Types._RealLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _RealLiteralExp__OclExpression = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _RealLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _RealLiteralExp__RealLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._RealLiteralExp, null, null);
+		public static final ExecutorFragment _RealLiteralExp__TypedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _RealLiteralExp__Visitable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _SelfType__Class = new ExecutorFragment(Types._SelfType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _SelfType__Element = new ExecutorFragment(Types._SelfType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _SelfType__Nameable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _SelfType__NamedElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _SelfType__Namespace = new ExecutorFragment(Types._SelfType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _SelfType__OclAny = new ExecutorFragment(Types._SelfType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _SelfType__OclElement = new ExecutorFragment(Types._SelfType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _SelfType__ParameterableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _SelfType__SelfType = new ExecutorFragment(Types._SelfType, PivotTables.Types._SelfType, null, null);
+		public static final ExecutorFragment _SelfType__TemplateableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _SelfType__Type = new ExecutorFragment(Types._SelfType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _SelfType__Visitable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _SendSignalAction__Element = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _SendSignalAction__Nameable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _SendSignalAction__NamedElement = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _SendSignalAction__OclAny = new ExecutorFragment(Types._SendSignalAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _SendSignalAction__OclElement = new ExecutorFragment(Types._SendSignalAction, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _SendSignalAction__SendSignalAction = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._SendSignalAction, null, null);
+		public static final ExecutorFragment _SendSignalAction__Visitable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _SequenceType__Class = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _SequenceType__CollectionType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._CollectionType, null, null);
+		public static final ExecutorFragment _SequenceType__DataType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _SequenceType__Element = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _SequenceType__Nameable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _SequenceType__NamedElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _SequenceType__Namespace = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _SequenceType__OclAny = new ExecutorFragment(Types._SequenceType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _SequenceType__OclElement = new ExecutorFragment(Types._SequenceType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _SequenceType__ParameterableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _SequenceType__SequenceType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._SequenceType, null, null);
+		public static final ExecutorFragment _SequenceType__TemplateableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _SequenceType__Type = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _SequenceType__Visitable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _SetType__Class = new ExecutorFragment(Types._SetType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _SetType__CollectionType = new ExecutorFragment(Types._SetType, PivotTables.Types._CollectionType, null, null);
+		public static final ExecutorFragment _SetType__DataType = new ExecutorFragment(Types._SetType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _SetType__Element = new ExecutorFragment(Types._SetType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _SetType__Nameable = new ExecutorFragment(Types._SetType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _SetType__NamedElement = new ExecutorFragment(Types._SetType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _SetType__Namespace = new ExecutorFragment(Types._SetType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _SetType__OclAny = new ExecutorFragment(Types._SetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _SetType__OclElement = new ExecutorFragment(Types._SetType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _SetType__ParameterableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _SetType__SetType = new ExecutorFragment(Types._SetType, PivotTables.Types._SetType, null, null);
+		public static final ExecutorFragment _SetType__TemplateableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _SetType__Type = new ExecutorFragment(Types._SetType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _SetType__Visitable = new ExecutorFragment(Types._SetType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Signal__Element = new ExecutorFragment(Types._Signal, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Signal__Nameable = new ExecutorFragment(Types._Signal, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Signal__NamedElement = new ExecutorFragment(Types._Signal, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Signal__OclAny = new ExecutorFragment(Types._Signal, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Signal__OclElement = new ExecutorFragment(Types._Signal, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Signal__Signal = new ExecutorFragment(Types._Signal, PivotTables.Types._Signal, null, null);
+		public static final ExecutorFragment _Signal__Visitable = new ExecutorFragment(Types._Signal, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _State__Element = new ExecutorFragment(Types._State, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _State__Nameable = new ExecutorFragment(Types._State, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _State__NamedElement = new ExecutorFragment(Types._State, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _State__OclAny = new ExecutorFragment(Types._State, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _State__OclElement = new ExecutorFragment(Types._State, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _State__State = new ExecutorFragment(Types._State, PivotTables.Types._State, null, null);
+		public static final ExecutorFragment _State__Visitable = new ExecutorFragment(Types._State, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _StateExp__Element = new ExecutorFragment(Types._StateExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _StateExp__Nameable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _StateExp__NamedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _StateExp__OclAny = new ExecutorFragment(Types._StateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _StateExp__OclElement = new ExecutorFragment(Types._StateExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _StateExp__OclExpression = new ExecutorFragment(Types._StateExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _StateExp__StateExp = new ExecutorFragment(Types._StateExp, PivotTables.Types._StateExp, null, null);
+		public static final ExecutorFragment _StateExp__TypedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _StateExp__Visitable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _String__String = new ExecutorFragment(Types._String, PivotTables.Types._String, null, null);
+		
+		public static final ExecutorFragment _StringLiteralExp__Element = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _StringLiteralExp__LiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _StringLiteralExp__Nameable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _StringLiteralExp__NamedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _StringLiteralExp__OclAny = new ExecutorFragment(Types._StringLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _StringLiteralExp__OclElement = new ExecutorFragment(Types._StringLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _StringLiteralExp__OclExpression = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _StringLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _StringLiteralExp__StringLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._StringLiteralExp, null, null);
+		public static final ExecutorFragment _StringLiteralExp__TypedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _StringLiteralExp__Visitable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateBinding__Element = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateBinding__OclAny = new ExecutorFragment(Types._TemplateBinding, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateBinding__OclElement = new ExecutorFragment(Types._TemplateBinding, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateBinding__TemplateBinding = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._TemplateBinding, null, null);
+		public static final ExecutorFragment _TemplateBinding__Visitable = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateParameter__Element = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateParameter__OclAny = new ExecutorFragment(Types._TemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateParameter__OclElement = new ExecutorFragment(Types._TemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateParameter__TemplateParameter = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._TemplateParameter, null, null);
+		public static final ExecutorFragment _TemplateParameter__Visitable = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateParameterSubstitution__Element = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateParameterSubstitution__OclAny = new ExecutorFragment(Types._TemplateParameterSubstitution, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateParameterSubstitution__OclElement = new ExecutorFragment(Types._TemplateParameterSubstitution, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateParameterSubstitution__TemplateParameterSubstitution = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._TemplateParameterSubstitution, null, null);
+		public static final ExecutorFragment _TemplateParameterSubstitution__Visitable = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateParameterType__Element = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateParameterType__Nameable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TemplateParameterType__NamedElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TemplateParameterType__OclAny = new ExecutorFragment(Types._TemplateParameterType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateParameterType__OclElement = new ExecutorFragment(Types._TemplateParameterType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateParameterType__ParameterableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _TemplateParameterType__TemplateParameterType = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateParameterType, null, null);
+		public static final ExecutorFragment _TemplateParameterType__TemplateableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _TemplateParameterType__Type = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _TemplateParameterType__Visitable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateSignature__Element = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateSignature__OclAny = new ExecutorFragment(Types._TemplateSignature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateSignature__OclElement = new ExecutorFragment(Types._TemplateSignature, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateSignature__TemplateSignature = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._TemplateSignature, null, null);
+		public static final ExecutorFragment _TemplateSignature__Visitable = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TemplateableElement__Element = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TemplateableElement__OclAny = new ExecutorFragment(Types._TemplateableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TemplateableElement__OclElement = new ExecutorFragment(Types._TemplateableElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TemplateableElement__TemplateableElement = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _TemplateableElement__Visitable = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Throwable__Throwable = new ExecutorFragment(Types._Throwable, PivotTables.Types._Throwable, null, null);
+		
+		public static final ExecutorFragment _TupleLiteralExp__Element = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__LiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__Nameable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__NamedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__OclAny = new ExecutorFragment(Types._TupleLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__OclElement = new ExecutorFragment(Types._TupleLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__OclExpression = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__TupleLiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TupleLiteralExp, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__TypedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _TupleLiteralExp__Visitable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TupleLiteralPart__Element = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__Nameable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__NamedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__OclAny = new ExecutorFragment(Types._TupleLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__OclElement = new ExecutorFragment(Types._TupleLiteralPart, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__TupleLiteralPart = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TupleLiteralPart, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__TypedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__VariableDeclaration = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._VariableDeclaration, null, null);
+		public static final ExecutorFragment _TupleLiteralPart__Visitable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TupleType__Class = new ExecutorFragment(Types._TupleType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _TupleType__DataType = new ExecutorFragment(Types._TupleType, PivotTables.Types._DataType, null, null);
+		public static final ExecutorFragment _TupleType__Element = new ExecutorFragment(Types._TupleType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TupleType__Nameable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TupleType__NamedElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TupleType__Namespace = new ExecutorFragment(Types._TupleType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _TupleType__OclAny = new ExecutorFragment(Types._TupleType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TupleType__OclElement = new ExecutorFragment(Types._TupleType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TupleType__ParameterableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _TupleType__TemplateableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _TupleType__TupleType = new ExecutorFragment(Types._TupleType, PivotTables.Types._TupleType, null, null);
+		public static final ExecutorFragment _TupleType__Type = new ExecutorFragment(Types._TupleType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _TupleType__Visitable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Type__Element = new ExecutorFragment(Types._Type, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Type__Nameable = new ExecutorFragment(Types._Type, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Type__NamedElement = new ExecutorFragment(Types._Type, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Type__OclAny = new ExecutorFragment(Types._Type, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Type__OclElement = new ExecutorFragment(Types._Type, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Type__ParameterableElement = new ExecutorFragment(Types._Type, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _Type__TemplateableElement = new ExecutorFragment(Types._Type, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _Type__Visitable = new ExecutorFragment(Types._Type, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TypeExp__Element = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TypeExp__Nameable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TypeExp__NamedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TypeExp__OclAny = new ExecutorFragment(Types._TypeExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TypeExp__OclElement = new ExecutorFragment(Types._TypeExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TypeExp__OclExpression = new ExecutorFragment(Types._TypeExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _TypeExp__TypeExp = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypeExp, null, null);
+		public static final ExecutorFragment _TypeExp__TypedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _TypeExp__Visitable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TypeTemplateParameter__Element = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TypeTemplateParameter__OclAny = new ExecutorFragment(Types._TypeTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TypeTemplateParameter__OclElement = new ExecutorFragment(Types._TypeTemplateParameter, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TypeTemplateParameter__TemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TemplateParameter, null, null);
+		public static final ExecutorFragment _TypeTemplateParameter__TypeTemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TypeTemplateParameter, null, null);
+		public static final ExecutorFragment _TypeTemplateParameter__Visitable = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TypedElement__Element = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TypedElement__Nameable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TypedElement__NamedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TypedElement__OclAny = new ExecutorFragment(Types._TypedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TypedElement__OclElement = new ExecutorFragment(Types._TypedElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TypedElement__TypedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _TypedElement__Visitable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _TypedMultiplicityElement__Element = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._MultiplicityElement, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__Nameable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__NamedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__OclAny = new ExecutorFragment(Types._TypedMultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__OclElement = new ExecutorFragment(Types._TypedMultiplicityElement, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__TypedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__TypedMultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedMultiplicityElement, null, null);
+		public static final ExecutorFragment _TypedMultiplicityElement__Visitable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, PivotTables.Types._UnlimitedNatural, null, null);
+		
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Element = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__LiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._LiteralExp, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Nameable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NamedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclAny = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclExpression = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__TypedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._UnlimitedNaturalLiteralExp, null, null);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Visitable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _UnspecifiedType__Class = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _UnspecifiedType__Element = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _UnspecifiedType__Nameable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _UnspecifiedType__NamedElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _UnspecifiedType__Namespace = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _UnspecifiedType__OclAny = new ExecutorFragment(Types._UnspecifiedType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _UnspecifiedType__OclElement = new ExecutorFragment(Types._UnspecifiedType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _UnspecifiedType__ParameterableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _UnspecifiedType__TemplateableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _UnspecifiedType__Type = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _UnspecifiedType__UnspecifiedType = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._UnspecifiedType, null, null);
+		public static final ExecutorFragment _UnspecifiedType__Visitable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _UnspecifiedValueExp__Element = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__Nameable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__NamedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclAny = new ExecutorFragment(Types._UnspecifiedValueExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclElement = new ExecutorFragment(Types._UnspecifiedValueExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclExpression = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__TypedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__UnspecifiedValueExp = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._UnspecifiedValueExp, null, null);
+		public static final ExecutorFragment _UnspecifiedValueExp__Visitable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _ValueSpecification__Element = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _ValueSpecification__Nameable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _ValueSpecification__NamedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _ValueSpecification__OclAny = new ExecutorFragment(Types._ValueSpecification, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _ValueSpecification__OclElement = new ExecutorFragment(Types._ValueSpecification, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _ValueSpecification__ParameterableElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _ValueSpecification__TypedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _ValueSpecification__ValueSpecification = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ValueSpecification, null, null);
+		public static final ExecutorFragment _ValueSpecification__Visitable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Variable__Element = new ExecutorFragment(Types._Variable, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _Variable__Nameable = new ExecutorFragment(Types._Variable, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _Variable__NamedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _Variable__OclAny = new ExecutorFragment(Types._Variable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Variable__OclElement = new ExecutorFragment(Types._Variable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Variable__TypedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _Variable__Variable = new ExecutorFragment(Types._Variable, PivotTables.Types._Variable, null, null);
+		public static final ExecutorFragment _Variable__VariableDeclaration = new ExecutorFragment(Types._Variable, PivotTables.Types._VariableDeclaration, null, null);
+		public static final ExecutorFragment _Variable__Visitable = new ExecutorFragment(Types._Variable, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _VariableDeclaration__Element = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _VariableDeclaration__Nameable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _VariableDeclaration__NamedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _VariableDeclaration__OclAny = new ExecutorFragment(Types._VariableDeclaration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _VariableDeclaration__OclElement = new ExecutorFragment(Types._VariableDeclaration, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _VariableDeclaration__TypedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _VariableDeclaration__VariableDeclaration = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._VariableDeclaration, null, null);
+		public static final ExecutorFragment _VariableDeclaration__Visitable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _VariableExp__Element = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _VariableExp__Nameable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _VariableExp__NamedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _VariableExp__OclAny = new ExecutorFragment(Types._VariableExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _VariableExp__OclElement = new ExecutorFragment(Types._VariableExp, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _VariableExp__OclExpression = new ExecutorFragment(Types._VariableExp, PivotTables.Types._OclExpression, null, null);
+		public static final ExecutorFragment _VariableExp__TypedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._TypedElement, null, null);
+		public static final ExecutorFragment _VariableExp__VariableExp = new ExecutorFragment(Types._VariableExp, PivotTables.Types._VariableExp, null, null);
+		public static final ExecutorFragment _VariableExp__Visitable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Visitable__OclAny = new ExecutorFragment(Types._Visitable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Visitable__OclElement = new ExecutorFragment(Types._Visitable, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Visitable__Visitable = new ExecutorFragment(Types._Visitable, PivotTables.Types._Visitable, null, null);
+		
+		public static final ExecutorFragment _Visitor__OclAny = new ExecutorFragment(Types._Visitor, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Visitor__OclElement = new ExecutorFragment(Types._Visitor, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Visitor__Visitor = new ExecutorFragment(Types._Visitor, PivotTables.Types._Visitor, null, null);
+		
+		public static final ExecutorFragment _VoidType__Class = new ExecutorFragment(Types._VoidType, PivotTables.Types._Class, null, null);
+		public static final ExecutorFragment _VoidType__Element = new ExecutorFragment(Types._VoidType, PivotTables.Types._Element, null, null);
+		public static final ExecutorFragment _VoidType__Nameable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Nameable, null, null);
+		public static final ExecutorFragment _VoidType__NamedElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._NamedElement, null, null);
+		public static final ExecutorFragment _VoidType__Namespace = new ExecutorFragment(Types._VoidType, PivotTables.Types._Namespace, null, null);
+		public static final ExecutorFragment _VoidType__OclAny = new ExecutorFragment(Types._VoidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _VoidType__OclElement = new ExecutorFragment(Types._VoidType, org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _VoidType__ParameterableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._ParameterableElement, null, null);
+		public static final ExecutorFragment _VoidType__TemplateableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._TemplateableElement, null, null);
+		public static final ExecutorFragment _VoidType__Type = new ExecutorFragment(Types._VoidType, PivotTables.Types._Type, null, null);
+		public static final ExecutorFragment _VoidType__Visitable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Visitable, null, null);
+		public static final ExecutorFragment _VoidType__VoidType = new ExecutorFragment(Types._VoidType, PivotTables.Types._VoidType, null, null);
 		
 	}
 
 	/**
-	 *	The operation descriptors for each operation of each class.
+	 *	The operation descriptors for each operation of each type.
 	 */
 	public static class Operations {
 		public static final ExecutorOperation _MultiplicityElement__includesCardinality = new ExecutorOperation("includesCardinality",
-			Classes._MultiplicityElement, 0, null,
-				PivotTables.Classes._Integer);
+			Types._MultiplicityElement, 0, null,
+				PivotTables.Types._Integer);
 		public static final ExecutorOperation _MultiplicityElement__includesMultiplicity = new ExecutorOperation("includesMultiplicity",
-			Classes._MultiplicityElement, 1, null,
-				PivotTables.Classes._MultiplicityElement);
+			Types._MultiplicityElement, 1, null,
+				PivotTables.Types._MultiplicityElement);
 		public static final ExecutorOperation _MultiplicityElement__isMultivalued = new ExecutorOperation("isMultivalued",
-			Classes._MultiplicityElement, 2, null);
+			Types._MultiplicityElement, 2, null);
 		public static final ExecutorOperation _MultiplicityElement__lowerBound = new ExecutorOperation("lowerBound",
-			Classes._MultiplicityElement, 3, null);
+			Types._MultiplicityElement, 3, null);
 		public static final ExecutorOperation _MultiplicityElement__upperBound = new ExecutorOperation("upperBound",
-			Classes._MultiplicityElement, 4, null);
+			Types._MultiplicityElement, 4, null);
 	
 		public static final ExecutorOperation _ParameterableElement__isTemplateParameter = new ExecutorOperation("isTemplateParameter",
-			Classes._ParameterableElement, 0, null);
+			Types._ParameterableElement, 0, null);
 	
 		public static final ExecutorOperation _TemplateableElement__isTemplate = new ExecutorOperation("isTemplate",
-			Classes._TemplateableElement, 0, null);
+			Types._TemplateableElement, 0, null);
 		public static final ExecutorOperation _TemplateableElement__parameterableElements = new ExecutorOperation("parameterableElements",
-			Classes._TemplateableElement, 1, null);
+			Types._TemplateableElement, 1, null);
 	
 		public static final ExecutorOperation _ValueSpecification__booleanValue = new ExecutorOperation("booleanValue",
-			Classes._ValueSpecification, 0, null);
+			Types._ValueSpecification, 0, null);
 		public static final ExecutorOperation _ValueSpecification__integerValue = new ExecutorOperation("integerValue",
-			Classes._ValueSpecification, 1, null);
+			Types._ValueSpecification, 1, null);
 		public static final ExecutorOperation _ValueSpecification__isComputable = new ExecutorOperation("isComputable",
-			Classes._ValueSpecification, 2, null);
+			Types._ValueSpecification, 2, null);
 		public static final ExecutorOperation _ValueSpecification__isNull = new ExecutorOperation("isNull",
-			Classes._ValueSpecification, 3, null);
+			Types._ValueSpecification, 3, null);
 		public static final ExecutorOperation _ValueSpecification__stringValue = new ExecutorOperation("stringValue",
-			Classes._ValueSpecification, 4, null);
+			Types._ValueSpecification, 4, null);
 		public static final ExecutorOperation _ValueSpecification__unlimitedValue = new ExecutorOperation("unlimitedValue",
-			Classes._ValueSpecification, 5, null);
+			Types._ValueSpecification, 5, null);
 	}
 
 	/**
-	 *	The property descriptors for each property of each class.
+	 *	The property descriptors for each property of each type.
 	 */
 	public static class Properties {
-		public static final ExecutorProperty _Annotation__NamedElement = new ExecutorProperty("NamedElement", Classes._Annotation, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_ANNOTATION));
-		public static final ExecutorProperty _Annotation__ownedContent = new ExecutorProperty("ownedContent", Classes._Annotation, 1, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__OWNED_CONTENT));
-		public static final ExecutorProperty _Annotation__ownedDetail = new ExecutorProperty("ownedDetail", Classes._Annotation, 2, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAIL));
-		public static final ExecutorProperty _Annotation__reference = new ExecutorProperty("reference", Classes._Annotation, 3, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__REFERENCE));
+		public static final ExecutorProperty _Annotation__NamedElement = new ExecutorProperty("NamedElement", Types._Annotation, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_ANNOTATION));
+		public static final ExecutorProperty _Annotation__ownedContent = new ExecutorProperty("ownedContent", Types._Annotation, 1, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__OWNED_CONTENT));
+		public static final ExecutorProperty _Annotation__ownedDetail = new ExecutorProperty("ownedDetail", Types._Annotation, 2, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAIL));
+		public static final ExecutorProperty _Annotation__reference = new ExecutorProperty("reference", Types._Annotation, 3, new EcoreLibraryProperty(PivotPackage.Literals.ANNOTATION__REFERENCE));
 	
-		public static final ExecutorProperty _AssociationClass__AssociationClassCallExp = new ExecutorProperty("AssociationClassCallExp", Classes._AssociationClass, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS));
-		public static final ExecutorProperty _AssociationClass__unownedAttribute = new ExecutorProperty("unownedAttribute", Classes._AssociationClass, 1, new EcoreLibraryProperty(PivotPackage.Literals.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE));
+		public static final ExecutorProperty _AssociationClass__AssociationClassCallExp = new ExecutorProperty("AssociationClassCallExp", Types._AssociationClass, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS));
+		public static final ExecutorProperty _AssociationClass__unownedAttribute = new ExecutorProperty("unownedAttribute", Types._AssociationClass, 1, new EcoreLibraryProperty(PivotPackage.Literals.ASSOCIATION_CLASS__UNOWNED_ATTRIBUTE));
 	
-		public static final ExecutorProperty _AssociationClassCallExp__referredAssociationClass = new ExecutorProperty("referredAssociationClass", Classes._AssociationClassCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS));
+		public static final ExecutorProperty _AssociationClassCallExp__referredAssociationClass = new ExecutorProperty("referredAssociationClass", Types._AssociationClassCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP__REFERRED_ASSOCIATION_CLASS));
 	
-		public static final ExecutorProperty _BooleanLiteralExp__booleanSymbol = new ExecutorProperty("booleanSymbol", Classes._BooleanLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL));
+		public static final ExecutorProperty _BooleanLiteralExp__booleanSymbol = new ExecutorProperty("booleanSymbol", Types._BooleanLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.BOOLEAN_LITERAL_EXP__BOOLEAN_SYMBOL));
 	
-		public static final ExecutorProperty _CallExp__implicit = new ExecutorProperty("implicit", Classes._CallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.CALL_EXP__IMPLICIT));
-		public static final ExecutorProperty _CallExp__source = new ExecutorProperty("source", Classes._CallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.CALL_EXP__SOURCE));
+		public static final ExecutorProperty _CallExp__implicit = new ExecutorProperty("implicit", Types._CallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.CALL_EXP__IMPLICIT));
+		public static final ExecutorProperty _CallExp__source = new ExecutorProperty("source", Types._CallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.CALL_EXP__SOURCE));
 	
-		public static final ExecutorProperty _CallOperationAction__MessageExp = new ExecutorProperty("MessageExp", Classes._CallOperationAction, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION));
-		public static final ExecutorProperty _CallOperationAction__operation = new ExecutorProperty("operation", Classes._CallOperationAction, 1, new EcoreLibraryProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
+		public static final ExecutorProperty _CallOperationAction__MessageExp = new ExecutorProperty("MessageExp", Types._CallOperationAction, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION));
+		public static final ExecutorProperty _CallOperationAction__operation = new ExecutorProperty("operation", Types._CallOperationAction, 1, new EcoreLibraryProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
 	
-		public static final ExecutorProperty _Class__isAbstract = new ExecutorProperty("isAbstract", Classes._Class, 0, new EcoreLibraryProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT));
-		public static final ExecutorProperty _Class__isInterface = new ExecutorProperty("isInterface", Classes._Class, 1, new EcoreLibraryProperty(PivotPackage.Literals.CLASS__IS_INTERFACE));
+		public static final ExecutorProperty _Class__isAbstract = new ExecutorProperty("isAbstract", Types._Class, 0, new EcoreLibraryProperty(PivotPackage.Literals.CLASS__IS_ABSTRACT));
+		public static final ExecutorProperty _Class__isInterface = new ExecutorProperty("isInterface", Types._Class, 1, new EcoreLibraryProperty(PivotPackage.Literals.CLASS__IS_INTERFACE));
 	
-		public static final ExecutorProperty _ClassifierType__instanceType = new ExecutorProperty("instanceType", Classes._ClassifierType, 0, new EcoreLibraryProperty(PivotPackage.Literals.CLASSIFIER_TYPE__INSTANCE_TYPE));
+		public static final ExecutorProperty _ClassifierType__instanceType = new ExecutorProperty("instanceType", Types._ClassifierType, 0, new EcoreLibraryProperty(PivotPackage.Literals.CLASSIFIER_TYPE__INSTANCE_TYPE));
 	
-		public static final ExecutorProperty _CollectionItem__item = new ExecutorProperty("item", Classes._CollectionItem, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM));
+		public static final ExecutorProperty _CollectionItem__item = new ExecutorProperty("item", Types._CollectionItem, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM));
 	
-		public static final ExecutorProperty _CollectionLiteralExp__kind = new ExecutorProperty("kind", Classes._CollectionLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND));
-		public static final ExecutorProperty _CollectionLiteralExp__part = new ExecutorProperty("part", Classes._CollectionLiteralExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART));
+		public static final ExecutorProperty _CollectionLiteralExp__kind = new ExecutorProperty("kind", Types._CollectionLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__KIND));
+		public static final ExecutorProperty _CollectionLiteralExp__part = new ExecutorProperty("part", Types._CollectionLiteralExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART));
 	
-		public static final ExecutorProperty _CollectionLiteralPart__CollectionLiteralExp = new ExecutorProperty("CollectionLiteralExp", Classes._CollectionLiteralPart, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART));
+		public static final ExecutorProperty _CollectionLiteralPart__CollectionLiteralExp = new ExecutorProperty("CollectionLiteralExp", Types._CollectionLiteralPart, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_LITERAL_EXP__PART));
 	
-		public static final ExecutorProperty _CollectionRange__first = new ExecutorProperty("first", Classes._CollectionRange, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_RANGE__FIRST));
-		public static final ExecutorProperty _CollectionRange__last = new ExecutorProperty("last", Classes._CollectionRange, 1, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_RANGE__LAST));
+		public static final ExecutorProperty _CollectionRange__first = new ExecutorProperty("first", Types._CollectionRange, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_RANGE__FIRST));
+		public static final ExecutorProperty _CollectionRange__last = new ExecutorProperty("last", Types._CollectionRange, 1, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_RANGE__LAST));
 	
-		public static final ExecutorProperty _CollectionType__elementType = new ExecutorProperty("elementType", Classes._CollectionType, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
+		public static final ExecutorProperty _CollectionType__elementType = new ExecutorProperty("elementType", Types._CollectionType, 0, new EcoreLibraryProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
 	
-		public static final ExecutorProperty _Comment__Element = new ExecutorProperty("Element", Classes._Comment, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT));
-		public static final ExecutorProperty _Comment__annotatedElement = new ExecutorProperty("annotatedElement", Classes._Comment, 1, new EcoreLibraryProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT));
-		public static final ExecutorProperty _Comment__body = new ExecutorProperty("body", Classes._Comment, 2, new EcoreLibraryProperty(PivotPackage.Literals.COMMENT__BODY));
+		public static final ExecutorProperty _Comment__Element = new ExecutorProperty("Element", Types._Comment, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT));
+		public static final ExecutorProperty _Comment__annotatedElement = new ExecutorProperty("annotatedElement", Types._Comment, 1, new EcoreLibraryProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT));
+		public static final ExecutorProperty _Comment__body = new ExecutorProperty("body", Types._Comment, 2, new EcoreLibraryProperty(PivotPackage.Literals.COMMENT__BODY));
 	
-		public static final ExecutorProperty _Constraint__NamedElement = new ExecutorProperty("NamedElement", Classes._Constraint, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE));
-		public static final ExecutorProperty _Constraint__constrainedElement = new ExecutorProperty("constrainedElement", Classes._Constraint, 1, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT));
-		public static final ExecutorProperty _Constraint__context = new ExecutorProperty("context", Classes._Constraint, 2, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT));
-		public static final ExecutorProperty _Constraint__isCallable = new ExecutorProperty("isCallable", Classes._Constraint, 3, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__IS_CALLABLE));
-		public static final ExecutorProperty _Constraint__specification = new ExecutorProperty("specification", Classes._Constraint, 4, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
-		public static final ExecutorProperty _Constraint__stereotype = new ExecutorProperty("stereotype", Classes._Constraint, 5, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__STEREOTYPE));
+		public static final ExecutorProperty _Constraint__NamedElement = new ExecutorProperty("NamedElement", Types._Constraint, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE));
+		public static final ExecutorProperty _Constraint__constrainedElement = new ExecutorProperty("constrainedElement", Types._Constraint, 1, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT));
+		public static final ExecutorProperty _Constraint__context = new ExecutorProperty("context", Types._Constraint, 2, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT));
+		public static final ExecutorProperty _Constraint__isCallable = new ExecutorProperty("isCallable", Types._Constraint, 3, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__IS_CALLABLE));
+		public static final ExecutorProperty _Constraint__specification = new ExecutorProperty("specification", Types._Constraint, 4, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
+		public static final ExecutorProperty _Constraint__stereotype = new ExecutorProperty("stereotype", Types._Constraint, 5, new EcoreLibraryProperty(PivotPackage.Literals.CONSTRAINT__STEREOTYPE));
 	
-		public static final ExecutorProperty _DataType__behavioralType = new ExecutorProperty("behavioralType", Classes._DataType, 0, new EcoreLibraryProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
-		public static final ExecutorProperty _DataType__isSerializable = new ExecutorProperty("isSerializable", Classes._DataType, 1, new EcoreLibraryProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE));
+		public static final ExecutorProperty _DataType__behavioralType = new ExecutorProperty("behavioralType", Types._DataType, 0, new EcoreLibraryProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
+		public static final ExecutorProperty _DataType__isSerializable = new ExecutorProperty("isSerializable", Types._DataType, 1, new EcoreLibraryProperty(PivotPackage.Literals.DATA_TYPE__IS_SERIALIZABLE));
 	
-		public static final ExecutorProperty _Detail__Annotation = new ExecutorProperty("Annotation", Classes._Detail, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAIL));
-		public static final ExecutorProperty _Detail__value = new ExecutorProperty("value", Classes._Detail, 1, new EcoreLibraryProperty(PivotPackage.Literals.DETAIL__VALUE));
+		public static final ExecutorProperty _Detail__Annotation = new ExecutorProperty("Annotation", Types._Detail, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ANNOTATION__OWNED_DETAIL));
+		public static final ExecutorProperty _Detail__value = new ExecutorProperty("value", Types._Detail, 1, new EcoreLibraryProperty(PivotPackage.Literals.DETAIL__VALUE));
 	
-		public static final ExecutorProperty _Element__Comment = new ExecutorProperty("Comment", Classes._Element, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT));
-		public static final ExecutorProperty _Element__Constraint = new ExecutorProperty("Constraint", Classes._Element, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT));
-		public static final ExecutorProperty _Element__ownedComment = new ExecutorProperty("ownedComment", Classes._Element, 2, new EcoreLibraryProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT));
+		public static final ExecutorProperty _Element__Comment = new ExecutorProperty("Comment", Types._Element, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COMMENT__ANNOTATED_ELEMENT));
+		public static final ExecutorProperty _Element__Constraint = new ExecutorProperty("Constraint", Types._Element, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT));
+		public static final ExecutorProperty _Element__ownedComment = new ExecutorProperty("ownedComment", Types._Element, 2, new EcoreLibraryProperty(PivotPackage.Literals.ELEMENT__OWNED_COMMENT));
 	
-		public static final ExecutorProperty _EnumLiteralExp__referredEnumLiteral = new ExecutorProperty("referredEnumLiteral", Classes._EnumLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL));
+		public static final ExecutorProperty _EnumLiteralExp__referredEnumLiteral = new ExecutorProperty("referredEnumLiteral", Types._EnumLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL));
 	
-		public static final ExecutorProperty _Enumeration__ownedLiteral = new ExecutorProperty("ownedLiteral", Classes._Enumeration, 0, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION__OWNED_LITERAL));
+		public static final ExecutorProperty _Enumeration__ownedLiteral = new ExecutorProperty("ownedLiteral", Types._Enumeration, 0, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION__OWNED_LITERAL));
 	
-		public static final ExecutorProperty _EnumerationLiteral__EnumLiteralExp = new ExecutorProperty("EnumLiteralExp", Classes._EnumerationLiteral, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL));
-		public static final ExecutorProperty _EnumerationLiteral__enumeration = new ExecutorProperty("enumeration", Classes._EnumerationLiteral, 1, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION_LITERAL__ENUMERATION));
-		public static final ExecutorProperty _EnumerationLiteral__value = new ExecutorProperty("value", Classes._EnumerationLiteral, 2, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE));
+		public static final ExecutorProperty _EnumerationLiteral__EnumLiteralExp = new ExecutorProperty("EnumLiteralExp", Types._EnumerationLiteral, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL));
+		public static final ExecutorProperty _EnumerationLiteral__enumeration = new ExecutorProperty("enumeration", Types._EnumerationLiteral, 1, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION_LITERAL__ENUMERATION));
+		public static final ExecutorProperty _EnumerationLiteral__value = new ExecutorProperty("value", Types._EnumerationLiteral, 2, new EcoreLibraryProperty(PivotPackage.Literals.ENUMERATION_LITERAL__VALUE));
 	
-		public static final ExecutorProperty _ExpressionInOcl__bodyExpression = new ExecutorProperty("bodyExpression", Classes._ExpressionInOcl, 0, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION));
-		public static final ExecutorProperty _ExpressionInOcl__contextVariable = new ExecutorProperty("contextVariable", Classes._ExpressionInOcl, 1, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE));
-		public static final ExecutorProperty _ExpressionInOcl__messageExpression = new ExecutorProperty("messageExpression", Classes._ExpressionInOcl, 2, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION));
-		public static final ExecutorProperty _ExpressionInOcl__parameterVariable = new ExecutorProperty("parameterVariable", Classes._ExpressionInOcl, 3, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE));
-		public static final ExecutorProperty _ExpressionInOcl__resultVariable = new ExecutorProperty("resultVariable", Classes._ExpressionInOcl, 4, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE));
+		public static final ExecutorProperty _ExpressionInOcl__bodyExpression = new ExecutorProperty("bodyExpression", Types._ExpressionInOcl, 0, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION));
+		public static final ExecutorProperty _ExpressionInOcl__contextVariable = new ExecutorProperty("contextVariable", Types._ExpressionInOcl, 1, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__CONTEXT_VARIABLE));
+		public static final ExecutorProperty _ExpressionInOcl__messageExpression = new ExecutorProperty("messageExpression", Types._ExpressionInOcl, 2, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION));
+		public static final ExecutorProperty _ExpressionInOcl__parameterVariable = new ExecutorProperty("parameterVariable", Types._ExpressionInOcl, 3, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__PARAMETER_VARIABLE));
+		public static final ExecutorProperty _ExpressionInOcl__resultVariable = new ExecutorProperty("resultVariable", Types._ExpressionInOcl, 4, new EcoreLibraryProperty(PivotPackage.Literals.EXPRESSION_IN_OCL__RESULT_VARIABLE));
 	
-		public static final ExecutorProperty _Feature__implementation = new ExecutorProperty("implementation", Classes._Feature, 0, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION));
-		public static final ExecutorProperty _Feature__implementationClass = new ExecutorProperty("implementationClass", Classes._Feature, 1, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS));
+		public static final ExecutorProperty _Feature__implementation = new ExecutorProperty("implementation", Types._Feature, 0, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION));
+		public static final ExecutorProperty _Feature__implementationClass = new ExecutorProperty("implementationClass", Types._Feature, 1, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE__IMPLEMENTATION_CLASS));
 	
-		public static final ExecutorProperty _FeatureCallExp__isPre = new ExecutorProperty("isPre", Classes._FeatureCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE));
+		public static final ExecutorProperty _FeatureCallExp__isPre = new ExecutorProperty("isPre", Types._FeatureCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.FEATURE_CALL_EXP__IS_PRE));
 	
-		public static final ExecutorProperty _IfExp__condition = new ExecutorProperty("condition", Classes._IfExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__CONDITION));
-		public static final ExecutorProperty _IfExp__elseExpression = new ExecutorProperty("elseExpression", Classes._IfExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION));
-		public static final ExecutorProperty _IfExp__thenExpression = new ExecutorProperty("thenExpression", Classes._IfExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION));
-	
-		public static final ExecutorProperty _IntegerLiteralExp__integerSymbol = new ExecutorProperty("integerSymbol", Classes._IntegerLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL));
-	
-		public static final ExecutorProperty _IterateExp__result = new ExecutorProperty("result", Classes._IterateExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ITERATE_EXP__RESULT));
-	
-		public static final ExecutorProperty _Iteration__LoopExp = new ExecutorProperty("LoopExp", Classes._Iteration, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION));
-		public static final ExecutorProperty _Iteration__ownedAccumulator = new ExecutorProperty("ownedAccumulator", Classes._Iteration, 1, new EcoreLibraryProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATOR));
-		public static final ExecutorProperty _Iteration__ownedIterator = new ExecutorProperty("ownedIterator", Classes._Iteration, 2, new EcoreLibraryProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATOR));
+		public static final ExecutorProperty _IfExp__condition = new ExecutorProperty("condition", Types._IfExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__CONDITION));
+		public static final ExecutorProperty _IfExp__elseExpression = new ExecutorProperty("elseExpression", Types._IfExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION));
+		public static final ExecutorProperty _IfExp__thenExpression = new ExecutorProperty("thenExpression", Types._IfExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION));
+	
+		public static final ExecutorProperty _IntegerLiteralExp__integerSymbol = new ExecutorProperty("integerSymbol", Types._IntegerLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.INTEGER_LITERAL_EXP__INTEGER_SYMBOL));
+	
+		public static final ExecutorProperty _IterateExp__result = new ExecutorProperty("result", Types._IterateExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.ITERATE_EXP__RESULT));
+	
+		public static final ExecutorProperty _Iteration__LoopExp = new ExecutorProperty("LoopExp", Types._Iteration, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION));
+		public static final ExecutorProperty _Iteration__ownedAccumulator = new ExecutorProperty("ownedAccumulator", Types._Iteration, 1, new EcoreLibraryProperty(PivotPackage.Literals.ITERATION__OWNED_ACCUMULATOR));
+		public static final ExecutorProperty _Iteration__ownedIterator = new ExecutorProperty("ownedIterator", Types._Iteration, 2, new EcoreLibraryProperty(PivotPackage.Literals.ITERATION__OWNED_ITERATOR));
 	
-		public static final ExecutorProperty _LambdaType__contextType = new ExecutorProperty("contextType", Classes._LambdaType, 0, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
-		public static final ExecutorProperty _LambdaType__parameterType = new ExecutorProperty("parameterType", Classes._LambdaType, 1, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
-		public static final ExecutorProperty _LambdaType__resultType = new ExecutorProperty("resultType", Classes._LambdaType, 2, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
+		public static final ExecutorProperty _LambdaType__contextType = new ExecutorProperty("contextType", Types._LambdaType, 0, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__CONTEXT_TYPE));
+		public static final ExecutorProperty _LambdaType__parameterType = new ExecutorProperty("parameterType", Types._LambdaType, 1, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__PARAMETER_TYPE));
+		public static final ExecutorProperty _LambdaType__resultType = new ExecutorProperty("resultType", Types._LambdaType, 2, new EcoreLibraryProperty(PivotPackage.Literals.LAMBDA_TYPE__RESULT_TYPE));
 	
-		public static final ExecutorProperty _LetExp__in = new ExecutorProperty("in", Classes._LetExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.LET_EXP__IN));
-		public static final ExecutorProperty _LetExp__variable = new ExecutorProperty("variable", Classes._LetExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.LET_EXP__VARIABLE));
+		public static final ExecutorProperty _LetExp__in = new ExecutorProperty("in", Types._LetExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.LET_EXP__IN));
+		public static final ExecutorProperty _LetExp__variable = new ExecutorProperty("variable", Types._LetExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.LET_EXP__VARIABLE));
 	
-		public static final ExecutorProperty _LoopExp__body = new ExecutorProperty("body", Classes._LoopExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__BODY));
-		public static final ExecutorProperty _LoopExp__iterator = new ExecutorProperty("iterator", Classes._LoopExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__ITERATOR));
-		public static final ExecutorProperty _LoopExp__referredIteration = new ExecutorProperty("referredIteration", Classes._LoopExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION));
+		public static final ExecutorProperty _LoopExp__body = new ExecutorProperty("body", Types._LoopExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__BODY));
+		public static final ExecutorProperty _LoopExp__iterator = new ExecutorProperty("iterator", Types._LoopExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__ITERATOR));
+		public static final ExecutorProperty _LoopExp__referredIteration = new ExecutorProperty("referredIteration", Types._LoopExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION));
 	
-		public static final ExecutorProperty _MessageExp__argument = new ExecutorProperty("argument", Classes._MessageExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__ARGUMENT));
-		public static final ExecutorProperty _MessageExp__calledOperation = new ExecutorProperty("calledOperation", Classes._MessageExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION));
-		public static final ExecutorProperty _MessageExp__sentSignal = new ExecutorProperty("sentSignal", Classes._MessageExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__SENT_SIGNAL));
-		public static final ExecutorProperty _MessageExp__target = new ExecutorProperty("target", Classes._MessageExp, 3, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__TARGET));
-	
-		public static final ExecutorProperty _MessageType__referredOperation = new ExecutorProperty("referredOperation", Classes._MessageType, 0, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
-		public static final ExecutorProperty _MessageType__referredSignal = new ExecutorProperty("referredSignal", Classes._MessageType, 1, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL));
-	
-		public static final ExecutorProperty _MultiplicityElement__isOrdered = new ExecutorProperty("isOrdered", Classes._MultiplicityElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_ORDERED));
-		public static final ExecutorProperty _MultiplicityElement__isUnique = new ExecutorProperty("isUnique", Classes._MultiplicityElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_UNIQUE));
-		public static final ExecutorProperty _MultiplicityElement__lower = new ExecutorProperty("lower", Classes._MultiplicityElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__LOWER));
-		public static final ExecutorProperty _MultiplicityElement__upper = new ExecutorProperty("upper", Classes._MultiplicityElement, 3, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__UPPER));
-	
-		public static final ExecutorProperty _NamedElement__Constraint = new ExecutorProperty("Constraint", Classes._NamedElement, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT));
-		public static final ExecutorProperty _NamedElement__isStatic = new ExecutorProperty("isStatic", Classes._NamedElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__IS_STATIC));
-		public static final ExecutorProperty _NamedElement__name = new ExecutorProperty("name", Classes._NamedElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME));
-		public static final ExecutorProperty _NamedElement__ownedAnnotation = new ExecutorProperty("ownedAnnotation", Classes._NamedElement, 3, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_ANNOTATION));
-		public static final ExecutorProperty _NamedElement__ownedRule = new ExecutorProperty("ownedRule", Classes._NamedElement, 4, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE));
-	
-		public static final ExecutorProperty _NavigationCallExp__navigationSource = new ExecutorProperty("navigationSource", Classes._NavigationCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
-		public static final ExecutorProperty _NavigationCallExp__qualifier = new ExecutorProperty("qualifier", Classes._NavigationCallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER));
-	
-		public static final ExecutorProperty _OclExpression__CallExp = new ExecutorProperty("CallExp", Classes._OclExpression, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_EXP__SOURCE));
-		public static final ExecutorProperty _OclExpression__CollectionItem = new ExecutorProperty("CollectionItem", Classes._OclExpression, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM));
-		public static final ExecutorProperty _OclExpression__LetExp = new ExecutorProperty("LetExp", Classes._OclExpression, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__IN));
-		public static final ExecutorProperty _OclExpression__LoopExp = new ExecutorProperty("LoopExp", Classes._OclExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__BODY));
-		public static final ExecutorProperty _OclExpression__NavigationCallExp = new ExecutorProperty("NavigationCallExp", Classes._OclExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER));
-		public static final ExecutorProperty _OclExpression__OperationCallExp = new ExecutorProperty("OperationCallExp", Classes._OclExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT));
-		public static final ExecutorProperty _OclExpression__TupleLiteralPart = new ExecutorProperty("TupleLiteralPart", Classes._OclExpression, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION));
-		public static final ExecutorProperty _OclExpression__Variable = new ExecutorProperty("Variable", Classes._OclExpression, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION));
-	
-		public static final ExecutorProperty _OpaqueExpression__body = new ExecutorProperty("body", Classes._OpaqueExpression, 0, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__BODY));
-		public static final ExecutorProperty _OpaqueExpression__language = new ExecutorProperty("language", Classes._OpaqueExpression, 1, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__LANGUAGE));
-		public static final ExecutorProperty _OpaqueExpression__message = new ExecutorProperty("message", Classes._OpaqueExpression, 2, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__MESSAGE));
-		public static final ExecutorProperty _OpaqueExpression__valueExpression = new ExecutorProperty("valueExpression", Classes._OpaqueExpression, 3, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__VALUE_EXPRESSION));
-	
-		public static final ExecutorProperty _Operation__CallOperationAction = new ExecutorProperty("CallOperationAction", Classes._Operation, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
-		public static final ExecutorProperty _Operation__MessageType = new ExecutorProperty("MessageType", Classes._Operation, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
-		public static final ExecutorProperty _Operation__OperationCallExp = new ExecutorProperty("OperationCallExp", Classes._Operation, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
-		public static final ExecutorProperty _Operation__class = new ExecutorProperty("class", Classes._Operation, 3, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__CLASS));
-		public static final ExecutorProperty _Operation__ownedParameter = new ExecutorProperty("ownedParameter", Classes._Operation, 4, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__OWNED_PARAMETER));
-		public static final ExecutorProperty _Operation__owningType = new ExecutorProperty("owningType", Classes._Operation, 5, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__OWNING_TYPE));
-		public static final ExecutorProperty _Operation__precedence = new ExecutorProperty("precedence", Classes._Operation, 6, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__PRECEDENCE));
-		public static final ExecutorProperty _Operation__raisedException = new ExecutorProperty("raisedException", Classes._Operation, 7, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
-	
-		public static final ExecutorProperty _OperationCallExp__argument = new ExecutorProperty("argument", Classes._OperationCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT));
-		public static final ExecutorProperty _OperationCallExp__referredOperation = new ExecutorProperty("referredOperation", Classes._OperationCallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
-	
-		public static final ExecutorProperty _Package__nestedPackage = new ExecutorProperty("nestedPackage", Classes._Package, 0, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE));
-		public static final ExecutorProperty _Package__nestingPackage = new ExecutorProperty("nestingPackage", Classes._Package, 1, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE));
-		public static final ExecutorProperty _Package__nsPrefix = new ExecutorProperty("nsPrefix", Classes._Package, 2, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX));
-		public static final ExecutorProperty _Package__nsURI = new ExecutorProperty("nsURI", Classes._Package, 3, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NS_URI));
-		public static final ExecutorProperty _Package__ownedPrecedence = new ExecutorProperty("ownedPrecedence", Classes._Package, 4, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__OWNED_PRECEDENCE));
-		public static final ExecutorProperty _Package__ownedType = new ExecutorProperty("ownedType", Classes._Package, 5, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE));
-	
-		public static final ExecutorProperty _Parameter__Variable = new ExecutorProperty("Variable", Classes._Parameter, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE__REPRESENTED_PARAMETER));
-		public static final ExecutorProperty _Parameter__operation = new ExecutorProperty("operation", Classes._Parameter, 1, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETER__OPERATION));
-	
-		public static final ExecutorProperty _ParameterableElement__owningTemplateParameter = new ExecutorProperty("owningTemplateParameter", Classes._ParameterableElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER));
-		public static final ExecutorProperty _ParameterableElement__templateParameter = new ExecutorProperty("templateParameter", Classes._ParameterableElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER));
-	
-		public static final ExecutorProperty _Precedence__Operation = new ExecutorProperty("Operation", Classes._Precedence, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__PRECEDENCE));
-		public static final ExecutorProperty _Precedence__Package = new ExecutorProperty("Package", Classes._Precedence, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PACKAGE__OWNED_PRECEDENCE));
-		public static final ExecutorProperty _Precedence__associativity = new ExecutorProperty("associativity", Classes._Precedence, 2, new EcoreLibraryProperty(PivotPackage.Literals.PRECEDENCE__ASSOCIATIVITY));
-		public static final ExecutorProperty _Precedence__order = new ExecutorProperty("order", Classes._Precedence, 3, new EcoreLibraryProperty(PivotPackage.Literals.PRECEDENCE__ORDER));
-	
-		public static final ExecutorProperty _Property__NavigationCallExp = new ExecutorProperty("NavigationCallExp", Classes._Property, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
-		public static final ExecutorProperty _Property__PropertyCallExp = new ExecutorProperty("PropertyCallExp", Classes._Property, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-		public static final ExecutorProperty _Property__association = new ExecutorProperty("association", Classes._Property, 2, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__ASSOCIATION));
-		public static final ExecutorProperty _Property__class = new ExecutorProperty("class", Classes._Property, 3, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__CLASS));
-		public static final ExecutorProperty _Property__default = new ExecutorProperty("default", Classes._Property, 4, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__DEFAULT));
-		public static final ExecutorProperty _Property__implicit = new ExecutorProperty("implicit", Classes._Property, 5, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IMPLICIT));
-		public static final ExecutorProperty _Property__isComposite = new ExecutorProperty("isComposite", Classes._Property, 6, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE));
-		public static final ExecutorProperty _Property__isDerived = new ExecutorProperty("isDerived", Classes._Property, 7, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED));
-		public static final ExecutorProperty _Property__isID = new ExecutorProperty("isID", Classes._Property, 8, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_ID));
-		public static final ExecutorProperty _Property__isReadOnly = new ExecutorProperty("isReadOnly", Classes._Property, 9, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_READ_ONLY));
-		public static final ExecutorProperty _Property__isResolveProxies = new ExecutorProperty("isResolveProxies", Classes._Property, 10, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_RESOLVE_PROXIES));
-		public static final ExecutorProperty _Property__isTransient = new ExecutorProperty("isTransient", Classes._Property, 11, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_TRANSIENT));
-		public static final ExecutorProperty _Property__isUnsettable = new ExecutorProperty("isUnsettable", Classes._Property, 12, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_UNSETTABLE));
-		public static final ExecutorProperty _Property__isVolatile = new ExecutorProperty("isVolatile", Classes._Property, 13, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_VOLATILE));
-		public static final ExecutorProperty _Property__keys = new ExecutorProperty("keys", Classes._Property, 14, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__KEYS));
-		public static final ExecutorProperty _Property__opposite = new ExecutorProperty("opposite", Classes._Property, 15, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
-		public static final ExecutorProperty _Property__owningType = new ExecutorProperty("owningType", Classes._Property, 16, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__OWNING_TYPE));
-	
-		public static final ExecutorProperty _PropertyCallExp__referredProperty = new ExecutorProperty("referredProperty", Classes._PropertyCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
-	
-		public static final ExecutorProperty _RealLiteralExp__realSymbol = new ExecutorProperty("realSymbol", Classes._RealLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL));
-	
-		public static final ExecutorProperty _SendSignalAction__MessageExp = new ExecutorProperty("MessageExp", Classes._SendSignalAction, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__SENT_SIGNAL));
-		public static final ExecutorProperty _SendSignalAction__signal = new ExecutorProperty("signal", Classes._SendSignalAction, 1, new EcoreLibraryProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL));
-	
-		public static final ExecutorProperty _Signal__MessageType = new ExecutorProperty("MessageType", Classes._Signal, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL));
-		public static final ExecutorProperty _Signal__SendSignalAction = new ExecutorProperty("SendSignalAction", Classes._Signal, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL));
-	
-		public static final ExecutorProperty _State__StateExp = new ExecutorProperty("StateExp", Classes._State, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.STATE_EXP__REFERRED_STATE));
-	
-		public static final ExecutorProperty _StateExp__referredState = new ExecutorProperty("referredState", Classes._StateExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.STATE_EXP__REFERRED_STATE));
-	
-		public static final ExecutorProperty _StringLiteralExp__stringSymbol = new ExecutorProperty("stringSymbol", Classes._StringLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL));
-	
-		public static final ExecutorProperty _TemplateBinding__boundElement = new ExecutorProperty("boundElement", Classes._TemplateBinding, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__BOUND_ELEMENT));
-		public static final ExecutorProperty _TemplateBinding__parameterSubstitution = new ExecutorProperty("parameterSubstitution", Classes._TemplateBinding, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION));
-		public static final ExecutorProperty _TemplateBinding__signature = new ExecutorProperty("signature", Classes._TemplateBinding, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE));
-	
-		public static final ExecutorProperty _TemplateParameter__TemplateParameterSubstitution = new ExecutorProperty("TemplateParameterSubstitution", Classes._TemplateParameter, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
-		public static final ExecutorProperty _TemplateParameter__TemplateSignature = new ExecutorProperty("TemplateSignature", Classes._TemplateParameter, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__PARAMETER));
-		public static final ExecutorProperty _TemplateParameter__default = new ExecutorProperty("default", Classes._TemplateParameter, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT));
-		public static final ExecutorProperty _TemplateParameter__ownedDefault = new ExecutorProperty("ownedDefault", Classes._TemplateParameter, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_DEFAULT));
-		public static final ExecutorProperty _TemplateParameter__ownedParameteredElement = new ExecutorProperty("ownedParameteredElement", Classes._TemplateParameter, 4, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT));
-		public static final ExecutorProperty _TemplateParameter__parameteredElement = new ExecutorProperty("parameteredElement", Classes._TemplateParameter, 5, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT));
-		public static final ExecutorProperty _TemplateParameter__signature = new ExecutorProperty("signature", Classes._TemplateParameter, 6, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__SIGNATURE));
-	
-		public static final ExecutorProperty _TemplateParameterSubstitution__actual = new ExecutorProperty("actual", Classes._TemplateParameterSubstitution, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
-		public static final ExecutorProperty _TemplateParameterSubstitution__formal = new ExecutorProperty("formal", Classes._TemplateParameterSubstitution, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
-		public static final ExecutorProperty _TemplateParameterSubstitution__ownedActual = new ExecutorProperty("ownedActual", Classes._TemplateParameterSubstitution, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL));
-		public static final ExecutorProperty _TemplateParameterSubstitution__templateBinding = new ExecutorProperty("templateBinding", Classes._TemplateParameterSubstitution, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING));
-	
-		public static final ExecutorProperty _TemplateParameterType__specification = new ExecutorProperty("specification", Classes._TemplateParameterType, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_TYPE__SPECIFICATION));
-	
-		public static final ExecutorProperty _TemplateSignature__TemplateBinding = new ExecutorProperty("TemplateBinding", Classes._TemplateSignature, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE));
-		public static final ExecutorProperty _TemplateSignature__ownedParameter = new ExecutorProperty("ownedParameter", Classes._TemplateSignature, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETER));
-		public static final ExecutorProperty _TemplateSignature__parameter = new ExecutorProperty("parameter", Classes._TemplateSignature, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__PARAMETER));
-		public static final ExecutorProperty _TemplateSignature__template = new ExecutorProperty("template", Classes._TemplateSignature, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE));
-	
-		public static final ExecutorProperty _TemplateableElement__ownedTemplateSignature = new ExecutorProperty("ownedTemplateSignature", Classes._TemplateableElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE));
-		public static final ExecutorProperty _TemplateableElement__templateBinding = new ExecutorProperty("templateBinding", Classes._TemplateableElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING));
-		public static final ExecutorProperty _TemplateableElement__unspecializedElement = new ExecutorProperty("unspecializedElement", Classes._TemplateableElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT));
-	
-		public static final ExecutorProperty _TupleLiteralExp__part = new ExecutorProperty("part", Classes._TupleLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART));
-	
-		public static final ExecutorProperty _TupleLiteralPart__TupleLiteralExp = new ExecutorProperty("TupleLiteralExp", Classes._TupleLiteralPart, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART));
-		public static final ExecutorProperty _TupleLiteralPart__initExpression = new ExecutorProperty("initExpression", Classes._TupleLiteralPart, 1, new EcoreLibraryProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION));
-	
-		public static final ExecutorProperty _Type__ClassifierType = new ExecutorProperty("ClassifierType", Classes._Type, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASSIFIER_TYPE__INSTANCE_TYPE));
-		public static final ExecutorProperty _Type__CollectionType = new ExecutorProperty("CollectionType", Classes._Type, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
-		public static final ExecutorProperty _Type__DataType = new ExecutorProperty("DataType", Classes._Type, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
-		public static final ExecutorProperty _Type__Operation = new ExecutorProperty("Operation", Classes._Type, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
-		public static final ExecutorProperty _Type__Type = new ExecutorProperty("Type", Classes._Type, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
-		public static final ExecutorProperty _Type__TypeExp = new ExecutorProperty("TypeExp", Classes._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-		public static final ExecutorProperty _Type__TypeTemplateParameter = new ExecutorProperty("TypeTemplateParameter", Classes._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
-		public static final ExecutorProperty _Type__TypedElement = new ExecutorProperty("TypedElement", Classes._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
-		public static final ExecutorProperty _Type__instanceClassName = new ExecutorProperty("instanceClassName", Classes._Type, 8, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME));
-		public static final ExecutorProperty _Type__ownedAttribute = new ExecutorProperty("ownedAttribute", Classes._Type, 9, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE));
-		public static final ExecutorProperty _Type__ownedOperation = new ExecutorProperty("ownedOperation", Classes._Type, 10, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__OWNED_OPERATION));
-		public static final ExecutorProperty _Type__package = new ExecutorProperty("package", Classes._Type, 11, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__PACKAGE));
-		public static final ExecutorProperty _Type__superClass = new ExecutorProperty("superClass", Classes._Type, 12, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
-	
-		public static final ExecutorProperty _TypeExp__referredType = new ExecutorProperty("referredType", Classes._TypeExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
-	
-		public static final ExecutorProperty _TypeTemplateParameter__allowSubstitutable = new ExecutorProperty("allowSubstitutable", Classes._TypeTemplateParameter, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE));
-		public static final ExecutorProperty _TypeTemplateParameter__constrainingType = new ExecutorProperty("constrainingType", Classes._TypeTemplateParameter, 1, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
-	
-		public static final ExecutorProperty _TypedElement__type = new ExecutorProperty("type", Classes._TypedElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
-	
-		public static final ExecutorProperty _UnlimitedNaturalLiteralExp__unlimitedNaturalSymbol = new ExecutorProperty("unlimitedNaturalSymbol", Classes._UnlimitedNaturalLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL));
-	
-		public static final ExecutorProperty _UnspecifiedType__lowerBound = new ExecutorProperty("lowerBound", Classes._UnspecifiedType, 0, new EcoreLibraryProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
-		public static final ExecutorProperty _UnspecifiedType__upperBound = new ExecutorProperty("upperBound", Classes._UnspecifiedType, 1, new EcoreLibraryProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
-	
-		public static final ExecutorProperty _ValueSpecification__Constraint = new ExecutorProperty("Constraint", Classes._ValueSpecification, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
-	
-		public static final ExecutorProperty _Variable__IterateExp = new ExecutorProperty("IterateExp", Classes._Variable, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ITERATE_EXP__RESULT));
-		public static final ExecutorProperty _Variable__LetExp = new ExecutorProperty("LetExp", Classes._Variable, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__VARIABLE));
-		public static final ExecutorProperty _Variable__LoopExp = new ExecutorProperty("LoopExp", Classes._Variable, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__ITERATOR));
-		public static final ExecutorProperty _Variable__implicit = new ExecutorProperty("implicit", Classes._Variable, 3, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__IMPLICIT));
-		public static final ExecutorProperty _Variable__initExpression = new ExecutorProperty("initExpression", Classes._Variable, 4, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION));
-		public static final ExecutorProperty _Variable__representedParameter = new ExecutorProperty("representedParameter", Classes._Variable, 5, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__REPRESENTED_PARAMETER));
-	
-		public static final ExecutorProperty _VariableDeclaration__VariableExp = new ExecutorProperty("VariableExp", Classes._VariableDeclaration, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE));
-	
-		public static final ExecutorProperty _VariableExp__implicit = new ExecutorProperty("implicit", Classes._VariableExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE_EXP__IMPLICIT));
-		public static final ExecutorProperty _VariableExp__referredVariable = new ExecutorProperty("referredVariable", Classes._VariableExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE));
+		public static final ExecutorProperty _MessageExp__argument = new ExecutorProperty("argument", Types._MessageExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__ARGUMENT));
+		public static final ExecutorProperty _MessageExp__calledOperation = new ExecutorProperty("calledOperation", Types._MessageExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__CALLED_OPERATION));
+		public static final ExecutorProperty _MessageExp__sentSignal = new ExecutorProperty("sentSignal", Types._MessageExp, 2, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__SENT_SIGNAL));
+		public static final ExecutorProperty _MessageExp__target = new ExecutorProperty("target", Types._MessageExp, 3, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_EXP__TARGET));
+	
+		public static final ExecutorProperty _MessageType__referredOperation = new ExecutorProperty("referredOperation", Types._MessageType, 0, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
+		public static final ExecutorProperty _MessageType__referredSignal = new ExecutorProperty("referredSignal", Types._MessageType, 1, new EcoreLibraryProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL));
+	
+		public static final ExecutorProperty _MultiplicityElement__isOrdered = new ExecutorProperty("isOrdered", Types._MultiplicityElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_ORDERED));
+		public static final ExecutorProperty _MultiplicityElement__isUnique = new ExecutorProperty("isUnique", Types._MultiplicityElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__IS_UNIQUE));
+		public static final ExecutorProperty _MultiplicityElement__lower = new ExecutorProperty("lower", Types._MultiplicityElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__LOWER));
+		public static final ExecutorProperty _MultiplicityElement__upper = new ExecutorProperty("upper", Types._MultiplicityElement, 3, new EcoreLibraryProperty(PivotPackage.Literals.MULTIPLICITY_ELEMENT__UPPER));
+	
+		public static final ExecutorProperty _NamedElement__Constraint = new ExecutorProperty("Constraint", Types._NamedElement, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__CONTEXT));
+		public static final ExecutorProperty _NamedElement__isStatic = new ExecutorProperty("isStatic", Types._NamedElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__IS_STATIC));
+		public static final ExecutorProperty _NamedElement__name = new ExecutorProperty("name", Types._NamedElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__NAME));
+		public static final ExecutorProperty _NamedElement__ownedAnnotation = new ExecutorProperty("ownedAnnotation", Types._NamedElement, 3, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_ANNOTATION));
+		public static final ExecutorProperty _NamedElement__ownedRule = new ExecutorProperty("ownedRule", Types._NamedElement, 4, new EcoreLibraryProperty(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE));
+	
+		public static final ExecutorProperty _NavigationCallExp__navigationSource = new ExecutorProperty("navigationSource", Types._NavigationCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
+		public static final ExecutorProperty _NavigationCallExp__qualifier = new ExecutorProperty("qualifier", Types._NavigationCallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER));
+	
+		public static final ExecutorProperty _OclExpression__CallExp = new ExecutorProperty("CallExp", Types._OclExpression, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_EXP__SOURCE));
+		public static final ExecutorProperty _OclExpression__CollectionItem = new ExecutorProperty("CollectionItem", Types._OclExpression, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_ITEM__ITEM));
+		public static final ExecutorProperty _OclExpression__LetExp = new ExecutorProperty("LetExp", Types._OclExpression, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__IN));
+		public static final ExecutorProperty _OclExpression__LoopExp = new ExecutorProperty("LoopExp", Types._OclExpression, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__BODY));
+		public static final ExecutorProperty _OclExpression__NavigationCallExp = new ExecutorProperty("NavigationCallExp", Types._OclExpression, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__QUALIFIER));
+		public static final ExecutorProperty _OclExpression__OperationCallExp = new ExecutorProperty("OperationCallExp", Types._OclExpression, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT));
+		public static final ExecutorProperty _OclExpression__TupleLiteralPart = new ExecutorProperty("TupleLiteralPart", Types._OclExpression, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION));
+		public static final ExecutorProperty _OclExpression__Variable = new ExecutorProperty("Variable", Types._OclExpression, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION));
+	
+		public static final ExecutorProperty _OpaqueExpression__body = new ExecutorProperty("body", Types._OpaqueExpression, 0, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__BODY));
+		public static final ExecutorProperty _OpaqueExpression__language = new ExecutorProperty("language", Types._OpaqueExpression, 1, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__LANGUAGE));
+		public static final ExecutorProperty _OpaqueExpression__message = new ExecutorProperty("message", Types._OpaqueExpression, 2, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__MESSAGE));
+		public static final ExecutorProperty _OpaqueExpression__valueExpression = new ExecutorProperty("valueExpression", Types._OpaqueExpression, 3, new EcoreLibraryProperty(PivotPackage.Literals.OPAQUE_EXPRESSION__VALUE_EXPRESSION));
+	
+		public static final ExecutorProperty _Operation__CallOperationAction = new ExecutorProperty("CallOperationAction", Types._Operation, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CALL_OPERATION_ACTION__OPERATION));
+		public static final ExecutorProperty _Operation__MessageType = new ExecutorProperty("MessageType", Types._Operation, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_OPERATION));
+		public static final ExecutorProperty _Operation__OperationCallExp = new ExecutorProperty("OperationCallExp", Types._Operation, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
+		public static final ExecutorProperty _Operation__class = new ExecutorProperty("class", Types._Operation, 3, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__CLASS));
+		public static final ExecutorProperty _Operation__ownedParameter = new ExecutorProperty("ownedParameter", Types._Operation, 4, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__OWNED_PARAMETER));
+		public static final ExecutorProperty _Operation__owningType = new ExecutorProperty("owningType", Types._Operation, 5, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__OWNING_TYPE));
+		public static final ExecutorProperty _Operation__precedence = new ExecutorProperty("precedence", Types._Operation, 6, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__PRECEDENCE));
+		public static final ExecutorProperty _Operation__raisedException = new ExecutorProperty("raisedException", Types._Operation, 7, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
+	
+		public static final ExecutorProperty _OperationCallExp__argument = new ExecutorProperty("argument", Types._OperationCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT));
+		public static final ExecutorProperty _OperationCallExp__referredOperation = new ExecutorProperty("referredOperation", Types._OperationCallExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION));
+	
+		public static final ExecutorProperty _Package__nestedPackage = new ExecutorProperty("nestedPackage", Types._Package, 0, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NESTED_PACKAGE));
+		public static final ExecutorProperty _Package__nestingPackage = new ExecutorProperty("nestingPackage", Types._Package, 1, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NESTING_PACKAGE));
+		public static final ExecutorProperty _Package__nsPrefix = new ExecutorProperty("nsPrefix", Types._Package, 2, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NS_PREFIX));
+		public static final ExecutorProperty _Package__nsURI = new ExecutorProperty("nsURI", Types._Package, 3, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__NS_URI));
+		public static final ExecutorProperty _Package__ownedPrecedence = new ExecutorProperty("ownedPrecedence", Types._Package, 4, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__OWNED_PRECEDENCE));
+		public static final ExecutorProperty _Package__ownedType = new ExecutorProperty("ownedType", Types._Package, 5, new EcoreLibraryProperty(PivotPackage.Literals.PACKAGE__OWNED_TYPE));
+	
+		public static final ExecutorProperty _Parameter__Variable = new ExecutorProperty("Variable", Types._Parameter, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE__REPRESENTED_PARAMETER));
+		public static final ExecutorProperty _Parameter__operation = new ExecutorProperty("operation", Types._Parameter, 1, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETER__OPERATION));
+	
+		public static final ExecutorProperty _ParameterableElement__owningTemplateParameter = new ExecutorProperty("owningTemplateParameter", Types._ParameterableElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER));
+		public static final ExecutorProperty _ParameterableElement__templateParameter = new ExecutorProperty("templateParameter", Types._ParameterableElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER));
+	
+		public static final ExecutorProperty _Precedence__Operation = new ExecutorProperty("Operation", Types._Precedence, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__PRECEDENCE));
+		public static final ExecutorProperty _Precedence__Package = new ExecutorProperty("Package", Types._Precedence, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PACKAGE__OWNED_PRECEDENCE));
+		public static final ExecutorProperty _Precedence__associativity = new ExecutorProperty("associativity", Types._Precedence, 2, new EcoreLibraryProperty(PivotPackage.Literals.PRECEDENCE__ASSOCIATIVITY));
+		public static final ExecutorProperty _Precedence__order = new ExecutorProperty("order", Types._Precedence, 3, new EcoreLibraryProperty(PivotPackage.Literals.PRECEDENCE__ORDER));
+	
+		public static final ExecutorProperty _Property__NavigationCallExp = new ExecutorProperty("NavigationCallExp", Types._Property, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.NAVIGATION_CALL_EXP__NAVIGATION_SOURCE));
+		public static final ExecutorProperty _Property__PropertyCallExp = new ExecutorProperty("PropertyCallExp", Types._Property, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+		public static final ExecutorProperty _Property__association = new ExecutorProperty("association", Types._Property, 2, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__ASSOCIATION));
+		public static final ExecutorProperty _Property__class = new ExecutorProperty("class", Types._Property, 3, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__CLASS));
+		public static final ExecutorProperty _Property__default = new ExecutorProperty("default", Types._Property, 4, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__DEFAULT));
+		public static final ExecutorProperty _Property__implicit = new ExecutorProperty("implicit", Types._Property, 5, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IMPLICIT));
+		public static final ExecutorProperty _Property__isComposite = new ExecutorProperty("isComposite", Types._Property, 6, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_COMPOSITE));
+		public static final ExecutorProperty _Property__isDerived = new ExecutorProperty("isDerived", Types._Property, 7, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_DERIVED));
+		public static final ExecutorProperty _Property__isID = new ExecutorProperty("isID", Types._Property, 8, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_ID));
+		public static final ExecutorProperty _Property__isReadOnly = new ExecutorProperty("isReadOnly", Types._Property, 9, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_READ_ONLY));
+		public static final ExecutorProperty _Property__isResolveProxies = new ExecutorProperty("isResolveProxies", Types._Property, 10, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_RESOLVE_PROXIES));
+		public static final ExecutorProperty _Property__isTransient = new ExecutorProperty("isTransient", Types._Property, 11, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_TRANSIENT));
+		public static final ExecutorProperty _Property__isUnsettable = new ExecutorProperty("isUnsettable", Types._Property, 12, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_UNSETTABLE));
+		public static final ExecutorProperty _Property__isVolatile = new ExecutorProperty("isVolatile", Types._Property, 13, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__IS_VOLATILE));
+		public static final ExecutorProperty _Property__keys = new ExecutorProperty("keys", Types._Property, 14, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__KEYS));
+		public static final ExecutorProperty _Property__opposite = new ExecutorProperty("opposite", Types._Property, 15, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__OPPOSITE));
+		public static final ExecutorProperty _Property__owningType = new ExecutorProperty("owningType", Types._Property, 16, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY__OWNING_TYPE));
+	
+		public static final ExecutorProperty _PropertyCallExp__referredProperty = new ExecutorProperty("referredProperty", Types._PropertyCallExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.PROPERTY_CALL_EXP__REFERRED_PROPERTY));
+	
+		public static final ExecutorProperty _RealLiteralExp__realSymbol = new ExecutorProperty("realSymbol", Types._RealLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.REAL_LITERAL_EXP__REAL_SYMBOL));
+	
+		public static final ExecutorProperty _SendSignalAction__MessageExp = new ExecutorProperty("MessageExp", Types._SendSignalAction, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_EXP__SENT_SIGNAL));
+		public static final ExecutorProperty _SendSignalAction__signal = new ExecutorProperty("signal", Types._SendSignalAction, 1, new EcoreLibraryProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL));
+	
+		public static final ExecutorProperty _Signal__MessageType = new ExecutorProperty("MessageType", Types._Signal, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.MESSAGE_TYPE__REFERRED_SIGNAL));
+		public static final ExecutorProperty _Signal__SendSignalAction = new ExecutorProperty("SendSignalAction", Types._Signal, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.SEND_SIGNAL_ACTION__SIGNAL));
+	
+		public static final ExecutorProperty _State__StateExp = new ExecutorProperty("StateExp", Types._State, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.STATE_EXP__REFERRED_STATE));
+	
+		public static final ExecutorProperty _StateExp__referredState = new ExecutorProperty("referredState", Types._StateExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.STATE_EXP__REFERRED_STATE));
+	
+		public static final ExecutorProperty _StringLiteralExp__stringSymbol = new ExecutorProperty("stringSymbol", Types._StringLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.STRING_LITERAL_EXP__STRING_SYMBOL));
+	
+		public static final ExecutorProperty _TemplateBinding__boundElement = new ExecutorProperty("boundElement", Types._TemplateBinding, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__BOUND_ELEMENT));
+		public static final ExecutorProperty _TemplateBinding__parameterSubstitution = new ExecutorProperty("parameterSubstitution", Types._TemplateBinding, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION));
+		public static final ExecutorProperty _TemplateBinding__signature = new ExecutorProperty("signature", Types._TemplateBinding, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE));
+	
+		public static final ExecutorProperty _TemplateParameter__TemplateParameterSubstitution = new ExecutorProperty("TemplateParameterSubstitution", Types._TemplateParameter, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
+		public static final ExecutorProperty _TemplateParameter__TemplateSignature = new ExecutorProperty("TemplateSignature", Types._TemplateParameter, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__PARAMETER));
+		public static final ExecutorProperty _TemplateParameter__default = new ExecutorProperty("default", Types._TemplateParameter, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__DEFAULT));
+		public static final ExecutorProperty _TemplateParameter__ownedDefault = new ExecutorProperty("ownedDefault", Types._TemplateParameter, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_DEFAULT));
+		public static final ExecutorProperty _TemplateParameter__ownedParameteredElement = new ExecutorProperty("ownedParameteredElement", Types._TemplateParameter, 4, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT));
+		public static final ExecutorProperty _TemplateParameter__parameteredElement = new ExecutorProperty("parameteredElement", Types._TemplateParameter, 5, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT));
+		public static final ExecutorProperty _TemplateParameter__signature = new ExecutorProperty("signature", Types._TemplateParameter, 6, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER__SIGNATURE));
+	
+		public static final ExecutorProperty _TemplateParameterSubstitution__actual = new ExecutorProperty("actual", Types._TemplateParameterSubstitution, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL));
+		public static final ExecutorProperty _TemplateParameterSubstitution__formal = new ExecutorProperty("formal", Types._TemplateParameterSubstitution, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL));
+		public static final ExecutorProperty _TemplateParameterSubstitution__ownedActual = new ExecutorProperty("ownedActual", Types._TemplateParameterSubstitution, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL));
+		public static final ExecutorProperty _TemplateParameterSubstitution__templateBinding = new ExecutorProperty("templateBinding", Types._TemplateParameterSubstitution, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING));
+	
+		public static final ExecutorProperty _TemplateParameterType__specification = new ExecutorProperty("specification", Types._TemplateParameterType, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_PARAMETER_TYPE__SPECIFICATION));
+	
+		public static final ExecutorProperty _TemplateSignature__TemplateBinding = new ExecutorProperty("TemplateBinding", Types._TemplateSignature, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TEMPLATE_BINDING__SIGNATURE));
+		public static final ExecutorProperty _TemplateSignature__ownedParameter = new ExecutorProperty("ownedParameter", Types._TemplateSignature, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__OWNED_PARAMETER));
+		public static final ExecutorProperty _TemplateSignature__parameter = new ExecutorProperty("parameter", Types._TemplateSignature, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__PARAMETER));
+		public static final ExecutorProperty _TemplateSignature__template = new ExecutorProperty("template", Types._TemplateSignature, 3, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATE_SIGNATURE__TEMPLATE));
+	
+		public static final ExecutorProperty _TemplateableElement__ownedTemplateSignature = new ExecutorProperty("ownedTemplateSignature", Types._TemplateableElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE));
+		public static final ExecutorProperty _TemplateableElement__templateBinding = new ExecutorProperty("templateBinding", Types._TemplateableElement, 1, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING));
+		public static final ExecutorProperty _TemplateableElement__unspecializedElement = new ExecutorProperty("unspecializedElement", Types._TemplateableElement, 2, new EcoreLibraryProperty(PivotPackage.Literals.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT));
+	
+		public static final ExecutorProperty _TupleLiteralExp__part = new ExecutorProperty("part", Types._TupleLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART));
+	
+		public static final ExecutorProperty _TupleLiteralPart__TupleLiteralExp = new ExecutorProperty("TupleLiteralExp", Types._TupleLiteralPart, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TUPLE_LITERAL_EXP__PART));
+		public static final ExecutorProperty _TupleLiteralPart__initExpression = new ExecutorProperty("initExpression", Types._TupleLiteralPart, 1, new EcoreLibraryProperty(PivotPackage.Literals.TUPLE_LITERAL_PART__INIT_EXPRESSION));
+	
+		public static final ExecutorProperty _Type__ClassifierType = new ExecutorProperty("ClassifierType", Types._Type, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CLASSIFIER_TYPE__INSTANCE_TYPE));
+		public static final ExecutorProperty _Type__CollectionType = new ExecutorProperty("CollectionType", Types._Type, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.COLLECTION_TYPE__ELEMENT_TYPE));
+		public static final ExecutorProperty _Type__DataType = new ExecutorProperty("DataType", Types._Type, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.DATA_TYPE__BEHAVIORAL_TYPE));
+		public static final ExecutorProperty _Type__Operation = new ExecutorProperty("Operation", Types._Type, 3, new EcoreLibraryOppositeProperty(PivotPackage.Literals.OPERATION__RAISED_EXCEPTION));
+		public static final ExecutorProperty _Type__Type = new ExecutorProperty("Type", Types._Type, 4, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
+		public static final ExecutorProperty _Type__TypeExp = new ExecutorProperty("TypeExp", Types._Type, 5, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+		public static final ExecutorProperty _Type__TypeTemplateParameter = new ExecutorProperty("TypeTemplateParameter", Types._Type, 6, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
+		public static final ExecutorProperty _Type__TypedElement = new ExecutorProperty("TypedElement", Types._Type, 7, new EcoreLibraryOppositeProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+		public static final ExecutorProperty _Type__instanceClassName = new ExecutorProperty("instanceClassName", Types._Type, 8, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME));
+		public static final ExecutorProperty _Type__ownedAttribute = new ExecutorProperty("ownedAttribute", Types._Type, 9, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__OWNED_ATTRIBUTE));
+		public static final ExecutorProperty _Type__ownedOperation = new ExecutorProperty("ownedOperation", Types._Type, 10, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__OWNED_OPERATION));
+		public static final ExecutorProperty _Type__package = new ExecutorProperty("package", Types._Type, 11, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__PACKAGE));
+		public static final ExecutorProperty _Type__superClass = new ExecutorProperty("superClass", Types._Type, 12, new EcoreLibraryProperty(PivotPackage.Literals.TYPE__SUPER_CLASS));
+	
+		public static final ExecutorProperty _TypeExp__referredType = new ExecutorProperty("referredType", Types._TypeExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_EXP__REFERRED_TYPE));
+	
+		public static final ExecutorProperty _TypeTemplateParameter__allowSubstitutable = new ExecutorProperty("allowSubstitutable", Types._TypeTemplateParameter, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE));
+		public static final ExecutorProperty _TypeTemplateParameter__constrainingType = new ExecutorProperty("constrainingType", Types._TypeTemplateParameter, 1, new EcoreLibraryProperty(PivotPackage.Literals.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE));
+	
+		public static final ExecutorProperty _TypedElement__type = new ExecutorProperty("type", Types._TypedElement, 0, new EcoreLibraryProperty(PivotPackage.Literals.TYPED_ELEMENT__TYPE));
+	
+		public static final ExecutorProperty _UnlimitedNaturalLiteralExp__unlimitedNaturalSymbol = new ExecutorProperty("unlimitedNaturalSymbol", Types._UnlimitedNaturalLiteralExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.UNLIMITED_NATURAL_LITERAL_EXP__UNLIMITED_NATURAL_SYMBOL));
+	
+		public static final ExecutorProperty _UnspecifiedType__lowerBound = new ExecutorProperty("lowerBound", Types._UnspecifiedType, 0, new EcoreLibraryProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__LOWER_BOUND));
+		public static final ExecutorProperty _UnspecifiedType__upperBound = new ExecutorProperty("upperBound", Types._UnspecifiedType, 1, new EcoreLibraryProperty(PivotPackage.Literals.UNSPECIFIED_TYPE__UPPER_BOUND));
+	
+		public static final ExecutorProperty _ValueSpecification__Constraint = new ExecutorProperty("Constraint", Types._ValueSpecification, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.CONSTRAINT__SPECIFICATION));
+	
+		public static final ExecutorProperty _Variable__IterateExp = new ExecutorProperty("IterateExp", Types._Variable, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.ITERATE_EXP__RESULT));
+		public static final ExecutorProperty _Variable__LetExp = new ExecutorProperty("LetExp", Types._Variable, 1, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LET_EXP__VARIABLE));
+		public static final ExecutorProperty _Variable__LoopExp = new ExecutorProperty("LoopExp", Types._Variable, 2, new EcoreLibraryOppositeProperty(PivotPackage.Literals.LOOP_EXP__ITERATOR));
+		public static final ExecutorProperty _Variable__implicit = new ExecutorProperty("implicit", Types._Variable, 3, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__IMPLICIT));
+		public static final ExecutorProperty _Variable__initExpression = new ExecutorProperty("initExpression", Types._Variable, 4, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION));
+		public static final ExecutorProperty _Variable__representedParameter = new ExecutorProperty("representedParameter", Types._Variable, 5, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE__REPRESENTED_PARAMETER));
+	
+		public static final ExecutorProperty _VariableDeclaration__VariableExp = new ExecutorProperty("VariableExp", Types._VariableDeclaration, 0, new EcoreLibraryOppositeProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE));
+	
+		public static final ExecutorProperty _VariableExp__implicit = new ExecutorProperty("implicit", Types._VariableExp, 0, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE_EXP__IMPLICIT));
+		public static final ExecutorProperty _VariableExp__referredVariable = new ExecutorProperty("referredVariable", Types._VariableExp, 1, new EcoreLibraryProperty(PivotPackage.Literals.VARIABLE_EXP__REFERRED_VARIABLE));
 	}
 
 	/**
-	 *	The fragments for all base classes in depth order: OclAny first, OclSelf last.
+	 *	The fragments for all base types in depth order: OclAny first, OclSelf last.
 	 */
-	public static class ClassFragments {
+	public static class TypeFragments {
 		private static final ExecutorFragment[] _Annotation =
 		{
 		    Fragments._Annotation__OclAny /* 0 */,
@@ -3024,107 +3024,107 @@ public class PivotTables
 		 *	Install the fragment descriptors in the class descriptors.
 		 */
 		static {
-			Classes._Annotation.initFragments(_Annotation, __Annotation);
-			Classes._AnyType.initFragments(_AnyType, __AnyType);
-			Classes._AssociationClass.initFragments(_AssociationClass, __AssociationClass);
-			Classes._AssociationClassCallExp.initFragments(_AssociationClassCallExp, __AssociationClassCallExp);
-			Classes._AssociativityKind.initFragments(_AssociativityKind, __AssociativityKind);
-			Classes._BagType.initFragments(_BagType, __BagType);
-			Classes._BooleanLiteralExp.initFragments(_BooleanLiteralExp, __BooleanLiteralExp);
-			Classes._CallExp.initFragments(_CallExp, __CallExp);
-			Classes._CallOperationAction.initFragments(_CallOperationAction, __CallOperationAction);
-			Classes._Class.initFragments(_Class, __Class);
-			Classes._ClassifierType.initFragments(_ClassifierType, __ClassifierType);
-			Classes._CollectionItem.initFragments(_CollectionItem, __CollectionItem);
-			Classes._CollectionKind.initFragments(_CollectionKind, __CollectionKind);
-			Classes._CollectionLiteralExp.initFragments(_CollectionLiteralExp, __CollectionLiteralExp);
-			Classes._CollectionLiteralPart.initFragments(_CollectionLiteralPart, __CollectionLiteralPart);
-			Classes._CollectionRange.initFragments(_CollectionRange, __CollectionRange);
-			Classes._CollectionType.initFragments(_CollectionType, __CollectionType);
-			Classes._Comment.initFragments(_Comment, __Comment);
-			Classes._Constraint.initFragments(_Constraint, __Constraint);
-			Classes._DataType.initFragments(_DataType, __DataType);
-			Classes._Detail.initFragments(_Detail, __Detail);
-			Classes._Element.initFragments(_Element, __Element);
-			Classes._EnumLiteralExp.initFragments(_EnumLiteralExp, __EnumLiteralExp);
-			Classes._Enumeration.initFragments(_Enumeration, __Enumeration);
-			Classes._EnumerationLiteral.initFragments(_EnumerationLiteral, __EnumerationLiteral);
-			Classes._ExpressionInOcl.initFragments(_ExpressionInOcl, __ExpressionInOcl);
-			Classes._Feature.initFragments(_Feature, __Feature);
-			Classes._FeatureCallExp.initFragments(_FeatureCallExp, __FeatureCallExp);
-			Classes._IfExp.initFragments(_IfExp, __IfExp);
-			Classes._IntegerLiteralExp.initFragments(_IntegerLiteralExp, __IntegerLiteralExp);
-			Classes._InvalidLiteralExp.initFragments(_InvalidLiteralExp, __InvalidLiteralExp);
-			Classes._InvalidType.initFragments(_InvalidType, __InvalidType);
-			Classes._IterateExp.initFragments(_IterateExp, __IterateExp);
-			Classes._Iteration.initFragments(_Iteration, __Iteration);
-			Classes._IteratorExp.initFragments(_IteratorExp, __IteratorExp);
-			Classes._LambdaType.initFragments(_LambdaType, __LambdaType);
-			Classes._LetExp.initFragments(_LetExp, __LetExp);
-			Classes._Library.initFragments(_Library, __Library);
-			Classes._LibraryFeature.initFragments(_LibraryFeature, __LibraryFeature);
-			Classes._LiteralExp.initFragments(_LiteralExp, __LiteralExp);
-			Classes._LoopExp.initFragments(_LoopExp, __LoopExp);
-			Classes._MessageExp.initFragments(_MessageExp, __MessageExp);
-			Classes._MessageType.initFragments(_MessageType, __MessageType);
-			Classes._MultiplicityElement.initFragments(_MultiplicityElement, __MultiplicityElement);
-			Classes._Nameable.initFragments(_Nameable, __Nameable);
-			Classes._NamedElement.initFragments(_NamedElement, __NamedElement);
-			Classes._Namespace.initFragments(_Namespace, __Namespace);
-			Classes._NavigationCallExp.initFragments(_NavigationCallExp, __NavigationCallExp);
-			Classes._NullLiteralExp.initFragments(_NullLiteralExp, __NullLiteralExp);
-			Classes._NumericLiteralExp.initFragments(_NumericLiteralExp, __NumericLiteralExp);
-			Classes._Object.initFragments(_Object, __Object);
-			Classes._OclExpression.initFragments(_OclExpression, __OclExpression);
-			Classes._OpaqueExpression.initFragments(_OpaqueExpression, __OpaqueExpression);
-			Classes._Operation.initFragments(_Operation, __Operation);
-			Classes._OperationCallExp.initFragments(_OperationCallExp, __OperationCallExp);
-			Classes._OperationTemplateParameter.initFragments(_OperationTemplateParameter, __OperationTemplateParameter);
-			Classes._OrderedSetType.initFragments(_OrderedSetType, __OrderedSetType);
-			Classes._Package.initFragments(_Package, __Package);
-			Classes._PackageableElement.initFragments(_PackageableElement, __PackageableElement);
-			Classes._Parameter.initFragments(_Parameter, __Parameter);
-			Classes._ParameterableElement.initFragments(_ParameterableElement, __ParameterableElement);
-			Classes._Pivotable.initFragments(_Pivotable, __Pivotable);
-			Classes._Precedence.initFragments(_Precedence, __Precedence);
-			Classes._PrimitiveLiteralExp.initFragments(_PrimitiveLiteralExp, __PrimitiveLiteralExp);
-			Classes._PrimitiveType.initFragments(_PrimitiveType, __PrimitiveType);
-			Classes._Property.initFragments(_Property, __Property);
-			Classes._PropertyCallExp.initFragments(_PropertyCallExp, __PropertyCallExp);
-			Classes._RealLiteralExp.initFragments(_RealLiteralExp, __RealLiteralExp);
-			Classes._SelfType.initFragments(_SelfType, __SelfType);
-			Classes._SendSignalAction.initFragments(_SendSignalAction, __SendSignalAction);
-			Classes._SequenceType.initFragments(_SequenceType, __SequenceType);
-			Classes._SetType.initFragments(_SetType, __SetType);
-			Classes._Signal.initFragments(_Signal, __Signal);
-			Classes._State.initFragments(_State, __State);
-			Classes._StateExp.initFragments(_StateExp, __StateExp);
-			Classes._StringLiteralExp.initFragments(_StringLiteralExp, __StringLiteralExp);
-			Classes._TemplateBinding.initFragments(_TemplateBinding, __TemplateBinding);
-			Classes._TemplateParameter.initFragments(_TemplateParameter, __TemplateParameter);
-			Classes._TemplateParameterSubstitution.initFragments(_TemplateParameterSubstitution, __TemplateParameterSubstitution);
-			Classes._TemplateParameterType.initFragments(_TemplateParameterType, __TemplateParameterType);
-			Classes._TemplateSignature.initFragments(_TemplateSignature, __TemplateSignature);
-			Classes._TemplateableElement.initFragments(_TemplateableElement, __TemplateableElement);
-			Classes._Throwable.initFragments(_Throwable, __Throwable);
-			Classes._TupleLiteralExp.initFragments(_TupleLiteralExp, __TupleLiteralExp);
-			Classes._TupleLiteralPart.initFragments(_TupleLiteralPart, __TupleLiteralPart);
-			Classes._TupleType.initFragments(_TupleType, __TupleType);
-			Classes._Type.initFragments(_Type, __Type);
-			Classes._TypeExp.initFragments(_TypeExp, __TypeExp);
-			Classes._TypeTemplateParameter.initFragments(_TypeTemplateParameter, __TypeTemplateParameter);
-			Classes._TypedElement.initFragments(_TypedElement, __TypedElement);
-			Classes._TypedMultiplicityElement.initFragments(_TypedMultiplicityElement, __TypedMultiplicityElement);
-			Classes._UnlimitedNaturalLiteralExp.initFragments(_UnlimitedNaturalLiteralExp, __UnlimitedNaturalLiteralExp);
-			Classes._UnspecifiedType.initFragments(_UnspecifiedType, __UnspecifiedType);
-			Classes._UnspecifiedValueExp.initFragments(_UnspecifiedValueExp, __UnspecifiedValueExp);
-			Classes._ValueSpecification.initFragments(_ValueSpecification, __ValueSpecification);
-			Classes._Variable.initFragments(_Variable, __Variable);
-			Classes._VariableDeclaration.initFragments(_VariableDeclaration, __VariableDeclaration);
-			Classes._VariableExp.initFragments(_VariableExp, __VariableExp);
-			Classes._Visitable.initFragments(_Visitable, __Visitable);
-			Classes._Visitor.initFragments(_Visitor, __Visitor);
-			Classes._VoidType.initFragments(_VoidType, __VoidType);
+			Types._Annotation.initFragments(_Annotation, __Annotation);
+			Types._AnyType.initFragments(_AnyType, __AnyType);
+			Types._AssociationClass.initFragments(_AssociationClass, __AssociationClass);
+			Types._AssociationClassCallExp.initFragments(_AssociationClassCallExp, __AssociationClassCallExp);
+			Types._AssociativityKind.initFragments(_AssociativityKind, __AssociativityKind);
+			Types._BagType.initFragments(_BagType, __BagType);
+			Types._BooleanLiteralExp.initFragments(_BooleanLiteralExp, __BooleanLiteralExp);
+			Types._CallExp.initFragments(_CallExp, __CallExp);
+			Types._CallOperationAction.initFragments(_CallOperationAction, __CallOperationAction);
+			Types._Class.initFragments(_Class, __Class);
+			Types._ClassifierType.initFragments(_ClassifierType, __ClassifierType);
+			Types._CollectionItem.initFragments(_CollectionItem, __CollectionItem);
+			Types._CollectionKind.initFragments(_CollectionKind, __CollectionKind);
+			Types._CollectionLiteralExp.initFragments(_CollectionLiteralExp, __CollectionLiteralExp);
+			Types._CollectionLiteralPart.initFragments(_CollectionLiteralPart, __CollectionLiteralPart);
+			Types._CollectionRange.initFragments(_CollectionRange, __CollectionRange);
+			Types._CollectionType.initFragments(_CollectionType, __CollectionType);
+			Types._Comment.initFragments(_Comment, __Comment);
+			Types._Constraint.initFragments(_Constraint, __Constraint);
+			Types._DataType.initFragments(_DataType, __DataType);
+			Types._Detail.initFragments(_Detail, __Detail);
+			Types._Element.initFragments(_Element, __Element);
+			Types._EnumLiteralExp.initFragments(_EnumLiteralExp, __EnumLiteralExp);
+			Types._Enumeration.initFragments(_Enumeration, __Enumeration);
+			Types._EnumerationLiteral.initFragments(_EnumerationLiteral, __EnumerationLiteral);
+			Types._ExpressionInOcl.initFragments(_ExpressionInOcl, __ExpressionInOcl);
+			Types._Feature.initFragments(_Feature, __Feature);
+			Types._FeatureCallExp.initFragments(_FeatureCallExp, __FeatureCallExp);
+			Types._IfExp.initFragments(_IfExp, __IfExp);
+			Types._IntegerLiteralExp.initFragments(_IntegerLiteralExp, __IntegerLiteralExp);
+			Types._InvalidLiteralExp.initFragments(_InvalidLiteralExp, __InvalidLiteralExp);
+			Types._InvalidType.initFragments(_InvalidType, __InvalidType);
+			Types._IterateExp.initFragments(_IterateExp, __IterateExp);
+			Types._Iteration.initFragments(_Iteration, __Iteration);
+			Types._IteratorExp.initFragments(_IteratorExp, __IteratorExp);
+			Types._LambdaType.initFragments(_LambdaType, __LambdaType);
+			Types._LetExp.initFragments(_LetExp, __LetExp);
+			Types._Library.initFragments(_Library, __Library);
+			Types._LibraryFeature.initFragments(_LibraryFeature, __LibraryFeature);
+			Types._LiteralExp.initFragments(_LiteralExp, __LiteralExp);
+			Types._LoopExp.initFragments(_LoopExp, __LoopExp);
+			Types._MessageExp.initFragments(_MessageExp, __MessageExp);
+			Types._MessageType.initFragments(_MessageType, __MessageType);
+			Types._MultiplicityElement.initFragments(_MultiplicityElement, __MultiplicityElement);
+			Types._Nameable.initFragments(_Nameable, __Nameable);
+			Types._NamedElement.initFragments(_NamedElement, __NamedElement);
+			Types._Namespace.initFragments(_Namespace, __Namespace);
+			Types._NavigationCallExp.initFragments(_NavigationCallExp, __NavigationCallExp);
+			Types._NullLiteralExp.initFragments(_NullLiteralExp, __NullLiteralExp);
+			Types._NumericLiteralExp.initFragments(_NumericLiteralExp, __NumericLiteralExp);
+			Types._Object.initFragments(_Object, __Object);
+			Types._OclExpression.initFragments(_OclExpression, __OclExpression);
+			Types._OpaqueExpression.initFragments(_OpaqueExpression, __OpaqueExpression);
+			Types._Operation.initFragments(_Operation, __Operation);
+			Types._OperationCallExp.initFragments(_OperationCallExp, __OperationCallExp);
+			Types._OperationTemplateParameter.initFragments(_OperationTemplateParameter, __OperationTemplateParameter);
+			Types._OrderedSetType.initFragments(_OrderedSetType, __OrderedSetType);
+			Types._Package.initFragments(_Package, __Package);
+			Types._PackageableElement.initFragments(_PackageableElement, __PackageableElement);
+			Types._Parameter.initFragments(_Parameter, __Parameter);
+			Types._ParameterableElement.initFragments(_ParameterableElement, __ParameterableElement);
+			Types._Pivotable.initFragments(_Pivotable, __Pivotable);
+			Types._Precedence.initFragments(_Precedence, __Precedence);
+			Types._PrimitiveLiteralExp.initFragments(_PrimitiveLiteralExp, __PrimitiveLiteralExp);
+			Types._PrimitiveType.initFragments(_PrimitiveType, __PrimitiveType);
+			Types._Property.initFragments(_Property, __Property);
+			Types._PropertyCallExp.initFragments(_PropertyCallExp, __PropertyCallExp);
+			Types._RealLiteralExp.initFragments(_RealLiteralExp, __RealLiteralExp);
+			Types._SelfType.initFragments(_SelfType, __SelfType);
+			Types._SendSignalAction.initFragments(_SendSignalAction, __SendSignalAction);
+			Types._SequenceType.initFragments(_SequenceType, __SequenceType);
+			Types._SetType.initFragments(_SetType, __SetType);
+			Types._Signal.initFragments(_Signal, __Signal);
+			Types._State.initFragments(_State, __State);
+			Types._StateExp.initFragments(_StateExp, __StateExp);
+			Types._StringLiteralExp.initFragments(_StringLiteralExp, __StringLiteralExp);
+			Types._TemplateBinding.initFragments(_TemplateBinding, __TemplateBinding);
+			Types._TemplateParameter.initFragments(_TemplateParameter, __TemplateParameter);
+			Types._TemplateParameterSubstitution.initFragments(_TemplateParameterSubstitution, __TemplateParameterSubstitution);
+			Types._TemplateParameterType.initFragments(_TemplateParameterType, __TemplateParameterType);
+			Types._TemplateSignature.initFragments(_TemplateSignature, __TemplateSignature);
+			Types._TemplateableElement.initFragments(_TemplateableElement, __TemplateableElement);
+			Types._Throwable.initFragments(_Throwable, __Throwable);
+			Types._TupleLiteralExp.initFragments(_TupleLiteralExp, __TupleLiteralExp);
+			Types._TupleLiteralPart.initFragments(_TupleLiteralPart, __TupleLiteralPart);
+			Types._TupleType.initFragments(_TupleType, __TupleType);
+			Types._Type.initFragments(_Type, __Type);
+			Types._TypeExp.initFragments(_TypeExp, __TypeExp);
+			Types._TypeTemplateParameter.initFragments(_TypeTemplateParameter, __TypeTemplateParameter);
+			Types._TypedElement.initFragments(_TypedElement, __TypedElement);
+			Types._TypedMultiplicityElement.initFragments(_TypedMultiplicityElement, __TypedMultiplicityElement);
+			Types._UnlimitedNaturalLiteralExp.initFragments(_UnlimitedNaturalLiteralExp, __UnlimitedNaturalLiteralExp);
+			Types._UnspecifiedType.initFragments(_UnspecifiedType, __UnspecifiedType);
+			Types._UnspecifiedValueExp.initFragments(_UnspecifiedValueExp, __UnspecifiedValueExp);
+			Types._ValueSpecification.initFragments(_ValueSpecification, __ValueSpecification);
+			Types._Variable.initFragments(_Variable, __Variable);
+			Types._VariableDeclaration.initFragments(_VariableDeclaration, __VariableDeclaration);
+			Types._VariableExp.initFragments(_VariableExp, __VariableExp);
+			Types._Visitable.initFragments(_Visitable, __Visitable);
+			Types._Visitor.initFragments(_Visitor, __Visitor);
+			Types._VoidType.initFragments(_VoidType, __VoidType);
 		}
 	
 		public static void init() {}
@@ -3132,7 +3132,7 @@ public class PivotTables
 	
 
 	/**
-	 *	The lists of local operations or local operation overrides for each fragment of each class.
+	 *	The lists of local operations or local operation overrides for each fragment of each type.
 	 */
 	public static class FragmentOperations {
 		private static final ExecutorOperation[] _Annotation__Annotation = {};
@@ -6885,7 +6885,7 @@ public class PivotTables
 	}
 
 	/**
-	 *	The lists of local properties for the local fragment of each class.
+	 *	The lists of local properties for the local fragment of each type.
 	 */
 	public static class FragmentProperties {
 		private static final ExecutorProperty[] _Annotation = {
@@ -9005,6 +9005,6 @@ public class PivotTables
 	}
 	
 //	static {
-//		Classes.classes[0].getClass();
+//		Types.types[0].getClass();
 //	}
 }

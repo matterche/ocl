@@ -36,7 +36,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (secondContainerType == null) {
 				return false;
 			}
-			if (!secondContainerType.isSuperClassOf(firstContainerType, this)) {
+			if (!secondContainerType.isSuperClassOf(this, firstContainerType)) {
 				return false;
 			}
 		}
@@ -46,7 +46,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (firstElementType == null) {
 				return false;
 			}
-			if (!firstElementType.conformsTo(secondElementType, this)) {
+			if (!firstElementType.conformsTo(this, secondElementType)) {
 				return false;
 			}
 		}
@@ -64,7 +64,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		if (secondTupleType == null) {
 			return false;
 		}
-		return secondTupleType.isSuperClassOf(firstTupleType, this);
+		return secondTupleType.isSuperClassOf(this, firstTupleType);
 	}
 
 	public DomainCollectionType getBagType(DomainType elementType) {
@@ -97,14 +97,10 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 //		if (firstType instanceof VoidType) {
 //			return secondType;
 //		}
-		DomainInheritance firstInheritance = getInheritance(firstType);
-		DomainInheritance secondInheritance = getInheritance(secondType);
+		DomainInheritance firstInheritance = firstType.getInheritance(this);
+		DomainInheritance secondInheritance = secondType.getInheritance(this);
 		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
 		return commonInheritance.getType();
-	}
-
-	public DomainInheritance getInheritance(DomainType type) {
-		return (DomainInheritance) type;
 	}
 
 	public DomainCollectionType getOrderedSetType(DomainType elementType) {
@@ -117,10 +113,6 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 
 	public DomainCollectionType getSetType(DomainType elementType) {
 		return getCollectionType(getSetType(), elementType);
-	}
-
-	public Iterable<? extends DomainType> getSuperClasses(DomainType type) {
-		throw new UnsupportedOperationException();
 	}
 
 	public DomainTypedElement getTuplePart(String name, DomainType type) {
@@ -175,7 +167,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (firstContainerType == null) {
 				return false;
 			}
-			if (!firstContainerType.isEqualTo(secondContainerType, this)) {
+			if (!firstContainerType.isEqualTo(this, secondContainerType)) {
 				return false;
 			}
 		}
@@ -185,7 +177,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (firstElementType == null) {
 				return false;
 			}
-			if (!firstElementType.isEqualTo(secondElementType, this)) {
+			if (!firstElementType.isEqualTo(this, secondElementType)) {
 				return false;
 			}
 		}
@@ -218,7 +210,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 				if (firstType == null) {
 					return false;
 				}
-				if (!firstType.isEqualTo(secondType, this)) {
+				if (!firstType.isEqualTo(this, secondType)) {
 					return false;
 				}
 			}

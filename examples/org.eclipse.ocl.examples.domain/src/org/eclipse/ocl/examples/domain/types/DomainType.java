@@ -23,14 +23,15 @@ import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public interface DomainType extends DomainElement
 {
-	boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary);
-	DomainType getCommonType(DomainType type, DomainStandardLibrary standardLibrary);
+	boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type);
+	DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type);
+	DomainInheritance getInheritance(DomainStandardLibrary standardLibrary);
 	String getName();
-	boolean isEqualTo(DomainType type, DomainStandardLibrary standardLibrary);
+	boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type);
 	boolean isOrdered();		
 	boolean isUnique();		
-	boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary);
-	boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary);
+	boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type);
+	boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance);
 	LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException;
 	DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes);
 }

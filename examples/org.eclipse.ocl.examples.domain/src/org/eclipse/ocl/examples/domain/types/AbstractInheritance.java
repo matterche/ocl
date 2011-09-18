@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Nameable.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.types;
 
@@ -66,16 +66,6 @@ public abstract class AbstractInheritance implements DomainInheritance
 			return new Iterator();
 		}		
 	}
-	
-	/**
-	 * The type for which this AbstractInheritance manages inheritance relationships.
-	 */
-//	protected final DomainType type;
-	
-	/**
-	 * The type system for which the managed inheritance relationships apply.
-	 */
-//	protected final DomainStandardLibrary standardLibrary;
 
 	/**
 	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
@@ -95,11 +85,6 @@ public abstract class AbstractInheritance implements DomainInheritance
 	 * uninstalled in the event of an inheritance change for this Inheritance.
 	 */
 	private Set<DomainInheritance> knownSubInheritances = null;
-	
-//	public AbstractInheritance(DomainType type, DomainStandardLibrary standardLibrary) {
-//		this.type = type;
-//		this.standardLibrary = standardLibrary;
-//	}
 
 	public void addSubInheritance(DomainInheritance subInheritance) {
 		if (knownSubInheritances == null) {
@@ -117,7 +102,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		if (!inheritances.contains(this)) {
 			inheritances.add(this);
 			if (fragments == null) {
-				for (DomainInheritance superInheritance : getSuperInheritances()) {
+				for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
 					superInheritance.gatherUninstalledInheritances(inheritances);
 				}
 			}
@@ -183,21 +168,16 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return indexes;
 	}
 
-	protected abstract DomainInheritance getInheritance(DomainType superClass); // {
-//		return (DomainInheritance.Internal)standardLibrary.evaluationClass(superClass);
-//	}
-	
-	protected abstract DomainInheritance getOclAnyInheritance(); // {
-//		return standardLibrary.getOclAnyType();
-//	}
-	
-//	public final DomainStandardLibrary getStandardLibrary() {
-//		return standardLibrary;
-//	}
+	protected DomainInheritance getOclAnyInheritance() {
+		DomainStandardLibrary standardLibrary = getStandardLibrary();
+		DomainType oclAnyType = standardLibrary.getOclAnyType();
+		return oclAnyType.getInheritance(standardLibrary);
+	}
 
-	protected abstract Iterable<? extends DomainInheritance> getSuperInheritances(); // {
-//		return standardLibrary.getSuperClasses(type);
-//	}
+	/**
+	 * Return the immediate superinheritances without reference to the fragments.
+	 */
+	protected abstract Iterable<? extends DomainInheritance> getInitialSuperInheritances();
 	
 	/**
 	 * Return an Iterable of all the super-inheritances at a specified depth, between 0 and getDepth() inclusive.
@@ -205,10 +185,6 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public final InheritanceIterable getSuperInheritances(int depth) {
 		return new InheritanceIterable(fragments, indexes[depth], indexes[depth+1]);
 	}
-
-//	public final DomainType getType() {
-//		return type;
-//	}
 
 	protected void initialize() {
 		List<DomainInheritance> uninstalledInheritances = new ArrayList<DomainInheritance>();
@@ -265,7 +241,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		}
 		else {
 			List<List<DomainFragment>> all = new ArrayList<List<DomainFragment>>();
-			for (DomainInheritance superInheritance : getSuperInheritances()) {
+			for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
 				superInheritance.installIn(this, all);
 			}
 			int superDepths = all.size();
@@ -304,8 +280,8 @@ public abstract class AbstractInheritance implements DomainInheritance
 				some = new ArrayList<DomainFragment>();
 				all.add(some);
 			}
-			int jMax = indexes[i];
-			for (; j <= jMax; j++) {
+			int jMax = indexes[i+1];
+			for (; j < jMax; j++) {
 				DomainFragment fragment = fragments[j];
 				if (!some.contains(fragment)) {
 					some.add(fragment);
@@ -325,7 +301,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		}
 		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
 		if (this != oclAnyInheritance) {
-			for (DomainInheritance superInheritance : getSuperInheritances()) {
+			for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
 				if (!superInheritance.isInstalled()) {
 					return false;
 				}
@@ -354,7 +330,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return false;
 	}
 
-	public boolean isSuperInheritanceOf(DomainInheritance thatInheritance, DomainStandardLibrary standardLibrary) {
+	public boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance thatInheritance) {
 		return thatInheritance.isSubInheritanceOf(this);
 	}
 

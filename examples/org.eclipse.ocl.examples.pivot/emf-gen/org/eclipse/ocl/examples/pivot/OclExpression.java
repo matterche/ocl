@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainExpression;
  * @generated
  */
 public interface OclExpression
-		extends TypedElement, DomainExpression {
+		extends TypedElement, org.eclipse.ocl.examples.domain.elements.DomainExpression {
 
 } // OclExpression
 

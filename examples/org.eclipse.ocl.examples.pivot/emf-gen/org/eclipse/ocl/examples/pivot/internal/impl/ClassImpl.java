@@ -554,7 +554,7 @@ public class ClassImpl
 	}
 
 	@Override
-	public boolean conformsTo(DomainType type, DomainStandardLibrary standardLibrary) {
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (type == null) {
 			return false;
 		}
@@ -596,7 +596,7 @@ public class ClassImpl
 		}
 		else {
 			for (Type superClass : getSuperClasses()) {
-				if (superClass.conformsTo(type, standardLibrary)) {
+				if (superClass.conformsTo(standardLibrary, type)) {
 					return true;
 				}
 			}

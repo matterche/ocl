@@ -34,120 +34,136 @@ public class InheritanceTests extends PivotSimpleTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(metaModelManager.getAnyClassifierType());
     }
 
 	public void test_Inheritance_Boolean() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance oclAnyAdapter = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
-		PrimitiveType booleanType = metaModelManager.getBooleanType();
-		DomainInheritance booleanAdapter = metaModelManager.getInheritance(booleanType);
-		assert booleanAdapter.getDepth() == 1;
-		Iterator<DomainInheritance> allSuperAdapters = booleanAdapter.getAllSuperInheritances().iterator();
-		assert allSuperAdapters.next() == oclAnyAdapter;
-		assert allSuperAdapters.next() == booleanAdapter;
-		assert !allSuperAdapters.hasNext();
-		Iterator<DomainInheritance> depth0Adapters = booleanAdapter.getSuperInheritances(0).iterator();
-		assert depth0Adapters.next() == oclAnyAdapter;
-		assert !depth0Adapters.hasNext();
-		Iterator<DomainInheritance> depth1Adapters = booleanAdapter.getSuperInheritances(1).iterator();
-		assert depth1Adapters.next() == booleanAdapter;
-		assert !depth1Adapters.hasNext();
+		try {
+			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
+			PrimitiveType booleanType = metaModelManager.getBooleanType();
+			DomainInheritance booleanInheritance = metaModelManager.getInheritance(booleanType);
+			assert booleanInheritance.getDepth() == 1;
+			Iterator<DomainInheritance> allSuperInheritances = booleanInheritance.getAllSuperInheritances().iterator();
+			assert allSuperInheritances.next() == oclAnyInheritance;
+			assert allSuperInheritances.next() == booleanInheritance;
+			assert !allSuperInheritances.hasNext();
+			Iterator<DomainInheritance> depth0Inheritances = booleanInheritance.getSuperInheritances(0).iterator();
+			assert depth0Inheritances.next() == oclAnyInheritance;
+			assert !depth0Inheritances.hasNext();
+			Iterator<DomainInheritance> depth1Inheritances = booleanInheritance.getSuperInheritances(1).iterator();
+			assert depth1Inheritances.next() == booleanInheritance;
+			assert !depth1Inheritances.hasNext();
+		} finally {
+			metaModelManager.dispose();
+		}
 	}
 
 	public void test_Inheritance_OclAny() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		AnyType oclAnyType = metaModelManager.getOclAnyType();
-		DomainInheritance oclAnyAdapter = metaModelManager.getInheritance(oclAnyType);
-		assert oclAnyAdapter.getDepth() == 0;
-		Iterator<DomainInheritance> allSuperAdapters = oclAnyAdapter.getAllSuperInheritances().iterator();
-		assert allSuperAdapters.next() == oclAnyAdapter;
-		assert !allSuperAdapters.hasNext();
-		Iterator<DomainInheritance> depth0Adapters = oclAnyAdapter.getSuperInheritances(0).iterator();
-		assert depth0Adapters.next() == oclAnyAdapter;
-		assert !depth0Adapters.hasNext();
+		try {
+			AnyType oclAnyType = metaModelManager.getOclAnyType();
+			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(oclAnyType);
+			assert oclAnyInheritance.getDepth() == 0;
+			Iterator<DomainInheritance> allSuperInheritances = oclAnyInheritance.getAllSuperInheritances().iterator();
+			assert allSuperInheritances.next() == oclAnyInheritance;
+			assert !allSuperInheritances.hasNext();
+			Iterator<DomainInheritance> depth0Inheritances = oclAnyInheritance.getSuperInheritances(0).iterator();
+			assert depth0Inheritances.next() == oclAnyInheritance;
+			assert !depth0Inheritances.hasNext();
+		} finally {
+			metaModelManager.dispose();
+		}
 	}
 
 	public void test_Inheritance_Set() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance oclAnyAdapter = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
-//		InheritanceAdapter collectionAdapter = metaModelManager.getInheritance(metaModelManager.getCollectionType());
-		SetType setType = metaModelManager.getSetType();
-		DomainInheritance setAdapter = metaModelManager.getInheritance(setType);
-		assert setAdapter.getDepth() == 3;
-		Iterator<DomainInheritance> allSuperAdapters = setAdapter.getAllSuperInheritances().iterator();
-		assert allSuperAdapters.next() == oclAnyAdapter;
-//		assert allSuperAdapters.next() == collectionAdapter;
-		DomainInheritance next = allSuperAdapters.next();
-		while (allSuperAdapters.hasNext()) {
-			next = allSuperAdapters.next();
+		try {
+			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
+	//		InheritanceInheritance collectionInheritance = metaModelManager.getInheritance(metaModelManager.getCollectionType());
+			SetType setType = metaModelManager.getSetType();
+			DomainInheritance setInheritance = metaModelManager.getInheritance(setType);
+			assert setInheritance.getDepth() == 3;
+			Iterator<DomainInheritance> allSuperInheritances = setInheritance.getAllSuperInheritances().iterator();
+			assert allSuperInheritances.next() == oclAnyInheritance;
+	//		assert allSuperInheritances.next() == collectionInheritance;
+			DomainInheritance next = allSuperInheritances.next();
+			while (allSuperInheritances.hasNext()) {
+				next = allSuperInheritances.next();
+			}
+			assert next == setInheritance;
+			assert !allSuperInheritances.hasNext();
+			Iterator<DomainInheritance> depth0Inheritances = setInheritance.getSuperInheritances(0).iterator();
+			assert depth0Inheritances.next() == oclAnyInheritance;
+			assert !depth0Inheritances.hasNext();
+	//		Iterator<InheritanceInheritance> depth1Inheritances = setInheritance.getSuperInheritances(1).iterator();
+	//		assert depth1Inheritances.next() == collectionInheritance;
+	//		assert !depth1Inheritances.hasNext();
+			Iterator<DomainInheritance> depth3Inheritances = setInheritance.getSuperInheritances(3).iterator();
+			assert depth3Inheritances.next() == setInheritance;
+			assert !depth3Inheritances.hasNext();
+		} finally {
+			metaModelManager.dispose();
 		}
-		assert next == setAdapter;
-		assert !allSuperAdapters.hasNext();
-		Iterator<DomainInheritance> depth0Adapters = setAdapter.getSuperInheritances(0).iterator();
-		assert depth0Adapters.next() == oclAnyAdapter;
-		assert !depth0Adapters.hasNext();
-//		Iterator<InheritanceAdapter> depth1Adapters = setAdapter.getSuperAdapters(1).iterator();
-//		assert depth1Adapters.next() == collectionAdapter;
-//		assert !depth1Adapters.hasNext();
-		Iterator<DomainInheritance> depth3Adapters = setAdapter.getSuperInheritances(3).iterator();
-		assert depth3Adapters.next() == setAdapter;
-		assert !depth3Adapters.hasNext();
 	}
 
 	public void test_Inheritance_IfExp() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance oclAnyAdapter = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
-		DomainInheritance ifAdapter = metaModelManager.getInheritance(metaModelManager.getPivotType("IfExp"));
-		Iterator<DomainInheritance> allSuperAdapters = ifAdapter.getAllSuperInheritances().iterator();
-		assert allSuperAdapters.next() == oclAnyAdapter;
-		DomainInheritance next = allSuperAdapters.next();
-		while (allSuperAdapters.hasNext()) {
-			next = allSuperAdapters.next();
+		try {
+			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
+			DomainInheritance ifInheritance = metaModelManager.getInheritance(metaModelManager.getPivotType("IfExp"));
+			Iterator<DomainInheritance> allSuperInheritances = ifInheritance.getAllSuperInheritances().iterator();
+			assert allSuperInheritances.next() == oclAnyInheritance;
+			DomainInheritance next = allSuperInheritances.next();
+			while (allSuperInheritances.hasNext()) {
+				next = allSuperInheritances.next();
+			}
+			assert next == ifInheritance;
+			assert !allSuperInheritances.hasNext();
+			Iterator<DomainInheritance> depth0Inheritances = ifInheritance.getSuperInheritances(0).iterator();
+			assert depth0Inheritances.next() == oclAnyInheritance;
+			assert !depth0Inheritances.hasNext();
+			Iterator<DomainInheritance> depthNInheritances = ifInheritance.getSuperInheritances(ifInheritance.getDepth()).iterator();
+			assert depthNInheritances.next() == ifInheritance;
+			assert !depthNInheritances.hasNext();
+			assert oclAnyInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
+			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, oclAnyInheritance);
+			DomainInheritance oclExpressionInheritance = metaModelManager.getInheritance(metaModelManager.getPivotType("OclExpression"));
+			assert oclExpressionInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
+			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, oclExpressionInheritance);
+			DomainInheritance loopExpInheritance = metaModelManager.getInheritance(metaModelManager.getPivotType("LoopExp"));
+			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, loopExpInheritance);
+			assert !loopExpInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
+		} finally {
+			metaModelManager.dispose();
 		}
-		assert next == ifAdapter;
-		assert !allSuperAdapters.hasNext();
-		Iterator<DomainInheritance> depth0Adapters = ifAdapter.getSuperInheritances(0).iterator();
-		assert depth0Adapters.next() == oclAnyAdapter;
-		assert !depth0Adapters.hasNext();
-		Iterator<DomainInheritance> depthNAdapters = ifAdapter.getSuperInheritances(ifAdapter.getDepth()).iterator();
-		assert depthNAdapters.next() == ifAdapter;
-		assert !depthNAdapters.hasNext();
-		assert oclAnyAdapter.isSuperInheritanceOf(ifAdapter, metaModelManager);
-		assert !ifAdapter.isSuperInheritanceOf(oclAnyAdapter, metaModelManager);
-		DomainInheritance oclExpressionAdapter = metaModelManager.getInheritance(metaModelManager.getPivotType("OclExpression"));
-		assert oclExpressionAdapter.isSuperInheritanceOf(ifAdapter, metaModelManager);
-		assert !ifAdapter.isSuperInheritanceOf(oclExpressionAdapter, metaModelManager);
-		DomainInheritance loopExpAdapter = metaModelManager.getInheritance(metaModelManager.getPivotType("LoopExp"));
-		assert !ifAdapter.isSuperInheritanceOf(loopExpAdapter, metaModelManager);
-		assert !loopExpAdapter.isSuperInheritanceOf(ifAdapter, metaModelManager);
 	}
 
 	public void test_Inheritance_UnlimitedNatural() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance oclAnyAdapter = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
-		DomainInheritance realTypeAdapter = metaModelManager.getInheritance(metaModelManager.getRealType());
-		DomainInheritance integerTypeAdapter = metaModelManager.getInheritance(metaModelManager.getIntegerType());
-		DomainInheritance unlimitedNaturalTypeAdapter = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
-		assert unlimitedNaturalTypeAdapter.getDepth() == 3;
-		Iterator<DomainInheritance> allSuperAdapters = unlimitedNaturalTypeAdapter.getAllSuperInheritances().iterator();
-		assert allSuperAdapters.next() == oclAnyAdapter;
-		assert allSuperAdapters.next() == realTypeAdapter;
-		assert allSuperAdapters.next() == integerTypeAdapter;
-		assert allSuperAdapters.next() == unlimitedNaturalTypeAdapter;
-		assert !allSuperAdapters.hasNext();
-		Iterator<DomainInheritance> depth0Adapters = unlimitedNaturalTypeAdapter.getSuperInheritances(0).iterator();
-		assert depth0Adapters.next() == oclAnyAdapter;
-		assert !depth0Adapters.hasNext();
-		Iterator<DomainInheritance> depth1Adapters = unlimitedNaturalTypeAdapter.getSuperInheritances(1).iterator();
-		assert depth1Adapters.next() == realTypeAdapter;
-		assert !depth1Adapters.hasNext();
-		Iterator<DomainInheritance> depth2Adapters = unlimitedNaturalTypeAdapter.getSuperInheritances(2).iterator();
-		assert depth2Adapters.next() == integerTypeAdapter;
-		assert !depth2Adapters.hasNext();
-		Iterator<DomainInheritance> depth3Adapters = unlimitedNaturalTypeAdapter.getSuperInheritances(3).iterator();
-		assert depth3Adapters.next() == unlimitedNaturalTypeAdapter;
-		assert !depth3Adapters.hasNext();
+		try {
+			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
+			DomainInheritance realTypeInheritance = metaModelManager.getInheritance(metaModelManager.getRealType());
+			DomainInheritance integerTypeInheritance = metaModelManager.getInheritance(metaModelManager.getIntegerType());
+			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
+			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
+			Iterator<DomainInheritance> allSuperInheritances = unlimitedNaturalTypeInheritance.getAllSuperInheritances().iterator();
+			assertEquals(oclAnyInheritance, allSuperInheritances.next());
+			Iterator<DomainInheritance> depth0Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(0).iterator();
+			assertEquals(oclAnyInheritance, depth0Inheritances.next());
+			assert !depth0Inheritances.hasNext();
+			Iterator<DomainInheritance> depth2Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(2).iterator();
+			assertEquals(realTypeInheritance, depth2Inheritances.next());
+			assert !depth2Inheritances.hasNext();
+			Iterator<DomainInheritance> depth3Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(3).iterator();
+			assertEquals(integerTypeInheritance, depth3Inheritances.next());
+			assert !depth3Inheritances.hasNext();
+			Iterator<DomainInheritance> depth4Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(4).iterator();
+			assertEquals(unlimitedNaturalTypeInheritance, depth4Inheritances.next());
+			assert !depth4Inheritances.hasNext();
+		} finally {
+			metaModelManager.dispose();
+		}
 	}
 
 	/**
@@ -155,50 +171,62 @@ public class InheritanceTests extends PivotSimpleTestSuite
 	 */
 	public void test_Inheritance_Loop() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance unlimitedNaturalTypeAdapter = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
-		assert unlimitedNaturalTypeAdapter.getDepth() == 3;		
 		try {
-			metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getIntegerType());
-			unlimitedNaturalTypeAdapter.getDepth();
-			fail("Missing IllegalStateException");
-		} catch (IllegalStateException e) {
-			// FIXME validate body
+			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
+			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
+			try {
+				metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getIntegerType());
+				unlimitedNaturalTypeInheritance.getDepth();
+				fail("Missing IllegalStateException");
+			} catch (IllegalStateException e) {
+				// FIXME validate body
+			} finally {
+				metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getIntegerType());
+			}
 		} finally {
-			metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getIntegerType());
+			metaModelManager.dispose();
 		}
 	}
 
 	/**
-	 * Check that addition of a superclass invalidates cached inheritances. 
+	 * Check that addition of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Addition() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance unlimitedNaturalTypeAdapter = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
-		assert unlimitedNaturalTypeAdapter.getDepth() == 3;		
 		try {
-			metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getStringType());
-			assert metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth() == 2;
-			assert unlimitedNaturalTypeAdapter.getDepth() == 4;
+			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
+			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
+			try {
+				metaModelManager.getRealType().getSuperClasses().add(metaModelManager.getStringType());
+				assertEquals(3, metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth());
+				assertEquals(5, unlimitedNaturalTypeInheritance.getDepth());
+			} finally {
+				metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getStringType());
+			}
 		} finally {
-			metaModelManager.getRealType().getSuperClasses().remove(metaModelManager.getStringType());
+			metaModelManager.dispose();
 		}
 	}
 
 
 	/**
-	 * Check that removal of a superclass invalidates cached inheritances. 
+	 * Check that removal of a supertype invalidates cached inheritances. 
 	 */
 	public void test_Inheritance_Removal() {
 		MetaModelManager metaModelManager = new MetaModelManager();
-		DomainInheritance unlimitedNaturalTypeAdapter = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
-		assert unlimitedNaturalTypeAdapter.getDepth() == 3;		
 		try {
-			metaModelManager.getIntegerType().getSuperClasses().remove(metaModelManager.getRealType());
-			assert unlimitedNaturalTypeAdapter.getDepth() == 2;
-			assert metaModelManager.getInheritance(metaModelManager.getIntegerType()).getDepth() == 1;
-			assert metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth() == 1;
+			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
+			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
+			try {
+				metaModelManager.getIntegerType().getSuperClasses().remove(metaModelManager.getRealType());
+				assertEquals(2, unlimitedNaturalTypeInheritance.getDepth());
+				assertEquals(1, metaModelManager.getInheritance(metaModelManager.getIntegerType()).getDepth());
+				assertEquals(2, metaModelManager.getInheritance(metaModelManager.getRealType()).getDepth());
+			} finally {
+				metaModelManager.getIntegerType().getSuperClasses().add(metaModelManager.getRealType());
+			}
 		} finally {
-			metaModelManager.getIntegerType().getSuperClasses().add(metaModelManager.getRealType());
+			metaModelManager.dispose();
 		}
 	}
 }
