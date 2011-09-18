@@ -16,8 +16,10 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.domain.types.DomainFragment;
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.DomainType;
@@ -46,5 +48,13 @@ public abstract class ExecutorType extends AbstractInheritance implements Domain
 		return standardLibrary.isSuperClassOf(this, type);
 	}
 
-//	public abstract LibraryFeature lookupImplementation(DomainOperation staticOperation);
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+		for (DomainFragment fragment : getFragments()) {
+			DomainOperation operation = fragment.lookupOperation(standardLibrary, this, operationName, argumentTypes);
+			if (operation != null) {
+				return operation;				// FIXME ambiguous lookups
+			}
+		}
+		return null;
+	}
 }

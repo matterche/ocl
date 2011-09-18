@@ -20,9 +20,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -107,7 +105,7 @@ public interface DomainStandardLibrary
      * Obtains the single instance of the {@link OclComparable} metatype, named
      * <tt>OclAny</tt>.
      * 
-     * @return the <tt>OclAny</tt> type (an instance of {@link OclComparable})
+     * @return the <tt>OclAny</tt> type (an instance of {@link Class})
      */
 	DomainType getOclComparableType();
 
@@ -147,9 +145,17 @@ public interface DomainStandardLibrary
      * Obtains the single instance of the {@link OclSummable} metatype, named
      * <tt>OclAny</tt>.
      * 
-     * @return the <tt>OclAny</tt> type (an instance of {@link OclSummable})
+     * @return the <tt>OclAny</tt> type (an instance of {@link Class})
      */
 	DomainType getOclSummableType();
+	
+    /**
+     * Obtains the single instance of the {@link OclTupleType} metatype, named
+     * <tt>OclVoid</tt>.
+     * 
+     * @return the <tt>OclTuple</tt> type (an instance of {@link Class})
+     */
+	DomainType getOclTupleType();
 	
     /**
      * Obtains the single instance of the {@link VoidType} metatype, named
@@ -248,13 +254,4 @@ public interface DomainStandardLibrary
 	
 	// FIXME use getInheritance
 	boolean isSuperClassOf(DomainType firstType, DomainType secondType);
-
-	// FIXME use getInheritance
-	DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes);
-
-	// FIXME use getInheritance
-	LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws Exception;
-
-	// FIXME use getInheritance
-	DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation);
 }

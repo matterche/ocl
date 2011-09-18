@@ -34,7 +34,7 @@ public class AnyIteration extends AbstractIteration
 {
 	public static final AnyIteration INSTANCE = new AnyIteration();
 
-	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		return valueFactory.createCollectionAccumulatorValue(standardLibrary.getSequenceType(accumulatorType));

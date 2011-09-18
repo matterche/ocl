@@ -50,15 +50,11 @@ public class ValidateSortedByIteration implements LibraryValidator
 		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
 		try {
 			DomainType comparableType = standardLibrary.getOclComparableType();
-			DomainOperation staticOperation = standardLibrary.lookupOperation(comparableType, EvaluatorMessages.CompareToOperation, comparableType);
+			DomainOperation staticOperation = comparableType.lookupOperation(standardLibrary, EvaluatorMessages.CompareToOperation, comparableType);
 			if (staticOperation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(comparableType));
 			}
-			DomainOperation dynamicOperation = standardLibrary.lookupDynamicOperation(type, staticOperation);
-			if (dynamicOperation == null) {
-				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
-			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) standardLibrary.lookupImplementation(dynamicOperation);
+			LibraryBinaryOperation implementation = (LibraryBinaryOperation) type.lookupImplementation(standardLibrary, staticOperation);
 			if (implementation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
 			}

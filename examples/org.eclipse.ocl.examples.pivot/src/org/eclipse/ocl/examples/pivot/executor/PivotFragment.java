@@ -20,6 +20,8 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.pivot.Type;
 
@@ -49,7 +51,7 @@ public class PivotFragment extends AbstractFragment
 		return null;
 	}
 
-	public DomainOperation getOperation(DomainOperation staticOperation) {
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes) {
 		// TODO Auto-generated method stub
 		return null;
 	}

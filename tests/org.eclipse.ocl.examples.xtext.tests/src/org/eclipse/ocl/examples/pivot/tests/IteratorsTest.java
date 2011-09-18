@@ -329,7 +329,7 @@ public class IteratorsTest extends PivotTestSuite
      * Tests the sortedBy() iterator.
      */
     public void test_sortedBy() {
-    	OrderedSetValue expectedSet = valueFactory.createOrderedSetOf(bob, pkg2, pkg3);
+        OrderedSetValue expectedSet = valueFactory.createOrderedSetOf(bob, pkg2, pkg3);
 
         // complete form
         assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p : ocl::Package | p.name)");
@@ -342,6 +342,7 @@ public class IteratorsTest extends PivotTestSuite
 
         SequenceValue expected = valueFactory.createSequenceOf("a", "b", "c", "d", "e");
         assertQueryEquals(pkg1, expected, "Bag{'d', 'b', 'e', 'a', 'c'}->sortedBy(e | e)");
+        assertQueryResults(null, "Sequence{'x', 'aa', 'zzz', 'zzz', 'zzz', 'yyyy', 'yyyy'}", "Bag{'x', 'yyyy', 'zzz', 'aa', 'zzz', 'yyyy', 'zzz'}->sortedBy(size())");
     }
 
     /**

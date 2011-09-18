@@ -16,8 +16,6 @@
  */
 package org.eclipse.ocl.examples.domain.types;
 
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public abstract class AbstractType implements DomainType
 {
@@ -50,9 +48,5 @@ public abstract class AbstractType implements DomainType
 
 	public boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary) {
 		return isSuperClassOf(inheritance.getType(), standardLibrary);
-	}
-
-	public LibraryFeature lookupImplementation(DomainOperation staticOperation) {
-		throw new UnsupportedOperationException();		// WIP
 	}
 }

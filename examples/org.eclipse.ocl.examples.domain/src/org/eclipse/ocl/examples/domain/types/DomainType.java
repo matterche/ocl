@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public interface DomainType extends DomainElement
@@ -30,5 +31,6 @@ public interface DomainType extends DomainElement
 	boolean isUnique();		
 	boolean isSuperClassOf(DomainType type, DomainStandardLibrary standardLibrary);
 	boolean isSuperInheritanceOf(DomainInheritance inheritance, DomainStandardLibrary standardLibrary);
-	LibraryFeature lookupImplementation(DomainOperation operation);
+	LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException;
+	DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes);
 }

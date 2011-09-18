@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public class AbstractCollectionType extends AbstractType implements DomainCollectionType
@@ -100,17 +101,20 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 
 	@Override
 	public boolean isOrdered() {
-		return ((DomainCollectionType)containerClass).isOrdered();
+		return containerClass.isOrdered();
 	}
 
 	@Override
 	public boolean isUnique() {
-		return ((DomainCollectionType)containerClass).isUnique();
+		return containerClass.isUnique();
 	}
 
-	@Override
-	public LibraryFeature lookupImplementation(DomainOperation operation) {
-		return containerClass.lookupImplementation(operation);
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+		return containerClass.lookupImplementation(standardLibrary, staticOperation);
+	}
+
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+		return containerClass.lookupOperation(standardLibrary, operationName, argumentTypes);
 	}
 
 	@Override

@@ -28,8 +28,8 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractIteration;
-import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
 import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
@@ -46,9 +46,10 @@ public class SortedByIteration extends AbstractIteration
 	protected static class SortingValue extends AbstractValue implements Comparator<Value>
 	{
 		private final DomainEvaluator evaluator;
-		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
 		private final DomainType iteratorType;
 		private final LibraryBinaryOperation implementation;
+		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
+		private Map<Value, Integer> repeatCounts = null;						// Repeat counts for non-unique content
 
 		public SortingValue(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation implementation) {
 			super(evaluator.getValueFactory(), returnType);
@@ -87,11 +88,40 @@ public class SortedByIteration extends AbstractIteration
 			List<Value> result = new ArrayList<Value>(content.keySet());
 			Collections.sort(result, this);
 			boolean isUnique = type.isUnique();
-			return valueFactory.createCollectionValue(true, isUnique, type, result);
+			if (isUnique || (repeatCounts == null)) {
+				return valueFactory.createCollectionValue(true, isUnique, type, result);
+			}
+			else {
+				List<Value> nonUniqueResult = new ArrayList<Value>();
+				for (Value resultValue : result) {
+					nonUniqueResult.add(resultValue);
+					Integer repeatCount = repeatCounts.get(resultValue);
+					if (repeatCount != null) {
+						for (int i = repeatCount; i > 0; i--) {
+							nonUniqueResult.add(resultValue);
+						}
+					}
+				}
+				return valueFactory.createCollectionValue(true, false, type, nonUniqueResult);
+			}
 		}
 
 		public void put(Value iterVal, Value comparable) {
-			content.put(iterVal, comparable);
+			if (content.put(iterVal, comparable) != null) {
+				if (!type.isUnique()) {
+					if (repeatCounts == null) {
+						repeatCounts = new HashMap<Value, Integer>();
+					}
+					Integer repeatCount = repeatCounts.get(iterVal);
+					if (repeatCount == null) {
+						repeatCount = 1;
+					}
+					else {
+						repeatCount++;
+					}
+					repeatCounts.put(iterVal, repeatCount);
+				}
+			}
 		}
 
 		@Override
@@ -103,14 +133,13 @@ public class SortedByIteration extends AbstractIteration
 	public static final SortedByIteration INSTANCE = new SortedByIteration();
 	private static LibraryValidator validator = null; 
 
-	public SortedByIteration.SortingValue createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) throws InvalidValueException {
+	public SortedByIteration.SortingValue createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) throws InvalidValueException {
 		DomainStandardLibrary standardLibrary = evaluator.getValueFactory().getStandardLibrary();
 		DomainType comparableType = standardLibrary.getOclComparableType();
-		DomainOperation staticOperation = standardLibrary.lookupOperation(comparableType, EvaluatorMessages.CompareToOperation, comparableType);
-		DomainOperation dynamicOperation = standardLibrary.lookupDynamicOperation(iteratorType, staticOperation);
+		DomainOperation staticOperation = comparableType.lookupOperation(standardLibrary, EvaluatorMessages.CompareToOperation, comparableType);
 		try {
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) standardLibrary.lookupImplementation(dynamicOperation);
-			return new SortingValue(evaluator, accumulatorType, implementation);
+			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
+			return new SortingValue(evaluator, accumulatorType, (LibraryBinaryOperation) implementation);
 		} catch (Exception e) {
 			throw new InvalidValueException(e);
 		}
@@ -136,8 +165,7 @@ public class SortedByIteration extends AbstractIteration
 		if (bodyVal.isUndefined()) {
 			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$
 		}
-		EvaluatorSingleIterationManager singleIterationManager = (EvaluatorSingleIterationManager) iterationManager;
-		Value iterValue = singleIterationManager.get();		
+		Value iterValue = iterationManager.get();		
 		SortingValue accumulatorValue = (SortingValue) iterationManager.getAccumulatorValue();
 		accumulatorValue.put(iterValue, bodyVal);
 		return null;										// Carry on

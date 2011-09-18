@@ -32,7 +32,7 @@ public class OneIteration extends AbstractIteration
 {
 	public static final OneIteration INSTANCE = new OneIteration();
 
-	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.createBooleanAccumulatorValue();
 	}

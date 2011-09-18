@@ -52,6 +52,11 @@ public class ExecutorSingleIterationManager extends AbstractIterationManager
 		return currentValue != null;
 	}
 
+	@Override
+	public Value get() {
+		return currentValue;
+	}
+
 	public Value getAccumulatorValue() {
 		return accumulatorValue;
 	}

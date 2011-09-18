@@ -19,11 +19,10 @@ package org.eclipse.ocl.examples.domain.types;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
-
 public interface DomainFragment
 {
 	DomainInheritance getBaseInheritance();
 	LibraryFeature getImplementation(DomainOperation staticOperation);
 	DomainInheritance getInheritance();
-	DomainOperation getOperation(DomainOperation staticOperation);
+	DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes);
 }

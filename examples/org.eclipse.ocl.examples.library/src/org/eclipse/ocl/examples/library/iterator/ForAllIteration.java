@@ -31,7 +31,7 @@ public class ForAllIteration extends AbstractIteration
 {
 	public static final ForAllIteration INSTANCE = new ForAllIteration();
 
-	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		return evaluator.getValueFactory().createBooleanAccumulatorValue();
 	}
 	

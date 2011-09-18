@@ -362,7 +362,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return false;
 	}
 
-	public LibraryFeature lookupImplementation(DomainOperation staticOperation) {
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
 		DomainInheritance staticInheritance = staticOperation.getInheritance();
 		int staticDepth = staticInheritance.getDepth();
 		int iMax = indexes[staticDepth+1];

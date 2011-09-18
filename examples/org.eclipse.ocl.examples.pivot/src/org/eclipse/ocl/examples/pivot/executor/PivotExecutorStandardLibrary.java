@@ -81,6 +81,10 @@ public class PivotExecutorStandardLibrary extends AbstractStandardLibrary
 		return OCLstdlibTables.Classes._OclSummable;
 	}
 
+	public DomainType getOclTupleType() {
+		return OCLstdlibTables.Classes._OclTuple;
+	}
+
 	public DomainType getOclVoidType() {
 		return OCLstdlibTables.Classes._OclVoid;
 	}

@@ -30,7 +30,7 @@ public class IterateIteration extends AbstractIteration
 {
 	public static final IterateIteration INSTANCE = new IterateIteration();
 
-	public Value createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public Value createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		throw new UnsupportedOperationException();		// Never used since values are assigned directly as the accumulator
 	}
 	

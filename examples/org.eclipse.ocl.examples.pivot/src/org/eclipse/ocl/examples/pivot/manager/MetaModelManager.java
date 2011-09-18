@@ -1422,6 +1422,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	public LibraryFeature getImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		if (operation == null) {
+			return null;
+		}
 		LibraryFeature implementation = operation.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
@@ -1432,6 +1435,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public LibraryFeature getImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		if (property == null) {
+			return null;
+		}
 		LibraryFeature implementation = property.getImplementation();
 		if (implementation == null) {
 			ImplementationManager implementationManager = getImplementationManager();
@@ -2335,31 +2341,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return null;
 	}
 
-	@Override
 	public LibraryFeature lookupImplementation(DomainOperation dynamicOperation) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
 		return getImplementation((Operation) dynamicOperation);
 	}
 
-	@Override
 	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
 		return getDynamicOperation((Type)type, (Operation) staticOperation);
-	}
-
-	@Override
-	public DomainOperation lookupOperation(DomainType type, String operationName, DomainType... argumentTypes) {
-		if (argumentTypes == null) {
-			return resolveOperation((Type)type, operationName);
-		}
-		else if (argumentTypes.length == 1) {
-			return resolveOperation((Type)type, operationName, (Type)argumentTypes[0]);
-		}
-		else {
-			Type[] types = new Type[argumentTypes.length];
-			for (int i = 0; i < argumentTypes.length; i++) {
-				types[i] = (Type) argumentTypes[i];
-			}
-			return resolveOperation((Type)type, operationName, types);
-		}
 	}
 
 	public void notifyChanged(Notification notification) {

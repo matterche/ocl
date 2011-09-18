@@ -27,12 +27,14 @@ public class ExecutorOperation implements DomainOperation
 	protected final DomainInheritance inheritance;
 	protected final int index;
 	protected final LibraryFeature implementation;
+	protected final ExecutorTypeArgument[] parameterTypes;
 	
 	public ExecutorOperation(String name, DomainInheritance inheritance, int index, LibraryFeature implementation, ExecutorTypeArgument... parameterTypes) {
 		this.name = name;
 		this.inheritance = inheritance;
 		this.index = index;
 		this.implementation = implementation;
+		this.parameterTypes = parameterTypes;
 	}
 
 	public final int getIndex() {

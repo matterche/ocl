@@ -20,6 +20,8 @@ import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public class ExecutorFragment extends AbstractFragment
 {
@@ -60,6 +62,42 @@ public class ExecutorFragment extends AbstractFragment
 	public void initProperties(ExecutorProperty[] properties) {
 		assert this.properties == null;
 		this.properties = properties;
+	}
+
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes) {
+		for (ExecutorOperation operation : operations) {		// FIXME binary search
+			if (operation.name.equals(operationName)) {
+				boolean gotIt = true;
+				ExecutorTypeArgument[] parameterTypeArguments = operation.parameterTypes;
+				if (parameterTypeArguments.length == argumentTypes.length) {
+					for (int i = 0; i < parameterTypeArguments.length; i++) {
+						DomainType argumentType = argumentTypes[i];
+						ExecutorTypeArgument parameterTypeArgument = parameterTypeArguments[i];
+						if (parameterTypeArgument instanceof ExecutorType) {
+							DomainType parameterType;
+							if (parameterTypeArgument == standardLibrary.getOclSelfType()) {
+								parameterType = staticType;
+							}
+							else {
+								parameterType = (ExecutorType)parameterTypeArgument;
+							}
+							if (!argumentType.conformsTo(parameterType, standardLibrary)) {
+								gotIt = false;
+								break;
+							}
+							
+						}
+						else {
+							// FIXME
+						}
+					}
+				}
+				if (gotIt) {
+					return operation;
+				}
+			}
+		}
+		return null;
 	}
 
 }

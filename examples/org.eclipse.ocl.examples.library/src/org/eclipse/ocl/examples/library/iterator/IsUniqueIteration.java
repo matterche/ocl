@@ -33,7 +33,7 @@ public class IsUniqueIteration extends AbstractIteration
 {
 	public static final IsUniqueIteration INSTANCE = new IsUniqueIteration();
 
-	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		return valueFactory.createCollectionAccumulatorValue(standardLibrary.getSetType(accumulatorType));

@@ -18,7 +18,10 @@ package org.eclipse.ocl.examples.domain.types;
 
 import java.util.List;
 
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public class AbstractTupleType extends AbstractType implements DomainTupleType
 {
@@ -59,5 +62,13 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 			return false;
 		}
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
+	}
+
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, staticOperation);
+	}
+
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+		return standardLibrary.getOclTupleType().lookupOperation(standardLibrary, operationName, argumentTypes);
 	}
 }

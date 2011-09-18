@@ -70,5 +70,5 @@ public interface DomainInheritance
 
 	boolean isUndefined();
 
-	LibraryFeature lookupImplementation(DomainOperation staticOperation);
+	LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation);
 }

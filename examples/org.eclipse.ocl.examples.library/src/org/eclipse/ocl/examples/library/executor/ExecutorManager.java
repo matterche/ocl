@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.osgi.util.NLS;
 
 public abstract class ExecutorManager implements DomainEvaluator
 {	
@@ -81,17 +82,12 @@ public abstract class ExecutorManager implements DomainEvaluator
 		throw new UnsupportedOperationException();
 	}
 
-	public NullValue throwInvalidEvaluation(InvalidValueException e)
-			throws InvalidEvaluationException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(null, e);
 	}
 
-	public NullValue throwInvalidEvaluation(Throwable e,
-			DomainExpression expression, Object context, String message,
-			Object... bindings)
-			throws InvalidEvaluationException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+	public NullValue throwInvalidEvaluation(Throwable e, DomainExpression expression, Object context,
+			String message, Object... bindings) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(null, NLS.bind(message, bindings), e, expression, context);
 	}
 }

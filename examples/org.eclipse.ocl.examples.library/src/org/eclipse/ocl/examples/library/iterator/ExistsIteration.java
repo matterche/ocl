@@ -31,7 +31,7 @@ public class ExistsIteration extends AbstractIteration
 {
 	public static final ExistsIteration INSTANCE = new ExistsIteration();
 
-	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public BooleanValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		return evaluator.getValueFactory().createBooleanAccumulatorValue();
 	}
 

@@ -36,7 +36,7 @@ public class ClosureIteration extends AbstractIteration
 	public static final ClosureIteration INSTANCE = new ClosureIteration();
 	private static LibraryValidator validator = null; 
 
-	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType iteratorType) {
+	public CollectionValue.Accumulator createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) {
 		return evaluator.getValueFactory().createCollectionAccumulatorValue((DomainCollectionType) accumulatorType);
 	}
 

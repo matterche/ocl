@@ -120,6 +120,7 @@ public static class [className/] extends Abstract[getOperationAritySuffix(arity)
 [for (parameter : Variable | specification.parameterVariable)]
 , Value [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws InvalidValueException {
 		final ValueFactory valueFactory = evaluator.getValueFactory();
+		final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		[generateConstantLiterals(genPackage, specification.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, specification.bodyExpression, pkg)/][generateExpression('Value ', 'result', specification.bodyExpression, pkg)/]
 		return result;
 	}
@@ -129,7 +130,7 @@ public static class [className/] extends Abstract[getOperationAritySuffix(arity)
 [let expressions : Sequence(OclExpression) = ast.eAllContents(OclExpression)->including(ast)]
 [let constants : Set(Element) = expressions->collect(e : OclExpression | gatherConstants(e))->asSet()->excluding(null)]
 [for (e : Boolean | constants->collect(e : Element | if e.oclIsKindOf(BooleanLiteralExp) then e.oclAsType(BooleanLiteralExp).booleanSymbol else null endif)->asSet()->excluding(null))]
-final BooleanValue [defineSymbolName(e, if e then 'trueValue' else 'falseValue' endif)/] = valueFactory.get[if (e)]True[else]False[/if]());
+final BooleanValue [defineSymbolName(e, if e then 'trueValue' else 'falseValue' endif)/] = valueFactory.get[if (e)]True[else]False[/if]();
 [/for]  
 [for (e : String | constants->collect(e : Element | asIntegerStringOrNull(e))->asSet()->excluding(null)->sortedBy(s : String | s))]
 final IntegerValue [defineSymbolName(e, getPrefixedSymbolName('integerValue_', e))/] = valueFactory.integerValueOf([e/]);
@@ -165,13 +166,13 @@ final DomainTypedElement [getPrefixedSymbolName('tuple_part_', decl)/] = [decl/]
 [/let]
 [/let]
 [let tuples : Sequence(TupleLiteralExp) = ast.eAllContents(TupleLiteralExp)]
-[let decls : Set(OrderedSet(String)) = tuples->iterate(tuple : TupleLiteralExp; acc : Set(OrderedSet(String)) = Set{} | acc->including(genPackageGetTupleLiteralExpLookup(tuple, pkg)))]
+[let decls : Set(OrderedSet(String)) = tuples->iterate(tuple : TupleLiteralExp; acc : Set(OrderedSet(String)) = Set{} | let inc : OrderedSet(String) = genPackageGetTupleLiteralExpLookup(genPackage, tuple, pkg) in acc->including(inc))]
 [for (decl : OrderedSet(String) | decls)] 
 List<DomainTypedElement> [getPrefixedSymbolName('tuple_type_', decl)/]_parts = new ArrayList<DomainTypedElement>();
 [for (part : String | decl)] 
 [getPrefixedSymbolName('tuple_type_', decl)/]_parts.add([part/]);
 [/for]
-final DomainTupleType [getPrefixedSymbolName('tuple_type_', decl)/] = valueFactory.getStandardLibrary().getTupleType([getPrefixedSymbolName('tuple_type_', decl)/]_parts);
+final DomainTupleType [getPrefixedSymbolName('tuple_type_', decl)/] = standardLibrary.getTupleType([getPrefixedSymbolName('tuple_type_', decl)/]_parts);
 [/for]
 [/let]
 [/let]
@@ -276,7 +277,7 @@ AbstractBinaryOperation [bodyName/] = new AbstractBinaryOperation()
 	}
 };
 DomainType type_[getSymbolName(ast.source)/] = [getSymbolName(ast.source)/].getType();
-LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
+LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation(standardLibrary, [genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
 Executor[getArityMultiple(arity)/]IterationManager [getSymbolName(ast)/]_manager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [getSymbolName(ast.result)/]_type, [bodyName/], (CollectionValue)[leftVarName/], [getSymbolName(ast.result.initExpression)/]);
 [resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluateIteration([getSymbolName(ast)/]_manager);[/let][/let][/let][/let][/template]
 
@@ -307,8 +308,8 @@ Abstract[getOperationAritySuffix(arity)/] [bodyVarName/] = new Abstract[getOpera
 	}
 };
 DomainType type_[getSymbolName(ast.source)/] = [getSymbolName(ast.source)/].getType();
-LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
-Value acc_[getSymbolName(ast.source)/] = dynamic_[getSymbolName(ast.source)/].createAccumulatorValue(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [genPackageGetQualifiedLiteralName(genPackage, ast.iterator->at(1).type, pkg)/]);
+LibraryIteration dynamic_[getSymbolName(ast.source)/] = (LibraryIteration)type_[getSymbolName(ast.source)/].lookupImplementation(standardLibrary, [genPackageGetQualifiedLiteralName(genPackage, ast.referredIteration, pkg)/]);
+Value acc_[getSymbolName(ast.source)/] = dynamic_[getSymbolName(ast.source)/].createAccumulatorValue(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [genPackageGetQualifiedLiteralName(genPackage, ast._body.type, pkg)/]);
 Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [bodyVarName/], (CollectionValue)[getSymbolName(ast.source)/], acc_[getSymbolName(ast.source)/]);
 [resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluateIteration(iterationManager);[/let][/let][/let][/template]
 
@@ -352,7 +353,7 @@ DomainType type_[getSymbolName(ast.source)/] = valueFactory.typeOf([getSymbolNam
 [for (index : Integer | Sequence{1..arity})]
 [if ast.referredOperation.ownedParameter->at(index).type.oclIsKindOf(SelfType)]
 , [getSymbolName(ast.argument->at(index))/][/if][/for][/if]);
-Library[getOperationAritySuffix(arity)/] dynamic_[getSymbolName(ast.source)/] = (Library[getOperationAritySuffix(arity)/])type_[getSymbolName(ast.source)/].lookupImplementation([genPackageGetQualifiedLiteralName(genPackage, ast.referredOperation, pkg)/]);
+Library[getOperationAritySuffix(arity)/] dynamic_[getSymbolName(ast.source)/] = (Library[getOperationAritySuffix(arity)/])type_[getSymbolName(ast.source)/].lookupImplementation(standardLibrary, [genPackageGetQualifiedLiteralName(genPackage, ast.referredOperation, pkg)/]);
 [resultType/][result/] = dynamic_[getSymbolName(ast.source)/].evaluate(evaluator, [genPackageGetQualifiedLiteralName(genPackage, ast.type, pkg)/], [getSymbolName(ast.source)/][for (argument : OclExpression | ast.argument) before (', ') separator (', ')][getSymbolName(argument)/][/for]);[/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : PropertyCallExp, pkg : Package)]
@@ -392,22 +393,22 @@ part_values_[mapVarName/].put([getPrefixedSymbolName('tuple_part_', genPackageGe
 [template public generateType(genPackage : GenPackage, result : String, ast : BagType, pkg : Package)]
 [let typeVarName : String = getSymbolName(ast) + '_type']
 [generateType(typeVarName, ast.elementType, pkg)/]
-DomainCollectionType [result/] = valueFactory.getStandardLibrary().getBagType([typeVarName/]);[/let][/template]
+DomainCollectionType [result/] = standardLibrary.getBagType([typeVarName/]);[/let][/template]
 
 [template public generateType(genPackage : GenPackage, result : String, ast : OrderedSetType, pkg : Package)]
 [let typeVarName : String = getSymbolName(ast) + '_type']
 [generateType(typeVarName, ast.elementType, pkg)/]
-DomainCollectionType [result/] = valueFactory.getStandardLibrary().getOrderedSetType([typeVarName/]);[/let][/template]
+DomainCollectionType [result/] = standardLibrary.getOrderedSetType([typeVarName/]);[/let][/template]
 
 [template public generateType(genPackage : GenPackage, result : String, ast : SequenceType, pkg : Package)]
 [let typeVarName : String = getSymbolName(ast) + '_type']
 [generateType(typeVarName, ast.elementType, pkg)/]
-DomainCollectionType [result/] = valueFactory.getStandardLibrary().getSequenceType([typeVarName/]);[/let][/template]
+DomainCollectionType [result/] = standardLibrary.getSequenceType([typeVarName/]);[/let][/template]
 
 [template public generateType(genPackage : GenPackage, result : String, ast : SetType, pkg : Package)]
 [let typeVarName : String = getSymbolName(ast) + '_type']
 [generateType(typeVarName, ast.elementType, pkg)/]
-DomainCollectionType [result/] = valueFactory.getStandardLibrary().getSetType([typeVarName/]);[/let][/template]
+DomainCollectionType [result/] = standardLibrary.getSetType([typeVarName/]);[/let][/template]
 
 [template public generateType(genPackage : GenPackage, result : String, ast : Type, pkg : Package)]
 DomainType [result/] = [genPackageGetQualifiedLiteralName(genPackage, ast, pkg)/];[/template]

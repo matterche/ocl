@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
@@ -51,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TypeOperations;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -1046,8 +1048,30 @@ public class TypeImpl
 		return isSuperClassOf(inheritance.getType(), standardLibrary);
 	}
 
-	public LibraryFeature lookupImplementation(DomainOperation operation) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+		MetaModelManager metaModelManager = (MetaModelManager) standardLibrary;
+		DomainOperation dynamicOperation = metaModelManager.lookupDynamicOperation(this, staticOperation);
+		try {
+			return metaModelManager.lookupImplementation(dynamicOperation);
+		} catch (Exception e) {
+			throw new InvalidValueException(e);
+		}
+	}
+
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+		MetaModelManager metaModelManager = (MetaModelManager) standardLibrary;
+		if (argumentTypes == null) {
+			return metaModelManager.resolveOperation(this, operationName);
+		}
+		else if (argumentTypes.length == 1) {
+			return metaModelManager.resolveOperation(this, operationName, (Type)argumentTypes[0]);
+		}
+		else {
+			Type[] types = new Type[argumentTypes.length];
+			for (int i = 0; i < argumentTypes.length; i++) {
+				types[i] = (Type) argumentTypes[i];
+			}
+			return metaModelManager.resolveOperation(this, operationName, types);
+		}
 	}
 } //TypeImpl
