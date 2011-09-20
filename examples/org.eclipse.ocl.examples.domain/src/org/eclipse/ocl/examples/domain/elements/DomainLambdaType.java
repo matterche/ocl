@@ -14,7 +14,7 @@
  *
  * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
 import java.util.List;
 

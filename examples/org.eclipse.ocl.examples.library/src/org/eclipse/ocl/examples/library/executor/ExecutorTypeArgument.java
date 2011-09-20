@@ -16,6 +16,6 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
-public interface ExecutorTypeArgument {
-
+public interface ExecutorTypeArgument
+{
 }

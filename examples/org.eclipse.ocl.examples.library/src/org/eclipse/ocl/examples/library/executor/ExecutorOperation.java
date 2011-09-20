@@ -16,10 +16,12 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import java.util.List;
+
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public class ExecutorOperation implements DomainOperation
 {
@@ -49,9 +51,26 @@ public class ExecutorOperation implements DomainOperation
 		return name;
 	}
 
+//	public List<? extends DomainType> getParameterTypes(DomainStandardLibrary standardLibrary, Map<TemplateParameter, ParameterableElement> bindings) {
+//		List<DomainType> specializedParameterTypes = new ArrayList<DomainType>(parameterTypes.length);
+//		for (ExecutorTypeArgument parameterType : parameterTypes) {
+//			specializedParameterTypes.add(parameterType.specializeType(standardLibrary, bindings));
+//		}
+//		return specializedParameterTypes;
+//	}
+
+	public List<DomainType> getParameterTypes() {
+		throw new UnsupportedOperationException();
+//		return new ArrayIterable<DomainType>(parameterTypes);
+	}
+
 	public final DomainType getType() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
+	}
+
+	public boolean isStatic() {
+		return false;
 	}
 
 	@Override

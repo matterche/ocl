@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Iterator;
 
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SetType;

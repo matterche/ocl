@@ -14,13 +14,12 @@
  *
  * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
 import java.util.Enumeration;
 import java.util.List;
 
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -243,10 +242,4 @@ public interface DomainStandardLibrary
 	boolean isEqualToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType);
 
 	boolean isEqualToTupleType(DomainTupleType firstTupleType, DomainTupleType secondTupleType);
-
-	// FIXME use getInheritance
-	DomainType getCommonType(DomainType firstType, DomainType secondType);
-	
-	// FIXME use getInheritance
-	boolean isSuperClassOf(DomainType firstType, DomainType secondType);
 }

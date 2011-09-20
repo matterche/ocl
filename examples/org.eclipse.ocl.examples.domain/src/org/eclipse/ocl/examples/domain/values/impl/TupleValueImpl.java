@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.domain.values.impl;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.DomainTupleType;
 import org.eclipse.ocl.examples.domain.values.TupleValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;

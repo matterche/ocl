@@ -18,10 +18,11 @@ package org.eclipse.ocl.examples.domain.values.impl;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
@@ -86,6 +87,16 @@ public abstract class AbstractValue implements Value
 
 	public IntegerValue asIntegerValue() throws InvalidValueException {
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer");
+	}
+
+	public EObject asNavigableObject() throws InvalidValueException {
+		Object object = asObject();
+		if (object instanceof EObject) {
+			return (EObject) object;
+		}
+		else {
+			return (EObject) valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object");
+		}
 	}
 
 	public ObjectValue asObjectValue() throws InvalidValueException {

@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.domain.values;
 
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public interface TypeValue extends ElementValue<DomainType>
 {

@@ -14,11 +14,10 @@
  *
  * $Id: Nameable.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
 import java.util.List;
 
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 /**

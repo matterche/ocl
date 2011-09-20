@@ -29,9 +29,10 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotExecutorManager extends ExecutorManager
+public class PivotExecutorManager extends ExecutorManager implements MetaModelManageable
 {
 	protected final MetaModelManager metaModelManager;
 	
@@ -142,5 +143,9 @@ public class PivotExecutorManager extends ExecutorManager
 	public PivotExecutorPackage getEvaluationPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
+	}
+
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 }

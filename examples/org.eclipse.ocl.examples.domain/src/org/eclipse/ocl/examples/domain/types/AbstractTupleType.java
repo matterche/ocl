@@ -19,6 +19,9 @@ package org.eclipse.ocl.examples.domain.types;
 import java.util.List;
 
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
@@ -27,8 +30,8 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 {
 	private List<? extends DomainTypedElement> parts;
 	
-	public AbstractTupleType(String name, List<? extends DomainTypedElement> parts) {
-		super(name);
+	public AbstractTupleType(List<? extends DomainTypedElement> parts) {
+		super("Tuple");
 		this.parts = parts;
 	}
 
@@ -62,13 +65,6 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 			return false;
 		}
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
-	}
-
-	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		return standardLibrary.isSuperClassOf(this, type);
 	}
 
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {

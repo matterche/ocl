@@ -27,8 +27,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
@@ -45,9 +48,6 @@ import org.eclipse.ocl.examples.domain.library.LibraryProperty;
 import org.eclipse.ocl.examples.domain.library.LibraryTernaryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
@@ -87,7 +87,6 @@ import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
@@ -398,11 +397,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation(e);
 		}
 		DomainType dynamicSourceType = sourceValue.getType();
-		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
+		LibraryIteration implementation;
+		try {
+			implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, null, "Failed to load implementation");
+		}	
+/*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
  		}
- 		LibraryIteration implementation;
+ 		LibraryIteration implementation1;
 		try {
 			implementation = (LibraryIteration) metaModelManager.getImplementation(dynamicIteration);
 		} catch (Exception e) {
@@ -413,7 +418,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			else {
 				return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, null, "Failed to load implementation for '" + dynamicIteration + "'");
 			}
-		}
+		} */
 		Value result = null;
 		try {
 			Variable accumulator = iterateExp.getResult();
@@ -445,10 +450,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, sourceValue, "Failed to evaluate '" + dynamicIteration + "'");
+			return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, sourceValue, "Failed to evaluate '" + staticIteration + "'");	// FIXME dymamicIteration throughout
 		}
 		if (result == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicIteration + "'", iterateExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + staticIteration + "'", iterateExp, sourceValue);
 		}
 		return result;
 	}
@@ -469,7 +474,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation(e);
 		}
 		DomainType dynamicSourceType = sourceValue.getType();
-		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
+		LibraryIteration implementation;
+		try {
+			implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, null, "Failed to load implementation");
+		}	
+/*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
  		}
@@ -484,7 +495,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			else {
 				return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, null, "Failed to load implementation for '" + dynamicIteration + "'");
 			}
-		}
+		} */
 		Value result = null;
 		try {
 			DomainIterationManager iterationManager;
@@ -511,10 +522,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			// This is a backstop. Library iterations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceValue, "Failed to evaluate '" + dynamicIteration + "'");
+			return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceValue, "Failed to evaluate '" + staticIteration + "'");
 		}
 		if (result == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicIteration + "'", iteratorExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + staticIteration + "'", iteratorExp, sourceValue);
 		}
 		return result;
 	}
@@ -594,7 +605,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//
 		//	Resolve operation to dispatch
 		//
-		Operation dynamicOperation = staticOperation;
+		LibraryFeature implementation;
+		try {
+			implementation = dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation");
+		}	
+/*		Operation dynamicOperation = staticOperation;
 		if (!staticOperation.isStatic()) {
 			dynamicOperation = metaModelManager.getDynamicOperation((Type) dynamicSourceType, staticOperation);
 	 		if (dynamicOperation == null) {
@@ -615,12 +632,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			else {
 				return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
 			}
-		}
+		} */
 		//
 		//	Dispatch implementation avoiding variable argument list where possible
 		//
 		try {
-			Value result = null; //evaluator.evaluate((LibraryOperation)implementation, returnType, sourceValue);
+			Value result = null;
 			int iSize = arguments.size();
 			switch (iSize) {
 				case 0: {
@@ -661,7 +678,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				}
 			}
 			if (result == null) {
-				return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", operationCallExp, sourceValue);
+				return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + staticOperation + "'", operationCallExp, sourceValue);
 			}
 			return result;
 		} catch (InvalidValueException e) {
@@ -671,7 +688,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
+			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, sourceValue, "Failed to evaluate '" + staticOperation + "'");
 		}
 	}
 

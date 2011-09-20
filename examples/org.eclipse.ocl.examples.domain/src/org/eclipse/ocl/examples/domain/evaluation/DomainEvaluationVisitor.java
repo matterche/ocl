@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.evaluation;
 
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 

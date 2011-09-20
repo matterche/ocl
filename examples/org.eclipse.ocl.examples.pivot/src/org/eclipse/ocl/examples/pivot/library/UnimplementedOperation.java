@@ -16,10 +16,10 @@
  */
 package org.eclipse.ocl.examples.pivot.library;
 
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
  * The static instance of UnimplementedOperation supports evaluation of
  * an operation that has not been implemented.
  */
-public class UnimplementedOperation extends AbstractUnaryOperation
+public class UnimplementedOperation extends AbstractUnaryOperation //implements LibraryBinaryOperation
 {
 	public static final UnimplementedOperation INSTANCE = new UnimplementedOperation();
 
@@ -35,4 +35,9 @@ public class UnimplementedOperation extends AbstractUnaryOperation
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		return valueFactory.throwInvalidValueException("No implementation");
 	}
+
+//	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value argumentValue) throws InvalidValueException {
+//		ValueFactory valueFactory = evaluator.getValueFactory();
+//		return valueFactory.throwInvalidValueException("No implementation");
+//	}
 }

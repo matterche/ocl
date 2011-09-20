@@ -16,19 +16,22 @@
  */
 package org.eclipse.ocl.examples.domain.types;
 
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public class AbstractCollectionType extends AbstractType implements DomainCollectionType
 {
-	protected final DomainType containerClass;
-	protected final DomainType elementClass;
+	protected final DomainType containerType;
+	protected final DomainType elementType;
 	
-	public AbstractCollectionType(String name, DomainType containerClass, DomainType elementClass) {
+	public AbstractCollectionType(String name, DomainType containerType, DomainType elementType) {
 		super(name);
-		this.containerClass = containerClass;
-		this.elementClass = elementClass;
+		this.containerType = containerType;
+		this.elementType = elementType;
 	}
 
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
@@ -48,12 +51,12 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 		}
 		AbstractCollectionType thatClass = (AbstractCollectionType) type;
 		// FIXME kind
-		DomainType commonContainerClass = containerClass;		// FIXME WIP
-		DomainType commonElementClass = elementClass.getCommonType(standardLibrary, thatClass.elementClass);
-		if ((commonContainerClass == containerClass) && (commonElementClass == elementClass)) {
+		DomainType commonContainerClass = containerType;		// FIXME WIP
+		DomainType commonElementClass = elementType.getCommonType(standardLibrary, thatClass.elementType);
+		if ((commonContainerClass == containerType) && (commonElementClass == elementType)) {
 			return this;
 		}
-		else if ((commonContainerClass == thatClass.containerClass) && (commonElementClass == thatClass.elementClass)) {
+		else if ((commonContainerClass == thatClass.containerType) && (commonElementClass == thatClass.elementType)) {
 			return thatClass;
 		}
 		else {
@@ -77,17 +80,12 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 	}
 
 	public DomainType getContainerType() {
-		return containerClass;
+		return containerType;
 	}
 
 	public DomainType getElementType() {
-		return elementClass;
+		return elementType;
 	}
-
-//	public DomainType getInstanceType() {
-//		// TODO Auto-generated method stub
-//		throw new UnsupportedOperationException();
-//	}
 
 	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
@@ -99,33 +97,26 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
 	}
 
-	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		return standardLibrary.isSuperClassOf(this, type);
-	}
-
 	@Override
 	public boolean isOrdered() {
-		return containerClass.isOrdered();
+		return containerType.isOrdered();
 	}
 
 	@Override
 	public boolean isUnique() {
-		return containerClass.isUnique();
+		return containerType.isUnique();
 	}
 
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
-		return containerClass.lookupImplementation(standardLibrary, staticOperation);
+		return containerType.lookupImplementation(standardLibrary, staticOperation);
 	}
 
 	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		return containerClass.lookupOperation(standardLibrary, operationName, argumentTypes);
+		return containerType.lookupOperation(standardLibrary, operationName, argumentTypes);
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(containerClass) + "<" + String.valueOf(elementClass) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+		return String.valueOf(containerType) + "<" + String.valueOf(elementType) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

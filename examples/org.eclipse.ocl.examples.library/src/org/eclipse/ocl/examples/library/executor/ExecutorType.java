@@ -16,14 +16,14 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainFragment;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainClassifierType;
-import org.eclipse.ocl.examples.domain.types.DomainFragment;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public class ExecutorType extends AbstractInheritance implements DomainClassifierType, ExecutorTypeArgument
 {
@@ -38,10 +38,6 @@ public class ExecutorType extends AbstractInheritance implements DomainClassifie
 		this.name = name;
 		this.evaluationPackage = evaluationPackage;
 		this.flags = flags;
-	}
-	
-	public final ExecutorPackage getEvaluationPackage() {
-		return evaluationPackage;
 	}
 	
 	@Override
@@ -73,6 +69,10 @@ public class ExecutorType extends AbstractInheritance implements DomainClassifie
 
 	public final String getName() {
 		return name;
+	}
+	
+	public final ExecutorPackage getPackage() {
+		return evaluationPackage;
 	}
 
 	public DomainStandardLibrary getStandardLibrary() {
@@ -110,6 +110,13 @@ public class ExecutorType extends AbstractInheritance implements DomainClassifie
 //		return false;
 	}
 
+	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		return false;
+	}
+
 	public boolean isOrdered() {
 		return (flags & ORDERED) != 0;
 	}
@@ -118,7 +125,9 @@ public class ExecutorType extends AbstractInheritance implements DomainClassifie
 		if (this == type) {
 			return true;
 		}
-		return standardLibrary.isSuperClassOf(this, type);
+		DomainInheritance thisInheritance = this;
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		return thisInheritance.isSuperInheritanceOf(standardLibrary, thatInheritance);
 	}
 
 	public boolean isUnique() {

@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
-public abstract class PivotStandardLibrary extends AbstractStandardLibrary
+public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME AbstractStandardLibrary is unhelpful
 {
 	private static final Logger logger = Logger.getLogger(PivotStandardLibrary.class);
 
@@ -95,8 +95,10 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary
 		}
 	}
 
+	@Override
 	public void dispose() {
 		resetLibrary();	
+		super.dispose();
 	}
 
 	public ClassifierType getAnyClassifierType() {

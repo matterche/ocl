@@ -16,19 +16,26 @@
  */
 package org.eclipse.ocl.examples.domain.types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 
 public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 {
-	private Map<DomainType, Map<DomainType, AbstractCollectionType>> specializations = new HashMap<DomainType, Map<DomainType, AbstractCollectionType>>();
-	private Map<String, Map<DomainType, DomainTypedElement>> tupleProperties = new HashMap<String, Map<DomainType, DomainTypedElement>>();
-	private Map<String, List<DomainTupleType>> tupleTypeMap = new HashMap<String, List<DomainTupleType>>();
-	
+	/**
+	 * Mapping from name to list of correspondingly named types for definition of tuple parts. This cache is used to provide the
+	 * required part definitions to construct a tuple type in the lightweight execution environment. This cache may remain
+	 * unused when using the full pivot environment.
+	 */
+	private Map<String, Map<DomainType, DomainTypedElement>> tupleParts = null;		// Lazily created
+		
 	public boolean conformsToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType) {
 		DomainType firstContainerType = firstCollectionType.getContainerType();
 		DomainType secondContainerType = secondCollectionType.getContainerType();
@@ -67,59 +74,18 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		return secondTupleType.isSuperClassOf(this, firstTupleType);
 	}
 
-	public DomainCollectionType getBagType(DomainType elementType) {
-		return getCollectionType(getBagType(), elementType);
-	}
-
-	public DomainClassifierType getClassifierType(DomainType classType) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-
-	public DomainCollectionType getCollectionType(DomainType genericType, DomainType elementType) {
-		AbstractCollectionType specializedType = null;
-		Map<DomainType, AbstractCollectionType> map = specializations.get(genericType);
-		if (map == null) {
-			map = new HashMap<DomainType, AbstractCollectionType>();
-			specializations.put(genericType, map);
-		}
-		else {
-			specializedType = map.get(elementType);
-		}
-		if (specializedType == null) {
-			specializedType = new AbstractCollectionType(genericType.getName(), genericType, elementType);
-			map.put(elementType, specializedType);
-		}
-		return specializedType;
-	}
-
-	public DomainType getCommonType(DomainType firstType, DomainType secondType) {
-//		if (firstType instanceof VoidType) {
-//			return secondType;
-//		}
-		DomainInheritance firstInheritance = firstType.getInheritance(this);
-		DomainInheritance secondInheritance = secondType.getInheritance(this);
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
-	}
-
-	public DomainCollectionType getOrderedSetType(DomainType elementType) {
-		return getCollectionType(getOrderedSetType(), elementType);
-	}
-
-	public DomainCollectionType getSequenceType(DomainType elementType) {
-		return getCollectionType(getSequenceType(), elementType);
-	}
-
-	public DomainCollectionType getSetType(DomainType elementType) {
-		return getCollectionType(getSetType(), elementType);
+	public void dispose() {
+		tupleParts = null;	
 	}
 
 	public DomainTypedElement getTuplePart(String name, DomainType type) {
-		Map<DomainType, DomainTypedElement> typeMap = tupleProperties.get(name);
+		if (tupleParts == null) {
+			tupleParts = new HashMap<String, Map<DomainType, DomainTypedElement>>();
+		}
+		Map<DomainType, DomainTypedElement> typeMap = tupleParts.get(name);
 		if (typeMap == null) {
 			typeMap = new HashMap<DomainType, DomainTypedElement>();
-			tupleProperties.put(name, typeMap);
+			tupleParts.put(name, typeMap);
 		}
 		DomainTypedElement tupleProperty = typeMap.get(type);
 		if (tupleProperty == null) {
@@ -127,37 +93,6 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			typeMap.put(type, tupleProperty);
 		}
 		return tupleProperty;
-	}
-
-	public DomainTupleType getTupleType(List<? extends DomainTypedElement> parts) {
-		StringBuffer s = new StringBuffer();
-		for (DomainTypedElement part : parts) {
-			s.append(part.getName());
-			s.append("\n"); //$NON-NLS-1$
-		}
-		String key = s.toString();
-		List<DomainTupleType> tupleTypes = tupleTypeMap.get(key);
-		if (tupleTypes != null) {
-			for (DomainTupleType tupleType : tupleTypes) {
-				int i = 0;
-				for (; i < parts.size(); i++) {
-					List<? extends DomainTypedElement> ownedAttributes = tupleType.getOwnedAttributes();
-					if (ownedAttributes.get(i).getType() != parts.get(i).getType()) {
-						break;
-					}
-				}
-				if (i >= parts.size()) {
-					return tupleType;
-				}
-			}
-		}
-		else {
-			tupleTypes = new ArrayList<DomainTupleType>();
-			tupleTypeMap.put(key, tupleTypes);
-		}
-		DomainTupleType tupleType = new AbstractTupleType("Tuple", parts);
-		tupleTypes.add(tupleType);
-		return tupleType;
 	}
 	
 	public boolean isEqualToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType) {
@@ -167,7 +102,7 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (firstContainerType == null) {
 				return false;
 			}
-			if (!firstContainerType.isEqualTo(this, secondContainerType)) {
+			if (!firstContainerType.isEqualToUnspecializedType(this, secondContainerType)) {
 				return false;
 			}
 		}
@@ -216,9 +151,5 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			}
 		}
 		return true;
-	}
-
-	public boolean isSuperClassOf(DomainType firstType, DomainType secondType) {
-		throw new UnsupportedOperationException();
 	}
 }

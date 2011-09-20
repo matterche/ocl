@@ -19,9 +19,9 @@ package org.eclipse.ocl.examples.library.executor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 public class ExecutorEvaluationEnvironment implements DomainEvaluationEnvironment

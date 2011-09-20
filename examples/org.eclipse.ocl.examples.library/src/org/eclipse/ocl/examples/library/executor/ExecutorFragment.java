@@ -16,12 +16,12 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public class ExecutorFragment extends AbstractFragment
 {

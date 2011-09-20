@@ -14,9 +14,8 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public interface DomainFragment

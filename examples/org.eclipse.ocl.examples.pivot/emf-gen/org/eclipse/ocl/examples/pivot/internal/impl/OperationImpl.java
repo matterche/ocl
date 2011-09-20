@@ -18,7 +18,9 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -34,8 +36,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -1101,10 +1103,20 @@ public class OperationImpl
 	}
 
 	public int getIndex() {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();		// WIP
 	}
 
 	public DomainInheritance getInheritance() {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();		// WIP
+	}
+
+	public List<Type> getParameterTypes() {
+		List<Parameter> ownedParameters = getOwnedParameters();
+		List<Type> parameterTypes = new ArrayList<Type>(ownedParameters.size());
+		for (Parameter parameter : ownedParameters) {
+			Type parameterType = parameter.getType();
+			parameterTypes.add(parameterType);
+		}
+		return parameterTypes;
 	}
 } //OperationImpl

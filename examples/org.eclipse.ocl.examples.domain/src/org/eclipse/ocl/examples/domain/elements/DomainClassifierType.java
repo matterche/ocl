@@ -14,13 +14,9 @@
  *
  * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
-import java.util.List;
 
-import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-
-public interface DomainTupleType extends DomainType
-{
-	List<? extends DomainTypedElement> getOwnedAttributes();
+public interface DomainClassifierType extends DomainType {
+	DomainType getInstanceType();
 }

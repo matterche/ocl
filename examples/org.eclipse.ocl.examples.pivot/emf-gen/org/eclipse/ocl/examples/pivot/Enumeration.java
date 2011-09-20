@@ -40,7 +40,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Enumeration
-		extends DataType, org.eclipse.ocl.examples.domain.types.DomainEnumeration {
+		extends DataType, org.eclipse.ocl.examples.domain.elements.DomainEnumeration {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Literal</b></em>' containment reference list.

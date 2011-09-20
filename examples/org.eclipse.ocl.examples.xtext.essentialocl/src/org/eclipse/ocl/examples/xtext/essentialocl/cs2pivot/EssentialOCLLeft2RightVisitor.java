@@ -858,7 +858,7 @@ public class EssentialOCLLeft2RightVisitor
 				commonType = type;
 			}
 			else {
-				commonType = metaModelManager.getCommonType(commonType, type);
+				commonType = metaModelManager.getCommonType(commonType, type, null);
 			}
 		}
 //		if (invalidValue != null) {
@@ -901,7 +901,7 @@ public class EssentialOCLLeft2RightVisitor
 		if (csLast != null) {
 			OclExpression pivotLast = PivotUtil.getPivot(OclExpression.class, csLast);
 			Type secondType = pivotLast.getType();
-			type = metaModelManager.getCommonType(type, secondType);
+			type = metaModelManager.getCommonType(type, secondType, null);
 		}
 		CollectionLiteralPart expression = PivotUtil.getPivot(CollectionLiteralPart.class, csCollectionLiteralPart);
 		context.setType(expression, type);
@@ -1007,7 +1007,7 @@ public class EssentialOCLLeft2RightVisitor
 		expression.setThenExpression(thenExpression);
 		OclExpression elseExpression = context.visitLeft2Right(OclExpression.class, csIfExp.getElseExpression());
 		expression.setElseExpression(elseExpression);
-		context.setType(expression, metaModelManager.getCommonType(thenExpression.getType(), elseExpression.getType()));
+		context.setType(expression, metaModelManager.getCommonType(thenExpression.getType(), elseExpression.getType(), null));
 		return expression;
 	}
 

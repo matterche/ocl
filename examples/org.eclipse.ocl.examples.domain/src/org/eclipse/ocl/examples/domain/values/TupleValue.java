@@ -17,8 +17,8 @@
 
 package org.eclipse.ocl.examples.domain.values;
 
+import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.DomainTupleType;
 
 /**
  * Interface of a tuple instance value.  OCL expressions resulting in tuples

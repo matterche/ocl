@@ -19,11 +19,11 @@ package org.eclipse.ocl.examples.pivot.manager;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -42,24 +42,16 @@ public class TupleTypeManager
 	/**
 	 * TuplePart provides a convenient descriptor for a tuple part complying with the full EMF model protocols.
 	 */
-	public static class TuplePart extends TypedElementImpl
+	public static class TuplePart extends TypedElementImpl implements Comparable<TuplePart>
 	{
 		public TuplePart(String name, Type type) {
 			setName(name);
 			setType(type);
 		}
-	}
 
-	/**
-	 * TuplePartComparator supports sorting tuple part list into alphabetical order by part name.
-	 */
-	public static class TuplePartComparator implements Comparator<TypedElement>
-	{
-		public static final TuplePartComparator INSTANCE = new TuplePartComparator();
-		
-		public int compare(TypedElement o1, TypedElement o2) {
-			String n1 = o1.getName();
-			String n2 = o2.getName();
+		public int compareTo(TuplePart o) {
+			String n1 = getName();
+			String n2 = o.getName();
 			if (n1 == n2) {
 				return 0;
 			}
@@ -71,7 +63,7 @@ public class TupleTypeManager
 			}				
 			return n1.compareTo(n2);
 		}
-	}	
+	}
 
 	protected final MetaModelManager metaModelManager;
 	
@@ -137,7 +129,7 @@ public class TupleTypeManager
 	/**
 	 * Return the named tuple type with the defined alphabetically ordered parts.
 	 */
-    protected TupleType getOrderedTupleType(String name, List<? extends TypedElement> orderedParts) {
+    protected TupleType getOrderedTupleType(String name, List<TuplePart> orderedParts) {
 		if (hash2tuple == null) {
 			hash2tuple = new HashMap<Integer, List<TupleType>>();
 		}
@@ -155,7 +147,7 @@ public class TupleTypeManager
 			List<Property> candidateParts = candidateTupleType.getOwnedAttributes();
 			if (candidateParts.size() == iMax) {
 				int i = 0;
-				for (TypedElement orderedPart : orderedParts) {
+				for (TuplePart orderedPart : orderedParts) {
 					Property candidatePart = candidateParts.get(i);
 					if (orderedPart.getType() != candidatePart.getType()) {
 						break;
@@ -173,7 +165,7 @@ public class TupleTypeManager
 		TupleType tupleType = PivotFactory.eINSTANCE.createTupleType();
 		tupleType.setName(name);
 		List<Property> tupleParts = tupleType.getOwnedAttributes();
-		for (TypedElement part : orderedParts) {
+		for (TuplePart part : orderedParts) {
 			Property tuplePart = PivotFactory.eINSTANCE.createProperty();
 			tuplePart.setName(part.getName());
 			tuplePart.setType(part.getType());
@@ -185,13 +177,15 @@ public class TupleTypeManager
 		return tupleType;
 	}
 	
-	public TupleType getTupleType(String typeName, Collection<? extends TypedElement> parts,
+	public TupleType getTupleType(String typeName, Collection<? extends DomainTypedElement> parts,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		List<TypedElement> orderedParts = new ArrayList<TypedElement>(parts);
-		Collections.sort(orderedParts, TuplePartComparator.INSTANCE);
-		for (TypedElement part : orderedParts) {
-			part.setType(metaModelManager.getSpecializedType(part.getType(), bindings));
+		List<TuplePart> orderedParts = new ArrayList<TuplePart>(parts.size());
+		for (DomainTypedElement part : parts) {
+			Type type = metaModelManager.getType(part.getType());
+			Type specializedType = metaModelManager.getSpecializedType(type, bindings);
+			orderedParts.add(new TuplePart(part.getName(), specializedType));
 		}
+		Collections.sort(orderedParts);
 		return getOrderedTupleType(typeName, orderedParts);
 	}
 

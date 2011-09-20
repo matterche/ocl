@@ -17,7 +17,11 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -31,16 +35,17 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -1014,24 +1019,68 @@ public class TypeImpl
 	}
 	
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
 		return metaModelManager.conformsTo(this, metaModelManager.getType(type), null);
+	}
+	
+	protected List<Operation> findOperations(MetaModelManager metaModelManager, Type forType, String requiredOperationName, List<? extends DomainType> requiredParameterTypes, Set<Type> alreadyVisited) {
+		alreadyVisited.add(forType);
+		int iMax = requiredParameterTypes.size();
+		for (Operation candidateOperation : metaModelManager.getLocalOperations(forType, Boolean.FALSE)) {
+			if (requiredOperationName.equals(candidateOperation.getName())) {
+				List<Parameter> ownedParameters = candidateOperation.getOwnedParameters();
+				if (ownedParameters.size() == iMax) {
+					boolean gotIt = true;
+					for (int i = 0; i < iMax; i++) {
+						Parameter candidateParameter = ownedParameters.get(i);
+						Type candidateParameterType = candidateParameter.getType();
+						DomainType requiredParameterType = requiredParameterTypes.get(i);
+						if (!candidateParameterType.isEqualTo(metaModelManager, requiredParameterType)) {
+							gotIt = false;
+							break;
+						}
+					}
+					if (gotIt) {
+						ArrayList<Operation> result = new ArrayList<Operation>();
+						result.add(candidateOperation);
+						return result;
+					}
+				}
+			}
+		}
+		List<Operation> results = null;
+		for (Type superType : metaModelManager.getSuperClasses(forType)) {
+			if (!alreadyVisited.contains(superType)) {
+				List<Operation> partialResults = findOperations(metaModelManager, superType, requiredOperationName, requiredParameterTypes, alreadyVisited);
+				if (results == null) {
+					results = partialResults;
+				}
+				else if (partialResults != null) {
+					results.addAll(partialResults);
+				}
+			}
+		}
+		return results;
 	}
 
 	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
-		return standardLibrary.getCommonType(this, type);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
+		return metaModelManager.getCommonType(this, metaModelManager.getType(type), null);
 	}
 
 	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
-		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
 		return metaModelManager.getInheritance(this);
 	}
 
-	protected MetaModelManager getMetaModelManager(DomainStandardLibrary standardLibrary) {
-		return (MetaModelManager) standardLibrary;			// FIXME cast
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (this == type) {
+			return true;
+		}
+		return false;
 	}
 
-	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
+	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
@@ -1050,7 +1099,7 @@ public class TypeImpl
 		if (this == type) {
 			return true;
 		}
-		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
 		return metaModelManager.isSuperClassOf(this, metaModelManager.getType(type));
 	}
 
@@ -1059,8 +1108,14 @@ public class TypeImpl
 	}
 
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
-		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
-		DomainOperation dynamicOperation = metaModelManager.lookupDynamicOperation(this, staticOperation);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
+		DomainOperation dynamicOperation = staticOperation;
+		if (!staticOperation.isStatic()) {
+			String requiredOperationName = staticOperation.getName();
+			List<? extends DomainType> requiredParameterTypes = staticOperation.getParameterTypes();
+			List<Operation> partialResults = findOperations(metaModelManager, this, requiredOperationName, requiredParameterTypes, new HashSet<Type>());
+			dynamicOperation = resolveDuplicates(metaModelManager, partialResults);
+		}
 		try {
 			return metaModelManager.lookupImplementation(dynamicOperation);
 		} catch (Exception e) {
@@ -1069,7 +1124,7 @@ public class TypeImpl
 	}
 
 	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		MetaModelManager metaModelManager = getMetaModelManager(standardLibrary);
+		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
 		if (argumentTypes == null) {
 			return metaModelManager.resolveOperation(this, operationName);
 		}
@@ -1084,4 +1139,30 @@ public class TypeImpl
 			return metaModelManager.resolveOperation(this, operationName, types);
 		}
 	}
+	
+	protected Operation resolveDuplicates(DomainStandardLibrary standardLibrary, List<Operation> operations) {
+		if (operations == null) {
+			return null;
+		}
+		int iSize = operations.size();
+		if (iSize <= 0) {
+			return null;
+		}
+		Operation bestOperation = operations.get(0);
+		Type bestType = bestOperation.getOwningType();
+		for (int i = 1; i < iSize; i++) {
+			Operation candidateOperation = operations.get(i);
+			Type candidateType = candidateOperation.getOwningType();
+			if (candidateType.conformsTo(standardLibrary, bestType)) {
+				bestType = candidateType;
+				bestOperation = candidateOperation;
+			}
+		}
+		return bestOperation;
+	}
+
+//	public DomainType specializeType(DomainStandardLibrary standardLibrary, Map<TemplateParameter, ParameterableElement> bindings) {
+//		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
+//		return metaModelManager.getSpecializedType(this, bindings);
+//	}
 } //TypeImpl

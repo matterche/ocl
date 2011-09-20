@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.pivot.executor;
 
 import java.util.Collections;
 
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 

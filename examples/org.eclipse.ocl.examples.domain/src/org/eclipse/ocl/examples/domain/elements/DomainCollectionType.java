@@ -14,7 +14,7 @@
  *
  * $Id: Value.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
 
 public interface DomainCollectionType extends DomainType

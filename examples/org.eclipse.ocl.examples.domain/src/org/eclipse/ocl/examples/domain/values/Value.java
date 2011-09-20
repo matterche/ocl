@@ -19,9 +19,10 @@ package org.eclipse.ocl.examples.domain.values;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 /**
  * asXXX returns an XXX if self is an XXX and not Null (and is not Invalid),
@@ -44,6 +45,7 @@ public interface Value
 	ElementValue<?> asElementValue() throws InvalidValueException;
 	Integer asInteger() throws InvalidValueException;
 	IntegerValue asIntegerValue() throws InvalidValueException;
+	EObject asNavigableObject() throws InvalidValueException;
 	Object asObject();
 	ObjectValue asObjectValue() throws InvalidValueException;
 	OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException;

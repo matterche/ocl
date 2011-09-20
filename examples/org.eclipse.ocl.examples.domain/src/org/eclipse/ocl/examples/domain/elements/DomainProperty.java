@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public interface DomainProperty extends DomainTypedElement
 {

@@ -12,14 +12,11 @@
  *
  * </copyright>
  *
- * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.types.DomainType;
-
-public interface DomainTypedElement extends DomainElement
+public interface DomainTypedElement extends DomainNamedElement
 {
-	String getName();
 	DomainType getType();
 }

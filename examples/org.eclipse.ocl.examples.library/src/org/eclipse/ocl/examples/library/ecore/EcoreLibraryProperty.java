@@ -19,10 +19,10 @@ package org.eclipse.ocl.examples.library.ecore;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
@@ -40,11 +40,8 @@ public class EcoreLibraryProperty extends AbstractProperty
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
 		ValueFactory valueFactory = evaluator.getValueFactory();
-		Object object = sourceValue.asObject();
-		if (!(object instanceof EObject)) {
-			return evaluator.throwInvalidEvaluation(null, null, object, "non-EObject"); //$NON-NLS-1$
-		}
-		Object eValue = ((EObject)object).eGet(eFeature);
+		EObject eObject = sourceValue.asNavigableObject();
+		Object eValue = eObject.eGet(eFeature);
 		return valueFactory.valueOf(eValue, eFeature);
 	}
 

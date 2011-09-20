@@ -42,10 +42,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.types.DomainCollectionType;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -76,7 +79,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
@@ -98,7 +100,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotValueFactory;
 import org.eclipse.osgi.util.NLS;
 
-public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal
+public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal, MetaModelManageable
 {		
 	public class CompleteTypeOperationsIterable extends CompleteElementIterable<Type, Operation>
 	{
@@ -415,6 +417,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			eAdapters.add(adapter);
 		}
 		return adapter;
+	}
+
+	public static MetaModelManager getMetaModelManager(DomainStandardLibrary standardLibrary) {
+		if (standardLibrary instanceof MetaModelManageable) {
+			return ((MetaModelManageable)standardLibrary).getMetaModelManager();
+		}
+		else {
+			throw new IllegalStateException(standardLibrary.getClass().getName() + " is not MetaModelManageable");
+		}
 	}
 
 	public static void initializePivotResourceSet(ResourceSet pivotResourceSet) {
@@ -986,91 +997,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			System.out.println(s);		
 		}
 	} */
-	
-	private Set<Iteration> findModelIterationsOrNull(Type type,
-			String operationName, List<Type> staticCompleteIteratorTypes,
-			List<Type> staticCompleteAccumulatorTypes, List<Type> staticCompleteParameterTypes) {
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, type);
-		int staticIteratorsSize = staticCompleteIteratorTypes.size();
-		Set<Iteration> list = null;
-		for (Iteration modelIteration : getLocalModelIterations(type, operationName)) {
-//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
-			List<Parameter> modelIterators = modelIteration.getOwnedIterators();
-			if (staticIteratorsSize == modelIterators.size()) {
-				boolean gotIt = true;
-				for (int i = 0; i < staticIteratorsSize; i++) {
-					Type staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
-					Parameter modelIterator = modelIterators.get(i);
-					Type dynamicCompleteIteratorType = getSpecializedType(modelIterator.getType(), bindings);
-					if (!conformsTo(dynamicCompleteIteratorType, staticCompleteIteratorType, null)) {
-						gotIt = false;
-					}
-				}
-				if (gotIt) {
-					if (list == null) {
-						list = new HashSet<Iteration>();
-					}
-					list.add(modelIteration);
-				}
-			}
-		}
-		if (list == null) {
-			for (Type completeSuperType : getSuperClasses(type)) {
-				Set<Iteration> superIterations = findModelIterationsOrNull(
-					completeSuperType, operationName, staticCompleteIteratorTypes,
-					staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
-				if (superIterations != null) {
-					if (list == null) {
-						list = superIterations;
-					} else {
-						list.addAll(superIterations);
-					}
-				}
-			}
-		}
-		return list;
-	}
-
-	private Set<Operation> findModelOperationsOrNull(Type type,
-			String operationName, List<Type> staticCompleteTypes, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
-		int staticParametersSize = staticCompleteTypes.size();
-		Set<Operation> list = null;
-		for (Operation modelOperation : getLocalModelOperations(type, operationName)) {
-			Map<TemplateParameter, ParameterableElement> bindings = null; //PivotUtil.getAllTemplateParametersAsBindings(modelOperation);
-			List<Parameter> modelParameters = modelOperation.getOwnedParameters();
-			if (staticParametersSize == modelParameters.size()) {
-				boolean gotIt = true;
-				for (int i = 0; i < staticParametersSize; i++) {
-					Type staticCompleteType = staticCompleteTypes.get(i);
-					Parameter modelParameter = modelParameters.get(i);
-					Type dynamicCompleteType = getSpecializedType(modelParameter.getType(), templateParameterSubstitutions);
-					if (!conformsTo(dynamicCompleteType, staticCompleteType, bindings)) {
-						gotIt = false;
-					}
-				}
-				if (gotIt) {
-					if (list == null) {
-						list = new HashSet<Operation>();
-					}
-					list.add(modelOperation);
-				}
-			}
-		}
-		if (list == null) {
-			for (Type completeSuperType : getSuperClasses(type)) {
-				Set<Operation> superOperations = findModelOperationsOrNull(
-					completeSuperType, operationName, staticCompleteTypes, templateParameterSubstitutions);
-				if (superOperations != null) {
-					if (list == null) {
-						list = superOperations;
-					} else {
-						list.addAll(superOperations);
-					}
-				}
-			}
-		}
-		return list;
-	}
 
 /*	public <T extends Type> T findOrphanClass(Class<T> unspecializedType, String moniker) {		
 		List<Type> ownedSpecializations = getOrphanPackage().getOwnedTypes();
@@ -1197,11 +1123,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 	}
 
+	public CollectionType getBagType(DomainType elementType) {
+		return getBagType(getType(elementType));
+	}
+
 	public CollectionType getBagType(Type elementType) {
 		return getLibraryType(getBagType(), Collections.singletonList(elementType));
 	}
 
-	@Override
 	public ClassifierType getClassifierType(DomainType instanceType) {
 		return getClassifierType(getType(instanceType));
 	}
@@ -1253,7 +1182,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getLibraryType(collectionTypeName, Collections.singletonList(elementType));
 	}
 	
-	@Override
 	public CollectionType getCollectionType(DomainType genericType, DomainType elementType) {
 		return getLibraryType((CollectionType)getType(genericType), Collections.singletonList(getType(elementType)));
 	}
@@ -1276,11 +1204,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		return commonClasses;
-	}
-
-	@Override
-	public Type getCommonType(DomainType leftType, DomainType rightType) {
-		return getCommonType(getType(leftType), getType(rightType), null);
 	}
 	
 	public Type getCommonType(Type leftType, Type rightType, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
@@ -1321,80 +1244,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public String getDefaultStandardLibraryURI() {
 		return defaultStandardLibraryURI;
-	}
-
-	public Operation getDynamicOperation(Type dynamicType, Operation staticOperation) {
-		if (staticOperation instanceof Iteration) {
-			return getDynamicOperationForIteration(dynamicType, (Iteration) staticOperation);
-		}
-		else {
-			return getDynamicOperationForOperation(dynamicType, staticOperation);
-		}
-	}
-	
-	private Iteration getDynamicOperationForIteration(Type dynamicType, Iteration staticModelIteration)
-	{
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicType);
-//		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
-		List<Type> staticCompleteIteratorTypes = new ArrayList<Type>();
-		for (Parameter staticIterator : staticModelIteration.getOwnedIterators()) {
-			staticCompleteIteratorTypes.add(getSpecializedType(staticIterator.getType(), bindings));
-		}
-		List<Type> staticCompleteAccumulatorTypes = new ArrayList<Type>();
-		for (Parameter staticAccumulator : staticModelIteration.getOwnedAccumulators()) {
-			staticCompleteAccumulatorTypes.add(getSpecializedType(staticAccumulator.getType(), bindings));
-		}
-		List<Type> staticCompleteParameterTypes = new ArrayList<Type>();
-		for (Parameter staticParameter : staticModelIteration.getOwnedParameters()) {
-			staticCompleteParameterTypes.add(getSpecializedType(staticParameter.getType(), bindings));
-		}
-		Iteration dynamicIteration = null;
-		Set<Iteration> modelIterations = findModelIterationsOrNull(dynamicType, staticModelIteration.getName(),
-			staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
-		if (modelIterations != null) {
-			if (modelIterations.size() == 1) {
-				dynamicIteration = modelIterations.iterator().next();
-			}
-			else if (modelIterations.size() > 1) {
-				Iteration conformantIteration = null;
-				boolean ok = true;
-				for (Iteration completeIteration : modelIterations) {
-					if (conformantIteration == null) {
-						conformantIteration = completeIteration;
-					}
-					else {
-						Type completeClass = PivotUtil.getOwningType(completeIteration);
-						Type conformantClass = PivotUtil.getOwningType(conformantIteration);
-						if (conformsTo(completeClass, conformantClass, bindings)) {
-							conformantIteration = completeIteration;
-						}
-						else if (!conformsTo(conformantClass, completeClass, bindings)) {
-							ok = false;
-						}
-					}
-				}
-				if (ok) {
-					dynamicIteration = conformantIteration;
-				}
-			}
-		}
-		return dynamicIteration;
-	}
-
-	private Operation getDynamicOperationForOperation(Type dynamicType, Operation staticModelOperation) {
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicType);
-		PivotUtil.getAllTemplateParameterSubstitutions(bindings, staticModelOperation);
-		List<Type> staticCompleteTypes = new ArrayList<Type>();
-		for (Parameter staticParameter : staticModelOperation.getOwnedParameters()) {
-			staticCompleteTypes.add(getSpecializedType(staticParameter.getType(), bindings));
-		}
-		Operation dynamicModelOperation = null;
-		String name = staticModelOperation.getName();
-		Set<Operation> modelOperations = findModelOperationsOrNull(dynamicType, name, staticCompleteTypes, bindings);
-		if ((modelOperations != null) && (modelOperations.size() == 1)) {
-			dynamicModelOperation = modelOperations.iterator().next();
-		}
-		return dynamicModelOperation;
 	}
 
 	public ResourceSet getExternalResourceSet() {
@@ -1544,42 +1393,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.emptyList();
 		}
 		else {
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
 			return new CompleteElementConstraintsIterable(getAllTypes(type));
 		}
-	}
-
-	private Iterable<Iteration> getLocalModelIterations(Type aType, String name) {
-		List<Iteration> iterations = new ArrayList<Iteration>();
-		Type type = getPrimaryType(aType);
-//		if (type.getTemplateBindings().size() > 0) {
-			type = PivotUtil.getUnspecializedTemplateableElement(type);
-//		}
-		for (Operation anOperation : getLocalOperations(type, null)) {
-			if ((anOperation instanceof Iteration) && name.equals(anOperation.getName())) {
-				Operation iteration = getPrimaryOperation(anOperation);
-				if (!iterations.contains(iteration)) {
-					iterations.add((Iteration) iteration);
-				}
-			}
-		}
-		return iterations;
-	}
-
-	private Iterable<Operation> getLocalModelOperations(Type aType, String name) {	// FIXME return an iterator
-		List<Operation> operations = new ArrayList<Operation>();
-		Type type = getPrimaryType(aType);
-//		if (type.getTemplateBindings().size() > 0) {
-			type = PivotUtil.getUnspecializedTemplateableElement(type);
-//		}
-		for (Operation anOperation : getLocalOperations(type, null)) {
-			if (!(anOperation instanceof Iteration) && name.equals(anOperation.getName())) {
-				Operation operation = getPrimaryOperation(anOperation);
-				if (!operations.contains(operation)) {
-					operations.add(operation);
-				}
-			}
-		}
-		return operations;
 	}
 
 	public Iterable<Operation> getLocalOperations(Type type, Boolean selectStatic) {
@@ -1587,9 +1403,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.emptyList();
 		}
 		else {
-//			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
-				type = PivotUtil.getUnspecializedTemplateableElement(type);
-//			}
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
 			return new CompleteTypeOperationsIterable(getAllTypes(type), selectStatic);
 		}
 	}
@@ -1603,15 +1417,21 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.emptyList();
 		}
 		else {
-//			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
-				type = PivotUtil.getUnspecializedTemplateableElement(type);
-//			}
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
 			return new CompleteClassPropertiesIterable(getAllTypes(type), selectStatic);
 		}
 	}
 
 	public EObject getLockingObject() {
 		return lockingAnnotation;
+	}
+
+	public MetaModelManager getMetaModelManager() {
+		return this;
+	}
+
+	public CollectionType getOrderedSetType(DomainType elementType) {
+		return getOrderedSetType(getType(elementType));
 	}
 
 	public CollectionType getOrderedSetType(Type elementType) {
@@ -1836,8 +1656,16 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return uri;
 	}
 
+	public CollectionType getSequenceType(DomainType elementType) {
+		return getSequenceType(getType(elementType));
+	}
+
 	public CollectionType getSequenceType(Type elementType) {
 		return getLibraryType(getSequenceType(), Collections.singletonList(elementType));
+	}
+
+	public CollectionType getSetType(DomainType elementType) {
+		return getSetType(getType(elementType));
 	}
 
 	public CollectionType getSetType(Type elementType) {
@@ -1984,7 +1812,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return tupleManager;
 	}
 	
-	public TupleType getTupleType(String typeName, Collection<? extends TypedElement> parts,
+	public DomainTupleType getTupleType(List<? extends DomainTypedElement> parts) {
+		return getTupleType("Tuple", parts, null);
+	}
+
+	public TupleType getTupleType(String typeName, Collection<? extends DomainTypedElement> parts,
 			Map<TemplateParameter, ParameterableElement> bindings) {
 		TupleTypeManager tupleManager = getTupleManager();
 		return tupleManager.getTupleType(typeName, parts, bindings);
@@ -2353,9 +2185,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getImplementation((Operation) dynamicOperation);
 	}
 
-	public DomainOperation lookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
-		return getDynamicOperation(getType(type), (Operation) staticOperation);
-	}
+//	public DomainOperation zzlookupDynamicOperation(DomainType type, DomainOperation staticOperation) {
+//		return getDynamicOperation(getType(type), getOperation(staticOperation));
+//	}
 
 	public void notifyChanged(Notification notification) {
 	}

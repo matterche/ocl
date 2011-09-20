@@ -36,7 +36,7 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface ClassifierType extends DataType, org.eclipse.ocl.examples.domain.types.DomainClassifierType
+public interface ClassifierType extends DataType, org.eclipse.ocl.examples.domain.elements.DomainClassifierType
 {
 	/**
 	 * Returns the value of the '<em><b>Instance Type</b></em>' reference.

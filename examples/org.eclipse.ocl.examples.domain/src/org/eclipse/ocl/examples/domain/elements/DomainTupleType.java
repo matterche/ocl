@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id$
+ * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import java.util.List;
 
-public interface DomainEnumeration extends DomainType
+
+public interface DomainTupleType extends DomainType
 {
-	Iterable<? extends DomainElement> getOwnedLiterals();
+	List<? extends DomainTypedElement> getOwnedAttributes();
 }

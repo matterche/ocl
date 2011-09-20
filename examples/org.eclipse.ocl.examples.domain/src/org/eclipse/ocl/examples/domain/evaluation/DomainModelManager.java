@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.domain.evaluation;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 
 /**
  * DomainModelManager provides the models to be used during evaluation. In particular

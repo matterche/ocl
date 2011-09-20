@@ -15,6 +15,7 @@
  * $Id$
  */
 package org.eclipse.ocl.examples.domain.types;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 
 public class AbstractTuplePart implements DomainTypedElement

@@ -15,11 +15,12 @@
  * $Id$
  */
 package org.eclipse.ocl.examples.library.executor;
-import org.eclipse.ocl.examples.domain.types.AbstractStandardLibrary;
-import org.eclipse.ocl.examples.domain.types.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.types.AbstractClassifierType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
-public class ExecutorStandardLibrary extends AbstractStandardLibrary
+public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
 	public static final ExecutorStandardLibrary INSTANCE = new ExecutorStandardLibrary();
 	
@@ -27,87 +28,10 @@ public class ExecutorStandardLibrary extends AbstractStandardLibrary
 		OCLstdlibTables.PACKAGE.getClass();
 	}
 
-	public DomainType getAnyClassifierType() {
-		return OCLstdlibTables.Types._AnyClassifier;
-	}
-	
-	public DomainType getBagType() {
-		return OCLstdlibTables.Types._Bag;
-	}
-
-	public DomainType getBooleanType() {
-		return OCLstdlibTables.Types._Boolean;
-	}
-
-	public DomainType getCollectionType() {
-		return OCLstdlibTables.Types._Collection;
-	}
-
-	public DomainType getEnumerationType() {
-		return OCLstdlibTables.Types._Enumeration;
-	}
-
-	public DomainType getIntegerType() {
-		return OCLstdlibTables.Types._Integer;
-	}
-
-	public DomainType getOclAnyType() {
-		return OCLstdlibTables.Types._OclAny;
-	}
-
-	public DomainType getOclComparableType() {
-		return OCLstdlibTables.Types._OclComparable;
-	}
-
-	public DomainType getOclElementType() {
-		return OCLstdlibTables.Types._OclElement;
-	}
-
-	public DomainType getOclInvalidType() {
-		return OCLstdlibTables.Types._OclInvalid;
-	}
-
-	public DomainType getOclMessageType() {
-		return OCLstdlibTables.Types._OclMessage;
-	}
-
-	public DomainType getOclSelfType() {
-		return OCLstdlibTables.Types._OclSelf;
-	}
-
-	public DomainType getOclSummableType() {
-		return OCLstdlibTables.Types._OclSummable;
-	}
-
-	public DomainType getOclTupleType() {
-		return OCLstdlibTables.Types._OclTuple;
-	}
-
-	public DomainType getOclVoidType() {
-		return OCLstdlibTables.Types._OclVoid;
-	}
-
-	public DomainType getOrderedSetType() {
-		return OCLstdlibTables.Types._OrderedSet;
-	}
-
-	public DomainType getRealType() {
-		return OCLstdlibTables.Types._Real;
-	}
-
-	public DomainType getSequenceType() {
-		return OCLstdlibTables.Types._Sequence;
-	}
-
-	public DomainType getSetType() {
-		return OCLstdlibTables.Types._Set;
-	}
-
-	public DomainType getStringType() {
-		return OCLstdlibTables.Types._String;
-	}
-
-	public DomainType getUnlimitedNaturalType() {
-		return OCLstdlibTables.Types._UnlimitedNatural;
+	@Override
+	protected DomainClassifierType createClassiferType(DomainType classType) {
+		DomainType anyClassifierType = getAnyClassifierType();
+		DomainClassifierType classifierType = new AbstractClassifierType(anyClassifierType.getName(), anyClassifierType, classType);
+		return classifierType;
 	}
 }

@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.domain.library;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 
 /**
  * The LibraryValidator defines the behaviour of library-feature-specific validators. An

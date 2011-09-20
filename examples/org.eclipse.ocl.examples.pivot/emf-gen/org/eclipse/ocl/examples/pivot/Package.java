@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package</b></em>'.
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainPackage
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -46,7 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Package
-		extends Namespace, TemplateableElement {
+		extends Namespace, TemplateableElement, org.eclipse.ocl.examples.domain.elements.DomainPackage {
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.

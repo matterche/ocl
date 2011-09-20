@@ -14,10 +14,8 @@
  *
  * $Id: Value.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
@@ -27,7 +25,9 @@ public interface DomainType extends DomainElement
 	DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type);
 	DomainInheritance getInheritance(DomainStandardLibrary standardLibrary);
 	String getName();
+	DomainPackage getPackage();
 	boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type);
+	boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type);
 	boolean isOrdered();		
 	boolean isUnique();		
 	boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type);

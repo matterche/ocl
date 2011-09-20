@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.library;
 
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 
 /**
  */

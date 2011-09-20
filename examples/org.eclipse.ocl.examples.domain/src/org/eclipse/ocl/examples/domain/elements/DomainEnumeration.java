@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id$
  */
-package org.eclipse.ocl.examples.domain.types;
+package org.eclipse.ocl.examples.domain.elements;
 
 
-public interface DomainClassifierType extends DomainType {
-	DomainType getInstanceType();
+public interface DomainEnumeration extends DomainType
+{
+	Iterable<? extends DomainElement> getOwnedLiterals();
 }

@@ -22,14 +22,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -46,36 +44,27 @@ public class ExplicitNavigationProperty extends AbstractProperty
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, DomainProperty property) throws InvalidValueException {
 		ValueFactory valueFactory = evaluator.getValueFactory();
-		Object object = sourceValue.asObject(); // FIXME pin down semantics, ?? TypeValue always return instanceType
-		if ((object instanceof ClassifierType) && !(property.getOwningType() instanceof ClassifierType)) {
-			object = ((ClassifierType)object).getInstanceType();	
+		EObject eObject = sourceValue.asNavigableObject(); 
+		EClass eClass = eObject.eClass();
+		EStructuralFeature eFeature = eClass.getEStructuralFeature(property.getName());
+		// A specialized property such as CollectionType.elementType is returned from the specialized type
+		// An unspecialized property such as CollectionType.ownedOperation is returned from the unspecialized type
+		if ((eObject instanceof Type) && !eObject.eIsSet(eFeature)) {
+			TemplateableElement rawType = ((Type)eObject).getUnspecializedElement();
+			if (rawType != null) {
+				eObject = rawType;
+			}
 		}
-		if (object instanceof EObject) {
-			EObject eObject = (EObject)object;
-			EClass eClass = eObject.eClass();
-			EStructuralFeature eFeature = eClass.getEStructuralFeature(property.getName());
-			// A specialized property such as CollectionType.elementType is returned from the specialized type
-			// An unspecialized property such as CollectionType.ownedOperation is returned from the unspecialized type
-			if ((eObject instanceof Type) && !eObject.eIsSet(eFeature)) {
-				TemplateableElement rawType = ((Type)eObject).getUnspecializedElement();
-				if (rawType != null) {
-					eObject = rawType;
-				}
-			}
-			Object eValue = eObject.eGet(eFeature);
-			if (eValue instanceof Enumerator) {
-				Enumerator eEnumerator = (Enumerator) eValue;
-				EClassifier eEnum = eFeature.getEType();
-				org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = ((MetaModelManager)valueFactory.getStandardLibrary()).getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
-				EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
-				return valueFactory.createElementValue(pivotEnumLiteral);
-			}
-			else {
-				return valueFactory.valueOf(eValue, eFeature);
-			}
+		Object eValue = eObject.eGet(eFeature);
+		if (eValue instanceof Enumerator) {
+			Enumerator eEnumerator = (Enumerator) eValue;
+			EClassifier eEnum = eFeature.getEType();
+			org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = ((MetaModelManager)valueFactory.getStandardLibrary()).getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
+			EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
+			return valueFactory.createElementValue(pivotEnumLiteral);
 		}
 		else {
-			return valueFactory.throwInvalidValueException(EvaluatorMessages.MissingSourceValue);
+			return valueFactory.valueOf(eValue, eFeature);
 		}
 	}
 }

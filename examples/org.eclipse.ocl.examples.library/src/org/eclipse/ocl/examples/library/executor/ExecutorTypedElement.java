@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 
 public class ExecutorTypedElement implements DomainTypedElement
 {

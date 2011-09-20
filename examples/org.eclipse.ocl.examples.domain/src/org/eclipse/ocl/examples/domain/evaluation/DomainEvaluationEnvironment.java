@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.domain.evaluation;
 
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 public interface DomainEvaluationEnvironment

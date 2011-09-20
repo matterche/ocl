@@ -46,7 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Type
-		extends NamedElement, TemplateableElement, ParameterableElement, org.eclipse.ocl.examples.domain.types.DomainType {
+		extends NamedElement, TemplateableElement, ParameterableElement, org.eclipse.ocl.examples.domain.elements.DomainType {
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.

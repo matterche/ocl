@@ -16,10 +16,13 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
-import org.eclipse.ocl.examples.domain.types.DomainInheritance;
+import java.util.List;
 
-public interface DomainOperation extends DomainTypedElement
+
+public interface DomainOperation extends DomainNamedElement
 {
 	int getIndex();
 	DomainInheritance getInheritance();
+	List<? extends DomainType> getParameterTypes();
+	boolean isStatic();
 }

@@ -21,11 +21,11 @@ import java.util.Map;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.types.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.types.DomainType;
 import org.eclipse.ocl.examples.domain.validation.ValidationWarning;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -54,10 +54,14 @@ public class ValidateSortedByIteration implements LibraryValidator
 			if (staticOperation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(comparableType));
 			}
-			LibraryBinaryOperation implementation = (LibraryBinaryOperation) type.lookupImplementation(standardLibrary, staticOperation);
+			LibraryFeature implementation = type.lookupImplementation(standardLibrary, staticOperation);
 			if (implementation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
 			}
+//			LibraryBinaryOperation implementation = (LibraryBinaryOperation) type.lookupImplementation(standardLibrary, staticOperation);
+//			if (implementation == null) {
+//				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
+//			}
 			return null;
 		} catch (Exception e) {
 			return new ValidationWarning(e.getLocalizedMessage());

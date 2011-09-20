@@ -16,6 +16,9 @@
  */
 package org.eclipse.ocl.examples.domain.types;
 
+import org.eclipse.ocl.examples.domain.elements.DomainFragment;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+
 
 public abstract class AbstractFragment implements DomainFragment
 {
