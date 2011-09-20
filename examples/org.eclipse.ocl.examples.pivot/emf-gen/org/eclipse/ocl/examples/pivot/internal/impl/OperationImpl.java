@@ -18,9 +18,8 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -38,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -1110,13 +1110,41 @@ public class OperationImpl
 		throw new UnsupportedOperationException();		// WIP
 	}
 
-	public List<Type> getParameterTypes() {
-		List<Parameter> ownedParameters = getOwnedParameters();
-		List<Type> parameterTypes = new ArrayList<Type>(ownedParameters.size());
-		for (Parameter parameter : ownedParameters) {
-			Type parameterType = parameter.getType();
-			parameterTypes.add(parameterType);
-		}
-		return parameterTypes;
+	public IndexableIterable<Type> getParameterTypes() {
+		return new IndexableIterable<Type>()
+		{
+			public Iterator<Type> iterator()
+			{
+				return new Iterator<Type>()
+				{
+					private int curr = 0;
+					
+					public boolean hasNext() {
+						return curr < size();
+					}
+
+					public Type next() {
+						if (curr < size()) {
+							return get(curr++);
+						}
+						else {
+							return null;
+						}
+					}
+
+					public void remove() {
+						throw new UnsupportedOperationException(); 		// Unimplemented optional operation
+					}
+				};
+			}
+
+			public Type get(int index) {
+				return getOwnedParameters().get(index).getType();
+			}
+
+			public int size() {
+				return getOwnedParameters().size();
+			}
+		};
 	}
 } //OperationImpl

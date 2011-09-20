@@ -32,7 +32,7 @@ public interface TupleValue extends Value {
      * 
      * @return its type
      */
-	DomainTupleType getTupleType();
+	DomainTupleType getType();
 	
     /**
      * Queries the value of the specified tuple part.

@@ -81,7 +81,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.PivotValueFactory;
+import org.eclipse.ocl.examples.pivot.values.PivotValueFactory;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
@@ -363,7 +363,7 @@ public class OCLConsolePage extends Page
     	private final Exception exception;
     	
 		protected ExceptionValue(ValueFactory valueFactory, String message, Exception exception) {
-			super(valueFactory, valueFactory.getStandardLibrary().getOclInvalidType());
+			super(valueFactory);
 			this.message = message;
 			this.exception = exception;
 		}

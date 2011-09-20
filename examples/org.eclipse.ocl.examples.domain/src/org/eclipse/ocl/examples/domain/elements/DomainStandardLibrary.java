@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.domain.elements;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 
 /**
@@ -229,6 +230,8 @@ public interface DomainStandardLibrary
 	 * which must be alphabetical order by name.
 	 */
 	DomainTupleType getTupleType(List<? extends DomainTypedElement> parts);
+
+	DomainType getType(EClass eClass);
     
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype,

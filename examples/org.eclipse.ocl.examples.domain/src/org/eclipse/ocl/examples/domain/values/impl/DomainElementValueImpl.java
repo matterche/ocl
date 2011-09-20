@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.5 2011/03/12 13:21:46 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 
@@ -21,34 +21,29 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class ElementValueImpl<E extends DomainElement>
-		extends ObjectValueImpl
-		implements ElementValue<E> {
-
-	public ElementValueImpl(ValueFactory valueFactory, DomainType type, E element) {
-		super(valueFactory, type, element);
+public class DomainElementValueImpl extends AbstractObjectValue<DomainElement> implements ElementValue
+{
+	protected DomainType type = null;
+	
+	public DomainElementValueImpl(ValueFactory valueFactory, DomainElement element) {
+		super(valueFactory, element);
 	}
 
 	@Override
 	public DomainElement asElement() {
-		return (DomainElement) object;
+		return object;
 	}
 
 	@Override
-	public ElementValue<E> asElementValue() {
+	public ElementValue asElementValue() {
 		return this;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ElementValue)) {
-			return super.equals(obj);
-		}
-		return object.equals(((ElementValue<?>) obj).getElement());
+	public DomainElement getElement() {
+		return object;
 	}
 
-	@SuppressWarnings("unchecked")
-	public E getElement() {
-		return (E) object;
+	public DomainType getType() {
+		return type;	// FIXME
 	}
 }

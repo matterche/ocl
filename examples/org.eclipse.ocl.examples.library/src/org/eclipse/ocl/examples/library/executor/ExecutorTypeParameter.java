@@ -16,15 +16,37 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
-public class ExecutorTypeParameter implements ExecutorTypeArgument
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.types.AbstractType;
+
+public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeArgument
 {
-	protected final String name;
-	
 	public ExecutorTypeParameter(String name) {
-		this.name = name;
+		super(name);
 	}
 
-	public final String getName() {
-		return name;
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+		throw new UnsupportedOperationException();			// WIP fixme
+	}
+
+	@Override
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
+		throw new UnsupportedOperationException();			// WIP fixme
 	}
 }

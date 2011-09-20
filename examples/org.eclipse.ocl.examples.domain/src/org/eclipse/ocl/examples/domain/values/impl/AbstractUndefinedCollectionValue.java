@@ -53,8 +53,8 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		}
 	}
 
-	protected AbstractUndefinedCollectionValue(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+	protected AbstractUndefinedCollectionValue(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	public OrderedCollectionValue append(Value object) throws InvalidValueException {

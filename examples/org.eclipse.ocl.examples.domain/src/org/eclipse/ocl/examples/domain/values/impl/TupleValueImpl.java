@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
  */
 public class TupleValueImpl extends AbstractValue implements TupleValue
 {
+	protected final DomainTupleType type;
     private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
     private Integer hashCode = null;
 
@@ -43,8 +44,9 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param values my parts
      */
     public TupleValueImpl(ValueFactory valueFactory, DomainTupleType type, Map<? extends DomainTypedElement, Value> values) {
-		super(valueFactory, type);
-         for (Map.Entry<? extends DomainTypedElement, Value> entry : values.entrySet()) {
+		super(valueFactory);
+		this.type = type;
+        for (Map.Entry<? extends DomainTypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
     }
@@ -58,7 +60,8 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
      * @param secondValue my second value
      */
     public TupleValueImpl(ValueFactory valueFactory, DomainTupleType type, Value firstValue, Value secondValue) {
-		super(valueFactory, type);
+		super(valueFactory);
+		this.type = type;
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
     }
@@ -86,10 +89,9 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         return result;
     }
 
-    // implements the inherited specification
-    public DomainTupleType getTupleType() {
-        return (DomainTupleType) type;
-    }
+	public DomainTupleType getType() {
+		return type;
+	}
 
     // implements the inherited specification
     public Value getValue(String partName) {
@@ -117,7 +119,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         StringBuilder result = new StringBuilder();
         result.append("Tuple{"); //$NON-NLS-1$
         
-        for (Iterator<? extends DomainTypedElement> iter =  getTupleType().getOwnedAttributes().iterator();
+        for (Iterator<? extends DomainTypedElement> iter =  getType().getOwnedAttributes().iterator();
                 iter.hasNext();) {
             
         	DomainTypedElement p = iter.next();

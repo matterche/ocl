@@ -19,12 +19,10 @@ package org.eclipse.ocl.examples.domain.values.impl;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.NumericValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
@@ -32,13 +30,13 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
  * int representation. Operations resulting in numeric growth may return
  * IntegerValueLongImpl or IntegerValueImpl that use long or BigInteger.
  */
-public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
+public class IntegerIntValueImpl extends AbstractIntegerValue
 {
 	private final int value;			// The value.
 	private BigInteger bigValue = null;	// Lazily computed BigInteger counterpart.
 	
-	public IntegerIntValueImpl(ValueFactory valueFactory, DomainType type, int value) {
-		super(valueFactory, type);
+	public IntegerIntValueImpl(ValueFactory valueFactory, int value) {
+		super(valueFactory);
 		this.value = value;
 	}
 
@@ -89,17 +87,8 @@ public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
 		return value;
 	}
 
-	@Override
-	public IntegerValue asIntegerValue() {
-		return this;
-	}
-
 	public Object asObject() {
 		return value;
-	}
-
-	public Value asValidValue() {
-		return this;
 	}
 
 	public BigDecimal bigDecimalValue() {
@@ -175,11 +164,6 @@ public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
 	
 	public int intValue() {
 		return value;
-	}
-
-	@Override
-	public IntegerValue isIntegerValue() {
-		return this;
 	}
 
 	@Override
@@ -278,16 +262,6 @@ public class IntegerIntValueImpl extends AbstractValue implements IntegerValue
 		else {
 			return valueFactory.integerValueOf(bigIntegerValue().subtract(right.bigIntegerValue()));
 		}
-	}
-
-	@Override
-	public IntegerValue toIntegerValue() {
-		return this;
-	}
-
-	@Override
-	public RealValue toRealValue() {
-		return valueFactory.realValueOf(this);
 	}
 
 	@Override

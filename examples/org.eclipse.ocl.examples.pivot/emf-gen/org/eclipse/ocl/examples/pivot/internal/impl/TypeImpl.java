@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -1023,7 +1024,7 @@ public class TypeImpl
 		return metaModelManager.conformsTo(this, metaModelManager.getType(type), null);
 	}
 	
-	protected List<Operation> findOperations(MetaModelManager metaModelManager, Type forType, String requiredOperationName, List<? extends DomainType> requiredParameterTypes, Set<Type> alreadyVisited) {
+	protected List<Operation> findOperations(MetaModelManager metaModelManager, Type forType, String requiredOperationName, IndexableIterable<? extends DomainType> requiredParameterTypes, Set<Type> alreadyVisited) {
 		alreadyVisited.add(forType);
 		int iMax = requiredParameterTypes.size();
 		for (Operation candidateOperation : metaModelManager.getLocalOperations(forType, Boolean.FALSE)) {
@@ -1112,7 +1113,7 @@ public class TypeImpl
 		DomainOperation dynamicOperation = staticOperation;
 		if (!staticOperation.isStatic()) {
 			String requiredOperationName = staticOperation.getName();
-			List<? extends DomainType> requiredParameterTypes = staticOperation.getParameterTypes();
+			IndexableIterable<? extends DomainType> requiredParameterTypes = staticOperation.getParameterTypes();
 			List<Operation> partialResults = findOperations(metaModelManager, this, requiredOperationName, requiredParameterTypes, new HashSet<Type>());
 			dynamicOperation = resolveDuplicates(metaModelManager, partialResults);
 		}

@@ -14,7 +14,7 @@
  *
  * $Id: PivotStandardLibrary.java,v 1.14 2011/05/22 16:42:03 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot.utilities;
+package org.eclipse.ocl.examples.pivot.manager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.osgi.util.NLS;
 
 public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FIXME AbstractStandardLibrary is unhelpful

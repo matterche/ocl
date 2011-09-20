@@ -21,18 +21,29 @@ import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class TypeValueImpl extends ElementValueImpl<DomainType> implements TypeValue
+public class DomainTypeValueImpl extends AbstractObjectValue<DomainClassifierType> implements TypeValue
 {
-	public TypeValueImpl(ValueFactory valueFactory, DomainClassifierType type) {
-		super(valueFactory, type, type);
+	public DomainTypeValueImpl(ValueFactory valueFactory, DomainClassifierType type) {
+		super(valueFactory, type);
+	}
+
+	@Override
+	public DomainClassifierType asElement() {
+		return object;
+	}
+
+	@Override
+	public ElementValue asElementValue() {
+		return this;
 	}
 
 	@Override
 	public EObject asNavigableObject() throws InvalidValueException {
-		Object navigableObject = ((DomainClassifierType) object).getInstanceType();
+		DomainType navigableObject = object.getInstanceType();
 		if (navigableObject instanceof EObject) {
 			return (EObject) navigableObject;
 		}
@@ -42,16 +53,19 @@ public class TypeValueImpl extends ElementValueImpl<DomainType> implements TypeV
 	}
 
 	@Override
-	public TypeValueImpl asTypeValue() {
+	public DomainTypeValueImpl asTypeValue() {
 		return this;
 	}
 
-	public DomainType getInstanceType() {
-		return ((DomainClassifierType) object).getInstanceType();
+	public DomainClassifierType getElement() {
+		return object;
 	}
 
-	@Override
-	public String toString() {
-		return object.toString();
+	public DomainType getInstanceType() {
+		return object.getInstanceType();
+	}
+
+	public DomainClassifierType getType() {
+		return object;
 	}
 }

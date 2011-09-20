@@ -45,6 +45,7 @@ public class SortedByIteration extends AbstractIteration
 {
 	protected static class SortingValue extends AbstractValue implements Comparator<Value>
 	{
+		protected final DomainType type;
 		private final DomainEvaluator evaluator;
 		private final DomainType iteratorType;
 		private final LibraryBinaryOperation implementation;
@@ -52,7 +53,8 @@ public class SortedByIteration extends AbstractIteration
 		private Map<Value, Integer> repeatCounts = null;						// Repeat counts for non-unique content
 
 		public SortingValue(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation implementation) {
-			super(evaluator.getValueFactory(), returnType);
+			super(evaluator.getValueFactory());
+			this.type = returnType;
 			this.evaluator = evaluator;
 			this.iteratorType = valueFactory.getStandardLibrary().getIntegerType();
 			this.implementation = implementation;
@@ -104,6 +106,10 @@ public class SortedByIteration extends AbstractIteration
 				}
 				return valueFactory.createCollectionValue(true, false, type, nonUniqueResult);
 			}
+		}
+
+		public DomainType getType() {
+			return type;
 		}
 
 		public void put(Value iterVal, Value comparable) {

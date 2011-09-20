@@ -17,20 +17,15 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
-public class AbstractCollectionType extends AbstractType implements DomainCollectionType
+public class AbstractCollectionType extends AbstractSpecializedType implements DomainCollectionType
 {
-	protected final DomainType containerType;
 	protected final DomainType elementType;
 	
 	public AbstractCollectionType(String name, DomainType containerType, DomainType elementType) {
-		super(name);
-		this.containerType = containerType;
+		super(name, containerType);
 		this.elementType = elementType;
 	}
 
@@ -79,10 +74,6 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 		}
 	}
 
-	public DomainType getContainerType() {
-		return containerType;
-	}
-
 	public DomainType getElementType() {
 		return elementType;
 	}
@@ -95,24 +86,6 @@ public class AbstractCollectionType extends AbstractType implements DomainCollec
 			return false;
 		}
 		return standardLibrary.isEqualToCollectionType(this, (DomainCollectionType)type);
-	}
-
-	@Override
-	public boolean isOrdered() {
-		return containerType.isOrdered();
-	}
-
-	@Override
-	public boolean isUnique() {
-		return containerType.isUnique();
-	}
-
-	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
-		return containerType.lookupImplementation(standardLibrary, staticOperation);
-	}
-
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		return containerType.lookupOperation(standardLibrary, operationName, argumentTypes);
 	}
 
 	@Override

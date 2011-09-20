@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.domain.values;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
-public interface TypeValue extends ElementValue<DomainType>
+public interface TypeValue extends ElementValue
 {
 	TypeValue asTypeValue() throws InvalidValueException;
 	DomainType getInstanceType();

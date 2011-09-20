@@ -15,6 +15,7 @@
  * $Id$
  */
 package org.eclipse.ocl.examples.library.executor;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractClassifierType;
@@ -33,5 +34,9 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		DomainType anyClassifierType = getAnyClassifierType();
 		DomainClassifierType classifierType = new AbstractClassifierType(anyClassifierType.getName(), anyClassifierType, classType);
 		return classifierType;
+	}
+
+	public DomainType getType(EClass eClass) {
+		throw new UnsupportedOperationException();
 	}
 }

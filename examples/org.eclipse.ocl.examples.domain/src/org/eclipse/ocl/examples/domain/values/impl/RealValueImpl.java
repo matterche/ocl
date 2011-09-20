@@ -48,12 +48,12 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	private final BigDecimal value;
 	private Object integerValue = null;	// Lazily computed exact IntegerValue or Exception
 	
-	public RealValueImpl(ValueFactory valueFactory, DomainType type, double value) {
-		this(valueFactory, type, BigDecimal.valueOf(value));
+	public RealValueImpl(ValueFactory valueFactory, double value) {
+		this(valueFactory, BigDecimal.valueOf(value));
 	}
 
-	public RealValueImpl(ValueFactory valueFactory, DomainType type, BigDecimal value) {
-		super(valueFactory, type);
+	public RealValueImpl(ValueFactory valueFactory, BigDecimal value) {
+		super(valueFactory);
 		this.value = value;
 		assert value != null;
 	}
@@ -144,6 +144,10 @@ public class RealValueImpl extends AbstractValue implements RealValue
 			}
 		}
 		return integerValue;
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getRealType();
 	}
 
 	@Override

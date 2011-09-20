@@ -25,8 +25,8 @@ public class StringValueImpl extends AbstractValue implements StringValue
 {
 	private final String value;
 	
-	public StringValueImpl(ValueFactory valueFactory, DomainType type, String value) {
-		super(valueFactory, type);
+	public StringValueImpl(ValueFactory valueFactory, String value) {
+		super(valueFactory);
 		this.value = value;
 	}
 
@@ -58,6 +58,10 @@ public class StringValueImpl extends AbstractValue implements StringValue
 			return false;
 		}
 		return value.equals(((StringValue)obj).stringValue());
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getStringType();
 	}
 
 	@Override

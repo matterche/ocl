@@ -12,14 +12,14 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.18 2011/05/20 15:27:20 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.utilities;
 
 /**
  * ArrayIterable provides an Iterable for an Array
  */
-public class ArrayIterable<T> implements Iterable<T>
+public class ArrayIterable<T> implements IndexableIterable<T>
 {
 	protected class Iterator implements java.util.Iterator<T>
 	{
@@ -53,8 +53,16 @@ public class ArrayIterable<T> implements Iterable<T>
 		this.firstIndex = firstIndex;
 		this.lastIndex = lastIndex;
 	}
+
+	public T get(int index) {
+		return array[firstIndex + index];
+	}		
 	
 	public java.util.Iterator<T> iterator() {
 		return new Iterator();
-	}		
+	}
+
+	public int size() {
+		return lastIndex - firstIndex;
+	}
 }

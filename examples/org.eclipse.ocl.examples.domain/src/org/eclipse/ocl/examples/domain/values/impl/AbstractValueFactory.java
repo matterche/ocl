@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
@@ -40,16 +41,19 @@ import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
+import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.IntegerRange;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.InvalidValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSet;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.StringValue;
+import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.UnlimitedValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -123,7 +127,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 	}
 
 	public BooleanValue.Accumulator createBooleanAccumulatorValue() {
-		return new BooleanValueImpl.Accumulator(this, standardLibrary.getBooleanType(), false);
+		return new BooleanValueImpl.Accumulator(this, false);
 	}
 
 	public CollectionValue.Accumulator createCollectionAccumulatorValue(DomainCollectionType type) {
@@ -226,6 +230,24 @@ public abstract class AbstractValueFactory implements ValueFactory
     	DomainType elementType = getElementType(collection);
     	return createOrderedSetValue(standardLibrary.getOrderedSetType(elementType), collection);
     }
+
+	public ObjectValue createEObjectValue(EObject eObject) {
+		if (eObject instanceof DomainElement) {
+			if (eObject instanceof DomainClassifierType) {
+				return createTypeValue((DomainClassifierType) eObject);
+			}
+			return createElementValue((DomainElement) eObject);
+		}
+		return new EObjectValueImpl(this, eObject);
+	}
+
+	public ElementValue createElementValue(DomainElement element) {
+		return new DomainElementValueImpl(this, element);
+	}
+
+	public ObjectValue createObjectValue(Object object) {
+		return new ObjectValueImpl(this, object);
+	}
 
     public OrderedSetValue createOrderedSetOf(Iterable<?> objects) {
     	OrderedSet<Value> collection = new OrderedSetImpl<Value>();
@@ -352,8 +374,8 @@ public abstract class AbstractValueFactory implements ValueFactory
 		return new TupleValueImpl(this, type, values);
 	}
 
-	public Value createTypeValue(DomainClassifierType type) {
-		return new TypeValueImpl(this, type);
+	public TypeValue createTypeValue(DomainClassifierType type) {
+		return new DomainTypeValueImpl(this, type);
 	}
 
 	public void dispose() {
@@ -384,21 +406,21 @@ public abstract class AbstractValueFactory implements ValueFactory
 
 	public BooleanValue getFalse() {
 		if (falseValue == null) {
-			falseValue = new BooleanValueImpl(this, standardLibrary.getBooleanType(), false); 
+			falseValue = new BooleanValueImpl(this, false); 
 		}
 		return falseValue;
 	}
 
 	public InvalidValue getInvalid() {
 		if (invalidValue == null) {
-			invalidValue = new InvalidValueImpl(this, standardLibrary.getOclInvalidType()); 
+			invalidValue = new InvalidValueImpl(this); 
 		}
 		return invalidValue;
 	}
 
 	public NullValue getNull() {
 		if (nullValue == null) {
-			nullValue = new NullValueImpl(this, standardLibrary.getOclVoidType()); 
+			nullValue = new NullValueImpl(this); 
 		}
 		return nullValue;
 	}
@@ -416,14 +438,14 @@ public abstract class AbstractValueFactory implements ValueFactory
 
 	public BooleanValue getTrue() {
 		if (trueValue == null) {
-			trueValue = new BooleanValueImpl(this, standardLibrary.getBooleanType(), true); 
+			trueValue = new BooleanValueImpl(this, true); 
 		}
 		return trueValue;
 	}
 
 	public UnlimitedValue getUnlimited() {
 		if (unlimitedValue == null) {
-			unlimitedValue = new UnlimitedValueImpl(this, standardLibrary.getUnlimitedNaturalType());
+			unlimitedValue = new UnlimitedValueImpl(this);
 		}
 		return unlimitedValue;
 	}
@@ -436,41 +458,36 @@ public abstract class AbstractValueFactory implements ValueFactory
 	}
 
 	public IntegerValue integerValueOf(int value) {
-		DomainType type = value >= 0 ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
-		return new IntegerIntValueImpl(this, type, value);
+		return new IntegerIntValueImpl(this, value);
 	}
 
 	public IntegerValue integerValueOf(long value) {
-		DomainType type = value >= 0 ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
 		if ((Integer.MIN_VALUE <= value) && (value <= Integer.MAX_VALUE)) {
-			return new IntegerIntValueImpl(this, type, (int) value);
+			return new IntegerIntValueImpl(this, (int) value);
 		}
 		else {
-			return new IntegerLongValueImpl(this, type, value);
+			return new IntegerLongValueImpl(this, value);
 		}
 	}
 	
 	public IntegerValue integerValueOf(BigInteger value) {
-		DomainType type;
 		if (value.signum() >= 0) {
-			type = standardLibrary.getUnlimitedNaturalType();
 			if (value.compareTo(INTEGER_MAX_VALUE) <= 0) {
-				return new IntegerIntValueImpl(this, type, value.intValue());
+				return new IntegerIntValueImpl(this, value.intValue());
 			}
 			if (value.compareTo(LONG_MAX_VALUE) <= 0) {
-				return new IntegerLongValueImpl(this, type, value.longValue());
+				return new IntegerLongValueImpl(this, value.longValue());
 			}
 		}
 		else {
-			type = standardLibrary.getIntegerType();
 			if (value.compareTo(INTEGER_MIN_VALUE) >= 0) {
-				return new IntegerIntValueImpl(this, type, value.intValue());
+				return new IntegerIntValueImpl(this, value.intValue());
 			}
 			if (value.compareTo(LONG_MIN_VALUE) >= 0) {
-				return new IntegerLongValueImpl(this, type, value.longValue());
+				return new IntegerLongValueImpl(this, value.longValue());
 			}
 		}
-		return new IntegerValueImpl(this, type, value);
+		return new IntegerValueImpl(this, value);
 	}
 	
 	/**
@@ -495,11 +512,11 @@ public abstract class AbstractValueFactory implements ValueFactory
 	}
 
 	public RealValue realValueOf(double value) {
-		return new RealValueImpl(this, standardLibrary.getRealType(), value);
+		return new RealValueImpl(this, value);
 	}
 
 	public RealValue realValueOf(BigDecimal value) {
-		return new RealValueImpl(this, standardLibrary.getRealType(), value);
+		return new RealValueImpl(this, value);
 	}
 
 //	public static RealValue realValueOf(IntegerValue value) {
@@ -512,7 +529,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 	
 	public RealValue realValueOf(String aValue) throws InvalidValueException {
 		try {
-			return new RealValueImpl(this, standardLibrary.getRealType(), new BigDecimal(aValue.trim()));
+			return new RealValueImpl(this, new BigDecimal(aValue.trim()));
 		}
 		catch (NumberFormatException e) {
 			return throwInvalidValueException(e, EvaluatorMessages.InvalidReal, aValue);
@@ -520,7 +537,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 	}
 	
 	public StringValue stringValueOf(String value) {
-		return new StringValueImpl(this, standardLibrary.getStringType(), value);
+		return new StringValueImpl(this, value);
 	}
 
 	public InvalidValue throwInvalidValueException(String message, Object... bindings) throws InvalidValueException {
@@ -535,19 +552,25 @@ public abstract class AbstractValueFactory implements ValueFactory
 
 	public DomainType typeOf(Value value, Value... values) {
 		DomainType type = value.getType();
-		if (values != null) {
+//		if (values != null) {
 			for (Value anotherValue : values) {
 				type = type.getCommonType(standardLibrary, anotherValue.getType());
 			}		
-		}
+//		}
 		return type;
 	}
 
 	public Value valueOf(Object object) {
-		if (object instanceof Value) {
+		if (object == null) {
+			return getNull();
+		}
+		else if (object instanceof Value) {
 			return (Value) object;
 		}
-		if (object instanceof Number) {
+		else if (object instanceof EObject) {
+			return createEObjectValue((EObject) object);
+		}
+		else if (object instanceof Number) {
 			if ((object instanceof Integer) || (object instanceof Long) || (object instanceof Short)) {
 				return integerValueOf(((Number) object).longValue());
 			}
@@ -561,28 +584,19 @@ public abstract class AbstractValueFactory implements ValueFactory
 				return integerValueOf((BigInteger) object);
 			}			
 		}
-		if (object instanceof String) {
+		else if (object instanceof String) {
 			return stringValueOf((String) object);
 		}
-		if (object instanceof Boolean) {
+		else if (object instanceof Boolean) {
 			return booleanValueOf((Boolean) object);
 		}
-		if (object instanceof DomainElement) {
-			if (object instanceof DomainClassifierType) {
-				return createTypeValue((DomainClassifierType) object);
-			}
-			return createElementValue((DomainElement) object);
-		}
-		if (object == null) {
-			return getNull();
-		}
-		if (object.getClass().isArray()) {
+		else if (object.getClass().isArray()) {
 			try {
 				return createSequenceOf((Object[])object);
 			} 
 			catch (IllegalArgumentException e) {}
 		}
-		if (object instanceof Iterable<?>) {
+		else if (object instanceof Iterable<?>) {
 			if ((object instanceof LinkedHashSet) || (object instanceof OrderedSet)) {
 				return createOrderedSetOf((Iterable<?>)object);
 			}
@@ -596,7 +610,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 				return createSequenceOf((Iterable<?>)object);
 			}
 		}
-		return null;
+		return createObjectValue(object);
 	}
 
 	public Value valueOf(Object eValue, ETypedElement eFeature) {

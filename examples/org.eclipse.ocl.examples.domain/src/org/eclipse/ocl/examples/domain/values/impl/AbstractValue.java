@@ -20,7 +20,6 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.BagValue;
@@ -43,11 +42,9 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 public abstract class AbstractValue implements Value
 {
 	protected final ValueFactory valueFactory;
-	protected final DomainType type;
 
-	protected AbstractValue(ValueFactory valueFactory, DomainType type) {
+	protected AbstractValue(ValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
-		this.type = type;
 	}
 
 	public BagValue asBagValue() throws InvalidValueException {
@@ -76,7 +73,7 @@ public abstract class AbstractValue implements Value
 		return null;
 	}
 
-	public ElementValue<?> asElementValue() throws InvalidValueException {
+	public ElementValue asElementValue() throws InvalidValueException {
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Element");
 	}
 
@@ -138,10 +135,6 @@ public abstract class AbstractValue implements Value
 
 	public UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException {
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection");
-	}
-
-	public DomainType getType() {
-		return type;
 	}
 	
 	public ValueFactory getValueFactory() {

@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.executor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -27,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -104,5 +106,11 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 			}
 		}
 		return metaModelManager.getPrimaryType(pivotPackage, typeType.getName());
+	}
+
+	public DomainType getType(EClass eClass) {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClass.eResource(), metaModelManager);
+		Type pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+		return pivotType;
 	}
 }

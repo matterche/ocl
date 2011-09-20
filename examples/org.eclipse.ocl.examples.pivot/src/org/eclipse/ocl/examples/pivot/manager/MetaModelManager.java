@@ -95,9 +95,8 @@ import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
-import org.eclipse.ocl.examples.pivot.utilities.PivotStandardLibrary;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.PivotValueFactory;
+import org.eclipse.ocl.examples.pivot.values.PivotValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 public class MetaModelManager extends PivotStandardLibrary implements Adapter.Internal, MetaModelManageable
@@ -1829,6 +1828,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public Type getType(DomainType type) {
 		return (Type) type;					// FIXME cast
+	}
+
+	public DomainType getType(EClass eClass) {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClass.eResource(), this);
+		Type pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+		return pivotType;
 	}
 	
 	public TypeTracker getTypeTracker(Type pivotType) {

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,25 +12,32 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.9 2011/04/20 19:02:47 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class ObjectValueImpl extends AbstractObjectValue<Object>
+public class EObjectValueImpl extends AbstractObjectValue<EObject>
 {
-	protected DomainType type = null;
+	protected DomainType type = null;			// Lazily computed
 	
-	public ObjectValueImpl(ValueFactory valueFactory, Object object) {
-		super(valueFactory, object);
+	public EObjectValueImpl(ValueFactory valueFactory, EObject eObject) {
+		super(valueFactory, eObject);
 	}
 
 	public DomainType getType() {
 		if (type == null) {
-			type = valueFactory.getStandardLibrary().getAnyClassifierType();	// WIP A better type
+			this.type = valueFactory.getStandardLibrary().getType(object.eClass());
 		}
 		return type;
+	}
+
+	@Override
+	public String toString() {
+		return DomainUtil.getLabel(object);
 	}
 }

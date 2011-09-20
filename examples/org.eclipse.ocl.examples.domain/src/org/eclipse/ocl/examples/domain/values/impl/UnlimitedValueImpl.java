@@ -44,8 +44,8 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 {
-	public UnlimitedValueImpl(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+	public UnlimitedValueImpl(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	public UnlimitedValueImpl abs() {
@@ -72,6 +72,10 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 
 	public double doubleValue() {
 		throw new UnsupportedOperationException(getClass().getName()+ ".doubleValue");
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getUnlimitedNaturalType();
 	}
 
 	@Override

@@ -19,24 +19,22 @@ package org.eclipse.ocl.examples.domain.values.impl;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.NumericValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class IntegerValueImpl extends AbstractValue implements IntegerValue
+public class IntegerValueImpl extends AbstractIntegerValue
 {
 	private final BigInteger value;
 	
-	public IntegerValueImpl(ValueFactory valueFactory, DomainType type, long value) {
-		this(valueFactory, type, BigInteger.valueOf(value));
+	public IntegerValueImpl(ValueFactory valueFactory, long value) {
+		this(valueFactory, BigInteger.valueOf(value));
 	}
 
-	public IntegerValueImpl(ValueFactory valueFactory, DomainType type, BigInteger value) {
-		super(valueFactory, type);
+	public IntegerValueImpl(ValueFactory valueFactory, BigInteger value) {
+		super(valueFactory);
 		this.value = value;
 		assert value != null;
 	}
@@ -59,17 +57,8 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 		return value.intValue();	// FIXME throw if out of range
 	}
 
-	@Override
-	public IntegerValue asIntegerValue() {
-		return this;
-	}
-
 	public Object asObject() {
 		return value;
-	}
-
-	public Value asValidValue() {
-		return this;
 	}
 
 	public BigDecimal bigDecimalValue() {
@@ -139,13 +128,8 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 	}
 
 	@Override
-	public IntegerValue isIntegerValue() {
-		return this;
-	}
-
-	@Override
 	public boolean isUnlimitedNatural() {
-		return value.signum() >= 0;
+		return signum() >= 0;
 	}
 
 	public IntegerValue max(IntegerValue right) throws InvalidValueException {
@@ -177,16 +161,6 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 
 	public IntegerValue subtract(IntegerValue right) throws InvalidValueException {
 		return valueFactory.integerValueOf(value.subtract(right.bigIntegerValue()));
-	}
-
-	@Override
-	public IntegerValue toIntegerValue() {
-		return this;
-	}
-
-	@Override
-	public RealValue toRealValue() {
-		return valueFactory.realValueOf(this);
 	}
 
 	@Override

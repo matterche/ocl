@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
@@ -59,7 +60,9 @@ public interface ValueFactory
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Value... values);
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Collection<Value> values);
 	
-	<E extends DomainElement> ElementValue<E> createElementValue(E element);
+	ObjectValue createEObjectValue(EObject eObject);	
+	ElementValue createElementValue(DomainElement element);
+	ObjectValue createObjectValue(Object object);
 
     OrderedSetValue createOrderedSetOf(Object... objects);
     OrderedSetValue createOrderedSetOf(Iterable<?> objects);

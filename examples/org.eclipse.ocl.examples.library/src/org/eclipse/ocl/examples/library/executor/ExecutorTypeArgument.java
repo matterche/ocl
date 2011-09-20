@@ -16,6 +16,8 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
-public interface ExecutorTypeArgument
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+
+public interface ExecutorTypeArgument extends DomainType
 {
 }

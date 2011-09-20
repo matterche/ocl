@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public abstract class AbstractUndefinedValue extends AbstractValue implements NullValue
 {	
-	protected AbstractUndefinedValue(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+	protected AbstractUndefinedValue(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	public NullValue abs() throws InvalidValueException {

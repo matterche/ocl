@@ -31,8 +31,11 @@ public abstract class AbstractedCollectionValue
 	extends AbstractValue
 	implements CollectionValue
 {
+	protected final DomainType type;
+
 	protected AbstractedCollectionValue(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+		super(valueFactory);
+		this.type = type;
 	}
 
 	public Collection<Value> asCollection() {
@@ -57,6 +60,10 @@ public abstract class AbstractedCollectionValue
 	}
 
 	protected abstract Collection<Value> getElements();
+
+	public DomainType getType() {
+		return type;
+	}
 
 	@Override
 	public CollectionValue isCollectionValue() {

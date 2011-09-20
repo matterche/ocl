@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public class NullValueImpl extends AbstractUndefinedCollectionValue implements NullValue
 {
-	public NullValueImpl(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+	public NullValueImpl(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	@Override
@@ -40,6 +40,10 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof NullValue;
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getOclVoidType();
 	}
 
 	@Override

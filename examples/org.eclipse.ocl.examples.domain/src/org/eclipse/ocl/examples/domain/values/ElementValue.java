@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.domain.values;
 
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
 
-public interface ElementValue<E extends DomainElement> extends ObjectValue
+public interface ElementValue extends ObjectValue
 {
-	E getElement();
+	DomainElement getElement();
 }

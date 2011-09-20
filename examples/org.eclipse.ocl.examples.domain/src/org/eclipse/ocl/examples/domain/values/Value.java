@@ -42,7 +42,7 @@ public interface Value
 	CollectionValue asCollectionValue() throws InvalidValueException;
 	Double asDouble() throws InvalidValueException;
 	DomainElement asElement(); 
-	ElementValue<?> asElementValue() throws InvalidValueException;
+	ElementValue asElementValue() throws InvalidValueException;
 	Integer asInteger() throws InvalidValueException;
 	IntegerValue asIntegerValue() throws InvalidValueException;
 	EObject asNavigableObject() throws InvalidValueException;

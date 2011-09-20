@@ -26,8 +26,8 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 {	
 	public static class Accumulator extends BooleanValueImpl implements BooleanValue.Accumulator
 	{
-		public Accumulator(ValueFactory valueFactory, DomainType type, boolean value) {
-			super(valueFactory, type, value);
+		public Accumulator(ValueFactory valueFactory, boolean value) {
+			super(valueFactory, value);
 		}
 
 		@Override
@@ -52,8 +52,8 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 	
 	protected boolean value;
 	
-	public BooleanValueImpl(ValueFactory valueFactory, DomainType type, boolean value) {
-		super(valueFactory, type);
+	public BooleanValueImpl(ValueFactory valueFactory, boolean value) {
+		super(valueFactory);
 		this.value = value;
 	}
 
@@ -84,6 +84,10 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 			}
 		}
 		return false;
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getBooleanType();
 	}
 
 	@Override

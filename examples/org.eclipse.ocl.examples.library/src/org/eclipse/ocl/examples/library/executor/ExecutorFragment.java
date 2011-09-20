@@ -79,7 +79,7 @@ public class ExecutorFragment extends AbstractFragment
 								parameterType = staticType;
 							}
 							else {
-								parameterType = (ExecutorType)parameterTypeArgument;
+								parameterType = parameterTypeArgument;
 							}
 							if (!argumentType.conformsTo(standardLibrary, parameterType)) {
 								gotIt = false;

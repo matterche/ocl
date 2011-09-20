@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public class InvalidValueImpl extends AbstractUndefinedCollectionValue implements InvalidValue
 {	
-	public InvalidValueImpl(ValueFactory valueFactory, DomainType type) {
-		super(valueFactory, type);
+	public InvalidValueImpl(ValueFactory valueFactory) {
+		super(valueFactory);
 	}
 
 	public Value asValidValue() throws InvalidValueException {
@@ -37,6 +37,10 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof InvalidValue;
+	}
+
+	public DomainType getType() {
+		return valueFactory.getStandardLibrary().getOclInvalidType();
 	}
 
 	@Override
