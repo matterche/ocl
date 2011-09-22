@@ -104,6 +104,17 @@ public interface UMLPackage
 	int ANY_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -126,7 +137,7 @@ public interface UMLPackage
 	int ANY_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -134,7 +145,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int ANY_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -148,7 +159,7 @@ public interface UMLPackage
 	int ANY_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -156,29 +167,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int ANY_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -192,7 +181,7 @@ public interface UMLPackage
 	int ANY_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -200,7 +189,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int ANY_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -236,7 +236,7 @@ public interface UMLPackage
 	int ANY_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -244,7 +244,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int ANY_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -258,7 +258,7 @@ public interface UMLPackage
 	int ANY_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -266,7 +266,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int ANY_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -335,17 +335,6 @@ public interface UMLPackage
 	int ANY_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -357,7 +346,7 @@ public interface UMLPackage
 	int ANY_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -365,7 +354,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int ANY_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -390,17 +423,6 @@ public interface UMLPackage
 	int ANY_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -412,7 +434,7 @@ public interface UMLPackage
 	int ANY_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -420,62 +442,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int ANY_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANY_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANY_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int ANY_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -498,6 +474,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ANY_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -545,6 +554,17 @@ public interface UMLPackage
 	int VOID_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -567,7 +587,7 @@ public interface UMLPackage
 	int VOID_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -575,7 +595,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int VOID_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -589,7 +609,7 @@ public interface UMLPackage
 	int VOID_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -597,29 +617,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int VOID_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -633,7 +631,7 @@ public interface UMLPackage
 	int VOID_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -641,7 +639,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int VOID_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -677,7 +686,7 @@ public interface UMLPackage
 	int VOID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -685,7 +694,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int VOID_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -699,7 +708,7 @@ public interface UMLPackage
 	int VOID_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -707,7 +716,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int VOID_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -776,17 +785,6 @@ public interface UMLPackage
 	int VOID_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -798,7 +796,7 @@ public interface UMLPackage
 	int VOID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -806,7 +804,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int VOID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -831,17 +873,6 @@ public interface UMLPackage
 	int VOID_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -853,7 +884,7 @@ public interface UMLPackage
 	int VOID_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -861,62 +892,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int VOID_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VOID_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VOID_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int VOID_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -939,6 +924,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int VOID_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -986,6 +1004,17 @@ public interface UMLPackage
 	int INVALID_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1008,7 +1037,7 @@ public interface UMLPackage
 	int INVALID_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1016,7 +1045,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int INVALID_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1030,7 +1059,7 @@ public interface UMLPackage
 	int INVALID_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1038,29 +1067,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int INVALID_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -1074,7 +1081,7 @@ public interface UMLPackage
 	int INVALID_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1082,7 +1089,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int INVALID_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -1118,7 +1136,7 @@ public interface UMLPackage
 	int INVALID_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1126,7 +1144,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int INVALID_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -1140,7 +1158,7 @@ public interface UMLPackage
 	int INVALID_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1148,7 +1166,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int INVALID_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -1217,17 +1235,6 @@ public interface UMLPackage
 	int INVALID_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1239,7 +1246,7 @@ public interface UMLPackage
 	int INVALID_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1247,7 +1254,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int INVALID_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -1272,17 +1323,6 @@ public interface UMLPackage
 	int INVALID_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1294,7 +1334,7 @@ public interface UMLPackage
 	int INVALID_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1302,62 +1342,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int INVALID_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int INVALID_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -1380,6 +1374,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -1427,6 +1454,17 @@ public interface UMLPackage
 	int ELEMENT_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1449,7 +1487,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1457,7 +1495,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int ELEMENT_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1471,7 +1509,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1479,29 +1517,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int ELEMENT_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -1515,7 +1531,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1523,7 +1539,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int ELEMENT_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -1559,7 +1586,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1567,7 +1594,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int ELEMENT_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -1581,7 +1608,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1589,7 +1616,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int ELEMENT_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -1658,17 +1685,6 @@ public interface UMLPackage
 	int ELEMENT_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1680,7 +1696,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1688,7 +1704,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int ELEMENT_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -1713,17 +1773,6 @@ public interface UMLPackage
 	int ELEMENT_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1735,7 +1784,7 @@ public interface UMLPackage
 	int ELEMENT_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1743,62 +1792,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int ELEMENT_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int ELEMENT_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -1821,6 +1824,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ELEMENT_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The number of structural features of the '<em>Element Type</em>' class.
@@ -1857,6 +1893,17 @@ public interface UMLPackage
 	int TYPE_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -1879,7 +1926,7 @@ public interface UMLPackage
 	int TYPE_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1887,7 +1934,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int TYPE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1901,7 +1948,7 @@ public interface UMLPackage
 	int TYPE_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1909,29 +1956,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int TYPE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -1945,7 +1970,7 @@ public interface UMLPackage
 	int TYPE_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1953,7 +1978,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int TYPE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -1989,7 +2025,7 @@ public interface UMLPackage
 	int TYPE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -1997,7 +2033,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int TYPE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -2011,7 +2047,7 @@ public interface UMLPackage
 	int TYPE_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2019,7 +2055,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int TYPE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -2088,17 +2124,6 @@ public interface UMLPackage
 	int TYPE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2110,7 +2135,7 @@ public interface UMLPackage
 	int TYPE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2118,7 +2143,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int TYPE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -2143,17 +2212,6 @@ public interface UMLPackage
 	int TYPE_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2165,7 +2223,7 @@ public interface UMLPackage
 	int TYPE_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2173,62 +2231,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int TYPE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int TYPE_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -2251,6 +2263,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TYPE_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
@@ -2309,6 +2354,17 @@ public interface UMLPackage
 	int MESSAGE_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2331,7 +2387,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2339,7 +2395,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int MESSAGE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2353,7 +2409,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2361,29 +2417,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int MESSAGE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -2397,7 +2431,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2405,7 +2439,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int MESSAGE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -2441,7 +2486,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2449,7 +2494,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int MESSAGE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -2463,7 +2508,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2471,7 +2516,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int MESSAGE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -2540,17 +2585,6 @@ public interface UMLPackage
 	int MESSAGE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2562,7 +2596,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2570,7 +2604,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int MESSAGE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -2595,17 +2673,6 @@ public interface UMLPackage
 	int MESSAGE_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2617,7 +2684,7 @@ public interface UMLPackage
 	int MESSAGE_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2625,62 +2692,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int MESSAGE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int MESSAGE_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -2703,6 +2724,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
@@ -2783,6 +2837,17 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -2805,7 +2870,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2813,7 +2878,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_COMMENT;
+	int PRIMITIVE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2827,7 +2892,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2835,29 +2900,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__CLIENT_DEPENDENCY;
+	int PRIMITIVE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -2871,7 +2914,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2879,7 +2922,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__NAME_EXPRESSION;
+	int PRIMITIVE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -2915,7 +2969,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2923,7 +2977,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__MEMBER;
+	int PRIMITIVE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -2937,7 +2991,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -2945,7 +2999,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_MEMBER;
+	int PRIMITIVE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -3014,17 +3068,6 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3036,7 +3079,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3044,7 +3087,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__IS_ABSTRACT;
+	int PRIMITIVE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -3069,17 +3156,6 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3091,7 +3167,7 @@ public interface UMLPackage
 	int PRIMITIVE_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3099,62 +3175,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__REDEFINED_CLASSIFIER;
+	int PRIMITIVE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__COLLABORATION_USE;
+	int PRIMITIVE_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -3177,6 +3207,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.PRIMITIVE_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -3235,6 +3298,17 @@ public interface UMLPackage
 	int COLLECTION_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3257,7 +3331,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3265,7 +3339,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_COMMENT;
+	int COLLECTION_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3279,7 +3353,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3287,29 +3361,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__CLIENT_DEPENDENCY;
+	int COLLECTION_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -3323,7 +3375,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3331,7 +3383,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME_EXPRESSION;
+	int COLLECTION_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -3367,7 +3430,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3375,7 +3438,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__MEMBER;
+	int COLLECTION_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -3389,7 +3452,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3397,7 +3460,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_MEMBER;
+	int COLLECTION_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -3466,17 +3529,6 @@ public interface UMLPackage
 	int COLLECTION_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3488,7 +3540,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3496,7 +3548,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_ABSTRACT;
+	int COLLECTION_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -3521,17 +3617,6 @@ public interface UMLPackage
 	int COLLECTION_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3543,7 +3628,7 @@ public interface UMLPackage
 	int COLLECTION_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3551,62 +3636,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REDEFINED_CLASSIFIER;
+	int COLLECTION_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__COLLABORATION_USE;
+	int COLLECTION_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -3629,6 +3668,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -3753,6 +3825,17 @@ public interface UMLPackage
 	int TUPLE_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -3775,7 +3858,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3783,7 +3866,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_COMMENT;
+	int TUPLE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3797,7 +3880,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3805,29 +3888,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__CLIENT_DEPENDENCY;
+	int TUPLE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -3841,7 +3902,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3849,7 +3910,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__NAME_EXPRESSION;
+	int TUPLE_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -3885,7 +3957,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3893,7 +3965,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__MEMBER;
+	int TUPLE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -3907,7 +3979,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -3915,7 +3987,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_MEMBER;
+	int TUPLE_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -3984,17 +4056,6 @@ public interface UMLPackage
 	int TUPLE_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4006,7 +4067,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4014,7 +4075,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_ABSTRACT;
+	int TUPLE_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -4039,17 +4144,6 @@ public interface UMLPackage
 	int TUPLE_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4061,7 +4155,7 @@ public interface UMLPackage
 	int TUPLE_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4069,62 +4163,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REDEFINED_CLASSIFIER;
+	int TUPLE_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__COLLABORATION_USE;
+	int TUPLE_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -4147,6 +4195,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.DATA_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -4205,6 +4286,17 @@ public interface UMLPackage
 	int BAG_TYPE__EANNOTATIONS = COLLECTION_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4227,7 +4319,7 @@ public interface UMLPackage
 	int BAG_TYPE__OWNER = COLLECTION_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4235,7 +4327,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+	int BAG_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4249,7 +4341,7 @@ public interface UMLPackage
 	int BAG_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4257,29 +4349,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
+	int BAG_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -4293,7 +4363,7 @@ public interface UMLPackage
 	int BAG_TYPE__NAMESPACE = COLLECTION_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4301,7 +4371,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
+	int BAG_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -4337,7 +4418,7 @@ public interface UMLPackage
 	int BAG_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4345,7 +4426,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
+	int BAG_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -4359,7 +4440,7 @@ public interface UMLPackage
 	int BAG_TYPE__IMPORTED_MEMBER = COLLECTION_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4367,7 +4448,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
+	int BAG_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -4436,17 +4517,6 @@ public interface UMLPackage
 	int BAG_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4458,7 +4528,7 @@ public interface UMLPackage
 	int BAG_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4466,7 +4536,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
+	int BAG_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -4491,17 +4605,6 @@ public interface UMLPackage
 	int BAG_TYPE__POWERTYPE_EXTENT = COLLECTION_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4513,7 +4616,7 @@ public interface UMLPackage
 	int BAG_TYPE__INHERITED_MEMBER = COLLECTION_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4521,62 +4624,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+	int BAG_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BAG_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BAG_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+	int BAG_TYPE__IS_FINAL_SPECIALIZATION = COLLECTION_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -4599,6 +4656,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int BAG_TYPE__USE_CASE = COLLECTION_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -4723,6 +4813,17 @@ public interface UMLPackage
 	int SET_TYPE__EANNOTATIONS = COLLECTION_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4745,7 +4846,7 @@ public interface UMLPackage
 	int SET_TYPE__OWNER = COLLECTION_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4753,7 +4854,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+	int SET_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4767,7 +4868,7 @@ public interface UMLPackage
 	int SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4775,29 +4876,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
+	int SET_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -4811,7 +4890,7 @@ public interface UMLPackage
 	int SET_TYPE__NAMESPACE = COLLECTION_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4819,7 +4898,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
+	int SET_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -4855,7 +4945,7 @@ public interface UMLPackage
 	int SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4863,7 +4953,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
+	int SET_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -4877,7 +4967,7 @@ public interface UMLPackage
 	int SET_TYPE__IMPORTED_MEMBER = COLLECTION_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4885,7 +4975,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
+	int SET_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -4954,17 +5044,6 @@ public interface UMLPackage
 	int SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -4976,7 +5055,7 @@ public interface UMLPackage
 	int SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -4984,7 +5063,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
+	int SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -5009,17 +5132,6 @@ public interface UMLPackage
 	int SET_TYPE__POWERTYPE_EXTENT = COLLECTION_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5031,7 +5143,7 @@ public interface UMLPackage
 	int SET_TYPE__INHERITED_MEMBER = COLLECTION_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5039,62 +5151,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+	int SET_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SET_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+	int SET_TYPE__IS_FINAL_SPECIALIZATION = COLLECTION_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -5117,6 +5183,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SET_TYPE__USE_CASE = COLLECTION_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -5241,6 +5340,17 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__EANNOTATIONS = COLLECTION_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5263,7 +5373,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__OWNER = COLLECTION_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5271,7 +5381,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+	int ORDERED_SET_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5285,7 +5395,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5293,29 +5403,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
+	int ORDERED_SET_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -5329,7 +5417,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__NAMESPACE = COLLECTION_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5337,7 +5425,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
+	int ORDERED_SET_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -5373,7 +5472,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5381,7 +5480,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
+	int ORDERED_SET_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -5395,7 +5494,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__IMPORTED_MEMBER = COLLECTION_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5403,7 +5502,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
+	int ORDERED_SET_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -5472,17 +5571,6 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5494,7 +5582,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5502,7 +5590,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
+	int ORDERED_SET_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -5527,17 +5659,6 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__POWERTYPE_EXTENT = COLLECTION_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5549,7 +5670,7 @@ public interface UMLPackage
 	int ORDERED_SET_TYPE__INHERITED_MEMBER = COLLECTION_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5557,62 +5678,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+	int ORDERED_SET_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORDERED_SET_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORDERED_SET_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+	int ORDERED_SET_TYPE__IS_FINAL_SPECIALIZATION = COLLECTION_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -5635,6 +5710,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE__USE_CASE = COLLECTION_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -5759,6 +5867,17 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__EANNOTATIONS = COLLECTION_TYPE__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -5781,7 +5900,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__OWNER = COLLECTION_TYPE__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5789,7 +5908,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__OWNED_COMMENT = COLLECTION_TYPE__OWNED_COMMENT;
+	int SEQUENCE_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5803,7 +5922,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__NAME = COLLECTION_TYPE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5811,29 +5930,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__CLIENT_DEPENDENCY = COLLECTION_TYPE__CLIENT_DEPENDENCY;
+	int SEQUENCE_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -5847,7 +5944,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__NAMESPACE = COLLECTION_TYPE__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5855,7 +5952,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__NAME_EXPRESSION = COLLECTION_TYPE__NAME_EXPRESSION;
+	int SEQUENCE_TYPE__QUALIFIED_NAME = COLLECTION_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__VISIBILITY = COLLECTION_TYPE__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -5891,7 +5999,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__OWNED_RULE = COLLECTION_TYPE__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5899,7 +6007,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
+	int SEQUENCE_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -5913,7 +6021,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__IMPORTED_MEMBER = COLLECTION_TYPE__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -5921,7 +6029,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__OWNED_MEMBER = COLLECTION_TYPE__OWNED_MEMBER;
+	int SEQUENCE_TYPE__MEMBER = COLLECTION_TYPE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -5990,17 +6098,6 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__PACKAGE = COLLECTION_TYPE__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6012,7 +6109,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__OWNED_TEMPLATE_SIGNATURE = COLLECTION_TYPE__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6020,7 +6117,51 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
+	int SEQUENCE_TYPE__TEMPLATE_BINDING = COLLECTION_TYPE__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -6045,17 +6186,6 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__POWERTYPE_EXTENT = COLLECTION_TYPE__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__FEATURE = COLLECTION_TYPE__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6067,7 +6197,7 @@ public interface UMLPackage
 	int SEQUENCE_TYPE__INHERITED_MEMBER = COLLECTION_TYPE__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6075,62 +6205,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+	int SEQUENCE_TYPE__IS_ABSTRACT = COLLECTION_TYPE__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_TYPE__GENERAL = COLLECTION_TYPE__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__ATTRIBUTE = COLLECTION_TYPE__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE_TYPE__COLLABORATION_USE = COLLECTION_TYPE__COLLABORATION_USE;
+	int SEQUENCE_TYPE__IS_FINAL_SPECIALIZATION = COLLECTION_TYPE__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -6153,6 +6237,39 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE__USE_CASE = COLLECTION_TYPE__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__REDEFINED_CLASSIFIER = COLLECTION_TYPE__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__REPRESENTATION = COLLECTION_TYPE__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE__SUBSTITUTION = COLLECTION_TYPE__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -6277,6 +6394,17 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6299,7 +6427,7 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__OWNER = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6307,7 +6435,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__OWNED_COMMENT;
+	int EXPRESSION_IN_OCL__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6321,7 +6449,7 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__NAME = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6329,29 +6457,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__CLIENT_DEPENDENCY;
+	int EXPRESSION_IN_OCL__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -6365,7 +6471,7 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6373,7 +6479,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__NAME_EXPRESSION;
+	int EXPRESSION_IN_OCL__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -6409,6 +6526,17 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__TYPE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Behavior</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__BEHAVIOR = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__BEHAVIOR;
+
+	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6440,17 +6568,6 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL__RESULT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__RESULT;
-
-	/**
-	 * The feature id for the '<em><b>Behavior</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL__BEHAVIOR = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION__BEHAVIOR;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -6543,6 +6660,17 @@ public interface UMLPackage
 	int OCL_EXPRESSION__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6565,7 +6693,7 @@ public interface UMLPackage
 	int OCL_EXPRESSION__OWNER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6573,7 +6701,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+	int OCL_EXPRESSION__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6587,7 +6715,7 @@ public interface UMLPackage
 	int OCL_EXPRESSION__NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6595,29 +6723,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_EXPRESSION__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
+	int OCL_EXPRESSION__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -6631,7 +6737,7 @@ public interface UMLPackage
 	int OCL_EXPRESSION__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6639,7 +6745,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
+	int OCL_EXPRESSION__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -6709,6 +6826,17 @@ public interface UMLPackage
 	int CALL_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6731,7 +6859,7 @@ public interface UMLPackage
 	int CALL_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6739,7 +6867,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int CALL_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6753,7 +6881,7 @@ public interface UMLPackage
 	int CALL_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6761,29 +6889,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int CALL_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -6797,7 +6903,7 @@ public interface UMLPackage
 	int CALL_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6805,7 +6911,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int CALL_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -6908,6 +7025,17 @@ public interface UMLPackage
 	int FEATURE_CALL_EXP__EANNOTATIONS = CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -6930,7 +7058,7 @@ public interface UMLPackage
 	int FEATURE_CALL_EXP__OWNER = CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6938,7 +7066,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
+	int FEATURE_CALL_EXP__CLIENT_DEPENDENCY = CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -6952,7 +7080,7 @@ public interface UMLPackage
 	int FEATURE_CALL_EXP__NAME = CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -6960,29 +7088,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_EXP__VISIBILITY = CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP__QUALIFIED_NAME = CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP__CLIENT_DEPENDENCY = CALL_EXP__CLIENT_DEPENDENCY;
+	int FEATURE_CALL_EXP__NAME_EXPRESSION = CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -6996,7 +7102,7 @@ public interface UMLPackage
 	int FEATURE_CALL_EXP__NAMESPACE = CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7004,7 +7110,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CALL_EXP__NAME_EXPRESSION = CALL_EXP__NAME_EXPRESSION;
+	int FEATURE_CALL_EXP__QUALIFIED_NAME = CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP__VISIBILITY = CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7118,6 +7235,17 @@ public interface UMLPackage
 	int NAVIGATION_CALL_EXP__EANNOTATIONS = FEATURE_CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -7140,7 +7268,7 @@ public interface UMLPackage
 	int NAVIGATION_CALL_EXP__OWNER = FEATURE_CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7148,7 +7276,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
+	int NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY = FEATURE_CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7162,7 +7290,7 @@ public interface UMLPackage
 	int NAVIGATION_CALL_EXP__NAME = FEATURE_CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7170,29 +7298,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__VISIBILITY = FEATURE_CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP__QUALIFIED_NAME = FEATURE_CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY = FEATURE_CALL_EXP__CLIENT_DEPENDENCY;
+	int NAVIGATION_CALL_EXP__NAME_EXPRESSION = FEATURE_CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -7206,7 +7312,7 @@ public interface UMLPackage
 	int NAVIGATION_CALL_EXP__NAMESPACE = FEATURE_CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7214,7 +7320,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAVIGATION_CALL_EXP__NAME_EXPRESSION = FEATURE_CALL_EXP__NAME_EXPRESSION;
+	int NAVIGATION_CALL_EXP__QUALIFIED_NAME = FEATURE_CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP__VISIBILITY = FEATURE_CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7350,6 +7467,17 @@ public interface UMLPackage
 	int ASSOCIATION_CLASS_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -7372,7 +7500,7 @@ public interface UMLPackage
 	int ASSOCIATION_CLASS_CALL_EXP__OWNER = NAVIGATION_CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7380,7 +7508,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
+	int ASSOCIATION_CLASS_CALL_EXP__CLIENT_DEPENDENCY = NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7394,7 +7522,7 @@ public interface UMLPackage
 	int ASSOCIATION_CLASS_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7402,29 +7530,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__VISIBILITY = NAVIGATION_CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__QUALIFIED_NAME = NAVIGATION_CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__CLIENT_DEPENDENCY = NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY;
+	int ASSOCIATION_CLASS_CALL_EXP__NAME_EXPRESSION = NAVIGATION_CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -7438,7 +7544,7 @@ public interface UMLPackage
 	int ASSOCIATION_CLASS_CALL_EXP__NAMESPACE = NAVIGATION_CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7446,7 +7552,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP__NAME_EXPRESSION = NAVIGATION_CALL_EXP__NAME_EXPRESSION;
+	int ASSOCIATION_CLASS_CALL_EXP__QUALIFIED_NAME = NAVIGATION_CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP__VISIBILITY = NAVIGATION_CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7593,6 +7710,17 @@ public interface UMLPackage
 	int LITERAL_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -7615,7 +7743,7 @@ public interface UMLPackage
 	int LITERAL_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7623,7 +7751,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int LITERAL_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7637,7 +7765,7 @@ public interface UMLPackage
 	int LITERAL_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7645,29 +7773,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int LITERAL_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -7681,7 +7787,7 @@ public interface UMLPackage
 	int LITERAL_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7689,7 +7795,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int LITERAL_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7759,6 +7876,17 @@ public interface UMLPackage
 	int PRIMITIVE_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -7781,7 +7909,7 @@ public interface UMLPackage
 	int PRIMITIVE_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7789,7 +7917,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7803,7 +7931,7 @@ public interface UMLPackage
 	int PRIMITIVE_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7811,29 +7939,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -7847,7 +7953,7 @@ public interface UMLPackage
 	int PRIMITIVE_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7855,7 +7961,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -7925,6 +8042,17 @@ public interface UMLPackage
 	int BOOLEAN_LITERAL_EXP__EANNOTATIONS = PRIMITIVE_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -7947,7 +8075,7 @@ public interface UMLPackage
 	int BOOLEAN_LITERAL_EXP__OWNER = PRIMITIVE_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7955,7 +8083,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+	int BOOLEAN_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -7969,7 +8097,7 @@ public interface UMLPackage
 	int BOOLEAN_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -7977,29 +8105,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int BOOLEAN_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8013,7 +8119,7 @@ public interface UMLPackage
 	int BOOLEAN_LITERAL_EXP__NAMESPACE = PRIMITIVE_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8021,7 +8127,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
+	int BOOLEAN_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8102,6 +8219,17 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_PART__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8124,7 +8252,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_PART__OWNER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8132,7 +8260,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+	int COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8146,7 +8274,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_PART__NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8154,29 +8282,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
+	int COLLECTION_LITERAL_PART__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8190,7 +8296,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_PART__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8198,7 +8304,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_PART__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
+	int COLLECTION_LITERAL_PART__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8246,6 +8363,17 @@ public interface UMLPackage
 	int COLLECTION_ITEM__EANNOTATIONS = COLLECTION_LITERAL_PART__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8268,7 +8396,7 @@ public interface UMLPackage
 	int COLLECTION_ITEM__OWNER = COLLECTION_LITERAL_PART__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8276,7 +8404,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
+	int COLLECTION_ITEM__CLIENT_DEPENDENCY = COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8290,7 +8418,7 @@ public interface UMLPackage
 	int COLLECTION_ITEM__NAME = COLLECTION_LITERAL_PART__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8298,29 +8426,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM__VISIBILITY = COLLECTION_LITERAL_PART__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM__QUALIFIED_NAME = COLLECTION_LITERAL_PART__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_ITEM__CLIENT_DEPENDENCY = COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY;
+	int COLLECTION_ITEM__NAME_EXPRESSION = COLLECTION_LITERAL_PART__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8334,7 +8440,7 @@ public interface UMLPackage
 	int COLLECTION_ITEM__NAMESPACE = COLLECTION_LITERAL_PART__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8342,7 +8448,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_ITEM__NAME_EXPRESSION = COLLECTION_LITERAL_PART__NAME_EXPRESSION;
+	int COLLECTION_ITEM__QUALIFIED_NAME = COLLECTION_LITERAL_PART__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM__VISIBILITY = COLLECTION_LITERAL_PART__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8401,6 +8518,17 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8423,7 +8551,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8431,7 +8559,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int COLLECTION_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8445,7 +8573,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8453,29 +8581,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int COLLECTION_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8489,7 +8595,7 @@ public interface UMLPackage
 	int COLLECTION_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8497,7 +8603,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int COLLECTION_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8600,6 +8717,17 @@ public interface UMLPackage
 	int COLLECTION_RANGE__EANNOTATIONS = COLLECTION_LITERAL_PART__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8622,7 +8750,7 @@ public interface UMLPackage
 	int COLLECTION_RANGE__OWNER = COLLECTION_LITERAL_PART__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8630,7 +8758,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE__OWNED_COMMENT = COLLECTION_LITERAL_PART__OWNED_COMMENT;
+	int COLLECTION_RANGE__CLIENT_DEPENDENCY = COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8644,7 +8772,7 @@ public interface UMLPackage
 	int COLLECTION_RANGE__NAME = COLLECTION_LITERAL_PART__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8652,29 +8780,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE__VISIBILITY = COLLECTION_LITERAL_PART__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE__QUALIFIED_NAME = COLLECTION_LITERAL_PART__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_RANGE__CLIENT_DEPENDENCY = COLLECTION_LITERAL_PART__CLIENT_DEPENDENCY;
+	int COLLECTION_RANGE__NAME_EXPRESSION = COLLECTION_LITERAL_PART__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8688,7 +8794,7 @@ public interface UMLPackage
 	int COLLECTION_RANGE__NAMESPACE = COLLECTION_LITERAL_PART__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8696,7 +8802,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_RANGE__NAME_EXPRESSION = COLLECTION_LITERAL_PART__NAME_EXPRESSION;
+	int COLLECTION_RANGE__QUALIFIED_NAME = COLLECTION_LITERAL_PART__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE__VISIBILITY = COLLECTION_LITERAL_PART__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8766,6 +8883,17 @@ public interface UMLPackage
 	int ENUM_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8788,7 +8916,7 @@ public interface UMLPackage
 	int ENUM_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8796,7 +8924,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ENUM_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int ENUM_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8810,7 +8938,7 @@ public interface UMLPackage
 	int ENUM_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8818,29 +8946,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ENUM_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int ENUM_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -8854,7 +8960,7 @@ public interface UMLPackage
 	int ENUM_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8862,7 +8968,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ENUM_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int ENUM_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -8943,6 +9060,17 @@ public interface UMLPackage
 	int IF_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -8965,7 +9093,7 @@ public interface UMLPackage
 	int IF_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8973,7 +9101,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int IF_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -8987,7 +9115,7 @@ public interface UMLPackage
 	int IF_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -8995,29 +9123,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int IF_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9031,7 +9137,7 @@ public interface UMLPackage
 	int IF_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9039,7 +9145,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int IF_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int IF_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9142,6 +9259,17 @@ public interface UMLPackage
 	int NUMERIC_LITERAL_EXP__EANNOTATIONS = PRIMITIVE_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9164,7 +9292,7 @@ public interface UMLPackage
 	int NUMERIC_LITERAL_EXP__OWNER = PRIMITIVE_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9172,7 +9300,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+	int NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9186,7 +9314,7 @@ public interface UMLPackage
 	int NUMERIC_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9194,29 +9322,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int NUMERIC_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9230,7 +9336,7 @@ public interface UMLPackage
 	int NUMERIC_LITERAL_EXP__NAMESPACE = PRIMITIVE_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9238,7 +9344,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
+	int NUMERIC_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9308,6 +9425,17 @@ public interface UMLPackage
 	int INTEGER_LITERAL_EXP__EANNOTATIONS = NUMERIC_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9330,7 +9458,7 @@ public interface UMLPackage
 	int INTEGER_LITERAL_EXP__OWNER = NUMERIC_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9338,7 +9466,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+	int INTEGER_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9352,7 +9480,7 @@ public interface UMLPackage
 	int INTEGER_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9360,29 +9488,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int INTEGER_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9396,7 +9502,7 @@ public interface UMLPackage
 	int INTEGER_LITERAL_EXP__NAMESPACE = NUMERIC_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9404,7 +9510,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
+	int INTEGER_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9485,6 +9602,17 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__EANNOTATIONS = NUMERIC_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9507,7 +9635,7 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__OWNER = NUMERIC_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9515,7 +9643,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+	int UNLIMITED_NATURAL_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9529,7 +9657,7 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9537,29 +9665,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int UNLIMITED_NATURAL_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9573,7 +9679,7 @@ public interface UMLPackage
 	int UNLIMITED_NATURAL_LITERAL_EXP__NAMESPACE = NUMERIC_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9581,7 +9687,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
+	int UNLIMITED_NATURAL_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9673,6 +9790,17 @@ public interface UMLPackage
 	int INVALID_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9695,7 +9823,7 @@ public interface UMLPackage
 	int INVALID_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9703,7 +9831,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int INVALID_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9717,7 +9845,7 @@ public interface UMLPackage
 	int INVALID_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9725,29 +9853,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int INVALID_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9761,7 +9867,7 @@ public interface UMLPackage
 	int INVALID_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9769,7 +9875,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int INVALID_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -9839,6 +9956,17 @@ public interface UMLPackage
 	int LOOP_EXP__EANNOTATIONS = CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -9861,7 +9989,7 @@ public interface UMLPackage
 	int LOOP_EXP__OWNER = CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9869,7 +9997,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_EXP__OWNED_COMMENT = CALL_EXP__OWNED_COMMENT;
+	int LOOP_EXP__CLIENT_DEPENDENCY = CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9883,7 +10011,7 @@ public interface UMLPackage
 	int LOOP_EXP__NAME = CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9891,29 +10019,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_EXP__VISIBILITY = CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP__QUALIFIED_NAME = CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP__CLIENT_DEPENDENCY = CALL_EXP__CLIENT_DEPENDENCY;
+	int LOOP_EXP__NAME_EXPRESSION = CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -9927,7 +10033,7 @@ public interface UMLPackage
 	int LOOP_EXP__NAMESPACE = CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -9935,7 +10041,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP_EXP__NAME_EXPRESSION = CALL_EXP__NAME_EXPRESSION;
+	int LOOP_EXP__QUALIFIED_NAME = CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__VISIBILITY = CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10060,6 +10177,17 @@ public interface UMLPackage
 	int ITERATE_EXP__EANNOTATIONS = LOOP_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -10082,7 +10210,7 @@ public interface UMLPackage
 	int ITERATE_EXP__OWNER = LOOP_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10090,7 +10218,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
+	int ITERATE_EXP__CLIENT_DEPENDENCY = LOOP_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10104,7 +10232,7 @@ public interface UMLPackage
 	int ITERATE_EXP__NAME = LOOP_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10112,29 +10240,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP__VISIBILITY = LOOP_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP__QUALIFIED_NAME = LOOP_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP__CLIENT_DEPENDENCY = LOOP_EXP__CLIENT_DEPENDENCY;
+	int ITERATE_EXP__NAME_EXPRESSION = LOOP_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -10148,7 +10254,7 @@ public interface UMLPackage
 	int ITERATE_EXP__NAMESPACE = LOOP_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10156,7 +10262,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATE_EXP__NAME_EXPRESSION = LOOP_EXP__NAME_EXPRESSION;
+	int ITERATE_EXP__QUALIFIED_NAME = LOOP_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__VISIBILITY = LOOP_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10292,6 +10409,17 @@ public interface UMLPackage
 	int ITERATOR_EXP__EANNOTATIONS = LOOP_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -10314,7 +10442,7 @@ public interface UMLPackage
 	int ITERATOR_EXP__OWNER = LOOP_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10322,7 +10450,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
+	int ITERATOR_EXP__CLIENT_DEPENDENCY = LOOP_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10336,7 +10464,7 @@ public interface UMLPackage
 	int ITERATOR_EXP__NAME = LOOP_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10344,29 +10472,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__VISIBILITY = LOOP_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__QUALIFIED_NAME = LOOP_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__CLIENT_DEPENDENCY = LOOP_EXP__CLIENT_DEPENDENCY;
+	int ITERATOR_EXP__NAME_EXPRESSION = LOOP_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -10380,7 +10486,7 @@ public interface UMLPackage
 	int ITERATOR_EXP__NAMESPACE = LOOP_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10388,7 +10494,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__NAME_EXPRESSION = LOOP_EXP__NAME_EXPRESSION;
+	int ITERATOR_EXP__QUALIFIED_NAME = LOOP_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__VISIBILITY = LOOP_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10513,6 +10630,17 @@ public interface UMLPackage
 	int LET_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -10535,7 +10663,7 @@ public interface UMLPackage
 	int LET_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10543,7 +10671,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int LET_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10557,7 +10685,7 @@ public interface UMLPackage
 	int LET_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10565,29 +10693,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int LET_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -10601,7 +10707,7 @@ public interface UMLPackage
 	int LET_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10609,7 +10715,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int LET_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10701,6 +10818,17 @@ public interface UMLPackage
 	int MESSAGE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -10723,7 +10851,7 @@ public interface UMLPackage
 	int MESSAGE_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10731,7 +10859,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int MESSAGE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10745,7 +10873,7 @@ public interface UMLPackage
 	int MESSAGE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10753,29 +10881,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESSAGE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int MESSAGE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -10789,7 +10895,7 @@ public interface UMLPackage
 	int MESSAGE_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10797,7 +10903,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MESSAGE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int MESSAGE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -10933,6 +11050,17 @@ public interface UMLPackage
 	int NULL_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -10955,7 +11083,7 @@ public interface UMLPackage
 	int NULL_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10963,7 +11091,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int NULL_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -10977,7 +11105,7 @@ public interface UMLPackage
 	int NULL_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -10985,29 +11113,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int NULL_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -11021,7 +11127,7 @@ public interface UMLPackage
 	int NULL_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11029,7 +11135,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int NULL_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11099,6 +11216,17 @@ public interface UMLPackage
 	int OPERATION_CALL_EXP__EANNOTATIONS = FEATURE_CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -11121,7 +11249,7 @@ public interface UMLPackage
 	int OPERATION_CALL_EXP__OWNER = FEATURE_CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11129,7 +11257,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__OWNED_COMMENT = FEATURE_CALL_EXP__OWNED_COMMENT;
+	int OPERATION_CALL_EXP__CLIENT_DEPENDENCY = FEATURE_CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11143,7 +11271,7 @@ public interface UMLPackage
 	int OPERATION_CALL_EXP__NAME = FEATURE_CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11151,29 +11279,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__VISIBILITY = FEATURE_CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP__QUALIFIED_NAME = FEATURE_CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP__CLIENT_DEPENDENCY = FEATURE_CALL_EXP__CLIENT_DEPENDENCY;
+	int OPERATION_CALL_EXP__NAME_EXPRESSION = FEATURE_CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -11187,7 +11293,7 @@ public interface UMLPackage
 	int OPERATION_CALL_EXP__NAMESPACE = FEATURE_CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11195,7 +11301,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP__NAME_EXPRESSION = FEATURE_CALL_EXP__NAME_EXPRESSION;
+	int OPERATION_CALL_EXP__QUALIFIED_NAME = FEATURE_CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__VISIBILITY = FEATURE_CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11342,6 +11459,17 @@ public interface UMLPackage
 	int PROPERTY_CALL_EXP__EANNOTATIONS = NAVIGATION_CALL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -11364,7 +11492,7 @@ public interface UMLPackage
 	int PROPERTY_CALL_EXP__OWNER = NAVIGATION_CALL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11372,7 +11500,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
+	int PROPERTY_CALL_EXP__CLIENT_DEPENDENCY = NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11386,7 +11514,7 @@ public interface UMLPackage
 	int PROPERTY_CALL_EXP__NAME = NAVIGATION_CALL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11394,29 +11522,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__VISIBILITY = NAVIGATION_CALL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP__QUALIFIED_NAME = NAVIGATION_CALL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP__CLIENT_DEPENDENCY = NAVIGATION_CALL_EXP__CLIENT_DEPENDENCY;
+	int PROPERTY_CALL_EXP__NAME_EXPRESSION = NAVIGATION_CALL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -11430,7 +11536,7 @@ public interface UMLPackage
 	int PROPERTY_CALL_EXP__NAMESPACE = NAVIGATION_CALL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11438,7 +11544,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CALL_EXP__NAME_EXPRESSION = NAVIGATION_CALL_EXP__NAME_EXPRESSION;
+	int PROPERTY_CALL_EXP__QUALIFIED_NAME = NAVIGATION_CALL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__VISIBILITY = NAVIGATION_CALL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11585,6 +11702,17 @@ public interface UMLPackage
 	int REAL_LITERAL_EXP__EANNOTATIONS = NUMERIC_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -11607,7 +11735,7 @@ public interface UMLPackage
 	int REAL_LITERAL_EXP__OWNER = NUMERIC_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11615,7 +11743,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int REAL_LITERAL_EXP__OWNED_COMMENT = NUMERIC_LITERAL_EXP__OWNED_COMMENT;
+	int REAL_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11629,7 +11757,7 @@ public interface UMLPackage
 	int REAL_LITERAL_EXP__NAME = NUMERIC_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11637,29 +11765,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int REAL_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REAL_LITERAL_EXP__CLIENT_DEPENDENCY = NUMERIC_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int REAL_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -11673,7 +11779,7 @@ public interface UMLPackage
 	int REAL_LITERAL_EXP__NAMESPACE = NUMERIC_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11681,7 +11787,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int REAL_LITERAL_EXP__NAME_EXPRESSION = NUMERIC_LITERAL_EXP__NAME_EXPRESSION;
+	int REAL_LITERAL_EXP__QUALIFIED_NAME = NUMERIC_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__VISIBILITY = NUMERIC_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11762,6 +11879,17 @@ public interface UMLPackage
 	int STATE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -11784,7 +11912,7 @@ public interface UMLPackage
 	int STATE_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11792,7 +11920,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int STATE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11806,7 +11934,7 @@ public interface UMLPackage
 	int STATE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11814,29 +11942,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int STATE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -11850,7 +11956,7 @@ public interface UMLPackage
 	int STATE_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11858,7 +11964,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int STATE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -11939,6 +12056,17 @@ public interface UMLPackage
 	int STRING_LITERAL_EXP__EANNOTATIONS = PRIMITIVE_LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -11961,7 +12089,7 @@ public interface UMLPackage
 	int STRING_LITERAL_EXP__OWNER = PRIMITIVE_LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11969,7 +12097,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__OWNED_COMMENT = PRIMITIVE_LITERAL_EXP__OWNED_COMMENT;
+	int STRING_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -11983,7 +12111,7 @@ public interface UMLPackage
 	int STRING_LITERAL_EXP__NAME = PRIMITIVE_LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -11991,29 +12119,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP__CLIENT_DEPENDENCY = PRIMITIVE_LITERAL_EXP__CLIENT_DEPENDENCY;
+	int STRING_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12027,7 +12133,7 @@ public interface UMLPackage
 	int STRING_LITERAL_EXP__NAMESPACE = PRIMITIVE_LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12035,7 +12141,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_LITERAL_EXP__NAME_EXPRESSION = PRIMITIVE_LITERAL_EXP__NAME_EXPRESSION;
+	int STRING_LITERAL_EXP__QUALIFIED_NAME = PRIMITIVE_LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__VISIBILITY = PRIMITIVE_LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12116,6 +12233,17 @@ public interface UMLPackage
 	int TUPLE_LITERAL_EXP__EANNOTATIONS = LITERAL_EXP__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -12138,7 +12266,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_EXP__OWNER = LITERAL_EXP__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12146,7 +12274,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP__OWNED_COMMENT = LITERAL_EXP__OWNED_COMMENT;
+	int TUPLE_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12160,7 +12288,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_EXP__NAME = LITERAL_EXP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12168,29 +12296,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP__CLIENT_DEPENDENCY = LITERAL_EXP__CLIENT_DEPENDENCY;
+	int TUPLE_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12204,7 +12310,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_EXP__NAMESPACE = LITERAL_EXP__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12212,7 +12318,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP__NAME_EXPRESSION = LITERAL_EXP__NAME_EXPRESSION;
+	int TUPLE_LITERAL_EXP__QUALIFIED_NAME = LITERAL_EXP__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__VISIBILITY = LITERAL_EXP__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12293,6 +12410,17 @@ public interface UMLPackage
 	int TUPLE_LITERAL_PART__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -12315,7 +12443,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_PART__OWNER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12323,7 +12451,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+	int TUPLE_LITERAL_PART__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12337,7 +12465,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_PART__NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12345,29 +12473,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
+	int TUPLE_LITERAL_PART__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12381,7 +12487,7 @@ public interface UMLPackage
 	int TUPLE_LITERAL_PART__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12389,7 +12495,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_PART__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
+	int TUPLE_LITERAL_PART__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12503,6 +12620,17 @@ public interface UMLPackage
 	int TYPE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -12525,7 +12653,7 @@ public interface UMLPackage
 	int TYPE_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12533,7 +12661,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int TYPE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12547,7 +12675,7 @@ public interface UMLPackage
 	int TYPE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12555,29 +12683,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int TYPE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12591,7 +12697,7 @@ public interface UMLPackage
 	int TYPE_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12599,7 +12705,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int TYPE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12680,6 +12797,17 @@ public interface UMLPackage
 	int UNSPECIFIED_VALUE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -12702,7 +12830,7 @@ public interface UMLPackage
 	int UNSPECIFIED_VALUE_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12710,7 +12838,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int UNSPECIFIED_VALUE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12724,7 +12852,7 @@ public interface UMLPackage
 	int UNSPECIFIED_VALUE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12732,29 +12860,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNSPECIFIED_VALUE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int UNSPECIFIED_VALUE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12768,7 +12874,7 @@ public interface UMLPackage
 	int UNSPECIFIED_VALUE_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12776,7 +12882,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_VALUE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int UNSPECIFIED_VALUE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -12868,6 +12985,17 @@ public interface UMLPackage
 	int VARIABLE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -12890,7 +13018,7 @@ public interface UMLPackage
 	int VARIABLE__OWNER = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12898,7 +13026,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__OWNED_COMMENT;
+	int VARIABLE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12912,7 +13040,7 @@ public interface UMLPackage
 	int VARIABLE__NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12920,29 +13048,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__CLIENT_DEPENDENCY;
+	int VARIABLE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12956,7 +13062,7 @@ public interface UMLPackage
 	int VARIABLE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -12964,7 +13070,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__NAME_EXPRESSION;
+	int VARIABLE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.TYPED_ELEMENT__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -13078,6 +13195,17 @@ public interface UMLPackage
 	int VARIABLE_EXP__EANNOTATIONS = OCL_EXPRESSION__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13100,7 +13228,7 @@ public interface UMLPackage
 	int VARIABLE_EXP__OWNER = OCL_EXPRESSION__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13108,7 +13236,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
+	int VARIABLE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -13122,7 +13250,7 @@ public interface UMLPackage
 	int VARIABLE_EXP__NAME = OCL_EXPRESSION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13130,29 +13258,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_EXP__CLIENT_DEPENDENCY = OCL_EXPRESSION__CLIENT_DEPENDENCY;
+	int VARIABLE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -13166,7 +13272,7 @@ public interface UMLPackage
 	int VARIABLE_EXP__NAMESPACE = OCL_EXPRESSION__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13174,7 +13280,18 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_EXP__NAME_EXPRESSION = OCL_EXPRESSION__NAME_EXPRESSION;
+	int VARIABLE_EXP__QUALIFIED_NAME = OCL_EXPRESSION__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP__VISIBILITY = OCL_EXPRESSION__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -13257,6 +13374,18 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13281,7 +13410,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13290,7 +13419,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+	int TEMPLATE_PARAMETER_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -13305,7 +13434,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13314,31 +13443,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+	int TEMPLATE_PARAMETER_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -13353,7 +13458,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
 
 	/**
-	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13362,7 +13467,19 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+	int TEMPLATE_PARAMETER_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -13401,7 +13518,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
 
 	/**
-	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13410,7 +13527,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+	int TEMPLATE_PARAMETER_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -13425,7 +13542,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13434,7 +13551,7 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+	int TEMPLATE_PARAMETER_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -13509,18 +13626,6 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
-
-	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13533,7 +13638,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13542,7 +13647,55 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -13569,18 +13722,6 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
@@ -13593,7 +13734,7 @@ public interface UMLPackage
 	int TEMPLATE_PARAMETER_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
@@ -13602,67 +13743,16 @@ public interface UMLPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+	int TEMPLATE_PARAMETER_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
 
 	/**
-	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * The feature id for the '<em><b>Is Final Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
-
-	/**
-	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Representation</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * This value may change when the model code is regenerated.
-	 * It is subject to change without notice.
-	 * @since 3.0
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+	int TEMPLATE_PARAMETER_TYPE__IS_FINAL_SPECIALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_FINAL_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
@@ -13687,6 +13777,42 @@ public interface UMLPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' attribute.

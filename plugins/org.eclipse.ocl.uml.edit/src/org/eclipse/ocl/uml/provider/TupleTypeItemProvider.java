@@ -149,8 +149,8 @@ public class TupleTypeItemProvider
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == UMLPackage.Literals.CLASSIFIER__REPRESENTATION
-			|| childFeature == UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
+		boolean qualify = childFeature == UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE
+			|| childFeature == UMLPackage.Literals.CLASSIFIER__REPRESENTATION;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$

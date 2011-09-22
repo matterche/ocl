@@ -295,7 +295,7 @@ public class RegressionTest
 		helper.setContext(getMetaclass("Classifier"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"if self.oclIsKindOf(uml::Cl");
+				"if self.oclIsKindOf(UML::Cl");
 		
 		assertChoice(choices, ChoiceKind.TYPE, "Class");
 		assertNotChoice(choices, ChoiceKind.TYPE, "Enumeration");

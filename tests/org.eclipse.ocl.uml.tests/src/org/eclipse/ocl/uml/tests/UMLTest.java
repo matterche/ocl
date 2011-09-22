@@ -111,7 +111,7 @@ public class UMLTest
                 " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit.ripen(ocltest::Color::black)" +
                 " endpackage");
         } finally {
@@ -133,7 +133,7 @@ public class UMLTest
                 " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit::ripen(ocltest::Color::black)" +
                 " endpackage");
         } finally {
@@ -160,7 +160,7 @@ public class UMLTest
                 " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit.color = ocltest::Color::black" +
                 " endpackage");
         } finally {
@@ -182,7 +182,7 @@ public class UMLTest
                 " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit::color = ocltest::Color::black" +
                 " endpackage");
         } finally {
@@ -210,7 +210,7 @@ public class UMLTest
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit.ripen(ocltest::Color::black)" +
                 " endpackage");
 
@@ -242,7 +242,7 @@ public class UMLTest
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit::ripen(ocltest::Color::black)" +
                 " endpackage");
 
@@ -274,7 +274,7 @@ public class UMLTest
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit.color = ocltest::Color::black" +
                 " endpackage");
 
@@ -306,7 +306,7 @@ public class UMLTest
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " +
+            parseConstraint("package UML context Classifier " +
                 "inv: ocltest::Fruit::color = ocltest::Color::black" +
                 " endpackage");
 
@@ -324,7 +324,7 @@ public class UMLTest
      */
     public void test_aliasedOperation_bug184753() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context Namespace " +
+            "package UML context Namespace " +
             "inv:  self.importedMember()->isEmpty()" +
             " endpackage");
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_cYQrwNYJEd2OWPmg8Q8hDw" name="instances">
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_cYQrwNYJEd2OWPmg8Q8hDw" name="instances">
   <packagedElement xmi:type="uml:Class" xmi:id="_fq2d4NYJEd2OWPmg8Q8hDw" name="A">
     <ownedAttribute xmi:id="_msLLkNYJEd2OWPmg8Q8hDw" name="b" type="_kPyosNYJEd2OWPmg8Q8hDw" association="_wCGZINYJEd2OWPmg8Q8hDw">
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uTC2UNYJEd2OWPmg8Q8hDw" value="*"/>

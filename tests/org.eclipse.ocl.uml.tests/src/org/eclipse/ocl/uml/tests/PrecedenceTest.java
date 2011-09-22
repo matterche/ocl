@@ -63,7 +63,7 @@ public class PrecedenceTest
             helper.createInvariant(
                 "self.base_Property.redefinedProperty->isEmpty() = false implies \n" +
                 "   self.base_Property.redefinedProperty->size() = 1 and\n" +
-                "   let rp : uml::Property =\n" +
+                "   let rp : UML::Property =\n" +
                 "            self.base_Property.redefinedProperty->asSequence()->at(1) in \n" +
                 "     self.base_Property.name = rp.name and\n" +
                 "     self.base_Property.type = rp.type");

@@ -27,6 +27,7 @@
   <extension point="org.eclipse.ocl.environments">
     <environmentFactory
         class="org.eclipse.ocl.uml.UMLEnvironmentFactory">
+      <package nsURI="http://www.eclipse.org/uml2/4.0.0/UML"/>
       <package nsURI="http://www.eclipse.org/uml2/3.0.0/UML"/>
       <package nsURI="http://www.eclipse.org/ocl/1.1.0/UML"/>
     </environmentFactory>

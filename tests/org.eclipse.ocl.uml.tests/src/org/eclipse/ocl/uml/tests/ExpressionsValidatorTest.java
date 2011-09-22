@@ -672,7 +672,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_OperationCallExp_checkArgumentsConform_generic_232028() {
 		OperationCallExp o = (OperationCallExp) parseUnvalidated(
-			"context uml::String inv: Set{}->including('foo')");
+			"context UML::String inv: Set{}->including('foo')");
 		
 		OCLExpression arg = factory.createUnspecifiedValueExp();
 		arg.setType(getOCLStandardLibrary().getInteger());
@@ -697,7 +697,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_OperationCallExp_checkArgumentsConform_generic_collections_232028() {
 		OperationCallExp o = (OperationCallExp) parseUnvalidated(
-		"context uml::String inv: Set{'foo'}->includesAll(Set{'bar'})");		
+		"context UML::String inv: Set{'foo'}->includesAll(Set{'bar'})");		
 		assertOK(o);
 	}
 	
