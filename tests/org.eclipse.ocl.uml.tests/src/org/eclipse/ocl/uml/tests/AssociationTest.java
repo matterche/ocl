@@ -881,7 +881,7 @@ public class AssociationTest
 
     public void test_nonNavigableAttribute_inheritedAssociation_194245() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context LiteralNull " +
+            "package UML context LiteralNull " +
             "inv: not owningProperty.type.oclIsUndefined()" +
             " endpackage");
 
@@ -903,7 +903,7 @@ public class AssociationTest
 
     public void test_unnamedAttribute_inheritedAssociation_194245() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context Class " +
+            "package UML context Class " +
             "inv: instanceSpecification.classifier->excluding(self)->isEmpty()" +
             " endpackage");
 
@@ -1000,7 +1000,7 @@ public class AssociationTest
     	}
     	
     	// this should parse OK, though
-        parseConstraint("package uml context Class " +
+        parseConstraint("package UML context Class " +
             "inv: self.oclAsType(Classifier).general->isEmpty()" +
             " endpackage");
     }

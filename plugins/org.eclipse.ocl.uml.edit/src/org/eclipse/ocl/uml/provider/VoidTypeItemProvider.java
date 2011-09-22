@@ -196,8 +196,8 @@ public class VoidTypeItemProvider
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__REPRESENTATION
-			|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE;
+		boolean qualify = childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__COLLABORATION_USE
+			|| childFeature == org.eclipse.uml2.uml.UMLPackage.Literals.CLASSIFIER__REPRESENTATION;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", //$NON-NLS-1$

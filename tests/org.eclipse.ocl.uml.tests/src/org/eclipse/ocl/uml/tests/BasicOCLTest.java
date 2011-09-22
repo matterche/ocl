@@ -84,7 +84,7 @@ public class BasicOCLTest
 	
 	public void testTrivialExpressions() {
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true " +
 			"endpackage");
 		
@@ -92,7 +92,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: false " +
 			"endpackage");
 		
@@ -102,7 +102,7 @@ public class BasicOCLTest
 	
 	public void testLogicalConnectives() {
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true and true " +
 			"endpackage");
 		
@@ -110,7 +110,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: false or false " +
 			"endpackage");
 		
@@ -118,7 +118,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true and false " +
 			"endpackage");
 		
@@ -126,7 +126,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true or false " +
 			"endpackage");
 		
@@ -134,7 +134,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: not true " +
 			"endpackage");
 		
@@ -142,7 +142,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true implies true " +
 			"endpackage");
 		
@@ -150,7 +150,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: true implies false " +
 			"endpackage");
 		
@@ -158,7 +158,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: false implies true " +
 			"endpackage");
 		
@@ -166,7 +166,7 @@ public class BasicOCLTest
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: false implies false " +
 			"endpackage");
 		
@@ -179,7 +179,7 @@ public class BasicOCLTest
 		eCls.setName("bar");
 		
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: self.name <> 'foo' " +
 			"endpackage");
 		
@@ -199,14 +199,14 @@ public class BasicOCLTest
 		assertEquals(eCls.getOwnedAttributes().size(),2);
 		
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context DataType " +
+			"package UML context DataType " +
 			"inv: self.ownedAttribute->size() = 2 " +
 			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 		
 		constraint = parseConstraint(
-			"package uml context DataType " +
+			"package UML context DataType " +
 			"inv: self.ownedAttribute->forAll(a: Property | not a.isDerived) " +
 			"endpackage");
 		
@@ -218,7 +218,7 @@ public class BasicOCLTest
 		eCls.setName("bar");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context Enumeration " +
+			"package UML context Enumeration " +
 			"inv: self.name " +
 			"endpackage ");
 		
@@ -226,7 +226,7 @@ public class BasicOCLTest
 		assertEquals("bar", result);
 		
 		expr = parse(
-			"package uml context Enumeration " +
+			"package UML context Enumeration " +
 			"inv: self " +
 			"endpackage");
 		
@@ -239,7 +239,7 @@ public class BasicOCLTest
 		eCls.setName("bar");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context Class " +
+			"package UML context Class " +
 			"inv: if self.isAbstract then name = 'bar' else name <> 'bar' endif " +
 			"endpackage ");
 		
@@ -259,7 +259,7 @@ public class BasicOCLTest
 		eCls.setName("foo");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context DataType " +
+			"package UML context DataType " +
 			"inv: let feats : OrderedSet(Property) = self.ownedAttribute in " +
 			"  feats->isEmpty() implies name <> 'bar' " +
 			"endpackage ");

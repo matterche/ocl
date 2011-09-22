@@ -665,7 +665,7 @@ public class ComparisonTest
                 "not Apple.allInstances()->exists(a | a = self)");
             
             helper.createInvariant(
-                "not uml::Class.allInstances()->exists(c | c = self)");
+                "not UML::Class.allInstances()->exists(c | c = self)");
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
@@ -684,7 +684,7 @@ public class ComparisonTest
                 "Apple.allInstances()->forAll(a | a <> self)");
             
             helper.createInvariant(
-                "uml::Class.allInstances()->forAll(c | c <> self)");
+                "UML::Class.allInstances()->forAll(c | c <> self)");
         } catch (Exception e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }

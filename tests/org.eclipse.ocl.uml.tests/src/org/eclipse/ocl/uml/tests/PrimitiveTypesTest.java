@@ -37,7 +37,7 @@ public class PrimitiveTypesTest
 	 * type.
 	 */
 	public void test_unlimitedNaturalType() {
-		OCLExpression<Classifier> expression = parse("package uml context MultiplicityElement " +
+		OCLExpression<Classifier> expression = parse("package UML context MultiplicityElement " +
 			"inv: self.upper " +
 			"endpackage");
 
@@ -50,7 +50,7 @@ public class PrimitiveTypesTest
 	 * unlimited value.
 	 */
 	public void test_unlimitedValue() {
-		OCLExpression<Classifier> expression = parse("package uml context Class " +
+		OCLExpression<Classifier> expression = parse("package UML context Class " +
 			"inv: let x : UnlimitedNatural = * in x " +
 			"endpackage");
 
