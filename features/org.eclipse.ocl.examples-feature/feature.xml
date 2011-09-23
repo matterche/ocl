@@ -27,6 +27,7 @@
    <requires>
       <import plugin="org.eclipse.core.runtime" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ui" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.ide" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ui.console" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.jface.text" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.ecore" version="3.0.0" match="compatible"/>
@@ -49,10 +50,10 @@
       <import plugin="org.eclipse.ocl.examples.xtext.essentialocl" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.completeocl" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.oclinecore.ui" version="3.1.0" match="compatible"/>
-      <import plugin="org.eclipse.ui.ide" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.builder" version="2.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui" version="2.0.0" match="compatible"/>
       <import plugin="org.eclipse.xtext.ui.shared" version="2.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.xtext.markup.ui" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.oclinecore" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.jdt.core" version="3.7.0" match="compatible"/>
       <import plugin="org.eclipse.core.expressions" version="3.4.0" match="compatible"/>
@@ -72,10 +73,10 @@
       <import plugin="org.eclipse.ui.forms" version="3.5.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.essentialocl.ui" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.editor" version="2.5.0" match="compatible"/>
-      <import plugin="org.eclipse.ocl.examples.xtext.markup.ui" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.essentialocl" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ocl.examples.xtext.markup" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.core.resources" version="3.2.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.examples.modelregistry.editor" version="3.0.0" match="compatible"/>
    </requires>
 
    <plugin
