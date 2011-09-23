@@ -106,6 +106,7 @@
 		  install the specified prerequisite IUs (which are not to be included
 		  in the final install) in a separate directory
 		-->
+		
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
@@ -150,6 +151,16 @@
 		  install location as secondary bundle pools so that only the desired components are installed
 		  in the install destination directory
 		-->
+		
+		<echo> Echoing variables for debug... </echo>
+		<echo> launcher.jar = ${launcher.jar} </echo>
+		<echo> sp:repository = file:/${sp:repository}</echo>
+		<echo> sp:target.platform.repository = file:/${sp:target.platform.repository}</echo>
+		<echo> install.destination = ${install.destination}"</echo>
+		<echo> bundle.pools.for.install = ${bundle.pools.for.install}</echo>
+		<echo> content.ius = ${content.ius}</echo>
+			
+		
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
