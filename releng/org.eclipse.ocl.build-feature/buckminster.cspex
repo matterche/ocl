@@ -127,10 +127,12 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.mdt-ocl-Update" />
+			<!-- Temporarily don't package sdks, examples, etc
 			<cs:attribute name="package.mdt-ocl-SDK" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
 			<cs:attribute name="package.mdt-ocl-examples" />
 			<cs:attribute name="package.mdt-ocl-runtime" />
+			-->
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>
