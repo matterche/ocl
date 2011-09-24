@@ -297,6 +297,10 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 	public EClassifier getMetaclass(String name) {
 	    return EcorePackage.eINSTANCE.getEClassifier(name);
     }
+    
+	public EClassifier getMetametaclass(String name) {
+	    return EcorePackage.eINSTANCE.getEClassifier(name);
+    }
 	
 	public String getNsURI(EPackage aPackage) {
 		return aPackage.getNsURI();

@@ -285,7 +285,7 @@ public class BasicOCLTest
 	 */
 	public void test_dataTypeAsContext() {
 		OCLExpression<Classifier> expr = parse(
-			"package UMLPrimitiveTypes context \"String\" " +
+			"package PrimitiveTypes context \"String\" " +
 			"inv: self.toUpper() <> self.toLower() " +
 			"endpackage ");
 		
@@ -293,7 +293,7 @@ public class BasicOCLTest
 		assertTrue(check(expr, "ANYTHING"));
 		
 		expr = parse(
-			"package UMLPrimitiveTypes context \"String\" " +
+			"package PrimitiveTypes context \"String\" " +
 			"inv: self.toUpper() " +
 			"endpackage ");
 		
@@ -320,8 +320,8 @@ public class BasicOCLTest
         EvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
         evalEnv = ocl.getEvaluationEnvironment();
         
-        assertSame(getMetaclass("Package"), evalEnv.getType(fruitPackage));
-        assertSame(getMetaclass("Class"), evalEnv.getType(fruit));
+        assertSame(getMetametaclass("Package"), evalEnv.getType(fruitPackage));
+        assertSame(getMetametaclass("Class"), evalEnv.getType(fruit));
         assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo"));
         assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
     }

@@ -35,17 +35,17 @@ public class UtilitiesTest extends AbstractTestSuite {
         // no resource set ==> no metaclass
         assertNull(OCLUMLUtil.getMetaclass(umlf.createActivity()));
         
-        assertSame(getMetaclass("Class"),
+        assertSame(getMetametaclass("Class"),
             OCLUMLUtil.getMetaclass(fruit));
-        assertSame(getMetaclass("AssociationClass"),
+        assertSame(getMetametaclass("AssociationClass"),
             OCLUMLUtil.getMetaclass(stem));
-        assertSame(getMetaclass("Property"),
+        assertSame(getMetametaclass("Property"),
             OCLUMLUtil.getMetaclass(apple_label));
-        assertSame(getMetaclass("Operation"),
+        assertSame(getMetametaclass("Operation"),
             OCLUMLUtil.getMetaclass(fruit_preferredColor));
-        assertSame(getMetaclass("EnumerationLiteral"),
+        assertSame(getMetametaclass("EnumerationLiteral"),
             OCLUMLUtil.getMetaclass(color_black));
-        assertSame(getMetaclass("Package"),
+        assertSame(getMetametaclass("Package"),
             OCLUMLUtil.getMetaclass(fruitPackage));
     }
 }

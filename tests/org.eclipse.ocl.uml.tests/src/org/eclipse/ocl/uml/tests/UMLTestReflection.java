@@ -88,9 +88,12 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		    OCL.initialize(resourceSet);
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
+			umlModelMetamodel = (Package) resourceSet.getResource(
+				URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/model/UML.merged.uml"),
+				true).getContents().get(0);
 			umlMetamodel = (Package) resourceSet.getResource(
-					URI.createURI(UMLResource.UML_METAMODEL_URI),
-					true).getContents().get(0);
+				URI.createURI(UMLResource.UML_METAMODEL_URI),
+				true).getContents().get(0);
 			umlPrimitiveTypes = (Package) resourceSet.getResource(
 					URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
 					true).getContents().get(0);
@@ -124,6 +127,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		super(env);
 	}
 
+	protected static Package umlModelMetamodel;
 	protected static Package umlMetamodel;
 	protected static Package umlPrimitiveTypes;
 	protected static Package ecorePrimitiveTypes;
@@ -239,6 +243,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 			normalizers = new HashMap<String, String>();
 			normalizers.put("Reference", "Property");
 			normalizers.put("String", "\"String\"");
+			normalizers.put("uml", "UML");
 		}
 		return normalizers.get(key);
 	}
@@ -260,11 +265,11 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public Classifier getClassTypeContext() {
-		return (Classifier) umlMetamodel.getOwnedType("Class");
+		return (Classifier) umlModelMetamodel.getOwnedType("Class");
 	}
 
 	public Classifier getClassifierTypeContext() {
-		return (Classifier) umlMetamodel.getOwnedType("Classifier");
+		return (Classifier) umlModelMetamodel.getOwnedType("Classifier");
 	}
 
 	public Classifier getCollectionKindTypeContext() {		
@@ -273,7 +278,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public Classifier getCommentTypeContext() {
-		return (Classifier) umlMetamodel.getOwnedType("Comment");
+		return (Classifier) umlModelMetamodel.getOwnedType("Comment");
 	}
 	
 	public java.lang.Class<Constraint> getConstraintClass() {
@@ -309,6 +314,10 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	}
     
 	public Classifier getMetaclass(String name) {
+        return (Classifier) umlModelMetamodel.getOwnedType(name);
+    }
+    
+	public Classifier getMetametaclass(String name) {
         return (Classifier) umlMetamodel.getOwnedType(name);
     }
 
@@ -346,7 +355,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public Package getUMLMetamodel() {
-		return umlMetamodel;
+		return umlModelMetamodel;
 	}
 
 	public Package getUMLPrimitiveTypes() {

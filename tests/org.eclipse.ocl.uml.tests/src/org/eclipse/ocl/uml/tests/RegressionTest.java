@@ -807,7 +807,7 @@ public class RegressionTest
 	public void test_allInstances_primitive_RATLC00538079() {
 		Object result = evaluate(parse(
 			"package ocltest context Fruit " +
-			"inv: UMLPrimitiveTypes::\"String\".allInstances() " +
+			"inv: PrimitiveTypes::\"String\".allInstances() " +
 			" endpackage"));
 		
 		assertEquals(Collections.EMPTY_SET, result);
