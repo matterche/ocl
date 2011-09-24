@@ -24,11 +24,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.tests.GenericTestSuite;
 import org.eclipse.ocl.tests.TestReflection;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.OCL;
@@ -70,6 +73,12 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	Operation, Parameter, Property, Property, Property,
 	EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	{
+		private static StandaloneSetup mweSetup = new StandaloneSetup();
+		{
+			if (!GenericTestSuite.eclipseIsRunning()) {
+				mweSetup.setScanClassPath(true);
+			}
+		}
 		public static final Static INSTANCE = new Static();
 		
 		public OCL createOCL(ResourceSet resourceSet) {
@@ -82,14 +91,33 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		}
 		
 		public ResourceSet createResourceSet() {
-			Environment.Registry.INSTANCE.registerEnvironment(
-				new UMLEnvironmentFactory().createEnvironment());
+			Environment.Registry.INSTANCE.registerEnvironment(new UMLEnvironmentFactory().createEnvironment());
 			ResourceSet resourceSet = new ResourceSetImpl();
-		    OCL.initialize(resourceSet);
+			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+			Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();		
+			URI oclPluginURI;
+			URI umlPluginURI;
+			URI umlResourcesPluginURI;
+			if (!GenericTestSuite.eclipseIsRunning()) {
+				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
+				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
+				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
+			}
+			else {
+				oclPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml/", true);
+				umlPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml/", true);
+				umlResourcesPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/", true);				
+			}
+			uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createURI("model/oclstdlib.uml").resolve(oclPluginURI)); //$NON-NLS-1$
+			uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createURI("profiles/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
+			uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createURI("metamodels/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
+			uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createURI("libraries/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
+					
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
 			umlModelMetamodel = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/model/UML.merged.uml"),
+				URI.createURI("model/UML.merged.uml").resolve(umlPluginURI),
 				true).getContents().get(0);
 			umlMetamodel = (Package) resourceSet.getResource(
 				URI.createURI(UMLResource.UML_METAMODEL_URI),
