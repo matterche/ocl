@@ -101,7 +101,8 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 			if (!GenericTestSuite.eclipseIsRunning()) {
 				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
 //				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
-				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
+//				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
+				umlPluginURI = URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/");
 //				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
 			}
 			else {
