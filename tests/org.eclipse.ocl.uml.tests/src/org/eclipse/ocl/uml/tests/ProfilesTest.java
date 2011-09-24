@@ -156,7 +156,7 @@ public class ProfilesTest
     public void test_navigateToStereotypeApplication() {
         // this is metamodel-level OCL that we're dealing with where
         // stereotypes are concerned
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(getMetametaclass("Classifier"));
 
         try {
             Constraint constraint = helper
@@ -262,7 +262,7 @@ public class ProfilesTest
     public void test_navigateToStereotypeApplication_247079() {
         // this is metamodel-level OCL that we're dealing with where
         // stereotypes are concerned
-        helper.setContext(getMetaclass("Classifier"));
+        helper.setContext(getMetametaclass("Classifier"));
 
         // move the Fruit class into a nested package
         final Package nested = fruitPackage.createNestedPackage("nested");

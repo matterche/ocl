@@ -782,6 +782,10 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	protected C getMetaclass(String name) {
 		return reflection.getMetaclass(name);
 	}
+    
+	protected C getMetametaclass(String name) {
+		return reflection.getMetametaclass(name);
+	}
 	
 	protected OCLStandardLibrary<C> getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
@@ -821,6 +825,10 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	protected PK getUMLMetamodel() {
 		return reflection.getUMLMetamodel();
 	}
+
+//	protected PK getUMLModelMetamodel() {
+//		return reflection.getUMLModelMetamodel();
+//	}
 	
 	protected PT getUMLString() {
 		return reflection.getUMLString();
