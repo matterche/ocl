@@ -91,28 +91,24 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		}
 		
 		public ResourceSet createResourceSet() {
-			Environment.Registry.INSTANCE.registerEnvironment(new UMLEnvironmentFactory().createEnvironment());
+			Environment.Registry.INSTANCE.registerEnvironment(
+				new UMLEnvironmentFactory().createEnvironment());
 			ResourceSet resourceSet = new ResourceSetImpl();
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-			Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();		
-			URI oclPluginURI;
+		    OCL.initialize(resourceSet);
+//			URI oclPluginURI;
 			URI umlPluginURI;
-			URI umlResourcesPluginURI;
+//			URI umlResourcesPluginURI;
 			if (!GenericTestSuite.eclipseIsRunning()) {
 				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
+//				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
 				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
-				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
+//				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
 			}
 			else {
-				oclPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml/", true);
+//				oclPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml/", true);
 				umlPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml/", true);
-				umlResourcesPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/", true);				
+//				umlResourcesPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/", true);				
 			}
-			uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createURI("model/oclstdlib.uml").resolve(oclPluginURI)); //$NON-NLS-1$
-			uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createURI("profiles/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
-			uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createURI("metamodels/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
-			uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createURI("libraries/").resolve(umlResourcesPluginURI)); //$NON-NLS-1$
 					
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
