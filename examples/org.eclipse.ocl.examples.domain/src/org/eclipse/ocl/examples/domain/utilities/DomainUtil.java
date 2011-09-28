@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
 public class DomainUtil
 {	
@@ -41,4 +42,12 @@ public class DomainUtil
 		}
 		return String.valueOf(eObject);
 	}
+
+	/**
+	 * This dummy function may be invoked from auto-generated code that does not thrwo
+	 * an exception to avoid a compilation error.
+	 * 
+	 * @throws InvalidValueException
+	 */
+	public static void suppressThrowWarnings()  throws InvalidValueException {}
 }

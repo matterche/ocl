@@ -1,0 +1,33 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::common::elementQueries('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[query public asIntegerStringOrNull(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'asIntegerStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public asRealStringOrNull(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'asRealStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public getExpressionInOcl(contextElement : NamedElement, specification : OpaqueExpression) : ExpressionInOcl =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getExpressionInOcl(org.eclipse.ocl.examples.pivot.NamedElement, org.eclipse.ocl.examples.pivot.OpaqueExpression)', Sequence{contextElement, specification}) /]
+
+[query public getMoniker(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getMoniker(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
+
+[query public getFragmentURI(elem : Element) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getFragmentURI(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]

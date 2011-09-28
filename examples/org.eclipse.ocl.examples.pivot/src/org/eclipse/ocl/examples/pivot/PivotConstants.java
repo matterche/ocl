@@ -14,15 +14,18 @@
  *
  * $Id: PivotConstants.java,v 1.11 2011/05/21 14:56:20 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot.utilities;
+package org.eclipse.ocl.examples.pivot;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface PivotConstants
 {
+	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PivotConstants.class.getPackage().getName() + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
+
 	static final int MONIKER_OVERFLOW_LIMIT = 1024;
 	static final String ANNOTATION_QUOTE = "'"; //$NON-NLS-1$
 	static final String BINDINGS_PREFIX = "/"; //$NON-NLS-1$ // FIXME Rename

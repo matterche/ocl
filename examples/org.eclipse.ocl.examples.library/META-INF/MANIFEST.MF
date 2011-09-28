@@ -6,7 +6,8 @@ Bundle-Version: 3.2.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.examples.domain;bundle-version="[3.2.0,4.0.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.ocl.examples.library.classifier,
+Export-Package: org.eclipse.ocl.examples.library,
+ org.eclipse.ocl.examples.library.classifier,
  org.eclipse.ocl.examples.library.collection,
  org.eclipse.ocl.examples.library.ecore,
  org.eclipse.ocl.examples.library.enumeration,

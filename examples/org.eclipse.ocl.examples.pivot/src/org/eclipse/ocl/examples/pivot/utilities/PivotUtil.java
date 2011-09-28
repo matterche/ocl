@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -864,10 +865,10 @@ public class PivotUtil extends DomainUtil
 		else if (eContainer == null) {
 			String name = null;
 			if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
-				name = ((org.eclipse.ocl.examples.pivot.Package)element).getName();
+				name = "$" + ((org.eclipse.ocl.examples.pivot.Package)element).getName() + "$";
 			}
 			else if (element instanceof EPackage) {
-				name = ((EPackage)element).getName();
+				name = "$" + ((EPackage)element).getName() + "$";
 			}
 			if (name == null) {
 				name = "$null$";

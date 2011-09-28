@@ -2179,7 +2179,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					return factory.importFromResource(this, resource, uri.fragment());
 				}
 			}
-			throw new IllegalArgumentException("Cannot ccreate pivot from '" + uri + "'");
+			throw new IllegalArgumentException("Cannot create pivot from '" + uri + "'");
 //			logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
 		}
 		logger.warn("Cannot load package with URI '" + uri + "'");

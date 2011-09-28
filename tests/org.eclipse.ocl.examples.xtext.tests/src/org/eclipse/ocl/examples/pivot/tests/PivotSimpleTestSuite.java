@@ -17,7 +17,7 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 
 /**
  * Test suite with a simple model.

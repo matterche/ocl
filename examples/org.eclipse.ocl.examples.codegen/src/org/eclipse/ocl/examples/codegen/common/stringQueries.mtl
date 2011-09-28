@@ -1,0 +1,24 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::common::stringQueries('http://www.eclipse.org/ocl/3.1.0/Pivot')/]
+
+[query public javaString(aString : StringLiteralExp) : String = 
+invoke('org.eclipse.xtext.util.Strings', 'convertToJavaString(java.lang.String)', Sequence{aString.stringSymbol}) /]
+
+[query public javaString(aString : NamedElement) : String = 
+invoke('org.eclipse.xtext.util.Strings', 'convertToJavaString(java.lang.String)', Sequence{aString.name}) /]

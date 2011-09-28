@@ -1,0 +1,93 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::ecore::ocl2java4genmodel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+
+[import org::eclipse::ocl::examples::codegen::common::ePackageQueries/]
+[import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::expressionTemplates/]
+[import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
+[import org::eclipse::ocl::examples::codegen::common::nameQueries/]
+[import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
+
+[template public generateModel(genModel : GenModel)]
+[comment @main /]
+[for (genPackage : GenPackage | genModel.genPackages)]
+[let ePackage : EPackage = genPackage.ecorePackage]
+[let pPackage : Package = ePackage.getPivotPackage()]
+[generatePackage(genPackage, pPackage)/]
+[/let]
+[/let]
+[/for]
+[/template]
+
+[template public generatePackage(genPackage : GenPackage, pkg : Package)]
+[let packagePathPrefix : String = if genPackage.basePackage->notEmpty() then genPackage.basePackage.replaceAll('\\.', '/') + '/' else '' endif]
+[let packagePrefix : String = packagePathPrefix.replaceAll('/', '.')]
+[for (type : Type | pkg.ownedType)]
+[generateType(genPackage, type)/]
+[for (operation : Operation | type.ownedOperation)]
+[generateOperation(genPackage, type, operation)/]
+[/for]
+[for (property : Property | type.ownedAttribute)]
+[generateProperty(genPackage, type, property)/]
+[/for]
+[/for]
+[/let]
+[/let]
+[/template]
+
+[template public generateType(genPackage : GenPackage, type : Type)]
+[file (type.getFragmentURI(), false, 'UTF-8')]
+// [type._package.name/]::[type.name/]
+[/file]
+[/template]
+
+[template public generateOperation(genPackage : GenPackage, type : Type, operation : Operation)]
+[let rule : Constraint = operation.ownedRule->any(stereotype = 'body')]
+[file (operation.getFragmentURI(), false, 'UTF-8')]
+[generateFeatureConstraint(genPackage, type, operation, rule)/][/file][/let][/template]
+
+[template public generateProperty(genPackage : GenPackage, type : Type, property : Property)]
+[file (property.getFragmentURI(), false, 'UTF-8')]
+// [type._package.name/]::[type.name/]::[property.name/]
+[/file]
+[/template]
+
+[template public generateFeatureConstraint(genPackage : GenPackage, type : Type, feature : Feature, constraint : Constraint)]
+[let className : String = type.name + '_' + feature.name + '_' + constraint.stereotype + '_' + constraint.name]
+/** 
+ * [constraint.specification.toString()/]
+ */
+[generateSpecification(genPackage, className, feature, feature.type, constraint.specification, type._'package')/][/let][/template]
+
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnType : Type, specification : ValueSpecification, pkg : Package)]
+throw new UnsupportedOperationException();
+[/template]
+
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnType : Type, specification : OpaqueExpression, pkg : Package)]
+[let expressionInOcl : ExpressionInOcl = contextElement.getExpressionInOcl(specification)]
+[let arity : Integer = expressionInOcl.parameterVariable->size()]
+try {
+	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+	final [emitDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
+	final [emitDomainElementsType('DomainStandardLibrary')/] standardLibrary = valueFactory.getStandardLibrary();
+	[generateConstantLiterals(genPackage, expressionInOcl.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, expressionInOcl.bodyExpression, pkg)/][generateExpression('Value ', 'result', expressionInOcl.bodyExpression, pkg)/]
+	return ([emitEcoreType(returnType)/]) valueFactory.getEcoreValueOf(result);
+} catch ([emitDomainEvaluationType('InvalidValueException')/] e) {
+	throw new [emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]::[contextElement.name/]", e);
+}[/let][/let][/template]
