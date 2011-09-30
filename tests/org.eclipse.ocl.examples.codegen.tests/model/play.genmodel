@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/play/play-src"
+    editDirectory="/play/play-src" editorDirectory="/play/play-src" modelPluginID="Play"
+    templateDirectory="/play/templates" dynamicTemplates="true" modelName="Play" testsDirectory="/play/play-src"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    interfaceNamePattern="">
+  <genAnnotations source="xxx">
+    <details key="xx" value="yyy"/>
+  </genAnnotations>
+  <foreignModel>play.ecore</foreignModel>
+  <genPackages prefix="Play" disposableProviderFactory="true" ecorePackage="play.ecore#/">
+    <genClasses ecoreClass="play.ecore#//CgClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute play.ecore#//CgClass/s"/>
+      <genOperations ecoreOperation="play.ecore#//CgClass/f"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -19,6 +19,7 @@
 
 [import org::eclipse::ocl::examples::codegen::common::ePackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
@@ -84,8 +85,8 @@ final [emitDomainElementsType('DomainTupleType')/] [decl.getPrefixedSymbolName('
 [let range : CollectionRange = ast.part->at(1).oclAsType(CollectionRange)]
 [let firstVarName : String = range.getSymbolName()+'_first']
 [let lastVarName : String = range.getSymbolName(range)+'_last']
-[generateExpression('Value ', firstVarName, range.first, pkg)/]
-[generateExpression('Value ', lastVarName, range.last, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', firstVarName, range.first, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', lastVarName, range.last, pkg)/]
 [let rangeVarName : String = ast.getSymbolName() + '_range']
 [let typeVarName : String = ast.getSymbolName() + '_type']
 IntegerRange [rangeVarName/] = valueFactory.createRange([firstVarName/].asIntegerValue(), [lastVarName/].asIntegerValue());
@@ -104,14 +105,14 @@ IntegerRange [rangeVarName/] = valueFactory.createRange([firstVarName/].asIntege
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, item : CollectionItem, pkg : Package)]
 [let itemVarName : String = 'item_'+item.getSymbolName()]
-[generateExpression('Value ', itemVarName, item.item, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', itemVarName, item.item, pkg)/]
 [result/].add([itemVarName/]);[/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, range : CollectionRange, pkg : Package)]
 [let firstVarName : String = range.getSymbolName()+'_first']
 [let lastVarName : String = range.getSymbolName()+'_last']
-[generateExpression('Value ', firstVarName, range.first, pkg)/]
-[generateExpression('Value ', lastVarName, range.last, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', firstVarName, range.first, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', lastVarName, range.last, pkg)/]
 long [range.getSymbolName()/]_end = [lastVarName/].asInteger();
 for (long [range.getSymbolName()/] = [firstVarName/].asInteger(); [range.getSymbolName()/] <= [range.getSymbolName()/]_end; [range.getSymbolName()/]++) {
 	[result/].add(valueFactory.integerValueOf([range.getSymbolName()/]));
@@ -124,7 +125,7 @@ for (long [range.getSymbolName()/] = [firstVarName/].asInteger(); [range.getSymb
 [let resultVarName : String = ast.getPrefixedSymbolName('if_')]
 [let condVarName : String = resultVarName+'_test']
 [emitDomainValuesType('Value')/] [resultVarName/];
-[generateExpression('Value ', condVarName, ast.condition, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', condVarName, ast.condition, pkg)/]
 if ([condVarName/].isTrue()) {
 	[generateExpression('', resultVarName, ast.thenExpression, pkg)/]
 }
@@ -152,10 +153,10 @@ else {
 [let leftVarName : String = ast.source.getSymbolName()]
 [let accVarName : String = ast.result.getSymbolName()]
 [let bodyName : String = ast.getSymbolName()+'_body']
-[generateExpression('Value ', leftVarName, ast.source, pkg)/]
-[generateExpression('Value ', ast.result.initExpression.getSymbolName(), ast.result.initExpression, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', leftVarName, ast.source, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', ast.result.initExpression.getSymbolName(), ast.result.initExpression, pkg)/]
 [for (i : Variable | ast.iterator)]
-//Iterator<Value> [i.getSymbolName()/]_var = [leftVarName/].toIteratorValue();	// iterator: [i.name/]
+//Iterator<[emitDomainValuesType('Value')/]> [i.getSymbolName()/]_var = [leftVarName/].toIteratorValue();	// iterator: [i.name/]
 [/for]  
 
 /** 
@@ -166,7 +167,7 @@ else {
 AbstractBinaryOperation [bodyName/] = new AbstractBinaryOperation()
 {
 	public [emitDomainValuesType('Value')/] evaluate([emitDomainEvaluationType('DomainEvaluator')/] evaluator, [emitDomainElementsType('DomainType')/] returnType, [emitDomainValuesType('Value')/] [ast.result.getSymbolName()/][for (i : Variable | ast.iterator)], [emitDomainValuesType('Value')/] [i.getSymbolName()/][/for]) throws [emitDomainEvaluationType('InvalidValueException')/] {
-		[generateExpression('Value ', 'result', ast._'body', pkg)/]
+		[generateExpression(emitDomainValuesType('Value') + ' ', 'result', ast._'body', pkg)/]
 		return result;
 	}
 
@@ -176,14 +177,14 @@ AbstractBinaryOperation [bodyName/] = new AbstractBinaryOperation()
 };
 [emitDomainElementsType('DomainType')/] type_[ast.source.getSymbolName()/] = [ast.source.getSymbolName()/].getType();
 LibraryIteration dynamic_[ast.source.getSymbolName()/] = (LibraryIteration)type_[ast.source.getSymbolName()/].lookupImplementation(standardLibrary, [genPackage.getQualifiedLiteralName(ast.referredIteration, pkg)/]);
-Executor[getArityMultiple(arity)/]IterationManager [ast.getSymbolName()/]_manager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [ast.result.getSymbolName()/]_type, [bodyName/], (CollectionValue)[leftVarName/], [ast.result.initExpression.getSymbolName()/]);
+Executor[getArityMultiple(arity)/]IterationManager [ast.getSymbolName()/]_manager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [ast.result.getSymbolName()/]_type, [bodyName/], ([emitDomainValuesType('CollectionValue')/])[leftVarName/], [ast.result.initExpression.getSymbolName()/]);
 [resultType/][result/] = dynamic_[ast.source.getSymbolName()/].evaluateIteration([ast.getSymbolName()/]_manager);[/let][/let][/let][/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : IteratorExp, pkg : Package)]
 [let arity : Integer = ast.iterator->size()]
 [let leftVarName : String = ast.source.getSymbolName()]
 [let bodyVarName : String = 'body_'+ast.getSymbolName()]
-[generateExpression('Value ', leftVarName, ast.source, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', leftVarName, ast.source, pkg)/]
 
 /** 
  * Implementation of the iterator body.
@@ -197,7 +198,7 @@ Executor[getArityMultiple(arity)/]IterationManager [ast.getSymbolName()/]_manage
 [for (i : Integer | Sequence{1..arity})]
 		[emitDomainValuesType('Value')/] [ast.iterator->at(i).getSymbolName()/] = iterator[i/];	// iterator: [ast.iterator->at(i).name/]
 [/for]  
-		[generateExpression('Value ', 'result', ast._'body', pkg)/]
+		[generateExpression(emitDomainValuesType('Value') + ' ', 'result', ast._'body', pkg)/]
 		return result;
 	}
 
@@ -208,11 +209,11 @@ Executor[getArityMultiple(arity)/]IterationManager [ast.getSymbolName()/]_manage
 [emitDomainElementsType('DomainType')/] type_[ast.source.getSymbolName()/] = [ast.source.getSymbolName()/].getType();
 LibraryIteration dynamic_[ast.source.getSymbolName()/] = (LibraryIteration)type_[ast.source.getSymbolName()/].lookupImplementation(standardLibrary, [genPackage.getQualifiedLiteralName(ast.referredIteration, pkg)/]);
 [emitDomainValuesType('Value')/] acc_[ast.source.getSymbolName()/] = dynamic_[ast.source.getSymbolName()/].createAccumulatorValue(evaluator, [genPackage.getQualifiedLiteralName(ast.type, pkg)/], [genPackage.getQualifiedLiteralName(ast._body.type, pkg)/]);
-Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [genPackage.getQualifiedLiteralName(ast.type, pkg)/], [bodyVarName/], (CollectionValue)[ast.source.getSymbolName()/], acc_[ast.source.getSymbolName()/]);
+Executor[getArityMultiple(arity)/]IterationManager iterationManager = new Executor[getArityMultiple(arity)/]IterationManager(evaluator, [genPackage.getQualifiedLiteralName(ast.type, pkg)/], [bodyVarName/], ([emitDomainValuesType('CollectionValue')/])[ast.source.getSymbolName()/], acc_[ast.source.getSymbolName()/]);
 [resultType/][result/] = dynamic_[ast.source.getSymbolName()/].evaluateIteration(iterationManager);[/let][/let][/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : LetExp, pkg : Package)]
-[generateExpression('final Value ', ast.variable.getSymbolName(), ast.variable.initExpression, pkg)/]
+[generateExpression('final ' + emitDomainValuesType('Value') + ' ', ast.variable.getSymbolName(), ast.variable.initExpression, pkg)/]
 [generateExpression(resultType, result, ast._in, pkg)/][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : NullLiteralExp, pkg : Package)]
@@ -237,9 +238,9 @@ try {[emitSuppressThrowWarnings(genPackage)/]
 [generateCall(resultType, result, ast, pkg)/][/let][/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : OperationCallExp, pkg : Package) ? ((ast.referredOperation.owningType.name <> 'Boolean') or (ast.referredOperation.ownedParameter->size() <> 1))]
-[generateExpression('Value ', ast.source.getSymbolName(), ast.source, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', ast.source.getSymbolName(), ast.source, pkg)/]
 [for (argument : OclExpression | ast.argument)]
-[generateExpression(genPackage, 'Value ', argument.getSymbolName(), argument, pkg)/]
+[generateExpression(genPackage, emitDomainValuesType('Value') + ' ', argument.getSymbolName(), argument, pkg)/]
 [/for]
 [generateCall(resultType, result, ast, pkg)/][/template]
 
@@ -253,7 +254,7 @@ try {[emitSuppressThrowWarnings(genPackage)/]
 [resultType/][result/] = dynamic_[ast.source.getSymbolName()/].evaluate(evaluator, [genPackage.getQualifiedLiteralName(ast.type, pkg)/], [ast.source.getSymbolName()/][for (argument : OclExpression | ast.argument) before (', ') separator (', ')][argument.getSymbolName()/][/for]);[/let][/template]
 
 [template public generateExpression(genPackage : GenPackage, resultType : String, result : String, ast : PropertyCallExp, pkg : Package)]
-[generateExpression('Value ', ast.source.getSymbolName(), ast.source, pkg)/]
+[generateExpression(emitDomainValuesType('Value') + ' ', ast.source.getSymbolName(), ast.source, pkg)/]
 ExecutorProperty [ast.getSymbolName()/]_prop = [genPackage.getQualifiedLiteralName(ast.referredProperty, pkg)/];
 LibraryProperty [ast.getSymbolName()/]_impl = [ast.getSymbolName()/]_prop.getImplementation();
 [resultType/][result/] = [ast.getSymbolName()/]_impl.evaluate(evaluator, [genPackage.getQualifiedLiteralName(ast.type, pkg)/], [ast.source.getSymbolName()/], [ast.getSymbolName()/]_prop);[/template]
@@ -270,7 +271,7 @@ LibraryProperty [ast.getSymbolName()/]_impl = [ast.getSymbolName()/]_prop.getImp
 [let mapVarName : String = ast.getSymbolName()]
 [emitJavaUtilType('Map')/]<[emitDomainElementsType('DomainTypedElement')/], [emitDomainValuesType('Value')/]> part_values_[mapVarName/] = new [emitJavaUtilType('HashMap')/]<[emitDomainElementsType('DomainTypedElement')/], [emitDomainValuesType('Value')/]>();
 [for (part : TupleLiteralPart | ast.part)]
-[generateExpression(genPackage, 'Value ', part.getSymbolName(), part.initExpression, pkg)/]
+[generateExpression(genPackage, emitDomainValuesType('Value') + ' ', part.getSymbolName(), part.initExpression, pkg)/]
 part_values_[mapVarName/].put([genPackage.getTupleLiteralPartLookup(part, pkg).getPrefixedSymbolName('tuple_part_')/], [part.getSymbolName()/]);
 [/for]
 [resultType/][result/] = valueFactory.createTupleValue([genPackage.getTupleLiteralExpLookup(ast, pkg).getPrefixedSymbolName('tuple_type_')/], part_values_[mapVarName/]);[/let][/template]
@@ -322,45 +323,3 @@ else 'Multiple' endif endif/]
 
 [query public getAritySuffix(arity : Integer) : String = 
 if arity > 2 then 'N' else arity.toString() endif/]
-
-[template public emitDomainElementsType(name : String)]
-[emitType('org.eclipse.ocl.examples.domain.elements.' + name)/]
-[/template]
-
-[template public emitDomainEvaluationType(name : String)]
-[emitType('org.eclipse.ocl.examples.domain.evaluation.' + name)/]
-[/template]
-
-[template public emitDomainLibraryType(name : String)]
-[emitType('org.eclipse.ocl.examples.domain.library.' + name)/]
-[/template]
-
-[template public emitDomainValuesType(name : String)]
-[emitType('org.eclipse.ocl.examples.domain.values.' + name)/]
-[/template]
-
-[template public emitEcoreType(type : Type)]
-[type.name/]
-[/template]
-
-[template public emitJavaUtilType(name : String)]
-[emitType('java.util.' + name)/]
-[/template]
-
-[template public emitOperationType(prefix : String, arity : Integer)]
-[emitType('org.eclipse.ocl.examples.domain.library.Library' +
-if arity = 0 then 'UnaryOperation'
-else if arity = 1 then 'BinaryOperation'
-else if arity = 2 then 'TernaryOperation'
-else 'TernaryOperation' endif endif endif
-)/]
-[/template]
-
-[template public emitSuppressThrowWarnings(any : OclAny)]
-
-	[emitType('org.eclipse.ocl.examples.domain.utilities.DomainUtil')/].suppressThrowWarnings();
-[/template]
-
-[template public emitType(qualifiedName : String)]
-<%[qualifiedName/]%>
-[/template]

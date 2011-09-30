@@ -19,6 +19,7 @@
 
 [import org::eclipse::ocl::examples::codegen::common::ePackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::expressionTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
@@ -52,42 +53,47 @@
 [/template]
 
 [template public generateType(genPackage : GenPackage, type : Type)]
-[file (type.getFragmentURI(), false, 'UTF-8')]
-// [type._package.name/]::[type.name/]
-[/file]
-[/template]
+[let rule : Constraint = type.ownedRule->any(stereotype = 'invariant')]
+[file (rule.getFragmentURI(), false, 'UTF-8')]
+[let className : String = type.name + '_' + rule.stereotype + '_' + rule.name]
+/** 
+ * [rule.specification.toString()/]
+ */
+[generateSpecification(genPackage, className, type, '(Boolean)', rule.specification, type._'package')/][/let][/file][/let][/template]
 
 [template public generateOperation(genPackage : GenPackage, type : Type, operation : Operation)]
 [let rule : Constraint = operation.ownedRule->any(stereotype = 'body')]
 [file (operation.getFragmentURI(), false, 'UTF-8')]
-[generateFeatureConstraint(genPackage, type, operation, rule)/][/file][/let][/template]
+[let className : String = type.name + '_' + operation.name + '_' + rule.stereotype + '_' + rule.name]
+/** 
+ * [rule.specification.toString()/]
+ */
+[generateSpecification(genPackage, className, operation, genPackage.getOperationReturnType(operation), rule.specification, type._'package')/][/let][/file][/let][/template]
 
 [template public generateProperty(genPackage : GenPackage, type : Type, property : Property)]
+[let derivationRules : OrderedSet(Constraint) = property.ownedRule->select(stereotype = 'derivation')]
+[let initialRules : OrderedSet(Constraint) = property.ownedRule->select(stereotype = 'initial')]
+[let rule : Constraint = if derivationRules->notEmpty() then derivationRules->any(true) else initialRules->any(true) endif]
 [file (property.getFragmentURI(), false, 'UTF-8')]
-// [type._package.name/]::[type.name/]::[property.name/]
-[/file]
-[/template]
-
-[template public generateFeatureConstraint(genPackage : GenPackage, type : Type, feature : Feature, constraint : Constraint)]
-[let className : String = type.name + '_' + feature.name + '_' + constraint.stereotype + '_' + constraint.name]
+[let className : String = type.name + '_' + property.name + '_' + rule.stereotype + '_' + rule.name]
 /** 
- * [constraint.specification.toString()/]
+ * [rule.specification.toString()/]
  */
-[generateSpecification(genPackage, className, feature, feature.type, constraint.specification, type._'package')/][/let][/template]
+[generateSpecification(genPackage, className, property, genPackage.getPropertyType(property), rule.specification, type._'package')/][/let][/file][/let][/let][/let][/template]
 
-[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnType : Type, specification : ValueSpecification, pkg : Package)]
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnCast : String, specification : ValueSpecification, pkg : Package)]
 throw new UnsupportedOperationException();
 [/template]
 
-[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnType : Type, specification : OpaqueExpression, pkg : Package)]
+[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnCast : String, specification : OpaqueExpression, pkg : Package)]
 [let expressionInOcl : ExpressionInOcl = contextElement.getExpressionInOcl(specification)]
 [let arity : Integer = expressionInOcl.parameterVariable->size()]
 try {
 	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
 	final [emitDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
 	final [emitDomainElementsType('DomainStandardLibrary')/] standardLibrary = valueFactory.getStandardLibrary();
-	[generateConstantLiterals(genPackage, expressionInOcl.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, expressionInOcl.bodyExpression, pkg)/][generateExpression('Value ', 'result', expressionInOcl.bodyExpression, pkg)/]
-	return ([emitEcoreType(returnType)/]) valueFactory.getEcoreValueOf(result);
+	[generateConstantLiterals(genPackage, expressionInOcl.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, expressionInOcl.bodyExpression, pkg)/][generateExpression(emitDomainValuesType('Value') + ' ', 'result', expressionInOcl.bodyExpression, pkg)/]
+	return [returnCast/] valueFactory.getEcoreValueOf(result);
 } catch ([emitDomainEvaluationType('InvalidValueException')/] e) {
-	throw new [emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]::[contextElement.name/]", e);
+	throw new [emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
 }[/let][/let][/template]

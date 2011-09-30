@@ -17,8 +17,15 @@
 [comment encoding = UTF-8 /]
 [module org::eclipse::ocl::examples::codegen::common::genPackageQueries('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
 
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::stringQueries/]
+
+[query public getOperationReturnType(genPackage : GenPackage, elem : Operation) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getOperationReturnType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Operation)', Sequence{genPackage, elem}) /]
+
+[query public getPropertyType(genPackage : GenPackage, elem : Property) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getPropertyType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Property)', Sequence{genPackage, elem}) /]
 
 [query public getQualifiedLiteralName(genPackage : GenPackage, elem : Operation, scope : Package) : String = 
 if elem.oclIsUndefined() then 'null' else getQualifiedPrefix(genPackage, elem.owningType, scope) + 'Operations._' + elem.owningType.name + '__' + elem.encodeName() endif /]
@@ -55,5 +62,5 @@ invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getGenPacka
 [query private getQualifiedPrefix(genPackage : GenPackage, cls : Type, scope : Package) : String = 
 if cls._'package' = scope then genPackage.prefix + 'Tables.'
 else let gPackage : GenPackage = getGenPackage(genPackage, cls, scope) in
- if gPackage->notEmpty() then gPackage.basePackage + '.' + gPackage.ecorePackage.name + '.' + gPackage.prefix + 'Tables.' else 'UnknownMetaModelTables.' endif
+ if gPackage->notEmpty() then emitType(gPackage.basePackage + '.' + gPackage.ecorePackage.name + '.' + gPackage.prefix + 'Tables') + '.' else 'UnknownMetaModelTables.' endif
 endif/]

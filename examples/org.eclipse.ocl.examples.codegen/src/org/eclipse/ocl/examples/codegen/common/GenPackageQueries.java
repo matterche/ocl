@@ -18,7 +18,10 @@ package org.eclipse.ocl.examples.codegen.common;
 
 import java.util.List;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
+import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
@@ -26,13 +29,50 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.library.LibraryConstants;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 
 public class GenPackageQueries
 {	
+	public String getFeatureTypeCast(GenPackage genPackage, Feature typedElement) {
+		return "(" + typedElement.getClass().getSimpleName() + ")";
+	}
+	
+	public GenClass getGenClass(GenPackage genPackage, Type type) {
+		String name = type.getName();
+		for (GenClass genClass : genPackage.getGenClasses()) {
+			if (name.equals(genClass.getName())) {
+				return genClass;
+			}
+		}
+		return null;
+	}
+	
+	public GenFeature getGenFeature(GenPackage genPackage, GenClass genClass, Property property) {
+		String name = property.getName();
+		for (GenFeature genFeature : genClass.getGenFeatures()) {
+			if (name.equals(genFeature.getName())) {
+				return genFeature;
+			}
+		}
+		return null;
+	}
+	
+	public GenOperation getGenOperation(GenPackage genPackage, GenClass genClass, Operation operation) {
+		String name = operation.getName();
+		for (GenOperation genOperation : genClass.getGenOperations()) {
+			if (name.equals(genOperation.getName())) {
+				return genOperation;		// FIXME signatures
+			}
+		}
+		return null;
+	}
+	
 	public GenPackage getGenPackage(GenPackage genPackage, Type pivotType, org.eclipse.ocl.examples.pivot.Package scope) {
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotType.getPackage();
 		if (pivotPackage == null) {
@@ -106,6 +146,28 @@ public class GenPackageQueries
 			}
 		}		
 		return null;
+	}
+	
+	public String getOperationReturnType(GenPackage genPackage, Operation operation) {
+		GenClass genClass = getGenClass(genPackage, operation.getOwningType());
+		if (genClass != null) {
+			GenOperation genOperation = getGenOperation(genPackage, genClass, operation);
+			if (genOperation != null) {
+				return "(" + genOperation.getObjectType(genClass) + ")";
+			}
+		}
+		return "";
+	}
+	
+	public String getPropertyType(GenPackage genPackage, Property property) {
+		GenClass genClass = getGenClass(genPackage, property.getOwningType());
+		if (genClass != null) {
+			GenFeature genFeature = getGenFeature(genPackage, genClass, property);
+			if (genFeature != null) {
+				return "(" + genFeature.getObjectType(genClass) + ")";
+			}
+		}
+		return "";
 	}
 
 	private GenPackage loadGenPackage(ResourceSet resourceSet, URI genModelURI) {

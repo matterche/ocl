@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,10 +31,18 @@ import java.util.zip.ZipException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IBundleGroup;
+import org.eclipse.core.runtime.IBundleGroupProvider;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 
 /**
@@ -48,6 +56,10 @@ public class ProjectMap
 {	
 	private Map<String, URI> projectMap = null;
 	private Map<File, Exception> exceptionMap = null;
+
+	public URI get(String projectName) {
+		return getProjectMap().get(projectName);
+	}
 
 	/**
 	 * Return the mapping of problem files to exception, or null if not yet computed
@@ -70,28 +82,14 @@ public class ProjectMap
 	public Map<String, URI> getProjectMap() {
 		if (projectMap == null) {
 			projectMap = new HashMap<String, URI>();
-			String property = System.getProperty("java.class.path");
-			String separator = System.getProperty("path.separator");
-			if (property!=null) {
-				String[] entries = property.split(separator);
-				for (String entry : entries) {
-					File fileEntry = new File(entry);
-					try {
-						File f = fileEntry.getCanonicalFile();
-						if (f.getPath().endsWith(".jar")) {
-							registerBundle(f);
-						} else if (!scanFolder(f, new HashSet<String>())) {
-							// eclipse bin folder?
-							File dotProject = new File(f.getParentFile(), ".project");
-							if (dotProject.exists())
-								registerProject(dotProject);
-						}
-					}
-					catch (Exception e) {
-						logException(fileEntry, e);
-					}
-				}
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+				scanClassPath();
 			}
+			else {
+//				scanBundles();
+				scanProjects();
+			}
+			System.out.println(toString());
 		}
 		return projectMap;
 	}
@@ -103,14 +101,29 @@ public class ProjectMap
 			URI value = projectMap.get(key);
 			platformResourceMap.put(key, value);
 			String projectKey = "/" + key + "/";
-			URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
-			URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-			if (value.toString().endsWith("jar!/")) {
-				uriMap.put(resourceURI, pluginURI);
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+				URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
+				URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
+				if (value.toString().endsWith("jar!/")) {
+					uriMap.put(resourceURI, pluginURI);
+				}
+				else {
+					uriMap.put(pluginURI, resourceURI);
+				}
 			}
 			else {
-				uriMap.put(pluginURI, resourceURI);
+				if (value.isPlatformResource()) {
+					URI resourceURI = value;
+					URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
+					uriMap.put(resourceURI, resourceURI);
+					uriMap.put(pluginURI, resourceURI);
+				}
 			}
+		}
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			URI resourceURI = URI.createPlatformResourceURI("/", true);
+			URI pluginURI = URI.createPlatformPluginURI("/", true);
+			uriMap.put(resourceURI, pluginURI);
 		}
 	}
 
@@ -162,6 +175,43 @@ public class ProjectMap
 		}
 	}
 
+	protected void scanBundles() {
+		for (IBundleGroupProvider bundleGroupProvider : Platform.getBundleGroupProviders()) {
+			for (IBundleGroup bundleGroup : bundleGroupProvider.getBundleGroups()) {
+				for (Bundle bundle : bundleGroup.getBundles()) {
+					String bundleName = bundle.getSymbolicName();
+					String projectKey = "/" + bundleName + "/";
+					projectMap.put(bundleName, URI.createPlatformPluginURI(projectKey, true));
+				}				
+			}
+		}
+	}
+
+	protected void scanClassPath() {
+		String property = System.getProperty("java.class.path");
+		String separator = System.getProperty("path.separator");
+		if (property!=null) {
+			String[] entries = property.split(separator);
+			for (String entry : entries) {
+				File fileEntry = new File(entry);
+				try {
+					File f = fileEntry.getCanonicalFile();
+					if (f.getPath().endsWith(".jar")) {
+						registerBundle(f);
+					} else if (!scanFolder(f, new HashSet<String>())) {
+						// eclipse bin folder?
+						File dotProject = new File(f.getParentFile(), ".project");
+						if (dotProject.exists())
+							registerProject(dotProject);
+					}
+				}
+				catch (Exception e) {
+					logException(fileEntry, e);
+				}
+			}
+		}
+	}
+
 	protected boolean scanFolder(File f, Set<String> alreadyVisited) {
 		try {
 			if (!alreadyVisited.add(f.getCanonicalPath()))
@@ -187,6 +237,15 @@ public class ProjectMap
 		if (!containsProject && dotProject != null)
 			registerProject(dotProject);
 		return containsProject || dotProject != null;
+	}
+
+	protected void scanProjects() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		for (IProject project : root.getProjects()) {
+			String projectName = project.getName();
+			String projectKey = "/" + projectName + "/";
+			projectMap.put(projectName, URI.createPlatformResourceURI(projectKey, true));
+		}
 	}
 	
 	@Override

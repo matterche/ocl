@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.codegen.tests;
+package org.eclipse.ocl.examples.codegen.tests.utils;
 
 import java.util.Map;
 
