@@ -28,3 +28,6 @@ invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getPrefixedSymbol
 
 [query public getSymbolName(elem : OclAny) : String = 
 invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
+
+[query public upperName(string : String) : String = 
+invoke('org.eclipse.emf.codegen.util.CodeGenUtil', 'upperName(java.lang.String)', Sequence{string}) /]

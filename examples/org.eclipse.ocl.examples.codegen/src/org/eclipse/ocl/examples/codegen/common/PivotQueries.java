@@ -16,16 +16,20 @@
  */
 package org.eclipse.ocl.examples.codegen.common;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -33,8 +37,10 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -62,6 +68,35 @@ public class PivotQueries
 		}
 		return null;
 	}
+	
+	protected int getAllSuperClasses(Map<Type, Integer> results, Type aClass) {
+		Integer depth = results.get(aClass);
+		if (depth != null) {
+			return depth;
+		}
+		int myDepth = 0;
+		for (Type superClass : aClass.getSuperClasses()) {
+			int superDepth = getAllSuperClasses(results, superClass);
+			if (superDepth >= myDepth) {
+				myDepth = superDepth+1;
+			}
+		}
+		results.put(aClass, myDepth);
+		return myDepth;
+	}
+	
+	public Type getBehavioralType(Type type) {
+		if (type instanceof DataType) {
+			DataType dataType = (DataType) type;
+			return dataType.getBehavioralType();
+		}
+		return null;
+	}
+	
+	public int getDepth(Type aClass) {
+		Map<Type, Integer> results = new HashMap<Type, Integer>();
+		return getAllSuperClasses(results, aClass);
+	}
 
 	public static ExpressionInOcl getExpressionInOcl(NamedElement contextElement, OpaqueExpression specification) {
 		Resource resource = contextElement.eResource();
@@ -70,7 +105,14 @@ public class PivotQueries
 		String expression = PivotUtil.getBody(specification);
 		URI uri = metaModelManager.getResourceIdentifier(contextElement, null);
 		try {
-			return PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
+			ExpressionInOcl expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
+			if (expressionInOcl != null) {
+				String messageExpression = PivotUtil.getMessage(specification);
+				if (messageExpression != null) {
+					PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
+				}
+			}
+			return expressionInOcl;
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +126,15 @@ public class PivotQueries
 
 	public static String getMoniker(Element element) {
 		return Pivot2Moniker.toString(element);
+	}
+	
+	public String getSignature(Operation anOperation) {
+		if (anOperation == null) {
+			return "null";
+		}
+		String qualifiedSignature = PrettyPrintTypeVisitor.prettyPrint(anOperation, (Namespace)anOperation.getOwningType());	// FIXME cast
+		int index = qualifiedSignature.indexOf("::");
+		return index > 0 ? qualifiedSignature.substring(index+2) : qualifiedSignature;	// FIXME with PrettyPrintOptions
 	}
 	
 	public static Boolean isBinarySelf(OperationCallExp callExp) {

@@ -20,35 +20,46 @@
 [query public emitCast(ecoreType : String) : String =
 if ecoreType.size() > 0 then '(' + ecoreType + ')' else '' endif /]
 
-[query public emitDomainElementsType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.elements.' + name) /]
+[template public emitSuppressThrowWarnings(any : OclAny)]
 
-[query public emitDomainEvaluationType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.evaluation.' + name) /]
+	[importType('org.eclipse.ocl.examples.domain.utilities.DomainUtil')/].suppressThrowWarnings();
+[/template]
 
-[query public emitDomainLibraryType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.library.' + name) /]
+[query public importDomainElementsType(name : String) : String =
+importType('org.eclipse.ocl.examples.domain.elements.' + name) /]
 
-[query public emitDomainValuesType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.values.' + name) /]
+[query public importDomainEvaluationType(name : String) : String =
+importType('org.eclipse.ocl.examples.domain.evaluation.' + name) /]
 
-[query public emitEcoreType(type : Type) : String = 'XYZZY' /]
+[query public importDomainLibraryType(name : String) : String =
+importType('org.eclipse.ocl.examples.domain.library.' + name) /]
 
-[query public emitJavaUtilType(name : String) : String =
-emitType('java.util.' + name) /]
+[query public importDomainMessagesType(name : String) : String =
+importType('org.eclipse.ocl.examples.domain.messages.' + name) /]
 
-[query public emitOperationType(prefix : String, arity : Integer) : String =
-emitType('org.eclipse.ocl.examples.domain.library.Library' +
+[query public importDomainValuesType(name : String) : String =
+importType('org.eclipse.ocl.examples.domain.values.' + name) /]
+
+[query public importEcoreType(name : String) : String =
+importType('org.eclipse.emf.ecore.' + name) /]
+
+[query public importEcoreUtilType(name : String) : String =
+importType('org.eclipse.emf.ecore.util.' + name) /]
+
+[query public importEmfCommonUtilType(name : String) : String =
+importType('org.eclipse.emf.common.util.' + name) /]
+
+[query public importJavaUtilType(name : String) : String =
+importType('java.util.' + name) /]
+
+[query public importOperationType(prefix : String, arity : Integer) : String =
+importType('org.eclipse.ocl.examples.domain.library.Library' +
 if arity = 0 then 'UnaryOperation'
 else if arity = 1 then 'BinaryOperation'
 else if arity = 2 then 'TernaryOperation'
 else 'TernaryOperation' endif endif endif
 ) /]
 
-[template public emitSuppressThrowWarnings(any : OclAny)]
+[query public importType(any : OclAny, qualifiedName : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'formatImport(java.lang.String)', Sequence{qualifiedName}) /]
 
-	[emitType('org.eclipse.ocl.examples.domain.utilities.DomainUtil')/].suppressThrowWarnings();
-[/template]
-
-[query public emitType(qualifiedName : String) : String =
-'<%' + qualifiedName + '%>' /]

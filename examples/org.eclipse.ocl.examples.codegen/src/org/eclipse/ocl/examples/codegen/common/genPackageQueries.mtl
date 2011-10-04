@@ -19,7 +19,34 @@
 
 [import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
+[import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
 [import org::eclipse::ocl::examples::codegen::common::stringQueries/]
+	
+[query public getCopyright(genPackage : GenPackage, indentation : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getCopyright(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, java.lang.String)', Sequence{genPackage, indentation}) /]
+
+[query public getEcorePackageName(genPackage : GenPackage) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getEcorePackageName(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
+
+[query private getGenPackage(genPackage : GenPackage, type : Type, scope : Package) : GenPackage = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getGenPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type, org.eclipse.ocl.examples.pivot.Package)', Sequence{genPackage, type, scope}) /]
+
+[query public getImplementationName(genPackage : GenPackage, elem : Operation) : String = 
+if elem.implementationClass->notEmpty() then elem.implementationClass + '.INSTANCE' else 'null' endif/]
+
+[query public getImplementationName(genPackage : GenPackage, elem : Property) : String = 
+if elem.implementationClass->notEmpty()
+then elem.implementationClass + '.INSTANCE'
+else if genPackage.hasEcore(elem) then 'new EcoreLibraryProperty(' + genPackage.prefix + 'Package.Literals.' + elem.owningType.name.upperName() + '__' + elem.name.upperName() + ')'
+else if (elem.opposite <> null) and genPackage.hasEcore(elem.opposite) then 'new EcoreLibraryOppositeProperty(' + genPackage.prefix + 'Package.Literals.' + elem.opposite.owningType.name.upperName() + '__' + elem.opposite.name.upperName() + ')'
+else 'null'
+endif endif endif/]
+	
+[query public getInterfacePackageName(genPackage : GenPackage) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getInterfacePackageName(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
+	
+[query public getOperationID(genPackage : GenPackage, type : Type, rule : Constraint, diagnosticCode : Boolean) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getOperationID(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type, org.eclipse.ocl.examples.pivot.Constraint, java.lang.Boolean)', Sequence{genPackage, type, rule, diagnosticCode}) /]
 
 [query public getOperationReturnType(genPackage : GenPackage, elem : Operation) : String = 
 invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getOperationReturnType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Operation)', Sequence{genPackage, elem}) /]
@@ -27,40 +54,54 @@ invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getOperatio
 [query public getPropertyType(genPackage : GenPackage, elem : Property) : String = 
 invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getPropertyType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Property)', Sequence{genPackage, elem}) /]
 
-[query public getQualifiedLiteralName(genPackage : GenPackage, elem : Operation, scope : Package) : String = 
-if elem.oclIsUndefined() then 'null' else getQualifiedPrefix(genPackage, elem.owningType, scope) + 'Operations._' + elem.owningType.name + '__' + elem.encodeName() endif /]
+[query public importQualifiedLiteralName(genPackage : GenPackage, elem : Operation, scope : Package) : String = 
+if elem.oclIsUndefined() then 'null' else importQualifiedPrefix(genPackage, elem.owningType, scope) + 'Operations._' + elem.owningType.name + '__' + elem.encodeName() endif /]
 
-[query public getQualifiedLiteralName(genPackage : GenPackage, elem : Property, scope : Package) : String = 
-if elem.oclIsUndefined() then 'null' else getQualifiedPrefix(genPackage, elem.owningType, scope) + 'Properties._' + elem.owningType.name + '__' + elem.encodeName() endif /]
+[query public importQualifiedLiteralName(genPackage : GenPackage, elem : Property, scope : Package) : String = 
+if elem.oclIsUndefined() then 'null' else importQualifiedPrefix(genPackage, elem.owningType, scope) + 'Properties._' + elem.owningType.name + '__' + elem.encodeName() endif /]
 
-[query public getQualifiedLiteralName(genPackage : GenPackage, elem : Type, scope : Package) : String = 
+[query public importQualifiedLiteralName(genPackage : GenPackage, elem : Type, scope : Package) : String = 
 if elem.oclIsUndefined() then 'null'
-else if elem.oclIsKindOf(BagType) then 'standardLibrary.getBagType(' + getQualifiedLiteralName(genPackage, elem.oclAsType(BagType).elementType, scope) + ')'
-else if elem.oclIsKindOf(OrderedSetType) then 'standardLibrary.getOrderedSetType(' + getQualifiedLiteralName(genPackage, elem.oclAsType(OrderedSetType).elementType, scope) + ')'
-else if elem.oclIsKindOf(SequenceType) then 'standardLibrary.getSequenceType(' + getQualifiedLiteralName(genPackage, elem.oclAsType(SequenceType).elementType, scope) + ')'
-else if elem.oclIsKindOf(SetType) then 'standardLibrary.getSetType(' + getQualifiedLiteralName(genPackage, elem.oclAsType(SetType).elementType, scope) + ')'
+else if elem.oclIsKindOf(BagType) then 'standardLibrary.getBagType(' + importQualifiedLiteralName(genPackage, elem.oclAsType(BagType).elementType, scope) + ')'
+else if elem.oclIsKindOf(OrderedSetType) then 'standardLibrary.getOrderedSetType(' + importQualifiedLiteralName(genPackage, elem.oclAsType(OrderedSetType).elementType, scope) + ')'
+else if elem.oclIsKindOf(SequenceType) then 'standardLibrary.getSequenceType(' + importQualifiedLiteralName(genPackage, elem.oclAsType(SequenceType).elementType, scope) + ')'
+else if elem.oclIsKindOf(SetType) then 'standardLibrary.getSetType(' + importQualifiedLiteralName(genPackage, elem.oclAsType(SetType).elementType, scope) + ')'
 else if elem.oclIsKindOf(TupleType) then getTupleTypeLookup(genPackage, elem.oclAsType(TupleType), scope).getPrefixedSymbolName('tuple_type_')
-else if elem.oclIsKindOf(ClassifierType) then 'standardLibrary.getClassifierType(' + getQualifiedLiteralName(genPackage, elem.oclAsType(ClassifierType).instanceType, scope) + ')'
-else getQualifiedPrefix(genPackage, elem.oclAsType(Class), scope) + 'Types._' + elem.encodeName()
+else if elem.oclIsKindOf(ClassifierType) then 'standardLibrary.getClassifierType(' + importQualifiedLiteralName(genPackage, elem.oclAsType(ClassifierType).instanceType, scope) + ')'
+else importQualifiedPrefix(genPackage, elem.oclAsType(Class), scope) + 'Types._' + elem.encodeName()
 endif endif endif endif endif endif endif /]
+	
+[query public getQualifiedPackageName(genPackage : GenPackage) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getQualifiedPackageName(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
+
+[query public importQualifiedPrefix(genPackage : GenPackage, cls : Type, scope : Package) : String = 
+let gPackage : GenPackage = getGenPackage(genPackage, cls, scope) in
+ if gPackage->notEmpty() then importType(getInterfacePackageName(gPackage) + '.' + gPackage.getTablesClassName()) + '.' else 'UnknownMetaModelTables.' endif /]
+
+[query public getQualifiedTypeLiteralName(genPackage : GenPackage, elem : Type, scope : Package) : String = 
+let rawCls : Class = elem.getUnspecializedClass() in
+if rawCls.oclIsUndefined() then 'null' else genPackage.importQualifiedPrefix(rawCls, scope) + 'Types._' + rawCls.name endif /]
+	
+[query public getQualifiedValidatorClassName(genPackage : GenPackage) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getQualifiedValidatorClassName(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
+
+[query public getTablesClassName(genPackage : GenPackage) : String = 
+genPackage.prefix + 'Tables' /]
 
 [query public getTupleLiteralExpLookup(genPackage : GenPackage, tuple : TupleLiteralExp, scope : Package) : OrderedSet(String) = 
 tuple.part->sortedBy(name)->iterate(part : TupleLiteralPart; acc : OrderedSet(String) = OrderedSet{} | acc->append(getTupleLiteralPartLookup(genPackage, part, scope).getPrefixedSymbolName('tuple_part_')))/]
 
 [query public getTupleLiteralPartLookup(genPackage : GenPackage, part : TupleLiteralPart, scope : Package) : String = 
-'standardLibrary.getTuplePart("' + part.javaString() + '", ' + getQualifiedLiteralName(genPackage, part.type, scope) + ')'/]
+'standardLibrary.getTuplePart("' + part.javaString() + '", ' + importQualifiedLiteralName(genPackage, part.type, scope) + ')'/]
 
 [query private getTupleTypeLookup(genPackage : GenPackage, tuple : TupleType, scope : Package) : OrderedSet(String) = 
 tuple.ownedAttribute->sortedBy(name)->iterate(part : Property; acc : OrderedSet(String) = OrderedSet{} | acc->append(getTupleTypePartLookup(genPackage, part, scope).getPrefixedSymbolName('tuple_part_')))/]
 
 [query private getTupleTypePartLookup(genPackage : GenPackage, part : Property, scope : Package) : String = 
-'standardLibrary.getTuplePart("' + part.javaString() + '", ' + getQualifiedLiteralName(genPackage, part.type, scope) + ')'/]
+'standardLibrary.getTuplePart("' + part.javaString() + '", ' + importQualifiedLiteralName(genPackage, part.type, scope) + ')'/]
 
-[query private getGenPackage(genPackage : GenPackage, type : Type, scope : Package) : GenPackage = 
-invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getGenPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type, org.eclipse.ocl.examples.pivot.Package)', Sequence{genPackage, type, scope}) /]
+[query private hasEcore(genPackage : GenPackage, property : Property) : Boolean = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasEcore(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Property)', Sequence{genPackage, property}) /]
 
-[query private getQualifiedPrefix(genPackage : GenPackage, cls : Type, scope : Package) : String = 
-if cls._'package' = scope then genPackage.prefix + 'Tables.'
-else let gPackage : GenPackage = getGenPackage(genPackage, cls, scope) in
- if gPackage->notEmpty() then emitType(gPackage.basePackage + '.' + gPackage.ecorePackage.name + '.' + gPackage.prefix + 'Tables') + '.' else 'UnknownMetaModelTables.' endif
-endif/]
+[query public isProperty(genPackage : GenPackage, property : Property) : Boolean =
+genPackage.hasEcore(property) or ((property.opposite <> null) and genPackage.hasEcore(property.opposite))/]

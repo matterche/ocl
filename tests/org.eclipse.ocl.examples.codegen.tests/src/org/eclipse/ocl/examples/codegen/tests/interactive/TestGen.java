@@ -79,10 +79,11 @@ public class TestGen extends TestCase
 		ProjectMap projectMap = new ProjectMap();
 		projectMap.initializeResourceSet(resourceSet);
 		URIConverter uriConverter = resourceSet.getURIConverter();
-		copyFile(uriConverter, metaInfFolder, "MANIFEST.MF", "/org.eclipse.ocl.examples.codegen.tests/META-INF/PLAY.MF");
-		copyFile(uriConverter, project, "plugin.properties", "/org.eclipse.ocl.examples.codegen.tests/plugin.properties");
-		copyFile(uriConverter, modelFolder, "play.ecore", "/org.eclipse.ocl.examples.codegen.tests/model/play.ecore");
-		copyFile(uriConverter, modelFolder, "play.genmodel", "/org.eclipse.ocl.examples.codegen.tests/model/play.genmodel");
+		copyFile(uriConverter, project, ".classpath", "/org.eclipse.ocl.examples.codegen.tests/play/.classpath");
+		copyFile(uriConverter, project, "plugin.properties", "/org.eclipse.ocl.examples.codegen.tests/play/plugin.properties");
+		copyFile(uriConverter, metaInfFolder, "MANIFEST.MF", "/org.eclipse.ocl.examples.codegen.tests/play/META-INF/MANIFEST.MF");
+		copyFile(uriConverter, modelFolder, "play.ecore", "/org.eclipse.ocl.examples.codegen.tests/play/model/play.ecore");
+		copyFile(uriConverter, modelFolder, "play.genmodel", "/org.eclipse.ocl.examples.codegen.tests/play/model/play.genmodel");
 		copyFile(uriConverter, templatesModelFolder, "Class.javajet", "/org.eclipse.ocl.examples.codegen/templates/model/Class.javajet");
 		MetaModelManager metaModelManager = new MetaModelManager();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);

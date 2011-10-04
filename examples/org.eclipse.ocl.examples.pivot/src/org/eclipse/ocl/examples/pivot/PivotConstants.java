@@ -26,6 +26,8 @@ public interface PivotConstants
 {
 	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PivotConstants.class.getPackage().getName() + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
 
+	static final String MESSAGE_ANNOTATION_DETAIL_SUFFIX = "$message";
+
 	static final int MONIKER_OVERFLOW_LIMIT = 1024;
 	static final String ANNOTATION_QUOTE = "'"; //$NON-NLS-1$
 	static final String BINDINGS_PREFIX = "/"; //$NON-NLS-1$ // FIXME Rename

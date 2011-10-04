@@ -17,5 +17,67 @@
 [comment encoding = UTF-8 /]
 [module org::eclipse::ocl::examples::codegen::common::pivotQueries('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
 
+[import org::eclipse::ocl::examples::codegen::common::nameQueries/]
+
+[query public getAllProperSuperTypes(elem : Type) : Set(Class) = 
+elem->closure(c : Type | c.getSuperTypes()) /]
+
+[query private getAllProperSuperTypes(elem : Collection(Type)) : Set(Class) = 
+elem->closure(c : Type | c.getSuperTypes()) /]
+
+[query public getAllPropertiesOf(cls : Class) : Set(Property) = 
+cls.getAllSuperTypes().ownedAttribute->asSet()/]
+
+[query public getAllSuperTypes(elem : Type) : Set(Type) = 
+elem->closure(c : Type | c.getSuperTypes())->including(elem)->asSet() /]
+
+[query public getBehavioralType(elem : Type) : Type =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getBehavioralType(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
+
+[query public getDepth(elem : Type) : Integer = 
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getDepth(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
+
+[query public getLiteralName(elem : Package) : String = 
+'_' + elem.encodeName() /]
+
+[query public getLiteralName(elem : Type) : String = 
+if not elem.owningTemplateParameter.oclIsUndefined() then 'null/*' + elem.name + '*/' 
+else 'Types._' + elem.name
+endif /]
+
+[query public getLiteralName(elem : Set(Class)) : String =
+elem->any(true).encodeName() /]
+
+[query public getLiteralName(elem : Operation) : String = 
+if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + elem.encodeName() endif /]
+
+[query public getLiteralName(elem : Property) : String = 
+if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + elem.encodeName() endif /]
+
+[query public getLocalOperationsOf(cls : Type) : Set(Operation) = 
+let superSignatures : Set(String) = cls.getSuperSignatures() in
+cls.ownedOperation->asSet()->reject(op : Operation | false and superSignatures->includes(op.getSignature()))/]
+
+[query public getLocalPropertiesOf(cls : Type) : Set(Property) = 
+cls.ownedAttribute->asSet()/]
+
+[query public getOverloadOp(cls : Type, superOp : Operation) : Operation = 
+let allOps : Set(Operation) = cls.getAllSuperTypes().ownedOperation->select(op : Operation | op.getSignature() = superOp.getSignature())->asSet()
+in let allOpSupers : Set(Class) = getAllProperSuperTypes(allOps.owningType)
+in let allSuperOps : Set(Operation) = allOpSupers.ownedOperation->select(op : Operation | op.getSignature() = superOp.getSignature())->asSet()
+in (allOps - allSuperOps)->asSequence()->first()/]
+
+[query public getSignature(elem : Operation) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getSignature(org.eclipse.ocl.examples.pivot.Operation)', Sequence{elem}) /]
+
+[query public getSuperSignatures(elem : Type) : Set(String) = 
+elem->closure(c : Type | c.getSuperTypes()).ownedOperation->collect(op : Operation | op.getSignature())->asSet()/]
+
+[query public getSuperTypes(elem : Type) : Set(Class) = 
+elem.superClass->collect(c : Type | c.getUnspecializedClass())->asSet()/]
+
+[query public getUnspecializedClass(elem : Type) : Class = 
+if elem.unspecializedElement->notEmpty() then elem.unspecializedElement.oclAsType(Type) else elem endif /]
+
 [query public isBinarySelf(callExp : OperationCallExp) : Boolean = 
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'isBinarySelf(org.eclipse.ocl.examples.pivot.OperationCallExp)', Sequence{callExp}) /]

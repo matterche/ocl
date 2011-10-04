@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.codegen.common;
 import java.util.List;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
+import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier;
 import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.library.LibraryConstants;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -38,7 +40,15 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 
 public class GenPackageQueries
-{	
+{		
+	public String getCopyright(GenPackage genPackage, String indentation) {
+		return genPackage.getCopyright(indentation);
+	}
+
+	public String getEcorePackageName(GenPackage genPackage) {
+		return genPackage.getEcorePackage().getName();	// Workaround for Acceleo URI resolution bug
+	}
+	
 	public String getFeatureTypeCast(GenPackage genPackage, Feature typedElement) {
 		return "(" + typedElement.getClass().getSimpleName() + ")";
 	}
@@ -112,6 +122,10 @@ public class GenPackageQueries
 		}
 		return genPackage;	// FIXME
 	}
+	
+	public String getInterfacePackageName(GenPackage genPackage) {
+		return genPackage.getInterfacePackageName();
+	}
 
 	private <T extends GenPackage> T getLibraryGenPackage(List<T> genPackages) {
 		for (T genPackage : genPackages) {
@@ -135,6 +149,24 @@ public class GenPackageQueries
 		return null;
 	}
 
+	private <T extends GenClassifier> T getNamedElement1(List<T> genClasses, String name) {
+		for (T genClass : genClasses) {
+			if (genClass.getName().equals(name)) {
+				return genClass;
+			}
+		}
+		return null;
+	}
+
+	private <T extends GenFeature> T getNamedElement2(List<T> genClasses, String name) {
+		for (T genClass : genClasses) {
+			if (genClass.getName().equals(name)) {
+				return genClass;
+			}
+		}
+		return null;
+	}
+
 	private <T extends GenPackage> T getNsURIGenPackage(List<T> genPackages, String nsURI, String name) {
 		for (T genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();
@@ -146,6 +178,19 @@ public class GenPackageQueries
 			}
 		}		
 		return null;
+	}
+	
+	public String getOperationID(GenPackage genPackage, Type type, Constraint rule, Boolean diagnosticCode) {
+		GenClass genClass = getGenClass(genPackage, type);
+		if (genClass != null) {
+			String name = rule.isCallable() ? rule.getName() : ("invariant_" + rule.getName());
+			for (GenOperation genOperation : genClass.getGenOperations()) {
+				if (name.equals(genOperation.getName())) {
+					return genClass.getOperationID(genOperation, diagnosticCode);
+				}
+			}
+		}
+		return "";
 	}
 	
 	public String getOperationReturnType(GenPackage genPackage, Operation operation) {
@@ -168,6 +213,26 @@ public class GenPackageQueries
 			}
 		}
 		return "";
+	}
+	
+	public String getQualifiedPackageName(GenPackage genPackage) {
+		return genPackage.getQualifiedPackageName();
+	}
+	
+	public String getQualifiedValidatorClassName(GenPackage genPackage) {
+		return genPackage.getQualifiedValidatorClassName();
+	}
+	
+	public Boolean hasEcore(GenPackage genPackage, Property property) {
+		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), property.getOwningType().getName());
+		if (genClass == null) {
+			return false;
+		}
+		GenFeature genFeature = getNamedElement2(genClass.getAllGenFeatures(), property.getName());
+		if (genFeature == null) {
+			return false;
+		}
+		return true;
 	}
 
 	private GenPackage loadGenPackage(ResourceSet resourceSet, URI genModelURI) {

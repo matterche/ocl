@@ -1,9 +1,9 @@
-<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.util.CodeGenUtil" class="Class" version="$Id: Class.javajet,v 1.92 2011/04/07 19:53:34 emerks Exp $" %>
+<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.util.CodeGenUtil" class="Class" version="$Id: Class.javajet,v 1.93 2011/08/29 20:16:46 khussey Exp $" %>
 <%
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2010 IBM Corporation and others.
+ * Copyright (c) 2002-2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,6 +36,8 @@ package <%=genPackage.getClassPackageName()%>;
 <%if (isImplementation) { genClass.addClassPsuedoImports(); }%>
 
 <%if (isInterface) {%>
+<%@ include file="Class/interface.javadoc.override.javajetinc" fail="alternative" %>
+<%@ start %>
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b><%=genClass.getFormattedName()%></b></em>'.
@@ -75,6 +77,7 @@ package <%=genPackage.getClassPackageName()%>;
 <%}%>
  * @generated
  */
+<%@ end %><%//Class/interface.javadoc.override.javajetinc%>
 <%} else {%>
 /**
  * <!-- begin-user-doc -->
@@ -177,7 +180,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
   <%for (GenFeature genFeature : genClass.getDeclaredFieldGenFeatures()) {%>
 <%@ include file="Class/declaredFieldGenFeature.override.javajetinc" fail="alternative" %>
 <%@ start %>
-    <%if (genFeature.hasSettingDelegate()) {%>
+    <%if (genFeature.hasSettingDelegate() && !genFeature.hasBody()) {%>
 	/**
 	 * The cached setting delegate for the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
 	 * <!-- begin-user-doc -->
@@ -620,7 +623,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 	public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%><%if (genClass.hasCollidingGetAccessorOperation(genFeature)) {%>_<%}%>()
 	{
 <%@ include file="Class/getGenFeature.pre.insert.javajetinc" fail="silent" %>
-    <%if (genModel.isDynamicDelegation()) {%>
+    <%if (genFeature.hasBody()) {%>
+		<%=genFeature.getBody(genModel.getIndentation(stringBuffer))%>
+    <%} else if (genModel.isDynamicDelegation()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eDynamicGet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>, true, <%=!genFeature.isEffectiveSuppressEMFTypes()%>)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eGet(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
@@ -751,7 +756,9 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 	public <%=genFeature.getImportedType(genClass)%> basicGet<%=genFeature.getAccessorName()%>()
 	{
 <%@ include file="Class/basicGetGenFeature.pre.insert.javajetinc" fail="silent" %>
-    <%if (genModel.isDynamicDelegation()) {%>
+    <%if (genFeature.hasBody()) {%>
+		<%=genFeature.getBody(genModel.getIndentation(stringBuffer))%>
+    <%} else if (genModel.isDynamicDelegation()) {%>
 		return (<%=genFeature.getImportedType(genClass)%>)eDynamicGet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>, false, <%=!genFeature.isEffectiveSuppressEMFTypes()%>);
     <%} else if (genFeature.hasSettingDelegate()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
@@ -909,7 +916,11 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 	public void set<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingSetAccessorOperation(genFeature)) {%>_<%}%>(<%=genFeature.getImportedType(genClass)%> <%=setAccessorOperation == null ? "new" + genFeature.getCapName() : setAccessorOperation.getGenParameters().get(0).getName()%>)
 	{
 <%@ include file="Class/setGenFeature.pre.insert.javajetinc" fail="silent" %>
-    <%if (genModel.isDynamicDelegation()) {%>
+    <%if (genFeature.hasBody()) {%>
+      <%if (genFeature.hasSetBody()) {%>
+		<%=genFeature.getSetBody(genModel.getIndentation(stringBuffer))%>
+      <%}%>
+    <%} else if (genModel.isDynamicDelegation()) {%>
 		eDynamicSet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>, <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>new <%=genFeature.getObjectType(genClass)%>(<%}%>new<%=genFeature.getCapName()%><%if (!isJDK50 && genFeature.isPrimitiveType()) {%>)<%}%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		eSet(<%=genFeature.getQualifiedFeatureAccessor()%>, <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>new <%=genFeature.getObjectType(genClass)%>(<%}%>new<%=genFeature.getCapName()%><%if (!isJDK50 && genFeature.isPrimitiveType()) {%>)<%}%>);
@@ -1164,7 +1175,11 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 <%} else {%>
 	public void unset<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingUnsetAccessorOperation(genFeature)) {%>_<%}%>()
 	{
-    <%if (genModel.isDynamicDelegation()) {%>
+    <%if (genFeature.hasBody()) {%>
+      <%if (genFeature.hasUnsetBody()) {%>
+		<%=genFeature.getUnsetBody(genModel.getIndentation(stringBuffer))%>
+      <%}%>
+    <%} else if (genModel.isDynamicDelegation()) {%>
 		eDynamicUnset(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		eUnset(<%=genFeature.getQualifiedFeatureAccessor()%>);
@@ -1331,7 +1346,14 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 <%} else {%>
 	public boolean isSet<%=genFeature.getAccessorName()%><%if (genClass.hasCollidingIsSetAccessorOperation(genFeature)) {%>_<%}%>()
 	{
-    <%if (genModel.isDynamicDelegation()) {%>
+    <%if (genFeature.hasBody()) {%>
+      <%if (genFeature.hasIssetBody()) {%>
+		<%=genFeature.getIssetBody(genModel.getIndentation(stringBuffer))%>
+      <%} else {%>
+        return true;
+      <%}%>
+		<%=genFeature.getBody(genModel.getIndentation(stringBuffer))%>
+    <%} else if (genModel.isDynamicDelegation()) {%>
 		return eDynamicIsSet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		return eIsSet(<%=genFeature.getQualifiedFeatureAccessor()%>);
@@ -1392,7 +1414,7 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 	 */
 	protected static final <%=genModel.getImportedName("java.lang.String")%> <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EEXPRESSION = "<%=genOperation.getInvariantExpression("\t\t")%>";<%=genModel.getNonNLS()%>
 
-    <%} else if (genOperation.hasInvocationDelegate()) {%>
+    <%} else if (genOperation.hasInvocationDelegate() && !genOperation.hasBody()) {%>
 	/**
 	 * The cached invocation delegate for the '{@link #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -1821,8 +1843,14 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
 		{
 <%for (GenFeature genFeature : genClass.getEIsSetGenFeatures()) { String safeNameAccessor = genFeature.getSafeName(); if ("featureID".equals(safeNameAccessor)) { safeNameAccessor = "this." + safeNameAccessor; }%>
 			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
-  <%if (genFeature.hasSettingDelegate()) {%>
-    <%if (genFeature.isUnsettable()) {%>
+  <%if (genFeature.hasBody()) {%>
+    <%if (genFeature.hasIssetBody()) {%>
+	            <%=genFeature.getIssetBody(genModel.getIndentation(stringBuffer))%>
+    <%} else {%>
+                return true;
+    <%}%>
+  <%} else if (genFeature.hasSettingDelegate()) {%>
+    <%if (genFeature.isUnsettable() || genFeature.hasBody()) {%>
 				return isSet<%=genFeature.getAccessorName()%>();
     <%} else {%>
 				return <%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
@@ -2192,8 +2220,6 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
           <%} else {%>
 		result.append(<%=genFeature.getUpperName()%>_EFLAG_VALUES[(<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) >>> <%=genFeature.getUpperName()%>_EFLAG_OFFSET]);
           <%}%>
-          <%} else if (genFeature.isDerived()){%>
-		result.append(get<%=genFeature.getAccessorName()%>());
           <%} else {%>
 		result.append(<%=genFeature.getSafeName()%>);
           <%}%>

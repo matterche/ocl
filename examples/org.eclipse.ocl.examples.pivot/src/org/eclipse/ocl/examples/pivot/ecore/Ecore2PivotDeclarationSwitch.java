@@ -412,7 +412,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				if (constraintName == null) {
 					constraintName = "";
 				}
-				if (!constraintName.endsWith("$message")) {
+				if (!constraintName.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
 					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 					constraint.setStereotype(UMLReflection.INVARIANT);
 					constraint.setName(constraintName);
@@ -420,7 +420,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
 					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
-					String message = oclAnnotationDetails.get(constraintName + "$message");
+					String message = oclAnnotationDetails.get(constraintName + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
 					specification.getMessages().add(message != null ? message : "");
 					constraint.setSpecification(specification);
 					constraints.add(constraint);

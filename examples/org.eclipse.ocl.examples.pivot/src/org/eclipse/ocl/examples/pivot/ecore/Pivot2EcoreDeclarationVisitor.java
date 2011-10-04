@@ -180,29 +180,7 @@ public class Pivot2EcoreDeclarationVisitor
 		safeVisitAll(eClass.getEStructuralFeatures(), pivotClass.getOwnedAttributes());
 		for (Constraint pivotConstraint : pivotClass.getOwnedRules()) {
 			if (pivotConstraint.isCallable()) {
-				EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
-				eOperation.setName(pivotConstraint.getName());
-				eOperation.setEType(EcorePackage.Literals.EBOOLEAN);
-				EParameter firstParameter = EcoreFactory.eINSTANCE.createEParameter();
-				firstParameter.setName("diagnostics");
-				firstParameter.setEType(EcorePackage.Literals.EDIAGNOSTIC_CHAIN);
-				eOperation.getEParameters().add(firstParameter);
-				EParameter secondParameter = EcoreFactory.eINSTANCE.createEParameter();
-				secondParameter.setName("context");
-				EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
-				eGenericType.setEClassifier(EcorePackage.Literals.EMAP);
-				EGenericType firstTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
-				firstTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
-				eGenericType.getETypeArguments().add(firstTypeArgument);
-				EGenericType secondTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
-				secondTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
-				eGenericType.getETypeArguments().add(secondTypeArgument);
-				secondParameter.setEGenericType(eGenericType);
-				eOperation.getEParameters().add(secondParameter);
-				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-				eAnnotation.getDetails().put("body", PivotUtil.getBody((OpaqueExpression) pivotConstraint.getSpecification()));
-				eOperation.getEAnnotations().add(eAnnotation);
+				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(pivotConstraint, pivotConstraint.getName());
 				eClass.getEOperations().add(eOperation);
 				context.putCreated(pivotConstraint, eOperation);
 				Pivot2Ecore.installDelegate(eOperation, pivotConstraint, context.getEcoreURI());

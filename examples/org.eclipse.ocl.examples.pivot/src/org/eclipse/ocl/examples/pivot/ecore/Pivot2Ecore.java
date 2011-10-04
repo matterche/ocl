@@ -28,10 +28,12 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -70,6 +72,33 @@ public class Pivot2Ecore extends AbstractConversion
 	 * the prefix.
 	 */
 	public static final String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
+
+	public static EOperation createConstraintEOperation(Constraint pivotConstraint, String operationName) {
+		EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
+		eOperation.setName(operationName);
+		eOperation.setEType(EcorePackage.Literals.EBOOLEAN);
+		EParameter firstParameter = EcoreFactory.eINSTANCE.createEParameter();
+		firstParameter.setName("diagnostics");
+		firstParameter.setEType(EcorePackage.Literals.EDIAGNOSTIC_CHAIN);
+		eOperation.getEParameters().add(firstParameter);
+		EParameter secondParameter = EcoreFactory.eINSTANCE.createEParameter();
+		secondParameter.setName("context");
+		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+		eGenericType.setEClassifier(EcorePackage.Literals.EMAP);
+		EGenericType firstTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
+		firstTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
+		eGenericType.getETypeArguments().add(firstTypeArgument);
+		EGenericType secondTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
+		secondTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
+		eGenericType.getETypeArguments().add(secondTypeArgument);
+		secondParameter.setEGenericType(eGenericType);
+		eOperation.getEParameters().add(secondParameter);
+		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		eAnnotation.getDetails().put("body", PivotUtil.getBody((OpaqueExpression) pivotConstraint.getSpecification()));
+		eOperation.getEAnnotations().add(eAnnotation);
+		return eOperation;
+	}
 
 	public static XMLResource createResource(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options) {
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -146,7 +175,7 @@ public class Pivot2Ecore extends AbstractConversion
 					messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), options);
 				}
 				if ((messageString != null) && (messageString.length() > 0)) {
-					oclAnnotation.getDetails().put(name + "$message", messageString);
+					oclAnnotation.getDetails().put(name + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX, messageString);
 				}
 			}
 		}
