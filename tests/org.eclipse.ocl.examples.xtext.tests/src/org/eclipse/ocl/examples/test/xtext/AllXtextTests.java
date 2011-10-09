@@ -75,6 +75,7 @@ public class AllXtextTests
 		result.addTestSuite(EditTests.class);
 		result.addTestSuite(MarkupTests.class);
 		result.addTestSuite(ValidateTests.class);
+		result.addTestSuite(DocumentationExamples.class);
 		return result;
 	}
 
