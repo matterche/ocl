@@ -49,13 +49,16 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		if (target.getOwningTemplateParameter() != null) {				// WIP
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		if (target.getOwningTemplateParameter() != null) {
+			Type type = metaModelManager.getOclAnyType(); // WIP use lowerbound
+			environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));
+			environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));
 			return null;
 		}
 		if (target.getTemplateBindings().size() == 0) {
 			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
 		}
-		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (target instanceof ClassifierType) {
 			Type instanceType = ((ClassifierType)target).getInstanceType();
 			if ((instanceType != null) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
