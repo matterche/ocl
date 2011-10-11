@@ -134,11 +134,14 @@ public abstract class AbstractEvaluationEnvironment
     		assert ((Variable)referredVariable).getRepresentedParameter() == null;
     	}
         if (variableValues.containsKey(referredVariable)) {
-            String message = NLS.bind(
-            		OCLMessages.BindingExist_ERROR_,
-            		referredVariable,
-            		variableValues.get(referredVariable));
-            throw new IllegalArgumentException(message);
+        	Value oldValue = variableValues.get(referredVariable);
+        	if ((oldValue != value) && ((oldValue == null) || !oldValue.equals(value))) {
+	            String message = NLS.bind(
+	            		OCLMessages.BindingExist_ERROR_,
+	            		referredVariable,
+	            		oldValue);
+	            throw new IllegalArgumentException(message);
+        	}
         }
         variableValues.put(referredVariable, value);
     }

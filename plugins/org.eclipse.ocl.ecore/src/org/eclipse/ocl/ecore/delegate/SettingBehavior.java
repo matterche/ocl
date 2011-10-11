@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 360072
  *
  * </copyright>
  *
- * $Id: SettingBehavior.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
+ * $Id$
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -99,7 +100,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (result != null){
 			return result != NO_OCL_DEFINITION ? result : null;
 		}
-	    EAnnotation eAnnotation = structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+	    EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(structuralFeature);
 	    if (eAnnotation == null) {
 			cacheOCLExpression(structuralFeature, NO_OCL_DEFINITION);
 	    	return null;
@@ -148,6 +149,6 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * @since 3.1
 	 */
 	public boolean hasCompileableFeatureBody(EStructuralFeature structuralFeature) {
-		return structuralFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI) != null;
+		return OCLDelegateDomain.getDelegateAnnotation(structuralFeature) != null;
 	}
 }

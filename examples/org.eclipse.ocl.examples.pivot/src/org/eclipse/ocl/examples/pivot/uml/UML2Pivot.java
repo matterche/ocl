@@ -257,7 +257,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	}
 
 	protected void copyProperty(Property pivotElement, org.eclipse.uml2.uml.Property umlProperty, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = umlProperty.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlProperty);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

@@ -78,6 +78,7 @@ public class AllXtextTests
 		result.addTestSuite(InheritanceTests.class);
 		result.addTestSuite(MarkupTests.class);
 		result.addTestSuite(ValidateTests.class);
+		result.addTestSuite(DocumentationExamples.class);
 		return result;
 	}
 

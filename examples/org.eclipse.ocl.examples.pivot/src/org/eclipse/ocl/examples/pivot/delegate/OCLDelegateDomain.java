@@ -16,10 +16,19 @@
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -67,6 +76,84 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 */
 	public static final String OCL_DELEGATE_URI_LPG = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
 	public static final String OCL_DELEGATE_URI_PIVOT = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
+	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI_LPG + "/"; //$NON-NLS-1$
+
+	/**
+	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
+	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
+	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
+	 */
+	public static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
+		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.equals(OCL_DELEGATE_URI_LPG)) {
+				return eAnnotation;
+			}
+		}
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return eAnnotation;
+			}
+		}
+		return null;
+	}
+
+	public static String getDelegateAnnotation(EModelElement eModelElement, String key) {
+	    EAnnotation eAnnotation = getDelegateAnnotation(eModelElement);
+	    return eAnnotation == null ? null : (String)eAnnotation.getDetails().get(key);
+	}
+	
+	/**
+	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
+	 * to support usage of the Pivot OCL Delegate Evaluator for the Pivot OCL Delegate URI. 
+	 */
+	public static void initialize(ResourceSet resourceSet) {
+		initialize(resourceSet, OCL_DELEGATE_URI_PIVOT);
+	}
+	
+	/**
+	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
+	 * to support usage of the Pivot OCL Delegate Evaluator for the oclDelegateURI. 
+	 */
+	public static void initialize(ResourceSet resourceSet, String oclDelegateURI) {
+		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
+			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLInvocationDelegateFactory.Global());
+			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLSettingDelegateFactory.Global());
+			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI, new OCLValidationDelegateFactory.Global());
+			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLQueryDelegateFactory.Global());
+		}
+		if (resourceSet != null) {
+			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
+			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+	
+			// Install a local DelegateDomain.Factory
+			DelegateDomain.Factory.Registry.Impl delegateDomainFactory = new DelegateDomain.Factory.Registry.Impl();
+			delegateDomainFactory.put(oclDelegateURI, new OCLDelegateDomainFactory());
+			adapter.putRegistry(DelegateDomain.Factory.Registry.class, delegateDomainFactory);
+					
+			// Install a local ValidationDelegate.Factory
+			ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry = new ValidationDelegate.Factory.Registry.Impl();
+			validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory());
+			adapter.putRegistry(ValidationDelegate.Factory.Registry.class, validationDelegateFactoryRegistry);
+	
+			// Install a local SettingDelegate.Factory
+			EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry = new EStructuralFeature.Internal.SettingDelegate.Factory.Registry.Impl();
+			settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory());
+			adapter.putRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, settingDelegateFactoryRegistry);
+	
+			// Install a local InvocationDelegate.Factory
+			EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry = new EOperation.Internal.InvocationDelegate.Factory.Registry.Impl();
+			invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory());
+			adapter.putRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class, invocationDelegateFactoryRegistry);	
+	
+			// Install a local QueryDelegate.Factory
+			QueryDelegate.Factory.Registry queryDelegateFactoryRegistry = new QueryDelegate.Factory.Registry.Impl();
+			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory());
+			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
+		}
+	}
 
 	protected final String uri;
 	protected final EPackage ePackage;
