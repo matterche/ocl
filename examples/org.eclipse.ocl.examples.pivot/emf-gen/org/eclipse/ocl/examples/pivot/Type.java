@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.types.DomainType
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainType
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->

@@ -28,8 +28,12 @@ import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.utils.Mapping;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.UMLPlugin;
-import org.eclipse.uml2.uml.resource.CMOF2UMLResource;
+import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.l3.L3Package;
+import org.eclipse.uml2.uml.resource.CMOF202UMLResource;
+import org.eclipse.uml2.uml.resource.UML302UMLResource;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
@@ -41,12 +45,14 @@ public class UMLStandaloneSetup extends StandaloneSetup
 
 	public UMLStandaloneSetup() {
 		log.info("Registering UML Resources");
+		L2Package.eINSTANCE.eClass();
+		L3Package.eINSTANCE.eClass();
 		ResourceSet targetResourceSet = null;
 		Resource.Factory.Registry resourceFactoryRegistry = Resource.Factory.Registry.INSTANCE;
 		resourceFactoryRegistry.getExtensionToFactoryMap().put(
 				UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 		resourceFactoryRegistry.getExtensionToFactoryMap().put(
-				CMOF2UMLResource.FILE_EXTENSION, CMOF2UMLResource.Factory.INSTANCE);
+				CMOF202UMLResource.FILE_EXTENSION, CMOF202UMLResource.Factory.INSTANCE);
 		Map<URI, URI> uriMap = targetResourceSet != null
 			? targetResourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
@@ -56,6 +62,7 @@ public class UMLStandaloneSetup extends StandaloneSetup
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
 		EPackage.Registry registry2 = registry;		// Workaround JDT invisible class anomally
 		registry2.put(Ecore2XMLPackage.eNS_URI, Ecore2XMLPackage.eINSTANCE);
+		registry2.put(UML302UMLResource.UML_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
 //		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0"));
 //		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Standard/1", URI.createURI("pathmap://UML_PROFILES/Standard.profile.uml#_0"));
 		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/UML_PROFILES/Ecore.profile.uml#_0", true));

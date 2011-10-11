@@ -677,7 +677,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="associativity" ordered="false"
         eType="#//AssociativityKind" defaultValueLiteral="Left"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" ordered="false"
-        lowerBound="1" eType="#//Integer" volatile="true" derived="true"/>
+        lowerBound="1" eType="#//Integer" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveLiteralExp" abstract="true"
       eSuperTypes="#//LiteralExp"/>

@@ -20,7 +20,7 @@ package org.eclipse.ocl.examples.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Collection Type</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.types.DomainCollectionType
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainCollectionType
  * <!-- end-user-doc -->
  *
  * <p>

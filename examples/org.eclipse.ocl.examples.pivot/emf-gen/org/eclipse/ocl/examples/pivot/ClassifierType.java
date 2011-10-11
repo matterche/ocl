@@ -22,7 +22,7 @@ package org.eclipse.ocl.examples.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Classifier Type</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.types.DomainClassifierType
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainClassifierType
  * <!-- end-user-doc -->
  *
  * <p>

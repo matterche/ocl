@@ -20,7 +20,7 @@ package org.eclipse.ocl.examples.pivot;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Tuple Type</b></em>'.
- * @extends org.eclipse.ocl.examples.domain.types.DomainTupleType
+ * @extends org.eclipse.ocl.examples.domain.elements.DomainTupleType
  * <!-- end-user-doc -->
  *
  *

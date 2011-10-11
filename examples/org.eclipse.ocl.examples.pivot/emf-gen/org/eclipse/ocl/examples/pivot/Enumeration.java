@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration</b></em>'.
- * @implements org.eclipse.ocl.examples.domain.types.DomainEnumeration
+ * @implements org.eclipse.ocl.examples.domain.elements.DomainEnumeration
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->

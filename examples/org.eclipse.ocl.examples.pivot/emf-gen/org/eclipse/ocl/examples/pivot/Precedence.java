@@ -79,7 +79,7 @@ public interface Precedence
 	 * @return the value of the '<em>Order</em>' attribute.
 	 * @see #setOrder(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrecedence_Order()
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	BigInteger getOrder();

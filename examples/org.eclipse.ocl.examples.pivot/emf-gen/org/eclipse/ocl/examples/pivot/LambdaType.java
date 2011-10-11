@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Lambda Type</b></em>'.
- * @implements org.eclipse.ocl.examples.domain.types.DomainLambdaType
+ * @implements org.eclipse.ocl.examples.domain.elements.DomainLambdaType
  * <!-- end-user-doc -->
  *
  * <p>
