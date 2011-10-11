@@ -523,6 +523,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_3.setIsComposite(true);
 			symbol_3.setIsResolveProxies(true);
+			symbol_3.setOpposite(symbol_59);
 			symbol_1.getOwnedAttributes().add(symbol_3);
 		}
 		{ // pivot.ecore::pivot::Annotation::ownedDetail
@@ -545,7 +546,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_5.setIsOrdered(true);
 			
 			symbol_5.setIsResolveProxies(true);
-			symbol_5.setOpposite(symbol_59);
 			symbol_1.getOwnedAttributes().add(symbol_5);
 		}
 		symbol_0.getOwnedTypes().add(symbol_1); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
@@ -1097,7 +1097,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_72.setIsComposite(true);
 			symbol_72.setIsResolveProxies(true);
-			symbol_72.setOpposite(symbol_144);
 			symbol_71.getOwnedAttributes().add(symbol_72);
 		}
 		{ // pivot.ecore::pivot::ExpressionInOcl::contextVariable
@@ -1116,6 +1115,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_74.setIsComposite(true);
 			symbol_74.setIsResolveProxies(true);
+			symbol_74.setOpposite(symbol_144);
 			symbol_71.getOwnedAttributes().add(symbol_74);
 		}
 		{ // pivot.ecore::pivot::ExpressionInOcl::parameterVariable
@@ -1187,6 +1187,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_83.setIsComposite(true);
 			symbol_83.setIsResolveProxies(true);
+			symbol_83.setOpposite(symbol_145);
 			symbol_82.getOwnedAttributes().add(symbol_83);
 		}
 		{ // pivot.ecore::pivot::IfExp::elseExpression
@@ -1195,7 +1196,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_84.setIsComposite(true);
 			symbol_84.setIsResolveProxies(true);
-			symbol_84.setOpposite(symbol_145);
 			symbol_82.getOwnedAttributes().add(symbol_84);
 		}
 		{ // pivot.ecore::pivot::IfExp::thenExpression
@@ -1279,7 +1279,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_96.setIsComposite(true);
 			symbol_96.setIsResolveProxies(true);
-			symbol_96.setOpposite(symbol_181);
 			symbol_94.getOwnedAttributes().add(symbol_96);
 		}
 		{ // pivot.ecore::pivot::Iteration::ownedIterator
@@ -1290,6 +1289,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_97.setIsComposite(true);
 			symbol_97.setIsResolveProxies(true);
+			symbol_97.setOpposite(symbol_181);
 			symbol_94.getOwnedAttributes().add(symbol_97);
 		}
 		symbol_0.getOwnedTypes().add(symbol_94); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
@@ -1421,6 +1421,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_114.setIsComposite(true);
 			symbol_114.setIsResolveProxies(true);
+			symbol_114.setOpposite(symbol_148);
 			symbol_113.getOwnedAttributes().add(symbol_114);
 		}
 		{ // pivot.ecore::pivot::MessageExp::calledOperation
@@ -1449,7 +1450,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_117.setIsComposite(true);
 			symbol_117.setIsResolveProxies(true);
-			symbol_117.setOpposite(symbol_148);
 			symbol_113.getOwnedAttributes().add(symbol_117);
 		}
 		symbol_0.getOwnedTypes().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
@@ -2338,6 +2338,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_213.setUpper(BigInteger.valueOf(-1));
 			
 			symbol_213.setIsResolveProxies(true);
+			symbol_213.setOpposite(symbol_199);
 			symbol_197.getOwnedAttributes().add(symbol_213);
 		}
 		{ // pivot.ecore::pivot::Property::opposite
@@ -2346,7 +2347,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_214.setLower(BigInteger.valueOf(0));
 			
 			symbol_214.setIsResolveProxies(true);
-			symbol_214.setOpposite(symbol_199);
 			symbol_197.getOwnedAttributes().add(symbol_214);
 		}
 		{ // pivot.ecore::pivot::Property::owningType

@@ -41,5 +41,8 @@ Workflow {
     	javaPackageName = "${targetName}.model"
     	javaClassName = "OCLstdlib"
     }
+    component = Model2tablesGenerator { resourceSet = resourceSet
+    	genModelFile = "/${sourceName}/model/oclstdlib.genmodel"
+    }
 }
 

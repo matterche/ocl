@@ -89,7 +89,7 @@ public class ProjectMap
 //				scanBundles();
 				scanProjects();
 			}
-			System.out.println(toString());
+//			System.out.println(toString());
 		}
 		return projectMap;
 	}

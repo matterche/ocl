@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,18 +12,17 @@
  *
  * </copyright>
  *
- * $Id: DebugGeneratePivotModel.mwe2,v 1.2 2011/01/24 20:54:28 ewillink Exp $
+ * $Id$
  * 
  * Run As->MWE2 Workflow to regenerate the pivot model.
  */
-module DebugGeneratePivotModel
+module GeneratePivotModel
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-//var pivotSlot = "pivot"
 var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
@@ -34,15 +33,21 @@ var projectName = "org.eclipse.ocl.examples.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
+	   	platformUri = "./META-INF"		// A local folder to minimize workspace searching
+   		scanClassPath = true			// But we do need to search the plugin-space
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.uml2.uml.resources/"
+    		to = "platform:/resource/org.eclipse.uml2.uml.resources/"
+    	}
+    	uriMap = Mapping {
+    		from = "platform:/plugin/org.eclipse.uml2.uml/"
+    		to = "platform:/resource/org.eclipse.uml2.uml/"
+    	}
     }
-    bean = UMLStandaloneSetup { resourceSet = resourceSet
-//    	umlResourcesUri = "../org.eclipse.uml2.uml.resources"
-//    	umlUri = "../org.eclipse.uml2.uml"
-    }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = UMLGenModelSetup { resourceSet = resourceSet }
-    component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
-    	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+    component = Model2tablesGenerator { resourceSet = resourceSet
+    	genModelFile = "/${projectName}/model/Pivot.merged.genmodel"
     }
 }
 
