@@ -16,7 +16,7 @@
  * 
  * Run As->MWE2 Workflow to regenerate the pivot model.
  */
-module GeneratePivotModel
+module GeneratePivotTables
 
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
