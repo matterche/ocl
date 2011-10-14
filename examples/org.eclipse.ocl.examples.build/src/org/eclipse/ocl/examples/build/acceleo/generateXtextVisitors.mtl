@@ -1,7 +1,7 @@
 [comment encoding = UTF-8 /]
-[module generateXtextVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
+[module org::eclipse::ocl::examples::build::acceleo::generateXtextVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
 
-[import generateVisitors/]
+[import org::eclipse::ocl::examples::build::acceleo::generateVisitors/]
 
 [template public generate(pkg : EPackage, javaPackage : String, modelPackage : String, visitorClass : String, visitorBasePackage : String, visitorBaseClass : String, sourceFile : String) ? (pkg.eContainer() = null)]
 [comment @main /]

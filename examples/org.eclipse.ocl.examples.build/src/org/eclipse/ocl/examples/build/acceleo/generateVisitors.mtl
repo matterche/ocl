@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module generateVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
+[module org::eclipse::ocl::examples::build::acceleo::generateVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
 
 [query public firstSuperClass(eClass : EClass, nullClass : EClass) : EClass =
 if eClass.eSuperTypes->isEmpty()
