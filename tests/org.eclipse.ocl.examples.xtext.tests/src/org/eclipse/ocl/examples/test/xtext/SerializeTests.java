@@ -21,6 +21,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -36,13 +39,28 @@ import org.eclipse.xtext.resource.XtextResource;
  */
 public class SerializeTests extends XtextTestCase
 {
+	private static ProjectMap projectMap = null;
+	public static ProjectMap getProjectMap() {
+		if (projectMap == null) {
+			projectMap = new ProjectMap();
+		}
+		return projectMap;
+	}
+	
 	public XtextResource doSerialize(String stem) throws Exception {
 		return doSerialize(stem, stem, null, true);
 	}
 	public XtextResource doSerialize(String stem, String referenceStem, Map<String, Object> options, boolean doCompare) throws Exception {
 		String inputName = stem + ".ecore";
-		String outputName = stem + ".serialized.oclinecore";
 		URI inputURI = getProjectFileURI(inputName);
+		String referenceName = referenceStem + ".ecore";
+		URI referenceURI = getProjectFileURI(referenceName);
+		return doSerialize(inputURI, stem, referenceURI, options, doCompare);
+	}
+	public XtextResource doSerialize(URI inputURI, String stem, URI referenceURI, Map<String, Object> options, boolean doCompare) throws Exception {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		getProjectMap().initializeResourceSet(resourceSet);
+		String outputName = stem + ".serialized.oclinecore";
 		URI outputURI = getProjectFileURI(outputName);
 		//
 		//	Load as Ecore
@@ -85,8 +103,6 @@ public class SerializeTests extends XtextTestCase
 			//
 			//
 	//		assertSameModel(pivotResource, pivotResource2);
-			String referenceName = referenceStem + ".ecore";
-			URI referenceURI = getProjectFileURI(referenceName);
 			Resource referenceResource = loadEcore(referenceURI);
 			if (doCompare) {	// Workaround for Bug 354621
 				assertSameModel(referenceResource, ecoreResource2);		

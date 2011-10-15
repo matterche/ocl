@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -1247,7 +1248,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public ResourceSet getExternalResourceSet() {
 		if (externalResourceSet == null) {
+			ProjectMap projectMap = ProjectMap.getAdapter(pivotResourceSet);
 			externalResourceSet = new ResourceSetImpl();
+			externalResourceSet.eAdapters().add(projectMap);
+			projectMap.initializeResourceSet(externalResourceSet);
 			MetaModelManagerResourceSetAdapter.getAdapter(externalResourceSet, this);
 			for (Factory factory : factoryMap) {
 				factory.configure(externalResourceSet);

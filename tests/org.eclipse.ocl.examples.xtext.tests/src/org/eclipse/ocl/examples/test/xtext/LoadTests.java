@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
@@ -88,6 +89,62 @@ public class LoadTests extends XtextTestCase
 		String outputName = stem + "." + extension + ".xmi";
 		String output2Name = stem + ".saved." + extension;
 		URI inputURI = getProjectFileURI(inputName);
+		URI outputURI = getProjectFileURI(outputName);
+		URI output2URI = getProjectFileURI(output2Name);
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
+		}
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		Resource xtextResource = null;
+		try {
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
+			xtextResource = resourceSet.getResource(inputURI, true);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
+			assertNoResourceErrors("Load failed", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+			xtextResource.setURI(output2URI);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+			xtextResource.save(null);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+			assertNoResourceErrors("Save failed", xtextResource);
+		}
+		finally {
+			if (xtextResource instanceof BaseCSResource) {
+				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+				adapter.dispose();
+			}
+			metaModelManager.dispose();
+		}
+		Resource xmiResource = resourceSet.createResource(outputURI);
+		xmiResource.getContents().addAll(xtextResource.getContents());
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+//		xmiResource.save(null);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+//		assertNoResourceErrors("Save failed", xmiResource);
+		return xmiResource;
+	}
+
+	private static ProjectMap projectMap = null;
+	public static ProjectMap getProjectMap() {
+		if (projectMap == null) {
+			projectMap = new ProjectMap();
+		}
+		return projectMap;
+	}
+	
+	public Resource doLoadEcore(URI inputURI) throws IOException {
+//		long startTime = System.currentTimeMillis();
+//		System.out.println("Start at " + startTime);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		getProjectMap().initializeResourceSet(resourceSet);
+		String extension = inputURI.fileExtension();
+		String stem = inputURI.trimFileExtension().lastSegment();
+		String outputName = stem + "." + extension + ".xmi";
+		String output2Name = stem + ".saved." + extension;
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		if (metaModelManager == null) {
@@ -315,6 +372,10 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Types_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Types", "oclinecore");
 	}	
+	
+	public void testLoad_BaseCST_ecore() throws IOException, InterruptedException {
+		doLoadEcore(URI.createPlatformResourceURI("/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore", true));
+	}
 	
 //	public void testLoad_Bug7_ocl() throws IOException, InterruptedException {
 //		doLoad_Concrete("Bug7", "ocl");
