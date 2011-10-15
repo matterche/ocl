@@ -113,7 +113,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	/**
 	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
 	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
-	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
+	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
 	 */
 	public static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
 		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();

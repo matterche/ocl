@@ -306,7 +306,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         EOperation result = null;
         if (rootExpression.eContainer() instanceof EAnnotation) {
             EAnnotation annotation = (EAnnotation) rootExpression.eContainer();
-            if (annotation.getSource().equals(OCLDelegateDomain.OCL_DELEGATE_URI) &&
+            if (OCLDelegateDomain.isDelegateAnnotation(annotation) &&
                     annotation.eContainer() instanceof EOperation) {
                 result = (EOperation) annotation.eContainer();
             }
