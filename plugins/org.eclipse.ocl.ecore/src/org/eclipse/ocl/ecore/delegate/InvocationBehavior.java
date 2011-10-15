@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  * 
  * Contributors: 
  *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 360072
  *
  * </copyright>
  *
- * $Id: InvocationBehavior.java,v 1.4 2011/01/23 22:18:53 auhl Exp $
+ * $Id$
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -39,7 +39,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	public static final String NAME = "invocationDelegates"; //$NON-NLS-1$
 
 	public boolean appliesTo(EOperation operation) {
-      	String annotation = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
+      	String annotation = OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
 		return annotation != null;
 	}
 	
@@ -108,7 +108,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (result != null) {
 			return result != NO_OCL_DEFINITION ? result : null;
 		}
-		String expr = EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY);
+		String expr = OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			ExpressionCacheAdapter.cacheOCLExpression(operation, NO_OCL_DEFINITION);
 			return null;
@@ -145,6 +145,6 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * @since 3.1
 	 */
 	public boolean hasCompileableOperationBody(EOperation operation) {
-		return EcoreUtil.getAnnotation(operation, OCLDelegateDomain.OCL_DELEGATE_URI, BODY_CONSTRAINT_KEY) != null;
+		return OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY) != null;
 	}
 }

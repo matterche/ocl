@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.ocl.ecore" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter id="924844039">
+            <message_arguments>
+                <message_argument value="3.1.2"/>
+                <message_argument value="3.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/ecore/delegate/OCLDelegateDomain.java" type="org.eclipse.ocl.ecore.delegate.OCLDelegateDomain">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="getDelegateAnnotation(EModelElement)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="getDelegateAnnotation(EModelElement, String)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="initialize(ResourceSet)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="initialize(ResourceSet, String)"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="isDelegateAnnotation(EAnnotation)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

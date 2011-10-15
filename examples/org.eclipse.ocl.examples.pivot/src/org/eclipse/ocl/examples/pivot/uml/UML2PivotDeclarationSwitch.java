@@ -193,7 +193,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, umlOperation);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = umlOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlOperation);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -305,7 +305,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, org.eclipse.uml2.uml.Classifier umlClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
-		EAnnotation oclAnnotation = umlClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlClassifier);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

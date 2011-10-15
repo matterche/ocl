@@ -264,8 +264,11 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 				if (object == eElement) {
 					break;
 				}
-				if ((object instanceof EAnnotation) && (((EAnnotation)object).getSource().equals(eElement.getSource()))) {
-					index++;
+				if (object instanceof EAnnotation) {
+					String source = ((EAnnotation)object).getSource();
+					if ((source != null) && source.equals(eElement.getSource())) {
+						index++;
+					}
 				}
 			}
 			if (index > 0) {

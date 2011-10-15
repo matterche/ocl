@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationBehavior.java,v 1.3 2011/01/23 22:18:53 auhl Exp $
+ * $Id$
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -158,8 +158,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		}
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setContext(cls);
-		String expr = EcoreUtil.getAnnotation(cls,
-			OCLDelegateDomain.OCL_DELEGATE_URI, constraintName);
+		String expr = OCLDelegateDomain.getDelegateAnnotation(cls, constraintName);
 		if (expr == null) {
 			cacheOCLExpression(cls, constraintName, NO_OCL_DEFINITION);
 			return null;
