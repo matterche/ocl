@@ -67,7 +67,7 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	                allConstraints.add(new OCLExpressionWithContext(invariant, (EClass) c));
 	            }
                     for (EAttribute at : ((EClass) c).getEAttributes()) {
-                        EAnnotation a = OCLDelegateDomain.getDelegateAnnotation(at);
+                        EAnnotation a = at.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
                         if (a != null) {
                             System.out.println("hurra");
                             allConstraints.add(new OCLExpressionWithContext(SettingBehavior.INSTANCE.getFeatureBody(

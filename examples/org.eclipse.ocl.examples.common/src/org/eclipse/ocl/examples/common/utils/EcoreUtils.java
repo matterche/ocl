@@ -256,7 +256,7 @@ public class EcoreUtils
 		else {
 			keyName = null;
 		}
-	    EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(constrainedElement);
+	    EAnnotation eAnnotation = getDelegateAnnotation(constrainedElement);
 	    if (eAnnotation == null) {
 	    	return null;
 	    }
@@ -267,6 +267,24 @@ public class EcoreUtils
 		    	return details.get(indexOfKey);
 		    }
 	    }
+		return null;
+	}
+	// Cloned code from OCLDelegateDomain to preserve APIs
+	private static final String OCL_DELEGATE_URI_SLASH = OCLDelegateDomain.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	private static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
+		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.equals(OCLDelegateDomain.OCL_DELEGATE_URI)) {
+				return eAnnotation;
+			}
+		}
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return eAnnotation;
+			}
+		}
 		return null;
 	}
 
