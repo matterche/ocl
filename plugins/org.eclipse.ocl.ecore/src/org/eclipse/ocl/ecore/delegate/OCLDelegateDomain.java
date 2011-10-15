@@ -113,7 +113,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	/**
 	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
 	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
-	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
+	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
 	 *  
 	 * @since 3.2
 	 */
@@ -194,6 +194,25 @@ public class OCLDelegateDomain implements DelegateDomain
 			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory());
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
+	}
+
+	/**
+	 * Return true if eAnnortation is an OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
+	 * as its source, or with a source whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
+	 *  
+	 * @since 3.2
+	 */
+	public static boolean isDelegateAnnotation(EAnnotation eAnnotation) {
+		String source = eAnnotation.getSource();
+		if (source != null) {
+			if (source.equals(OCL_DELEGATE_URI)) {
+				return true;
+			}
+			if (source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	protected final String uri;
