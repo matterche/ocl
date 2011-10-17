@@ -306,13 +306,27 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         EOperation result = null;
         if (rootExpression.eContainer() instanceof EAnnotation) {
             EAnnotation annotation = (EAnnotation) rootExpression.eContainer();
-            if (annotation.getSource().equals(OCLDelegateDomain.OCL_DELEGATE_URI) &&
+            if (isDelegateAnnotation(annotation) &&
                     annotation.eContainer() instanceof EOperation) {
                 result = (EOperation) annotation.eContainer();
             }
         }
         return result;
     }
+	// Cloned code from OCLDelegateDomain to preserve APIs
+	private static final String OCL_DELEGATE_URI_SLASH = OCLDelegateDomain.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	private static boolean isDelegateAnnotation(EAnnotation eAnnotation) {
+		String source = eAnnotation.getSource();
+		if (source != null) {
+			if (source.equals(OCLDelegateDomain.OCL_DELEGATE_URI)) {
+				return true;
+			}
+			if (source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     /**
      * The incrementing of the navigate counter gets its own protected method because subclasses
