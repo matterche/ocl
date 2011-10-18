@@ -695,7 +695,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return false;
 		}
 		else {
-			for (Type superClass : firstType.getSuperClasses()) {
+			for (Type superClass : getSuperClasses(firstType)) {
 				if (conformsTo(superClass, secondType, bindings)) {
 					return true;
 				}

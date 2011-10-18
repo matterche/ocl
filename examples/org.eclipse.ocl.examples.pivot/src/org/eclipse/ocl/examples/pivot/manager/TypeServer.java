@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -83,7 +84,7 @@ public class TypeServer extends TypeTracker
 			overloads = new ArrayList<List<Operation>>();
 			operation2operations.put(operationName, overloads);
 		}
-		List<Operation> overload = findOverload(overloads, pivotOperation.getOwnedParameters());
+		List<Operation> overload = findOverload(overloads, pivotOperation);
 		if (overload == null) {
 			overload = new ArrayList<Operation>();
 			overloads.add(overload);
@@ -150,12 +151,25 @@ public class TypeServer extends TypeTracker
 		super.dispose();
 	}
 	
-	private List<Operation> findOverload(List<List<Operation>> overloads, List<? extends TypedElement> requiredParameters) {
+	private List<Operation> findOverload(List<List<Operation>> overloads, Operation requiredOperation) {
+		List<? extends TypedElement> requiredParameters;
+		if (requiredOperation instanceof Iteration) {
+			requiredParameters = ((Iteration)requiredOperation).getOwnedIterators();
+		}
+		else {
+			requiredParameters = requiredOperation.getOwnedParameters();
+		}
 		int requiredSize = requiredParameters.size();
 		for (List<Operation> overload : overloads) {
 			if (overload.size() > 0) {
 				Operation operation = overload.get(0);
-				List<? extends TypedElement> actualParameters = operation.getOwnedParameters();
+				List<? extends TypedElement> actualParameters;
+				if (operation instanceof Iteration) {
+					actualParameters = ((Iteration)operation).getOwnedIterators();
+				}
+				else {
+					actualParameters = operation.getOwnedParameters();
+				}
 				if (requiredSize == actualParameters.size()) {
 					boolean gotIt = true;
 					for (int i = 0; i < requiredSize; i++) {
@@ -202,7 +216,7 @@ public class TypeServer extends TypeTracker
 		if (overloads == null) {
 			return null;
 		}
-		List<Operation> overload = findOverload(overloads, pivotOperation.getOwnedParameters());
+		List<Operation> overload = findOverload(overloads, pivotOperation);
 		if (overload == null) {
 			return null;
 		}
@@ -215,7 +229,7 @@ public class TypeServer extends TypeTracker
 		if (overloads == null) {
 			return null;
 		}
-		return findOverload(overloads, pivotOperation.getOwnedParameters());
+		return findOverload(overloads, pivotOperation);
 	}
 
 	public Iterable<Property> getProperties(Property pivotProperty) {
@@ -296,7 +310,7 @@ public class TypeServer extends TypeTracker
 				overloads = new ArrayList<List<Operation>>();
 				operation2operations.put(operationName, overloads);
 			}
-			List<Operation> overload = findOverload(overloads, pivotOperation.getOwnedParameters());
+			List<Operation> overload = findOverload(overloads, pivotOperation);
 			if (overload != null) {
 				overload.remove(pivotOperation);
 				if (overload.isEmpty()) {

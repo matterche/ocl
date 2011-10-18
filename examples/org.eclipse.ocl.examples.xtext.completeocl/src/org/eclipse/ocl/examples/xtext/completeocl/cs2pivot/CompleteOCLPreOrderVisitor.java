@@ -259,7 +259,7 @@ public class CompleteOCLPreOrderVisitor
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-//WIP		context.installPivotElement(object, contextClassifier);
+		context.installPivotUsage(object, contextClassifier);		// WIP ?? reference
 		return null;
 	}
 
