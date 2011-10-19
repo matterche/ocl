@@ -301,11 +301,11 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OCLExpression" abstract="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="name" value="OclExpression"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="WellFormedName"/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="OclExpression"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       <eGenericSuperTypes eClassifier="ecore:EClass OCL.ecore#//expressions/OCLExpression">

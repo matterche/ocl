@@ -296,14 +296,9 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("OCLCST");
 	}
 
-// FIXME fails due to Bug 308691
-//	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
-//		URI ecorePluginURI = URI.createPlatformPluginURI("org.eclipse.emf.ecore/model/Ecore.ecore", false);
-//		Map<URI, Resource> uriResourceMap = new HashMap<URI, Resource>();
-//		uriResourceMap.put(ecorePluginURI, EcorePackage.eINSTANCE.eResource());
-//		((ResourceSetImpl) resourceSet).setURIResourceMap(uriResourceMap);
-//		doRoundTripFromEcore("OCLEcore");
-//	}
+	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
+		doRoundTripFromEcore("OCLEcore");
+	}
 
 	public void testQVTRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("QVT");
