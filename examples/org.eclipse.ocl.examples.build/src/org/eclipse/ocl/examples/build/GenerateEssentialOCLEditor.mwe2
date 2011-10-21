@@ -21,6 +21,7 @@
 module GenerateEssentialOCLEditor
 
 import org.eclipse.emf.mwe.utils.*
+import org.eclipse.ocl.examples.build.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
@@ -33,13 +34,16 @@ var essentialOCLruntimeProject = "../${essentialOCLprojectName}"
  */
 Workflow {
     bean = StandaloneSetup {
+		scanClassPath = true
 		platformUri = "${essentialOCLruntimeProject}/.."
-//		registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-//        uriMap = {
-//            from="platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-//            to="classpath:/model/Ecore.genmodel"
-//          }
-//BUG350428		registerGenModelFile = "classpath:/model/Ecore.genmodel"
+		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.pivot.PivotPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage"
+		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel"
 	}
 	
 	component = DirectoryCleaner {
@@ -70,7 +74,7 @@ Workflow {
 //			}
 			
 			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			fragment = serializer.SerializerFragment {}
 			
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
@@ -143,6 +147,9 @@ Workflow {
 			
 			// quickfix API 
 			fragment = quickfix.QuickfixProviderFragment {}			
+				
+			// EssentialOCL bindings 
+			fragment = utilities.EssentialOCLFragment {}			
 		}
 	}
 }

@@ -25,9 +25,13 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+
+import com.google.inject.Inject;
 
 /**
  * This class contains custom scoping description.
@@ -36,15 +40,20 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  * how and when to use it
  * 
  */
-public class BaseScopeProvider
-		extends AbstractDeclarativeScopeProvider {
+public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
+{
+	@Inject
+	private IGlobalScopeProvider globalScopeProvider;
 
 	public static final TracingOption LOOKUP = new TracingOption(
 		"org.eclipse.ocl.examples.xtext.base", "lookup"); //$NON-NLS-1$//$NON-NLS-2$
 
 	@Override
-	public ScopeView getScope(EObject context, EReference reference) {
+	public IScope getScope(EObject context, EReference reference) {
 		Resource csResource = context.eResource();
+		if (reference.getEReferenceType().getEPackage().getNsURI().equals(TypesPackage.eNS_URI)) {
+			return globalScopeProvider.getScope(csResource, reference, null);
+		}
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(csResource);
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		ElementCS csElement = (ElementCS) context;

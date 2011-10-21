@@ -16,15 +16,32 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.pivot.utilities.PathElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -47,6 +64,87 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		EObject target = scopeAdapter.getTarget();
 		EStructuralFeature eContainingFeature = target.eContainingFeature();
 		return new BaseScopeView(metaModelManager, parent, target, eContainingFeature, targetReference);
+	}
+
+	public static QualifiedName getDivergentPath(List<PathElement> objectPath, List<PathElement> contextPath) {
+		int iSize = objectPath.size();
+		int i = PathElement.getCommonLength(objectPath, contextPath);
+		//
+		//	Serialize the divergent elements
+		//
+		final List<String> segmentList = new ArrayList<String>();
+//		String ruleName = "UnrestrictedName";
+		if (iSize > 0) {
+			for ( ; i < iSize-1; i++) {
+				PathElement objectPathElement = objectPath.get(i);
+				String objectName = objectPathElement.getName();
+				if ((segmentList.size() == 0) && (i < contextPath.size())) {
+					EObject objectElement = objectPathElement.getElement();
+					EObject contextElement = contextPath.get(i).getElement();
+					//
+					//	Use the name rather than the alias if within the same resource
+					//
+					Resource objectResource = objectElement.eResource();
+//					MetaModelManager metaModelManager = MetaModelManager.findAdapter(objectResource.getResourceSet());
+//					Resource orphanage = null; // WIP metaModelManager != null ? metaModelManager.getOrphanPackage().eResource() : null;
+					Resource contextResource = contextElement.eResource();
+					if ((objectResource == contextResource) /*|| (contextResource == orphanage)*/) {
+						objectName = ((NamedElement)objectElement).getName();
+					}
+				}
+				segmentList.add(objectName);
+			}
+			segmentList.add(objectPath.get(iSize-1).getName());
+		}
+//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
+		return new QualifiedName(segmentList.toArray(new String[segmentList.size()])) {
+			@Override
+			public String toString() {
+				if (getSegmentCount() == 0)
+					return "";
+				if (getSegmentCount() == 1)
+					return getFirstSegment();
+				StringBuilder builder = new StringBuilder();
+				boolean isFirst = true;
+				for (String segment : getSegments()) {
+					if (!isFirst)
+						builder.append("::");
+					isFirst = false;
+					builder.append(segment);
+				}
+				return builder.toString();
+			}
+			
+		};
+	}
+
+	private static List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
+//		if (eObject instanceof Pivotable) {
+//			eObject = ((Pivotable)eObject).getPivot();
+//		}
+		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+			String alias = aliasAnalysis.getAlias(eObject);
+			if (alias != null) {
+				List<PathElement> result = new ArrayList<PathElement>();
+				result.add(new PathElement(alias, eObject));
+				return result;
+			}
+		}
+		EObject eContainer = eObject.eContainer();
+		if (eContainer == null) {
+			return new ArrayList<PathElement>();
+		}
+		List<PathElement> result = getPath(aliasAnalysis, (Element) eContainer);
+		if (eObject instanceof NamedElement) {
+			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
+		}
+		else if (eObject instanceof ENamedElement) {
+			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
+		}
+		else if (eObject instanceof NamedElementCS) {
+			result.add(new PathElement(((NamedElementCS)eObject).getName(), eObject));
+		}
+		return result;
 	}
 	
 	protected final MetaModelManager metaModelManager;
@@ -116,7 +214,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
-			return null;
+			return Collections.emptyList();
 		}
 		else if (size == 1) {
 			return Collections.singletonList(environmentView.getDescription());
@@ -129,7 +227,47 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getElements(EObject object) {
-		// TODO Auto-generated method stub
+		if (targetReference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) {
+			String nonPivotURI = getNonPivotURI(object);
+			IEObjectDescription objectDescription = EObjectDescription.create(nonPivotURI, object);
+			return Collections.singletonList(objectDescription);
+		}
+		else if (targetReference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) {
+			String nonPivotURI = getNonPivotURI(object);
+			IEObjectDescription objectDescription = EObjectDescription.create(nonPivotURI, object);
+			return Collections.singletonList(objectDescription);
+//			ModelElementRefCS csRef = (ModelElementRefCS) object;
+//			List<Namespace> namespaces = csRef.getNamespace();
+//			if (ElementUtil.isReferenceable(object) || (namespaces.size() != 0)) {
+//				String name = ((NamedElement)object).getName();
+//				IEObjectDescription objectDescription = EObjectDescription.create(name, object);
+//				return Collections.singletonList(objectDescription);
+//			}
+		}
+		else if ((targetReference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (object instanceof Type)) {
+//			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
+//				return ((PrimitiveType)object).getName();
+//			}
+			EObject csRef = getTarget();
+			while ((csRef.eContainer() instanceof TypeRefCS)
+					|| (csRef.eContainer() instanceof TemplateParameterSubstitutionCS)
+					|| (csRef.eContainer() instanceof TemplateBindingCS)) {
+				csRef = csRef.eContainer();
+			}
+			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
+			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
+			Element context = csContext.getPivot();
+			List<PathElement> contextPath = getPath(aliasAnalysis, context);
+			List<PathElement> objectPath = getPath(aliasAnalysis, (Element) object);
+			QualifiedName qualifiedRelativeName = getDivergentPath(objectPath, contextPath);
+			IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
+			return Collections.singletonList(objectDescription);
+		}
+		else if (object instanceof NamedElement) {
+			String name = ((NamedElement)object).getName();
+			IEObjectDescription objectDescription = EObjectDescription.create(name, object);
+			return Collections.singletonList(objectDescription);
+		}
 		return super.getElements(object);		// FIXME Implement
 	}
 
@@ -180,6 +318,26 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	public MetaModelManager getMetaModelManager() {
 		return metaModelManager;
+	}
+	
+	protected String getNonPivotURI(EObject object) {
+		URI uri = null;
+		if (object instanceof PivotObjectImpl) {
+			EObject target = ((PivotObjectImpl)object).getTarget();
+			if (target != null) {
+				uri = EcoreUtil.getURI(target);
+			}
+		}
+		if (uri == null) {
+			uri = EcoreUtil.getURI(object);
+		}
+		if (uri == null) {
+			return null;
+		}
+		if (PivotUtil.isPivotURI(uri)) {
+			uri = PivotUtil.getNonPivotURI(uri);
+		}
+		return uri.toString();
 	}
 
 	@Override

@@ -231,6 +231,13 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("Names");
 	}
 
+/*	
+ * Requires support for lower bounds on generic types
+ * and better resolution of EAnnotation.references
+	public void testSerialize_OCL() throws Exception {
+		doSerialize("OCL");
+	} */
+
 	public void testSerialize_OCLinEcoreCST() throws Exception {
 		doSerialize("OCLinEcoreCST");
 	}

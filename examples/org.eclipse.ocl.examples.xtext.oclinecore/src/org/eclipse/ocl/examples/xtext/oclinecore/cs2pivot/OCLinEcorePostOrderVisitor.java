@@ -16,9 +16,12 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPostOrderVisitor;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcorePostOrderVisitor
@@ -26,5 +29,13 @@ public class OCLinEcorePostOrderVisitor
 {
 	public OCLinEcorePostOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPostOrderVisitor(context), context);
+	}
+
+	@Override
+	public Continuation<?> visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
+		Continuation<?> continuation = super.visitOCLinEcoreConstraintCS(csConstraint);
+		Constraint pivotElement = PivotUtil.getPivot(Constraint.class, csConstraint);
+		pivotElement.setIsCallable(csConstraint.isCallable());
+		return continuation;
 	}
 }

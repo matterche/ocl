@@ -12,244 +12,76 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.7 2011/05/21 14:55:09 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.PathElement;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.linking.ILinkingService;
+import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.linking.impl.LinkingHelper;
-import org.eclipse.xtext.nodemodel.INode;
-import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer;
-import org.eclipse.xtext.parsetree.reconstr.impl.CrossReferenceSerializer;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic;
+import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
+import org.eclipse.xtext.serializer.tokens.CrossReferenceSerializer;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+// FIXME Temporary workaround for Bug 361577
 public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializer
 {
+
 	@Inject
 	private LinkingHelper linkingHelper;
 
 	@Inject
-	private ILinkingService linkingService;
+	private IQualifiedNameConverter qualifiedNameConverter;
 
 	@Inject
 	private IValueConverterService valueConverter;
 
-	public EssentialOCLCrossReferenceSerializer() {
-		super();
-	}
-
-	@SuppressWarnings("deprecation")
-	protected String getConvertedLinkText(EObject object, EReference reference, EObject context) {
-		String ruleName = "UnrestrictedName";
-		if ((reference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (context instanceof TypedTypeRefCS)) {
-			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
-				return ((PrimitiveType)object).getName();
-			}
-			TypeRefCS csRef = (TypedTypeRefCS) context;
-			while (csRef.eContainer() instanceof TypeRefCS) {
-				csRef = (TypeRefCS) csRef.eContainer();
-			}
-			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
-			Element pivot = csContext.getPivot();
-			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
-			List<PathElement> contextPath = getPath(aliasAnalysis, pivot);
-			List<PathElement> objectPath = getPath(aliasAnalysis, (Element)object);
-			return getDivergentPath(objectPath, contextPath);
-		}
-		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) && (context instanceof ModelElementRefCS)) {
-			ModelElementRefCS csRef = (ModelElementRefCS) context;
-			List<Namespace> namespaces = csRef.getNamespace();
-			if (ElementUtil.isReferenceable(object) || (namespaces.size() != 0)) {
-				return valueConverter.toString(((NamedElement)object).getName(), ruleName);
-			}
-		}
-		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__NAMESPACE) && (context instanceof ModelElementRefCS)) {
-			if (object instanceof NamedElement) {
-				ModelElementRefCS csRef = (ModelElementRefCS) context;
-				List<Namespace> namespaces = csRef.getNamespace();
-				if ((namespaces.size() > 1) && (namespaces.get(0) != object)) {
-					return valueConverter.toString(((NamedElement)object).getName(), ruleName);
+	@Override
+	protected String getCrossReferenceNameFromScope(EObject semanticObject,
+			CrossReference crossref, EObject target, IScope scope, Acceptor errors) {
+		String ruleName = linkingHelper.getRuleNameFrom(crossref);
+		boolean foundOne = false;
+		List<ISerializationDiagnostic> recordedErrros = null;
+		for (IEObjectDescription desc : scope.getElements(target)) {
+			foundOne = true;
+			QualifiedName name = desc.getName();
+			int iMax = name.getSegmentCount();
+			String[] converted = new String[iMax];
+			String unconverted = null;
+			try {
+				for (int i = 0; i < iMax; i++) {
+					unconverted = name.getSegment(i);
+					converted[i] = valueConverter.toString(unconverted, ruleName);
 				}
-				if (context.eResource() == object.eResource()) {
-					return valueConverter.toString(((NamedElement)object).getName(), ruleName);
+				return qualifiedNameConverter.toString(new QualifiedName(converted) {});
+			} catch (ValueConverterException e) {
+				if (errors != null) {
+					if (recordedErrros == null)
+						recordedErrros = Lists.newArrayList();
+					recordedErrros.add(diagnostics.getValueConversionExceptionDiagnostic(semanticObject, crossref,
+							unconverted, e));
 				}
 			}
+		}
+		if (errors != null) {
+			if (recordedErrros != null)
+				for (ISerializationDiagnostic diag : recordedErrros)
+					errors.accept(diag);
+			if (!foundOne)
+				errors.accept(diagnostics.getNoEObjectDescriptionFoundDiagnostic(semanticObject, crossref, target,
+						scope));
 		}
 		return null;
 	}
-
-	private String getDivergentPath(List<PathElement> objectPath, List<PathElement> contextPath) {
-		int iSize = objectPath.size();
-		int i = PathElement.getCommonLength(objectPath, contextPath);
-		//
-		//	Serialize the divergent elements
-		//
-		StringBuffer s = new StringBuffer();
-		String ruleName = "UnrestrictedName";
-		for ( ; i < iSize-1; i++) {
-			PathElement objectPathElement = objectPath.get(i);
-			String objectName = objectPathElement.getName();
-			if (s.length() == 0) {
-				EObject objectElement = objectPathElement.getElement();
-				EObject contextElement = contextPath.get(i).getElement();
-				//
-				//	Use the name rather than the alias if within the same resource
-				//
-				Resource objectResource = objectElement.eResource();
-				MetaModelManager metaModelManager = MetaModelManager.findAdapter(objectResource.getResourceSet());
-				Resource orphanage = null; // WIP metaModelManager != null ? metaModelManager.getOrphanPackage().eResource() : null;
-				Resource contextResource = contextElement.eResource();
-				if ((objectResource == contextResource) || (contextResource == orphanage)) {
-					objectName = ((NamedElement)objectElement).getName();
-				}
-			}
-			s.append(valueConverter.toString(objectName, ruleName));
-			s.append("::");
-			ruleName = "UnreservedName";
-		}
-		if (iSize > 0) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1).getName(), ruleName));
-		}
-//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
-		return s.toString();
-	}
-
-	protected String getNonPivotURI(EObject object) {
-		URI uri = null;
-		if (object instanceof PivotObjectImpl) {
-			EObject target = ((PivotObjectImpl)object).getTarget();
-			if (target != null) {
-				uri = EcoreUtil.getURI(target);
-			}
-		}
-		if (uri == null) {
-			uri = EcoreUtil.getURI(object);
-		}
-		if (uri == null) {
-			return null;
-		}
-		if (PivotUtil.isPivotURI(uri)) {
-			uri = PivotUtil.getNonPivotURI(uri);
-		}
-		return uri.toString();
-	}
-
-	private List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
-//		if (eObject instanceof Pivotable) {
-//			eObject = ((Pivotable)eObject).getPivot();
-//		}
-		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-			String alias = aliasAnalysis.getAlias(eObject);
-			if (alias != null) {
-				List<PathElement> result = new ArrayList<PathElement>();
-				result.add(new PathElement(alias, eObject));
-				return result;
-			}
-		}
-		EObject eContainer = eObject.eContainer();
-		if (eContainer == null) {
-			return new ArrayList<PathElement>();
-		}
-		List<PathElement> result = getPath(aliasAnalysis, (Element) eContainer);
-		if (eObject instanceof NamedElement) {
-			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
-		}
-		else if (eObject instanceof ENamedElement) {
-			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
-		}
-		else if (eObject instanceof NamedElementCS) {
-			result.add(new PathElement(((NamedElementCS)eObject).getName(), eObject));
-		}
-		return result;
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	protected String getUnconvertedLinkText(EObject object, EReference reference, EObject context) {
-		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
-			return getNonPivotURI(object);
-//			return ((ImportCS) context).getUri();
-		}
-		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) && (context instanceof ModelElementRefCS)) {
-			ModelElementRefCS csRef = (ModelElementRefCS) context;
-			List<Namespace> namespaces = csRef.getNamespace();
-			if (ElementUtil.isReferenceable(object) || (namespaces.size() != 0)) {
-				return ((NamedElement)object).getName();
-			}			
-			EObject contextRoot = EcoreUtil.getRootContainer(context);
-			if (contextRoot instanceof Pivotable) {
-				contextRoot = ((Pivotable)contextRoot).getPivot();
-				if (contextRoot != null) {
-					EObject objectRoot = EcoreUtil.getRootContainer(object);
-					if (objectRoot == contextRoot) {
-						return objectRoot.eResource().getURIFragment(object);
-					}
-				}
-			}
-			return getNonPivotURI(object);
-		}
-		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__NAMESPACE) && (context instanceof ModelElementRefCS)) {
-			return ((NamedElement) object).getName();
-		}
-		else if (object instanceof NamedElement)
-			return ((NamedElement) object).getName();
-		else {
-			return super.getUnconvertedLinkText(object, reference, context);
-		}
-	}
-
-	@Override
-	public String serializeCrossRef(EObject context, CrossReference grammarElement, EObject target, INode node) {
-		final EReference ref = GrammarUtil.getReference(grammarElement, context.eClass());
-		String text = null;
-		if (node != null) {
-			List<EObject> objects = linkingService.getLinkedObjects(context, ref, node);
-			if (objects.contains(target))
-				return ITokenSerializer.KEEP_VALUE_FROM_NODE_MODEL;
-		}
-		text = getConvertedLinkText(target, ref, context);
-		if (text != null) {
-			return text;
-		}
-		text = getUnconvertedLinkText(target, ref, context);
-		if (text != null) {
-			return getConvertedValue(text, grammarElement);
-		}
-		if (node != null) {
-			return linkingHelper.getCrossRefNodeAsString(node, false);
-		}
-		return null;
-	}
-
 }

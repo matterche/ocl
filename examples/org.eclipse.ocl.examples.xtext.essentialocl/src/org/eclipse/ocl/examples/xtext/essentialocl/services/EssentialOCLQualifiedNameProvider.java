@@ -21,11 +21,6 @@ import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 
 public class EssentialOCLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
 {
-//FIXME	@Override
-//	public String getDelimiter() {
-//		return "::";
-//	}
-
 	protected String name(NamedElement namdElement) {
 		return namdElement.getName();
 	}

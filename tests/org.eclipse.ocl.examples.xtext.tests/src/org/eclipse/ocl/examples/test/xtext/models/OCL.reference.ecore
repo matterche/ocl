@@ -4,11 +4,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ocl"
     nsURI="http://www.eclipse.org/ocl/1.1.0/OCL" nsPrefix="ocl">
   <eSubpackages name="types" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Types" nsPrefix="ocl.types">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="AnyType">
       <eTypeParameters name="O"/>
       <eGenericSuperTypes eClassifier="#//utilities/PredefinedType">
@@ -52,8 +47,8 @@
         <eGenericType eTypeParameter="#//types/CollectionType/O"/>
       </eOperations>
       <eOperations name="collection_type_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.name = 'Collection(' + self.elementType.name + ')'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.name = 'Collection(' + self.elementType.name + ')'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -64,8 +59,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="no_invalid_values" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self->forAll(not oclIsInvalid())"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self->forAll(not oclIsInvalid())"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -101,8 +96,8 @@
         <eGenericType eTypeParameter="#//types/MessageType/P"/>
       </eOperations>
       <eOperations name="exclusive_signature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="referredOperation->size() + referredSignal->size() = 1"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="referredOperation->size() + referredSignal->size() = 1"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -113,8 +108,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="operation_parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="referredOperation->size()=1 implies&#xD;&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(&#xD;&#xA;referredOperation.ownedParameter.asProperty()->at(i)))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="referredOperation->size()=1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(&#xA;referredOperation.ownedParameter.asProperty()->at(i)))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -125,8 +120,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="signal_attributes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="referredSignal->size() = 1 implies&#xD;&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(&#xD;&#xA;referredSignal.ownedAttribute.asOrderedSet()->at(i)))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="referredSignal->size() = 1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(&#xA;referredSignal.ownedAttribute.asOrderedSet()->at(i)))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -254,8 +249,8 @@
         <eGenericType eTypeParameter="#//types/TupleType/P"/>
       </eOperations>
       <eOperations name="tuple_type_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="name =&#xA;'Tuple('.concat (&#xA;Sequence{1..allProperties()->size()}->iterate (pn; s: String = '' |&#xA;let p: Property = allProperties()->at (pn) in (&#xA;s.concat (&#xA;(if (pn>1) then ',' else '' endif)&#xA;.concat (p.name).concat (': ')&#xA;.concat (p.type.name)&#xA;)&#xA;)&#xA;)&#xA;).concat (')')"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="name =&#xA;'Tuple('.concat (&#xA;Sequence{1..allProperties()->size()}->iterate (pn; s: String = '' |&#xA;let p: Property = allProperties()->at (pn) in (&#xA;s.concat (&#xA;(if (pn>1) then ',' else '' endif)&#xA;.concat (p.name).concat (': ')&#xA;.concat (p.type.name)&#xA;)&#xA;)&#xA;)&#xA;).concat (')')"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -266,8 +261,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="part_names_unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="true"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="true"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -278,8 +273,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="features_only_properties" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="feature->forAll (f | f.oclIsTypeOf(Property))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="feature->forAll (f | f.oclIsTypeOf(Property))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -672,11 +667,6 @@
   </eSubpackages>
   <eSubpackages name="expressions" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"
       nsPrefix="ocl.expr">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
-    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="AssociationClassCallExp">
       <eTypeParameters name="C"/>
       <eTypeParameters name="P"/>
@@ -737,8 +727,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="boolean_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type.name = 'Boolean'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type.name = 'Boolean'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -768,8 +758,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="CollectionItem">
       <eTypeParameters name="C"/>
       <eOperations name="item_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = item.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = item.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -806,8 +796,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="CollectionLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="no_collection_instances" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="kind &lt;> CollectionKind::Collection"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="kind &lt;> CollectionKind::Collection"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -818,8 +808,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="set_kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="kind = CollectionKind::Set implies type.oclIsKindOf(SetType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="kind = CollectionKind::Set implies type.oclIsKindOf(SetType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -830,8 +820,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="sequence_kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="kind = CollectionKind::Sequence implies type.oclIsKindOf(SequenceType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -842,8 +832,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="bag_kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -854,8 +844,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="element_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type.oclAsType(CollectionType).elementType = part->iterate(p; c : Classifier = OclVoid | c.commonSuperType(p.type))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -881,8 +871,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="CollectionRange">
       <eTypeParameters name="C"/>
       <eOperations name="range_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = first.type.commonSuperType(last.type)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = first.type.commonSuperType(last.type)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -912,8 +902,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="EL"/>
       <eOperations name="enum_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type = referredEnumLiteral.enumeration"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type = referredEnumLiteral.enumeration"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -933,8 +923,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfExp">
       <eTypeParameters name="C"/>
       <eOperations name="boolean_condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.condition.type.oclIsKindOf(PrimitiveType) and self.condition.type.name = 'Boolean'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.condition.type.oclIsKindOf(PrimitiveType) and self.condition.type.name = 'Boolean'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -945,8 +935,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="if_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type = thenExpression.type.commonSuperType(elseExpression.type)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type = thenExpression.type.commonSuperType(elseExpression.type)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -978,8 +968,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="integer_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type.name = 'Integer'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type.name = 'Integer'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1003,8 +993,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="natural_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type.name = 'UnlimitedNatural'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type.name = 'UnlimitedNatural'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1032,8 +1022,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="iterate_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = result.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = result.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1044,8 +1034,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="body_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="body.type.conformsTo(result.type)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="body.type.conformsTo(result.type)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1056,8 +1046,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="result_init" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.result.initExpression->size() = 1"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.result.initExpression->size() = 1"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1082,8 +1072,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="source_collection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="source.type.oclIsKindOf(CollectionType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="source.type.oclIsKindOf(CollectionType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1094,8 +1084,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="loop_variable_init" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.iterator->forAll(initExpression->isEmpty())"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.iterator->forAll(initExpression->isEmpty())"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1106,8 +1096,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="loop_variable_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.iterator->forAll(type = source.type.oclAsType(CollectionType).elementType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1137,8 +1127,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="init_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="initExpression->notEmpty() implies initExpression.type.conformsTo (type)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="initExpression->notEmpty() implies initExpression.type.conformsTo (type)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1166,8 +1156,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="boolean_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="name = 'exists' or name = 'forAll' or name = 'isUnique'&#xA;implies type.oclIsKindOf(PrimitiveType) and type.name = 'Boolean'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="name = 'exists' or name = 'forAll' or name = 'isUnique'&#xA;implies type.oclIsKindOf(PrimitiveType) and type.name = 'Boolean'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1178,8 +1168,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="collect_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="name = 'collect' implies&#xA;if source.type.oclIsKindOf(SequenceType) then&#xA;type = expression.type.collectionType->select(oclIsTypeOf(SequenceType))->first()&#xA;else&#xA;type = expression.type.collectionType->select(oclIsTypeOf(BagType))->first()&#xA;endif"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="name = 'collect' implies&#xA;if source.type.oclIsKindOf(SequenceType) then&#xA;type = expression.type.collectionType->select(oclIsTypeOf(SequenceType))->first()&#xA;else&#xA;type = expression.type.collectionType->select(oclIsTypeOf(BagType))->first()&#xA;endif"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1190,8 +1180,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="select_reject_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="name = 'select' or name = 'reject' implies type = source.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="name = 'select' or name = 'reject' implies type = source.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1202,8 +1192,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="boolean_body_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="name = 'exists' or name = 'forAll' or name = 'select' or name = 'reject'&#xA;implies body.type.name = 'Boolean'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="name = 'exists' or name = 'forAll' or name = 'select' or name = 'reject'&#xA;implies body.type.name = 'Boolean'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1222,8 +1212,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="let_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = _'in'.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = _'in'.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1253,8 +1243,8 @@
       <eTypeParameters name="COA"/>
       <eTypeParameters name="SSA"/>
       <eOperations name="operation_arguments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="calledOperation->notEmpty() implies&#xD;&#xA;argument->forall (a | a.type.conformsTo&#xD;&#xA;(self.calledOperation.operation.ownedParameter->&#xD;&#xA;select( kind = ParameterDirectionKind::_'in' )&#xD;&#xA;->at (argument->indexOf (a)).type))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="calledOperation->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.calledOperation.operation.ownedParameter->&#xA;select( kind = ParameterDirectionKind::_'in' )&#xA;->at (argument->indexOf (a)).type))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1265,8 +1255,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="signal_arguments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="sentSignal->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.sentSignal.signal.ownedAttribute&#xA;->at (argument->indexOf (a)).type))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="sentSignal->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.sentSignal.signal.ownedAttribute&#xA;->at (argument->indexOf (a)).type))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1277,8 +1267,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="target_defines_operation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="calledOperation->notEmpty() implies&#xA;target.type.allOperations()->includes(calledOperation.operation)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="calledOperation->notEmpty() implies&#xA;target.type.allOperations()->includes(calledOperation.operation)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1289,8 +1279,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="has_operation_or_signal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="calledOperation->size() + sentSignal->size() = 1"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="calledOperation->size() + sentSignal->size() = 1"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1301,8 +1291,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="target_not_collection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="not target.type.oclIsKindOf(CollectionType)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="not target.type.oclIsKindOf(CollectionType)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1344,8 +1334,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="O"/>
       <eOperations name="arguments_conform" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="arguments->forall (a | a.type.conformsTo&#xA;(self.refParams->at (arguments->indexOf (a)).type))"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="arguments->forall (a | a.type.conformsTo&#xA;(self.refParams->at (arguments->indexOf (a)).type))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1356,8 +1346,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="argument_count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="arguments->size() = refParams->size()"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="arguments->size() = refParams->size()"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1386,8 +1376,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="P"/>
       <eOperations name="property_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = referredProperty.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = referredProperty.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1408,8 +1398,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="RealLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="real_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type.name = 'Real'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type.name = 'Real'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1437,8 +1427,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExp">
       <eTypeParameters name="C"/>
       <eOperations name="string_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="self.type.name = 'String'"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="self.type.name = 'String'"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1457,8 +1447,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="P"/>
       <eOperations name="tuple_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type.oclIsKindOf (TupleType)&#xA;and&#xA;part->forAll (tlep |&#xA;type.oclAsType (TupleType).allProperties()->exists (tp | tlep.attribute = tp))&#xA;and&#xA;part->size() = type.oclAsType (TupleType).allProperties()->size()"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type.oclIsKindOf (TupleType)&#xA;and&#xA;part->forAll (tlep |&#xA;type.oclAsType (TupleType).allProperties()->exists (tp | tlep.attribute = tp))&#xA;and&#xA;part->size() = type.oclAsType (TupleType).allProperties()->size()"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1469,8 +1459,8 @@
         </eParameters>
       </eOperations>
       <eOperations name="parts_unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="part->isUnique (attribute.name)"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="part->isUnique (attribute.name)"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1495,8 +1485,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="P"/>
       <eOperations name="value_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="attribute.type = value.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="attribute.type = value.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1540,8 +1530,8 @@
       <eTypeParameters name="C"/>
       <eTypeParameters name="PM"/>
       <eOperations name="var_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-          <details key="body" value="type = referredVariable.type"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="type = referredVariable.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">

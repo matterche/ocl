@@ -10,10 +10,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.apache.log4j
 Export-Package: org.eclipse.ocl.examples.xtext.markup,
  org.eclipse.ocl.examples.xtext.markup.formatting,
- org.eclipse.ocl.examples.xtext.markup.parseTreeConstruction,
+ org.eclipse.ocl.examples.xtext.markup.impl,
  org.eclipse.ocl.examples.xtext.markup.parser.antlr,
  org.eclipse.ocl.examples.xtext.markup.parser.antlr.internal,
  org.eclipse.ocl.examples.xtext.markup.scoping,
+ org.eclipse.ocl.examples.xtext.markup.serializer,
  org.eclipse.ocl.examples.xtext.markup.services,
  org.eclipse.ocl.examples.xtext.markup.util,
  org.eclipse.ocl.examples.xtext.markup.validation

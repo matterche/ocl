@@ -215,17 +215,33 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return null;
 		}
 	}
-
-	protected static class SpecializedTypeRefContinuation extends SingleContinuation<TypedTypeRefCS>
+	
+	protected static class SpecializedTypeRefContinuation1 extends SingleContinuation<TypedTypeRefCS>
 	{
+		public SpecializedTypeRefContinuation1(CS2PivotConversion context, TypedTypeRefCS csElement) {
+			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
+			assert csElement.getOwnedTemplateBinding() != null;
+		}
 
+		@Override
+		public BasicContinuation<?> execute() {
+			context.resolveNamespaces(csElement.getNamespace());
+			Element pivotType = csElement.getType();
+			if (pivotType.eIsProxy()) {
+				Type badType = context.addBadTypeError(csElement, OCLMessages.UnresolvedType_ERROR_, csElement);
+				csElement.setType(badType);
+			}
+//			else {
+//				context.installPivotReference(csElement, pivotType, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
+//			}
+			return new SpecializedTypeRefContinuation2(context, csElement);
+		}
+	}
+
+	protected static class SpecializedTypeRefContinuation2 extends SingleContinuation<TypedTypeRefCS>
+	{
 		private static Dependency[] computeDependencies(CS2PivotConversion context, TypedTypeRefCS csElement) {
-			Dependency typeDependency = /*ElementUtil.isInOperation(csElement)
-				? context.getOperationsHaveTemplateParametersInterDependency()
-				:*/ context.getTypesHaveSignaturesInterDependency();
 			List<Dependency> dependencies = new ArrayList<Dependency>();
-			dependencies.add(typeDependency);
-//			dependencies.addAll(createTypeIsSpecializableDependencies(context, csElement));
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding != null) {
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
@@ -244,7 +260,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return dependencies.toArray(new Dependency[dependencies.size()]);
 		}
 		
-		public SpecializedTypeRefContinuation(CS2PivotConversion context, TypedTypeRefCS csElement) {
+		public SpecializedTypeRefContinuation2(CS2PivotConversion context, TypedTypeRefCS csElement) {
 			super(context, null, null, csElement, computeDependencies(context, csElement));
 			assert csElement.getOwnedTemplateBinding() != null;
 		}
@@ -557,7 +573,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
 		}
 		else {
-			return new SpecializedTypeRefContinuation(context, csTypedTypeRef);
+			return new SpecializedTypeRefContinuation1(context, csTypedTypeRef);
 		}
 	}
 }

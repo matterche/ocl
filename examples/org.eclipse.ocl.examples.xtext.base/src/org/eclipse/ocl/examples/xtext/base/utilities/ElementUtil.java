@@ -137,12 +137,7 @@ public class ElementUtil
 
 	public static int getLower(TypedElementCS csTypedElement) {
 		String multiplicity = csTypedElement.getMultiplicity();
-		if (multiplicity == null) {
-			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
-				return 0;
-			}
-		}
-		else if ("*".equals(multiplicity)) {
+		if ("*".equals(multiplicity)) {
 			return 0;
 		}
 		else if ("+".equals(multiplicity)) {

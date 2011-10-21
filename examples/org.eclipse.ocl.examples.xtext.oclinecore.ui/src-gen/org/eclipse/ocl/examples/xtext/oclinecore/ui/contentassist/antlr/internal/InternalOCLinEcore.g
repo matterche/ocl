@@ -11416,7 +11416,7 @@ rule__OperationCS__Group_7__1__Impl
 :
 (
 { before(grammarAccess.getOperationCSAccess().getOwnedTypeAssignment_7_1()); }
-(rule__OperationCS__OwnedTypeAssignment_7_1)
+(rule__OperationCS__OwnedTypeAssignment_7_1)?
 { after(grammarAccess.getOperationCSAccess().getOwnedTypeAssignment_7_1()); }
 )
 

@@ -3267,7 +3267,7 @@ ruleOperationCS returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_12='[' 
+)?(	otherlv_12='[' 
     {
     	newLeafNode(otherlv_12, grammarAccess.getOperationCSAccess().getLeftSquareBracketKeyword_7_2_0());
     }

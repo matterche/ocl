@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -73,6 +75,16 @@ public class Pivot2Ecore extends AbstractConversion
 	 */
 	public static final String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
 
+	public static void copyComments(EModelElement eModelElement, Element pivotElement) {
+		for (Comment comment : pivotElement.getOwnedComments()) {
+			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			eAnnotation.setSource(GenModelPackage.eNS_URI);
+			String body = comment.getBody();
+			eAnnotation.getDetails().put("documentation", body);
+			eModelElement.getEAnnotations().add(eAnnotation);
+		}
+	}
+
 	public static EOperation createConstraintEOperation(Constraint pivotConstraint, String operationName) {
 		EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
 		eOperation.setName(operationName);
@@ -93,10 +105,17 @@ public class Pivot2Ecore extends AbstractConversion
 		eGenericType.getETypeArguments().add(secondTypeArgument);
 		secondParameter.setEGenericType(eGenericType);
 		eOperation.getEParameters().add(secondParameter);
-		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		eAnnotation.getDetails().put("body", PivotUtil.getBody((OpaqueExpression) pivotConstraint.getSpecification()));
-		eOperation.getEAnnotations().add(eAnnotation);
+		ValueSpecification specification = pivotConstraint.getSpecification();
+		if (specification instanceof OpaqueExpression) {
+			String body = PivotUtil.getBody((OpaqueExpression) specification);
+			if (body != null) {
+				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+				eAnnotation.getDetails().put("body", body);
+				eOperation.getEAnnotations().add(eAnnotation);
+			}
+		}
+		copyComments(eOperation, pivotConstraint);
 		return eOperation;
 	}
 

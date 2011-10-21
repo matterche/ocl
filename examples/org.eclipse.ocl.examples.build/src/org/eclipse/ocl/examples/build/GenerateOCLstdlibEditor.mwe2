@@ -21,6 +21,7 @@
 module GenerateOCLstdlibEditor
 
 import org.eclipse.emf.mwe.utils.*
+import org.eclipse.ocl.examples.build.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
@@ -33,7 +34,18 @@ var oclstdlibRuntimeProject = "../${oclstdlibProjectName}"
  */
 Workflow {
     bean = StandaloneSetup {
+		scanClassPath = true
 		platformUri = "${oclstdlibRuntimeProject}/.."
+		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.pivot.PivotPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage"
+		registerGeneratedEPackage = "org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage"
+		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.genmodel"
 	}
 	
 	component = DirectoryCleaner {
@@ -64,7 +76,7 @@ Workflow {
 //			}
 			
 			// the serialization component
-			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
+			fragment = serializer.SerializerFragment {}
 			
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment {
@@ -140,6 +152,11 @@ Workflow {
 			fragment = quickfix.QuickfixProviderFragment {}
 
 //			fragment = refactoring.RefactorElementNameFragment {}
+				
+			// EssentialOCL bindings 
+			fragment = utilities.EssentialOCLFragment {}			
+			// Support Markup in Hover text 
+			fragment = utilities.MarkupHoverFragment {}			
 		}
 	}
 }

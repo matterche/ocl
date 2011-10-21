@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Package;
@@ -221,7 +222,6 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		String name = object.getName();
 		csElement.setName(name);
 		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));
-//		refreshList(csElement.getOwnedComment(), context.visitList(CommentCS.class, object.getOwnedComments()));
 		return csElement;
 	}
 
@@ -298,29 +298,27 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	public <T extends TypedElementCS> T refreshTypedMultiplicityElement(Class<T> csClass, EClass csEClass, TypedMultiplicityElement object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
-		if (object.getType() != null) {
-			int lower = object.getLower().intValue();
-			int upper = object.getUpper().intValue();
-			if (lower == 0) {
-				if (upper == 1) {
-					csElement.setMultiplicity("?");
-				}
-				else if (upper == -1) {
-					csElement.setMultiplicity("*");				
-				}
-//				else if (upper == -2) {
-//					csElement.setMultiplicity("0..?");				
-//				}
+		int lower = object.getLower().intValue();
+		int upper = object.getUpper().intValue();
+		if (lower == 0) {
+			if (upper == 1) {
+				csElement.setMultiplicity("?");
 			}
-			else if (lower == 1) {
-				if (upper == -1) {
-					csElement.setMultiplicity("+");				
-				}
+			else if (upper == -1) {
+				csElement.setMultiplicity("*");				
 			}
-			if (csElement.getMultiplicity() == null) {
-				csElement.setLower(lower);
-				csElement.setUpper(upper);
+//			else if (upper == -2) {
+//				csElement.setMultiplicity("0..?");				
+//			}
+		}
+		else if (lower == 1) {
+			if (upper == -1) {
+				csElement.setMultiplicity("+");				
 			}
+		}
+		if (csElement.getMultiplicity() == null) {
+			csElement.setLower(lower);
+			csElement.setUpper(upper);
 		}
 		List<String> qualifiers = csElement.getQualifier();
 		refreshQualifiers(qualifiers, "ordered", "!ordered", object.isOrdered() ? Boolean.TRUE : null);

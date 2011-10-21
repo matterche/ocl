@@ -236,7 +236,7 @@ OperationCS returns base::OperationCS:
 	'operation' name=UnrestrictedName
 	(ownedTemplateSignature=TemplateSignatureCS)?
 	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
-	(':' ownedType=TypedRefCS
+	(':' (ownedType=TypedRefCS)?
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
 	('throws' ownedException+=TypedRefCS (',' ownedException+=TypedRefCS)*)?
 	('{'((qualifier+='derived' | qualifier+='!derived' |

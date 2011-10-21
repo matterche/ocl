@@ -856,7 +856,7 @@ public class CS2PivotConversion extends AbstractConversion
 				int i = 0;
 				for (; i < iMax; i++) {
 					String string = documentationStrings.get(i);
-					String trimmedString = trimString(string);
+					String trimmedString = trimComments(string);
 					Comment comment = ownedComments.get(i);
 					if (!trimmedString.equals(comment.getBody())) {
 						comment.setBody(trimmedString);
@@ -864,7 +864,7 @@ public class CS2PivotConversion extends AbstractConversion
 				}
 				for ( ; i < documentationStrings.size(); i++) {
 					String string = documentationStrings.get(i);
-					String trimmedString = trimString(string);
+					String trimmedString = trimComments(string);
 					Comment comment = PivotFactory.eINSTANCE.createComment();
 					comment.setBody(trimmedString);
 					ownedComments.add(comment);
@@ -1331,20 +1331,37 @@ public class CS2PivotConversion extends AbstractConversion
 		return specializedPivotElement;
 	}
 
-	protected String trimString(String string) {
-		StringBuffer s = new StringBuffer();
-		String prefix = "";
-		for (String line : string.split("\n")) {
+	protected String trimComments(String string) {
+		String[] strings = string.trim().split("\n");
+		boolean isFormatted = true;
+		for (String line : strings) {
 			String trimmedLine = line.trim();
-			if (trimmedLine.length() == 0) {
+			if (!trimmedLine.startsWith("*")) {
+				isFormatted = false;
+				break;
+			}
+			if (trimmedLine.length() > 1) {
+				if (!Character.isWhitespace(trimmedLine.charAt(1))) {
+					isFormatted = false;
+					break;
+				}
+			}
+		}
+		StringBuffer s = new StringBuffer();
+		for (String line : strings) {
+			String trimmedLine = line.trim();
+			if (!isFormatted) {
+			}
+			else if (trimmedLine.length() <= 1) {
+				trimmedLine = "";
+			}
+			else if (Character.isWhitespace(trimmedLine.charAt(1))) {
+				trimmedLine = trimmedLine.substring(2);			
+			}
+			if (s.length() > 0) {
 				s.append("\n");
-				prefix = "";
 			}
-			else {
-				s.append(prefix);
-				s.append(trimmedLine); //.replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
-				prefix = " ";
-			}
+			s.append(trimmedLine);
 		}
 		String trimmedString = s.toString();
 		return trimmedString;

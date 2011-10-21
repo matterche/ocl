@@ -446,8 +446,9 @@ public class LoadTests extends XtextTestCase
 		doLoad("Names", "ocl");
 	}	
 
+/* FIXME waiting for BUG 361649
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad("RoyalAndLoyal", "ocl");
-	}	
+	} */
 }

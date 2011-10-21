@@ -19,7 +19,11 @@ package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 
@@ -38,6 +42,18 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		Type type = PivotUtil.getUnspecializedTemplateableElement(pivot);
 		assert type == pivot;		// WIP
 		if (type instanceof AnyType) {
+			return true;
+		}
+		if (type instanceof DataType) {
+			return true;
+		}
+		if (type instanceof InvalidType) {
+			return true;
+		}
+		if (type instanceof UnspecifiedType) {
+			return true;
+		}
+		if (type instanceof VoidType) {
 			return true;
 		}
 		List<Type> superClasses = type.getSuperClasses();

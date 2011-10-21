@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -70,7 +71,8 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 		if (parserNode != null) {
 			return parserNode.getText().trim();
 		}
-		return "<" + eClass().getName() + ">";
+		return CS2Moniker.toString(this);
+//		return "<" + eClass().getName() + ">";
 	}
 
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {

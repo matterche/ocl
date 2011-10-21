@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -49,6 +50,7 @@ import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -85,17 +87,20 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	
 	@Override
 	public Annotation caseEAnnotation(EAnnotation eObject) {
+		String source = eObject.getSource();
+		EMap<String, String> details = eObject.getDetails();
 		Annotation pivotElement = PivotFactory.eINSTANCE.createAnnotation();
-		pivotElement.setName(eObject.getSource());
+		pivotElement.setName(source);
 		setOriginalMapping(pivotElement, eObject);
 		doSwitchAll(pivotElement.getOwnedContents(), eObject.getContents());
-		EMap<String, String> details = eObject.getDetails();
 		for (Map.Entry<String, String> entry : details) {
 			String key = entry.getKey();
-			Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
-			pivotDetail.setName(key);
-			pivotDetail.getValues().add(entry.getValue());
-			pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshList
+			if (!key.equals("documentation") || !GenModelPackage.eNS_URI.equals(source)) {
+				Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
+				pivotDetail.setName(key);
+				pivotDetail.getValues().add(entry.getValue());
+				pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshList
+			}
 		}
 		if (!eObject.getReferences().isEmpty()) {
 			converter.queueReference(eObject);
@@ -128,10 +133,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				constraint.setIsCallable(true);
 				String value = null;
 				EAnnotation eAnnotation;
-				if ((eAnnotation = eOperation.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")) != null) {
-					value = eAnnotation.getDetails().get("documentation");
-				}
-				else if ((eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation)) != null) {
+				String commentBody = EcoreUtil.getAnnotation(eOperation, GenModelPackage.eNS_URI, "documentation");
+				if (commentBody != null) {
+					Comment pivotComment = PivotFactory.eINSTANCE.createComment();
+					pivotComment.setBody(commentBody.replaceAll("\\r", ""));
+					constraint.getOwnedComments().add(pivotComment);
+				}				
+				if ((eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation)) != null) {
 					value = eAnnotation.getDetails().get("body");
 				}
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
@@ -483,8 +491,22 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotations();
 		for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
 			if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
-				Annotation pivotAnnotation = (Annotation) doSwitch(eAnnotation);
-				pivotAnnotations.add(pivotAnnotation);
+				String source = eAnnotation.getSource();
+				EMap<String, String> details = eAnnotation.getDetails();
+				if (GenModelPackage.eNS_URI.equals(source)) {
+					if (details.containsKey("documentation")) {
+						Comment pivotComment = PivotFactory.eINSTANCE.createComment();
+						pivotComment.setBody(details.get("documentation"));
+						pivotElement.getOwnedComments().add(pivotComment);
+					}
+				}				
+				if (!eAnnotation.getContents().isEmpty()
+				 || !eAnnotation.getReferences().isEmpty()
+				 || (details.size() > 1)
+				 || ((details.size() == 1) && (!GenModelPackage.eNS_URI.equals(source) || !details.containsKey("documentation")))) {
+					Annotation pivotAnnotation = (Annotation) doSwitch(eAnnotation);
+					pivotAnnotations.add((Annotation) pivotAnnotation);
+				}
 			}
 		}
 	}
