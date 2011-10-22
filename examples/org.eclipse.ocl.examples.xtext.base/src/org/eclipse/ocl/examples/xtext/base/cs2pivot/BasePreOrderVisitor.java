@@ -327,7 +327,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			List<TupleTypeManager.TuplePart> tupleParts = new ArrayList<TupleTypeManager.TuplePart>();
 			for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 				Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
-				tupleParts.add(new TupleTypeManager.TuplePart(csTuplePart.getName(), partType));
+				TupleTypeManager.TuplePart tuplePart = new TupleTypeManager.TuplePart(csTuplePart.getName(), partType);
+				tupleParts.add(tuplePart);
+				context.installPivotUsage(csTuplePart, tuplePart);
 			}
 			TupleType tupleType = context.getMetaModelManager().getTupleType(csElement.getName(), tupleParts, null);
 			context.installPivotReference(csElement, tupleType, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);

@@ -17,11 +17,11 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -55,15 +55,48 @@ public class EssentialOCLOutlineTreeProvider extends DefaultOutlineTreeProvider
 		createChildren(parentNode, constraint.getSpecification());
 	}
 
-	protected void _createNode(IOutlineNode parentNode, CollectionItem collectionItem) {
-		createNode(parentNode, collectionItem.getItem());
+	protected void _createChildren(IOutlineNode parentNode, ConstraintCS constraint) {
+		createChildren(parentNode, constraint.getSpecification());
 	}
 
-	protected void _createNode(IOutlineNode parentNode, TemplateParameter templateParameter) {
-		createNode(parentNode, templateParameter.getParameteredElement());
+	protected void _createNode(IOutlineNode parentNode, CollectionLiteralPartCS collectionLiteralPart) {
+		if (collectionLiteralPart.getLastExpressionCS() == null) {
+			createNode(parentNode, collectionLiteralPart.getExpressionCS());
+		}
+		else {
+			createChildren(parentNode, collectionLiteralPart);			
+		}		
 	}
 
-	protected void _createNode(IOutlineNode parentNode, TemplateSignature templateSignature) {
+/*	protected void _createChildren(IOutlineNode parentNode, BinaryOperatorCS csOperator) {
+		createNode(parentNode, csOperator.getSource());
+		createNode(parentNode, csOperator.getArgument());
+	}
+
+	protected void _createNode(IOutlineNode parentNode, InfixExpCS csInfixExp) {
+		//
+		//	Find the root.
+		//
+		OperatorCS csRoot = csInfixExp.getOwnedOperator().get(0);
+		for (OperatorCS csParent = csRoot.getParent(); csParent != null; csParent = csParent.getParent()) {
+			csRoot = csParent;
+		}
+		createNode(parentNode, csRoot);
+	} */
+
+//	protected void _createNode(IOutlineNode parentNode, TemplateParameter templateParameter) {
+//		createNode(parentNode, templateParameter.getParameteredElement());
+//	}
+
+//	protected void _createNode(IOutlineNode parentNode, TemplateParameterCS templateParameter) {
+//		createNode(parentNode, templateParameter.getParameteredElement());
+//	}
+
+//	protected void _createNode(IOutlineNode parentNode, TemplateSignature templateSignature) {
+//		createChildren(parentNode, templateSignature);
+//	}
+
+	protected void _createNode(IOutlineNode parentNode, TemplateSignatureCS templateSignature) {
 		createChildren(parentNode, templateSignature);
 	}
 }

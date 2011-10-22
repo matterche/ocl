@@ -1075,11 +1075,11 @@ public class EssentialOCLLeft2RightVisitor
 			
 			if (lastLetExp != null) {
 				lastLetExp.setIn(letExp);
-//				context.usePivotElement(csLetExp, letExp);
+				context.installPivotUsage(csLetExp, letExp);
 			}
 			else {
 				firstLetExp = letExp;
-//				context.installPivotElement(csLetExp, firstLetExp);
+				context.installPivotUsage(csLetExp, firstLetExp);
 			}
 			lastLetExp = letExp;
 		}

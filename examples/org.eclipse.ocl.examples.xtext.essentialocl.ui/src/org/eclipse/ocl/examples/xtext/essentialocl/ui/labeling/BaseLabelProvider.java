@@ -95,14 +95,15 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.manager.TupleTypeManager.TuplePart;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -111,7 +112,7 @@ import org.osgi.framework.Bundle;
 import com.google.inject.Inject;
 
 /**
- * Provides labels for BaseCST objects.
+ * Provides labels for BaseCST objects redirecting to Pivot objects.
  * 
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
@@ -407,6 +408,12 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionType.gif";
 	}
 
+	protected String text(CollectionType ele) {
+		StringBuffer s = new StringBuffer();
+		appendType(s, ele);
+		return s.toString();
+	}
+
 	protected String image(Comment ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif";
 	}
@@ -514,6 +521,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/ExpressionInOCL.gif";
 	}
 
+	protected String text(ExpressionInOcl ele) {
+		return "<ExpressionInOcl>";
+	}
+
 	protected String image(IfExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/IfExp.gif";
 	}
@@ -592,14 +603,6 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected String image(MessageType ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/MessageType.gif";
 	}
-	
-	protected Object image(ModelElementCS ele) {
-		return doGetImage(ele.getPivot());
-	}
-	
-	protected Object text(ModelElementCS ele) {
-		return doGetText(ele.getPivot());
-	}
 
 	protected String image(NavigationCallExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/NavigationCallExp.gif";
@@ -664,6 +667,14 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		appendType(s, ele.getType());
 		appendMultiplicity(s, ele);
 		return s.toString();
+	}
+	
+	protected Object image(PivotableElementCS ele) {
+		return doGetImage(ele.getPivot());
+	}
+	
+	protected Object text(PivotableElementCS ele) {
+		return doGetText(ele.getPivot());
 	}
 
 	protected String text(Precedence ele) {
@@ -737,11 +748,32 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(TupleLiteralPart ele) {
-		return ele.getName();
+		StringBuffer s = new StringBuffer();
+		appendName(s, ele);
+		return s.toString();
+	}
+
+	protected String image(TuplePart ele) {
+		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif";
+	}
+
+	protected String text(TuplePart ele) {
+		StringBuffer s = new StringBuffer();
+		appendName(s, ele);
+		s.append(" : ");
+		appendType(s, ele.getType());
+//		appendMultiplicity(s, ele);
+		return s.toString();
 	}
 
 	protected String image(TupleType ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleType.gif";
+	}
+
+	protected String text(TupleType ele) {
+		StringBuffer s = new StringBuffer();
+		appendType(s, ele);
+		return s.toString();
 	}
 
 	protected String text(Type ele) {

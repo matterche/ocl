@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
@@ -227,15 +228,12 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getElements(EObject object) {
+		String descriptiveName = null;
 		if (targetReference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) {
-			String nonPivotURI = getNonPivotURI(object);
-			IEObjectDescription objectDescription = EObjectDescription.create(nonPivotURI, object);
-			return Collections.singletonList(objectDescription);
+			descriptiveName = getNonPivotURI(object);
 		}
 		else if (targetReference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) {
-			String nonPivotURI = getNonPivotURI(object);
-			IEObjectDescription objectDescription = EObjectDescription.create(nonPivotURI, object);
-			return Collections.singletonList(objectDescription);
+			descriptiveName = getNonPivotURI(object);
 //			ModelElementRefCS csRef = (ModelElementRefCS) object;
 //			List<Namespace> namespaces = csRef.getNamespace();
 //			if (ElementUtil.isReferenceable(object) || (namespaces.size() != 0)) {
@@ -245,27 +243,31 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 //			}
 		}
 		else if ((targetReference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (object instanceof Type)) {
-//			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
-//				return ((PrimitiveType)object).getName();
-//			}
-			EObject csRef = getTarget();
-			while ((csRef.eContainer() instanceof TypeRefCS)
-					|| (csRef.eContainer() instanceof TemplateParameterSubstitutionCS)
-					|| (csRef.eContainer() instanceof TemplateBindingCS)) {
-				csRef = csRef.eContainer();
+			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
+				descriptiveName = ((PrimitiveType)object).getName();
 			}
-			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
-			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
-			Element context = csContext.getPivot();
-			List<PathElement> contextPath = getPath(aliasAnalysis, context);
-			List<PathElement> objectPath = getPath(aliasAnalysis, (Element) object);
-			QualifiedName qualifiedRelativeName = getDivergentPath(objectPath, contextPath);
-			IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
-			return Collections.singletonList(objectDescription);
+			else {
+				EObject csRef = getTarget();
+				while ((csRef.eContainer() instanceof TypeRefCS)
+						|| (csRef.eContainer() instanceof TemplateParameterSubstitutionCS)
+						|| (csRef.eContainer() instanceof TemplateBindingCS)) {
+					csRef = csRef.eContainer();
+				}
+				ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
+				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
+				Element context = csContext.getPivot();
+				List<PathElement> contextPath = getPath(aliasAnalysis, context);
+				List<PathElement> objectPath = getPath(aliasAnalysis, (Element) object);
+				QualifiedName qualifiedRelativeName = getDivergentPath(objectPath, contextPath);
+				IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
+				return Collections.singletonList(objectDescription);
+			}
 		}
 		else if (object instanceof NamedElement) {
-			String name = ((NamedElement)object).getName();
-			IEObjectDescription objectDescription = EObjectDescription.create(name, object);
+			descriptiveName = ((NamedElement)object).getName();
+		}
+		if (descriptiveName != null) {
+			IEObjectDescription objectDescription = EObjectDescription.create(descriptiveName, object);
 			return Collections.singletonList(objectDescription);
 		}
 		return super.getElements(object);		// FIXME Implement
