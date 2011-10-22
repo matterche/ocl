@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.RuleCall;
@@ -35,8 +35,8 @@ public class EssentialOCLHiddenTokenSequencer extends HiddenTokenSequencer
  	private EssentialOCLGrammarAccess grammarAccess;
 
 	protected void emitComments(EObject semanticChild) {
-		if (semanticChild instanceof Pivotable) {
-			Element pivot = ((Pivotable)semanticChild).getPivot();
+		if (semanticChild instanceof ModelElementCS) {
+			Element pivot = ((ModelElementCS)semanticChild).getPivot();
 			if (pivot != null) {
 				for (Comment comment : pivot.getOwnedComments()) {
 					String body = "\n\t\t\t\t/**\n\t\t\t\t * " + comment.getBody().replaceAll("\\n", "\n\t\t\t\t * ") + "\n\t\t\t\t */\n";
