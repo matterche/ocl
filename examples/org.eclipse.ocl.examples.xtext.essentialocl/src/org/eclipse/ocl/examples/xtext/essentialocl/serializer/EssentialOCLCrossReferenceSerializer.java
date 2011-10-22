@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.xtext.essentialocl.services;
+package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
 
 import java.util.List;
 

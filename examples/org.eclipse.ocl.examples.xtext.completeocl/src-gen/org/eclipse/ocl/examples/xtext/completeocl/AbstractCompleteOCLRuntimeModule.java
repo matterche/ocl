@@ -141,7 +141,7 @@ public abstract class AbstractCompleteOCLRuntimeModule extends DefaultRuntimeMod
 
 	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer> bindICrossReferenceSerializer() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer.class;
+		return org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer.class;
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
