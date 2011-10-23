@@ -837,7 +837,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return (T) intermediateCache.put(key, object);
 	}
 
-	protected void refreshComments(Element pivotElement, ElementCS csElement) {
+	public void refreshComments(Element pivotElement, ElementCS csElement) {
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
 		if (node != null) {
 			List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
@@ -1331,20 +1331,29 @@ public class CS2PivotConversion extends AbstractConversion
 		return specializedPivotElement;
 	}
 
+	/**
+	 * Remove the internal "* " that may result from a comment formatted in the style of this comment.
+	 * 
+	 * @param string
+	 * @return
+	 */
 	protected String trimComments(String string) {
 		String[] strings = string.trim().split("\n");
 		boolean isFormatted = true;
-		for (String line : strings) {
+		for (int i = 0; i < strings.length; i++) {
+			String line = strings[i];
 			String trimmedLine = line.trim();
-			if (!trimmedLine.startsWith("*")) {
+			if (trimmedLine.startsWith("*")) {
+				if (trimmedLine.length() > 1) {
+					if (!Character.isWhitespace(trimmedLine.charAt(1))) {
+						isFormatted = false;
+						break;
+					}
+				}
+			}
+			else if (i > 0) {
 				isFormatted = false;
 				break;
-			}
-			if (trimmedLine.length() > 1) {
-				if (!Character.isWhitespace(trimmedLine.charAt(1))) {
-					isFormatted = false;
-					break;
-				}
 			}
 		}
 		StringBuffer s = new StringBuffer();
