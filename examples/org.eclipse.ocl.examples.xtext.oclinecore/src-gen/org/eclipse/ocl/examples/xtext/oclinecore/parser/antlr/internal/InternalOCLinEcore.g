@@ -2373,9 +2373,10 @@ ruleDetailCS returns [EObject current=null]
     }
 (
 (
-		lv_value_2_0=RULE_SINGLE_QUOTED_STRING
+(
+		lv_value_2_1=RULE_SINGLE_QUOTED_STRING
 		{
-			newLeafNode(lv_value_2_0, grammarAccess.getDetailCSAccess().getValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0()); 
+			newLeafNode(lv_value_2_1, grammarAccess.getDetailCSAccess().getValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -2384,9 +2385,26 @@ ruleDetailCS returns [EObject current=null]
        		addWithLastConsumed(
        			$current, 
        			"value",
-        		lv_value_2_0, 
+        		lv_value_2_1, 
         		"SINGLE_QUOTED_STRING");
 	    }
+
+    |		lv_value_2_2=RULE_ML_SINGLE_QUOTED_STRING
+		{
+			newLeafNode(lv_value_2_2, grammarAccess.getDetailCSAccess().getValueML_SINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDetailCSRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_2, 
+        		"ML_SINGLE_QUOTED_STRING");
+	    }
+
+)
 
 )
 )*)

@@ -35,8 +35,6 @@ Library returns LibRootPackageCS:
 	'}'
 ;
 
-terminal ML_SINGLE_QUOTED_STRING	: "/'" -> "'/";
-
 LOWER returns ecore::EInt:
 	INT
 ;

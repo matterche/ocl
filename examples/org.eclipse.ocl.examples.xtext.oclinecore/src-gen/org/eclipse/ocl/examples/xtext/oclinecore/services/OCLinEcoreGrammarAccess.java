@@ -1421,13 +1421,15 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameSINGLE_QUOTED_STRINGTerminalRuleCall_0_0_1 = (RuleCall)cNameAlternatives_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Alternatives cValueAlternatives_2_0 = (Alternatives)cValueAssignment_2.eContents().get(0);
+		private final RuleCall cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_0 = (RuleCall)cValueAlternatives_2_0.eContents().get(0);
+		private final RuleCall cValueML_SINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1 = (RuleCall)cValueAlternatives_2_0.eContents().get(1);
 		
 		//DetailCS returns base::DetailCS:
-		//	name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*;
+		//	name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*;
 		public ParserRule getRule() { return rule; }
 
-		//name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*
+		//name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*
 		public Group getGroup() { return cGroup; }
 
 		//name=(UnrestrictedName | SINGLE_QUOTED_STRING)
@@ -1445,11 +1447,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//value+=SINGLE_QUOTED_STRING*
+		//value+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
+		//SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING
+		public Alternatives getValueAlternatives_2_0() { return cValueAlternatives_2_0; }
+
 		//SINGLE_QUOTED_STRING
-		public RuleCall getValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0() { return cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0; }
+		public RuleCall getValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_0() { return cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_0; }
+
+		//ML_SINGLE_QUOTED_STRING
+		public RuleCall getValueML_SINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1() { return cValueML_SINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1; }
 	}
 
 	public class DocumentationCSElements extends AbstractParserRuleElementFinder {
@@ -3734,7 +3742,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DetailCS returns base::DetailCS:
-	//	name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*;
+	//	name=(UnrestrictedName | SINGLE_QUOTED_STRING) "=" value+=(SINGLE_QUOTED_STRING | ML_SINGLE_QUOTED_STRING)*;
 	public DetailCSElements getDetailCSAccess() {
 		return (pDetailCS != null) ? pDetailCS : (pDetailCS = new DetailCSElements());
 	}

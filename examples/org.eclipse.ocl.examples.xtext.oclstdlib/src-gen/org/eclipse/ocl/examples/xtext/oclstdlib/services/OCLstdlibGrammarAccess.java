@@ -2212,7 +2212,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private LibraryElements pLibrary;
-	private TerminalRule tML_SINGLE_QUOTED_STRING;
 	private LOWERElements pLOWER;
 	private UPPERElements pUPPER;
 	private IdentifierElements pIdentifier;
@@ -2283,12 +2282,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getLibraryRule() {
 		return getLibraryAccess().getRule();
 	}
-
-	//terminal ML_SINGLE_QUOTED_STRING:
-	//	"/\'"->"\'/";
-	public TerminalRule getML_SINGLE_QUOTED_STRINGRule() {
-		return (tML_SINGLE_QUOTED_STRING != null) ? tML_SINGLE_QUOTED_STRING : (tML_SINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_SINGLE_QUOTED_STRING"));
-	} 
 
 	//LOWER returns ecore::EInt:
 	//	INT;
@@ -2691,6 +2684,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return gaEssentialOCL.getSINGLE_QUOTED_STRINGRule();
+	} 
+
+	//terminal ML_SINGLE_QUOTED_STRING:
+	//	"/\'"->"\'/";
+	public TerminalRule getML_SINGLE_QUOTED_STRINGRule() {
+		return gaEssentialOCL.getML_SINGLE_QUOTED_STRINGRule();
 	} 
 
 	//terminal SIMPLE_ID:

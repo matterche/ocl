@@ -837,7 +837,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     ((name=UnrestrictedName | name=SINGLE_QUOTED_STRING) value+=SINGLE_QUOTED_STRING*)
+	 *     ((name=UnrestrictedName | name=SINGLE_QUOTED_STRING) (value+=SINGLE_QUOTED_STRING | value+=ML_SINGLE_QUOTED_STRING)*)
 	 *
 	 * Features:
 	 *    name[0, 2]
