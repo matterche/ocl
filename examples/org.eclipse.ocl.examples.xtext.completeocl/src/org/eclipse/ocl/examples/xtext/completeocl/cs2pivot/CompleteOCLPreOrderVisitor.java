@@ -292,6 +292,7 @@ public class CompleteOCLPreOrderVisitor
 			return null;
 		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, csElement.eResource(), csElement);
+		context.refreshComments(contextPackage, csElement);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
