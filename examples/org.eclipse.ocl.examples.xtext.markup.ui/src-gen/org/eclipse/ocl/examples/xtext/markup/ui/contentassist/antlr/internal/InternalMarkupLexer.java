@@ -405,11 +405,11 @@ public class InternalMarkupLexer extends Lexer {
     // $ANTLR start "RULE_ESCAPED"
     public final void mRULE_ESCAPED() throws RecognitionException {
         try {
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' ) )
-            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:25: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' ) )
+            // ../org.eclipse.ocl.examples.xtext.markup.ui/src-gen/org/eclipse/ocl/examples/xtext/markup/ui/contentassist/antlr/internal/InternalMarkup.g:3145:25: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '<' | '>' | '[' | ']' )
             {
             match('\\'); 
-            if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='<'||input.LA(1)=='>'||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+            if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='<'||input.LA(1)=='>'||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
                 input.consume();
 
             }
@@ -1076,8 +1076,8 @@ public class InternalMarkupLexer extends Lexer {
             "\11\25\2\uffff\2\25\1\uffff\22\25\1\uffff\1\25\2\uffff\10"+
             "\25\1\uffff\3\25\12\24\1\uffff\6\25\32\24\1\uffff\1\25\1\uffff"+
             "\1\25\1\24\1\25\32\24\uff85\25",
-            "\1\25\4\uffff\1\25\24\uffff\1\25\1\uffff\1\25\35\uffff\1\25"+
-            "\5\uffff\1\25\3\uffff\1\25\7\uffff\1\25\3\uffff\1\25\1\uffff"+
+            "\1\25\4\uffff\1\25\24\uffff\1\25\1\uffff\1\25\34\uffff\3\25"+
+            "\4\uffff\1\25\3\uffff\1\25\7\uffff\1\25\3\uffff\1\25\1\uffff"+
             "\1\25",
             "",
             "\1\46\1\47\2\uffff\1\47\22\uffff\1\46",

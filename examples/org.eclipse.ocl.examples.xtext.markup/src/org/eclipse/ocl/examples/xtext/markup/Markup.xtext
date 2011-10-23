@@ -26,7 +26,7 @@ Markup:
 	
 terminal fragment NUMBER: '0'..'9';
 terminal fragment LETTER: 'a'..'z' | 'A'..'Z' | '_';
-terminal fragment ESCAPED : '\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\' | '<' | '>'); 
+terminal fragment ESCAPED : '\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\' | '<' | '>' | '[' | ']'); 
 terminal fragment VERTICAL_WS : '\n' | '\r'; 
 terminal fragment HORIZONTAL_WS : ' ' | '\t'; 
 

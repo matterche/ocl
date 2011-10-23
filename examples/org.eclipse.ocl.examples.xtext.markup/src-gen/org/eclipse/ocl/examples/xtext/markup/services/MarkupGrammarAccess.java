@@ -742,7 +742,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal fragment ESCAPED:
-	//	"\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" | "<" | ">");
+	//	"\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" | "<" | ">" | "[" | "]");
 	public TerminalRule getESCAPEDRule() {
 		return (tESCAPED != null) ? tESCAPED : (tESCAPED = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED"));
 	} 

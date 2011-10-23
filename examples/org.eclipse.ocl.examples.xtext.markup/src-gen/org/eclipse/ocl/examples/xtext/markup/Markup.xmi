@@ -56,6 +56,8 @@
         <elements xsi:type="xtext:Keyword" value="\"/>
         <elements xsi:type="xtext:Keyword" value="&lt;"/>
         <elements xsi:type="xtext:Keyword" value=">"/>
+        <elements xsi:type="xtext:Keyword" value="["/>
+        <elements xsi:type="xtext:Keyword" value="]"/>
       </elements>
     </alternatives>
   </rules>

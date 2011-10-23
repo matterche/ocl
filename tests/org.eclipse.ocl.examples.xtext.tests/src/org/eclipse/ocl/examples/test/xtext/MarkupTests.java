@@ -197,5 +197,6 @@ public class MarkupTests extends XtextTestCase
 		doStringTest("a\rb\n\rc\t\nd");
 		doStringTest("oclEval[a.c[4]]");
 		doStringTest("oclEval[a.b[4]]");
+		doStringTest("\\[1234\\]");
 	}
 }

@@ -3142,7 +3142,7 @@ fragment RULE_NUMBER : '0'..'9';
 
 fragment RULE_LETTER : ('a'..'z'|'A'..'Z'|'_');
 
-fragment RULE_ESCAPED : '\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\'|'<'|'>');
+fragment RULE_ESCAPED : '\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\'|'<'|'>'|'['|']');
 
 fragment RULE_VERTICAL_WS : ('\n'|'\r');
 
