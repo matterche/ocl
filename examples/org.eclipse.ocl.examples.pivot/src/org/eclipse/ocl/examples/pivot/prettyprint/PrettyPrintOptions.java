@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * PrettyPrintOptions defines the capability to provide options to the PrettyPrinter
@@ -41,6 +42,7 @@ public abstract class PrettyPrintOptions
 		private final Set<String> restrictedNames = new HashSet<String>();
 		private Map<Namespace, String> namespace2alias = new HashMap<Namespace, String>();
 		private URI baseURI = null;
+		private MetaModelManager metaModelManager = null;
 		
 		public Global(Namespace scope) {
 			super(scope);
@@ -96,6 +98,11 @@ public abstract class PrettyPrintOptions
 		public Set<Namespace> getAliasedNamespaces() {
 			return namespace2alias.keySet();
 		}
+
+		@Override
+		public MetaModelManager getMetaModelManager() {
+			return metaModelManager;
+		}
 		
 		@Override
 		public Set<String> getReservedNames() {
@@ -128,6 +135,10 @@ public abstract class PrettyPrintOptions
 		@Override
 		public void setLinelength(int linelength) {
 			this.linelength = linelength;
+		}
+
+		public void setMetaModelManager(MetaModelManager metaModelManager) {
+			this.metaModelManager = metaModelManager;
 		}
 
 		@Override
@@ -226,6 +237,10 @@ public abstract class PrettyPrintOptions
 
 	public int getLinelength() {
 		return getGlobalOptions().getLinelength();
+	}
+
+	public MetaModelManager getMetaModelManager() {
+		return getGlobalOptions().getMetaModelManager();
 	}
 
 	public abstract Set<String> getReservedNames();
