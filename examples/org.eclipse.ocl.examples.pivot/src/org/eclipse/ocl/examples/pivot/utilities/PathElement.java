@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * A PathElement represents a segment in a qualified name.
@@ -49,6 +51,21 @@ public class PathElement
         }
         for (; parent instanceof Namespace; parent = parent.eContainer()) {
             Namespace namespace = (Namespace)parent;
+			path.add(0, new PathElement(namespace.getName(), namespace));
+        }
+        return path;
+    }
+	  
+    public static List<PathElement> getPath(EObject element, MetaModelManager metaModelManager) {
+        List<PathElement> path = new ArrayList<PathElement>();
+        EObject parent = element;
+        for (; (parent != null) && !(parent instanceof Namespace); parent = parent.eContainer()) {
+        }
+        for (; parent instanceof Namespace; parent = parent.eContainer()) {
+            Namespace namespace = (Namespace)parent;
+            if ((metaModelManager != null) && (namespace instanceof Type)) {
+            	namespace = (Namespace) metaModelManager.getPrimaryType((Type) namespace);
+            }
 			path.add(0, new PathElement(namespace.getName(), namespace));
         }
         return path;

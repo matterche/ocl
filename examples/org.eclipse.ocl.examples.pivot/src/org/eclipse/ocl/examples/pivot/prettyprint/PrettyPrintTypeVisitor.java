@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions.Global;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -410,15 +411,19 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				append(parentSeparator);
 				return;
 			}
+            MetaModelManager metaModelManager = context.getGlobalOptions().getMetaModelManager();
+            if ((metaModelManager != null) && (parent instanceof Type)) {
+            	parent = (Namespace) metaModelManager.getPrimaryType((Type) parent);
+            }
 			if (parent == scope) {
 				return;
 			}
             if (parent instanceof Visitable) {
-                List<PathElement> parentPath = PathElement.getPath(parent);
+                List<PathElement> parentPath = PathElement.getPath(parent, metaModelManager);
                 int iMax = parentPath.size();
                 int i = 0;
                 if (scope != null) {
-                    List<PathElement> scopePath = PathElement.getPath(scope);
+                    List<PathElement> scopePath = PathElement.getPath(scope, metaModelManager);
                     i = PathElement.getCommonLength(parentPath, scopePath);
                 }
                 if (i < iMax) {
@@ -440,13 +445,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	}
 
     public void appendQualifiedName(Element element) {
+        MetaModelManager metaModelManager = context.getGlobalOptions().getMetaModelManager();
         Namespace parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
-        List<PathElement> parentPath = PathElement.getPath(parent);
+        List<PathElement> parentPath = PathElement.getPath(parent, metaModelManager);
         int iMax = parentPath.size();
         int i = 0;
         Namespace scope = context.getScope();
         if (scope != null) {
-            List<PathElement> scopePath = PathElement.getPath(scope);
+			List<PathElement> scopePath = PathElement.getPath(scope, metaModelManager);
             i = PathElement.getCommonLength(parentPath, scopePath);
         }
         if ((i == 0) && (i < iMax)) {
