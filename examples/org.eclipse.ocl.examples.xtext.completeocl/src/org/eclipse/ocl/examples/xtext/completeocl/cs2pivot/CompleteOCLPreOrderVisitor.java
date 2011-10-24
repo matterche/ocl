@@ -138,6 +138,7 @@ public class CompleteOCLPreOrderVisitor
 			else {
 				classifier.getOwnedAttributes().add(pivotProperty);
 			}
+			context.refreshComments(pivotFeature, csElement);
 			return null;
 		}
 	}
@@ -197,6 +198,7 @@ public class CompleteOCLPreOrderVisitor
 			}
 //			context.installPivotElement(csElement, contextOperation);
 			contextType.getOwnedOperations().add(contextOperation);
+			context.refreshComments(contextOperation, csElement);
 //			metaModelManager.addContextOperation(modelOperation, contextOperation);
 			return null;
 		}
@@ -248,18 +250,19 @@ public class CompleteOCLPreOrderVisitor
 	}
 
 	@Override
-	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
-		context.resolveNamespaces(object.getNamespace());
-		Type modelClassifier = object.getClassifier();
+	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
+		context.resolveNamespaces(csElement.getNamespace());
+		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
 		}
-		Type contextClassifier = getContextClassifier(modelClassifier, object);
+		Type contextClassifier = getContextClassifier(modelClassifier, csElement);
+		context.refreshComments(contextClassifier, csElement);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-		context.installPivotUsage(object, contextClassifier);		// WIP ?? reference
+		context.installPivotUsage(csElement, contextClassifier);		// WIP ?? reference
 		return null;
 	}
 
@@ -302,21 +305,22 @@ public class CompleteOCLPreOrderVisitor
 	}
 
 	@Override
-	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS object) {
-		context.resolveNamespaces(object.getNamespace());
-		Property modelProperty = object.getProperty();
+	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
+		context.resolveNamespaces(csElement.getNamespace());
+		Property modelProperty = csElement.getProperty();
 		if ((modelProperty == null) || modelProperty.eIsProxy()) {
 			return null;
 		}
-		Type contextType = getContextClassifier(modelProperty.getOwningType(), object);
+		Type contextType = getContextClassifier(modelProperty.getOwningType(), csElement);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, object);
+		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
 		contextType.getOwnedAttributes().add(contextProperty);
+		context.refreshComments(contextProperty, csElement);
 //		metaModelManager.addContextProperty(modelProperty, contextProperty);
 		return null;
 	}
