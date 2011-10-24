@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -162,6 +163,19 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		@Override
 		protected Iterable<Type> getInnerIterable(Type model) {
 			return model.getSuperClasses();
+		}
+	}
+
+	public class CompleteElementCommentsIterable
+			extends CompleteElementIterable<Element, Comment> {
+
+		public CompleteElementCommentsIterable(Iterable<? extends Element> models) {
+			super(models);
+		}
+
+		@Override
+		protected Iterable<Comment> getInnerIterable(Element model) {
+			return model.getOwnedComments();
 		}
 	}
 
@@ -1371,6 +1385,34 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public Iterable<Type> getLocalClasses(org.eclipse.ocl.examples.pivot.Package pkg) {
 		return new CompletePackageTypesIterable(getAllPackages(pkg, true));
+	}
+
+	public Iterable<Comment> getLocalComments(Operation operation) {
+		if (operation.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else {
+			return new CompleteElementCommentsIterable(getAllOperations(operation));
+		}
+	}
+
+	public Iterable<Comment> getLocalComments(Property property) {
+		if (property.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else {
+			return new CompleteElementCommentsIterable(getAllProperties(property));
+		}
+	}
+
+	public Iterable<Comment> getLocalComments(Type type) {
+		if ((type == null) || (type.getOwningTemplateParameter() != null)) {
+			return Collections.emptyList();
+		}
+		else {
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
+			return new CompleteElementCommentsIterable(getAllTypes(type));
+		}
 	}
 
 	public Iterable<Constraint> getLocalConstraints(Operation operation) {
