@@ -4,7 +4,8 @@ As a workaround we do a dirty build, and put the products in GIT from the src2 f
 Java build copies the files across to the bin folder, from where they are distributed provided no
 Acceleo buiold occurs.
 
-Therefore the GIT status is to make src2 a source folder and disabled the Acceleo builder.
+Therefore the GIT status is to make src2 a source folder, disabled the Acceleo builder and nature,
+eliminate build.acceleo and the custombuildcallbacks.
 
 For development, the Acceleo builder is enabled, the ocl and ocl.ecore plugins are closed, the src2
 is a non-source folder so that emtl files are correctly produced. Once tested they are copied from bin
