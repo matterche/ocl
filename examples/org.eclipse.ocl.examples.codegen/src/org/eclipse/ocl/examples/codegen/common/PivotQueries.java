@@ -104,20 +104,26 @@ public class PivotQueries
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		String expression = PivotUtil.getBody(specification);
 		URI uri = metaModelManager.getResourceIdentifier(contextElement, null);
+		ExpressionInOcl expressionInOcl = null;
 		try {
-			ExpressionInOcl expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
-			if (expressionInOcl != null) {
-				String messageExpression = PivotUtil.getMessage(specification);
-				if (messageExpression != null) {
-					PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
-				}
-			}
-			return expressionInOcl;
+			expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		if (expressionInOcl != null) {
+			String messageExpression = PivotUtil.getMessage(specification);
+			if ((messageExpression != null) && (messageExpression.trim().length() > 0)) {
+				try {
+					PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
+				} catch (ParserException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return expressionInOcl;
 	}
 
 	public static String getFragmentURI(Element element) {
