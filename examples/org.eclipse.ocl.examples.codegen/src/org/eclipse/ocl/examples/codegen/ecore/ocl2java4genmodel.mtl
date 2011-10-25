@@ -135,6 +135,7 @@ try {
 	final [importDomainEvaluationType('DomainEvaluator')/] evaluator = [importType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
 	final [importDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
 	final [importDomainElementsType('DomainStandardLibrary')/] standardLibrary = valueFactory.getStandardLibrary();
+	final [importDomainValuesType('Value')/] [defineSymbolName(expressionInOcl.contextVariable, 'self')/] = valueFactory.valueOf(this);
 	[generateConstantLiterals(genPackage, expressionInOcl.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, expressionInOcl.bodyExpression, pkg)/][generateExpression(importDomainValuesType('Value') + ' ', 'result', expressionInOcl.bodyExpression, pkg)/]
 	return [returnCast/] valueFactory.getEcoreValueOf(result);
 } catch ([importDomainEvaluationType('InvalidValueException')/] e) {
