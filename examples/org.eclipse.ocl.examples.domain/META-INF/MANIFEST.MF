@@ -18,3 +18,4 @@ Export-Package: org.eclipse.ocl.examples.domain.elements,
  org.eclipse.ocl.examples.domain.values,
  org.eclipse.ocl.examples.domain.values.impl
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
