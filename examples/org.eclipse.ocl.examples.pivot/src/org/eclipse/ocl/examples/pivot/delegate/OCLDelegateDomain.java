@@ -74,9 +74,10 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI_LPG = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
-	public static final String OCL_DELEGATE_URI_PIVOT = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
-	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI_LPG + "/"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI_SLASH + "LPG"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_PIVOT = OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
 
 	/**
 	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
@@ -87,7 +88,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
 		for (EAnnotation eAnnotation : eAnnotations) {
 			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(OCL_DELEGATE_URI_LPG)) {
+			if ((source != null) && source.equals(OCL_DELEGATE_URI)) {
 				return eAnnotation;
 			}
 		}
@@ -153,6 +154,22 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory());
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
+	}
+
+	/**
+	 * Return true if string denotes an OCL Delegate, which is the string {@link #OCL_DELEGATE_URI},
+	 * or a string starting with {@link #OCL_DELEGATE_URI} and a / character.
+	 */
+	public static boolean isDelegateURI(String string) {
+		if (string != null) {
+			if (string.equals(OCL_DELEGATE_URI)) {
+				return true;
+			}
+			if (string.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected final String uri;

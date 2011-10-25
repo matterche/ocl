@@ -95,31 +95,31 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				for (GenClass genClass : genPackage.getGenClasses()) {
 					EClass eClass = genClass.getEcoreClass();
 					EClassifier eClassifier = eClass;
-					EAnnotation eAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-					if (eAnnotation != null) {
-						EMap<String, String> details = eAnnotation.getDetails();
-						for (String key : details.keySet()) {
-							if (!key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
-								String expression = details.get(key);
-								String messageExpression = details.get(key + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
-								convertConstraintToOperation(ecore2pivot, eClassifier, key, expression, messageExpression);
+					List<EAnnotation> obsoleteAnnotations = null;
+					for (EAnnotation eAnnotation : eClassifier.getEAnnotations()) {
+						String source = eAnnotation.getSource();
+						if (OCLDelegateDomain.isDelegateURI(source)) {
+							EMap<String, String> details = eAnnotation.getDetails();
+							for (String key : details.keySet()) {
+								if (!key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
+									String expression = details.get(key);
+									String messageExpression = details.get(key + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
+									convertConstraintToOperation(ecore2pivot, eClassifier, key, expression, messageExpression);
+								}
 							}
+							if (obsoleteAnnotations == null) {
+								obsoleteAnnotations = new ArrayList<EAnnotation>();
+							}
+							obsoleteAnnotations.add(eAnnotation);
 						}
-						eClassifier.getEAnnotations().remove(eAnnotation);
+					    if (EcorePackage.eNS_URI.equals(source))
+					    {
+					      eAnnotation.getDetails().remove("constraints");
+					    }
 					}
-					eAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
-					if (eAnnotation != null) {
-						EMap<String, String> details = eAnnotation.getDetails();
-						for (String key : details.keySet()) {
-							convertConstraintToOperation(ecore2pivot, eClassifier, key, details.get(key), details.get(key + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX));
-						}
-						eClassifier.getEAnnotations().remove(eAnnotation);
+					if (obsoleteAnnotations != null) {
+						eClassifier.getEAnnotations().removeAll(obsoleteAnnotations);
 					}
-				    eAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
-				    if (eAnnotation != null)
-				    {
-				      eAnnotation.getDetails().remove("constraints");
-				    }
 					genClass.initialize(eClass);
 				}
 			}
@@ -170,23 +170,59 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		@Override
 		protected Diagnostic doPreGenerate(Object object, Object projectType) {
 			GenModel genModel = (GenModel) object;
-			Resource genResource = genModel.eResource();
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(genResource.getResourceSet(), null);
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
-			convertConstraintsToOperations(metaModelManager, genModel);
-		    Map<String, String> results = createJavaBodies(genModel);			
-			installJavaBodies(metaModelManager, genModel, results);
+			if ((projectType == MODEL_PROJECT_TYPE) && hasDelegates(genModel)) {
+		    	GenPackage genPackage = genModel.getGenPackages().get(0);
+		        createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
+				Resource genResource = genModel.eResource();
+				MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(genResource.getResourceSet(), null);
+				MetaModelManager metaModelManager = adapter.getMetaModelManager();
+				convertConstraintsToOperations(metaModelManager, genModel);
+			    Map<String, String> results = createJavaBodies(genModel);			
+				installJavaBodies(metaModelManager, genModel, results);
+			}
 			return super.doPreGenerate(object, projectType);
 		}
 
 		@Override
 		protected Diagnostic generateModel(Object object, Monitor monitor) {
 			GenModel genModel = (GenModel) object;
-		    monitor.beginTask("", 2);
-		    monitor.subTask("Generating Dispatch Tables");
-			createDispatchTables(genModel, monitor);
-		    monitor.worked(1);
+			if (hasDelegates(genModel)) {
+			    monitor.beginTask("", 2);
+			    monitor.subTask("Generating Dispatch Tables");
+			    GenPackage genPackage = genModel.getGenPackages().get(0);
+			    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
+				createDispatchTables(genModel, monitor);
+			    monitor.worked(1);
+			}
 			return super.generateModel(object, monitor);
+		}
+
+		/**
+		 * Return true if any local GenPackage is for an EPackage that has OCL validation/setting/invocation delegates.
+		 */
+		protected boolean hasDelegates(GenModel genModel) {
+			for (GenPackage genPackage : genModel.getGenPackages()) {
+				EPackage ePackage = genPackage.getEcorePackage();
+				List<String> validationDelegates = EcoreUtil.getValidationDelegates(ePackage);
+				for (String validationDelegate : validationDelegates) {
+					if (OCLDelegateDomain.isDelegateURI(validationDelegate)) {
+						return true;
+					}
+				}
+				List<String> settingDelegates = EcoreUtil.getSettingDelegates(ePackage);
+				for (String settingDelegate : settingDelegates) {
+					if (OCLDelegateDomain.isDelegateURI(settingDelegate)) {
+						return true;
+					}
+				}
+				List<String> invocationDelegates = EcoreUtil.getInvocationDelegates(ePackage);
+				for (String invocationDelegate : invocationDelegates) {
+					if (OCLDelegateDomain.isDelegateURI(invocationDelegate)) {
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 
 		protected void installJavaBodies(MetaModelManager metaModelManager, GenModel genModel, Map<String, String> results) {

@@ -50,7 +50,7 @@ public class DocumentationExamples extends PivotTestSuite
 	public void testOCLinEcoreTutorialUsingLPGForLPG() throws Exception {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_LPG);			
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI);			
 		doTestOCLinEcoreTutorialUsingLPG(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingLPGForPivot() throws Exception {
@@ -62,7 +62,7 @@ public class DocumentationExamples extends PivotTestSuite
 	public void testOCLinEcoreTutorialUsingPivotForLPG() throws Exception {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		OCL.initialize(resourceSet);
-		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_LPG);			
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI);			
 		doTestOCLinEcoreTutorialUsingPivot(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingPivotForPivot() throws Exception {
