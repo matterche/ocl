@@ -18,5 +18,20 @@ package org.eclipse.ocl.examples.codegen.common;
 
 public interface ImportEmitter
 {
-	String formatImport(String aPath);
+	/**
+	 * Declare the need for the import of aPath.
+	 * @param aPath
+	 * @return
+	 */
+	String declareImport(String aPath);
+
+	/**
+	 * Return the internal reference to an imported aPath.
+	 */
+	String emitImport(String aPath);
+
+	/**
+	 * Return the formatted list odf all import declarations.
+	 */
+	String emitImports();
 }

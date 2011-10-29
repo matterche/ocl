@@ -18,12 +18,17 @@ package org.eclipse.ocl.examples.codegen.tables;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.acceleo.common.IAcceleoConstants;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
+import org.eclipse.acceleo.model.mtl.resource.EMtlResourceFactoryImpl;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
@@ -31,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.codegen.common.EmitQueries;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 
 /**
@@ -173,11 +179,29 @@ public class Model2tables extends AbstractAcceleoGenerator {
      *            This will be used to display progress information to the user.
      * @throws IOException
      *             This will be thrown if any of the output files cannot be saved to disk.
-     * @generated NOT
+     * @generated
      */
     @Override
     public void doGenerate(Monitor monitor) throws IOException {
-		EmitQueries.EMITTER = null;
+        /*
+         * TODO if you wish to change the generation as a whole, override this. The default behavior should
+         * be sufficient in most cases. If you want to change the content of this method, do NOT forget to
+         * change the "@generated" tag in the Javadoc of this method to "@generated NOT". Without this new tag,
+         * any compilation of the Acceleo module with the main template that has caused the creation of this
+         * class will revert your modifications. If you encounter a problem with an unresolved proxy during the
+         * generation, you can remove the comments in the following instructions to check for problems. Please
+         * note that those instructions may have a significant impact on the performances.
+         */
+
+        //org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(model);
+
+        //if (model != null && model.eResource() != null) {
+        //    List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = model.eResource().getErrors();
+        //    for (org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic : errors) {
+        //        System.err.println(diagnostic.toString());
+        //    }
+        //}
+
         super.doGenerate(monitor);
     }
     
@@ -295,15 +319,6 @@ public class Model2tables extends AbstractAcceleoGenerator {
      */
     public void registerPackagesGen(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(org.eclipse.ocl.examples.pivot.PivotPackage.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
-        }
-        if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
-        }
-        if (!isInWorkspace(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(), org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
-        }
         
         /*
          * TODO If you need additional package registrations, you can register them here. The following line
@@ -346,18 +361,56 @@ public class Model2tables extends AbstractAcceleoGenerator {
     public void registerResourceFactories(ResourceSet resourceSet) {
         super.registerResourceFactories(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("genmodel", new EcoreResourceFactoryImpl());
+        if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+            projectMap.initializeResourceSet(resourceSet);
+            resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(IAcceleoConstants.EMTL_FILE_EXTENSION, new EMtlResourceFactoryImpl());
+        }
     }
+
+	protected void preInitialize() {
+		OCLstdlib.install();
+		EmitQueries.EMITTER = new EmitQueries.Default();
+	}
 
 	@Override
 	public void initialize(URI modelURI, File folder, List<?> arguments) throws IOException {
-		OCLstdlib.install();
+		preInitialize();
 		super.initialize(modelURI, folder, arguments);
 	}
 
 	@Override
 	public void initialize(EObject element, File folder, List<? extends Object> arguments) throws IOException {
-		OCLstdlib.install();
+		preInitialize();
 		super.initialize(element, folder, arguments);
-	}  
+	}
+	
+    public static final String PROJECT_NAME = "org.eclipse.ocl.examples.codegen";
+
+    private static ProjectMap projectMap = new ProjectMap();
+
+    @Override
+    protected URL findModuleURL(String moduleName) {
+        if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+            URL url;
+            try {
+                String moduleURL = getClass().getResource(moduleName).toString();
+                int index = moduleURL.lastIndexOf("/" + PROJECT_NAME + "/");
+                if (index >= 0) {
+                    url = new URL("file:" + moduleURL.substring(index));    // Bogus URL to pass value to createTemplateURI
+                    return url;
+                }
+            } catch (MalformedURLException e) {        // Never happens
+            }
+        }
+        return super.findModuleURL(moduleName);
+    }
+
+    @Override
+    protected URI createTemplateURI(String entry) {
+        if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+            return URI.createPlatformResourceURI(entry.substring(5), true);
+        }
+        return super.createTemplateURI(entry);
+    }
     
 }

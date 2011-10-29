@@ -52,6 +52,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.codegen.tables.Model2operations;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -167,6 +168,24 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		return results;
 	}
 
+	protected void createClassOperations(GenModel genModel, Monitor monitor) {
+	  	try {
+	        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+            IProject modelProject = workspace.getRoot().getProject(genModel.getModelProjectDirectory());
+            IPath javaSource = new Path(genModel.getModelDirectory());
+            IFolder folder = modelProject.getParent().getFolder(javaSource);
+            java.net.URI locationURI = folder.getLocationURI();
+            String rawPath = locationURI.getRawPath();
+            List<String> arguments = new ArrayList<String>();
+            Model2operations generator = new Model2operations(genModel, new File(rawPath), arguments);
+	        generator.generate(monitor);
+	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	protected void createDispatchTables(GenModel genModel, Monitor monitor) {
 	  	try {
 	        IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -205,11 +224,13 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected Diagnostic generateModel(Object object, Monitor monitor) {
 		GenModel genModel = (GenModel) object;
 		if (!useDelegates(genModel) && hasDelegates(genModel)) {
-		    monitor.beginTask("", 2);
+		    monitor.beginTask("", 3);
 		    monitor.subTask("Generating Dispatch Tables");
 		    GenPackage genPackage = genModel.getGenPackages().get(0);
 		    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
 			createDispatchTables(genModel, monitor);
+		    monitor.worked(1);
+			createClassOperations(genModel, monitor);
 		    monitor.worked(1);
 		}
 		return super.generateModel(object, monitor);

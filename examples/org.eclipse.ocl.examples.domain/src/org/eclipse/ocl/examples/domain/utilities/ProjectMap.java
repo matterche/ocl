@@ -174,11 +174,11 @@ public class ProjectMap extends SingletonAdapterImpl
 			projectMap = new HashMap<String, URI>();
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 				scanClassPath();
-				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-				for (String key : getProjectMap().keySet()) {
-					URI value = projectMap.get(key);
-					platformResourceMap.put(key, value);
-				}
+//				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+//				for (String key : getProjectMap().keySet()) {
+//					URI value = projectMap.get(key);
+//					platformResourceMap.put(key, value);
+//				}
 			}
 			else {
 //				scanBundles();  -- no need to scan hundreds of bundles when a single URI map entry will dandle them all. 

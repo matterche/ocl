@@ -1,0 +1,255 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::common::importTemplates('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/GenModel')/]
+
+[import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
+[import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
+
+[template public emitImports(genPackage : GenPackage, pPackage : Package, pType : Type)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.Value')/]
+[let garbage : String = genPackage.gatherImports(pPackage, pType)/]
+[genPackage.emitImports()/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, pPackage : Package, pType : Type)]
+[for (pConstraint : Constraint | pType.ownedRule)]
+[genPackage.gatherImports(pType, pConstraint.specification)/]
+[/for]
+[if (pType.oclIsKindOf(Class))]
+[for (pOperation : Operation | pType.oclAsType(Class).ownedOperation)]
+[for (pConstraint : Constraint | pOperation.ownedRule)]
+[genPackage.gatherImports(pOperation, pConstraint.specification)/]
+[/for]
+[/for]
+[for (pProperty : Property | pType.oclAsType(Class).ownedAttribute)]
+[for (pConstraint : Constraint | pProperty.ownedRule)]
+[genPackage.gatherImports(pProperty, pConstraint.specification)/]
+[/for]
+[/for]
+[/if]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, contextElement : NamedElement, specification : ValueSpecification)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.LibraryOperation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainCallExp')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.InvalidValueException')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, contextElement : NamedElement, specification : OpaqueExpression)]
+[let expressionInOcl : ExpressionInOcl = getExpressionInOcl(contextElement, specification)]
+[genPackage.gatherImports(contextElement, expressionInOcl)/]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, contextElement : NamedElement, specification : ExpressionInOcl)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.ValueFactory')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
+[for (pElement : Element | pElements)]
+[genPackage.gatherImports(pElement)/]
+[/for]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, pOperation : Operation, specification : ExpressionInOcl)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.Abstract' + getArityPlusOneName(specification.parameterVariable->size()) + 'Operation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.ValueFactory')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
+[for (pElement : Element | pElements)]
+[genPackage.gatherImports(pElement)/]
+[/for]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, pProperty : Property, specification : ExpressionInOcl)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.AbstractProperty')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.ValueFactory')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainProperty')/]
+[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
+[for (pElement : Element | pElements)]
+[genPackage.gatherImports(pElement)/]
+[/for]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : BooleanLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.BooleanValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : ClassifierType)]
+[genPackage.gatherImports(ast.instanceType)/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainClassifierType')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : CollectionLiteralExp) ? (ast.part->filter(CollectionRange)->size() = 0)]
+[genPackage.gatherImports(ast.type)/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : CollectionLiteralExp) ? ((ast.part->size() = 1) and (ast.part->filter(CollectionRange)->size() = 1))]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.IntegerRange')/]
+[genPackage.gatherImports(ast.type)/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : CollectionLiteralExp)]
+[genPackage.declareImport('java.util.ArrayList')/]
+[genPackage.declareImport('java.util.List')/]
+[genPackage.gatherImports(ast.type)/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, item : CollectionItem)]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, range : CollectionRange)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.IntegerRange')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : CollectionType)]
+[genPackage.gatherImports(ast.elementType)/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainCollectionType')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : Element)]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : IfExp)]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : IntegerLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.IntegerValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : InvalidLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.InvalidValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : IterateExp)]
+[let arity : Integer = ast.iterator->size()]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.LibraryIteration')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.Executor' + getArityMultiple(arity) + 'IterationManager')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.CollectionValue')/]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : IteratorExp)]
+[let arity : Integer = ast.iterator->size()]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.Abstract' + getArityPlusOneName(arity) + 'Operation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.InvalidValueException')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.LibraryIteration')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.Executor' + getArityMultiple(arity) + 'IterationManager')/]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : LetExp)]
+[genPackage.gatherImports(ast.type)/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : NullLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.NullValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : OperationCallExp) ? ((ast.referredOperation.owningType.name = 'Boolean') and (ast.referredOperation.ownedParameter->size() = 1))]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorOperation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.evaluation.InvalidValueException')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.utilities.DomainUtil')/]
+[genPackage.declareImport(genPackage.getQualifyingPackage(ast.type))/]
+[genPackage.gatherImports(ast.type)/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : OperationCallExp) ? ((ast.referredOperation.owningType.name <> 'Boolean') or (ast.referredOperation.ownedParameter->size() <> 1))]
+[let arity : Integer = ast.referredOperation.ownedParameter->size()]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorOperation')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.Library' + getArityPlusOneName(arity) + 'Operation')/]
+[genPackage.declareImport(genPackage.getQualifyingPackage(ast.type))/]
+[genPackage.gatherImports(ast.type)/]
+[/let]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : PropertyCallExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorProperty')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.library.LibraryProperty')/]
+[genPackage.declareImport(genPackage.getQualifyingPackage(ast.referredProperty.owningType))/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : RealLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.RealValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : StringLiteralExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.StringValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : TupleLiteralExp)]
+[genPackage.declareImport('java.util.HashMap')/]
+[genPackage.declareImport('java.util.Map')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainTypedElement')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : TupleLiteralPart)]
+[genPackage.declareImport('java.util.ArrayList')/]
+[genPackage.declareImport('java.util.List')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainTypedElement')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainTupleType')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : TupleType)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainTupleType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainTypedElement')/]
+[for (part : Property | ast.ownedAttribute)]
+[genPackage.gatherImports(part.type)/]
+[/for]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : Type)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.elements.DomainType')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : TypeExp)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.TypeValue')/]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : UnlimitedNaturalLiteralExp)]
+[if (ast.asIntegerStringOrNull() = null)]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.UnlimitedValue')/]
+[else]
+[genPackage.declareImport('org.eclipse.ocl.examples.domain.values.IntegerValue')/]
+[/if]
+[/template]
+
+[template protected gatherImports(genPackage : GenPackage, ast : VariableExp)]
+[/template]

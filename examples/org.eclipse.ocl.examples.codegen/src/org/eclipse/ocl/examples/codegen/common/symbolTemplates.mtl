@@ -1,0 +1,82 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::common::symbolTemplates('http://www.eclipse.org/ocl/3.1.0/Pivot')/]
+
+[import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::nameQueries/]
+
+[**
+ * The symbolName template provides a semi-readable name for use by any AST node that is unique within a given ExpressionInOcl.
+ **/]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : BooleanLiteralExp)]
+[ast.defineSymbolName(if ast.booleanSymbol then 'True' else 'False' endif)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Element)]
+A_[ast.getSymbolName()/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : IntegerLiteralExp)]
+[ast.defineSymbolName('I_' + ast.asIntegerStringOrNull())/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : InvalidLiteralExp)]
+[ast.defineSymbolName('Invalid')/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : NullLiteralExp)]
+[ast.defineSymbolName('Null')/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Operation)]
+O_[expressionInOcl.getUniqueText(ast)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Parameter)]
+ppP_xxx[/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Property)]
+[if ast.eContainer().oclIsKindOf(TupleType)]
+L_[expressionInOcl.getUniqueText(ast)/][else]
+P_[expressionInOcl.getUniqueText(ast)/][/if][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : RealLiteralExp)]
+R_[ast.asRealStringOrNull().replaceAll('\\.', '\\_').replaceAll('\\-', '\\_')/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : StringLiteralExp)]
+S_[expressionInOcl.getUniqueText(ast.stringSymbol)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : TupleLiteralPart)]
+L_[expressionInOcl.getUniqueText(ast)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : TupleType)]
+U_[expressionInOcl.getUniqueText(ast)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Type)]
+T_[expressionInOcl.getUniqueText(ast)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : Variable)]
+[if ast.eContainer().oclIsKindOf(ExpressionInOcl)]
+[ast.name/][else]
+V_[expressionInOcl.getUniqueText(ast)/][/if][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : VariableExp)]
+[expressionInOcl.symbolName(ast.referredVariable)/][/template]
+
+[template public symbolName(expressionInOcl : ExpressionInOcl, ast : UnlimitedNaturalLiteralExp)]
+[let value : String = ast.asIntegerStringOrNull()]
+[if (value = null)]
+[ast.defineSymbolName('Unlimited')/][else]
+[ast.defineSymbolName('I_' + value)/][/if]
+[/let]
+[/template]

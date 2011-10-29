@@ -15,7 +15,7 @@
  * $Id$
  **/]
 [comment encoding = UTF-8 /]
-[module org::eclipse::ocl::examples::codegen::common::elementQueries('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+[module org::eclipse::ocl::examples::codegen::common::elementQueries('http://www.eclipse.org/ocl/3.1.0/Pivot')/]
 
 [query public asIntegerStringOrNull(elem : Element) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'asIntegerStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]

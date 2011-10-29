@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.types;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +94,14 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			typeMap.put(type, tupleProperty);
 		}
 		return tupleProperty;
+	}
+	
+	public DomainTupleType getTupleType(DomainTypedElement ... parts) {
+		List<DomainTypedElement> partsList = new ArrayList<DomainTypedElement>(parts.length);
+		for (DomainTypedElement part : parts) {
+			partsList.add(part);
+		}
+		return getTupleType(partsList);
 	}
 	
 	public boolean isEqualToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType) {

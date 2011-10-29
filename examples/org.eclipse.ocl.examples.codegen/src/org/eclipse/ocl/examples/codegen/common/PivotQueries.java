@@ -103,7 +103,7 @@ public class PivotQueries
 		ResourceSet resourceSet = resource.getResourceSet();
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		String expression = PivotUtil.getBody(specification);
-		URI uri = metaModelManager.getResourceIdentifier(contextElement, null);
+		URI uri = metaModelManager.getResourceIdentifier(specification, null);
 		ExpressionInOcl expressionInOcl = null;
 		try {
 			expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);

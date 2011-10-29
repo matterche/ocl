@@ -15,23 +15,22 @@
  * $Id$
  **/]
 [comment encoding = UTF-8 /]
-[module org::eclipse::ocl::examples::codegen::ecore::ocl2java4genmodel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+[module org::eclipse::ocl::examples::codegen::ecore::ocl2java4genmodel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/GenModel')/]
 
-[import org::eclipse::ocl::examples::codegen::common::ePackageQueries/]
+[import org::eclipse::ocl::examples::codegen::common::constantTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::elementQueries/]
 [import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::expressionTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
+[import org::eclipse::ocl::examples::codegen::common::symbolTemplates/]
 
 [template public generateModel(genModel : GenModel)]
 [comment @main /]
 [for (genPackage : GenPackage | genModel.genPackages)]
-[let ePackage : EPackage = genPackage.ecorePackage]
-[let pPackage : Package = ePackage.getPivotPackage()]
+[let pPackage : Package = genPackage.getPivotPackage()]
 [generatePackage(genPackage, pPackage)/]
-[/let]
 [/let]
 [/for]
 [/template]
@@ -53,10 +52,12 @@
 [/template]
 
 [template public generateType(genPackage : GenPackage, type : Type)]
+[let packagePathPrefix : String = genPackage.getQualifiedPackageName()]
 [let pkg : Package = type._'package']
 [for (rule : Constraint | type.ownedRule->select(stereotype = 'invariant'))]
 [file (type.getFragmentURI() + '==' + rule.name, false, 'UTF-8')]
-[let className : String = type.name + '_' + rule.stereotype + '_' + rule.name]
+[let className : String = packagePathPrefix + '.operations.' + type.name + 'Operations']
+[let constraintName : String = '_' + rule.stereotype + '_' + rule.name]
 [let specification : OpaqueExpression = rule.specification.oclAsType(OpaqueExpression)]
 /** 
  * [specification.toString()/]
@@ -64,86 +65,113 @@
 [let expressionInOcl : ExpressionInOcl = type.getExpressionInOcl(specification)]
 [let arity : Integer = expressionInOcl.parameterVariable->size()]
 try {
-	final [importDomainEvaluationType('DomainEvaluator')/] evaluator = [importType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
-	final [importDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
-	final [importDomainElementsType('DomainStandardLibrary')/] standardLibrary = valueFactory.getStandardLibrary();
-	final [importDomainValuesType('Value')/] [defineSymbolName(expressionInOcl.contextVariable, 'self')/] = valueFactory.valueOf(this);
-	[generateExpression(genPackage, 'result', expressionInOcl.bodyExpression, pkg)/]
+	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+[let constants : String = genPackage.gatherSpecificationConstants(expressionInOcl)]
+	[genPackage.emitConstants(constants)/][/let]
+final [emitDomainElementsType('DomainType')/] returnType = [expressionInOcl.symbolName(expressionInOcl.type)/];
+	final [emitDomainValuesType('Value')/] result = [emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self);
 	final boolean resultIsNull = result.isNull();
 	if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
 		return true;
 	}
 	if (diagnostics != null) {
-		int severity = resultIsNull ? [importEmfCommonUtilType('Diagnostic')/].ERROR : [importEmfCommonUtilType('Diagnostic')/].WARNING;
+		int severity = resultIsNull ? [emitEmfCommonUtilType('Diagnostic')/].ERROR : [emitEmfCommonUtilType('Diagnostic')/].WARNING;
 [if (expressionInOcl.messageExpression->notEmpty())]
-		[generateExpression(genPackage, 'messageValue', expressionInOcl.messageExpression, pkg)/]
+		final [emitDomainValuesType('Value')/] messageValue = [emitType(className)/].[constraintName/].Message.INSTANCE.evaluate(evaluator, returnType, self);
 		String message;
 		if (messageValue != null) {
 			message = messageValue.asString();
 		}
 		else {
 			Object objectLabel;
-			if (this instanceof [importEcoreType('EDataType')/]) {
-				objectLabel = [importEcoreUtilType('EObjectValidator')/].getValueLabel(([importEcoreType('EDataType')/]) this, result, context);
+			if (this instanceof [emitEcoreType('EDataType')/]) {
+				objectLabel = [emitEcoreUtilType('EObjectValidator')/].getValueLabel(([emitEcoreType('EDataType')/]) this, result, context);
 			}
-			else if (result instanceof [importEcoreType('EObject')/]) {
-				objectLabel = [importEcoreUtilType('EObjectValidator')/].getObjectLabel(([importEcoreType('EObject')/]) result, context);
+			else if (result instanceof [emitEcoreType('EObject')/]) {
+				objectLabel = [emitEcoreUtilType('EObjectValidator')/].getObjectLabel(([emitEcoreType('EObject')/]) result, context);
 			}
 			else {
 				objectLabel = String.valueOf(result);
 			}
-			message = [importType('org.eclipse.osgi.util.NLS')/].bind([importDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, "[genPackage.getOperationID(type, rule, false)/]", objectLabel);
+			message = [emitType('org.eclipse.osgi.util.NLS')/].bind([emitDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, "[genPackage.getOperationID(type, rule, false)/]", objectLabel);
 		}
-	    diagnostics.add(new [importEmfCommonUtilType('BasicDiagnostic')/](severity, [importType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [importType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(type, rule, true)/], message, new Object ['[]'/] { result }));
+	    diagnostics.add(new [emitEmfCommonUtilType('BasicDiagnostic')/](severity, [emitType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [emitType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(type, rule, true)/], message, new Object ['[]'/] { result }));
 [else]
-	    diagnostics.add(new [importEmfCommonUtilType('BasicDiagnostic')/](severity, [importType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [importType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(type, rule, true)/], [importDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, new Object ['[]'/] { result }));
+	    diagnostics.add(new [emitEmfCommonUtilType('BasicDiagnostic')/](severity, [emitType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [emitType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(type, rule, true)/], [emitDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, new Object ['[]'/] { result }));
 [/if]
 	}
 	return false;
-} catch ([importDomainEvaluationType('InvalidValueException')/] e) {
-	throw new [importEmfCommonUtilType('WrappedException')/]("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/file][/for][/let][/template]
+} catch ([emitDomainEvaluationType('InvalidValueException')/] e) {
+	throw new [emitEmfCommonUtilType('WrappedException')/]("Failed to evaluate [className/]", e);
+}[/let][/let][/let][/let][/let][/file][/for][/let][/let][/template]
 
 [template public generateOperation(genPackage : GenPackage, type : Type, operation : Operation)]
+[let packagePathPrefix : String = genPackage.getQualifiedPackageName()]
 [let rule : Constraint = operation.ownedRule->any(stereotype = 'body')]
 [file (operation.getFragmentURI(), false, 'UTF-8')]
-[let className : String = type.name + '_' + operation.name + '_' + rule.stereotype + '_' + rule.name]
+[let className : String = packagePathPrefix + '.operations.' + type.name + 'Operations']
+[let constraintName : String = '_' + operation.name + '_' + rule.stereotype + '_' + rule.name]
 /** 
  * [rule.specification.toString()/]
  */
-[generateSpecification(genPackage, className, operation, genPackage.getOperationReturnType(operation), rule.specification, type._'package')/][/let][/file][/let][/template]
+[let returnCast : String = genPackage.getOperationReturnType(operation)]
+[let specification : ValueSpecification = rule.specification]
+[let pkg : Package = type._'package']
+[generateOperation(genPackage, className, constraintName, operation, returnCast, specification, pkg)/][/let][/let][/let][/let][/let][/file][/let][/let][/template]
+
+[template public generateOperation(genPackage : GenPackage, className : String, constraintName : String, operation : Operation, returnCast : String, specification : ValueSpecification, pkg : Package)]
+throw new UnsupportedOperationException();
+[/template]
+
+[template public generateOperation(genPackage : GenPackage, className : String, constraintName : String, operation : Operation, returnCast : String, specification : OpaqueExpression, pkg : Package)]
+[let expressionInOcl : ExpressionInOcl = operation.getExpressionInOcl(specification)]
+[let arity : Integer = expressionInOcl.parameterVariable->size()]
+try {
+	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+[let constants : String = genPackage.gatherSpecificationConstants(expressionInOcl)]
+	[genPackage.emitConstants(constants)/][/let]
+final [emitDomainElementsType('DomainType')/] returnType = [expressionInOcl.symbolName(expressionInOcl.type)/];
+	final [emitDomainValuesType('Value')/] result = [emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self);
+	return [returnCast/] valueFactory.getEcoreValueOf(result);
+} catch ([emitDomainEvaluationType('InvalidValueException')/] e) {
+	throw new [emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
+}[/let][/let][/template]
 
 [template public generateProperty(genPackage : GenPackage, type : Type, property : Property)]
+[let packagePathPrefix : String = genPackage.getQualifiedPackageName()]
 [let derivationRules : OrderedSet(Constraint) = property.ownedRule->select(stereotype = 'derivation')]
 [let initialRules : OrderedSet(Constraint) = property.ownedRule->select(stereotype = 'initial')]
 [let rule : Constraint = if derivationRules->notEmpty() then derivationRules->any(true) else initialRules->any(true) endif]
 [file (property.getFragmentURI(), false, 'UTF-8')]
-[let className : String = type.name + '_' + property.name + '_' + rule.stereotype + '_' + rule.name]
+[let className : String = packagePathPrefix + '.operations.' + type.name + 'Operations']
+[let constraintName : String = '_' + property.name + '_' + rule.stereotype + '_' + rule.name]
 /** 
  * [rule.specification.toString()/]
  */
-[generateSpecification(genPackage, className, property, genPackage.getPropertyType(property), rule.specification, type._'package')/][/let][/file][/let][/let][/let][/template]
+[generateProperty(genPackage, className, constraintName, property, genPackage.getPropertyType(property), rule.specification, type._'package')/][/let][/let][/file][/let][/let][/let][/let][/template]
 
-[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnCast : String, specification : ValueSpecification, pkg : Package)]
+[template public generateProperty(genPackage : GenPackage, className : String, constraintName : String, property : Property, returnCast : String, specification : ValueSpecification, pkg : Package)]
 throw new UnsupportedOperationException();
 [/template]
 
-[template public generateSpecification(genPackage : GenPackage, className : String, contextElement : NamedElement, returnCast : String, specification : OpaqueExpression, pkg : Package)]
-[let expressionInOcl : ExpressionInOcl = contextElement.getExpressionInOcl(specification)]
+[template public generateProperty(genPackage : GenPackage, className : String, constraintName : String, property : Property, returnCast : String, specification : OpaqueExpression, pkg : Package)]
+[let expressionInOcl : ExpressionInOcl = property.getExpressionInOcl(specification)]
 [let arity : Integer = expressionInOcl.parameterVariable->size()]
 try {
-	final [importDomainEvaluationType('DomainEvaluator')/] evaluator = [importType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
-	final [importDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
-	final [importDomainElementsType('DomainStandardLibrary')/] standardLibrary = valueFactory.getStandardLibrary();
-	final [importDomainValuesType('Value')/] [defineSymbolName(expressionInOcl.contextVariable, 'self')/] = valueFactory.valueOf(this);
-	[generateConstantLiterals(genPackage, expressionInOcl.bodyExpression, pkg)/][generateConstantTupleParts(genPackage, expressionInOcl.bodyExpression, pkg)/][generateExpression(importDomainValuesType('Value') + ' ', 'result', expressionInOcl.bodyExpression, pkg)/]
+	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+[let constants : String = genPackage.gatherSpecificationConstants(expressionInOcl)]
+	[genPackage.emitConstants(constants)/][/let]
+final [emitDomainElementsType('DomainType')/] returnType = [expressionInOcl.symbolName(expressionInOcl.type)/];
+	final [emitDomainValuesType('Value')/] result = [emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self, [emitType(genPackage.getQualifiedPackageName() + '.' + genPackage.getTablesClassName())/].Properties._[property.owningType.name/]__[property.name/]);
 	return [returnCast/] valueFactory.getEcoreValueOf(result);
-} catch ([importDomainEvaluationType('InvalidValueException')/] e) {
-	throw new [importType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
+} catch ([emitDomainEvaluationType('InvalidValueException')/] e) {
+	throw new [emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
 }[/let][/let][/template]
 
-[template public generateExpression(genPackage : GenPackage, result : String, expression : OclExpression, pkg : Package)]
-[let constantLiterals : String = generateConstantLiterals(genPackage, expression, pkg)]
-[let constantTupleParts : String = generateConstantTupleParts(genPackage, expression, pkg)]
-[let expression : String = generateExpression(genPackage, importDomainValuesType('Value') + ' ', result, expression, pkg)]
-[constantLiterals/][constantTupleParts/][expression/][/let][/let][/let][/template]
+
+[template public gatherSpecificationConstants(genPackage : GenPackage, expressionInOcl : ExpressionInOcl)]
+final [emitDomainValuesType('ValueFactory')/] valueFactory = evaluator.getValueFactory();
+final [emitDomainValuesType('Value')/] [defineSymbolName(expressionInOcl.contextVariable, 'self')/] = valueFactory.valueOf(this);
+[genPackage.gatherConstant(expressionInOcl, expressionInOcl.type)/]
+[/template]
+

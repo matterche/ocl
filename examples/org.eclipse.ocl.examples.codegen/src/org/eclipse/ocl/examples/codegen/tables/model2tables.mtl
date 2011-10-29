@@ -15,48 +15,46 @@
  * $Id$
  **/]
 [comment encoding = UTF-8 /]
-[module org::eclipse::ocl::examples::codegen::tables::model2tables('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/emf/2002/GenModel')/]
+[module org::eclipse::ocl::examples::codegen::tables::model2tables('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/GenModel')/]
 
-[import org::eclipse::ocl::examples::codegen::common::ePackageQueries/]
 [import org::eclipse::ocl::examples::codegen::common::elementQueries/]
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
+[import org::eclipse::ocl::examples::codegen::common::importTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
+[import org::eclipse::ocl::examples::codegen::common::symbolTemplates/]
 
 [template public generateTables(genModel : GenModel)]
 [comment @main /]
 [for (genPackage : GenPackage | genModel.genPackages)]
-[let ePackage : EPackage = genPackage.ecorePackage]
-[let pPackage : Package = ePackage.getPivotPackage()]
+[let pPackage : Package = genPackage.getPivotPackage()]
 [generatePackage(genPackage, pPackage)/]
-[/let]
 [/let]
 [/for]
 [/template]
 
-[template public generatePackage(genPackage : GenPackage, pkg : Package)]
+[template public generatePackage(genPackage : GenPackage, pPackage : Package)]
 [let tablesClassName : String = genPackage.getTablesClassName()]
 [let packagePathPrefix : String = if genPackage.basePackage->notEmpty() and genPackage.basePackage.size() > 0 then genPackage.basePackage.replaceAll('\\.', '/') + '/' else '' endif]
 [let packagePrefix : String = packagePathPrefix.replaceAll('/', '.')]
-[file (packagePathPrefix + pkg.name + '/' + tablesClassName + '.java', false, 'UTF-8')]
+[file (packagePathPrefix + pPackage.name + '/' + tablesClassName + '.java', false, 'UTF-8')]
 /**
  * [genPackage.getCopyright(' * ')/]
  *************************************************************************
  * This code is 100% auto-generated
- * from: [pkg.name/]
+ * from: [pPackage.name/]
  * using: org.eclipse.ocl.examples.codegen.tables.model2tables.mtl
  *
  * Do not edit it.
  */
 package [genPackage.getQualifiedPackageName()/];
 
-import org.eclipse.ocl.examples.library.ecore.*;
-import org.eclipse.ocl.examples.library.executor.*;
-//import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibPackage;
-//import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+[let garbage : String = genPackage.gatherTableImports(pPackage)][/let]
+[genPackage.emitImports()/]
 
 /**
- * [tablesClassName/] provides the dispatch tables for the [pkg.name/] for use by the OCL dispatcher.
+ * [tablesClassName/] provides the dispatch tables for the [pPackage.name/] for use by the OCL dispatcher.
  *
  * In order to ensure correct static initialization, a top level class element must be accessed
  * before any nested class element. Therefore an access to PACKAGE.getClass() is recommended.
@@ -67,21 +65,27 @@ public class [tablesClassName/]
 	/**
 	 *	The package descriptor for the package.
 	 */
-	public static final ExecutorPackage PACKAGE = new ExecutorPackage("[pkg.name/]", "[pkg.nsURI/]", null);
+	public static final EcoreExecutorPackage PACKAGE = new EcoreExecutorPackage([genPackage.prefix/]Package.eINSTANCE);
 
-	[declareTypes(genPackage, pkg)/]
+	public static final ExecutorStandardLibrary LIBRARY = new ExecutorStandardLibrary(PACKAGE); 
 
-	[declareFragments(genPackage, pkg)/]
+	public static final ExecutorManager EVALUATOR = new EcoreExecutorManager(LIBRARY); 
 
-	[declareOperations(genPackage, pkg)/]
+	[declareTypes(genPackage, pPackage)/]
 
-	[declareProperties(genPackage, pkg)/]
+	[declareFragments(genPackage, pPackage)/]
 
-	[declareTypeFragments(pkg)/]
+	[declareOperations(genPackage, pPackage)/]
 
-	[declareFragmentOperations(genPackage, pkg)/]
+	[declareProperties(genPackage, pPackage)/]
 
-	[declareFragmentProperties(pkg)/]
+	[declareConstraints(genPackage, pPackage)/]
+
+	[declareTypeFragments(pPackage)/]
+
+	[declareFragmentOperations(genPackage, pPackage)/]
+
+	[declareFragmentProperties(pPackage)/]
 	
 //	static {
 //		Types.types['[0]'/].getClass();
@@ -186,12 +190,12 @@ public static final ExecutorOperation [op.getLiteralName()/] = new ExecutorOpera
 [let _template : TemplateableElement = type.owningTemplateParameter.signature.template]
 [if (_template.oclIsKindOf(Class))]
 [let containerType : Class = _template.oclAsType(Class)]
-[let prefix : String = genPackage.importQualifiedPrefix(containerType, scope)]
+[let prefix : String = genPackage.importQualifiedPrefix(containerType)]
 [if (prefix.size() <= 0)]
 (DomainType)null/*[containerType._package.name/]*/[else]
 [prefix/]Types._[containerType.encodeName()/]_[type.encodeName()/][/if][/let][/let][elseif (_template.oclIsKindOf(Operation))]
 [let containerOperation : Operation = _template.oclAsType(Operation)]
-[let prefix : String = genPackage.importQualifiedPrefix(containerOperation.owningType, scope)]
+[let prefix : String = genPackage.importQualifiedPrefix(containerOperation.owningType)]
 [if (prefix.size() <= 0)]
 (DomainType)null/*[containerOperation.owningType._package.name/]*/[else]
 [prefix/]Operations._[containerOperation.getLiteralName()/]_[type.encodeName()/][/if][/let][/let][else]
@@ -211,7 +215,7 @@ new ExecutorTupleType("[type.name/]"[declareTupleParts(genPackage, type.ownedAtt
 	[declareParameterType(genPackage, part.type, scope)/][/for][/template]
 
 [template public declareParameterType(genPackage : GenPackage, type : Type, scope : Package)]
-[let prefix : String = genPackage.importQualifiedPrefix(type.oclAsType(Class), scope)]
+[let prefix : String = genPackage.importQualifiedPrefix(type.oclAsType(Class))]
 [if (prefix.size() <= 0)]
 (DomainType)null/*[type.oclAsType(Class)._package.name/]*/[else]
 [prefix/]Types._[type.encodeName()/][/if][/let][/template]
@@ -230,6 +234,27 @@ public static class Properties {[for (cls : Class | pkg.ownedType->filter(Class)
 [for (i : Integer | Sequence{1..props->size()}) separator('\n')]
 [let prop : Property = props->at(i)]
 public static final ExecutorProperty [prop.getLiteralName()/] = new ExecutorProperty("[prop.name/]", [cls.getLiteralName()/], [i-1/], [genPackage.getImplementationName(prop)/]);[/let][/for][/let]
+[/template]
+
+[template public declareConstraints(genPackage : GenPackage, pkg : Package)]
+/**
+ *	The operation descriptors for each constraint.
+ */
+public static class Constraints {[for (cls : Class | pkg.ownedType->filter(Class)->select(ownedRule->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
+	[declareConstraints(genPackage, cls, pkg)/]
+[/for]}
+[/template]
+
+[template public declareConstraints(genPackage : GenPackage, cls : Class, scope : Package)]
+[let rules : OrderedSet(Constraint) = cls.ownedRule->asOrderedSet()->sortedBy(getMoniker())]
+[for (i : Integer | Sequence{1..rules->size()}) separator('\n')]
+[let rule : Constraint = rules->at(i)]
+[declareConstraint(genPackage, rule, i, cls, scope)/][/let][/for][/let]
+[/template]
+
+[template public declareConstraint(genPackage : GenPackage, rule : Constraint, opIndex : Integer, cls : Class, scope : Package)]
+public static final ExecutorOperation [rule.getLiteralName()/] = new ExecutorOperation("[cls.getUniqueText(rule)/]",
+	[cls.getLiteralName()/], [opIndex-1/], [genPackage.getImplementationName(rule)/]);
 [/template]
 
 [template public declareTypeFragments(pkg : Package)]
@@ -309,7 +334,7 @@ public static class FragmentOperations {
 private static final ExecutorOperation['[]'/] _[cls.name/]__[cls.name/] = [if ops->isEmpty()]{[else]
 {
 [for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
-    [genPackage.importQualifiedLiteralName(ops->at(i), pkg)/] /* [ops->at(i).getSignature()/] */[/for]
+    [genPackage.importQualifiedLiteralName(ops->at(i))/] /* [ops->at(i).getSignature()/] */[/for]
 [/if]};[/let]
 [/template]
 
@@ -319,7 +344,7 @@ private static final ExecutorOperation['[]'/] _[cls.name/]__[superCls.name/] = [
 {
 [for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
 [let overloadOp : Operation = cls.getOverloadOp(ops->at(i))]
-    [genPackage.importQualifiedLiteralName(overloadOp, pkg)/] /* [overloadOp.getSignature()/] */[/let][/for]
+    [genPackage.importQualifiedLiteralName(overloadOp)/] /* [overloadOp.getSignature()/] */[/let][/for]
 [/if]};[/let]
 [/template]
 
@@ -350,7 +375,7 @@ public static class FragmentProperties {
 private static final ExecutorProperty['[]'/] _[cls.name/] = [if props->isEmpty()]{[else]
 {
 [for (i : Integer | Sequence{1..props->size()}) separator (',\n') after ('\n')]
-    [genPackage.importQualifiedLiteralName(props->at(i), pkg)/][/for]
+    [genPackage.importQualifiedLiteralName(props->at(i))/][/for]
 [/if]};[/let]
 [/template]
 
@@ -360,3 +385,41 @@ else if (elem.oclIsKindOf(SetType)) then 'ExecutorType.UNIQUE'
 else if (elem.oclIsKindOf(SequenceType)) then 'ExecutorType.ORDERED'
 else '0'
 endif endif endif/]
+
+[template public gatherTableImports(genPackage : GenPackage, pPackage : Package)]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorManager')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/]
+[for (pType : Type | pPackage->closure(nestedPackage)->including(pPackage).ownedType)]
+[genPackage.gatherTableImports(pType)/]
+[/for]
+[/template]
+
+[template public gatherTableImports(genPackage : GenPackage, pType : Type)]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorType')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorFragment')/]
+[genPackage.declareImport(genPackage.getQualifyingPackage(pType))/]
+[for (pOperation : Operation | pType.ownedOperation)]
+[genPackage.gatherTableImports(pOperation)/]
+[/for]
+[for (pProperty : Property | pType.ownedAttribute)]
+[genPackage.gatherTableImports(pProperty)/]
+[/for]
+[/template]
+
+[template public gatherTableImports(genPackage : GenPackage, pOperation : Operation)]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorOperation')/]
+[if (pOperation.type->notEmpty())]
+[genPackage.declareImport(genPackage.getQualifyingPackage(pOperation.type))/]
+[/if]
+[for (pParameter : Parameter | pOperation.ownedParameter)]
+[genPackage.declareImport(genPackage.getQualifyingPackage(pParameter.type))/]
+[/for]
+[/template]
+
+[template public gatherTableImports(genPackage : GenPackage, pProperty : Property)]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.executor.ExecutorProperty')/]
+[genPackage.declareImport('org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty')/]
+[genPackage.declareImport(genPackage.getQualifyingPackage(pProperty.type))/]
+[/template]

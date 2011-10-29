@@ -29,5 +29,29 @@ invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getPrefixedSymbol
 [query public getSymbolName(elem : OclAny) : String = 
 invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
 
+[query public getUniqueText(_context : Element, constraint : Constraint) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.Constraint)', Sequence{_context, constraint}) /]
+
+[query public getUniqueText(_context : Element, operation : Operation) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.Operation)', Sequence{_context, operation}) /]
+
+[query public getUniqueText(_context : Element, property : Property) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.Property)', Sequence{_context, property}) /]
+
+[query public getUniqueText(_context : Element, string : String) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, java.lang.String)', Sequence{_context, string}) /]
+
+[query public getUniqueText(_context : Element, part : TupleLiteralPart) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.TupleLiteralPart)', Sequence{_context, part}) /]
+
+[query public getUniqueText(_context : Element, type : TupleType) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.TupleType)', Sequence{_context, type}) /]
+
+[query public getUniqueText(_context : Element, type : Type) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.Type)', Sequence{_context, type}) /]
+
+[query public getUniqueText(_context : Element, variable : Variable) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'getUniqueText(org.eclipse.ocl.examples.pivot.Element, org.eclipse.ocl.examples.pivot.Variable)', Sequence{_context, variable}) /]
+
 [query public upperName(string : String) : String = 
 invoke('org.eclipse.emf.codegen.util.CodeGenUtil', 'upperName(java.lang.String)', Sequence{string}) /]

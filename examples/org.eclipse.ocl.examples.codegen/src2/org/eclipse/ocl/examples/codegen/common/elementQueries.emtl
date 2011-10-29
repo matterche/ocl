@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
-  <mtl:Module name="org::eclipse::ocl::examples::codegen::common::elementQueries" nsURI="org::eclipse::ocl::examples::codegen::common::elementQueries" startHeaderPosition="451" endHeaderPosition="601">
+  <mtl:Module name="org::eclipse::ocl::examples::codegen::common::elementQueries" nsURI="org::eclipse::ocl::examples::codegen::common::elementQueries" startHeaderPosition="451" endHeaderPosition="561">
     <input>
       <takesTypesFrom href="http://www.eclipse.org/ocl/3.1.0/Pivot#/"/>
-    </input>
-    <input>
-      <takesTypesFrom href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </input>
     <ownedModuleElement xsi:type="mtl:Query" name="asIntegerStringOrNull" visibility="Public">
       <parameter name="elem">
@@ -326,18 +323,18 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/asIntegerStringOrNull">
-      <details key="start" value="605"/>
-      <details key="end" value="814"/>
+      <details key="start" value="565"/>
+      <details key="end" value="774"/>
       <details key="line" value="20"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/asIntegerStringOrNull/elem">
-      <details key="start" value="641"/>
-      <details key="end" value="655"/>
+      <details key="start" value="601"/>
+      <details key="end" value="615"/>
       <details key="line" value="20"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/asIntegerStringOrNull/@expression">
-      <details key="start" value="668"/>
-      <details key="end" value="811"/>
+      <details key="start" value="628"/>
+      <details key="end" value="771"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/asIntegerStringOrNull/@expression/self">
@@ -346,38 +343,38 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/asIntegerStringOrNull/@expression/@argument.0">
-      <details key="start" value="675"/>
-      <details key="end" value="729"/>
+      <details key="start" value="635"/>
+      <details key="end" value="689"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/asIntegerStringOrNull/@expression/@argument.1">
-      <details key="start" value="731"/>
-      <details key="end" value="794"/>
+      <details key="start" value="691"/>
+      <details key="end" value="754"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/asIntegerStringOrNull/@expression/@argument.2">
-      <details key="start" value="796"/>
-      <details key="end" value="810"/>
+      <details key="start" value="756"/>
+      <details key="end" value="770"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/asIntegerStringOrNull/@expression/@argument.2/@part.0/elem">
-      <details key="start" value="805"/>
-      <details key="end" value="809"/>
+      <details key="start" value="765"/>
+      <details key="end" value="769"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/asRealStringOrNull">
-      <details key="start" value="816"/>
-      <details key="end" value="1019"/>
+      <details key="start" value="776"/>
+      <details key="end" value="979"/>
       <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/asRealStringOrNull/elem">
-      <details key="start" value="849"/>
-      <details key="end" value="863"/>
+      <details key="start" value="809"/>
+      <details key="end" value="823"/>
       <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/asRealStringOrNull/@expression">
-      <details key="start" value="876"/>
-      <details key="end" value="1016"/>
+      <details key="start" value="836"/>
+      <details key="end" value="976"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/asRealStringOrNull/@expression/self">
@@ -386,43 +383,43 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/asRealStringOrNull/@expression/@argument.0">
-      <details key="start" value="883"/>
-      <details key="end" value="937"/>
+      <details key="start" value="843"/>
+      <details key="end" value="897"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/asRealStringOrNull/@expression/@argument.1">
-      <details key="start" value="939"/>
-      <details key="end" value="999"/>
+      <details key="start" value="899"/>
+      <details key="end" value="959"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/asRealStringOrNull/@expression/@argument.2">
-      <details key="start" value="1001"/>
-      <details key="end" value="1015"/>
+      <details key="start" value="961"/>
+      <details key="end" value="975"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/asRealStringOrNull/@expression/@argument.2/@part.0/elem">
-      <details key="start" value="1010"/>
-      <details key="end" value="1014"/>
+      <details key="start" value="970"/>
+      <details key="end" value="974"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/getExpressionInOcl">
-      <details key="start" value="1021"/>
-      <details key="end" value="1361"/>
+      <details key="start" value="981"/>
+      <details key="end" value="1321"/>
       <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/getExpressionInOcl/contextElement">
-      <details key="start" value="1054"/>
-      <details key="end" value="1083"/>
+      <details key="start" value="1014"/>
+      <details key="end" value="1043"/>
       <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/getExpressionInOcl/specification">
-      <details key="start" value="1085"/>
-      <details key="end" value="1117"/>
+      <details key="start" value="1045"/>
+      <details key="end" value="1077"/>
       <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/getExpressionInOcl/@expression">
-      <details key="start" value="1139"/>
-      <details key="end" value="1358"/>
+      <details key="start" value="1099"/>
+      <details key="end" value="1318"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/getExpressionInOcl/@expression/self">
@@ -431,43 +428,43 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/getExpressionInOcl/@expression/@argument.0">
-      <details key="start" value="1146"/>
-      <details key="end" value="1200"/>
+      <details key="start" value="1106"/>
+      <details key="end" value="1160"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/getExpressionInOcl/@expression/@argument.1">
-      <details key="start" value="1202"/>
-      <details key="end" value="1316"/>
+      <details key="start" value="1162"/>
+      <details key="end" value="1276"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/getExpressionInOcl/@expression/@argument.2">
-      <details key="start" value="1318"/>
-      <details key="end" value="1357"/>
+      <details key="start" value="1278"/>
+      <details key="end" value="1317"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/getExpressionInOcl/@expression/@argument.2/@part.0/contextElement">
-      <details key="start" value="1327"/>
-      <details key="end" value="1341"/>
+      <details key="start" value="1287"/>
+      <details key="end" value="1301"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/getExpressionInOcl/@expression/@argument.2/@part.1/specification">
-      <details key="start" value="1343"/>
-      <details key="end" value="1356"/>
+      <details key="start" value="1303"/>
+      <details key="end" value="1316"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/getMoniker">
-      <details key="start" value="1363"/>
-      <details key="end" value="1550"/>
+      <details key="start" value="1323"/>
+      <details key="end" value="1510"/>
       <details key="line" value="29"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/getMoniker/elem">
-      <details key="start" value="1388"/>
-      <details key="end" value="1402"/>
+      <details key="start" value="1348"/>
+      <details key="end" value="1362"/>
       <details key="line" value="29"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/getMoniker/@expression">
-      <details key="start" value="1415"/>
-      <details key="end" value="1547"/>
+      <details key="start" value="1375"/>
+      <details key="end" value="1507"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/getMoniker/@expression/self">
@@ -476,38 +473,38 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/getMoniker/@expression/@argument.0">
-      <details key="start" value="1422"/>
-      <details key="end" value="1476"/>
+      <details key="start" value="1382"/>
+      <details key="end" value="1436"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/getMoniker/@expression/@argument.1">
-      <details key="start" value="1478"/>
-      <details key="end" value="1530"/>
+      <details key="start" value="1438"/>
+      <details key="end" value="1490"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/getMoniker/@expression/@argument.2">
-      <details key="start" value="1532"/>
-      <details key="end" value="1546"/>
+      <details key="start" value="1492"/>
+      <details key="end" value="1506"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/getMoniker/@expression/@argument.2/@part.0/elem">
-      <details key="start" value="1541"/>
-      <details key="end" value="1545"/>
+      <details key="start" value="1501"/>
+      <details key="end" value="1505"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/getFragmentURI">
-      <details key="start" value="1552"/>
-      <details key="end" value="1747"/>
+      <details key="start" value="1512"/>
+      <details key="end" value="1707"/>
       <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/getFragmentURI/elem">
-      <details key="start" value="1581"/>
-      <details key="end" value="1595"/>
+      <details key="start" value="1541"/>
+      <details key="end" value="1555"/>
       <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/getFragmentURI/@expression">
-      <details key="start" value="1608"/>
-      <details key="end" value="1744"/>
+      <details key="start" value="1568"/>
+      <details key="end" value="1704"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/getFragmentURI/@expression/self">
@@ -516,23 +513,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.38" references="/0/getFragmentURI/@expression/@argument.0">
-      <details key="start" value="1615"/>
-      <details key="end" value="1669"/>
+      <details key="start" value="1575"/>
+      <details key="end" value="1629"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.39" references="/0/getFragmentURI/@expression/@argument.1">
-      <details key="start" value="1671"/>
-      <details key="end" value="1727"/>
+      <details key="start" value="1631"/>
+      <details key="end" value="1687"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/getFragmentURI/@expression/@argument.2">
-      <details key="start" value="1729"/>
-      <details key="end" value="1743"/>
+      <details key="start" value="1689"/>
+      <details key="end" value="1703"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/getFragmentURI/@expression/@argument.2/@part.0/elem">
-      <details key="start" value="1738"/>
-      <details key="end" value="1742"/>
+      <details key="start" value="1698"/>
+      <details key="end" value="1702"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

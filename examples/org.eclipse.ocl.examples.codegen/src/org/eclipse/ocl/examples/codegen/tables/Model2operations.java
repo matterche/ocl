@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.codegen.ecore;
+package org.eclipse.ocl.examples.codegen.tables;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,48 +22,43 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.acceleo.common.IAcceleoConstants;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.acceleo.model.mtl.resource.EMtlResourceFactoryImpl;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.util.ImportManager;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.codegen.common.EmitQueries;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
 /**
- * Entry point of the 'ocl2java4genmodel' generation module.
+ * Entry point of the 'Model2operations' generation module.
  *
  * @generated
  */
-public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
+public class Model2operations extends AbstractAcceleoGenerator {
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/ocl/examples/codegen/ecore/ocl2java4genmodel";
+    public static final String MODULE_FILE_NAME = "/org/eclipse/ocl/examples/codegen/tables/model2operations";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateModel" };
+    public static final String[] TEMPLATE_NAMES = { "generateOperations" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -86,7 +81,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public Ocl2java4genmodel() {
+    public Model2operations() {
         // Empty implementation
     }
 
@@ -106,7 +101,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public Ocl2java4genmodel(URI modelURI, File targetFolder,
+    public Model2operations(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
@@ -127,7 +122,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
      * @generated
      */
-    public Ocl2java4genmodel(EObject model, File targetFolder,
+    public Model2operations(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(model, targetFolder, arguments);
     }
@@ -155,7 +150,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
                  * add in "arguments" this "String" attribute.
                  */
                 
-                Ocl2java4genmodel generator = new Ocl2java4genmodel(modelURI, folder, arguments);
+                Model2operations generator = new Model2operations(modelURI, folder, arguments);
                 
                 /*
                  * Add the properties from the launch arguments.
@@ -211,20 +206,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
         super.doGenerate(monitor);
     }
     
-    @Override
-	public Map<String, String> generate(Monitor monitor) throws IOException {
-       	try {
-    		EmitQueries.EMITTER = EmitQueries.Jet.INSTANCE;
-    		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-    			((GenModel)model).setImportManager(new ImportManager("xyzzy"));		// FIXME
-    		}
-    		return super.generate(monitor);
-    	} finally {
-    		EmitQueries.EMITTER = null;
-    	}
-	}
-
-	/**
+    /**
      * If this generator needs to listen to text generation events, listeners can be returned from here.
      * 
      * @return List of listeners that are to be notified when text is generated through this launch.
@@ -338,6 +320,9 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
      */
     public void registerPackagesGen(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
+        if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
+        }
         
         /*
          * TODO If you need additional package registrations, you can register them here. The following line
@@ -363,12 +348,10 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
         registerPackagesGen(resourceSet);
-		if (!isInWorkspace(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.class)) {
-			resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(),
-							org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
-		}
+        if (!isInWorkspace(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(), org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
+        }
         resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("/org.eclipse.emf.codegen.ecore/model/GenModel.ecore", org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
     }
 
     /**
@@ -385,26 +368,25 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
         if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
             projectMap.initializeResourceSet(resourceSet);
             resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(IAcceleoConstants.EMTL_FILE_EXTENSION, new EMtlResourceFactoryImpl());
-			Map<String, URI> ePackageNsURIToGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-			org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.eClass();
-			org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.eClass();
-            URI genModelURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model/pivot.merged.genmodel", true);
-			ePackageNsURIToGenModelLocationMap.put(PivotPackage.eINSTANCE.eNS_URI, genModelURI);
         }
     }
 
-	@Override
-	public void initialize(EObject element, File folder, List<? extends Object> arguments) throws IOException {
+	protected void preInitialize() {
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		super.initialize(element, folder, arguments);
+		EmitQueries.EMITTER = new EmitQueries.Default();
 	}
 
 	@Override
 	public void initialize(URI modelURI, File folder, List<?> arguments) throws IOException {
-		OCLstdlib.install();
-		EssentialOCLStandaloneSetup.doSetup();
+		preInitialize();
 		super.initialize(modelURI, folder, arguments);
+	}
+
+	@Override
+	public void initialize(EObject element, File folder, List<? extends Object> arguments) throws IOException {
+		preInitialize();
+		super.initialize(element, folder, arguments);
 	}
 	
     public static final String PROJECT_NAME = "org.eclipse.ocl.examples.codegen";

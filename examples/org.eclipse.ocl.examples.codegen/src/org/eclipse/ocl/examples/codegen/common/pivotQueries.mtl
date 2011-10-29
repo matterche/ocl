@@ -54,6 +54,11 @@ if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + el
 [query public getLiteralName(elem : Property) : String = 
 if elem.oclIsUndefined() then 'null' else '_' + elem.owningType.name + '__' + elem.encodeName() endif /]
 
+[query public getLiteralName(elem : Constraint) : String = 
+if elem.oclIsUndefined() then 'null'
+else let type : Type = elem.eContainer().oclAsType(Type) in
+	'_' + type.name + '__' + type.getUniqueText(elem) endif /]
+
 [query public getLocalOperationsOf(cls : Type) : Set(Operation) = 
 let superSignatures : Set(String) = cls.getSuperSignatures() in
 cls.ownedOperation->asSet()->reject(op : Operation | false and superSignatures->includes(op.getSignature()))/]

@@ -19,10 +19,12 @@ package org.eclipse.ocl.examples.library.ecore;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.library.executor.ExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
+import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
 
 public class EcoreExecutorManager extends ExecutorManager
 {
-	public static final EcoreExecutorManager INSTANCE = new EcoreExecutorManager(null);		// WIP
+	public static final EcoreExecutorManager INSTANCE = new EcoreExecutorManager(ExecutorStandardLibrary.INSTANCE);
 
 	public EcoreExecutorManager(DomainStandardLibrary standardLibrary) {
 		super(new EcoreValueFactory(standardLibrary));

@@ -230,6 +230,7 @@ public interface DomainStandardLibrary
 	 * which must be alphabetical order by name.
 	 */
 	DomainTupleType getTupleType(List<? extends DomainTypedElement> parts);
+	DomainTupleType getTupleType(DomainTypedElement... parts);
 
 	DomainType getType(EClass eClass);
     
