@@ -6,25 +6,27 @@
  */
 package company.util;
 
-import company.*;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
+
+import company.Company;
+import company.CompanyPackage;
+import company.CompanySizeKind;
+import company.Employee;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
+ * @extends org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator
  * <!-- end-user-doc -->
  * @see company.CompanyPackage
  * @generated not

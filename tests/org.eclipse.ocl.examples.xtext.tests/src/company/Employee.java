@@ -163,7 +163,7 @@ public interface Employee extends EObject {
 	 * @return the value of the '<em>Reporting Chain</em>' reference list.
 	 * @see company.CompanyPackage#getEmployee_ReportingChain()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif'"
 	 * @generated
 	 */
 	EList<Employee> getReportingChain();

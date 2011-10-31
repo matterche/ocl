@@ -6,14 +6,6 @@
  */
 package company.impl;
 
-import company.Company;
-import company.CompanyFactory;
-import company.CompanyPackage;
-import company.CompanySizeKind;
-import company.Employee;
-
-import company.util.CompanyValidator;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -22,8 +14,14 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import company.Company;
+import company.CompanyFactory;
+import company.CompanyPackage;
+import company.CompanySizeKind;
+import company.Employee;
+import company.util.CompanyValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -451,7 +449,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (getCompany_Size(), 
 		   source, 
 		   new String[] {
-			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) =\r    Set{Tuple{range=Sequence{0..49}, size=CompanySizeKind::small},\r         Tuple{range=Sequence{50..999}, size=CompanySizeKind::medium},\r         Tuple{range=Sequence{1000..1000000}, size=CompanySizeKind::large}} in\rtable->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
+			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
 		   });			
 		addAnnotation
 		  (employeeEClass, 
@@ -494,7 +492,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		  (getEmployee_ReportingChain(), 
 		   source, 
 		   new String[] {
-			 "derivation", "if (manager.oclIsUndefined()) then\r    OrderedSet{}\relse\r    manager.reportingChain->prepend(manager)\rendif" //$NON-NLS-1$ //$NON-NLS-2$
+			 "derivation", "if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee_HasNameAsAttribute(), 

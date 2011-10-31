@@ -95,6 +95,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.osgi.util.NLS;
 
+import codegen.company.CodegencompanyPackage;
+
 import company.CompanyPackage;
 
 /**
@@ -319,6 +321,12 @@ public class DelegatesTest extends PivotTestSuite
 		if (!eclipseIsRunning) {
 			resourceSet.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
 			resourceSet.getPackageRegistry().put(NoreflectioncompanyPackage.eNS_URI, NoreflectioncompanyPackage.eINSTANCE);
+		}
+	}
+
+	protected void initCodeGeneratedPackageRegistrations() {
+		if (!eclipseIsRunning) {
+			resourceSet.getPackageRegistry().put(CodegencompanyPackage.eNS_URI, CodegencompanyPackage.eINSTANCE);
 		}
 	}
 
@@ -649,6 +657,12 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_constraintValidation_registered() {
 		initPackageRegistrations();
+		doTest_constraintValidation(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
+	}
+
+	public void test_constraintValidation_codeGenerated() {
+		initCodeGeneratedPackageRegistrations();
 		doTest_constraintValidation(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
 	}
