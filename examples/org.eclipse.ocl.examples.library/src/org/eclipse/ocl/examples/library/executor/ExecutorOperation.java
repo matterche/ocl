@@ -39,6 +39,10 @@ public class ExecutorOperation implements DomainOperation
 		this.parameterTypes = parameterTypes;
 	}
 
+	public LibraryFeature getImplementation() {
+		return implementation;
+	}
+
 	public final int getIndex() {
 		return index;
 	}

@@ -16,11 +16,13 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 
 public interface DomainOperation extends DomainNamedElement
 {
 	int getIndex();
+	LibraryFeature getImplementation();
 	DomainInheritance getInheritance();
 	IndexableIterable<? extends DomainType> getParameterTypes();
 	boolean isStatic();

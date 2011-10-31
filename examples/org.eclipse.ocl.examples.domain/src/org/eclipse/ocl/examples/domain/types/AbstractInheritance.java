@@ -345,13 +345,15 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
 		DomainInheritance staticInheritance = staticOperation.getInheritance();
 		int staticDepth = staticInheritance.getDepth();
-		int iMax = indexes[staticDepth+1];
-		for (int i = indexes[staticDepth]; i < iMax; i++) {
-			if (fragments[i].getBaseInheritance() == staticInheritance) {
-				return fragments[i].getImplementation(staticOperation);
+		if (staticDepth+1 < indexes.length) {
+			int iMax = indexes[staticDepth+1];
+			for (int i = indexes[staticDepth]; i < iMax; i++) {
+				if (fragments[i].getBaseInheritance() == staticInheritance) {
+					return fragments[i].getImplementation(staticOperation);
+				}
 			}
 		}
-		return null;
+		return staticOperation.getImplementation();
 	}
 
 	public void removeSubInheritance(DomainInheritance subInheritance) {
