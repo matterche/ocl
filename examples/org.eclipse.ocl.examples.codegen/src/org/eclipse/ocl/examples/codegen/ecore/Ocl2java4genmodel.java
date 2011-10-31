@@ -213,15 +213,10 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
     
     @Override
 	public Map<String, String> generate(Monitor monitor) throws IOException {
-       	try {
-    		EmitQueries.EMITTER = EmitQueries.Jet.INSTANCE;
-    		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-    			((GenModel)model).setImportManager(new ImportManager("xyzzy"));		// FIXME
-    		}
-    		return super.generate(monitor);
-    	} finally {
-    		EmitQueries.EMITTER = null;
-    	}
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			((GenModel)model).setImportManager(new ImportManager("xyzzy"));		// FIXME
+		}
+		return super.generate(monitor);
 	}
 
 	/**
@@ -389,22 +384,26 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
 			org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.eClass();
 			org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.eClass();
             URI genModelURI = URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model/pivot.merged.genmodel", true);
-			ePackageNsURIToGenModelLocationMap.put(PivotPackage.eINSTANCE.eNS_URI, genModelURI);
+			ePackageNsURIToGenModelLocationMap.put(PivotPackage.eNS_URI, genModelURI);
         }
     }
 
 	@Override
 	public void initialize(EObject element, File folder, List<? extends Object> arguments) throws IOException {
-		OCLstdlib.install();
-		EssentialOCLStandaloneSetup.doSetup();
+		preInitialize();
 		super.initialize(element, folder, arguments);
 	}
 
 	@Override
 	public void initialize(URI modelURI, File folder, List<?> arguments) throws IOException {
+		preInitialize();
+		super.initialize(modelURI, folder, arguments);
+	}
+
+	protected void preInitialize() {
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		super.initialize(modelURI, folder, arguments);
+		EmitQueries.setFactory(new EmitQueries.Jet.Factory());
 	}
 	
     public static final String PROJECT_NAME = "org.eclipse.ocl.examples.codegen";

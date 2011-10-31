@@ -90,8 +90,8 @@ public class GenPackageQueries
 		return null;
 	}
 	
-	public GenPackage getGenPackage(GenPackage genPackage, Type pivotType) {
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotType.getPackage();
+	public GenPackage getGenPackage(GenPackage genPackage, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+//		org.eclipse.ocl.examples.pivot.Package pivotPackage = pivotType.getPackage();
 		if (pivotPackage == null) {
 			return genPackage;	// FIXME
 		}
@@ -101,12 +101,12 @@ public class GenPackageQueries
 		}
 		GenModel genModel = genPackage.getGenModel();
 		List<GenPackage> usedGenPackages = genModel.getUsedGenPackages();
-		String nsURI = pivotPackage.getNsURI();
-		String name = pivotType.getName();
-		GenPackage usedGenPackage = getNsURIGenPackage(usedGenPackages, nsURI, name);
-		if (usedGenPackage != null) {
-			return usedGenPackage;
-		}		
+//		String nsURI = pivotPackage.getNsURI();
+//		String name = pivotType.getName();
+//		GenPackage usedGenPackage = getNsURIGenPackage(usedGenPackages, nsURI, name);
+//		if (usedGenPackage != null) {
+//			return usedGenPackage;
+//		}		
 		Resource resource = firstEPackage.eResource();
 		ResourceSet resourceSet = resource.getResourceSet();
 		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
@@ -174,7 +174,7 @@ public class GenPackageQueries
 		return null;
 	}
 
-	private <T extends GenPackage> T getNsURIGenPackage(List<T> genPackages, String nsURI, String name) {
+/*	private <T extends GenPackage> T getNsURIGenPackage(List<T> genPackages, String nsURI, String name) {
 		for (T genPackage : genPackages) {
 			EPackage ecorePackage = genPackage.getEcorePackage();
 			if (ecorePackage.getNsURI().equals(nsURI)) {
@@ -185,7 +185,7 @@ public class GenPackageQueries
 			}
 		}		
 		return null;
-	}
+	} */
 	
 	public String getOperationID(GenPackage genPackage, Type type, Constraint rule, Boolean diagnosticCode) {
 		GenClass genClass = getGenClass(genPackage, type);
@@ -245,7 +245,7 @@ public class GenPackageQueries
 	}
 	
 	public String getQualifyingPackage(GenPackage genPackage, Type type) {
-		GenPackage genPackage2 = getGenPackage(genPackage, type);
+		GenPackage genPackage2 = getGenPackage(genPackage, type.getPackage());
 		return genPackage2 != null ? (genPackage2.getQualifiedPackageName() + "." + genPackage2.getPrefix() + "Tables") : "";
 	}
 	

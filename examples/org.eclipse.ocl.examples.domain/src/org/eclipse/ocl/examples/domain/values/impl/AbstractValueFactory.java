@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.StringValue;
+import org.eclipse.ocl.examples.domain.values.TupleValue;
 import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.UnlimitedValue;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -370,7 +371,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 		return new SetValueImpl(this, collectionType, values);
 	}
 
-	public Value createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values) {
+	public TupleValue createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values) {
 		return new TupleValueImpl(this, type, values);
 	}
 

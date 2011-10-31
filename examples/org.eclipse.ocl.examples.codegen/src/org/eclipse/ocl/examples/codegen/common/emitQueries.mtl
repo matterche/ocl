@@ -20,66 +20,38 @@
 [query public debug(element : OclAny) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'debug(java.lang.Object)', Sequence{element}) /]
 
-[query public declareImport(qualifiedName : String) : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'declareImport(java.lang.String)', Sequence{qualifiedName}) /]
+[query public emitDomainElementsType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.domain.elements.' + name) /]
 
-[query public emitCast(ecoreType : String) : String =
-if ecoreType.size() > 0 then '(' + ecoreType + ')' else '' endif /]
+[query public emitDomainEvaluationType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.domain.evaluation.' + name) /]
 
-[template public emitSuppressThrowWarnings(any : OclAny)]
+[query public emitDomainLibraryType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.domain.library.' + name) /]
 
-	[emitType('org.eclipse.ocl.examples.domain.utilities.DomainUtil')/].suppressThrowWarnings();
-[/template]
+[query public emitDomainMessagesType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.domain.messages.' + name) /]
 
-[query public emitDomainElementsType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.elements.' + name) /]
+[query public emitDomainValuesType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.domain.values.' + name) /]
 
-[query public emitDomainEvaluationType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.evaluation.' + name) /]
+[query public emitEcoreType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.emf.ecore.' + name) /]
 
-[query public emitDomainLibraryType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.library.' + name) /]
+[query public emitEcoreUtilType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.emf.ecore.util.' + name) /]
 
-[query public emitDomainMessagesType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.messages.' + name) /]
+[query public emitEmfCommonUtilType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.emf.common.util.' + name) /]
 
-[query public emitDomainValuesType(name : String) : String =
-emitType('org.eclipse.ocl.examples.domain.values.' + name) /]
+[query public emitImports(importer : NamedElement, imports : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImports(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, imports}) /]
 
-[query public emitEcoreType(name : String) : String =
-emitType('org.eclipse.emf.ecore.' + name) /]
+[query public emitLibraryExecutorType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.library.executor.' + name) /]
 
-[query public emitEcoreUtilType(name : String) : String =
-emitType('org.eclipse.emf.ecore.util.' + name) /]
+[query public emitJavaUtilType(importer : NamedElement, name : String) : String =
+importer.emitType('java.util.' + name) /]
 
-[query public emitEmfCommonUtilType(name : String) : String =
-emitType('org.eclipse.emf.common.util.' + name) /]
-
-[query public emitImports() : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImports()', Sequence{}) /]
-
-[query public emitJavaUtilType(name : String) : String =
-emitType('java.util.' + name) /]
-
-[query public emitOperationType(prefix : String, arity : Integer) : String =
-emitType('org.eclipse.ocl.examples.domain.library.' + prefix + getArityName(arity) + 'Operation') /]
-
-[query public emitType(any : OclAny, qualifiedName : String) : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImport(java.lang.String)', Sequence{qualifiedName}) /]
-
-[query public getArityMultiple(arity : Integer) : String = 
-if arity = 1 then 'Single'
-else if arity = 2 then 'Double'
-else 'Multiple' endif endif/]
-
-[query public getArityName(arity : Integer) : String = 
-if arity = 1 then 'Unary'
-else if arity = 2 then 'Binary'
-else if arity = 3 then 'Ternary'
-else '' endif endif endif/]
-
-[query public getArityPlusOneName(arity : Integer) : String = 
-if arity = 0 then 'Unary'
-else if arity = 1 then 'Binary'
-else if arity = 2 then 'Ternary'
-else '' endif endif endif/]
+[query public emitType(importer : NamedElement, qualifiedName : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImport(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, qualifiedName}) /]

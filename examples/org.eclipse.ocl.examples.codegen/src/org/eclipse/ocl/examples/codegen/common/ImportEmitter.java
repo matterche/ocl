@@ -18,20 +18,20 @@ package org.eclipse.ocl.examples.codegen.common;
 
 public interface ImportEmitter
 {
-	/**
-	 * Declare the need for the import of aPath.
-	 * @param aPath
-	 * @return
-	 */
-	String declareImport(String aPath);
-
+	public static interface Factory {
+		/**
+		 * Create a new emitter scope for a set of new-line separated inputs.
+		 */
+		ImportEmitter createNew(String imports);
+	}
+	
 	/**
 	 * Return the internal reference to an imported aPath.
 	 */
 	String emitImport(String aPath);
 
 	/**
-	 * Return the formatted list odf all import declarations.
+	 * Return the formatted list of all import declarations.
 	 */
 	String emitImports();
 }

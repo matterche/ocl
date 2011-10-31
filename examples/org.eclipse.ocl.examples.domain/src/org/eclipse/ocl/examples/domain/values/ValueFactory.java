@@ -89,7 +89,7 @@ public interface ValueFactory
 	SetValue createSetValue(DomainCollectionType type, Collection<? extends Value> values);
 	SetValue createSetValue(Value... value);
 	
-	Value createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values);
+	TupleValue createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values);
 
 	Value createTypeValue(DomainClassifierType type);
 

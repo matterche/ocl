@@ -45,20 +45,20 @@ import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
  *
  * @generated
  */
-public class Model2operations extends AbstractAcceleoGenerator {
+public class Model2bodies extends AbstractAcceleoGenerator {
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/org/eclipse/ocl/examples/codegen/tables/model2operations";
+    public static final String MODULE_FILE_NAME = "/org/eclipse/ocl/examples/codegen/tables/model2bodies";
     
     /**
      * The name of the templates that are to be generated.
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "generateOperations" };
+    public static final String[] TEMPLATE_NAMES = { "generateBodies" };
     
     /**
      * The list of properties files from the launch parameters (Launch configuration).
@@ -81,7 +81,7 @@ public class Model2operations extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public Model2operations() {
+    public Model2bodies() {
         // Empty implementation
     }
 
@@ -101,7 +101,7 @@ public class Model2operations extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public Model2operations(URI modelURI, File targetFolder,
+    public Model2bodies(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
@@ -122,7 +122,7 @@ public class Model2operations extends AbstractAcceleoGenerator {
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
      * @generated
      */
-    public Model2operations(EObject model, File targetFolder,
+    public Model2bodies(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(model, targetFolder, arguments);
     }
@@ -150,7 +150,7 @@ public class Model2operations extends AbstractAcceleoGenerator {
                  * add in "arguments" this "String" attribute.
                  */
                 
-                Model2operations generator = new Model2operations(modelURI, folder, arguments);
+                Model2bodies generator = new Model2bodies(modelURI, folder, arguments);
                 
                 /*
                  * Add the properties from the launch arguments.
@@ -320,9 +320,6 @@ public class Model2operations extends AbstractAcceleoGenerator {
      */
     public void registerPackagesGen(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
-        }
         
         /*
          * TODO If you need additional package registrations, you can register them here. The following line
@@ -374,7 +371,7 @@ public class Model2operations extends AbstractAcceleoGenerator {
 	protected void preInitialize() {
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		EmitQueries.EMITTER = new EmitQueries.Default();
+		EmitQueries.setFactory(new EmitQueries.Default.Factory());
 	}
 
 	@Override

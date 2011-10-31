@@ -35,10 +35,12 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
@@ -98,32 +100,46 @@ public class PivotQueries
 		return getAllSuperClasses(results, aClass);
 	}
 
-	public static ExpressionInOcl getExpressionInOcl(NamedElement contextElement, OpaqueExpression specification) {
-		Resource resource = contextElement.eResource();
-		ResourceSet resourceSet = resource.getResourceSet();
-		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-		String expression = PivotUtil.getBody(specification);
-		URI uri = metaModelManager.getResourceIdentifier(specification, null);
-		ExpressionInOcl expressionInOcl = null;
-		try {
-			expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+	public static ExpressionInOcl getExpressionInOcl(NamedElement contextElement, ValueSpecification specification) {
+		if (specification instanceof ExpressionInOcl) {
+			return (ExpressionInOcl) specification;
 		}
-		if (expressionInOcl != null) {
-			String messageExpression = PivotUtil.getMessage(specification);
-			if ((messageExpression != null) && (messageExpression.trim().length() > 0)) {
-				try {
-					PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
-				} catch (ParserException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		else if (specification instanceof OpaqueExpression) {
+			Resource resource = contextElement.eResource();
+			ResourceSet resourceSet = resource.getResourceSet();
+			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+			OpaqueExpression opaqueExpression = (OpaqueExpression) specification;
+			String expression = PivotUtil.getBody(opaqueExpression);
+			URI uri = metaModelManager.getResourceIdentifier(specification, null);
+			ExpressionInOcl expressionInOcl = null;
+			try {
+				expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
+			} catch (ParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			if (expressionInOcl != null) {
+				String messageExpression = PivotUtil.getMessage(opaqueExpression);
+				if ((messageExpression != null) && (messageExpression.trim().length() > 0)) {
+					try {
+						PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
+					} catch (ParserException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
+			return expressionInOcl;
 		}
-		return expressionInOcl;
+		else {
+			Resource resource = contextElement.eResource();
+			ResourceSet resourceSet = resource.getResourceSet();
+			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+			ExpressionInOcl expressionInOcl = PivotFactory.eINSTANCE.createExpressionInOcl();
+			expressionInOcl.setBodyExpression(metaModelManager.createInvalidExpression());
+			return expressionInOcl;
+		}
 	}
 
 	public static String getFragmentURI(Element element) {

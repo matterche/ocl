@@ -23,8 +23,8 @@ invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'asIntegerStringO
 [query public asRealStringOrNull(elem : Element) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'asRealStringOrNull(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]
 
-[query public getExpressionInOcl(contextElement : NamedElement, specification : OpaqueExpression) : ExpressionInOcl =
-invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getExpressionInOcl(org.eclipse.ocl.examples.pivot.NamedElement, org.eclipse.ocl.examples.pivot.OpaqueExpression)', Sequence{contextElement, specification}) /]
+[query public getExpressionInOcl(specification : ValueSpecification, contextElement : NamedElement) : ExpressionInOcl =
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getExpressionInOcl(org.eclipse.ocl.examples.pivot.NamedElement, org.eclipse.ocl.examples.pivot.ValueSpecification)', Sequence{contextElement, specification}) /]
 
 [query public getMoniker(elem : Element) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getMoniker(org.eclipse.ocl.examples.pivot.Element)', Sequence{elem}) /]

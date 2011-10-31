@@ -22,10 +22,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmitQueries implements ImportEmitter
+import org.eclipse.ocl.examples.pivot.NamedElement;
+
+public class EmitQueries
 {
 	public static class Default implements ImportEmitter
 	{
+		public static class Factory implements ImportEmitter.Factory
+		{	
+			public ImportEmitter createNew(String imports) {
+				return new Default(imports);
+			}
+		}
+		
 		/**
 		 * Map of full external name to short internal name. The short internal name is the full name if
 		 * there is any ambiguity.
@@ -36,26 +45,27 @@ public class EmitQueries implements ImportEmitter
 		 */
 		private Map<String, String> internal2external = new HashMap<String, String>();
 		
-		public Default() {
-			super();
-		}
-
-		public String declareImport(String aPath) {
-			String lastSegment = aPath.substring(aPath.lastIndexOf(".")+1);
-			if (!internal2external.containsKey(lastSegment)) {
-				internal2external.put(lastSegment, aPath);
-				external2internal.put(aPath, lastSegment);
-			}
-			else {
-				String oldExternal = internal2external.get(lastSegment);
-				if (oldExternal != null) {
-					external2internal.put(oldExternal, oldExternal);
-					internal2external.put(lastSegment, null);
+		public Default(String imports) {
+			external2internal.put("", null);		// blank import 'already emitted'
+			for (String anImport : imports.split("\\n")) {
+				String candidate = anImport.trim();
+				if (!external2internal.containsKey(candidate)) {
+					String lastSegment = candidate.substring(candidate.lastIndexOf(".")+1);
+					if (!internal2external.containsKey(lastSegment)) {
+						internal2external.put(lastSegment, candidate);
+						external2internal.put(candidate, lastSegment);
+					}
+					else {
+						String oldExternal = internal2external.get(lastSegment);
+						if (oldExternal != null) {
+							external2internal.put(oldExternal, oldExternal);
+							internal2external.put(lastSegment, null);
+						}
+						external2internal.put(candidate, candidate);
+					}
 				}
-				external2internal.put(aPath, aPath);
 			}
-			return null;
-		}	
+		}
 		
 		public String emitImport(String aPath) {
 			String path = external2internal.get(aPath);
@@ -66,22 +76,28 @@ public class EmitQueries implements ImportEmitter
 			List<String> allValues = new ArrayList<String>(internal2external.values());
 			Collections.sort(allValues);
 			StringBuffer s = new StringBuffer();
-			for (String aValue : allValues) {
+			String prefix = "";
+			for (String externalPath : allValues) {
+				s.append(prefix);
 				s.append("import ");
-				s.append(aValue);
-				s.append(";\n");
+				s.append(externalPath);
+				s.append(";");
+				prefix = "\n";
 			}
 			return s.toString();
-		}	
+		}
 	}
 	
 	public static class Jet implements ImportEmitter
 	{
+		public static class Factory implements ImportEmitter.Factory
+		{	
+			public ImportEmitter createNew(String imports) {
+				return INSTANCE;
+			}
+		}
+		
 		public static ImportEmitter INSTANCE = new Jet();
-
-		public String declareImport(String aPath) {
-			return null;
-		}	
 		
 		public String emitImport(String aPath) {
 			return "<%" + aPath + "%>";
@@ -92,32 +108,50 @@ public class EmitQueries implements ImportEmitter
 		}	
 	}
 	
-	public static ImportEmitter EMITTER = null;
+	private static ImportEmitter.Factory EMITTER_FACTORY = null;	
+	private static Map<NamedElement, ImportEmitter> importers = new HashMap<NamedElement, ImportEmitter>();
 	
-	public String declareImport(String aPath) {
-		ImportEmitter importEmitter = EMITTER;
-		if (importEmitter == null) {
-			importEmitter = new Default();
-		}
-		return importEmitter.declareImport(aPath);
-	}	
+	public static void setFactory(ImportEmitter.Factory factory) {
+		EMITTER_FACTORY = factory;
+		importers.clear();
+	}
+	
 	
 	public String debug(Object element) {
 		return null;
 	}	
 	
-	public String emitImport(String aPath) {
-		ImportEmitter importEmitter = EMITTER;
+	/**
+	 * Return the potential brief name by which aPath may be referenced with the scope of an importer.
+	 */
+	public String emitImport(NamedElement importer, String aPath) {
+		ImportEmitter importEmitter = importers.get(importer);
 		if (importEmitter == null) {
-			importEmitter = new Default();
+			if (EMITTER_FACTORY != null) {
+				importEmitter = EMITTER_FACTORY.createNew("");
+			}
+			else {
+				importEmitter = new Default("");
+			}
+			importers.put(importer, importEmitter);
 		}
 		return importEmitter.emitImport(aPath);
 	}	
 	
-	public String emitImports() {
-		ImportEmitter importEmitter = EMITTER;
+	/**
+	 * Return the set of all new-line separated imports for importer as an ordered set of import declarations,
+	 * caching any full to brief name for subsequent use by emitImport().
+	 */
+	public String emitImports(NamedElement importer, String imports) {
+		ImportEmitter importEmitter = importers.get(importer);
 		if (importEmitter == null) {
-			importEmitter = new Default();
+			if (EMITTER_FACTORY != null) {
+				importEmitter = EMITTER_FACTORY.createNew(imports);
+			}
+			else {
+				importEmitter = new Default(imports);
+			}
+			importers.put(importer, importEmitter);
 		}
 		return importEmitter.emitImports();
 	}	

@@ -1,0 +1,54 @@
+[**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id$
+ **/]
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::codegen::common::qualifiedLiteralTemplates('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/GenModel')/]
+
+[import org::eclipse::ocl::examples::codegen::common::emitQueries/]
+[import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
+[import org::eclipse::ocl::examples::codegen::common::nameQueries/]
+[import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
+[import org::eclipse::ocl::examples::codegen::common::stringQueries/]
+
+[template public emitQualifiedLiteralName(ast : BagType, importer : NamedElement, genPackage : GenPackage)]
+standardLibrary.getBagType([ast.elementType.emitQualifiedLiteralName(importer, genPackage)/])[/template]
+
+[template public emitQualifiedLiteralName(ast : ClassifierType, importer : NamedElement, genPackage : GenPackage)]
+standardLibrary.getClassifierType([ast.instanceType.emitQualifiedLiteralName(importer, genPackage)/])[/template]
+
+[template public emitQualifiedLiteralName(ast : Element, importer : NamedElement, genPackage : GenPackage)]
+null[/template]
+
+[template public emitQualifiedLiteralName(ast : Operation, importer : NamedElement, genPackage : GenPackage)] 
+[ast.owningType.getTablesClassName(genPackage) + '.Operations._' + ast.owningType.name + '__' + ast.encodeName()/][/template]
+
+[template public emitQualifiedLiteralName(ast : OrderedSetType, importer : NamedElement, genPackage : GenPackage)]
+standardLibrary.getOrderedSetType([ast.elementType.emitQualifiedLiteralName(importer, genPackage)/])[/template]
+
+[template public emitQualifiedLiteralName(ast : Property, importer : NamedElement, genPackage : GenPackage)]
+[ast.owningType.getTablesClassName(genPackage) + '.Properties._' + ast.owningType.name + '__' + ast.encodeName()/][/template]
+
+[template public emitQualifiedLiteralName(ast : SequenceType, importer : NamedElement, genPackage : GenPackage)]
+standardLibrary.getSequenceType([ast.elementType.emitQualifiedLiteralName(importer, genPackage)/])[/template]
+
+[template public emitQualifiedLiteralName(ast : SetType, importer : NamedElement, genPackage : GenPackage)]
+standardLibrary.getType([ast.elementType.emitQualifiedLiteralName(importer, genPackage)/])[/template]
+
+[template public emitQualifiedLiteralName(ast : TupleType, importer : NamedElement, genPackage : GenPackage)]
+[ast.getTablesClassName(genPackage).getPrefixedSymbolName('tuple_type_')/][/template]
+	
+[template public emitQualifiedLiteralName(ast : Type, importer : NamedElement, genPackage : GenPackage)]
+[importer.emitType(ast.getQualifiedTablesClassName(genPackage)) + '.Types._' + ast.encodeName()/][/template]

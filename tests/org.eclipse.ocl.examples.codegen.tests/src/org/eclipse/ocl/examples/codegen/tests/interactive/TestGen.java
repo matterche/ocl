@@ -82,15 +82,15 @@ public class TestGen extends TestCase
 		copyFile(uriConverter, project, ".classpath", "/org.eclipse.ocl.examples.codegen.tests/play/.classpath");
 		copyFile(uriConverter, project, "plugin.properties", "/org.eclipse.ocl.examples.codegen.tests/play/plugin.properties");
 		copyFile(uriConverter, metaInfFolder, "MANIFEST.MF", "/org.eclipse.ocl.examples.codegen.tests/play/META-INF/MANIFEST.MF");
-		copyFile(uriConverter, modelFolder, "play.ecore", "/org.eclipse.ocl.examples.codegen.tests/play/model/play.ecore");
-		copyFile(uriConverter, modelFolder, "play.genmodel", "/org.eclipse.ocl.examples.codegen.tests/play/model/play.genmodel");
+		copyFile(uriConverter, modelFolder, "Company.ecore", "/org.eclipse.ocl.examples.codegen.tests/play/model/Company.ecore");
+		copyFile(uriConverter, modelFolder, "CodeGenCompany.genmodel", "/org.eclipse.ocl.examples.codegen.tests/play/model/CodeGenCompany.genmodel");
 		copyFile(uriConverter, templatesModelFolder, "Class.javajet", "/org.eclipse.ocl.examples.codegen/templates/model/Class.javajet");
 		MetaModelManager metaModelManager = new MetaModelManager();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		resourceSet.getPackageRegistry().put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("genmodel", new EcoreResourceFactoryImpl());
-		URI fileURI = URI.createPlatformResourceURI("/play/model/play.genmodel", true);
+		URI fileURI = URI.createPlatformResourceURI("/play/model/CodeGenCompany.genmodel", true);
 		
 		System.out.println("Generating model '" + fileURI + "'");
 		try {

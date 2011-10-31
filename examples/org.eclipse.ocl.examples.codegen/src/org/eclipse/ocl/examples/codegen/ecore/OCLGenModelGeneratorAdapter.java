@@ -52,7 +52,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.codegen.tables.Model2operations;
+import org.eclipse.ocl.examples.codegen.tables.Model2bodies;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -177,7 +177,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
             java.net.URI locationURI = folder.getLocationURI();
             String rawPath = locationURI.getRawPath();
             List<String> arguments = new ArrayList<String>();
-            Model2operations generator = new Model2operations(genModel, new File(rawPath), arguments);
+            Model2bodies generator = new Model2bodies(genModel, new File(rawPath), arguments);
 	        generator.generate(monitor);
 	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
 		} catch (Exception e) {
