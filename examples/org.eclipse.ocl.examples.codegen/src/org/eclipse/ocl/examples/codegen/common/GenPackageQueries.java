@@ -257,6 +257,10 @@ public class GenPackageQueries
 		return genPackage.getQualifiedValidatorClassName();
 	}
 	
+	/**
+	 * Return  true if property has an Ecore counterpart. Non-navigable opposites may have a Property
+	 * but no Ecore EReference.
+	 */
 	public Boolean hasEcore(GenPackage genPackage, Property property) {
 		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), property.getOwningType().getName());
 		if (genClass == null) {

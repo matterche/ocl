@@ -70,8 +70,6 @@ public class [tablesClassName/]
 
 	public static final ExecutorStandardLibrary LIBRARY = new ExecutorStandardLibrary(PACKAGE); 
 
-	public static final ExecutorManager EVALUATOR = new EcoreExecutorManager(LIBRARY); 
-
 	[pPackage.declareTypes(genPackage)/]
 
 	[pPackage.declareFragments(genPackage)/]
@@ -384,7 +382,6 @@ endif endif endif/]
 org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage
 org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary
 org.eclipse.ocl.examples.library.executor.ExecutorManager
-org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager
 [for (pType : Type | pPackage->closure(nestedPackage)->including(pPackage).ownedType)]
 [pType.gatherTableImports(genPackage)/]
 [/for]

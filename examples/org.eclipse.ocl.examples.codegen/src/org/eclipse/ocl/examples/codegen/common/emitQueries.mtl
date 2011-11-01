@@ -47,6 +47,9 @@ importer.emitType('org.eclipse.emf.common.util.' + name) /]
 [query public emitImports(importer : NamedElement, imports : String) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImports(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, imports}) /]
 
+[query public emitLibraryEcoreType(importer : NamedElement, name : String) : String =
+importer.emitType('org.eclipse.ocl.examples.library.ecore.' + name) /]
+
 [query public emitLibraryExecutorType(importer : NamedElement, name : String) : String =
 importer.emitType('org.eclipse.ocl.examples.library.executor.' + name) /]
 

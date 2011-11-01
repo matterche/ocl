@@ -74,7 +74,7 @@ public class [className/]
 [let expInOcl : ExpressionInOcl = pConstraint.specification.getExpressionInOcl(pOperation)]
 [if (false and pConstraint.stereotype = 'body')]
 	public static [pOperation.type.name/] [pOperation.name/]([pType.name/] self[for (parameter : Parameter | pOperation.ownedParameter)], [parameter.type.name/] [parameter.name/][/for]) {
-		final ExecutorManager evaluator = EcoreExecutorManager.INSTANCE;
+		final ExecutorManager evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 		final ValueFactory valueFactory = evaluator.getValueFactory();
 		Library[genPackage.emitOperationArity(pOperation.ownedParameter->size())/] codeGen = [pType.name + '_' + pOperation.name + '_' + pConstraint.stereotype + '_' + pConstraint.name/].INSTANCE;
 		try {

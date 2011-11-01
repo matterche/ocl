@@ -64,7 +64,7 @@
  */
 [let arity : Integer = expInOcl.parameterVariable->size()]
 try {
-	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = [emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 	[expInOcl.emitConstants(constants)/]
 	final [emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final [emitDomainValuesType('Value')/] result = [emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self);
@@ -95,7 +95,8 @@ try {
 		}
 	    diagnostics.add(new [emitEmfCommonUtilType('BasicDiagnostic')/](severity, [emitType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [emitType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(pType, rule, true)/], message, new Object ['[]'/] { result }));
 [else]
-	    diagnostics.add(new [emitEmfCommonUtilType('BasicDiagnostic')/](severity, [emitType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [emitType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(pType, rule, true)/], [emitDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, new Object ['[]'/] { result }));
+		String message = [emitType('org.eclipse.osgi.util.NLS')/].bind([emitDomainMessagesType('EvaluatorMessages')/].ValidationConstraintIsNotSatisfied_ERROR_, "[rule.name/]", [emitType('org.eclipse.emf.ecore.util.EObjectValidator')/].getObjectLabel(this, context));
+	    diagnostics.add(new [emitEmfCommonUtilType('BasicDiagnostic')/](severity, [emitType(genPackage.getQualifiedValidatorClassName())/].DIAGNOSTIC_SOURCE, [emitType(genPackage.getQualifiedValidatorClassName())/].[genPackage.getOperationID(pType, rule, true)/], message, new Object ['[]'/] { this }));
 [/if]
 	}
 	return false;
@@ -114,7 +115,7 @@ try {
  * [expInOcl.toString()/]
  */
 try {
-	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = [pType.emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 	[expInOcl.emitConstants(constants)/]
 	final [pType.emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final [pType.emitDomainValuesType('Value')/] result = [pType.emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self[for (pParameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([pParameter.name/])[/for]);
@@ -136,7 +137,7 @@ try {
  * [expInOcl.toString()/]
  */
 try {
-	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = [pType.emitType('org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager')/].INSTANCE;
+	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 	[expInOcl.emitConstants(constants)/]
 final [pType.emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final [pType.emitDomainValuesType('Value')/] result = [pType.emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self, [pType.emitType(genPackage.getQualifiedPackageName() + '.' + genPackage.getTablesClassName())/].Properties._[pProperty.owningType.name/]__[pProperty.name/]);

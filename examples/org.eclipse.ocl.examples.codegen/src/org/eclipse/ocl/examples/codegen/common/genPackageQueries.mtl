@@ -39,7 +39,14 @@ invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getGenPacka
 elem.eContainer().oclAsType(Type).getQualifiedBodiesClassName(genPackage) + '._' + elem.stereotype + '_' + elem.name + '.INSTANCE'/]
 
 [query public getImplementationName(genPackage : GenPackage, elem : Operation) : String = 
-if elem.implementationClass->notEmpty() then elem.implementationClass + '.INSTANCE' else 'null' endif/]
+if elem.implementationClass->notEmpty()
+then elem.implementationClass + '.INSTANCE'
+else
+    let pConstraint : Sequence(Constraint) = elem.ownedRule->select(true)->asSequence() in
+    if pConstraint->notEmpty() then elem.owningType.getQualifiedBodiesClassName(genPackage) + '._' + elem.name + '_' + pConstraint->first().stereotype + '_.INSTANCE'
+	else 'null'
+    endif
+endif/]
 
 [query public getImplementationName(genPackage : GenPackage, elem : Property) : String = 
 if elem.implementationClass->notEmpty()
