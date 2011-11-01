@@ -6,49 +6,42 @@
  */
 package codegen.company.impl;
 
-import codegen.company.CodegencompanyPackage;
-import codegen.company.CodegencompanyTables;
-import codegen.company.Company;
-import codegen.company.CompanySizeKind;
-import codegen.company.Employee;
-
-import codegen.company.bodies.CompanyBodies;
-import codegen.company.util.CodegencompanyValidator;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.osgi.util.NLS;
+
+import codegen.company.CodegencompanyPackage;
+import codegen.company.CodegencompanyTables;
+import codegen.company.Company;
+import codegen.company.CompanySizeKind;
+import codegen.company.Employee;
+import codegen.company.bodies.CompanyBodies;
+import codegen.company.util.CodegencompanyValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,7 +97,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate SIZE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CodegencompanyPackage.Literals.COMPANY__SIZE).getSettingDelegate();
+	protected static final CompanySizeKind SIZE_EDEFAULT = CompanySizeKind.SMALL;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,7 +157,21 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * @generated
 	 */
 	public CompanySizeKind getSize() {
-		return (CompanySizeKind)SIZE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		/** 
+		 * let table : Set<Tuple(range:Sequence,size:CompanySizeKind)> = Set {Tuple{range : Sequence = Sequence {0 .. 49}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::small}, Tuple{range : Sequence = Sequence {50 .. 999}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::medium}, Tuple{range : Sequence = Sequence {1000 .. 1000000}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::large}} in table->any(1_ : Tuple(range:Sequence,size:CompanySizeKind) | 1_.range->includes(self.employees->size())).size
+		 */
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Company_ecore__company__CompanySizeKind = CodegencompanyTables.Types._CompanySizeKind;
+			
+		final DomainType returnType = T_Company_ecore__company__CompanySizeKind;
+			final Value result = CompanyBodies._size_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Company__size);
+			return (CompanySizeKind) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate codegen.company.bodies.CompanyBodies", e);
+		}
 	}
 
 	/**
@@ -187,7 +194,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		 * true
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -200,7 +207,8 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.COMPANY__DUMMY_INVARIANT, EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object [] { result }));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "dummyInvariant", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.COMPANY__DUMMY_INVARIANT, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
@@ -306,7 +314,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			case CodegencompanyPackage.COMPANY__EMPLOYEES:
 				return employees != null && !employees.isEmpty();
 			case CodegencompanyPackage.COMPANY__SIZE:
-				return SIZE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+                return true;
 		}
 		return super.eIsSet(featureID);
 	}

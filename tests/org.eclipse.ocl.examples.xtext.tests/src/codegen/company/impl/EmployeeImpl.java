@@ -6,54 +6,41 @@
  */
 package codegen.company.impl;
 
-import codegen.company.CodegencompanyPackage;
-import codegen.company.CodegencompanyTables;
-import codegen.company.Company;
-import codegen.company.Employee;
-
-import codegen.company.bodies.EmployeeBodies;
-import codegen.company.util.CodegencompanyValidator;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
-import org.eclipse.ocl.examples.domain.library.LibraryProperty;
-import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
-import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+import org.eclipse.osgi.util.NLS;
+
+import codegen.company.CodegencompanyPackage;
+import codegen.company.CodegencompanyTables;
+import codegen.company.Company;
+import codegen.company.Employee;
+import codegen.company.bodies.EmployeeBodies;
+import codegen.company.util.CodegencompanyValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,44 +93,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	protected Employee manager;
 
 	/**
-	 * The cached setting delegate for the '{@link #getDirectReports() <em>Direct Reports</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDirectReports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate DIRECT_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CodegencompanyPackage.Literals.EMPLOYEE__DIRECT_REPORTS).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getAllReports() <em>All Reports</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAllReports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ALL_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CodegencompanyPackage.Literals.EMPLOYEE__ALL_REPORTS).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getReportingChain() <em>Reporting Chain</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReportingChain()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate REPORTING_CHAIN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CodegencompanyPackage.Literals.EMPLOYEE__REPORTING_CHAIN).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #isHasNameAsAttribute() <em>Has Name As Attribute</em>}' attribute.
+	 * The default value of the '{@link #isHasNameAsAttribute() <em>Has Name As Attribute</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isHasNameAsAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CodegencompanyPackage.Literals.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE).getSettingDelegate();
+	protected static final boolean HAS_NAME_AS_ATTRIBUTE_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,7 +228,23 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Employee> getDirectReports() {
-		return (EList<Employee>)DIRECT_REPORTS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		/** 
+		 * self.company.employees->select(1_ : Company.ecore::company::Employee | 1_.manager.=(self))
+		 */
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_Company_ecore__company__Employee = CodegencompanyTables.Types._Employee;
+			final DomainCollectionType T_OrderedSet_Company_ecore__company__Employee_ = standardLibrary.getOrderedSetType(T_Company_ecore__company__Employee);
+			
+		final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
+			final Value result = EmployeeBodies._directReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__directReports);
+			return (EList<Employee>) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+		}
 	}
 
 	/**
@@ -281,7 +254,23 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Employee> getAllReports() {
-		return (EList<Employee>)ALL_REPORTS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		/** 
+		 * Company.ecore::company::Employee.allInstances()->select(1_ : Company.ecore::company::Employee | 1_.reportsTo(self))
+		 */
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_Company_ecore__company__Employee = CodegencompanyTables.Types._Employee;
+			final DomainCollectionType T_Set_Company_ecore__company__Employee_ = standardLibrary.getSetType(T_Company_ecore__company__Employee);
+			
+		final DomainType returnType = T_Set_Company_ecore__company__Employee_;
+			final Value result = EmployeeBodies._allReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__allReports);
+			return (EList<Employee>) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+		}
 	}
 
 	/**
@@ -291,7 +280,23 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<Employee> getReportingChain() {
-		return (EList<Employee>)REPORTING_CHAIN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		/** 
+		 * if self.manager.oclIsUndefined() then OrderedSet {} else self.manager.reportingChain->prepend(self.manager) endif
+		 */
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_Company_ecore__company__Employee = CodegencompanyTables.Types._Employee;
+			final DomainCollectionType T_OrderedSet_Company_ecore__company__Employee_ = standardLibrary.getOrderedSetType(T_Company_ecore__company__Employee);
+			
+		final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
+			final Value result = EmployeeBodies._reportingChain_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__reportingChain);
+			return (EList<Employee>) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+		}
 	}
 
 	/**
@@ -300,18 +305,22 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 */
 	public boolean isHasNameAsAttribute() {
-		return (Boolean)HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		/** 
+		 * self.name.<>(null)
+		 */
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+		final DomainType returnType = T_Boolean;
+			final Value result = EmployeeBodies._hasNameAsAttribute_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__hasNameAsAttribute);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+		}
 	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #reportsTo(codegen.company.Employee) <em>Reports To</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #reportsTo(codegen.company.Employee)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate REPORTS_TO_EMPLOYEE__EINVOCATION_DELEGATE = ((EOperation.Internal)CodegencompanyPackage.Literals.EMPLOYEE___REPORTS_TO__EMPLOYEE).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -323,7 +332,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * self.reportingChain->includes(self.manager)
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -356,7 +365,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * self.manager.oclIsUndefined().implies(self.directReports->size().>(0))
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -369,23 +378,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS, EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object [] { result }));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
 		}
 	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #hasNameAsOperation() <em>Has Name As Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #hasNameAsOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)CodegencompanyPackage.Literals.EMPLOYEE___HAS_NAME_AS_OPERATION).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -397,7 +397,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * self.name.<>(null)
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -430,7 +430,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * self.name.oclIsUndefined().not().and(self.hasNameAsAttribute).and(self.hasNameAsOperation())
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -443,7 +443,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__INVARIANT_MUST_HAVE_NAME, EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object [] { result }));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "mustHaveName", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__INVARIANT_MUST_HAVE_NAME, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
@@ -471,7 +472,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		 * self.name.oclAsSet()->notEmpty().implies(self.name.size().>(0))
 		 */
 		try {
-			final DomainEvaluator evaluator = CodegencompanyTables.EVALUATOR;
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -484,7 +485,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__INVARIANT_MUST_HAVE_NON_EMPTY_NAME, EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object [] { result }));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "mustHaveNonEmptyName", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__INVARIANT_MUST_HAVE_NON_EMPTY_NAME, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
@@ -620,13 +622,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			case CodegencompanyPackage.EMPLOYEE__COMPANY:
 				return getCompany() != null;
 			case CodegencompanyPackage.EMPLOYEE__DIRECT_REPORTS:
-				return DIRECT_REPORTS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+                return true;
 			case CodegencompanyPackage.EMPLOYEE__ALL_REPORTS:
-				return ALL_REPORTS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+                return true;
 			case CodegencompanyPackage.EMPLOYEE__REPORTING_CHAIN:
-				return REPORTING_CHAIN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+                return true;
 			case CodegencompanyPackage.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE:
-				return HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+                return true;
 		}
 		return super.eIsSet(featureID);
 	}

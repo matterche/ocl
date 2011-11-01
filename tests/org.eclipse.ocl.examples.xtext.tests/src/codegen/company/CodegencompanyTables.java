@@ -9,15 +9,10 @@
  */
 package codegen.company;
 
-import codegen.company.CodegencompanyTables;
-import codegen.company.bodies.CompanyBodies;
-import codegen.company.bodies.EmployeeBodies;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
-import org.eclipse.ocl.examples.library.executor.ExecutorManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
 import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
@@ -38,8 +33,6 @@ public class CodegencompanyTables
 	public static final EcoreExecutorPackage PACKAGE = new EcoreExecutorPackage(CodegencompanyPackage.eINSTANCE);
 
 	public static final ExecutorStandardLibrary LIBRARY = new ExecutorStandardLibrary(PACKAGE); 
-
-	public static final ExecutorManager EVALUATOR = new EcoreExecutorManager(LIBRARY); 
 
 	/**
 	 *	The type descriptors for each type.
@@ -87,9 +80,9 @@ public class CodegencompanyTables
 	 */
 	public static class Operations {
 		public static final ExecutorOperation _Employee__hasNameAsOperation = new ExecutorOperation("hasNameAsOperation",
-			Types._Employee, 0, null);
+			Types._Employee, 0, codegen.company.bodies.EmployeeBodies._hasNameAsOperation_body_.INSTANCE);
 		public static final ExecutorOperation _Employee__reportsTo = new ExecutorOperation("reportsTo",
-			Types._Employee, 1, null,
+			Types._Employee, 1, codegen.company.bodies.EmployeeBodies._reportsTo_body_.INSTANCE,
 				CodegencompanyTables.Types._Employee);
 	}
 
