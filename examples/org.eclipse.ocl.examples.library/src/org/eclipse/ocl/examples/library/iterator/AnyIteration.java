@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainIterationManager;
 import org.eclipse.ocl.examples.domain.library.AbstractIteration;
-import org.eclipse.ocl.examples.domain.library.EvaluatorSingleIterationManager;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -66,8 +65,7 @@ public class AnyIteration extends AbstractIteration
 				return iterationManager.getValueFactory().getFalse();				// Abort after second find
 			}
 			else {
-				EvaluatorSingleIterationManager singleIterationManager = (EvaluatorSingleIterationManager) iterationManager;
-				Value value = singleIterationManager.get();		
+				Value value = iterationManager.get();		
 				accumulatorValue.add(value);
 				return null;									// Carry on after first find
 			}
