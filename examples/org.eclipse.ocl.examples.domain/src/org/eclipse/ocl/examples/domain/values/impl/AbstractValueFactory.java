@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
@@ -396,6 +397,38 @@ public abstract class AbstractValueFactory implements ValueFactory
     	}
      	return elementType;
     }
+
+	public Object getEcoreValueOf(Value value) {
+		if (value instanceof NullValue) {
+			return null;
+		}
+		else if (value instanceof CollectionValue) {
+			CollectionValue collectionValue = (CollectionValue) value;
+			List<Object> ecoreResult = new BasicEList<Object>(collectionValue.intSize());
+			for (Value elementValue : collectionValue) {
+				ecoreResult.add(getEcoreValueOf(elementValue));
+			}
+			return ecoreResult;
+		}
+		else if (value instanceof BooleanValueImpl) {
+			return ((BooleanValueImpl)value).asBoolean();
+		}
+		else if (value instanceof IntegerIntValueImpl) {
+			return ((IntegerIntValueImpl)value).intValue();
+		}
+		else if (value instanceof IntegerLongValueImpl) {
+			return ((IntegerLongValueImpl)value).longValue();
+		}
+		else if (value instanceof IntegerValueImpl) {
+			return ((IntegerValueImpl)value).bigIntegerValue();
+		}
+		else if (value instanceof RealValueImpl) {
+			return ((RealValueImpl)value).doubleValue();
+		}
+		else {
+			return value.asObject();
+		}
+	}
 
     public DomainType getElementType(Iterable<Value> values) {
     	DomainType elementType = standardLibrary.getOclVoidType();

@@ -16,23 +16,16 @@
  */
 package org.eclipse.ocl.examples.pivot.values;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.ElementValue;
-import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.AbstractValueFactory;
 import org.eclipse.ocl.examples.domain.values.impl.DomainTypeValueImpl;
-import org.eclipse.ocl.examples.domain.values.impl.IntegerValueImpl;
-import org.eclipse.ocl.examples.domain.values.impl.RealValueImpl;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -79,35 +72,17 @@ public class PivotValueFactory extends AbstractValueFactory
 		return new DomainTypeValueImpl(this, domainType);
 	}
 
+	@Override
 	public Object getEcoreValueOf(Value value) {
-		if (value instanceof NullValue) {
-			return null;
-		}
-		else if (value instanceof CollectionValue) {
-			CollectionValue collectionValue = (CollectionValue) value;
-			List<Object> ecoreResult = new BasicEList<Object>(collectionValue.intSize());
-			for (Value elementValue : collectionValue) {
-				ecoreResult.add(getEcoreValueOf(elementValue));
+		Object ecoreValue = super.getEcoreValueOf(value);
+		if (ecoreValue instanceof Element) {
+			EObject target = ((Element)ecoreValue).getETarget();
+			if (target instanceof EEnumLiteral) {
+				return ((EEnumLiteral)target).getInstance();
 			}
-			return ecoreResult;
+			return target;
 		}
-		else if (value instanceof IntegerValueImpl) {
-			return ((IntegerValueImpl)value).intValue();
-		}
-		else if (value instanceof RealValueImpl) {
-			return ((RealValueImpl)value).doubleValue();
-		}
-		else {
-			Object object = value.asObject();
-			if (object instanceof Element) {
-				EObject target = ((Element)object).getETarget();
-				if (target instanceof EEnumLiteral) {
-					return ((EEnumLiteral)target).getInstance();
-				}
-				return target;
-			}
-			return object;
-		}
+		return ecoreValue;
 	}
 
 	public MetaModelManager getMetaModelManager() {

@@ -17,18 +17,12 @@
 package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.AbstractValueFactory;
 
 public class ExecutorValueFactory extends AbstractValueFactory
 {
 	public ExecutorValueFactory(DomainStandardLibrary standardLibrary) {
 		super(standardLibrary);
-	}
-
-	public Object getEcoreValueOf(Value result) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
 	}
 
 /*	@Override
