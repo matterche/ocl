@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AliasAnalysis.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
