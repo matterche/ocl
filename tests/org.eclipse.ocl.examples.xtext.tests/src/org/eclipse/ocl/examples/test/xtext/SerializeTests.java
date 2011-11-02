@@ -170,6 +170,10 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_Bug323741() throws Exception {
 		doSerialize("Bug323741");
 	}
+	
+	public void testSerialize_Bug362620() throws Exception {
+		doSerialize("Bug362620");
+	}
 
 	public void testSerialize_Company() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
