@@ -177,6 +177,10 @@ public class SerializeTests extends XtextTestCase
 	public void testSerialize_Bug354336() throws Exception {
 		doSerialize("Bug354336", "Bug354336", null, false);		// FIXME Model check suppressed because of Bug 354621
 	}
+	
+	public void testSerialize_Bug362620() throws Exception {
+		doSerialize("Bug362620");
+	}
 
 	public void testSerialize_Company() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
