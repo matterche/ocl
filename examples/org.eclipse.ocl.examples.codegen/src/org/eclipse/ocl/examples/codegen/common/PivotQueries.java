@@ -42,7 +42,10 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
+import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -173,4 +176,11 @@ public class PivotQueries
 		}
 		return parameters.get(0).getType() instanceof SelfType;
 	}
+	
+	public static String prettyPrint(Visitable element) {
+		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(null);
+		createOptions.setLinelength(80);
+		return PrettyPrintExprVisitor.prettyPrint(element, createOptions);
+	}
+	
 }

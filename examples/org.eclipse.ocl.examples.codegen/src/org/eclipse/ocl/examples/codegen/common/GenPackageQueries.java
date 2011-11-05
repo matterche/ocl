@@ -205,7 +205,7 @@ public class GenPackageQueries
 		if (genClass != null) {
 			GenOperation genOperation = getGenOperation(genPackage, genClass, operation);
 			if (genOperation != null) {
-				return "(" + genOperation.getObjectType(genClass) + ")";
+				return genOperation.getObjectType(genClass);
 			}
 		}
 		return "";
@@ -238,7 +238,7 @@ public class GenPackageQueries
 		if (genClass != null) {
 			GenFeature genFeature = getGenFeature(genPackage, genClass, property);
 			if (genFeature != null) {
-				return "(" + genFeature.getObjectType(genClass) + ")";
+				return genFeature.getObjectType(genClass);
 			}
 		}
 		return "";

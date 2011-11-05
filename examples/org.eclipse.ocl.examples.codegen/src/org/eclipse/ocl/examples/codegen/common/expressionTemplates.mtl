@@ -94,11 +94,12 @@ else {
 
 /** 
  * Implementation of the iterate body.
- *
- * [ast._'body'.toString()/]
  */
 [operationTypeName/] body_[astName/] = new [operationTypeName/]()
 {
+/*
+[ast._'body'.prettyPrint().trim()/]
+*/
 	public Value evaluate([importer.emitDomainEvaluationType('DomainEvaluator')/] evaluator, [importer.emitDomainElementsType('DomainType')/] returnType, Value [ast.result.symbolName(expInOcl)/][for (i : Variable | ast.iterator)], Value [i.symbolName(expInOcl)/][/for]) throws [importer.emitDomainEvaluationType('InvalidValueException')/] {
 		[ast._'body'.emitExpression(importer, genPackage, expInOcl)/]
 		return [ast._'body'.symbolName(expInOcl)/];
@@ -120,11 +121,12 @@ Value [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/le
 
 /** 
  * Implementation of the iterator body.
- *
- * [ast._'body'.toString()/]
  */
 [operationTypeName/] body_[astName/] = new [operationTypeName/]()
 {
+/*
+[ast._'body'.prettyPrint().trim()/]
+*/
 	public Value evaluate([importer.emitDomainEvaluationType('DomainEvaluator')/] evaluator, [importer.emitDomainElementsType('DomainType')/] returnType, Value sourceValue[for (i : Integer | Sequence{1..arity})]
 , Value iterator[i/][/for]) throws [importer.emitDomainEvaluationType('InvalidValueException')/] {
 [for (i : Integer | Sequence{1..arity})]

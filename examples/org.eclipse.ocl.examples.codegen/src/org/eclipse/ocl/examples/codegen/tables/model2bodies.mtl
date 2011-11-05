@@ -111,11 +111,12 @@ public class [className/]
 [let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/] '[pConstraint.name/]' invariant.
- *
- * [expInOcl.toString()/]
  */
 public static class [className/] extends Abstract[genPackage.emitOperationArity(arity)/]
 {
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 	public static [className/] INSTANCE = new [className/]();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
@@ -146,11 +147,12 @@ public static class [className/] extends Abstract[genPackage.emitOperationArity(
 [let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/]::[pOperation.name/] '[pConstraint.name/]' <[pConstraint.stereotype/]>.
- *
- * [expInOcl.toString()/]
  */
 public static class [className/] extends Abstract[genPackage.emitOperationArity(arity)/]
 {
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 	public static [className/] INSTANCE = new [className/]();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
@@ -167,11 +169,12 @@ public static class [className/] extends Abstract[genPackage.emitOperationArity(
 [let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/]::[pProperty.name/] '[pConstraint.name/]' <[pConstraint.stereotype/]>.
- *
- * [expInOcl.toString()/]
  */
 public static class [className/] extends AbstractProperty
 {
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 	public static [className/] INSTANCE = new [className/]();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value [defineSymbolName(expInOcl.contextVariable, 'self')/], DomainProperty property) throws [pType.emitDomainEvaluationType('InvalidValueException')/] {

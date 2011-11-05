@@ -59,9 +59,9 @@
 [let constraintName : String = '_' + rule.stereotype + '_' + rule.name]
 [let expInOcl : ExpressionInOcl = rule.specification.getExpressionInOcl(pType)]
 [let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
-/** 
- * [expInOcl.toString()/]
- */
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 [let arity : Integer = expInOcl.parameterVariable->size()]
 try {
 	final [emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
@@ -111,18 +111,25 @@ try {
 [let constraintName : String = '_' + pOperation.name + '_' + rule.stereotype + '_' + rule.name]
 [let expInOcl : ExpressionInOcl = rule.specification.getExpressionInOcl(pOperation)]
 [let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
-/** 
- * [expInOcl.toString()/]
- */
+[let ecoreReturnType : String = genPackage.getOperationReturnType(pOperation)]
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 try {
 	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 	[expInOcl.emitConstants(constants)/]
 	final [pType.emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final [pType.emitDomainValuesType('Value')/] result = [pType.emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self[for (pParameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([pParameter.name/])[/for]);
-	return [genPackage.getOperationReturnType(pOperation)/] valueFactory.getEcoreValueOf(result);
+[if (ecoreReturnType.index('<') > 0)]
+	@SuppressWarnings("unchecked")
+	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	return ecoreResult;
+[else]
+	return ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+[/if]
 } catch ([pType.emitDomainEvaluationType('InvalidValueException')/] e) {
 	throw new [pType.emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/file][/let][/template]
+}[/let][/let][/let][/let][/let][/file][/let][/template]
 
 [template public generateProperty(pType : Type, genPackage : GenPackage, pProperty : Property)]
 [let derivationRules : OrderedSet(Constraint) = pProperty.ownedRule->select(stereotype = 'derivation')]
@@ -133,18 +140,25 @@ try {
 [let constraintName : String = '_' + pProperty.name + '_' + rule.stereotype + '_' + rule.name]
 [let expInOcl : ExpressionInOcl = rule.specification.getExpressionInOcl(pProperty)]
 [let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
-/** 
- * [expInOcl.toString()/]
- */
+[let ecoreReturnType : String = genPackage.getPropertyType(pProperty)]
+/*
+[expInOcl.prettyPrint().trim()/]
+*/
 try {
 	final [pType.emitDomainEvaluationType('DomainEvaluator')/] evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
 	[expInOcl.emitConstants(constants)/]
-final [pType.emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
+	final [pType.emitDomainElementsType('DomainType')/] returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final [pType.emitDomainValuesType('Value')/] result = [pType.emitType(className)/].[constraintName/].INSTANCE.evaluate(evaluator, returnType, self, [pType.emitType(genPackage.getQualifiedPackageName() + '.' + genPackage.getTablesClassName())/].Properties._[pProperty.owningType.name/]__[pProperty.name/]);
-	return [genPackage.getPropertyType(pProperty)/] valueFactory.getEcoreValueOf(result);
+[if (ecoreReturnType.index('<') > 0)]
+	@SuppressWarnings("unchecked")
+	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	return ecoreResult;
+[else]
+	return ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+[/if]
 } catch ([pType.emitDomainEvaluationType('InvalidValueException')/] e) {
 	throw new [pType.emitType('org.eclipse.emf.common.util.WrappedException')/]("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/file][/let][/let][/let][/template]
+}[/let][/let][/let][/let][/let][/file][/let][/let][/let][/template]
 
 
 [template public gatherSpecificationConstants(expInOcl : ExpressionInOcl, genPackage : GenPackage, pType : Type)]

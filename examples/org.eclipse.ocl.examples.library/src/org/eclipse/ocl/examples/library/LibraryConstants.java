@@ -20,5 +20,6 @@ import org.eclipse.emf.common.util.URI;
 
 public interface LibraryConstants
 {
-	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + LibraryConstants.class.getPackage().getName() + "/model/oclstdlib.genmodel", true); //$NON-NLS-1$ //$NON-NLS-2$
+	static final String PLUGIN_ID = LibraryConstants.class.getPackage().getName();
+	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PLUGIN_ID + "/model/oclstdlib.genmodel", true); //$NON-NLS-1$ //$NON-NLS-2$
 }

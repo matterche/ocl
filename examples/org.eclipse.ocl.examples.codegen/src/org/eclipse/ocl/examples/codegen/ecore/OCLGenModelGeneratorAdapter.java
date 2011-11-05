@@ -20,8 +20,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.generation.strategy.PreviewStrategy;
@@ -54,6 +56,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.codegen.tables.Model2bodies;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
+import org.eclipse.ocl.examples.library.LibraryConstants;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -86,6 +89,8 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		return useDelegates;
 	}
 
+	private Set<GenModel> hadDelegates = new HashSet<GenModel>();
+	
 	public OCLGenModelGeneratorAdapter(OCLGeneratorAdapterFactory generatorAdapterFactory) {
 		super(generatorAdapterFactory);
 	}
@@ -208,6 +213,10 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected Diagnostic doPreGenerate(Object object, Object projectType) {
 		GenModel genModel = (GenModel) object;
 		if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && hasDelegates(genModel)) {
+			List<String> modelPluginVariables = genModel.getModelPluginVariables();
+			if (!modelPluginVariables.contains(LibraryConstants.PLUGIN_ID)) {
+				modelPluginVariables.add(LibraryConstants.PLUGIN_ID);
+			}
 	    	GenPackage genPackage = genModel.getGenPackages().get(0);
 	        createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
 			Resource genResource = genModel.eResource();
@@ -216,6 +225,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			convertConstraintsToOperations(metaModelManager, genModel);
 		    Map<String, String> results = createJavaBodies(genModel);			
 			installJavaBodies(metaModelManager, genModel, results);
+			pruneDelegates(genModel);
 		}
 		return super.doPreGenerate(object, projectType);
 	}
@@ -223,7 +233,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	@Override
 	protected Diagnostic generateModel(Object object, Monitor monitor) {
 		GenModel genModel = (GenModel) object;
-		if (!useDelegates(genModel) && hasDelegates(genModel)) {
+		if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
 		    monitor.beginTask("", 3);
 		    monitor.subTask("Generating Dispatch Tables");
 		    GenPackage genPackage = genModel.getGenPackages().get(0);
@@ -242,23 +252,29 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected boolean hasDelegates(GenModel genModel) {
 		for (GenPackage genPackage : genModel.getGenPackages()) {
 			EPackage ePackage = genPackage.getEcorePackage();
-			List<String> validationDelegates = EcoreUtil.getValidationDelegates(ePackage);
-			for (String validationDelegate : validationDelegates) {
-				if (OCLDelegateDomain.isDelegateURI(validationDelegate)) {
-					return true;
-				}
+			if (hasDelegates(ePackage)) {
+				return true;
 			}
-			List<String> settingDelegates = EcoreUtil.getSettingDelegates(ePackage);
-			for (String settingDelegate : settingDelegates) {
-				if (OCLDelegateDomain.isDelegateURI(settingDelegate)) {
-					return true;
-				}
+		}
+		return false;
+	}
+	protected boolean hasDelegates(EPackage ePackage) {
+		List<String> validationDelegates = EcoreUtil.getValidationDelegates(ePackage);
+		for (String validationDelegate : validationDelegates) {
+			if (OCLDelegateDomain.isDelegateURI(validationDelegate)) {
+				return true;
 			}
-			List<String> invocationDelegates = EcoreUtil.getInvocationDelegates(ePackage);
-			for (String invocationDelegate : invocationDelegates) {
-				if (OCLDelegateDomain.isDelegateURI(invocationDelegate)) {
-					return true;
-				}
+		}
+		List<String> settingDelegates = EcoreUtil.getSettingDelegates(ePackage);
+		for (String settingDelegate : settingDelegates) {
+			if (OCLDelegateDomain.isDelegateURI(settingDelegate)) {
+				return true;
+			}
+		}
+		List<String> invocationDelegates = EcoreUtil.getInvocationDelegates(ePackage);
+		for (String invocationDelegate : invocationDelegates) {
+			if (OCLDelegateDomain.isDelegateURI(invocationDelegate)) {
+				return true;
 			}
 		}
 		return false;
@@ -302,7 +318,31 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
 		String body = results.get(fragmentURI);
 		if (body != null) {
-			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
+			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
 		}
+	}
+
+	/**
+	 * Eliminate all OCL validation/setting/invocation delegates.
+	 */
+	protected void pruneDelegates(GenModel genModel) {
+		for (GenPackage genPackage : genModel.getGenPackages()) {
+			EPackage ePackage = genPackage.getEcorePackage();
+			if (hasDelegates(ePackage)) {
+				hadDelegates.add(genModel);
+				EcoreUtil.setValidationDelegates(ePackage, pruneDelegates(EcoreUtil.getValidationDelegates(ePackage)));
+				EcoreUtil.setSettingDelegates(ePackage, pruneDelegates(EcoreUtil.getSettingDelegates(ePackage)));
+				EcoreUtil.setInvocationDelegates(ePackage, pruneDelegates(EcoreUtil.getInvocationDelegates(ePackage)));
+			}
+		}
+	}
+	protected List<String> pruneDelegates(List<String> oldDelegates) {
+		List<String> newDelegates = new ArrayList<String>();
+		for (String aDelegate : oldDelegates) {
+			if (!OCLDelegateDomain.isDelegateURI(aDelegate)) {
+				newDelegates.add(aDelegate);
+			}
+		}
+		return newDelegates;
 	}
 }

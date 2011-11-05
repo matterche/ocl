@@ -381,7 +381,6 @@ endif endif endif/]
 [template protected gatherTableImports(pPackage : Package, genPackage : GenPackage)]
 org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage
 org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary
-org.eclipse.ocl.examples.library.executor.ExecutorManager
 [for (pType : Type | pPackage->closure(nestedPackage)->including(pPackage).ownedType)]
 [pType.gatherTableImports(genPackage)/]
 [/for]
@@ -415,8 +414,6 @@ org.eclipse.ocl.examples.library.executor.ExecutorProperty
 [let pConstraint : Sequence(Constraint) = pProperty.ownedRule->select(true)->asSequence()]
 [if (pConstraint->isEmpty())]
 org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty
-[else]
-[pProperty.owningType.getQualifiedBodiesClassName(genPackage)/]
 [/if]
 [/let]
 [elseif ((pProperty.opposite <> null) and genPackage.hasEcore(pProperty.opposite))]
