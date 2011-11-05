@@ -548,6 +548,12 @@ public class DelegatesTest extends PivotTestSuite
 		assertFalse(usedLocalRegistry);
 	}
 
+	public void test_allInstances_codeGenerated() {
+		initCodeGeneratedPackageRegistrations();
+		doTest_allInstances(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
+	}
+
 	public void test_attributeDefinedWithDerivationAndInitial() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
@@ -685,6 +691,11 @@ public class DelegatesTest extends PivotTestSuite
 		doTest_eReferenceDerivation(COMPANY_XMI);
 	}
 
+	public void test_eReferenceDerivation_codeGenerated() {
+		initCodeGeneratedPackageRegistrations();
+		doTest_eReferenceDerivation(COMPANY_XMI);
+	}
+
 	/**
 	 * Caches an operation AST in the annotation used by the {@link SettingBehavior} implementation
 	 * and ensures that it's used by the delegate as well as the {@link EvaluationVisitorImpl}
@@ -778,6 +789,12 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_invariantValidation_registered() {
 		initPackageRegistrations();
+		doTest_invariantValidation(COMPANY_XMI, true);
+		assertFalse(usedLocalRegistry);
+	}
+	
+	public void test_invariantValidation_codeGenerated() {
+		initCodeGeneratedPackageRegistrations();
 		doTest_invariantValidation(COMPANY_XMI, true);
 		assertFalse(usedLocalRegistry);
 	}
@@ -960,6 +977,12 @@ public class DelegatesTest extends PivotTestSuite
 		assertFalse(usedLocalRegistry);
 	}
 
+	public void test_queryExecution_codeGenerated() {
+		initCodeGeneratedPackageRegistrations();
+		doTest_queryExecution(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
+	}
+
 	public void test_queryExecutionWithExceptions() throws InvocationTargetException {
 		doTest_queryExecutionWithExceptions(COMPANY_XMI);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
@@ -967,6 +990,12 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_queryExecutionWithExceptions_registered() throws InvocationTargetException {
 		initPackageRegistrations();
+		doTest_queryExecutionWithExceptions(COMPANY_XMI);
+		assertFalse(usedLocalRegistry);
+	}
+
+	public void test_queryExecutionWithExceptions_codeGenerated() throws InvocationTargetException {
+		initCodeGeneratedPackageRegistrations();
 		doTest_queryExecutionWithExceptions(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
 	}

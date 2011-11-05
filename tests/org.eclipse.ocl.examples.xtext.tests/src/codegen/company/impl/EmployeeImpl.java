@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
@@ -377,8 +378,9 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 				return true;
 			}
 			if (diagnostics != null) {
-				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context));
+				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.ERROR;
+				String template = EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"); //EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+				String message = NLS.bind(template, "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context));
 			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS, message, new Object [] { this }));
 			}
 			return false;
