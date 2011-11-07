@@ -338,7 +338,7 @@ public class UMLTest
     /**
      * Test accessing attributes that are aliased by the
      * <tt>&lt;&lt;eAttribute&gt;&gt;</tt> stereotype.
-     * FIXME Disabled pending fix to BUG 358792
+     */
     public void test_aliasedAttribute_bug184753() {
         OCLExpression<Classifier> expr = parseConstraint(
             "package ocltest context Aliased " +
@@ -367,7 +367,7 @@ public class UMLTest
         } finally {
             resourceSet.getPackageRegistry().remove(epkg.getNsURI());
         }
-    } */
+    }
 
     /**
      * Test accessing private attributes in general classifiers.
