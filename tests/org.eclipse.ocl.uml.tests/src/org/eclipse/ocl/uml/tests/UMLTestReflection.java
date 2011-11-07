@@ -24,11 +24,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.tests.GenericTestSuite;
@@ -73,12 +71,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	Operation, Parameter, Property, Property, Property,
 	EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 	{
-		private static StandaloneSetup mweSetup = new StandaloneSetup();
-		{
-			if (!GenericTestSuite.eclipseIsRunning()) {
-				mweSetup.setScanClassPath(true);
-			}
-		}
 		public static final Static INSTANCE = new Static();
 		
 		public OCL createOCL(ResourceSet resourceSet) {
@@ -99,7 +91,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 			URI umlPluginURI;
 //			URI umlResourcesPluginURI;
 			if (!GenericTestSuite.eclipseIsRunning()) {
-				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+//				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
 //				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
 //				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
 				umlPluginURI = URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/");
