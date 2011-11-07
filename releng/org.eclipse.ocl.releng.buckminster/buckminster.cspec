@@ -5,11 +5,13 @@
         <cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.xalan" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.xml.serializer" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.acceleo.engine" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.compare" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.uml2.codegen.ecore" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.uml2.common.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.uml2.uml.edit" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
