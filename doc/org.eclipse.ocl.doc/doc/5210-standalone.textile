@@ -15,21 +15,10 @@ It is normally recommended to install the registrations solely for use in your o
 
 This initialization ensures that *.ecore is understood.
 
-If you want to use EMF delegates to dispatch OCL you also need the following code from @org.eclipse.ocl.ecore.tests.DelegatesTest@.
+If you want to use EMF delegates to dispatch OCL, the required registrations may be
+provided by @org.eclipse.ocl.ecore.delegate.DelegateDomain.initialize(ResourceSet)@.
 
-bc.. 
-import org.eclipse.ocl.ecore.delegate.*;
-
-String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
-EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLInvocationDelegateFactory.Global());
-EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLSettingDelegateFactory.Global());
-EValidator.ValidationDelegate.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLValidationDelegateFactory.Global());
-QueryDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLQueryDelegateFactory.Global());
-p. 
+This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry. 
 
 h3. UML
 
@@ -46,21 +35,10 @@ For the Pivot metamodel, the required registrations should be provided in a simi
 This initialization ensures that *.ecore is understood. If *.uml support is also required, invoke
 @org.eclipse.ocl.examples.pivot.uml.UML2Pivot.initialize(ResourceSet)@ as well.
 
-If you want to use EMF delegates to dispatch OCL you also need the following code from @org.eclipse.ocl.examples.pivot.tests.DelegatesTest@. (The same code as for Ecore but from a different package).
+If you want to use EMF delegates to dispatch OCL, the required registrations may be
+provided by @org.eclipse.ocl.examples.pivot.delegate.DelegateDomain.initialize(ResourceSet)@.
 
-bc.. 
-import org.eclipse.ocl.examples.pivot.delegate.*;
-
-String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
-EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLInvocationDelegateFactory.Global());
-EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLSettingDelegateFactory.Global());
-EValidator.ValidationDelegate.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLValidationDelegateFactory.Global());
-QueryDelegate.Factory.Registry.INSTANCE.put
-  (oclDelegateURI, new OCLQueryDelegateFactory.Global());
-p. 
+This may be invoked with a null argument to install the registrations in the global EPackage.Registry rather than a specified local registry. 
 
 h3. Xtext Editors
 
