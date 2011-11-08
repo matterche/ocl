@@ -296,9 +296,10 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("OCLCST");
 	}
 
+/* FIXME Bug 363224 disabled by EMF Compare Bug 362997
 	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("OCLEcore");
-	}
+	} */
 
 	public void testQVTRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("QVT");
