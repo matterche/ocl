@@ -16,6 +16,7 @@
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.
 
+	 Redistribution of this file by Eclipse OCL is approved by CQ 5268
      ******************************************************************** -->
 
 <xsl:template match="/">
