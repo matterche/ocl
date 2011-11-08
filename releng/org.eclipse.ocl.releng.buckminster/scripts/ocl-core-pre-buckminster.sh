@@ -54,7 +54,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo "tests.base=MDT-OCL.test.results" 
 	echo "javadoc.base=MDT-OCL.javadoc"
 	echo "version=4.0.0"
-	echo "component.name=Core"
+	echo "component.name=core"
 	echo "downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
 
 
