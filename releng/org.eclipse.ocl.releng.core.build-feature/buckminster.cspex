@@ -46,7 +46,8 @@
 				<cs:property key="targets" value="package.site" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="package.name" value="mdt-ocl-Update" />
+				<cs:property key="package.name" value="mdt-ocl-Core-Update" />
+				<cs:property key="component.name" value="Core"/>
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -138,7 +139,8 @@
 			<cs:attribute name="package.mdt-ocl-SDK" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
 			<!-- <cs:attribute name="package.mdt-ocl-examples" /> -->
-			<cs:attribute name="package.mdt-ocl-runtime" />
+			<cs:attribute name="package.mdt-ocl-runtime" />				
 		</cs:public>
+		
 	</cs:groups>
 </cs:cspecExtension>
