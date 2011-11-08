@@ -6,7 +6,6 @@
 		<!-- Indirect Dependencies -->
 		<cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature" />
 	</cs:dependencies>
-
 	<cs:actions>
 		<cs:private name="site.tp" actor="ant">
 			<cs:actorProperties>
