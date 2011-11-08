@@ -17,8 +17,8 @@ junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.backtracking.tests.xml"
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Plugin).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.plugin.tests.xml"
 
-junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.tests.xml"
-junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.backtracking.tests.xml"
+#junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.tests.xml"
+#junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.backtracking.tests.xml"
 # BUG 358801: junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Plugin\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.plugin.tests.xml"
 
 perform --properties "${checkout.location}/buildroot/build.properties" "-Dbuckminster.reference.repository=${reference.repository}" "org.eclipse.ocl.releng.core.build:eclipse.feature#build"
