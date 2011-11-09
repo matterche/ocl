@@ -605,7 +605,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 			return createEObjectValue((EObject) object);
 		}
 		else if (object instanceof Number) {
-			if ((object instanceof Integer) || (object instanceof Long) || (object instanceof Short)) {
+			if ((object instanceof Integer) || (object instanceof Long) || (object instanceof Short) || (object instanceof Byte)) {
 				return integerValueOf(((Number) object).longValue());
 			}
 			if ((object instanceof Float) || (object instanceof Double)) {
@@ -621,6 +621,9 @@ public abstract class AbstractValueFactory implements ValueFactory
 		else if (object instanceof String) {
 			return stringValueOf((String) object);
 		}
+		else if (object instanceof Character) {
+			return integerValueOf(((Character) object).charValue());
+		}			
 		else if (object instanceof Boolean) {
 			return booleanValueOf((Boolean) object);
 		}

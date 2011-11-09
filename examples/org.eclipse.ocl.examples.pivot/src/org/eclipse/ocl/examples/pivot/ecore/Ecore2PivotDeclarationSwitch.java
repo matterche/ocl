@@ -173,6 +173,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				else if (instanceClass == byte.class) {
 					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 				}
+				else if (instanceClass == char.class) {
+					pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+				}
 				else if (instanceClass == double.class) {
 					pivotElement.setBehavioralType(metaModelManager.getRealType());
 				}
@@ -199,6 +202,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 						pivotElement.setBehavioralType(metaModelManager.getBooleanType());
 					}
 					else if (instanceClass == Byte.class) {
+						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
+					}
+					else if (instanceClass == Character.class) {
 						pivotElement.setBehavioralType(metaModelManager.getIntegerType());
 					}
 					else if (instanceClass == Double.class) {
