@@ -12,11 +12,11 @@
    </description>
 
    <copyright>
-		[Documentation] Copyright text will be taken from the shared license feature
+      [Documentation] Copyright text will be taken from the shared license feature
    </copyright>
 
    <includes
-         id="org.eclipse.ocl.examples"
+         id="org.eclipse.ocl.master"
          version="0.0.0"/>
 
 </feature>
