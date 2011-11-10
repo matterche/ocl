@@ -255,7 +255,9 @@ public class IteratorsTest extends PivotTestSuite
 
         // flattening of nested collections
         CollectionValue expected2 = valueFactory.createBagOf(jim, pkg4, pkg5);
-
+        // nestedPackage is Set<Package>
+        // nestedPackage->collectNested(nestedPackage) is Bag<Set<Package>>
+        // nestedPackage->collectNested(nestedPackage)->flatten() is Bag<Package>
         assertQueryEquals(pkg1, expected2, "nestedPackage.nestedPackage");
     }
 

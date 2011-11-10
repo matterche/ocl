@@ -453,7 +453,7 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	/**
-	 * Resolve any implicit collect().
+	 * Synthesize any any implicit collect() call. The return type is left unresolved since operation parameters or loop body must be resolved first.
 	 */
 	protected CallExp resolveNavigationFeature(NamedExpCS csElement, OclExpression source, Feature feature, CallExp callExp) {
 		CallExp navigationExp = callExp;
@@ -485,13 +485,6 @@ public class EssentialOCLLeft2RightVisitor
 			context.setType(variableExp, elementType);
 			callExp.setSource(variableExp);			
 			iteratorExp.setBody(callExp);
-			Type bodyType = callExp.getType();
-			while (bodyType instanceof CollectionType) {
-				bodyType = ((CollectionType)bodyType).getElementType();
-			}
-			if (bodyType != null) {
-				iteratorExp.setType(metaModelManager.getCollectionType(feature.isOrdered(), false, bodyType));
-			}
 			navigationExp = iteratorExp;
 		}
 		navigationExp.setSource(source);
@@ -564,27 +557,27 @@ public class EssentialOCLLeft2RightVisitor
 			Operation operation = (Operation)namedElement;
 			Operation baseOperation = metaModelManager.resolveBaseOperation(operation);
 			OclExpression source = resolveNavigationSource(csNavigatingExp, operation);
-			CallExp expression;
-			CallExp callExp;
+			CallExp outerExpression;
+			CallExp innerExpression;
 			if (operation instanceof Iteration) {
 				Iteration iteration = (Iteration)operation;
-				callExp = resolveIterationCall(csNavigatingExp, source, iteration);
-				expression = resolveNavigationFeature(csNavigatingExp, source, baseOperation, callExp);
-				resolveIterationBody(csNavigatingExp, (LoopExp)callExp);
+				innerExpression = resolveIterationCall(csNavigatingExp, source, iteration);
+				outerExpression = resolveNavigationFeature(csNavigatingExp, source, baseOperation, innerExpression);
+				resolveIterationBody(csNavigatingExp, (LoopExp)innerExpression);
 			}
 			else {
 				OperationCallExp operationCallExp = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
 				context.setReferredOperation(operationCallExp, operation);
 				context.installPivotUsage(csNavigatingExp, operationCallExp);		
-				callExp = operationCallExp;
-				expression = resolveNavigationFeature(csNavigatingExp, source, baseOperation, callExp);
+				innerExpression = operationCallExp;
+				outerExpression = resolveNavigationFeature(csNavigatingExp, source, baseOperation, innerExpression);
 				resolveOperationArguments(csNavigatingExp, source, operation, operationCallExp);
 			}
-			resolveOperationReturnType(callExp);
-			if (expression != callExp) {
-				resolveOperationReturnType(expression);
+			resolveOperationReturnType(innerExpression);
+			if (outerExpression != innerExpression) {
+				resolveOperationReturnType(outerExpression);
 			}
-			return checkImplementation(csNavigatingExp, operation, callExp, expression);
+			return checkImplementation(csNavigatingExp, operation, innerExpression, outerExpression);
 		}
 		else {
 			return context.addBadExpressionError(csNamedExp, "Operation name expected");
@@ -773,16 +766,34 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		Type returnType = metaModelManager.getSpecializedType(metaModelManager.getTypeWithMultiplicity(operation), templateBindings);
+		if ((operation instanceof Iteration) && "collect".equals(operation.getName()) && (callExp instanceof LoopExp) && (returnType instanceof CollectionType)) {
+			OclExpression body = ((LoopExp)callExp).getBody();
+			if (body != null) {
+				Type bodyType = PivotUtil.getBehavioralType(body.getType());
+				if (bodyType instanceof CollectionType) {
+					Type elementType = bodyType;
+					while (elementType instanceof CollectionType) {
+						elementType = ((CollectionType)elementType).getElementType();
+					}
+					boolean isOrdered = ((CollectionType)bodyType).isOrdered() && ((CollectionType)returnType).isOrdered();
+//					boolean isUnique = /*((CollectionType)bodyType).isUnique() &&*/ ((CollectionType)returnType).isUnique();
+					returnType = metaModelManager.getCollectionType(isOrdered, false, elementType);
+				}
+			}
+		}
 		context.setType(callExp, returnType);
 	}
 
 	protected OclExpression resolvePropertyCallExp(NamedExpCS csNameExp, Property property) {
 		OclExpression source = resolveNavigationSource(csNameExp, property);
-		PropertyCallExp expression = context.refreshModelElement(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
-		expression.setReferredProperty(property);
-		context.setTypeWithMultiplicity(expression, property);		// FIXME resolve template parameter		
-		OclExpression navigationExpression = resolveNavigationFeature(csNameExp, source, property, expression);
-		return navigationExpression;
+		PropertyCallExp innerExpression = context.refreshModelElement(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
+		innerExpression.setReferredProperty(property);
+		context.setTypeWithMultiplicity(innerExpression, property);		// FIXME resolve template parameter		
+		CallExp outerExpression = resolveNavigationFeature(csNameExp, source, property, innerExpression);
+		if (outerExpression != innerExpression) {
+			resolveOperationReturnType(outerExpression);
+		}
+		return outerExpression;
 	}
 
 	protected OclExpression resolvePropertyNavigation(NamedExpCS csNamedExp) {
