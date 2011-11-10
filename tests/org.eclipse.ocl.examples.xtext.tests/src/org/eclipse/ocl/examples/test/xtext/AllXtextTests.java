@@ -71,6 +71,7 @@ public class AllXtextTests
 		result.addTestSuite(EvaluateStringOperationsTest.class);
 		result.addTestSuite(IteratorsTest.class);
 		result.addTestSuite(DelegatesTest.class);
+		result.addTestSuite(ErrorTests.class);
 		result.addTestSuite(ImportTests.class);
 		result.addTestSuite(LoadTests.class);
 		result.addTestSuite(PrettyPrinterTest.class);

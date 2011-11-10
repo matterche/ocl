@@ -21,6 +21,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
+import org.eclipse.xtext.resource.XtextResource;
 
 /**
  * Tests for OclAny operations.
@@ -49,6 +51,19 @@ import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResou
 @SuppressWarnings("nls")
 public class PivotTestUtils extends TestCase
 {
+	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
+		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
+		if (diagnostics.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(message);
+			for (Diagnostic diagnostic : diagnostics) {
+				s.append("\n");
+				s.append(diagnostic.toString());
+			}
+			fail(s.toString());
+		}
+	}
+
 	public static void assertNoResourceErrors(String prefix, Resource resource) {
 		String message = PivotUtil.formatResourceDiagnostics(resource.getErrors(), prefix, "\n\t");
 		if (message != null)
@@ -95,6 +110,58 @@ public class PivotTestUtils extends TestCase
 			s.append(child.getMessage());
 		}
 		fail(s.toString());
+	}
+	public static void assertResourceErrors(String prefix, Resource resource, String... messages) {
+		Map<String, Integer> expected = new HashMap<String, Integer>();
+		for (String message : messages) {
+			Integer count = expected.get(message);
+			count = count == null ? 1 : count + 1;
+			expected.put(message, count);
+		}
+		StringBuffer s1 = null;
+		for (Resource.Diagnostic error : resource.getErrors()) {
+			String actual = error.getMessage();
+			Integer expectedCount = expected.get(actual);
+			if ((expectedCount == null) || (expectedCount <= 0)) {
+				if (s1 == null) {
+					s1 = new StringBuffer();
+					s1.append("\nUnexpected errors");
+				}
+				s1.append("\n");
+				s1.append(actual);
+			}
+			else {
+				expected.put(actual, expectedCount-1);
+			}
+		}
+		StringBuffer s2 = null;
+		for (String key : expected.keySet()) {
+			Integer count = expected.get(key);
+			while (count-- > 0) {
+				if (s2 == null) {
+					s2 = new StringBuffer();
+					s2.append("\nMissing errors");
+				}
+				s2.append("\n");
+				s2.append(key);
+			}
+		}
+		if (s1 == null) {
+			if (s2 == null) {
+				return;
+			}
+			else {
+				fail(s2.toString());
+			}
+		}
+		else {
+			if (s2 == null) {
+				fail(s1.toString());
+			}
+			else {
+				fail(s1.toString() + s2.toString());
+			}
+		}
 	}
 	
 	public static Resource getEcoreFromCS(MetaModelManager metaModelManager, String testDocument, URI ecoreURI) throws IOException {

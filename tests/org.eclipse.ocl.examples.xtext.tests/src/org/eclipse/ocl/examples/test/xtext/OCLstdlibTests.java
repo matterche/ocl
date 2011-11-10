@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -90,12 +91,12 @@ public class OCLstdlibTests extends XtextTestCase
 	protected Resource doLoadFromString(String fileName, String testFile) throws Exception {
 		URI libraryURI = getProjectFileURI(fileName);
 		BaseCSResource xtextResource = (BaseCSResource) PivotUtil.createXtextResource(null, libraryURI, null, testFile);
-		assertNoResourceErrors("Load failed", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
-		assertNoResourceErrors("File Model", pivotResource);
-		assertNoUnresolvedProxies("File Model", pivotResource);
-		assertNoValidationErrors("File Model", pivotResource);
+		PivotTestUtils.assertNoResourceErrors("File Model", pivotResource);
+		PivotTestUtils.assertNoUnresolvedProxies("File Model", pivotResource);
+		PivotTestUtils.assertNoValidationErrors("File Model", pivotResource);
 		return pivotResource;
 	}
 
@@ -164,20 +165,20 @@ public class OCLstdlibTests extends XtextTestCase
 		//
 		URI libraryURI = getProjectFileURI("oclstdlib.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
-		assertNoResourceErrors("Load failed", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
-		assertNoResourceErrors("File Model", fileResource);
-		assertNoUnresolvedProxies("File Model", fileResource);
-		assertNoValidationErrors("File Model", fileResource);
+		PivotTestUtils.assertNoResourceErrors("File Model", fileResource);
+		PivotTestUtils.assertNoUnresolvedProxies("File Model", fileResource);
+		PivotTestUtils.assertNoValidationErrors("File Model", fileResource);
 		//
 		//	Load 'oclstdlib.oclstdlib' as pre-code-generated Java.
 		//
 		Resource javaResource = OCLstdlib.getDefault();
 //		PivotAliasCreator.refreshPackageAliases(javaResource);
-		assertNoResourceErrors("Java Model", javaResource);
-		assertNoUnresolvedProxies("Java Model", javaResource);
-		assertNoValidationErrors("Java Model", javaResource);
+		PivotTestUtils.assertNoResourceErrors("Java Model", javaResource);
+		PivotTestUtils.assertNoUnresolvedProxies("Java Model", javaResource);
+		PivotTestUtils.assertNoValidationErrors("Java Model", javaResource);
 		//
 		//	Check similar content
 		//

@@ -542,11 +542,8 @@ public class EssentialOCLLeft2RightVisitor
 		//	Resolve the static operation/iteration by name and known operation argument types.
 		//
 		NamedElement namedElement = csNamedExp.getNamedElement();
-		if (namedElement.eIsProxy()) {
-//			return context.addBadProxyError(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT, csNamedExp);
-			namedElement = getBadOperation();
-		}
 		if ((namedElement == null) || namedElement.eIsProxy()) {
+			namedElement = getBadOperation();
 			OperationCallExp operationCallExp = context.refreshModelElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
 			context.setReferredOperation(operationCallExp, null);
 			context.installPivotUsage(csNavigatingExp, operationCallExp);		
@@ -798,15 +795,11 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected OclExpression resolvePropertyNavigation(NamedExpCS csNamedExp) {
 		NamedElement namedElement = csNamedExp.getNamedElement();
-		if (namedElement.eIsProxy()) {
-//			String boundMessage = NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, csNamedExp, PivotConstants.UNKNOWN_TYPE_TEXT);
-//			return context.addBadExpressionError(csNamedExp, boundMessage);
-			namedElement = getBadProperty();
-		}
 		if ((namedElement == null) || namedElement.eIsProxy()) {
+			namedElement = getBadProperty();
 			PropertyCallExp expression = context.refreshModelElement(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNamedExp);
 			expression.setReferredProperty(null);
-//			context.reusePivotElement(csNavigatingExp, operationCallExp);		
+//			context.installPivotUsage(csNavigatingExp, operationCallExp);		
 			context.setType(expression, metaModelManager.getOclInvalidType());
 			return expression;
 		}

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +38,6 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
@@ -51,14 +49,10 @@ import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -80,6 +74,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.test.xtext.DiffToText;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -144,72 +139,11 @@ public class XtextTestCase extends TestCase
 	public static TestCaseAppender testCaseAppender = new TestCaseAppender();
 	
 	protected static boolean noDebug = false;
-
-	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
-		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
-		if (diagnostics.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			s.append(message);
-			for (Diagnostic diagnostic : diagnostics) {
-				s.append("\n");
-				s.append(diagnostic.toString());
-			}
-			fail(s.toString());
-		}
-	}
-
-	public static void assertNoResourceErrors(String prefix, Resource resource) {
-		String message = PivotUtil.formatResourceDiagnostics(resource.getErrors(), prefix, "\n\t");
-		if (message != null)
-			fail(message);
-	}
-
-	public static void assertNoUnresolvedProxies(String message, Resource resource) {
-		Map<EObject, Collection<Setting>> unresolvedProxies = UnresolvedProxyCrossReferencer.find(resource);
-		if (unresolvedProxies.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			s.append(unresolvedProxies.size());
-			s.append(" ");	
-			s.append(message);
-			for (Map.Entry<EObject, Collection<Setting>> unresolvedProxy : unresolvedProxies.entrySet()) {
-				s.append("\n");	
-				BasicEObjectImpl key = (BasicEObjectImpl) unresolvedProxy.getKey();
-				s.append(key.eProxyURI());
-				for (Setting setting : unresolvedProxy.getValue()) {
-					s.append("\n\t");
-					EObject eObject = setting.getEObject();
-					s.append(eObject.toString());
-				}
-			}
-			fail(s.toString());
-		}
-	}
 	
 	public static void debugPrintln(String string) {
 		if (!noDebug) {
 			System.out.println(string);
 		}		
-	}
-
-	protected void assertNoValidationErrors(String string, Resource resource) {
-		for (EObject eObject : resource.getContents()) {
-			assertNoValidationErrors(string, eObject);
-		}
-	}
-
-	protected void assertNoValidationErrors(String string, EObject eObject) {
-		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
-		List<Diagnostic> children = diagnostic.getChildren();
-		if (children.size() <= 0) {
-			return;
-		}
-		StringBuffer s = new StringBuffer();
-		s.append(children.size() + " validation errors");
-		for (Diagnostic child : children){
-			s.append("\n\t");
-			s.append(child.getMessage());
-		}
-		fail(s.toString());
 	}
 
 	protected void assertPivotIsValid(URI pivotURI) {
@@ -237,7 +171,7 @@ public class XtextTestCase extends TestCase
 				tit.prune();
 			}
 		}
-		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
+		PivotTestUtils.assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 	}
 	
 	public static void assertSameModel(Resource expectedResource, Resource actualResource) throws IOException, InterruptedException {
@@ -476,7 +410,7 @@ public class XtextTestCase extends TestCase
 		cs2PivotResourceMap.put(xtextResource, pivotResource);
 		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, metaModelManager);
 		pivot2cs.update();
-		assertNoResourceErrors("Conversion failed", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Conversion failed", xtextResource);
 //		csResource.save(null);
 		//
 		//	CS save and reload
@@ -486,7 +420,7 @@ public class XtextTestCase extends TestCase
 		pivotResource.save(null);
 		pivotResource.setURI(savedURI);
 		
-		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
+		PivotTestUtils.assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
 		try {
 			xtextResource.save(null);
 		}
@@ -510,13 +444,13 @@ public class XtextTestCase extends TestCase
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(inputURI, true);
-			assertNoResourceErrors("Load failed", xtextResource);
+			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
 			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			PivotTestUtils.assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
 			Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, null);
-			assertNoResourceErrors("To Ecore errors", ecoreResource);
+			PivotTestUtils.assertNoResourceErrors("To Ecore errors", ecoreResource);
 			ecoreResource.save(null);
 		}
 		finally {
@@ -537,8 +471,8 @@ public class XtextTestCase extends TestCase
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
-		assertNoResourceErrors("Normalisation failed", pivotResource);
-		assertNoValidationErrors("Normalisation invalid", pivotResource);
+		PivotTestUtils.assertNoResourceErrors("Normalisation failed", pivotResource);
+		PivotTestUtils.assertNoValidationErrors("Normalisation invalid", pivotResource);
 		return pivotResource;
 	}
 
@@ -577,7 +511,7 @@ public class XtextTestCase extends TestCase
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
 //		Resource eResource = documentCS.eResource();
-		assertNoResourceErrors("Load failed", ecoreResource);
+		PivotTestUtils.assertNoResourceErrors("Load failed", ecoreResource);
 //		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 //		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
 //		xtextResource.getContents().add(documentCS);
@@ -613,12 +547,12 @@ public class XtextTestCase extends TestCase
 	protected Resource savePivotAsEcore(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options, boolean validateSaved) throws IOException {
 		URI uri = ecoreURI != null ? ecoreURI : URI.createURI("test.ecore");
 		Resource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, uri, null);
-		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
+		PivotTestUtils.assertNoResourceErrors("Ecore2Pivot failed", ecoreResource);
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
 		}
 		if (validateSaved) {
-			assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource);
+			PivotTestUtils.assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource);
 		}
 		return ecoreResource;
 	}
@@ -626,7 +560,7 @@ public class XtextTestCase extends TestCase
 	protected Resource savePivotFromCS(MetaModelManager metaModelManager, BaseCSResource xtextResource, URI pivotURI) throws IOException {
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
-		assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
+		PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
 		if (pivotURI != null) {
 			pivotResource.setURI(pivotURI);
 			pivotResource.save(null);

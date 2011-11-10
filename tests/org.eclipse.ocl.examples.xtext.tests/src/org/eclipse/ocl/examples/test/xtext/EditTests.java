@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -36,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.TypeSpecializationAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -46,58 +45,6 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EditTests extends XtextTestCase
 {	
-	public static void assertResourceErrors(String prefix, Resource resource, String... messages) {
-		Map<String, Integer> expected = new HashMap<String, Integer>();
-		for (String message : messages) {
-			Integer count = expected.get(message);
-			count = count == null ? 1 : count + 1;
-			expected.put(message, count);
-		}
-		StringBuffer s1 = null;
-		for (Resource.Diagnostic error : resource.getErrors()) {
-			String actual = error.getMessage();
-			Integer expectedCount = expected.get(actual);
-			if ((expectedCount == null) || (expectedCount <= 0)) {
-				if (s1 == null) {
-					s1 = new StringBuffer();
-					s1.append("\nUnexpected errors");
-				}
-				s1.append("\n");
-				s1.append(actual);
-			}
-			else {
-				expected.put(actual, expectedCount-1);
-			}
-		}
-		StringBuffer s2 = null;
-		for (String key : expected.keySet()) {
-			Integer count = expected.get(key);
-			while (count-- > 0) {
-				if (s2 == null) {
-					s2 = new StringBuffer();
-					s2.append("\nMissing errors");
-				}
-				s2.append("\n");
-				s2.append(key);
-			}
-		}
-		if (s1 == null) {
-			if (s2 == null) {
-				return;
-			}
-			else {
-				fail(s2.toString());
-			}
-		}
-		else {
-			if (s2 == null) {
-				fail(s1.toString());
-			}
-			else {
-				fail(s1.toString() + s2.toString());
-			}
-		}
-	}
 
 	protected MetaModelManager metaModelManager = null;
 	
@@ -124,7 +71,7 @@ public class EditTests extends XtextTestCase
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
 //		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
-		assertNoResourceErrors("Loading Xtext", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Loading Xtext", xtextResource);
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, null);
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
@@ -138,14 +85,14 @@ public class EditTests extends XtextTestCase
 		String contextMessage = "Renaming '" + oldString + "' to '" + newString + "'";
 //		System.out.println("-----------------" + contextMessage + "----------------");
 		replace(xtextResource, oldString, newString); 
-		assertResourceErrors(contextMessage, xtextResource, expectedErrors);
-		assertNoResourceErrors(contextMessage, pivotResource);
+		PivotTestUtils.assertResourceErrors(contextMessage, xtextResource, expectedErrors);
+		PivotTestUtils.assertNoResourceErrors(contextMessage, pivotResource);
 		boolean validSave = expectedErrors.length == 0;
 		if (validSave) {
-			assertNoValidationErrors(contextMessage, pivotResource);
+			PivotTestUtils.assertNoValidationErrors(contextMessage, pivotResource);
 		}
 		Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, null, validSave);
-		assertNoResourceErrors(contextMessage, ecoreResource);
+		PivotTestUtils.assertNoResourceErrors(contextMessage, ecoreResource);
 		return ecoreResource;
 	}	
 
@@ -175,7 +122,7 @@ public class EditTests extends XtextTestCase
 		//	Inserting a leading space has no Ecore effect.
 		//
 		xtextResource.update(0, 0, " ");
-		assertNoResourceErrors("Adding space", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Adding space", xtextResource);
 		URI ecoreURI2 = getProjectFileURI("test2.ecore");
 		Resource ecoreResource2 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI2, true);
 		assertSameModel(ecoreResource0, ecoreResource2);		
@@ -183,7 +130,7 @@ public class EditTests extends XtextTestCase
 		//	Deleting the leading space has no Ecore effect.
 		//
 		xtextResource.update(0, 1, "");
-		assertNoResourceErrors("Deleting space", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Deleting space", xtextResource);
 		URI ecoreURI3 = getProjectFileURI("test3.ecore");
 		Resource ecoreResource3 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI3, true);
 		assertSameModel(ecoreResource0, ecoreResource3);		
@@ -191,7 +138,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "p1" to "pkg" renames the package.
 		//
 		replace(xtextResource, "p1", "pkg"); 
-		assertNoResourceErrors("Renaming", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Renaming", xtextResource);
 		URI ecoreURI4 = getProjectFileURI("test4.ecore");
 		Resource ecoreResource4 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI4, true);
 		((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
@@ -339,8 +286,8 @@ public class EditTests extends XtextTestCase
 		URI outputURI = getProjectFileURI("test.oclstdlib");
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) PivotUtil.createXtextResource(metaModelManager, outputURI, null, testDocument);
 		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
-		assertResourceErrors("Loading input", xtextResource);
-		assertNoResourceErrors("Loading input", pivotResource);
+		PivotTestUtils.assertResourceErrors("Loading input", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Loading input", pivotResource);
 		//
 		Type myType = metaModelManager.getPrimaryType("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "MyType");
 		SequenceType sequenceType = metaModelManager.getSequenceType();

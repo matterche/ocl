@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -80,11 +81,11 @@ public class ValidateTests extends XtextTestCase
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			xtextResource.load(null);
-			assertNoResourceErrors("Load failed", xtextResource);
+			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			PivotTestUtils.assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
 			Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
 			return ecoreResource;
 		}

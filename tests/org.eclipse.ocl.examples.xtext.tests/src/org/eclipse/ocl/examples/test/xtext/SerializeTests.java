@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -85,8 +86,8 @@ public class SerializeTests extends XtextTestCase
 		BaseCSResource xtextResource2 = null;
 		try {
 			xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
-			assertNoResourceErrors("Reload failed", xtextResource2);
-			assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
+			PivotTestUtils.assertNoResourceErrors("Reload failed", xtextResource2);
+			PivotTestUtils.assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
 			//
 			//	CS to Pivot
 			//	
@@ -141,8 +142,8 @@ public class SerializeTests extends XtextTestCase
 		XtextResource xtextResource = savePivotAsCS(metaModelManager, pivotResource, outputURI);
 		resourceSet.getResources().clear();
 		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
-		assertNoResourceErrors("Reload failed", xtextResource2);
-		assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
+		PivotTestUtils.assertNoResourceErrors("Reload failed", xtextResource2);
+		PivotTestUtils.assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
 		//
 		//	CS to Pivot
 		//	
@@ -169,8 +170,8 @@ public class SerializeTests extends XtextTestCase
 		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = uml2Ecore2Pivot.getPivotRoot();
 		Resource pivotResource = pivotRoot.eResource();
-		assertNoResourceErrors("Normalisation failed", pivotResource);
-		assertNoValidationErrors("Normalisation invalid", pivotResource);
+		PivotTestUtils.assertNoResourceErrors("Normalisation failed", pivotResource);
+		PivotTestUtils.assertNoValidationErrors("Normalisation invalid", pivotResource);
 		return pivotResource;
 	}
 
@@ -182,7 +183,7 @@ public class SerializeTests extends XtextTestCase
 //		List<String> conversionErrors = new ArrayList<String>();
 //		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
 //		Resource eResource = documentCS.eResource();
-		assertNoResourceErrors("Load failed", umlResource);
+		PivotTestUtils.assertNoResourceErrors("Load failed", umlResource);
 //		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 //		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
 //		xtextResource.getContents().add(documentCS);

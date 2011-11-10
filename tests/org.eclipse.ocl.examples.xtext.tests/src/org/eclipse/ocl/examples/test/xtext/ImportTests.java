@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -141,12 +142,12 @@ public class ImportTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
 		InputStream inputStream = new ByteArrayInputStream(testFile.getBytes());
 		xtextResource.load(inputStream, null);
-		assertNoResourceErrors("Load failed", xtextResource);
+		PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
-		assertNoResourceErrors("File Model", fileResource);
-		assertNoUnresolvedProxies("File Model", fileResource);
-		assertNoValidationErrors("File Model", fileResource);
+		PivotTestUtils.assertNoResourceErrors("File Model", fileResource);
+		PivotTestUtils.assertNoUnresolvedProxies("File Model", fileResource);
+		PivotTestUtils.assertNoValidationErrors("File Model", fileResource);
 //		MetaModelManagerResourceSetAdapter adapter2 = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 //		if (adapter2 != null) {
 //			MetaModelManager metaModelManager2 = adapter2.getMetaModelManager();
