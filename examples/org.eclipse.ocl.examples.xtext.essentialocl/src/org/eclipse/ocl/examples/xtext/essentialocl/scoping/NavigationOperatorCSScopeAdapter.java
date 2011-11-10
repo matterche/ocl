@@ -48,7 +48,11 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 				Type type = source.getType();
 				if (!target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
 					if (type instanceof CollectionType) {		// collection->implicit-collect(object-operation)
-						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
+						Type elementType = ((CollectionType)type).getElementType();
+						while (elementType instanceof CollectionType) {
+							elementType = ((CollectionType)elementType).getElementType();		// implicit-collect flattens
+						}
+						environmentView.addElementsOfScope(elementType, scopeView);
 					}
 					else {										// object.object-operation
 						environmentView.addElementsOfScope(type, scopeView);		
