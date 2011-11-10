@@ -58,6 +58,9 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			}
 		}
 		String documentation = super.getDocumentation(o);
+		if (documentation == null) {
+			return null;
+		}
 		IParseResult parseResult = MarkupUtils.decode(documentation);
 		Markup markup = (Markup) parseResult.getRootASTElement();
 		if (markup == null) {
