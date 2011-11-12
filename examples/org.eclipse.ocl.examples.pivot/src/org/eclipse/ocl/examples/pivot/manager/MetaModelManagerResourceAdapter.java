@@ -50,6 +50,8 @@ public class MetaModelManagerResourceAdapter implements MetaModelManagedAdapter
 		return adapter;
 	}
 	
+//	public static LiveInstances<MetaModelManagerResourceAdapter> INSTANCES = new LiveInstances(MetaModelManagerResourceAdapter.class);
+	
 	protected final Resource resource;
 	protected final MetaModelManager metaModelManager;
 	
@@ -57,12 +59,13 @@ public class MetaModelManagerResourceAdapter implements MetaModelManagedAdapter
 		this.resource = resource;
 		this.metaModelManager = metaModelManager;
 		metaModelManager.addListener(this);
-//		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
-//			+ " " + resource.getClass().getSimpleName() + " " + resource.hashCode() + " " + resource.getURI()
-//			+ " " + metaModelManager.getClass().getSimpleName() + "@" + metaModelManager.hashCode());		
+//		INSTANCES.add(this);		
 	}
 
-	public void dispose() {}
+	public void dispose() {
+//		INSTANCES.remove(this);
+		resource.eAdapters().remove(this);
+	}
 	
 	public Resource getPivotResource(Resource csResource) {
 		return null;		// Overridden by CS2PivotResourceAdapter

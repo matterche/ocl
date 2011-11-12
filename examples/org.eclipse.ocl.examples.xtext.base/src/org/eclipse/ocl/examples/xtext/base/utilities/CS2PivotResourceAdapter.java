@@ -53,6 +53,7 @@ public class CS2PivotResourceAdapter extends MetaModelManagerResourceAdapter
 		}
 		List<Adapter> eAdapters = csResource.eAdapters();
 		eAdapters.remove(adapter);
+		adapter.dispose();
 		CS2PivotResourceAdapter derivedAdapter = new CS2PivotResourceAdapter(csResource, adapter.getMetaModelManager());
 		eAdapters.add(derivedAdapter);
 		return derivedAdapter;

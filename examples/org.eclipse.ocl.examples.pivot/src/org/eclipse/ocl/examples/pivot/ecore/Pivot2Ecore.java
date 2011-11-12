@@ -120,7 +120,7 @@ public class Pivot2Ecore extends AbstractConversion
 	}
 
 	public static XMLResource createResource(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, Map<String,Object> options) {
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = metaModelManager.getExternalResourceSet();
 		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
 		List<EObject> contents = ecoreResource.getContents();
 		List<EObject> pivotRoots = pivotResource.getContents();

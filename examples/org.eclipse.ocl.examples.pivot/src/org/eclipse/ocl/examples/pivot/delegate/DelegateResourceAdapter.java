@@ -57,16 +57,16 @@ public class DelegateResourceAdapter extends AdapterImpl
 	public void notifyChanged(Notification notification) {
 	    int featureID = notification.getFeatureID(Resource.class);
 	    int eventType = notification.getEventType();
-	    if ((featureID == Resource.RESOURCE__IS_LOADED) && (eventType == Notification.SET)) 
+	    if (featureID == Resource.RESOURCE__IS_LOADED) 
 	    {
-	    	Resource resource = getTarget();
-			EList<EObject> contents = resource.getContents();
-	    	if (notification.getNewBooleanValue()) {
-				EPackage.Registry packageRegistry = resource.getResourceSet().getPackageRegistry();
-				installPackages(packageRegistry, contents);
-	    	}
-	    	else {
-	    		unloadDelegates(contents);
+		    if (eventType == Notification.SET) 
+		    {
+		    	Resource resource = getTarget();
+				EList<EObject> contents = resource.getContents();
+		    	if (notification.getNewBooleanValue()) {
+					EPackage.Registry packageRegistry = resource.getResourceSet().getPackageRegistry();
+					installPackages(packageRegistry, contents);
+		    	}
 	    	}
 	    }
 	    else if (featureID == Resource.RESOURCE__CONTENTS) 

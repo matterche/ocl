@@ -962,6 +962,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		pivotResourceSet.eAdapters().remove(this);
 		pivotResourceSet.getPackageRegistry().clear();
+		for (Resource resource : pivotResourceSet.getResources()) {
+			resource.unload();
+		}
 		pivotResourceSet.getResources().clear();
 		pivotLibraries.clear();	
 		pivotLibraryResource = null;
