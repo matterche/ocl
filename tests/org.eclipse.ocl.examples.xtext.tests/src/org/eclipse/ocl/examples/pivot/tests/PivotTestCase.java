@@ -271,6 +271,11 @@ public class PivotTestCase extends TestCase
 	@Override
 	protected void tearDown() throws Exception {
 //		OCLstdlib.uninstall();	
+//		CompleteOCLStandaloneSetup.doTearDown();
+//		EssentialOCLStandaloneSetup.doTearDown();
+//		MarkupStandaloneSetup.doTearDown();
+//		OCLinEcoreStandaloneSetup.doTearDown();
+//		OCLstdlibStandaloneSetup.doTearDown();
 //		System.gc();
 //		System.runFinalization();
 //		MetaModelManagerResourceAdapter.INSTANCES.show();

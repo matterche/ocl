@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 /**
  * LiveInstances assists in debugging memory leaks by reporting creation/deletion/exuistence of selected class instances.
@@ -25,14 +25,14 @@ import java.util.Set;
 public class LiveInstances<T>
 {
 	protected final Class<T> liveClass;
-	private Set<T> instances = new HashSet<T>();
+	private Map<T,Object> instances = new WeakHashMap<T, Object>();
 	
 	public LiveInstances(Class<T> liveClass) {
 		this.liveClass = liveClass;
 	}
 
 	public void add(T anInstance) {
-		instances.add(anInstance);
+		instances.put(anInstance, null);
 		System.out.println(Thread.currentThread().getName() + " Add " + liveClass.getSimpleName() + "@" + Integer.toHexString(anInstance.hashCode()));		
 	}
 
@@ -48,7 +48,7 @@ public class LiveInstances<T>
 		else {
 			StringBuffer s = new StringBuffer();
 			s.append("Live instances of " + liveClass.getSimpleName());
-			for (T instance : instances) {
+			for (T instance : instances.keySet()) {
 				s.append("\n\t");
 				s.append("@" + Integer.toHexString(instance.hashCode()));
 			}
