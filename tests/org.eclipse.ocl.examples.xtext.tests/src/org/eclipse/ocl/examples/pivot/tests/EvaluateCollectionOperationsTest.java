@@ -27,9 +27,9 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 public class EvaluateCollectionOperationsTest extends PivotTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
-//        helper.setContext(getMetaclass(denormalize("%Package")));
+//      helper.setContext(getMetaclass("Package"));
         helper.setContext(getMetaclass("String"));
     }
 

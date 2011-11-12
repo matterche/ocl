@@ -29,10 +29,10 @@ public class DebugTest extends GenericDebugTest {
 	public org.eclipse.ocl.examples.pivot.Package pkg1;
 
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         pkg1 = metaModelManager.createPackage("pkg1", null);
-        helper.setContext(getMetaclass(denormalize("%Package")));
+        helper.setContext(getMetaclass("Package"));
     }
 
 	/**

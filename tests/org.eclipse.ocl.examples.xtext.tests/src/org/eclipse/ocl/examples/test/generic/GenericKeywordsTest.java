@@ -42,7 +42,7 @@ public abstract class GenericKeywordsTest
     org.eclipse.ocl.examples.pivot.Class constraint;
 
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
 
         // create a little test model for a Smalltalk-like collection class that

@@ -30,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 public class PrettyPrinterTest extends PivotSimpleTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         helper.setContext(metaModelManager.getAnyClassifierType());
     }

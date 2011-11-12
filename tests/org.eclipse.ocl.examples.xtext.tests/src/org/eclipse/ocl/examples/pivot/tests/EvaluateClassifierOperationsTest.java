@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         helper.setContext(metaModelManager.getAnyClassifierType());
     }

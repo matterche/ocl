@@ -139,7 +139,7 @@ public class DelegatesTest extends PivotTestSuite
 	// Test framework
 	//
 	@Override
-	protected void setUp() {
+	protected void setUp() throws Exception {
 		super.setUp();
 		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;

@@ -26,13 +26,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.apache.log4j.ConsoleAppender;
@@ -100,12 +98,10 @@ import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("nls")
-public abstract class PivotTestSuite
-	extends TestCase {
-
+public abstract class PivotTestSuite extends PivotTestCase
+{
 	// set this variable true when testing for memory leaks
     private static boolean DISPOSE_RESOURCE_SET = false;
-	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
 	
     public static final class CheckedTestSuite extends TestSuite {
 
@@ -191,7 +187,6 @@ public abstract class PivotTestSuite
 	 */
     protected void assertBadInvariant(Class<?> exception, int severity,
    		String expression, String messageTemplate, String... bindings) {
-		String denormalized = denormalize(expression);
 		Resource resource = null;
         try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
@@ -200,15 +195,15 @@ public abstract class PivotTestSuite
     		URI uri = metaModelManager.getResourceIdentifier(expression, null);
 			resource = PivotUtil.createXtextResource(metaModelManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
-            fail("Should not have parsed \"" + denormalized + "\"");
+            fail("Should not have parsed \"" + expression + "\"");
         } catch (ParserException e) {
-        	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
+        	assertEquals("Exception for \"" + expression + "\"", exception, e.getClass());
         	Resource.Diagnostic diagnostic = getDiagnostic(resource);
 			assertNoException(diagnostic, ClassCastException.class);
         	assertNoException(diagnostic, NullPointerException.class);
-//        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+//        	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
         	String expectedMessage = NLS.bind(messageTemplate, bindings);
-        	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
+        	assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
         } catch (IOException e) {
 			fail(e.getMessage());
 		} finally {
@@ -229,7 +224,6 @@ public abstract class PivotTestSuite
 	 */
      protected void assertBadQuery(Class<?> exception, int severity,
     		 String expression, String messageTemplate, Object... bindings) {
-		String denormalized = denormalize(expression);
 		Resource resource = null;
 		try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
@@ -238,15 +232,15 @@ public abstract class PivotTestSuite
     		URI uri = metaModelManager.getResourceIdentifier(expression, null);
 			resource = PivotUtil.createXtextResource(metaModelManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
-            fail("Should not have parsed \"" + denormalized + "\"");
+            fail("Should not have parsed \"" + expression + "\"");
         } catch (ParserException e) {
-        	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
+        	assertEquals("Exception for \"" + expression + "\"", exception, e.getClass());
         	Resource.Diagnostic diagnostic = getDiagnostic(resource);
 //			assertNoException(diagnostic, ClassCastException.class);
 //        	assertNoException(diagnostic, NullPointerException.class);
-//        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+//        	assertEquals("Severity for \"" + expression + "\"", severity, diagnostic.getSeverity());
         	String expectedMessage = NLS.bind(messageTemplate, bindings);
-        	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
+        	assertEquals("Message for \"" + expression + "\"", expectedMessage, diagnostic.getMessage());
         } catch (IOException e) {
 			fail(e.getMessage());
 		} finally {
@@ -270,13 +264,11 @@ public abstract class PivotTestSuite
 	 */
 	protected ExpressionInOcl assertInvariant(Type context, String expression) {
 		helper.setContext(context);
-		
-		String denormalized = denormalize(expression);		
 		try {
-			ExpressionInOcl result = helper.createInvariant(denormalized);
+			ExpressionInOcl result = helper.createInvariant(expression);
 			return result;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -285,13 +277,12 @@ public abstract class PivotTestSuite
 	 * Assert that an expression evaluated as an invariant for a context returns false.
 	 */
 	protected Object assertInvariantFalse(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = check(helper, context, denormalized);
-			assertEquals(denormalized, false, value);
+			Object value = check(helper, context, expression);
+			assertEquals(expression, false, value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -300,13 +291,12 @@ public abstract class PivotTestSuite
 	 * Assert that an expression evaluated as an invariant for a context returns true.
 	 */
 	protected Object assertInvariantTrue(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = check(helper, context, denormalized);
-			assertEquals(denormalized, true, value);
+			Object value = check(helper, context, expression);
+			assertEquals(expression, true, value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -348,12 +338,11 @@ public abstract class PivotTestSuite
 	 */
 	protected ExpressionInOcl assertQuery(Type context, String expression) {
 		helper.setContext(context);
-		String denormalized = denormalize(expression);
 		try {
-			ExpressionInOcl result = helper.createQuery(denormalized);
+			ExpressionInOcl result = helper.createQuery(expression);
 			return result;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -363,13 +352,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Value assertQueryDefined(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
-			assertFalse(denormalized + " expected defined: ", value.isUndefined());
+			Value value = evaluate(helper, context, expression);
+			assertFalse(expression + " expected defined: ", value.isUndefined());
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -379,7 +367,6 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
-		String denormalized = denormalize(expression);
 		try {
 			if (expected instanceof EEnumLiteral) {
 				Resource resource = ((EEnumLiteral)expected).eResource();
@@ -388,24 +375,24 @@ public abstract class PivotTestSuite
 			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
 //			typeManager.addLockedElement(expectedValue.getType());
-			Value value = evaluate(helper, context, denormalized);
+			Value value = evaluate(helper, context, expression);
 //			String expectedAsString = String.valueOf(expected);
 //			String valueAsString = String.valueOf(value);
-			assertEquals(denormalized, expectedValue, value);
+			assertEquals(expression, expectedValue, value);
 			// FIXME Following is probably redundant
 			if (expectedValue instanceof OrderedSetValue) {
-				assertTrue(denormalized, value instanceof OrderedSetValue);
+				assertTrue(expression, value instanceof OrderedSetValue);
 				Iterator<?> es = ((OrderedSetValue)expectedValue).iterator();
 				Iterator<?> vs = ((OrderedSetValue)value).iterator();
 				while (es.hasNext()) {
 					Object e = es.next();
 					Object v = vs.next();
-					assertEquals(denormalized, e, v);
+					assertEquals(expression, e, v);
 				}
 			}
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -415,13 +402,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryEquals(Object context, BigDecimal expected, BigDecimal delta, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			BigDecimal value = (BigDecimal) evaluate(helper, context, denormalized);
-			assertTrue(denormalized, (value.compareTo(expected.add(delta)) >= 0) && (value.compareTo(expected.subtract(delta)) >= 0));
+			BigDecimal value = (BigDecimal) evaluate(helper, context, expression);
+			assertTrue(expression, (value.compareTo(expected.add(delta)) >= 0) && (value.compareTo(expected.subtract(delta)) >= 0));
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -431,19 +417,18 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryEquals(Object context, Number expected, String expression, double tolerance) {
-		String denormalized = denormalize(expression);
 		try {
 			Value expectedValue = valueFactory.valueOf(expected);
-			Value value = evaluate(helper, context, denormalized);
+			Value value = evaluate(helper, context, expression);
 			BigDecimal expectedVal = ((RealValue)expectedValue).bigDecimalValue();
 			BigDecimal val = ((RealValue)value).bigDecimalValue();
 			double delta = val.subtract(expectedVal).doubleValue();
 			if ((delta < -tolerance) || (tolerance < delta)) {
-				assertEquals(denormalized, expected, value);
+				assertEquals(expression, expected, value);
 			}
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -452,12 +437,11 @@ public abstract class PivotTestSuite
 	 * Assert that the result of evaluating an expression as a query is the same as expected.
 	 */
 	protected Object assertQueryEvaluate(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
+			Object value = evaluate(helper, context, expression);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -467,13 +451,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryFalse(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, valueFactory.getFalse(), value);
+			Value value = evaluate(helper, context, expression);
+			assertEquals(expression, valueFactory.getFalse(), value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -483,31 +466,29 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Value assertQueryInvalid(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
-			fail(denormalized + " expected: invalid but was: " + value);
+			Value value = evaluate(helper, context, expression);
+			fail(expression + " expected: invalid but was: " + value);
 		} catch (DomainException e) {
 //			assertEquals("Invalid Value Reason", reason, e.getMessage());
 //			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 		}
 		return null;
 	}
 
 	protected Object assertQueryInvalid(Object context, String expression,
 			String reason, Class<?> exceptionClass) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
-			fail(denormalized + " expected: invalid but was: " + value);
-//           fail("Expected invalid for \"" + denormalized + "\"");
+			Value value = evaluate(helper, context, expression);
+			fail(expression + " expected: invalid but was: " + value);
+//           fail("Expected invalid for \"" + expression + "\"");
 		} catch (DomainException e) {
 			assertEquals("Invalid Value Reason", reason, e.getMessage());
 			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 		}
 		return null;
 	}
@@ -517,13 +498,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryNotJavaNull(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			assertNotNull(denormalized, value);
+			Object value = evaluate(helper, context, expression);
+			assertNotNull(expression, value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -533,13 +513,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryNotSame(Object context, Object expected, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			assertNotSame(denormalized, expected, value);
+			Object value = evaluate(helper, context, expression);
+			assertNotSame(expression, expected, value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -549,15 +528,14 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryNull(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
+			Value value = evaluate(helper, context, expression);
 			if (!value.isNull()) {
-				assertEquals(denormalized, valueFactory.getNull(), value);
+				assertEquals(expression, valueFactory.getNull(), value);
 			}
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -578,13 +556,12 @@ public abstract class PivotTestSuite
 	 *            {@link EClass} as this expression's context.
 	 */
 	protected Object assertQueryResults(Object context, String expectedResultExpression, String expression) {
-		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
 		try {
-			Object expectedResultQuery = evaluate(helper, context, denormalizedExpectedResultExpression);
+			Object expectedResultQuery = evaluate(helper, context, expectedResultExpression);
 			Object result = assertQueryEquals(context, expectedResultQuery, expression);
 			return result;
 		} catch (Exception e) {
-			failOn(denormalizedExpectedResultExpression, e);
+			failOn(expectedResultExpression, e);
 			return null;
 		}
 	}
@@ -600,16 +577,15 @@ public abstract class PivotTestSuite
 	 *            {@link EClass} as this expression's context.
 	 */
 	protected Object assertResultContainsAll(Object context, CollectionValue expectedResult, String expression) {
-		String denormalizedExpression = denormalize(expression);
 		try {
-			Value result = evaluate(helper, context, denormalizedExpression);
+			Value result = evaluate(helper, context, expression);
 			assertTrue(expectedResult.getClass().isInstance(result));
 			assertSame(expectedResult.intSize(), ((CollectionValue) result).intSize());
 			BooleanValue actualResult = ((CollectionValue) result).includesAll(expectedResult);
 			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult.isTrue());
 			return result;
 		} catch (Exception e) {
-			failOn(denormalizedExpression, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -627,14 +603,13 @@ public abstract class PivotTestSuite
 	 *            {@link EClass} as this expression's context.
 	 */
 	protected Object assertResultContainsAll(Object context, String expectedResultExpression, String expression) {
-		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
 		try {
-			Value expectedResultQuery = evaluate(helper, null, denormalizedExpectedResultExpression);
+			Value expectedResultQuery = evaluate(helper, null, expectedResultExpression);
 			assertTrue(expectedResultQuery instanceof CollectionValue);
 			Object result = assertResultContainsAll(context, (CollectionValue) expectedResultQuery, expression);
 			return result;
 		} catch (Exception e) {
-			failOn(denormalizedExpectedResultExpression, e);
+			failOn(expectedResultExpression, e);
 			return null;
 		}
 	}
@@ -644,13 +619,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 *
 	protected Object assertQuerySame(Object context, Object expected, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Object value = evaluate(helper, context, denormalized);
-			assertSame(denormalized, expected, value);
+			Object value = evaluate(helper, context, expression);
+			assertSame(expression, expected, value);
 			return value;
 		} catch (ParserException e) {
-            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+            fail("Failed to parse or evaluate \"" + expression + "\": " + e.getLocalizedMessage());
 			return null;
 		}
 	} */
@@ -660,13 +634,12 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryTrue(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
-			assertEquals(denormalized, valueFactory.getTrue(), value);
+			Value value = evaluate(helper, context, expression);
+			assertEquals(expression, valueFactory.getTrue(), value);
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -676,15 +649,14 @@ public abstract class PivotTestSuite
 	 * @return the evaluation result
 	 */
 	protected Object assertQueryUnlimited(Object context, String expression) {
-		String denormalized = denormalize(expression);
 		try {
-			Value value = evaluate(helper, context, denormalized);
+			Value value = evaluate(helper, context, expression);
 			if (!value.isUnlimited()) {
-				assertEquals(denormalized, valueFactory.getUnlimited(), value);
+				assertEquals(expression, valueFactory.getUnlimited(), value);
 			}
 			return value;
 		} catch (Exception e) {
-			failOn(denormalized, e);
+			failOn(expression, e);
 			return null;
 		}
 	}
@@ -710,8 +682,8 @@ public abstract class PivotTestSuite
 		boolean result = false;
 		
 		try {
-			String document = denormalize("package %uml context %String" +
-					" inv: " + contextFreeExpression + " endpackage");
+			String document = "package uml context String" +
+					" inv: " + contextFreeExpression + " endpackage";
 			ExpressionInOcl expr = parse(document);
 			
 			result = check(expr, "");
@@ -969,34 +941,6 @@ public abstract class PivotTestSuite
         var.setType(type);
         environment.addElement(var.getName(), var, true);
 	}
-
-	/**
-	 * Replace every %xxx occurrence on expression by the binding-specific value of
-	 * denormalization of xxx if defined or xxx otherwise.
-	 */
-	public String denormalize(String expression) {
-		StringBuffer s = new StringBuffer();
-		int iMax = expression.length();
-		for (int i = 0; i < iMax; i++) {
-			char c = expression.charAt(i);
-			if (c == '%') {
-				int iStart = ++i;
-				for (; i < iMax; i++){
-					c = expression.charAt(i);
-					if (!Character.isLetterOrDigit(c)) {
-						break;
-					}
-				}
-				s.append(expression.substring(iStart, i));
-//				String mapped = reflection.denormalize(key);
-//				s.append(mapped != null ? mapped : key);
-			}
-			if (i < iMax)
-				s.append(c);
-				
-		}
-		return s.toString();
-	}	
 	
 	protected void disposeResourceSet() {
         for (Resource res : resourceSet.getResources()) {
@@ -1013,8 +957,8 @@ public abstract class PivotTestSuite
 		Object result = null;
 		
 		try {
-			String document = denormalize("package %uml context %String" +
-					" inv: " + contextFreeExpression +" endpackage");
+			String document = "package uml context String" +
+					" inv: " + contextFreeExpression +" endpackage";
 			ExpressionInOcl expr = parse(document);
 			
 			result = evaluate(expr, "");
@@ -1069,23 +1013,6 @@ public abstract class PivotTestSuite
 		}
 		
 		return result;
-	}
-
-	protected Value failOn(String expression, Throwable e) {
-		if (e instanceof DomainException) {
-			Throwable eCause = e.getCause();
-			if (eCause != null) {
-				return failOn(expression, eCause);
-			}
-	        fail("Failed to evaluate \"" + expression + "\": " + e.getLocalizedMessage());
-		}
-		else if (e instanceof DomainException) {
-	        fail("Failed to parse or evaluate \"" + expression + "\": " + e.getLocalizedMessage());
-		}
-		else {
-	        fail("Failure for \"" + expression + "\": " + e.getLocalizedMessage());
-		}
-		return null;
 	}
 	
 	/**
@@ -1145,31 +1072,6 @@ public abstract class PivotTestSuite
 	
 	protected DomainStandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
-	}
-	
-	public URI getTestModelURI(String localFileName) {
-		String testPlugInId = getTestPlugInId();
-		try {
-			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform");
-			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class});
-			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
-			
-			if (bundle != null) {
-				Method getEntry = bundle.getClass().getMethod("getEntry", new java.lang.Class[] {String.class});
-				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
-				return URI.createURI(url.toString());
-			}
-		} catch (Exception e) {
-			// not running in Eclipse
-		}
-		String urlString = System.getProperty(testPlugInId);
-		if (urlString == null)
-			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
-		return URI.createFileURI(urlString + "/" + localFileName);
-	}
-
-	public String getTestPlugInId() {
-		return PLUGIN_ID;
 	}
 	
 	protected DomainType getUMLBoolean() {
@@ -1321,9 +1223,9 @@ public abstract class PivotTestSuite
 	}
 	
 	@Override
-    protected void setUp() {
-//    	System.out.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
-		OCLstdlib.install();
+    protected void setUp() throws Exception {
+		super.setUp();
+ 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
 		metaModelManager = new MetaModelManager();
 		valueFactory = metaModelManager.getValueFactory();
@@ -1402,10 +1304,7 @@ public abstract class PivotTestSuite
 				}
 			}
 		}
-//		OCLstdlib.uninstall();	
-//		System.gc();
-//		System.runFinalization();
-//		debugPrintln("==> Finish " + getName());
+		super.tearDown();
 	}
 
 	protected void tearDownField(Field field) throws IllegalAccessException {
@@ -1425,10 +1324,17 @@ public abstract class PivotTestSuite
 	}
 
 	protected void tearDown_ocl() {
-		ocl.dispose();
-		ocl = null;
-		metaModelManager = null;
-		valueFactory = null;
+		if (ocl != null) {
+			ocl.dispose();
+			ocl = null;
+		}
+	}
+
+	protected void tearDown_metaModelManager() {
+		if (metaModelManager != null) {
+			metaModelManager.dispose();
+			metaModelManager = null;
+		}
 	}
     
     /**

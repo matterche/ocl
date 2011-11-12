@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         helper.setContext(metaModelManager.getAnyClassifierType());
     }

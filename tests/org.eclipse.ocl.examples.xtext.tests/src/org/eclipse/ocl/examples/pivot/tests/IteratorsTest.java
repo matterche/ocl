@@ -67,7 +67,7 @@ public class IteratorsTest extends PivotTestSuite
 	org.eclipse.ocl.examples.pivot.Package george;
 
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
 		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getPivotMetaModel());
 
@@ -182,7 +182,7 @@ public class IteratorsTest extends PivotTestSuite
         // different result
         assertQueryTrue(pkg1, "Sequence{}->isUnique(e | e)");
 
-        assertQueryTrue(pkg1, "%nestedPackage->isUnique(name)");
+        assertQueryTrue(pkg1, "nestedPackage->isUnique(name)");
     }
 
     /**
@@ -199,7 +199,7 @@ public class IteratorsTest extends PivotTestSuite
         // does not occur
         assertQueryFalse(pkg1, "Sequence{}->exists(e | e = 'c')");
 
-        assertQueryTrue(pkg1, "%nestedPackage->exists(true)");
+        assertQueryTrue(pkg1, "nestedPackage->exists(true)");
     }
 
     /**
@@ -218,7 +218,7 @@ public class IteratorsTest extends PivotTestSuite
         // desired result
         assertQueryTrue(pkg1, "Sequence{}->forAll(e | e = 'c')");
 
-        assertQueryTrue(pkg1, "%nestedPackage->forAll(true)");
+        assertQueryTrue(pkg1, "nestedPackage->forAll(true)");
     }
 
     /**
@@ -719,7 +719,7 @@ public class IteratorsTest extends PivotTestSuite
     		"ownedType->sortedBy(e | e)",
         	OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, type + "");
        
-    	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
+    	assertQuery(context, "ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);
         
         // EDate defines an OclComparable::compareTo by having a java.lang.Comparable instance class

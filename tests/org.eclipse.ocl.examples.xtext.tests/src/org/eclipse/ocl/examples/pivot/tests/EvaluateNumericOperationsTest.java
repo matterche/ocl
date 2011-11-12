@@ -34,9 +34,9 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 	protected double doubleEpsilon = Math.pow(0.5, Double.SIZE-12);
 
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
-//        helper.setContext(getMetaclass(denormalize("%Package")));
+//      helper.setContext(getMetaclass("Package"));
         helper.setContext(metaModelManager.getAnyClassifierType());
     }
 

@@ -24,7 +24,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 public class EvaluateBooleanOperationsTest extends PivotTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
 //        helper.setContext(getMetaclass("Package"));
         helper.setContext(getMetaclass("String"));

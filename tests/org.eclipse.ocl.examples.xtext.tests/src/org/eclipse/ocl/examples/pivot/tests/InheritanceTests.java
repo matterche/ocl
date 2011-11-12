@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 public class InheritanceTests extends PivotSimpleTestSuite
 {
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         helper.setContext(metaModelManager.getAnyClassifierType());
     }

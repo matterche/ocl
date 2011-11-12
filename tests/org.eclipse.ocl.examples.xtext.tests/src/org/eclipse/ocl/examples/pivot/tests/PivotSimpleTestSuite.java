@@ -35,7 +35,7 @@ public abstract class PivotSimpleTestSuite extends PivotTestSuite
 	org.eclipse.ocl.examples.pivot.Package george;
 
     @Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
 		metaModelManager.addGlobalNamespace(PivotConstants.OCL_NAME, metaModelManager.getPivotMetaModel());
 
