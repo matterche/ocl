@@ -182,10 +182,15 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 			List<DelegateDomain> delegateDomains;
 			synchronized (delegateDomainMap) {
 				delegateDomains = new ArrayList<DelegateDomain>(delegateDomainMap.values());
+				delegateDomainMap.clear();
 			}
 			for (DelegateDomain delegateDomain : delegateDomains) {
 				delegateDomain.dispose();
 			}
+		}
+		EPackage ePackage = getTarget();
+		if (ePackage != null) {
+			ePackage.eAdapters().remove(this);
 		}
 	}
 }

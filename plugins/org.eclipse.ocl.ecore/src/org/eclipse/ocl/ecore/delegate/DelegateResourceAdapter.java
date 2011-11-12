@@ -59,17 +59,30 @@ public class DelegateResourceAdapter extends AdapterImpl
 	public void notifyChanged(Notification notification) {
 	    int featureID = notification.getFeatureID(Resource.class);
 	    int eventType = notification.getEventType();
-	    if ((featureID == Resource.RESOURCE__IS_LOADED) && (eventType == Notification.SET)) 
+	    if (featureID == Resource.RESOURCE__IS_LOADED) 
 	    {
-	    	Resource resource = getTarget();
-			EList<EObject> contents = resource.getContents();
-	    	if (notification.getNewBooleanValue()) {
-				EPackage.Registry packageRegistry = resource.getResourceSet().getPackageRegistry();
-				installPackages(packageRegistry, contents);
+		    if (eventType == Notification.SET) 
+		    {
+		    	Resource resource = getTarget();
+				EList<EObject> contents = resource.getContents();
+		    	if (notification.getNewBooleanValue()) {
+					EPackage.Registry packageRegistry = resource.getResourceSet().getPackageRegistry();
+					installPackages(packageRegistry, contents);
+		    	}
 	    	}
-	    	else {
-	    		unloadDelegates(contents);
-	    	}
+	    }
+	    else if (featureID == Resource.RESOURCE__CONTENTS) 
+	    {
+		    if (eventType == Notification.REMOVE) 
+		    {
+		    	unloadDelegate((EObject) notification.getOldValue());
+		    }
+		    else if (eventType == Notification.REMOVE_MANY) 
+		    {
+		    	@SuppressWarnings("unchecked")
+				List<? extends EObject> oldValue = (List<? extends EObject>) notification.getOldValue();
+				unloadDelegates(oldValue);
+		    }
 	    }
 	}
 
@@ -89,16 +102,27 @@ public class DelegateResourceAdapter extends AdapterImpl
 		super.setTarget(resource);
 	}
 
+	/**
+	 * @since 3.2
+	 */
+	protected void unloadDelegate(EObject eObject) {
+		if (eObject instanceof EPackage) {
+			EPackage ePackage = (EPackage)eObject;
+			DelegateEPackageAdapter adapter = DelegateEPackageAdapter.findAdapter(ePackage);
+			if (adapter != null) {
+				adapter.unloadDelegates();
+			}
+			unloadDelegates(ePackage.getESubpackages());
+		}
+		Resource resource = getTarget();
+		if (resource != null) {
+			resource.eAdapters().remove(this);
+		}
+	}
+
 	protected void unloadDelegates(List<? extends EObject> contents) {
 		for (EObject eObject : contents) {
-			if (eObject instanceof EPackage) {
-				EPackage ePackage = (EPackage)eObject;
-				DelegateEPackageAdapter adapter = DelegateEPackageAdapter.findAdapter(ePackage);
-				if (adapter != null) {
-					adapter.unloadDelegates();
-				}
-				unloadDelegates(ePackage.getESubpackages());
-			}
+			unloadDelegate(eObject);
 		}		
 	}
 }

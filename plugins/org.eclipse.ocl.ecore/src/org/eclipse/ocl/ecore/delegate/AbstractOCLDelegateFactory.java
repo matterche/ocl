@@ -48,12 +48,13 @@ public abstract class AbstractOCLDelegateFactory
 	}
 
 	protected OCLDelegateDomain getDelegateDomain(EPackage ePackage) {
-		if (delegateDomain == null) {
-//			DelegateDomain.Factory.Registry.INSTANCE.put(OCLDelegateDomain.OCL_DELEGATE_URI, GLOBAL);
-			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) ePackageAdapter.getDelegateDomain(delegateURI);
+		if (delegateDomain != null) {
+			return delegateDomain;
 		}
-		return delegateDomain;
+		else {
+			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+			return (OCLDelegateDomain) ePackageAdapter.getDelegateDomain(delegateURI);
+		}
 	}
 
 	/**
@@ -69,10 +70,12 @@ public abstract class AbstractOCLDelegateFactory
 	 * @since 3.2
 	 */
 	protected OCLDelegateDomain loadDelegateDomain(EPackage ePackage) {
-		if (delegateDomain == null) {
-			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) ePackageAdapter.loadDelegateDomain(delegateURI);
+		if (delegateDomain != null) {
+			return delegateDomain;
 		}
-		return delegateDomain;
+		else {
+			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+			return (OCLDelegateDomain) ePackageAdapter.loadDelegateDomain(delegateURI);
+		}
 	}
 }

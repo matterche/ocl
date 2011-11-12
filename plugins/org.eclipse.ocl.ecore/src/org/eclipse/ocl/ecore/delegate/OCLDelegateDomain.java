@@ -236,6 +236,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		Resource res = ePackage.eResource();
 		EPackage.Registry packageRegistry = null;
 		if (res != null) {
+			DelegateResourceAdapter.getAdapter(res);				// Ensure we get unloaded when the resource is unloaded
 			ResourceSet resourceSet = res.getResourceSet();
 			if (resourceSet != null) {
 				// it's a dynamic package. Use the local package registry
