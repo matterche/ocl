@@ -21,21 +21,37 @@ import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
 public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGenerated
 {
+	private static Injector injector = null;
+	
 	public static void doSetup() {
 		init();
-		new EssentialOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if (injector == null) {
+			injector = new EssentialOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
 	}
 
 	public static void init() {
 		EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
 		EssentialOCLCS2Pivot.FACTORY.getClass();
 		EssentialOCLPivot2CS.FACTORY.getClass();
+	}
+	
+	/**
+	 * Return the Injector for this plugin.
+	 */
+	public static final Injector getInjector() {
+		if (injector == null) {
+			doSetup();
+		}
+		return injector;
 	}
 }
 

@@ -20,20 +20,36 @@ package org.eclipse.ocl.examples.xtext.oclstdlib;
 import org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot.OCLstdlibCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCS2MonikerVisitor;
 
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
 public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 {
+	private static Injector injector = null;
+	
 	public static void doSetup() {
 		init();
-		new OCLstdlibStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if (injector == null) {
+			injector = new OCLstdlibStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
 	}
 
 	public static void init() {
 		OCLstdlibCS2MonikerVisitor.FACTORY.getClass();
 		OCLstdlibCS2Pivot.FACTORY.getClass();
+	}
+	
+	/**
+	 * Return the Injector for this plugin.
+	 */
+	public static final Injector getInjector() {
+		if (injector == null) {
+			doSetup();
+		}
+		return injector;
 	}
 }
 

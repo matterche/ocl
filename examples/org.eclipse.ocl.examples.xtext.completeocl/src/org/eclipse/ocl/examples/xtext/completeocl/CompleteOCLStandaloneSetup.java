@@ -19,20 +19,36 @@ package org.eclipse.ocl.examples.xtext.completeocl;
 import org.eclipse.ocl.examples.xtext.completeocl.cs2pivot.CompleteOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
 
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
 public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenerated
 {
+	private static Injector injector = null;
+	
 	public static void doSetup() {
 		init();
-		new CompleteOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if (injector == null) {
+			injector = new CompleteOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
 	}
 
 	public static void init() {
 		CompleteOCLCS2MonikerVisitor.FACTORY.getClass();
 		CompleteOCLCS2Pivot.FACTORY.getClass();
+	}
+	
+	/**
+	 * Return the Injector for this plugin.
+	 */
+	public static final Injector getInjector() {
+		if (injector == null) {
+			doSetup();
+		}
+		return injector;
 	}
 }
 

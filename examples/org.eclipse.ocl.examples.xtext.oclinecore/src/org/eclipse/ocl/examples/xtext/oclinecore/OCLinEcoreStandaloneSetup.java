@@ -21,21 +21,37 @@ import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCS2MonikerVisitor;
 
+import com.google.inject.Injector;
+
 /**
  * Initialization support for running Xtext languages 
  * without equinox extension registry
  */
 public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerated
 {
+	private static Injector injector = null;
+	
 	public static void doSetup() {
 		init();
-		new OCLinEcoreStandaloneSetup().createInjectorAndDoEMFRegistration();
+		if (injector == null) {
+			injector = new OCLinEcoreStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
 	}
 
 	public static void init() {
 		OCLinEcoreCS2MonikerVisitor.FACTORY.getClass();
 		OCLinEcoreCS2Pivot.FACTORY.getClass();
 		OCLinEcorePivot2CS.FACTORY.getClass();
+	}
+	
+	/**
+	 * Return the Injector for this plugin.
+	 */
+	public static final Injector getInjector() {
+		if (injector == null) {
+			doSetup();
+		}
+		return injector;
 	}
 }
 
