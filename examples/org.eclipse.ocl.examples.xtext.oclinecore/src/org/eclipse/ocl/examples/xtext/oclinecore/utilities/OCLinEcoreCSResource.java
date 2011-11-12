@@ -41,4 +41,9 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 			super.doSave(outputStream, options);	// Avoid NPE or ISE from XtextResource
 		}
 	}
+
+	@Override
+	public String getEditorName() {
+		return "OCL in Ecore";
+	}
 }

@@ -27,5 +27,6 @@ public interface BaseCSResource extends Resource
 {
 	CS2Pivot createCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager);
 	MetaModelManager createMetaModelManager();
+	String getEditorName();
 	URI resolve(URI uri);
 }

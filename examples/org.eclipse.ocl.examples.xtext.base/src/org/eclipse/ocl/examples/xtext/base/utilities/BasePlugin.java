@@ -16,8 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.osgi.framework.BundleContext;
 
@@ -55,15 +57,33 @@ public final class BasePlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the singleton instance.
-	 * @generated
+	 * Generates an error log for the specified plug-in, with the specified
+	 * status code, message.
+	 * 
+	 * @param code
+	 *            The status code for the log.
+	 * @param message
+	 *            The message for the log.
+	 *  
 	 */
-	@Override
-	public ResourceLocator getPluginResourceLocator() {
-		return plugin;
+	public static void error(int code, String message) {
+		error(code, message, null);
+	}
+
+	/**
+	 * Generates an error log for the specified plug-in, with the specified
+	 * status code, message, and throwable.
+	 * 
+	 * @param code
+	 *            The status code for the log.
+	 * @param message
+	 *            The message for the log.
+	 * @param throwable
+	 *            The throwable for the log.
+	 *  
+	 */
+	public static void error(int code, String message, Throwable throwable) {
+		log(Diagnostic.ERROR, code, message, throwable);
 	}
 
 	/**
@@ -75,6 +95,71 @@ public final class BasePlugin extends EMFPlugin {
 	 */
 	public static Implementation getPlugin() {
 		return plugin;
+	}
+
+	public static String getPluginId() {
+		if (getPlugin() != null) {
+			return getPlugin().getBundle().getSymbolicName();
+		}
+		else {
+			String packageName = BasePlugin.class.getPackage().getName();
+			return packageName.substring(0, packageName.lastIndexOf('.'));
+		}
+	}
+
+	/**
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the singleton instance.
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getPluginResourceLocator() {
+		return plugin;
+	}
+
+	public static void log(int severity, int code, String message, Throwable throwable) {
+		//
+		// Status ctor requires a non-null message
+		String msg = message == null
+			? "" //$NON-NLS-1$
+			: message;
+
+		try {
+			if (getPlugin() != null) {
+				// Eclipse environment
+				getPlugin().log(
+					new Status(severity, getPluginId(), code, msg, throwable));
+			} else {
+				// not in the Eclipse environment
+//				if (shouldTrace(OCLDebugOptions.DEBUG)) {
+					StringBuffer s = new StringBuffer();
+					switch (code) {
+						case Diagnostic.WARNING :
+							s.append("WARNING "); //$NON-NLS-1$
+							break;
+						case Diagnostic.ERROR :
+						case Diagnostic.CANCEL :
+							s.append("ERROR "); //$NON-NLS-1$
+							break;
+						default :
+							// don't output INFO or OK messages
+							return;
+					}
+
+					s.append(code);
+					s.append(": "); //$NON-NLS-1$
+					s.append(message);
+					System.err.println(s.toString());
+					if (throwable != null) {
+						throwable.printStackTrace(System.err);
+					}
+				}
+//			}
+		} catch (IllegalArgumentException iae) {
+//			catching(OCLPlugin.class, "log", iae);//$NON-NLS-1$
+		}
 	}
 
 	/**

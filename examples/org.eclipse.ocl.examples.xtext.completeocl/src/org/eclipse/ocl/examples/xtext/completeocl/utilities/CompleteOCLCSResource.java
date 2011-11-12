@@ -32,4 +32,9 @@ public class CompleteOCLCSResource extends EssentialOCLCSResource
 			MetaModelManager metaModelManager) {
 		return new CompleteOCLCS2Pivot(cs2pivotResourceMap, metaModelManager);
 	}
+
+	@Override
+	public String getEditorName() {
+		return "Complete OCL";
+	}
 }

@@ -32,4 +32,9 @@ public class OCLstdlibCSResource extends EssentialOCLCSResource
 			MetaModelManager metaModelManager) {
 		return new OCLstdlibCS2Pivot(cs2pivotResourceMap, metaModelManager);
 	}
+
+	@Override
+	public String getEditorName() {
+		return "OCL Standard Library";
+	}
 }

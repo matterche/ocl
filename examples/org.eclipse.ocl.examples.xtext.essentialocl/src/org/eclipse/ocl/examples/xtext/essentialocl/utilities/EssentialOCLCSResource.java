@@ -109,6 +109,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		super.doLinking();
 	}
 
+	public String getEditorName() {
+		return "Essential OCL";
+	}
+
 	public PivotEnvironment getEnvironment() {
 		return environment;
 	}
@@ -259,8 +263,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 					addLibraryError(errors, e);
 				}
 			}
+			super.resolveLazyCrossReferences(mon);
 		}
-		super.resolveLazyCrossReferences(mon);
 	}
 
 	public void setContext(NamedElement pivotContext, Map<String, Type> pivotParameters) {

@@ -89,6 +89,7 @@ public class CS2PivotLinker extends LazyLinker
 			    }
 			    else {
 			    	diagnosticsConsumer.consume(new ExceptionDiagnostic(cause), Severity.ERROR);
+			    	BasePlugin.error(0, csResource.getEditorName() + " Editor linking error", cause);
 			    }
 			}
 //			System.out.println("Finished refreshPivotMappings for " + eResource.getURI());
