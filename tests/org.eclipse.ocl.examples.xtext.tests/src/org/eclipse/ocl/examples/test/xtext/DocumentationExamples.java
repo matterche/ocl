@@ -38,41 +38,39 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
 /**
  * Tests for the OCLinEcore tutorial using LPG or Pivot delegate URIs on LPG or Pivot evaluator.
  */
 @SuppressWarnings("nls")
-public class DocumentationExamples extends PivotTestSuite
+public class DocumentationExamples extends PivotTestCase
 {
 	public void testOCLinEcoreTutorialUsingLPGForLPG() throws Exception {
-		ResourceSet resourceSet = new ResourceSetImpl();
 		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI);			
-		doTestOCLinEcoreTutorialUsingLPG(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingLPGForPivot() throws Exception {
-		ResourceSet resourceSet = new ResourceSetImpl();
 		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		doTestOCLinEcoreTutorialUsingLPG(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForPivot.xmi"));
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("/model/OCLinEcoreTutorialForPivot.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingPivotForLPG() throws Exception {
-		ResourceSet resourceSet = new ResourceSetImpl();
 		OCL.initialize(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI);			
-		doTestOCLinEcoreTutorialUsingPivot(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
+		doTestOCLinEcoreTutorialUsingPivot(getTestModelURI("/model/OCLinEcoreTutorialForLPG.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingPivotForPivot() throws Exception {
-		ResourceSet resourceSet = new ResourceSetImpl();
 		OCL.initialize(resourceSet);
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
-		doTestOCLinEcoreTutorialUsingPivot(resourceSet, getTestModelURI("/model/OCLinEcoreTutorialForPivot.xmi"));
+		doTestOCLinEcoreTutorialUsingPivot(getTestModelURI("/model/OCLinEcoreTutorialForPivot.xmi"));
 	}
 	
-	protected void doTestOCLinEcoreTutorialUsingLPG(ResourceSet resourceSet, URI testModelURI) throws Exception {
+	protected void doTestOCLinEcoreTutorialUsingLPG(URI testModelURI) throws Exception {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);
@@ -116,9 +114,11 @@ public class DocumentationExamples extends PivotTestSuite
 	    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
 		b2Available = queryEval.evaluate(b2Book);
 	    assertFalse((Boolean)b2Available);
+	    
+	    ocl.dispose();
 	}
 	
-	protected void doTestOCLinEcoreTutorialUsingPivot(ResourceSet resourceSet, URI testModelURI) throws Exception {
+	protected void doTestOCLinEcoreTutorialUsingPivot(URI testModelURI) throws Exception {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
 		Resource xmiResource = resourceSet.getResource(testModelURI, true);
 		EObject xmiLibrary = xmiResource.getContents().get(0);
@@ -169,5 +169,24 @@ public class DocumentationExamples extends PivotTestSuite
 		} finally {
 			metaModelManager.dispose();
 		}
+	}
+	
+	private ResourceSet resourceSet;
+	
+	@Override
+    protected void setUp() throws Exception {
+		super.setUp();
+		OCLstdlib.install();
+		EssentialOCLStandaloneSetup.doSetup();
+		resourceSet = new ResourceSetImpl();
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		for (Resource resource : resourceSet.getResources()) {
+			resource.unload();
+		}
+		resourceSet = null;
+		super.tearDown();
 	}
 }

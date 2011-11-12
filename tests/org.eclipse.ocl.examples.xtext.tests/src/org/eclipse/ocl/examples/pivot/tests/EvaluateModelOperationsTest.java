@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 
 /**
@@ -70,7 +69,7 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
 	}
 
 	@Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
         OCLinEcoreStandaloneSetup.doSetup();
     }
@@ -79,7 +78,6 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
 	 * Test that Ecore Data Types can be used. Inspired by Bug 358713.
 	 */
 	public void test_ecoreDataTypes() throws IOException {
-		MetaModelManager metaModelManager = new MetaModelManager();
 		String metaModelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
@@ -105,7 +103,7 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
 			"    property anEString : ecore::EString;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metaModel = PivotTestUtils.getEcoreFromCS(metaModelManager, metaModelText, null);
+		Resource metaModel = getEcoreFromCS(metaModelManager, metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
 		EClass eClass = (EClass) ePackage.getEClassifiers().get(0);
         helper.setContext((Type) metaModelManager.getType(eClass));
@@ -216,15 +214,12 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
 		assertQueryEquals(eObject, "1", "anEString + '1'");
 		assertQueryEquals(eObject, "", "self.anEString");
 		assertQueryEquals(eObject, "1", "self.anEString + '1'");
-        //
-		metaModelManager.dispose();
 	}
 
 	/**
 	 * Test implicit collect and oclAsSet() therein. Inspired by Bug 351512.
 	 */
 	public void test_oclAsSet_351512() throws IOException {
-		MetaModelManager metaModelManager = new MetaModelManager();
 		String metaModelText =
 			"import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';\n" +
 			"package pkg : pkg = 'pkg' {\n" +
@@ -239,7 +234,7 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
 			"    attribute name : String;\n" +
 			"  }\n" +
 			"}\n";
-		Resource metaModel = PivotTestUtils.getEcoreFromCS(metaModelManager, metaModelText, null);
+		Resource metaModel = getEcoreFromCS(metaModelManager, metaModelText, null);
 		EPackage ePackage = (EPackage) metaModel.getContents().get(0);
 		EClass aClass = (EClass) ePackage.getEClassifier("A");
 		EClass bClass = (EClass) ePackage.getEClassifier("B");
@@ -283,7 +278,5 @@ public class EvaluateModelOperationsTest extends PivotTestSuite
         assertQueryResults(a, "Bag{'c1','c2'}", "bs.c->collect(oclAsSet()).name");
         assertQueryResults(a, "Bag{'c1','c2'}", "bs.c->collect(j : C | j.oclAsSet()).name");
         assertQueryResults(a, "Bag{'c1','c2'}", "bs->collect(i : B | i.c)->collect(j : C | j.oclAsSet())->collect(k : C | k.name)");
-        //
-		metaModelManager.dispose();
 	}
 }

@@ -24,9 +24,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
@@ -35,12 +36,13 @@ import org.eclipse.osgi.util.NLS;
  * Tests for OclAny operations.
  */
 @SuppressWarnings("nls")
-public class ErrorTests extends PivotTestSuite
+public class ErrorTests extends PivotTestCase
 {
 
 	@Override
-    protected void setUp() {
+    protected void setUp() throws Exception {
         super.setUp();
+        OCLstdlib.install();
         OCLinEcoreStandaloneSetup.doSetup();
     }
 
@@ -62,8 +64,9 @@ public class ErrorTests extends PivotTestSuite
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
+		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
-		PivotTestUtils.assertResourceErrors("Loading Xtext", xtextResource,
+		assertResourceErrors("Loading Xtext", xtextResource,
 			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<test.oclinecore::test::Test>' and 'w, hString| true"));
         //
 		metaModelManager.dispose();
@@ -86,8 +89,9 @@ public class ErrorTests extends PivotTestSuite
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
+		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
-		PivotTestUtils.assertResourceErrors("Loading Xtext", xtextResource,
+		assertResourceErrors("Loading Xtext", xtextResource,
 			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "allInstances", "ClassClassifier<test.oclinecore::test::Test>"),
 			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "OclInvalid' and 'w, hString| true"));
         //

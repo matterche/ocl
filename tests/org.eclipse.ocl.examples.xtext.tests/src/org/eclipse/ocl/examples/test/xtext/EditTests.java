@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.TypeSpecializationAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
@@ -71,7 +70,7 @@ public class EditTests extends XtextTestCase
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
 //		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
-		PivotTestUtils.assertNoResourceErrors("Loading Xtext", xtextResource);
+		assertNoResourceErrors("Loading Xtext", xtextResource);
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, null);
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
@@ -85,14 +84,14 @@ public class EditTests extends XtextTestCase
 		String contextMessage = "Renaming '" + oldString + "' to '" + newString + "'";
 //		System.out.println("-----------------" + contextMessage + "----------------");
 		replace(xtextResource, oldString, newString); 
-		PivotTestUtils.assertResourceErrors(contextMessage, xtextResource, expectedErrors);
-		PivotTestUtils.assertNoResourceErrors(contextMessage, pivotResource);
+		assertResourceErrors(contextMessage, xtextResource, expectedErrors);
+		assertNoResourceErrors(contextMessage, pivotResource);
 		boolean validSave = expectedErrors.length == 0;
 		if (validSave) {
-			PivotTestUtils.assertNoValidationErrors(contextMessage, pivotResource);
+			assertNoValidationErrors(contextMessage, pivotResource);
 		}
 		Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, null, validSave);
-		PivotTestUtils.assertNoResourceErrors(contextMessage, ecoreResource);
+		assertNoResourceErrors(contextMessage, ecoreResource);
 		return ecoreResource;
 	}	
 
@@ -122,7 +121,7 @@ public class EditTests extends XtextTestCase
 		//	Inserting a leading space has no Ecore effect.
 		//
 		xtextResource.update(0, 0, " ");
-		PivotTestUtils.assertNoResourceErrors("Adding space", xtextResource);
+		assertNoResourceErrors("Adding space", xtextResource);
 		URI ecoreURI2 = getProjectFileURI("test2.ecore");
 		Resource ecoreResource2 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI2, true);
 		assertSameModel(ecoreResource0, ecoreResource2);		
@@ -130,7 +129,7 @@ public class EditTests extends XtextTestCase
 		//	Deleting the leading space has no Ecore effect.
 		//
 		xtextResource.update(0, 1, "");
-		PivotTestUtils.assertNoResourceErrors("Deleting space", xtextResource);
+		assertNoResourceErrors("Deleting space", xtextResource);
 		URI ecoreURI3 = getProjectFileURI("test3.ecore");
 		Resource ecoreResource3 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI3, true);
 		assertSameModel(ecoreResource0, ecoreResource3);		
@@ -138,7 +137,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "p1" to "pkg" renames the package.
 		//
 		replace(xtextResource, "p1", "pkg"); 
-		PivotTestUtils.assertNoResourceErrors("Renaming", xtextResource);
+		assertNoResourceErrors("Renaming", xtextResource);
 		URI ecoreURI4 = getProjectFileURI("test4.ecore");
 		Resource ecoreResource4 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI4, true);
 		((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
@@ -286,8 +285,8 @@ public class EditTests extends XtextTestCase
 		URI outputURI = getProjectFileURI("test.oclstdlib");
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) PivotUtil.createXtextResource(metaModelManager, outputURI, null, testDocument);
 		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
-		PivotTestUtils.assertResourceErrors("Loading input", xtextResource);
-		PivotTestUtils.assertNoResourceErrors("Loading input", pivotResource);
+		assertResourceErrors("Loading input", xtextResource);
+		assertNoResourceErrors("Loading input", pivotResource);
 		//
 		Type myType = metaModelManager.getPrimaryType("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "MyType");
 		SequenceType sequenceType = metaModelManager.getSequenceType();

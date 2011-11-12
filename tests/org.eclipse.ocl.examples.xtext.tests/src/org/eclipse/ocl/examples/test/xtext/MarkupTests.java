@@ -47,6 +47,14 @@ public class MarkupTests extends XtextTestCase
 		super.setUp();
 		MarkupStandaloneSetup.doSetup();
 		MarkupPackage.eINSTANCE.eClass();
+		metaModelManager = new MetaModelManager();
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		metaModelManager.dispose();
+		metaModelManager = null;
+		super.tearDown();
 	}
 
 	protected Markup doDecode(String testString) throws IOException {
@@ -78,7 +86,7 @@ public class MarkupTests extends XtextTestCase
 		try {
 			Markup markup = doDecode(testString);
 			@SuppressWarnings("unused")
-			String testResult = MarkupToHTML.toString(null, null, markup);
+			String testResult = MarkupToHTML.toString(metaModelManager, null, markup);
 			fail(toPrintable(testString) + " expected " + exceptionClass.getName());
 		} catch (Exception e) {
 			assertEquals(toPrintable(testString), exceptionClass, e.getClass());
@@ -86,15 +94,10 @@ public class MarkupTests extends XtextTestCase
 	}
 
 	protected void doHtmlTest(Object context, String expected, String testString) throws Exception {
-		MetaModelManager metaModelManager = new MetaModelManager();
-		try {
-			Markup markup = doDecode(testString);
-			//		System.out.println(MarkupToTree.toString(markup));
-			String testResult = MarkupToHTML.toString(metaModelManager, context, markup);
-			assertEquals(toPrintable(testString), expected, testResult);
-		} finally {
-			metaModelManager.dispose();
-		}
+		Markup markup = doDecode(testString);
+		//		System.out.println(MarkupToTree.toString(markup));
+		String testResult = MarkupToHTML.toString(metaModelManager, context, markup);
+		assertEquals(toPrintable(testString), expected, testResult);
 	}
 
 	protected void doNewlineCountTest(int expectedCount, String testString) throws IOException {

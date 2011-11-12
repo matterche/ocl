@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
@@ -144,8 +143,8 @@ public class MonikerTests extends XtextTestCase
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
-		PivotTestUtils.assertNoResourceErrors("Load failed", ecoreResource);
-		PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
+		assertNoResourceErrors("Load failed", ecoreResource);
+		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 		//
 		//	Create and check Ecore monikers for uniqueness
 		//
@@ -176,15 +175,15 @@ public class MonikerTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		BaseCSResource csResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
-		PivotTestUtils.assertNoResourceErrors("Load failed", csResource);
-		PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", csResource);
-		PivotTestUtils.assertNoValidationErrors("CS validation problems", csResource);
+		assertNoResourceErrors("Load failed", csResource);
+		assertNoUnresolvedProxies("Unresolved proxies", csResource);
+		assertNoValidationErrors("CS validation problems", csResource);
 		//
 		//	Get the pivot resource and check for load failures
 		//
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
 		Resource pivotResource = adapter.getPivotResource(csResource);		
-		PivotTestUtils.assertNoValidationErrors("Pivot validation problems", pivotResource);
+		assertNoValidationErrors("Pivot validation problems", pivotResource);
 		pivotResource.setURI(pivotURI);
 		pivotResource.save(null);
 		//

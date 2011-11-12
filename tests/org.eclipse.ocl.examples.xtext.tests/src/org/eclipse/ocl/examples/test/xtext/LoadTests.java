@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -101,9 +100,9 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 			xtextResource = resourceSet.getResource(inputURI, true);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
+			assertNoResourceErrors("Load failed", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -111,7 +110,7 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 			xtextResource.save(null);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-			PivotTestUtils.assertNoResourceErrors("Save failed", xtextResource);
+			assertNoResourceErrors("Save failed", xtextResource);
 		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
@@ -157,9 +156,9 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 			xtextResource = resourceSet.getResource(inputURI, true);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
+			assertNoResourceErrors("Load failed", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -167,7 +166,7 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 			xtextResource.save(null);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-			PivotTestUtils.assertNoResourceErrors("Save failed", xtextResource);
+			assertNoResourceErrors("Save failed", xtextResource);
 		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
@@ -199,20 +198,20 @@ public class LoadTests extends XtextTestCase
 		CS2PivotResourceAdapter adapter = null;
 		try {
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
-			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
+			assertNoResourceErrors("Load failed", xtextResource);
 			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 			xtextResource.setURI(savedURI);
 			xtextResource.save(null);
 			xtextResource.setURI(inputURI);
-			PivotTestUtils.assertNoResourceErrors("Save failed", xtextResource);
+			assertNoResourceErrors("Save failed", xtextResource);
 			saveAsXMI(xtextResource, cstURI);
 			pivotResource.setURI(pivotURI);
-			PivotTestUtils.assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
 			pivotResource.save(null);
 			return pivotResource;
 		}
@@ -242,9 +241,9 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 			pivotResource = resourceSet.getResource(inputURI, true);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-			PivotTestUtils.assertNoResourceErrors("Load failed", pivotResource);
+			assertNoResourceErrors("Load failed", pivotResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
+			assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -273,7 +272,7 @@ public class LoadTests extends XtextTestCase
 		Map<String, Object> options = new HashMap<String, Object>();
 //		options.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
 		xmiResource.save(options);
-		PivotTestUtils.assertNoResourceErrors("Save failed", xmiResource);
+		assertNoResourceErrors("Save failed", xmiResource);
 		resource.getContents().addAll(xmiResource.getContents());
 	}
 	
@@ -318,7 +317,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-//		metaModelManager = new MetaModelManager();
+		metaModelManager = new MetaModelManager();
 //		metaModelManager.loadLibrary(OCLstdlib.INSTANCE);
 		Resource pivotResource = doLoad_Concrete("Expression", "oclinecore");
 		String ecoreName = "Expression" + ".saved.ecore";
@@ -350,6 +349,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
+		metaModelManager = new MetaModelManager();
 //		StandardLibraryContribution.REGISTRY.put(MetaModelManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource pivotResource = doLoad_Concrete("oclstdlib", "oclstdlib");
 		checkMonikers(pivotResource);

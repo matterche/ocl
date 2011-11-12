@@ -28,8 +28,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.values.Bag;
@@ -37,7 +35,6 @@ import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -51,7 +48,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ValidateTests extends XtextTestCase
 {	
-	protected MetaModelManager metaModelManager = null;
+	protected MetaModelManager metaModelManager;
 
 	public static void checkValidationDiagnostics(EObject testInstance, int severity, String... expectedMessage) {
 		Bag<String> expectedMessages = new BagImpl<String>();
@@ -77,15 +74,15 @@ public class ValidateTests extends XtextTestCase
 		URI ecoreURI = getProjectFileURI(ecoreName);
 		MetaModelManager metaModelManager = new MetaModelManager();
 		try {
-			ResourceSet resourceSet = new ResourceSetImpl();
+//			ResourceSet resourceSet = new ResourceSetImpl();
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			xtextResource.load(null);
-			PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
+			assertNoResourceErrors("Load failed", xtextResource);
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			PivotTestUtils.assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
 			Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
 			return ecoreResource;
 		}
@@ -108,6 +105,12 @@ public class ValidateTests extends XtextTestCase
 	}
 
 	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		metaModelManager = new MetaModelManager();
+	}
+
+	@Override
 	protected void tearDown() throws Exception {
 		if (metaModelManager != null) {
 			metaModelManager.dispose();
@@ -122,7 +125,6 @@ public class ValidateTests extends XtextTestCase
 		//	Create model
 		//
 		Resource ecoreResource = doLoadOCLinEcore("Validate");
-		metaModelManager = new MetaModelManager();
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		URI oclURI = getProjectFileURI("Validate.ocl");
 		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager);
@@ -175,7 +177,6 @@ public class ValidateTests extends XtextTestCase
 		//	Create model
 		//
 		Resource ecoreResource = doLoadOCLinEcore("Validate");
-		metaModelManager = new MetaModelManager();
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(validatePackage, "Level3");
 		eSet(testInstance, "ref", "ref");

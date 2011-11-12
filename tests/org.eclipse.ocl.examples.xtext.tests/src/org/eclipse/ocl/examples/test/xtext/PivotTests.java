@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.tests.PivotTestUtils;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -192,13 +191,13 @@ public class PivotTests extends XtextTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-		PivotTestUtils.assertNoResourceErrors("Load failed", xtextResource);
+		assertNoResourceErrors("Load failed", xtextResource);
 //		assertNoCSErrors("Load failed", xtextResource);
 //		CSAliasCreator.refreshPackageAliases(xtextResource);
 //		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource);
 //		Resource pivotResource = adapter.getPivotResource(xtextResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-		PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 //		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -206,13 +205,13 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 		xtextResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-		PivotTestUtils.assertNoResourceErrors("Save failed", xtextResource);
+		assertNoResourceErrors("Save failed", xtextResource);
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 		xmiResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-		PivotTestUtils.assertNoResourceErrors("Save failed", xmiResource);
+		assertNoResourceErrors("Save failed", xmiResource);
 		xtextResource.getContents().addAll(xmiResource.getContents());
 		return xtextResource;
 	}
@@ -234,7 +233,7 @@ public class PivotTests extends XtextTestCase
 		//
 		//	Save Pivot Model for manual inspection
 		//
-		PivotTestUtils.assertNoValidationErrors("Pivot validation problems", pivotResource);
+		assertNoValidationErrors("Pivot validation problems", pivotResource);
 		URI savedPivotURI = pivotResource.getURI();
 		pivotResource.setURI(pivotURI);
 		pivotResource.save(null);
@@ -283,9 +282,9 @@ public class PivotTests extends XtextTestCase
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
 		Resource ecoreResource = resourceSet.getResource(inputURI, true);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-		PivotTestUtils.assertNoResourceErrors("Load failed", ecoreResource);
+		assertNoResourceErrors("Load failed", ecoreResource);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-		PivotTestUtils.assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
+		assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 //		EcoreAliasCreator.createPackageAliases(ecoreResource);
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
@@ -310,7 +309,7 @@ public class PivotTests extends XtextTestCase
 			if (uri.isFile()) {
 				pResource.save(null);
 			}
-			PivotTestUtils.assertNoResourceErrors("Pivot Save failed", pResource);
+			assertNoResourceErrors("Pivot Save failed", pResource);
 		}
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 //		return pivotResource;
