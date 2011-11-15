@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.tests.EvaluateStringOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.InheritanceTests;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
 import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
+import org.eclipse.ocl.examples.test.ecore.ProjectMapTest;
 
 /**
  * Tests for the Xtext editor support.
@@ -75,6 +76,7 @@ public class AllXtextTests
 		result.addTestSuite(ImportTests.class);
 		result.addTestSuite(LoadTests.class);
 		result.addTestSuite(PrettyPrinterTest.class);
+		result.addTestSuite(ProjectMapTest.class);
 		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(EditTests.class);
