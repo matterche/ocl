@@ -631,13 +631,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (ownedDetail+=DetailCS ownedDetail+=DetailCS*)? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedContent+=ModelElementCS | ownedReference+=ModelElementRefCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[0, 2]
-	 *    ownedDetail[0, *]
-	 *    ownedContent[0, *]
-	 *    ownedReference[0, *]
 	 */
 	protected void sequence_AnnotationCS(EObject context, AnnotationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -671,35 +664,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         )* 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedConstraint+=InitialConstraintCS | ownedConstraint+=DerivedConstraintCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    lower[0, 1]
-	 *         MANDATORY_IF_SET upper
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    multiplicity[0, 3]
-	 *         EXCLUDE_IF_SET lower
-	 *         EXCLUDE_IF_SET upper
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    ownedType[0, 1]
-	 *         MANDATORY_IF_SET lower
-	 *         MANDATORY_IF_SET upper
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *    upper[0, 1]
-	 *         EXCLUDE_IF_UNSET lower
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, *]
-	 *    default[0, 1]
 	 */
 	protected void sequence_AttributeCS(EObject context, AttributeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -709,11 +673,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (stereotype='body' name=UnrestrictedName? specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
 	 */
 	protected void sequence_BodyConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -723,9 +682,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name='true' | name='false')
-	 *
-	 * Features:
-	 *    name[0, 2]
 	 */
 	protected void sequence_BooleanLiteralExpCS(EObject context, BooleanLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -743,17 +699,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         qualifier+='interface'? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedOperation+=OperationCS | ownedProperty+=StructuralFeatureCS | ownedConstraint+=InvariantConstraintCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    ownedTemplateSignature[0, 1]
-	 *    instanceClassName[0, 1]
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, 2]
-	 *    ownedSuperType[0, *]
-	 *    ownedOperation[0, *]
-	 *    ownedProperty[0, *]
 	 */
 	protected void sequence_ClassCS(EObject context, ClassCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -763,10 +708,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedType=CollectionTypeCS (ownedParts+=CollectionLiteralPartCS ownedParts+=CollectionLiteralPartCS*)?)
-	 *
-	 * Features:
-	 *    ownedType[1, 1]
-	 *    ownedParts[0, *]
 	 */
 	protected void sequence_CollectionLiteralExpCS(EObject context, CollectionLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -776,10 +717,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (expressionCS=ExpCS lastExpressionCS=ExpCS?)
-	 *
-	 * Features:
-	 *    expressionCS[1, 1]
-	 *    lastExpressionCS[0, 1]
 	 */
 	protected void sequence_CollectionLiteralPartCS(EObject context, CollectionLiteralPartCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -789,10 +726,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 2]
 	 */
 	protected void sequence_CollectionTypeCS(EObject context, CollectionTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -808,14 +741,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (qualifier+='serializable' | qualifier+='!serializable')? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedConstraint+=InvariantConstraintCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    ownedTemplateSignature[0, 1]
-	 *    instanceClassName[0, 1]
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, 2]
 	 */
 	protected void sequence_DataTypeCS(EObject context, DataTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -825,10 +750,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (stereotype='derivation' specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
 	 */
 	protected void sequence_DerivedConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -838,10 +759,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     ((name=UnrestrictedName | name=SINGLE_QUOTED_STRING) (value+=SINGLE_QUOTED_STRING | value+=ML_SINGLE_QUOTED_STRING)*)
-	 *
-	 * Features:
-	 *    name[0, 2]
-	 *    value[0, *]
 	 */
 	protected void sequence_DetailCS(EObject context, DetailCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -851,10 +768,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (value=SINGLE_QUOTED_STRING? (ownedDetail+=DetailCS ownedDetail+=DetailCS*)?)
-	 *
-	 * Features:
-	 *    ownedDetail[0, *]
-	 *    value[0, 1]
 	 */
 	protected void sequence_DocumentationCS(EObject context, DocumentationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -870,15 +783,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (qualifier+='serializable' | qualifier+='!serializable')? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedLiterals+=EnumerationLiteralCS | ownedConstraint+=InvariantConstraintCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    ownedTemplateSignature[0, 1]
-	 *    instanceClassName[0, 1]
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, 2]
-	 *    ownedLiterals[0, *]
 	 */
 	protected void sequence_EnumerationCS(EObject context, EnumerationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -888,11 +792,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName value=INTEGER? ownedAnnotation+=AnnotationElementCS*)
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    value[0, 1]
 	 */
 	protected void sequence_EnumerationLiteralCS(EObject context, EnumerationLiteralCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -902,8 +801,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     {SelfExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_ExpCS(EObject context, SelfExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -913,11 +810,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (condition=ExpCS thenExpression=ExpCS elseExpression=ExpCS)
-	 *
-	 * Features:
-	 *    condition[1, 1]
-	 *    thenExpression[1, 1]
-	 *    elseExpression[1, 1]
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -927,10 +819,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName? namespace=[Namespace|SINGLE_QUOTED_STRING])
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    namespace[1, 1]
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -940,11 +828,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (namedExp=IndexExpCS_IndexExpCS_1_0 firstIndexes+=ExpCS firstIndexes+=ExpCS* (secondIndexes+=ExpCS secondIndexes+=ExpCS*)?)
-	 *
-	 * Features:
-	 *    namedExp[1, 1]
-	 *    firstIndexes[1, *]
-	 *    secondIndexes[0, *]
 	 */
 	protected void sequence_IndexExpCS(EObject context, IndexExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -954,9 +837,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=InfixOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_InfixOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -966,11 +846,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedExpression+=InfixedExpCS_InfixExpCS_1_0 (ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)+)
-	 *
-	 * Features:
-	 *    ownedExpression[2, *]
-	 *    ownedOperator[1, *]
-	 *         SAME ownedExpression
 	 */
 	protected void sequence_InfixedExpCS(EObject context, InfixExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -980,10 +855,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (stereotype='initial' specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
 	 */
 	protected void sequence_InitialConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -993,15 +864,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (callable?='callable'? stereotype='invariant' (name=UnrestrictedName messageSpecification=SpecificationCS?)? specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *         MANDATORY_IF_SET messageSpecification
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
-	 *    messageSpecification[0, 1]
-	 *         EXCLUDE_IF_UNSET name
-	 *    callable[0, 1]
 	 */
 	protected void sequence_InvariantConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1011,10 +873,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (variable+=LetVariableCS variable+=LetVariableCS* in=ExpCS)
-	 *
-	 * Features:
-	 *    variable[1, *]
-	 *    in[1, 1]
 	 */
 	protected void sequence_LetExpCS(EObject context, LetExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1024,11 +882,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS? initExpression=ExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    initExpression[1, 1]
 	 */
 	protected void sequence_LetVariableCS(EObject context, LetVariableCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1038,10 +891,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName? package=[Package|SINGLE_QUOTED_STRING])
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    package[1, 1]
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1054,12 +903,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Element|UnreservedName]) | 
 	 *         element=[Element|UnrestrictedName]
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET element
-	 *         EXCLUDE_IF_SET element
-	 *    element[0, 2]
 	 */
 	protected void sequence_ModelElementRefCS(EObject context, ModelElementRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1069,9 +912,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     ownedExpression=ExpCS
-	 *
-	 * Features:
-	 *    ownedExpression[1, 1]
 	 */
 	protected void sequence_Model(EObject context, ContextCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1084,12 +924,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
 	 *         element=[NamedElement|UnrestrictedName]
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET element
-	 *         EXCLUDE_IF_SET element
-	 *    element[0, 2]
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1099,11 +933,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1113,12 +942,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (prefix='|' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingBarArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1128,12 +951,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (prefix=',' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingCommaArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1154,12 +971,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         ) | 
 	 *         namedExp=NavigatingExpCS_NavigatingExpCS_1_0
 	 *     )
-	 *
-	 * Features:
-	 *    namedExp[0, 2]
-	 *    argument[0, *]
-	 *         EXCLUDE_IF_UNSET namedExp
-	 *         EXCLUDE_IF_SET namedExp
 	 */
 	protected void sequence_NavigatingExpCS(EObject context, NavigatingExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1169,12 +980,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (prefix=';' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingSemiArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1184,9 +989,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=NavigationOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_NavigationOperatorCS(EObject context, NavigationOperatorCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1196,9 +998,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     source=ExpCS
-	 *
-	 * Features:
-	 *    source[1, 1]
 	 */
 	protected void sequence_NestedExpCS(EObject context, NestedExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1208,9 +1007,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=NUMBER_LITERAL
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_NumberLiteralExpCS(EObject context, NumberLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1241,29 +1037,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *             ownedConstraint+=PostconditionConstraintCS
 	 *         )*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    lower[0, 1]
-	 *         MANDATORY_IF_SET upper
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *    multiplicity[0, 3]
-	 *         EXCLUDE_IF_SET lower
-	 *         EXCLUDE_IF_SET upper
-	 *    ownedType[0, 1]
-	 *    upper[0, 1]
-	 *         EXCLUDE_IF_UNSET lower
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, *]
-	 *    ownedTemplateSignature[0, 1]
-	 *    ownedParameter[0, *]
-	 *    ownedException[0, *]
 	 */
 	protected void sequence_OperationCS(EObject context, OperationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1278,14 +1051,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         nsURI=SINGLE_QUOTED_STRING? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    ownedType[0, *]
-	 *    ownedNestedPackage[0, *]
-	 *    nsPrefix[0, 1]
-	 *    nsURI[0, 1]
 	 */
 	protected void sequence_PackageCS(EObject context, PackageCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1300,33 +1065,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (qualifier+='ordered' | qualifier+='!ordered' | qualifier+='unique' | qualifier+='!unique')* 
 	 *         ownedAnnotation+=AnnotationElementCS*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    lower[0, 1]
-	 *         MANDATORY_IF_SET upper
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    multiplicity[0, 3]
-	 *         EXCLUDE_IF_SET lower
-	 *         EXCLUDE_IF_SET upper
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    ownedType[0, 1]
-	 *         MANDATORY_IF_SET lower
-	 *         MANDATORY_IF_SET upper
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *    upper[0, 1]
-	 *         EXCLUDE_IF_UNSET lower
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    qualifier[0, *]
 	 */
 	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1336,11 +1074,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (stereotype='postcondition' name=UnrestrictedName? specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
 	 */
 	protected void sequence_PostconditionConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1350,11 +1083,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (stereotype='precondition' name=UnrestrictedName? specification=SpecificationCS?)
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    stereotype[1, 1]
-	 *    specification[0, 1]
 	 */
 	protected void sequence_PreconditionConstraintCS(EObject context, OCLinEcoreConstraintCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1364,10 +1092,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
-	 *
-	 * Features:
-	 *    ownedOperator[1, *]
-	 *    ownedExpression[1, 1]
 	 */
 	protected void sequence_PrefixedExpCS(EObject context, PrefixExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1377,8 +1101,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     {InvalidLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, InvalidLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1388,8 +1110,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     {NullLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, NullLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1399,8 +1119,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     {UnlimitedNaturalLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, UnlimitedNaturalLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1410,9 +1128,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=PrimitiveTypeIdentifier
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_PrimitiveTypeCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1422,9 +1137,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=PrimitiveTypeIdentifier
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_PrimitiveTypeRefCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1466,37 +1178,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *             ownedConstraint+=DerivedConstraintCS
 	 *         )*
 	 *     )
-	 *
-	 * Features:
-	 *    ownedAnnotation[0, *]
-	 *    name[1, 1]
-	 *    lower[0, 1]
-	 *         MANDATORY_IF_SET upper
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    multiplicity[0, 3]
-	 *         EXCLUDE_IF_SET lower
-	 *         EXCLUDE_IF_SET upper
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    ownedType[0, 1]
-	 *         MANDATORY_IF_SET lower
-	 *         MANDATORY_IF_SET upper
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *         MANDATORY_IF_SET multiplicity
-	 *    upper[0, 1]
-	 *         EXCLUDE_IF_UNSET lower
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_SET multiplicity
-	 *         EXCLUDE_IF_UNSET ownedType
-	 *    ownedConstraint[0, *]
-	 *    qualifier[0, *]
-	 *    default[0, 1]
-	 *    opposite[0, 1]
-	 *    keys[0, *]
 	 */
 	protected void sequence_ReferenceCS(EObject context, ReferenceCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1506,12 +1187,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName? ownedLibrary+=LibraryCS* ownedImport+=ImportCS* ownedNestedPackage+=PackageCS*)
-	 *
-	 * Features:
-	 *    name[0, 1]
-	 *    ownedNestedPackage[0, *]
-	 *    ownedImport[0, *]
-	 *    ownedLibrary[0, *]
 	 */
 	protected void sequence_RootPackageCS(EObject context, RootPackageCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1521,12 +1196,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedExpression=ExpCS | exprString=UNQUOTED_STRING)
-	 *
-	 * Features:
-	 *    exprString[0, 1]
-	 *         EXCLUDE_IF_SET ownedExpression
-	 *    ownedExpression[0, 1]
-	 *         EXCLUDE_IF_SET exprString
 	 */
 	protected void sequence_SpecificationCS(EObject context, OCLinEcoreSpecificationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1536,9 +1205,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name+=StringLiteral+
-	 *
-	 * Features:
-	 *    name[1, *]
 	 */
 	protected void sequence_StringLiteralExpCS(EObject context, StringLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1548,9 +1214,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedParameterSubstitution+=TemplateParameterSubstitutionCS ownedParameterSubstitution+=TemplateParameterSubstitutionCS*)
-	 *
-	 * Features:
-	 *    ownedParameterSubstitution[1, *]
 	 */
 	protected void sequence_TemplateBindingCS(EObject context, TemplateBindingCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1560,9 +1223,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     ownedActualParameter=TypeRefCS
-	 *
-	 * Features:
-	 *    ownedActualParameter[1, 1]
 	 */
 	protected void sequence_TemplateParameterSubstitutionCS(EObject context, TemplateParameterSubstitutionCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1572,9 +1232,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedTemplateParameter+=TypeParameterCS ownedTemplateParameter+=TypeParameterCS*)
-	 *
-	 * Features:
-	 *    ownedTemplateParameter[1, *]
 	 */
 	protected void sequence_TemplateSignatureCS(EObject context, TemplateSignatureCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1584,9 +1241,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (ownedParts+=TupleLiteralPartCS ownedParts+=TupleLiteralPartCS*)
-	 *
-	 * Features:
-	 *    ownedParts[1, *]
 	 */
 	protected void sequence_TupleLiteralExpCS(EObject context, TupleLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1596,11 +1250,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS? initExpression=ExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    initExpression[1, 1]
 	 */
 	protected void sequence_TupleLiteralPartCS(EObject context, TupleLiteralPartCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1610,10 +1259,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name='Tuple' ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedParts[0, *]
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1623,9 +1268,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     ownedType=TypeLiteralCS
-	 *
-	 * Features:
-	 *    ownedType[1, 1]
 	 */
 	protected void sequence_TypeLiteralExpCS(EObject context, TypeLiteralExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1638,12 +1280,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
 	 *         element=[Type|UnrestrictedName]
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET element
-	 *         EXCLUDE_IF_SET element
-	 *    element[0, 2]
 	 */
 	protected void sequence_TypeNameExpCS(EObject context, TypeNameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1653,14 +1289,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ((ownedExtends+=TypedRefCS ownedExtends+=TypedRefCS*) | ownedSuper=TypedRefCS)?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedExtends[0, *]
-	 *         EXCLUDE_IF_SET ownedSuper
-	 *    ownedSuper[0, 1]
-	 *         EXCLUDE_IF_SET ownedExtends
-	 *         EXCLUDE_IF_SET ownedExtends
 	 */
 	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1673,13 +1301,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         ((namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* type=[Type|UnreservedName]) | type=[Type|UnrestrictedName]) 
 	 *         ownedTemplateBinding=TemplateBindingCS?
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET type
-	 *         EXCLUDE_IF_SET type
-	 *    type[0, 2]
-	 *    ownedTemplateBinding[0, 1]
 	 */
 	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1689,9 +1310,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     name=PrefixOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_UnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1701,12 +1319,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     ((extends=TypedRefCS | super=TypedRefCS)?)
-	 *
-	 * Features:
-	 *    extends[0, 1]
-	 *         EXCLUDE_IF_SET super
-	 *    super[0, 1]
-	 *         EXCLUDE_IF_SET extends
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1716,10 +1328,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[1, 1]
 	 */
 	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

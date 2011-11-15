@@ -405,9 +405,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name='true' | name='false')
-	 *
-	 * Features:
-	 *    name[0, 2]
 	 */
 	protected void sequence_BooleanLiteralExpCS(EObject context, BooleanLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -417,10 +414,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (ownedType=CollectionTypeCS (ownedParts+=CollectionLiteralPartCS ownedParts+=CollectionLiteralPartCS*)?)
-	 *
-	 * Features:
-	 *    ownedType[1, 1]
-	 *    ownedParts[0, *]
 	 */
 	protected void sequence_CollectionLiteralExpCS(EObject context, CollectionLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -430,10 +423,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (expressionCS=ExpCS lastExpressionCS=ExpCS?)
-	 *
-	 * Features:
-	 *    expressionCS[1, 1]
-	 *    lastExpressionCS[0, 1]
 	 */
 	protected void sequence_CollectionLiteralPartCS(EObject context, CollectionLiteralPartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -443,10 +432,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 2]
 	 */
 	protected void sequence_CollectionTypeCS(EObject context, CollectionTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -456,8 +441,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     {SelfExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_ExpCS(EObject context, SelfExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -467,11 +450,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (condition=ExpCS thenExpression=ExpCS elseExpression=ExpCS)
-	 *
-	 * Features:
-	 *    condition[1, 1]
-	 *    thenExpression[1, 1]
-	 *    elseExpression[1, 1]
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -481,11 +459,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (namedExp=IndexExpCS_IndexExpCS_1_0 firstIndexes+=ExpCS firstIndexes+=ExpCS* (secondIndexes+=ExpCS secondIndexes+=ExpCS*)?)
-	 *
-	 * Features:
-	 *    namedExp[1, 1]
-	 *    firstIndexes[1, *]
-	 *    secondIndexes[0, *]
 	 */
 	protected void sequence_IndexExpCS(EObject context, IndexExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -495,9 +468,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name=InfixOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_InfixOperatorCS(EObject context, BinaryOperatorCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -507,11 +477,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (ownedExpression+=InfixedExpCS_InfixExpCS_1_0 (ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)+)
-	 *
-	 * Features:
-	 *    ownedExpression[2, *]
-	 *    ownedOperator[1, *]
-	 *         SAME ownedExpression
 	 */
 	protected void sequence_InfixedExpCS(EObject context, InfixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -521,10 +486,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (variable+=LetVariableCS variable+=LetVariableCS* in=ExpCS)
-	 *
-	 * Features:
-	 *    variable[1, *]
-	 *    in[1, 1]
 	 */
 	protected void sequence_LetExpCS(EObject context, LetExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -534,11 +495,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS? initExpression=ExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    initExpression[1, 1]
 	 */
 	protected void sequence_LetVariableCS(EObject context, LetVariableCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -548,9 +504,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     ownedExpression=ExpCS
-	 *
-	 * Features:
-	 *    ownedExpression[1, 1]
 	 */
 	protected void sequence_Model(EObject context, ContextCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -563,12 +516,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
 	 *         element=[NamedElement|UnrestrictedName]
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET element
-	 *         EXCLUDE_IF_SET element
-	 *    element[0, 2]
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -578,11 +525,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingArgCS(EObject context, NavigatingArgCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -592,12 +534,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (prefix='|' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingBarArgCS(EObject context, NavigatingArgCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -607,12 +543,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (prefix=',' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingCommaArgCS(EObject context, NavigatingArgCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -633,12 +563,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *         ) | 
 	 *         namedExp=NavigatingExpCS_NavigatingExpCS_1_0
 	 *     )
-	 *
-	 * Features:
-	 *    namedExp[0, 2]
-	 *    argument[0, *]
-	 *         EXCLUDE_IF_UNSET namedExp
-	 *         EXCLUDE_IF_SET namedExp
 	 */
 	protected void sequence_NavigatingExpCS(EObject context, NavigatingExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -648,12 +572,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (prefix=';' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
-	 *
-	 * Features:
-	 *    prefix[1, 1]
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    init[0, 1]
 	 */
 	protected void sequence_NavigatingSemiArgCS(EObject context, NavigatingArgCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -663,9 +581,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name=NavigationOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_NavigationOperatorCS(EObject context, NavigationOperatorCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -675,9 +590,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     source=ExpCS
-	 *
-	 * Features:
-	 *    source[1, 1]
 	 */
 	protected void sequence_NestedExpCS(EObject context, NestedExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -687,9 +599,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name=NUMBER_LITERAL
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_NumberLiteralExpCS(EObject context, NumberLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -699,10 +608,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS)
-	 *
-	 * Features:
-	 *    ownedOperator[1, *]
-	 *    ownedExpression[1, 1]
 	 */
 	protected void sequence_PrefixedExpCS(EObject context, PrefixExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -712,8 +617,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     {InvalidLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, InvalidLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -723,8 +626,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     {NullLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, NullLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -734,8 +635,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     {UnlimitedNaturalLiteralExpCS}
-	 *
-	 * Features:
 	 */
 	protected void sequence_PrimitiveLiteralExpCS(EObject context, UnlimitedNaturalLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -745,9 +644,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name=PrimitiveTypeIdentifier
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_PrimitiveTypeCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -757,9 +653,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name+=StringLiteral+
-	 *
-	 * Features:
-	 *    name[1, *]
 	 */
 	protected void sequence_StringLiteralExpCS(EObject context, StringLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -769,9 +662,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (ownedParts+=TupleLiteralPartCS ownedParts+=TupleLiteralPartCS*)
-	 *
-	 * Features:
-	 *    ownedParts[1, *]
 	 */
 	protected void sequence_TupleLiteralExpCS(EObject context, TupleLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -781,11 +671,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS? initExpression=ExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[0, 1]
-	 *    initExpression[1, 1]
 	 */
 	protected void sequence_TupleLiteralPartCS(EObject context, TupleLiteralPartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -795,10 +680,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name='Tuple' ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)?)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedParts[0, *]
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -808,9 +689,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     ownedType=TypeLiteralCS
-	 *
-	 * Features:
-	 *    ownedType[1, 1]
 	 */
 	protected void sequence_TypeLiteralExpCS(EObject context, TypeLiteralExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -823,12 +701,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
 	 *         element=[Type|UnrestrictedName]
 	 *     )
-	 *
-	 * Features:
-	 *    namespace[0, *]
-	 *         EXCLUDE_IF_UNSET element
-	 *         EXCLUDE_IF_SET element
-	 *    element[0, 2]
 	 */
 	protected void sequence_TypeNameExpCS(EObject context, TypeNameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -838,9 +710,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     name=PrefixOperator
-	 *
-	 * Features:
-	 *    name[1, 1]
 	 */
 	protected void sequence_UnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -850,10 +719,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	/**
 	 * Constraint:
 	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 *
-	 * Features:
-	 *    name[1, 1]
-	 *    ownedType[1, 1]
 	 */
 	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

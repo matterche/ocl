@@ -49,6 +49,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedAnnotationAnnotationElementCSParserRuleCall_5_3_0 = (RuleCall)cOwnedAnnotationAssignment_5_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
+		////import "platform:/plugin/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
+		////import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 		//Library returns LibRootPackageCS:
 		//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
@@ -2270,6 +2272,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
+	////import "platform:/plugin/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
+	////import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 	////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 	//Library returns LibRootPackageCS:
 	//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"

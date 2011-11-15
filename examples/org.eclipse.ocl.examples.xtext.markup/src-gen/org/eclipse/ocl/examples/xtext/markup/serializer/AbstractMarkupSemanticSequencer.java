@@ -151,10 +151,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (level=INT? elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
-	 *    level[0, 1]
 	 */
 	protected void sequence_BulletElement(EObject context, BulletElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -164,19 +160,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (def=ID? src=STRING (alt=STRING (requiredWidth=INT requiredHeight=INT?)?)?)
-	 *
-	 * Features:
-	 *    src[1, 1]
-	 *    alt[0, 1]
-	 *         MANDATORY_IF_SET requiredWidth
-	 *         MANDATORY_IF_SET requiredHeight
-	 *    def[0, 1]
-	 *    requiredWidth[0, 1]
-	 *         MANDATORY_IF_SET requiredHeight
-	 *         EXCLUDE_IF_UNSET alt
-	 *    requiredHeight[0, 1]
-	 *         EXCLUDE_IF_UNSET requiredWidth
-	 *         EXCLUDE_IF_UNSET alt
 	 */
 	protected void sequence_FigureElement(EObject context, FigureElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -186,9 +169,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     ref=[FigureElement|ID]
-	 *
-	 * Features:
-	 *    ref[1, 1]
 	 */
 	protected void sequence_FigureRefElement(EObject context, FigureRefElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -198,10 +178,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     ((font='b' | font='e') elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
-	 *    font[0, 2]
 	 */
 	protected void sequence_FontElement(EObject context, FontElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -211,9 +187,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_FootnoteElement(EObject context, FootnoteElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -223,10 +196,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (level=INT? elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
-	 *    level[0, 1]
 	 */
 	protected void sequence_HeadingElement(EObject context, HeadingElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -236,9 +205,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     elements+=MarkupElement*
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_Markup(EObject context, Markup semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -248,9 +214,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     text=NL
-	 *
-	 * Features:
-	 *    text[1, 1]
 	 */
 	protected void sequence_NewLineElement(EObject context, NewLineElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -260,9 +223,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_NullElement(EObject context, NullElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -272,9 +232,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_OclCodeElement(EObject context, OclCodeElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -284,9 +241,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_OclEvalElement(EObject context, OclEvalElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -296,9 +250,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (elements+=MarkupElement*)
-	 *
-	 * Features:
-	 *    elements[0, *]
 	 */
 	protected void sequence_OclTextElement(EObject context, OclTextElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -319,9 +270,6 @@ public class AbstractMarkupSemanticSequencer extends AbstractSemanticSequencer {
 	 *         )+ | 
 	 *         text+=MarkupKeyword
 	 *     )
-	 *
-	 * Features:
-	 *    text[0, *]
 	 */
 	protected void sequence_TextElement(EObject context, TextElement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

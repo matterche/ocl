@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.15 2011/05/22 16:42:11 ewillink Exp $
+ * $Id$
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -21,7 +21,9 @@ import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.eco
 import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
 import "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.ecore"
 import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
+import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
+//import "platform:/plugin/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
+//import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
 Library returns LibRootPackageCS:
