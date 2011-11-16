@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -45,7 +46,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (type instanceof AnyType) {
 			return true;
 		}
-		if ((type instanceof DataType) && !(type instanceof CollectionType)) {
+		if ((type instanceof DataType) && !(type instanceof CollectionType) && !(type instanceof ClassifierType)) {
 			return true;
 		}
 		if (type instanceof InvalidType) {

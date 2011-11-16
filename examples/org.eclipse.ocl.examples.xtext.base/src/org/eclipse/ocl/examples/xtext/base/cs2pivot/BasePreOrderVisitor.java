@@ -254,7 +254,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				}
 				for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
 					TypeRefCS csActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
-					dependencies.add(new PivotDependency(csActualParameter));
+					dependencies.add(new PivotDependency(csActualParameter));	// FIXME may be a redundant duplicate
 				}
 			}
 			dependencies.add(new PivotHasSuperClassesDependency(csElement));
