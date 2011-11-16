@@ -106,6 +106,13 @@ org.eclipse.ocl.examples.domain.values.CollectionValue
 [/let]
 [/template]
 
+[template public gatherImports(ast : LambdaType, genPackage : GenPackage)]
+org.eclipse.ocl.examples.library.executor.ExecutorLambdaType
+[for (part : Property | ast.ownedAttribute)]
+[part.type.gatherImports(genPackage)/]
+[/for]
+[/template]
+
 [template public gatherImports(ast : LetExp, genPackage : GenPackage)]
 [ast.type.gatherImports(genPackage)/]
 [/template]

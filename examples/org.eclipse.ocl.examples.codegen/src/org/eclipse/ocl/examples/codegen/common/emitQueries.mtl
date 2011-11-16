@@ -58,3 +58,6 @@ importer.emitType('java.util.' + name) /]
 
 [query public emitType(importer : NamedElement, qualifiedName : String) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImport(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, qualifiedName}) /]
+
+[query public prefixImports(importer : NamedElement, imports : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'prefixImports(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, imports}) /]

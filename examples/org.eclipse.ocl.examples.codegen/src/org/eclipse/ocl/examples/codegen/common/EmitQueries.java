@@ -105,7 +105,7 @@ public class EmitQueries
 		
 		public String emitImports() {
 			return "";
-		}	
+		}
 	}
 	
 	private static ImportEmitter.Factory EMITTER_FACTORY = null;	
@@ -154,5 +154,59 @@ public class EmitQueries
 			importers.put(importer, importEmitter);
 		}
 		return importEmitter.emitImports();
+	}	
+
+	/**
+	 * Replace all embedded {%xxx%} embedded import paths by shorter names and
+	 * corresponding import full name prefixes.
+	 */
+	public String prefixImports(NamedElement importer, String markedUpDocument) {
+		String[] splits = markedUpDocument.split("(\\<%)|(%\\>)");	
+		/**
+		 * Map of full external name to short internal name. The short internal name is the full name if
+		 * there is any ambiguity.
+		 */
+		Map<String, String> external2internal = new HashMap<String, String>();
+		/**
+		 * Map of short internal name to full external name or null if there is an ambiguity.
+		 */
+		Map<String, String> internal2external = new HashMap<String, String>();
+		
+		for (int i = 1; i < splits.length; i += 2) {
+			String candidate = splits[i].trim();
+			if (!external2internal.containsKey(candidate)) {
+				String lastSegment = candidate.substring(candidate.lastIndexOf(".")+1);
+				if (!internal2external.containsKey(lastSegment)) {
+					internal2external.put(lastSegment, candidate);
+					external2internal.put(candidate, lastSegment);
+				}
+				else {
+					String oldExternal = internal2external.get(lastSegment);
+					if (oldExternal != null) {
+						external2internal.put(oldExternal, oldExternal);
+						internal2external.put(lastSegment, null);
+					}
+					external2internal.put(candidate, candidate);
+				}
+			}
+		}
+		
+		List<String> allValues = new ArrayList<String>(internal2external.values());
+		Collections.sort(allValues);
+		StringBuffer s = new StringBuffer();
+		for (String externalPath : allValues) {
+			s.append("import ");
+			s.append(externalPath);
+			s.append(";\n");
+		}
+		s.append("\n");
+		for (int i = 0; i < splits.length; i += 2) {
+			s.append(splits[i]);
+			if (i+1 < splits.length) {
+				String candidate = splits[i+1].trim();
+				s.append(external2internal.get(candidate));
+			}
+		}		
+		return s.toString();
 	}	
 }

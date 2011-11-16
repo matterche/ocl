@@ -372,7 +372,7 @@ public class Model2tables extends AbstractAcceleoGenerator {
 
 	protected void preInitialize() {
 		OCLstdlib.install();
-		EmitQueries.setFactory(new EmitQueries.Default.Factory());
+		EmitQueries.setFactory(new EmitQueries.Jet.Factory());
 	}
 
 	@Override
