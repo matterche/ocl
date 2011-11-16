@@ -218,6 +218,11 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("ConstraintMessages");
 	}
 
+	/** BUG 362517 serializer can lock up
+	public void testSerialize_Ecore() throws Exception {
+		doSerialize("Ecore");
+	} */
+
 	public void testSerialize_Imports() throws Exception {
 		XtextResource xtextResource = doSerialize("Imports");
 		RootPackageCS documentCS = (RootPackageCS) xtextResource.getContents().get(0);

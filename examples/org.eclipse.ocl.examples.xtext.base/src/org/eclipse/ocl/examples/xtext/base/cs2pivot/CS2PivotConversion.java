@@ -1247,7 +1247,6 @@ public class CS2PivotConversion extends AbstractConversion
 					name += i;
 				}
 				((NamedElement)pivotActualParameter).setName(name);
-//				installPivotElement(csActualParameter, pivotActualParameter);
 			}
 			else {
 				ParameterableElement pivotActualParameter = PivotUtil.getPivot(ParameterableElement.class, csActualParameter);

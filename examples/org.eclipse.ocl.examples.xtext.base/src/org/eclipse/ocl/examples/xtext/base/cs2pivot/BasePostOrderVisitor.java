@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
@@ -286,6 +287,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS object) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitWildcardTypeRefCS(WildcardTypeRefCS object) {
 		return null;
 	}
 }

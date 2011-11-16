@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -577,5 +578,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		else {
 			return new SpecializedTypeRefContinuation1(context, csTypedTypeRef);
 		}
+	}
+
+	@Override
+	public Continuation<?> visitWildcardTypeRefCS(WildcardTypeRefCS csWildcardTypeRef) {
+		org.eclipse.ocl.examples.pivot.Class pivotElement = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class,
+			PivotPackage.Literals.CLASS, null);
+		context.installPivotReference(csWildcardTypeRef, pivotElement, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
+		return null;
 	}
 }
