@@ -3,8 +3,14 @@
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.ocl.releng.buckminster" componentType="buckminster" />
 		<cs:dependency name="org.eclipse.ocl.examples.tests" componentType="eclipse.feature" />
-		<!-- Indirect Dependencies -->
+		<!-- Indirect Dependencies -->		
 		<cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature" />
+		
+		<!-- We explicitly need to specify this to add the some ocl Core featre sources into the target platform -->		
+		<cs:dependency name="org.eclipse.ocl.all.source" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.ocl.all.sdk.source" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.ocl.core.sdk.source" componentType="eclipse.feature" />
+		
 	</cs:dependencies>
 	<cs:actions>
 		<cs:private name="site.tp" actor="ant">
