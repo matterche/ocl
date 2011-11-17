@@ -3,7 +3,7 @@
   <rm:property key="checkout.location" value="${workspace.root}"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:property key="build.type" mutable="false" value="I"/>
-  <rm:property key="ocl.core.p2.repository.location" value="https://hudson.eclipse.org/hudson/job/buckminster-mdt-ocl-branch-tests/lastSuccessfulBuild/artifact/MDT-OCL.p2.repository"/>
+  <rm:property key="ocl.core.last.p2.repository.location" value="https://hudson.eclipse.org/hudson/job/buckminster-mdt-ocl-branch-tests/lastSuccessfulBuild/artifact/MDT-OCL.p2.repository"/>
   <rm:locator pattern="^org\.eclipse\.emf\.compare.*" searchPathRef="emfcompare"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator pattern="^org\.eclipse\.xpand.*" searchPathRef="xpand"/>
@@ -107,11 +107,35 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="ocl-core">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(resolve.target.platform=true)" readerType="p2" source="false" mutable="false">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=N)(resolve.target.platform=true))" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}">
-        <bc:propertyRef key="ocl.core.p2.repository.location"/>
+        <bc:propertyRef key="ocl.core.last.p2.repository.location"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=I)(resolve.target.platform=true))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/nightly">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=S)(resolve.target.platform=true))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=R)(resolve.target.platform=true))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/releases">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" resolutionFilter="(&amp;(build.type=M)(resolve.target.platform=true))" readerType="p2" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance">
+        <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
