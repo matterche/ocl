@@ -4,9 +4,6 @@
     <cq:property key="target.arch" value="*"/>
     <cq:property key="target.os" value="*"/>
     <cq:property key="target.ws" value="*"/>
-<!--    <cq:advisorNode namePattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?\.source$" skipComponent="true"/>
-    <cq:advisorNode namePattern="^org.eclipse.equinox.launcher\..+$" skipComponent="true"/>
-    <cq:advisorNode namePattern="^com\.google\.(?:appengine|gwt)\.eclipse\.core$" filter="(without.gdt=true)" skipComponent="true"/> -->
     <cq:advisorNode namePattern="^org\.eclipse\.ocl.examples.*\.source$" skipComponent="true"/>
     <cq:advisorNode filter="(resolve.target.platform=true)" useTargetPlatform="false"/>
 </cq:componentQuery>
