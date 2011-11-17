@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.ocl.build"
-      label="Eclipse OCL Build Site"
-      version="4.0.0.qualifier"
+      id="org.eclipse.ocl.releng.core.build"
+      label="Eclipse OCL Core Build Site"
+      version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.ocl.license"
       license-feature-version="1.0.0.qualifier">
 
    <description>
-      Single feature to drive the build for all other Eclipse OCL features.
+      Single feature to drive the build for all other Eclipse OCLCore Core features.
    </description>
 
    <copyright>
@@ -16,7 +16,7 @@
    </copyright>
 
    <includes
-         id="org.eclipse.ocl.master"
+         id="org.eclipse.ocl.all.sdk"
          version="0.0.0"/>
 
 </feature>
