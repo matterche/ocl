@@ -33,8 +33,8 @@ var projectName = "org.eclipse.ocl.examples.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = StandaloneSetup { resourceSet = resourceSet
-	   	platformUri = "./META-INF"		// A local folder to minimize workspace searching
-   		scanClassPath = true			// But we do need to search the plugin-space
+	   	platformUri = ".."
+   		scanClassPath = true
     	uriMap = Mapping {
     		from = "platform:/plugin/org.eclipse.uml2.uml.resources/"
     		to = "platform:/resource/org.eclipse.uml2.uml.resources/"
