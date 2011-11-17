@@ -959,8 +959,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Integer =
 		{
 		    Fragments._Integer__OclAny /* 0 */,
-		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__OclSummable /* 1 */,
+		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__Real /* 2 */,
 		    Fragments._Integer__Integer /* 3 */
 		};
@@ -1080,8 +1080,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Real =
 		{
 		    Fragments._Real__OclAny /* 0 */,
-		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__OclSummable /* 1 */,
+		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__Real /* 2 */
 		};
 		private static final int[] __Real = { 1,2,1 };
@@ -1090,8 +1090,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Sequence__OclAny /* 0 */,
 		    Fragments._Sequence__Collection /* 1 */,
-		    Fragments._Sequence__NonUniqueCollection /* 2 */,
 		    Fragments._Sequence__OrderedCollection /* 2 */,
+		    Fragments._Sequence__NonUniqueCollection /* 2 */,
 		    Fragments._Sequence__Sequence /* 3 */
 		};
 		private static final int[] __Sequence = { 1,1,2,1 };
@@ -1100,8 +1100,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Set__OclAny /* 0 */,
 		    Fragments._Set__Collection /* 1 */,
-		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__NonOrderedCollection /* 2 */,
+		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__Set /* 3 */
 		};
 		private static final int[] __Set = { 1,1,2,1 };
@@ -1109,8 +1109,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _String =
 		{
 		    Fragments._String__OclAny /* 0 */,
-		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__OclSummable /* 1 */,
+		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__String /* 2 */
 		};
 		private static final int[] __String = { 1,2,1 };
@@ -1126,8 +1126,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _UnlimitedNatural =
 		{
 		    Fragments._UnlimitedNatural__OclAny /* 0 */,
-		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__OclSummable /* 1 */,
+		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__Real /* 2 */,
 		    Fragments._UnlimitedNatural__Integer /* 3 */,
 		    Fragments._UnlimitedNatural__UnlimitedNatural /* 4 */

@@ -35,7 +35,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.examples.codegen.common.EmitQueries;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
@@ -374,7 +373,6 @@ public class Model2bodies extends AbstractAcceleoGenerator {
 	protected void preInitialize() {
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		EmitQueries.setFactory(new EmitQueries.Default.Factory());
 	}
 
 	@Override

@@ -20,7 +20,6 @@
 [import org::eclipse::ocl::examples::codegen::common::elementQueries/]
 [import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
-[import org::eclipse::ocl::examples::codegen::common::importTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
 [import org::eclipse::ocl::examples::codegen::common::qualifiedLiteralTemplates/]
@@ -51,11 +50,7 @@
  */
 package [genPackage.getQualifiedPackageName()/];
 
-[let markedUpTableClass : String = genPackage.generateTablesClass(pPackage)]
-[let tableClass : String = pPackage.prefixImports(markedUpTableClass)]
-[tableClass/]
-[/let]
-[/let]
+[prefixImports(knownImports(), genPackage.generateTablesClass(pPackage))/]
 [/file]
 [/let]
 [/let]
@@ -76,9 +71,9 @@ public class [tablesClassName/]
 	/**
 	 *	The package descriptor for the package.
 	 */
-	public static final [pPackage.emitLibraryEcoreType('EcoreExecutorPackage')/] PACKAGE = new [pPackage.emitLibraryEcoreType('EcoreExecutorPackage')/]([genPackage.prefix/]Package.eINSTANCE);
+	public static final <%EcoreExecutorPackage%> PACKAGE = new <%EcoreExecutorPackage%>([genPackage.prefix/]Package.eINSTANCE);
 
-	public static final [pPackage.emitLibraryExecutorType('ExecutorStandardLibrary')/] LIBRARY = new [pPackage.emitLibraryExecutorType('ExecutorStandardLibrary')/](PACKAGE); 
+	public static final <%ExecutorStandardLibrary%> LIBRARY = new <%ExecutorStandardLibrary%>(PACKAGE); 
 
 	[pPackage.declareTypes(genPackage)/]
 
@@ -109,7 +104,7 @@ public static class Types {[for (cls : Class | pPackage.ownedType->filter(Class)
     [pPackage.declareType(genPackage, cls)/]
 [/for]
 
-	private static final [emitLibraryExecutorType('ExecutorType')/]['[]'/] types = {
+	private static final <%ExecutorType%>['[]'/] types = {
 [for (type : Type | pPackage.ownedType->sortedBy(t : Type | t.getMoniker())) separator(',\n') after('\n')]
 	    _[type.name/][/for]
 	};
@@ -130,13 +125,13 @@ public static class Types {[for (cls : Class | pPackage.ownedType->filter(Class)
 [if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
-private static final [pPackage.emitLibraryExecutorType('ExecutorTypeParameter')/] _[cls.name/]_[parameteredElement.name/] = new [pPackage.emitLibraryExecutorType('ExecutorTypeParameter')/]("[parameteredElement.name/]");
+private static final <%ExecutorTypeParameter%> _[cls.name/]_[parameteredElement.name/] = new <%ExecutorTypeParameter%>("[parameteredElement.name/]");
 [/let]
 [/for]
 [/if]
 [if (cls.getBehavioralType()->notEmpty())]
-public static final [emitLibraryExecutorType('ExecutorType')/] _[cls.name/] = [genPackage.getQualifiedTypeLiteralName(cls.getBehavioralType(), cls._package)/];[else]
-public static final [emitLibraryExecutorType('ExecutorType')/] _[cls.name/] = new [emitLibraryExecutorType('ExecutorType')/]("[cls.name/]", PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
+public static final <%ExecutorType%> _[cls.name/] = [genPackage.getQualifiedTypeLiteralName(cls.getBehavioralType(), cls._package)/];[else]
+public static final <%ExecutorType%> _[cls.name/] = new <%ExecutorType%>("[cls.name/]", PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
 , _[cls.name/]_[parameteredElement.name/][/let][/for]
@@ -154,7 +149,7 @@ public static class Fragments {[for (cls : Class | pPackage.ownedType->filter(Cl
 
 [template public declareFragment(pPackage : Package, genPackage : GenPackage, cls : Class)]
 [for (superCls : Type | cls.getAllSuperTypes()->sortedBy(name))]
-public static final [emitLibraryExecutorType('ExecutorFragment')/] _[cls.name/]__[superCls.name/] = new [emitLibraryExecutorType('ExecutorFragment')/]([cls.getLiteralName()/], [genPackage.getQualifiedTypeLiteralName(superCls, pPackage)/], null, null);
+public static final <%ExecutorFragment%> _[cls.name/]__[superCls.name/] = new <%ExecutorFragment%>([cls.getLiteralName()/], [superCls.emitQualifiedLiteralName(genPackage)/], null, null);
 [/for]
 [/template]
 
@@ -178,51 +173,55 @@ public static class Operations {[for (cls : Class | pPackage.ownedType->filter(C
 [if (op.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | op.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
-public static final [pPackage.emitLibraryExecutorType('ExecutorTypeParameter')/] _[op.getLiteralName()/]_[parameteredElement.name/] = new [pPackage.emitLibraryExecutorType('ExecutorTypeParameter')/]("[parameteredElement.name/]");
+public static final <%ExecutorTypeParameter%> _[op.getLiteralName()/]_[parameteredElement.name/] = new <%ExecutorTypeParameter%>("[parameteredElement.name/]");
 [/let]
 [/for]
 [/if]
-public static final [emitLibraryExecutorType('ExecutorOperation')/] [op.getLiteralName()/] = new [emitLibraryExecutorType('ExecutorOperation')/]("[op.name/]",
-	[op.owningType.getLiteralName()/], [opIndex-1/], [genPackage.getImplementationName(op)/][pPackage.declareParameterTypes(genPackage, op.ownedParameter.type->asOrderedSet())/]);
+public static final <%ExecutorOperation%> [op.getLiteralName()/] = new <%ExecutorOperation%>("[op.name/]",
+	[op.owningType.getLiteralName()/], [opIndex-1/], [genPackage.getImplementationName(op)/][genPackage.declareParameterTypes(op.ownedParameter.type->asOrderedSet())/]);
 [/template]
 
-[template public declareParameterTypes(pPackage : Package, genPackage : GenPackage, types : OrderedSet(Type))]
+[template public declareParameterTypes(genPackage : GenPackage, types : OrderedSet(Type))]
 [for (type : Type | types)],
-	[pPackage.declareParameterType(genPackage, type)/][/for][/template]
+	[type.declareParameterType(genPackage)/][/for][/template]
 
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : Type) ?(type.owningTemplateParameter.signature.template.oclIsKindOf(Type))]
+[template public declareParameterType(type : Type, genPackage : GenPackage) ?(type.owningTemplateParameter.signature.template.oclIsKindOf(Type))]
 [let containerType : Type = type.owningTemplateParameter.signature.template.oclAsType(Type)]
 [let prefix : String = containerType.getQualifiedTablesClassName(genPackage)]
 [if (prefix.size() <= 0)]
-([emitDomainElementsType('DomainType')/])null/*[containerType._package.name/]*/[else]
-[emitType(prefix)/].Types._[containerType.encodeName()/]_[type.encodeName()/][/if][/let][/let][/template]
+(<%DomainType%>)null/*[containerType._package.name/]*/[else]
+<%[prefix/]%>.Types._[containerType.encodeName()/]_[type.encodeName()/][/if][/let][/let][/template]
 
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : Type) ?(type.owningTemplateParameter.signature.template.oclIsKindOf(Operation))]
+[template public declareParameterType(type : Type, genPackage : GenPackage) ?(type.owningTemplateParameter.signature.template.oclIsKindOf(Operation))]
 [let containerOperation : Operation = type.owningTemplateParameter.signature.template.oclAsType(Operation)]
 [let prefix : String = containerOperation.owningType.getQualifiedTablesClassName(genPackage)]
 [if (prefix.size() <= 0)]
-([emitDomainElementsType('DomainType')/])null/*[containerOperation.owningType._package.name/]*/[else]
-[emitType(prefix)/].Operations._[containerOperation.getLiteralName()/]_[type.encodeName()/][/if][/let][/let][/template]
+(<%DomainType%>)null/*[containerOperation.owningType._package.name/]*/[else]
+<%[prefix/]%>.Operations._[containerOperation.getLiteralName()/]_[type.encodeName()/][/if][/let][/let][/template]
 
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : ClassifierType)]
-new [emitLibraryExecutorType('ExecutorSpecializedType')/]("[type.name/]", [pPackage.declareParameterType(genPackage, type.instanceType)/])[/template]
-
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : CollectionType)]
-new [emitLibraryExecutorType('ExecutorSpecializedType')/]("[type.name/]", [pPackage.declareParameterType(genPackage, type.elementType)/])[/template]
-
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : LambdaType)]
-new [emitLibraryExecutorType('ExecutorLambdaType')/]("[type.name/]", [pPackage.declareParameterType(genPackage, type.contextType)/][pPackage.declareParameterTypes(genPackage, type.parameterType->asOrderedSet())/])[/template]
-
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : TupleType)]
-new [emitLibraryExecutorType('ExecutorTupleType')/]("[type.name/]"[pPackage.declareTupleParts(genPackage, type.ownedAttribute)/])[/template]
-
-[template public declareTupleParts(pPackage : Package, genPackage : GenPackage, parts : OrderedSet(Property))]
-[for (part : Property | parts)],
-	[pPackage.declareParameterType(genPackage, part.type)/][/for][/template]
-
-[template public declareParameterType(pPackage : Package, genPackage : GenPackage, type : Type)]
-[type.emitQualifiedLiteralName(pPackage, genPackage)/]
+[template public zzdeclareParameterType(type : Type, genPackage : GenPackage) ?(type.owningTemplateParameter.signature.template.oclIsKindOf(Operation))]
+[type.owningTemplateParameter.signature.template.oclAsType(Operation).emitQualifiedLiteralName(genPackage)/]
 [/template]
+
+[template public declareParameterType(type : ClassifierType, genPackage : GenPackage)]
+new <%ExecutorSpecializedType%>("[type.name/]", [type.instanceType.declareParameterType(genPackage)/])[/template]
+
+[template public declareParameterType(type : CollectionType, genPackage : GenPackage)]
+new <%ExecutorSpecializedType%>("[type.name/]", [type.elementType.declareParameterType(genPackage)/])[/template]
+
+[template public declareParameterType(type : LambdaType, genPackage : GenPackage)]
+new <%ExecutorLambdaType%>("[type.name/]", [type.contextType.declareParameterType(genPackage)/][genPackage.declareParameterTypes(type.parameterType->asOrderedSet())/])[/template]
+
+[template public declareParameterType(type : TupleType, genPackage : GenPackage)]
+new <%ExecutorTupleType%>("[type.name/]"[genPackage.declareTupleParts(type.ownedAttribute)/])[/template]
+
+[template public declareParameterType(type : Type, genPackage : GenPackage)]
+[type.emitQualifiedLiteralName(genPackage)/]
+[/template]
+
+[template public declareTupleParts(genPackage : GenPackage, parts : OrderedSet(Property))]
+[for (part : Property | parts)],
+	[part.type.declareParameterType(genPackage)/][/for][/template]
 
 [template public declareProperties(pPackage : Package, genPackage : GenPackage)]
 /**
@@ -237,7 +236,7 @@ public static class Properties {[for (cls : Class | pPackage.ownedType->filter(C
 [let props : OrderedSet(Property) = cls.ownedAttribute->select(prop : Property | genPackage.isProperty(prop))->sortedBy(name)]
 [for (i : Integer | Sequence{1..props->size()}) separator('\n')]
 [let prop : Property = props->at(i)]
-public static final [pPackage.emitLibraryExecutorType('ExecutorProperty')/] [prop.getLiteralName()/] = new [pPackage.emitLibraryExecutorType('ExecutorProperty')/]("[prop.name/]", [cls.getLiteralName()/], [i-1/], [genPackage.getImplementationName(prop)/]);[/let][/for][/let]
+public static final <%ExecutorProperty%> [prop.getLiteralName()/] = new <%ExecutorProperty%>("[prop.name/]", [cls.getLiteralName()/], [i-1/], [genPackage.getImplementationName(prop)/]);[/let][/for][/let]
 [/template]
 
 [template public declareConstraints(pPackage : Package, genPackage : GenPackage)]
@@ -257,7 +256,7 @@ public static class Constraints {[for (cls : Class | pPackage.ownedType->filter(
 [/template]
 
 [template public declareConstraint(pPackage : Package, genPackage : GenPackage, rule : Constraint, opIndex : Integer, cls : Class)]
-public static final [emitLibraryExecutorType('ExecutorOperation')/] [rule.getLiteralName()/] = new [emitLibraryExecutorType('ExecutorOperation')/]("[cls.getUniqueText(rule)/]",
+public static final <%ExecutorOperation%> [rule.getLiteralName()/] = new <%ExecutorOperation%>("[cls.getUniqueText(rule)/]",
 	[cls.getLiteralName()/], [opIndex-1/], [genPackage.getImplementationName(rule)/]);
 [/template]
 
@@ -285,7 +284,7 @@ public static class TypeFragments {[for (cls : Type | types) before('\n') separa
 [/template]
 
 [template public declareTypeFragment(pPackage : Package, cls : Type)]
-private static final [emitLibraryExecutorType('ExecutorFragment') + '[]'/] _[cls.name/] =
+private static final <%ExecutorFragment%>['[]'/] _[cls.name/] =
 [let superTypes : OrderedSet(Type) = cls.getAllSuperTypes()->asOrderedSet()->sortedBy(c : Type | c.getDepth())]
 {
 [for (superClass : Type | superTypes) separator(',\n')]    Fragments._[cls.name/]__[superClass.name/] /* [superClass.getDepth()/] */[/for]
@@ -335,20 +334,20 @@ public static class FragmentOperations {
 
 [template public declareLocalFragmentOperations(pPackage : Package, genPackage : GenPackage, cls : Type)]
 [let ops : OrderedSet(Operation) = cls.getLocalOperationsOf()->sortedBy(getMoniker())]
-private static final [emitLibraryExecutorType('ExecutorOperation')/]['[]'/] _[cls.name/]__[cls.name/] = [if ops->isEmpty()]{[else]
+private static final <%ExecutorOperation%>['[]'/] _[cls.name/]__[cls.name/] = [if ops->isEmpty()]{[else]
 {
 [for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
-    [ops->at(i).emitQualifiedLiteralName(pPackage, genPackage)/] /* [ops->at(i).getSignature()/] */[/for]
+    [ops->at(i).emitQualifiedLiteralName(genPackage)/] /* [ops->at(i).getSignature()/] */[/for]
 [/if]};[/let]
 [/template]
 
 [template public declareSuperFragmentOperations(pPackage : Package, genPackage : GenPackage, superCls: Type, cls : Type)]
 [let ops : OrderedSet(Operation) = superCls.getLocalOperationsOf()->sortedBy(getMoniker())]
-private static final [emitLibraryExecutorType('ExecutorOperation')/]['[]'/] _[cls.name/]__[superCls.name/] = [if ops->isEmpty()]{[else]
+private static final <%ExecutorOperation%>['[]'/] _[cls.name/]__[superCls.name/] = [if ops->isEmpty()]{[else]
 {
 [for (i : Integer | Sequence{1..ops->size()}) separator (',\n') after ('\n')]
 [let overloadOp : Operation = cls.getOverloadOp(ops->at(i))]
-    [overloadOp.emitQualifiedLiteralName(pPackage, genPackage)/] /* [overloadOp.getSignature()/] */[/let][/for]
+    [overloadOp.emitQualifiedLiteralName(genPackage)/] /* [overloadOp.getSignature()/] */[/let][/for]
 [/if]};[/let]
 [/template]
 
@@ -376,16 +375,16 @@ public static class FragmentProperties {
 
 [template public declareFragmentProperty(pPackage : Package, genPackage : GenPackage, cls : Class)]
 [let props : OrderedSet(Property) = cls.getAllPropertiesOf()->select(prop : Property | genPackage.isProperty(prop))->sortedBy(name)]
-private static final [emitLibraryExecutorType('ExecutorProperty')/]['[]'/] _[cls.name/] = [if props->isEmpty()]{[else]
+private static final <%ExecutorProperty%>['[]'/] _[cls.name/] = [if props->isEmpty()]{[else]
 {
 [for (i : Integer | Sequence{1..props->size()}) separator (',\n') after ('\n')]
-    [props->at(i).emitQualifiedLiteralName(pPackage, genPackage)/][/for]
+    [props->at(i).emitQualifiedLiteralName(genPackage)/][/for]
 [/if]};[/let]
 [/template]
 
 [query public getTypeFlags(pPackage : Package, elem : Type) : String =
-if (elem.oclIsKindOf(OrderedSetType)) then (emitLibraryExecutorType('ExecutorType') + '.ORDERED | ' + emitLibraryExecutorType('ExecutorType') + '.UNIQUE')
-else if (elem.oclIsKindOf(SetType)) then (emitLibraryExecutorType('ExecutorType') + '.UNIQUE')
-else if (elem.oclIsKindOf(SequenceType)) then (emitLibraryExecutorType('ExecutorType') + '.ORDERED')
+if (elem.oclIsKindOf(OrderedSetType)) then '<%ExecutorType%>.ORDERED | <%ExecutorType%>.UNIQUE'
+else if (elem.oclIsKindOf(SetType)) then '<%ExecutorType%>.UNIQUE'
+else if (elem.oclIsKindOf(SequenceType)) then '<%ExecutorType%>.ORDERED'
 else '0'
 endif endif endif/]

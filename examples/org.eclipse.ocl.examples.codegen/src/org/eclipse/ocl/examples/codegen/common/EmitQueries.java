@@ -22,160 +22,140 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
-
 public class EmitQueries
 {
-	public static class Default implements ImportEmitter
-	{
-		public static class Factory implements ImportEmitter.Factory
-		{	
-			public ImportEmitter createNew(String imports) {
-				return new Default(imports);
+	/**
+	 * The known classes that templatres may use in unqualified form. The list is here
+	 * in a Java form to reduce the impact of refactoring on Acceleo templates.
+	 */
+	private static final Class<?>[] knownClasses = {
+		org.eclipse.ocl.examples.domain.elements.DomainClassifierType.class,
+		org.eclipse.ocl.examples.domain.elements.DomainCollectionType.class,
+		org.eclipse.ocl.examples.domain.elements.DomainProperty.class,
+		org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary.class,
+		org.eclipse.ocl.examples.domain.elements.DomainTupleType.class,
+		org.eclipse.ocl.examples.domain.elements.DomainType.class,
+		org.eclipse.ocl.examples.domain.elements.DomainTypedElement.class,
+		org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator.class,
+		org.eclipse.ocl.examples.domain.evaluation.InvalidValueException.class,
+		org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation.class,
+		org.eclipse.ocl.examples.domain.library.AbstractProperty.class,
+		org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation.class,
+		org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation.class,
+		org.eclipse.ocl.examples.domain.library.LibraryIteration.class,
+		org.eclipse.ocl.examples.domain.library.LibraryProperty.class,
+		org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation.class,
+		org.eclipse.ocl.examples.domain.messages.EvaluatorMessages.class,
+		org.eclipse.ocl.examples.domain.values.BooleanValue.class,
+		org.eclipse.ocl.examples.domain.values.CollectionValue.class,
+		org.eclipse.ocl.examples.domain.values.IntegerRange.class,
+		org.eclipse.ocl.examples.domain.values.IntegerValue.class,
+		org.eclipse.ocl.examples.domain.values.NullValue.class,
+		org.eclipse.ocl.examples.domain.values.TupleValue.class,
+		org.eclipse.ocl.examples.domain.values.Value.class,
+		org.eclipse.ocl.examples.domain.values.ValueFactory.class,
+		org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager.class,
+		org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorDoubleIterationManager.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorFragment.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorLambdaType.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorOperation.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorProperty.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorSpecializedType.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorType.class,
+		org.eclipse.ocl.examples.library.executor.ExecutorTypeParameter.class
+	};
+
+	protected Map<String, String> computeKnown2ExternalMap(String knownImports) {
+		Map<String, String> known2external = new HashMap<String, String>();
+		for (String knownClass : knownImports.split("\\n")) {
+			String trimmed = knownClass.trim();
+			if (trimmed.length() > 0) {
+				String lastSegment = trimmed.substring(trimmed.lastIndexOf(".")+1);
+				known2external.put(lastSegment, trimmed);
+				known2external.put(trimmed, trimmed);
 			}
 		}
-		
-		/**
-		 * Map of full external name to short internal name. The short internal name is the full name if
-		 * there is any ambiguity.
-		 */
-		private Map<String, String> external2internal = new HashMap<String, String>();
-		/**
-		 * Map of short internal name to full external name or null if there is an ambiguity.
-		 */
-		private Map<String, String> internal2external = new HashMap<String, String>();
-		
-		public Default(String imports) {
-			external2internal.put("", null);		// blank import 'already emitted'
-			for (String anImport : imports.split("\\n")) {
-				String candidate = anImport.trim();
-				if (!external2internal.containsKey(candidate)) {
-					String lastSegment = candidate.substring(candidate.lastIndexOf(".")+1);
-					if (!internal2external.containsKey(lastSegment)) {
-						internal2external.put(lastSegment, candidate);
-						external2internal.put(candidate, lastSegment);
-					}
-					else {
-						String oldExternal = internal2external.get(lastSegment);
-						if (oldExternal != null) {
-							external2internal.put(oldExternal, oldExternal);
-							internal2external.put(lastSegment, null);
-						}
-						external2internal.put(candidate, candidate);
-					}
-				}
-			}
-		}
-		
-		public String emitImport(String aPath) {
-			String path = external2internal.get(aPath);
-			return path != null ? path : ("<<" + aPath + ">>");
-		}
-		
-		public String emitImports() {
-			List<String> allValues = new ArrayList<String>(internal2external.values());
-			Collections.sort(allValues);
-			StringBuffer s = new StringBuffer();
-			String prefix = "";
-			for (String externalPath : allValues) {
-				s.append(prefix);
-				s.append("import ");
-				s.append(externalPath);
-				s.append(";");
-				prefix = "\n";
-			}
-			return s.toString();
-		}
-	}
-	
-	public static class Jet implements ImportEmitter
-	{
-		public static class Factory implements ImportEmitter.Factory
-		{	
-			public ImportEmitter createNew(String imports) {
-				return INSTANCE;
-			}
-		}
-		
-		public static ImportEmitter INSTANCE = new Jet();
-		
-		public String emitImport(String aPath) {
-			return "<%" + aPath + "%>";
-		}
-		
-		public String emitImports() {
-			return "";
-		}
-	}
-	
-	private static ImportEmitter.Factory EMITTER_FACTORY = null;	
-	private static Map<NamedElement, ImportEmitter> importers = new HashMap<NamedElement, ImportEmitter>();
-	
-	public static void setFactory(ImportEmitter.Factory factory) {
-		EMITTER_FACTORY = factory;
-		importers.clear();
-	}
-	
-	
+		return known2external;
+	}	
+
 	public String debug(Object element) {
 		return null;
 	}	
 	
 	/**
-	 * Return the potential brief name by which aPath may be referenced with the scope of an importer.
+	 * Replace all embedded <%xxx%> embedded import paths using unqualified names
+	 * for knownImports by fully qualified names so that the return value may be
+	 * correctly processed by the GenModel ImportManager.
+	 * prefix the return with correspondinbg Java import declarations.
 	 */
-	public String emitImport(NamedElement importer, String aPath) {
-		ImportEmitter importEmitter = importers.get(importer);
-		if (importEmitter == null) {
-			if (EMITTER_FACTORY != null) {
-				importEmitter = EMITTER_FACTORY.createNew("");
+	public String expandKnownImports(String knownImports, String markedUpDocument) {
+		Map<String, String> known2external = computeKnown2ExternalMap(knownImports);
+		String[] splits = markedUpDocument.split("(\\<%)|(%\\>)");	
+		StringBuffer s = new StringBuffer();
+		for (int i = 0; i < splits.length; i += 2) {
+			s.append(splits[i]);
+			if (i+1 < splits.length) {
+				String candidate = splits[i+1].trim();
+				String knownImport = known2external.get(candidate);
+				s.append("<%");
+				s.append(knownImport != null ? knownImport : candidate);
+				s.append("%>");
 			}
-			else {
-				importEmitter = new Default("");
-			}
-			importers.put(importer, importEmitter);
+		}		
+		return s.toString();
+	}
+	
+	public String knownImports() {
+		StringBuffer s = new StringBuffer();
+		for (Class<?> knownClass : knownClasses) {
+			s.append(knownClass.getName());
+			s.append("\n");
 		}
-		return importEmitter.emitImport(aPath);
-	}	
+		return s.toString();
+	}
 	
 	/**
-	 * Return the set of all new-line separated imports for importer as an ordered set of import declarations,
-	 * caching any full to brief name for subsequent use by emitImport().
+	 * Replace all embedded <%xxx%> embedded import paths by shorter names and
+	 * prefix the return with correspondinbg Java import declarations.
 	 */
-	public String emitImports(NamedElement importer, String imports) {
-		ImportEmitter importEmitter = importers.get(importer);
-		if (importEmitter == null) {
-			if (EMITTER_FACTORY != null) {
-				importEmitter = EMITTER_FACTORY.createNew(imports);
-			}
-			else {
-				importEmitter = new Default(imports);
-			}
-			importers.put(importer, importEmitter);
-		}
-		return importEmitter.emitImports();
-	}	
-
-	/**
-	 * Replace all embedded {%xxx%} embedded import paths by shorter names and
-	 * corresponding import full name prefixes.
-	 */
-	public String prefixImports(NamedElement importer, String markedUpDocument) {
+	public String prefixImports(String knownImports, String markedUpDocument) {
+		/*
+		 * Map of known short internal name to external name.
+		 */
+		Map<String, String> known2external = computeKnown2ExternalMap(knownImports);
 		String[] splits = markedUpDocument.split("(\\<%)|(%\\>)");	
-		/**
+		/*
 		 * Map of full external name to short internal name. The short internal name is the full name if
 		 * there is any ambiguity.
 		 */
 		Map<String, String> external2internal = new HashMap<String, String>();
-		/**
+		/*
 		 * Map of short internal name to full external name or null if there is an ambiguity.
 		 */
 		Map<String, String> internal2external = new HashMap<String, String>();
 		
 		for (int i = 1; i < splits.length; i += 2) {
-			String candidate = splits[i].trim();
-			if (!external2internal.containsKey(candidate)) {
-				String lastSegment = candidate.substring(candidate.lastIndexOf(".")+1);
+			external2internal.put(splits[i].trim(), null);
+		}
+		
+		ArrayList<String> candidates = new ArrayList<String>(external2internal.keySet());
+		for (String candidate : candidates) {
+			String lastSegment = candidate.substring(candidate.lastIndexOf(".")+1);
+			String knownClass = known2external.get(candidate);
+			if (knownClass != null) {
+				if (knownClass.equals(candidate) || lastSegment.equals(candidate)) {
+					internal2external.put(lastSegment, knownClass);
+					external2internal.put(knownClass, lastSegment);
+					external2internal.put(lastSegment, lastSegment);
+				}
+				else {
+					external2internal.put(candidate, candidate);
+				}
+			}
+			else {
 				if (!internal2external.containsKey(lastSegment)) {
 					internal2external.put(lastSegment, candidate);
 					external2internal.put(candidate, lastSegment);
@@ -192,6 +172,7 @@ public class EmitQueries
 		}
 		
 		List<String> allValues = new ArrayList<String>(internal2external.values());
+		allValues.remove(null);
 		Collections.sort(allValues);
 		StringBuffer s = new StringBuffer();
 		for (String externalPath : allValues) {
@@ -208,5 +189,5 @@ public class EmitQueries
 			}
 		}		
 		return s.toString();
-	}	
+	}
 }

@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.examples.codegen.common.EmitQueries;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -406,7 +405,6 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
 	protected void preInitialize() {
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
-		EmitQueries.setFactory(new EmitQueries.Jet.Factory());
 	}
 	
     public static final String PROJECT_NAME = "org.eclipse.ocl.examples.codegen";

@@ -22,7 +22,6 @@
 [import org::eclipse::ocl::examples::codegen::common::emitQueries/]
 [import org::eclipse::ocl::examples::codegen::common::expressionTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::genPackageQueries/]
-[import org::eclipse::ocl::examples::codegen::common::importTemplates/]
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
 [import org::eclipse::ocl::examples::codegen::common::symbolTemplates/]
@@ -54,9 +53,15 @@
  */
 package [genPackage.getQualifiedBodiesPackageName()/];
 
-[let imports : String = pType.gatherBodiesImports(genPackage)]
-[pType.emitImports(imports)/]
+[prefixImports(knownImports(), genPackage.generateTypeClass(pPackage, pType))/]
+[/file]
 [/let]
+[/let]
+[/let]
+[/template]
+
+[template public generateTypeClass(genPackage : GenPackage, pPackage : Package, pType : Type)]
+[let className : String = pType.name + genPackage.getBodiesClassSuffix()]
 /**
  * [className/] provides the Java implementation bodies of OCL-defined [pType.name/] operations and properties.
  */
@@ -74,13 +79,13 @@ public class [className/]
 [let expInOcl : ExpressionInOcl = pConstraint.specification.getExpressionInOcl(pOperation)]
 [if (false and pConstraint.stereotype = 'body')]
 	public static [pOperation.type.name/] [pOperation.name/]([pType.name/] self[for (parameter : Parameter | pOperation.ownedParameter)], [parameter.type.name/] [parameter.name/][/for]) {
-		final ExecutorManager evaluator = new [emitLibraryEcoreType('EcoreExecutorManager')/](this, [emitType(pType.getQualifiedTablesClassName(genPackage))/].LIBRARY);
-		final ValueFactory valueFactory = evaluator.getValueFactory();
+		final <%ExecutorManager%> evaluator = new <%EcoreExecutorManager%>(this, <%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
+		final <%ValueFactory%> valueFactory = evaluator.getValueFactory();
 		Library[genPackage.emitOperationArity(pOperation.ownedParameter->size())/] codeGen = [pType.name + '_' + pOperation.name + '_' + pConstraint.stereotype + '_' + pConstraint.name/].INSTANCE;
 		try {
-			final Value result = codeGen.evaluate(evaluator, null, valueFactory.valueOf(self)[for (parameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([parameter.name/])[/for]);
+			final <%Value%> result = codeGen.evaluate(evaluator, null, valueFactory.valueOf(self)[for (parameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([parameter.name/])[/for]);
 			return ([pOperation.type.name/]) valueFactory.getEcoreValueOf(result);
-		} catch ([pType.emitDomainEvaluationType('InvalidValueException')/] e) {
+		} catch (<%InvalidValueException%> e) {
 			throw new WrappedException(e);
 		}
 	}
@@ -99,41 +104,38 @@ public class [className/]
 [/for]
 [/if]
 }
-[/file]
-[/let]
-[/let]
 [/let]
 [/template]
 
 [template public generateInvariant(expInOcl : ExpressionInOcl, genPackage : GenPackage, pPackage : Package, pType : Type, pConstraint : Constraint)]
 [let className : String = '_invariant_' + pConstraint.name]
 [let arity : Integer = expInOcl.parameterVariable->size()]
-[let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
+[let constants : String = expInOcl.bodyExpression.gatherConstants(genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/] '[pConstraint.name/]' invariant.
  */
-public static class [className/] extends Abstract[genPackage.emitOperationArity(arity)/]
+public static class [className/] extends <%Abstract[genPackage.emitOperationArity(arity)/]%>
 {
 /*
 [expInOcl.prettyPrint().trim()/]
 */
 	public static [className/] INSTANCE = new [className/]();
 
-	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
+	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
 [for (parameter : Variable | expInOcl.parameterVariable)]
-, Value [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws [pType.emitDomainEvaluationType('InvalidValueException')/] {
+, <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
 		[expInOcl.emitConstants(constants)/]
 		[expInOcl.bodyExpression.emitExpression(pType, genPackage, expInOcl)/]
 		return [expInOcl.bodyExpression.symbolName(expInOcl)/];
 	}
 [if (expInOcl.messageExpression->notEmpty())]
-	public static class Message extends Abstract[genPackage.emitOperationArity(arity)/]
+	public static class Message extends <%Abstract[genPackage.emitOperationArity(arity)/]%>
 	{
 		public static [className/] INSTANCE = new [className/]();
 	
-		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
+		public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
 	[for (parameter : Variable | expInOcl.parameterVariable)]
-	, Value [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws [pType.emitDomainEvaluationType('InvalidValueException')/] {
+	, <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
 			[expInOcl.messageExpression.emitExpression(pType, genPackage, expInOcl)/]
 			return [expInOcl.messageExpression.symbolName(expInOcl)/];
 		}
@@ -144,20 +146,20 @@ public static class [className/] extends Abstract[genPackage.emitOperationArity(
 [template public generateOperationConstraint(expInOcl : ExpressionInOcl, genPackage : GenPackage, pPackage : Package, pType : Type, pOperation : Operation, pConstraint : Constraint)]
 [let arity : Integer = expInOcl.parameterVariable->size()]
 [let className : String = '_' + pOperation.name + '_' + pConstraint.stereotype + '_' + pConstraint.name]
-[let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
+[let constants : String = expInOcl.bodyExpression.gatherConstants(genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/]::[pOperation.name/] '[pConstraint.name/]' <[pConstraint.stereotype/]>.
  */
-public static class [className/] extends Abstract[genPackage.emitOperationArity(arity)/]
+public static class [className/] extends <%Abstract[genPackage.emitOperationArity(arity)/]%>
 {
 /*
 [expInOcl.prettyPrint().trim()/]
 */
 	public static [className/] INSTANCE = new [className/]();
 
-	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
+	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
 [for (parameter : Variable | expInOcl.parameterVariable)]
-, Value [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws [pType.emitDomainEvaluationType('InvalidValueException')/] {
+, <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
 		[expInOcl.emitConstants(constants)/]
 		[expInOcl.bodyExpression.emitExpression(pType, genPackage, expInOcl)/]
 		return [expInOcl.bodyExpression.symbolName(expInOcl)/];
@@ -166,92 +168,20 @@ public static class [className/] extends Abstract[genPackage.emitOperationArity(
 
 [template public generatePropertyConstraint(expInOcl : ExpressionInOcl, genPackage : GenPackage, pPackage : Package, pType : Type, pProperty : Property, pConstraint : Constraint)]
 [let className : String = '_' + pProperty.name + '_' + pConstraint.stereotype + '_' + pConstraint.name]
-[let constants : String = expInOcl.bodyExpression.gatherConstants(pType, genPackage, expInOcl)]
+[let constants : String = expInOcl.bodyExpression.gatherConstants(genPackage, expInOcl)]
 /** 
  * Implementation of the [pType.name/]::[pProperty.name/] '[pConstraint.name/]' <[pConstraint.stereotype/]>.
  */
-public static class [className/] extends AbstractProperty
+public static class [className/] extends <%AbstractProperty%>
 {
 /*
 [expInOcl.prettyPrint().trim()/]
 */
 	public static [className/] INSTANCE = new [className/]();
 
-	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value [defineSymbolName(expInOcl.contextVariable, 'self')/], DomainProperty property) throws [pType.emitDomainEvaluationType('InvalidValueException')/] {
+	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/], <%DomainProperty%> property) throws <%InvalidValueException%> {
 		[expInOcl.emitConstants(constants)/]
 		[expInOcl.bodyExpression.emitExpression(pType, genPackage, expInOcl)/]
 		return [expInOcl.bodyExpression.symbolName(expInOcl)/];
 	}
 }[/let][/let][/template]
-
-[template protected gatherBodiesImports(pType : Type, genPackage : GenPackage)]
-[pType.getQualifiedTablesClassName(genPackage)/]
-org.eclipse.ocl.examples.domain.values.Value
-[for (pConstraint : Constraint | pType.ownedRule)]
-[let expInOcl : ExpressionInOcl = specification.getExpressionInOcl(pType)]
-[expInOcl.gatherTypeImports(genPackage)/]
-[/let]
-[/for]
-[if (pType.oclIsKindOf(Class))]
-[for (pOperation : Operation | pType.oclAsType(Class).ownedOperation)]
-[for (pConstraint : Constraint | pOperation.ownedRule)]
-[let expInOcl : ExpressionInOcl = specification.getExpressionInOcl(pOperation)]
-[expInOcl.gatherOperationImports(genPackage)/]
-[/let]
-[/for]
-[/for]
-[for (pProperty : Property | pType.oclAsType(Class).ownedAttribute)]
-[for (pConstraint : Constraint | pProperty.ownedRule)]
-[let expInOcl : ExpressionInOcl = specification.getExpressionInOcl(pProperty)]
-[expInOcl.gatherPropertyImports(genPackage)/]
-[/let]
-[/for]
-[/for]
-[/if]
-[/template]
-
-[template protected gatherTypeImports(specification : ExpressionInOcl, genPackage : GenPackage)]
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.evaluation.InvalidValueException
-org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation
-org.eclipse.ocl.examples.domain.values.ValueFactory
-org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.elements.DomainType
-[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
-[for (pElement : Element | pElements)]
-[pElement.gatherImports(genPackage)/]
-[/for]
-[/let]
-[/template]
-
-[template protected gatherOperationImports(specification : ExpressionInOcl, genPackage : GenPackage)]
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.evaluation.InvalidValueException
-org.eclipse.ocl.examples.domain.library.Abstract[genPackage.emitOperationArity(specification.parameterVariable->size())/]
-org.eclipse.ocl.examples.domain.values.ValueFactory
-org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.elements.DomainType
-[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
-[for (pElement : Element | pElements)]
-[pElement.gatherImports(genPackage)/]
-[/for]
-[/let]
-[/template]
-
-[template protected gatherPropertyImports(specification : ExpressionInOcl, genPackage : GenPackage)]
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.evaluation.InvalidValueException
-org.eclipse.ocl.examples.domain.library.AbstractProperty
-org.eclipse.ocl.examples.domain.values.ValueFactory
-org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary
-org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator
-org.eclipse.ocl.examples.domain.elements.DomainType
-org.eclipse.ocl.examples.domain.elements.DomainProperty
-[let pElements : Sequence(Element) = specification.eAllContents()->filter(Element)]
-[for (pElement : Element | pElements)]
-[pElement.gatherImports(genPackage)/]
-[/for]
-[/let]
-[/template]

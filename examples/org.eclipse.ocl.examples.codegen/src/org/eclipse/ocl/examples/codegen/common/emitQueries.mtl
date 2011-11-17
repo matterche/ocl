@@ -20,44 +20,11 @@
 [query public debug(element : OclAny) : String =
 invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'debug(java.lang.Object)', Sequence{element}) /]
 
-[query public emitDomainElementsType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.domain.elements.' + name) /]
+[query public expandKnownImports(dummy : OclAny, knownImports : String, classText : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'expandKnownImports(java.lang.String, java.lang.String)', Sequence{knownImports, classText}) /]
 
-[query public emitDomainEvaluationType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.domain.evaluation.' + name) /]
+[query public knownImports(dummy : OclAny) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'knownImports()', Sequence{}) /]
 
-[query public emitDomainLibraryType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.domain.library.' + name) /]
-
-[query public emitDomainMessagesType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.domain.messages.' + name) /]
-
-[query public emitDomainValuesType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.domain.values.' + name) /]
-
-[query public emitEcoreType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.emf.ecore.' + name) /]
-
-[query public emitEcoreUtilType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.emf.ecore.util.' + name) /]
-
-[query public emitEmfCommonUtilType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.emf.common.util.' + name) /]
-
-[query public emitImports(importer : NamedElement, imports : String) : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImports(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, imports}) /]
-
-[query public emitLibraryEcoreType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.library.ecore.' + name) /]
-
-[query public emitLibraryExecutorType(importer : NamedElement, name : String) : String =
-importer.emitType('org.eclipse.ocl.examples.library.executor.' + name) /]
-
-[query public emitJavaUtilType(importer : NamedElement, name : String) : String =
-importer.emitType('java.util.' + name) /]
-
-[query public emitType(importer : NamedElement, qualifiedName : String) : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'emitImport(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, qualifiedName}) /]
-
-[query public prefixImports(importer : NamedElement, imports : String) : String =
-invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'prefixImports(org.eclipse.ocl.examples.pivot.NamedElement, java.lang.String)', Sequence{importer, imports}) /]
+[query public prefixImports(dummy : OclAny, knownImports : String, classText : String) : String =
+invoke('org.eclipse.ocl.examples.codegen.common.EmitQueries', 'prefixImports(java.lang.String, java.lang.String)', Sequence{knownImports, classText}) /]
