@@ -394,7 +394,11 @@ public class Model2tables extends AbstractAcceleoGenerator {
         if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
             URL url;
             try {
-                String moduleURL = getClass().getResource(moduleName).toString();
+                URL resource = getClass().getResource(moduleName);
+                if (resource == null) {
+                	return null;			// Caller diagnoses
+                }
+				String moduleURL = resource.toString();
                 int index = moduleURL.lastIndexOf("/" + PROJECT_NAME + "/");
                 if (index >= 0) {
                     url = new URL("file:" + moduleURL.substring(index));    // Bogus URL to pass value to createTemplateURI

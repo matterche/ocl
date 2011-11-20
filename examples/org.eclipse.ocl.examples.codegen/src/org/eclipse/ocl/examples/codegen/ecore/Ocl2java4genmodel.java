@@ -380,7 +380,7 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
         super.registerResourceFactories(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("genmodel", new EcoreResourceFactoryImpl());
         if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-            projectMap.initializeResourceSet(resourceSet);
+            ProjectMap.getAdapter(resourceSet);
             resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(IAcceleoConstants.EMTL_FILE_EXTENSION, new EMtlResourceFactoryImpl());
 			Map<String, URI> ePackageNsURIToGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
 			org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.eClass();
@@ -409,14 +409,16 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
 	
     public static final String PROJECT_NAME = "org.eclipse.ocl.examples.codegen";
 
-    private static ProjectMap projectMap = new ProjectMap();
-
     @Override
     protected URL findModuleURL(String moduleName) {
         if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
             URL url;
             try {
-                String moduleURL = getClass().getResource(moduleName).toString();
+                URL resource = getClass().getResource(moduleName);
+                if (resource == null) {
+                	return null;			// Caller diagnoses
+                }
+				String moduleURL = resource.toString();
                 int index = moduleURL.lastIndexOf("/" + PROJECT_NAME + "/");
                 if (index >= 0) {
                     url = new URL("file:" + moduleURL.substring(index));    // Bogus URL to pass value to createTemplateURI
