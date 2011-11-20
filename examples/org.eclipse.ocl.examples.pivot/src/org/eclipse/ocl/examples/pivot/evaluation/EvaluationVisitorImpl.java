@@ -608,31 +608,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		LibraryFeature implementation;
 		try {
 			implementation = dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+			if (implementation == null) {
+				return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + staticOperation + "'", operationCallExp, sourceValue);
+			}
 		} catch (InvalidValueException e) {
 			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation");
 		}	
-/*		Operation dynamicOperation = staticOperation;
-		if (!staticOperation.isStatic()) {
-			dynamicOperation = metaModelManager.getDynamicOperation((Type) dynamicSourceType, staticOperation);
-	 		if (dynamicOperation == null) {
-	 			dynamicOperation = staticOperation;
-	 		}
-		}
-		//
-		//	Resolve implementation of operation
-		//
-		LibraryFeature implementation;
-		try {
-			implementation = metaModelManager.getImplementation(dynamicOperation);
-		} catch (Exception e) {
-			String implementationClass = dynamicOperation.getImplementationClass();
-			if (implementationClass != null) {
-				return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
-			}
-			else {
-				return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
-			}
-		} */
 		//
 		//	Dispatch implementation avoiding variable argument list where possible
 		//
