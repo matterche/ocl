@@ -168,5 +168,10 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 		return org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHoverProvider.class;
 	}
 
+	// contributed by org.eclipse.ocl.examples.build.utilities.MarkupHoverFragment
+	public Class<? extends org.eclipse.xtext.documentation.IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
+		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocumentationProvider.class;
+	}
+
 
 }

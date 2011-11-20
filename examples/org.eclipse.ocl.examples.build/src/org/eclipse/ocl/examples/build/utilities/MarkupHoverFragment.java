@@ -18,8 +18,10 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import java.util.Set;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocumentationProvider;
 import org.eclipse.ocl.examples.xtext.markup.ui.hover.MarkupHoverProvider;
 import org.eclipse.xtext.Grammar;
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.generator.BindFactory;
 import org.eclipse.xtext.generator.Binding;
 import org.eclipse.xtext.generator.DefaultGeneratorFragment;
@@ -34,6 +36,7 @@ public class MarkupHoverFragment  extends DefaultGeneratorFragment
 	public Set<Binding> getGuiceBindingsUi(Grammar grammar) {
 		BindFactory bindFactory = new BindFactory();
 		bindFactory.addTypeToType(IEObjectHoverProvider.class.getName(), MarkupHoverProvider.class.getName());
+		bindFactory.addTypeToType(IEObjectDocumentationProvider.class.getName(), BaseDocumentationProvider.class.getName());
 		return bindFactory.getBindings();
 	}
 }
