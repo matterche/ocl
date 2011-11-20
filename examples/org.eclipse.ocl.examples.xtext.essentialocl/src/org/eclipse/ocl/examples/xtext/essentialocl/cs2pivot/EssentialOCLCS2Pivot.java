@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
@@ -187,7 +188,13 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			if (source != null) {
 				Type sourceType = source.getType();
 				if (sourceType != null) {
-					typeText = sourceType.toString();
+					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
+					if ((csParent instanceof NavigationOperatorCS)  && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csParent).getName())) {
+						typeText = "Set<" + sourceType.toString() + ">";
+					}
+					else {
+						typeText = sourceType.toString();
+					}
 				}
 			}
 			if (argumentText == null) {
