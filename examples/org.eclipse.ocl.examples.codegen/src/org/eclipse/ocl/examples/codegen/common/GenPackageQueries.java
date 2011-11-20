@@ -27,6 +27,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
@@ -45,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class GenPackageQueries
 {		
@@ -63,7 +65,8 @@ public class GenPackageQueries
 	public GenClass getGenClass(GenPackage genPackage, Type type) {
 		String name = type.getName();
 		for (GenClass genClass : genPackage.getGenClasses()) {
-			if (name.equals(genClass.getName())) {
+			String clsName = genClass.getEcoreClass().getName();
+			if (name.equals(clsName)) {
 				return genClass;
 			}
 		}
@@ -73,7 +76,8 @@ public class GenPackageQueries
 	public GenFeature getGenFeature(GenPackage genPackage, GenClass genClass, Property property) {
 		String name = property.getName();
 		for (GenFeature genFeature : genClass.getGenFeatures()) {
-			if (name.equals(genFeature.getName())) {
+			String featureName = genFeature.getEcoreFeature().getName();
+			if (name.equals(featureName)) {
 				return genFeature;
 			}
 		}
@@ -186,18 +190,39 @@ public class GenPackageQueries
 		}		
 		return null;
 	} */
+	  protected static boolean isBlank(String string)
+	  {
+	    return string == null || string.length() == 0;
+	  }
 	
 	public String getOperationID(GenPackage genPackage, Type type, Constraint rule, Boolean diagnosticCode) {
 		GenClass genClass = getGenClass(genPackage, type);
 		if (genClass != null) {
-			String name = rule.isCallable() ? rule.getName() : ("invariant_" + rule.getName());
+			String name;
+			String prefix = null;
+			prefix = UML2GenModelUtil.getInvariantPrefix(genPackage.getGenModel());
+			if (rule.isCallable()) {
+				name = rule.getName();
+			}
+			else {
+				name = prefix + rule.getName();
+			}
 			for (GenOperation genOperation : genClass.getGenOperations()) {
-				if (name.equals(genOperation.getName())) {
-					return genClass.getOperationID(genOperation, diagnosticCode);
+				String opName = genOperation.getEcoreOperation().getName();
+				if (name.equals(opName)) {
+					String operationID;
+					if (!isBlank(prefix)) {
+						String upperCaseOpName = CodeGenUtil.format(genOperation.getName(), '_', prefix, false, false).toUpperCase(); //$NON-NLS-1$
+						operationID = genClass.getClassifierID() + "__" + upperCaseOpName; //$NON-NLS-1$
+					}
+					else {
+						operationID = genClass.getOperationID(genOperation, diagnosticCode);
+					}
+					return operationID;
 				}
 			}
 		}
-		return "";
+		return "<<unknown-OperationId>>";
 	}
 	
 	public String getOperationReturnType(GenPackage genPackage, Operation operation) {
