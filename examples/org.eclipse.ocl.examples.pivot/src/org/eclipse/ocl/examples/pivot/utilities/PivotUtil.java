@@ -1004,7 +1004,7 @@ public class PivotUtil extends DomainUtil
 		Resource resource = null;
 		try {
 			resource = createXtextResource(metaModelManager, uri, contextClassifier, expression);
-			checkResourceErrors("Errors in '" + expression + "'", resource);
+			checkResourceErrors("Errors in '" + Pivot2Moniker.toString(contextClassifier) + "'\n\tbad expression '" + expression + "'", resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
