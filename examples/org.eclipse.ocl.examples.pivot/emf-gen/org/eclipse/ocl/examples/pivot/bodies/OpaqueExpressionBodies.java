@@ -71,45 +71,45 @@ public class OpaqueExpressionBodies
 			final ExecutorProperty P_OpaqueExpression_body = PivotTables.Properties._OpaqueExpression__body;
 			final LibraryProperty IP_OpaqueExpression_body = P_OpaqueExpression_body.getImplementation();
 			
-			Value leftA_symbol_59;
+			Value leftA_symbol_27;
 			try {
 				
-				Value A_symbol_60 = IP_OpaqueExpression_language.evaluate(evaluator, T_OrderedSet_String_, self, P_OpaqueExpression_language);
+				Value A_symbol_28 = IP_OpaqueExpression_language.evaluate(evaluator, T_OrderedSet_String_, self, P_OpaqueExpression_language);
 				
-				DomainType static_A_symbol_61 = valueFactory.typeOf(A_symbol_60);
-				LibraryUnaryOperation dynamic_A_symbol_61 = (LibraryUnaryOperation)static_A_symbol_61.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-				Value A_symbol_61 = dynamic_A_symbol_61.evaluate(evaluator, T_Boolean, A_symbol_60);
-				leftA_symbol_59 = A_symbol_61;
+				DomainType static_A_symbol_29 = valueFactory.typeOf(A_symbol_28);
+				LibraryUnaryOperation dynamic_A_symbol_29 = (LibraryUnaryOperation)static_A_symbol_29.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+				Value A_symbol_29 = dynamic_A_symbol_29.evaluate(evaluator, T_Boolean, A_symbol_28);
+				leftA_symbol_27 = A_symbol_29;
 			} catch (InvalidValueException e) {
-				leftA_symbol_59 = valueFactory.getInvalid();
+				leftA_symbol_27 = valueFactory.getInvalid();
 			}
-			Value A_symbol_61 = leftA_symbol_59;
-			Value rightA_symbol_59;
+			Value A_symbol_29 = leftA_symbol_27;
+			Value rightA_symbol_27;
 			try {
 				
-				Value A_symbol_62 = IP_OpaqueExpression_body.evaluate(evaluator, T_Sequence_String_, self, P_OpaqueExpression_body);
+				Value A_symbol_30 = IP_OpaqueExpression_body.evaluate(evaluator, T_Sequence_String_, self, P_OpaqueExpression_body);
 				
-				DomainType static_A_symbol_63 = valueFactory.typeOf(A_symbol_62);
-				LibraryUnaryOperation dynamic_A_symbol_63 = (LibraryUnaryOperation)static_A_symbol_63.lookupImplementation(standardLibrary, O_Collection_size);
-				Value A_symbol_63 = dynamic_A_symbol_63.evaluate(evaluator, T_Integer, A_symbol_62);
+				DomainType static_A_symbol_31 = valueFactory.typeOf(A_symbol_30);
+				LibraryUnaryOperation dynamic_A_symbol_31 = (LibraryUnaryOperation)static_A_symbol_31.lookupImplementation(standardLibrary, O_Collection_size);
+				Value A_symbol_31 = dynamic_A_symbol_31.evaluate(evaluator, T_Integer, A_symbol_30);
 				
-				Value A_symbol_64 = IP_OpaqueExpression_language.evaluate(evaluator, T_OrderedSet_String_, self, P_OpaqueExpression_language);
+				Value A_symbol_32 = IP_OpaqueExpression_language.evaluate(evaluator, T_OrderedSet_String_, self, P_OpaqueExpression_language);
 				
-				DomainType static_A_symbol_65 = valueFactory.typeOf(A_symbol_64);
-				LibraryUnaryOperation dynamic_A_symbol_65 = (LibraryUnaryOperation)static_A_symbol_65.lookupImplementation(standardLibrary, O_Collection_size);
-				Value A_symbol_65 = dynamic_A_symbol_65.evaluate(evaluator, T_Integer, A_symbol_64);
-				DomainType static_A_symbol_66 = valueFactory.typeOf(A_symbol_63, A_symbol_65);
-				LibraryBinaryOperation dynamic_A_symbol_66 = (LibraryBinaryOperation)static_A_symbol_66.lookupImplementation(standardLibrary, O_Real__eq_);
-				Value A_symbol_66 = dynamic_A_symbol_66.evaluate(evaluator, T_Boolean, A_symbol_63, A_symbol_65);
-				rightA_symbol_59 = A_symbol_66;
+				DomainType static_A_symbol_33 = valueFactory.typeOf(A_symbol_32);
+				LibraryUnaryOperation dynamic_A_symbol_33 = (LibraryUnaryOperation)static_A_symbol_33.lookupImplementation(standardLibrary, O_Collection_size);
+				Value A_symbol_33 = dynamic_A_symbol_33.evaluate(evaluator, T_Integer, A_symbol_32);
+				DomainType static_A_symbol_34 = valueFactory.typeOf(A_symbol_31, A_symbol_33);
+				LibraryBinaryOperation dynamic_A_symbol_34 = (LibraryBinaryOperation)static_A_symbol_34.lookupImplementation(standardLibrary, O_Real__eq_);
+				Value A_symbol_34 = dynamic_A_symbol_34.evaluate(evaluator, T_Boolean, A_symbol_31, A_symbol_33);
+				rightA_symbol_27 = A_symbol_34;
 			} catch (InvalidValueException e) {
-				rightA_symbol_59 = valueFactory.getInvalid();
+				rightA_symbol_27 = valueFactory.getInvalid();
 			}
-			Value A_symbol_66 = rightA_symbol_59;
-			DomainType static_A_symbol_59 = valueFactory.typeOf(A_symbol_61);
-			LibraryBinaryOperation dynamic_A_symbol_59 = (LibraryBinaryOperation)static_A_symbol_59.lookupImplementation(standardLibrary, O_Boolean_implies);
-			Value A_symbol_59 = dynamic_A_symbol_59.evaluate(evaluator, T_Boolean, A_symbol_61, A_symbol_66);
-			return A_symbol_59;
+			Value A_symbol_34 = rightA_symbol_27;
+			DomainType static_A_symbol_27 = valueFactory.typeOf(A_symbol_29);
+			LibraryBinaryOperation dynamic_A_symbol_27 = (LibraryBinaryOperation)static_A_symbol_27.lookupImplementation(standardLibrary, O_Boolean_implies);
+			Value A_symbol_27 = dynamic_A_symbol_27.evaluate(evaluator, T_Boolean, A_symbol_29, A_symbol_34);
+			return A_symbol_27;
 		}
 	}
 

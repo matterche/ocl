@@ -431,15 +431,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Property/owningType"/>
       </genFeatures>
-      <genOperations xsi:type="genmodel:GenOperation">
-        <ecoreOperation href="pivot.ecore#//Property/binding_to_attribute"/>
-        <genParameters xsi:type="genmodel:GenParameter">
-          <ecoreParameter href="pivot.ecore#//Property/binding_to_attribute/diagnostics"/>
-        </genParameters>
-        <genParameters xsi:type="genmodel:GenParameter">
-          <ecoreParameter href="pivot.ecore#//Property/binding_to_attribute/context"/>
-        </genParameters>
-      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="pivot.ecore#//MultiplicityElement"/>

@@ -9880,22 +9880,13 @@ public interface PivotPackage
 	int PROPERTY___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Binding To Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
-
-	/**
 	 * The number of operations of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 2;
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15390,16 +15381,6 @@ public interface PivotPackage
 	EReference getProperty_Class();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Property#validateBindingToAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Binding To Attribute</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Binding To Attribute</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Property#validateBindingToAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getProperty__ValidateBindingToAttribute__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18025,14 +18006,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference PROPERTY__CLASS = eINSTANCE.getProperty_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Binding To Attribute</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getProperty__ValidateBindingToAttribute__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.

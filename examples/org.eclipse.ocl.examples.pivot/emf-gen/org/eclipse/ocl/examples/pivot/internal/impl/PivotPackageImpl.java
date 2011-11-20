@@ -2928,15 +2928,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getProperty__ValidateBindingToAttribute__DiagnosticChain_Map() {
-		return propertyEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTypedElement() {
 		return typedElementEClass;
 	}
@@ -3848,7 +3839,6 @@ public class PivotPackageImpl
 		createEAttribute(propertyEClass, PROPERTY__IS_UNSETTABLE);
 		createEAttribute(propertyEClass, PROPERTY__IS_VOLATILE);
 		createEReference(propertyEClass, PROPERTY__OWNING_TYPE);
-		createEOperation(propertyEClass, PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEReference(propertyCallExpEClass, PROPERTY_CALL_EXP__REFERRED_PROPERTY);
@@ -4420,15 +4410,6 @@ public class PivotPackageImpl
 		initEAttribute(getProperty_IsVolatile(), this.getBoolean(), "isVolatile", "false", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getProperty_OwningType(), this.getType(), this.getType_OwnedAttribute(), "owningType", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getProperty__ValidateBindingToAttribute__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateBindingToAttribute", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPropertyCallExp_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 0, 1, PropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
@@ -4667,7 +4648,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																																																																																																																																																																																																																																																			
+		   });																																																																																																																																																																																																																																															
 	}
 
 	/**
@@ -4702,7 +4683,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																																																																																																					
+		   });																																																																																																	
 		addAnnotation
 		  (typeEClass, 
 		   source, 
@@ -4802,14 +4783,7 @@ public class PivotPackageImpl
 		   new String[] 
 		   {
 			 "body", "templateParameter->notEmpty()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });										
-		addAnnotation
-		  (getProperty__ValidateBindingToAttribute__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																										
+		   });																															
 		addAnnotation
 		  (getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map(), 
 		   source, 
@@ -4829,7 +4803,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-			 "body", "default->notEmpty() implies default->isCompatibleWith(parameteredElement)" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "default->notEmpty() implies default.isCompatibleWith(parameteredElement)" //$NON-NLS-1$ //$NON-NLS-2$
 		   });													
 		addAnnotation
 		  (getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map(), 
@@ -4843,7 +4817,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-			 "body", "template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)" //$NON-NLS-1$ //$NON-NLS-2$
+			 "body", "template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())" //$NON-NLS-1$ //$NON-NLS-2$
 		   });										
 		addAnnotation
 		  (getTemplateableElement__ParameterableElements(), 
@@ -4928,7 +4902,7 @@ public class PivotPackageImpl
 		   new URI[] 
 		   {
 			 URI.createURI(eNS_URI).appendFragment("//ParameterableElement/templateParameter") //$NON-NLS-1$
-		   });																																																			
+		   });																																															
 		addAnnotation
 		  (getTemplateParameter_OwnedParameteredElement(), 
 		   source, 

@@ -66,16 +66,16 @@ public class ConstraintBodies
 			final LibraryProperty IP_Constraint_constrainedElement = P_Constraint_constrainedElement.getImplementation();
 			
 			
-			Value A_symbol_0 = IP_Constraint_constrainedElement.evaluate(evaluator, T_OrderedSet_pivot_ecore__pivot__Element_, self, P_Constraint_constrainedElement);
+			Value A_symbol_36 = IP_Constraint_constrainedElement.evaluate(evaluator, T_OrderedSet_pivot_ecore__pivot__Element_, self, P_Constraint_constrainedElement);
 			
 			
-			DomainType static_A_symbol_1 = valueFactory.typeOf(A_symbol_0);
-			LibraryBinaryOperation dynamic_A_symbol_1 = (LibraryBinaryOperation)static_A_symbol_1.lookupImplementation(standardLibrary, O_Collection_includes);
-			Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Boolean, A_symbol_0, self);
-			DomainType static_A_symbol_2 = valueFactory.typeOf(A_symbol_1);
-			LibraryUnaryOperation dynamic_A_symbol_2 = (LibraryUnaryOperation)static_A_symbol_2.lookupImplementation(standardLibrary, O_Boolean_not);
-			Value A_symbol_2 = dynamic_A_symbol_2.evaluate(evaluator, T_Boolean, A_symbol_1);
-			return A_symbol_2;
+			DomainType static_A_symbol_37 = valueFactory.typeOf(A_symbol_36);
+			LibraryBinaryOperation dynamic_A_symbol_37 = (LibraryBinaryOperation)static_A_symbol_37.lookupImplementation(standardLibrary, O_Collection_includes);
+			Value A_symbol_37 = dynamic_A_symbol_37.evaluate(evaluator, T_Boolean, A_symbol_36, self);
+			DomainType static_A_symbol_38 = valueFactory.typeOf(A_symbol_37);
+			LibraryUnaryOperation dynamic_A_symbol_38 = (LibraryUnaryOperation)static_A_symbol_38.lookupImplementation(standardLibrary, O_Boolean_not);
+			Value A_symbol_38 = dynamic_A_symbol_38.evaluate(evaluator, T_Boolean, A_symbol_37);
+			return A_symbol_38;
 		}
 	}
 
@@ -101,15 +101,15 @@ public class ConstraintBodies
 			final Value T_ClassClassifier_Boolean_ = valueFactory.createTypeValue(OCLstdlibTables.Types._Boolean);
 			
 			
-			Value A_symbol_3 = IP_Constraint_specification.evaluate(evaluator, T_pivot_ecore__pivot__ValueSpecification, self, P_Constraint_specification);
+			Value A_symbol_39 = IP_Constraint_specification.evaluate(evaluator, T_pivot_ecore__pivot__ValueSpecification, self, P_Constraint_specification);
 			
-			DomainType static_A_symbol_4 = valueFactory.typeOf(A_symbol_3);
-			LibraryUnaryOperation dynamic_A_symbol_4 = (LibraryUnaryOperation)static_A_symbol_4.lookupImplementation(standardLibrary, O_ValueSpecification_booleanValue);
-			Value A_symbol_4 = dynamic_A_symbol_4.evaluate(evaluator, T_Boolean, A_symbol_3);
-			DomainType static_A_symbol_5 = valueFactory.typeOf(A_symbol_4);
-			LibraryBinaryOperation dynamic_A_symbol_5 = (LibraryBinaryOperation)static_A_symbol_5.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_5 = dynamic_A_symbol_5.evaluate(evaluator, T_Boolean, A_symbol_4, T_ClassClassifier_Boolean_);
-			return A_symbol_5;
+			DomainType static_A_symbol_40 = valueFactory.typeOf(A_symbol_39);
+			LibraryUnaryOperation dynamic_A_symbol_40 = (LibraryUnaryOperation)static_A_symbol_40.lookupImplementation(standardLibrary, O_ValueSpecification_booleanValue);
+			Value A_symbol_40 = dynamic_A_symbol_40.evaluate(evaluator, T_Boolean, A_symbol_39);
+			DomainType static_A_symbol_41 = valueFactory.typeOf(A_symbol_40);
+			LibraryBinaryOperation dynamic_A_symbol_41 = (LibraryBinaryOperation)static_A_symbol_41.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
+			Value A_symbol_41 = dynamic_A_symbol_41.evaluate(evaluator, T_Boolean, A_symbol_40, T_ClassClassifier_Boolean_);
+			return A_symbol_41;
 		}
 	}
 

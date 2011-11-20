@@ -14,7 +14,7 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-own_elements-_specification">
               <language>OCL</language>
-              <body>template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)</body>
+              <body>template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())</body>
             </specification>
           </ownedRule>
           <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateSignature-parameter" name="parameter" type="AuxiliaryConstructs-Templates-TemplateParameter" isOrdered="true" upper="*" association="AuxiliaryConstructs-Templates-A_parameter_templateSignature">
@@ -43,7 +43,7 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-must_be_compatible-_specification">
               <language>OCL</language>
-              <body>default->notEmpty() implies default->isCompatibleWith(parameteredElement)</body>
+              <body>default->notEmpty() implies default.isCompatibleWith(parameteredElement)</body>
             </specification>
           </ownedRule>
           <ownedAttribute xmi:type="cmof:Property" xmi:id="AuxiliaryConstructs-Templates-TemplateParameter-signature" name="signature" type="AuxiliaryConstructs-Templates-TemplateSignature" association="AuxiliaryConstructs-Templates-A_ownedParameter_signature">
@@ -218,16 +218,6 @@
           <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Property-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property">
             <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
           </ownedComment>
-          <ownedRule xmi:type="cmof:Constraint" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute" name="binding_to_attribute" constrainedElement="AuxiliaryConstructs-Templates-Property" namespace="AuxiliaryConstructs-Templates-Property">
-            <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-Property-binding_to_attribute">
-              <body>A binding of a property template parameter representing an attribute must be to an attribute.</body>
-            </ownedComment>
-            <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute-_specification">
-              <language>OCL</language>
-              <body>(isAttribute(self) and templateParameterSubstitution->notEmpty())&#xD;
-  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))</body>
-            </specification>
-          </ownedRule>
         </ownedMember>
         <ownedMember xmi:type="cmof:Class" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification" name="ValueSpecification" isAbstract="true" superClass="AuxiliaryConstructs-Templates-ParameterableElement">
           <ownedComment xmi:type="cmof:Comment" xmi:id="AuxiliaryConstructs-Templates-ValueSpecification-_ownedComment.0" annotatedElement="AuxiliaryConstructs-Templates-ValueSpecification">

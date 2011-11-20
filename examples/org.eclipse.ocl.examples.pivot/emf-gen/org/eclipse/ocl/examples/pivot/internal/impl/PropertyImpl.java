@@ -912,23 +912,6 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBindingToAttribute(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		/*
-		(isAttribute(self) and templateParameterSubstitution->notEmpty())
-		  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))
-		*/
-		/* 'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!Property\'\n\tbad expression \'(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))\'\nUnresolved property \'templateParameterSubstitution\' for \'unknown-type\'\nUnresolved property \'templateParameterSubstitution\' for \'Boolean\'\nUnresolved property \'formal\' for \'OclInvalid\'' */
-		return false; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::Property::binding_to_attribute
-		
-		
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -1429,8 +1412,6 @@ public class PropertyImpl
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
 			case PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-				return validateBindingToAttribute((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

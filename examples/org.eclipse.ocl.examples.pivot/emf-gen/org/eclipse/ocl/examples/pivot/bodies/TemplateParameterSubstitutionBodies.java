@@ -77,16 +77,16 @@ public class TemplateParameterSubstitutionBodies
 			final LibraryProperty IP_TemplateParameterSubstitution_formal = P_TemplateParameterSubstitution_formal.getImplementation();
 			
 			
-			Value A_symbol_52 = IP_TemplateParameterSubstitution_actual.evaluate(evaluator, T_pivot_ecore__pivot__ParameterableElement, self, P_TemplateParameterSubstitution_actual);
+			Value A_symbol_2 = IP_TemplateParameterSubstitution_actual.evaluate(evaluator, T_pivot_ecore__pivot__ParameterableElement, self, P_TemplateParameterSubstitution_actual);
 			
-			DomainType static_A_symbol_50 = valueFactory.typeOf(A_symbol_52);
-			LibraryUnaryOperation dynamic_A_symbol_50 = (LibraryUnaryOperation)static_A_symbol_50.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-			Value A_symbol_50 = dynamic_A_symbol_50.evaluate(evaluator, T_Set_pivot_ecore__pivot__ParameterableElement_, A_symbol_52);
+			DomainType static_A_symbol_0 = valueFactory.typeOf(A_symbol_2);
+			LibraryUnaryOperation dynamic_A_symbol_0 = (LibraryUnaryOperation)static_A_symbol_0.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+			Value A_symbol_0 = dynamic_A_symbol_0.evaluate(evaluator, T_Set_pivot_ecore__pivot__ParameterableElement_, A_symbol_2);
 			
 			/** 
 			 * Implementation of the iterator body.
 			 */
-			AbstractBinaryOperation body_A_symbol_51 = new AbstractBinaryOperation()
+			AbstractBinaryOperation body_A_symbol_1 = new AbstractBinaryOperation()
 			{
 			/*
 			a.isCompatibleWith(formal.parameteredElement)
@@ -95,22 +95,22 @@ public class TemplateParameterSubstitutionBodies
 					final Value V_a = iterator1;	// iterator: a
 					
 					
-					Value A_symbol_53 = IP_TemplateParameterSubstitution_formal.evaluate(evaluator, T_pivot_ecore__pivot__TemplateParameter, self, P_TemplateParameterSubstitution_formal);
+					Value A_symbol_3 = IP_TemplateParameterSubstitution_formal.evaluate(evaluator, T_pivot_ecore__pivot__TemplateParameter, self, P_TemplateParameterSubstitution_formal);
 					
-					Value A_symbol_54 = IP_TemplateParameter_parameteredElement.evaluate(evaluator, T_pivot_ecore__pivot__ParameterableElement, A_symbol_53, P_TemplateParameter_parameteredElement);
+					Value A_symbol_4 = IP_TemplateParameter_parameteredElement.evaluate(evaluator, T_pivot_ecore__pivot__ParameterableElement, A_symbol_3, P_TemplateParameter_parameteredElement);
 					
-					DomainType static_A_symbol_55 = valueFactory.typeOf(V_a);
-					LibraryBinaryOperation dynamic_A_symbol_55 = (LibraryBinaryOperation)static_A_symbol_55.lookupImplementation(standardLibrary, O_ParameterableElement_isCompatibleWith);
-					Value A_symbol_55 = dynamic_A_symbol_55.evaluate(evaluator, T_Boolean, V_a, A_symbol_54);
-					return A_symbol_55;
+					DomainType static_A_symbol_5 = valueFactory.typeOf(V_a);
+					LibraryBinaryOperation dynamic_A_symbol_5 = (LibraryBinaryOperation)static_A_symbol_5.lookupImplementation(standardLibrary, O_ParameterableElement_isCompatibleWith);
+					Value A_symbol_5 = dynamic_A_symbol_5.evaluate(evaluator, T_Boolean, V_a, A_symbol_4);
+					return A_symbol_5;
 				}
 			};
-			DomainType static_A_symbol_51 = A_symbol_50.getType();
-			LibraryIteration dynamic_A_symbol_51 = (LibraryIteration)static_A_symbol_51.lookupImplementation(standardLibrary, O_Collection_forAll);
-			Value acc_A_symbol_51 = dynamic_A_symbol_51.createAccumulatorValue(evaluator, T_Boolean, T_Boolean);
-			ExecutorSingleIterationManager manager_A_symbol_51 = new ExecutorSingleIterationManager(evaluator, T_Boolean, body_A_symbol_51, (CollectionValue)A_symbol_50, acc_A_symbol_51);
-			Value A_symbol_51 = dynamic_A_symbol_51.evaluateIteration(manager_A_symbol_51);
-			return A_symbol_51;
+			DomainType static_A_symbol_1 = A_symbol_0.getType();
+			LibraryIteration dynamic_A_symbol_1 = (LibraryIteration)static_A_symbol_1.lookupImplementation(standardLibrary, O_Collection_forAll);
+			Value acc_A_symbol_1 = dynamic_A_symbol_1.createAccumulatorValue(evaluator, T_Boolean, T_Boolean);
+			ExecutorSingleIterationManager manager_A_symbol_1 = new ExecutorSingleIterationManager(evaluator, T_Boolean, body_A_symbol_1, (CollectionValue)A_symbol_0, acc_A_symbol_1);
+			Value A_symbol_1 = dynamic_A_symbol_1.evaluateIteration(manager_A_symbol_1);
+			return A_symbol_1;
 		}
 	}
 

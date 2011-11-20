@@ -165,14 +165,6 @@ public class PivotValidator
 	public static final int CONSTRAINT__VALUE_SPECIFICATION_BOOLEAN = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Binding To Attribute' of 'Property'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PROPERTY__BINDING_TO_ATTRIBUTE = 6;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Lower Ge0' of 'Multiplicity Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,7 +194,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 9;
+	public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Own Elements' of 'Template Signature'.
@@ -210,7 +202,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 11;
+	public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Parameter Substitution Formal' of 'Template Binding'.
@@ -218,7 +210,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 7;
+	public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Parameter Substitution' of 'Template Binding'.
@@ -226,7 +218,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 8;
+	public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Must Be Compatible' of 'Template Parameter Substitution'.
@@ -234,7 +226,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 10;
+	public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Has Constraining Type' of 'Type Template Parameter'.
@@ -242,7 +234,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 12;
+	public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 11;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -250,7 +242,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 12;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 11;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -609,20 +601,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)property, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(property, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(property, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProperty_validateBindingToAttribute(property, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateBindingToAttribute constraint of '<em>Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateProperty_validateBindingToAttribute(
-			Property property, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return property.validateBindingToAttribute(diagnostics, context);
 	}
 
 	/**

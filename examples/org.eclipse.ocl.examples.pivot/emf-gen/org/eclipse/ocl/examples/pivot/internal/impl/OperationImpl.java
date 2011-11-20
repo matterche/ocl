@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -585,11 +587,26 @@ public class OperationImpl
 	 */
 	public EList<ParameterableElement> parameterableElements() {
 		/*
-		allOwnedElements()->select(oclIsKindOf(ParameterableElement))
+		allOwnedElements()
+		->select(
+		  oclIsKindOf(_'platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore'::pivot::ParameterableElement))
 		*/
-		/*'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()\'\n\tbad expression \'allOwnedElements()->select(oclIsKindOf(ParameterableElement))\'\nUnresolved operation \'allOwnedElements\' for \'unknown-type\'' */
-		return null; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::TemplateableElement::parameterableElements() : Set(ParameterableElement)
-		
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_pivot_ecore__pivot__Element = PivotTables.Types._Element;
+			final DomainCollectionType T_Set_pivot_ecore__pivot__Element_ = standardLibrary.getSetType(T_pivot_ecore__pivot__Element);
+			
+			final DomainType returnType = T_Set_pivot_ecore__pivot__Element_;
+			final Value result = TemplateableElementBodies._parameterableElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			@SuppressWarnings("unchecked")
+			EList<ParameterableElement> ecoreResult = (EList<ParameterableElement>) valueFactory.getEcoreValueOf(result);
+			return ecoreResult;
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies", e);
+		}
 		
 	}
 

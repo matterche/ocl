@@ -69,41 +69,41 @@ public class MultiplicityElementBodies
 			final ExecutorOperation O_Real__gt__eq_ = OCLstdlibTables.Operations._Real___gt__eq_;
 			final IntegerValue I_0 = valueFactory.integerValueOf(0);
 			
-			Value leftA_symbol_6;
+			Value leftA_symbol_42;
 			try {
 				
-				DomainType static_A_symbol_7 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_7 = (LibraryUnaryOperation)static_A_symbol_7.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_7 = dynamic_A_symbol_7.evaluate(evaluator, T_Integer, self);
-				DomainType static_A_symbol_8 = valueFactory.typeOf(A_symbol_7);
-				LibraryUnaryOperation dynamic_A_symbol_8 = (LibraryUnaryOperation)static_A_symbol_8.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-				Value A_symbol_8 = dynamic_A_symbol_8.evaluate(evaluator, T_Set_Integer_, A_symbol_7);
-				DomainType static_A_symbol_9 = valueFactory.typeOf(A_symbol_8);
-				LibraryUnaryOperation dynamic_A_symbol_9 = (LibraryUnaryOperation)static_A_symbol_9.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-				Value A_symbol_9 = dynamic_A_symbol_9.evaluate(evaluator, T_Boolean, A_symbol_8);
-				leftA_symbol_6 = A_symbol_9;
+				DomainType static_A_symbol_43 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_43 = (LibraryUnaryOperation)static_A_symbol_43.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_43 = dynamic_A_symbol_43.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_44 = valueFactory.typeOf(A_symbol_43);
+				LibraryUnaryOperation dynamic_A_symbol_44 = (LibraryUnaryOperation)static_A_symbol_44.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+				Value A_symbol_44 = dynamic_A_symbol_44.evaluate(evaluator, T_Set_Integer_, A_symbol_43);
+				DomainType static_A_symbol_45 = valueFactory.typeOf(A_symbol_44);
+				LibraryUnaryOperation dynamic_A_symbol_45 = (LibraryUnaryOperation)static_A_symbol_45.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+				Value A_symbol_45 = dynamic_A_symbol_45.evaluate(evaluator, T_Boolean, A_symbol_44);
+				leftA_symbol_42 = A_symbol_45;
 			} catch (InvalidValueException e) {
-				leftA_symbol_6 = valueFactory.getInvalid();
+				leftA_symbol_42 = valueFactory.getInvalid();
 			}
-			Value A_symbol_9 = leftA_symbol_6;
-			Value rightA_symbol_6;
+			Value A_symbol_45 = leftA_symbol_42;
+			Value rightA_symbol_42;
 			try {
 				
-				DomainType static_A_symbol_10 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_10 = (LibraryUnaryOperation)static_A_symbol_10.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_10 = dynamic_A_symbol_10.evaluate(evaluator, T_Integer, self);
-				DomainType static_A_symbol_11 = valueFactory.typeOf(A_symbol_10, I_0);
-				LibraryBinaryOperation dynamic_A_symbol_11 = (LibraryBinaryOperation)static_A_symbol_11.lookupImplementation(standardLibrary, O_Real__gt__eq_);
-				Value A_symbol_11 = dynamic_A_symbol_11.evaluate(evaluator, T_Boolean, A_symbol_10, I_0);
-				rightA_symbol_6 = A_symbol_11;
+				DomainType static_A_symbol_46 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_46 = (LibraryUnaryOperation)static_A_symbol_46.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_46 = dynamic_A_symbol_46.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_47 = valueFactory.typeOf(A_symbol_46, I_0);
+				LibraryBinaryOperation dynamic_A_symbol_47 = (LibraryBinaryOperation)static_A_symbol_47.lookupImplementation(standardLibrary, O_Real__gt__eq_);
+				Value A_symbol_47 = dynamic_A_symbol_47.evaluate(evaluator, T_Boolean, A_symbol_46, I_0);
+				rightA_symbol_42 = A_symbol_47;
 			} catch (InvalidValueException e) {
-				rightA_symbol_6 = valueFactory.getInvalid();
+				rightA_symbol_42 = valueFactory.getInvalid();
 			}
-			Value A_symbol_11 = rightA_symbol_6;
-			DomainType static_A_symbol_6 = valueFactory.typeOf(A_symbol_9);
-			LibraryBinaryOperation dynamic_A_symbol_6 = (LibraryBinaryOperation)static_A_symbol_6.lookupImplementation(standardLibrary, O_Boolean_implies);
-			Value A_symbol_6 = dynamic_A_symbol_6.evaluate(evaluator, T_Boolean, A_symbol_9, A_symbol_11);
-			return A_symbol_6;
+			Value A_symbol_47 = rightA_symbol_42;
+			DomainType static_A_symbol_42 = valueFactory.typeOf(A_symbol_45);
+			LibraryBinaryOperation dynamic_A_symbol_42 = (LibraryBinaryOperation)static_A_symbol_42.lookupImplementation(standardLibrary, O_Boolean_implies);
+			Value A_symbol_42 = dynamic_A_symbol_42.evaluate(evaluator, T_Boolean, A_symbol_45, A_symbol_47);
+			return A_symbol_42;
 		}
 	}
 
@@ -136,72 +136,72 @@ public class MultiplicityElementBodies
 			final ExecutorOperation O_MultiplicityElement_lowerBound = PivotTables.Operations._MultiplicityElement__lowerBound;
 			final ExecutorOperation O_Real__gt__eq_ = OCLstdlibTables.Operations._Real___gt__eq_;
 			
-			Value leftA_symbol_12;
+			Value leftA_symbol_48;
 			try {
-				Value leftA_symbol_13;
+				Value leftA_symbol_49;
 				try {
 					
-					DomainType static_A_symbol_14 = valueFactory.typeOf(self);
-					LibraryUnaryOperation dynamic_A_symbol_14 = (LibraryUnaryOperation)static_A_symbol_14.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-					Value A_symbol_14 = dynamic_A_symbol_14.evaluate(evaluator, T_Integer, self);
-					DomainType static_A_symbol_15 = valueFactory.typeOf(A_symbol_14);
-					LibraryUnaryOperation dynamic_A_symbol_15 = (LibraryUnaryOperation)static_A_symbol_15.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-					Value A_symbol_15 = dynamic_A_symbol_15.evaluate(evaluator, T_Set_Integer_, A_symbol_14);
-					DomainType static_A_symbol_16 = valueFactory.typeOf(A_symbol_15);
-					LibraryUnaryOperation dynamic_A_symbol_16 = (LibraryUnaryOperation)static_A_symbol_16.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-					Value A_symbol_16 = dynamic_A_symbol_16.evaluate(evaluator, T_Boolean, A_symbol_15);
-					leftA_symbol_13 = A_symbol_16;
+					DomainType static_A_symbol_50 = valueFactory.typeOf(self);
+					LibraryUnaryOperation dynamic_A_symbol_50 = (LibraryUnaryOperation)static_A_symbol_50.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+					Value A_symbol_50 = dynamic_A_symbol_50.evaluate(evaluator, T_Integer, self);
+					DomainType static_A_symbol_51 = valueFactory.typeOf(A_symbol_50);
+					LibraryUnaryOperation dynamic_A_symbol_51 = (LibraryUnaryOperation)static_A_symbol_51.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+					Value A_symbol_51 = dynamic_A_symbol_51.evaluate(evaluator, T_Set_Integer_, A_symbol_50);
+					DomainType static_A_symbol_52 = valueFactory.typeOf(A_symbol_51);
+					LibraryUnaryOperation dynamic_A_symbol_52 = (LibraryUnaryOperation)static_A_symbol_52.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+					Value A_symbol_52 = dynamic_A_symbol_52.evaluate(evaluator, T_Boolean, A_symbol_51);
+					leftA_symbol_49 = A_symbol_52;
 				} catch (InvalidValueException e) {
-					leftA_symbol_13 = valueFactory.getInvalid();
+					leftA_symbol_49 = valueFactory.getInvalid();
 				}
-				Value A_symbol_16 = leftA_symbol_13;
-				Value rightA_symbol_13;
+				Value A_symbol_52 = leftA_symbol_49;
+				Value rightA_symbol_49;
 				try {
 					
-					DomainType static_A_symbol_17 = valueFactory.typeOf(self);
-					LibraryUnaryOperation dynamic_A_symbol_17 = (LibraryUnaryOperation)static_A_symbol_17.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-					Value A_symbol_17 = dynamic_A_symbol_17.evaluate(evaluator, T_Integer, self);
-					DomainType static_A_symbol_18 = valueFactory.typeOf(A_symbol_17);
-					LibraryUnaryOperation dynamic_A_symbol_18 = (LibraryUnaryOperation)static_A_symbol_18.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-					Value A_symbol_18 = dynamic_A_symbol_18.evaluate(evaluator, T_Set_Integer_, A_symbol_17);
-					DomainType static_A_symbol_19 = valueFactory.typeOf(A_symbol_18);
-					LibraryUnaryOperation dynamic_A_symbol_19 = (LibraryUnaryOperation)static_A_symbol_19.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-					Value A_symbol_19 = dynamic_A_symbol_19.evaluate(evaluator, T_Boolean, A_symbol_18);
-					rightA_symbol_13 = A_symbol_19;
+					DomainType static_A_symbol_53 = valueFactory.typeOf(self);
+					LibraryUnaryOperation dynamic_A_symbol_53 = (LibraryUnaryOperation)static_A_symbol_53.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+					Value A_symbol_53 = dynamic_A_symbol_53.evaluate(evaluator, T_Integer, self);
+					DomainType static_A_symbol_54 = valueFactory.typeOf(A_symbol_53);
+					LibraryUnaryOperation dynamic_A_symbol_54 = (LibraryUnaryOperation)static_A_symbol_54.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+					Value A_symbol_54 = dynamic_A_symbol_54.evaluate(evaluator, T_Set_Integer_, A_symbol_53);
+					DomainType static_A_symbol_55 = valueFactory.typeOf(A_symbol_54);
+					LibraryUnaryOperation dynamic_A_symbol_55 = (LibraryUnaryOperation)static_A_symbol_55.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+					Value A_symbol_55 = dynamic_A_symbol_55.evaluate(evaluator, T_Boolean, A_symbol_54);
+					rightA_symbol_49 = A_symbol_55;
 				} catch (InvalidValueException e) {
-					rightA_symbol_13 = valueFactory.getInvalid();
+					rightA_symbol_49 = valueFactory.getInvalid();
 				}
-				Value A_symbol_19 = rightA_symbol_13;
-				DomainType static_A_symbol_13 = valueFactory.typeOf(A_symbol_16);
-				LibraryBinaryOperation dynamic_A_symbol_13 = (LibraryBinaryOperation)static_A_symbol_13.lookupImplementation(standardLibrary, O_Boolean_and);
-				Value A_symbol_13 = dynamic_A_symbol_13.evaluate(evaluator, T_Boolean, A_symbol_16, A_symbol_19);
-				leftA_symbol_12 = A_symbol_13;
+				Value A_symbol_55 = rightA_symbol_49;
+				DomainType static_A_symbol_49 = valueFactory.typeOf(A_symbol_52);
+				LibraryBinaryOperation dynamic_A_symbol_49 = (LibraryBinaryOperation)static_A_symbol_49.lookupImplementation(standardLibrary, O_Boolean_and);
+				Value A_symbol_49 = dynamic_A_symbol_49.evaluate(evaluator, T_Boolean, A_symbol_52, A_symbol_55);
+				leftA_symbol_48 = A_symbol_49;
 			} catch (InvalidValueException e) {
-				leftA_symbol_12 = valueFactory.getInvalid();
+				leftA_symbol_48 = valueFactory.getInvalid();
 			}
-			Value A_symbol_13 = leftA_symbol_12;
-			Value rightA_symbol_12;
+			Value A_symbol_49 = leftA_symbol_48;
+			Value rightA_symbol_48;
 			try {
 				
-				DomainType static_A_symbol_20 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_20 = (LibraryUnaryOperation)static_A_symbol_20.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-				Value A_symbol_20 = dynamic_A_symbol_20.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_56 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_56 = (LibraryUnaryOperation)static_A_symbol_56.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+				Value A_symbol_56 = dynamic_A_symbol_56.evaluate(evaluator, T_Integer, self);
 				
-				DomainType static_A_symbol_21 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_21 = (LibraryUnaryOperation)static_A_symbol_21.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_21 = dynamic_A_symbol_21.evaluate(evaluator, T_Integer, self);
-				DomainType static_A_symbol_22 = valueFactory.typeOf(A_symbol_20, A_symbol_21);
-				LibraryBinaryOperation dynamic_A_symbol_22 = (LibraryBinaryOperation)static_A_symbol_22.lookupImplementation(standardLibrary, O_Real__gt__eq_);
-				Value A_symbol_22 = dynamic_A_symbol_22.evaluate(evaluator, T_Boolean, A_symbol_20, A_symbol_21);
-				rightA_symbol_12 = A_symbol_22;
+				DomainType static_A_symbol_57 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_57 = (LibraryUnaryOperation)static_A_symbol_57.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_57 = dynamic_A_symbol_57.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_58 = valueFactory.typeOf(A_symbol_56, A_symbol_57);
+				LibraryBinaryOperation dynamic_A_symbol_58 = (LibraryBinaryOperation)static_A_symbol_58.lookupImplementation(standardLibrary, O_Real__gt__eq_);
+				Value A_symbol_58 = dynamic_A_symbol_58.evaluate(evaluator, T_Boolean, A_symbol_56, A_symbol_57);
+				rightA_symbol_48 = A_symbol_58;
 			} catch (InvalidValueException e) {
-				rightA_symbol_12 = valueFactory.getInvalid();
+				rightA_symbol_48 = valueFactory.getInvalid();
 			}
-			Value A_symbol_22 = rightA_symbol_12;
-			DomainType static_A_symbol_12 = valueFactory.typeOf(A_symbol_13);
-			LibraryBinaryOperation dynamic_A_symbol_12 = (LibraryBinaryOperation)static_A_symbol_12.lookupImplementation(standardLibrary, O_Boolean_implies);
-			Value A_symbol_12 = dynamic_A_symbol_12.evaluate(evaluator, T_Boolean, A_symbol_13, A_symbol_22);
-			return A_symbol_12;
+			Value A_symbol_58 = rightA_symbol_48;
+			DomainType static_A_symbol_48 = valueFactory.typeOf(A_symbol_49);
+			LibraryBinaryOperation dynamic_A_symbol_48 = (LibraryBinaryOperation)static_A_symbol_48.lookupImplementation(standardLibrary, O_Boolean_implies);
+			Value A_symbol_48 = dynamic_A_symbol_48.evaluate(evaluator, T_Boolean, A_symbol_49, A_symbol_58);
+			return A_symbol_48;
 		}
 	}
 
@@ -226,40 +226,40 @@ public class MultiplicityElementBodies
 			final ExecutorOperation O_Real__gt__eq_ = OCLstdlibTables.Operations._Real___gt__eq_;
 			final ExecutorOperation O_MultiplicityElement_upperBound = PivotTables.Operations._MultiplicityElement__upperBound;
 			
-			Value leftA_symbol_23;
+			Value leftA_symbol_59;
 			try {
 				
-				DomainType static_A_symbol_24 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_24 = (LibraryUnaryOperation)static_A_symbol_24.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_24 = dynamic_A_symbol_24.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_60 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_60 = (LibraryUnaryOperation)static_A_symbol_60.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_60 = dynamic_A_symbol_60.evaluate(evaluator, T_Integer, self);
 				
-				DomainType static_A_symbol_25 = valueFactory.typeOf(A_symbol_24, C);
-				LibraryBinaryOperation dynamic_A_symbol_25 = (LibraryBinaryOperation)static_A_symbol_25.lookupImplementation(standardLibrary, O_Real__lt__eq_);
-				Value A_symbol_25 = dynamic_A_symbol_25.evaluate(evaluator, T_Boolean, A_symbol_24, C);
-				leftA_symbol_23 = A_symbol_25;
+				DomainType static_A_symbol_61 = valueFactory.typeOf(A_symbol_60, C);
+				LibraryBinaryOperation dynamic_A_symbol_61 = (LibraryBinaryOperation)static_A_symbol_61.lookupImplementation(standardLibrary, O_Real__lt__eq_);
+				Value A_symbol_61 = dynamic_A_symbol_61.evaluate(evaluator, T_Boolean, A_symbol_60, C);
+				leftA_symbol_59 = A_symbol_61;
 			} catch (InvalidValueException e) {
-				leftA_symbol_23 = valueFactory.getInvalid();
+				leftA_symbol_59 = valueFactory.getInvalid();
 			}
-			Value A_symbol_25 = leftA_symbol_23;
-			Value rightA_symbol_23;
+			Value A_symbol_61 = leftA_symbol_59;
+			Value rightA_symbol_59;
 			try {
 				
-				DomainType static_A_symbol_26 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_26 = (LibraryUnaryOperation)static_A_symbol_26.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-				Value A_symbol_26 = dynamic_A_symbol_26.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_62 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_62 = (LibraryUnaryOperation)static_A_symbol_62.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+				Value A_symbol_62 = dynamic_A_symbol_62.evaluate(evaluator, T_Integer, self);
 				
-				DomainType static_A_symbol_27 = valueFactory.typeOf(A_symbol_26, C);
-				LibraryBinaryOperation dynamic_A_symbol_27 = (LibraryBinaryOperation)static_A_symbol_27.lookupImplementation(standardLibrary, O_Real__gt__eq_);
-				Value A_symbol_27 = dynamic_A_symbol_27.evaluate(evaluator, T_Boolean, A_symbol_26, C);
-				rightA_symbol_23 = A_symbol_27;
+				DomainType static_A_symbol_63 = valueFactory.typeOf(A_symbol_62, C);
+				LibraryBinaryOperation dynamic_A_symbol_63 = (LibraryBinaryOperation)static_A_symbol_63.lookupImplementation(standardLibrary, O_Real__gt__eq_);
+				Value A_symbol_63 = dynamic_A_symbol_63.evaluate(evaluator, T_Boolean, A_symbol_62, C);
+				rightA_symbol_59 = A_symbol_63;
 			} catch (InvalidValueException e) {
-				rightA_symbol_23 = valueFactory.getInvalid();
+				rightA_symbol_59 = valueFactory.getInvalid();
 			}
-			Value A_symbol_27 = rightA_symbol_23;
-			DomainType static_A_symbol_23 = valueFactory.typeOf(A_symbol_25);
-			LibraryBinaryOperation dynamic_A_symbol_23 = (LibraryBinaryOperation)static_A_symbol_23.lookupImplementation(standardLibrary, O_Boolean_and);
-			Value A_symbol_23 = dynamic_A_symbol_23.evaluate(evaluator, T_Boolean, A_symbol_25, A_symbol_27);
-			return A_symbol_23;
+			Value A_symbol_63 = rightA_symbol_59;
+			DomainType static_A_symbol_59 = valueFactory.typeOf(A_symbol_61);
+			LibraryBinaryOperation dynamic_A_symbol_59 = (LibraryBinaryOperation)static_A_symbol_59.lookupImplementation(standardLibrary, O_Boolean_and);
+			Value A_symbol_59 = dynamic_A_symbol_59.evaluate(evaluator, T_Boolean, A_symbol_61, A_symbol_63);
+			return A_symbol_59;
 		}
 	}
 
@@ -284,46 +284,46 @@ public class MultiplicityElementBodies
 			final ExecutorOperation O_Real__gt__eq_ = OCLstdlibTables.Operations._Real___gt__eq_;
 			final ExecutorOperation O_MultiplicityElement_upperBound = PivotTables.Operations._MultiplicityElement__upperBound;
 			
-			Value leftA_symbol_28;
+			Value leftA_symbol_64;
 			try {
 				
-				DomainType static_A_symbol_29 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_29 = (LibraryUnaryOperation)static_A_symbol_29.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_29 = dynamic_A_symbol_29.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_65 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_65 = (LibraryUnaryOperation)static_A_symbol_65.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_65 = dynamic_A_symbol_65.evaluate(evaluator, T_Integer, self);
 				
-				DomainType static_A_symbol_30 = valueFactory.typeOf(M);
-				LibraryUnaryOperation dynamic_A_symbol_30 = (LibraryUnaryOperation)static_A_symbol_30.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
-				Value A_symbol_30 = dynamic_A_symbol_30.evaluate(evaluator, T_Integer, M);
-				DomainType static_A_symbol_31 = valueFactory.typeOf(A_symbol_29, A_symbol_30);
-				LibraryBinaryOperation dynamic_A_symbol_31 = (LibraryBinaryOperation)static_A_symbol_31.lookupImplementation(standardLibrary, O_Real__lt__eq_);
-				Value A_symbol_31 = dynamic_A_symbol_31.evaluate(evaluator, T_Boolean, A_symbol_29, A_symbol_30);
-				leftA_symbol_28 = A_symbol_31;
+				DomainType static_A_symbol_66 = valueFactory.typeOf(M);
+				LibraryUnaryOperation dynamic_A_symbol_66 = (LibraryUnaryOperation)static_A_symbol_66.lookupImplementation(standardLibrary, O_MultiplicityElement_lowerBound);
+				Value A_symbol_66 = dynamic_A_symbol_66.evaluate(evaluator, T_Integer, M);
+				DomainType static_A_symbol_67 = valueFactory.typeOf(A_symbol_65, A_symbol_66);
+				LibraryBinaryOperation dynamic_A_symbol_67 = (LibraryBinaryOperation)static_A_symbol_67.lookupImplementation(standardLibrary, O_Real__lt__eq_);
+				Value A_symbol_67 = dynamic_A_symbol_67.evaluate(evaluator, T_Boolean, A_symbol_65, A_symbol_66);
+				leftA_symbol_64 = A_symbol_67;
 			} catch (InvalidValueException e) {
-				leftA_symbol_28 = valueFactory.getInvalid();
+				leftA_symbol_64 = valueFactory.getInvalid();
 			}
-			Value A_symbol_31 = leftA_symbol_28;
-			Value rightA_symbol_28;
+			Value A_symbol_67 = leftA_symbol_64;
+			Value rightA_symbol_64;
 			try {
 				
-				DomainType static_A_symbol_32 = valueFactory.typeOf(self);
-				LibraryUnaryOperation dynamic_A_symbol_32 = (LibraryUnaryOperation)static_A_symbol_32.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-				Value A_symbol_32 = dynamic_A_symbol_32.evaluate(evaluator, T_Integer, self);
+				DomainType static_A_symbol_68 = valueFactory.typeOf(self);
+				LibraryUnaryOperation dynamic_A_symbol_68 = (LibraryUnaryOperation)static_A_symbol_68.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+				Value A_symbol_68 = dynamic_A_symbol_68.evaluate(evaluator, T_Integer, self);
 				
-				DomainType static_A_symbol_33 = valueFactory.typeOf(M);
-				LibraryUnaryOperation dynamic_A_symbol_33 = (LibraryUnaryOperation)static_A_symbol_33.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-				Value A_symbol_33 = dynamic_A_symbol_33.evaluate(evaluator, T_Integer, M);
-				DomainType static_A_symbol_34 = valueFactory.typeOf(A_symbol_32, A_symbol_33);
-				LibraryBinaryOperation dynamic_A_symbol_34 = (LibraryBinaryOperation)static_A_symbol_34.lookupImplementation(standardLibrary, O_Real__gt__eq_);
-				Value A_symbol_34 = dynamic_A_symbol_34.evaluate(evaluator, T_Boolean, A_symbol_32, A_symbol_33);
-				rightA_symbol_28 = A_symbol_34;
+				DomainType static_A_symbol_69 = valueFactory.typeOf(M);
+				LibraryUnaryOperation dynamic_A_symbol_69 = (LibraryUnaryOperation)static_A_symbol_69.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+				Value A_symbol_69 = dynamic_A_symbol_69.evaluate(evaluator, T_Integer, M);
+				DomainType static_A_symbol_70 = valueFactory.typeOf(A_symbol_68, A_symbol_69);
+				LibraryBinaryOperation dynamic_A_symbol_70 = (LibraryBinaryOperation)static_A_symbol_70.lookupImplementation(standardLibrary, O_Real__gt__eq_);
+				Value A_symbol_70 = dynamic_A_symbol_70.evaluate(evaluator, T_Boolean, A_symbol_68, A_symbol_69);
+				rightA_symbol_64 = A_symbol_70;
 			} catch (InvalidValueException e) {
-				rightA_symbol_28 = valueFactory.getInvalid();
+				rightA_symbol_64 = valueFactory.getInvalid();
 			}
-			Value A_symbol_34 = rightA_symbol_28;
-			DomainType static_A_symbol_28 = valueFactory.typeOf(A_symbol_31);
-			LibraryBinaryOperation dynamic_A_symbol_28 = (LibraryBinaryOperation)static_A_symbol_28.lookupImplementation(standardLibrary, O_Boolean_and);
-			Value A_symbol_28 = dynamic_A_symbol_28.evaluate(evaluator, T_Boolean, A_symbol_31, A_symbol_34);
-			return A_symbol_28;
+			Value A_symbol_70 = rightA_symbol_64;
+			DomainType static_A_symbol_64 = valueFactory.typeOf(A_symbol_67);
+			LibraryBinaryOperation dynamic_A_symbol_64 = (LibraryBinaryOperation)static_A_symbol_64.lookupImplementation(standardLibrary, O_Boolean_and);
+			Value A_symbol_64 = dynamic_A_symbol_64.evaluate(evaluator, T_Boolean, A_symbol_67, A_symbol_70);
+			return A_symbol_64;
 		}
 	}
 
@@ -347,13 +347,13 @@ public class MultiplicityElementBodies
 			final IntegerValue I_1 = valueFactory.integerValueOf(1);
 			
 			
-			DomainType static_A_symbol_35 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_35 = (LibraryUnaryOperation)static_A_symbol_35.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
-			Value A_symbol_35 = dynamic_A_symbol_35.evaluate(evaluator, T_Integer, self);
-			DomainType static_A_symbol_36 = valueFactory.typeOf(A_symbol_35, I_1);
-			LibraryBinaryOperation dynamic_A_symbol_36 = (LibraryBinaryOperation)static_A_symbol_36.lookupImplementation(standardLibrary, O_Real__gt_);
-			Value A_symbol_36 = dynamic_A_symbol_36.evaluate(evaluator, T_Boolean, A_symbol_35, I_1);
-			return A_symbol_36;
+			DomainType static_A_symbol_71 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_71 = (LibraryUnaryOperation)static_A_symbol_71.lookupImplementation(standardLibrary, O_MultiplicityElement_upperBound);
+			Value A_symbol_71 = dynamic_A_symbol_71.evaluate(evaluator, T_Integer, self);
+			DomainType static_A_symbol_72 = valueFactory.typeOf(A_symbol_71, I_1);
+			LibraryBinaryOperation dynamic_A_symbol_72 = (LibraryBinaryOperation)static_A_symbol_72.lookupImplementation(standardLibrary, O_Real__gt_);
+			Value A_symbol_72 = dynamic_A_symbol_72.evaluate(evaluator, T_Boolean, A_symbol_71, I_1);
+			return A_symbol_72;
 		}
 	}
 
@@ -380,31 +380,31 @@ public class MultiplicityElementBodies
 			final IntegerValue I_1 = valueFactory.integerValueOf(1);
 			
 				
-				Value A_symbol_37 = IP_MultiplicityElement_lower.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_lower);
+				Value A_symbol_73 = IP_MultiplicityElement_lower.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_lower);
 				
-				DomainType static_A_symbol_38 = valueFactory.typeOf(A_symbol_37);
-				LibraryUnaryOperation dynamic_A_symbol_38 = (LibraryUnaryOperation)static_A_symbol_38.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-				Value A_symbol_38 = dynamic_A_symbol_38.evaluate(evaluator, T_Set_Integer_, A_symbol_37);
-				DomainType static_A_symbol_39 = valueFactory.typeOf(A_symbol_38);
-				LibraryUnaryOperation dynamic_A_symbol_39 = (LibraryUnaryOperation)static_A_symbol_39.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-				Value A_symbol_39 = dynamic_A_symbol_39.evaluate(evaluator, T_Boolean, A_symbol_38);
-			Value A_symbol_40;
-			if (A_symbol_39.isTrue()) {
+				DomainType static_A_symbol_74 = valueFactory.typeOf(A_symbol_73);
+				LibraryUnaryOperation dynamic_A_symbol_74 = (LibraryUnaryOperation)static_A_symbol_74.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+				Value A_symbol_74 = dynamic_A_symbol_74.evaluate(evaluator, T_Set_Integer_, A_symbol_73);
+				DomainType static_A_symbol_75 = valueFactory.typeOf(A_symbol_74);
+				LibraryUnaryOperation dynamic_A_symbol_75 = (LibraryUnaryOperation)static_A_symbol_75.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+				Value A_symbol_75 = dynamic_A_symbol_75.evaluate(evaluator, T_Boolean, A_symbol_74);
+			Value A_symbol_76;
+			if (A_symbol_75.isTrue()) {
 				
-				Value A_symbol_41 = IP_MultiplicityElement_lower.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_lower);
+				Value A_symbol_77 = IP_MultiplicityElement_lower.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_lower);
 				
-				A_symbol_40 = A_symbol_41;
+				A_symbol_76 = A_symbol_77;
 			}
-			else if (A_symbol_39.isFalse()) {
-				A_symbol_40 = I_1;
+			else if (A_symbol_75.isFalse()) {
+				A_symbol_76 = I_1;
 			}
-			else if (A_symbol_39.isNull()) {
-				A_symbol_40 = valueFactory.throwInvalidValueException("null if condition");
+			else if (A_symbol_75.isNull()) {
+				A_symbol_76 = valueFactory.throwInvalidValueException("null if condition");
 			}
 			else {
-				A_symbol_40 = valueFactory.throwInvalidValueException("invalid if condition");
+				A_symbol_76 = valueFactory.throwInvalidValueException("invalid if condition");
 			}
-			return A_symbol_40;
+			return A_symbol_76;
 		}
 	}
 
@@ -431,31 +431,31 @@ public class MultiplicityElementBodies
 			final IntegerValue I_1 = valueFactory.integerValueOf(1);
 			
 				
-				Value A_symbol_42 = IP_MultiplicityElement_upper.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_upper);
+				Value A_symbol_78 = IP_MultiplicityElement_upper.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_upper);
 				
-				DomainType static_A_symbol_43 = valueFactory.typeOf(A_symbol_42);
-				LibraryUnaryOperation dynamic_A_symbol_43 = (LibraryUnaryOperation)static_A_symbol_43.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-				Value A_symbol_43 = dynamic_A_symbol_43.evaluate(evaluator, T_Set_Integer_, A_symbol_42);
-				DomainType static_A_symbol_44 = valueFactory.typeOf(A_symbol_43);
-				LibraryUnaryOperation dynamic_A_symbol_44 = (LibraryUnaryOperation)static_A_symbol_44.lookupImplementation(standardLibrary, O_Collection_notEmpty);
-				Value A_symbol_44 = dynamic_A_symbol_44.evaluate(evaluator, T_Boolean, A_symbol_43);
-			Value A_symbol_45;
-			if (A_symbol_44.isTrue()) {
+				DomainType static_A_symbol_79 = valueFactory.typeOf(A_symbol_78);
+				LibraryUnaryOperation dynamic_A_symbol_79 = (LibraryUnaryOperation)static_A_symbol_79.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+				Value A_symbol_79 = dynamic_A_symbol_79.evaluate(evaluator, T_Set_Integer_, A_symbol_78);
+				DomainType static_A_symbol_80 = valueFactory.typeOf(A_symbol_79);
+				LibraryUnaryOperation dynamic_A_symbol_80 = (LibraryUnaryOperation)static_A_symbol_80.lookupImplementation(standardLibrary, O_Collection_notEmpty);
+				Value A_symbol_80 = dynamic_A_symbol_80.evaluate(evaluator, T_Boolean, A_symbol_79);
+			Value A_symbol_81;
+			if (A_symbol_80.isTrue()) {
 				
-				Value A_symbol_46 = IP_MultiplicityElement_upper.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_upper);
+				Value A_symbol_82 = IP_MultiplicityElement_upper.evaluate(evaluator, T_Integer, self, P_MultiplicityElement_upper);
 				
-				A_symbol_45 = A_symbol_46;
+				A_symbol_81 = A_symbol_82;
 			}
-			else if (A_symbol_44.isFalse()) {
-				A_symbol_45 = I_1;
+			else if (A_symbol_80.isFalse()) {
+				A_symbol_81 = I_1;
 			}
-			else if (A_symbol_44.isNull()) {
-				A_symbol_45 = valueFactory.throwInvalidValueException("null if condition");
+			else if (A_symbol_80.isNull()) {
+				A_symbol_81 = valueFactory.throwInvalidValueException("null if condition");
 			}
 			else {
-				A_symbol_45 = valueFactory.throwInvalidValueException("invalid if condition");
+				A_symbol_81 = valueFactory.throwInvalidValueException("invalid if condition");
 			}
-			return A_symbol_45;
+			return A_symbol_81;
 		}
 	}
 

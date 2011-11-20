@@ -54,10 +54,10 @@ public class ValueSpecificationBodies
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
 			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
-			final Value A_symbol_86 = valueFactory.createSetValue(T_Set_OclAny_);
+			final Value A_symbol_17 = valueFactory.createSetValue(T_Set_OclAny_);
 			
 			
-			return A_symbol_86;
+			return A_symbol_17;
 		}
 	}
 
@@ -76,10 +76,10 @@ public class ValueSpecificationBodies
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
 			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
-			final Value A_symbol_87 = valueFactory.createSetValue(T_Set_OclAny_);
+			final Value A_symbol_18 = valueFactory.createSetValue(T_Set_OclAny_);
 			
 			
-			return A_symbol_87;
+			return A_symbol_18;
 		}
 	}
 
@@ -136,10 +136,10 @@ public class ValueSpecificationBodies
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
 			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
-			final Value A_symbol_88 = valueFactory.createSetValue(T_Set_OclAny_);
+			final Value A_symbol_19 = valueFactory.createSetValue(T_Set_OclAny_);
 			
 			
-			return A_symbol_88;
+			return A_symbol_19;
 		}
 	}
 
@@ -158,10 +158,10 @@ public class ValueSpecificationBodies
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
 			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
-			final Value A_symbol_89 = valueFactory.createSetValue(T_Set_OclAny_);
+			final Value A_symbol_20 = valueFactory.createSetValue(T_Set_OclAny_);
 			
 			
-			return A_symbol_89;
+			return A_symbol_20;
 		}
 	}
 

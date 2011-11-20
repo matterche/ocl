@@ -451,19 +451,4 @@ public interface Property
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A binding of a property template parameter representing an attribute must be to an attribute.
-	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
-	 * @param context The cache of context-specific information.
-	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\n(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))\n\052/\n/* \'Errors in \\\'http://www.eclipse.org/ocl/3.1.0/Pivot!Property\\\'\\n\\tbad expression \\\'(isAttribute(self) and templateParameterSubstitution->notEmpty())\\r\\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))\\\'\\nUnresolved property \\\'templateParameterSubstitution\\\' for \\\'unknown-type\\\'\\nUnresolved property \\\'templateParameterSubstitution\\\' for \\\'Boolean\\\'\\nUnresolved property \\\'formal\\\' for \\\'OclInvalid\\\'\' \052/\nreturn false; // FIXME errors in OCL definition of _\'pivot.ecore\'::pivot::Property::binding_to_attribute\n\n'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))'"
-	 * @generated
-	 */
-	boolean validateBindingToAttribute(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
-
 } // Property
