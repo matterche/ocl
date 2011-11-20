@@ -240,7 +240,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 			}
 			return createElementValue((DomainElement) eObject);
 		}
-		return new EObjectValueImpl(this, eObject);
+		return null;
 	}
 
 	public ElementValue createElementValue(DomainElement element) {
@@ -602,7 +602,13 @@ public abstract class AbstractValueFactory implements ValueFactory
 			return (Value) object;
 		}
 		else if (object instanceof EObject) {
-			return createEObjectValue((EObject) object);
+			ObjectValue eObjectValue = createEObjectValue((EObject) object);
+			if (eObjectValue != null) {
+				return eObjectValue;
+			}
+			else {
+				return new EObjectValueImpl(this, (EObject) object);
+			}
 		}
 		else if (object instanceof Number) {
 			if ((object instanceof Integer) || (object instanceof Long) || (object instanceof Short) || (object instanceof Byte)) {

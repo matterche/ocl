@@ -16,12 +16,19 @@
  */
 package org.eclipse.ocl.examples.library.ecore;
 
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.library.executor.ExecutorValueFactory;
 
 public class EcoreValueFactory extends ExecutorValueFactory
 {
 	public EcoreValueFactory(DomainStandardLibrary standardLibrary) {
 		super(standardLibrary);
+	}
+
+	@Override
+	public ElementValue createElementValue(DomainElement element) {
+		return null;
 	}
 }

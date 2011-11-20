@@ -44,6 +44,9 @@ public class DomainElementValueImpl extends AbstractObjectValue<DomainElement> i
 	}
 
 	public DomainType getType() {
-		return type;	// FIXME
+//		if (type == null) {
+//			type = valueFactory.getStandardLibrary().getType(object.eClass());
+//		}
+		return type;		// FIXME
 	}
 }
