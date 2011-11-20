@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.codegen.common;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -172,6 +174,26 @@ public class PivotQueries
 
 	public static String getMoniker(Element element) {
 		return Pivot2Moniker.toString(element);
+	}
+	
+	public List<Operation> getOperations(Type type) {
+		ResourceSet resourceSet = type.eResource().getResourceSet();
+		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+		List<Operation> operations = new ArrayList<Operation>();
+		for (Operation operation : metaModelManager.getLocalOperations(type, Boolean.FALSE)) {
+			operations.add(operation);
+		}
+		return operations;
+	}
+	
+	public List<Property> getProperties(Type type) {
+		ResourceSet resourceSet = type.eResource().getResourceSet();
+		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+		List<Property> properties = new ArrayList<Property>();
+		for (Property property : metaModelManager.getLocalProperties(type, Boolean.FALSE)) {
+			properties.add(property);
+		}
+		return properties;
 	}
 	
 	public String getSignature(Operation anOperation) {

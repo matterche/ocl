@@ -157,13 +157,13 @@ public static final <%ExecutorFragment%> _[cls.name/]__[superCls.name/] = new <%
 /**
  *	The operation descriptors for each operation of each type.
  */
-public static class Operations {[for (cls : Class | pPackage.ownedType->filter(Class)->select(ownedOperation->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
+public static class Operations {[for (cls : Class | pPackage.ownedType->filter(Class)->select(getOperations()->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
 	[pPackage.declareOperations(genPackage, cls)/]
 [/for]}
 [/template]
 
 [template public declareOperations(pPackage : Package, genPackage : GenPackage, cls : Class)]
-[let ops : OrderedSet(Operation) = cls.ownedOperation->asOrderedSet()->sortedBy(getMoniker())]
+[let ops : OrderedSet(Operation) = cls.getOperations()->asOrderedSet()->sortedBy(getMoniker())]
 [for (i : Integer | Sequence{1..ops->size()}) separator('\n')]
 [let op : Operation = ops->at(i)]
 [pPackage.declareOperation(genPackage, op, i)/][/let][/for][/let]
@@ -227,13 +227,13 @@ new <%ExecutorTupleType%>("[type.name/]"[genPackage.declareTupleParts(type.owned
 /**
  *	The property descriptors for each property of each type.
  */
-public static class Properties {[for (cls : Class | pPackage.ownedType->filter(Class)->select(ownedAttribute->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
+public static class Properties {[for (cls : Class | pPackage.ownedType->filter(Class)->select(getProperties()->notEmpty())->sortedBy(name)) before('\n') separator('\n')]
 	[pPackage.declareProperties(genPackage, cls)/]
 [/for]}
 [/template]
 
 [template public declareProperties(pPackage : Package, genPackage : GenPackage, cls : Class)]
-[let props : OrderedSet(Property) = cls.ownedAttribute->select(prop : Property | genPackage.isProperty(prop))->sortedBy(name)]
+[let props : OrderedSet(Property) = cls.getProperties()->select(prop : Property | genPackage.isProperty(prop))->sortedBy(name)]
 [for (i : Integer | Sequence{1..props->size()}) separator('\n')]
 [let prop : Property = props->at(i)]
 public static final <%ExecutorProperty%> [prop.getLiteralName()/] = new <%ExecutorProperty%>("[prop.name/]", [cls.getLiteralName()/], [i-1/], [genPackage.getImplementationName(prop)/]);[/let][/for][/let]

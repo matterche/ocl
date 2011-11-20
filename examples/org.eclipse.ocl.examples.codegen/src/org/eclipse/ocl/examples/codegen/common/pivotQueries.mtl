@@ -66,11 +66,17 @@ cls.ownedOperation->asSet()->reject(op : Operation | false and superSignatures->
 [query public getLocalPropertiesOf(cls : Type) : Set(Property) = 
 cls.ownedAttribute->asSet()/]
 
+[query public getOperations(elem : Type) : OrderedSet(Operation) = 
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getOperations(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
+
 [query public getOverloadOp(cls : Type, superOp : Operation) : Operation = 
 let allOps : Set(Operation) = cls.getAllSuperTypes().ownedOperation->select(op : Operation | op.getSignature() = superOp.getSignature())->asSet()
 in let allOpSupers : Set(Class) = getAllProperSuperTypes(allOps.owningType)
 in let allSuperOps : Set(Operation) = allOpSupers.ownedOperation->select(op : Operation | op.getSignature() = superOp.getSignature())->asSet()
 in (allOps - allSuperOps)->asSequence()->first()/]
+
+[query public getProperties(elem : Type) : OrderedSet(Property) = 
+invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getProperties(org.eclipse.ocl.examples.pivot.Type)', Sequence{elem}) /]
 
 [query public getSignature(elem : Operation) : String = 
 invoke('org.eclipse.ocl.examples.codegen.common.PivotQueries', 'getSignature(org.eclipse.ocl.examples.pivot.Operation)', Sequence{elem}) /]
