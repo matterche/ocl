@@ -16,3 +16,4 @@ Export-Package: org.eclipse.ocl.examples.codegen.common,
  org.eclipse.ocl.examples.codegen.tables
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Import-Package: org.apache.log4j;version="1.2.15"

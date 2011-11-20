@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,19 +39,24 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLLeft2RightVisitor;
 
 public class PivotQueries
-{	
+{
+	private static final Logger logger = Logger.getLogger(EssentialOCLLeft2RightVisitor.class);
+	
 	/**
 	 * Workaround Acceleo's lack of BigInteger support
 	 */
@@ -72,6 +78,14 @@ public class PivotQueries
 			return element.toString();
 		}
 		return null;
+	}
+
+	protected static ExpressionInOcl createExpressionInOclError(String string) {
+		ExpressionInOcl expressionInOcl = PivotFactory.eINSTANCE.createExpressionInOcl();
+		StringLiteralExp stringLiteral = PivotFactory.eINSTANCE.createStringLiteralExp();
+		stringLiteral.setStringSymbol(string);
+		expressionInOcl.setMessageExpression(stringLiteral);
+		return expressionInOcl;
 	}
 	
 	protected int getAllSuperClasses(Map<Type, Integer> results, Type aClass) {
@@ -103,6 +117,12 @@ public class PivotQueries
 		return getAllSuperClasses(results, aClass);
 	}
 
+	/**
+	 * Return an OCL AST from a ValueSpecification in the context of a NamedElement. If it is necessary
+	 * to parse OCL concrete syntax and errors result an ExpressionInOcl is returned with a null
+	 * contextVariable, a null bodyExpression, and a StringLiteral messageExpression
+	 * containing the error messages.
+	 */
 	public static ExpressionInOcl getExpressionInOcl(NamedElement contextElement, ValueSpecification specification) {
 		if (specification instanceof ExpressionInOcl) {
 			return (ExpressionInOcl) specification;
@@ -113,14 +133,16 @@ public class PivotQueries
 			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 			OpaqueExpression opaqueExpression = (OpaqueExpression) specification;
 			String expression = PivotUtil.getBody(opaqueExpression);
+			if (expression == null) {
+				return createExpressionInOclError("Missing expression");
+			}
 			URI uri = metaModelManager.getResourceIdentifier(specification, null);
 			ExpressionInOcl expressionInOcl = null;
 			try {
 				expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uri, contextElement, expression);
 			} catch (ParserException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
+				logger.error(e.getMessage());
+				return createExpressionInOclError(e.getMessage());
 			}
 			if (expressionInOcl != null) {
 				String messageExpression = PivotUtil.getMessage(opaqueExpression);
@@ -128,8 +150,7 @@ public class PivotQueries
 					try {
 						PivotUtil.resolveSpecification(metaModelManager, uri, expressionInOcl, messageExpression);
 					} catch (ParserException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error("Failed to parse \"" + messageExpression + "\"", e);
 					}
 				}
 			}
@@ -181,6 +202,12 @@ public class PivotQueries
 		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(null);
 		createOptions.setLinelength(80);
 		return PrettyPrintExprVisitor.prettyPrint(element, createOptions);
+	}
+	
+	public static String prettyPrintName(Visitable element) {
+		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(null);
+		createOptions.setLinelength(80);
+		return PrettyPrintNameVisitor.prettyPrint(element, createOptions);
 	}
 	
 }
