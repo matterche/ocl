@@ -32,18 +32,7 @@ var projectName = "org.eclipse.ocl.examples.pivot"
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
-    bean = StandaloneSetup { resourceSet = resourceSet
-	   	platformUri = ".."
-   		scanClassPath = true
-    	uriMap = Mapping {
-    		from = "platform:/plugin/org.eclipse.uml2.uml.resources/"
-    		to = "platform:/resource/org.eclipse.uml2.uml.resources/"
-    	}
-    	uriMap = Mapping {
-    		from = "platform:/plugin/org.eclipse.uml2.uml/"
-    		to = "platform:/resource/org.eclipse.uml2.uml/"
-    	}
-    }
+    bean = ProjectMapSetup { resourceSet = resourceSet }
     bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = Model2tablesGenerator { resourceSet = resourceSet

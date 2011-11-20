@@ -85,14 +85,14 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 		log.info("Loading Pivot Model '" + fileURI);
 		try {
 			ResourceSet resourceSet = getResourceSet();
+			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 			Resource ecoreResource = resourceSet.getResource(fileURI, true);
-			MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(ecoreResource, null);
+			MetaModelManagerResourceAdapter.getAdapter(ecoreResource, metaModelManager);
 			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Loading " + fileURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
 			}
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
 			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Package pivotPackage = pivotRoot.getNestedPackages().get(0);

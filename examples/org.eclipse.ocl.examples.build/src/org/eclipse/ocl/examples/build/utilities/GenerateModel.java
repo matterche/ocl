@@ -19,8 +19,10 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
+import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.BasicMonitor;
@@ -36,6 +38,7 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.ocl.examples.codegen.ecore.OCLGeneratorAdapterFactory;
 
 /**
  * Performs a Generate Model on the designated <tt>genmodel</tt> genModel.
@@ -65,6 +68,7 @@ public class GenerateModel extends AbstractWorkflowComponent {
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1,
 			Issues arg2) {
+		GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor(GenModelPackage.eNS_URI, OCLGeneratorAdapterFactory.DESCRIPTOR);
 		URI fileURI = URI.createPlatformResourceURI(genModel, true);
 		log.info("Generating model '" + fileURI + "'");
 		try {
