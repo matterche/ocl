@@ -129,7 +129,7 @@ private static final <%ExecutorTypeParameter%> _[cls.name/]_[parameteredElement.
 [/let]
 [/for]
 [/if]
-[if (cls.getBehavioralType()->notEmpty())]
+[if (false and cls.getBehavioralType()->notEmpty())]
 public static final <%ExecutorType%> _[cls.name/] = [genPackage.getQualifiedTypeLiteralName(cls.getBehavioralType(), cls._package)/];[else]
 public static final <%ExecutorType%> _[cls.name/] = new <%ExecutorType%>("[cls.name/]", PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
