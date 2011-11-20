@@ -29,7 +29,6 @@ import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy
 import org.eclipse.acceleo.engine.generation.strategy.PreviewStrategy;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -40,11 +39,12 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
-import org.eclipse.emf.codegen.util.CodeGenUtil;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -53,6 +53,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.codegen.tables.Model2bodies;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
@@ -69,6 +71,8 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
+import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 {
@@ -95,12 +99,13 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		super(generatorAdapterFactory);
 	}
 
-	protected void convertConstraintToOperation(Ecore2Pivot ecore2pivot, EClassifier eClassifier, String key, String body, String message) {
+	protected void convertConstraintToOperation(Ecore2Pivot ecore2pivot, GenModel genModel, EClassifier eClassifier, String key, String body, String message) {
 		Type pType = ecore2pivot.getCreated(Type.class, eClassifier);
 		List<Constraint> ownedRules = pType.getOwnedRules();
 		for (Constraint rule : ownedRules) {
 			if (rule.getStereotype().equals(UMLReflection.INVARIANT) && rule.getName().equals(key)) {
-				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, "invariant_" + rule.getName());
+				String prefix = UML2GenModelUtil.getInvariantPrefix(genModel);
+				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, prefix + rule.getName());
 				((EClass)eClassifier).getEOperations().add(eOperation);
 				ecore2pivot.addMapping(eOperation, rule);
 				EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body", body);
@@ -128,7 +133,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 							if (!key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
 								String expression = details.get(key);
 								String messageExpression = details.get(key + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
-								convertConstraintToOperation(ecore2pivot, eClassifier, key, expression, messageExpression);
+								convertConstraintToOperation(ecore2pivot, genModel, eClassifier, key, expression, messageExpression);
 							}
 						}
 						if (obsoleteAnnotations == null) {
@@ -175,16 +180,11 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 
 	protected void createClassOperations(GenModel genModel, Monitor monitor) {
 	  	try {
-	        IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            IProject modelProject = workspace.getRoot().getProject(genModel.getModelProjectDirectory());
-            IPath javaSource = new Path(genModel.getModelDirectory());
-            IFolder folder = modelProject.getParent().getFolder(javaSource);
-            java.net.URI locationURI = folder.getLocationURI();
-            String rawPath = locationURI.getRawPath();
+	  		File projectFolder = getProjectFolder(genModel);
             List<String> arguments = new ArrayList<String>();
-            Model2bodies generator = new Model2bodies(genModel, new File(rawPath), arguments);
+  			Model2bodies generator = new Model2bodies(genModel, projectFolder, arguments);
 	        generator.generate(monitor);
-	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
+//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,16 +193,11 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 
 	protected void createDispatchTables(GenModel genModel, Monitor monitor) {
 	  	try {
-	        IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            IProject modelProject = workspace.getRoot().getProject(genModel.getModelProjectDirectory());
-            IPath javaSource = new Path(genModel.getModelDirectory());
-            IFolder folder = modelProject.getParent().getFolder(javaSource);
-            java.net.URI locationURI = folder.getLocationURI();
-            String rawPath = locationURI.getRawPath();
+  			File projectFolder = getProjectFolder(genModel);
             List<String> arguments = new ArrayList<String>();
-            Model2tables generator = new Model2tables(genModel, new File(rawPath), arguments);
+            Model2tables generator = new Model2tables(genModel, projectFolder, arguments);
 	        generator.generate(monitor);
-	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
+//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -220,8 +215,10 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	    	GenPackage genPackage = genModel.getGenPackages().get(0);
 	        createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
 			Resource genResource = genModel.eResource();
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(genResource.getResourceSet(), null);
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			ResourceSet resourceSet = genResource.getResourceSet();
+			MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
+			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+			metaModelManager = adapter.getMetaModelManager();
 			convertConstraintsToOperations(metaModelManager, genModel);
 		    Map<String, String> results = createJavaBodies(genModel);			
 			installJavaBodies(metaModelManager, genModel, results);
@@ -244,6 +241,26 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		    monitor.worked(1);
 		}
 		return super.generateModel(object, monitor);
+	}
+
+	protected File getProjectFolder(GenModel genModel) {
+		String modelProjectDirectory = genModel.getModelProjectDirectory();
+		String modelDirectory = genModel.getModelDirectory();
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+		    IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
+		    IPath javaSource = new Path(modelDirectory);
+		    IFolder folder = modelProject.getParent().getFolder(javaSource);
+		    java.net.URI locationURI = folder.getLocationURI();
+		    return new File(locationURI.getRawPath());
+		}
+		else {
+		    URI locationURI = URI.createPlatformResourceURI(modelDirectory, true);
+			ResourceSet resourceSet = genModel.eResource().getResourceSet();
+			URIConverter uriConverter = resourceSet != null ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
+			URI normalizedURI = uriConverter.normalize(locationURI);
+			return new File(normalizedURI.toFileString());
+		}
 	}
 
 	/**
@@ -308,8 +325,22 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			fragmentURI = EcoreUtil.getURI(constraint.eContainer()).fragment().toString() + "==" + constraint.getName();
 		}
 		String body = results.get(fragmentURI);
-		if (body != null) {
-			EcoreUtil.setAnnotation(eOperation, GenModelPackage.eNS_URI, "body", body);
+		if ((body == null) || (body.trim().length() == 0)) {
+			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + Pivot2Moniker.toString(pOperation);
+		}
+		EcoreUtil.setAnnotation(eOperation, GenModelPackage.eNS_URI, "body", body);
+		List<EAnnotation> eAnnotations = eOperation.getEAnnotations();
+		EAnnotation oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
+		oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
+		oclAnnotation = eOperation.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
 		}
 	}
 
@@ -317,8 +348,25 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		Property pProperty = ecore2pivot.getCreated(Property.class, eFeature);
 		String fragmentURI = EcoreUtil.getURI(pProperty).fragment().toString();
 		String body = results.get(fragmentURI);
+		if (body == null) {
+			body = "throw new UnsupportedOperationException();  // FIXME Unimplemented " + Pivot2Moniker.toString(pProperty);
+		}
 		if (body != null) {
 			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
+			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
+			List<EAnnotation> eAnnotations = eFeature.getEAnnotations();
+			EAnnotation oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+			if (oclAnnotation != null) {
+				eAnnotations.remove(oclAnnotation);
+			}
+			oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			if (oclAnnotation != null) {
+				eAnnotations.remove(oclAnnotation);
+			}
+			oclAnnotation = eFeature.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
+			if (oclAnnotation != null) {
+				eAnnotations.remove(oclAnnotation);
+			}
 		}
 	}
 
