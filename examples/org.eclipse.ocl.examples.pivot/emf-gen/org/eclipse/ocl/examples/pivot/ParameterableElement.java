@@ -53,6 +53,7 @@ public interface ParameterableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameterableElement_TemplateParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement
 	 * @model opposite="parameteredElement" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter'"
 	 * @generated
 	 */
 	TemplateParameter getTemplateParameter();
@@ -86,6 +87,7 @@ public interface ParameterableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameterableElement_OwningTemplateParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement
 	 * @model opposite="ownedParameteredElement" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter'"
 	 * @generated
 	 */
 	TemplateParameter getOwningTemplateParameter();
@@ -105,9 +107,10 @@ public interface ParameterableElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.
-	 * result = templateParameter->notEmpty()
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\ntemplateParameter->notEmpty()\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies%>._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (Boolean) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='templateParameter->notEmpty()'"
 	 * @generated
 	 */
 	boolean isTemplateParameter();

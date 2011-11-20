@@ -49,6 +49,7 @@ public interface IntegerLiteralExp
 	 * @see #setIntegerSymbol(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIntegerLiteralExp_IntegerSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp!integerSymbol' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp!integerSymbol'"
 	 * @generated
 	 */
 	BigInteger getIntegerSymbol();

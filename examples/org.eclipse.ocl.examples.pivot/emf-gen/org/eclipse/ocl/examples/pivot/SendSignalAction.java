@@ -47,6 +47,7 @@ public interface SendSignalAction
 	 * @see #setSignal(Signal)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getSendSignalAction_Signal()
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!signal' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!signal'"
 	 * @generated
 	 */
 	Signal getSignal();

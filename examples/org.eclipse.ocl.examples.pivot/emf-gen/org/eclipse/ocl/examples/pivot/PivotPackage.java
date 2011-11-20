@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.examples.pivot.PivotFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL'"
  * @generated
  */
 public interface PivotPackage
@@ -6730,22 +6729,13 @@ public interface PivotPackage
 	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
-
-	/**
 	 * The number of operations of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -7061,15 +7051,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Iteration</em>' class.
@@ -15660,16 +15641,6 @@ public interface PivotPackage
 	EReference getOperation_Class();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Operation#validateTestConstraint(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Test Constraint</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Test Constraint</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Operation#validateTestConstraint(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getOperation__ValidateTestConstraint__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18256,14 +18227,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference OPERATION__CLASS = eINSTANCE.getOperation_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Test Constraint</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getOperation__ValidateTestConstraint__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.

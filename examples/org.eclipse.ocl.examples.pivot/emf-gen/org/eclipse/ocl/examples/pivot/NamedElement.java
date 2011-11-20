@@ -57,6 +57,7 @@ public interface NamedElement
 	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedAnnotation()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation'"
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotations();
@@ -82,6 +83,7 @@ public interface NamedElement
 	 * @see #setName(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_Name()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!name' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!name'"
 	 * @generated
 	 */
 	String getName();
@@ -108,6 +110,7 @@ public interface NamedElement
 	 * @return the value of the '<em>Owned Rule</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedRule()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedRule' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedRule'"
 	 * @generated
 	 */
 	EList<Constraint> getOwnedRules();
@@ -134,6 +137,7 @@ public interface NamedElement
 	 * @see #setIsStatic(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_IsStatic()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!isStatic' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!isStatic'"
 	 * @generated
 	 */
 	boolean isStatic();

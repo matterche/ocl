@@ -36,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
-import org.eclipse.ocl.examples.pivot.internal.operations.TemplateParameterOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -424,7 +423,13 @@ public class TemplateParameterImpl
 	 */
 	public boolean validateMustBeCompatible(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return TemplateParameterOperations.validateMustBeCompatible(this, diagnostics, context);
+		/*
+		default->notEmpty() implies default->isCompatibleWith(parameteredElement)
+		*/
+		/* 'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter\'\n\tbad expression \'default->notEmpty() implies default->isCompatibleWith(parameteredElement)\'\nUnresolved operation \'isCompatibleWith\' for \'pivot.ecore::pivot::ParameterableElement\' and \'pivot.ecore::pivot::ParameterableElement\'' */
+		return false; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::TemplateParameter::must_be_compatible
+		
+		
 	}
 
 	/**

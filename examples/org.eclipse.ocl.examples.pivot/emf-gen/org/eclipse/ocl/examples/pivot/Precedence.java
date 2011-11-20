@@ -53,6 +53,7 @@ public interface Precedence
 	 * @see #setAssociativity(AssociativityKind)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrecedence_Associativity()
 	 * @model default="Left" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!associativity' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!associativity'"
 	 * @generated
 	 */
 	AssociativityKind getAssociativity();
@@ -80,6 +81,7 @@ public interface Precedence
 	 * @see #setOrder(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPrecedence_Order()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!order' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!order'"
 	 * @generated
 	 */
 	BigInteger getOrder();

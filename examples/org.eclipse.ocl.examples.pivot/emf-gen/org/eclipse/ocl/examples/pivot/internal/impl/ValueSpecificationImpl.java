@@ -23,6 +23,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -30,16 +31,27 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
-import org.eclipse.ocl.examples.pivot.internal.operations.ValueSpecificationOperations;
+import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
+import org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -222,7 +234,22 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
-		return ParameterableElementOperations.isTemplateParameter(this);
+		/*
+		templateParameter->notEmpty()
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
+		}
+		
 	}
 
 	/**
@@ -231,7 +258,22 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public boolean isComputable() {
-		return ValueSpecificationOperations.isComputable(this);
+		/*
+		false
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ValueSpecificationBodies._isComputable_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**
@@ -240,7 +282,24 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public BigInteger integerValue() {
-		return ValueSpecificationOperations.integerValue(this);
+		/*
+		Set{}
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
+			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
+			
+			final DomainType returnType = T_Set_OclAny_;
+			final Value result = ValueSpecificationBodies._integerValue_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (BigInteger) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**
@@ -249,7 +308,24 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public boolean booleanValue() {
-		return ValueSpecificationOperations.booleanValue(this);
+		/*
+		Set{}
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
+			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
+			
+			final DomainType returnType = T_Set_OclAny_;
+			final Value result = ValueSpecificationBodies._booleanValue_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**
@@ -258,7 +334,24 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public String stringValue() {
-		return ValueSpecificationOperations.stringValue(this);
+		/*
+		Set{}
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
+			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
+			
+			final DomainType returnType = T_Set_OclAny_;
+			final Value result = ValueSpecificationBodies._stringValue_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (String) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**
@@ -267,7 +360,24 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public BigInteger unlimitedValue() {
-		return ValueSpecificationOperations.unlimitedValue(this);
+		/*
+		Set{}
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_OclAny = OCLstdlibTables.Types._OclAny;
+			final DomainCollectionType T_Set_OclAny_ = standardLibrary.getSetType(T_OclAny);
+			
+			final DomainType returnType = T_Set_OclAny_;
+			final Value result = ValueSpecificationBodies._unlimitedValue_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (BigInteger) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**
@@ -276,7 +386,22 @@ public abstract class ValueSpecificationImpl
 	 * @generated
 	 */
 	public boolean isNull() {
-		return ValueSpecificationOperations.isNull(this);
+		/*
+		false
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ValueSpecificationBodies._isNull_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ValueSpecificationBodies", e);
+		}
+		
 	}
 
 	/**

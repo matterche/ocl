@@ -61,6 +61,7 @@ public interface TemplateParameter
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_Signature()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters
 	 * @model opposite="ownedParameter" required="true" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!signature' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!signature'"
 	 * @generated
 	 */
 	TemplateSignature getSignature();
@@ -94,6 +95,7 @@ public interface TemplateParameter
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_OwnedParameteredElement()
 	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter
 	 * @model opposite="owningTemplateParameter" containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedParameteredElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedParameteredElement'"
 	 * @generated
 	 */
 	ParameterableElement getOwnedParameteredElement();
@@ -130,6 +132,7 @@ public interface TemplateParameter
 	 * @see #setDefault(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_Default()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!default' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!default'"
 	 * @generated
 	 */
 	ParameterableElement getDefault();
@@ -161,6 +164,7 @@ public interface TemplateParameter
 	 * @see #setOwnedDefault(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_OwnedDefault()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedDefault' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedDefault'"
 	 * @generated
 	 */
 	ParameterableElement getOwnedDefault();
@@ -199,6 +203,7 @@ public interface TemplateParameter
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_ParameteredElement()
 	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#getTemplateParameter
 	 * @model opposite="templateParameter" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!parameteredElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!parameteredElement'"
 	 * @generated
 	 */
 	ParameterableElement getParameteredElement();
@@ -218,11 +223,11 @@ public interface TemplateParameter
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The default must be compatible with the formal template parameter.
-	 * default->notEmpty() implies default->isCompatibleWith(parameteredElement)
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\ndefault->notEmpty() implies default->isCompatibleWith(parameteredElement)\n\052/\n/* \'Errors in \\\'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter\\\'\\n\\tbad expression \\\'default->notEmpty() implies default->isCompatibleWith(parameteredElement)\\\'\\nUnresolved operation \\\'isCompatibleWith\\\' for \\\'pivot.ecore::pivot::ParameterableElement\\\' and \\\'pivot.ecore::pivot::ParameterableElement\\\'\' \052/\nreturn false; // FIXME errors in OCL definition of _\'pivot.ecore\'::pivot::TemplateParameter::must_be_compatible\n\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='default->notEmpty() implies default->isCompatibleWith(parameteredElement)'"
 	 * @generated
 	 */
 	boolean validateMustBeCompatible(DiagnosticChain diagnostics,

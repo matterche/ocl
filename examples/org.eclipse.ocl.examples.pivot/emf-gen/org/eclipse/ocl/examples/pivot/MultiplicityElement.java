@@ -59,6 +59,7 @@ public interface MultiplicityElement
 	 * @see #setIsOrdered(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_IsOrdered()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered'"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -85,6 +86,7 @@ public interface MultiplicityElement
 	 * @see #setIsUnique(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_IsUnique()
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique'"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -111,6 +113,7 @@ public interface MultiplicityElement
 	 * @see #setLower(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_Lower()
 	 * @model default="1" dataType="org.eclipse.ocl.examples.pivot.Integer" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower'"
 	 * @generated
 	 */
 	BigInteger getLower();
@@ -137,6 +140,7 @@ public interface MultiplicityElement
 	 * @see #setUpper(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_Upper()
 	 * @model default="1" dataType="org.eclipse.ocl.examples.pivot.UnlimitedNatural" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper'"
 	 * @generated
 	 */
 	BigInteger getUpper();
@@ -156,11 +160,11 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The lower bound must be a non-negative integer literal.
-	 * lowerBound()->notEmpty() implies lowerBound() >= 0
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nlowerBound()->notEmpty() implies lowerBound() >= 0\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._invariant_lower_ge_0.INSTANCE.evaluate(evaluator, returnType, self);\n\tfinal boolean resultIsNull = result.isNull();\n\tif (!resultIsNull && result.asBoolean()) {\t// true => true, false/null => dropthrough, invalid => exception\n\t\treturn true;\n\t}\n\tif (diagnostics != null) {\n\t\tint severity = resultIsNull ? <%org.eclipse.emf.common.util.Diagnostic%>.ERROR : <%org.eclipse.emf.common.util.Diagnostic%>.WARNING;\n\t\tString message = <%org.eclipse.osgi.util.NLS%>.bind(<%org.eclipse.ocl.examples.domain.messages.EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, \"lower_ge_0\", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context));\n\t    diagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>(severity, <%org.eclipse.ocl.examples.pivot.util.PivotValidator%>.DIAGNOSTIC_SOURCE, <%org.eclipse.ocl.examples.pivot.util.PivotValidator%>.MULTIPLICITY_ELEMENT__LOWER_GE0, message, new Object [] { this }));\n\t}\n\treturn false;\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='lowerBound()->notEmpty() implies lowerBound() >= 0'"
 	 * @generated
 	 */
 	boolean validateLowerGe0(DiagnosticChain diagnostics,
@@ -171,11 +175,11 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The upper bound must be greater than or equal to the lower bound.
-	 * (upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nupperBound()\n->notEmpty() and\nlowerBound()\n->notEmpty() implies\nupperBound() >=\nlowerBound()\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._invariant_upper_ge_lower.INSTANCE.evaluate(evaluator, returnType, self);\n\tfinal boolean resultIsNull = result.isNull();\n\tif (!resultIsNull && result.asBoolean()) {\t// true => true, false/null => dropthrough, invalid => exception\n\t\treturn true;\n\t}\n\tif (diagnostics != null) {\n\t\tint severity = resultIsNull ? <%org.eclipse.emf.common.util.Diagnostic%>.ERROR : <%org.eclipse.emf.common.util.Diagnostic%>.WARNING;\n\t\tString message = <%org.eclipse.osgi.util.NLS%>.bind(<%org.eclipse.ocl.examples.domain.messages.EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, \"upper_ge_lower\", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context));\n\t    diagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>(severity, <%org.eclipse.ocl.examples.pivot.util.PivotValidator%>.DIAGNOSTIC_SOURCE, <%org.eclipse.ocl.examples.pivot.util.PivotValidator%>.MULTIPLICITY_ELEMENT__UPPER_GE_LOWER, message, new Object [] { this }));\n\t}\n\treturn false;\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()'"
 	 * @generated
 	 */
 	boolean validateUpperGeLower(DiagnosticChain diagnostics,
@@ -186,9 +190,10 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query lowerBound() returns the lower bound of the multiplicity as an integer.
-	 * result = if lower->notEmpty() then lower else 1 endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Integer" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nif lower->notEmpty() then lower else 1 endif\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Integer = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Integer;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Integer;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._lowerBound_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (BigInteger) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if lower->notEmpty() then lower else 1 endif'"
 	 * @generated
 	 */
 	BigInteger lowerBound();
@@ -198,9 +203,10 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.
-	 * result = if upper->notEmpty() then upper else 1 endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.UnlimitedNatural" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nif upper->notEmpty() then upper else 1 endif\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Integer = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Integer;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Integer;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._upperBound_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (BigInteger) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if upper->notEmpty() then upper else 1 endif'"
 	 * @generated
 	 */
 	BigInteger upperBound();
@@ -210,10 +216,10 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.
-	 * upperBound()->notEmpty()
-	 * result = upperBound() > 1
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nupperBound() > 1\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._isMultivalued_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (Boolean) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='upperBound() > 1'"
 	 * @generated
 	 */
 	boolean isMultivalued();
@@ -223,10 +229,10 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.
-	 * upperBound()->notEmpty() and lowerBound()->notEmpty()
-	 * result = (lowerBound() <= C) and (upperBound() >= C)
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false" CDataType="org.eclipse.ocl.examples.pivot.Integer" CRequired="true" COrdered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nlowerBound() <= C and upperBound() >= C\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._includesCardinality_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(C));\n\treturn (Boolean) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(lowerBound() <= C) and (upperBound() >= C)'"
 	 * @generated
 	 */
 	boolean includesCardinality(BigInteger C);
@@ -236,10 +242,10 @@ public interface MultiplicityElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.
-	 * self.upperBound()->notEmpty() and self.lowerBound()->notEmpty() and M.upperBound()->notEmpty() and M.lowerBound()->notEmpty()
-	 * result = (self.lowerBound() <= M.lowerBound()) and (self.upperBound() >= M.upperBound())
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false" MRequired="true" MOrdered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nself.lowerBound() <= M.lowerBound() and self.upperBound() >= M.upperBound()\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies%>._includesMultiplicity_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(M));\n\treturn (Boolean) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(self.lowerBound() <= M.lowerBound()) and (self.upperBound() >= M.upperBound())'"
 	 * @generated
 	 */
 	boolean includesMultiplicity(MultiplicityElement M);

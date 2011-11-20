@@ -49,6 +49,7 @@ public interface Detail
 	 * @return the value of the '<em>Value</em>' attribute list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDetail_Value()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!value' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!value'"
 	 * @generated
 	 */
 	EList<String> getValues();

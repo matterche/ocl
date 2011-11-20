@@ -16,9 +16,6 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -62,6 +59,7 @@ public interface Operation
 	 * @see #setPrecedence(Precedence)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Precedence()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!precedence' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!precedence'"
 	 * @generated
 	 */
 	Precedence getPrecedence();
@@ -87,6 +85,7 @@ public interface Operation
 	 * @return the value of the '<em>Raised Exception</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_RaisedException()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!raisedException' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!raisedException'"
 	 * @generated
 	 */
 	EList<Type> getRaisedExceptions();
@@ -104,6 +103,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.pivot.Parameter#getOperation
 	 * @model opposite="operation" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!ownedParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!ownedParameter'"
 	 * @generated
 	 */
 	EList<Parameter> getOwnedParameters();
@@ -132,6 +132,7 @@ public interface Operation
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_OwningType()
 	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedOperations
 	 * @model opposite="ownedOperation" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!owningType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!owningType'"
 	 * @generated
 	 */
 	Type getOwningType();
@@ -156,22 +157,9 @@ public interface Operation
 	 * @return the value of the '<em>Class</em>' reference.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_Class()
 	 * @model transient="true" changeable="false" volatile="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!class' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!class'"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * self.ownedParameter->size() = 1
-	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
-	 * @param context The cache of context-specific information.
-	 * <!-- end-model-doc -->
-	 * @model
-	 * @generated
-	 */
-	boolean validateTestConstraint(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
 
 } // Operation

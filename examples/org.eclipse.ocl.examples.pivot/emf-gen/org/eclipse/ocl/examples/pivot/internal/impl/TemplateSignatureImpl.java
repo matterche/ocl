@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.internal.operations.TemplateSignatureOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
@@ -214,7 +213,13 @@ public class TemplateSignatureImpl
 	 */
 	public boolean validateOwnElements(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return TemplateSignatureOperations.validateOwnElements(this, diagnostics, context);
+		/*
+		template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)
+		*/
+		/* 'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature\'\n\tbad expression \'template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)\'\nUnresolved property \'ownedElement\' for \'pivot.ecore::pivot::TemplateableElement\'\nUnresolved property \'parameter\' for \'OclInvalid\'\nUnresolved property \'parameteredElement\' for \'OclInvalid\'\nUnresolved property \'parameter\' for \'OclInvalid\'\nUnresolved property \'ownedParameteredElement\' for \'OclInvalid\'\nUnresolved operation \'-\' for \'OclInvalid\' and \'OclInvalid\'' */
+		return false; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::TemplateSignature::own_elements
+		
+		
 	}
 
 	/**

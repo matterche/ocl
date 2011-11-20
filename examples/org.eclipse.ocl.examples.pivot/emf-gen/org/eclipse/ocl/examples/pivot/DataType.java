@@ -53,6 +53,7 @@ public interface DataType
 	 * @see #setIsSerializable(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_IsSerializable()
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!isSerializable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!isSerializable'"
 	 * @generated
 	 */
 	boolean isSerializable();
@@ -79,6 +80,7 @@ public interface DataType
 	 * @see #setBehavioralType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_BehavioralType()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!behavioralType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!behavioralType'"
 	 * @generated
 	 */
 	Type getBehavioralType();

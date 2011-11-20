@@ -170,7 +170,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PROPERTY__BINDING_TO_ATTRIBUTE = 7;
+	public static final int PROPERTY__BINDING_TO_ATTRIBUTE = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Lower Ge0' of 'Multiplicity Element'.
@@ -202,7 +202,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 10;
+	public static final int TEMPLATE_PARAMETER__MUST_BE_COMPATIBLE = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Own Elements' of 'Template Signature'.
@@ -210,7 +210,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 12;
+	public static final int TEMPLATE_SIGNATURE__OWN_ELEMENTS = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Parameter Substitution Formal' of 'Template Binding'.
@@ -218,7 +218,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 8;
+	public static final int TEMPLATE_BINDING__PARAMETER_SUBSTITUTION_FORMAL = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate One Parameter Substitution' of 'Template Binding'.
@@ -226,7 +226,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 9;
+	public static final int TEMPLATE_BINDING__ONE_PARAMETER_SUBSTITUTION = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Must Be Compatible' of 'Template Parameter Substitution'.
@@ -234,15 +234,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 11;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Test Constraint' of 'Operation'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int OPERATION__TEST_CONSTRAINT = 6;
+	public static final int TEMPLATE_PARAMETER_SUBSTITUTION__MUST_BE_COMPATIBLE = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Has Constraining Type' of 'Type Template Parameter'.
@@ -250,7 +242,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 13;
+	public static final int TYPE_TEMPLATE_PARAMETER__HAS_CONSTRAINING_TYPE = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -258,7 +250,7 @@ public class PivotValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 13;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -956,20 +948,7 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(operation, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(operation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(operation, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * Validates the validateTestConstraint constraint of '<em>Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOperation_validateTestConstraint(
-			Operation operation, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return operation.validateTestConstraint(diagnostics, context);
 	}
 
 	/**
@@ -1497,7 +1476,6 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(iteration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(iteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(iteration, diagnostics, context);
 		return result;
 	}
 

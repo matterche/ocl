@@ -2,9 +2,9 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot" nsPrefix="pivot">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -156,12 +156,21 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueName"/>
+    </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element."/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniqueName" value="context.ownedRule->excluding(self).name->excludes(self.name)"/>
+    </eAnnotations>
     <eOperations name="not_apply_to_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A constraint cannot be applied to itself.&#xD;&#xA;not constrainedElement->includes(self)"/>
+        <details key="documentation" value="A constraint cannot be applied to itself."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="not constrainedElement->includes(self)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -180,7 +189,10 @@
     </eOperations>
     <eOperations name="value_specification_boolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The value specification for a constraint must evaluate to a Boolean value.&#xD;&#xA;self.specification().booleanValue().isOclKindOf(Boolean)"/>
+        <details key="documentation" value="The value specification for a constraint must evaluate to a Boolean value."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.specification.booleanValue().oclIsKindOf(Boolean)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -368,7 +380,10 @@
     </eAnnotations>
     <eOperations name="lower_ge_0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The lower bound must be a non-negative integer literal.&#xD;&#xA;lowerBound()->notEmpty() implies lowerBound() >= 0"/>
+        <details key="documentation" value="The lower bound must be a non-negative integer literal."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="lowerBound()->notEmpty() implies lowerBound() >= 0"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -387,7 +402,10 @@
     </eOperations>
     <eOperations name="upper_ge_lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The upper bound must be greater than or equal to the lower bound.&#xD;&#xA;(upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()"/>
+        <details key="documentation" value="The upper bound must be greater than or equal to the lower bound."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="(upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -406,28 +424,43 @@
     </eOperations>
     <eOperations name="lowerBound" ordered="false" lowerBound="1" eType="#//Integer">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query lowerBound() returns the lower bound of the multiplicity as an integer.&#xD;&#xA;result = if lower->notEmpty() then lower else 1 endif"/>
+        <details key="documentation" value="The query lowerBound() returns the lower bound of the multiplicity as an integer."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if lower->notEmpty() then lower else 1 endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="upperBound" ordered="false" lowerBound="1" eType="#//UnlimitedNatural">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.&#xD;&#xA;result = if upper->notEmpty() then upper else 1 endif"/>
+        <details key="documentation" value="The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if upper->notEmpty() then upper else 1 endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isMultivalued" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.&#xD;&#xA;upperBound()->notEmpty()&#xD;&#xA;result = upperBound() > 1"/>
+        <details key="documentation" value="The query isMultivalued() checks whether this multiplicity has an upper bound greater than one."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="upperBound() > 1"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="includesCardinality" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.&#xD;&#xA;upperBound()->notEmpty() and lowerBound()->notEmpty()&#xD;&#xA;result = (lowerBound() &lt;= C) and (upperBound() >= C)"/>
+        <details key="documentation" value="The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="(lowerBound() &lt;= C) and (upperBound() >= C)"/>
       </eAnnotations>
       <eParameters name="C" ordered="false" lowerBound="1" eType="#//Integer"/>
     </eOperations>
     <eOperations name="includesMultiplicity" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.&#xD;&#xA;self.upperBound()->notEmpty() and self.lowerBound()->notEmpty() and M.upperBound()->notEmpty() and M.lowerBound()->notEmpty()&#xD;&#xA;result = (self.lowerBound() &lt;= M.lowerBound()) and (self.upperBound() >= M.upperBound())"/>
+        <details key="documentation" value="The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="(self.lowerBound() &lt;= M.lowerBound()) and (self.upperBound() >= M.upperBound())"/>
       </eAnnotations>
       <eParameters name="M" ordered="false" lowerBound="1" eType="#//MultiplicityElement"/>
     </eOperations>
@@ -489,7 +522,10 @@
     </eAnnotations>
     <eOperations name="language_body_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="If the language attribute is not empty, then the size of the body and language arrays must be the same.&#xD;&#xA;language->notEmpty() implies (body->size() = language->size())"/>
+        <details key="documentation" value="If the language attribute is not empty, then the size of the body and language arrays must be the same."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="language->notEmpty() implies (body->size() = language->size())"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -536,25 +572,6 @@
         <eAnnotations source="redefines" references="#//ParameterableElement/templateParameter"/>
       </contents>
     </eAnnotations>
-    <eOperations name="testConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="self.ownedParameter->size() = 1"/>
-      </eAnnotations>
-      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
-        </eAnnotations>
-      </eParameters>
-      <eParameters name="context">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The cache of context-specific information."/>
-        </eAnnotations>
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="raisedException" ordered="false"
         upperBound="-1" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -652,7 +669,10 @@
     </eAnnotations>
     <eOperations name="isTemplateParameter" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.&#xD;&#xA;result = templateParameter->notEmpty()"/>
+        <details key="documentation" value="The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="templateParameter->notEmpty()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateParameter"
@@ -690,7 +710,10 @@
     </eAnnotations>
     <eOperations name="binding_to_attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A binding of a property template parameter representing an attribute must be to an attribute.&#xD;&#xA;(isAttribute(self) and (templateParameterSubstitution->notEmpty())&#xD;&#xA;  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))"/>
+        <details key="documentation" value="A binding of a property template parameter representing an attribute must be to an attribute."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="(isAttribute(self) and templateParameterSubstitution->notEmpty())&#xD;&#xA;  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -793,7 +816,10 @@
     </eAnnotations>
     <eOperations name="parameter_substitution_formal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Each parameter substitution must refer to a formal template parameter of the target template signature.&#xD;&#xA;parameterSubstitution->forAll(b | template.parameter->includes(b.formal))"/>
+        <details key="documentation" value="Each parameter substitution must refer to a formal template parameter of the target template signature."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="parameterSubstitution->forAll(b | signature.parameter->includes(b.formal))"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -812,7 +838,10 @@
     </eOperations>
     <eOperations name="one_parameter_substitution" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A binding contains at most one parameter substitution for each formal template parameter of the target template signature.&#xD;&#xA;template.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)"/>
+        <details key="documentation" value="A binding contains at most one parameter substitution for each formal template parameter of the target template signature."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="signature.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() &lt;= 1)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -855,7 +884,10 @@
     </eAnnotations>
     <eOperations name="must_be_compatible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The default must be compatible with the formal template parameter.&#xD;&#xA;default->notEmpty() implies default->isCompatibleWith(parameteredElement)"/>
+        <details key="documentation" value="The default must be compatible with the formal template parameter."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="default->notEmpty() implies default->isCompatibleWith(parameteredElement)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -911,7 +943,10 @@
     </eAnnotations>
     <eOperations name="must_be_compatible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The actual parameter must be compatible with the formal template parameter, e.g. the actual parameter for a class template parameter must be a class.&#xD;&#xA;actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))"/>
+        <details key="documentation" value="The actual parameter must be compatible with the formal template parameter, e.g. the actual parameter for a class template parameter must be a class."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -964,7 +999,10 @@
     </eAnnotations>
     <eOperations name="own_elements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Parameters must own the elements they parameter or those elements must be owned by the element being templated.&#xD;&#xA;templatedElement.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)"/>
+        <details key="documentation" value="Parameters must own the elements they parameter or those elements must be owned by the element being templated."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1008,12 +1046,18 @@
     </eAnnotations>
     <eOperations name="parameterableElements" ordered="false" upperBound="-1" eType="#//ParameterableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.&#xD;&#xA;result = allOwnedElements->select(oclIsKindOf(ParameterableElement))"/>
+        <details key="documentation" value="The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="allOwnedElements()->select(oclIsKindOf(ParameterableElement))"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isTemplate" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isTemplate() returns whether this templateable element is actually a template.&#xD;&#xA;result = ownedTemplateSignature->notEmpty()"/>
+        <details key="documentation" value="The query isTemplate() returns whether this templateable element is actually a template."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="ownedTemplateSignature->notEmpty()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateBinding" ordered="false"
@@ -1048,9 +1092,12 @@
       <contents xsi:type="ecore:EOperation" name="isTemplate" ordered="false" lowerBound="1"
           eType="#//Boolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The query isTemplate() returns whether this templateable element is actually a template.&#xD;&#xA;result = oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())"/>
+          <details key="documentation" value="The query isTemplate() returns whether this templateable element is actually a template."/>
         </eAnnotations>
         <eAnnotations source="redefines" references="#//TemplateableElement/isTemplate"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+          <details key="body" value="oclAsType(TemplatableElement).isTemplate() or general->exists(g | g.isTemplate())"/>
+        </eAnnotations>
       </contents>
       <contents xsi:type="ecore:EReference" name="templateParameter" ordered="false"
           eType="#//TemplateParameter" eOpposite="#//TypeTemplateParameter/%duplicates%/parameteredElement">
@@ -1094,7 +1141,10 @@
     </eAnnotations>
     <eOperations name="has_constraining_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="If &quot;allowSubstitutable&quot; is true, then there must be a constrainingClassifier.&#xD;&#xA;allowSubstitutable implies constrainingClassifier->notEmpty()"/>
+        <details key="documentation" value="If &quot;allowSubstitutable&quot; is true, then there must be a constrainingType."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="allowSubstitutable implies constrainingType->notEmpty()"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1154,32 +1204,50 @@
     </eAnnotations>
     <eOperations name="isComputable" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.&#xD;&#xA;result = false"/>
+        <details key="documentation" value="The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="false"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="integerValue" ordered="false" lowerBound="1" eType="#//Integer">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query integerValue() gives a single Integer value when one can be computed.&#xD;&#xA;result = Set{}"/>
+        <details key="documentation" value="The query integerValue() gives a single Integer value when one can be computed."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="booleanValue" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query booleanValue() gives a single Boolean value when one can be computed.&#xD;&#xA;result = Set{}"/>
+        <details key="documentation" value="The query booleanValue() gives a single Boolean value when one can be computed."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="stringValue" ordered="false" lowerBound="1" eType="#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query stringValue() gives a single String value when one can be computed.&#xD;&#xA;result = Set{}"/>
+        <details key="documentation" value="The query stringValue() gives a single String value when one can be computed."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="unlimitedValue" ordered="false" lowerBound="1" eType="#//UnlimitedNatural">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.&#xD;&#xA;result = Set{}"/>
+        <details key="documentation" value="The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Set{}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isNull" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The query isNull() returns true when it can be computed that the value is null.&#xD;&#xA;result = false"/>
+        <details key="documentation" value="The query isNull() returns true when it can be computed that the value is null."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="false"/>
       </eAnnotations>
     </eOperations>
   </eClassifiers>

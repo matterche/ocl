@@ -48,6 +48,7 @@ public interface FeatureCallExp
 	 * @see #setIsPre(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeatureCallExp_IsPre()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp!isPre' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp!isPre'"
 	 * @generated
 	 */
 	boolean isPre();

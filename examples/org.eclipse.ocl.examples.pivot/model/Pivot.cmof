@@ -76,14 +76,6 @@
     <packageMerge xmi:type="cmof:PackageMerge" xmi:id="_l1kg4MerEd-sJIf4tYBt-g" receivingPackage="_0">
       <mergedPackage xmi:type="cmof:Package" href="MDTOCL.cmof#_tG-HYMeqEd-sJIf4tYBt-g"/>
     </packageMerge>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_FrcRQKd2Ed-p0fyBXlv83w" name="Operation">
-      <ownedRule xmi:type="cmof:Constraint" xmi:id="_S9UKUK31Ed-xTJkHwX_SlQ" name="testConstraint" namespace="_FrcRQKd2Ed-p0fyBXlv83w">
-        <specification xmi:type="cmof:OpaqueExpression" xmi:id="_doLxkK31Ed-xTJkHwX_SlQ" name="opaqueExpression1">
-          <language>OCL</language>
-          <body>self.ownedParameter->size() = 1</body>
-        </specification>
-      </ownedRule>
-    </ownedMember>
     <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
       <profileApplication xmi:type="cmof:ProfileApplication" xmi:id="_mwJtgIenEd-N4tjuug6Vsw" applyingPackage="_0">
         <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">

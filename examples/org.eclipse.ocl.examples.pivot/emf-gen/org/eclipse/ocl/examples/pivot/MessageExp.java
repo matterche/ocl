@@ -53,6 +53,7 @@ public interface MessageExp
 	 * @see #setTarget(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_Target()
 	 * @model containment="true" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!target' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!target'"
 	 * @generated
 	 */
 	OclExpression getTarget();
@@ -90,6 +91,7 @@ public interface MessageExp
 	 * @return the value of the '<em>Argument</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_Argument()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!argument' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!argument'"
 	 * @generated
 	 */
 	EList<OclExpression> getArguments();
@@ -117,6 +119,7 @@ public interface MessageExp
 	 * @see #setCalledOperation(CallOperationAction)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_CalledOperation()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!calledOperation' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!calledOperation'"
 	 * @generated
 	 */
 	CallOperationAction getCalledOperation();
@@ -153,6 +156,7 @@ public interface MessageExp
 	 * @see #setSentSignal(SendSignalAction)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_SentSignal()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!sentSignal' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!sentSignal'"
 	 * @generated
 	 */
 	SendSignalAction getSentSignal();

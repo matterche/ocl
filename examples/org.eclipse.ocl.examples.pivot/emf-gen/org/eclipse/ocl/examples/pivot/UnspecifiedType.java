@@ -48,6 +48,7 @@ public interface UnspecifiedType extends org.eclipse.ocl.examples.pivot.Class
 	 * @see #setLowerBound(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getUnspecifiedType_LowerBound()
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!lowerBound' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!lowerBound'"
 	 * @generated
 	 */
 	Type getLowerBound();
@@ -74,6 +75,7 @@ public interface UnspecifiedType extends org.eclipse.ocl.examples.pivot.Class
 	 * @see #setUpperBound(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getUnspecifiedType_UpperBound()
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!upperBound' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!upperBound'"
 	 * @generated
 	 */
 	Type getUpperBound();

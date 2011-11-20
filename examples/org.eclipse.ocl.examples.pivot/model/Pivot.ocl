@@ -1,0 +1,17 @@
+import 'pivot.ecore'
+
+context Constraint
+inv UniqueName: context.ownedRule->excluding(self).name->excludes(self.name)
+
+--context Element
+--def: allOwnedElements() : Set(Element) =
+--self->closure(oclContents())
+
+context ParameterableElement
+def: isCompatibleWith(p : ParameterableElement) : Boolean =
+p->oclIsKindOf(self.oclType())
+
+context Property
+def: isAttribute(p : Property) : Boolean =
+--Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
+let container : OclAny = oclContainer() in container.oclIsKindOf(Type) and container.oclAsType(Type).ownedAttribute->includes(self)

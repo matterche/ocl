@@ -56,6 +56,7 @@ public interface TemplateableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_TemplateBinding()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement
 	 * @model opposite="boundElement" containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding'"
 	 * @generated
 	 */
 	EList<TemplateBinding> getTemplateBindings();
@@ -83,6 +84,7 @@ public interface TemplateableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedTemplateSignature()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate
 	 * @model opposite="template" containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature'"
 	 * @generated
 	 */
 	TemplateSignature getOwnedTemplateSignature();
@@ -119,6 +121,7 @@ public interface TemplateableElement
 	 * @see #setUnspecializedElement(TemplateableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_UnspecializedElement()
 	 * @model resolveProxies="false" transient="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement'"
 	 * @generated
 	 */
 	TemplateableElement getUnspecializedElement();
@@ -138,9 +141,10 @@ public interface TemplateableElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.
-	 * result = allOwnedElements->select(oclIsKindOf(ParameterableElement))
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nallOwnedElements()->select(oclIsKindOf(ParameterableElement))\n\052/\n/*\'Errors in \\\'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()\\\'\\n\\tbad expression \\\'allOwnedElements()->select(oclIsKindOf(ParameterableElement))\\\'\\nUnresolved operation \\\'allOwnedElements\\\' for \\\'unknown-type\\\'\' \052/\nreturn null; // FIXME errors in OCL definition of _\'pivot.ecore\'::pivot::TemplateableElement::parameterableElements() : Set(ParameterableElement)\n\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='allOwnedElements()->select(oclIsKindOf(ParameterableElement))'"
 	 * @generated
 	 */
 	EList<ParameterableElement> parameterableElements();
@@ -150,9 +154,10 @@ public interface TemplateableElement
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * The query isTemplate() returns whether this templateable element is actually a template.
-	 * result = ownedTemplateSignature->notEmpty()
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nownedTemplateSignature->notEmpty()\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Boolean = <%org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables%>.Types._Boolean;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Boolean;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies%>._isTemplate_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (Boolean) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies\", e);\n}\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ownedTemplateSignature->notEmpty()'"
 	 * @generated
 	 */
 	boolean isTemplate();

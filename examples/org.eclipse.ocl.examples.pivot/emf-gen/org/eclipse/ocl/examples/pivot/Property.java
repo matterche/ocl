@@ -72,6 +72,7 @@ public interface Property
 	 * @see #setIsReadOnly(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsReadOnly()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isReadOnly' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isReadOnly'"
 	 * @generated
 	 */
 	boolean isReadOnly();
@@ -97,6 +98,7 @@ public interface Property
 	 * @see #setDefault(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Default()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!default' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!default'"
 	 * @generated
 	 */
 	String getDefault();
@@ -123,6 +125,7 @@ public interface Property
 	 * @see #setIsComposite(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsComposite()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isComposite' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isComposite'"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -149,6 +152,7 @@ public interface Property
 	 * @see #setIsDerived(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsDerived()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isDerived' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isDerived'"
 	 * @generated
 	 */
 	boolean isDerived();
@@ -174,6 +178,7 @@ public interface Property
 	 * @see #setOpposite(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Opposite()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!opposite' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!opposite'"
 	 * @generated
 	 */
 	Property getOpposite();
@@ -202,6 +207,7 @@ public interface Property
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Association()
 	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes
 	 * @model opposite="unownedAttribute" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!association' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!association'"
 	 * @generated
 	 */
 	AssociationClass getAssociation();
@@ -229,6 +235,7 @@ public interface Property
 	 * @see #setImplicit(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Implicit()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!implicit' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!implicit'"
 	 * @generated
 	 */
 	boolean isImplicit();
@@ -256,6 +263,7 @@ public interface Property
 	 * @see #setIsID(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsID()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isID' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isID'"
 	 * @generated
 	 */
 	boolean isID();
@@ -282,6 +290,7 @@ public interface Property
 	 * @return the value of the '<em>Keys</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Keys()
 	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!keys' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!keys'"
 	 * @generated
 	 */
 	EList<Property> getKeys();
@@ -299,6 +308,7 @@ public interface Property
 	 * @see #setIsResolveProxies(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsResolveProxies()
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isResolveProxies' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isResolveProxies'"
 	 * @generated
 	 */
 	boolean isResolveProxies();
@@ -326,6 +336,7 @@ public interface Property
 	 * @see #setIsTransient(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsTransient()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isTransient' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isTransient'"
 	 * @generated
 	 */
 	boolean isTransient();
@@ -353,6 +364,7 @@ public interface Property
 	 * @see #setIsUnsettable(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsUnsettable()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isUnsettable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isUnsettable'"
 	 * @generated
 	 */
 	boolean isUnsettable();
@@ -380,6 +392,7 @@ public interface Property
 	 * @see #setIsVolatile(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_IsVolatile()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isVolatile' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isVolatile'"
 	 * @generated
 	 */
 	boolean isVolatile();
@@ -408,6 +421,7 @@ public interface Property
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_OwningType()
 	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes
 	 * @model opposite="ownedAttribute" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!owningType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!owningType'"
 	 * @generated
 	 */
 	Type getOwningType();
@@ -432,6 +446,7 @@ public interface Property
 	 * @return the value of the '<em>Class</em>' reference.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Class()
 	 * @model transient="true" changeable="false" volatile="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!class' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!class'"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Class getClass_();
@@ -441,12 +456,11 @@ public interface Property
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A binding of a property template parameter representing an attribute must be to an attribute.
-	 * (isAttribute(self) and (templateParameterSubstitution->notEmpty())
-	 *   implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\n(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))\n\052/\n/* \'Errors in \\\'http://www.eclipse.org/ocl/3.1.0/Pivot!Property\\\'\\n\\tbad expression \\\'(isAttribute(self) and templateParameterSubstitution->notEmpty())\\r\\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))\\\'\\nUnresolved property \\\'templateParameterSubstitution\\\' for \\\'unknown-type\\\'\\nUnresolved property \\\'templateParameterSubstitution\\\' for \\\'Boolean\\\'\\nUnresolved property \\\'formal\\\' for \\\'OclInvalid\\\'\' \052/\nreturn false; // FIXME errors in OCL definition of _\'pivot.ecore\'::pivot::Property::binding_to_attribute\n\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(isAttribute(self) and templateParameterSubstitution->notEmpty())\r\n  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))'"
 	 * @generated
 	 */
 	boolean validateBindingToAttribute(DiagnosticChain diagnostics,

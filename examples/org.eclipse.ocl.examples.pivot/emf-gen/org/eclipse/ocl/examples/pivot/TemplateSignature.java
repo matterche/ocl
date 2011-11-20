@@ -58,6 +58,7 @@ public interface TemplateSignature
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_Parameter()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter'"
 	 * @generated
 	 */
 	EList<TemplateParameter> getParameters();
@@ -75,6 +76,7 @@ public interface TemplateSignature
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_Template()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature
 	 * @model opposite="ownedTemplateSignature" required="true" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template'"
 	 * @generated
 	 */
 	TemplateableElement getTemplate();
@@ -108,6 +110,7 @@ public interface TemplateSignature
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
 	 * @model opposite="signature" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter'"
 	 * @generated
 	 */
 	EList<TemplateParameter> getOwnedParameters();
@@ -138,11 +141,11 @@ public interface TemplateSignature
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Parameters must own the elements they parameter or those elements must be owned by the element being templated.
-	 * templatedElement.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\ntemplate.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)\n\052/\n/* \'Errors in \\\'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature\\\'\\n\\tbad expression \\\'template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)\\\'\\nUnresolved property \\\'ownedElement\\\' for \\\'pivot.ecore::pivot::TemplateableElement\\\'\\nUnresolved property \\\'parameter\\\' for \\\'OclInvalid\\\'\\nUnresolved property \\\'parameteredElement\\\' for \\\'OclInvalid\\\'\\nUnresolved property \\\'parameter\\\' for \\\'OclInvalid\\\'\\nUnresolved property \\\'ownedParameteredElement\\\' for \\\'OclInvalid\\\'\\nUnresolved operation \\\'-\\\' for \\\'OclInvalid\\\' and \\\'OclInvalid\\\'\' \052/\nreturn false; // FIXME errors in OCL definition of _\'pivot.ecore\'::pivot::TemplateSignature::own_elements\n\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='template.ownedElement->includesAll(parameter.parameteredElement - parameter.ownedParameteredElement)'"
 	 * @generated
 	 */
 	boolean validateOwnElements(DiagnosticChain diagnostics,

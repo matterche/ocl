@@ -26,6 +26,7 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -39,9 +40,15 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -49,15 +56,14 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
-import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
-import org.eclipse.ocl.examples.pivot.internal.operations.TypeOperations;
+import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -450,7 +456,13 @@ public class TypeImpl
 	 * @generated
 	 */
 	public EList<ParameterableElement> parameterableElements() {
-		return TemplateableElementOperations.parameterableElements(this);
+		/*
+		allOwnedElements()->select(oclIsKindOf(ParameterableElement))
+		*/
+		/*'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()\'\n\tbad expression \'allOwnedElements()->select(oclIsKindOf(ParameterableElement))\'\nUnresolved operation \'allOwnedElements\' for \'unknown-type\'' */
+		return null; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::TemplateableElement::parameterableElements() : Set(ParameterableElement)
+		
+		
 	}
 
 	/**
@@ -459,7 +471,22 @@ public class TypeImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
-		return ParameterableElementOperations.isTemplateParameter(this);
+		/*
+		templateParameter->notEmpty()
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
+		}
+		
 	}
 
 	/**
@@ -596,7 +623,9 @@ public class TypeImpl
 	 * @generated
 	 */
 	public boolean isTemplate() {
-		return TypeOperations.isTemplate(this);
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -36,8 +37,16 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -47,15 +56,15 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.operations.OperationOperations;
-import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
-import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
+import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
+import org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -551,17 +560,22 @@ public class OperationImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
-		return ParameterableElementOperations.isTemplateParameter(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTestConstraint(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return OperationOperations.validateTestConstraint(this, diagnostics, context);
+		/*
+		templateParameter->notEmpty()
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
+		}
+		
 	}
 
 	/**
@@ -570,7 +584,13 @@ public class OperationImpl
 	 * @generated
 	 */
 	public EList<ParameterableElement> parameterableElements() {
-		return TemplateableElementOperations.parameterableElements(this);
+		/*
+		allOwnedElements()->select(oclIsKindOf(ParameterableElement))
+		*/
+		/*'Errors in \'http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()\'\n\tbad expression \'allOwnedElements()->select(oclIsKindOf(ParameterableElement))\'\nUnresolved operation \'allOwnedElements\' for \'unknown-type\'' */
+		return null; // FIXME errors in OCL definition of _'pivot.ecore'::pivot::TemplateableElement::parameterableElements() : Set(ParameterableElement)
+		
+		
 	}
 
 	/**
@@ -579,7 +599,22 @@ public class OperationImpl
 	 * @generated
 	 */
 	public boolean isTemplate() {
-		return TemplateableElementOperations.isTemplate(this);
+		/*
+		ownedTemplateSignature->notEmpty()
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = TemplateableElementBodies._isTemplate_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies", e);
+		}
+		
 	}
 
 	/**
@@ -1081,8 +1116,6 @@ public class OperationImpl
 				return isTemplate();
 			case PivotPackage.OPERATION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
-			case PivotPackage.OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP:
-				return validateTestConstraint((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

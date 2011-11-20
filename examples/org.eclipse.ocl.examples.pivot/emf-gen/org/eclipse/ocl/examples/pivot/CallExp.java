@@ -51,6 +51,7 @@ public interface CallExp
 	 * @see #setSource(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCallExp_Source()
 	 * @model containment="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!source' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!source'"
 	 * @generated
 	 */
 	OclExpression getSource();
@@ -89,6 +90,7 @@ public interface CallExp
 	 * @see #setImplicit(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCallExp_Implicit()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!implicit' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!implicit'"
 	 * @generated
 	 */
 	boolean isImplicit();

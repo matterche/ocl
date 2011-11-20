@@ -49,6 +49,7 @@ public interface RealLiteralExp
 	 * @see #setRealSymbol(BigDecimal)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getRealLiteralExp_RealSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.Real" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp!realSymbol' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp!realSymbol'"
 	 * @generated
 	 */
 	BigDecimal getRealSymbol();

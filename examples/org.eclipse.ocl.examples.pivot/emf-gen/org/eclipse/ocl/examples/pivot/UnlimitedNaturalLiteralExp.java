@@ -49,6 +49,7 @@ public interface UnlimitedNaturalLiteralExp
 	 * @see #setUnlimitedNaturalSymbol(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getUnlimitedNaturalLiteralExp_UnlimitedNaturalSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.UnlimitedNatural" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp!unlimitedNaturalSymbol' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp!unlimitedNaturalSymbol'"
 	 * @generated
 	 */
 	BigInteger getUnlimitedNaturalSymbol();

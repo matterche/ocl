@@ -55,6 +55,7 @@ public interface Enumeration
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumeration_OwnedLiteral()
 	 * @see org.eclipse.ocl.examples.pivot.EnumerationLiteral#getEnumeration
 	 * @model opposite="enumeration" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration!ownedLiteral' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration!ownedLiteral'"
 	 * @generated
 	 */
 	EList<EnumerationLiteral> getOwnedLiterals();
