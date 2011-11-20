@@ -624,6 +624,43 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				}
 			}
 		}
+		List<Parameter> candidateParameters = candidate.getOwnedParameters();
+		List<Parameter> referenceParameters = reference.getOwnedParameters();
+		int parameterCountDelta = candidateParameters.size() - referenceParameters.size();
+		if (parameterCountDelta != 0) {
+			return parameterCountDelta;
+		}
+		boolean referenceConformsToCandidate = true;
+		boolean candidateConformsReference = true;
+		for (int i = 0; i < candidateParameters.size(); i++) {
+			Type referenceType = getTypeWithMultiplicity(referenceParameters.get(i));
+			Type candidateType = getTypeWithMultiplicity(candidateParameters.get(i));
+			Type specializedReferenceType = getSpecializedType(referenceType, referenceBindings);
+			Type specializedCandidateType = getSpecializedType(candidateType, candidateBindings);
+			if (referenceType != candidateType) {
+				if (!conformsTo(specializedReferenceType, specializedCandidateType, null)) {
+					referenceConformsToCandidate = false;
+				}
+				if (!conformsTo(specializedCandidateType, specializedReferenceType, null)) {
+					candidateConformsReference = false;
+				}
+			}
+		}
+		if (referenceConformsToCandidate != candidateConformsReference) {
+			return referenceConformsToCandidate ? 1 : -1;
+		}
+		Type referenceType = PivotUtil.getOwningType(reference);
+		Type candidateType = PivotUtil.getOwningType(candidate);
+		Type specializedReferenceType = getSpecializedType(referenceType, referenceBindings);
+		Type specializedCandidateType = getSpecializedType(candidateType, candidateBindings);
+		if (referenceType != candidateType) {
+			if (conformsTo(specializedReferenceType, specializedCandidateType, null)) {
+				return 1;
+			}
+			else if (conformsTo(specializedCandidateType, specializedReferenceType, null)) {
+				return -1;
+			}
+		}
 		return 0;
 	}
 
