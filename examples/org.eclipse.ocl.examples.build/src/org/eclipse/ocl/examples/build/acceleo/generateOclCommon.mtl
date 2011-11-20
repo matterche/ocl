@@ -83,13 +83,25 @@ TemplateSignature [templateSignature.getSymbolName()/] = PivotFactory.eINSTANCE.
 Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(); // [parameter.getMoniker()/]
 [parameter.getSymbolName()/].setName("[parameter.name/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]); // [parameter.type.getMoniker()/]
+[parameter.emitComments()/]
 [parameter.eContainer().getSymbolName()/].getOwnedAccumulators().add([parameter.getSymbolName()/]);
+[/template]
+
+[template public emitComments(namedElement : NamedElement)]
+[for (pComment : Comment | namedElement.ownedComment)]
+{
+	Comment [pComment.getSymbolName()/] = PivotFactory.eINSTANCE.createComment();
+	[pComment.getSymbolName()/].setBody("[pComment.javaString()/]");
+	[namedElement.getSymbolName()/].getOwnedComments().add([pComment.getSymbolName()/]);
+}
+[/for]
 [/template]
 
 [template public emitIterator(parameter : Parameter)]
 Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(); // [parameter.getMoniker()/]
 [parameter.getSymbolName()/].setName("[parameter.name/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]); // [parameter.type.getMoniker()/]
+[parameter.emitComments()/]
 [parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
 [/template]
 
@@ -133,6 +145,7 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [iteration.getSymbolName()/].setImplementationClass("[iteration.implementationClass/]");
 [iteration.getSymbolName()/].setImplementation([iteration.implementationClass/].INSTANCE);
 [/if]
+[iteration.emitComments()/]
 [iteration.eContainer().getSymbolName()/].getOwnedOperations().add([iteration.getSymbolName()/]);
 [/template]
 
@@ -158,6 +171,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [operation.getSymbolName()/].setImplementationClass("[operation.implementationClass/]");
 [operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
 [/if]
+[operation.emitComments()/]
 [operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
 [/template]
 
@@ -178,6 +192,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
 [emitPackage(nestedPackage)/]
 [/for]
+[pkg.emitComments()/]
 [pkg.eContainer().getSymbolName()/].getNestedPackages().add([pkg.getSymbolName()/]);
 [/template]
 
@@ -186,12 +201,14 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [parameter.getSymbolName()/].setName("[parameter.name/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.getMoniker()/]
 [emitMultiplicityElement(parameter)/]
+[parameter.emitComments()/]
 [parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
 [/template]
 
 [template public emitPrecedence(precedence : Precedence)]
 [precedence.getSymbolName()/].setName("[precedence.name/]");
 [precedence.getSymbolName()/].setAssociativity(AssociativityKind.[precedence.associativity.toString().toUpper()/]);
+[precedence.emitComments()/]
 [precedence.eContainer().getSymbolName()/].getOwnedPrecedences().add([precedence.getSymbolName()/]);
 [/template]
 
@@ -236,6 +253,7 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [property.getSymbolName()/].setImplementationClass("[property.implementationClass/]");
 [property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
 [/if]
+[property.emitComments()/]
 [property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
 [/template]
 
@@ -325,6 +343,7 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 	[emitOperation(operation)/]
 }
 [/for]
+[type.emitComments()/]
 [type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]); // [type.getMoniker()/]
 [/template]
 
@@ -345,6 +364,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 	[type.getSymbolName()/].getOwnedLiterals().add([literal.getSymbolName()/]);
 [/for]
 }
-
+[type.emitComments()/]
 [type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]); // [type.getMoniker()/]
 [/template]
+
+[query public javaString(aComment : Comment) : String = 
+invoke('org.eclipse.xtext.util.Strings', 'convertToJavaString(java.lang.String)', Sequence{aComment._body}) /]

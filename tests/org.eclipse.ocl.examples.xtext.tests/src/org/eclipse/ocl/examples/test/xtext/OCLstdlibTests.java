@@ -29,9 +29,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -206,6 +209,18 @@ public class OCLstdlibTests extends XtextTestCase
 		for (String moniker : fileMoniker2PivotMap.keySet()) {
 			Element fileElement = fileMoniker2PivotMap.get(moniker);
 			Element javaElement = javaMoniker2PivotMap.get(moniker);
+			if (javaElement == null) {
+				boolean isExpression = false;
+				for (EObject eObject = fileElement; eObject != null; eObject = eObject.eContainer()) {
+					if ((eObject instanceof ExpressionInOcl) || (eObject instanceof Constraint) || (eObject instanceof Annotation)) {
+						isExpression = true;		// Embedded OCL not present in Java
+						break;
+					}
+				}
+				if (isExpression) {
+					continue;
+				}
+			}
 			assertNotNull("Missing java element for '" + moniker + "'", javaElement);
 			assertEquals(fileElement.getClass(), javaElement.getClass());
 			if (fileElement instanceof TypedElement) {
