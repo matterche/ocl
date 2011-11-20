@@ -563,7 +563,7 @@ public class ProjectMap extends SingletonAdapterImpl
 	 * attribute in all genModels.
 	 */
 	public void initializePackageRegistry(ResourceSet resourceSet) {
-		EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
 		Map<String, URI> projectMap = getProjectMap();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 			if (plugin2packageMap != null) {
@@ -644,6 +644,9 @@ public class ProjectMap extends SingletonAdapterImpl
 	 * Ensure that both the {@link EcorePlugin#getPlatformResourceMap()} and {@link ResourceSet#getURIConverter()}
  	 * are initialized so that <tt>platform:/resource/<i>project</i></tt>
 	 * and <tt>platform:/plugin/<i>project</i></tt> are useable..
+	 * 
+	 * A null ResourceSet may be used to provoke initialization of the global EPackage.Registry.INSTANCE
+	 * and URIConverter.URI_MAP.
 	 */
 	public void initializeResourceSet(ResourceSet resourceSet) {
 		initializeURIResourceMap(resourceSet);
@@ -662,21 +665,22 @@ public class ProjectMap extends SingletonAdapterImpl
 	 * mapping is sufficient since <tt>platform:/plugin/</tt> is directly resolveable by the Eclipse Platform.
 	 */
 	public void initializeURIMap(ResourceSet resourceSet) {
-		URIConverter uriConverter = resourceSet.getURIConverter();
 		Map<String, URI> projectMap = getProjectMap();
-		Map<URI, URI> uriMap = uriConverter.getURIMap();
+		URIConverter uriConverter = resourceSet != null ? resourceSet.getURIConverter() : null;
+		Map<URI, URI> uriMap = uriConverter != null ? uriConverter.getURIMap() : URIConverter.URI_MAP;
 		for (String key : projectMap.keySet()) {
 			URI value = projectMap.get(key);
 			String projectKey = "/" + key + "/";
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 				URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
 				URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-				if (value.isArchive()) {
-					uriMap.put(resourceURI, pluginURI);
-				}
-				else {
-					uriMap.put(pluginURI, resourceURI);
-				}
+//				if (value.isArchive()) {
+					uriMap.put(resourceURI, value);
+					uriMap.put(pluginURI, value);
+//				}
+//				else {
+//					uriMap.put(pluginURI, resourceURI);
+//				}
 			}
 			else {
 				if (value.isPlatformResource()) {
