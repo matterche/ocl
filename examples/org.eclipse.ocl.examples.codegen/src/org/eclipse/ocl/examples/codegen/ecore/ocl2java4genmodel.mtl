@@ -62,10 +62,11 @@
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
 [let constraintName : String = '_' + pRule.stereotype + '_' + pRule.name]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pType)]
-[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
+[if (expInOcl.contextVariable->notEmpty())]
 /*
 [expInOcl.prettyPrint().trim()/]
 */
+[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
 [let arity : Integer = expInOcl.parameterVariable->size()]
 try {
 	final <%DomainEvaluator%> evaluator = new <%EcoreExecutorManager%>(this, <%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
@@ -106,7 +107,13 @@ try {
 	return false;
 } catch (<%InvalidValueException%> e) {
 	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/let][/template]
+}[/let][/let][else]
+/*
+[pRule.specification.prettyPrint().trim()/]
+*/
+/* [expInOcl.messageExpression.prettyPrint().trim()/] */
+return false; // FIXME errors in OCL definition of [pRule.prettyPrintName()/]
+[/if][/let][/let][/let][/template]
 
 [template public generateOperation(pType : Type, genPackage : GenPackage, pOperation : Operation)]
 [let pRule : Constraint = pOperation.ownedRule->any(stereotype = 'body')]
@@ -118,8 +125,9 @@ try {
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
 [let constraintName : String = '_' + pOperation.name + '_' + pRule.stereotype + '_' + pRule.name]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pOperation)]
-[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
 [let ecoreReturnType : String = genPackage.getOperationReturnType(pOperation)]
+[if (expInOcl.contextVariable->notEmpty())]
+[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
 /*
 [expInOcl.prettyPrint().trim()/]
 */
@@ -137,7 +145,17 @@ try {
 [/if]
 } catch (<%InvalidValueException%> e) {
 	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/let][/template]
+}[/let][else]
+/*
+[pRule.specification.prettyPrint().trim()/]
+*/
+/*[expInOcl.messageExpression.prettyPrint().trim()/] */
+[if (ecoreReturnType = 'Boolean')]
+return false; // FIXME errors in OCL definition of [pOperation.prettyPrintName()/]
+[else]
+return null; // FIXME errors in OCL definition of [pOperation.prettyPrintName()/]
+[/if]
+[/if][/let][/let][/let][/let][/template]
 
 [template public generateProperty(pType : Type, genPackage : GenPackage, pProperty : Property)]
 [let derivationRules : OrderedSet(Constraint) = pProperty.ownedRule->select(stereotype = 'derivation')]
@@ -151,8 +169,9 @@ try {
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
 [let constraintName : String = '_' + pProperty.name + '_' + pRule.stereotype + '_' + pRule.name]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pProperty)]
-[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
 [let ecoreReturnType : String = genPackage.getPropertyType(pProperty)]
+[if (expInOcl.contextVariable->notEmpty())]
+[let constants : String = expInOcl.gatherSpecificationConstants(genPackage, pType)]
 /*
 [expInOcl.prettyPrint().trim()/]
 */
@@ -170,7 +189,17 @@ try {
 [/if]
 } catch (<%InvalidValueException%> e) {
 	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);
-}[/let][/let][/let][/let][/let][/template]
+}[/let][else]
+/*
+[pRule.specification.prettyPrint().trim()/]
+*/
+/* [expInOcl.messageExpression.prettyPrint().trim()/] */
+[if (ecoreReturnType = 'Boolean')]
+return false; // FIXME errors in OCL definition of [pProperty.prettyPrintName()/]
+[else]
+return null; // FIXME errors in OCL definition of [pProperty.prettyPrintName()/]
+[/if]
+[/if][/let][/let][/let][/let][/template]
 
 
 [template public gatherSpecificationConstants(expInOcl : ExpressionInOcl, genPackage : GenPackage, pType : Type)]
