@@ -50,7 +50,7 @@
 [/template]
 
 [template public emitExpression(ast : Element, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
-Value [ast.symbolName(expInOcl)/] = <<[ast.eClass().name/]>>;
+<%Value%> [ast.symbolName(expInOcl)/] = <<[ast.eClass().name/]>>;
 [/template]
 
 [template public emitExpression(ast : IfExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
@@ -58,7 +58,7 @@ Value [ast.symbolName(expInOcl)/] = <<[ast.eClass().name/]>>;
 	[ast.condition.emitExpression(importer, genPackage, expInOcl)/]
 [/if]
 [let astName : String = ast.symbolName(expInOcl)]
-Value [astName/];
+<%Value%> [astName/];
 if ([ast.condition.symbolName(expInOcl)/].isTrue()) {
 [if (not ast.thenExpression.isConstant())]
 	[ast.thenExpression.emitExpression(importer, genPackage, expInOcl)/]
@@ -100,7 +100,7 @@ else {
 /*
 [ast._'body'.prettyPrint().trim()/]
 */
-	public Value evaluate(<%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator, <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType, Value [ast.result.symbolName(expInOcl)/][for (i : Variable | ast.iterator)], Value [i.symbolName(expInOcl)/][/for]) throws <%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> {
+	public <%Value%> evaluate(<%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator, <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType, <%Value%> [ast.result.symbolName(expInOcl)/][for (i : Variable | ast.iterator)], <%Value%> [i.symbolName(expInOcl)/][/for]) throws <%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> {
 		[ast._'body'.emitExpression(importer, genPackage, expInOcl)/]
 		return [ast._'body'.symbolName(expInOcl)/];
 	}
@@ -108,7 +108,7 @@ else {
 <%org.eclipse.ocl.examples.domain.elements.DomainType%> static_[astName/] = [ast.source.symbolName(expInOcl)/].getType();
 <%[iterationTypeName/]%> dynamic_[astName/] = (<%[iterationTypeName/]%>)static_[astName/].lookupImplementation(standardLibrary, [ast.referredIteration.symbolName(expInOcl)/]);
 <%[managerTypeName/]%> manager_[astName/] = new <%[managerTypeName/]%>(evaluator, [ast.result.type.symbolName(expInOcl)/], body_[astName/], (<%org.eclipse.ocl.examples.domain.values.CollectionValue%>)[leftVarName/], [ast.result.initExpression.symbolName(expInOcl)/]);
-Value [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/let][/let][/let][/let][/let][/let][/let][/template]
+<%Value%> [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/let][/let][/let][/let][/let][/let][/let][/template]
 
 [template public emitExpression(ast : IteratorExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 [let arity : Integer = ast.iterator->size()]
@@ -127,10 +127,10 @@ Value [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/le
 /*
 [ast._'body'.prettyPrint().trim()/]
 */
-	public Value evaluate(<%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator, <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType, Value sourceValue[for (i : Integer | Sequence{1..arity})]
-, Value iterator[i/][/for]) throws <%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> {
+	public <%Value%> evaluate(<%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator, <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType, <%Value%> sourceValue[for (i : Integer | Sequence{1..arity})]
+, <%Value%> iterator[i/][/for]) throws <%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> {
 [for (i : Integer | Sequence{1..arity})]
-		Value [ast.iterator->at(i).symbolName(expInOcl)/] = iterator[i/];	// iterator: [ast.iterator->at(i).name/]
+		final <%Value%> [ast.iterator->at(i).symbolName(expInOcl)/] = iterator[i/];	// iterator: [ast.iterator->at(i).name/]
 [/for]  
 		[ast._'body'.emitExpression(importer, genPackage, expInOcl)/]
 		return [ast._'body'.symbolName(expInOcl)/];
@@ -138,44 +138,44 @@ Value [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/le
 };
 <%org.eclipse.ocl.examples.domain.elements.DomainType%> static_[astName/] = [ast.source.symbolName(expInOcl)/].getType();
 <%[iterationTypeName/]%> dynamic_[astName/] = (<%[iterationTypeName/]%>)static_[astName/].lookupImplementation(standardLibrary, [ast.referredIteration.symbolName(expInOcl)/]);
-Value acc_[astName/] = dynamic_[astName/].createAccumulatorValue(evaluator, [ast.type.symbolName(expInOcl)/], [ast._body.type.symbolName(expInOcl)/]);
+<%Value%> acc_[astName/] = dynamic_[astName/].createAccumulatorValue(evaluator, [ast.type.symbolName(expInOcl)/], [ast._body.type.symbolName(expInOcl)/]);
 <%[managerTypeName/]%> manager_[astName/] = new <%[managerTypeName/]%>(evaluator, [ast.type.symbolName(expInOcl)/], body_[astName/], (<%org.eclipse.ocl.examples.domain.values.CollectionValue%>)[ast.source.symbolName(expInOcl)/], acc_[astName/]);
-Value [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/let][/let][/let][/let][/let][/let][/template]
+<%Value%> [astName/] = dynamic_[astName/].evaluateIteration(manager_[astName/]);[/let][/let][/let][/let][/let][/let][/template]
 
 [template public emitExpression(ast : LetExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 [if (not ast.variable.initExpression.isConstant())]
 [ast.variable.initExpression.emitExpression(importer, genPackage, expInOcl)/]
 [/if]
-final Value [ast.variable.symbolName(expInOcl)/] = [ast.variable.initExpression.symbolName(expInOcl)/];
+final <%Value%> [ast.variable.symbolName(expInOcl)/] = [ast.variable.initExpression.symbolName(expInOcl)/];
 [if (not ast._in.isConstant())]
 [ast._in.emitExpression(importer, genPackage, expInOcl)/]
 [/if]
-final Value [ast.symbolName(expInOcl)/] = [ast._in.symbolName(expInOcl)/];[/template]
+final <%Value%> [ast.symbolName(expInOcl)/] = [ast._in.symbolName(expInOcl)/];[/template]
 
 [template public emitExpression(ast : LiteralExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)][/template]
 
 [template public emitExpression(ast : OperationCallExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl) ? ((ast.referredOperation.owningType.name = 'Boolean') and (ast.referredOperation.ownedParameter->size() = 1))]
 [let astName : String = ast.symbolName(expInOcl)]
 [if (not ast.source.isConstant())]
-Value left[astName/];
+<%Value%> left[astName/];
 try {
 	[ast.source.emitExpression(importer, genPackage, expInOcl)/]
 	left[astName/] = [ast.source.symbolName(expInOcl)/];
 } catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {
 	left[astName/] = valueFactory.getInvalid();
 }
-Value [ast.source.symbolName(expInOcl)/] = left[astName/];
+<%Value%> [ast.source.symbolName(expInOcl)/] = left[astName/];
 [/if]
 [let right : OclExpression = ast.argument->at(1)]
 [if (not right.isConstant())]
-Value right[astName/];
+<%Value%> right[astName/];
 try {
 	[right.emitExpression(importer, genPackage, expInOcl)/]
 	right[astName/] = [right.symbolName(expInOcl)/];
 } catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {
 	right[astName/] = valueFactory.getInvalid();
 }
-Value [right.symbolName(expInOcl)/] = right[astName/];
+<%Value%> [right.symbolName(expInOcl)/] = right[astName/];
 [/if]
 [/let]
 [ast.generateCall(importer, genPackage, expInOcl)/][/let][/template]
@@ -198,16 +198,16 @@ Value [right.symbolName(expInOcl)/] = right[astName/];
 [if ast.referredOperation.ownedParameter->at(index).type.oclIsKindOf(SelfType)]
 , [ast.argument->at(index).symbolName(expInOcl)/][/if][/for][/if]);
 <%[operationTypeName/]%> dynamic_[astName/] = (<%[operationTypeName/]%>)static_[astName/].lookupImplementation(standardLibrary, [ast.referredOperation.symbolName(expInOcl)/]);
-Value [astName/] = dynamic_[astName/].evaluate(evaluator, [ast.type.symbolName(expInOcl)/], [ast.source.symbolName(expInOcl)/][for (argument : OclExpression | ast.argument) before (', ') separator (', ')][argument.symbolName(expInOcl)/][/for]);[/let][/let][/let][/template]
+<%Value%> [astName/] = dynamic_[astName/].evaluate(evaluator, [ast.type.symbolName(expInOcl)/], [ast.source.symbolName(expInOcl)/][for (argument : OclExpression | ast.argument) before (', ') separator (', ')][argument.symbolName(expInOcl)/][/for]);[/let][/let][/let][/template]
 
 [template public emitExpression(ast : PropertyCallExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 [if (not ast.source.isConstant())]
 [ast.source.emitExpression(importer, genPackage, expInOcl)/]
 [/if]
 [if (ast.source.type.oclIsKindOf(TupleType))]
-Value [ast.symbolName(expInOcl)/] = ((<%org.eclipse.ocl.examples.domain.values.TupleValue%>)[ast.source.symbolName(expInOcl)/]).getValue([ast.referredProperty.symbolName(expInOcl)/]);
+<%Value%> [ast.symbolName(expInOcl)/] = ((<%org.eclipse.ocl.examples.domain.values.TupleValue%>)[ast.source.symbolName(expInOcl)/]).getValue([ast.referredProperty.symbolName(expInOcl)/]);
 [else]
-Value [ast.symbolName(expInOcl)/] = I[ast.referredProperty.symbolName(expInOcl)/].evaluate(evaluator, [ast.type.symbolName(expInOcl)/], [ast.source.symbolName(expInOcl)/], [ast.referredProperty.symbolName(expInOcl)/]);
+<%Value%> [ast.symbolName(expInOcl)/] = I[ast.referredProperty.symbolName(expInOcl)/].evaluate(evaluator, [ast.type.symbolName(expInOcl)/], [ast.source.symbolName(expInOcl)/], [ast.referredProperty.symbolName(expInOcl)/]);
 [/if][/template]
 
 [template public emitExpression(ast : TupleLiteralExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
