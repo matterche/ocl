@@ -2073,10 +2073,10 @@ ruleSpecificationCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0()); 
 	    }
 		lv_ownedExpression_0_0=ruleExpCS		{
 	        if ($current==null) {
@@ -2092,6 +2092,25 @@ ruleSpecificationCS returns [EObject current=null]
 
 )
 )
+    |(
+(
+		lv_exprString_1_0=RULE_UNQUOTED_STRING
+		{
+			newLeafNode(lv_exprString_1_0, grammarAccess.getSpecificationCSAccess().getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getSpecificationCSRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"exprString",
+        		lv_exprString_1_0, 
+        		"UNQUOTED_STRING");
+	    }
+
+)
+))
 ;
 
 
@@ -5658,6 +5677,8 @@ ruleSelfExpCS returns [EObject current=null]
 
 
 
+
+RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
 
 RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 

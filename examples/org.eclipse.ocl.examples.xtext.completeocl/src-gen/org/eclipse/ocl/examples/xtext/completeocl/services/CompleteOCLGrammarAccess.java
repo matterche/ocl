@@ -1298,18 +1298,30 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class SpecificationCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SpecificationCS");
-		private final Assignment cOwnedExpressionAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedExpressionExpCSParserRuleCall_0 = (RuleCall)cOwnedExpressionAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cOwnedExpressionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cOwnedExpressionExpCSParserRuleCall_0_0 = (RuleCall)cOwnedExpressionAssignment_0.eContents().get(0);
+		private final Assignment cExprStringAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cExprStringUNQUOTED_STRINGTerminalRuleCall_1_0 = (RuleCall)cExprStringAssignment_1.eContents().get(0);
 		
 		//SpecificationCS returns ContextSpecificationCS:
-		//	ownedExpression=ExpCS;
+		//	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
 		public ParserRule getRule() { return rule; }
 
+		//ownedExpression=ExpCS | exprString=UNQUOTED_STRING
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//ownedExpression=ExpCS
-		public Assignment getOwnedExpressionAssignment() { return cOwnedExpressionAssignment; }
+		public Assignment getOwnedExpressionAssignment_0() { return cOwnedExpressionAssignment_0; }
 
 		//ExpCS
-		public RuleCall getOwnedExpressionExpCSParserRuleCall_0() { return cOwnedExpressionExpCSParserRuleCall_0; }
+		public RuleCall getOwnedExpressionExpCSParserRuleCall_0_0() { return cOwnedExpressionExpCSParserRuleCall_0_0; }
+
+		//exprString=UNQUOTED_STRING
+		public Assignment getExprStringAssignment_1() { return cExprStringAssignment_1; }
+
+		//UNQUOTED_STRING
+		public RuleCall getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0() { return cExprStringUNQUOTED_STRINGTerminalRuleCall_1_0; }
 	}
 
 	public class NavigatingExpCS_BaseElements extends AbstractParserRuleElementFinder {
@@ -1377,6 +1389,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private CompleteOCLDocumentCSElements pCompleteOCLDocumentCS;
+	private TerminalRule tUNQUOTED_STRING;
 	private NavigationOperatorElements pNavigationOperator;
 	private UnrestrictedNameElements pUnrestrictedName;
 	private PrimitiveTypeIdentifierElements pPrimitiveTypeIdentifier;
@@ -1432,6 +1445,13 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public ParserRule getCompleteOCLDocumentCSRule() {
 		return getCompleteOCLDocumentCSAccess().getRule();
 	}
+
+	//// Never forward parsed; just provides a placeholder
+	//terminal UNQUOTED_STRING: //  for reverse serialisation of embedded OCL 
+	//	"£$%^£$%^";
+	public TerminalRule getUNQUOTED_STRINGRule() {
+		return (tUNQUOTED_STRING != null) ? tUNQUOTED_STRING : (tUNQUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNQUOTED_STRING"));
+	} 
 
 	//// Intended to be overridden
 	//NavigationOperator:
@@ -1641,7 +1661,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SpecificationCS returns ContextSpecificationCS:
-	//	ownedExpression=ExpCS;
+	//	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
 	public SpecificationCSElements getSpecificationCSAccess() {
 		return (pSpecificationCS != null) ? pSpecificationCS : (pSpecificationCS = new SpecificationCSElements());
 	}

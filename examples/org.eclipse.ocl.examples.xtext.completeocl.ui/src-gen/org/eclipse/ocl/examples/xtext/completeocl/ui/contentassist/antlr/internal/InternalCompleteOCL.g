@@ -633,9 +633,9 @@ ruleSpecificationCS
     }
 	:
 (
-{ before(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment()); }
-(rule__SpecificationCS__OwnedExpressionAssignment)
-{ after(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment()); }
+{ before(grammarAccess.getSpecificationCSAccess().getAlternatives()); }
+(rule__SpecificationCS__Alternatives)
+{ after(grammarAccess.getSpecificationCSAccess().getAlternatives()); }
 )
 
 ;
@@ -2654,6 +2654,28 @@ rule__PropertyContextDeclCS__Alternatives_4
 { before(grammarAccess.getPropertyContextDeclCSAccess().getGroup_4_1()); }
 (rule__PropertyContextDeclCS__Group_4_1__0)
 { after(grammarAccess.getPropertyContextDeclCSAccess().getGroup_4_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SpecificationCS__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_0()); }
+(rule__SpecificationCS__OwnedExpressionAssignment_0)
+{ after(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_0()); }
+)
+
+    |(
+{ before(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1()); }
+(rule__SpecificationCS__ExprStringAssignment_1)
+{ after(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1()); }
 )
 
 ;
@@ -13851,14 +13873,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__SpecificationCS__OwnedExpressionAssignment
+rule__SpecificationCS__OwnedExpressionAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0()); }
-	ruleExpCS{ after(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0()); }
+{ before(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0()); }
+	ruleExpCS{ after(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SpecificationCS__ExprStringAssignment_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getSpecificationCSAccess().getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0()); }
+	RULE_UNQUOTED_STRING{ after(grammarAccess.getSpecificationCSAccess().getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0()); }
 )
 
 ;
@@ -15087,6 +15124,8 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+
+RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
 
 RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 

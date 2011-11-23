@@ -1006,7 +1006,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     ownedExpression=ExpCS
+	 *     (ownedExpression=ExpCS | exprString=UNQUOTED_STRING)
 	 */
 	protected void sequence_SpecificationCS(EObject context, ContextSpecificationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

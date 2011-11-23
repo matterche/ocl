@@ -27,6 +27,10 @@ CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
 	(ownedImport+=ImportCS | ownedInclude+=IncludeCS | ownedLibrary+=LibraryCS)*
 	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*;
 
+terminal UNQUOTED_STRING:	// Never forward parsed; just provides a placeholder
+	'£$%^£$%^'				//  for reverse serialisation of embedded OCL 
+;
+
 NavigationOperator:						// Intended to be overridden
 	EssentialOCLNavigationOperator | '^' | '^^'
 ;
@@ -129,7 +133,7 @@ PropertyContextDeclCS returns PropertyContextDeclCS:
 	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
 
 SpecificationCS returns ContextSpecificationCS:
-	ownedExpression=ExpCS;
+	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides

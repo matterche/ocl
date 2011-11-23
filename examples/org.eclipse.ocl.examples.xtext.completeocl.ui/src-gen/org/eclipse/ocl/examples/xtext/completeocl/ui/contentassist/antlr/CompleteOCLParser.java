@@ -50,6 +50,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageDeclarationCSAccess().getAlternatives_1(), "rule__PackageDeclarationCS__Alternatives_1");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getAlternatives_1(), "rule__PropertyContextDeclCS__Alternatives_1");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getAlternatives_4(), "rule__PropertyContextDeclCS__Alternatives_4");
+					put(grammarAccess.getSpecificationCSAccess().getAlternatives(), "rule__SpecificationCS__Alternatives");
 					put(grammarAccess.getNavigatingArgExpCSAccess().getAlternatives(), "rule__NavigatingArgExpCS__Alternatives");
 					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
@@ -245,7 +246,8 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyContextDeclCSAccess().getRulesAssignment_4_0_1(), "rule__PropertyContextDeclCS__RulesAssignment_4_0_1");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getRulesAssignment_4_1_0(), "rule__PropertyContextDeclCS__RulesAssignment_4_1_0");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getRulesAssignment_4_1_1(), "rule__PropertyContextDeclCS__RulesAssignment_4_1_1");
-					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment(), "rule__SpecificationCS__OwnedExpressionAssignment");
+					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_0(), "rule__SpecificationCS__OwnedExpressionAssignment_0");
+					put(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1(), "rule__SpecificationCS__ExprStringAssignment_1");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");
 					put(grammarAccess.getPrimitiveTypeCSAccess().getNameAssignment(), "rule__PrimitiveTypeCS__NameAssignment");
 					put(grammarAccess.getCollectionTypeCSAccess().getNameAssignment_0(), "rule__CollectionTypeCS__NameAssignment_0");
