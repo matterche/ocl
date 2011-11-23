@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
@@ -81,26 +80,8 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		}
 	}
 
-	protected static class UnquotedStringConverter extends AbstractNullSafeConverter<String>
-	{
-		@Override
-		protected String internalToValue(String string, INode node) {
-			try {
-				return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
-			} catch(IllegalArgumentException e) {
-				throw new ValueConverterException(e.getMessage(), node, e);
-			}
-		}
-		
-		@Override
-		protected String internalToString(String value) {
-			return value; //PivotUtil.convertToOCLString(value.replace('\r', '\n'));
-		}
-	}
-
 	private static IntegerConverter integerConverter = null;
 	private static PrimitiveTypeIdentifierConverter primitiveTypeIdentifier = null;
-	private static UnquotedStringConverter unquotedStringConverter = null;
 	private static UpperConverter upperConverter = null;
 
 	@ValueConverter(rule = "LOWER")
@@ -117,14 +98,6 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 			primitiveTypeIdentifier = new PrimitiveTypeIdentifierConverter();
 		}
 		return primitiveTypeIdentifier;
-	}
-	
-	@ValueConverter(rule = "UNQUOTED_STRING")
-	public IValueConverter<String> UNQUOTED_STRING() {
-		if (unquotedStringConverter == null) {
-			unquotedStringConverter = new UnquotedStringConverter();
-		}
-		return unquotedStringConverter;
 	}
 	
 	@ValueConverter(rule = "UPPER")

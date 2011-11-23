@@ -214,6 +214,23 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		}
 	}
 
+	protected static class UnquotedStringConverter extends AbstractNullSafeConverter<String>
+	{
+		@Override
+		protected String internalToValue(String string, INode node) {
+			try {
+				return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
+			} catch(IllegalArgumentException e) {
+				throw new ValueConverterException(e.getMessage(), node, e);
+			}
+		}
+		
+		@Override
+		protected String internalToString(String value) {
+			return value; //PivotUtil.convertToOCLString(value.replace('\r', '\n'));
+		}
+	}
+
 	protected static class UnreservedNameConverter extends AbstractIDConverter
 	{
 		private final Set<String> reservedKeywords;
@@ -317,6 +334,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	private static NumberConverter numberConverter = null;
 	private static SimpleIDConverter simpleIDConverter = null;
 	private static SingleQuotedStringConverter singleQuotedStringConverter = null;
+	private static UnquotedStringConverter unquotedStringConverter = null;
 	private UnreservedNameConverter unreservedNameConverter = null; 				// not static - grammar-dependent
 	private UnrestrictedNameConverter unrestrictedNameConverter = null; 				// not static - grammar-dependent
 
@@ -393,6 +411,14 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	@ValueConverter(rule = "StringLiteral")
 	public IValueConverter<String> StringLiteral() {
 		return SINGLE_QUOTED_STRING();
+	}
+	
+	@ValueConverter(rule = "UNQUOTED_STRING")
+	public IValueConverter<String> UNQUOTED_STRING() {
+		if (unquotedStringConverter == null) {
+			unquotedStringConverter = new UnquotedStringConverter();
+		}
+		return unquotedStringConverter;
 	}
 
 	@ValueConverter(rule = "UnreservedName")
