@@ -31,10 +31,7 @@ public class EssentialOCLPivot2CS extends BasePivot2CS
 {	
 	private static final class Factory implements Pivot2CS.Factory
 	{
-		private Factory() {
-			BasePivot2CS.FACTORY.getClass();
-			Pivot2CS.addFactory(this);
-		}
+		private static Pivot2CS.Factory INSTANCE = new Factory();
 
 		public EssentialOCLDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter) {
 			return new EssentialOCLDeclarationVisitor(converter);
@@ -48,10 +45,9 @@ public class EssentialOCLPivot2CS extends BasePivot2CS
 			return new EClass[]{};
 		}
 	}
-
-	public static Pivot2CS.Factory FACTORY = new Factory();
 		
 	public EssentialOCLPivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+		addFactory(Factory.INSTANCE);
 	}
 }

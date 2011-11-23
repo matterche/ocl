@@ -28,15 +28,11 @@ import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
 
-
 public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 {	
 	private static final class Factory implements Pivot2CS.Factory
 	{
-		private Factory() {
-			EssentialOCLPivot2CS.FACTORY.getClass();
-			Pivot2CS.addFactory(this);
-		}
+		private static Pivot2CS.Factory INSTANCE = new Factory();
 
 		public OCLinEcoreDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter) {
 			return new OCLinEcoreDeclarationVisitor(converter);
@@ -54,11 +50,10 @@ public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 			};
 		}
 	}
-
-	public static Pivot2CS.Factory FACTORY = new Factory();
 		
 	public OCLinEcorePivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+		addFactory(Factory.INSTANCE);
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
 			MetaModelManagerResourceAdapter.getAdapter(csResource, metaModelManager);
 		}

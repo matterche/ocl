@@ -22,14 +22,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-
 public class BasePivot2CS extends Pivot2CS
 {	
 	private static final class Factory implements Pivot2CS.Factory
 	{
-		private Factory() {
-			Pivot2CS.addFactory(this);
-		}
+		private static Pivot2CS.Factory INSTANCE = new Factory();
 
 		public BaseDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter) {
 			return new BaseDeclarationVisitor(converter);
@@ -44,10 +41,9 @@ public class BasePivot2CS extends Pivot2CS
 		}
 	}
 
-	public static Pivot2CS.Factory FACTORY = new Factory();
-
 	public BasePivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
+		addFactory(Factory.INSTANCE);
 	}
 }

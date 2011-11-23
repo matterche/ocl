@@ -39,6 +39,7 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 	public static void init() {
 		CompleteOCLCS2MonikerVisitor.FACTORY.getClass();
 		CompleteOCLCS2Pivot.FACTORY.getClass();
+//		CompleteOCLPivot2CS.FACTORY.getClass();
 	}
 	
 	/**

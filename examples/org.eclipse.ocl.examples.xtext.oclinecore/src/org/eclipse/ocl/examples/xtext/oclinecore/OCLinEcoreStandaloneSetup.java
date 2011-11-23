@@ -18,7 +18,6 @@
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
 import org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot.OCLinEcoreCS2Pivot;
-import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCS2MonikerVisitor;
 
 import com.google.inject.Injector;
@@ -41,7 +40,7 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 	public static void init() {
 		OCLinEcoreCS2MonikerVisitor.FACTORY.getClass();
 		OCLinEcoreCS2Pivot.FACTORY.getClass();
-		OCLinEcorePivot2CS.FACTORY.getClass();
+//		OCLinEcorePivot2CS.FACTORY.getClass();
 	}
 	
 	/**

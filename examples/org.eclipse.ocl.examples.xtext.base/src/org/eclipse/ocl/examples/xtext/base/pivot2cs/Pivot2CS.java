@@ -47,15 +47,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		 */
 		EClass[] getEClasses();
 	}
-
-	private static Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();
 	
-	public static void addFactory(Factory factory) {
-		for (EClass eClass : factory.getEClasses()) {
-			factoryMap.put(eClass, factory);
-		}
-	}
-
 	public static Pivot2CS findAdapter(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
@@ -64,6 +56,7 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	}
 	
 	protected final MetaModelManager metaModelManager;
+	private Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();
 	
 	/**
 	 * Mapping of each CS resource to its corresponding pivot Resource.
@@ -84,6 +77,12 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	public Pivot2CS(Pivot2CS aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
 		this.metaModelManager = aConverter.metaModelManager;
+	}
+
+	protected void addFactory(Factory factory) {
+		for (EClass eClass : factory.getEClasses()) {
+			factoryMap.put(eClass, factory);
+		}
 	}
 
 	public Collection<? extends Resource> getCSResources() {
