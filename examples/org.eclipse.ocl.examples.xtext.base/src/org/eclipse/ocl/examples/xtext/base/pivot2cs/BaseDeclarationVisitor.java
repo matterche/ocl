@@ -217,7 +217,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	@Override
-	public PackageCS visitPackage(org.eclipse.ocl.examples.pivot.Package object) {
+	public ElementCS visitPackage(org.eclipse.ocl.examples.pivot.Package object) {
 		PackageCS csElement;
 		if (object.eContainer() == null) {
 			// Lose the name to lose the 'module' declaration, there are no annotations
