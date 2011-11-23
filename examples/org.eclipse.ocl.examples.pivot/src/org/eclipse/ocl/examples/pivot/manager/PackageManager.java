@@ -156,12 +156,14 @@ public class PackageManager
 		if ((uriList == null) || uriList.isEmpty()) {
 			return null;
 		}
-		else if (uriList.size() == 1) {
-			return getPackageByURI(uriList.get(0));
+		org.eclipse.ocl.examples.pivot.Package selectedPackage = getPackageByURI(uriList.get(0));
+		for (int i = 1; i < uriList.size(); i++) {
+			org.eclipse.ocl.examples.pivot.Package anotherPackage = getPackageByURI(uriList.get(i));
+			if (anotherPackage != selectedPackage) {
+				throw new IllegalArgumentException("Ambiguous package name '" + name + "'");
+			}
 		}
-		else {
-			throw new IllegalArgumentException("Ambiguous package name '" + name + "'");
-		}
+		return selectedPackage;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package getPackageByURI(String nsURI) {
