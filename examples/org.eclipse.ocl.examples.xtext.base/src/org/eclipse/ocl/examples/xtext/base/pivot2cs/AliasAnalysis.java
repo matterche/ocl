@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 
 /**
  * An AliasAnalysis is dynamically created to support the serialization
@@ -133,16 +134,15 @@ public class AliasAnalysis extends AdapterImpl
 					allAliases.put((org.eclipse.ocl.examples.pivot.Package) namespace, name);
 				}
 			}
+			EObject csObject = eObject;
 			if (eObject instanceof Pivotable) {
 				eObject = ((Pivotable)eObject).getPivot();
 			}
 			if (eObject instanceof NamedElement) {
 				addName(((NamedElement)eObject).getName(), eObject);
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					addName(((org.eclipse.ocl.examples.pivot.Package)eObject).getNsPrefix(), eObject);
-				}
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) && (csObject instanceof PackageCS)) {
 					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+					addName(pivotPackage.getNsPrefix(), eObject);
 					localPackages.add(pivotPackage);
 				}
 				else {
