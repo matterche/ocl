@@ -42,7 +42,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -237,6 +236,10 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		genericTypes.add(eObject);
 	}
 
+	protected URI createPivotURI() {
+		return PivotUtil.getPivotURI(ecoreResource.getURI());
+	}
+
 	public void dispose() {
 		metaModelManager.removeExternalResource(this);
 		getTarget().eAdapters().remove(this);
@@ -355,7 +358,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
-			Resource pivotResource = null;
+/*			Resource pivotResource = null;
 			for (EObject eObject : ecoreResource.getContents()) {
 				if (eObject instanceof EPackage) {
 					String nsURI = ((EPackage)eObject).getNsURI();
@@ -371,7 +374,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 						pivotResource.getContents().add(pivotRoot);
 						pivotResource.getErrors().add(new XMIException("Unsupported '" + nsURI + "' conflict"));		// FIXME better class
 						return pivotRoot;	// FIXME Need Ecore2Pivot to be able to refresh 2 Ecores to 1 Pivot
-/*						org.eclipse.ocl.examples.pivot.Package existingPackage = metaModelManager.getPrimaryPackage(moniker);
+/ *						org.eclipse.ocl.examples.pivot.Package existingPackage = metaModelManager.getPrimaryPackage(moniker);
 						if (existingPackage != null) {
 							Resource existingResource = existingPackage.eResource();
 							if (pivotResource == null) {
@@ -382,28 +385,27 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 								pivotResource = existingResource;
 								break;
 							}
-						} */
+						} * /
 					}
 				}
-			}
-			if (pivotResource != null) {
-				pivotRoot = (org.eclipse.ocl.examples.pivot.Package)pivotResource.getContents().get(0);
-			}
-			else {
-				pivotResource = importObjects(ecoreResource.getContents(), PivotUtil.getPivotURI(ecoreResource.getURI()));
-				AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
-				if (ecoreAdapter != null) {
-					Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
-					AliasAdapter pivotAdapter = AliasAdapter.getAdapter(pivotResource);
-					Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
-					for (EObject eObject : ecoreAliasMap.keySet()) {
-						String alias = ecoreAliasMap.get(eObject);
-						Element element = createMap.get(eObject);
-						pivotAliasMap.put(element, alias);
-					}
+			} */
+//			if (pivotResource != null) {
+//				pivotRoot = (org.eclipse.ocl.examples.pivot.Package)pivotResource.getContents().get(0);
+//			}
+//			else {
+			Resource pivotResource = importObjects(ecoreResource.getContents(), createPivotURI());
+			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
+			if (ecoreAdapter != null) {
+				Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
+				AliasAdapter pivotAdapter = AliasAdapter.getAdapter(pivotResource);
+				Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
+				for (EObject eObject : ecoreAliasMap.keySet()) {
+					String alias = ecoreAliasMap.get(eObject);
+					Element element = createMap.get(eObject);
+					pivotAliasMap.put(element, alias);
 				}
-				metaModelManager.installResource(pivotResource);
 			}
+			metaModelManager.installResource(pivotResource);
 		}
 		return pivotRoot;
 	}
@@ -420,9 +422,9 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		return ecoreResource.getURI();
 	}
 
-	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
-		Resource pivotResource = metaModelManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = metaModelManager.createPackage(ecoreURI.lastSegment(), null);
+	public Resource importObjects(Collection<EObject> ecoreContents, URI pivotURI) {
+		Resource pivotResource = metaModelManager.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
+		pivotRoot = metaModelManager.createPackage(pivotURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {

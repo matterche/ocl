@@ -191,8 +191,13 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	private Map<String, String> options = null;
 
 	public UML2Ecore2Pivot(Resource umlResource, MetaModelManager metaModelManager) {
-		super(metaModelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension(".ecore")), metaModelManager);
+		super(metaModelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension("ecore")), metaModelManager);
 		this.umlResource = umlResource;
+	}
+
+	@Override
+	protected URI createPivotURI() {
+		return PivotUtil.getPivotURI(umlResource.getURI());
 	}
 
 	@Override
