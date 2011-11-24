@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Package;
@@ -98,7 +97,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	protected void createImports(Resource csResource, Set<Package> importedPackages) {
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
-		URI oclinecoreURI = csResource.getURI(); //.appendFileExtension("oclinecore");
+		URI csURI = csResource.getURI(); //.appendFileExtension("oclinecore");
 		RootPackageCS documentCS = (RootPackageCS) csResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImport();
 		for (org.eclipse.ocl.examples.pivot.Package importedPackage : importedPackages) {
@@ -114,7 +113,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			importCS.setPivot(importedPackage);
 			EObject eObject = importedPackage.getETarget();
 			URI fullURI = EcoreUtil.getURI(eObject != null ? eObject : importedPackage);
-			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
+			URI deresolvedURI = fullURI.deresolve(csURI);
 			importCS.setUri(deresolvedURI.toString());
 			imports.add(importCS);
 		}
@@ -185,7 +184,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	public void importPackage(org.eclipse.ocl.examples.pivot.Package importPackage) {
 		assert importPackage != null;
-		importedPackages.add(importPackage);
+		org.eclipse.ocl.examples.pivot.Package primaryPackage = metaModelManager.getPrimaryPackage(importPackage);
+		importedPackages.add(primaryPackage);
 	}
 
 	protected <T extends ClassifierCS> T refreshClassifier(Class<T> csClass, EClass csEClass, Type object) {
