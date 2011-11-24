@@ -155,19 +155,19 @@ ruleLibrary returns [EObject current=null]
     }
 (
 (
-		lv_nsURI_7_0=RULE_SINGLE_QUOTED_STRING
-		{
-			newLeafNode(lv_nsURI_7_0, grammarAccess.getLibraryAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getLibraryAccess().getNsURIURIParserRuleCall_3_3_0()); 
+	    }
+		lv_nsURI_7_0=ruleURI		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getLibraryRule());
+	            $current = createModelElementForParent(grammarAccess.getLibraryRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"nsURI",
         		lv_nsURI_7_0, 
-        		"SINGLE_QUOTED_STRING");
+        		"URI");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -1953,10 +1953,12 @@ ruleLibraryCS returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getLibraryCSRule());
 	        }
         }
-	otherlv_1=RULE_SINGLE_QUOTED_STRING
-	{
-		newLeafNode(otherlv_1, grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); 
+	    }
+		ruleURI		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -2337,19 +2339,19 @@ rulePackageCS returns [EObject current=null]
     }
 (
 (
-		lv_nsURI_5_0=RULE_SINGLE_QUOTED_STRING
-		{
-			newLeafNode(lv_nsURI_5_0, grammarAccess.getPackageCSAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getPackageCSAccess().getNsURIURIParserRuleCall_2_3_0()); 
+	    }
+		lv_nsURI_5_0=ruleURI		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPackageCSRule());
+	            $current = createModelElementForParent(grammarAccess.getPackageCSRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"nsURI",
         		lv_nsURI_5_0, 
-        		"SINGLE_QUOTED_STRING");
+        		"URI");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -3766,6 +3768,34 @@ ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     newLeafNode(this_INT_7, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall_2_2()); 
     }
 )?)
+    ;
+
+
+
+
+
+// Entry rule entryRuleURI
+entryRuleURI returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getURIRule()); } 
+	 iv_ruleURI=ruleURI 
+	 { $current=$iv_ruleURI.current.getText(); }  
+	 EOF 
+;
+
+// Rule URI
+ruleURI returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_SINGLE_QUOTED_STRING_0=RULE_SINGLE_QUOTED_STRING    {
+		$current.merge(this_SINGLE_QUOTED_STRING_0);
+    }
+
+    { 
+    newLeafNode(this_SINGLE_QUOTED_STRING_0, grammarAccess.getURIAccess().getSINGLE_QUOTED_STRINGTerminalRuleCall()); 
+    }
+
     ;
 
 

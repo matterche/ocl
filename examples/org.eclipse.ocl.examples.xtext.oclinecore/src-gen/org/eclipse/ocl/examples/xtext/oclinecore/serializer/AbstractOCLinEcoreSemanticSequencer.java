@@ -818,7 +818,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? namespace=[Namespace|SINGLE_QUOTED_STRING])
+	 *     (name=UnrestrictedName? namespace=[Namespace|URI])
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -890,7 +890,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? package=[Package|SINGLE_QUOTED_STRING])
+	 *     (name=UnrestrictedName? package=[Package|URI])
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1048,7 +1048,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *     (
 	 *         name=UnrestrictedName 
 	 *         nsPrefix=UnrestrictedName? 
-	 *         nsURI=SINGLE_QUOTED_STRING? 
+	 *         nsURI=URI? 
 	 *         (ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
 	 *     )
 	 */

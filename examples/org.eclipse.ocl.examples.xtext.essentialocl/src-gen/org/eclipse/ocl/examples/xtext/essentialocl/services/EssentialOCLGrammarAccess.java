@@ -114,6 +114,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getINTTerminalRuleCall_2_2() { return cINTTerminalRuleCall_2_2; }
 	}
 
+	public class URIElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "URI");
+		private final RuleCall cSINGLE_QUOTED_STRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//URI:
+		//	SINGLE_QUOTED_STRING;
+		public ParserRule getRule() { return rule; }
+
+		//SINGLE_QUOTED_STRING
+		public RuleCall getSINGLE_QUOTED_STRINGTerminalRuleCall() { return cSINGLE_QUOTED_STRINGTerminalRuleCall; }
+	}
+
 	public class EssentialOCLReservedKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EssentialOCLReservedKeyword");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -2204,6 +2216,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
 	private TerminalRule tANY_OTHER;
+	private URIElements pURI;
 	private EssentialOCLReservedKeywordElements pEssentialOCLReservedKeyword;
 	private EssentialOCLUnrestrictedIdentifierElements pEssentialOCLUnrestrictedIdentifier;
 	private EssentialOCLPrefixOperatorElements pEssentialOCLPrefixOperator;
@@ -2367,6 +2380,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
 	} 
+
+	//URI:
+	//	SINGLE_QUOTED_STRING;
+	public URIElements getURIAccess() {
+		return (pURI != null) ? pURI : (pURI = new URIElements());
+	}
+	
+	public ParserRule getURIRule() {
+		return getURIAccess().getRule();
+	}
 
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";

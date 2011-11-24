@@ -57,6 +57,9 @@ terminal WS:
 
 terminal ANY_OTHER:
 	.;
+	
+URI:
+	SINGLE_QUOTED_STRING;
 
 EssentialOCLReservedKeyword:
 	'and'

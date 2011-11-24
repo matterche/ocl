@@ -212,11 +212,11 @@ EnumerationLiteralCS returns base::EnumerationLiteralCS:
 ;
 
 ImportCS returns base::ImportCS:
-	'import' (name=UnrestrictedName ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING] ';'
+	'import' (name=UnrestrictedName ':')? namespace=[pivot::Namespace|URI] ';'
 ;
 
 LibraryCS returns base::LibraryCS:
-	'library' (name=UnrestrictedName ':')? package=[pivot::Package|SINGLE_QUOTED_STRING] ';'
+	'library' (name=UnrestrictedName ':')? package=[pivot::Package|URI] ';'
 ;
 
 ModelElementCS returns base::ModelElementCS:
@@ -252,7 +252,7 @@ OperationCS returns base::OperationCS:
 
 PackageCS returns base::PackageCS:
 	'package' name=UnrestrictedName
-	(':' nsPrefix=UnrestrictedName)? ('=' nsURI=SINGLE_QUOTED_STRING)?
+	(':' nsPrefix=UnrestrictedName)? ('=' nsURI=URI)?
 	(('{'
 		(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)*
 		'}')

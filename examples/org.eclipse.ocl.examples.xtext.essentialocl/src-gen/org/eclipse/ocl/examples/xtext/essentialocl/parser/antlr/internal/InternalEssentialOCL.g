@@ -220,6 +220,8 @@ ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 
 
 
+
+
 // Entry rule entryRuleEssentialOCLUnrestrictedIdentifier
 entryRuleEssentialOCLUnrestrictedIdentifier returns [String current=null] 
 	:

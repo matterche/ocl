@@ -89,10 +89,10 @@ DerCS returns DerCS:
 	stereotype='derive' ':' specification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
-	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+	'import' (name=Identifier ':')? namespace=[pivot::Namespace|URI];
 
 IncludeCS returns IncludeCS:
-	'include' namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+	'include' namespace=[pivot::Namespace|URI];
 
 InitCS returns InitCS:
 	stereotype='init' ':' specification=SpecificationCS;
@@ -101,7 +101,7 @@ InvCS returns InvCS:
 	stereotype='inv' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS;
 
 LibraryCS returns base::LibraryCS:
-	'library' package=[pivot::Package|SINGLE_QUOTED_STRING];
+	'library' package=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
 	'context' ((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*

@@ -1738,14 +1738,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cNamespaceAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cNamespaceNamespaceCrossReference_2_0 = (CrossReference)cNamespaceAssignment_2.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_2_0.eContents().get(1);
+		private final RuleCall cNamespaceNamespaceURIParserRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_2_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ImportCS returns base::ImportCS:
-		//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING] ";";
+		//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";";
 		public ParserRule getRule() { return rule; }
 
-		//"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING] ";"
+		//"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";"
 		public Group getGroup() { return cGroup; }
 
 		//"import"
@@ -1763,14 +1763,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
 
-		//namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//namespace=[pivot::Namespace|URI]
 		public Assignment getNamespaceAssignment_2() { return cNamespaceAssignment_2; }
 
-		//[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//[pivot::Namespace|URI]
 		public CrossReference getNamespaceNamespaceCrossReference_2_0() { return cNamespaceNamespaceCrossReference_2_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1() { return cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1; }
+		//URI
+		public RuleCall getNamespaceNamespaceURIParserRuleCall_2_0_1() { return cNamespaceNamespaceURIParserRuleCall_2_0_1; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -1786,14 +1786,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cPackageAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cPackagePackageCrossReference_2_0 = (CrossReference)cPackageAssignment_2.eContents().get(0);
-		private final RuleCall cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1 = (RuleCall)cPackagePackageCrossReference_2_0.eContents().get(1);
+		private final RuleCall cPackagePackageURIParserRuleCall_2_0_1 = (RuleCall)cPackagePackageCrossReference_2_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LibraryCS returns base::LibraryCS:
-		//	"library" (name=UnrestrictedName ":")? package=[pivot::Package|SINGLE_QUOTED_STRING] ";";
+		//	"library" (name=UnrestrictedName ":")? package=[pivot::Package|URI] ";";
 		public ParserRule getRule() { return rule; }
 
-		//"library" (name=UnrestrictedName ":")? package=[pivot::Package|SINGLE_QUOTED_STRING] ";"
+		//"library" (name=UnrestrictedName ":")? package=[pivot::Package|URI] ";"
 		public Group getGroup() { return cGroup; }
 
 		//"library"
@@ -1811,14 +1811,14 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
 
-		//package=[pivot::Package|SINGLE_QUOTED_STRING]
+		//package=[pivot::Package|URI]
 		public Assignment getPackageAssignment_2() { return cPackageAssignment_2; }
 
-		//[pivot::Package|SINGLE_QUOTED_STRING]
+		//[pivot::Package|URI]
 		public CrossReference getPackagePackageCrossReference_2_0() { return cPackagePackageCrossReference_2_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1() { return cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1; }
+		//URI
+		public RuleCall getPackagePackageURIParserRuleCall_2_0_1() { return cPackagePackageURIParserRuleCall_2_0_1; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -2303,7 +2303,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cNsURIAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0 = (RuleCall)cNsURIAssignment_3_1.eContents().get(0);
+		private final RuleCall cNsURIURIParserRuleCall_3_1_0 = (RuleCall)cNsURIAssignment_3_1.eContents().get(0);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4_0_0 = (Keyword)cGroup_4_0.eContents().get(0);
@@ -2318,11 +2318,11 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
 		
 		//PackageCS returns base::PackageCS:
-		//	"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=SINGLE_QUOTED_STRING)? ("{"
+		//	"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=URI)? ("{"
 		//	(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)* "}" | ";");
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=SINGLE_QUOTED_STRING)? ("{"
+		//"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=URI)? ("{"
 		//(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)* "}" | ";")
 		public Group getGroup() { return cGroup; }
 
@@ -2347,17 +2347,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getNsPrefixUnrestrictedNameParserRuleCall_2_1_0() { return cNsPrefixUnrestrictedNameParserRuleCall_2_1_0; }
 
-		//("=" nsURI=SINGLE_QUOTED_STRING)?
+		//("=" nsURI=URI)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
 
-		//nsURI=SINGLE_QUOTED_STRING
+		//nsURI=URI
 		public Assignment getNsURIAssignment_3_1() { return cNsURIAssignment_3_1; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0() { return cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_1_0; }
+		//URI
+		public RuleCall getNsURIURIParserRuleCall_3_1_0() { return cNsURIURIParserRuleCall_3_1_0; }
 
 		//"{" (ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)* "}" | ";"
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
@@ -3785,7 +3785,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportCS returns base::ImportCS:
-	//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING] ";";
+	//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";";
 	public ImportCSElements getImportCSAccess() {
 		return (pImportCS != null) ? pImportCS : (pImportCS = new ImportCSElements());
 	}
@@ -3795,7 +3795,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibraryCS returns base::LibraryCS:
-	//	"library" (name=UnrestrictedName ":")? package=[pivot::Package|SINGLE_QUOTED_STRING] ";";
+	//	"library" (name=UnrestrictedName ":")? package=[pivot::Package|URI] ";";
 	public LibraryCSElements getLibraryCSAccess() {
 		return (pLibraryCS != null) ? pLibraryCS : (pLibraryCS = new LibraryCSElements());
 	}
@@ -3842,7 +3842,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageCS returns base::PackageCS:
-	//	"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=SINGLE_QUOTED_STRING)? ("{"
+	//	"package" name=UnrestrictedName (":" nsPrefix=UnrestrictedName)? ("=" nsURI=URI)? ("{"
 	//	(ownedAnnotation+=AnnotationElementCS | ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS)* "}" | ";");
 	public PackageCSElements getPackageCSAccess() {
 		return (pPackageCS != null) ? pPackageCS : (pPackageCS = new PackageCSElements());
@@ -4098,6 +4098,16 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getANY_OTHERRule() {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
+
+	//URI:
+	//	SINGLE_QUOTED_STRING;
+	public EssentialOCLGrammarAccess.URIElements getURIAccess() {
+		return gaEssentialOCL.getURIAccess();
+	}
+	
+	public ParserRule getURIRule() {
+		return getURIAccess().getRule();
+	}
 
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";

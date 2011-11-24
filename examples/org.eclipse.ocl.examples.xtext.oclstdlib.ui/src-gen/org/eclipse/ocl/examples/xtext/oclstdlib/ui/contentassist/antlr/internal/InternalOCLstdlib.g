@@ -1151,6 +1151,34 @@ finally {
 
 
 
+// Entry rule entryRuleURI
+entryRuleURI 
+:
+{ before(grammarAccess.getURIRule()); }
+	 ruleURI
+{ after(grammarAccess.getURIRule()); } 
+	 EOF 
+;
+
+// Rule URI
+ruleURI
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getURIAccess().getSINGLE_QUOTED_STRINGTerminalRuleCall()); }
+	RULE_SINGLE_QUOTED_STRING
+{ after(grammarAccess.getURIAccess().getSINGLE_QUOTED_STRINGTerminalRuleCall()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleEssentialOCLReservedKeyword
 entryRuleEssentialOCLReservedKeyword 
 :
@@ -17107,8 +17135,8 @@ rule__Library__NsURIAssignment_3_3
     }
 :
 (
-{ before(grammarAccess.getLibraryAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibraryAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0()); }
+{ before(grammarAccess.getLibraryAccess().getNsURIURIParserRuleCall_3_3_0()); }
+	ruleURI{ after(grammarAccess.getLibraryAccess().getNsURIURIParserRuleCall_3_3_0()); }
 )
 
 ;
@@ -17871,8 +17899,8 @@ rule__LibraryCS__PackageAssignment_1
 (
 { before(grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); }
 (
-{ before(grammarAccess.getLibraryCSAccess().getPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getLibraryCSAccess().getPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1()); }
+{ before(grammarAccess.getLibraryCSAccess().getPackagePackageURIParserRuleCall_1_0_1()); }
+	ruleURI{ after(grammarAccess.getLibraryCSAccess().getPackagePackageURIParserRuleCall_1_0_1()); }
 )
 { after(grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); }
 )
@@ -18099,8 +18127,8 @@ rule__PackageCS__NsURIAssignment_2_3
     }
 :
 (
-{ before(grammarAccess.getPackageCSAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0()); }
-	RULE_SINGLE_QUOTED_STRING{ after(grammarAccess.getPackageCSAccess().getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0()); }
+{ before(grammarAccess.getPackageCSAccess().getNsURIURIParserRuleCall_2_3_0()); }
+	ruleURI{ after(grammarAccess.getPackageCSAccess().getNsURIURIParserRuleCall_2_3_0()); }
 )
 
 ;

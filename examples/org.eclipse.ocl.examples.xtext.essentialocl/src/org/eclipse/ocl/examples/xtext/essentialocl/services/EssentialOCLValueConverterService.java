@@ -337,6 +337,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	private static UnquotedStringConverter unquotedStringConverter = null;
 	private UnreservedNameConverter unreservedNameConverter = null; 				// not static - grammar-dependent
 	private UnrestrictedNameConverter unrestrictedNameConverter = null; 				// not static - grammar-dependent
+	private static SingleQuotedStringConverter uriConverter = null;
 
 	@ValueConverter(rule = "DOUBLE_QUOTED_STRING")
 	public IValueConverter<String> DOUBLE_QUOTED_STRING() {
@@ -419,6 +420,14 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 			unquotedStringConverter = new UnquotedStringConverter();
 		}
 		return unquotedStringConverter;
+	}
+
+	@ValueConverter(rule = "URI")
+	public IValueConverter<String> URI() {
+		if (uriConverter == null) {
+			uriConverter = new SingleQuotedStringConverter();
+		}
+		return uriConverter;
 	}
 
 	@ValueConverter(rule = "UnreservedName")

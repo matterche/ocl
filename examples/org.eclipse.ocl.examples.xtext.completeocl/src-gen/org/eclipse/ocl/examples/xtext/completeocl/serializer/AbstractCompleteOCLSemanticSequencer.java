@@ -665,7 +665,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=Identifier? namespace=[Namespace|SINGLE_QUOTED_STRING])
+	 *     (name=Identifier? namespace=[Namespace|URI])
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -674,7 +674,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     namespace=[Namespace|SINGLE_QUOTED_STRING]
+	 *     namespace=[Namespace|URI]
 	 */
 	protected void sequence_IncludeCS(EObject context, IncludeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -746,7 +746,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     package=[Package|SINGLE_QUOTED_STRING]
+	 *     package=[Package|URI]
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

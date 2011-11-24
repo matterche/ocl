@@ -576,13 +576,13 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cNamespaceAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cNamespaceNamespaceCrossReference_2_0 = (CrossReference)cNamespaceAssignment_2.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_2_0.eContents().get(1);
+		private final RuleCall cNamespaceNamespaceURIParserRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_2_0.eContents().get(1);
 		
 		//ImportCS returns base::ImportCS:
-		//	"import" (name=Identifier ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+		//	"import" (name=Identifier ":")? namespace=[pivot::Namespace|URI];
 		public ParserRule getRule() { return rule; }
 
-		//"import" (name=Identifier ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//"import" (name=Identifier ":")? namespace=[pivot::Namespace|URI]
 		public Group getGroup() { return cGroup; }
 
 		//"import"
@@ -600,14 +600,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
 
-		//namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//namespace=[pivot::Namespace|URI]
 		public Assignment getNamespaceAssignment_2() { return cNamespaceAssignment_2; }
 
-		//[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//[pivot::Namespace|URI]
 		public CrossReference getNamespaceNamespaceCrossReference_2_0() { return cNamespaceNamespaceCrossReference_2_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1() { return cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_2_0_1; }
+		//URI
+		public RuleCall getNamespaceNamespaceURIParserRuleCall_2_0_1() { return cNamespaceNamespaceURIParserRuleCall_2_0_1; }
 	}
 
 	public class IncludeCSElements extends AbstractParserRuleElementFinder {
@@ -616,26 +616,26 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIncludeKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNamespaceAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cNamespaceNamespaceCrossReference_1_0 = (CrossReference)cNamespaceAssignment_1.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0.eContents().get(1);
+		private final RuleCall cNamespaceNamespaceURIParserRuleCall_1_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0.eContents().get(1);
 		
 		//IncludeCS:
-		//	"include" namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+		//	"include" namespace=[pivot::Namespace|URI];
 		public ParserRule getRule() { return rule; }
 
-		//"include" namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//"include" namespace=[pivot::Namespace|URI]
 		public Group getGroup() { return cGroup; }
 
 		//"include"
 		public Keyword getIncludeKeyword_0() { return cIncludeKeyword_0; }
 
-		//namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//namespace=[pivot::Namespace|URI]
 		public Assignment getNamespaceAssignment_1() { return cNamespaceAssignment_1; }
 
-		//[pivot::Namespace|SINGLE_QUOTED_STRING]
+		//[pivot::Namespace|URI]
 		public CrossReference getNamespaceNamespaceCrossReference_1_0() { return cNamespaceNamespaceCrossReference_1_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1() { return cNamespaceNamespaceSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1; }
+		//URI
+		public RuleCall getNamespaceNamespaceURIParserRuleCall_1_0_1() { return cNamespaceNamespaceURIParserRuleCall_1_0_1; }
 	}
 
 	public class InitCSElements extends AbstractParserRuleElementFinder {
@@ -742,26 +742,26 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLibraryKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPackageAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cPackagePackageCrossReference_1_0 = (CrossReference)cPackageAssignment_1.eContents().get(0);
-		private final RuleCall cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1 = (RuleCall)cPackagePackageCrossReference_1_0.eContents().get(1);
+		private final RuleCall cPackagePackageURIParserRuleCall_1_0_1 = (RuleCall)cPackagePackageCrossReference_1_0.eContents().get(1);
 		
 		//LibraryCS returns base::LibraryCS:
-		//	"library" package=[pivot::Package|SINGLE_QUOTED_STRING];
+		//	"library" package=[pivot::Package|URI];
 		public ParserRule getRule() { return rule; }
 
-		//"library" package=[pivot::Package|SINGLE_QUOTED_STRING]
+		//"library" package=[pivot::Package|URI]
 		public Group getGroup() { return cGroup; }
 
 		//"library"
 		public Keyword getLibraryKeyword_0() { return cLibraryKeyword_0; }
 
-		//package=[pivot::Package|SINGLE_QUOTED_STRING]
+		//package=[pivot::Package|URI]
 		public Assignment getPackageAssignment_1() { return cPackageAssignment_1; }
 
-		//[pivot::Package|SINGLE_QUOTED_STRING]
+		//[pivot::Package|URI]
 		public CrossReference getPackagePackageCrossReference_1_0() { return cPackagePackageCrossReference_1_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1() { return cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1; }
+		//URI
+		public RuleCall getPackagePackageURIParserRuleCall_1_0_1() { return cPackagePackageURIParserRuleCall_1_0_1; }
 	}
 
 	public class OperationContextDeclCSElements extends AbstractParserRuleElementFinder {
@@ -1543,7 +1543,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportCS returns base::ImportCS:
-	//	"import" (name=Identifier ":")? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+	//	"import" (name=Identifier ":")? namespace=[pivot::Namespace|URI];
 	public ImportCSElements getImportCSAccess() {
 		return (pImportCS != null) ? pImportCS : (pImportCS = new ImportCSElements());
 	}
@@ -1553,7 +1553,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IncludeCS:
-	//	"include" namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+	//	"include" namespace=[pivot::Namespace|URI];
 	public IncludeCSElements getIncludeCSAccess() {
 		return (pIncludeCS != null) ? pIncludeCS : (pIncludeCS = new IncludeCSElements());
 	}
@@ -1584,7 +1584,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibraryCS returns base::LibraryCS:
-	//	"library" package=[pivot::Package|SINGLE_QUOTED_STRING];
+	//	"library" package=[pivot::Package|URI];
 	public LibraryCSElements getLibraryCSAccess() {
 		return (pLibraryCS != null) ? pLibraryCS : (pLibraryCS = new LibraryCSElements());
 	}
@@ -1785,6 +1785,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getANY_OTHERRule() {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
+
+	//URI:
+	//	SINGLE_QUOTED_STRING;
+	public EssentialOCLGrammarAccess.URIElements getURIAccess() {
+		return gaEssentialOCL.getURIAccess();
+	}
+	
+	public ParserRule getURIRule() {
+		return getURIAccess().getRule();
+	}
 
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";

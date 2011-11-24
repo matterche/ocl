@@ -844,7 +844,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     package=[Package|SINGLE_QUOTED_STRING]
+	 *     package=[Package|URI]
 	 */
 	protected void sequence_LibraryCS(EObject context, LibraryCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -856,7 +856,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	 *     (
 	 *         ownedLibrary+=LibraryCS* 
 	 *         name=Name 
-	 *         (nsPrefix=Identifier nsURI=SINGLE_QUOTED_STRING)? 
+	 *         (nsPrefix=Identifier nsURI=URI)? 
 	 *         (ownedNestedPackage+=PackageCS | ownedPrecedence+=PrecedenceCS+ | ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)*
 	 *     )
 	 */
@@ -971,11 +971,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name=Name 
-	 *         (nsPrefix=Identifier nsURI=SINGLE_QUOTED_STRING)? 
-	 *         (ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)*
-	 *     )
+	 *     (name=Name (nsPrefix=Identifier nsURI=URI)? (ownedNestedPackage+=PackageCS | ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)*)
 	 */
 	protected void sequence_PackageCS(EObject context, PackageCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

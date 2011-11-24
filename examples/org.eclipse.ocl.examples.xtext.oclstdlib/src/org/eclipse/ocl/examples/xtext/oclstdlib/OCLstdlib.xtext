@@ -29,7 +29,7 @@ import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecor
 Library returns LibRootPackageCS:
 	(ownedLibrary+=LibraryCS ';')*
     'library' name=Name
-	(':' nsPrefix=Identifier '=' nsURI=SINGLE_QUOTED_STRING)?
+	(':' nsPrefix=Identifier '=' nsURI=URI)?
 	'{' (ownedNestedPackage+=PackageCS
 		| ('precedence' (ownedPrecedence+=PrecedenceCS)+ ';')
 	    | ownedType+=ClassifierCS
@@ -157,7 +157,7 @@ LambdaTypeCS returns base::LambdaTypeCS:
 ;
 
 LibraryCS returns base::LibraryCS :
-	'import' package=[pivot::Package|SINGLE_QUOTED_STRING]
+	'import' package=[pivot::Package|URI]
 ;
 
 OperationCS returns base::OperationCS:
@@ -180,7 +180,7 @@ LibOperationCS returns LibOperationCS:
 
 PackageCS returns base::PackageCS:
 	'package' name=Name
-	(':' nsPrefix=Identifier '=' nsURI=SINGLE_QUOTED_STRING)?
+	(':' nsPrefix=Identifier '=' nsURI=URI)?
 	'{'
 		(ownedNestedPackage+=PackageCS
 	   | ownedType+=ClassifierCS

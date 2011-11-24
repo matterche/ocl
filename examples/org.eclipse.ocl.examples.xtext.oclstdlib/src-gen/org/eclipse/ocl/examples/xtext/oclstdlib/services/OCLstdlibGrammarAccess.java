@@ -33,7 +33,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNsPrefixIdentifierParserRuleCall_3_1_0 = (RuleCall)cNsPrefixAssignment_3_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		private final Assignment cNsURIAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
-		private final RuleCall cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0 = (RuleCall)cNsURIAssignment_3_3.eContents().get(0);
+		private final RuleCall cNsURIURIParserRuleCall_3_3_0 = (RuleCall)cNsURIAssignment_3_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
 		private final Assignment cOwnedNestedPackageAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
@@ -53,12 +53,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		////import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 		//Library returns LibRootPackageCS:
-		//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+		//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{"
 		//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 		//	ownedAnnotation+=AnnotationElementCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+		//(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{"
 		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 		//ownedAnnotation+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
@@ -84,7 +84,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 
-		//(":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)?
+		//(":" nsPrefix=Identifier "=" nsURI=URI)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//":"
@@ -99,11 +99,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_3_2() { return cEqualsSignKeyword_3_2; }
 
-		//nsURI=SINGLE_QUOTED_STRING
+		//nsURI=URI
 		public Assignment getNsURIAssignment_3_3() { return cNsURIAssignment_3_3; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0() { return cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_3_3_0; }
+		//URI
+		public RuleCall getNsURIURIParserRuleCall_3_3_0() { return cNsURIURIParserRuleCall_3_3_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -1140,26 +1140,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPackageAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cPackagePackageCrossReference_1_0 = (CrossReference)cPackageAssignment_1.eContents().get(0);
-		private final RuleCall cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1 = (RuleCall)cPackagePackageCrossReference_1_0.eContents().get(1);
+		private final RuleCall cPackagePackageURIParserRuleCall_1_0_1 = (RuleCall)cPackagePackageCrossReference_1_0.eContents().get(1);
 		
 		//LibraryCS returns base::LibraryCS:
-		//	"import" package=[pivot::Package|SINGLE_QUOTED_STRING];
+		//	"import" package=[pivot::Package|URI];
 		public ParserRule getRule() { return rule; }
 
-		//"import" package=[pivot::Package|SINGLE_QUOTED_STRING]
+		//"import" package=[pivot::Package|URI]
 		public Group getGroup() { return cGroup; }
 
 		//"import"
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 
-		//package=[pivot::Package|SINGLE_QUOTED_STRING]
+		//package=[pivot::Package|URI]
 		public Assignment getPackageAssignment_1() { return cPackageAssignment_1; }
 
-		//[pivot::Package|SINGLE_QUOTED_STRING]
+		//[pivot::Package|URI]
 		public CrossReference getPackagePackageCrossReference_1_0() { return cPackagePackageCrossReference_1_0; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1() { return cPackagePackageSINGLE_QUOTED_STRINGTerminalRuleCall_1_0_1; }
+		//URI
+		public RuleCall getPackagePackageURIParserRuleCall_1_0_1() { return cPackagePackageURIParserRuleCall_1_0_1; }
 	}
 
 	public class OperationCSElements extends AbstractParserRuleElementFinder {
@@ -1380,7 +1380,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNsPrefixIdentifierParserRuleCall_2_1_0 = (RuleCall)cNsPrefixAssignment_2_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		private final Assignment cNsURIAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0 = (RuleCall)cNsURIAssignment_2_3.eContents().get(0);
+		private final RuleCall cNsURIURIParserRuleCall_2_3_0 = (RuleCall)cNsURIAssignment_2_3.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Assignment cOwnedNestedPackageAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
@@ -1392,11 +1392,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//PackageCS returns base::PackageCS:
-		//	"package" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS |
+		//	"package" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedNestedPackage+=PackageCS |
 		//	ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS |
+		//"package" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedNestedPackage+=PackageCS |
 		//ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -1409,7 +1409,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//(":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)?
+		//(":" nsPrefix=Identifier "=" nsURI=URI)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//":"
@@ -1424,11 +1424,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2_2() { return cEqualsSignKeyword_2_2; }
 
-		//nsURI=SINGLE_QUOTED_STRING
+		//nsURI=URI
 		public Assignment getNsURIAssignment_2_3() { return cNsURIAssignment_2_3; }
 
-		//SINGLE_QUOTED_STRING
-		public RuleCall getNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0() { return cNsURISINGLE_QUOTED_STRINGTerminalRuleCall_2_3_0; }
+		//URI
+		public RuleCall getNsURIURIParserRuleCall_2_3_0() { return cNsURIURIParserRuleCall_2_3_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
@@ -2276,7 +2276,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 	////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 	//Library returns LibRootPackageCS:
-	//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+	//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{"
 	//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
 	//	ownedAnnotation+=AnnotationElementCS)* "}";
 	public LibraryElements getLibraryAccess() {
@@ -2460,7 +2460,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibraryCS returns base::LibraryCS:
-	//	"import" package=[pivot::Package|SINGLE_QUOTED_STRING];
+	//	"import" package=[pivot::Package|URI];
 	public LibraryCSElements getLibraryCSAccess() {
 		return (pLibraryCS != null) ? pLibraryCS : (pLibraryCS = new LibraryCSElements());
 	}
@@ -2493,7 +2493,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageCS returns base::PackageCS:
-	//	"package" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS |
+	//	"package" name=Name (":" nsPrefix=Identifier "=" nsURI=URI)? "{" (ownedNestedPackage+=PackageCS |
 	//	ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}";
 	public PackageCSElements getPackageCSAccess() {
 		return (pPackageCS != null) ? pPackageCS : (pPackageCS = new PackageCSElements());
@@ -2759,6 +2759,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getANY_OTHERRule() {
 		return gaEssentialOCL.getANY_OTHERRule();
 	} 
+
+	//URI:
+	//	SINGLE_QUOTED_STRING;
+	public EssentialOCLGrammarAccess.URIElements getURIAccess() {
+		return gaEssentialOCL.getURIAccess();
+	}
+	
+	public ParserRule getURIRule() {
+		return getURIAccess().getRule();
+	}
 
 	//EssentialOCLReservedKeyword:
 	//	"and" | "else" | "endif" | "if" | "implies" | "in" | "let" | "not" | "or" | "then" | "xor";

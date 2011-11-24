@@ -1030,10 +1030,12 @@ ruleImportCS returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getImportCSRule());
 	        }
         }
-	otherlv_3=RULE_SINGLE_QUOTED_STRING
-	{
-		newLeafNode(otherlv_3, grammarAccess.getImportCSAccess().getNamespaceNamespaceCrossReference_2_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getImportCSAccess().getNamespaceNamespaceCrossReference_2_0()); 
+	    }
+		ruleURI		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -1071,10 +1073,12 @@ ruleIncludeCS returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getIncludeCSRule());
 	        }
         }
-	otherlv_1=RULE_SINGLE_QUOTED_STRING
-	{
-		newLeafNode(otherlv_1, grammarAccess.getIncludeCSAccess().getNamespaceNamespaceCrossReference_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getIncludeCSAccess().getNamespaceNamespaceCrossReference_1_0()); 
+	    }
+		ruleURI		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -1272,10 +1276,12 @@ ruleLibraryCS returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getLibraryCSRule());
 	        }
         }
-	otherlv_1=RULE_SINGLE_QUOTED_STRING
-	{
-		newLeafNode(otherlv_1, grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getLibraryCSAccess().getPackagePackageCrossReference_1_0()); 
+	    }
+		ruleURI		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -2320,6 +2326,34 @@ ruleNUMBER_LITERAL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     newLeafNode(this_INT_7, grammarAccess.getNUMBER_LITERALAccess().getINTTerminalRuleCall_2_2()); 
     }
 )?)
+    ;
+
+
+
+
+
+// Entry rule entryRuleURI
+entryRuleURI returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getURIRule()); } 
+	 iv_ruleURI=ruleURI 
+	 { $current=$iv_ruleURI.current.getText(); }  
+	 EOF 
+;
+
+// Rule URI
+ruleURI returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_SINGLE_QUOTED_STRING_0=RULE_SINGLE_QUOTED_STRING    {
+		$current.merge(this_SINGLE_QUOTED_STRING_0);
+    }
+
+    { 
+    newLeafNode(this_SINGLE_QUOTED_STRING_0, grammarAccess.getURIAccess().getSINGLE_QUOTED_STRINGTerminalRuleCall()); 
+    }
+
     ;
 
 
