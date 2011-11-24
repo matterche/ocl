@@ -118,37 +118,32 @@ public class RoundTripTests extends XtextTestCase
 		return (BaseCSResource) xtextResource;
 	}
 	
-	public void doRoundTripFromCompleteOCL(MetaModelManager metaModelManager1, String stem) throws IOException, InterruptedException {
+	public void doRoundTripFromCompleteOCL(String stem) throws IOException, InterruptedException {
 		String inputName = stem + ".ocl";
-		String pivotName = stem + ".ocl.pivot";
-//		String ecoreName = stem + ".ecore";
 		String outputName = stem + ".regenerated.ocl";
 		URI inputURI = getProjectFileURI(inputName);
-		URI pivotURI = getProjectFileURI(pivotName);
-//		URI ecoreURI = getProjectFileURI(ecoreName);
 		URI outputURI = getProjectFileURI(outputName);
 
+		MetaModelManager metaModelManager1 = new MetaModelManager();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager1);
 		BaseCSResource xtextResource1 = createXtextFromURI(metaModelManager1, inputURI);
 		PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1, 2);
-//		Resource ecoreResource = createEcoreFromPivot(metaModelManager1, pivotResource1, ecoreURI);
-//		MetaModelManager metaModelManager2 = new MetaModelManager();
-//		PivotResource pivotResource2 = createPivotFromEcore(metaModelManager2, ecoreResource);
-		@SuppressWarnings("unused")
 		Resource pivotResource2 = CompleteOCLSplitter.separate(metaModelManager1, pivotResource1);
+		@SuppressWarnings("unused")
 		BaseCSResource xtextResource2 = createCompleteOCLXtextFromPivot(metaModelManager1, pivotResource2, outputURI);
-//		metaModelManager2.dispose();
-//		metaModelManager2 = null;
+		metaModelManager1.dispose();
+		metaModelManager1 = null;
 		//
-/*		MetaModelManager metaModelManager3 = new MetaModelManager();
+		MetaModelManager metaModelManager3 = new MetaModelManager();
 		BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
+		@SuppressWarnings("unused")
 		PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 2);
-		Map<String,Object> options = new HashMap<String,Object>();
-		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
-		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
-		((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
-    	assertSameModel(pivotResource1, pivotResource3, options);
-		metaModelManager3.dispose(); */
+//		Map<String,Object> options = new HashMap<String,Object>();
+//		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
+//		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+//		((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
+//    	assertSameModel(pivotResource1, pivotResource3, options);
+		metaModelManager3.dispose();
 	}
 	
 	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException {
@@ -336,11 +331,11 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
-		doRoundTripFromCompleteOCL(new MetaModelManager(), "Fruit");
+		doRoundTripFromCompleteOCL("Fruit");
 	}
 
 	public void testCompleteOCLRoundTrip_Names() throws IOException, InterruptedException {
-		doRoundTripFromCompleteOCL(new MetaModelManager(), "Names");
+		doRoundTripFromCompleteOCL("Names");
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {
