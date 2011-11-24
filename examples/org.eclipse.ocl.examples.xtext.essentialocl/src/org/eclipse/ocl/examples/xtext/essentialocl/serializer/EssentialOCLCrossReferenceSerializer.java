@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.serializer;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -53,24 +54,36 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		String ruleName = linkingHelper.getRuleNameFrom(crossref);
 		boolean foundOne = false;
 		List<ISerializationDiagnostic> recordedErrros = null;
-		for (IEObjectDescription desc : scope.getElements(target)) {
-			foundOne = true;
-			QualifiedName name = desc.getName();
-			int iMax = name.getSegmentCount();
-			String[] converted = new String[iMax];
-			String unconverted = null;
-			try {
-				for (int i = 0; i < iMax; i++) {
-					unconverted = name.getSegment(i);
-					converted[i] = valueConverter.toString(unconverted, ruleName);
-				}
-				return qualifiedNameConverter.toString(new QualifiedName(converted) {});
-			} catch (ValueConverterException e) {
-				if (errors != null) {
-					if (recordedErrros == null)
-						recordedErrros = Lists.newArrayList();
-					recordedErrros.add(diagnostics.getValueConversionExceptionDiagnostic(semanticObject, crossref,
-							unconverted, e));
+		Iterable<IEObjectDescription> elements = scope.getElements(target);
+		if ("URI".equals(ruleName)) {
+			for (IEObjectDescription desc : elements) {
+				foundOne = true;
+				URI uri = URI.createURI(desc.getName().toString());
+				URI baseURI = semanticObject.eResource().getURI();
+				URI deresolvedURI = uri.deresolve(baseURI);
+				return valueConverter.toString(deresolvedURI.toString(), ruleName);
+			}
+		}
+		else {
+			for (IEObjectDescription desc : elements) {
+				foundOne = true;
+				QualifiedName name = desc.getName();
+				int iMax = name.getSegmentCount();
+				String[] converted = new String[iMax];
+				String unconverted = null;
+				try {
+					for (int i = 0; i < iMax; i++) {
+						unconverted = name.getSegment(i);
+						converted[i] = valueConverter.toString(unconverted, ruleName);
+					}
+					return qualifiedNameConverter.toString(new QualifiedName(converted) {});
+				} catch (ValueConverterException e) {
+					if (errors != null) {
+						if (recordedErrros == null)
+							recordedErrros = Lists.newArrayList();
+						recordedErrros.add(diagnostics.getValueConversionExceptionDiagnostic(semanticObject, crossref,
+								unconverted, e));
+					}
 				}
 			}
 		}
