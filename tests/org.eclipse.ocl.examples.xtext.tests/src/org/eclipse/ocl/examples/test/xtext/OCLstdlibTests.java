@@ -153,8 +153,8 @@ public class OCLstdlibTests extends XtextTestCase
 			"import 'minimal.oclstdlib';\n"+
 			"library lib : lib = 'http://minimal.oclstdlib'{\n"+
 			"    type OclAny : AnyType {\n"+
-			"    	operation a(elem : Boolean) : Integer {\n"+
-			"           post a: elem;\n"+
+			"    	operation a(elem : Boolean) : Boolean {\n"+
+			"           post a: result = elem;\n"+
 			"       }\n"+
 			"    }\n"+
 			"}\n";		
