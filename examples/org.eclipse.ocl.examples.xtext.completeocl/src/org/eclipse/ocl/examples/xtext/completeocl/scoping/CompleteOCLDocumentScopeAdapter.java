@@ -41,6 +41,7 @@ public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter<
 				if (importName != null) {
 					environmentView.addElement(importName, namespace);
 				} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+					environmentView.addNamedElement(namespace);
 					for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages()) {
 						environmentView.addNamedElement(rootPackage);		// FIXME Rationalize root of pivot model
 						environmentView.addNamedElements(rootPackage.getNestedPackages());
