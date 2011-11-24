@@ -24,6 +24,7 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -73,6 +74,22 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			}
 		}
 	}
+
+	protected static class UML2EcoreConverterWithReverseMap extends UML2EcoreConverter
+	{
+		private Map<EModelElement, org.eclipse.uml2.uml.Element> reverseMap = null;
+		
+		public org.eclipse.uml2.uml.Element getSource(EModelElement eObject) {
+			if (reverseMap == null) {
+				reverseMap = new HashMap<EModelElement, org.eclipse.uml2.uml.Element>();
+				for (Map.Entry<org.eclipse.uml2.uml.Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
+					reverseMap.put(entry.getValue(), entry.getKey());
+				}
+			}
+			return reverseMap.get(eObject);
+		}
+	}
+
 
 	public static MetaModelManager.Factory FACTORY = new Factory();
 //	private static final Logger logger = Logger.getLogger(UML2Ecore2Pivot.class);
@@ -187,12 +204,24 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	} */
 	
 	protected final Resource umlResource;					// Set via eAdapters.add()
-	private UML2EcoreConverter uml2EcoreConverter = null;
+	private UML2EcoreConverterWithReverseMap uml2EcoreConverter = null;
 	private Map<String, String> options = null;
 
 	public UML2Ecore2Pivot(Resource umlResource, MetaModelManager metaModelManager) {
 		super(metaModelManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension("ecore")), metaModelManager);
 		this.umlResource = umlResource;
+	}
+
+	@Override
+	public void addMapping(EObject eObject, Element pivotElement) {
+		if ((uml2EcoreConverter != null) && (eObject instanceof EModelElement)) {
+			org.eclipse.uml2.uml.Element umlElement = uml2EcoreConverter.getSource((EModelElement)eObject);
+			super.addMapping(umlElement, pivotElement);
+			addCreated(eObject, pivotElement);
+		}
+		else {
+			super.addMapping(eObject, pivotElement);
+		}
 	}
 
 	@Override
@@ -243,7 +272,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 				options.put(UML2EcoreConverter.OPTION__COMMENTS,  UMLUtil.OPTION__PROCESS);
 			}
 			if (uml2EcoreConverter == null) {
-				uml2EcoreConverter = new UML2EcoreConverter();
+				uml2EcoreConverter = new UML2EcoreConverterWithReverseMap();
 			}
 			Collection<? extends EObject> ecoreContents = uml2EcoreConverter.convert(contents, options, null, null);
 			ecoreResource.getContents().addAll(ecoreContents);

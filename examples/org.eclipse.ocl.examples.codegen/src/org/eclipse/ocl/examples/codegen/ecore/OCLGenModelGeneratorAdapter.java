@@ -102,7 +102,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			if (rule.getStereotype().equals(UMLReflection.INVARIANT) && rule.getName().equals(key)) {
 				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, "invariant_" + rule.getName());
 				((EClass)eClassifier).getEOperations().add(eOperation);
-				ecore2pivot.addCreated(eOperation, rule);
+				ecore2pivot.addMapping(eOperation, rule);
 				EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body", body);
 				if (message != null) {
 					EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body" + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX, message);

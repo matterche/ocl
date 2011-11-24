@@ -75,7 +75,6 @@ import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
 public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 {
@@ -91,7 +90,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		EMap<String, String> details = eObject.getDetails();
 		Annotation pivotElement = PivotFactory.eINSTANCE.createAnnotation();
 		pivotElement.setName(source);
-		setOriginalMapping(pivotElement, eObject);
+		converter.addMapping(eObject, pivotElement);
 		doSwitchAll(pivotElement.getOwnedContents(), eObject.getContents());
 		for (Map.Entry<String, String> entry : details) {
 			String key = entry.getKey();
@@ -147,7 +146,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				pivotConstraints.add(constraint);
-				setOriginalMapping(constraint, eOperation);
+				converter.addMapping(eOperation, constraint);
 			}
 			else {
 				Object pivotObject = doSwitch(eOperation);
@@ -386,7 +385,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public Element caseETypeParameter(ETypeParameter eObject) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, eObject);
-		setOriginalMapping(pivotElement, eObject);
+		converter.addMapping(eObject, pivotElement);
 		String name = eObject.getName();
 		pivotElement.setName(name);
 		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
@@ -480,10 +479,6 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsSerializable(eDataType.isSerializable());
 	}
 
-	protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {
-		setOriginalMapping(pivotElement, eModelElement);
-	}
-
 	protected void copyTemplateSignature(TemplateableElement pivotElement, List<ETypeParameter> eTypeParameters) {
 		if (!eTypeParameters.isEmpty()) {
 			TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
@@ -518,7 +513,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected void copyNamedElement(NamedElement pivotElement, ENamedElement eNamedElement) {
-		copyModelElement(pivotElement, eNamedElement);
+		converter.addMapping(eNamedElement, pivotElement);
 		String name = eNamedElement.getName();
 		pivotElement.setName(name);
 	}
@@ -617,17 +612,5 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		for (EObject eObject : eObjects) {
 			doSwitch(eObject);
 		}
-	}
-
-	protected void setOriginalMapping(Element pivotElement, EObject eObject) {
-		((PivotObjectImpl)pivotElement).setTarget(eObject);
-/*			csModelElement.setOriginalObject(eModelElement);
-			if (ecoreResource instanceof XMLResource) {
-				String xmiId = ((XMLResource)ecoreResource).getID(eModelElement);
-				if (xmiId != null) {
-					csModelElement.setOriginalXmiId(xmiId);
-				}
-			} */
-		converter.addCreated(eObject, pivotElement);
 	}
 }

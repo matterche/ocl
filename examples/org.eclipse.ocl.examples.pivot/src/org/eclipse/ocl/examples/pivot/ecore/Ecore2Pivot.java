@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
@@ -222,18 +223,25 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		metaModelManager.addListener(this);
 	}
 	
-	public void addCreated(EObject eObject, Element pivotElement) {
-		if (eObject instanceof EClassifier) {
-			Type pivotType = getEcore2PivotMap().get(eObject);
-			if (pivotType != null) {
-				pivotElement = pivotType;
-			}
-		}
+	protected void addCreated(EObject eObject, Element pivotElement) {
 		createMap.put(eObject, pivotElement);
 	}
 
 	public void addGenericType(EGenericType eObject) {
 		genericTypes.add(eObject);
+	}
+	
+	public void addMapping(EObject eObject, Element pivotElement) {
+		if (pivotElement instanceof PivotObjectImpl) {
+			((PivotObjectImpl)pivotElement).setTarget(eObject);
+		}
+		if (eObject instanceof EClassifier) {
+			Type pivotType = getEcore2PivotMap().get(eObject);
+			if (pivotType != null) {  		// If eObject is a known synonym such as EString
+				pivotElement = pivotType;	// remap to the library type
+			}
+		}
+		addCreated(eObject, pivotElement);
 	}
 
 	protected URI createPivotURI() {
