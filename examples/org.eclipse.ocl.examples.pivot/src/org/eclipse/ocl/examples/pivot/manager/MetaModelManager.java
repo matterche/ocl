@@ -1588,18 +1588,19 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return precedenceManager.getPrefixPrecedence(operatorName);
 	}
 
-	public EObject getPrimaryElement(EObject element) {
+	@SuppressWarnings("unchecked")
+	public <T extends EObject> T getPrimaryElement(T element) {
 		if (element instanceof Operation) {
-			return getPrimaryOperation((Operation)element);
+			return (T) getPrimaryOperation((Operation)element);
 		}
 		else if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
-			return getPrimaryPackage((org.eclipse.ocl.examples.pivot.Package)element);
+			return (T) getPrimaryPackage((org.eclipse.ocl.examples.pivot.Package)element);
 		}
 		else if (element instanceof Property) {
-			return getPrimaryProperty((Property)element);
+			return (T) getPrimaryProperty((Property)element);
 		}
 		else if (element instanceof Type) {
-			return getPrimaryType((Type)element);
+			return (T) getPrimaryType((Type)element);
 		} 
 		return element;
 	}
