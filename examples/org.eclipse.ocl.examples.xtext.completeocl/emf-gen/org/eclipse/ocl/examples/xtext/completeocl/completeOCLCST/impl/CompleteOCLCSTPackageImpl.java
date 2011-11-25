@@ -776,7 +776,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		// Add supertypes to classes
 		bodyCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
-		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootPackageCS());
+		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getPackageCS());
+		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		contextConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
 		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());

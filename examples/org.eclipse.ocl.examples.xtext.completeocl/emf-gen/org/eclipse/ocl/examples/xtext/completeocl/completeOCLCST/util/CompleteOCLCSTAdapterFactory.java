@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
@@ -270,11 +269,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseRootCS(RootCS object)
 			{
 				return createRootCSAdapter();
-			}
-			@Override
-			public Adapter caseRootPackageCS(RootPackageCS object)
-			{
-				return createRootPackageCSAdapter();
 			}
 			@Override
 			public Adapter caseSpecificationCS(SpecificationCS object)
@@ -769,21 +763,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createRootCSAdapter()
-	{
-		return null;
-	}
-
-/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS <em>Root Package CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS
-	 * @generated
-	 */
-	public Adapter createRootPackageCSAdapter()
 	{
 		return null;
 	}

@@ -54,7 +54,7 @@ public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 	}
 
 	public R visitCompleteOCLDocumentCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS object) {
-		return visitRootPackageCS(object);
+		return visitPackageCS(object);
 	}
 
 	public R visitContextConstraintCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS object) {

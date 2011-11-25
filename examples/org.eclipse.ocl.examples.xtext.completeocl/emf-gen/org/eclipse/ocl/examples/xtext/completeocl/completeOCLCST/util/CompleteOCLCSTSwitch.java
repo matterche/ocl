@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
@@ -153,7 +152,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				CompleteOCLDocumentCS completeOCLDocumentCS = (CompleteOCLDocumentCS)theEObject;
 				T result = caseCompleteOCLDocumentCS(completeOCLDocumentCS);
-				if (result == null) result = caseRootPackageCS(completeOCLDocumentCS);
 				if (result == null) result = casePackageCS(completeOCLDocumentCS);
 				if (result == null) result = caseRootCS(completeOCLDocumentCS);
 				if (result == null) result = caseNamespaceCS(completeOCLDocumentCS);
@@ -880,22 +878,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	 * @generated
 	 */
 	public T caseRootCS(RootCS object)
-	{
-		return null;
-	}
-
-/**
-	 * Returns the result of interpreting the object as an instance of '<em>Root Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Root Package CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRootPackageCS(RootPackageCS object)
 	{
 		return null;
 	}
