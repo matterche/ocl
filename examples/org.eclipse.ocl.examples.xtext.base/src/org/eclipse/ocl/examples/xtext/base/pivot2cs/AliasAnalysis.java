@@ -27,9 +27,12 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -61,8 +64,9 @@ public class AliasAnalysis extends AdapterImpl
 		AliasAnalysis adapter = PivotUtil.getAdapter(AliasAnalysis.class, eAdapters);
 		if (adapter == null) {
 			adapter = new AliasAnalysis(resource);
-			adapter.computePackages();
-			adapter.computeAliases();
+			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			adapter.computePackages(metaModelManager);
+			adapter.computeAliases(metaModelManager);
 		}
 		return adapter;
 	}
@@ -82,8 +86,11 @@ public class AliasAnalysis extends AdapterImpl
 		resource.eAdapters().add(this);
 	}
 
-	private void computeAliases() {
+	private void computeAliases(MetaModelManager metaModelManager) {		
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
+			if (metaModelManager != null) {
+				localPackage = metaModelManager.getPrimaryPackage(localPackage);
+			}
 			if ((localPackage.getNsPrefix() != null) || (localPackage.getNestingPackage() == null)) {
 				if (!allAliases.containsKey(localPackage)) {
 					String alias = computeAlias(localPackage);
@@ -92,6 +99,9 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		for (org.eclipse.ocl.examples.pivot.Package otherPackage : otherPackages) {
+			if (metaModelManager != null) {
+				otherPackage = metaModelManager.getPrimaryPackage(otherPackage);
+			}
 			if ((otherPackage.getNsPrefix() != null) || (otherPackage.getNestingPackage() == null)) {
 				if (!allAliases.containsKey(otherPackage)) {
 					String alias = computeAlias(otherPackage);
@@ -101,8 +111,11 @@ public class AliasAnalysis extends AdapterImpl
 		}
 	}
 
-	private void addName(String name, EObject eObject) {
+	private void addName(MetaModelManager metaModelManager, String name, EObject eObject) {
 		if (name != null) {
+			if (metaModelManager != null) {
+				eObject = metaModelManager.getPrimaryElement(eObject);
+			}
 			if (!allNames.containsKey(name)) {
 				allNames.put(name, eObject);
 			}
@@ -113,18 +126,24 @@ public class AliasAnalysis extends AdapterImpl
 	}
 
 	private String computeAlias(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		MetaModelManager metaModelManager = getMetaModelManager();
+		if (metaModelManager != null) {
+			pivotPackage = metaModelManager.getPrimaryPackage(pivotPackage);
+		}
 		String nsPrefix = pivotPackage.getNsPrefix();
 		String aliasBase = nsPrefix != null ? nsPrefix : pivotPackage.getName();		// FIXME NsPrefix
 		int index = 0;
 		String alias = aliasBase;
 		while (allNames.containsKey(alias) && (allNames.get(alias) != pivotPackage)) {
+			@SuppressWarnings("unused")
+			EObject debugObject = allNames.get(alias);
 			alias = aliasBase + "_" + index++;
 		}
-		addName(alias, pivotPackage);
+		addName(metaModelManager, alias, pivotPackage);
 		return alias;
 	}
 
-	private void computePackages() {
+	private void computePackages(MetaModelManager metaModelManager) {
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {
@@ -139,10 +158,10 @@ public class AliasAnalysis extends AdapterImpl
 				eObject = ((Pivotable)eObject).getPivot();
 			}
 			if (eObject instanceof NamedElement) {
-				addName(((NamedElement)eObject).getName(), eObject);
+				addName(metaModelManager, ((NamedElement)eObject).getName(), eObject);
 				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) && (csObject instanceof PackageCS)) {
 					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
-					addName(pivotPackage.getNsPrefix(), eObject);
+					addName(metaModelManager, pivotPackage.getNsPrefix(), eObject);
 					localPackages.add(pivotPackage);
 				}
 				else {
@@ -180,11 +199,29 @@ public class AliasAnalysis extends AdapterImpl
 			eObject = ((Pivotable)eObject).getPivot();
 		}
 		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-			return allAliases.get(eObject);
+			String alias = allAliases.get(eObject);
+			if (alias != null) {
+				return alias;
+			}
+			MetaModelManager metaModelManager = getMetaModelManager();
+			if (metaModelManager != null) {
+				eObject = metaModelManager.getPrimaryElement(eObject);
+				return allAliases.get(eObject);
+			}
 		}
-		else {
-			return null;
+		return null;
+	}
+
+	public MetaModelManager getMetaModelManager() {
+		ResourceSet resourceSet = ((Resource)getTarget()).getResourceSet();
+		MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
+		if (metaModelManager == null) {
+			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+			if (adapter != null) {
+				metaModelManager = adapter.getMetaModelManager();
+			}
 		}
+		return metaModelManager;
 	}
 	
 	@Override

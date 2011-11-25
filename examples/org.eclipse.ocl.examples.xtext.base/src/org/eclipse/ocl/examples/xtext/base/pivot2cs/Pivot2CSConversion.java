@@ -55,7 +55,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -98,7 +98,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	protected void createImports(Resource csResource, Set<Package> importedPackages) {
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
 		URI csURI = csResource.getURI(); //.appendFileExtension("oclinecore");
-		RootPackageCS documentCS = (RootPackageCS) csResource.getContents().get(0);
+		RootCS documentCS = (RootCS) csResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImport();
 		for (org.eclipse.ocl.examples.pivot.Package importedPackage : importedPackages) {
 //			ModelElementCS csElement = createMap.get(importedPackage);

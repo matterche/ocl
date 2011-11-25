@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -67,70 +67,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return new BaseScopeView(metaModelManager, parent, target, eContainingFeature, targetReference);
 	}
 
-	public static QualifiedName getDivergentPath(List<PathElement> objectPath, List<PathElement> contextPath) {
-		int iSize = objectPath.size();
-		int i = PathElement.getCommonLength(objectPath, contextPath);
-		//
-		//	Serialize the divergent elements
-		//
-		final List<String> segmentList = new ArrayList<String>();
-//		String ruleName = "UnrestrictedName";
-		if (iSize > 0) {
-			for ( ; i < iSize-1; i++) {
-				PathElement objectPathElement = objectPath.get(i);
-				String objectName = objectPathElement.getName();
-				if ((segmentList.size() == 0) && (i < contextPath.size())) {
-					EObject objectElement = objectPathElement.getElement();
-					EObject contextElement = contextPath.get(i).getElement();
-					//
-					//	Use the name rather than the alias if within the same resource
-					//
-					Resource objectResource = objectElement.eResource();
-//					MetaModelManager metaModelManager = MetaModelManager.findAdapter(objectResource.getResourceSet());
-//					Resource orphanage = null; // WIP metaModelManager != null ? metaModelManager.getOrphanPackage().eResource() : null;
-					Resource contextResource = contextElement.eResource();
-					if ((objectResource == contextResource) /*|| (contextResource == orphanage)*/) {
-						objectName = ((NamedElement)objectElement).getName();
-					}
-				}
-				segmentList.add(objectName);
-			}
-			segmentList.add(objectPath.get(iSize-1).getName());
-		}
-//		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
-		return new QualifiedName(segmentList.toArray(new String[segmentList.size()])) {
-			@Override
-			public String toString() {
-				if (getSegmentCount() == 0)
-					return "";
-				if (getSegmentCount() == 1)
-					return getFirstSegment();
-				StringBuilder builder = new StringBuilder();
-				boolean isFirst = true;
-				for (String segment : getSegments()) {
-					if (!isFirst)
-						builder.append("::");
-					isFirst = false;
-					builder.append(segment);
-				}
-				return builder.toString();
-			}
-			
-		};
-	}
-
 	private static List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
-//		if (eObject instanceof Pivotable) {
-//			eObject = ((Pivotable)eObject).getPivot();
-//		}
-		if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-			String alias = aliasAnalysis.getAlias(eObject);
-			if (alias != null) {
-				List<PathElement> result = new ArrayList<PathElement>();
-				result.add(new PathElement(alias, eObject));
-				return result;
-			}
-		}
 		EObject eContainer = eObject.eContainer();
 		if (eContainer == null) {
 			return new ArrayList<PathElement>();
@@ -242,6 +179,9 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 //				return Collections.singletonList(objectDescription);
 //			}
 		}
+		else if (targetReference == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
+			descriptiveName = ((NamedElement)object).getName();
+		}
 		else if ((targetReference == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) && (object instanceof Type)) {
 			if (object instanceof PrimitiveType) {		// FIXME Redundant if namespaces correct
 				descriptiveName = ((PrimitiveType)object).getName();
@@ -256,15 +196,47 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 				ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
 				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
 				Element context = csContext.getPivot();
-				List<PathElement> contextPath = getPath(aliasAnalysis, context);
-				List<PathElement> objectPath = getPath(aliasAnalysis, (Element) object);
-				QualifiedName qualifiedRelativeName = getDivergentPath(objectPath, contextPath);
+				while ((context != null) && !(context instanceof Namespace) && !(context instanceof Type)) {
+					EObject container = context.eContainer();
+					if (container instanceof Element) {
+						context = (Element) container;
+					}
+					else {
+						break;
+					}
+				}
+				QualifiedPath contextPath = new QualifiedPath(getPath(aliasAnalysis, context));
+				QualifiedPath objectPath = new QualifiedPath(getPath(aliasAnalysis, (Element) object));
+				QualifiedPath qualifiedRelativeName = objectPath.deresolve(contextPath);
 				IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
 				return Collections.singletonList(objectDescription);
 			}
 		}
 		else if (object instanceof NamedElement) {
-			descriptiveName = ((NamedElement)object).getName();
+			EObject csRef = getTarget();
+			while ((csRef.eContainer() instanceof TypeRefCS)
+					|| (csRef.eContainer() instanceof TemplateParameterSubstitutionCS)
+					|| (csRef.eContainer() instanceof TemplateBindingCS)) {
+				csRef = csRef.eContainer();
+			}
+			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
+			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
+			Element context = csContext.getPivot();
+			while ((context != null) && !(context instanceof Namespace) && !(context instanceof Type)) {
+				EObject container = context.eContainer();
+				if (container instanceof Element) {
+					context = (Element) container;
+				}
+				else {
+					break;
+				}
+			}
+			QualifiedPath contextPath = new QualifiedPath(getPath(aliasAnalysis, context));
+			QualifiedPath objectPath = new QualifiedPath(getPath(aliasAnalysis, (Element) object));
+			QualifiedPath qualifiedRelativeName = objectPath.deresolve(contextPath);
+			IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
+			return Collections.singletonList(objectDescription);
+//			descriptiveName = ((NamedElement)object).getName();
 		}
 		if (descriptiveName != null) {
 			IEObjectDescription objectDescription = EObjectDescription.create(descriptiveName, object);
@@ -359,16 +331,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			s.append("::"); //$NON-NLS-1$
 			s.append(containmentFeature.getName());
 		}
-/*		if (!bindings.getBindings().isEmpty()) {
-			s.append("<"); //$NON-NLS-1$
-			String prefix = ""; //$NON-NLS-1$
-			for (TypeBindingCS binding : bindings.getBindings()) {
-				s.append(prefix);
-				s.append(binding.getSignature());
-				prefix = ","; //$NON-NLS-1$
-			}
-			s.append(">"); //$NON-NLS-1$
-		} */
 		s.append("] "); //$NON-NLS-1$
 		s.append(String.valueOf(target));
 		return s.toString();

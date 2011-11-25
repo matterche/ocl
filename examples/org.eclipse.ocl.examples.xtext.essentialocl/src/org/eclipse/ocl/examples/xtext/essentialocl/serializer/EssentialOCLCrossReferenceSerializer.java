@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.xtext.base.scope.QualifiedPath;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -36,6 +37,7 @@ import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 // FIXME Temporary workaround for Bug 361577
+@SuppressWarnings("restriction")
 public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializer
 {
 
@@ -68,12 +70,19 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			for (IEObjectDescription desc : elements) {
 				foundOne = true;
 				QualifiedName name = desc.getName();
-				int iMax = name.getSegmentCount();
+				List<String> segments;
+				if (name instanceof QualifiedPath) {
+					segments = ((QualifiedPath)name).getSegments(semanticObject);
+				}
+				else {
+					segments = name.getSegments();
+				}
+				int iMax = segments.size();
 				String[] converted = new String[iMax];
 				String unconverted = null;
 				try {
 					for (int i = 0; i < iMax; i++) {
-						unconverted = name.getSegment(i);
+						unconverted = segments.get(i);
 						converted[i] = valueConverter.toString(unconverted, ruleName);
 					}
 					return qualifiedNameConverter.toString(new QualifiedName(converted) {});
