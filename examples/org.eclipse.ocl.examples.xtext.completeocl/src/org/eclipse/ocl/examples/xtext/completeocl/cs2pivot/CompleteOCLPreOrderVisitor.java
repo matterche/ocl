@@ -28,7 +28,10 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -268,6 +271,12 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
+		for (LibraryCS csLibrary : object.getOwnedLibrary()) {
+			csLibrary.getPackage();						// Resolve the proxy to perform the import.
+		}
+		for (ImportCS csImport : object.getOwnedImport()) {
+			csImport.getNamespace();					// Resolve the proxy to perform the import.
+		}
 		Continuation<?> continuation = super.visitCompleteOCLDocumentCS(object);
 		for (IncludeCS csInclude : object.getOwnedInclude()) {
 			csInclude.getNamespace();					// Resolve the proxy to perform the import.

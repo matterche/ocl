@@ -914,10 +914,8 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	/**
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* operation=[Operation|UnreservedName]) | 
-	 *             operation=[Operation|UnrestrictedName]
-	 *         ) 
+	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]*)? 
+	 *         operation=[Operation|UnreservedName] 
 	 *         (parameters+=ParameterCS parameters+=ParameterCS*)? 
 	 *         ownedType=TypeExpCS? 
 	 *         (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
@@ -991,11 +989,9 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	/**
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* property=[Property|UnreservedName]) | 
-	 *             property=[Property|UnrestrictedName]
-	 *         ) 
-	 *         ownedType=TypeExpCS 
+	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]*)? 
+	 *         property=[Property|UnreservedName] 
+	 *         ownedType=TypeExpCS? 
 	 *         ((rules+=InitCS rules+=DerCS?)? | (rules+=DerCS rules+=InitCS?))
 	 *     )
 	 */

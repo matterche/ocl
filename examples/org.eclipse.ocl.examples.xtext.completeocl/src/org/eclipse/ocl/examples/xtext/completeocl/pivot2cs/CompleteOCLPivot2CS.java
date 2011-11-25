@@ -23,10 +23,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseDeclarationVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLPivot2CS;
+import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLReferenceVisitor;
 
 public class CompleteOCLPivot2CS extends EssentialOCLPivot2CS
 {	
@@ -39,16 +41,16 @@ public class CompleteOCLPivot2CS extends EssentialOCLPivot2CS
 		}
 
 		public BaseReferenceVisitor createReferenceVisitor(Pivot2CSConversion converter) {
-			return new BaseReferenceVisitor(converter);
+			return new EssentialOCLReferenceVisitor(converter);
 		}
 
 		public EClass[] getEClasses() {
 			return new EClass[] {
 				PivotPackage.Literals.CLASS,
 				PivotPackage.Literals.CONSTRAINT,
-//				PivotPackage.Literals.EXPRESSION_IN_OCL,
-//				PivotPackage.Literals.OPAQUE_EXPRESSION,
+				PivotPackage.Literals.OPERATION,
 				PivotPackage.Literals.PACKAGE,
+				PivotPackage.Literals.PROPERTY,
 				PivotPackage.Literals.TYPE
 			};
 		}
@@ -60,5 +62,15 @@ public class CompleteOCLPivot2CS extends EssentialOCLPivot2CS
 		for (Resource csResource : cs2pivotResourceMap.keySet()) {
 			MetaModelManagerResourceAdapter.getAdapter(csResource, metaModelManager);
 		}
+	}
+
+	@Override
+	public BaseDeclarationVisitor createDefaultDeclarationVisitor(Pivot2CSConversion converter) {
+		return new CompleteOCLDeclarationVisitor(converter);
+	}
+
+	@Override
+	public BaseReferenceVisitor createDefaultReferenceVisitor(Pivot2CSConversion converter) {
+		return new EssentialOCLReferenceVisitor(converter);
 	}
 }

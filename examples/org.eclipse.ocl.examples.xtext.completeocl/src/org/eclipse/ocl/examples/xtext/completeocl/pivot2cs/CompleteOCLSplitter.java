@@ -24,11 +24,14 @@ import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -52,7 +55,6 @@ public class CompleteOCLSplitter
 			return null;
 		}
 		URI uri = resource.getURI();
-		String fileExtension = uri.fileExtension();
 		URI oclURI = uri.trimFileExtension().appendFileExtension("ocl.pivot");
 		Resource oclResource = resource.getResourceSet().createResource(oclURI);	
 		Separator separator = new Separator(metaModelManager, oclResource);
@@ -87,7 +89,20 @@ public class CompleteOCLSplitter
 			Type parent = object.getOwningType();
 			Type separateParent = getSeparate(parent);
 			List<Operation> separateSiblings = separateParent.getOwnedOperations();
-			return cloneNamedElement(separateSiblings, object);	// FIXME overloads
+			@SuppressWarnings("serial")
+			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
+			{
+				@Override
+				protected void copyContainment(EReference eReference, EObject eObject, EObject copyEObject) {
+					if (eReference == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
+						super.copyContainment(eReference, eObject, copyEObject);
+					}
+				}				
+			};
+			Operation clone = (Operation) copier.copy(object);
+		    copier.copyReferences();
+			separateSiblings.add(clone);
+			return clone;
 		}
 
 		@Override
@@ -108,6 +123,8 @@ public class CompleteOCLSplitter
 				if (separateObject == null) {
 					separateObject = (org.eclipse.ocl.examples.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 					separateObject.setName(name);
+					separateObject.setNsURI(object.getNsURI());
+					separateObject.setNsPrefix(object.getNsPrefix());
 					separateSiblings.add(separateObject);
 					metaModelManager.addPackage(separateObject);
 				}
@@ -118,6 +135,8 @@ public class CompleteOCLSplitter
 				if (separateObject == null) {
 					separateObject = (org.eclipse.ocl.examples.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
 					separateObject.setName(name);
+					separateObject.setNsURI(object.getNsURI());
+					separateObject.setNsPrefix(object.getNsPrefix());
 					separateSiblings.add(separateObject);
 					metaModelManager.addPackage(separateObject);
 				}
@@ -140,7 +159,17 @@ public class CompleteOCLSplitter
 			Type parent = object.getOwningType();
 			Type separateParent = getSeparate(parent);
 			List<Property> separateSiblings = separateParent.getOwnedAttributes();
-			return cloneNamedElement(separateSiblings, object);
+			@SuppressWarnings("serial")
+			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
+			{
+				@Override
+				protected void copyContainment(EReference eReference, EObject eObject, EObject copyEObject) {
+				}
+			};
+			Property clone = (Property) copier.copy(object);
+		    copier.copyReferences();
+			separateSiblings.add(clone);
+			return clone;
 		}
 
 		@Override
@@ -155,17 +184,13 @@ public class CompleteOCLSplitter
 			String name = object.getName();
 			T separateObject = PivotUtil.getNamedElement(separateSiblings, name);
 			if (separateObject == null) {
-				separateObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+				@SuppressWarnings("unchecked")
+				T castObject = (T) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
+				separateObject = castObject;
 				separateObject.setName(name);
 				separateSiblings.add(separateObject);
 			}
 			return separateObject;
-		}
-
-		@Override
-		public EObject defaultCase(EObject object) {
-			// TODO Auto-generated method stub
-			return super.defaultCase(object);
 		}
 
 		public NamedElement getElementByName(Iterable<? extends EObject> elements, String name) {
@@ -183,7 +208,9 @@ public class CompleteOCLSplitter
 				separate = (NamedElement) doSwitch(element);
 				map.put(element, separate);
 			}
-			return (T) separate;
+			@SuppressWarnings("unchecked")
+			T castSeparate = (T) separate;
+			return castSeparate;
 		}		
 	}
 }

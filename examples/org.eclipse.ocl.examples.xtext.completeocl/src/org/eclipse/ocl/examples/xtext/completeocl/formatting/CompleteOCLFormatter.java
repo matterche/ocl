@@ -66,7 +66,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 
 	    {
 			BodyCSElements a = f.getBodyCSAccess();
-		    c.setLinewrap(2).before(a.getStereotypeBodyKeyword_0_0());
+//		    c.setLinewrap(2).before(a.getStereotypeBodyKeyword_0_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_2());
 		    c.setIndentation(a.getSpecificationAssignment_3(), a.getSpecificationAssignment_3());
 		    c.setLinewrap(2).after(a.getSpecificationAssignment_3());
@@ -118,13 +118,13 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 	    {
 			OperationContextDeclCSElements a = f.getOperationContextDeclCSAccess();
 		    c.setLinewrap(2).before(a.getContextKeyword_0());
-		    c.setNoSpace().around(a.getColonColonKeyword_1_0_1());
-		    c.setNoSpace().around(a.getColonColonKeyword_1_0_2_1());
-			c.setNoSpace().around(a.getLeftParenthesisKeyword_2());
-			c.setNoSpace().before(a.getCommaKeyword_3_1_0());
-			c.setNoSpace().before(a.getRightParenthesisKeyword_4());
-		    c.setLinewrap(2).after(a.getOwnedTypeAssignment_6());
-		    c.setIndentation(a.getLeftParenthesisKeyword_2(), a.getRightParenthesisKeyword_4());
+		    c.setNoSpace().around(a.getColonColonKeyword_1_1());
+		    c.setNoSpace().around(a.getColonColonKeyword_1_2_1());
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_3());
+			c.setNoSpace().before(a.getCommaKeyword_4_1_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_5());
+		    c.setLinewrap(1).after(a.getOwnedTypeAssignment_7());
+		    c.setIndentation(a.getLeftParenthesisKeyword_3(), a.getRightParenthesisKeyword_5());
 	    }
 	    {
 	    	PackageDeclarationCSElements a = f.getPackageDeclarationCSAccess();
@@ -153,9 +153,9 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 	    {
 	    	PropertyContextDeclCSElements a = f.getPropertyContextDeclCSAccess();
 		    c.setLinewrap(2).before(a.getContextKeyword_0());
-		    c.setNoSpace().around(a.getColonColonKeyword_1_0_1());
-		    c.setNoSpace().around(a.getColonColonKeyword_1_0_2_1());
-		    c.setLinewrap(2).after(a.getOwnedTypeAssignment_3());
+		    c.setNoSpace().around(a.getColonColonKeyword_1_1());
+		    c.setNoSpace().around(a.getColonColonKeyword_1_2_1());
+		    c.setLinewrap(1).after(a.getOwnedTypeAssignment_4());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

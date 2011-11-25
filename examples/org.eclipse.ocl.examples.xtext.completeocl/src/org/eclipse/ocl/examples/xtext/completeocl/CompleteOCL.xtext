@@ -104,9 +104,8 @@ LibraryCS returns base::LibraryCS:
 	'library' package=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' ((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-	  operation=[pivot::Operation|UnreservedName])
-	| operation=[pivot::Operation|UnrestrictedName]) '(' 
+	'context' (namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)?
+	  operation=[pivot::Operation|UnreservedName] '(' 
 	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
 	')' ':' (ownedType=TypeExpCS)?
 	((rules+=PreCS) | (rules+=PostCS) | (rules+=BodyCS))*;
@@ -127,9 +126,8 @@ PreCS returns PreCS:
 	stereotype='pre' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' ((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-	property=[pivot::Property|UnreservedName])
-	| property=[pivot::Property|UnrestrictedName]) ':' ownedType=TypeExpCS
+	'context' (namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)?
+	property=[pivot::Property|UnreservedName] ':' (ownedType=TypeExpCS)?
 	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
 
 SpecificationCS returns ContextSpecificationCS:

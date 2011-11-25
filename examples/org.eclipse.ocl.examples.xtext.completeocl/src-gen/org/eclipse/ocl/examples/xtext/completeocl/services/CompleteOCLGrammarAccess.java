@@ -768,168 +768,148 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationContextDeclCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cContextKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Assignment cNamespaceAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_1_0_0_0 = (CrossReference)cNamespaceAssignment_1_0_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final Assignment cNamespaceAssignment_1_0_2_0 = (Assignment)cGroup_1_0_2.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_1_0_2_0_0 = (CrossReference)cNamespaceAssignment_1_0_2_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_2_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0_2_1 = (Keyword)cGroup_1_0_2.eContents().get(1);
-		private final Assignment cOperationAssignment_1_0_3 = (Assignment)cGroup_1_0.eContents().get(3);
-		private final CrossReference cOperationOperationCrossReference_1_0_3_0 = (CrossReference)cOperationAssignment_1_0_3.eContents().get(0);
-		private final RuleCall cOperationOperationUnreservedNameParserRuleCall_1_0_3_0_1 = (RuleCall)cOperationOperationCrossReference_1_0_3_0.eContents().get(1);
-		private final Assignment cOperationAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final CrossReference cOperationOperationCrossReference_1_1_0 = (CrossReference)cOperationAssignment_1_1.eContents().get(0);
-		private final RuleCall cOperationOperationUnrestrictedNameParserRuleCall_1_1_0_1 = (RuleCall)cOperationOperationCrossReference_1_1_0.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cParametersAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cParametersParameterCSParserRuleCall_3_0_0 = (RuleCall)cParametersAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cParametersAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cParametersParameterCSParserRuleCall_3_1_1_0 = (RuleCall)cParametersAssignment_3_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cOwnedTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_6_0 = (RuleCall)cOwnedTypeAssignment_6.eContents().get(0);
-		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
-		private final Assignment cRulesAssignment_7_0 = (Assignment)cAlternatives_7.eContents().get(0);
-		private final RuleCall cRulesPreCSParserRuleCall_7_0_0 = (RuleCall)cRulesAssignment_7_0.eContents().get(0);
-		private final Assignment cRulesAssignment_7_1 = (Assignment)cAlternatives_7.eContents().get(1);
-		private final RuleCall cRulesPostCSParserRuleCall_7_1_0 = (RuleCall)cRulesAssignment_7_1.eContents().get(0);
-		private final Assignment cRulesAssignment_7_2 = (Assignment)cAlternatives_7.eContents().get(2);
-		private final RuleCall cRulesBodyCSParserRuleCall_7_2_0 = (RuleCall)cRulesAssignment_7_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cNamespaceAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_1_0_0 = (CrossReference)cNamespaceAssignment_1_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Assignment cNamespaceAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_1_2_0_0 = (CrossReference)cNamespaceAssignment_1_2_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_2_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_2_1 = (Keyword)cGroup_1_2.eContents().get(1);
+		private final Assignment cOperationAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cOperationOperationCrossReference_2_0 = (CrossReference)cOperationAssignment_2.eContents().get(0);
+		private final RuleCall cOperationOperationUnreservedNameParserRuleCall_2_0_1 = (RuleCall)cOperationOperationCrossReference_2_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cParametersAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cParametersParameterCSParserRuleCall_4_0_0 = (RuleCall)cParametersAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cParametersAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cParametersParameterCSParserRuleCall_4_1_1_0 = (RuleCall)cParametersAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cOwnedTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_7_0 = (RuleCall)cOwnedTypeAssignment_7.eContents().get(0);
+		private final Alternatives cAlternatives_8 = (Alternatives)cGroup.eContents().get(8);
+		private final Assignment cRulesAssignment_8_0 = (Assignment)cAlternatives_8.eContents().get(0);
+		private final RuleCall cRulesPreCSParserRuleCall_8_0_0 = (RuleCall)cRulesAssignment_8_0.eContents().get(0);
+		private final Assignment cRulesAssignment_8_1 = (Assignment)cAlternatives_8.eContents().get(1);
+		private final RuleCall cRulesPostCSParserRuleCall_8_1_0 = (RuleCall)cRulesAssignment_8_1.eContents().get(0);
+		private final Assignment cRulesAssignment_8_2 = (Assignment)cAlternatives_8.eContents().get(2);
+		private final RuleCall cRulesBodyCSParserRuleCall_8_2_0 = (RuleCall)cRulesAssignment_8_2.eContents().get(0);
 		
 		//OperationContextDeclCS:
-		//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//	operation=[pivot::Operation|UnreservedName] | operation=[pivot::Operation|UnrestrictedName]) "("
-		//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS |
-		//	rules+=BodyCS)*;
+		//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		//	operation=[pivot::Operation|UnreservedName] "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":"
+		//	ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
 		public ParserRule getRule() { return rule; }
 
-		//"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//operation=[pivot::Operation|UnreservedName] | operation=[pivot::Operation|UnrestrictedName]) "("
-		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS |
-		//rules+=BodyCS)*
+		//"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		//operation=[pivot::Operation|UnreservedName] "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":"
+		//ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
 		public Group getGroup() { return cGroup; }
 
 		//"context"
 		public Keyword getContextKeyword_0() { return cContextKeyword_0; }
 
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//operation=[pivot::Operation|UnreservedName] | operation=[pivot::Operation|UnrestrictedName]
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//operation=[pivot::Operation|UnreservedName]
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		public Group getGroup_1() { return cGroup_1; }
 
 		//namespace+=[pivot::Namespace|UnrestrictedName]
-		public Assignment getNamespaceAssignment_1_0_0() { return cNamespaceAssignment_1_0_0; }
+		public Assignment getNamespaceAssignment_1_0() { return cNamespaceAssignment_1_0; }
 
 		//[pivot::Namespace|UnrestrictedName]
-		public CrossReference getNamespaceNamespaceCrossReference_1_0_0_0() { return cNamespaceNamespaceCrossReference_1_0_0_0; }
+		public CrossReference getNamespaceNamespaceCrossReference_1_0_0() { return cNamespaceNamespaceCrossReference_1_0_0; }
 
 		//UnrestrictedName
-		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1; }
+		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1; }
 
 		//"::"
-		public Keyword getColonColonKeyword_1_0_1() { return cColonColonKeyword_1_0_1; }
+		public Keyword getColonColonKeyword_1_1() { return cColonColonKeyword_1_1; }
 
 		//(namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//namespace+=[pivot::Namespace|UnreservedName]
-		public Assignment getNamespaceAssignment_1_0_2_0() { return cNamespaceAssignment_1_0_2_0; }
+		public Assignment getNamespaceAssignment_1_2_0() { return cNamespaceAssignment_1_2_0; }
 
 		//[pivot::Namespace|UnreservedName]
-		public CrossReference getNamespaceNamespaceCrossReference_1_0_2_0_0() { return cNamespaceNamespaceCrossReference_1_0_2_0_0; }
+		public CrossReference getNamespaceNamespaceCrossReference_1_2_0_0() { return cNamespaceNamespaceCrossReference_1_2_0_0; }
 
 		//UnreservedName
-		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1; }
+		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1; }
 
 		//"::"
-		public Keyword getColonColonKeyword_1_0_2_1() { return cColonColonKeyword_1_0_2_1; }
+		public Keyword getColonColonKeyword_1_2_1() { return cColonColonKeyword_1_2_1; }
 
 		//operation=[pivot::Operation|UnreservedName]
-		public Assignment getOperationAssignment_1_0_3() { return cOperationAssignment_1_0_3; }
+		public Assignment getOperationAssignment_2() { return cOperationAssignment_2; }
 
 		//[pivot::Operation|UnreservedName]
-		public CrossReference getOperationOperationCrossReference_1_0_3_0() { return cOperationOperationCrossReference_1_0_3_0; }
+		public CrossReference getOperationOperationCrossReference_2_0() { return cOperationOperationCrossReference_2_0; }
 
 		//UnreservedName
-		public RuleCall getOperationOperationUnreservedNameParserRuleCall_1_0_3_0_1() { return cOperationOperationUnreservedNameParserRuleCall_1_0_3_0_1; }
-
-		//operation=[pivot::Operation|UnrestrictedName]
-		public Assignment getOperationAssignment_1_1() { return cOperationAssignment_1_1; }
-
-		//[pivot::Operation|UnrestrictedName]
-		public CrossReference getOperationOperationCrossReference_1_1_0() { return cOperationOperationCrossReference_1_1_0; }
-
-		//UnrestrictedName
-		public RuleCall getOperationOperationUnrestrictedNameParserRuleCall_1_1_0_1() { return cOperationOperationUnrestrictedNameParserRuleCall_1_1_0_1; }
+		public RuleCall getOperationOperationUnreservedNameParserRuleCall_2_0_1() { return cOperationOperationUnreservedNameParserRuleCall_2_0_1; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 
 		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4() { return cGroup_4; }
 
 		//parameters+=ParameterCS
-		public Assignment getParametersAssignment_3_0() { return cParametersAssignment_3_0; }
+		public Assignment getParametersAssignment_4_0() { return cParametersAssignment_4_0; }
 
 		//ParameterCS
-		public RuleCall getParametersParameterCSParserRuleCall_3_0_0() { return cParametersParameterCSParserRuleCall_3_0_0; }
+		public RuleCall getParametersParameterCSParserRuleCall_4_0_0() { return cParametersParameterCSParserRuleCall_4_0_0; }
 
 		//("," parameters+=ParameterCS)*
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		public Group getGroup_4_1() { return cGroup_4_1; }
 
 		//","
-		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 
 		//parameters+=ParameterCS
-		public Assignment getParametersAssignment_3_1_1() { return cParametersAssignment_3_1_1; }
+		public Assignment getParametersAssignment_4_1_1() { return cParametersAssignment_4_1_1; }
 
 		//ParameterCS
-		public RuleCall getParametersParameterCSParserRuleCall_3_1_1_0() { return cParametersParameterCSParserRuleCall_3_1_1_0; }
+		public RuleCall getParametersParameterCSParserRuleCall_4_1_1_0() { return cParametersParameterCSParserRuleCall_4_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 
 		//":"
-		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
 
 		//ownedType=TypeExpCS?
-		public Assignment getOwnedTypeAssignment_6() { return cOwnedTypeAssignment_6; }
+		public Assignment getOwnedTypeAssignment_7() { return cOwnedTypeAssignment_7; }
 
 		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_6_0() { return cOwnedTypeTypeExpCSParserRuleCall_6_0; }
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_7_0() { return cOwnedTypeTypeExpCSParserRuleCall_7_0; }
 
 		//(rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
-		public Alternatives getAlternatives_7() { return cAlternatives_7; }
+		public Alternatives getAlternatives_8() { return cAlternatives_8; }
 
 		//rules+=PreCS
-		public Assignment getRulesAssignment_7_0() { return cRulesAssignment_7_0; }
+		public Assignment getRulesAssignment_8_0() { return cRulesAssignment_8_0; }
 
 		//PreCS
-		public RuleCall getRulesPreCSParserRuleCall_7_0_0() { return cRulesPreCSParserRuleCall_7_0_0; }
+		public RuleCall getRulesPreCSParserRuleCall_8_0_0() { return cRulesPreCSParserRuleCall_8_0_0; }
 
 		//rules+=PostCS
-		public Assignment getRulesAssignment_7_1() { return cRulesAssignment_7_1; }
+		public Assignment getRulesAssignment_8_1() { return cRulesAssignment_8_1; }
 
 		//PostCS
-		public RuleCall getRulesPostCSParserRuleCall_7_1_0() { return cRulesPostCSParserRuleCall_7_1_0; }
+		public RuleCall getRulesPostCSParserRuleCall_8_1_0() { return cRulesPostCSParserRuleCall_8_1_0; }
 
 		//rules+=BodyCS
-		public Assignment getRulesAssignment_7_2() { return cRulesAssignment_7_2; }
+		public Assignment getRulesAssignment_8_2() { return cRulesAssignment_8_2; }
 
 		//BodyCS
-		public RuleCall getRulesBodyCSParserRuleCall_7_2_0() { return cRulesBodyCSParserRuleCall_7_2_0; }
+		public RuleCall getRulesBodyCSParserRuleCall_8_2_0() { return cRulesBodyCSParserRuleCall_8_2_0; }
 	}
 
 	public class PackageDeclarationCSElements extends AbstractParserRuleElementFinder {
@@ -1154,146 +1134,128 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyContextDeclCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cContextKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Assignment cNamespaceAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_1_0_0_0 = (CrossReference)cNamespaceAssignment_1_0_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final Assignment cNamespaceAssignment_1_0_2_0 = (Assignment)cGroup_1_0_2.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_1_0_2_0_0 = (CrossReference)cNamespaceAssignment_1_0_2_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_2_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0_2_1 = (Keyword)cGroup_1_0_2.eContents().get(1);
-		private final Assignment cPropertyAssignment_1_0_3 = (Assignment)cGroup_1_0.eContents().get(3);
-		private final CrossReference cPropertyPropertyCrossReference_1_0_3_0 = (CrossReference)cPropertyAssignment_1_0_3.eContents().get(0);
-		private final RuleCall cPropertyPropertyUnreservedNameParserRuleCall_1_0_3_0_1 = (RuleCall)cPropertyPropertyCrossReference_1_0_3_0.eContents().get(1);
-		private final Assignment cPropertyAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final CrossReference cPropertyPropertyCrossReference_1_1_0 = (CrossReference)cPropertyAssignment_1_1.eContents().get(0);
-		private final RuleCall cPropertyPropertyUnrestrictedNameParserRuleCall_1_1_0_1 = (RuleCall)cPropertyPropertyCrossReference_1_1_0.eContents().get(1);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_3_0 = (RuleCall)cOwnedTypeAssignment_3.eContents().get(0);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
-		private final Assignment cRulesAssignment_4_0_0 = (Assignment)cGroup_4_0.eContents().get(0);
-		private final RuleCall cRulesInitCSParserRuleCall_4_0_0_0 = (RuleCall)cRulesAssignment_4_0_0.eContents().get(0);
-		private final Assignment cRulesAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
-		private final RuleCall cRulesDerCSParserRuleCall_4_0_1_0 = (RuleCall)cRulesAssignment_4_0_1.eContents().get(0);
-		private final Group cGroup_4_1 = (Group)cAlternatives_4.eContents().get(1);
-		private final Assignment cRulesAssignment_4_1_0 = (Assignment)cGroup_4_1.eContents().get(0);
-		private final RuleCall cRulesDerCSParserRuleCall_4_1_0_0 = (RuleCall)cRulesAssignment_4_1_0.eContents().get(0);
-		private final Assignment cRulesAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final RuleCall cRulesInitCSParserRuleCall_4_1_1_0 = (RuleCall)cRulesAssignment_4_1_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cNamespaceAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_1_0_0 = (CrossReference)cNamespaceAssignment_1_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Assignment cNamespaceAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_1_2_0_0 = (CrossReference)cNamespaceAssignment_1_2_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_1_2_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_2_1 = (Keyword)cGroup_1_2.eContents().get(1);
+		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cPropertyPropertyCrossReference_2_0 = (CrossReference)cPropertyAssignment_2.eContents().get(0);
+		private final RuleCall cPropertyPropertyUnreservedNameParserRuleCall_2_0_1 = (RuleCall)cPropertyPropertyCrossReference_2_0.eContents().get(1);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_4_0 = (RuleCall)cOwnedTypeAssignment_4.eContents().get(0);
+		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
+		private final Group cGroup_5_0 = (Group)cAlternatives_5.eContents().get(0);
+		private final Assignment cRulesAssignment_5_0_0 = (Assignment)cGroup_5_0.eContents().get(0);
+		private final RuleCall cRulesInitCSParserRuleCall_5_0_0_0 = (RuleCall)cRulesAssignment_5_0_0.eContents().get(0);
+		private final Assignment cRulesAssignment_5_0_1 = (Assignment)cGroup_5_0.eContents().get(1);
+		private final RuleCall cRulesDerCSParserRuleCall_5_0_1_0 = (RuleCall)cRulesAssignment_5_0_1.eContents().get(0);
+		private final Group cGroup_5_1 = (Group)cAlternatives_5.eContents().get(1);
+		private final Assignment cRulesAssignment_5_1_0 = (Assignment)cGroup_5_1.eContents().get(0);
+		private final RuleCall cRulesDerCSParserRuleCall_5_1_0_0 = (RuleCall)cRulesAssignment_5_1_0.eContents().get(0);
+		private final Assignment cRulesAssignment_5_1_1 = (Assignment)cGroup_5_1.eContents().get(1);
+		private final RuleCall cRulesInitCSParserRuleCall_5_1_1_0 = (RuleCall)cRulesAssignment_5_1_1.eContents().get(0);
 		
 		//PropertyContextDeclCS:
-		//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//	property=[pivot::Property|UnreservedName] | property=[pivot::Property|UnrestrictedName]) ":" ownedType=TypeExpCS
-		//	((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?);
+		//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		//	property=[pivot::Property|UnreservedName] ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS
+		//	rules+=InitCS?);
 		public ParserRule getRule() { return rule; }
 
-		//"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//property=[pivot::Property|UnreservedName] | property=[pivot::Property|UnrestrictedName]) ":" ownedType=TypeExpCS
-		//((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?)
+		//"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		//property=[pivot::Property|UnreservedName] ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS
+		//rules+=InitCS?)
 		public Group getGroup() { return cGroup; }
 
 		//"context"
 		public Keyword getContextKeyword_0() { return cContextKeyword_0; }
 
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//property=[pivot::Property|UnreservedName] | property=[pivot::Property|UnrestrictedName]
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		//property=[pivot::Property|UnreservedName]
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+		public Group getGroup_1() { return cGroup_1; }
 
 		//namespace+=[pivot::Namespace|UnrestrictedName]
-		public Assignment getNamespaceAssignment_1_0_0() { return cNamespaceAssignment_1_0_0; }
+		public Assignment getNamespaceAssignment_1_0() { return cNamespaceAssignment_1_0; }
 
 		//[pivot::Namespace|UnrestrictedName]
-		public CrossReference getNamespaceNamespaceCrossReference_1_0_0_0() { return cNamespaceNamespaceCrossReference_1_0_0_0; }
+		public CrossReference getNamespaceNamespaceCrossReference_1_0_0() { return cNamespaceNamespaceCrossReference_1_0_0; }
 
 		//UnrestrictedName
-		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_0_1; }
+		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_1_0_0_1; }
 
 		//"::"
-		public Keyword getColonColonKeyword_1_0_1() { return cColonColonKeyword_1_0_1; }
+		public Keyword getColonColonKeyword_1_1() { return cColonColonKeyword_1_1; }
 
 		//(namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//namespace+=[pivot::Namespace|UnreservedName]
-		public Assignment getNamespaceAssignment_1_0_2_0() { return cNamespaceAssignment_1_0_2_0; }
+		public Assignment getNamespaceAssignment_1_2_0() { return cNamespaceAssignment_1_2_0; }
 
 		//[pivot::Namespace|UnreservedName]
-		public CrossReference getNamespaceNamespaceCrossReference_1_0_2_0_0() { return cNamespaceNamespaceCrossReference_1_0_2_0_0; }
+		public CrossReference getNamespaceNamespaceCrossReference_1_2_0_0() { return cNamespaceNamespaceCrossReference_1_2_0_0; }
 
 		//UnreservedName
-		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_1_0_2_0_0_1; }
+		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_1_2_0_0_1; }
 
 		//"::"
-		public Keyword getColonColonKeyword_1_0_2_1() { return cColonColonKeyword_1_0_2_1; }
+		public Keyword getColonColonKeyword_1_2_1() { return cColonColonKeyword_1_2_1; }
 
 		//property=[pivot::Property|UnreservedName]
-		public Assignment getPropertyAssignment_1_0_3() { return cPropertyAssignment_1_0_3; }
+		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
 
 		//[pivot::Property|UnreservedName]
-		public CrossReference getPropertyPropertyCrossReference_1_0_3_0() { return cPropertyPropertyCrossReference_1_0_3_0; }
+		public CrossReference getPropertyPropertyCrossReference_2_0() { return cPropertyPropertyCrossReference_2_0; }
 
 		//UnreservedName
-		public RuleCall getPropertyPropertyUnreservedNameParserRuleCall_1_0_3_0_1() { return cPropertyPropertyUnreservedNameParserRuleCall_1_0_3_0_1; }
-
-		//property=[pivot::Property|UnrestrictedName]
-		public Assignment getPropertyAssignment_1_1() { return cPropertyAssignment_1_1; }
-
-		//[pivot::Property|UnrestrictedName]
-		public CrossReference getPropertyPropertyCrossReference_1_1_0() { return cPropertyPropertyCrossReference_1_1_0; }
-
-		//UnrestrictedName
-		public RuleCall getPropertyPropertyUnrestrictedNameParserRuleCall_1_1_0_1() { return cPropertyPropertyUnrestrictedNameParserRuleCall_1_1_0_1; }
+		public RuleCall getPropertyPropertyUnreservedNameParserRuleCall_2_0_1() { return cPropertyPropertyUnreservedNameParserRuleCall_2_0_1; }
 
 		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 
-		//ownedType=TypeExpCS
-		public Assignment getOwnedTypeAssignment_3() { return cOwnedTypeAssignment_3; }
+		//ownedType=TypeExpCS?
+		public Assignment getOwnedTypeAssignment_4() { return cOwnedTypeAssignment_4; }
 
 		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_3_0() { return cOwnedTypeTypeExpCSParserRuleCall_3_0; }
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_4_0() { return cOwnedTypeTypeExpCSParserRuleCall_4_0; }
 
 		//(rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 
 		//(rules+=InitCS rules+=DerCS?)?
-		public Group getGroup_4_0() { return cGroup_4_0; }
+		public Group getGroup_5_0() { return cGroup_5_0; }
 
 		//rules+=InitCS
-		public Assignment getRulesAssignment_4_0_0() { return cRulesAssignment_4_0_0; }
+		public Assignment getRulesAssignment_5_0_0() { return cRulesAssignment_5_0_0; }
 
 		//InitCS
-		public RuleCall getRulesInitCSParserRuleCall_4_0_0_0() { return cRulesInitCSParserRuleCall_4_0_0_0; }
+		public RuleCall getRulesInitCSParserRuleCall_5_0_0_0() { return cRulesInitCSParserRuleCall_5_0_0_0; }
 
 		//rules+=DerCS?
-		public Assignment getRulesAssignment_4_0_1() { return cRulesAssignment_4_0_1; }
+		public Assignment getRulesAssignment_5_0_1() { return cRulesAssignment_5_0_1; }
 
 		//DerCS
-		public RuleCall getRulesDerCSParserRuleCall_4_0_1_0() { return cRulesDerCSParserRuleCall_4_0_1_0; }
+		public RuleCall getRulesDerCSParserRuleCall_5_0_1_0() { return cRulesDerCSParserRuleCall_5_0_1_0; }
 
 		//rules+=DerCS rules+=InitCS?
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_5_1() { return cGroup_5_1; }
 
 		//rules+=DerCS
-		public Assignment getRulesAssignment_4_1_0() { return cRulesAssignment_4_1_0; }
+		public Assignment getRulesAssignment_5_1_0() { return cRulesAssignment_5_1_0; }
 
 		//DerCS
-		public RuleCall getRulesDerCSParserRuleCall_4_1_0_0() { return cRulesDerCSParserRuleCall_4_1_0_0; }
+		public RuleCall getRulesDerCSParserRuleCall_5_1_0_0() { return cRulesDerCSParserRuleCall_5_1_0_0; }
 
 		//rules+=InitCS?
-		public Assignment getRulesAssignment_4_1_1() { return cRulesAssignment_4_1_1; }
+		public Assignment getRulesAssignment_5_1_1() { return cRulesAssignment_5_1_1; }
 
 		//InitCS
-		public RuleCall getRulesInitCSParserRuleCall_4_1_1_0() { return cRulesInitCSParserRuleCall_4_1_1_0; }
+		public RuleCall getRulesInitCSParserRuleCall_5_1_1_0() { return cRulesInitCSParserRuleCall_5_1_1_0; }
 	}
 
 	public class SpecificationCSElements extends AbstractParserRuleElementFinder {
@@ -1594,10 +1556,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationContextDeclCS:
-	//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-	//	operation=[pivot::Operation|UnreservedName] | operation=[pivot::Operation|UnrestrictedName]) "("
-	//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS |
-	//	rules+=BodyCS)*;
+	//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+	//	operation=[pivot::Operation|UnreservedName] "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":"
+	//	ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
 	public OperationContextDeclCSElements getOperationContextDeclCSAccess() {
 		return (pOperationContextDeclCS != null) ? pOperationContextDeclCS : (pOperationContextDeclCS = new OperationContextDeclCSElements());
 	}
@@ -1649,9 +1610,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyContextDeclCS:
-	//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-	//	property=[pivot::Property|UnreservedName] | property=[pivot::Property|UnrestrictedName]) ":" ownedType=TypeExpCS
-	//	((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?);
+	//	"context" (namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)?
+	//	property=[pivot::Property|UnreservedName] ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS
+	//	rules+=InitCS?);
 	public PropertyContextDeclCSElements getPropertyContextDeclCSAccess() {
 		return (pPropertyContextDeclCS != null) ? pPropertyContextDeclCS : (pPropertyContextDeclCS = new PropertyContextDeclCSElements());
 	}
