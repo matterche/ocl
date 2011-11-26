@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -87,6 +88,13 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 				}
 			}
 			return reverseMap.get(eObject);
+		}
+
+		@Override
+		public Object casePackage(org.eclipse.uml2.uml.Package package_) {
+			EPackage ePackage = (EPackage) super.casePackage(package_);
+			ePackage.setNsPrefix(null);
+			return ePackage;
 		}
 	}
 
