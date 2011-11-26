@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -339,6 +340,12 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		delegate.append("<");
 		delegate.append(object.eClass().getName());
 		delegate.append(">");
+		return null;
+	}
+
+	@Override
+	public Object visitOpaqueExpression(OpaqueExpression object) {
+		delegate.append(PivotUtil.getBody(object));
 		return null;
 	}
 
