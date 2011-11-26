@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.xtext.completeocl.pivot2cs;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
@@ -59,8 +58,15 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		super(context);
 	}
 
+	protected void gatherPackages(List<org.eclipse.ocl.examples.pivot.Package> allPackages, List<org.eclipse.ocl.examples.pivot.Package> nestedPackages) {
+		allPackages.addAll(nestedPackages);
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : nestedPackages) {
+			gatherPackages(allPackages, nestedPackage.getNestedPackages());
+		}
+	}
+
 	@Override
-	public ElementCS visitClass(Class object) {
+	public ElementCS visitClass(org.eclipse.ocl.examples.pivot.Class object) {
 		return visitType(object);
 	}
 
@@ -132,7 +138,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		ElementCS csElement;
 		if (object.eContainer() == null) {
 			CompleteOCLDocumentCS csDocument = context.refreshElement(CompleteOCLDocumentCS.class, CompleteOCLCSTPackage.Literals.COMPLETE_OCL_DOCUMENT_CS, object);
-			context.refreshList(csDocument.getPackages(), context.visitDeclarations(PackageDeclarationCS.class, object.getNestedPackages(), null));
+			List<org.eclipse.ocl.examples.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
+			gatherPackages(allPackages, object.getNestedPackages()); 
+			context.refreshList(csDocument.getPackages(), context.visitDeclarations(PackageDeclarationCS.class, allPackages, null));
 			csElement = csDocument;
 		}
 		else {
