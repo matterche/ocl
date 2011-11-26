@@ -55,6 +55,9 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 			return globalScopeProvider.getScope(csResource, reference, null);
 		}
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(csResource);
+		if (adapter == null) {
+			return null;
+		}
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		ElementCS csElement = (ElementCS) context;
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);

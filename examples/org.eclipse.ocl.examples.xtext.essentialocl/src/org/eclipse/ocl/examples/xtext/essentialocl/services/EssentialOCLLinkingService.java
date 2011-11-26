@@ -80,6 +80,9 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 					BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text);
 				}
 			}
+			if (scope == null) {
+				return Collections.emptyList();
+			}
 			QualifiedName qualifiedName = QualifiedName.create(text);	// FIXME use IQualifiedNameConverter
 			IEObjectDescription eObjectDescription = scope.getSingleElement(qualifiedName);
 			if (eObjectDescription != null) {
