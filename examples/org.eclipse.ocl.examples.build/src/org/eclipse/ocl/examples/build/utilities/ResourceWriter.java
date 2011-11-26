@@ -41,15 +41,21 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 	}
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
-		URI fileURI = URI.createPlatformResourceURI(uri, true);
-		log.info("Writing '" + fileURI + "'");
 		Resource inputResource = (Resource) ctx.get(getModelSlot());
 		ResourceSet resourceSet = inputResource.getResourceSet();
 		try {
-			Resource saveResource = resourceSet.createResource(fileURI);
-			saveResource.getContents().addAll(inputResource.getContents());
-			saveResource.save(null);
-			inputResource.getContents().addAll(saveResource.getContents());
+			if (uri != null) {
+				URI fileURI = URI.createPlatformResourceURI(uri, true);
+				log.info("Writing '" + fileURI + "'");
+				Resource saveResource = resourceSet.createResource(fileURI);
+				saveResource.getContents().addAll(inputResource.getContents());
+				saveResource.save(null);
+				inputResource.getContents().addAll(saveResource.getContents());
+			}
+			else {
+				log.info("Writing '" + inputResource.getURI() + "'");
+				inputResource.save(null);
+			}
 		} catch (IOException e) {
 			throw new WrappedException(e);
 		}
