@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -49,6 +50,9 @@ public class CompleteOCLSplitter
 			EObject eObject = tit.next();
 			if (eObject instanceof Constraint) {
 				allConstraints.add((Constraint) eObject);
+			}
+			else if (eObject instanceof Annotation) {
+				tit.prune();
 			}
 		}
 		if (allConstraints.isEmpty()) {
