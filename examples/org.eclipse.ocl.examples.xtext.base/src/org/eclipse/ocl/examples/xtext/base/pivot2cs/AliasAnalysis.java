@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -36,7 +37,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
 /**
  * An AliasAnalysis is dynamically created to support the serialization
@@ -102,44 +103,35 @@ public class AliasAnalysis extends AdapterImpl
 			if (metaModelManager != null) {
 				otherPackage = metaModelManager.getPrimaryPackage(otherPackage);
 			}
-			if ((otherPackage.getNsPrefix() != null) || (otherPackage.getNestingPackage() == null)) {
-				if (!allAliases.containsKey(otherPackage)) {
-					String alias = computeAlias(otherPackage);
-					allAliases.put(otherPackage, alias);
-				}
+			if (!allAliases.containsKey(otherPackage)) {
+				String alias = computeAlias(otherPackage);
+				allAliases.put(otherPackage, alias);
 			}
 		}
 	}
 
-	private void addName(MetaModelManager metaModelManager, String name, EObject eObject) {
+	private void addName(String name, EObject primaryElement) {
 		if (name != null) {
-			if (metaModelManager != null) {
-				eObject = metaModelManager.getPrimaryElement(eObject);
-			}
 			if (!allNames.containsKey(name)) {
-				allNames.put(name, eObject);
+				allNames.put(name, primaryElement);
 			}
-			else if (allNames.get(name) != eObject) {
+			else if (allNames.get(name) != primaryElement) {
 				allNames.put(name, null);
 			}
 		}
 	}
 
-	private String computeAlias(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		MetaModelManager metaModelManager = getMetaModelManager();
-		if (metaModelManager != null) {
-			pivotPackage = metaModelManager.getPrimaryPackage(pivotPackage);
-		}
-		String nsPrefix = pivotPackage.getNsPrefix();
-		String aliasBase = nsPrefix != null ? nsPrefix : pivotPackage.getName();		// FIXME NsPrefix
+	private String computeAlias(org.eclipse.ocl.examples.pivot.Package primaryPackage) {
+		String nsPrefix = primaryPackage.getNsPrefix();
+		String aliasBase = nsPrefix != null ? nsPrefix : CodeGenUtil.uncapName(primaryPackage.getName());		// FIXME NsPrefix
 		int index = 0;
 		String alias = aliasBase;
-		while (allNames.containsKey(alias) && (allNames.get(alias) != pivotPackage)) {
+		while (allNames.containsKey(alias) && (allNames.get(alias) != primaryPackage)) {
 			@SuppressWarnings("unused")
 			EObject debugObject = allNames.get(alias);
 			alias = aliasBase + "_" + index++;
 		}
-		addName(metaModelManager, alias, pivotPackage);
+		addName(alias, primaryPackage);
 		return alias;
 	}
 
@@ -158,10 +150,13 @@ public class AliasAnalysis extends AdapterImpl
 				eObject = ((Pivotable)eObject).getPivot();
 			}
 			if (eObject instanceof NamedElement) {
-				addName(metaModelManager, ((NamedElement)eObject).getName(), eObject);
-				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) && (csObject instanceof PackageCS)) {
+				if (metaModelManager != null) {
+					eObject = metaModelManager.getPrimaryElement(eObject);
+				}
+				addName(((NamedElement)eObject).getName(), eObject);
+				if ((eObject instanceof org.eclipse.ocl.examples.pivot.Package) && (csObject instanceof RootPackageCS)) {
 					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
-					addName(metaModelManager, pivotPackage.getNsPrefix(), eObject);
+					addName(pivotPackage.getNsPrefix(), eObject);
 					localPackages.add(pivotPackage);
 				}
 				else {

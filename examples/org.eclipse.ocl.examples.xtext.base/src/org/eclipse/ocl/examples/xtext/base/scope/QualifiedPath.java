@@ -123,9 +123,30 @@ public class QualifiedPath extends QualifiedName
 				if ((elementResource != csResource) && (elementResource != asResource)) {
 					AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);
 					if (adapter != null) {
-						segments.add(adapter.getAlias(firstElement));
 						if (segmentCount == 1) {
-							segments.add(((NamedElement)firstElement).getName());
+							String alias = adapter.getAlias(firstElement);
+							if (alias != null) {
+								segments.add(alias);
+								segments.add(getFirstSegment());
+							}
+						}
+						else {
+							for (int i = segmentCount - 2; i >= 0; i--) {
+								EObject element = pathElements.get(i).getElement();
+								String alias = adapter.getAlias(element);
+								if (alias != null) {
+									segments.add(alias);
+									if (segmentCount == 1) {
+										segments.add(((NamedElement)firstElement).getName());
+									}
+									else {
+										for (i++; i < segmentCount; i++) {
+											segments.add(getSegment(i));
+										}
+									}
+									return segments;
+								}
+							}
 						}
 					}
 				}
