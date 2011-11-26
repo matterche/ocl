@@ -62,7 +62,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				foundOne = true;
 				URI uri = URI.createURI(desc.getName().toString());
 				URI baseURI = semanticObject.eResource().getURI();
-				URI deresolvedURI = uri.deresolve(baseURI);
+				URI deresolvedURI = uri.deresolve(baseURI, true, true, false);
 				return valueConverter.toString(deresolvedURI.toString(), ruleName);
 			}
 		}
@@ -83,7 +83,12 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				try {
 					for (int i = 0; i < iMax; i++) {
 						unconverted = segments.get(i);
-						converted[i] = valueConverter.toString(unconverted, ruleName);
+						if ((i > 0) && "UnrestrictedName".equals(ruleName)) {
+							converted[i] = valueConverter.toString(unconverted, "UnreservedName");
+						}
+						else {
+							converted[i] = valueConverter.toString(unconverted, ruleName);
+						}
 					}
 					return qualifiedNameConverter.toString(new QualifiedName(converted) {});
 				} catch (ValueConverterException e) {

@@ -113,7 +113,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			importCS.setPivot(importedPackage);
 			EObject eObject = importedPackage.getETarget();
 			URI fullURI = EcoreUtil.getURI(eObject != null ? eObject : importedPackage);
-			URI deresolvedURI = fullURI.deresolve(csURI);
+			URI deresolvedURI = fullURI.deresolve(csURI, true, true, false);
 			importCS.setUri(deresolvedURI.toString());
 			imports.add(importCS);
 		}
