@@ -138,7 +138,14 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					pivotComment.setBody(commentBody.replaceAll("\\r", ""));
 					constraint.getOwnedComments().add(pivotComment);
 				}				
-				if ((eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation)) != null) {
+				eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation);
+				if (eAnnotation == null) {
+					eAnnotation = eOperation.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
+				}
+				if (eAnnotation == null) {
+					eAnnotation = eOperation.getEAnnotation("http://www.eclipse.org/uml2/1.1.0/GenModel");
+				}
+				if (eAnnotation != null) {
 					value = eAnnotation.getDetails().get("body");
 				}
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
@@ -281,6 +288,12 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
 		List<EAnnotation> excludedAnnotations =  null;
 		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(eObject);
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
+		}
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation("http://www.eclipse.org/uml2/1.1.0/GenModel");
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
