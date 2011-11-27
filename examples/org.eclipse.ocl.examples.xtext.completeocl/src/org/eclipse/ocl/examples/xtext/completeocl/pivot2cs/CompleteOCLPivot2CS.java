@@ -50,6 +50,7 @@ public class CompleteOCLPivot2CS extends EssentialOCLPivot2CS
 				PivotPackage.Literals.CONSTRAINT,
 				PivotPackage.Literals.OPERATION,
 				PivotPackage.Literals.PACKAGE,
+				PivotPackage.Literals.PARAMETER,
 				PivotPackage.Literals.PROPERTY,
 				PivotPackage.Literals.TYPE
 			};

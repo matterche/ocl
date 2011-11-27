@@ -80,11 +80,15 @@ public class ElementUtil
 		else if (qualifiers.contains("unique")) { //$NON-NLS-1$
 			isUnique = true;
 		}
-		if (isOrdered) {
-			return isUnique ? "OrderedSet" : "Sequence"; //$NON-NLS-1$ //$NON-NLS-2$
+		return getCollectionName(isOrdered, isUnique);
+	}
+
+	public static String getCollectionName(boolean ordered, boolean unique) {
+		if (ordered) {
+			return unique ? "OrderedSet" : "Sequence"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		else {
-			return isUnique ? "Set" : "Bag"; //$NON-NLS-1$ //$NON-NLS-2$
+			return unique ? "Set" : "Bag"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 	

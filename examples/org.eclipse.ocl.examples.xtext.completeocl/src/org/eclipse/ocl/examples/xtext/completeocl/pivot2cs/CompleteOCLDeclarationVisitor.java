@@ -23,8 +23,10 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
@@ -35,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -50,12 +53,33 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs.EssentialOCLDeclarationVisitor;
 
 public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisitor
 {
 	public CompleteOCLDeclarationVisitor(Pivot2CSConversion context) {
 		super(context);
+	}
+
+	protected TypedRefCS convertTypeRef(TypedMultiplicityElement object) {
+		Type type = object.getType();
+		if (type == null) {
+			return null;
+		}
+		TypedRefCS typeRef = context.visitReference(TypedRefCS.class, type);
+		int upper = object.getUpper().intValue();
+		if (upper == 1) {
+			return typeRef;
+		}
+//		int lower = object.getLower().intValue();
+		CollectionTypeCS collectionTypeCS = EssentialOCLCSTFactory.eINSTANCE.createCollectionTypeCS();
+		collectionTypeCS.setOwnedType(typeRef);
+		collectionTypeCS.setName(ElementUtil.getCollectionName(object.isOrdered(), object.isUnique()));
+		return collectionTypeCS;
 	}
 
 	protected void gatherPackages(List<org.eclipse.ocl.examples.pivot.Package> allPackages, List<org.eclipse.ocl.examples.pivot.Package> nestedPackages) {
@@ -102,7 +126,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 				PrettyPrintOptions.Global prettyPrintOptions = PrettyPrintTypeVisitor.createOptions(namespace);
 				prettyPrintOptions.setMetaModelManager(context.getMetaModelManager());
 				String expr = PrettyPrintExprVisitor.prettyPrint(specification, prettyPrintOptions);		
-				csSpec.setExprString(expr);
+				csSpec.setExprString("\t" + expr.trim().replaceAll("\\r", "").replaceAll("\\n", "\n\t\t"));
 				OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 				String message = PivotUtil.getMessage(opaqueExpression);
 				if ((message != null) && (message.length() > 0)) {
@@ -122,12 +146,9 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
 		csContext.setOperation(object);
 //		csContext.getNamespace().add(owningType);
-		Type type = object.getType();
-		if (type != null) {
-			TypedRefCS typeRef = context.visitReference(TypedRefCS.class, type);
-			csContext.setOwnedType(typeRef);
-		}
+		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
+		context.refreshList(csContext.getParameters(), context.visitDeclarations(VariableCS.class, object.getOwnedParameters(), null));
 		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRules(), null));
 		context.setScope(savedScope);
 		return csContext;
@@ -174,17 +195,20 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	@Override
+	public ElementCS visitParameter(Parameter object) {
+		VariableCS csElement = context.refreshNamedElement(VariableCS.class, EssentialOCLCSTPackage.Literals.VARIABLE_CS, object);
+		csElement.setOwnedType(convertTypeRef(object));
+		return csElement;
+	}
+
+	@Override
 	public ElementCS visitProperty(Property object) {
 		Namespace owningType = (Namespace) object.getOwningType();
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope((org.eclipse.ocl.examples.pivot.Class)owningType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);
 		csContext.setProperty(object);
 //		csContext.getNamespace().add(owningType);
-		Type type = object.getType();
-		if (type != null) {
-			TypedRefCS typeRef = context.visitReference(TypedRefCS.class, type);
-			csContext.setOwnedType(typeRef);
-		}
+		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
 		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRules(), null));
 		context.setScope(savedScope);
