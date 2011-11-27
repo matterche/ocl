@@ -31,7 +31,6 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 	private static Injector injector = null;
 	
 	public static void doSetup() {
-		init();
 		if (injector == null) {
 			injector = new OCLinEcoreStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
@@ -51,6 +50,12 @@ public class OCLinEcoreStandaloneSetup extends OCLinEcoreStandaloneSetupGenerate
 			doSetup();
 		}
 		return injector;
+	}
+
+	@Override
+	public Injector createInjector() {
+		init();
+		return super.createInjector();
 	}
 }
 

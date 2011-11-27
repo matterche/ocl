@@ -30,7 +30,6 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 	private static Injector injector = null;
 	
 	public static void doSetup() {
-		init();
 		if (injector == null) {
 			injector = new CompleteOCLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
@@ -50,6 +49,12 @@ public class CompleteOCLStandaloneSetup extends CompleteOCLStandaloneSetupGenera
 			doSetup();
 		}
 		return injector;
+	}
+
+	@Override
+	public Injector createInjector() {
+		init();
+		return super.createInjector();
 	}
 }
 

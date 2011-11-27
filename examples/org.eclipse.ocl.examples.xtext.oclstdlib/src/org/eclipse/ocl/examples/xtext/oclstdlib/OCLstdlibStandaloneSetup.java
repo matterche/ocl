@@ -31,7 +31,6 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 	private static Injector injector = null;
 	
 	public static void doSetup() {
-		init();
 		if (injector == null) {
 			injector = new OCLstdlibStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
@@ -50,6 +49,12 @@ public class OCLstdlibStandaloneSetup extends OCLstdlibStandaloneSetupGenerated
 			doSetup();
 		}
 		return injector;
+	}
+
+	@Override
+	public Injector createInjector() {
+		init();
+		return super.createInjector();
 	}
 }
 
