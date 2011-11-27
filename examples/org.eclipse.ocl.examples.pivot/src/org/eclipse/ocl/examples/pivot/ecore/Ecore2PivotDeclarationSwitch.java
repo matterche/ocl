@@ -131,14 +131,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				constraint.setName(eOperation.getName());
 				constraint.setIsCallable(true);
 				String value = null;
-				EAnnotation eAnnotation;
 				String commentBody = EcoreUtil.getAnnotation(eOperation, GenModelPackage.eNS_URI, "documentation");
 				if (commentBody != null) {
 					Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 					pivotComment.setBody(commentBody.replaceAll("\\r", ""));
 					constraint.getOwnedComments().add(pivotComment);
 				}				
-				eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation);
+				EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation);
 				if (eAnnotation == null) {
 					eAnnotation = eOperation.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
 				}
@@ -545,6 +544,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				}
 				else if (key.equals(SettingBehavior.INITIAL_CONSTRAINT_KEY)) {
 					constraint.setStereotype(UMLReflection.INITIAL);
+				}
+				else if (key.equals("get")) {
+					constraint.setStereotype(UMLReflection.DERIVATION);
 				}
 				else
 				{

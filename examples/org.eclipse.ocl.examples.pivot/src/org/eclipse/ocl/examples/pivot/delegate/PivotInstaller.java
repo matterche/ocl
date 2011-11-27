@@ -16,19 +16,32 @@
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class PivotInstaller
 {
-
+	/**
+	 * Install all Constraints from pivotPackage and its nestedPackages as OCL Delegates.
+	 * 
+	 * @param metaModelManager
+	 * @param pivotPackage
+	 */
 	public static void installDelegates(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		boolean hasDelegates = false;
 		for (Type aType : metaModelManager.getLocalClasses(pivotPackage)) {
@@ -46,30 +59,63 @@ public class PivotInstaller
 		}
 	}
 
+	/**
+	 * Install all Constraints from pivotType and its operations as OCL Delegates. Returning true if any OCL Delegate installed.
+	 * 
+	 * @param metaModelManager
+	 * @param pivotPackage
+	 */
 	private static boolean installDelegates(MetaModelManager metaModelManager, Type pivotType) {
 		boolean hasDelegates = false;
-//		CompleteType completeType = metaModelManager.getCompleteType(pivotType);
-//		Type modelType = completeType.getModel();
-//		if (modelType instanceof org.eclipse.ocl.examples.pivot.Class) {
-//			org.eclipse.ocl.examples.pivot.Class modelClass = (org.eclipse.ocl.examples.pivot.Class)modelType;
-			for (Operation anOperation : metaModelManager.getLocalOperations(pivotType, null)) {
-				if (installDelegates(metaModelManager, anOperation)) {
-					hasDelegates = true;
-				}
-			}
-			for (Property aProperty : metaModelManager.getLocalProperties(pivotType, null)) {
-				if (installDelegates(metaModelManager, aProperty)) {
-					hasDelegates = true;
-				}
-			}
-//		}
 		Type primaryType = metaModelManager.getPrimaryType(pivotType);
 		EObject eTarget = primaryType.getETarget();
 		if (eTarget instanceof EClassifier) {
 			EClassifier eClassifier = (EClassifier)eTarget;
 			for (Constraint constraint : metaModelManager.getLocalConstraints(pivotType)) {
-				if (Pivot2Ecore.installDelegate(eClassifier, constraint, null)) {
+				EModelElement eContext;
+				if (constraint.isCallable()) {
+					String name = constraint.getName();
+					eContext = null;
+					for (EOperation candidate : ((EClass) eClassifier).getEOperations()) {
+						if (name.equals(candidate.getName()) && EcoreUtil.isInvariant(candidate)) {
+							eContext = candidate;
+							break;
+						}
+					}
+					if (eContext == null) {
+						EOperation eOperation = Pivot2Ecore.createConstraintEOperation(constraint, name);
+						((EClass) eClassifier).getEOperations().add(eOperation);
+						eContext = eOperation;
+					}
+				}
+				else {
+					eContext = eClassifier;
+				}
+				if (Pivot2Ecore.installDelegate(eContext, constraint, null)) {
 					hasDelegates = true;
+				}
+			}
+			for (Operation anOperation : metaModelManager.getLocalOperations(pivotType, null)) {
+				EOperation eOperation = (EOperation)anOperation.getETarget();
+				if (eOperation != null) {
+					Pivot2Ecore.installDelegate(metaModelManager, eOperation);
+				}
+			}
+			for (Property aProperty : metaModelManager.getLocalProperties(pivotType, null)) {
+				EStructuralFeature eFeature = (EStructuralFeature)aProperty.getETarget();
+				if (eFeature != null) {
+					Pivot2Ecore.installDelegate(metaModelManager, eFeature);
+				}
+			}
+			for (EAnnotation eAnnotation : eClassifier.getEAnnotations()) {		// Fix redefines/duplicates
+				for (TreeIterator<EObject> tit = eAnnotation.eAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					if (eObject instanceof EAnnotation) {
+						EAnnotation nestedAnnotation = (EAnnotation) eObject;
+						if (UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI.equals(nestedAnnotation.getSource())) {
+							nestedAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+						}
+					}
 				}
 			}
 			if (hasDelegates) {
@@ -78,41 +124,4 @@ public class PivotInstaller
 		}
 		return hasDelegates;
 	}
-
-	private static boolean installDelegates(MetaModelManager metaModelManager, Property aProperty) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private static boolean installDelegates(MetaModelManager metaModelManager,
-			Operation anOperation) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-/*	public static void prepareDelegates(MetaModelManager metaModelManager, Package pivotPackage) {
-		for (Type aType : metaModelManager.getLocalTypes(pivotPackage)) {
-			prepareDelegates(metaModelManager, aType);
-		}
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : metaModelManager.getLocalPackages(pivotPackage)) {
-			prepareDelegates(metaModelManager, nestedPackage);
-		}
-	}
-
-	private static void prepareDelegates(MetaModelManager metaModelManager, Type pivotType) {
-		for (Operation anOperation : metaModelManager.getLocalOperations(pivotType)) {
-			prepareDelegates(metaModelManager, anOperation);
-		}
-		for (Property aProperty : metaModelManager.getLocalProperties(pivotType)) {
-			prepareDelegates(metaModelManager, aProperty);
-		}
-	}
-
-	private static void prepareDelegates(MetaModelManager metaModelManager, Property pivotProperty) {
-		metaModelManager.useCompleteEnvironmentManager().getCompleteProperty(pivotProperty);
-	}
-
-	private static void prepareDelegates(MetaModelManager metaModelManager, Operation pivotOperation) {
-		metaModelManager.useCompleteEnvironmentManager().getCompleteOperation(pivotOperation);
-	} */
 }

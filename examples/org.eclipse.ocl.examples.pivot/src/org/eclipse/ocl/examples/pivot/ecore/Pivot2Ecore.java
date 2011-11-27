@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -62,6 +63,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class Pivot2Ecore extends AbstractConversion
 {
@@ -174,11 +176,12 @@ public class Pivot2Ecore extends AbstractConversion
 		if (exprString == null) {
 			return false;
 		}
+		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
 		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation == null) {
 			oclAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-			eModelElement.getEAnnotations().add(oclAnnotation);
+			eAnnotations.add(oclAnnotation);
 		}
 		String stereotype = pivotConstraint.getStereotype();
 		String name = pivotConstraint.getName();
@@ -216,7 +219,39 @@ public class Pivot2Ecore extends AbstractConversion
 		else {
 //			error("Unsupported " + pivotConstraint);
 		}
+		oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
+		oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
+		oclAnnotation = eModelElement.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
 		return true;
+	}
+
+	public static void installDelegate(MetaModelManager metaModelManager, EOperation eOperation) {
+		List<EAnnotation> eAnnotations = eOperation.getEAnnotations();
+		EAnnotation oclAnnotation = eOperation.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+			eAnnotations.add(oclAnnotation);
+		}
+	}
+
+	public static void installDelegate(MetaModelManager metaModelManager, EStructuralFeature eFeature) {
+		List<EAnnotation> eAnnotations = eFeature.getEAnnotations();
+		EAnnotation oclAnnotation = eFeature.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+			eAnnotations.add(oclAnnotation);
+		}
 	}
 	
 	public static void installDelegates(MetaModelManager metaModelManager, EClassifier eClassifier, Type pivotType) {
