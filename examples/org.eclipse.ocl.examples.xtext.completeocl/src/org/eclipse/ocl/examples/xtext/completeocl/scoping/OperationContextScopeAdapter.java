@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -30,29 +31,30 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 
-public class OperationContextScopeAdapter extends ElementCSScopeAdapter<OperationContextDeclCS>
+public class OperationContextScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final OperationContextScopeAdapter INSTANCE = new OperationContextScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, OperationContextDeclCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		OperationContextDeclCS targetElement = (OperationContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__OPERATION) {
-			Filter filter = new OperationContextFilter(target);
+			Filter filter = new OperationContextFilter(targetElement);
 			try {
 				environmentView.addFilter(filter);
-				return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+				return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 			}
 			finally {
 				environmentView.removeFilter(filter);
 			}
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			Type type = target.getOperation().getOwningType();
+			Type type = targetElement.getOperation().getOwningType();
 			if ((type != null) && !type.eIsProxy()) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));

@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -29,22 +30,23 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 
-public class PropertyContextScopeAdapter extends ElementCSScopeAdapter<PropertyContextDeclCS>
+public class PropertyContextScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final PropertyContextScopeAdapter INSTANCE = new PropertyContextScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, PropertyContextDeclCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		PropertyContextDeclCS targetElement = (PropertyContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
-			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			Type type = target.getProperty().getOwningType();
+			Type type = targetElement.getProperty().getOwningType();
 			if ((type != null) && !type.eIsProxy()) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));

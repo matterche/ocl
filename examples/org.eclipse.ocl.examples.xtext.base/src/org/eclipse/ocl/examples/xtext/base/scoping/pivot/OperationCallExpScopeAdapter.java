@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -23,15 +24,16 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class OperationCallExpScopeAdapter extends AbstractPivotScopeAdapter<OperationCallExp>
+public class OperationCallExpScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final OperationCallExpScopeAdapter INSTANCE = new OperationCallExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, OperationCallExp target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		OperationCallExp targetExpression = (OperationCallExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
-			OclExpression source = target.getSource();
+			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
 		return scopeView.getOuterScope();

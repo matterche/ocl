@@ -144,7 +144,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
 		try {
 //			computeLookupWithParents(environmentView);
-			scopeAdapter.computeTheLookup(target, environmentView, this);
+			scopeAdapter.computeLookup(target, environmentView, this);
 		} catch (IllegalLibraryException e) {			
 		}
 		return environmentView.getDescriptions();
@@ -338,7 +338,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
-		scopeAdapter.computeTheLookup(target, environmentView, this);
+		scopeAdapter.computeLookup(target, environmentView, this);
 		return environmentView.getDescriptions();
 	}
 

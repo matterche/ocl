@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -26,8 +27,8 @@ public class VoidTypeScopeAdapter extends ClassScopeAdapter
 	public static final VoidTypeScopeAdapter INSTANCE = new VoidTypeScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		super.computeLookup(environmentView, target, scopeView);
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		super.computeLookup(target, environmentView, scopeView);
 		if (!environmentView.hasFinalResult()) {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			for (org.eclipse.ocl.examples.pivot.Package primaryPackage : metaModelManager.getAllPackages()) {

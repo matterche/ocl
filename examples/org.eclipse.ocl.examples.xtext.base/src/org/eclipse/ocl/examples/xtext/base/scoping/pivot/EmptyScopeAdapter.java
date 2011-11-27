@@ -16,9 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.Element;
 
-public class EmptyScopeAdapter extends AbstractPivotScopeAdapter<Element>
+public class EmptyScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final EmptyScopeAdapter INSTANCE = new EmptyScopeAdapter();
 }

@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -24,22 +25,23 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 
-public class PackageDeclarationScopeAdapter extends ElementCSScopeAdapter<PackageDeclarationCS>
+public class PackageDeclarationScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final PackageDeclarationScopeAdapter INSTANCE = new PackageDeclarationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, PackageDeclarationCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		PackageDeclarationCS targetElement = (PackageDeclarationCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
-			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			org.eclipse.ocl.examples.pivot.Package pkg = target.getPackage();
+			org.eclipse.ocl.examples.pivot.Package pkg = targetElement.getPackage();
 			if ((pkg != null) && !pkg.eIsProxy()) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(null, metaModelManager.getLocalPackages(pkg));

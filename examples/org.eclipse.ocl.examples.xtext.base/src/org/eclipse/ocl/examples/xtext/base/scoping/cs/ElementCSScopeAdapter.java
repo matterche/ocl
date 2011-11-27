@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -37,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
  *
  * @param <T>
  */
-public class ElementCSScopeAdapter<T extends ElementCS> extends AbstractScopeAdapter<T> implements CSScopeAdapter
+public class ElementCSScopeAdapter extends AbstractScopeAdapter implements CSScopeAdapter
 {	
 	/**
 	 * Return the scope in which to resolve an element following a list of namespaces.

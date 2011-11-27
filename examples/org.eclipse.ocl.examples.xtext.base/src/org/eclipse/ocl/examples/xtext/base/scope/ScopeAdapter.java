@@ -49,7 +49,7 @@ public interface ScopeAdapter extends Adapter.Internal
 	 * @param scopeView the access selectivity to be applied by the lookup
 	 * @return an outer ScopeView in which to continue the lookup, or null if none
 	 */
-	ScopeView computeTheLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView);
+	ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView);
 
 	EObject getTarget();
 }

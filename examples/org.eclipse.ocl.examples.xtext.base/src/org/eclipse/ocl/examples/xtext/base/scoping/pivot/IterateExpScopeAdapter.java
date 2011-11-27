@@ -25,29 +25,30 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp>
+public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final IterateExpScopeAdapter INSTANCE = new IterateExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, IterateExp target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		IterateExp targetExpression = (IterateExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
-			OclExpression source = target.getSource();
+			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
-			environmentView.addElements(target.getIterators());
-			environmentView.addNamedElement(target.getResult());
+			environmentView.addElements(targetExpression.getIterators());
+			environmentView.addNamedElement(targetExpression.getResult());
 		}
 		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__RESULT) {
-			OclExpression source = target.getSource();
-			environmentView.addElements(target.getIterators());
+			OclExpression source = targetExpression.getSource();
+			environmentView.addElements(targetExpression.getIterators());
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
-			OclExpression source = target.getSource();
+			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
-			for (Variable iterator : target.getIterators()) {
+			for (Variable iterator : targetExpression.getIterators()) {
 				environmentView.addNamedElement(iterator);
 				if (iterator == child) {
 					break;

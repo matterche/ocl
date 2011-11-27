@@ -18,19 +18,17 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 
-public abstract class AbstractRootCSScopeAdapter<CS extends RootCS>
-	extends ElementCSScopeAdapter<CS>
-	implements RootScopeAdapter
+public abstract class AbstractRootCSScopeAdapter extends ElementCSScopeAdapter implements RootScopeAdapter
 {
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, CS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 			for (Type type : metaModelManager.getGlobalTypes()) {
@@ -42,6 +40,6 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS>
 				environmentView.addElement(entry.getKey(), null, entry.getValue());
 			}
 		}
-		return super.computeLookup(environmentView, target, scopeView);
+		return super.computeLookup(target, environmentView, scopeView);
 	}
 }

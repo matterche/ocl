@@ -25,26 +25,21 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 /**
- * A AbstractScopeAdapter provides the basic behaviour for a family of derived
+ * Ann AbstractScopeAdapter provides the basic behaviour for a family of derived
  * classes that provide additional scope/environment behaviour for corresponding
  * CS elements.
  *
  * @param <T>
  */
-public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAdapter, Adapter.Internal
+public abstract class AbstractScopeAdapter implements ScopeAdapter, Adapter.Internal
 {	
-	protected ScopeView computeLookup(EnvironmentView environmentView, T target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		return scopeView.getOuterScope();
-	}
-	
-	public final ScopeView computeTheLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
-		return computeLookup(environmentView, (T)target, scopeView);
 	}
 
 	public void dispose() {}
 
 	public final EObject getTarget() {
-//		return target;
 		throw new UnsupportedOperationException();
 	}
 

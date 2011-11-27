@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -25,13 +26,14 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
-public class ExpSpecificationCSScopeAdapter extends ElementCSScopeAdapter<ExpSpecificationCS>
+public class ExpSpecificationCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final ExpSpecificationCSScopeAdapter INSTANCE = new ExpSpecificationCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ExpSpecificationCS target, ScopeView scopeView) {
-		ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, target);
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		ExpSpecificationCS targetElement = (ExpSpecificationCS)target;
+		ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, targetElement);
 		if (pivot != null) {
 			Variable resultVariable = pivot.getResultVariable();
 			if (resultVariable != null) {

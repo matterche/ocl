@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.eclipse.ocl.examples.pivot.Element;
 
 /**
  * An AbstractPivotScopeAdapter provides the basic behaviour for a family of derived
@@ -25,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.Element;
  *
  * @param <T>
  */
-public abstract class AbstractPivotScopeAdapter<T extends Element> extends AbstractScopeAdapter<T> implements PivotScopeAdapter
+public abstract class AbstractPivotScopeAdapter extends AbstractScopeAdapter implements PivotScopeAdapter
 {	
 	public boolean isAdapterForType(Object type) {
 		return type == PivotScopeAdapter.class;

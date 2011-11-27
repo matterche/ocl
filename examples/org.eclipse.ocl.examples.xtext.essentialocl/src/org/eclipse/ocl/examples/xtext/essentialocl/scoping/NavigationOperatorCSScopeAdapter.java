@@ -33,18 +33,19 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 
-public class NavigationOperatorCSScopeAdapter extends ElementCSScopeAdapter<NavigationOperatorCS>
+public class NavigationOperatorCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final NavigationOperatorCSScopeAdapter INSTANCE = new NavigationOperatorCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, NavigationOperatorCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		NavigationOperatorCS targetElement = (NavigationOperatorCS)target;
 		EObject child = scopeView.getChild();
-		if (child == target.getArgument()) {
-			OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
+		if (child == targetElement.getArgument()) {
+			OclExpression source = PivotUtil.getPivot(OclExpression.class, targetElement.getSource());
 			if (source != null) {
 				Type type = source.getType();
-				if (!target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+				if (!targetElement.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
 					if (type instanceof CollectionType) {		// collection->implicit-collect(object-operation)
 						Type elementType = ((CollectionType)type).getElementType();
 						while (elementType instanceof CollectionType) {
@@ -82,7 +83,7 @@ public class NavigationOperatorCSScopeAdapter extends ElementCSScopeAdapter<Navi
 			return scopeView.getOuterScope();
 		}
 		else {
-			ElementCS parent = target.getLogicalParent();
+			ElementCS parent = targetElement.getLogicalParent();
 			CSScopeAdapter scopeAdapter = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {

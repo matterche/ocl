@@ -17,9 +17,8 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
-public class ExpCSScopeAdapter extends ElementCSScopeAdapter<ExpCS>
+public class ExpCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final ExpCSScopeAdapter INSTANCE = new ExpCSScopeAdapter();
 }

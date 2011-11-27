@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -37,7 +38,8 @@ public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 	private static List<MetaTypeName> metaTypeNames = null;
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, RootPackageCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		RootPackageCS targetElement = (RootPackageCS)target;
 		if (environmentView.getReference() == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__META_TYPE_NAME) {
 			if (metaTypeNames == null) {
 				metaTypeNames = new ArrayList<MetaTypeName>();
@@ -55,7 +57,7 @@ public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 			return null;
 		}
 		else {
-			return super.computeLookup(environmentView, target, scopeView);
+			return super.computeLookup(targetElement, environmentView, scopeView);
 		}
 	}
 }

@@ -43,19 +43,20 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class LibraryScopeAdapter extends ElementCSScopeAdapter<LibraryCS>
+public class LibraryScopeAdapter extends ElementCSScopeAdapter
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, LibraryCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		LibraryCS targetElement = (LibraryCS)target;
 		EReference targetReference = scopeView.getTargetReference();
 		if (targetReference == BaseCSTPackage.Literals.LIBRARY_CS__PACKAGE) {
 			String name = environmentView.getName();
 			if (name != null) {
-				importLibrary(target, environmentView);
+				importLibrary(targetElement, environmentView);
 			}
 			if (importedElement != null) {
 				Resource importedResource = importedElement.eResource();

@@ -16,25 +16,27 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<ExpressionInOcl>
+public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final ExpressionInOclScopeAdapter INSTANCE = new ExpressionInOclScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ExpressionInOcl target, ScopeView scopeView) {
-		Variable contextVariable = target.getContextVariable();
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		ExpressionInOcl targetExpression = (ExpressionInOcl) target;
+		Variable contextVariable = targetExpression.getContextVariable();
 		if (contextVariable != null) {
 			environmentView.addNamedElement(contextVariable);
 			Type type = contextVariable.getType();
 			environmentView.addElementsOfScope(type, scopeView);
 		}
-		Variable resultVariable = target.getResultVariable();
+		Variable resultVariable = targetExpression.getResultVariable();
 		if (resultVariable != null) {
 			environmentView.addNamedElement(resultVariable);
 		}

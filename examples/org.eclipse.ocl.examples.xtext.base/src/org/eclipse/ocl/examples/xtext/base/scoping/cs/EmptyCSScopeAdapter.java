@@ -16,12 +16,11 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 
 /**
  * Scopes that are intentionally empty.
  */
-public class EmptyCSScopeAdapter extends ElementCSScopeAdapter<ElementCS>
+public class EmptyCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final EmptyCSScopeAdapter INSTANCE = new EmptyCSScopeAdapter();
 }

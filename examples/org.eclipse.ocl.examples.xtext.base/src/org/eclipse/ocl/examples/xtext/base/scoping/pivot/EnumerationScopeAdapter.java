@@ -16,18 +16,20 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Enumeration>
+public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final EnumerationScopeAdapter INSTANCE = new EnumerationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Enumeration target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		org.eclipse.ocl.examples.pivot.Enumeration targetEnumeration = (org.eclipse.ocl.examples.pivot.Enumeration) target;
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		environmentView.addElements(target.getOwnedLiterals());
+		environmentView.addElements(targetEnumeration.getOwnedLiterals());
 		environmentView.addElementsOfScope(metaModelManager.getEnumerationType(), scopeView);
 		if (!environmentView.hasFinalResult()) {
 			environmentView.addElementsOfScope(metaModelManager.getOclAnyType(), scopeView);

@@ -43,17 +43,18 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 
-public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<NavigatingExpCS>
+public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final NavigatingExpCSScopeAdapter INSTANCE = new NavigatingExpCSScopeAdapter();
 
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, NavigatingExpCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		NavigatingExpCS targetElement = (NavigatingExpCS)target;
 		EObject fromArgument = scopeView.getChild();
 		if (fromArgument instanceof NavigatingArgCS) {
 			if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.EXPRESSION) {
-				CallExp pivot = PivotUtil.getPivot(CallExp.class, target);
+				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
 					for (Variable iterator : ((LoopExp)pivot).getIterators()) {
 						environmentView.addNamedElement(iterator);
@@ -78,7 +79,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 					}
 				}
 				else if (pivot == null) {
-					OperatorCS csParent = target.getParent();
+					OperatorCS csParent = targetElement.getParent();
 					if (csParent instanceof NavigationOperatorCS) {
 						NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csParent;
 						ExpCS csSource = csNavigationOperator.getSource();
@@ -95,13 +96,13 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 				}
 			}
 			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ITERATOR) {			// Happens during save
-				CallExp pivot = PivotUtil.getPivot(CallExp.class, target);
+				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof LoopExp) {
 					environmentView.addNamedElements(((LoopExp)pivot).getIterators());
 				}
 			}
 			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ACCUMULATOR) {
-				CallExp pivot = PivotUtil.getPivot(CallExp.class, target);
+				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof IterateExp) {
 					environmentView.addNamedElement(((IterateExp)pivot).getResult());
 				}
@@ -110,7 +111,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 			try {
 				environmentView.addFilter(filter);
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				ElementCS parent = target.getLogicalParent();
+				ElementCS parent = targetElement.getLogicalParent();
 				CSScopeAdapter parentScope = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, parent, parentScope, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				environmentView.computeLookups(baseScopeView);
@@ -124,7 +125,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 			ExpCS explicitSource = null;
 			ElementCS scopeTarget = null;	// Note that parent is null during PreOrder namespace resolution
 			if (target.eContainer() instanceof InfixExpCS) {
-				OperatorCS csOperator = target.getParent();
+				OperatorCS csOperator = targetElement.getParent();
 				if (csOperator != null) {
 					ExpCS csSource = csOperator.getSource();
 					if (csSource != target) {
@@ -134,7 +135,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 				}
 			}
 			if (scopeTarget == null) {
-				scopeTarget = target.getLogicalParent();
+				scopeTarget = targetElement.getLogicalParent();
 			}
 			CSScopeAdapter scopeAdapter = scopeTarget != null ? ElementUtil.getScopeAdapter(scopeTarget) : null;
 			Type type = null;
@@ -145,7 +146,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter<Navigatin
 				}
 			}
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			EnvironmentView.Filter filter = new OperationFilter(metaModelManager, type, target);
+			EnvironmentView.Filter filter = new OperationFilter(metaModelManager, type, targetElement);
 			try {
 				environmentView.addFilter(filter);
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);

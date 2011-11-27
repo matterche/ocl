@@ -25,23 +25,24 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class IteratorExpScopeAdapter extends AbstractPivotScopeAdapter<IteratorExp>
+public class IteratorExpScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final IteratorExpScopeAdapter INSTANCE = new IteratorExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, IteratorExp target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		IteratorExp targetExpression = (IteratorExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
-			OclExpression source = target.getSource();
+			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
-			environmentView.addElements(target.getIterators());
+			environmentView.addElements(targetExpression.getIterators());
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
-			OclExpression source = target.getSource();
+			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
-			for (Variable iterator : target.getIterators()) {
+			for (Variable iterator : targetExpression.getIterators()) {
 				environmentView.addNamedElement(iterator);
 				if (iterator == child) {
 					break;

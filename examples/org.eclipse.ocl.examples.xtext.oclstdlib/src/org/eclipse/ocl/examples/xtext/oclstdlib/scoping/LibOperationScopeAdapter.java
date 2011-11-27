@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -29,15 +30,16 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 
-public class LibOperationScopeAdapter extends ElementCSScopeAdapter<OperationCS>
+public class LibOperationScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final LibOperationScopeAdapter INSTANCE = new LibOperationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, OperationCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		OperationCS targetElement = (OperationCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
-		Operation pivot = PivotUtil.getPivot(Operation.class, target);
+		Operation pivot = PivotUtil.getPivot(Operation.class, targetElement);
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}
@@ -47,7 +49,7 @@ public class LibOperationScopeAdapter extends ElementCSScopeAdapter<OperationCS>
 			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 		}
 		else {
-			TemplateSignatureCS csTemplateSignature = target.getOwnedTemplateSignature();
+			TemplateSignatureCS csTemplateSignature = targetElement.getOwnedTemplateSignature();
 			if (csTemplateSignature != null) {
 				for (TemplateParameterCS csTemplateParameter : csTemplateSignature.getOwnedTemplateParameter()) {
 					TemplateParameter templateParameter = (TemplateParameter) csTemplateParameter.getPivot();

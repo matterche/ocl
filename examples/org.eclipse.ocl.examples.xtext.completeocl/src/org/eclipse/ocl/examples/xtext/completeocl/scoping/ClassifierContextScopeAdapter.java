@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -29,22 +30,23 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 
-public class ClassifierContextScopeAdapter extends ElementCSScopeAdapter<ClassifierContextDeclCS>
+public class ClassifierContextScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final ClassifierContextScopeAdapter INSTANCE = new ClassifierContextScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ClassifierContextDeclCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		ClassifierContextDeclCS targetElement = (ClassifierContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
-			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			Type type = target.getClassifier();
+			Type type = targetElement.getClassifier();
 			if ((type != null) && !type.eIsProxy()) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));

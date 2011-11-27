@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -23,18 +24,19 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
-public class TypeNameExpCSScopeAdapter extends ElementCSScopeAdapter<TypeNameExpCS>
+public class TypeNameExpCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final TypeNameExpCSScopeAdapter INSTANCE = new TypeNameExpCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, TypeNameExpCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		TypeNameExpCS targetElement = (TypeNameExpCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__ELEMENT) {
-			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		return scopeView.getOuterScope();
 	}

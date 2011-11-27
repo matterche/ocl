@@ -16,21 +16,23 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
+public class LetExpScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final LetExpScopeAdapter INSTANCE = new LetExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, LetExp target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		LetExp targetExpression = (LetExp)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
-			environmentView.addNamedElement(target.getVariable());
+			environmentView.addNamedElement(targetExpression.getVariable());
 		}
 		return scopeView.getOuterScope();
 	}

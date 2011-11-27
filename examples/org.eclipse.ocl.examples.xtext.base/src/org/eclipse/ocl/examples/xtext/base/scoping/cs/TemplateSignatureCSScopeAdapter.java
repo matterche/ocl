@@ -16,19 +16,21 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TemplateSignatureCSScopeAdapter extends ElementCSScopeAdapter<TemplateSignatureCS>
+public class TemplateSignatureCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final TemplateSignatureCSScopeAdapter INSTANCE = new TemplateSignatureCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, TemplateSignatureCS target, ScopeView scopeView) {
-		TemplateSignature pivot = PivotUtil.getPivot(TemplateSignature.class, target);
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		TemplateSignatureCS targetElement = (TemplateSignatureCS)target;
+		TemplateSignature pivot = PivotUtil.getPivot(TemplateSignature.class, targetElement);
 		if (pivot != null) {
 			environmentView.addElements(pivot.getOwnedParameters());
 		}

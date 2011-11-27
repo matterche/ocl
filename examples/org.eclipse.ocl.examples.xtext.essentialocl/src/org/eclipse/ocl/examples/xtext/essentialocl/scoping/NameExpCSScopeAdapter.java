@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 
-public class NameExpCSScopeAdapter extends ElementCSScopeAdapter<NameExpCS>
+public class NameExpCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final NameExpCSScopeAdapter INSTANCE = new NameExpCSScopeAdapter();
 
@@ -63,10 +63,11 @@ public class NameExpCSScopeAdapter extends ElementCSScopeAdapter<NameExpCS>
 //	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, NameExpCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		NameExpCS targetElement = (NameExpCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT) {
-			List<Namespace> namespaces = target.getNamespace();
+			List<Namespace> namespaces = targetElement.getNamespace();
 			if (namespaces.size() > 0) {
 				return getNamespaceScope(environmentView, scopeView, namespaces);
 			}
@@ -79,7 +80,7 @@ public class NameExpCSScopeAdapter extends ElementCSScopeAdapter<NameExpCS>
 			}
 		}
 		else if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		return scopeView.getOuterScope();
 	}

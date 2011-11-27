@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -26,14 +27,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class OperationCSScopeAdapter extends ElementCSScopeAdapter<OperationCS>
+public class OperationCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final OperationCSScopeAdapter INSTANCE = new OperationCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, OperationCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		OperationCS targetElement = (OperationCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		Operation pivot = PivotUtil.getPivot(Operation.class, target);
+		Operation pivot = PivotUtil.getPivot(Operation.class, targetElement);
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}

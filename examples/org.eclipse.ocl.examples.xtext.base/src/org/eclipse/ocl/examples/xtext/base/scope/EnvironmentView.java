@@ -190,7 +190,7 @@ public class EnvironmentView
 			element = ElementUtil.getLowerBound(element);
 			PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
 			if (scopeAdapter != null) {
-				scopeAdapter.computeTheLookup(element, this, scopeView);
+				scopeAdapter.computeLookup(element, this, scopeView);
 			}
 		}
 	}
@@ -198,7 +198,7 @@ public class EnvironmentView
 	public void addElementsOfScope(ModelElementCS csElement, ScopeView scopeView) {
 		CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 		if (scopeAdapter != null) {
-			scopeAdapter.computeTheLookup(csElement, this, scopeView);
+			scopeAdapter.computeLookup(csElement, this, scopeView);
 		}
 	}
 
@@ -259,7 +259,7 @@ public class EnvironmentView
 					break;					// The NULLSCOPEVIEW
 				}
 				EObject aTarget = aScope.getTarget();
-				aScope = aScopeAdapter.computeTheLookup(aTarget, this, aScope);
+				aScope = aScopeAdapter.computeLookup(aTarget, this, aScope);
 			}
 		}
 		catch (IllegalLibraryException e) {

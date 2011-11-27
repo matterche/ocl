@@ -16,9 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 
-public class LambdaTypeCSScopeAdapter extends ElementCSScopeAdapter<LambdaTypeCS>
+public class LambdaTypeCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final LambdaTypeCSScopeAdapter INSTANCE = new LambdaTypeCSScopeAdapter();
 }

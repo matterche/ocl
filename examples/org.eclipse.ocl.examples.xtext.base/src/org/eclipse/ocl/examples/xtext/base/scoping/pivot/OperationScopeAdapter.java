@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -23,21 +24,22 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
+public class OperationScopeAdapter extends AbstractPivotScopeAdapter
 {
 	public static final OperationScopeAdapter INSTANCE = new OperationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, Operation target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		Operation targetOperation = (Operation)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
 //		Operation target = getTarget();
 		if (containmentFeature == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
 		}
 		else {
-			environmentView.addNamedElements(target.getOwnedParameters());
+			environmentView.addNamedElements(targetOperation.getOwnedParameters());
 		}
-		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
+		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetOperation));
 		return scopeView.getOuterScope();
 	}
 }

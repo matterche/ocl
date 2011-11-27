@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -36,19 +37,20 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class IncludeScopeAdapter extends ElementCSScopeAdapter<IncludeCS>
+public class IncludeScopeAdapter extends ElementCSScopeAdapter
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, IncludeCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		IncludeCS targetElement = (IncludeCS)target;
 		EReference targetReference = scopeView.getTargetReference();
 		if (targetReference == CompleteOCLCSTPackage.Literals.INCLUDE_CS__NAMESPACE) {
 			String name = environmentView.getName();
 			if (name != null) {
-				importComplement(target, environmentView);
+				importComplement(targetElement, environmentView);
 			}
 			if (importedElement != null) {
 				Resource importedResource = importedElement.eResource();

@@ -16,19 +16,21 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class PackageCSScopeAdapter extends ElementCSScopeAdapter<PackageCS>
+public class PackageCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final PackageCSScopeAdapter INSTANCE = new PackageCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, PackageCS target, ScopeView scopeView) {
-		org.eclipse.ocl.examples.pivot.Package pivot = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, target);
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		PackageCS targetElement = (PackageCS)target;
+		org.eclipse.ocl.examples.pivot.Package pivot = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, targetElement);
 		if (pivot != null) {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivot));

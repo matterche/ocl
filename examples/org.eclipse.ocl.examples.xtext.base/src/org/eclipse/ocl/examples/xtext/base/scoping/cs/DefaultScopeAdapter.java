@@ -23,7 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 /**
  * Scopes that are accidentally empty; a debugging aid.
  */
-public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
+public class DefaultScopeAdapter extends AbstractScopeAdapter
 {
 	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
 

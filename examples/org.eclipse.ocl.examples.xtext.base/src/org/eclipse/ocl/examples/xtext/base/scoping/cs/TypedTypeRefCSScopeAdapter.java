@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -27,27 +28,28 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public class TypedTypeRefCSScopeAdapter extends ElementCSScopeAdapter<TypedTypeRefCS>
+public class TypedTypeRefCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final TypedTypeRefCSScopeAdapter INSTANCE = new TypedTypeRefCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, TypedTypeRefCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		TypedTypeRefCS targetElement = (TypedTypeRefCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING) {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			ElementCS parent = target.getLogicalParent();
+			ElementCS parent = targetElement.getLogicalParent();
 			CSScopeAdapter parentScope = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
 			return new BaseScopeView(metaModelManager, parent, parentScope, target, target.eContainingFeature(), null);
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) {
-			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
 		}
 		else {
-			Type type = target.getType();
+			Type type = targetElement.getType();
 			if ((type != null) && !type.eIsProxy()) {
 				environmentView.addElementsOfScope(type, scopeView);
 			}

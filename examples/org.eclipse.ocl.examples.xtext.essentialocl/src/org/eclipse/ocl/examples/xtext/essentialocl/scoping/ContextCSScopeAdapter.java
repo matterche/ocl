@@ -39,7 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
-public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS>
+public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter
 {
 	public static final ContextCSScopeAdapter INSTANCE = new ContextCSScopeAdapter();
 
@@ -57,10 +57,11 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS>
 	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ContextCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		ContextCS targetElement = (ContextCS)target;
 		environmentView.addFilter(NoImplicitProperties.INSTANCE);
 		try {
-			ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, target);
+			ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, targetElement);
 			if ((pivot != null) && (pivot.getContextVariable().getType() != null)) {
 				Variable resultVariable = pivot.getResultVariable();
 				if (resultVariable != null) {
@@ -99,7 +100,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS>
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addElementsOfScope(metaModelManager.getOclAnyType().getPackage(), scopeView);
 			}
-			return super.computeLookup(environmentView, target, scopeView);
+			return super.computeLookup(targetElement, environmentView, scopeView);
 		}
 		finally {
 			environmentView.removeFilter(NoImplicitProperties.INSTANCE);

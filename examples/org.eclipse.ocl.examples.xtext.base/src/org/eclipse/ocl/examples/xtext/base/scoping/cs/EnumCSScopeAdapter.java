@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -23,13 +24,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class EnumCSScopeAdapter extends ElementCSScopeAdapter<EnumerationCS>
+public class EnumCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final EnumCSScopeAdapter INSTANCE = new EnumCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, EnumerationCS target, ScopeView scopeView) {
-		Enumeration pivot = PivotUtil.getPivot(Enumeration.class, target);
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		EnumerationCS targetElement = (EnumerationCS)target;
+		Enumeration pivot = PivotUtil.getPivot(Enumeration.class, targetElement);
 		if (pivot != null) {
 			environmentView.addNamedElements(pivot.getOwnedLiterals());
 			environmentView.addElements(PivotUtil.getTemplateParameters(pivot));

@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -25,14 +26,15 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 
-public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter<CompleteOCLDocumentCS>
+public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter
 {
 	public static final CompleteOCLDocumentScopeAdapter INSTANCE = new CompleteOCLDocumentScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, CompleteOCLDocumentCS target, ScopeView scopeView) {
+	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		CompleteOCLDocumentCS targetElement = (CompleteOCLDocumentCS)target;
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		for (ImportCS anImport : target.getOwnedImport()) {
+		for (ImportCS anImport : targetElement.getOwnedImport()) {
 			Namespace namespace = anImport.getNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {
 				String importName = anImport.getName();
