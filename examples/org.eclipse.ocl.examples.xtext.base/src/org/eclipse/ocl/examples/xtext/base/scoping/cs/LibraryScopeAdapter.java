@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
@@ -125,7 +126,7 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 		try {
-			BaseCSResource importedResource = (BaseCSResource)csResourceSet.getResource(uri, true);
+			Resource importedResource = csResourceSet.getResource(uri, true);
 			List<EObject> contents = importedResource.getContents();
 			if (contents.size() > 0) {
 				for (EObject content : contents) {
@@ -147,10 +148,16 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 			}
 			List<Resource.Diagnostic> errors = importedResource.getErrors();
 			if (errors.size() > 0) {
-				INode node = NodeModelUtils.getNode(target);
-				String errorMessage = PivotUtil.formatResourceDiagnostics(errors, "Errors in '" + uri + "'", "\n\t");
-				Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
-				csResource.getErrors().add(resourceDiagnostic);
+				Diagnostic diagnostic = errors.get(0);
+				if (diagnostic instanceof WrappedException) {
+					throwable = ((WrappedException)diagnostic).exception();
+				}
+				else {
+					INode node = NodeModelUtils.getNode(target);
+					String errorMessage = PivotUtil.formatResourceDiagnostics(errors, "Errors in '" + uri + "'", "\n\t");
+					Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
+					csResource.getErrors().add(resourceDiagnostic);
+				}
 			}
 		} catch (WrappedException e) {
 			throwable = e.exception();
