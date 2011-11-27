@@ -334,6 +334,10 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromCompleteOCL("Fruit");
 	}
 
+//	public void testCompleteOCLRoundTrip_Infrastructure() throws IOException, InterruptedException {
+//		doRoundTripFromCompleteOCL("Infrastructure");
+//	}
+
 	public void testCompleteOCLRoundTrip_Names() throws IOException, InterruptedException {
 		doRoundTripFromCompleteOCL("Names");
 	}

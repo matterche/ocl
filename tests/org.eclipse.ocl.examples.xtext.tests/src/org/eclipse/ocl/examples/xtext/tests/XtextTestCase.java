@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -541,6 +542,7 @@ public class XtextTestCase extends PivotTestCase
 		OCLstdlibStandaloneSetup.doSetup();
 		super.setUp();
 		resourceSet = new ResourceSetImpl();
+		ProjectMap.initializeURIResourceMap(resourceSet);
 		Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
 		uriMap.putAll(EcorePlugin.computePlatformURIMap());
 //		for (Map.Entry<URI,URI> entry : uriMap.entrySet()) {
