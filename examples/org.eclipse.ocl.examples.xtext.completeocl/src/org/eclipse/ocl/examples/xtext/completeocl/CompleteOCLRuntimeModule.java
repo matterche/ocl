@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
+import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLHiddenTokenSequencer;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -33,6 +34,12 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 	public void configure(Binder binder) {
 		super.configure(binder);
 		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
+	}
+	
+	@SuppressWarnings("restriction")
+	@Override
+	public Class<? extends org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer> bindIHiddenTokenSequencer() {
+		return CompleteOCLHiddenTokenSequencer.class;
 	}
 
 	@Override
