@@ -43,23 +43,19 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, org.eclipse.ocl.examples.pivot.Package>
+public class LibraryScopeAdapter extends ElementCSScopeAdapter<LibraryCS>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
-	
-	public LibraryScopeAdapter(LibraryCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, LibraryCS target, ScopeView scopeView) {
 		EReference targetReference = scopeView.getTargetReference();
 		if (targetReference == BaseCSTPackage.Literals.LIBRARY_CS__PACKAGE) {
 			String name = environmentView.getName();
 			if (name != null) {
-				importLibrary(environmentView);
+				importLibrary(target, environmentView);
 			}
 			if (importedElement != null) {
 				Resource importedResource = importedElement.eResource();
@@ -83,11 +79,17 @@ public class LibraryScopeAdapter extends ModelElementCSScopeAdapter<LibraryCS, o
 		}
 	}
 
+	@Override
+	public void dispose() {
+		importedElement = null;
+		super.dispose();
+	}
+
 	public String getMessage() {
 		return throwable != null ? throwable.getMessage() : null;
 	}
 
-	protected void importLibrary(EnvironmentView environmentView) {
+	protected void importLibrary(LibraryCS target, EnvironmentView environmentView) {
 		String name = environmentView.getName();
 		if (name == null) {
 			return;

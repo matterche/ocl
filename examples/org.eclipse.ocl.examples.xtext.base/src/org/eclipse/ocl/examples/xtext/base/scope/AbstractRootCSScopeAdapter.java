@@ -18,25 +18,19 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.Map;
 
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 
-public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElementCS, P extends Element>
-	extends ModelElementCSScopeAdapter<CS, P>
+public abstract class AbstractRootCSScopeAdapter<CS extends RootCS>
+	extends ElementCSScopeAdapter<CS>
 	implements RootScopeAdapter
 {
-	public AbstractRootCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement, pivotClass);
-	}
-
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, CS target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 			for (Type type : metaModelManager.getGlobalTypes()) {
@@ -48,11 +42,6 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & ModelElemen
 				environmentView.addElement(entry.getKey(), null, entry.getValue());
 			}
 		}
-		return super.computeLookup(environmentView, scopeView);
-	}
-
-	@Override
-	public RootScopeAdapter getRootScopeAdapter() {
-		return this;
+		return super.computeLookup(environmentView, target, scopeView);
 	}
 }

@@ -63,7 +63,6 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				}
 				return Collections.emptyList();
 			}
-//			ScopeCSAdapter scopeAdapter = null;
 			IScope scope = null;
 			String uri = TypesPackage.eNS_URI;
 //			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
@@ -71,7 +70,6 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
 			}
 			else {
-//				scopeAdapter = ElementUtil.getScopeCSAdapter((ElementCS) context);
 				scope = getScope(context, ref);
 				if (traceLookup) {
 //					EObject target = ((ScopeView)scope).getTarget();

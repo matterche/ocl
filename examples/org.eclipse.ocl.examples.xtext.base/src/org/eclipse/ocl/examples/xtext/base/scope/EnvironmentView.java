@@ -37,7 +37,8 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -185,18 +186,19 @@ public class EnvironmentView
 	}
 
 	public void addElementsOfScope(Element element, ScopeView scopeView) {
-		if (element !=  null) {
-			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
+		if (element != null) {
+			element = ElementUtil.getLowerBound(element);
+			PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
 			if (scopeAdapter != null) {
-				scopeAdapter.computeLookup(this, scopeView);
+				scopeAdapter.computeTheLookup(element, this, scopeView);
 			}
 		}
 	}
 
 	public void addElementsOfScope(ModelElementCS csElement, ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
+		CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 		if (scopeAdapter != null) {
-			scopeAdapter.computeLookup(this, scopeView);
+			scopeAdapter.computeTheLookup(csElement, this, scopeView);
 		}
 	}
 
@@ -243,8 +245,9 @@ public class EnvironmentView
 	}
 
 	public int computeLookups(Type type) {
-		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(type);
-		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(metaModelManager, null);
+		type = (Type) ElementUtil.getLowerBound(type);
+		PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(type);
+		ScopeView innerScopeView = new BaseScopeView(metaModelManager, type, scopeAdapter, null, null, null);
 		return computeLookups(innerScopeView);
 	}
 	
@@ -255,9 +258,8 @@ public class EnvironmentView
 				if (aScopeAdapter == null) {
 					break;					// The NULLSCOPEVIEW
 				}
-				@SuppressWarnings("unused")
-				EObject aTarget = aScopeAdapter.getTarget();
-				aScope = aScopeAdapter.computeLookup(this, aScope);
+				EObject aTarget = aScope.getTarget();
+				aScope = aScopeAdapter.computeTheLookup(aTarget, this, aScope);
 			}
 		}
 		catch (IllegalLibraryException e) {

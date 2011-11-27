@@ -24,12 +24,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class LetExpScopeAdapter extends ExpressionScopeAdapter<LetExp>
 {
-	public LetExpScopeAdapter(LetExp pivotElement) {
-		super(pivotElement);
-	}
+	public static final LetExpScopeAdapter INSTANCE = new LetExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, LetExp target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LET_EXP__IN) {
 			environmentView.addNamedElement(target.getVariable());

@@ -32,14 +32,12 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
 
 public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 {
+	public static final LibRootPackageScopeAdapter INSTANCE = new LibRootPackageScopeAdapter();
+
 	private static List<MetaTypeName> metaTypeNames = null;
-	
-	public LibRootPackageScopeAdapter(RootPackageCS csElement) {
-		super(csElement);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, RootPackageCS target, ScopeView scopeView) {
 		if (environmentView.getReference() == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__META_TYPE_NAME) {
 			if (metaTypeNames == null) {
 				metaTypeNames = new ArrayList<MetaTypeName>();
@@ -57,7 +55,7 @@ public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 			return null;
 		}
 		else {
-			return super.computeLookup(environmentView, scopeView);
+			return super.computeLookup(environmentView, target, scopeView);
 		}
 	}
 }

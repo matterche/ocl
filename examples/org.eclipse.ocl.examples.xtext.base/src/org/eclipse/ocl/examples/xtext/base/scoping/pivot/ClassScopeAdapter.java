@@ -28,6 +28,8 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
+	public static final ClassScopeAdapter INSTANCE = new ClassScopeAdapter();
+
 	public static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
 			Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
@@ -42,13 +44,9 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 			}
 		}
 	}
-	
-	public ClassScopeAdapter(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(pivotElement);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		if (target.getOwningTemplateParameter() != null) {
 			Type type = metaModelManager.getOclAnyType(); // WIP use lowerbound

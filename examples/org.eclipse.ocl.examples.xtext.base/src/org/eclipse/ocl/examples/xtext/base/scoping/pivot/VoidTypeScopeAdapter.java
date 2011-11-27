@@ -23,13 +23,11 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class VoidTypeScopeAdapter extends ClassScopeAdapter
 {
-	public VoidTypeScopeAdapter(org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		super(pivotElement);
-	}
+	public static final VoidTypeScopeAdapter INSTANCE = new VoidTypeScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		super.computeLookup(environmentView, scopeView);
+	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
+		super.computeLookup(environmentView, target, scopeView);
 		if (!environmentView.hasFinalResult()) {
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			for (org.eclipse.ocl.examples.pivot.Package primaryPackage : metaModelManager.getAllPackages()) {

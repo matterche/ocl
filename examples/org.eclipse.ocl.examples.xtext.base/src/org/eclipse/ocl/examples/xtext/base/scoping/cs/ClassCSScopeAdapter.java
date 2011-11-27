@@ -28,11 +28,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ClassCSScopeAdapter extends ModelElementCSScopeAdapter<ClassCS, org.eclipse.ocl.examples.pivot.Class>
+public class ClassCSScopeAdapter extends ElementCSScopeAdapter<ClassCS>
 {
-	public ClassCSScopeAdapter(ClassCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Class.class);
-	}
+	public static final ClassCSScopeAdapter INSTANCE = new ClassCSScopeAdapter();
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
 		List<Type> superClasses = target.getSuperClasses();
@@ -49,10 +47,10 @@ public class ClassCSScopeAdapter extends ModelElementCSScopeAdapter<ClassCS, org
 	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ClassCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
-		org.eclipse.ocl.examples.pivot.Class pivot = getPivot();
+		org.eclipse.ocl.examples.pivot.Class pivot = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, target);
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_SUPER_TYPE) {
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));

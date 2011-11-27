@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ScopeCSAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
+ * $Id$
  */
-package org.eclipse.ocl.examples.xtext.base.scope;
+package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-public interface ScopeCSAdapter extends ScopeAdapter
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+
+public interface CSScopeAdapter extends ScopeAdapter
 {	
-//	RootCSScopeAdapter getRootScopeAdapter();
 }

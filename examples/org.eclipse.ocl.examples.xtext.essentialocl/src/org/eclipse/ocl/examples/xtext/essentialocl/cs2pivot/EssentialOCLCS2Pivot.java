@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -70,7 +70,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			return new EssentialOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
 			return new EssentialOCLScopeVisitor();
 		}
 

@@ -19,20 +19,19 @@ package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
-public class ExpSpecificationCSScopeAdapter extends ModelElementCSScopeAdapter<ExpSpecificationCS, ExpressionInOcl>
+public class ExpSpecificationCSScopeAdapter extends ElementCSScopeAdapter<ExpSpecificationCS>
 {
-	public ExpSpecificationCSScopeAdapter(ExpSpecificationCS csElement) {
-		super(csElement, ExpressionInOcl.class);
-	}
+	public static final ExpSpecificationCSScopeAdapter INSTANCE = new ExpSpecificationCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		ExpressionInOcl pivot = getPivot();
+	public ScopeView computeLookup(EnvironmentView environmentView, ExpSpecificationCS target, ScopeView scopeView) {
+		ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, target);
 		if (pivot != null) {
 			Variable resultVariable = pivot.getResultVariable();
 			if (resultVariable != null) {

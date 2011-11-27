@@ -16,29 +16,23 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ConstraintCSScopeAdapter extends ModelElementCSScopeAdapter<ConstraintCS, Constraint>
+public class ConstraintCSScopeAdapter extends ElementCSScopeAdapter<ConstraintCS>
 {
-	public ConstraintCSScopeAdapter(ConstraintCS csElement) {
-		super(csElement, Constraint.class);
-	}
+	public static final ConstraintCSScopeAdapter INSTANCE = new ConstraintCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		Constraint pivot = getPivot();
+	public ScopeView computeLookup(EnvironmentView environmentView, ConstraintCS target, ScopeView scopeView) {
+		Constraint pivot = PivotUtil.getPivot(Constraint.class, target);
 		if (pivot != null) {
 			ValueSpecification specification = pivot.getSpecification();
 			if (specification instanceof ExpressionInOcl) {
@@ -55,14 +49,5 @@ public class ConstraintCSScopeAdapter extends ModelElementCSScopeAdapter<Constra
 			}
 		}
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
-		EObject eContainer = target.eContainer();
-		if (eContainer instanceof FeatureCS) {
-			eContainer = eContainer.eContainer();
-		}
-		return getScopeCSAdapter((ElementCS)eContainer);
 	}
 }

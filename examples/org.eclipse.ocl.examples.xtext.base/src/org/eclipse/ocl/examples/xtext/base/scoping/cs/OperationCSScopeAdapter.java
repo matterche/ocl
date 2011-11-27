@@ -26,16 +26,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class OperationCSScopeAdapter extends ModelElementCSScopeAdapter<OperationCS, Operation>
+public class OperationCSScopeAdapter extends ElementCSScopeAdapter<OperationCS>
 {
-	public OperationCSScopeAdapter(OperationCS csElement) {
-		super(csElement, Operation.class);
-	}
+	public static final OperationCSScopeAdapter INSTANCE = new OperationCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, OperationCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		Operation pivot = getPivot();
+		Operation pivot = PivotUtil.getPivot(Operation.class, target);
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}

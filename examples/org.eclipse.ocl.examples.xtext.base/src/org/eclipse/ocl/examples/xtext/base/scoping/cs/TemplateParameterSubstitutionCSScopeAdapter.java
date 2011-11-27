@@ -17,20 +17,17 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TemplateParameterSubstitutionCSScopeAdapter extends ModelElementCSScopeAdapter<TemplateParameterSubstitutionCS, TemplateParameterSubstitution>
+public class TemplateParameterSubstitutionCSScopeAdapter extends ElementCSScopeAdapter<TemplateParameterSubstitutionCS>
 {
-	public TemplateParameterSubstitutionCSScopeAdapter(TemplateParameterSubstitutionCS csElement) {
-		super(csElement, TemplateParameterSubstitution.class);
-	}
+	public static final TemplateParameterSubstitutionCSScopeAdapter INSTANCE = new TemplateParameterSubstitutionCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, TemplateParameterSubstitutionCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		/*if (containmentFeature == BaseCSTPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION_CS__FORMAL_TEMPLATE_PARAMETER) {
 			TemplateBindingCS templateBinding = getTarget().getOwningTemplateBinding();

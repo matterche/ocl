@@ -24,12 +24,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<ExpressionInOcl>
 {
-	public ExpressionInOclScopeAdapter(ExpressionInOcl pivotElement) {
-		super(pivotElement);
-	}
+	public static final ExpressionInOclScopeAdapter INSTANCE = new ExpressionInOclScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ExpressionInOcl target, ScopeView scopeView) {
 		Variable contextVariable = target.getContextVariable();
 		if (contextVariable != null) {
 			environmentView.addNamedElement(contextVariable);

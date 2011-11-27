@@ -25,21 +25,14 @@ public class RootPackageScopeAdapter
 extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 implements RootScopeAdapter
 {
-	public RootPackageScopeAdapter(org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(null, pivotElement);
-	}
+	public static final RootPackageScopeAdapter INSTANCE = new RootPackageScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Package target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addNamedElements(metaModelManager.getLocalPackages(target));
 		environmentView.addNamedElements(metaModelManager.getLocalClasses(target));
 		environmentView.addNamedElements(target.getOwnedPrecedences());
 		return scopeView.getOuterScope();
-	}
-
-	@Override
-	public RootScopeAdapter getRootScopeAdapter() {
-		return this;
 	}
 }

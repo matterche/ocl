@@ -102,8 +102,7 @@ public class OCLstdlibCSTFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LibClassCS createLibClassCS()
-	{
+	public LibClassCS createLibClassCS() {
 		LibClassCSImpl libClassCS = new LibClassCSImpl();
 		return libClassCS;
 	}
@@ -163,8 +162,7 @@ public class OCLstdlibCSTFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaTypeName createMetaTypeName()
-	{
+	public MetaTypeName createMetaTypeName() {
 		MetaTypeNameImpl metaTypeName = new MetaTypeNameImpl();
 		return metaTypeName;
 	}

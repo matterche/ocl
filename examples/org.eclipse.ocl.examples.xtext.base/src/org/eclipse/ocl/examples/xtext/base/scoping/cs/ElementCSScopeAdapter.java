@@ -23,14 +23,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 /**
  * An ElementCSScopeAdapter provides the basic behaviour for a family of derived
@@ -39,21 +37,8 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
  *
  * @param <T>
  */
-public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
+public class ElementCSScopeAdapter<T extends ElementCS> extends AbstractScopeAdapter<T> implements CSScopeAdapter
 {	
-//	protected final RootCSScopeAdapter root;	
-	
-	protected ElementCSScopeAdapter(CS csElement) {
-		this(getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
-	}
-
-	protected ElementCSScopeAdapter(ScopeCSAdapter parent, CS target) {
-		super(parent, target);
-//		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
-		RootScopeAdapter root = getRootScopeAdapter();
-		assert (root != null) || (target instanceof RootCS);
-	}	
-
 	/**
 	 * Return the scope in which to resolve an element following a list of namespaces.
 	 */
@@ -65,10 +50,10 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 			if ((namespace == null) || namespace.eIsProxy()) {
 				return null;
 			}
-			ScopeAdapter scopeAdapter = getScopeAdapter(namespace);
+			PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(namespace);
 			if (scopeAdapter != null) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, scopeAdapter, null, scopeView.getTargetReference(), null);
+				BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, namespace, scopeAdapter, null, scopeView.getTargetReference(), null);
 				environmentView.computeLookups(nestedScopeView);
 			}				
 			return null;
@@ -98,10 +83,10 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 				}
 				else {
 					Namespace parentNamespace = internalNamespaces.get(i-1);
-					ScopeAdapter scopeAdapter = getScopeAdapter(parentNamespace);
+					PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(parentNamespace);
 					if (scopeAdapter != null) {
 						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-						BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, scopeAdapter, null, scopeView.getTargetReference(), null);
+						BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, parentNamespace, scopeAdapter, null, scopeView.getTargetReference(), null);
 						environmentView.computeLookups(nestedScopeView);
 					}
 					return null;
@@ -119,15 +104,8 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		}
 		return null;		// FIXME Import alias names
 	}
-
-	public RootScopeAdapter getRootScopeAdapter() {
-//		return root;
-		return parent != null ? ((ScopeCSAdapter)parent).getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
-
-	}
-
-	@Override
-	public String toString() {
-		return target.toString();
+	
+	public final boolean isAdapterForType(Object type) {
+		return type == CSScopeAdapter.class;
 	}
 }

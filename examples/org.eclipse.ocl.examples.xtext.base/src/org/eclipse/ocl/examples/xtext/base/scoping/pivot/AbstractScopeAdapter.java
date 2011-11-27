@@ -16,31 +16,13 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.PivotScopeVisitor;
-import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 
 /**
  * A AbstractScopeAdapter provides the basic behaviour for a family of derived
@@ -51,116 +33,19 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
  */
 public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAdapter, Adapter.Internal
 {	
-	private static final Logger logger = Logger.getLogger(AbstractScopeAdapter.class);
-
-	public static RootScopeAdapter getDocumentScopeAdapter(Element context) {
-		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
-			if (scopeAdapter instanceof RootScopeAdapter) {
-				return (RootScopeAdapter) scopeAdapter;
-			}
-		}
-		return null;
-	}
-
-	public static RootScopeAdapter getDocumentScopeAdapter(ModelElementCS context) {
-		for (ScopeAdapter scopeAdapter = getScopeCSAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
-			if (scopeAdapter instanceof RootScopeAdapter) {
-				return (RootScopeAdapter) scopeAdapter;
-			}
-		}
-		return null;
-	}
-
-	public static ScopeAdapter getScopeAdapter(Element eObject) {
-		if (eObject == null) {
-			logger.warn("getScopeAdapter for null");
-			return null;
-		}
-		if (eObject.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeAdapter for proxy " + eObject);
-			return null;
-		}
-		ScopeAdapter adapter = PivotUtil.getAdapter(ScopeAdapter.class, eObject);
-		if (adapter != null) {
-			return adapter;
-		}
-//		Resource resource = eObject.eResource();
-//		ResourceSet resourceSet = resource.getResourceSet();
-		PivotScopeVisitor visitor = new PivotScopeVisitor();
-		return eObject.accept(visitor);	
-	}
-
-	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
-		if (csElement == null) {
-			logger.warn("getScopeCSAdapter for null");
-			return null;
-		}
-		if (csElement.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeCSAdapter for proxy " + csElement);
-			return null;
-		}
-		ScopeCSAdapter adapter = PivotUtil.getAdapter(ScopeCSAdapter.class, csElement, ScopeAdapter.class);
-		if (adapter != null) {
-			return adapter;
-		}
-		BaseCSResource csResource = (BaseCSResource) csElement.eResource();
-		CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
-		CS2Pivot converter = resourceAdapter.getConverter();		
-		EClass eClass = csElement.eClass();
-		EPackage ePackage = eClass.getEPackage();
-		BaseCSVisitor<ScopeCSAdapter, Object> visitor = converter.getScopeVisitor(ePackage);		
-		return csElement.accept(visitor);	
-	}
-
-	/**
-	 * The last notifier set to this adapter.
-	 */
-	protected final T target;
-
-	protected final ScopeAdapter parent;
-
-	protected AbstractScopeAdapter(ScopeAdapter parent, T target) {
-		this.parent = parent;
-		this.target = target;
-		target.eAdapters().add(this);
-	}
-
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	protected ScopeView computeLookup(EnvironmentView environmentView, T target, ScopeView scopeView) {
 		return scopeView.getOuterScope();
 	}
-
-	public final void computeLookup(EnvironmentView environmentView, EReference targetReference) {
-		ScopeView scopeView = getInnerScopeView(environmentView.getMetaModelManager(), targetReference);
-		computeLookup(environmentView, scopeView);
-	}
-
-	public void dispose() {
-		target.eAdapters().remove(this);
-	}
-
-	public ScopeView getInnerScopeView(MetaModelManager metaModelManager, EReference targetReference) {
-		return new BaseScopeView(metaModelManager, this, null, null, targetReference);
-	}
-
-	public ScopeView getOuterScopeView(MetaModelManager metaModelManager, EReference targetReference) {
-		ScopeAdapter parent = getParent();
-		return new BaseScopeView(metaModelManager, parent, target, target.eContainingFeature(), targetReference);
-	}
-
-	public ScopeAdapter getParent() {
-		return parent;
-	}
 	
-	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
-		throw new UnsupportedOperationException(getClass().getSimpleName() + ".getSourceScope for " + target.eClass().getName()); //$NON-NLS-1$
+	public final ScopeView computeTheLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
+		return computeLookup(environmentView, (T)target, scopeView);
 	}
 
-	public T getTarget() {
-		return target;
-	}
-	
-	public boolean isAdapterForType(Object type) {
-		return type == ScopeAdapter.class;
+	public void dispose() {}
+
+	public final EObject getTarget() {
+//		return target;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -171,7 +56,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == target;
 		int count = 0;
 		for (Adapter adapter : newTarget.eAdapters()) {
 			if (adapter instanceof ScopeAdapter) {
@@ -181,9 +65,5 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		assert count == 1;
 	}
 
-	public void unsetTarget(Notifier oldTarget) {
-		if (oldTarget != target) {
-			throw new UnsupportedOperationException();
-		}
-	}
+	public void unsetTarget(Notifier oldTarget) {}
 }

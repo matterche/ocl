@@ -119,7 +119,6 @@ public class CompleteOCLPostOrderVisitor
 		String newStereotype = csNewConstraint.getStereotype();
 		String stereotype = CompleteOCLCS2MonikerVisitor.getStereotype(newStereotype);
 		String newName = csNewConstraint.getName();
-		int index = 0;
 		List<ContextConstraintCS> csConstraints = null;
 		Map<NamedElement, List<ContextConstraintCS>> intermediate = context.getIntermediate(rulesKey);
 		if (intermediate != null) {
@@ -137,7 +136,6 @@ public class CompleteOCLPostOrderVisitor
 								break;
 							}
 						}
-						index++;
 					}
 				}
 			}

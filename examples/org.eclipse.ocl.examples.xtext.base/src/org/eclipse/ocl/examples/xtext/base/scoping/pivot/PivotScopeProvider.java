@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -41,11 +41,11 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
 		ModelElementCS csContext = (ModelElementCS)context;
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csContext);
+		CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csContext);
 		if (scopeAdapter == null) {
 			return null;
 		}
 		CS2PivotResourceAdapter csAdapter = (CS2PivotResourceAdapter) CS2PivotResourceAdapter.findAdapter(csContext.eResource());
-		return new BaseScopeView(csAdapter.getMetaModelManager(), scopeAdapter, null, reference, reference);
+		return new BaseScopeView(csAdapter.getMetaModelManager(), csContext, scopeAdapter, null, reference, reference);
 	}
 }

@@ -39,17 +39,6 @@ public interface ScopeView extends IScope
      */
     final ScopeView NULLSCOPEVIEW = new ScopeView()
     {
-		public void computeLookupWithParents(EnvironmentView environmentView) {
-		}
-		
-//    	public Iterable<IEObjectDescription> getAllContents() {
-//    		return Collections.emptyList();
-//    	}
-		
-//		public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
-//			return Collections.emptyList();
-//		}
-
 		public EObject getChild() {
 			return null;
 		}
@@ -57,18 +46,6 @@ public interface ScopeView extends IScope
 		public EStructuralFeature getContainmentFeature() {
 			return null;
 		}
-
-//		public IEObjectDescription getContentByEObject(EObject object) {
-//			return null;
-//		}
-
-//		public IEObjectDescription getContentByName(String name) {
-//			return null;
-//		}
-
-//		public Iterable<IEObjectDescription> getContents() {
-//			return Collections.emptyList();
-//		}
 
 		public ScopeView getOuterScope() {
 			return NULLSCOPEVIEW;
@@ -106,8 +83,6 @@ public interface ScopeView extends IScope
 	   		return Collections.emptyList();
 		}
     };
-
-    void computeLookupWithParents(EnvironmentView environmentView);
 
 	EObject getChild();
 

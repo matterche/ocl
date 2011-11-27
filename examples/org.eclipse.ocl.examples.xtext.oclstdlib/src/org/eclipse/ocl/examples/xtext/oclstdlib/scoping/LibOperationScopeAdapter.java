@@ -27,19 +27,17 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 
-public class LibOperationScopeAdapter extends ModelElementCSScopeAdapter<OperationCS, Operation>
+public class LibOperationScopeAdapter extends ElementCSScopeAdapter<OperationCS>
 {
-	public LibOperationScopeAdapter(OperationCS csElement) {
-		super(csElement, Operation.class);
-	}
+	public static final LibOperationScopeAdapter INSTANCE = new LibOperationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, OperationCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
-		Operation pivot = getPivot();
+		Operation pivot = PivotUtil.getPivot(Operation.class, target);
 		if (pivot != null) {
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}

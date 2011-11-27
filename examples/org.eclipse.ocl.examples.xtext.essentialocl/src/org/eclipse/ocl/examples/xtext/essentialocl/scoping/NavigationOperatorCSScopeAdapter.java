@@ -17,7 +17,6 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -28,19 +27,18 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 
-public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<NavigationOperatorCS, CallExp>
+public class NavigationOperatorCSScopeAdapter extends ElementCSScopeAdapter<NavigationOperatorCS>
 {
-	public NavigationOperatorCSScopeAdapter(NavigationOperatorCS eObject) {
-		super(eObject, CallExp.class);
-	}
+	public static final NavigationOperatorCSScopeAdapter INSTANCE = new NavigationOperatorCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, NavigationOperatorCS target, ScopeView scopeView) {
 		EObject child = scopeView.getChild();
 		if (child == target.getArgument()) {
 			OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
@@ -84,13 +82,13 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			return scopeView.getOuterScope();
 		}
 		else {
-			ExpCS parent = target.getParent();
-			ScopeAdapter scopeAdapter = getScopeCSAdapter(parent != null ? parent : (ElementCS)target.eContainer());
+			ElementCS parent = target.getLogicalParent();
+			CSScopeAdapter scopeAdapter = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
 			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
+				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, parent, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				environmentView.computeLookups(baseScopeView);
 				return null;
 			}

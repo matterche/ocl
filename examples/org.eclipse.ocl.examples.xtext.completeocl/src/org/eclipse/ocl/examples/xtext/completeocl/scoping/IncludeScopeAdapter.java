@@ -24,36 +24,31 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, Namespace>
+public class IncludeScopeAdapter extends ElementCSScopeAdapter<IncludeCS>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
-	
-	public IncludeScopeAdapter(IncludeCS csElement) {
-		super(csElement, Namespace.class);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, IncludeCS target, ScopeView scopeView) {
 		EReference targetReference = scopeView.getTargetReference();
 		if (targetReference == CompleteOCLCSTPackage.Literals.INCLUDE_CS__NAMESPACE) {
 			String name = environmentView.getName();
 			if (name != null) {
-				importComplement(environmentView);
+				importComplement(target, environmentView);
 			}
 			if (importedElement != null) {
 				Resource importedResource = importedElement.eResource();
@@ -76,11 +71,17 @@ public class IncludeScopeAdapter extends ModelElementCSScopeAdapter<IncludeCS, N
 		}
 	}
 
+	@Override
+	public void dispose() {
+		importedElement = null;
+		super.dispose();
+	}
+
 	public String getMessage() {
 		return throwable != null ? throwable.getMessage() : null;
 	}
 
-	protected void importComplement(EnvironmentView environmentView) {
+	protected void importComplement(IncludeCS target, EnvironmentView environmentView) {
 		String name = environmentView.getName();
 		if (name == null) {
 			return;

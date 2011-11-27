@@ -31,6 +31,10 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
  * An implementation of the model object '<em><b>Element CS</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl#getLogicalParent <em>Logical Parent</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
@@ -58,11 +62,43 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.ELEMENT_CS__LOGICAL_PARENT:
+				return getLogicalParent();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.ELEMENT_CS__LOGICAL_PARENT:
+				return getLogicalParent() != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
 	public String getDescription()
 	{
 		return eClass().getName();
+	}
+
+	public ElementCS getLogicalParent()
+	{
+		return (ElementCS) eContainer();
 	}
 
 	@Override

@@ -24,19 +24,17 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 
-public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<ClassifierContextDeclCS, Type>
+public class ClassifierContextScopeAdapter extends ElementCSScopeAdapter<ClassifierContextDeclCS>
 {
-	public ClassifierContextScopeAdapter(ClassifierContextDeclCS csElement) {
-		super(csElement, Type.class);
-	}
+	public static final ClassifierContextScopeAdapter INSTANCE = new ClassifierContextScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ClassifierContextDeclCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
 			return getNamespaceScope(environmentView, scopeView, target.getNamespace());

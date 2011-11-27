@@ -16,12 +16,9 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 
-public class LambdaTypeCSScopeAdapter extends ElementRefCSScopeAdapter<LambdaTypeCS, LambdaType>
+public class LambdaTypeCSScopeAdapter extends ElementCSScopeAdapter<LambdaTypeCS>
 {
-	public LambdaTypeCSScopeAdapter(LambdaTypeCS csElement) {
-		super(csElement, LambdaType.class);
-	}
+	public static final LambdaTypeCSScopeAdapter INSTANCE = new LambdaTypeCSScopeAdapter();
 }

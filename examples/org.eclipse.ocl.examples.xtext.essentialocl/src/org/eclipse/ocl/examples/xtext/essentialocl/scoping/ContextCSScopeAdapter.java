@@ -30,14 +30,19 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
-public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS, ExpressionInOcl>
+public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS>
 {
+	public static final ContextCSScopeAdapter INSTANCE = new ContextCSScopeAdapter();
+
 	public static final class NoImplicitProperties implements EnvironmentView.Filter
 	{	// FIXME should gather both implicit property and type and then fix in resolveDuplicates
 		public static NoImplicitProperties INSTANCE = new NoImplicitProperties();
@@ -50,16 +55,12 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			return !(eObject instanceof Property) || !((Property)eObject).isImplicit();
 		}
 	}
-	
-	public ContextCSScopeAdapter(ContextCS csElement) {
-		super(csElement, ExpressionInOcl.class);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ContextCS target, ScopeView scopeView) {
 		environmentView.addFilter(NoImplicitProperties.INSTANCE);
 		try {
-			ExpressionInOcl pivot = getPivot();
+			ExpressionInOcl pivot = PivotUtil.getPivot(ExpressionInOcl.class, target);
 			if ((pivot != null) && (pivot.getContextVariable().getType() != null)) {
 				Variable resultVariable = pivot.getResultVariable();
 				if (resultVariable != null) {
@@ -85,10 +86,10 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				if (resource instanceof EvaluationContext) {
 					NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
 					if (specificationContext != null) {
-						ScopeAdapter scopeAdapter = getScopeAdapter(specificationContext);
+						PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(specificationContext);
 						if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
 							MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-							ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(metaModelManager, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+							ScopeView ruleScopeView = new BaseScopeView(metaModelManager, specificationContext, scopeAdapter, null, null, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 							environmentView.computeLookups(ruleScopeView);
 						}	
 					}
@@ -98,7 +99,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addElementsOfScope(metaModelManager.getOclAnyType().getPackage(), scopeView);
 			}
-			return super.computeLookup(environmentView, scopeView);
+			return super.computeLookup(environmentView, target, scopeView);
 		}
 		finally {
 			environmentView.removeFilter(NoImplicitProperties.INSTANCE);

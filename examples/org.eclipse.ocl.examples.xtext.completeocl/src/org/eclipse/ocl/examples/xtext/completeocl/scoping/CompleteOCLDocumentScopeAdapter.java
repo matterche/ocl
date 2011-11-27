@@ -25,16 +25,14 @@ import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 
-public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter<CompleteOCLDocumentCS, org.eclipse.ocl.examples.pivot.Package>
+public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter<CompleteOCLDocumentCS>
 {
-	public CompleteOCLDocumentScopeAdapter(CompleteOCLDocumentCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
-	}
+	public static final CompleteOCLDocumentScopeAdapter INSTANCE = new CompleteOCLDocumentScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, CompleteOCLDocumentCS target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		for (ImportCS anImport : getTarget().getOwnedImport()) {
+		for (ImportCS anImport : target.getOwnedImport()) {
 			Namespace namespace = anImport.getNamespace();
 			if ((namespace != null) && !namespace.eIsProxy()) {
 				String importName = anImport.getName();

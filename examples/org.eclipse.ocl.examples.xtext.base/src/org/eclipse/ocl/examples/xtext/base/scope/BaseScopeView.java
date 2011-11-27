@@ -37,12 +37,14 @@ import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -57,14 +59,29 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 public class BaseScopeView extends AbstractScope implements ScopeView
 {
 	@Deprecated
-	private static ScopeView getParent(MetaModelManager metaModelManager, ScopeAdapter scopeAdapter, EReference targetReference) {
-		ScopeAdapter parent = scopeAdapter.getParent();
-		if (parent == null) {
+	private static ScopeView getParent(MetaModelManager metaModelManager, EObject target, ScopeAdapter scopeAdapter, EReference targetReference) {
+//		assert target == scopeAdapter.getTarget();
+		EObject parent = null;
+		ScopeAdapter parentScope = null;
+		if (target instanceof ElementCS) {
+			ElementCS csParent = ((ElementCS)target).getLogicalParent();
+			if (csParent != null) {
+				parentScope = ElementUtil.getScopeAdapter(csParent);
+				parent = csParent;
+			}
+		}
+		else if (target instanceof Element) {
+			Element pParent = (Element) ((Element)target).eContainer();
+			if (pParent != null) {
+				parentScope = ElementUtil.getScopeAdapter(pParent);
+				parent = pParent;
+			}
+		}
+		if (parentScope == null) {
 			return ScopeView.NULLSCOPEVIEW;
 		}
-		EObject target = scopeAdapter.getTarget();
 		EStructuralFeature eContainingFeature = target.eContainingFeature();
-		return new BaseScopeView(metaModelManager, parent, target, eContainingFeature, targetReference);
+		return new BaseScopeView(metaModelManager, parent, parentScope, target, eContainingFeature, targetReference);
 	}
 
 	private static List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
@@ -87,43 +104,47 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	
 	protected final MetaModelManager metaModelManager;
 	protected final ScopeAdapter scopeAdapter;					// Adapting the CST node
+	protected final EObject target;					
 	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
 	
-	public BaseScopeView(MetaModelManager metaModelManager, ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
-		super(getParent(metaModelManager, scopeAdapter, targetReference), false);
+	public BaseScopeView(MetaModelManager metaModelManager, EObject target, ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		super(getParent(metaModelManager, target, scopeAdapter, targetReference), false);
 		this.metaModelManager = metaModelManager;
 		this.scopeAdapter = scopeAdapter;
+		this.target = target;
 		this.child = child;
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
 
-	public BaseScopeView(MetaModelManager metaModelManager, ScopeView scopeView) {
-		super(getParent(metaModelManager, scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
+	public BaseScopeView(MetaModelManager metaModelManager, EObject target, ScopeView scopeView) {
+		super(getParent(metaModelManager, target, scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
 		this.metaModelManager = metaModelManager;
 		this.scopeAdapter = scopeView.getScopeAdapter();
+		this.target = target;
 		this.child = scopeView.getChild();
 		this.containmentFeature = scopeView.getContainmentFeature();
 		this.targetReference = scopeView.getTargetReference();
 	}
 
-	public void computeLookupWithParents(EnvironmentView environmentView) {
+/*	public void computeLookupWithParents(EnvironmentView environmentView) {
 		// FIXME This is not a usefully distinct functionality
-		ScopeView outerScope = scopeAdapter.computeLookup(environmentView, this);
+		ScopeView outerScope = scopeAdapter.computeTheLookup(scopeAdapter.getTarget(), environmentView, this);
 		if (outerScope != null) {
 			if (!environmentView.hasFinalResult()) {
 				outerScope.computeLookupWithParents(environmentView);
 			}
 		}
-	}
+	} */
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
 		try {
-			computeLookupWithParents(environmentView);
+//			computeLookupWithParents(environmentView);
+			scopeAdapter.computeTheLookup(target, environmentView, this);
 		} catch (IllegalLibraryException e) {			
 		}
 		return environmentView.getDescriptions();
@@ -283,7 +304,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	}
 
 	public final EObject getTarget() {
-		return scopeAdapter.getTarget();
+		return target;
 	}
 
 	public EReference getTargetReference() {
@@ -317,7 +338,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
-		scopeAdapter.computeLookup(environmentView, this);
+		scopeAdapter.computeTheLookup(target, environmentView, this);
 		return environmentView.getDescriptions();
 	}
 

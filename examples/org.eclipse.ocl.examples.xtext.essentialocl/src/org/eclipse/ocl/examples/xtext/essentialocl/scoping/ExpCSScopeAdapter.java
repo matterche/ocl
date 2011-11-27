@@ -16,24 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 
-public class ExpCSScopeAdapter<CS extends ExpCS, P extends OclExpression> extends ModelElementCSScopeAdapter<CS, P>
+public class ExpCSScopeAdapter extends ElementCSScopeAdapter<ExpCS>
 {
-	public ExpCSScopeAdapter(CS csElement, Class<P> pivotClass) {
-		super(csElement.getParent() != null ? csElement.getParent() : csElement.eContainer(), csElement, pivotClass);
-	}
-
-	protected ScopeAdapter getParentSourceScope() {
-		return getParent().getSourceScope(getTarget().eContainingFeature());
-	}
-
-	@Override
-	public ScopeAdapter getSourceScope(EStructuralFeature containmentFeature) {
-		return getParentSourceScope();
-	}
+	public static final ExpCSScopeAdapter INSTANCE = new ExpCSScopeAdapter();
 }

@@ -22,12 +22,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class PackageScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Package>
 {
-	public PackageScopeAdapter(org.eclipse.ocl.examples.pivot.Package pivotElement) {
-		super(pivotElement);
-	}
+	public static final PackageScopeAdapter INSTANCE = new PackageScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Package target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addNamedElements(metaModelManager.getLocalPackages(target));
 		environmentView.addNamedElements(metaModelManager.getLocalClasses(target));

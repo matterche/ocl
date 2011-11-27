@@ -16,30 +16,26 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView.Filter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 
-public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<OperationContextDeclCS, Operation>
+public class OperationContextScopeAdapter extends ElementCSScopeAdapter<OperationContextDeclCS>
 {
-	public OperationContextScopeAdapter(OperationContextDeclCS csElement) {
-		super(csElement, Operation.class);
-	}
+	public static final OperationContextScopeAdapter INSTANCE = new OperationContextScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, OperationContextDeclCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__OPERATION) {
 			Filter filter = new OperationContextFilter(target);

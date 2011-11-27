@@ -16,19 +16,16 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class TupleTypeCSScopeAdapter extends ElementRefCSScopeAdapter<TupleTypeCS, TupleType>
+public class TupleTypeCSScopeAdapter extends ElementCSScopeAdapter<TupleTypeCS>
 {
-	public TupleTypeCSScopeAdapter(TupleTypeCS csElement) {
-		super(csElement, TupleType.class);
-	}
+	public static final TupleTypeCSScopeAdapter INSTANCE = new TupleTypeCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, TupleTypeCS target, ScopeView scopeView) {
 		environmentView.addNamedElements(target.getOwnedParts());		// FIXME Pivot lookup
 		return scopeView.getOuterScope();
 	}

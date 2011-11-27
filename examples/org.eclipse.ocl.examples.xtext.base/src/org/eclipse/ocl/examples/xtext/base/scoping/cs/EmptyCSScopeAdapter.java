@@ -23,7 +23,5 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
  */
 public class EmptyCSScopeAdapter extends ElementCSScopeAdapter<ElementCS>
 {
-	public EmptyCSScopeAdapter(ElementCS csElement) {
-		super(csElement);
-	}
+	public static final EmptyCSScopeAdapter INSTANCE = new EmptyCSScopeAdapter();
 }

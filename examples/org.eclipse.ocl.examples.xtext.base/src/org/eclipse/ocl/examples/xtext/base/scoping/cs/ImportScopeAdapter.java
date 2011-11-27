@@ -35,23 +35,19 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
-public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org.eclipse.ocl.examples.pivot.Package>
+public class ImportScopeAdapter extends ElementCSScopeAdapter<ImportCS>
 {
 	private URI uri = null;
 	private Element importedElement = null;
 	private Throwable throwable = null;
-	
-	public ImportScopeAdapter(ImportCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ImportCS target, ScopeView scopeView) {
 		EReference targetReference = scopeView.getTargetReference();
 		if (targetReference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) {
 			String name = environmentView.getName();
 			if (name != null) {
-				importModel(environmentView);
+				importModel(target, environmentView);
 			}
 			if (importedElement != null) {
 				Resource importedResource = importedElement.eResource();
@@ -74,11 +70,17 @@ public class ImportScopeAdapter extends ModelElementCSScopeAdapter<ImportCS, org
 		}
 	}
 
+	@Override
+	public void dispose() {
+		importedElement = null;
+		super.dispose();
+	}
+
 	public String getMessage() {
 		return throwable != null ? throwable.getMessage() : null;
 	}
 
-	protected void importModel(EnvironmentView environmentView) {
+	protected void importModel(ImportCS target, EnvironmentView environmentView) {
 		String name = environmentView.getName();
 		if (name == null) {
 			return;

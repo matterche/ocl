@@ -769,6 +769,16 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getElementCS_LogicalParent()
+	{
+		return (EReference)elementCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getElementRefCS()
 	{
 		return elementRefCSEClass;
@@ -1700,6 +1710,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEAttribute(documentationCSEClass, DOCUMENTATION_CS__VALUE);
 
 		elementCSEClass = createEClass(ELEMENT_CS);
+		createEReference(elementCSEClass, ELEMENT_CS__LOGICAL_PARENT);
 
 		elementRefCSEClass = createEClass(ELEMENT_REF_CS);
 
@@ -1963,6 +1974,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEAttribute(getDocumentationCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, DocumentationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(elementCSEClass, ElementCS.class, "ElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getElementCS_LogicalParent(), this.getElementCS(), null, "logicalParent", null, 0, 1, ElementCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(elementCSEClass, ecorePackage.getEString(), "getDescription", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

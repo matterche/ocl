@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
@@ -50,7 +50,7 @@ public class OCLstdlibCS2Pivot extends EssentialOCLCS2Pivot
 			return new OCLstdlibPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
 			return new OCLstdlibScopeVisitor();
 		}
 

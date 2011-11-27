@@ -87,12 +87,17 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 
 	public static InputStream createResettableInputStream(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		byte[] buffer = new byte[4096];
-		int len;
+		try {
+			byte[] buffer = new byte[4096];
+			int len;
 			while ((len = inputStream.read(buffer, 0, buffer.length)) > 0) {
 				outputStream.write(buffer, 0, len);
 			}
 		return new ByteArrayInputStream(outputStream.toByteArray());
+		}
+		finally {
+			outputStream.close();
+		}
 	}
 
 	protected void diagnoseErrors(XtextResource xtextResource, Exception e) throws CoreException {
@@ -175,9 +180,14 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 
 	protected boolean isXML(InputStream inputStream) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		String line = reader.readLine();
-		inputStream.reset();
-		return (line != null) && line.startsWith("<?xml");
+		try {
+			String line = reader.readLine();
+			inputStream.reset();
+			return (line != null) && line.startsWith("<?xml");
+		}
+		finally {
+			reader.close();
+		}
 	}
 
 	@Override

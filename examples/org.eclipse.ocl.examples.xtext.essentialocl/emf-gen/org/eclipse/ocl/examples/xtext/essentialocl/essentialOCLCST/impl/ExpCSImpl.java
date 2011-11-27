@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -162,6 +163,12 @@ public class ExpCSImpl extends ModelElementCSImpl implements ExpCS {
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitExpCS(this);
+	}
+
+	@Override
+	public ElementCS getLogicalParent()
+	{
+		return parent != null ? parent : super.getLogicalParent();
 	}
 
 	@Override

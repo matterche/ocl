@@ -20,18 +20,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 
-public class PackageDeclarationScopeAdapter extends ModelElementCSScopeAdapter<PackageDeclarationCS, org.eclipse.ocl.examples.pivot.Package>
+public class PackageDeclarationScopeAdapter extends ElementCSScopeAdapter<PackageDeclarationCS>
 {
-	public PackageDeclarationScopeAdapter(PackageDeclarationCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
-	}
+	public static final PackageDeclarationScopeAdapter INSTANCE = new PackageDeclarationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, PackageDeclarationCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
 			return getNamespaceScope(environmentView, scopeView, target.getNamespace());

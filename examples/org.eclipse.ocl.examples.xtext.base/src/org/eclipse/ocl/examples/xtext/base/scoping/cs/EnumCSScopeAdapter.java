@@ -23,15 +23,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class EnumCSScopeAdapter extends ModelElementCSScopeAdapter<EnumerationCS, Enumeration>
+public class EnumCSScopeAdapter extends ElementCSScopeAdapter<EnumerationCS>
 {
-	public EnumCSScopeAdapter(EnumerationCS csElement) {
-		super(csElement, Enumeration.class);
-	}
+	public static final EnumCSScopeAdapter INSTANCE = new EnumCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		Enumeration pivot = getPivot();
+	public ScopeView computeLookup(EnvironmentView environmentView, EnumerationCS target, ScopeView scopeView) {
+		Enumeration pivot = PivotUtil.getPivot(Enumeration.class, target);
 		if (pivot != null) {
 			environmentView.addNamedElements(pivot.getOwnedLiterals());
 			environmentView.addElements(PivotUtil.getTemplateParameters(pivot));

@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -55,9 +55,9 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 				public RootScopeAdapter exec(XtextResource resource) throws Exception {
 					if (!resource.getContents().isEmpty()) {
 						ElementCS csElement = (ElementCS) resource.getContents().get(0);
-						ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
+						CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 						if (scopeAdapter != null) {
-							return scopeAdapter.getRootScopeAdapter();
+							return ElementUtil.getDocumentScopeAdapter(csElement);
 						}
 					}
 					return null;

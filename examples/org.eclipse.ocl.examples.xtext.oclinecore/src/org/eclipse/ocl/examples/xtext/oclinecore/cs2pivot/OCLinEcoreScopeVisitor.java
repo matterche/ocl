@@ -16,12 +16,12 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreScopeVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<ScopeCSAdapter, Object, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<CSScopeAdapter, Object, EssentialOCLScopeVisitor>
 {
 	public OCLinEcoreScopeVisitor() {
 		super(new EssentialOCLScopeVisitor(), null);

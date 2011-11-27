@@ -426,20 +426,12 @@ public class PivotUtil extends DomainUtil
 		return s.toString();
 	}
 
-	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
-		return getAdapter(adapterClass, eAdapters, adapterClass);
-	}
-
 	public static <T> T getAdapter(Class<T> adapterClass, Notifier notifier) {
-		return getAdapter(adapterClass, notifier, adapterClass);
+		return getAdapter(adapterClass, notifier.eAdapters());
 	}
 
-	public static <T> T getAdapter(Class<T> adapterClass, Notifier notifier, Object adapterType) {
-		return getAdapter(adapterClass, notifier.eAdapters(), adapterType);
-	}
-
-	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters, Object adapterType) {
-		Adapter adapter = EcoreUtil.getAdapter(eAdapters, adapterType);
+	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
+		Adapter adapter = EcoreUtil.getAdapter(eAdapters, adapterClass);
 		if (adapter == null) {
 			return null;
 		}

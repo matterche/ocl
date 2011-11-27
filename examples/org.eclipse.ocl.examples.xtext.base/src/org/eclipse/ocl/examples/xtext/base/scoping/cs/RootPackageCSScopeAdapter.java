@@ -28,22 +28,20 @@ import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPackageCS, org.eclipse.ocl.examples.pivot.Package>
+public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPackageCS>
 {
-	public RootPackageCSScopeAdapter(RootPackageCS csElement) {
-		super(csElement, org.eclipse.ocl.examples.pivot.Package.class);
-	}
+	public static final RootPackageCSScopeAdapter INSTANCE = new RootPackageCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, RootPackageCS target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		org.eclipse.ocl.examples.pivot.Package pivotPackage = getPivot();
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, target);
 		if (pivotPackage != null) {
 			environmentView.addNamedElements(metaModelManager.getLocalPackages(pivotPackage));
 			environmentView.addNamedElements(metaModelManager.getLocalClasses(pivotPackage));
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (ImportCS anImport : getTarget().getOwnedImport()) {
+			for (ImportCS anImport : target.getOwnedImport()) {
 				Namespace namespace = anImport.getNamespace();
 				if (!namespace.eIsProxy()) {
 					String importName = anImport.getName();

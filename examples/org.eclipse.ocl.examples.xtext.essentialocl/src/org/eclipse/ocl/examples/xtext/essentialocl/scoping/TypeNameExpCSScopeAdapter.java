@@ -17,21 +17,18 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementRefCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
-public class TypeNameExpCSScopeAdapter extends ElementRefCSScopeAdapter<TypeNameExpCS, Element>
+public class TypeNameExpCSScopeAdapter extends ElementCSScopeAdapter<TypeNameExpCS>
 {
-	public TypeNameExpCSScopeAdapter(TypeNameExpCS csElement) {
-		super(csElement, Element.class);	// FIXME
-	}
+	public static final TypeNameExpCSScopeAdapter INSTANCE = new TypeNameExpCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, TypeNameExpCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__ELEMENT) {
 			return getNamespaceScope(environmentView, scopeView, target.getNamespace());

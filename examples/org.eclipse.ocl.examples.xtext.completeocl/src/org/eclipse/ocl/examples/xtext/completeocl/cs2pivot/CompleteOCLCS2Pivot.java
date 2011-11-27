@@ -29,10 +29,10 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.IncludeScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
@@ -68,7 +68,7 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 			return new CompleteOCLPreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
 			return new CompleteOCLScopeVisitor();
 		}
 
@@ -104,9 +104,9 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			if (context instanceof ElementCS) {
-				ScopeCSAdapter scopeCSAdapter = AbstractScopeAdapter.getScopeCSAdapter((ElementCS) context);
-				if (scopeCSAdapter instanceof IncludeScopeAdapter) {
-					String message = ((IncludeScopeAdapter)scopeCSAdapter).getMessage();
+				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
+				if (scopeAdapter instanceof IncludeScopeAdapter) {
+					String message = ((IncludeScopeAdapter)scopeAdapter).getMessage();
 					return NLS.bind(OCLMessages.UnresolvedInclude_ERROR_, linkText, message);
 				}
 			}

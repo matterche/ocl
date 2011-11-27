@@ -17,20 +17,17 @@
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ModelElementRefCSScopeAdapter extends ElementRefCSScopeAdapter<ModelElementRefCS, Element>
+public class ModelElementRefCSScopeAdapter extends ElementCSScopeAdapter<ModelElementRefCS>
 {
-	public ModelElementRefCSScopeAdapter(ModelElementRefCS csElement) {
-		super(csElement, Element.class);
-	}
+	public static final ModelElementRefCSScopeAdapter INSTANCE = new ModelElementRefCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ModelElementRefCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) {
 			return getNamespaceScope(environmentView, scopeView, target.getNamespace());

@@ -25,12 +25,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class OperationScopeAdapter extends AbstractPivotScopeAdapter<Operation>
 {
-	public OperationScopeAdapter(Operation pivotElement) {
-		super(pivotElement);
-	}
+	public static final OperationScopeAdapter INSTANCE = new OperationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, Operation target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 //		TypeBindingsCS bindings = scopeView.getBindings();
 //		Operation target = getTarget();

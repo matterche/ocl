@@ -18,23 +18,21 @@ package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
-public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
+public class LetExpCSScopeAdapter extends ElementCSScopeAdapter<LetExpCS>
 {
-	public LetExpCSScopeAdapter(LetExpCS csElement) {
-		super(csElement, LetExp.class);
-	}
+	public static final LetExpCSScopeAdapter INSTANCE = new LetExpCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, LetExpCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		EObject child = scopeView.getChild();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__VARIABLE) {

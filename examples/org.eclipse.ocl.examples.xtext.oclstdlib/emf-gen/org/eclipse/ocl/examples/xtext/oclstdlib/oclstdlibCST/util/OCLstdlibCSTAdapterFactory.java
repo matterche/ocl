@@ -294,8 +294,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS
 	 * @generated
 	 */
-	public Adapter createLibClassCSAdapter()
-	{
+	public Adapter createLibClassCSAdapter() {
 		return null;
 	}
 
@@ -379,8 +378,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName
 	 * @generated
 	 */
-	public Adapter createMetaTypeNameAdapter()
-	{
+	public Adapter createMetaTypeNameAdapter() {
 		return null;
 	}
 
@@ -464,8 +462,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS
 	 * @generated
 	 */
-	public Adapter createPivotableElementCSAdapter()
-	{
+	public Adapter createPivotableElementCSAdapter() {
 		return null;
 	}
 
@@ -535,8 +532,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS
 	 * @generated
 	 */
-	public Adapter createClassifierCSAdapter()
-	{
+	public Adapter createClassifierCSAdapter() {
 		return null;
 	}
 
@@ -564,8 +560,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS
 	 * @generated
 	 */
-	public Adapter createTypeCSAdapter()
-	{
+	public Adapter createTypeCSAdapter() {
 		return null;
 	}
 
@@ -649,8 +644,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS
 	 * @generated
 	 */
-	public Adapter createClassCSAdapter()
-	{
+	public Adapter createClassCSAdapter() {
 		return null;
 	}
 
@@ -664,8 +658,7 @@ public class OCLstdlibCSTAdapterFactory
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS
 	 * @generated
 	 */
-	public Adapter createPackageCSAdapter()
-	{
+	public Adapter createPackageCSAdapter() {
 		return null;
 	}
 

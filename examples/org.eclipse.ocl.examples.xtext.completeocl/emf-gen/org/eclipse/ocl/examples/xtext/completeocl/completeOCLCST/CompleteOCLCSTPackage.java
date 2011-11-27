@@ -82,6 +82,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_CONSTRAINT_CS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT = BaseCSTPackage.CONSTRAINT_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,6 +301,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int BODY_CS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BODY_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,6 +400,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int BODY_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_DECL_CS__LOGICAL_PARENT = BaseCSTPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -443,6 +470,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXT_DECL_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_CONTEXT_DECL_CS__LOGICAL_PARENT = CONTEXT_DECL_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -534,6 +570,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	int COMPLETE_OCL_DOCUMENT_CS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__LOGICAL_PARENT = BaseCSTPackage.ROOT_PACKAGE_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -681,6 +726,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_SPECIFICATION_CS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_SPECIFICATION_CS__LOGICAL_PARENT = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -742,6 +796,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXT_SPECIFICATION_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -879,6 +942,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int DEF_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DER_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -979,6 +1051,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int FEATURE_CONTEXT_DECL_CS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT = CONTEXT_DECL_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1070,6 +1151,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int INCLUDE_CS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__LOGICAL_PARENT = BaseCSTPackage.NAMESPACE_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1131,6 +1221,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDE_CS_FEATURE_COUNT = BaseCSTPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INIT_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1221,6 +1320,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INIT_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INV_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1323,6 +1431,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OCL_MESSAGE_ARG_CS = 12;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_MESSAGE_ARG_CS__LOGICAL_PARENT = EssentialOCLCSTPackage.EXP_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1384,6 +1501,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CONTEXT_DECL_CS__LOGICAL_PARENT = FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1494,6 +1620,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_DECLARATION_CS__LOGICAL_PARENT = BaseCSTPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1564,6 +1699,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POST_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1654,6 +1798,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int POST_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRE_CS__LOGICAL_PARENT = CONTEXT_CONSTRAINT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1756,6 +1909,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PRE_EXP_CS = 17;
 
 	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRE_EXP_CS__LOGICAL_PARENT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__LOGICAL_PARENT;
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1817,6 +1979,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRE_EXP_CS_FEATURE_COUNT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CONTEXT_DECL_CS__LOGICAL_PARENT = FEATURE_CONTEXT_DECL_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.

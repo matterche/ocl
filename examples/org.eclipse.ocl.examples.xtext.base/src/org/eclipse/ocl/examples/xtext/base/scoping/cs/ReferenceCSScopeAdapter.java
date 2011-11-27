@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
@@ -27,11 +26,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
-public class ReferenceCSScopeAdapter extends ModelElementCSScopeAdapter<ReferenceCS, Property>
+public class ReferenceCSScopeAdapter extends ElementCSScopeAdapter<ReferenceCS>
 {
-	public ReferenceCSScopeAdapter(ReferenceCS csElement) {
-		super(csElement, Property.class);
-	}
+	public static final ReferenceCSScopeAdapter INSTANCE = new ReferenceCSScopeAdapter();
 
 	public void addAllReferences(EnvironmentView environmentView, Type csClass) {
 		int oldSize = environmentView.getSize();
@@ -50,7 +47,7 @@ public class ReferenceCSScopeAdapter extends ModelElementCSScopeAdapter<Referenc
 	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, ReferenceCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
 			TypedRefCS typeRef = target.getOwnedType();

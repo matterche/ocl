@@ -22,19 +22,21 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 
-public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpression>
+public class NameExpCSScopeAdapter extends ElementCSScopeAdapter<NameExpCS>
 {
+	public static final NameExpCSScopeAdapter INSTANCE = new NameExpCSScopeAdapter();
+
 	private static final class NoOperations implements EnvironmentView.Filter
 	{
 		public int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1, EObject match2, Map<TemplateParameter, ParameterableElement> bindings2) {
@@ -59,13 +61,9 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 
 	private static EnvironmentView.Filter noOperationsFilter = new NoOperations();
 //	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
-	
-	public NameExpCSScopeAdapter(NameExpCS csElement) {
-		super(csElement, OclExpression.class);
-	}
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, NameExpCS target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT) {
 			List<Namespace> namespaces = target.getNamespace();

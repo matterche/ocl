@@ -24,7 +24,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
@@ -60,10 +59,10 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		ElementCS csElement = (ElementCS) context;
-		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
+		CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(metaModelManager, scopeAdapter, null, reference, reference);
+		return new BaseScopeView(metaModelManager, csElement, scopeAdapter, null, reference, reference);
 	}
 }

@@ -65,7 +65,8 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
  * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * @generated
  */
-public class OCLstdlibCSTSwitch<T> extends Switch<T> {
+public class OCLstdlibCSTSwitch<T>
+		extends Switch<T> {
 
 	/**
 	 * The cached model package
@@ -97,8 +98,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -267,8 +267,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLibClassCS(LibClassCS object)
-	{
+	public T caseLibClassCS(LibClassCS object) {
 		return null;
 	}
 
@@ -358,8 +357,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetaTypeName(MetaTypeName object)
-	{
+	public T caseMetaTypeName(MetaTypeName object) {
 		return null;
 	}
 
@@ -449,8 +447,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePivotableElementCS(PivotableElementCS object)
-	{
+	public T casePivotableElementCS(PivotableElementCS object) {
 		return null;
 	}
 
@@ -525,8 +522,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassifierCS(ClassifierCS object)
-	{
+	public T caseClassifierCS(ClassifierCS object) {
 		return null;
 	}
 
@@ -556,8 +552,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypeCS(TypeCS object)
-	{
+	public T caseTypeCS(TypeCS object) {
 		return null;
 	}
 
@@ -647,8 +642,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassCS(ClassCS object)
-	{
+	public T caseClassCS(ClassCS object) {
 		return null;
 	}
 
@@ -663,8 +657,7 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePackageCS(PackageCS object)
-	{
+	public T casePackageCS(PackageCS object) {
 		return null;
 	}
 

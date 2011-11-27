@@ -22,12 +22,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Enumeration>
 {
-	public EnumerationScopeAdapter(org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		super(pivotElement);
-	}
+	public static final EnumerationScopeAdapter INSTANCE = new EnumerationScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Enumeration target, ScopeView scopeView) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addElements(target.getOwnedLiterals());
 		environmentView.addElementsOfScope(metaModelManager.getEnumerationType(), scopeView);

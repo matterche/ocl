@@ -18,7 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 
 /**
@@ -29,11 +28,10 @@ public class DefaultScopeAdapter extends AbstractScopeAdapter<EObject>
 	private static final Logger logger = Logger.getLogger(DefaultScopeAdapter.class);
 
 	public DefaultScopeAdapter(EObject eObject) {
-		super(null, eObject);
 		logger.warn("Using DefaultScopeAdapter for '" + eObject.eClass().getName() + "'");
 	}
 
-	public RootScopeAdapter getRootScopeAdapter() {
-		return null;
+	public boolean isAdapterForType(Object type) {
+		return false;
 	}
 }

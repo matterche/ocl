@@ -17,7 +17,7 @@
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ConstraintCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
@@ -31,39 +31,39 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.LibRootPackageScopeAdapt
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
 public class OCLstdlibScopeVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<ScopeCSAdapter, Object, EssentialOCLScopeVisitor>
+	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<CSScopeAdapter, Object, EssentialOCLScopeVisitor>
 {
 	public OCLstdlibScopeVisitor() {
 		super(new EssentialOCLScopeVisitor(), null);
 	}
 	
 	@Override
-	public ScopeCSAdapter visitLibConstraintCS(LibConstraintCS csObject) {
-		return new ConstraintCSScopeAdapter(csObject);
+	public CSScopeAdapter visitLibConstraintCS(LibConstraintCS csObject) {
+		return ConstraintCSScopeAdapter.INSTANCE;
 	}
 
 	@Override
-	public ScopeCSAdapter visitLibIterationCS(LibIterationCS csObject) {
-		return new LibOperationScopeAdapter(csObject);
+	public CSScopeAdapter visitLibIterationCS(LibIterationCS csObject) {
+		return LibOperationScopeAdapter.INSTANCE;
 	}
 
 	@Override
-	public ScopeCSAdapter visitLibOperationCS(LibOperationCS csObject) {
-		return new LibOperationScopeAdapter(csObject);
+	public CSScopeAdapter visitLibOperationCS(LibOperationCS csObject) {
+		return LibOperationScopeAdapter.INSTANCE;
 	}
 
 	@Override
-	public ScopeCSAdapter visitLibPropertyCS(LibPropertyCS csObject) {
-		return new EmptyCSScopeAdapter(csObject);
+	public CSScopeAdapter visitLibPropertyCS(LibPropertyCS csObject) {
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 
 	@Override
-	public ScopeCSAdapter visitLibRootPackageCS(LibRootPackageCS csObject) {
-		return new LibRootPackageScopeAdapter(csObject);
+	public CSScopeAdapter visitLibRootPackageCS(LibRootPackageCS csObject) {
+		return LibRootPackageScopeAdapter.INSTANCE;
 	}
 
 	@Override
-	public ScopeCSAdapter visitParameterCS(ParameterCS csObject) {
-		return new EmptyCSScopeAdapter(csObject);
+	public CSScopeAdapter visitParameterCS(ParameterCS csObject) {
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 }

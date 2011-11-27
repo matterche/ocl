@@ -43,7 +43,7 @@ import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.TerminalRule;
@@ -69,7 +69,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		BaseCSVisitor<Element, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
 		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor();
+		BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor();
 		EPackage getEPackage();
 	}
 	
@@ -179,7 +179,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	 */
 	protected final Map<Resource, String> csResource2aliasMap;
 
-	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, Object>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, Object>>();
+	private final Map<EPackage, BaseCSVisitor<CSScopeAdapter, Object>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<CSScopeAdapter, Object>>();
 
 	/**
 	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
@@ -325,8 +325,8 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		return metaModelManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
 	}
 
-	public BaseCSVisitor<ScopeCSAdapter, Object> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<ScopeCSAdapter, Object> scopeVisitor = scopeVisitorMap.get(ePackage);
+	public BaseCSVisitor<CSScopeAdapter, Object> getScopeVisitor(EPackage ePackage) {
+		BaseCSVisitor<CSScopeAdapter, Object> scopeVisitor = scopeVisitorMap.get(ePackage);
 		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
 			Factory factory = getFactory(ePackage);
 			if (factory != null) {

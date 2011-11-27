@@ -180,8 +180,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLibClassCS()
-	{
+	public EClass getLibClassCS() {
 		return libClassCSEClass;
 	}
 
@@ -190,8 +189,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibClassCS_MetaTypeName()
-	{
+	public EReference getLibClassCS_MetaTypeName() {
 		return (EReference)libClassCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -218,8 +216,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibIterationCS_OwnedIterator()
-	{
+	public EReference getLibIterationCS_OwnedIterator() {
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -228,8 +225,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibIterationCS_OwnedAccumulator()
-	{
+	public EReference getLibIterationCS_OwnedAccumulator() {
 		return (EReference)libIterationCSEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -301,8 +297,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMetaTypeName()
-	{
+	public EClass getMetaTypeName() {
 		return metaTypeNameEClass;
 	}
 
@@ -311,8 +306,7 @@ public class OCLstdlibCSTPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetaTypeName_Name()
-	{
+	public EAttribute getMetaTypeName_Name() {
 		return (EAttribute)metaTypeNameEClass.getEStructuralFeatures().get(0);
 	}
 

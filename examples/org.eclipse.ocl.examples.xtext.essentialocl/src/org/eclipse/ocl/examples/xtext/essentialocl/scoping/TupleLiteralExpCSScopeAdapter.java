@@ -16,19 +16,17 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 
-public class TupleLiteralExpCSScopeAdapter extends ExpCSScopeAdapter<TupleLiteralExpCS, TupleLiteralExp>
+public class TupleLiteralExpCSScopeAdapter extends ElementCSScopeAdapter<TupleLiteralExpCS>
 {
-	public TupleLiteralExpCSScopeAdapter(TupleLiteralExpCS csElement) {
-		super(csElement, TupleLiteralExp.class);
-	}
+	public static final TupleLiteralExpCSScopeAdapter INSTANCE = new TupleLiteralExpCSScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, TupleLiteralExpCS target, ScopeView scopeView) {
 		environmentView.addNamedElements(target.getOwnedParts());
 		return scopeView.getOuterScope();
 	}

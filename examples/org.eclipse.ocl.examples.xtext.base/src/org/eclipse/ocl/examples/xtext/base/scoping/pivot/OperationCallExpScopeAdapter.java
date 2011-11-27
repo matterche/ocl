@@ -25,12 +25,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class OperationCallExpScopeAdapter extends AbstractPivotScopeAdapter<OperationCallExp>
 {
-	public OperationCallExpScopeAdapter(OperationCallExp pivotElement) {
-		super(pivotElement);
-	}
+	public static final OperationCallExpScopeAdapter INSTANCE = new OperationCallExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, OperationCallExp target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
 			OclExpression source = target.getSource();

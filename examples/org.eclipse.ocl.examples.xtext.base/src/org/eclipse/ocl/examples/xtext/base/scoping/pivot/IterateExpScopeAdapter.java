@@ -27,12 +27,10 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter<IterateExp>
 {
-	public IterateExpScopeAdapter(IterateExp pivotElement) {
-		super(pivotElement);
-	}
+	public static final IterateExpScopeAdapter INSTANCE = new IterateExpScopeAdapter();
 
 	@Override
-	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+	public ScopeView computeLookup(EnvironmentView environmentView, IterateExp target, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
 			OclExpression source = target.getSource();

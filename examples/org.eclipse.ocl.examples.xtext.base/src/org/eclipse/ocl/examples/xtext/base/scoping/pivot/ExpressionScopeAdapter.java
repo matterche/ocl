@@ -20,7 +20,4 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 
 public abstract class ExpressionScopeAdapter<P extends OclExpression> extends AbstractPivotScopeAdapter<P>
 {
-	public ExpressionScopeAdapter(P pivotElement) {
-		super(pivotElement);
-	}
 }

@@ -18,9 +18,6 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
 /**
  * A AbstractScopeAdapter provides the basic behaviour for a family of derived
@@ -52,19 +49,7 @@ public interface ScopeAdapter extends Adapter.Internal
 	 * @param scopeView the access selectivity to be applied by the lookup
 	 * @return an outer ScopeView in which to continue the lookup, or null if none
 	 */
-	ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView);
-
-	void computeLookup(EnvironmentView environmentView, EReference targetReference);
-
-	ScopeView getInnerScopeView(MetaModelManager metaModelManager, EReference targetReference);
-
-	ScopeView getOuterScopeView(MetaModelManager metaModelManager, EReference targetReference);
-	
-	ScopeAdapter getParent();
-
-	RootScopeAdapter getRootScopeAdapter();
-	
-	ScopeAdapter getSourceScope(EStructuralFeature containmentFeature);
+	ScopeView computeTheLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView);
 
 	EObject getTarget();
 }

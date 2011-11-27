@@ -25,11 +25,11 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -98,7 +98,7 @@ public class BaseCS2Pivot extends CS2Pivot
 			return new BasePreOrderVisitor(converter);
 		}
 
-		public BaseCSVisitor<ScopeCSAdapter, Object> createScopeVisitor() {
+		public BaseCSVisitor<CSScopeAdapter, Object> createScopeVisitor() {
 			return new BaseScopeVisitor();
 		}
 
@@ -116,9 +116,9 @@ public class BaseCS2Pivot extends CS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			if (context instanceof ElementCS) {
-				ScopeCSAdapter scopeCSAdapter = AbstractScopeAdapter.getScopeCSAdapter((ElementCS) context);
-				if (scopeCSAdapter instanceof ImportScopeAdapter) {
-					String message = ((ImportScopeAdapter)scopeCSAdapter).getMessage();
+				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
+				if (scopeAdapter instanceof ImportScopeAdapter) {
+					String message = ((ImportScopeAdapter)scopeAdapter).getMessage();
 					return NLS.bind(OCLMessages.UnresolvedImport_ERROR_, linkText, message);
 				}
 			}
@@ -135,9 +135,9 @@ public class BaseCS2Pivot extends CS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			if (context instanceof ElementCS) {
-				ScopeCSAdapter scopeCSAdapter = AbstractScopeAdapter.getScopeCSAdapter((ElementCS) context);
-				if (scopeCSAdapter instanceof LibraryScopeAdapter) {
-					String message = ((LibraryScopeAdapter)scopeCSAdapter).getMessage();
+				CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ElementCS) context);
+				if (scopeAdapter instanceof LibraryScopeAdapter) {
+					String message = ((LibraryScopeAdapter)scopeAdapter).getMessage();
 					return NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, linkText, message);
 				}
 			}
