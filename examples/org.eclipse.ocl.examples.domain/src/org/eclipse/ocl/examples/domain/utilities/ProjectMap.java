@@ -420,6 +420,19 @@ public class ProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
+	 * Activate any ResourceSetImpl.uriResourceMap so that repeated lookups use a hash rather than linear search.
+	 */
+	public static void initializeURIResourceMap(ResourceSet resourceSet) {
+		if (resourceSet instanceof ResourceSetImpl) {
+			ResourceSetImpl resourceSetImpl = (ResourceSetImpl) resourceSet;
+			Map<URI, Resource> uriResourceMap = resourceSetImpl.getURIResourceMap();
+			if (uriResourceMap == null) {
+				resourceSetImpl.setURIResourceMap(new HashMap<URI, Resource>());
+			}
+		}
+	}
+
+	/**
 	 * The map of bundle/project name to resolveable location.
 	 */
 	private Map<String, URI> projectMap = null;
@@ -678,19 +691,6 @@ public class ProjectMap extends SingletonAdapterImpl
 			URI resourceURI = URI.createPlatformResourceURI("/", true);
 			URI pluginURI = URI.createPlatformPluginURI("/", true);
 			uriMap.put(resourceURI, pluginURI);
-		}
-	}
-
-	/**
-	 * Activate any ResourceSetImpl.uriResourceMap so that repeated lookups use a hash rather than linear search.
-	 */
-	public void initializeURIResourceMap(ResourceSet resourceSet) {
-		if (resourceSet instanceof ResourceSetImpl) {
-			ResourceSetImpl resourceSetImpl = (ResourceSetImpl) resourceSet;
-			Map<URI, Resource> uriResourceMap = resourceSetImpl.getURIResourceMap();
-			if (uriResourceMap == null) {
-				resourceSetImpl.setURIResourceMap(new HashMap<URI, Resource>());
-			}
 		}
 	}
 

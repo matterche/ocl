@@ -90,6 +90,7 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
@@ -443,6 +444,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public static void initializePivotResourceSet(ResourceSet pivotResourceSet) {
+		ProjectMap.initializeURIResourceMap(pivotResourceSet);
 		Registry resourceFactoryRegistry = pivotResourceSet.getResourceFactoryRegistry();
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
 		contentTypeToFactoryMap.put(PivotResource.CONTENT_TYPE, new PivotResourceFactoryImpl()); //$NON-NLS-1$
@@ -2222,6 +2224,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					if (resourceSet == null) {
 						resourceSet = getExternalResourceSet();
 					}
+					
+					UMLUtils.initializeContentHandlers(resourceSet);
+					
 					try {
 						resource = resourceSet.getResource(resourceURI, true);
 					}
