@@ -93,7 +93,7 @@ public class ErrorTests extends PivotTestCase
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
 			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "allInstances", "ClassClassifier<test.oclinecore::test::Test>"),
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "OclInvalid' and 'w, hString| true"));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<OclInvalid>' and 'w, hString| true"));
         //
 		metaModelManager.dispose();
 	}
