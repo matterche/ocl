@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
-	private static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
+	public static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
 			Type pivotClass, Boolean selectStatic, Set<Type> alreadyVisited) {
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addNamedElements(forType, metaModelManager.getLocalOperations(pivotClass, selectStatic));
