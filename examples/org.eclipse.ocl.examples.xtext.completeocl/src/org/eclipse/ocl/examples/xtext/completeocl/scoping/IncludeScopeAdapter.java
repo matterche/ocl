@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -112,14 +114,14 @@ public class IncludeScopeAdapter extends ElementCSScopeAdapter
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 			if (warnings.size() > 0) {
 				INode node = NodeModelUtils.getNode(target);
-				String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, "Warnings in '" + uri + "'", "\n\t");
+				String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, NLS.bind(OCLMessages.WarningsInURI, uri), "\n\t");
 				Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 				csResource.getWarnings().add(resourceDiagnostic);
 			}
 			List<Resource.Diagnostic> errors = importedResource.getErrors();
 			if (errors.size() > 0) {
 				INode node = NodeModelUtils.getNode(target);
-				String errorMessage = PivotUtil.formatResourceDiagnostics(errors, "Errors in '" + uri + "'", "\n\t");
+				String errorMessage = PivotUtil.formatResourceDiagnostics(errors, NLS.bind(OCLMessages.ErrorsInURI, uri), "\n\t");
 				Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 				csResource.getErrors().add(resourceDiagnostic);
 			}

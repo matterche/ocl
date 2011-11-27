@@ -79,7 +79,9 @@ import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.osgi.util.NLS;
 
 public class PivotUtil extends DomainUtil
 {	
@@ -1004,7 +1006,7 @@ public class PivotUtil extends DomainUtil
 		Resource resource = null;
 		try {
 			resource = createXtextResource(metaModelManager, uri, contextClassifier, expression);
-			checkResourceErrors("Errors in '" + Pivot2Moniker.toString(contextClassifier) + "'\n\tbad expression '" + expression + "'", resource);
+			checkResourceErrors(NLS.bind(OCLMessages.ErrorsInResource, expression), resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
@@ -1025,7 +1027,7 @@ public class PivotUtil extends DomainUtil
 	public static ExpressionInOcl resolveMessage(MetaModelManager metaModelManager, URI uri, ExpressionInOcl specification, String expression) throws ParserException {
 		try {
 			Resource resource = createXtextResource(metaModelManager, uri, specification, expression);
-			checkResourceErrors("Errors in '" + expression + "'", resource);
+			checkResourceErrors(NLS.bind(OCLMessages.ErrorsInResource, expression), resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);

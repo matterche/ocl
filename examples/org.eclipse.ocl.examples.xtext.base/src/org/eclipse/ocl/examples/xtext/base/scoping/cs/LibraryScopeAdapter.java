@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.ValidationDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -145,7 +147,7 @@ public class LibraryScopeAdapter extends ElementCSScopeAdapter
 			List<Resource.Diagnostic> warnings = importedResource.getWarnings();
 			if (warnings.size() > 0) {
 				INode node = NodeModelUtils.getNode(target);
-				String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, "Warnings in '" + uri + "'", "\n\t");
+				String errorMessage = PivotUtil.formatResourceDiagnostics(warnings, NLS.bind(OCLMessages.WarningsInURI, uri), "\n\t");
 				Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, errorMessage);
 				csResource.getWarnings().add(resourceDiagnostic);
 			}

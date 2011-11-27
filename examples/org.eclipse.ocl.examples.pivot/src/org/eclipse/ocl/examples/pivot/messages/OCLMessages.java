@@ -30,6 +30,10 @@ public class OCLMessages
 	static {
 		NLS.initializeMessages(OCLMessages.class.getName(), OCLMessages.class);
 	}
+	
+	public static String ErrorsInResource;
+	public static String ErrorsInURI;
+	public static String WarningsInURI;
 
 	public static String no_message;
     public static String Input_ERROR_;
