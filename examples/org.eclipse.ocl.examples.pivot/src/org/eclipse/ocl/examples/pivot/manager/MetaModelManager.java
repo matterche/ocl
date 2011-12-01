@@ -34,7 +34,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
@@ -360,6 +359,11 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		 * @param resourceSet
 		 */
 		void configure(ResourceSet resourceSet);
+
+		/**
+		 * Return the URI of an eObject if it can be treated as a Package.
+		 */
+		URI getPackageURI(EObject eObject);
 		
 		/**
 		 * Return the root element in the Pivot resource resulting from import of the available
@@ -1307,7 +1311,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			ProjectMap projectMap = ProjectMap.getAdapter(pivotResourceSet);
 			externalResourceSet = new ResourceSetImpl();
 			externalResourceSet.eAdapters().add(projectMap);
-			projectMap.initializeResourceSet(externalResourceSet);
+			projectMap.initializeResourceSet(externalResourceSet);			
+			UMLUtils.initializeContentHandlers(externalResourceSet);
 			MetaModelManagerResourceSetAdapter.getAdapter(externalResourceSet, this);
 			for (Factory factory : factoryMap) {
 				factory.configure(externalResourceSet);
@@ -2225,8 +2230,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 						resourceSet = getExternalResourceSet();
 					}
 					
-					UMLUtils.initializeContentHandlers(resourceSet);
-					
 					try {
 						resource = resourceSet.getResource(resourceURI, true);
 					}
@@ -2251,13 +2254,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 						List<EObject> contents = resource.getContents();
 						if (contents.size() > 0) {
 							EObject firstContent = contents.get(0);
-							if (firstContent instanceof EPackage) {
-								String firstURI = ((EPackage)firstContent).getNsURI();
-								if (firstURI != null) {
-									External2Pivot external2Pivot2 = external2PivotMap.get(URI.createURI(firstURI));
+							for (Factory factory : factoryMap) {
+								URI packageURI = factory.getPackageURI(firstContent);
+								if (packageURI != null) {
+									External2Pivot external2Pivot2 = external2PivotMap.get(packageURI);
 									if (external2Pivot2 != null) {
 										resource = external2Pivot2.getResource();
 									}
+									break;
 								}
 							}
 						}

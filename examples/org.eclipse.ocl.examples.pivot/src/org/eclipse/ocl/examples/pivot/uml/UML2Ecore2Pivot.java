@@ -57,11 +57,33 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			UML2Ecore2Pivot.initialize(resourceSet);
 		}
 
+		public URI getPackageURI(EObject eObject) {
+			if (eObject instanceof org.eclipse.uml2.uml.Package) {
+				String uri = ((org.eclipse.uml2.uml.Package)eObject).getURI();
+				if (uri != null) {
+					return URI.createURI(uri);
+				}
+			}
+			return null;
+		}
+
 		public Element importFromResource(MetaModelManager metaModelManager, Resource umlResource, String uriFragment) {
 			if (umlResource == null) {
 				return null;
 			}
-			UML2Ecore2Pivot conversion = getAdapter(umlResource, metaModelManager);
+			UML2Ecore2Pivot conversion = findAdapter(umlResource, metaModelManager);
+			if ((conversion == null) && (umlResource.getContents().size() > 0)) {
+				EObject firstContent = umlResource.getContents().get(0);
+				for (EObject eContainer = firstContent.eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
+					conversion = findAdapter(eContainer.eResource(), metaModelManager);
+					if (conversion != null) {
+						break;
+					}
+				}
+			}
+			if (conversion == null) {
+				conversion = getAdapter(umlResource, metaModelManager);
+			}
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
 			if (uriFragment == null) {
 				return pivotRoot;
@@ -104,6 +126,22 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 
 	// FIXME this is a prehistoric value
 //	private static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
+
+	public static UML2Ecore2Pivot findAdapter(Resource resource, MetaModelManager metaModelManager) {
+		assert metaModelManager != null;
+		if (resource == null) {
+			return null;
+		}
+		for (Adapter adapter : resource.eAdapters()) {
+			if (adapter instanceof UML2Ecore2Pivot) {
+				UML2Ecore2Pivot ecore2Pivot = (UML2Ecore2Pivot)adapter;
+				if (ecore2Pivot.getMetaModelManager() == metaModelManager) {
+					return ecore2Pivot;
+				}
+			}
+		}
+		return null;
+	}
 
 	public static UML2Ecore2Pivot getAdapter(Resource resource, MetaModelManager metaModelManager) {
 		if (resource == null) {

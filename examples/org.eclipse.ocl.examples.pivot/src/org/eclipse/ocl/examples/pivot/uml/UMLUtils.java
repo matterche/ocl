@@ -25,7 +25,10 @@ import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl;
+import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
+import org.eclipse.emf.mapping.ecore2xml.util.Ecore2XMLResource;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.profile.l2.L2Package;
@@ -47,10 +50,17 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
 public class UMLUtils	// FIXME This should be in MDT/UML2
 {		
-	private static final RootXMLContentHandlerImpl UML2_4_0_0 = new RootXMLContentHandlerImpl("org.eclipse.uml2.uml_4_0_0", new String[]{ "xmi" },
-		RootXMLContentHandlerImpl.XMI_KIND, "http://www.eclipse.org/uml2/4.0.0/UML", null);
-	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_4 = new RootXMLContentHandlerImpl("org.omg.uml_2_4", null,
-		RootXMLContentHandlerImpl.XMI_KIND, "http://www.omg.org/spec/UML/20100901", null);
+	private static final String[] EXTENSIONS = new String[] { "uml", "xmi", "xml" };
+//	private static final RootXMLContentHandlerImpl UML2_4_0_0 = new RootXMLContentHandlerImpl("org.eclipse.uml2.uml_4_0_0", new String[]{ "xmi" },
+//		RootXMLContentHandlerImpl.XMI_KIND, "http://www.eclipse.org/uml2/4.0.0/UML", null);
+	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_1 = new RootXMLContentHandlerImpl(XMI2UMLResource.UML_2_1_CONTENT_TYPE_IDENTIFIER, EXTENSIONS,
+		RootXMLContentHandlerImpl.XMI_KIND, XMI2UMLResource.UML_METAMODEL_2_1_NS_URI/*http://schema.omg.org/spec/UML/2.1*/, null);
+	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_1_1 = new RootXMLContentHandlerImpl(XMI2UMLResource.UML_2_1_1_CONTENT_TYPE_IDENTIFIER, EXTENSIONS,
+		RootXMLContentHandlerImpl.XMI_KIND, XMI2UMLResource.UML_METAMODEL_2_1_1_NS_URI/*http://schema.omg.org/spec/UML/2.1.1*/, null);
+	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_2 = new RootXMLContentHandlerImpl(XMI2UMLResource.UML_2_2_CONTENT_TYPE_IDENTIFIER, EXTENSIONS,
+		RootXMLContentHandlerImpl.XMI_KIND, XMI2UMLResource.UML_METAMODEL_2_2_NS_URI/*http://schema.omg.org/spec/UML/2.2*/, null);
+	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_4 = new RootXMLContentHandlerImpl(XMI2UMLResource.UML_2_4_CONTENT_TYPE_IDENTIFIER, EXTENSIONS,
+		RootXMLContentHandlerImpl.XMI_KIND, XMI2UMLResource.UML_METAMODEL_2_4_NS_URI/*http://www.omg.org/spec/UML/20100901*/, null);
 
 	protected static void initializeContentHandler(List<ContentHandler> contentHandlers, ContentHandler contentHandler) {
 		if (!contentHandlers.contains(contentHandler)) {
@@ -61,12 +71,27 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 	public static void initializeContentHandlers(ResourceSet resourceSet) {
 		URIConverter uriConverter = resourceSet != null ? resourceSet.getURIConverter() : URIConverter.INSTANCE;;
 		List<ContentHandler> contentHandlers = uriConverter.getContentHandlers();
-		initializeContentHandler(contentHandlers, UML2_4_0_0);
+//		initializeContentHandler(contentHandlers, UML2_4_0_0);
+		initializeContentHandler(contentHandlers, ORG_OMG_UML_2_1);		
+		initializeContentHandler(contentHandlers, ORG_OMG_UML_2_1_1);		
+		initializeContentHandler(contentHandlers, ORG_OMG_UML_2_2);		
 		initializeContentHandler(contentHandlers, ORG_OMG_UML_2_4);		
 	}
 
 	public static void initializeContents(ResourceSet resourceSet) {
+	    if (resourceSet != null) {
+	    	System.out.println(Thread.currentThread().getName() + " init " + resourceSet.getClass().getName() + "@" + Integer.toHexString(resourceSet.hashCode()));
+	    }
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null ? resourceSet.getResourceFactoryRegistry() : Resource.Factory.Registry.INSTANCE;
+
+		Map<String, Object> extensionToFactoryMap = resourceFactoryRegistry.getExtensionToFactoryMap();
+		extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		extensionToFactoryMap.put(Ecore2XMLResource.FILE_EXTENSION, Ecore2XMLResource.Factory.INSTANCE);
+		extensionToFactoryMap.put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+
+		extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+		extensionToFactoryMap.put(Ecore2XMLResource.FILE_EXTENSION, Ecore2XMLResource.Factory.INSTANCE);	// FIXME Bug 365026
+
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
 		contentTypeToFactoryMap.put(UML302UMLResource.UML_3_0_0_CONTENT_TYPE_IDENTIFIER, UML302UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(UML212UMLResource.UML_2_1_0_CONTENT_TYPE_IDENTIFIER, UML212UMLResource.Factory.INSTANCE);
@@ -87,13 +112,20 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/profiles/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
+		uriMap.put(URI.createURI("http://schema.omg.org/spec/XMI/2.1"), URI.createURI("http://www.omg.org/XMI", true)); //$NON-NLS-1$
 
 		L2Package.eINSTANCE.eClass();
 		L3Package.eINSTANCE.eClass();
+		Ecore2XMLPackage.eINSTANCE.eClass();
+
+		
 		
 		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
 		packageRegistry.put("http://www.omg.org/spec/UML/20100901/PrimitiveTypes.xmi", TypesPackage.eINSTANCE);
-		packageRegistry.put("http://www.omg.org/spec/UML/20100901", UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_1_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_2_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_NS_URI, UMLPackage.eINSTANCE);
 
 		initializeContentHandlers(resourceSet);
 	}

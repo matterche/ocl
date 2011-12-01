@@ -70,6 +70,16 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 		public void configure(ResourceSet resourceSet) {}
 
+		public URI getPackageURI(EObject eObject) {
+			if (eObject instanceof EPackage) {
+				String uri = ((EPackage)eObject).getNsURI();
+				if (uri != null) {
+					return URI.createURI(uri);
+				}
+			}
+			return null;
+		}
+
 		public Element importFromResource(MetaModelManager metaModelManager, Resource ecoreResource, String uriFragment) {
 			if (ecoreResource == null) {
 				return null;
