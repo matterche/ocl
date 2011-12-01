@@ -215,7 +215,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 					csRef = csRef.eContainer();
 				}
 				ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
-				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
+				AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(EcoreUtil.getRootContainer(csContext).eResource());
 				Element context = csContext.getPivot();
 				while ((context != null) && !(context instanceof Namespace) && !(context instanceof Type)) {
 					EObject container = context.eContainer();

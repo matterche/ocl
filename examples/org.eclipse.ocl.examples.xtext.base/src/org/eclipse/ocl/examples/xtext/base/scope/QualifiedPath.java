@@ -115,7 +115,7 @@ public class QualifiedPath extends QualifiedName
 			Resource asResource = null;
 			if (root instanceof RootPackageCS) {
 				EObject root2 = ((RootPackageCS)root).getPivot();
-				asResource = root2.eResource();
+				asResource = EcoreUtil.getRootContainer(root2).eResource();
 			}
 			EObject firstElement = pathElements.get(0).getElement();
 			if (firstElement instanceof org.eclipse.ocl.examples.pivot.Package) {
