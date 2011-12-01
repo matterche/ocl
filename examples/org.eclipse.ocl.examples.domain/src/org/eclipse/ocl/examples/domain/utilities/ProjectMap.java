@@ -247,6 +247,7 @@ public class ProjectMap extends SingletonAdapterImpl
 		private int extensionCount = 0;
 		private boolean inPoint = false;
 		private int packageCount = 0;
+		private Map<String, GenModelEcorePackageHandler> genModelEcorePackageHandlers = new HashMap<String, GenModelEcorePackageHandler>();
 		
 		public PluginGenModelHandler(URI path) {
 			this.jarFile = null;
@@ -277,8 +278,34 @@ public class ProjectMap extends SingletonAdapterImpl
 			}
 		}
 
+		public void scanContents() throws SAXParseException {
+			for (String genModel : genModelEcorePackageHandlers.keySet()) {
+				GenModelEcorePackageHandler genModelEcorePackageHandler = genModelEcorePackageHandlers.get(genModel);
+				URI genModelURI = URI.createURI(genModel).resolve(path);
+				InputStream inputStream = null;
+				try {
+					if (jarFile != null) {
+						ZipEntry entry = jarFile.getEntry(genModel);
+						inputStream = jarFile.getInputStream(entry);
+					}
+					else {
+						inputStream = new FileInputStream(genModelURI.toString().substring(5));		// Lose file:
+					}
+					saxGenModelParser.parse(inputStream, genModelEcorePackageHandler);
+				} catch (Exception e) {
+					throw new SAXParseException("Failed to parse " + path, null, e);
+				} finally {
+					try {
+						if (inputStream != null) {
+							inputStream.close();
+						}
+					} catch (IOException e) {}
+				}
+			}
+		}
+
 		@Override
-		public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		public void startElement(String uri, String localName, String qName, Attributes attributes) {
 			if (pluginCount == 0) {
 				if (pluginTag.equals(qName)) {
 					pluginCount++;
@@ -297,28 +324,10 @@ public class ProjectMap extends SingletonAdapterImpl
 						String genModel = attributes.getValue(genModelAttribute);
 						if (genModel != null) {
 							URI genModelURI = URI.createURI(genModel).resolve(path);
+							URI genModelBaseURI = genModelURI.trimSegments(1).appendSegment("");
+							GenModelEcorePackageHandler genModelEcorePackageHandler = new GenModelEcorePackageHandler(nsURI, path, genModelBaseURI, className);
 							addGenModel(nsURI, genModelURI);
-							InputStream inputStream = null;
-							try {
-								if (jarFile != null) {
-									ZipEntry entry = jarFile.getEntry(genModel);
-									inputStream = jarFile.getInputStream(entry);
-								}
-								else {
-									inputStream = new FileInputStream(genModelURI.toString().substring(5));		// Lose file:
-								}
-						        EPackageDescriptor ePackageDescriptor = new EPackageDescriptor(nsURI, className);
-								URI genModelBaseURI = genModelURI.trimSegments(1).appendSegment("");
-								saxGenModelParser.parse(inputStream, new GenModelEcorePackageHandler(nsURI, path, genModelBaseURI, ePackageDescriptor));
-							} catch (Exception e) {
-								throw new SAXParseException("Failed to parse " + path, null, e);
-							} finally {
-								try {
-									if (inputStream != null) {
-										inputStream.close();
-									}
-								} catch (IOException e) {}
-							}
+							genModelEcorePackageHandlers.put(genModel, genModelEcorePackageHandler);
 						}
 					}
 				}
@@ -327,7 +336,7 @@ public class ProjectMap extends SingletonAdapterImpl
 	}
 	
 	/**
-	 * PluginGenModelHandler provides the SAX callbacks to support reading the genPackageselement in a
+	 * GenModelEcorePackageHandler provides the SAX callbacks to support reading the genPackages element in a
 	 * genmodel file and invoking {@link addEcorePackage()} for each encounter.
 	 */
 	private class GenModelEcorePackageHandler extends DefaultHandler
@@ -347,11 +356,11 @@ public class ProjectMap extends SingletonAdapterImpl
 		private int genPackagesCount = 0;
 		private int ecorePackageCount = 0;
 
-		public GenModelEcorePackageHandler(URI nsURI, URI pluginURI, URI path, EPackage.Descriptor ePackageDescriptor) {
+		public GenModelEcorePackageHandler(URI nsURI, URI pluginURI, URI path, String className) {
 			this.nsURI = nsURI;
 			this.pluginURI = pluginURI;
 			this.path = path;
-			this.ePackageDescriptor = ePackageDescriptor;
+			this.ePackageDescriptor = className != null ? new EPackageDescriptor(nsURI, className) : null;
 		}
 
 		@Override
@@ -569,19 +578,17 @@ public class ProjectMap extends SingletonAdapterImpl
 			if (plugin2packageMap != null) {
 				for (String key : projectMap.keySet()) {
 					URI value = projectMap.get(key);
-					if (value.isArchive()) {
-						Map<URI, EPackage.Descriptor> pluginEcorePackageMap = plugin2packageMap.get(value);
-						if (pluginEcorePackageMap != null) {
-							String projectKey = "/" + key + "/";
-							URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
-							URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-							for (URI nsURI : pluginEcorePackageMap.keySet()) {
-								EPackage.Descriptor ePackageDescriptor = pluginEcorePackageMap.get(nsURI);
-								URI ecorePackageResourceURI = nsURI.resolve(resourceURI);
-								URI ecorePackagePluginURI = nsURI.resolve(pluginURI);
-								packageRegistry.put(ecorePackageResourceURI.toString(), ePackageDescriptor);
-								packageRegistry.put(ecorePackagePluginURI.toString(), ePackageDescriptor);
-							}
+					Map<URI, EPackage.Descriptor> pluginEcorePackageMap = plugin2packageMap.get(value);
+					if (pluginEcorePackageMap != null) {
+						String projectKey = "/" + key + "/";
+						URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
+						URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
+						for (URI nsURI : pluginEcorePackageMap.keySet()) {
+							EPackage.Descriptor ePackageDescriptor = pluginEcorePackageMap.get(nsURI);
+							URI ecorePackageResourceURI = nsURI.resolve(resourceURI);
+							URI ecorePackagePluginURI = nsURI.resolve(pluginURI);
+							packageRegistry.put(ecorePackageResourceURI.toString(), ePackageDescriptor);
+							packageRegistry.put(ecorePackagePluginURI.toString(), ePackageDescriptor);
 						}
 					}
 				}
@@ -730,7 +737,9 @@ public class ProjectMap extends SingletonAdapterImpl
 				if (entry != null) {
 					InputStream inputStream = jarFile.getInputStream(entry);
 					try {
-						saxPluginParser.parse(inputStream, new PluginGenModelHandler(jarFile, URI.createURI(path)));
+						PluginGenModelHandler pluginGenModelHandler = new PluginGenModelHandler(jarFile, URI.createURI(path));
+						saxPluginParser.parse(inputStream, pluginGenModelHandler);
+						pluginGenModelHandler.scanContents();
 					} finally {
 						inputStream.close();
 					}
@@ -797,7 +806,9 @@ public class ProjectMap extends SingletonAdapterImpl
 							registerProject(dotProject);
 							File plugIn = new File(parentFile, "plugin.xml");
 							if (plugIn.exists()) {
-								saxGenModelParser.parse(plugIn, new PluginGenModelHandler(URI.createFileURI(parentFile.toString() + "/")));
+								PluginGenModelHandler pluginGenModelHandler = new PluginGenModelHandler(URI.createFileURI(parentFile.toString() + "/"));
+								saxGenModelParser.parse(plugIn, pluginGenModelHandler);
+								pluginGenModelHandler.scanContents();
 							}
 						}
 					}
