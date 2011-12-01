@@ -19,12 +19,14 @@ package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
@@ -68,6 +70,19 @@ public class OCLinEcoreCS2Pivot extends EssentialOCLCS2Pivot
 
 		public EPackage getEPackage() {
 			return OCLinEcoreCSTPackage.eINSTANCE;
+		}
+
+		public URI getPackageURI(EObject eObject) {
+			if (eObject instanceof PackageCS) {
+				Element pivot = ((PackageCS)eObject).getPivot();
+				if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
+					String uri = ((org.eclipse.ocl.examples.pivot.Package)pivot).getNsURI();
+					if (uri != null) {
+						return URI.createURI(uri);
+					}
+				}
+			}
+			return null;
 		}
 
 		public Element importFromResource(MetaModelManager metaModelManager, Resource resource, String uriFragment) {

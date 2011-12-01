@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -74,6 +75,10 @@ public class CompleteOCLCS2Pivot extends EssentialOCLCS2Pivot
 
 		public EPackage getEPackage() {
 			return CompleteOCLCSTPackage.eINSTANCE;
+		}
+
+		public URI getPackageURI(EObject eObject) {
+			return null;
 		}
 
 		public Element importFromResource(MetaModelManager metaModelManager, Resource resource, String uriFragment) {
