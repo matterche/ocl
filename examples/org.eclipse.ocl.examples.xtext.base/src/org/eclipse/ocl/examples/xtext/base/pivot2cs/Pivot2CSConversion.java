@@ -18,6 +18,8 @@ package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -44,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -97,9 +101,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	protected void createImports(Resource csResource, Set<Package> importedPackages) {
 		AliasAnalysis.dispose(csResource);			// Force reanalysis
-		URI csURI = csResource.getURI(); //.appendFileExtension("oclinecore");
+		URI csURI = csResource.getURI();
 		RootCS documentCS = (RootCS) csResource.getContents().get(0);
-		List<ImportCS> imports = documentCS.getOwnedImport();
+		List<ImportCS> imports = new ArrayList<ImportCS>();
 		for (org.eclipse.ocl.examples.pivot.Package importedPackage : importedPackages) {
 //			ModelElementCS csElement = createMap.get(importedPackage);
 //			if ((csElement != null) && (csElement.eResource() == xtextResource)) {
@@ -117,6 +121,22 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			importCS.setUri(deresolvedURI.toString());
 			imports.add(importCS);
 		}
+		Collections.sort(imports, new Comparator<ImportCS>()
+		{
+			public int compare(ImportCS o1, ImportCS o2) {
+				Namespace ns1 = o1.getNamespace();
+				Namespace ns2 = o2.getNamespace();
+				int d1 = PivotUtil.getContainmentDepth(ns1);
+				int d2 = PivotUtil.getContainmentDepth(ns2);
+				if (d1 != d2) {
+					return d1 - d2;
+				}
+				String n1 = o1.getName();
+				String n2 = o2.getName();
+				return n1.compareTo(n2);
+			}
+		});
+		documentCS.getOwnedImport().addAll(imports);
 	}
 
 	public BaseDeclarationVisitor getDeclarationVisitor(EClass eClass) {

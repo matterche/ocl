@@ -622,6 +622,20 @@ public class PivotUtil extends DomainUtil
 		}
 	}
 
+	/**
+	 * Return the number of containers of eObject, 0 if eObject is a root.
+	 */
+	public static int getContainmentDepth(EObject eObject) {
+		int depth = 0;
+		for (EObject eContainer = eObject.eContainer(); eContainer != null; eContainer = eContainer.eContainer()) {
+			depth++;
+			if (depth > 100000) {
+				return depth;
+			}
+		}
+		return depth;
+	}
+
 	public static <T extends NamedElement> T getNamedElement(Iterable<T> elements, String name) {
 		if (elements == null)
 			return null;
