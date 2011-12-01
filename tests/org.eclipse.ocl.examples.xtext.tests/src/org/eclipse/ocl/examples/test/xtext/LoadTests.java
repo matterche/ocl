@@ -136,16 +136,16 @@ public class LoadTests extends XtextTestCase
 		return projectMap;
 	}
 	
-	public Resource doLoadEcore(URI inputURI) throws IOException {
+	public void doLoadEcore(URI inputURI) throws IOException {
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		getProjectMap().initializeResourceSet(resourceSet);
 		String extension = inputURI.fileExtension();
 		String stem = inputURI.trimFileExtension().lastSegment();
-		String outputName = stem + "." + extension + ".xmi";
+//		String outputName = stem + "." + extension + ".xmi";
 		String output2Name = stem + ".saved." + extension;
-		URI outputURI = getProjectFileURI(outputName);
+//		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
 		if (metaModelManager == null) {
 			metaModelManager = new MetaModelManager();
@@ -174,14 +174,14 @@ public class LoadTests extends XtextTestCase
 				adapter.dispose();
 			}
 			metaModelManager.dispose();
-		}
-		Resource xmiResource = resourceSet.createResource(outputURI);
-		xmiResource.getContents().addAll(xtextResource.getContents());
+		}		
+//		Resource xmiResource = resourceSet.createResource(outputURI);
+//		xmiResource.getContents().addAll(xtextResource.getContents());
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 //		xmiResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 //		assertNoResourceErrors("Save failed", xmiResource);
-		return xmiResource;
+//		return xmiResource;
 	}
 
 	public Resource doLoad_Concrete(String stem, String extension) throws IOException {
@@ -227,11 +227,11 @@ public class LoadTests extends XtextTestCase
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
-		String outputName = stem + "." + extension + ".xmi";
-		String output2Name = stem + ".saved." + extension;
+//		String outputName = stem + "." + extension + ".xmi";
+//		String output2Name = stem + ".saved." + extension;
 		URI inputURI = getProjectFileURI(inputName);
-		URI outputURI = getProjectFileURI(outputName);
-		URI output2URI = getProjectFileURI(output2Name);
+//		URI outputURI = getProjectFileURI(outputName);
+//		URI output2URI = getProjectFileURI(output2Name);
 		if (metaModelManager == null) {
 			metaModelManager = new MetaModelManager();
 		}

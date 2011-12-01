@@ -21,22 +21,25 @@ package org.eclipse.ocl.examples.test.ecore;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 
 /**
  */
 public class ProjectMapTest extends TestCase
 {
-	public void testEcore() {
-		EcorePackage.eINSTANCE.getClass();
-		URI nsURI = URI.createURI(EcorePackage.eNS_URI);
-		URI pluginURI = URI.createPlatformPluginURI("org.eclipse.emf.ecore/model/Ecore.ecore", true);
-		URI resourceURI = URI.createPlatformResourceURI("org.eclipse.emf.ecore/model/Ecore.ecore", true);
+
+	protected void doTestProjectMap(EPackage modelPackage, String modelPath) {
+		URI nsURI = URI.createURI(modelPackage.getNsURI());
+		URI pluginURI = URI.createPlatformPluginURI(modelPath, true);
+		URI resourceURI = URI.createPlatformResourceURI(modelPath, true);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		new ProjectMap().initializeResourceSet(resourceSet);
@@ -45,5 +48,25 @@ public class ProjectMapTest extends TestCase
 		Resource projectResource = resourceSet.getResource(resourceURI, true);
 		assertEquals(registeredResource, pluginResource);
 		assertEquals(registeredResource, projectResource);
+	}
+	
+	public void testProjectMap_CompareDiff() {				// Usually just a plugin; always a plugin on Hudson
+		String modelPath = "org.eclipse.emf.compare.diff/model/diff.ecore";
+		doTestProjectMap(DiffPackage.eINSTANCE, modelPath);
+	}
+	
+	public void testProjectMap_Ecore() {					// Often just a plugin; always a plugin on Hudson
+		String modelPath = "org.eclipse.emf.ecore/model/Ecore.ecore";
+		doTestProjectMap(EcorePackage.eINSTANCE, modelPath);
+	}
+	
+	public void testProjectMap_JavaVMTypes() {				// Usually just a plugin; always a plugin on Hudson
+		String modelPath = "org.eclipse.xtext.common.types/model/JavaVMTypes.ecore";
+		doTestProjectMap(org.eclipse.xtext.common.types.TypesPackage.eINSTANCE, modelPath);
+	}
+	
+	public void testProjectMap_Pivot() {					// Almost certainly a workspace project; always a project on Hudson
+		String modelPath = PivotPackage.class.getPackage().getName() + "/model/pivot.ecore";
+		doTestProjectMap(PivotPackage.eINSTANCE, modelPath);
 	}
 }
