@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -123,7 +122,7 @@ public class AliasAnalysis extends AdapterImpl
 
 	private String computeAlias(org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 		String nsPrefix = primaryPackage.getNsPrefix();
-		String aliasBase = nsPrefix != null ? nsPrefix : CodeGenUtil.uncapName(primaryPackage.getName());		// FIXME NsPrefix
+		String aliasBase = nsPrefix != null ? nsPrefix : getDefaultAlias(primaryPackage.getName());
 		int index = 0;
 		String alias = aliasBase;
 		while (allNames.containsKey(alias) && (allNames.get(alias) != primaryPackage)) {
@@ -205,6 +204,31 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		return null;
+	}
+	
+	protected String getDefaultAlias(String name) {
+		if (name == null) {
+			return "anon";			// Never happens
+		}
+		int iMax = name.length();
+		if (iMax <= 0) {
+			return "anon";			// Never happens
+		}
+		if (Character.isLowerCase(name.charAt(0))) {
+			return name;
+		}
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < iMax; i++) {
+			char c = name.charAt(i);
+			if (Character.isUpperCase(c)) {
+				s.append(Character.toLowerCase(c));
+			}
+			else {
+				s.append(name.substring(i));
+				break;
+			}
+		}
+		return s.toString();
 	}
 
 	public MetaModelManager getMetaModelManager() {
