@@ -55,13 +55,13 @@ public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
 		}
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(csResource);
 		if (adapter == null) {
-			return null;
+			return IScope.NULLSCOPE;
 		}
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 		ElementCS csElement = (ElementCS) context;
 		CSScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
 		if (scopeAdapter == null) {
-			return null;
+			return IScope.NULLSCOPE;
 		}
 		return new BaseScopeView(metaModelManager, csElement, scopeAdapter, null, reference, reference);
 	}
