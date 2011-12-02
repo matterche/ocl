@@ -94,7 +94,56 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	}
 	
 	private static Map<EReference, UnresolvedProxyMessageProvider> unresolvedProxyMessageProviderMap = new HashMap<EReference, UnresolvedProxyMessageProvider>();
+
+	/**
+	 * Whether to show file and line number context at the start of messages.
+	 */
+	public static boolean showContext = false;
+
+	/**
+	 * Interface for an optional message binder that may be used to affix additional context
+	 * for standalone and command line applications.
+	 */
+	public static interface MessageBinder
+	{
+		String bind(EObject csContext, String messageTemplate, Object... bindings);	
+	}
+
+	/**
+	 * Default message binder that just invokes {@link NLS.bind}.
+	 */
+	public static class DefaultMessageBinder implements CS2Pivot.MessageBinder
+	{
+		public static final MessageBinder INSTANCE = new DefaultMessageBinder();
+
+		public String bind(EObject csContext, String messageTemplate, Object... bindings) {
+			return NLS.bind(messageTemplate, bindings);
+		}
+	}
+
+	/**
+	 * Message binder that prefixes the uri and line number to the return from {@link NLS.bind}.
+	 */
+	public static class MessageBinderWithLineContext implements CS2Pivot.MessageBinder
+	{
+		public static final MessageBinder INSTANCE = new MessageBinderWithLineContext();
+
+		public String bind(EObject csContext, String messageTemplate, Object... bindings) {
+			String message = NLS.bind(messageTemplate, bindings);
+			if (csContext != null) {
+				ICompositeNode node = NodeModelUtils.getNode(csContext);
+				if (node != null) {
+					int startLine = node.getStartLine();
+					String uri = csContext.eResource().getURI().toString();
+					return uri + ":" + startLine + " " + message;
+				}
+			}
+			return message;
+		}
+	}
 	
+	private static MessageBinder messageBinder = DefaultMessageBinder.INSTANCE;
+
 	public static void addUnresolvedProxyMessageProvider(UnresolvedProxyMessageProvider unresolvedProxyMessageProvider) {
 		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
 	}
@@ -124,7 +173,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 				errorContext = referenceType.getName();
 			}
 		}
-		return NLS.bind(messageTemplate, errorContext, linkText);
+		return messageBinder.bind(csContext, messageTemplate, errorContext, linkText);
 	}	
 	
 	public static CS2Pivot findAdapter(ResourceSet resourceSet) {
@@ -165,6 +214,20 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 			}
 		}
 		return documentationNodes;
+	}
+	
+	public static MessageBinder getMessageBinder() {
+		return messageBinder;
+	}
+	
+	/**
+	 * Define an alternative message binder. THe default null messageBinder uses
+	 * {@link NLS.bind} 
+	 */
+	public static MessageBinder setMessageBinder(MessageBinder messageBinder) {
+		MessageBinder savedMessageBinder = CS2Pivot.messageBinder;
+		CS2Pivot.messageBinder = messageBinder;
+		return savedMessageBinder;
 	}
 	
 	protected final MetaModelManager metaModelManager;
@@ -211,6 +274,10 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		for (Map.Entry<String, Element> entry : aConverter.csi2pivot.entrySet()) {
 			csi2pivot.put(entry.getKey(), entry.getValue());
 		}
+	}
+
+	public String bind(EObject csContext, String messageTemplate, Object... bindings) {
+		return messageBinder.bind(csContext, messageTemplate, bindings);
 	}
 
 	public Map<String, Element> computeCSI2PivotMap() {

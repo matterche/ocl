@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
-import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLPreOrderVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePreOrderVisitor>
@@ -114,7 +113,7 @@ public class EssentialOCLPreOrderVisitor
 			context.resolveNamespaces(csElement.getNamespace());
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
-				String boundMessage = NLS.bind(OCLMessages.UnresolvedType_ERROR_, csElement.toString());
+				String boundMessage = context.bind(csElement, OCLMessages.UnresolvedType_ERROR_, csElement.toString());
 				context.addDiagnostic(csElement, boundMessage);
 				element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 			}

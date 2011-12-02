@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
@@ -37,7 +38,10 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.MessageBinder;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -101,6 +105,9 @@ public class RoundTripTests extends XtextTestCase
 	}
 	public BaseCSResource createXtextFromURI(MetaModelManager metaModelManager, URI xtextURI) throws IOException {
 		ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();
+		ProjectMap.initializeURIResourceMap(resourceSet2);
+		ProjectMap.initializeURIResourceMap(null);
+		UMLUtils.initializeContents(resourceSet2);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet2.getResource(xtextURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		return xtextResource;
@@ -118,32 +125,39 @@ public class RoundTripTests extends XtextTestCase
 		return (BaseCSResource) xtextResource;
 	}
 	
-	public void doRoundTripFromCompleteOCL(String stem) throws IOException, InterruptedException {
-		String inputName = stem + ".ocl";
-		String outputName = stem + ".regenerated.ocl";
-		URI inputURI = getProjectFileURI(inputName);
-		URI outputURI = getProjectFileURI(outputName);
-
-		MetaModelManager metaModelManager1 = new MetaModelManager();
-		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager1);
-		BaseCSResource xtextResource1 = createXtextFromURI(metaModelManager1, inputURI);
-		PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1, 2);
-		Resource pivotResource2 = CompleteOCLSplitter.separate(metaModelManager1, pivotResource1);
-		@SuppressWarnings("unused")
-		BaseCSResource xtextResource2 = createCompleteOCLXtextFromPivot(metaModelManager1, pivotResource2, outputURI);
-		metaModelManager1.dispose();
-		metaModelManager1 = null;
-		//
-		MetaModelManager metaModelManager3 = new MetaModelManager();
-		BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
-		@SuppressWarnings("unused")
-		PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 2);
-//		Map<String,Object> options = new HashMap<String,Object>();
-//		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
-//		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
-//		((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
-//    	assertSameModel(pivotResource1, pivotResource3, options);
-		metaModelManager3.dispose();
+	public void doRoundTripFromCompleteOCL(URI inputURI) throws IOException, InterruptedException {
+		MessageBinder savedMessageBinder = CS2Pivot.setMessageBinder(CS2Pivot.MessageBinderWithLineContext.INSTANCE);
+		try {
+			ProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
+			projectMap.initializeResourceSet(null);			
+			UMLUtils.initializeContentHandlers(resourceSet);
+//			String inputName = stem + ".ocl";
+//			String outputName = stem + ".regenerated.ocl";
+			URI outputURI = inputURI.trimFileExtension().appendFileExtension("regenerated.ocl");
+			MetaModelManager metaModelManager1 = new MetaModelManager(projectMap);
+			MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager1);
+			BaseCSResource xtextResource1 = createXtextFromURI(metaModelManager1, inputURI);
+			PivotResource pivotResource1 = createPivotFromXtext(metaModelManager1, xtextResource1, 2);
+			Resource pivotResource2 = CompleteOCLSplitter.separate(metaModelManager1, pivotResource1);
+			@SuppressWarnings("unused")
+			BaseCSResource xtextResource2 = createCompleteOCLXtextFromPivot(metaModelManager1, pivotResource2, outputURI);
+			metaModelManager1.dispose();
+			metaModelManager1 = null;
+			//
+			MetaModelManager metaModelManager3 = new MetaModelManager(projectMap);
+			BaseCSResource xtextResource3 = createXtextFromURI(metaModelManager3, outputURI);
+			@SuppressWarnings("unused")
+			PivotResource pivotResource3 = createPivotFromXtext(metaModelManager3, xtextResource3, 2);
+//			Map<String,Object> options = new HashMap<String,Object>();
+//			options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
+//			options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+//			((NamedElement)pivotResource3.getContents().get(0)).setName(((NamedElement)pivotResource1.getContents().get(0)).getName());
+//	    	assertSameModel(pivotResource1, pivotResource3, options);
+			metaModelManager3.dispose();
+		}
+		finally {
+			CS2Pivot.setMessageBinder(savedMessageBinder);
+		}
 	}
 	
 	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException {
@@ -331,7 +345,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_Fruit() throws IOException, InterruptedException {
-		doRoundTripFromCompleteOCL("Fruit");
+		doRoundTripFromCompleteOCL(getProjectFileURI("Fruit.ocl"));
 	}
 
 //	public void testCompleteOCLRoundTrip_Infrastructure() throws IOException, InterruptedException {
@@ -339,7 +353,12 @@ public class RoundTripTests extends XtextTestCase
 //	}
 
 	public void testCompleteOCLRoundTrip_Names() throws IOException, InterruptedException {
-		doRoundTripFromCompleteOCL("Names");
+		doRoundTripFromCompleteOCL(getProjectFileURI("Names.ocl"));
+	}
+
+	public void testCompleteOCLRoundTrip_UML() throws IOException, InterruptedException {
+		doRoundTripFromCompleteOCL(URI.createPlatformResourceURI("/UML-2.5/XMI-23-Nov-2001/Semanticed UML.ocl", true));
+//		doRoundTripFromCompleteOCL(URI.createPlatformResourceURI("/UML-2.5/XMI-23-Nov-2001/UML.xmi", true));
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {

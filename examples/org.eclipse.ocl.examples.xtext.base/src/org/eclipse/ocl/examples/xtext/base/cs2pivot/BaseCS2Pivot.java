@@ -153,7 +153,7 @@ public class BaseCS2Pivot extends CS2Pivot
 		
 		@Override
 		public String getMessage(EObject context, String linkText) {
-			return NLS.bind(OCLMessages.UnresolvedType_ERROR_, linkText);
+			return getMessageBinder().bind(context, OCLMessages.UnresolvedType_ERROR_, linkText);
 		}
 	}
 

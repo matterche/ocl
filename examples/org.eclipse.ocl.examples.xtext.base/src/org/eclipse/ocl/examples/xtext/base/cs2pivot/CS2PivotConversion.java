@@ -228,6 +228,10 @@ public class CS2PivotConversion extends AbstractConversion
 		csElement.eResource().getErrors().add(resourceDiagnostic);
 	}
 
+	public String bind(EObject csContext, String messageTemplate, Object... bindings) {
+		return converter.bind(csContext, messageTemplate, bindings);
+	}
+
 	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {
 		for (Resource csResource : csResources) {
 			if (!csResource.getErrors().isEmpty()) {

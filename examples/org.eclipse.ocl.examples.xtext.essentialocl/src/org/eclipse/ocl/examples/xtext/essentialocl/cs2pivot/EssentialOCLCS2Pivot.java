@@ -48,7 +48,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
-import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 {	
@@ -90,12 +89,12 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		}
 		
 		@Override
-		public String getMessage(EObject context, String linkText) {
+		public String getMessage(EObject csContext, String linkText) {
 			String messageTemplate;
 			String argumentText = null;
 			ExpCS navigationArgument = null;
-			if (context.eContainer() instanceof NavigatingExpCS) {
-				NavigatingExpCS eContainer = (NavigatingExpCS)context.eContainer();
+			if (csContext.eContainer() instanceof NavigatingExpCS) {
+				NavigatingExpCS eContainer = (NavigatingExpCS)csContext.eContainer();
 				navigationArgument = eContainer;
 				List<NavigatingArgCS> arguments = eContainer.getArgument();
 				if (arguments.size() <= 0) {
@@ -143,8 +142,8 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
 				}
 			}
-			else if (context instanceof ExpCS) {
-				navigationArgument = (ExpCS)context;
+			else if (csContext instanceof ExpCS) {
+				navigationArgument = (ExpCS)csContext;
 				messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
 			}
 			else {
@@ -199,10 +198,10 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				}
 			}
 			if (argumentText == null) {
-				return NLS.bind(messageTemplate, linkText, typeText);
+				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, linkText, typeText);
 			}
 			else {
-				return NLS.bind(messageTemplate, new Object[]{linkText, typeText, argumentText});
+				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, new Object[]{linkText, typeText, argumentText});
 			}
 		}
 	}
