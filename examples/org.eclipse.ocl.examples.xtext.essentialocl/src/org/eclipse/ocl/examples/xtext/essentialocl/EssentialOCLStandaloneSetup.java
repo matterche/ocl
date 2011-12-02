@@ -44,7 +44,7 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 		EssentialOCLCS2MonikerVisitor.FACTORY.getClass();
 		EssentialOCLCS2Pivot.FACTORY.getClass();
 //		EssentialOCLPivot2CS.FACTORY.getClass();
-		UMLUtils.initializeContents(null);
+		UMLUtils.initializeContents();
 	}
 	
 	/**
