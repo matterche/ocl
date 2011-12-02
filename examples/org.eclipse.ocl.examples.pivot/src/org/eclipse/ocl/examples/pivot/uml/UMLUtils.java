@@ -62,6 +62,11 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 	private static final RootXMLContentHandlerImpl ORG_OMG_UML_2_4 = new RootXMLContentHandlerImpl(XMI2UMLResource.UML_2_4_CONTENT_TYPE_IDENTIFIER, EXTENSIONS,
 		RootXMLContentHandlerImpl.XMI_KIND, XMI2UMLResource.UML_METAMODEL_2_4_NS_URI/*http://www.omg.org/spec/UML/20100901*/, null);
 
+	/**
+	 * Set true once UML contents have been installed globally.
+	 */
+	private static boolean initializedGlobalContents = false;
+
 	protected static void initializeContentHandler(List<ContentHandler> contentHandlers, ContentHandler contentHandler) {
 		if (!contentHandlers.contains(contentHandler)) {
 			contentHandlers.add(contentHandler);		
@@ -78,10 +83,28 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		initializeContentHandler(contentHandlers, ORG_OMG_UML_2_4);		
 	}
 
+	/**
+	 * Install the UML Contents registrations globally, with synchronization to ensure that
+	 * registration only occurs once.
+	 */
+	public static void initializeContents() {
+		if (!initializedGlobalContents) {
+			synchronized (UMLUtils.class) {
+				if (!initializedGlobalContents) {
+					initializedGlobalContents = true;
+					initializeContents(null);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Install the UML Contents registrations in the resourceSet registries and maps.
+	 */
 	public static void initializeContents(ResourceSet resourceSet) {
-	    if (resourceSet != null) {
-	    	System.out.println(Thread.currentThread().getName() + " init " + resourceSet.getClass().getName() + "@" + Integer.toHexString(resourceSet.hashCode()));
-	    }
+//	    if (resourceSet != null) {
+//	    	System.out.println(Thread.currentThread().getName() + " init " + resourceSet.getClass().getName() + "@" + Integer.toHexString(resourceSet.hashCode()));
+//	    }
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null ? resourceSet.getResourceFactoryRegistry() : Resource.Factory.Registry.INSTANCE;
 
 		Map<String, Object> extensionToFactoryMap = resourceFactoryRegistry.getExtensionToFactoryMap();
