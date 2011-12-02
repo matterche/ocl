@@ -89,7 +89,6 @@ import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteElementIterable;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
@@ -542,7 +541,20 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		this(new ResourceSetImpl());
 		initializePivotResourceSet(pivotResourceSet);
 	}
+	
+	/**
+	 * Construct a MetaModelManager that will use projectMap to assist in locating resources.
+	 */
+	public MetaModelManager(ProjectMap projectMap) {
+		this(new ResourceSetImpl());
+		pivotResourceSet.eAdapters().add(projectMap);
+		initializePivotResourceSet(pivotResourceSet);
+	}
 
+	/**
+	 * Construct a MetaModelManager that will use pivotResourceSet to contain pivot copies
+	 * of meta-models, and {@link ProjectMap.getAdapter(ResourceSet)} to assist in locating resources.
+	 */
 	public MetaModelManager(ResourceSet pivotResourceSet) {
 //		System.out.println("ctor " + this);
 		this.pivotResourceSet = pivotResourceSet;
@@ -551,7 +563,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 //		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + Integer.toHexString(hashCode())
 //			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + Integer.toHexString(pivotResourceSet.hashCode()));		
 	}
-	
+
 	public void addClassLoader(ClassLoader classLoader) {
 		ImplementationManager implementationManager = getImplementationManager();
 		implementationManager.addClassLoader(classLoader);
@@ -1308,11 +1320,15 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public ResourceSet getExternalResourceSet() {
 		if (externalResourceSet == null) {
-			ProjectMap projectMap = ProjectMap.getAdapter(pivotResourceSet);
 			externalResourceSet = new ResourceSetImpl();
-			externalResourceSet.eAdapters().add(projectMap);
-			projectMap.initializeResourceSet(externalResourceSet);			
-			UMLUtils.initializeContentHandlers(externalResourceSet);
+			ProjectMap projectMap = ProjectMap.findAdapter(pivotResourceSet);
+			if (projectMap == null) {
+				ProjectMap.getAdapter(externalResourceSet);
+			}
+			else {
+				externalResourceSet.eAdapters().add(projectMap);
+				projectMap.initializeResourceSet(externalResourceSet);			
+			}
 			MetaModelManagerResourceSetAdapter.getAdapter(externalResourceSet, this);
 			for (Factory factory : factoryMap) {
 				factory.configure(externalResourceSet);
@@ -2004,7 +2020,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 * Create implicit an opposite property if there is no explicit opposite.
 	 */
 	public void installPropertyDeclaration(Property thisProperty) {
-		if (thisProperty.isTransient() || thisProperty.isVolatile() || thisProperty.isDerived()) {
+		if (thisProperty.isTransient() || thisProperty.isVolatile()) {
 			return;
 		}
 		Property opposite = thisProperty.getOpposite();
