@@ -101,7 +101,9 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		OclExpression source = object.getSource();
 		if (source != null) {
 			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
-				if ((source instanceof OperationCallExp) && (((OperationCallExp)source).getReferredOperation().getPrecedence() != null)) {
+				if ((source instanceof OperationCallExp)
+				 && (((OperationCallExp)source).getReferredOperation() != null)
+				 && (((OperationCallExp)source).getReferredOperation().getPrecedence() != null)) {
 					delegate.append("(");
 					precedenceVisit(source, null);
 					delegate.append(")");
