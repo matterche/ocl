@@ -48,7 +48,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -447,7 +447,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public static void initializePivotResourceSet(ResourceSet pivotResourceSet) {
-		ProjectMap.initializeURIResourceMap(pivotResourceSet);
+		StandaloneProjectMap.initializeURIResourceMap(pivotResourceSet);
 		Registry resourceFactoryRegistry = pivotResourceSet.getResourceFactoryRegistry();
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
 		contentTypeToFactoryMap.put(PivotResource.CONTENT_TYPE, new PivotResourceFactoryImpl()); //$NON-NLS-1$
@@ -545,7 +545,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	/**
 	 * Construct a MetaModelManager that will use projectMap to assist in locating resources.
 	 */
-	public MetaModelManager(ProjectMap projectMap) {
+	public MetaModelManager(StandaloneProjectMap projectMap) {
 		this(new ResourceSetImpl());
 		pivotResourceSet.eAdapters().add(projectMap);
 		initializePivotResourceSet(pivotResourceSet);
@@ -1321,9 +1321,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public ResourceSet getExternalResourceSet() {
 		if (externalResourceSet == null) {
 			externalResourceSet = new ResourceSetImpl();
-			ProjectMap projectMap = ProjectMap.findAdapter(pivotResourceSet);
+			StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(pivotResourceSet);
 			if (projectMap == null) {
-				ProjectMap.getAdapter(externalResourceSet);
+				StandaloneProjectMap.getAdapter(externalResourceSet);
 			}
 			else {
 				externalResourceSet.eAdapters().add(projectMap);
