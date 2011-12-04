@@ -10,8 +10,6 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  * 
- * The standalone functionality is heavily influenced by org.eclipse.emf.mwe.utils.StandaloneSetup.
- * 
  * </copyright>
  *
  * $Id$
@@ -19,86 +17,27 @@
 package org.eclipse.ocl.examples.domain.utilities;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.jar.JarFile;
-import java.util.jar.Manifest;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.common.notify.impl.SingletonAdapterImpl;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.w3c.dom.Document;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * ProjectMap provides facilities to assist in preparing the {@link URIConverter} and
- * the {@link EPackage.Regisrry} of a {@link ResourceSet} and the global 
- *  and {@link EcorePlugin#getPlatformResourceMap()} and {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap}
- *  to support arbitrary and compatible use of
- * <tt>platform:/plugin</tt>, <tt>platform:/resource</tt> and registered URIs in both plugin and standalone environments.
- *<p>
- * As a result, when the current file context is my.project/model/MyModel.ecore, and when the classpath
- * contains only the JAR version of Ecore, referencing a resource as any or all of
- * <ul>
- * <li>http://www.eclipse.org/emf/2002/Ecore</li>
- * <li>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * <li>platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * <li>../../org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * </ul>
- * results in the same Resource being returned by {@link ResourceSet.getResource()}.
- *<p>
- * If the classpath contains distinct imported project and JAR versions of Ecore, referencing
- * <ul>
- * <li>http://www.eclipse.org/emf/2002/Ecore</li>
- * </ul>
- * returns the JAR plugin version while referencing
- * <ul>
- * <li>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * <li>platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * <li>../../org.eclipse.emf.ecore/model/Ecore.ecore</li>
- * </ul>
- * returns the imported project version.
- *<p> 
- * A ProjectMap consists of a map from a project or bundle name to a location that is
- * resolvable by the conventional Platform URL stream opening capabilities. Utility methods
- * support export of the map to initialize the URIMap in a {@link URIConverter} and/or the
- * {@link EcorePlugin#getPlatformResourceMap()}.
- * <p>
- * Minimal usage to configure <tt>aResourceSet</tt> is just
- * <br><tt>new ProjectMap().initializeResourceSet(aResourceSet);</tt>
- * <br> or <tt>ProjectMap.getAdapter(aResourceSet);</tt>
- * <br>Thereafter EMF accesses to projects and bundles should just work.
+ * ProjectMap extends {@link StandaloneProjectMap} to support polymorphic access in either plugin or standalone environments
+ * to EMF resources and EPackages.
  * 
  *<h4>Plugin Environment</h4>
  *
@@ -135,289 +74,35 @@ import org.xml.sax.helpers.DefaultHandler;
  * accessible as <tt>platform:/plugin/<i>project</i></tt> or
  * <tt>platform:/resource/<i>project</i></tt>, without needing to create an
  * explicit URI map entry for each of the many hundreds of bundles in typical use.
- * 
- *<h4>Standalone Environment</h4>
- *
- * A resolvable location is a physical location such as
- * <ul>
- * <li><tt>archive:file:/C:/Tools/Eclipse/3.7.1/plugins/org.antlr.runtime_3.2.0.v201101311130.jar!/</tt></li>
- * <li><tt>file:/C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.common/</tt></li>
- * </ul>
- * <p>
- * {@link #getProjectMap()} returns a map of project names and bundle names to a physical location
- * which is established by searching the classpath for folders and JARs containing .project files.
- * If a manifest is also found, the search has found a bundle and the Bundle-SymbolicName is read
- * from the manifest.
- * <p>
- * {@link #initializePackageRegistry(ResourceSet)} populates a trio of registrations for each
- * <tt>genPackages.ecorePackage</tt> referenced from a <tt>genmodel</tt> referenced
- * from a <tt>org.eclipse.emf.ecore.generated_package</tt>
- * defined in any <tt>plugin.xml</tt> found on the classpath. The three declarations ensure that
- * when appropriate, each of the namespace URI (e.g. <tt>http://www.eclipse.org/emf/2002/Ecore</tt>),
- * the project URI (e.g. <tt>platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore</tt>) and the plugin URI
- * (e.g. <tt>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</tt>)
- * resolve to the same Resource eliminating most opportunities for meta-model schizophrenia.
- * <p>
- * {@link #initializePlatformResourceMap()} populates {@link EcorePlugin#getPlatformResourceMap()}
- * with a <i>project</i> to <tt>platform:/resource/<i>project</i></tt> entry for each project
- * and a <i>bundle</i> to <tt>platform:/plugin/<i>bundle</i></tt> entry for each bundle.
- * <p>
- * {@link #initializeGenModelLocationMap(ResourceSet)} exploits the classpath scan for plugins and projects
- * to identify all plugin.xml files and populate the {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap()}
- * from the <tt>org.eclipse.emf.ecore.generated_package</tt> extension points in the same way as occurs
- * automatically in a plugin environment.
- * <p>
- * {@link #initializeURIMap(URIConverter)} installs a <tt>platform:/plugin/<i>project</i></tt>
- * to <tt>platform:/resource/<i>project</i></tt> URI mapping for each project and a
- * <tt>platform:/resource/<i>bundle</i></tt> to <tt>platform:/plugin/<i>bundle</i></tt> URI mapping
- * for each bundle.
- * 
- * <h4>Static Instances and Re-Use</h4>
- * 
- * No static <tt>INSTANCE</tt> is provided because different class loaders or dynamic class path changes
- * may result in stale content. Standalone applications are strongly advised to create their own static
- * instance in a stable context and so avoid repeating the significant costs of a full class path search.
- * <p>
- * The {@link #getAdapter(ResourceSet)} method may be used to invoke {@link #initializeResourceSet(ResourceSet)}
- * if not already invoked and to install the ProjectMap as a ResourceSet adapter allowing an invocation of
- * {@link #findAdapter(ResourceSet)} to find it for subsequent re-use.
  */
-public class ProjectMap extends SingletonAdapterImpl
+public class ProjectMap extends StandaloneProjectMap
 {	
-	/**
-	 * EPackageDescriptor supports lazy class loading and initialization of a compiled Ecore package. Class loading
-	 * occurs in the context of the ProjectMap, which performs classpath scans, so it is assumed that everything is
-	 * visible. Re-use in a larger context may require a new ProjectMap to be created.
-	 */
-	public static final class EPackageDescriptor implements EPackage.Descriptor
+	public static class ProjectDescriptor extends StandaloneProjectMap.ProjectDescriptor
 	{
-		protected final URI nsURI;
-		protected final String className;
-
-		public EPackageDescriptor(URI nsURI, String className) {
-			this.nsURI = nsURI;
-			this.className = className;
-		}
-
-		public EPackage getEPackage() {
-			try {
-				Class<?> javaClass = Class.forName(className);
-				Field field = javaClass.getField("eINSTANCE");
-				Object result = field.get(null);
-				return (EPackage) result;
-			} catch (ClassNotFoundException e) {
-				throw new WrappedException(e);
-			} catch (IllegalAccessException e) {
-				throw new WrappedException(e);
-			} catch (NoSuchFieldException e) {
-				throw new WrappedException(e);
-			}
-		}
-
-		public EFactory getEFactory() {
-			return null;
+		public ProjectDescriptor(String name, URI locationURI) {
+			super(name, locationURI);
 		}
 
 		@Override
-		public String toString() {
-			return nsURI + " => " + className;
-		}
-	}
-
-	/**
-	 * PluginGenModelHandler provides the SAX callbacks to support reading the org.eclipse.emf.ecore.generated_package
-	 * extension point in a plugin.xml file and activating the GenModelEcorePackageHandler to process the ecorePackage
-	 * locations and invoking {@link addGenModel()} for each encounter.
-	 */
-	private class PluginGenModelHandler extends DefaultHandler
-	{
-		public static final String pluginTag = "plugin";
-		public static final String extensionTag = "extension";
-		public static final String pointTag = "point";
-		public static final String packageTag = "package";
-		
-		public static final String extensionPointAttribute = "org.eclipse.emf.ecore.generated_package";
-		public static final String uriAttribute = "uri";
-		public static final String classAttribute = "class";
-		public static final String genModelAttribute = "genModel";
-		
-		protected final JarFile jarFile;
-		protected final URI path;
-		private int pluginCount = 0;
-		private int extensionCount = 0;
-		private boolean inPoint = false;
-		private int packageCount = 0;
-		private Map<String, GenModelEcorePackageHandler> genModelEcorePackageHandlers = new HashMap<String, GenModelEcorePackageHandler>();
-		
-		public PluginGenModelHandler(URI path) {
-			this.jarFile = null;
-			this.path = path;
-		}
-
-		public PluginGenModelHandler(JarFile jarFile, URI path) {
-			this.jarFile = jarFile;
-			this.path = path;
-		}
-
-		@Override
-		public void endElement(String uri, String localName, String qName) throws SAXException {
-			if (pluginCount == 1) {
-				if (pluginTag.equals(qName)) {
-					pluginCount--;
-				}
-				if (extensionCount == 1) {
-					if (extensionTag.equals(qName)) {
-						extensionCount--;
-					}
-					if (packageCount == 1) {
-						if (packageTag.equals(qName)) {
-							packageCount--;
-						}
-					}
-				}
+		public void initializeURIMap(Map<URI, URI> uriMap) {
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+				super.initializeURIMap(uriMap);
 			}
-		}
-
-		public void scanContents() throws SAXParseException {
-			for (String genModel : genModelEcorePackageHandlers.keySet()) {
-				GenModelEcorePackageHandler genModelEcorePackageHandler = genModelEcorePackageHandlers.get(genModel);
-				URI genModelURI = URI.createURI(genModel).resolve(path);
-				InputStream inputStream = null;
-				try {
-					if (jarFile != null) {
-						ZipEntry entry = jarFile.getEntry(genModel);
-						inputStream = jarFile.getInputStream(entry);
-					}
-					else {
-						inputStream = new FileInputStream(genModelURI.toString().substring(5));		// Lose file:
-					}
-					saxGenModelParser.parse(inputStream, genModelEcorePackageHandler);
-				} catch (Exception e) {
-					throw new SAXParseException("Failed to parse " + path, null, e);
-				} finally {
-					try {
-						if (inputStream != null) {
-							inputStream.close();
-						}
-					} catch (IOException e) {}
-				}
-			}
-		}
-
-		@Override
-		public void startElement(String uri, String localName, String qName, Attributes attributes) {
-			if (pluginCount == 0) {
-				if (pluginTag.equals(qName)) {
-					pluginCount++;
-				}
-			}
-			else if (pluginCount == 1) {
-				if ((extensionCount == 0) && extensionTag.equals(qName)) {
-					extensionCount++;
-					inPoint = extensionPointAttribute.equals(attributes.getValue(pointTag));
-				}
-				else if ((extensionCount == 1) && inPoint) {
-					if ((packageCount == 0) && packageTag.equals(qName)) {
-						packageCount++;
-						String className = attributes.getValue(classAttribute);
-						URI nsURI = URI.createURI(attributes.getValue(uriAttribute));
-						String genModel = attributes.getValue(genModelAttribute);
-						if (genModel != null) {
-							URI genModelURI = URI.createURI(genModel).resolve(path);
-							URI genModelBaseURI = genModelURI.trimSegments(1).appendSegment("");
-							GenModelEcorePackageHandler genModelEcorePackageHandler = new GenModelEcorePackageHandler(nsURI, path, genModelBaseURI, className);
-							addGenModel(nsURI, genModelURI);
-							genModelEcorePackageHandlers.put(genModel, genModelEcorePackageHandler);
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * GenModelEcorePackageHandler provides the SAX callbacks to support reading the genPackages element in a
-	 * genmodel file and invoking {@link addEcorePackage()} for each encounter.
-	 */
-	private class GenModelEcorePackageHandler extends DefaultHandler
-	{
-		public static final String genmodelTag = "genmodel:GenModel";
-		public static final String genPackagesTag = "genPackages";
-		public static final String ecorePackageTag = "ecorePackage";
-		
-		public static final String ecorePackageAttribute = "ecorePackage";
-		public static final String hrefAttribute = "href";
-		
-		protected final URI nsURI;
-		protected final URI pluginURI;
-		protected final URI path;
-		protected final EPackage.Descriptor ePackageDescriptor;
-		private int genmodelCount = 0;
-		private int genPackagesCount = 0;
-		private int ecorePackageCount = 0;
-
-		public GenModelEcorePackageHandler(URI nsURI, URI pluginURI, URI path, String className) {
-			this.nsURI = nsURI;
-			this.pluginURI = pluginURI;
-			this.path = path;
-			this.ePackageDescriptor = className != null ? new EPackageDescriptor(nsURI, className) : null;
-		}
-
-		@Override
-		public void endElement(String uri, String localName, String qName) throws SAXException {
-			if (genmodelCount == 1) {
-				if (genmodelTag.equals(qName)) {
-					genmodelCount--;
-				}
-				if (genPackagesCount == 1) {
-					if (genPackagesTag.equals(qName)) {
-						genPackagesCount--;
-					}
-					if (ecorePackageCount == 1) {
-						if (ecorePackageTag.equals(qName)) {
-							ecorePackageCount--;
-						}
-					}
-				}
-			}
-		}
-
-		@Override
-		public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-			if (genmodelCount == 0) {
-				if (genmodelTag.equals(qName)) {
-					genmodelCount++;
-				}
-			}
-			else if (genmodelCount == 1) {
-				if ((genPackagesCount == 0) && genPackagesTag.equals(qName)) {
-					genPackagesCount++;
-					String value = attributes.getValue(ecorePackageAttribute);
-					if (value != null) {
-						addEcorePackage(nsURI, pluginURI, URI.createURI(value).resolve(path), ePackageDescriptor);
-					}
-				}
-				else if ((genPackagesCount == 1) && ecorePackageTag.equals(qName)) {
-					ecorePackageCount++;
-					String value = attributes.getValue(hrefAttribute);
-					addEcorePackage(nsURI, pluginURI, URI.createURI(value).resolve(path), ePackageDescriptor);
+			else {
+				if (locationURI.isPlatformResource()) {
+					URI resourceURI = locationURI;
+					URI pluginURI = getPlatformPluginURI();
+					uriMap.put(resourceURI, resourceURI);
+					uriMap.put(pluginURI, resourceURI);
 				}
 			}
 		}
 	}
 
-	/**
-	 * Return any ProjectMap already installed as an adapter on a <tt>resourceSet</tt>.
-	 * Returns null if there is no such adapter. 
-	 */
 	public static ProjectMap findAdapter(ResourceSet resourceSet) {
 		return (ProjectMap) EcoreUtil.getAdapter(resourceSet.eAdapters(), ProjectMap.class);
 	}
 
-	/**
-	 * Return the ProjectMap already installed as an adapter on a <tt>resourceSet</tt>
-	 * if one exists, else creates, installs, initializes and returns a new ProjectMap.  
-	 */
 	public static ProjectMap getAdapter(ResourceSet resourceSet) {
 		ProjectMap adapter = findAdapter(resourceSet);
 		if (adapter == null) {
@@ -428,277 +113,69 @@ public class ProjectMap extends SingletonAdapterImpl
 		return adapter;
 	}
 
-	/**
-	 * Activate any ResourceSetImpl.uriResourceMap so that repeated lookups use a hash rather than linear search.
-	 */
-	public static void initializeURIResourceMap(ResourceSet resourceSet) {
-		if (resourceSet instanceof ResourceSetImpl) {
-			ResourceSetImpl resourceSetImpl = (ResourceSetImpl) resourceSet;
-			Map<URI, Resource> uriResourceMap = resourceSetImpl.getURIResourceMap();
-			if (uriResourceMap == null) {
-				resourceSetImpl.setURIResourceMap(new HashMap<URI, Resource>());
-			}
-		}
+	@Override
+	protected IProjectDescriptor.Internal createProjectDescriptor(String projectName, URI locationURI) {
+		return new ProjectDescriptor(projectName, locationURI);
 	}
-
-	/**
-	 * The map of bundle/project name to resolveable location.
-	 */
-	private Map<String, URI> projectMap = null;
 	
-	/**
-	 * Exceptions encountered during processing as a map from File to Exception.
-	 */
-	private Map<File, Exception> exceptionMap = null;
-
-	/**
-	 * Map from Namespace URI to registered genmodel.
-	 */
-	private Map<URI, URI> genModelMap = null;
-	
-	/**
-	 * Map from plugin URI to EPackages registered in the plugin in the form of a map from
-	 * Namespace URI to lazy EPackageDescriptor.
-	 */
-	private Map<URI, Map<URI, EPackage.Descriptor>> plugin2packageMap = null;
-	
-    private SAXParser saxGenModelParser = null;
-    private SAXParser saxPluginParser = null;
-	
-	private boolean initializedGenModelLocationMap = false;
-	private boolean initializedPlatformResourceMap = false;
-
-	protected void addEcorePackage(URI nsURI, URI plugin, URI ecorePackage, EPackage.Descriptor ePackageDescriptor) {
-		if (plugin2packageMap == null) {
-			plugin2packageMap = new HashMap<URI, Map<URI, EPackage.Descriptor>>();
-		}
-		Map<URI, EPackage.Descriptor> map = plugin2packageMap.get(plugin);
-		if (map == null) {
-			map = new HashMap<URI, EPackage.Descriptor>();
-			plugin2packageMap.put(plugin, map);
-		}
-		URI relativeEcorePackageURI = ecorePackage.deresolve(plugin, true, true, true);
-		map.put(relativeEcorePackageURI.trimFragment(), ePackageDescriptor);
-//		System.out.println(nsURI + " = " + ecorePackage + " : " + className);
-	}
-
-	protected void addGenModel(URI nsURI, URI genModel) {
-		if (genModelMap == null) {
-			genModelMap = new HashMap<URI, URI>();
-		}
-		genModelMap.put(nsURI, genModel);
-//		System.out.println(nsURI + " = " + genModel);
-	}
-
-	/**
-	 * Return the resolveable URI for a given project or bundle name.
-	 */
-	public URI get(String projectName) {
-		URI uri = getProjectMap().get(projectName);
+	@Override
+	public URI getLocation(String projectName) {
+		URI uri = super.getLocation(projectName);
 		if ((uri == null) && EMFPlugin.IS_ECLIPSE_RUNNING) {
 			uri = URI.createPlatformPluginURI("/" + projectName + "/", true);
 		}
 		return uri;
 	}
-
-	/**
-	 * Return the mapping of problem files to exceptions, or null if not yet computed
-	 * or if no exceptions thrown.
-	 */
-	public Map<File, Exception> getExceptionMap() {
-		return exceptionMap;
-	}
 	
-	/**
-	 * Return the mapping of project name or bundle name, as defined in a manifest file to
-	 * the location of that project as determined by scanning the classpath.
-	 * <p>
-	 * e.g. entries such as
-	 * <br>org.antlr.runtime => archive:file:/C:/Tools/Eclipse/3.7.1/plugins/org.antlr.runtime_3.2.0.v201101311130.jar!/
-	 * <br>org.eclipse.ocl.examples.common => file:/C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.common/
-	 * <p>
-	 * Any problems arising while creating the project map are gathered into the exception map
-	 * accessible using {@link #getExceptionMap()}. An overall problem may be attributed to the null file.
-	 */
-	public Map<String, URI> getProjectMap() {
-		if (projectMap == null) {
-			projectMap = new HashMap<String, URI>();
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			try {
-				saxPluginParser = factory.newSAXParser();
-				saxGenModelParser = factory.newSAXParser();
-			} catch (Exception e) {
-				logException(null, e);
-				return null;
-			}
-			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-				scanClassPath();
-			}
-			else {
-//				scanBundles();  -- no need to scan hundreds of bundles when a single URI map entry will handle them all. 
-				scanGenModels();
-				scanProjects();
-			}
-			saxPluginParser = null;
-			saxGenModelParser = null;
-		}
-		return projectMap;
-	}
-	
-	/**
-	 * Initialize the {@link EcorePlugin#getEPackageNsURIToGenModelLocationMap()} so that in a standalone environment
-	 * the locations of all genmodels are available.
-	 * <p>
-	 * Initialization is only necessary once and for a standalone environment. If <tt>force</tt> is true a
-	 * re-initialization or plugin initialization may be forced.
-	 */
+	@Override
 	public void initializeGenModelLocationMap(boolean force) {
 		if (force || (!initializedGenModelLocationMap && !EMFPlugin.IS_ECLIPSE_RUNNING)) {
-			initializedGenModelLocationMap = true;
-			Map<String, URI> ePackageNsURIToGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-			getProjectMap();
-			if (genModelMap != null) {
-				for (URI key : genModelMap.keySet()) {
-					URI value = genModelMap.get(key);
-					ePackageNsURIToGenModelLocationMap.put(key.toString(), value);
-				}
-			}
+			super.initializeGenModelLocationMap(force);
 		}
 	}
 	
-	/**
-	 * Install lazy EPackageDescriptors in the EPackage.Registry for all registered packages and their
-	 * platform:/plugin and platform:/resource synonyms, which are determined by examining the genPackages.ecorePackage
-	 * attribute in all genModels.
-	 */
+	@Override
 	public void initializePackageRegistry(ResourceSet resourceSet) {
-		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
-		Map<String, URI> projectMap = getProjectMap();
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-			if (plugin2packageMap != null) {
-				for (String key : projectMap.keySet()) {
-					URI value = projectMap.get(key);
-					Map<URI, EPackage.Descriptor> pluginEcorePackageMap = plugin2packageMap.get(value);
-					if (pluginEcorePackageMap != null) {
-						String projectKey = "/" + key + "/";
-						URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
-						URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-						for (URI nsURI : pluginEcorePackageMap.keySet()) {
-							EPackage.Descriptor ePackageDescriptor = pluginEcorePackageMap.get(nsURI);
-							URI ecorePackageResourceURI = nsURI.resolve(resourceURI);
-							URI ecorePackagePluginURI = nsURI.resolve(pluginURI);
-							packageRegistry.put(ecorePackageResourceURI.toString(), ePackageDescriptor);
-							packageRegistry.put(ecorePackagePluginURI.toString(), ePackageDescriptor);
-						}
-					}
-				}
-				for (URI nsURI : plugin2packageMap.keySet()) {
-					Map<URI, EPackage.Descriptor> packageMap = plugin2packageMap.get(nsURI);
-					for (URI key : packageMap.keySet()) {
-						final EPackage.Descriptor ePackageDescriptor = packageMap.get(key);
-						packageRegistry.put(nsURI.toString(), ePackageDescriptor);
-					}
-				}
-			}
+			super.initializePackageRegistry(resourceSet);
 		}
 		else {
+			EPackage.Registry packageRegistry = getPackageRegistry(resourceSet);
 			Map<String, URI> ePackageNsURIToGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-			for (String key : ePackageNsURIToGenModelLocationMap.keySet()) {
-				URI genModelURI = ePackageNsURIToGenModelLocationMap.get(key);
+			for (String ePackageNsURI : ePackageNsURIToGenModelLocationMap.keySet()) {
+				URI genModelURI = ePackageNsURIToGenModelLocationMap.get(ePackageNsURI);
 				if (genModelURI.isPlatformPlugin()) {
-					URI bundleURI = genModelURI.trimSegments(genModelURI.segmentCount()-2);
-					Object ePackageDescriptor = EPackage.Registry.INSTANCE.get(key);
-					packageRegistry.put(key, ePackageDescriptor);
+					IProjectDescriptor.Internal projectDescriptor = getProjectDescriptorInternal(genModelURI);
+					Object ePackageDescriptor = EPackage.Registry.INSTANCE.get(ePackageNsURI);
+					packageRegistry.put(ePackageNsURI, ePackageDescriptor);
+					IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(ePackageNsURI));
 //					System.out.println(key + " ==> ");
-					Map<URI, EPackage.Descriptor> pluginEcorePackageMap = plugin2packageMap.get(bundleURI);
-					if (pluginEcorePackageMap != null) {
-						for (URI ecoreURI : pluginEcorePackageMap.keySet()) {
-							URI ecorePackageResourceURI = URI.createPlatformResourceURI(ecoreURI.toString(), true);
-							URI ecorePackagePluginURI = URI.createPlatformPluginURI(ecoreURI.toString(), true);
-							packageRegistry.put(ecorePackageResourceURI.toString(), ePackageDescriptor);
-							packageRegistry.put(ecorePackagePluginURI.toString(), ePackageDescriptor);
-//							System.out.println(ecorePackageResourceURI + " ==> ");
-//							System.out.println(ecorePackagePluginURI + " ==> ");
-						}
+					URI localModelURI = packageDescriptor.getEcoreModelURI();
+					if (localModelURI != null) {
+						URI ecorePackageResourceURI = localModelURI.resolve(projectDescriptor.getPlatformResourceURI());
+						URI ecorePackagePluginURI = localModelURI.resolve(projectDescriptor.getPlatformPluginURI());
+						packageRegistry.put(ecorePackageResourceURI.toString(), packageDescriptor);
+						packageRegistry.put(ecorePackagePluginURI.toString(), packageDescriptor);
+//						System.out.println(ecorePackageResourceURI + " ==> ");
+//						System.out.println(ecorePackagePluginURI + " ==> ");
 					}
 				}
 			}
 		}
 	}
 	
-	/**
-	 * Initialize the {@link EcorePlugin#getPlatformResourceMap()} so that in a standalone environment and in
-	 * conjunction with {@link initializeURIMap(URIConverter)} URIs such as <tt>platform:/resource/<i>project</i></tt>
-	 * and <tt>platform:/plugin/<i>project</i></tt> are useable.
-	 * <p>
-	 * Initialization is only necessary once and for a standalone environment. If <tt>force</tt> is true a
-	 * re-initialization or plugin initialization may be forced.
-	 */
-	public Map<String, URI> initializePlatformResourceMap(boolean force) {
+	@Override
+	public void initializePlatformResourceMap(boolean force) {
 		if (force || (!initializedPlatformResourceMap && !EMFPlugin.IS_ECLIPSE_RUNNING)) {
-			initializedPlatformResourceMap = true;
-			Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-			Map<String, URI> projectMap = getProjectMap();
-			for (String key : projectMap.keySet()) {
-				URI value = projectMap.get(key);
-				platformResourceMap.put(key, value);
-			}
+			super.initializePlatformResourceMap(force);
 		}
-		return projectMap;
-	}
-	
-	/**
-	 * Ensure that both the {@link EcorePlugin#getPlatformResourceMap()} and {@link ResourceSet#getURIConverter()}
- 	 * are initialized so that <tt>platform:/resource/<i>project</i></tt>
-	 * and <tt>platform:/plugin/<i>project</i></tt> are useable..
-	 * 
-	 * A null ResourceSet may be used to provoke initialization of the global EPackage.Registry.INSTANCE
-	 * and URIConverter.URI_MAP.
-	 */
-	public void initializeResourceSet(ResourceSet resourceSet) {
-		initializeURIResourceMap(resourceSet);
-		initializePlatformResourceMap(false);
-		initializeURIMap(resourceSet);
-		initializeGenModelLocationMap(false);
-		initializePackageRegistry(resourceSet);
 	}
 
-	/**
-	 * Initialize the uriMap of a uriConverter so that each of <tt>platform:/resource/<i>project</i></tt>
-	 * and <tt>platform:/plugin/<i>project</i></tt> resolve the workspace project resource else the
-	 * plugin bundle for use in either standalone or plugin environment.
-	 * <p>
-	 * Note that in a plugin environment, a single <tt>platform:/resource/</tt> to <tt>platform:/plugin/</tt>
-	 * mapping is sufficient since <tt>platform:/plugin/</tt> is directly resolveable by the Eclipse Platform.
-	 */
+	@Override
 	public void initializeURIMap(ResourceSet resourceSet) {
-		Map<String, URI> projectMap = getProjectMap();
-		URIConverter uriConverter = resourceSet != null ? resourceSet.getURIConverter() : null;
-		Map<URI, URI> uriMap = uriConverter != null ? uriConverter.getURIMap() : URIConverter.URI_MAP;
-		for (String key : projectMap.keySet()) {
-			URI value = projectMap.get(key);
-			String projectKey = "/" + key + "/";
-			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
-				URI resourceURI = URI.createPlatformResourceURI(projectKey, true);
-				URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-//				if (value.isArchive()) {
-					uriMap.put(resourceURI, value);
-					uriMap.put(pluginURI, value);
-//				}
-//				else {
-//					uriMap.put(pluginURI, resourceURI);
-//				}
-			}
-			else {
-				if (value.isPlatformResource()) {
-					URI resourceURI = value;
-					URI pluginURI = URI.createPlatformPluginURI(projectKey, true);
-					uriMap.put(resourceURI, resourceURI);
-					uriMap.put(pluginURI, resourceURI);
-				}
-			}
-		}
+		super.initializeURIMap(resourceSet);
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			Map<URI, URI> uriMap = getURIMap(resourceSet);
 			URI resourceURI = URI.createPlatformResourceURI("/", true);
 			URI pluginURI = URI.createPlatformPluginURI("/", true);
 			uriMap.put(resourceURI, pluginURI);
@@ -707,71 +184,18 @@ public class ProjectMap extends SingletonAdapterImpl
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == ProjectMap.class;
+		return type instanceof ProjectMap;
 	}
 
-	protected void logException(File file, Exception e) {
-		if (exceptionMap == null) {
-			exceptionMap = new HashMap<File, Exception>();
+	@Override
+	protected void scanClassPath(Map<String, IProjectDescriptor.Internal> projectDescriptors, SAXParser saxParser) {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			super.scanClassPath(projectDescriptors, saxParser);
 		}
-		exceptionMap.put(file, e);
-	}
-
-	protected void registerBundle(File file) {
-		try {
-			JarFile jarFile = new JarFile(file);
-			Manifest manifest = jarFile.getManifest();
-			if (manifest==null)
-				return;
-			String name = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
-			if (name != null) {
-				final int indexOf = name.indexOf(';');
-				if (indexOf>0) 
-					name = name.substring(0, indexOf);
-				if (projectMap.containsKey(name))
-					return;
-				String path = "archive:"+file.toURI() + "!/";
-				URI uri = URI.createURI(path);
-				projectMap.put(name, uri);
-				ZipEntry entry = jarFile.getEntry("plugin.xml");
-				if (entry != null) {
-					InputStream inputStream = jarFile.getInputStream(entry);
-					try {
-						PluginGenModelHandler pluginGenModelHandler = new PluginGenModelHandler(jarFile, URI.createURI(path));
-						saxPluginParser.parse(inputStream, pluginGenModelHandler);
-						pluginGenModelHandler.scanContents();
-					} finally {
-						inputStream.close();
-					}
-				}
-			}	
-		}
-		catch (ZipException e) {
-			logException(file, new WrappedException("Could not open Jar file "+file.getAbsolutePath()+".", e));
-		}
-		catch (Exception e) {
-			logException(file, e);
-		}
-
-	}
-
-	protected void registerProject(File file) {
-		FileInputStream inputStream = null;
-		try {
-			inputStream = new FileInputStream(file);
-			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream);
-			String name = document.getDocumentElement().getElementsByTagName("name").item(0).getTextContent();
-			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + File.separator);
-			projectMap.put(name, uri);
-		}
-		catch (Exception e) {
-			logException(file, new WrappedException("Couldn't read " + file, e));
-		} finally {
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {}
-			}
+		else {
+//			scanBundles();  -- no need to scan hundreds of bundles when a single URI map entry will handle them all. 
+			scanProjects(projectDescriptors);
+			scanGenModels(saxParser);
 		}
 	}
 
@@ -781,86 +205,30 @@ public class ProjectMap extends SingletonAdapterImpl
 				for (Bundle bundle : bundleGroup.getBundles()) {
 					String bundleName = bundle.getSymbolicName();
 					String projectKey = "/" + bundleName + "/";
-					projectMap.put(bundleName, URI.createPlatformPluginURI(projectKey, true));
+					project2location.put(bundleName, URI.createPlatformPluginURI(projectKey, true));
 				}				
 			}
 		}
 	} */
 
-	protected void scanClassPath() {
-		String property = System.getProperty("java.class.path");
-		String separator = System.getProperty("path.separator");
-		if (property!=null) {
-			String[] entries = property.split(separator);
-			for (String entry : entries) {
-				File fileEntry = new File(entry);
-				try {
-					File f = fileEntry.getCanonicalFile();
-					if (f.getPath().endsWith(".jar")) {
-						registerBundle(f);
-					} else if (!scanFolder(f, new HashSet<String>(), 0)) {
-						// eclipse bin folder?
-						File parentFile = f.getParentFile();
-						File dotProject = new File(parentFile, ".project");
-						if (dotProject.exists()) {
-							registerProject(dotProject);
-							File plugIn = new File(parentFile, "plugin.xml");
-							if (plugIn.exists()) {
-								PluginGenModelHandler pluginGenModelHandler = new PluginGenModelHandler(URI.createFileURI(parentFile.toString() + "/"));
-								saxGenModelParser.parse(plugIn, pluginGenModelHandler);
-								pluginGenModelHandler.scanContents();
-							}
-						}
-					}
-				}
-				catch (Exception e) {
-					logException(fileEntry, e);
-				}
-			}
-		}
-	}
-
-	protected boolean scanFolder(File f, Set<String> alreadyVisited, int depth) {
-		try {
-			if (!alreadyVisited.add(f.getCanonicalPath()))
-				return true;
-		} catch (Exception e) {
-			logException(f, e);
-			return true;
-		}
-		File[] files = f.listFiles();
-		boolean containsProject = false;
-		File dotProject = null;
-		if (files != null) {
-			for (File file : files) {
-				if (file.exists() && file.isDirectory() && (depth < 2) && !file.getName().startsWith(".")) {
-					containsProject |= scanFolder(file, alreadyVisited, depth+1);
-				} else if (".project".equals(file.getName())) {
-					dotProject = file;
-				} else if (file.getName().endsWith(".jar")) {
-					registerBundle(file);
-				}
-			}
-		}
-		if (!containsProject && dotProject != null)
-			registerProject(dotProject);
-		return containsProject || dotProject != null;
-	}
-
-	protected void scanGenModels() {
+	protected void scanGenModels(SAXParser saxParser) {
 		URIConverter uriConverter = new ExtensibleURIConverterImpl();
 		Map<String, URI> ePackageNsURIToGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-		for (String key : ePackageNsURIToGenModelLocationMap.keySet()) {
-			URI genModelURI = ePackageNsURIToGenModelLocationMap.get(key);
-//			System.out.println(key + " -> " + genModelURI);
+		for (String ePackageNsURI : ePackageNsURIToGenModelLocationMap.keySet()) {
+			URI genModelURI = ePackageNsURIToGenModelLocationMap.get(ePackageNsURI);
+//			System.out.println(ePackageNsURI + " -> " + genModelURI);
 			if (genModelURI.isPlatformPlugin()) {
+				IProjectDescriptor.Internal projectDescriptor = getProjectDescriptorInternal(genModelURI);
+				URI nsURI = URI.createURI(ePackageNsURI);
+				IPackageDescriptor.Internal packageDescriptor = (IPackageDescriptor.Internal) projectDescriptor.getPackageDescriptor(nsURI);
+				if (packageDescriptor == null) {
+					packageDescriptor = projectDescriptor.createPackageDescriptor(nsURI, genModelURI.deresolve(projectDescriptor.getLocation(), true, true, true));
+				}
+				GenModelEcorePackageHandler genModelEcorePackageHandler = packageDescriptor.createGenModelEcorePackageHandler();
 		        InputStream inputStream = null;
 		        try {
 		        	inputStream = uriConverter.createInputStream(genModelURI);
-					URI bundleURI = genModelURI.trimSegments(genModelURI.segmentCount()-2);
-					URI nsURI = URI.createURI(key);
-			        URI genModelBaseURI = genModelURI.trimSegments(1).appendSegment("");
-					saxGenModelParser.parse(inputStream, new GenModelEcorePackageHandler(nsURI, bundleURI, genModelBaseURI, null));
+		        	saxParser.parse(inputStream, genModelEcorePackageHandler);
 				} catch (Exception e) {
 					logException(new File(genModelURI.toString()), e);
 				} finally {
@@ -874,30 +242,12 @@ public class ProjectMap extends SingletonAdapterImpl
 		}
 	}
 
-	protected void scanProjects() {
+	protected void scanProjects(Map<String, IProjectDescriptor.Internal> projectDescriptors) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		for (IProject project : root.getProjects()) {
 			String projectName = project.getName();
 			String projectKey = "/" + projectName + "/";
-			projectMap.put(projectName, URI.createPlatformResourceURI(projectKey, true));
+			projectDescriptors.put(projectName, createProjectDescriptor(projectName, URI.createPlatformResourceURI(projectKey, true)));
 		}
-	}
-	
-	@Override
-	public String toString() {
-		StringBuffer s = new StringBuffer();
-		if (projectMap != null) {
-			List<String> keys = new ArrayList<String>(projectMap.keySet());
-			Collections.sort(keys);
-			for (String key : keys) {
-				if (s.length() > 0) {
-					s.append("\n");
-				}
-				s.append(key);
-				s.append(" => ");
-				s.append(projectMap.get(key));
-			}
-		}
-		return s.toString();
 	}
 }
