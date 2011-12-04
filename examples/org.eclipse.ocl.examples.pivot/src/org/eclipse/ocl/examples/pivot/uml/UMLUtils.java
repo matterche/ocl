@@ -111,19 +111,17 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
 		extensionToFactoryMap.put(Ecore2XMLResource.FILE_EXTENSION, Ecore2XMLResource.Factory.INSTANCE);
 		extensionToFactoryMap.put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-
-		extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
-		extensionToFactoryMap.put(Ecore2XMLResource.FILE_EXTENSION, Ecore2XMLResource.Factory.INSTANCE);	// FIXME Bug 365026
+		extensionToFactoryMap.put(CMOF202UMLResource.FILE_EXTENSION, CMOF202UMLResource.Factory.INSTANCE);
 
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
 		contentTypeToFactoryMap.put(UML302UMLResource.UML_3_0_0_CONTENT_TYPE_IDENTIFIER, UML302UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(UML212UMLResource.UML_2_1_0_CONTENT_TYPE_IDENTIFIER, UML212UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(UML22UMLResource.UML2_CONTENT_TYPE_IDENTIFIER, UML22UMLResource.Factory.INSTANCE);
-		contentTypeToFactoryMap.put(XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER, XMI2UMLResource.Factory.INSTANCE);
+		contentTypeToFactoryMap.put(XMI2UMLResource.UML_2_4_CONTENT_TYPE_IDENTIFIER, XMI2UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(XMI222UMLResource.UML_2_2_CONTENT_TYPE_IDENTIFIER, XMI222UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(XMI212UMLResource.UML_2_1_1_CONTENT_TYPE_IDENTIFIER, XMI212UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(XMI212UMLResource.UML_2_1_CONTENT_TYPE_IDENTIFIER, XMI212UMLResource.Factory.INSTANCE);
-		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
+		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_2_4_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(CMOF202UMLResource.CMOF_2_0_CONTENT_TYPE_IDENTIFIER, CMOF202UMLResource.Factory.INSTANCE);
 
 		Map<URI, URI> uriMap = resourceSet != null ? resourceSet.getURIConverter().getURIMap() : URIConverter.URI_MAP;;
@@ -149,6 +147,10 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_1_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_2_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_NS_URI, UMLPackage.eINSTANCE);
+
+		packageRegistry.put(UML302UMLResource.UML_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
+
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_0_METAMODEL_URI, UMLPackage.eINSTANCE);
 
 		initializeContentHandlers(resourceSet);
 	}

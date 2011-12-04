@@ -18,25 +18,26 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 
 /**
  * Initializes Eclipse standalone support.
  */
 public class ProjectMapSetup
 {
-	private static ProjectMap projectMap;
+	private static StandaloneProjectMap projectMap;
 	private Logger log = Logger.getLogger(getClass());
 
 	public ProjectMapSetup() {
 		if (projectMap == null) {
 			log.info("Creating project map.");
-			projectMap = new ProjectMap();
+			projectMap = new StandaloneProjectMap();
 			projectMap.initializeResourceSet(null);
 		}
 		else {
 			log.info("Reusing project map.");
 		}
+//		projectMap.useDevelopmentVersion(null, "org.eclipse.ocl.examples.pivot", URI.createURI(PivotPackage.eNS_URI));
 	}
 
 	public void setResourceSet(ResourceSet resourceSet) {

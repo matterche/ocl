@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
@@ -34,7 +35,15 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 public class ResourceWriter extends WorkflowComponentWithModelSlot
 {
 	private Logger log = Logger.getLogger(getClass());	
+	private ResourceSet resourceSet = null;	
 	private String uri;
+
+	public ResourceSet getResourceSet() {
+		if (resourceSet == null) {
+			resourceSet = new ResourceSetImpl();
+		}
+		return resourceSet;
+	}
 
 	public String getUri() {
 		return uri;
@@ -42,7 +51,6 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		Resource inputResource = (Resource) ctx.get(getModelSlot());
-		ResourceSet resourceSet = inputResource.getResourceSet();
 		try {
 			if (uri != null) {
 				URI fileURI = URI.createPlatformResourceURI(uri, true);
@@ -59,6 +67,10 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 		} catch (IOException e) {
 			throw new WrappedException(e);
 		}
+	}
+	
+	public void setResourceSet(ResourceSet resourceSet) {
+		this.resourceSet = resourceSet;
 	}
 
 	public void setUri(String uri) {

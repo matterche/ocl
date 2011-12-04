@@ -34,7 +34,8 @@ var projectName = "org.eclipse.ocl.examples.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = ProjectMapSetup { resourceSet = resourceSet }
-    bean = UMLStandaloneSetup { resourceSet = resourceSet }
+    bean = UMLStandaloneSetup {}
+    bean = OCLStandaloneSetup {}
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"
@@ -46,18 +47,22 @@ Workflow {
     component = PackageAlphabetizer { skipOnErrors = true
     	modelSlot = "${pivotSlot}"
     }
-    component = ResourceWriter { skipOnErrors = true
+    component = ConstraintRemover { skipOnErrors = true
+    	modelSlot = "${pivotSlot}"
+    }
+    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"
     	uri = "/${projectName}/model/Pivot.merged.uml"
     }
     component = GenmodelReloader { skipOnErrors = true
     	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+    	ecoreFile = "/${projectName}/model/Pivot.ecore"
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
-    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
+//    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
     }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"
-    	uri = "/${projectName}/model/pivot.ecore"
+    	uri = "/${projectName}/model/Pivot.ecore"
     }
     component = ConstraintMerger { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"
@@ -75,7 +80,7 @@ Workflow {
 //    component = VisitableAcceptGenerator { skipOnErrors = true
 //    	modelSlot = "${pivotSlot}"
 //    }
-    component = ResourceWriter { skipOnErrors = true
+    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${pivotSlot}"
     	uri = "/${projectName}/model/pivot.ecore"
     }

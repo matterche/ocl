@@ -33,7 +33,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
-import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -64,7 +64,7 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 		log.info("Loading Gen Model '" + genModelURI);
 		try {
 			ResourceSet resourceSet = getResourceSet();
-			ProjectMap projectMap = new ProjectMap();
+			StandaloneProjectMap projectMap = new StandaloneProjectMap();
 			projectMap.initializeResourceSet(resourceSet);
 			resourceSet.getPackageRegistry().put(GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
 			Resource genModelResource = resourceSet.getResource(genModelURI, true);
@@ -79,8 +79,8 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 			List<Object> arguments = new ArrayList<Object>();
 			String modelProject = modelProjectDirectory.substring(1);
 			String folderPath = modelDirectory.substring(modelProjectDirectory.length());
-			URI projectURI = projectMap.get(modelProject);
-			URL url = new URL(projectURI.toString());
+			URI locationURI = projectMap.getLocation(modelProject);
+			URL url = new URL(locationURI.toString());
 			java.net.URI uri = url.toURI();
 			File targetFolder = new File(uri.getRawPath() + folderPath);
 			Model2tables acceleo = new Model2tables(genModel, targetFolder, arguments);

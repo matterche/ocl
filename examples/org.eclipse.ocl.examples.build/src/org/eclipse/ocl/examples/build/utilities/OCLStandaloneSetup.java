@@ -17,6 +17,10 @@
 package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 
 /**
@@ -29,5 +33,7 @@ public class OCLStandaloneSetup
 	public OCLStandaloneSetup() {
 		log.info("Registering OCL Resources");
 		OCLstdlib.install();
+		PivotPackage.eINSTANCE.getClass();
+		URIConverter.URI_MAP.put(URI.createURI(EcoreEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createPlatformPluginURI("/org.eclipse.ocl.ecore/model/oclstdlib.ecore", true));
 	}
 }

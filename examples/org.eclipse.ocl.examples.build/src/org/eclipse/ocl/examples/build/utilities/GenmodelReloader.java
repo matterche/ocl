@@ -36,6 +36,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.uml2.uml.ecore.importer.UMLImporter;
 
 /**
  * Reloads the designated <tt>genModel</tt>.
@@ -43,8 +44,9 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 public class GenmodelReloader extends AbstractWorkflowComponent
 {
 	protected Logger log = Logger.getLogger(getClass());	
-	protected String modelImporter = null;
+	protected String modelImporter = UMLImporter.class.getName();
 	protected String genModel;							// URI of the genmodel
+	protected String ecoreFile = null;					// Explicit file URI of the Ecore
 	protected boolean showProgress = false;				// Set true to show genmodel new tasks
 
 	public void checkConfiguration(Issues issues) {
@@ -54,6 +56,10 @@ public class GenmodelReloader extends AbstractWorkflowComponent
 		if (modelImporter == null) {
 			issues.addError(this, "modelImporter class not specified.");
 		}
+	}
+
+	public String getEcoreFile() {
+		return ecoreFile;
 	}
 
 	public String getGenModel() {
@@ -75,7 +81,7 @@ public class GenmodelReloader extends AbstractWorkflowComponent
 		try {
 			modelImporterInstance = (ModelImporter) clazz.newInstance();
 		} catch (Exception e) {
-			throw new ConfigurationException("Couldn't create instance of class " + modelImporter);
+			throw new ConfigurationException("Couldn't create instance of class " + modelImporter, e);
 		}
 		try {
 			Path path = new Path(genModel);
@@ -97,14 +103,20 @@ public class GenmodelReloader extends AbstractWorkflowComponent
 //		      throw new Exception(ImporterPlugin.INSTANCE.getString("_UI_ReadOnlyFiles_error", new String[]{readOnlyFiles})); 
 //		    }
 	    	ResourceUtils.checkResourceSet(resources.get(0).getResourceSet());
-		    
+		    if (ecoreFile != null) {
+		    	resources.get(1).setURI(URI.createPlatformResourceURI(ecoreFile, true));
+		    }
 		    for (Resource resource : resources)
 		    {
 		      resource.save(getGenModelSaveOptions());
 		    }
 		} catch (Exception e) {
-			throw new ConfigurationException("Couldn't save genmodel " + genModelURI);
+			throw new ConfigurationException("Couldn't save genmodel " + genModelURI, e);
 		}
+	}
+
+	public void setEcoreFile(String ecoreFile) {
+		this.ecoreFile = ecoreFile;
 	}
 
 	public void setGenModel(String genModel) {
