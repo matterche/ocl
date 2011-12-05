@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.internal.OCLStandardLibraryPackage;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
@@ -73,6 +74,10 @@ public class OCL extends org.eclipse.ocl.OCL<
 			: Resource.Factory.Registry.INSTANCE;
 		resourceFactoryRegistry.getExtensionToFactoryMap().put(
 			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		EPackage.Registry packageRegistry = resourceSet != null
+				? resourceSet.getPackageRegistry()
+				: EPackage.Registry.INSTANCE;
+		packageRegistry.put(OCLStandardLibraryPackage.eNS_URI, OCLStandardLibraryPackage.eINSTANCE);
 		return null;
 	}
 

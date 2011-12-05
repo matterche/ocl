@@ -33,12 +33,18 @@
     </environmentFactory>
   </extension>
   
-  <extension
+  <!--extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
            source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
            target="platform:/plugin/org.eclipse.ocl.ecore/model/oclstdlib.ecore">
      </mapping>
+  </extension-->
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore" 
+       class = "org.eclipse.ocl.ecore.internal.OCLStandardLibraryPackage" /> 
   </extension>
 
   <extension
