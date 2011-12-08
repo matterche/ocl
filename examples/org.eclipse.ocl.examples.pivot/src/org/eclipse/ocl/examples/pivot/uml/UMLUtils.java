@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl;
+import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.profile.l2.L2Package;
@@ -88,8 +89,11 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
 
-		L2Package.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		UMLPackage.eINSTANCE.eClass();
 		L3Package.eINSTANCE.eClass();
+		L2Package.eINSTANCE.eClass();
+		Ecore2XMLPackage.eINSTANCE.eClass();
 		
 		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
 		packageRegistry.put("http://www.omg.org/spec/UML/20100901/PrimitiveTypes.xmi", TypesPackage.eINSTANCE);
