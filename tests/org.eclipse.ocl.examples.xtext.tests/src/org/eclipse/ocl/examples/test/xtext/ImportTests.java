@@ -225,13 +225,13 @@ public class ImportTests extends XtextTestCase
 			"import 'Names.ecore'\n" +
 			"package names\n" +
 			"context Named\n" +
-			"inv Bogus: r.toString() = s.toString()\n" +
+			"inv Bogus: r.toString() and s.toString()\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "OclInvalid"));
 		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "Real"));
 		// There are no precedences so =(s) ratherb than =(s.toString())
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"=", "OclInvalid", "String"}));
+		bag.add(NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"and", "OclInvalid", "String"}));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 	
