@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -43,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -232,9 +234,33 @@ public class Pivot2EcoreReferenceVisitor
 			eTypedElement.setEGenericType(eGenericType);
 		}
 		else {
+			EObject eObject2 = typeRefVisitor.safeVisit(pivotType);
 			throw new IllegalArgumentException("Unsupported pivot type '" + pivotType + "' in Pivot2Ecore Reference pass");
 		}
 		return null;
+	}
+
+	@Override
+	public EObject visitTypedMultiplicityElement(TypedMultiplicityElement pivotTypedElement) {
+		Type pivotType = pivotTypedElement.getType();
+		if (pivotType == null) {
+			return null;				// Occurs for Operation return type
+		}
+		else if (pivotType instanceof CollectionType) {
+			ETypedElement eTypedElement = context.getCreated(ETypedElement.class, pivotTypedElement);
+			CollectionType collectionType = (CollectionType)pivotType;
+			Type elementType = collectionType.getElementType();
+			EObject eObject = typeRefVisitor.safeVisit(elementType);
+			eTypedElement.setEType((EClassifier)eObject);
+			eTypedElement.setOrdered(collectionType.isOrdered());
+			eTypedElement.setUnique(collectionType.isUnique());
+			eTypedElement.setLowerBound(0);
+			eTypedElement.setUpperBound(-1);
+			return null;
+		}
+		else {
+			return super.visitTypedMultiplicityElement(pivotTypedElement);
+		}
 	}
 	
 /*	@Override
