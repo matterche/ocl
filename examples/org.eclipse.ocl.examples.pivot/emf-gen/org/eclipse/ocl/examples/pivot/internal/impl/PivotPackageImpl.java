@@ -1066,6 +1066,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getElement__AllOwnedElements()
+	{
+		return elementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOclExpression() {
 		return oclExpressionEClass;
 	}
@@ -1454,15 +1464,6 @@ public class PivotPackageImpl
 	public EReference getOpaqueExpression_ValueExpression()
 	{
 		return (EReference)opaqueExpressionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map() {
-		return opaqueExpressionEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -2425,24 +2426,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map() {
-		return templateBindingEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map() {
-		return templateBindingEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTemplateSignature() {
 		return templateSignatureEClass;
 	}
@@ -2472,15 +2455,6 @@ public class PivotPackageImpl
 	 */
 	public EReference getTemplateSignature_Template() {
 		return (EReference)templateSignatureEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map() {
-		return templateSignatureEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -2542,15 +2516,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map() {
-		return templateParameterEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getParameterableElement() {
 		return parameterableElementEClass;
 	}
@@ -2580,6 +2545,16 @@ public class PivotPackageImpl
 	 */
 	public EOperation getParameterableElement__IsTemplateParameter() {
 		return parameterableElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getParameterableElement__IsCompatibleWith__ParameterableElement()
+	{
+		return parameterableElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -2625,15 +2600,6 @@ public class PivotPackageImpl
 	 */
 	public EReference getTemplateParameterSubstitution_TemplateBinding() {
 		return (EReference)templateParameterSubstitutionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map() {
-		return templateParameterSubstitutionEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -2760,15 +2726,6 @@ public class PivotPackageImpl
 	 */
 	public EReference getTypeTemplateParameter_ConstrainingType() {
 		return (EReference)typeTemplateParameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map() {
-		return typeTemplateParameterEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -2919,6 +2876,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getProperty__IsAttribute__Property()
+	{
+		return propertyEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getProperty_Class() {
 		return (EReference)propertyEClass.getEStructuralFeatures().get(4);
 	}
@@ -2991,7 +2958,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map() {
+	public EOperation getMultiplicityElement__LowerBound() {
 		return multiplicityElementEClass.getEOperations().get(0);
 	}
 
@@ -3000,7 +2967,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map() {
+	public EOperation getMultiplicityElement__UpperBound() {
 		return multiplicityElementEClass.getEOperations().get(1);
 	}
 
@@ -3009,7 +2976,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultiplicityElement__LowerBound() {
+	public EOperation getMultiplicityElement__IsMultivalued() {
 		return multiplicityElementEClass.getEOperations().get(2);
 	}
 
@@ -3018,7 +2985,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultiplicityElement__UpperBound() {
+	public EOperation getMultiplicityElement__IncludesCardinality__BigInteger() {
 		return multiplicityElementEClass.getEOperations().get(3);
 	}
 
@@ -3027,26 +2994,8 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMultiplicityElement__IsMultivalued() {
-		return multiplicityElementEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getMultiplicityElement__IncludesCardinality__BigInteger() {
-		return multiplicityElementEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getMultiplicityElement__IncludesMultiplicity__MultiplicityElement() {
-		return multiplicityElementEClass.getEOperations().get(6);
+		return multiplicityElementEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -3254,17 +3203,9 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map() {
+	public EOperation getConstraint__ValidateUniqueName__DiagnosticChain_Map()
+	{
 		return constraintEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map() {
-		return constraintEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -3654,8 +3595,7 @@ public class PivotPackageImpl
 		createEReference(constraintEClass, CONSTRAINT__CONTEXT);
 		createEAttribute(constraintEClass, CONSTRAINT__STEREOTYPE);
 		createEAttribute(constraintEClass, CONSTRAINT__IS_CALLABLE);
-		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP);
-		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP);
+		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP);
 
 		dataTypeEClass = createEClass(DATA_TYPE);
 		createEAttribute(dataTypeEClass, DATA_TYPE__IS_SERIALIZABLE);
@@ -3666,6 +3606,7 @@ public class PivotPackageImpl
 
 		elementEClass = createEClass(ELEMENT);
 		createEReference(elementEClass, ELEMENT__OWNED_COMMENT);
+		createEOperation(elementEClass, ELEMENT___ALL_OWNED_ELEMENTS);
 
 		enumLiteralExpEClass = createEClass(ENUM_LITERAL_EXP);
 		createEReference(enumLiteralExpEClass, ENUM_LITERAL_EXP__REFERRED_ENUM_LITERAL);
@@ -3745,8 +3686,6 @@ public class PivotPackageImpl
 		createEAttribute(multiplicityElementEClass, MULTIPLICITY_ELEMENT__IS_UNIQUE);
 		createEAttribute(multiplicityElementEClass, MULTIPLICITY_ELEMENT__LOWER);
 		createEAttribute(multiplicityElementEClass, MULTIPLICITY_ELEMENT__UPPER);
-		createEOperation(multiplicityElementEClass, MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP);
-		createEOperation(multiplicityElementEClass, MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP);
 		createEOperation(multiplicityElementEClass, MULTIPLICITY_ELEMENT___LOWER_BOUND);
 		createEOperation(multiplicityElementEClass, MULTIPLICITY_ELEMENT___UPPER_BOUND);
 		createEOperation(multiplicityElementEClass, MULTIPLICITY_ELEMENT___IS_MULTIVALUED);
@@ -3778,7 +3717,6 @@ public class PivotPackageImpl
 		createEAttribute(opaqueExpressionEClass, OPAQUE_EXPRESSION__LANGUAGE);
 		createEAttribute(opaqueExpressionEClass, OPAQUE_EXPRESSION__MESSAGE);
 		createEReference(opaqueExpressionEClass, OPAQUE_EXPRESSION__VALUE_EXPRESSION);
-		createEOperation(opaqueExpressionEClass, OPAQUE_EXPRESSION___VALIDATE_LANGUAGE_BODY_SIZE__DIAGNOSTICCHAIN_MAP);
 
 		operationEClass = createEClass(OPERATION);
 		createEReference(operationEClass, OPERATION__RAISED_EXCEPTION);
@@ -3812,6 +3750,7 @@ public class PivotPackageImpl
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER);
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER);
 		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER);
+		createEOperation(parameterableElementEClass, PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT);
 
 		pivotableEClass = createEClass(PIVOTABLE);
 
@@ -3839,6 +3778,7 @@ public class PivotPackageImpl
 		createEAttribute(propertyEClass, PROPERTY__IS_UNSETTABLE);
 		createEAttribute(propertyEClass, PROPERTY__IS_VOLATILE);
 		createEReference(propertyEClass, PROPERTY__OWNING_TYPE);
+		createEOperation(propertyEClass, PROPERTY___IS_ATTRIBUTE__PROPERTY);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEReference(propertyCallExpEClass, PROPERTY_CALL_EXP__REFERRED_PROPERTY);
@@ -3869,8 +3809,6 @@ public class PivotPackageImpl
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__SIGNATURE);
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__PARAMETER_SUBSTITUTION);
 		createEReference(templateBindingEClass, TEMPLATE_BINDING__BOUND_ELEMENT);
-		createEOperation(templateBindingEClass, TEMPLATE_BINDING___VALIDATE_PARAMETER_SUBSTITUTION_FORMAL__DIAGNOSTICCHAIN_MAP);
-		createEOperation(templateBindingEClass, TEMPLATE_BINDING___VALIDATE_ONE_PARAMETER_SUBSTITUTION__DIAGNOSTICCHAIN_MAP);
 
 		templateParameterEClass = createEClass(TEMPLATE_PARAMETER);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__SIGNATURE);
@@ -3878,14 +3816,12 @@ public class PivotPackageImpl
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__DEFAULT);
 		createEReference(templateParameterEClass, TEMPLATE_PARAMETER__OWNED_DEFAULT);
-		createEOperation(templateParameterEClass, TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP);
 
 		templateParameterSubstitutionEClass = createEClass(TEMPLATE_PARAMETER_SUBSTITUTION);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL);
 		createEReference(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
-		createEOperation(templateParameterSubstitutionEClass, TEMPLATE_PARAMETER_SUBSTITUTION___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP);
 
 		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
 		createEAttribute(templateParameterTypeEClass, TEMPLATE_PARAMETER_TYPE__SPECIFICATION);
@@ -3894,7 +3830,6 @@ public class PivotPackageImpl
 		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__PARAMETER);
 		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__OWNED_PARAMETER);
 		createEReference(templateSignatureEClass, TEMPLATE_SIGNATURE__TEMPLATE);
-		createEOperation(templateSignatureEClass, TEMPLATE_SIGNATURE___VALIDATE_OWN_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
 		templateableElementEClass = createEClass(TEMPLATEABLE_ELEMENT);
 		createEReference(templateableElementEClass, TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING);
@@ -3924,7 +3859,6 @@ public class PivotPackageImpl
 		typeTemplateParameterEClass = createEClass(TYPE_TEMPLATE_PARAMETER);
 		createEAttribute(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE);
 		createEReference(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE);
-		createEOperation(typeTemplateParameterEClass, TYPE_TEMPLATE_PARAMETER___VALIDATE_HAS_CONSTRAINING_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		typedElementEClass = createEClass(TYPED_ELEMENT);
 		createEReference(typedElementEClass, TYPED_ELEMENT__TYPE);
@@ -4177,19 +4111,10 @@ public class PivotPackageImpl
 		initEAttribute(getConstraint_Stereotype(), this.getString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_IsCallable(), this.getBoolean(), "isCallable", "false", 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-		EOperation op = initEOperation(getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotApplyToSelf", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getConstraint__ValidateUniqueName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateValueSpecificationBoolean", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -4204,6 +4129,8 @@ public class PivotPackageImpl
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getElement_OwnedComment(), this.getComment(), null, "ownedComment", null, 0, -1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getElement__AllOwnedElements(), this.getElement(), "allOwnedElements", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getEnumLiteralExp_ReferredEnumLiteral(), this.getEnumerationLiteral(), null, "referredEnumLiteral", null, 0, 1, EnumLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4284,24 +4211,6 @@ public class PivotPackageImpl
 		initEAttribute(getMultiplicityElement_Lower(), this.getInteger(), "lower", "1", 0, 1, MultiplicityElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getMultiplicityElement_Upper(), this.getUnlimitedNatural(), "upper", "1", 0, 1, MultiplicityElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-		op = initEOperation(getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateLowerGe0", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUpperGeLower", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEOperation(getMultiplicityElement__LowerBound(), this.getInteger(), "lowerBound", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getMultiplicityElement__UpperBound(), this.getUnlimitedNatural(), "upperBound", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
@@ -4340,15 +4249,6 @@ public class PivotPackageImpl
 		initEAttribute(getOpaqueExpression_Message(), this.getString(), "message", null, 0, -1, OpaqueExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOpaqueExpression_ValueExpression(), this.getExpressionInOcl(), null, "valueExpression", null, 0, 1, OpaqueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateLanguageBodySize", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOperation_RaisedException(), this.getType(), null, "raisedException", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperation_OwnedParameter(), this.getParameter(), this.getParameter_Operation(), "ownedParameter", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -4383,6 +4283,9 @@ public class PivotPackageImpl
 
 		initEOperation(getParameterableElement__IsTemplateParameter(), this.getBoolean(), "isTemplateParameter", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
+		op = initEOperation(getParameterableElement__IsCompatibleWith__ParameterableElement(), this.getBoolean(), "isCompatibleWith", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getParameterableElement(), "p", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(pivotableEClass, Pivotable.class, "Pivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(precedenceEClass, Precedence.class, "Precedence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -4409,6 +4312,9 @@ public class PivotPackageImpl
 		initEAttribute(getProperty_IsUnsettable(), this.getBoolean(), "isUnsettable", "false", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getProperty_IsVolatile(), this.getBoolean(), "isVolatile", "false", 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getProperty_OwningType(), this.getType(), this.getType_OwnedAttribute(), "owningType", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getProperty__IsAttribute__Property(), this.getBoolean(), "isAttribute", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getProperty(), "p", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPropertyCallExp_ReferredProperty(), this.getProperty(), null, "referredProperty", null, 0, 1, PropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4440,24 +4346,6 @@ public class PivotPackageImpl
 		initEReference(getTemplateBinding_ParameterSubstitution(), this.getTemplateParameterSubstitution(), this.getTemplateParameterSubstitution_TemplateBinding(), "parameterSubstitution", null, 0, -1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateBinding_BoundElement(), this.getTemplateableElement(), this.getTemplateableElement_TemplateBinding(), "boundElement", null, 1, 1, TemplateBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateParameterSubstitutionFormal", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOneParameterSubstitution", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(templateParameterEClass, TemplateParameter.class, "TemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameter_Signature(), this.getTemplateSignature(), this.getTemplateSignature_OwnedParameter(), "signature", null, 1, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameter_ParameteredElement(), this.getParameterableElement(), this.getParameterableElement_TemplateParameter(), "parameteredElement", null, 1, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4465,29 +4353,11 @@ public class PivotPackageImpl
 		initEReference(getTemplateParameter_Default(), this.getParameterableElement(), null, "default", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameter_OwnedDefault(), this.getParameterableElement(), null, "ownedDefault", null, 0, 1, TemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateMustBeCompatible", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(templateParameterSubstitutionEClass, TemplateParameterSubstitution.class, "TemplateParameterSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Formal(), this.getTemplateParameter(), null, "formal", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_Actual(), this.getParameterableElement(), null, "actual", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_OwnedActual(), this.getParameterableElement(), null, "ownedActual", null, 0, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateParameterSubstitution_TemplateBinding(), this.getTemplateBinding(), this.getTemplateBinding_ParameterSubstitution(), "templateBinding", null, 1, 1, TemplateParameterSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateMustBeCompatible", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateParameterTypeEClass, TemplateParameterType.class, "TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTemplateParameterType_Specification(), this.getString(), "specification", null, 0, 1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4496,15 +4366,6 @@ public class PivotPackageImpl
 		initEReference(getTemplateSignature_Parameter(), this.getTemplateParameter(), null, "parameter", null, 1, -1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateSignature_OwnedParameter(), this.getTemplateParameter(), this.getTemplateParameter_Signature(), "ownedParameter", null, 0, -1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateSignature_Template(), this.getTemplateableElement(), this.getTemplateableElement_OwnedTemplateSignature(), "template", null, 1, 1, TemplateSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOwnElements", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateableElementEClass, TemplateableElement.class, "TemplateableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateableElement_TemplateBinding(), this.getTemplateBinding(), this.getTemplateBinding_BoundElement(), "templateBinding", null, 0, -1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4536,15 +4397,6 @@ public class PivotPackageImpl
 		initEClass(typeTemplateParameterEClass, TypeTemplateParameter.class, "TypeTemplateParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTypeTemplateParameter_AllowSubstitutable(), this.getBoolean(), "allowSubstitutable", "true", 1, 1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTypeTemplateParameter_ConstrainingType(), this.getType(), null, "constrainingType", null, 0, -1, TypeTemplateParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateHasConstrainingType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTypedElement_Type(), this.getType(), null, "type", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4622,8 +4474,6 @@ public class PivotPackageImpl
 		createEcoreAnnotations();
 		// duplicates
 		createDuplicatesAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
 		// subsets
 		createSubsetsAnnotations();
 	}
@@ -4642,13 +4492,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																													
-		addAnnotation
-		  (constraintEClass, 
-		   source, 
-		   new String[] 
-		   {
-		   });																																																																																																																																																																																																																																															
+		   });																																																																																																																																																																																																																				
 	}
 
 	/**
@@ -4665,13 +4509,13 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																																														
+		   });																																							
 		addAnnotation
 		  (featureEClass, 
 		   source, 
 		   new String[] 
 		   {
-		   });																																																																		
+		   });																																																	
 		addAnnotation
 		  (operationEClass, 
 		   source, 
@@ -4683,7 +4527,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																																																																																																	
+		   });																																																																												
 		addAnnotation
 		  (typeEClass, 
 		   source, 
@@ -4695,193 +4539,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																													
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations()
-	{
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$																																	
-		addAnnotation
-		  (getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "not constrainedElement->includes(self)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });					
-		addAnnotation
-		  (getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "self.specification.booleanValue().oclIsKindOf(Boolean)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																																																					
-		addAnnotation
-		  (getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "lowerBound()->notEmpty() implies lowerBound() >= 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });					
-		addAnnotation
-		  (getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "(upperBound()->notEmpty() and lowerBound()->notEmpty()) implies upperBound() >= lowerBound()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });					
-		addAnnotation
-		  (getMultiplicityElement__LowerBound(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "if lower->notEmpty() then lower else 1 endif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getMultiplicityElement__UpperBound(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "if upper->notEmpty() then upper else 1 endif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getMultiplicityElement__IsMultivalued(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "upperBound() > 1" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getMultiplicityElement__IncludesCardinality__BigInteger(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "(lowerBound() <= C) and (upperBound() >= C)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getMultiplicityElement__IncludesMultiplicity__MultiplicityElement(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "(self.lowerBound() <= M.lowerBound()) and (self.upperBound() >= M.upperBound())" //$NON-NLS-1$ //$NON-NLS-2$
-		   });															
-		addAnnotation
-		  (getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "language->notEmpty() implies (body->size() = language->size())" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																															
-		addAnnotation
-		  (getParameterableElement__IsTemplateParameter(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "templateParameter->notEmpty()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																															
-		addAnnotation
-		  (getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "parameterSubstitution->forAll(b | signature.parameter->includes(b.formal))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });					
-		addAnnotation
-		  (getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "signature.parameter->forAll(p | parameterSubstitution->select(b | b.formal = p)->size() <= 1)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });									
-		addAnnotation
-		  (getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "default->notEmpty() implies default.isCompatibleWith(parameteredElement)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });													
-		addAnnotation
-		  (getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "actual->forAll(a | a.isCompatibleWith(formal.parameteredElement))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });												
-		addAnnotation
-		  (getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "template.oclContents()->includesAll(parameter.parameteredElement->asSet() - parameter.ownedParameteredElement->asSet())" //$NON-NLS-1$ //$NON-NLS-2$
-		   });										
-		addAnnotation
-		  (getTemplateableElement__ParameterableElements(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "allOwnedElements()->select(oclIsKindOf(ParameterableElement))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getTemplateableElement__IsTemplate(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "ownedTemplateSignature->notEmpty()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																		
-		addAnnotation
-		  (getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "allowSubstitutable implies constrainingType->notEmpty()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });													
-		addAnnotation
-		  (getValueSpecification__IsComputable(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "false" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getValueSpecification__IntegerValue(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "Set{}" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getValueSpecification__BooleanValue(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "Set{}" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getValueSpecification__StringValue(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "Set{}" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getValueSpecification__UnlimitedValue(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "Set{}" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getValueSpecification__IsNull(), 
-		   source, 
-		   new String[] 
-		   {
-			 "body", "false" //$NON-NLS-1$ //$NON-NLS-2$
-		   });					
+		   });																			
 	}
 
 	/**
@@ -4892,7 +4550,7 @@ public class PivotPackageImpl
 	 */
 	protected void createSubsetsAnnotations()
 	{
-		String source = "subsets"; //$NON-NLS-1$																																																																																																																																																							
+		String source = "subsets"; //$NON-NLS-1$																																																																																																																															
 		addAnnotation
 		  (getParameterableElement_OwningTemplateParameter(), 
 		   source, 
@@ -4902,7 +4560,7 @@ public class PivotPackageImpl
 		   new URI[] 
 		   {
 			 URI.createURI(eNS_URI).appendFragment("//ParameterableElement/templateParameter") //$NON-NLS-1$
-		   });																																															
+		   });																																				
 		addAnnotation
 		  (getTemplateParameter_OwnedParameteredElement(), 
 		   source, 
@@ -4922,7 +4580,7 @@ public class PivotPackageImpl
 		   new URI[] 
 		   {
 			 URI.createURI(eNS_URI).appendFragment("//TemplateParameter/default") //$NON-NLS-1$
-		   });										
+		   });						
 		addAnnotation
 		  (getTemplateParameterSubstitution_OwnedActual(), 
 		   source, 
@@ -4932,7 +4590,7 @@ public class PivotPackageImpl
 		   new URI[] 
 		   {
 			 URI.createURI(eNS_URI).appendFragment("//TemplateParameterSubstitution/actual") //$NON-NLS-1$
-		   });											
+		   });							
 		addAnnotation
 		  (getTemplateSignature_OwnedParameter(), 
 		   source, 
@@ -4942,6 +4600,6 @@ public class PivotPackageImpl
 		   new URI[] 
 		   {
 			 URI.createURI(eNS_URI).appendFragment("//TemplateSignature/parameter") //$NON-NLS-1$
-		   });																																																		
+		   });																																						
 	}
 } //PivotPackageImpl

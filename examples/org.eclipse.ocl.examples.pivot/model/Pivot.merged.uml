@@ -1,1276 +1,1276 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20100901" xmlns:xmi="http://www.omg.org/spec/XMI/20100901" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Package xmi:id="_0" name="pivot" URI="http://www.omg.org/spec/UML/20090901">
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZlzKph1yEeGwqd6kdEu5Ug" name="Boolean">
-      <ownedComment xmi:id="_ZlzKpx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlzKph1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lfV0UiMsEeG5GfEOMmHYaw" name="Boolean">
+      <ownedComment xmi:id="_lfV0UyMsEeG5GfEOMmHYaw" annotatedElement="_lfV0UiMsEeG5GfEOMmHYaw">
         <body>A Boolean type is used for logical expression, consisting of the predefined values true and false.</body>
       </ownedComment>
     </packagedElement>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZnbiVx1yEeGwqd6kdEu5Ug" name="Int"/>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZlzKpB1yEeGwqd6kdEu5Ug" name="Integer">
-      <ownedComment xmi:id="_ZlzKpR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlzKpB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lgkjYSMsEeG5GfEOMmHYaw" name="Int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lfV0UCMsEeG5GfEOMmHYaw" name="Integer">
+      <ownedComment xmi:id="_lfV0USMsEeG5GfEOMmHYaw" annotatedElement="_lfV0UCMsEeG5GfEOMmHYaw">
         <body>An integer is a primitive type representing integer values.</body>
       </ownedComment>
     </packagedElement>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZnInaB1yEeGwqd6kdEu5Ug" name="LibraryFeature"/>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZnInaR1yEeGwqd6kdEu5Ug" name="Object"/>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Zmr7gR1yEeGwqd6kdEu5Ug" name="Real"/>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZlzKqB1yEeGwqd6kdEu5Ug" name="String">
-      <ownedComment xmi:id="_ZlzKqR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlzKqB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lgYWICMsEeG5GfEOMmHYaw" name="LibraryFeature"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lgYWISMsEeG5GfEOMmHYaw" name="Object"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lgGCQCMsEeG5GfEOMmHYaw" name="Real"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lfV0VCMsEeG5GfEOMmHYaw" name="String">
+      <ownedComment xmi:id="_lfV0VSMsEeG5GfEOMmHYaw" annotatedElement="_lfV0VCMsEeG5GfEOMmHYaw">
         <body>A string is a sequence of characters in some suitable character set used to display information about the model. Character sets may include non-Roman alphabets and characters.</body>
       </ownedComment>
     </packagedElement>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZnInah1yEeGwqd6kdEu5Ug" name="Throwable"/>
-    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ZlzKqh1yEeGwqd6kdEu5Ug" name="UnlimitedNatural">
-      <ownedComment xmi:id="_ZlzKqx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlzKqh1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lgYWIiMsEeG5GfEOMmHYaw" name="Throwable"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_lfWbYCMsEeG5GfEOMmHYaw" name="UnlimitedNatural">
+      <ownedComment xmi:id="_lfWbYSMsEeG5GfEOMmHYaw" annotatedElement="_lfWbYCMsEeG5GfEOMmHYaw">
         <body>An unlimited natural is a primitive type representing unlimited natural values.</body>
       </ownedComment>
     </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_ZnSYbR1yEeGwqd6kdEu5Ug" name="AssociativityKind">
-      <ownedLiteral xmi:id="_ZnSYbh1yEeGwqd6kdEu5Ug" name="Left"/>
-      <ownedLiteral xmi:id="_ZnSYbx1yEeGwqd6kdEu5Ug" name="Right"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_lghgESMsEeG5GfEOMmHYaw" name="AssociativityKind">
+      <ownedLiteral xmi:id="_lghgEiMsEeG5GfEOMmHYaw" name="Left"/>
+      <ownedLiteral xmi:id="_lghgEyMsEeG5GfEOMmHYaw" name="Right"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_ZmZApx1yEeGwqd6kdEu5Ug" name="CollectionKind">
-      <ownedLiteral xmi:id="_ZmZAqB1yEeGwqd6kdEu5Ug" name="Collection"/>
-      <ownedLiteral xmi:id="_ZmZAqR1yEeGwqd6kdEu5Ug" name="Set"/>
-      <ownedLiteral xmi:id="_ZmZAqh1yEeGwqd6kdEu5Ug" name="OrderedSet"/>
-      <ownedLiteral xmi:id="_ZmZAqx1yEeGwqd6kdEu5Ug" name="Bag"/>
-      <ownedLiteral xmi:id="_ZmZArB1yEeGwqd6kdEu5Ug" name="Sequence"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_lf2KoCMsEeG5GfEOMmHYaw" name="CollectionKind">
+      <ownedLiteral xmi:id="_lf2KoSMsEeG5GfEOMmHYaw" name="Collection"/>
+      <ownedLiteral xmi:id="_lf2KoiMsEeG5GfEOMmHYaw" name="Set"/>
+      <ownedLiteral xmi:id="_lf2KoyMsEeG5GfEOMmHYaw" name="OrderedSet"/>
+      <ownedLiteral xmi:id="_lf2KpCMsEeG5GfEOMmHYaw" name="Bag"/>
+      <ownedLiteral xmi:id="_lf2KpSMsEeG5GfEOMmHYaw" name="Sequence"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1six1yEeGwqd6kdEu5Ug" name="Annotation">
-      <generalization xmi:id="_Zm1sjB1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zm1sjR1yEeGwqd6kdEu5Ug" name="ownedContent" type="_ZlWe6B1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1sjh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1sjx1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgNXACMsEeG5GfEOMmHYaw" name="Annotation">
+      <generalization xmi:id="_lgNXASMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgNXAiMsEeG5GfEOMmHYaw" name="ownedContent" type="_lfBrQCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgNXAyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgNXBCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1skB1yEeGwqd6kdEu5Ug" name="ownedDetail" type="_Zm1slh1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1skR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1skh1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgNXBSMsEeG5GfEOMmHYaw" name="ownedDetail" type="_lgNXCyMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgNXBiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgNXByMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1skx1yEeGwqd6kdEu5Ug" name="reference" type="_ZlWe6B1yEeGwqd6kdEu5Ug" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1slB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1slR1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7gh1yEeGwqd6kdEu5Ug" name="AnyType">
-      <generalization xmi:id="_Zmr7gx1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmZAgB1yEeGwqd6kdEu5Ug" name="AssociationClass">
-      <generalization xmi:id="_ZmZAgR1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmZAgh1yEeGwqd6kdEu5Ug" name="unownedAttribute" type="_ZlMttx1yEeGwqd6kdEu5Ug" association="_ZmZAih1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAgx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmZAhB1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgNXCCMsEeG5GfEOMmHYaw" name="reference" type="_lfBrQCMsEeG5GfEOMmHYaw" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgNXCSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgNXCiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix8R1yEeGwqd6kdEu5Ug" name="AssociationClassCallExp">
-      <generalization xmi:id="_Zmix8h1yEeGwqd6kdEu5Ug" general="_Zmix6h1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix8x1yEeGwqd6kdEu5Ug" name="referredAssociationClass" type="_ZmZAgB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix9B1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgGpUCMsEeG5GfEOMmHYaw" name="AnyType">
+      <generalization xmi:id="_lgGpUSMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfvc8CMsEeG5GfEOMmHYaw" name="AssociationClass">
+      <generalization xmi:id="_lfvc8SMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfvc8iMsEeG5GfEOMmHYaw" name="unownedAttribute" type="_le5vcCMsEeG5GfEOMmHYaw" association="_lfwEACMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfvc8yMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfvc9CMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7hB1yEeGwqd6kdEu5Ug" name="BagType">
-      <generalization xmi:id="_Zmr7hR1yEeGwqd6kdEu5Ug" general="_Zmr7iR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmZAnR1yEeGwqd6kdEu5Ug" name="BooleanLiteralExp">
-      <generalization xmi:id="_ZmZAnh1yEeGwqd6kdEu5Ug" general="_ZmixvB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmZAnx1yEeGwqd6kdEu5Ug" name="booleanSymbol" type="_ZlzKph1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmZAoB1yEeGwqd6kdEu5Ug" name="CallExp" isAbstract="true">
-      <generalization xmi:id="_ZmZAoR1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmZAoh1yEeGwqd6kdEu5Ug" name="source" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAox1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZApB1yEeGwqd6kdEu5Ug" name="implicit" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZApR1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZmZAph1yEeGwqd6kdEu5Ug" value="false"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf9fYCMsEeG5GfEOMmHYaw" name="AssociationClassCallExp">
+      <generalization xmi:id="_lf9fYSMsEeG5GfEOMmHYaw" general="_lf84WCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf9fYiMsEeG5GfEOMmHYaw" name="referredAssociationClass" type="_lfvc8CMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf9fYyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zk5ywB1yEeGwqd6kdEu5Ug" name="CallOperationAction">
-      <generalization xmi:id="_Zk5ywR1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zk5ywh1yEeGwqd6kdEu5Ug" name="operation" type="_ZlDjwR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgGpUiMsEeG5GfEOMmHYaw" name="BagType">
+      <generalization xmi:id="_lgGpUyMsEeG5GfEOMmHYaw" general="_lgHQYyMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlDjxh1yEeGwqd6kdEu5Ug" name="Class">
-      <ownedComment xmi:id="_ZlDjxx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjxh1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf1jkCMsEeG5GfEOMmHYaw" name="BooleanLiteralExp">
+      <generalization xmi:id="_lf1jkSMsEeG5GfEOMmHYaw" general="_lf6cECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf1jkiMsEeG5GfEOMmHYaw" name="booleanSymbol" type="_lfV0UiMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf1jkyMsEeG5GfEOMmHYaw" name="CallExp" isAbstract="true">
+      <generalization xmi:id="_lf1jlCMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf1jlSMsEeG5GfEOMmHYaw" name="source" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf1jliMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lf1jlyMsEeG5GfEOMmHYaw" name="implicit" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf1jmCMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lf1jmSMsEeG5GfEOMmHYaw" value="false"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lexzoCMsEeG5GfEOMmHYaw" name="CallOperationAction">
+      <generalization xmi:id="_leyasCMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_leyasSMsEeG5GfEOMmHYaw" name="operation" type="_le028SMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_le2FECMsEeG5GfEOMmHYaw" name="Class">
+      <ownedComment xmi:id="_le2FESMsEeG5GfEOMmHYaw" annotatedElement="_le2FECMsEeG5GfEOMmHYaw">
         <body>A class is a type that has objects as its instances.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlDjyB1yEeGwqd6kdEu5Ug" general="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlpZ0h1yEeGwqd6kdEu5Ug" general="_ZlzKoB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlDjyR1yEeGwqd6kdEu5Ug" name="isAbstract" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDjyh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjyR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le2FEiMsEeG5GfEOMmHYaw" general="_le69kCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfSxACMsEeG5GfEOMmHYaw" general="_lfUmMCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le2FEyMsEeG5GfEOMmHYaw" name="isAbstract" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le2FFCMsEeG5GfEOMmHYaw" annotatedElement="_le2FEyMsEeG5GfEOMmHYaw">
           <body>True when a class is abstract.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlDjyx1yEeGwqd6kdEu5Ug" value="false"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_le2FFSMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlDjzB1yEeGwqd6kdEu5Ug" name="ownedAttribute" type="_ZlMttx1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZlWe_B1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDjzR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjzB1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le2FFiMsEeG5GfEOMmHYaw" name="ownedAttribute" type="_le5vcCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lfC5ZCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le2FFyMsEeG5GfEOMmHYaw" annotatedElement="_le2FFiMsEeG5GfEOMmHYaw">
           <body>The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDjzh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlDjzx1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le2FGCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le2FGSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlDj0B1yEeGwqd6kdEu5Ug" name="ownedOperation" type="_ZlDjwR1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZlWfAR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDj0R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDj0B1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le2FGiMsEeG5GfEOMmHYaw" name="ownedOperation" type="_le028SMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lfDgcSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le2FGyMsEeG5GfEOMmHYaw" annotatedElement="_le2FGiMsEeG5GfEOMmHYaw">
           <body>The operations owned by a class. These do not include the inherited operations.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDj0h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlDj0x1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le2FHCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le2FHSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlDj1B1yEeGwqd6kdEu5Ug" name="superClass" type="_ZlDjxh1yEeGwqd6kdEu5Ug" association="_ZlWfAh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDj1R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDj1B1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le2FHiMsEeG5GfEOMmHYaw" name="superClass" type="_le2FECMsEeG5GfEOMmHYaw" association="_lfDgciMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le2FHyMsEeG5GfEOMmHYaw" annotatedElement="_le2FHiMsEeG5GfEOMmHYaw">
           <body>The immediate superclasses of a class, from which the class inherits.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDj1h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlDj1x1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le2FICMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le2FISMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2Yh1yEeGwqd6kdEu5Ug" name="isInterface" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2Yx1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgSPgSMsEeG5GfEOMmHYaw" name="isInterface" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgSPgiMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnInbx1yEeGwqd6kdEu5Ug" name="instanceClassName" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnIncB1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7hh1yEeGwqd6kdEu5Ug" name="ClassifierType">
-      <generalization xmi:id="_Zmr7hx1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7iB1yEeGwqd6kdEu5Ug" name="instanceType" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixyB1yEeGwqd6kdEu5Ug" name="CollectionItem">
-      <generalization xmi:id="_ZmixyR1yEeGwqd6kdEu5Ug" general="_Zmixxh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixyh1yEeGwqd6kdEu5Ug" name="item" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixwB1yEeGwqd6kdEu5Ug" name="CollectionLiteralExp">
-      <generalization xmi:id="_ZmixwR1yEeGwqd6kdEu5Ug" general="_Zmixuh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixwh1yEeGwqd6kdEu5Ug" name="kind" type="_ZmZApx1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixwx1yEeGwqd6kdEu5Ug" name="part" type="_Zmixxh1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixxB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmixxR1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgY9MyMsEeG5GfEOMmHYaw" name="instanceClassName" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgY9NCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixxh1yEeGwqd6kdEu5Ug" name="CollectionLiteralPart" isAbstract="true">
-      <generalization xmi:id="_Zmixxx1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgHQYCMsEeG5GfEOMmHYaw" name="ClassifierType">
+      <generalization xmi:id="_lgHQYSMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgHQYiMsEeG5GfEOMmHYaw" name="instanceType" type="_le69kCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixyx1yEeGwqd6kdEu5Ug" name="CollectionRange">
-      <generalization xmi:id="_ZmixzB1yEeGwqd6kdEu5Ug" general="_Zmixxh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixzR1yEeGwqd6kdEu5Ug" name="first" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmixzh1yEeGwqd6kdEu5Ug" name="last" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7DIiMsEeG5GfEOMmHYaw" name="CollectionItem">
+      <generalization xmi:id="_lf7DIyMsEeG5GfEOMmHYaw" general="_lf7DICMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf7DJCMsEeG5GfEOMmHYaw" name="item" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7iR1yEeGwqd6kdEu5Ug" name="CollectionType">
-      <generalization xmi:id="_Zmr7ih1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7ix1yEeGwqd6kdEu5Ug" name="elementType" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf6cFCMsEeG5GfEOMmHYaw" name="CollectionLiteralExp">
+      <generalization xmi:id="_lf6cFSMsEeG5GfEOMmHYaw" general="_lf51CiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf6cFiMsEeG5GfEOMmHYaw" name="kind" type="_lf2KoCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf6cFyMsEeG5GfEOMmHYaw" name="part" type="_lf7DICMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf6cGCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf6cGSMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlWe7h1yEeGwqd6kdEu5Ug" name="Comment">
-      <ownedComment xmi:id="_ZlWe7x1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe7h1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7DICMsEeG5GfEOMmHYaw" name="CollectionLiteralPart" isAbstract="true">
+      <generalization xmi:id="_lf7DISMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7DJSMsEeG5GfEOMmHYaw" name="CollectionRange">
+      <generalization xmi:id="_lf7DJiMsEeG5GfEOMmHYaw" general="_lf7DICMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf7DJyMsEeG5GfEOMmHYaw" name="first" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf7DKCMsEeG5GfEOMmHYaw" name="last" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgHQYyMsEeG5GfEOMmHYaw" name="CollectionType">
+      <generalization xmi:id="_lgHQZCMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgHQZSMsEeG5GfEOMmHYaw" name="elementType" type="_le69kCMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfCSUCMsEeG5GfEOMmHYaw" name="Comment">
+      <ownedComment xmi:id="_lfCSUSMsEeG5GfEOMmHYaw" annotatedElement="_lfCSUCMsEeG5GfEOMmHYaw">
         <body>A comment is a textual annotation that can be attached to a set of elements.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlWe8B1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlWe8R1yEeGwqd6kdEu5Ug" name="body" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWe8h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe8R1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfCSUiMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfCSUyMsEeG5GfEOMmHYaw" name="body" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfCSVCMsEeG5GfEOMmHYaw" annotatedElement="_lfCSUyMsEeG5GfEOMmHYaw">
           <body>Specifies a string that is the comment.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWe8x1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfCSVSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlWe9B1yEeGwqd6kdEu5Ug" name="annotatedElement" type="_ZlWe6B1yEeGwqd6kdEu5Ug" association="_ZlWfDR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWe9R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe9B1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfCSViMsEeG5GfEOMmHYaw" name="annotatedElement" type="_lfBrQCMsEeG5GfEOMmHYaw" association="_lfEHgyMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfCSVyMsEeG5GfEOMmHYaw" annotatedElement="_lfCSViMsEeG5GfEOMmHYaw">
           <body>References the Element(s) being commented.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWe9h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWe9x1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfCSWCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfCSWSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlfooB1yEeGwqd6kdEu5Ug" name="Constraint">
-      <ownedComment xmi:id="_ZlfooR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlfooB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfK1MCMsEeG5GfEOMmHYaw" name="Constraint">
+      <ownedComment xmi:id="_lfK1MSMsEeG5GfEOMmHYaw" annotatedElement="_lfK1MCMsEeG5GfEOMmHYaw">
         <body>A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlfoqB1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlfoqR1yEeGwqd6kdEu5Ug" name="constrainedElement" type="_ZlWe6B1yEeGwqd6kdEu5Ug" isOrdered="true">
-        <ownedComment xmi:id="_Zlfoqh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlfoqR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfK1OCMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfK1OSMsEeG5GfEOMmHYaw" name="constrainedElement" type="_lfBrQCMsEeG5GfEOMmHYaw" isOrdered="true">
+        <ownedComment xmi:id="_lfK1OiMsEeG5GfEOMmHYaw" annotatedElement="_lfK1OSMsEeG5GfEOMmHYaw">
           <body>The ordered set of Elements referenced by this Constraint.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zlfoqx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlforB1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfK1OyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfK1PCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlforR1yEeGwqd6kdEu5Ug" name="specification" type="_ZlpZoB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <ownedComment xmi:id="_Zlforh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlforR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfK1PSMsEeG5GfEOMmHYaw" name="specification" type="_lfMqYCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <ownedComment xmi:id="_lfK1PiMsEeG5GfEOMmHYaw" annotatedElement="_lfK1PSMsEeG5GfEOMmHYaw">
           <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zlforx1yEeGwqd6kdEu5Ug" name="context" type="_ZlDjwB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlfosB1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lfK1PyMsEeG5GfEOMmHYaw" name="context" type="_le028CMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfK1QCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAmx1yEeGwqd6kdEu5Ug" name="stereotype" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAnB1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lf08gCMsEeG5GfEOMmHYaw" name="stereotype" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf08gSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnInYh1yEeGwqd6kdEu5Ug" name="isCallable" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZnInYx1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgV54CMsEeG5GfEOMmHYaw" name="isCallable" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgV54SMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt_B1yEeGwqd6kdEu5Ug" name="DataType">
-      <ownedComment xmi:id="_ZlMt_R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt_B1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le-A4CMsEeG5GfEOMmHYaw" name="DataType">
+      <ownedComment xmi:id="_le-A4SMsEeG5GfEOMmHYaw" annotatedElement="_le-A4CMsEeG5GfEOMmHYaw">
         <body>DataType is an abstract class that acts as a common superclass for different kinds of data types.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt_h1yEeGwqd6kdEu5Ug" general="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmZAix1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zm-2ZB1yEeGwqd6kdEu5Ug" name="isSerializable" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2ZR1yEeGwqd6kdEu5Ug" value="true"/>
+      <generalization xmi:id="_le-A4iMsEeG5GfEOMmHYaw" general="_le69kCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfxSICMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgS2kCMsEeG5GfEOMmHYaw" name="isSerializable" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgS2kSMsEeG5GfEOMmHYaw" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2Zh1yEeGwqd6kdEu5Ug" name="behavioralType" type="_ZlMtzR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm-2Zx1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1slh1yEeGwqd6kdEu5Ug" name="Detail">
-      <generalization xmi:id="_Zm1slx1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zm1smB1yEeGwqd6kdEu5Ug" name="value" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1smR1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgS2kiMsEeG5GfEOMmHYaw" name="behavioralType" type="_le69kCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgS2kyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlWe6B1yEeGwqd6kdEu5Ug" clientDependency="_ZnbiZB1yEeGwqd6kdEu5Ug" name="Element" isAbstract="true">
-      <ownedComment xmi:id="_ZlWe6R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe6B1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgNXCyMsEeG5GfEOMmHYaw" name="Detail">
+      <generalization xmi:id="_lgN-ECMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgN-ESMsEeG5GfEOMmHYaw" name="value" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgN-EiMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfBrQCMsEeG5GfEOMmHYaw" clientDependency="_lgpb4yMsEeG5GfEOMmHYaw" name="Element" isAbstract="true">
+      <ownedComment xmi:id="_lfBrQSMsEeG5GfEOMmHYaw" annotatedElement="_lfBrQCMsEeG5GfEOMmHYaw">
         <body>An element is a constituent of a model.</body>
       </ownedComment>
-      <ownedAttribute xmi:id="_ZlWe6h1yEeGwqd6kdEu5Ug" name="ownedComment" type="_ZlWe7h1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZlWfER1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWe6x1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe6h1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfBrQiMsEeG5GfEOMmHYaw" name="ownedComment" type="_lfCSUCMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfEukCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfBrQyMsEeG5GfEOMmHYaw" annotatedElement="_lfBrQiMsEeG5GfEOMmHYaw">
           <body>The Comments owned by this element.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWe7B1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWe7R1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfBrRCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfBrRSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <interfaceRealization xmi:id="_ZnbiZB1yEeGwqd6kdEu5Ug" client="_ZlWe6B1yEeGwqd6kdEu5Ug" supplier="_ZnbiZR1yEeGwqd6kdEu5Ug" contract="_ZnbiZR1yEeGwqd6kdEu5Ug"/>
+      <interfaceRealization xmi:id="_lgpb4yMsEeG5GfEOMmHYaw" client="_lfBrQCMsEeG5GfEOMmHYaw" supplier="_lgqC8CMsEeG5GfEOMmHYaw" contract="_lgqC8CMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixgx1yEeGwqd6kdEu5Ug" name="EnumLiteralExp">
-      <generalization xmi:id="_ZmixhB1yEeGwqd6kdEu5Ug" general="_Zmixuh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixhR1yEeGwqd6kdEu5Ug" name="referredEnumLiteral" type="_ZlMt5R1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmixhh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf2xsyMsEeG5GfEOMmHYaw" name="EnumLiteralExp">
+      <generalization xmi:id="_lf2xtCMsEeG5GfEOMmHYaw" general="_lf51CiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf2xtSMsEeG5GfEOMmHYaw" name="referredEnumLiteral" type="_le8ywCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf2xtiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt3h1yEeGwqd6kdEu5Ug" name="Enumeration">
-      <ownedComment xmi:id="_ZlMt3x1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt3h1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le8LtiMsEeG5GfEOMmHYaw" name="Enumeration">
+      <ownedComment xmi:id="_le8LtyMsEeG5GfEOMmHYaw" annotatedElement="_le8LtiMsEeG5GfEOMmHYaw">
         <body>An enumeration defines a set of literals that can be used as its values.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt4B1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt4R1yEeGwqd6kdEu5Ug" name="ownedLiteral" type="_ZlMt5R1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZlWfCh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt4h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt4R1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le8LuCMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le8LuSMsEeG5GfEOMmHYaw" name="ownedLiteral" type="_le8ywCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lfEHgCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le8LuiMsEeG5GfEOMmHYaw" annotatedElement="_le8LuSMsEeG5GfEOMmHYaw">
           <body>The ordered set of literals for this Enumeration.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt4x1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlMt5B1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le8LuyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le8LvCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt5R1yEeGwqd6kdEu5Ug" name="EnumerationLiteral">
-      <ownedComment xmi:id="_ZlMt5h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt5R1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le8ywCMsEeG5GfEOMmHYaw" name="EnumerationLiteral">
+      <ownedComment xmi:id="_le8ywSMsEeG5GfEOMmHYaw" annotatedElement="_le8ywCMsEeG5GfEOMmHYaw">
         <body>An enumeration literal is a value of an enumeration.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt5x1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt6B1yEeGwqd6kdEu5Ug" name="enumeration" type="_ZlMt3h1yEeGwqd6kdEu5Ug" association="_ZlWfCh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt6R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt6B1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le8ywiMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le8ywyMsEeG5GfEOMmHYaw" name="enumeration" type="_le8LtiMsEeG5GfEOMmHYaw" association="_lfEHgCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le8yxCMsEeG5GfEOMmHYaw" annotatedElement="_le8ywyMsEeG5GfEOMmHYaw">
           <body>The Enumeration that this EnumerationLiteral is a member of.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt6h1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le8yxSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2aB1yEeGwqd6kdEu5Ug" name="value" type="_ZlzKpB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm-2aR1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2ah1yEeGwqd6kdEu5Ug" value="0"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix1h1yEeGwqd6kdEu5Ug" name="ExpressionInOcl">
-      <generalization xmi:id="_Zmix1x1yEeGwqd6kdEu5Ug" general="_ZlpZwR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix2B1yEeGwqd6kdEu5Ug" name="bodyExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmix2R1yEeGwqd6kdEu5Ug" name="contextVariable" type="_ZmixkB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix2h1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmix2x1yEeGwqd6kdEu5Ug" name="resultVariable" type="_ZmixkB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix3B1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmix3R1yEeGwqd6kdEu5Ug" name="parameterVariable" type="_ZmixkB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix3h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmix3x1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1snR1yEeGwqd6kdEu5Ug" name="messageExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1snh1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgTdoCMsEeG5GfEOMmHYaw" name="value" type="_lfV0UCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgTdoSMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgTdoiMsEeG5GfEOMmHYaw" value="0"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlzKrh1yEeGwqd6kdEu5Ug" name="Feature" isAbstract="true">
-      <generalization xmi:id="_ZlzKrx1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZnbiXx1yEeGwqd6kdEu5Ug" general="_ZnbiYR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlzKsB1yEeGwqd6kdEu5Ug" name="isStatic" type="_ZlzKph1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZnInZB1yEeGwqd6kdEu5Ug" name="implementationClass" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnInZR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7qMiMsEeG5GfEOMmHYaw" name="ExpressionInOcl">
+      <generalization xmi:id="_lf7qMyMsEeG5GfEOMmHYaw" general="_lfQUwCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf7qNCMsEeG5GfEOMmHYaw" name="bodyExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf7qNSMsEeG5GfEOMmHYaw" name="contextVariable" type="_lf3YxCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf7qNiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnInZh1yEeGwqd6kdEu5Ug" name="implementation" type="_ZnInaB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnInZx1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lf7qNyMsEeG5GfEOMmHYaw" name="resultVariable" type="_lf3YxCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf7qOCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix4h1yEeGwqd6kdEu5Ug" name="FeatureCallExp" isAbstract="true">
-      <generalization xmi:id="_Zmix4x1yEeGwqd6kdEu5Ug" general="_ZmZAoB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix5B1yEeGwqd6kdEu5Ug" name="isPre" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zmix5R1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lf7qOSMsEeG5GfEOMmHYaw" name="parameterVariable" type="_lf3YxCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf7qOiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf7qOyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixhx1yEeGwqd6kdEu5Ug" name="IfExp">
-      <generalization xmi:id="_ZmixiB1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixiR1yEeGwqd6kdEu5Ug" name="condition" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmixih1yEeGwqd6kdEu5Ug" name="thenExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmixix1yEeGwqd6kdEu5Ug" name="elseExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixrR1yEeGwqd6kdEu5Ug" name="IntegerLiteralExp">
-      <generalization xmi:id="_Zmixrh1yEeGwqd6kdEu5Ug" general="_Zmixvh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixrx1yEeGwqd6kdEu5Ug" name="integerSymbol" type="_ZlzKpB1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix4B1yEeGwqd6kdEu5Ug" name="InvalidLiteralExp">
-      <generalization xmi:id="_Zmix4R1yEeGwqd6kdEu5Ug" general="_Zmixuh1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7jB1yEeGwqd6kdEu5Ug" name="InvalidType">
-      <generalization xmi:id="_Zmr7jR1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7cR1yEeGwqd6kdEu5Ug" name="IterateExp">
-      <generalization xmi:id="_Zmr7ch1yEeGwqd6kdEu5Ug" general="_Zmixoh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7cx1yEeGwqd6kdEu5Ug" name="result" type="_ZmixkB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7dB1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgPMMCMsEeG5GfEOMmHYaw" name="messageExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgPMMSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7dx1yEeGwqd6kdEu5Ug" name="Iteration">
-      <generalization xmi:id="_Zmr7eB1yEeGwqd6kdEu5Ug" general="_ZlDjwR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7eR1yEeGwqd6kdEu5Ug" name="ownedIterator" type="_ZlMtsB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7eh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmr7ex1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfXpgCMsEeG5GfEOMmHYaw" name="Feature" isAbstract="true">
+      <generalization xmi:id="_lfXpgSMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lglxhiMsEeG5GfEOMmHYaw" general="_lgpb4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfXpgiMsEeG5GfEOMmHYaw" name="isStatic" type="_lfV0UiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgXvECMsEeG5GfEOMmHYaw" name="implementationClass" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgXvESMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmr7fB1yEeGwqd6kdEu5Ug" name="ownedAccumulator" type="_ZlMtsB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7fR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmr7fh1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7dR1yEeGwqd6kdEu5Ug" name="IteratorExp">
-      <generalization xmi:id="_Zmr7dh1yEeGwqd6kdEu5Ug" general="_Zmixoh1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7jh1yEeGwqd6kdEu5Ug" name="LambdaType">
-      <generalization xmi:id="_Zmr7jx1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7kB1yEeGwqd6kdEu5Ug" name="contextType" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7kR1yEeGwqd6kdEu5Ug" name="parameterType" type="_ZlMtzR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7kh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmr7kx1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmr7lB1yEeGwqd6kdEu5Ug" name="resultType" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixjB1yEeGwqd6kdEu5Ug" name="LetExp">
-      <generalization xmi:id="_ZmixjR1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixjh1yEeGwqd6kdEu5Ug" name="in" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmixjx1yEeGwqd6kdEu5Ug" name="variable" type="_ZmixkB1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7fx1yEeGwqd6kdEu5Ug" name="Library">
-      <generalization xmi:id="_Zmr7gB1yEeGwqd6kdEu5Ug" general="_ZlMt7h1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixuh1yEeGwqd6kdEu5Ug" name="LiteralExp" isAbstract="true">
-      <generalization xmi:id="_Zmixux1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixoh1yEeGwqd6kdEu5Ug" name="LoopExp" isAbstract="true">
-      <generalization xmi:id="_Zmixox1yEeGwqd6kdEu5Ug" general="_ZmZAoB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixpB1yEeGwqd6kdEu5Ug" name="body" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_ZmixpR1yEeGwqd6kdEu5Ug" name="iterator" type="_ZmixkB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmixph1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmixpx1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmixqB1yEeGwqd6kdEu5Ug" name="referredIteration" type="_Zmr7dx1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixqR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgXvEiMsEeG5GfEOMmHYaw" name="implementation" type="_lgYWICMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgXvEyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix9R1yEeGwqd6kdEu5Ug" name="MessageExp">
-      <generalization xmi:id="_Zmix9h1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix9x1yEeGwqd6kdEu5Ug" name="target" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite"/>
-      <ownedAttribute xmi:id="_Zmix-B1yEeGwqd6kdEu5Ug" name="argument" type="_ZmZArR1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix-R1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmix-h1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmix-x1yEeGwqd6kdEu5Ug" name="calledOperation" type="_Zk5ywB1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix_B1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmix_R1yEeGwqd6kdEu5Ug" name="sentSignal" type="_ZlDjwh1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix_h1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf84UCMsEeG5GfEOMmHYaw" name="FeatureCallExp" isAbstract="true">
+      <generalization xmi:id="_lf84USMsEeG5GfEOMmHYaw" general="_lf1jkyMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf84UiMsEeG5GfEOMmHYaw" name="isPre" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lf84UyMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7lR1yEeGwqd6kdEu5Ug" name="MessageType">
-      <generalization xmi:id="_Zmr7lh1yEeGwqd6kdEu5Ug" general="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmr7lx1yEeGwqd6kdEu5Ug" name="referredSignal" type="_ZlDjxR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7mB1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmr7mR1yEeGwqd6kdEu5Ug" name="referredOperation" type="_ZlDjwR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmr7mh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf2xtyMsEeG5GfEOMmHYaw" name="IfExp">
+      <generalization xmi:id="_lf2xuCMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf2xuSMsEeG5GfEOMmHYaw" name="condition" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf2xuiMsEeG5GfEOMmHYaw" name="thenExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf2xuyMsEeG5GfEOMmHYaw" name="elseExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf5N-yMsEeG5GfEOMmHYaw" name="IntegerLiteralExp">
+      <generalization xmi:id="_lf5N_CMsEeG5GfEOMmHYaw" general="_lf6cEiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf5N_SMsEeG5GfEOMmHYaw" name="integerSymbol" type="_lfV0UCMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf8RQCMsEeG5GfEOMmHYaw" name="InvalidLiteralExp">
+      <generalization xmi:id="_lf8RQSMsEeG5GfEOMmHYaw" general="_lf51CiMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgH3cCMsEeG5GfEOMmHYaw" name="InvalidType">
+      <generalization xmi:id="_lgH3cSMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf_7oCMsEeG5GfEOMmHYaw" name="IterateExp">
+      <generalization xmi:id="_lf_7oSMsEeG5GfEOMmHYaw" general="_lf5N8CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf_7oiMsEeG5GfEOMmHYaw" name="result" type="_lf3YxCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf_7oyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlWesB1yEeGwqd6kdEu5Ug" name="MultiplicityElement" isAbstract="true">
-      <ownedComment xmi:id="_ZlWesR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWesB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgENECMsEeG5GfEOMmHYaw" name="Iteration">
+      <generalization xmi:id="_lgENESMsEeG5GfEOMmHYaw" general="_le028SMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgENEiMsEeG5GfEOMmHYaw" name="ownedIterator" type="_le4hUCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgENEyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgENFCMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lgENFSMsEeG5GfEOMmHYaw" name="ownedAccumulator" type="_le4hUCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgENFiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgENFyMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf_7pCMsEeG5GfEOMmHYaw" name="IteratorExp">
+      <generalization xmi:id="_lf_7pSMsEeG5GfEOMmHYaw" general="_lf5N8CMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgH3ciMsEeG5GfEOMmHYaw" name="LambdaType">
+      <generalization xmi:id="_lgH3cyMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgH3dCMsEeG5GfEOMmHYaw" name="contextType" type="_le69kCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgH3dSMsEeG5GfEOMmHYaw" name="parameterType" type="_le69kCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgH3diMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgH3dyMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lgH3eCMsEeG5GfEOMmHYaw" name="resultType" type="_le69kCMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf3YwCMsEeG5GfEOMmHYaw" name="LetExp">
+      <generalization xmi:id="_lf3YwSMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf3YwiMsEeG5GfEOMmHYaw" name="in" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf3YwyMsEeG5GfEOMmHYaw" name="variable" type="_lf3YxCMsEeG5GfEOMmHYaw" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgENGCMsEeG5GfEOMmHYaw" name="Library">
+      <generalization xmi:id="_lgENGSMsEeG5GfEOMmHYaw" general="_le9Z0CMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf51CiMsEeG5GfEOMmHYaw" name="LiteralExp" isAbstract="true">
+      <generalization xmi:id="_lf51CyMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf5N8CMsEeG5GfEOMmHYaw" name="LoopExp" isAbstract="true">
+      <generalization xmi:id="_lf5N8SMsEeG5GfEOMmHYaw" general="_lf1jkyMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf5N8iMsEeG5GfEOMmHYaw" name="body" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf5N8yMsEeG5GfEOMmHYaw" name="iterator" type="_lf3YxCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf5N9CMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf5N9SMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lf5N9iMsEeG5GfEOMmHYaw" name="referredIteration" type="_lgENECMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf5N9yMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf-GcCMsEeG5GfEOMmHYaw" name="MessageExp">
+      <generalization xmi:id="_lf-GcSMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf-GciMsEeG5GfEOMmHYaw" name="target" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite"/>
+      <ownedAttribute xmi:id="_lf-GcyMsEeG5GfEOMmHYaw" name="argument" type="_lf2KpiMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf-GdCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf-GdSMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lf-GdiMsEeG5GfEOMmHYaw" name="calledOperation" type="_lexzoCMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf-GdyMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lf-GeCMsEeG5GfEOMmHYaw" name="sentSignal" type="_le028iMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf-GeSMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgIegCMsEeG5GfEOMmHYaw" name="MessageType">
+      <generalization xmi:id="_lgIegSMsEeG5GfEOMmHYaw" general="_le69kCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgIegiMsEeG5GfEOMmHYaw" name="referredSignal" type="_le029SMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgIegyMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lgIehCMsEeG5GfEOMmHYaw" name="referredOperation" type="_le028SMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgIehSMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfAdICMsEeG5GfEOMmHYaw" name="MultiplicityElement" isAbstract="true">
+      <ownedComment xmi:id="_lfAdISMsEeG5GfEOMmHYaw" annotatedElement="_lfAdICMsEeG5GfEOMmHYaw">
         <body>A multiplicity is a definition of an inclusive interval of non-negative integers beginning with a lower bound and ending with a (possibly infinite) upper bound. A multiplicity element embeds this information to specify the allowable cardinalities for an instantiation of this element.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlWeuB1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlWeuR1yEeGwqd6kdEu5Ug" name="isOrdered" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWeuh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWeuR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfAdKCMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfAdKSMsEeG5GfEOMmHYaw" name="isOrdered" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfAdKiMsEeG5GfEOMmHYaw" annotatedElement="_lfAdKSMsEeG5GfEOMmHYaw">
           <body>For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlWeux1yEeGwqd6kdEu5Ug" value="false"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfAdKyMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlWevB1yEeGwqd6kdEu5Ug" name="isUnique" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWevR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWevB1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfAdLCMsEeG5GfEOMmHYaw" name="isUnique" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfAdLSMsEeG5GfEOMmHYaw" annotatedElement="_lfAdLCMsEeG5GfEOMmHYaw">
           <body>For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlWevh1yEeGwqd6kdEu5Ug" value="true"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfAdLiMsEeG5GfEOMmHYaw" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlWevx1yEeGwqd6kdEu5Ug" name="lower" type="_ZlzKpB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWewB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWevx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfAdLyMsEeG5GfEOMmHYaw" name="lower" type="_lfV0UCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfAdMCMsEeG5GfEOMmHYaw" annotatedElement="_lfAdLyMsEeG5GfEOMmHYaw">
           <body>Specifies the lower bound of the multiplicity interval.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWewR1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlWewh1yEeGwqd6kdEu5Ug" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfAdMSMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfAdMiMsEeG5GfEOMmHYaw" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlWewx1yEeGwqd6kdEu5Ug" name="upper" type="_ZlzKqh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlWexB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWewx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfAdMyMsEeG5GfEOMmHYaw" name="upper" type="_lfWbYCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfAdNCMsEeG5GfEOMmHYaw" annotatedElement="_lfAdMyMsEeG5GfEOMmHYaw">
           <body>Specifies the upper bound of the multiplicity interval.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWexR1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlWexh1yEeGwqd6kdEu5Ug" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfAdNSMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfAdNiMsEeG5GfEOMmHYaw" value="1"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_ZlWexx1yEeGwqd6kdEu5Ug" name="lowerBound" isQuery="true">
-        <ownedComment xmi:id="_ZlWeyB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWexx1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfAdNyMsEeG5GfEOMmHYaw" name="lowerBound" isQuery="true">
+        <ownedComment xmi:id="_lfAdOCMsEeG5GfEOMmHYaw" annotatedElement="_lfAdNyMsEeG5GfEOMmHYaw">
           <body>The query lowerBound() returns the lower bound of the multiplicity as an integer.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlWeyx1yEeGwqd6kdEu5Ug" type="_ZlzKpB1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfAdOyMsEeG5GfEOMmHYaw" type="_lfV0UCMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlWezB1yEeGwqd6kdEu5Ug" name="upperBound" isQuery="true">
-        <ownedComment xmi:id="_ZlWezR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWezB1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfAdPCMsEeG5GfEOMmHYaw" name="upperBound" isQuery="true">
+        <ownedComment xmi:id="_lfAdPSMsEeG5GfEOMmHYaw" annotatedElement="_lfAdPCMsEeG5GfEOMmHYaw">
           <body>The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlWe0B1yEeGwqd6kdEu5Ug" type="_ZlzKqh1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfAdQCMsEeG5GfEOMmHYaw" type="_lfWbYCMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlWe0R1yEeGwqd6kdEu5Ug" name="isMultivalued" isQuery="true">
-        <ownedComment xmi:id="_ZlWe0h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe0R1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfAdQSMsEeG5GfEOMmHYaw" name="isMultivalued" isQuery="true">
+        <ownedComment xmi:id="_lfAdQiMsEeG5GfEOMmHYaw" annotatedElement="_lfAdQSMsEeG5GfEOMmHYaw">
           <body>The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlWe1x1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfAdRyMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlWe2B1yEeGwqd6kdEu5Ug" name="includesCardinality" isQuery="true">
-        <ownedComment xmi:id="_ZlWe2R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe2B1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfAdSCMsEeG5GfEOMmHYaw" name="includesCardinality" isQuery="true">
+        <ownedComment xmi:id="_lfAdSSMsEeG5GfEOMmHYaw" annotatedElement="_lfAdSCMsEeG5GfEOMmHYaw">
           <body>The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlWe3h1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
-        <ownedParameter xmi:id="_ZlWe3x1yEeGwqd6kdEu5Ug" name="C" type="_ZlzKpB1yEeGwqd6kdEu5Ug"/>
+        <ownedParameter xmi:id="_lfAdTiMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
+        <ownedParameter xmi:id="_lfAdTyMsEeG5GfEOMmHYaw" name="C" type="_lfV0UCMsEeG5GfEOMmHYaw"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlWe4B1yEeGwqd6kdEu5Ug" name="includesMultiplicity" isQuery="true">
-        <ownedComment xmi:id="_ZlWe4R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlWe4B1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfAdUCMsEeG5GfEOMmHYaw" name="includesMultiplicity" isQuery="true">
+        <ownedComment xmi:id="_lfAdUSMsEeG5GfEOMmHYaw" annotatedElement="_lfAdUCMsEeG5GfEOMmHYaw">
           <body>The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlWe5h1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
-        <ownedParameter xmi:id="_ZlWe5x1yEeGwqd6kdEu5Ug" name="M" type="_ZlWesB1yEeGwqd6kdEu5Ug"/>
+        <ownedParameter xmi:id="_lfAdViMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
+        <ownedParameter xmi:id="_lfAdVyMsEeG5GfEOMmHYaw" name="M" type="_lfAdICMsEeG5GfEOMmHYaw"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlDjwB1yEeGwqd6kdEu5Ug" clientDependency="_ZnSYYR1yEeGwqd6kdEu5Ug" name="NamedElement" isAbstract="true">
-      <ownedComment xmi:id="_ZlMt0x1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjwB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le028CMsEeG5GfEOMmHYaw" clientDependency="_lgd1sSMsEeG5GfEOMmHYaw" name="NamedElement" isAbstract="true">
+      <ownedComment xmi:id="_le69liMsEeG5GfEOMmHYaw" annotatedElement="_le028CMsEeG5GfEOMmHYaw">
         <body>A named element represents an element with a name.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt1B1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt1R1yEeGwqd6kdEu5Ug" name="name" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt1h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt1R1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le69lyMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le7koCMsEeG5GfEOMmHYaw" name="name" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le7koSMsEeG5GfEOMmHYaw" annotatedElement="_le7koCMsEeG5GfEOMmHYaw">
           <body>The name of the NamedElement.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt1x1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le7koiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlpZzx1yEeGwqd6kdEu5Ug" name="ownedRule" type="_ZlfooB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlpZ0B1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlpZ0R1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lfQUziMsEeG5GfEOMmHYaw" name="ownedRule" type="_lfK1MCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfQUzyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfQU0CMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlzKsR1yEeGwqd6kdEu5Ug" name="isStatic" type="_ZlzKph1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zm1smh1yEeGwqd6kdEu5Ug" name="ownedAnnotation" type="_Zm1six1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1smx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1snB1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lfYQkCMsEeG5GfEOMmHYaw" name="isStatic" type="_lfV0UiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgN-EyMsEeG5GfEOMmHYaw" name="ownedAnnotation" type="_lgNXACMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgN-FCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgN-FSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <interfaceRealization xmi:id="_ZnSYYR1yEeGwqd6kdEu5Ug" name="" client="_ZlDjwB1yEeGwqd6kdEu5Ug" supplier="_ZnSYYB1yEeGwqd6kdEu5Ug" contract="_ZnSYYB1yEeGwqd6kdEu5Ug"/>
+      <interfaceRealization xmi:id="_lgd1sSMsEeG5GfEOMmHYaw" name="" client="_le028CMsEeG5GfEOMmHYaw" supplier="_lgd1sCMsEeG5GfEOMmHYaw" contract="_lgd1sCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlzKoB1yEeGwqd6kdEu5Ug" name="Namespace" isAbstract="true">
-      <generalization xmi:id="_ZlzKoR1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfUmMCMsEeG5GfEOMmHYaw" name="Namespace" isAbstract="true">
+      <generalization xmi:id="_lfUmMSMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix6h1yEeGwqd6kdEu5Ug" name="NavigationCallExp" isAbstract="true">
-      <generalization xmi:id="_Zmix6x1yEeGwqd6kdEu5Ug" general="_Zmix4h1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix7B1yEeGwqd6kdEu5Ug" name="qualifier" type="_ZmZArR1yEeGwqd6kdEu5Ug" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix7R1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmix7h1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf84WCMsEeG5GfEOMmHYaw" name="NavigationCallExp" isAbstract="true">
+      <generalization xmi:id="_lf84WSMsEeG5GfEOMmHYaw" general="_lf84UCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf84WiMsEeG5GfEOMmHYaw" name="qualifier" type="_lf2KpiMsEeG5GfEOMmHYaw" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf84WyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf84XCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zmix7x1yEeGwqd6kdEu5Ug" name="navigationSource" type="_ZlMttx1yEeGwqd6kdEu5Ug" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix8B1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lf84XSMsEeG5GfEOMmHYaw" name="navigationSource" type="_le5vcCMsEeG5GfEOMmHYaw" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf84XiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix1B1yEeGwqd6kdEu5Ug" name="NullLiteralExp">
-      <generalization xmi:id="_Zmix1R1yEeGwqd6kdEu5Ug" general="_ZmixvB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7qMCMsEeG5GfEOMmHYaw" name="NullLiteralExp">
+      <generalization xmi:id="_lf7qMSMsEeG5GfEOMmHYaw" general="_lf6cECMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixvh1yEeGwqd6kdEu5Ug" name="NumericLiteralExp" isAbstract="true">
-      <generalization xmi:id="_Zmixvx1yEeGwqd6kdEu5Ug" general="_ZmixvB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf6cEiMsEeG5GfEOMmHYaw" name="NumericLiteralExp" isAbstract="true">
+      <generalization xmi:id="_lf6cEyMsEeG5GfEOMmHYaw" general="_lf6cECMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmZArR1yEeGwqd6kdEu5Ug" name="OclExpression" isAbstract="true">
-      <generalization xmi:id="_ZmZArh1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf2KpiMsEeG5GfEOMmHYaw" name="OclExpression" isAbstract="true">
+      <generalization xmi:id="_lf2KpyMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlpZwR1yEeGwqd6kdEu5Ug" name="OpaqueExpression">
-      <ownedComment xmi:id="_ZlpZwh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZwR1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfQUwCMsEeG5GfEOMmHYaw" name="OpaqueExpression">
+      <ownedComment xmi:id="_lfQUwSMsEeG5GfEOMmHYaw" annotatedElement="_lfQUwCMsEeG5GfEOMmHYaw">
         <body>An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlpZxh1yEeGwqd6kdEu5Ug" general="_ZlpZoB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlpZxx1yEeGwqd6kdEu5Ug" name="body" type="_ZlzKqB1yEeGwqd6kdEu5Ug" isOrdered="true" isUnique="false" aggregation="composite">
-        <ownedComment xmi:id="_ZlpZyB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZxx1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfQUxSMsEeG5GfEOMmHYaw" general="_lfMqYCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfQUxiMsEeG5GfEOMmHYaw" name="body" type="_lfV0VCMsEeG5GfEOMmHYaw" isOrdered="true" isUnique="false" aggregation="composite">
+        <ownedComment xmi:id="_lfQUxyMsEeG5GfEOMmHYaw" annotatedElement="_lfQUxiMsEeG5GfEOMmHYaw">
           <body>The text of the expression, possibly in multiple languages.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlpZyR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlpZyh1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfQUyCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfQUySMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlpZyx1yEeGwqd6kdEu5Ug" name="language" type="_ZlzKqB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <ownedComment xmi:id="_ZlpZzB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZyx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfQUyiMsEeG5GfEOMmHYaw" name="language" type="_lfV0VCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <ownedComment xmi:id="_lfQUyyMsEeG5GfEOMmHYaw" annotatedElement="_lfQUyiMsEeG5GfEOMmHYaw">
           <body>Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlpZzR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlpZzh1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfQUzCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfQUzSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1snx1yEeGwqd6kdEu5Ug" name="message" type="_ZlzKqB1yEeGwqd6kdEu5Ug" isOrdered="true" isUnique="false">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1soB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm1soR1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgPzQCMsEeG5GfEOMmHYaw" name="message" type="_lfV0VCMsEeG5GfEOMmHYaw" isOrdered="true" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgPzQSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgPzQiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1soh1yEeGwqd6kdEu5Ug" name="valueExpression" type="_Zmix1h1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1sox1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgPzQyMsEeG5GfEOMmHYaw" name="valueExpression" type="_lf7qMiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgPzRCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlDjwR1yEeGwqd6kdEu5Ug" name="Operation">
-      <ownedComment xmi:id="_ZlDj2B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjwR1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le028SMsEeG5GfEOMmHYaw" name="Operation">
+      <ownedComment xmi:id="_le2sICMsEeG5GfEOMmHYaw" annotatedElement="_le028SMsEeG5GfEOMmHYaw">
         <body>An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.</body>
       </ownedComment>
-      <ownedComment xmi:id="_ZmGFuB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDjwR1yEeGwqd6kdEu5Ug">
+      <ownedComment xmi:id="_lfj2wCMsEeG5GfEOMmHYaw" annotatedElement="_le028SMsEeG5GfEOMmHYaw">
         <body>Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlDj2R1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlDj2h1yEeGwqd6kdEu5Ug" general="_ZlWesB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlzKoh1yEeGwqd6kdEu5Ug" general="_ZlzKoB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlzKsh1yEeGwqd6kdEu5Ug" general="_ZlzKrh1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFuR1yEeGwqd6kdEu5Ug" general="_ZmGFph1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFuh1yEeGwqd6kdEu5Ug" general="_ZmGFkB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlDj2x1yEeGwqd6kdEu5Ug" name="raisedException" type="_ZlMtzR1yEeGwqd6kdEu5Ug" association="_ZlWe-B1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDj3B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDj2x1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le2sISMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_le3TMCMsEeG5GfEOMmHYaw" general="_lfAdICMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfUmMiMsEeG5GfEOMmHYaw" general="_lfUmMCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfYQkSMsEeG5GfEOMmHYaw" general="_lfXpgCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfj2wSMsEeG5GfEOMmHYaw" general="_lfhagCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfj2wiMsEeG5GfEOMmHYaw" general="_lfgMYCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le3TMSMsEeG5GfEOMmHYaw" name="raisedException" type="_le69kCMsEeG5GfEOMmHYaw" association="_lfC5YCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le3TMiMsEeG5GfEOMmHYaw" annotatedElement="_le3TMSMsEeG5GfEOMmHYaw">
           <body>The exceptions that are declared as possible during an invocation of the operation.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDj3R1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlDj3h1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le3TMyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le3TNCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlDj3x1yEeGwqd6kdEu5Ug" name="ownedParameter" type="_ZlMtsB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZlWfAB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDj4B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDj3x1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le36QCMsEeG5GfEOMmHYaw" name="ownedParameter" type="_le4hUCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lfDgcCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le36QSMsEeG5GfEOMmHYaw" annotatedElement="_le36QCMsEeG5GfEOMmHYaw">
           <body>The parameters to the operation.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDj4R1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlDj4h1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le36QiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le36QyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlDj4x1yEeGwqd6kdEu5Ug" name="class" type="_ZlDjxh1yEeGwqd6kdEu5Ug" association="_ZlWfAR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlDj5B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlDj4x1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le36RCMsEeG5GfEOMmHYaw" name="class" type="_le2FECMsEeG5GfEOMmHYaw" association="_lfDgcSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le36RSMsEeG5GfEOMmHYaw" annotatedElement="_le36RCMsEeG5GfEOMmHYaw">
           <body>The class that owns the operation.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlDj5R1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le36RiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGFux1yEeGwqd6kdEu5Ug" name="templateParameter" type="_ZmGFvh1yEeGwqd6kdEu5Ug" redefinedProperty="_ZmGFqR1yEeGwqd6kdEu5Ug" association="_ZmPPlx1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFvB1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFux1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfkd0CMsEeG5GfEOMmHYaw" name="templateParameter" type="_lflE4CMsEeG5GfEOMmHYaw" redefinedProperty="_lfhagyMsEeG5GfEOMmHYaw" association="_lfp9YSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfkd0SMsEeG5GfEOMmHYaw" annotatedElement="_lfkd0CMsEeG5GfEOMmHYaw">
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFvR1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfkd0iMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAjB1yEeGwqd6kdEu5Ug" name="owningType" type="_ZlMtzR1yEeGwqd6kdEu5Ug" association="_ZmZAmh1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAjR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lfxSISMsEeG5GfEOMmHYaw" name="owningType" type="_le69kCMsEeG5GfEOMmHYaw" association="_lf0VcSMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfxSIiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnSYcB1yEeGwqd6kdEu5Ug" name="precedence" type="_ZnbiUB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnSYcR1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixsB1yEeGwqd6kdEu5Ug" name="OperationCallExp">
-      <generalization xmi:id="_ZmixsR1yEeGwqd6kdEu5Ug" general="_Zmix4h1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixsh1yEeGwqd6kdEu5Ug" name="argument" type="_ZmZArR1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmixsx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmixtB1yEeGwqd6kdEu5Ug" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmixtR1yEeGwqd6kdEu5Ug" name="referredOperation" type="_ZlDjwR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmixth1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgiHICMsEeG5GfEOMmHYaw" name="precedence" type="_lgj8UCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgiHISMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmGFvh1yEeGwqd6kdEu5Ug" name="OperationTemplateParameter">
-      <ownedComment xmi:id="_ZmGFvx1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFvh1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf51ACMsEeG5GfEOMmHYaw" name="OperationCallExp">
+      <generalization xmi:id="_lf51ASMsEeG5GfEOMmHYaw" general="_lf84UCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf51AiMsEeG5GfEOMmHYaw" name="argument" type="_lf2KpiMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf51AyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf51BCMsEeG5GfEOMmHYaw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lf51BSMsEeG5GfEOMmHYaw" name="referredOperation" type="_le028SMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf51BiMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lflE4CMsEeG5GfEOMmHYaw" name="OperationTemplateParameter">
+      <ownedComment xmi:id="_lflE4SMsEeG5GfEOMmHYaw" annotatedElement="_lflE4CMsEeG5GfEOMmHYaw">
         <body>An operation template parameter exposes an operation as a formal parameter for a template.</body>
       </ownedComment>
-      <generalization xmi:id="_ZmGFwB1yEeGwqd6kdEu5Ug" general="_Zl8Unx1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmGFwR1yEeGwqd6kdEu5Ug" name="parameteredElement" type="_ZlDjwR1yEeGwqd6kdEu5Ug" redefinedProperty="_Zl8Upx1yEeGwqd6kdEu5Ug" association="_ZmPPlx1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFwh1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFwR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lflE4iMsEeG5GfEOMmHYaw" general="_lfdJECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lflE4yMsEeG5GfEOMmHYaw" name="parameteredElement" type="_le028SMsEeG5GfEOMmHYaw" redefinedProperty="_lfdJGCMsEeG5GfEOMmHYaw" association="_lfp9YSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lflE5CMsEeG5GfEOMmHYaw" annotatedElement="_lflE4yMsEeG5GfEOMmHYaw">
           <body>The operation for this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1scB1yEeGwqd6kdEu5Ug" name="OrderedSetType">
-      <generalization xmi:id="_Zm1scR1yEeGwqd6kdEu5Ug" general="_Zmr7iR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgIehiMsEeG5GfEOMmHYaw" name="OrderedSetType">
+      <generalization xmi:id="_lgIehyMsEeG5GfEOMmHYaw" general="_lgHQYyMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt7h1yEeGwqd6kdEu5Ug" name="Package">
-      <ownedComment xmi:id="_ZlMt7x1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt7h1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le9Z0CMsEeG5GfEOMmHYaw" name="Package">
+      <ownedComment xmi:id="_le9Z0SMsEeG5GfEOMmHYaw" annotatedElement="_le9Z0CMsEeG5GfEOMmHYaw">
         <body>A package is a container for types and other packages.</body>
       </ownedComment>
-      <ownedComment xmi:id="_ZmGF4B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt7h1yEeGwqd6kdEu5Ug">
+      <ownedComment xmi:id="_lfnhICMsEeG5GfEOMmHYaw" annotatedElement="_le9Z0CMsEeG5GfEOMmHYaw">
         <body>Package specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt8B1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlzKox1yEeGwqd6kdEu5Ug" general="_ZlzKoB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGF4R1yEeGwqd6kdEu5Ug" general="_ZmGFkB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt8R1yEeGwqd6kdEu5Ug" name="nestedPackage" type="_ZlMt7h1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZlWfCx1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt8h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt8R1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le9Z0iMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfVNQCMsEeG5GfEOMmHYaw" general="_lfUmMCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfnhISMsEeG5GfEOMmHYaw" general="_lfgMYCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le9Z0yMsEeG5GfEOMmHYaw" name="nestedPackage" type="_le9Z0CMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfEHgSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le9Z1CMsEeG5GfEOMmHYaw" annotatedElement="_le9Z0yMsEeG5GfEOMmHYaw">
           <body>The set of contained packages.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt8x1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlMt9B1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le9Z1SMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le9Z1iMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMt9R1yEeGwqd6kdEu5Ug" name="nestingPackage" type="_ZlMt7h1yEeGwqd6kdEu5Ug" association="_ZlWfCx1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt9h1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt9R1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le9Z1yMsEeG5GfEOMmHYaw" name="nestingPackage" type="_le9Z0CMsEeG5GfEOMmHYaw" association="_lfEHgSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le9Z2CMsEeG5GfEOMmHYaw" annotatedElement="_le9Z1yMsEeG5GfEOMmHYaw">
           <body>The containing package.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt9x1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le9Z2SMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMt-B1yEeGwqd6kdEu5Ug" name="ownedType" type="_ZlMtzR1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZlWfDB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt-R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt-B1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le9Z2iMsEeG5GfEOMmHYaw" name="ownedType" type="_le69kCMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfEHgiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le9Z2yMsEeG5GfEOMmHYaw" annotatedElement="_le9Z2iMsEeG5GfEOMmHYaw">
           <body>The set of contained types.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt-h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlMt-x1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le9Z3CMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_le9Z3SMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnSYYh1yEeGwqd6kdEu5Ug" name="nsPrefix" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnSYYx1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgecwCMsEeG5GfEOMmHYaw" name="nsPrefix" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgecwSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnSYZB1yEeGwqd6kdEu5Ug" name="nsURI" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnSYZR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgfD0CMsEeG5GfEOMmHYaw" name="nsURI" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgfD0SMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnSYch1yEeGwqd6kdEu5Ug" name="ownedPrecedence" type="_ZnbiUB1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnSYcx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZnSYdB1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgjVQCMsEeG5GfEOMmHYaw" name="ownedPrecedence" type="_lgj8UCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgjVQSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgjVQiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmGFwx1yEeGwqd6kdEu5Ug" name="PackageableElement" isAbstract="true">
-      <ownedComment xmi:id="_ZmGFxB1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFwx1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lflE5SMsEeG5GfEOMmHYaw" name="PackageableElement" isAbstract="true">
+      <ownedComment xmi:id="_lflE5iMsEeG5GfEOMmHYaw" annotatedElement="_lflE5SMsEeG5GfEOMmHYaw">
         <body>Packageable elements are able to serve as a template parameter.</body>
       </ownedComment>
-      <generalization xmi:id="_ZmGFxR1yEeGwqd6kdEu5Ug" general="_ZmGFph1yEeGwqd6kdEu5Ug"/>
+      <generalization xmi:id="_lflE5yMsEeG5GfEOMmHYaw" general="_lfhagCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMtsB1yEeGwqd6kdEu5Ug" name="Parameter">
-      <ownedComment xmi:id="_ZlMtsR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtsB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le4hUCMsEeG5GfEOMmHYaw" name="Parameter">
+      <ownedComment xmi:id="_le4hUSMsEeG5GfEOMmHYaw" annotatedElement="_le4hUCMsEeG5GfEOMmHYaw">
         <body>A parameter is a typed element that represents a parameter of an operation.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMtsh1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlMtsx1yEeGwqd6kdEu5Ug" general="_ZlWesB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_Zm1sgR1yEeGwqd6kdEu5Ug" general="_Zmr7cB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZnbiYB1yEeGwqd6kdEu5Ug" general="_ZnbiYR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMttB1yEeGwqd6kdEu5Ug" name="operation" type="_ZlDjwR1yEeGwqd6kdEu5Ug" association="_ZlWfAB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMttR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMttB1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le4hUiMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_le4hUyMsEeG5GfEOMmHYaw" general="_lfAdICMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lgK6wCMsEeG5GfEOMmHYaw" general="_lf-tgCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lgo00CMsEeG5GfEOMmHYaw" general="_lgpb4CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le4hVCMsEeG5GfEOMmHYaw" name="operation" type="_le028SMsEeG5GfEOMmHYaw" association="_lfDgcCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le4hVSMsEeG5GfEOMmHYaw" annotatedElement="_le4hVCMsEeG5GfEOMmHYaw">
           <body>The operation that owns the parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMtth1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le4hViMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmGFph1yEeGwqd6kdEu5Ug" name="ParameterableElement" isAbstract="true">
-      <ownedComment xmi:id="_ZmGFpx1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFph1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfhagCMsEeG5GfEOMmHYaw" name="ParameterableElement" isAbstract="true">
+      <ownedComment xmi:id="_lfhagSMsEeG5GfEOMmHYaw" annotatedElement="_lfhagCMsEeG5GfEOMmHYaw">
         <body>A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.</body>
       </ownedComment>
-      <generalization xmi:id="_ZmGFqB1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmGFqR1yEeGwqd6kdEu5Ug" name="templateParameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" association="_ZmPPiR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFqh1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFqR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfhagiMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfhagyMsEeG5GfEOMmHYaw" name="templateParameter" type="_lfdJECMsEeG5GfEOMmHYaw" association="_lfovSSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfhahCMsEeG5GfEOMmHYaw" annotatedElement="_lfhagyMsEeG5GfEOMmHYaw">
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFqx1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfhahSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGFrB1yEeGwqd6kdEu5Ug" name="owningTemplateParameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" subsettedProperty="_ZmGFqR1yEeGwqd6kdEu5Ug" association="_ZmPPix1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFrR1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFrB1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfhahiMsEeG5GfEOMmHYaw" name="owningTemplateParameter" type="_lfdJECMsEeG5GfEOMmHYaw" subsettedProperty="_lfhagyMsEeG5GfEOMmHYaw" association="_lfpWUSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfhahyMsEeG5GfEOMmHYaw" annotatedElement="_lfhahiMsEeG5GfEOMmHYaw">
           <body>The formal template parameter that owns this element.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFrh1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfhaiCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_ZmGFrx1yEeGwqd6kdEu5Ug" name="isTemplateParameter" isQuery="true">
-        <ownedComment xmi:id="_ZmGFsB1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFrx1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfhaiSMsEeG5GfEOMmHYaw" name="isTemplateParameter" isQuery="true">
+        <ownedComment xmi:id="_lfhaiiMsEeG5GfEOMmHYaw" annotatedElement="_lfhaiSMsEeG5GfEOMmHYaw">
           <body>The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZmGFsx1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfhajSMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZnbiUB1yEeGwqd6kdEu5Ug" name="Precedence">
-      <generalization xmi:id="_ZnbiUR1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZnbiUh1yEeGwqd6kdEu5Ug" name="associativity" type="_ZnSYbR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnbiUx1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZnbiVB1yEeGwqd6kdEu5Ug" value="Left"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgj8UCMsEeG5GfEOMmHYaw" name="Precedence">
+      <generalization xmi:id="_lgj8USMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgj8UiMsEeG5GfEOMmHYaw" name="associativity" type="_lghgESMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgj8UyMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgj8VCMsEeG5GfEOMmHYaw" value="Left"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnbiVR1yEeGwqd6kdEu5Ug" name="order" type="_ZlzKpB1yEeGwqd6kdEu5Ug" isDerived="true"/>
+      <ownedAttribute xmi:id="_lgj8VSMsEeG5GfEOMmHYaw" name="order" type="_lfV0UCMsEeG5GfEOMmHYaw" isDerived="true"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixvB1yEeGwqd6kdEu5Ug" name="PrimitiveLiteralExp" isAbstract="true">
-      <generalization xmi:id="_ZmixvR1yEeGwqd6kdEu5Ug" general="_Zmixuh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf6cECMsEeG5GfEOMmHYaw" name="PrimitiveLiteralExp" isAbstract="true">
+      <generalization xmi:id="_lf6cESMsEeG5GfEOMmHYaw" general="_lf51CiMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt6x1yEeGwqd6kdEu5Ug" name="PrimitiveType">
-      <ownedComment xmi:id="_ZlMt7B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt6x1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le8yxiMsEeG5GfEOMmHYaw" name="PrimitiveType">
+      <ownedComment xmi:id="_le8yxyMsEeG5GfEOMmHYaw" annotatedElement="_le8yxiMsEeG5GfEOMmHYaw">
         <body>A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt7R1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
+      <generalization xmi:id="_le8yyCMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMttx1yEeGwqd6kdEu5Ug" name="Property">
-      <ownedComment xmi:id="_ZlMtuB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMttx1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le5vcCMsEeG5GfEOMmHYaw" name="Property">
+      <ownedComment xmi:id="_le5vcSMsEeG5GfEOMmHYaw" annotatedElement="_le5vcCMsEeG5GfEOMmHYaw">
         <body>A property is a typed element that represents an attribute of a class.</body>
       </ownedComment>
-      <ownedComment xmi:id="_ZmGFtB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMttx1yEeGwqd6kdEu5Ug">
+      <ownedComment xmi:id="_lfhajiMsEeG5GfEOMmHYaw" annotatedElement="_le5vcCMsEeG5GfEOMmHYaw">
         <body>Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMtuR1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlMtuh1yEeGwqd6kdEu5Ug" general="_ZlWesB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZlzKsx1yEeGwqd6kdEu5Ug" general="_ZlzKrh1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFtR1yEeGwqd6kdEu5Ug" general="_ZmGFph1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMtux1yEeGwqd6kdEu5Ug" name="isReadOnly" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtvB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtux1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le5vciMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_le5vcyMsEeG5GfEOMmHYaw" general="_lfAdICMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfY3oCMsEeG5GfEOMmHYaw" general="_lfXpgCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfiBkCMsEeG5GfEOMmHYaw" general="_lfhagCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le5vdCMsEeG5GfEOMmHYaw" name="isReadOnly" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5vdSMsEeG5GfEOMmHYaw" annotatedElement="_le5vdCMsEeG5GfEOMmHYaw">
           <body>If isReadOnly is true, the attribute may not be written to after initialization.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlMtvR1yEeGwqd6kdEu5Ug" value="false"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_le5vdiMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMtvh1yEeGwqd6kdEu5Ug" name="default" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtvx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtvh1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le5vdyMsEeG5GfEOMmHYaw" name="default" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5veCMsEeG5GfEOMmHYaw" annotatedElement="_le5vdyMsEeG5GfEOMmHYaw">
           <body>A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMtwB1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le5veSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMtwR1yEeGwqd6kdEu5Ug" name="isComposite" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtwh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtwR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le5veiMsEeG5GfEOMmHYaw" name="isComposite" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5veyMsEeG5GfEOMmHYaw" annotatedElement="_le5veiMsEeG5GfEOMmHYaw">
           <body>If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlMtwx1yEeGwqd6kdEu5Ug" value="false"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_le5vfCMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMtxB1yEeGwqd6kdEu5Ug" name="isDerived" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtxR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtxB1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le5vfSMsEeG5GfEOMmHYaw" name="isDerived" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5vfiMsEeG5GfEOMmHYaw" annotatedElement="_le5vfSMsEeG5GfEOMmHYaw">
           <body>If isDerived is true, the value of the attribute is derived from information elsewhere.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZlMtxh1yEeGwqd6kdEu5Ug" value="false"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_le5vfyMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMtxx1yEeGwqd6kdEu5Ug" name="class" type="_ZlDjxh1yEeGwqd6kdEu5Ug" association="_ZlWe_B1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtyB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtxx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le5vgCMsEeG5GfEOMmHYaw" name="class" type="_le2FECMsEeG5GfEOMmHYaw" association="_lfC5ZCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5vgSMsEeG5GfEOMmHYaw" annotatedElement="_le5vgCMsEeG5GfEOMmHYaw">
           <body>The class that owns the property, and of which the property is an attribute.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMtyR1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le5vgiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZlMtyh1yEeGwqd6kdEu5Ug" name="opposite" type="_ZlMttx1yEeGwqd6kdEu5Ug" association="_ZlWe_R1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMtyx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtyh1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_le5vgyMsEeG5GfEOMmHYaw" name="opposite" type="_le5vcCMsEeG5GfEOMmHYaw" association="_lfC5ZSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le5vhCMsEeG5GfEOMmHYaw" annotatedElement="_le5vgyMsEeG5GfEOMmHYaw">
           <body>Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMtzB1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le5vhSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAhR1yEeGwqd6kdEu5Ug" name="association" type="_ZmZAgB1yEeGwqd6kdEu5Ug" association="_ZmZAih1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAhh1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lfvc9SMsEeG5GfEOMmHYaw" name="association" type="_lfvc8CMsEeG5GfEOMmHYaw" association="_lfwEACMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfvc9iMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAhx1yEeGwqd6kdEu5Ug" name="implicit" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAiB1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZmZAiR1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lfvc9yMsEeG5GfEOMmHYaw" name="implicit" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfvc-CMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfvc-SMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAjh1yEeGwqd6kdEu5Ug" name="owningType" type="_ZlMtzR1yEeGwqd6kdEu5Ug" association="_ZmZAmR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAjx1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lfygQCMsEeG5GfEOMmHYaw" name="owningType" type="_le69kCMsEeG5GfEOMmHYaw" association="_lf0VcCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfygQSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2ax1yEeGwqd6kdEu5Ug" name="isID" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2bB1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgTdoyMsEeG5GfEOMmHYaw" name="isID" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgTdpCMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2bR1yEeGwqd6kdEu5Ug" name="keys" type="_ZlMttx1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm-2bh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zm-2bx1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lgTdpSMsEeG5GfEOMmHYaw" name="keys" type="_le5vcCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgTdpiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lgTdpyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2cB1yEeGwqd6kdEu5Ug" name="isResolveProxies" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2cR1yEeGwqd6kdEu5Ug" value="true"/>
+      <ownedAttribute xmi:id="_lgUEsCMsEeG5GfEOMmHYaw" name="isResolveProxies" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgUEsSMsEeG5GfEOMmHYaw" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2ch1yEeGwqd6kdEu5Ug" name="isTransient" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2cx1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgUEsiMsEeG5GfEOMmHYaw" name="isTransient" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgUEsyMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2dB1yEeGwqd6kdEu5Ug" name="isUnsettable" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2dR1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgUEtCMsEeG5GfEOMmHYaw" name="isUnsettable" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgUEtSMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm-2dh1yEeGwqd6kdEu5Ug" name="isVolatile" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm-2dx1yEeGwqd6kdEu5Ug" value="false"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixlh1yEeGwqd6kdEu5Ug" name="PropertyCallExp">
-      <generalization xmi:id="_Zmixlx1yEeGwqd6kdEu5Ug" general="_Zmix6h1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixmB1yEeGwqd6kdEu5Ug" name="referredProperty" type="_ZlMttx1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixmR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgUEtiMsEeG5GfEOMmHYaw" name="isVolatile" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgUEtyMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixtx1yEeGwqd6kdEu5Ug" name="RealLiteralExp">
-      <generalization xmi:id="_ZmixuB1yEeGwqd6kdEu5Ug" general="_Zmixvh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixuR1yEeGwqd6kdEu5Ug" name="realSymbol" type="_Zmr7gR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1sch1yEeGwqd6kdEu5Ug" name="SelfType">
-      <generalization xmi:id="_Zm1scx1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlDjwh1yEeGwqd6kdEu5Ug" name="SendSignalAction">
-      <generalization xmi:id="_ZlDjwx1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlDjxB1yEeGwqd6kdEu5Ug" name="signal" type="_ZlDjxR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1sdB1yEeGwqd6kdEu5Ug" name="SequenceType">
-      <generalization xmi:id="_Zm1sdR1yEeGwqd6kdEu5Ug" general="_Zmr7iR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1sdh1yEeGwqd6kdEu5Ug" name="SetType">
-      <generalization xmi:id="_Zm1sdx1yEeGwqd6kdEu5Ug" general="_Zmr7iR1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlDjxR1yEeGwqd6kdEu5Ug" name="Signal">
-      <generalization xmi:id="_Zm1seB1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlzKrB1yEeGwqd6kdEu5Ug" name="State">
-      <generalization xmi:id="_ZlzKrR1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmiyAR1yEeGwqd6kdEu5Ug" name="StateExp">
-      <generalization xmi:id="_ZmiyAh1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmiyAx1yEeGwqd6kdEu5Ug" name="referredState" type="_ZlzKrB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmiyBB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf3_0CMsEeG5GfEOMmHYaw" name="PropertyCallExp">
+      <generalization xmi:id="_lf3_0SMsEeG5GfEOMmHYaw" general="_lf84WCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf3_0iMsEeG5GfEOMmHYaw" name="referredProperty" type="_le5vcCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf3_0yMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixqh1yEeGwqd6kdEu5Ug" name="StringLiteralExp">
-      <generalization xmi:id="_Zmixqx1yEeGwqd6kdEu5Ug" general="_ZmixvB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixrB1yEeGwqd6kdEu5Ug" name="stringSymbol" type="_ZlzKqB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf51ByMsEeG5GfEOMmHYaw" name="RealLiteralExp">
+      <generalization xmi:id="_lf51CCMsEeG5GfEOMmHYaw" general="_lf6cEiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf51CSMsEeG5GfEOMmHYaw" name="realSymbol" type="_lgGCQCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zl8Ush1yEeGwqd6kdEu5Ug" name="TemplateBinding">
-      <ownedComment xmi:id="_Zl8Usx1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Ush1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgIeiCMsEeG5GfEOMmHYaw" name="SelfType">
+      <generalization xmi:id="_lgIeiSMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_le028iMsEeG5GfEOMmHYaw" name="SendSignalAction">
+      <generalization xmi:id="_le028yMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le029CMsEeG5GfEOMmHYaw" name="signal" type="_le029SMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgIeiiMsEeG5GfEOMmHYaw" name="SequenceType">
+      <generalization xmi:id="_lgIeiyMsEeG5GfEOMmHYaw" general="_lgHQYyMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgJFkCMsEeG5GfEOMmHYaw" name="SetType">
+      <generalization xmi:id="_lgJFkSMsEeG5GfEOMmHYaw" general="_lgHQYyMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_le029SMsEeG5GfEOMmHYaw" name="Signal">
+      <generalization xmi:id="_lgJFkiMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfXCcCMsEeG5GfEOMmHYaw" name="State">
+      <generalization xmi:id="_lfXCcSMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf-GfCMsEeG5GfEOMmHYaw" name="StateExp">
+      <generalization xmi:id="_lf-GfSMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf-GfiMsEeG5GfEOMmHYaw" name="referredState" type="_lfXCcCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf-GfyMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf5N-CMsEeG5GfEOMmHYaw" name="StringLiteralExp">
+      <generalization xmi:id="_lf5N-SMsEeG5GfEOMmHYaw" general="_lf6cECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf5N-iMsEeG5GfEOMmHYaw" name="stringSymbol" type="_lfV0VCMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfe-QCMsEeG5GfEOMmHYaw" name="TemplateBinding">
+      <ownedComment xmi:id="_lfe-QSMsEeG5GfEOMmHYaw" annotatedElement="_lfe-QCMsEeG5GfEOMmHYaw">
         <body>A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.</body>
       </ownedComment>
-      <generalization xmi:id="_Zl8Uuh1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zl8Uux1yEeGwqd6kdEu5Ug" name="boundElement" type="_ZmGFkB1yEeGwqd6kdEu5Ug" association="_ZmGF5x1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UvB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Uux1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfe-SCMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfe-SSMsEeG5GfEOMmHYaw" name="boundElement" type="_lfgMYCMsEeG5GfEOMmHYaw" association="_lfoINSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfe-SiMsEeG5GfEOMmHYaw" annotatedElement="_lfe-SSMsEeG5GfEOMmHYaw">
           <body>The element that is bound by this binding.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UvR1yEeGwqd6kdEu5Ug" name="signature" type="_Zl8UkB1yEeGwqd6kdEu5Ug" association="_ZmPPgB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Uvh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UvR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfe-SyMsEeG5GfEOMmHYaw" name="signature" type="_lfbT4CMsEeG5GfEOMmHYaw" association="_lfovQCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfe-TCMsEeG5GfEOMmHYaw" annotatedElement="_lfe-SyMsEeG5GfEOMmHYaw">
           <body>The template signature for the template that is the target of the binding.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8Uvx1yEeGwqd6kdEu5Ug" name="parameterSubstitution" type="_Zl8Uwx1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZmPPhB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UwB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Uvx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfe-TSMsEeG5GfEOMmHYaw" name="parameterSubstitution" type="_lfflUCMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfovRCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfe-TiMsEeG5GfEOMmHYaw" annotatedElement="_lfe-TSMsEeG5GfEOMmHYaw">
           <body>The parameter substitutions owned by this template binding.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8UwR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zl8Uwh1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfe-TyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfe-UCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zl8Unx1yEeGwqd6kdEu5Ug" name="TemplateParameter">
-      <ownedComment xmi:id="_Zl8UoB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Unx1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfdJECMsEeG5GfEOMmHYaw" name="TemplateParameter">
+      <ownedComment xmi:id="_lfdJESMsEeG5GfEOMmHYaw" annotatedElement="_lfdJECMsEeG5GfEOMmHYaw">
         <body>A template parameter exposes a parameterable element as a formal template parameter of a template.</body>
       </ownedComment>
-      <generalization xmi:id="_Zl8UpB1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zl8UpR1yEeGwqd6kdEu5Ug" name="signature" type="_Zl8UkB1yEeGwqd6kdEu5Ug" association="_ZmGF5h1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Uph1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UpR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfdJFSMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfdJFiMsEeG5GfEOMmHYaw" name="signature" type="_lfbT4CMsEeG5GfEOMmHYaw" association="_lfoINCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfdJFyMsEeG5GfEOMmHYaw" annotatedElement="_lfdJFiMsEeG5GfEOMmHYaw">
           <body>The template signature that owns this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8Upx1yEeGwqd6kdEu5Ug" name="parameteredElement" type="_ZmGFph1yEeGwqd6kdEu5Ug" association="_ZmPPiR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UqB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Upx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfdJGCMsEeG5GfEOMmHYaw" name="parameteredElement" type="_lfhagCMsEeG5GfEOMmHYaw" association="_lfovSSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfdJGSMsEeG5GfEOMmHYaw" annotatedElement="_lfdJGCMsEeG5GfEOMmHYaw">
           <body>The element exposed by this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UqR1yEeGwqd6kdEu5Ug" name="ownedParameteredElement" type="_ZmGFph1yEeGwqd6kdEu5Ug" aggregation="composite" subsettedProperty="_Zl8Upx1yEeGwqd6kdEu5Ug" association="_ZmPPix1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Uqh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UqR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfdJGiMsEeG5GfEOMmHYaw" name="ownedParameteredElement" type="_lfhagCMsEeG5GfEOMmHYaw" aggregation="composite" subsettedProperty="_lfdJGCMsEeG5GfEOMmHYaw" association="_lfpWUSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfdJGyMsEeG5GfEOMmHYaw" annotatedElement="_lfdJGiMsEeG5GfEOMmHYaw">
           <body>The element that is owned by this template parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8Uqx1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfdJHCMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UrB1yEeGwqd6kdEu5Ug" name="default" type="_ZmGFph1yEeGwqd6kdEu5Ug" association="_ZmPPjB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UrR1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UrB1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfdJHSMsEeG5GfEOMmHYaw" name="default" type="_lfhagCMsEeG5GfEOMmHYaw" association="_lfpWUiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfdJHiMsEeG5GfEOMmHYaw" annotatedElement="_lfdJHSMsEeG5GfEOMmHYaw">
           <body>The element that is the default for this formal template parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8Urh1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfdJHyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8Urx1yEeGwqd6kdEu5Ug" name="ownedDefault" type="_ZmGFph1yEeGwqd6kdEu5Ug" aggregation="composite" subsettedProperty="_Zl8UrB1yEeGwqd6kdEu5Ug" association="_ZmPPkB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UsB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Urx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfdJICMsEeG5GfEOMmHYaw" name="ownedDefault" type="_lfhagCMsEeG5GfEOMmHYaw" aggregation="composite" subsettedProperty="_lfdJHSMsEeG5GfEOMmHYaw" association="_lfpWViMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfdJISMsEeG5GfEOMmHYaw" annotatedElement="_lfdJICMsEeG5GfEOMmHYaw">
           <body>The element that is owned by this template parameter for the purpose of providing a default.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8UsR1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfdJIiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zl8Uwx1yEeGwqd6kdEu5Ug" name="TemplateParameterSubstitution">
-      <ownedComment xmi:id="_Zl8UxB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Uwx1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfflUCMsEeG5GfEOMmHYaw" name="TemplateParameterSubstitution">
+      <ownedComment xmi:id="_lfflUSMsEeG5GfEOMmHYaw" annotatedElement="_lfflUCMsEeG5GfEOMmHYaw">
         <body>A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.</body>
       </ownedComment>
-      <generalization xmi:id="_Zl8UyB1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zl8UyR1yEeGwqd6kdEu5Ug" name="formal" type="_Zl8Unx1yEeGwqd6kdEu5Ug" association="_ZmGF6B1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Uyh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UyR1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfflVSMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfflViMsEeG5GfEOMmHYaw" name="formal" type="_lfdJECMsEeG5GfEOMmHYaw" association="_lfoINiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfflVyMsEeG5GfEOMmHYaw" annotatedElement="_lfflViMsEeG5GfEOMmHYaw">
           <body>The formal template parameter that is associated with this substitution.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8Uyx1yEeGwqd6kdEu5Ug" name="templateBinding" type="_Zl8Ush1yEeGwqd6kdEu5Ug" association="_ZmPPhB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8UzB1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Uyx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfflWCMsEeG5GfEOMmHYaw" name="templateBinding" type="_lfe-QCMsEeG5GfEOMmHYaw" association="_lfovRCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfflWSMsEeG5GfEOMmHYaw" annotatedElement="_lfflWCMsEeG5GfEOMmHYaw">
           <body>The optional bindings from this element to templates.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UzR1yEeGwqd6kdEu5Ug" name="actual" type="_ZmGFph1yEeGwqd6kdEu5Ug" association="_ZmPPhR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Uzh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UzR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfflWiMsEeG5GfEOMmHYaw" name="actual" type="_lfhagCMsEeG5GfEOMmHYaw" association="_lfovRSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfflWyMsEeG5GfEOMmHYaw" annotatedElement="_lfflWiMsEeG5GfEOMmHYaw">
           <body>The element that is the actual parameter for this substitution.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8Uzx1yEeGwqd6kdEu5Ug" name="ownedActual" type="_ZmGFph1yEeGwqd6kdEu5Ug" aggregation="composite" subsettedProperty="_Zl8UzR1yEeGwqd6kdEu5Ug" association="_ZmPPkx1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8U0B1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Uzx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfflXCMsEeG5GfEOMmHYaw" name="ownedActual" type="_lfhagCMsEeG5GfEOMmHYaw" aggregation="composite" subsettedProperty="_lfflWiMsEeG5GfEOMmHYaw" association="_lfpWWSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfflXSMsEeG5GfEOMmHYaw" annotatedElement="_lfflXCMsEeG5GfEOMmHYaw">
           <body>The actual parameter that is owned by this substitution.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8U0R1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfflXiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1seR1yEeGwqd6kdEu5Ug" name="TemplateParameterType">
-      <generalization xmi:id="_Zm1seh1yEeGwqd6kdEu5Ug" general="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zm1sex1yEeGwqd6kdEu5Ug" name="specification" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1sfB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgJsoCMsEeG5GfEOMmHYaw" name="TemplateParameterType">
+      <generalization xmi:id="_lgJsoSMsEeG5GfEOMmHYaw" general="_le69kCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lgJsoiMsEeG5GfEOMmHYaw" name="specification" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgJsoyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zl8UkB1yEeGwqd6kdEu5Ug" name="TemplateSignature">
-      <ownedComment xmi:id="_Zl8UkR1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UkB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfbT4CMsEeG5GfEOMmHYaw" name="TemplateSignature">
+      <ownedComment xmi:id="_lfbT4SMsEeG5GfEOMmHYaw" annotatedElement="_lfbT4CMsEeG5GfEOMmHYaw">
         <body>A template signature bundles the set of formal template parameters for a templated element.</body>
       </ownedComment>
-      <generalization xmi:id="_Zl8UlR1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zl8Ulh1yEeGwqd6kdEu5Ug" name="parameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" isOrdered="true" association="_ZmGF4h1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Ulx1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8Ulh1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfbT5SMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfbT5iMsEeG5GfEOMmHYaw" name="parameter" type="_lfdJECMsEeG5GfEOMmHYaw" isOrdered="true" association="_lfoIMCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfbT5yMsEeG5GfEOMmHYaw" annotatedElement="_lfbT5iMsEeG5GfEOMmHYaw">
           <body>The ordered set of all formal template parameters for this template signature.</body>
         </ownedComment>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zl8UmB1yEeGwqd6kdEu5Ug" value="*"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfbT6CMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UmR1yEeGwqd6kdEu5Ug" name="ownedParameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" subsettedProperty="_Zl8Ulh1yEeGwqd6kdEu5Ug" association="_ZmGF5h1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Umh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UmR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfbT6SMsEeG5GfEOMmHYaw" name="ownedParameter" type="_lfdJECMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" subsettedProperty="_lfbT5iMsEeG5GfEOMmHYaw" association="_lfoINCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfbT6iMsEeG5GfEOMmHYaw" annotatedElement="_lfbT6SMsEeG5GfEOMmHYaw">
           <body>The formal template parameters that are owned by this template signature.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zl8Umx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zl8UnB1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfbT6yMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfbT7CMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zl8UnR1yEeGwqd6kdEu5Ug" name="template" type="_ZmGFkB1yEeGwqd6kdEu5Ug" association="_ZmPPih1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_Zl8Unh1yEeGwqd6kdEu5Ug" annotatedElement="_Zl8UnR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfbT7SMsEeG5GfEOMmHYaw" name="template" type="_lfgMYCMsEeG5GfEOMmHYaw" association="_lfpWUCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfbT7iMsEeG5GfEOMmHYaw" annotatedElement="_lfbT7SMsEeG5GfEOMmHYaw">
           <body>The element that owns this template signature.</body>
         </ownedComment>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmGFkB1yEeGwqd6kdEu5Ug" name="TemplateableElement" isAbstract="true">
-      <ownedComment xmi:id="_ZmGFkR1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFkB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfgMYCMsEeG5GfEOMmHYaw" name="TemplateableElement" isAbstract="true">
+      <ownedComment xmi:id="_lfgMYSMsEeG5GfEOMmHYaw" annotatedElement="_lfgMYCMsEeG5GfEOMmHYaw">
         <body>A templateable element is an element that can optionally be defined as a template and bound to other templates.</body>
       </ownedComment>
-      <generalization xmi:id="_ZmGFkh1yEeGwqd6kdEu5Ug" general="_ZlWe6B1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmGFkx1yEeGwqd6kdEu5Ug" name="templateBinding" type="_Zl8Ush1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZmGF5x1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFlB1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFkx1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfgMYiMsEeG5GfEOMmHYaw" general="_lfBrQCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfgMYyMsEeG5GfEOMmHYaw" name="templateBinding" type="_lfe-QCMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfoINSMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfgMZCMsEeG5GfEOMmHYaw" annotatedElement="_lfgMYyMsEeG5GfEOMmHYaw">
           <body>The optional bindings from this element to templates.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFlR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmGFlh1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfgMZSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfgMZiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGFlx1yEeGwqd6kdEu5Ug" name="ownedTemplateSignature" type="_Zl8UkB1yEeGwqd6kdEu5Ug" aggregation="composite" association="_ZmPPih1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFmB1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFlx1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfgMZyMsEeG5GfEOMmHYaw" name="ownedTemplateSignature" type="_lfbT4CMsEeG5GfEOMmHYaw" aggregation="composite" association="_lfpWUCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfgMaCMsEeG5GfEOMmHYaw" annotatedElement="_lfgMZyMsEeG5GfEOMmHYaw">
           <body>The optional template signature specifying the formal template parameters.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFmR1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfgMaSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1spB1yEeGwqd6kdEu5Ug" name="unspecializedElement" type="_ZmGFkB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1spR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgQaUCMsEeG5GfEOMmHYaw" name="unspecializedElement" type="_lfgMYCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgQaUSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_ZmGFmh1yEeGwqd6kdEu5Ug" name="parameterableElements" isQuery="true">
-        <ownedComment xmi:id="_ZmGFmx1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFmh1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfgMaiMsEeG5GfEOMmHYaw" name="parameterableElements" isQuery="true">
+        <ownedComment xmi:id="_lfgMayMsEeG5GfEOMmHYaw" annotatedElement="_lfgMaiMsEeG5GfEOMmHYaw">
           <body>The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZmGFnh1yEeGwqd6kdEu5Ug" type="_ZmGFph1yEeGwqd6kdEu5Ug" direction="return">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFnx1yEeGwqd6kdEu5Ug"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmGFoB1yEeGwqd6kdEu5Ug" value="*"/>
+        <ownedParameter xmi:id="_lfgzcSMsEeG5GfEOMmHYaw" type="_lfhagCMsEeG5GfEOMmHYaw" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfgzciMsEeG5GfEOMmHYaw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfgzcyMsEeG5GfEOMmHYaw" value="*"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZmGFoR1yEeGwqd6kdEu5Ug" name="isTemplate" isQuery="true">
-        <ownedComment xmi:id="_ZmGFoh1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFoR1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfgzdCMsEeG5GfEOMmHYaw" name="isTemplate" isQuery="true">
+        <ownedComment xmi:id="_lfgzdSMsEeG5GfEOMmHYaw" annotatedElement="_lfgzdCMsEeG5GfEOMmHYaw">
           <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZmGFpR1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfgzeCMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixzx1yEeGwqd6kdEu5Ug" name="TupleLiteralExp">
-      <generalization xmi:id="_Zmix0B1yEeGwqd6kdEu5Ug" general="_Zmixuh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix0R1yEeGwqd6kdEu5Ug" name="part" type="_Zmix5h1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix0h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zmix0x1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf7DKSMsEeG5GfEOMmHYaw" name="TupleLiteralExp">
+      <generalization xmi:id="_lf7DKiMsEeG5GfEOMmHYaw" general="_lf51CiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf7DKyMsEeG5GfEOMmHYaw" name="part" type="_lf84VCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf7DLCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lf7DLSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix5h1yEeGwqd6kdEu5Ug" name="TupleLiteralPart">
-      <generalization xmi:id="_Zmix5x1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_Zm1sgh1yEeGwqd6kdEu5Ug" general="_Zmr7cB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmix6B1yEeGwqd6kdEu5Ug" name="initExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmix6R1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf84VCMsEeG5GfEOMmHYaw" name="TupleLiteralPart">
+      <generalization xmi:id="_lf84VSMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lgLh0CMsEeG5GfEOMmHYaw" general="_lf-tgCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf84ViMsEeG5GfEOMmHYaw" name="initExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf84VyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1sfR1yEeGwqd6kdEu5Ug" name="TupleType">
-      <generalization xmi:id="_Zm1sfh1yEeGwqd6kdEu5Ug" general="_ZlMt_B1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgJspCMsEeG5GfEOMmHYaw" name="TupleType">
+      <generalization xmi:id="_lgJspSMsEeG5GfEOMmHYaw" general="_le-A4CMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMtzR1yEeGwqd6kdEu5Ug" name="Type">
-      <ownedComment xmi:id="_ZlMtzh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtzR1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le69kCMsEeG5GfEOMmHYaw" name="Type">
+      <ownedComment xmi:id="_le69kSMsEeG5GfEOMmHYaw" annotatedElement="_le69kCMsEeG5GfEOMmHYaw">
         <body>A type is a named element that is used as the type for a typed element. A type can be contained in a package.</body>
       </ownedComment>
-      <ownedComment xmi:id="_ZmGFxh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMtzR1yEeGwqd6kdEu5Ug">
+      <ownedComment xmi:id="_lflr8CMsEeG5GfEOMmHYaw" annotatedElement="_le69kCMsEeG5GfEOMmHYaw">
         <body>Type is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMtzx1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFxx1yEeGwqd6kdEu5Ug" general="_ZmGFkB1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFyB1yEeGwqd6kdEu5Ug" general="_ZmGFph1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt0B1yEeGwqd6kdEu5Ug" name="package" type="_ZlMt7h1yEeGwqd6kdEu5Ug" association="_ZlWfDB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt0R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt0B1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le69kiMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lflr8SMsEeG5GfEOMmHYaw" general="_lfgMYCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lflr8iMsEeG5GfEOMmHYaw" general="_lfhagCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le69kyMsEeG5GfEOMmHYaw" name="package" type="_le9Z0CMsEeG5GfEOMmHYaw" association="_lfEHgiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le69lCMsEeG5GfEOMmHYaw" annotatedElement="_le69kyMsEeG5GfEOMmHYaw">
           <body>Specifies the owning package of this classifier, if any.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt0h1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le69lSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGFyR1yEeGwqd6kdEu5Ug" name="templateParameter" type="_ZmGF0R1yEeGwqd6kdEu5Ug" redefinedProperty="_ZmGFqR1yEeGwqd6kdEu5Ug" association="_ZmPPlh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFyh1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFyR1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfmTACMsEeG5GfEOMmHYaw" name="templateParameter" type="_lfm6ECMsEeG5GfEOMmHYaw" redefinedProperty="_lfhagyMsEeG5GfEOMmHYaw" association="_lfp9YCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfmTASMsEeG5GfEOMmHYaw" annotatedElement="_lfmTACMsEeG5GfEOMmHYaw">
           <body>The template parameter that exposes this element as a formal parameter.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGFyx1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfmTAiMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAkB1yEeGwqd6kdEu5Ug" name="ownedAttribute" type="_ZlMttx1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZmZAmR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAkR1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmZAkh1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lfzHUCMsEeG5GfEOMmHYaw" name="ownedAttribute" type="_le5vcCMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lf0VcCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfzHUSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfzHUiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAkx1yEeGwqd6kdEu5Ug" name="ownedOperation" type="_ZlDjwR1yEeGwqd6kdEu5Ug" isOrdered="true" aggregation="composite" association="_ZmZAmh1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAlB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmZAlR1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lfzHUyMsEeG5GfEOMmHYaw" name="ownedOperation" type="_le028SMsEeG5GfEOMmHYaw" isOrdered="true" aggregation="composite" association="_lf0VcSMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfzHVCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfzHVSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmZAlh1yEeGwqd6kdEu5Ug" name="superClass" type="_ZlMtzR1yEeGwqd6kdEu5Ug" isOrdered="true">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmZAlx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmZAmB1yEeGwqd6kdEu5Ug" value="*"/>
+      <ownedAttribute xmi:id="_lfzHViMsEeG5GfEOMmHYaw" name="superClass" type="_le69kCMsEeG5GfEOMmHYaw" isOrdered="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfzHVyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfzHWCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZnInYB1yEeGwqd6kdEu5Ug" name="instanceClassName" type="_ZlzKqB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZnInYR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lgVS0CMsEeG5GfEOMmHYaw" name="instanceClassName" type="_lfV0VCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgVS0SMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_ZmGFzB1yEeGwqd6kdEu5Ug" name="isTemplate" isQuery="true" redefinedOperation="_ZmGFoR1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGFzR1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGFzB1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfmTAyMsEeG5GfEOMmHYaw" name="isTemplate" isQuery="true" redefinedOperation="_lfgzdCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfmTBCMsEeG5GfEOMmHYaw" annotatedElement="_lfmTAyMsEeG5GfEOMmHYaw">
           <body>The query isTemplate() returns whether this templateable element is actually a template.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZmGF0B1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfmTByMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixnh1yEeGwqd6kdEu5Ug" name="TypeExp">
-      <generalization xmi:id="_Zmixnx1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixoB1yEeGwqd6kdEu5Ug" name="referredType" type="_ZlMtzR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixoR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf3_2CMsEeG5GfEOMmHYaw" name="TypeExp">
+      <generalization xmi:id="_lf3_2SMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf3_2iMsEeG5GfEOMmHYaw" name="referredType" type="_le69kCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf3_2yMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmGF0R1yEeGwqd6kdEu5Ug" name="TypeTemplateParameter">
-      <ownedComment xmi:id="_ZmGF0h1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGF0R1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfm6ECMsEeG5GfEOMmHYaw" name="TypeTemplateParameter">
+      <ownedComment xmi:id="_lfm6ESMsEeG5GfEOMmHYaw" annotatedElement="_lfm6ECMsEeG5GfEOMmHYaw">
         <body>A type template parameter exposes a type as a formal template parameter.</body>
       </ownedComment>
-      <generalization xmi:id="_ZmGF1h1yEeGwqd6kdEu5Ug" general="_Zl8Unx1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmGF1x1yEeGwqd6kdEu5Ug" name="allowSubstitutable" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGF2B1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGF1x1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfm6FSMsEeG5GfEOMmHYaw" general="_lfdJECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lfm6FiMsEeG5GfEOMmHYaw" name="allowSubstitutable" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfm6FyMsEeG5GfEOMmHYaw" annotatedElement="_lfm6FiMsEeG5GfEOMmHYaw">
           <body>Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.</body>
         </ownedComment>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ZmGF2R1yEeGwqd6kdEu5Ug" value="true"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lfm6GCMsEeG5GfEOMmHYaw" value="true"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGF2h1yEeGwqd6kdEu5Ug" name="parameteredElement" type="_ZlMtzR1yEeGwqd6kdEu5Ug" redefinedProperty="_Zl8Upx1yEeGwqd6kdEu5Ug" association="_ZmPPlh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGF2x1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGF2h1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfm6GSMsEeG5GfEOMmHYaw" name="parameteredElement" type="_le69kCMsEeG5GfEOMmHYaw" redefinedProperty="_lfdJGCMsEeG5GfEOMmHYaw" association="_lfp9YCMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfm6GiMsEeG5GfEOMmHYaw" annotatedElement="_lfm6GSMsEeG5GfEOMmHYaw">
           <body>The parameterable classifier for this template parameter.</body>
         </ownedComment>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmGF3B1yEeGwqd6kdEu5Ug" name="constrainingType" type="_ZlMtzR1yEeGwqd6kdEu5Ug" association="_ZmPPmB1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZmGF3R1yEeGwqd6kdEu5Ug" annotatedElement="_ZmGF3B1yEeGwqd6kdEu5Ug">
+      <ownedAttribute xmi:id="_lfm6GyMsEeG5GfEOMmHYaw" name="constrainingType" type="_le69kCMsEeG5GfEOMmHYaw" association="_lfp9YiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_lfm6HCMsEeG5GfEOMmHYaw" annotatedElement="_lfm6GyMsEeG5GfEOMmHYaw">
           <body>The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGF3h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmGF3x1yEeGwqd6kdEu5Ug" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfm6HSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfm6HiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlMt2B1yEeGwqd6kdEu5Ug" name="TypedElement" isAbstract="true">
-      <ownedComment xmi:id="_ZlMt2R1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt2B1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_le8LsCMsEeG5GfEOMmHYaw" name="TypedElement" isAbstract="true">
+      <ownedComment xmi:id="_le8LsSMsEeG5GfEOMmHYaw" annotatedElement="_le8LsCMsEeG5GfEOMmHYaw">
         <body>A typed element is a kind of named element that represents an element with a type.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlMt2h1yEeGwqd6kdEu5Ug" general="_ZlDjwB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZlMt2x1yEeGwqd6kdEu5Ug" name="type" type="_ZlMtzR1yEeGwqd6kdEu5Ug" association="_ZlWfBh1yEeGwqd6kdEu5Ug">
-        <ownedComment xmi:id="_ZlMt3B1yEeGwqd6kdEu5Ug" annotatedElement="_ZlMt2x1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_le8LsiMsEeG5GfEOMmHYaw" general="_le028CMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_le8LsyMsEeG5GfEOMmHYaw" name="type" type="_le69kCMsEeG5GfEOMmHYaw" association="_lfDgdiMsEeG5GfEOMmHYaw">
+        <ownedComment xmi:id="_le8LtCMsEeG5GfEOMmHYaw" annotatedElement="_le8LsyMsEeG5GfEOMmHYaw">
           <body>The type of the TypedElement.</body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlMt3R1yEeGwqd6kdEu5Ug"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_le8LtSMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZnbiYR1yEeGwqd6kdEu5Ug" name="TypedMultiplicityElement" isAbstract="true">
-      <generalization xmi:id="_ZnbiYh1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZnbiYx1yEeGwqd6kdEu5Ug" general="_ZlWesB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgpb4CMsEeG5GfEOMmHYaw" name="TypedMultiplicityElement" isAbstract="true">
+      <generalization xmi:id="_lgpb4SMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lgpb4iMsEeG5GfEOMmHYaw" general="_lfAdICMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixgB1yEeGwqd6kdEu5Ug" name="UnlimitedNaturalLiteralExp">
-      <generalization xmi:id="_ZmixgR1yEeGwqd6kdEu5Ug" general="_Zmixvh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixgh1yEeGwqd6kdEu5Ug" name="unlimitedNaturalSymbol" type="_ZlzKqh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf2xsCMsEeG5GfEOMmHYaw" name="UnlimitedNaturalLiteralExp">
+      <generalization xmi:id="_lf2xsSMsEeG5GfEOMmHYaw" general="_lf6cEiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf2xsiMsEeG5GfEOMmHYaw" name="unlimitedNaturalSymbol" type="_lfWbYCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZnSYZx1yEeGwqd6kdEu5Ug" name="UnspecifiedType">
-      <generalization xmi:id="_ZnSYaB1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZnSYaR1yEeGwqd6kdEu5Ug" name="lowerBound" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZnSYah1yEeGwqd6kdEu5Ug" name="upperBound" type="_ZlMtzR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lggR8CMsEeG5GfEOMmHYaw" name="UnspecifiedType">
+      <generalization xmi:id="_lggR8SMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lggR8iMsEeG5GfEOMmHYaw" name="lowerBound" type="_le69kCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lggR8yMsEeG5GfEOMmHYaw" name="upperBound" type="_le69kCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmix_x1yEeGwqd6kdEu5Ug" name="UnspecifiedValueExp">
-      <generalization xmi:id="_ZmiyAB1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf-GeiMsEeG5GfEOMmHYaw" name="UnspecifiedValueExp">
+      <generalization xmi:id="_lf-GeyMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZlpZoB1yEeGwqd6kdEu5Ug" name="ValueSpecification" isAbstract="true">
-      <ownedComment xmi:id="_ZlpZoR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZoB1yEeGwqd6kdEu5Ug">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lfMqYCMsEeG5GfEOMmHYaw" name="ValueSpecification" isAbstract="true">
+      <ownedComment xmi:id="_lfMqYSMsEeG5GfEOMmHYaw" annotatedElement="_lfMqYCMsEeG5GfEOMmHYaw">
         <body>A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.</body>
       </ownedComment>
-      <ownedComment xmi:id="_ZmGFth1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZoB1yEeGwqd6kdEu5Ug">
+      <ownedComment xmi:id="_lfiooCMsEeG5GfEOMmHYaw" annotatedElement="_lfMqYCMsEeG5GfEOMmHYaw">
         <body>ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.</body>
       </ownedComment>
-      <generalization xmi:id="_ZlpZoh1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_ZmGFtx1yEeGwqd6kdEu5Ug" general="_ZmGFph1yEeGwqd6kdEu5Ug"/>
-      <ownedOperation xmi:id="_ZlpZox1yEeGwqd6kdEu5Ug" name="isComputable" isQuery="true">
-        <ownedComment xmi:id="_ZlpZpB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZox1yEeGwqd6kdEu5Ug">
+      <generalization xmi:id="_lfMqYiMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lfiooSMsEeG5GfEOMmHYaw" general="_lfhagCMsEeG5GfEOMmHYaw"/>
+      <ownedOperation xmi:id="_lfMqYyMsEeG5GfEOMmHYaw" name="isComputable" isQuery="true">
+        <ownedComment xmi:id="_lfMqZCMsEeG5GfEOMmHYaw" annotatedElement="_lfMqYyMsEeG5GfEOMmHYaw">
           <body>The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZpx1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqZyMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlpZqB1yEeGwqd6kdEu5Ug" name="integerValue" isQuery="true">
-        <ownedComment xmi:id="_ZlpZqR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZqB1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfMqaCMsEeG5GfEOMmHYaw" name="integerValue" isQuery="true">
+        <ownedComment xmi:id="_lfMqaSMsEeG5GfEOMmHYaw" annotatedElement="_lfMqaCMsEeG5GfEOMmHYaw">
           <body>The query integerValue() gives a single Integer value when one can be computed.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZrB1yEeGwqd6kdEu5Ug" type="_ZlzKpB1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqbCMsEeG5GfEOMmHYaw" type="_lfV0UCMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlpZrR1yEeGwqd6kdEu5Ug" name="booleanValue" isQuery="true">
-        <ownedComment xmi:id="_ZlpZrh1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZrR1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfMqbSMsEeG5GfEOMmHYaw" name="booleanValue" isQuery="true">
+        <ownedComment xmi:id="_lfMqbiMsEeG5GfEOMmHYaw" annotatedElement="_lfMqbSMsEeG5GfEOMmHYaw">
           <body>The query booleanValue() gives a single Boolean value when one can be computed.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZsR1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqcSMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlpZsh1yEeGwqd6kdEu5Ug" name="stringValue" isQuery="true">
-        <ownedComment xmi:id="_ZlpZsx1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZsh1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfMqciMsEeG5GfEOMmHYaw" name="stringValue" isQuery="true">
+        <ownedComment xmi:id="_lfMqcyMsEeG5GfEOMmHYaw" annotatedElement="_lfMqciMsEeG5GfEOMmHYaw">
           <body>The query stringValue() gives a single String value when one can be computed.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZth1yEeGwqd6kdEu5Ug" type="_ZlzKqB1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqdiMsEeG5GfEOMmHYaw" type="_lfV0VCMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlpZtx1yEeGwqd6kdEu5Ug" name="unlimitedValue" isQuery="true">
-        <ownedComment xmi:id="_ZlpZuB1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZtx1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfMqdyMsEeG5GfEOMmHYaw" name="unlimitedValue" isQuery="true">
+        <ownedComment xmi:id="_lfMqeCMsEeG5GfEOMmHYaw" annotatedElement="_lfMqdyMsEeG5GfEOMmHYaw">
           <body>The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZux1yEeGwqd6kdEu5Ug" type="_ZlzKqh1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqeyMsEeG5GfEOMmHYaw" type="_lfWbYCMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_ZlpZvB1yEeGwqd6kdEu5Ug" name="isNull" isQuery="true">
-        <ownedComment xmi:id="_ZlpZvR1yEeGwqd6kdEu5Ug" annotatedElement="_ZlpZvB1yEeGwqd6kdEu5Ug">
+      <ownedOperation xmi:id="_lfMqfCMsEeG5GfEOMmHYaw" name="isNull" isQuery="true">
+        <ownedComment xmi:id="_lfMqfSMsEeG5GfEOMmHYaw" annotatedElement="_lfMqfCMsEeG5GfEOMmHYaw">
           <body>The query isNull() returns true when it can be computed that the value is null.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_ZlpZwB1yEeGwqd6kdEu5Ug" type="_ZlzKph1yEeGwqd6kdEu5Ug" direction="return"/>
+        <ownedParameter xmi:id="_lfMqgCMsEeG5GfEOMmHYaw" type="_lfV0UiMsEeG5GfEOMmHYaw" direction="return"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZmixkB1yEeGwqd6kdEu5Ug" name="Variable">
-      <generalization xmi:id="_ZmixkR1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-      <generalization xmi:id="_Zm1shB1yEeGwqd6kdEu5Ug" general="_Zmr7cB1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_Zmixkh1yEeGwqd6kdEu5Ug" name="initExpression" type="_ZmZArR1yEeGwqd6kdEu5Ug" aggregation="composite">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zmixkx1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf3YxCMsEeG5GfEOMmHYaw" name="Variable">
+      <generalization xmi:id="_lf3YxSMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
+      <generalization xmi:id="_lgLh0iMsEeG5GfEOMmHYaw" general="_lf-tgCMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf3YxiMsEeG5GfEOMmHYaw" name="initExpression" type="_lf2KpiMsEeG5GfEOMmHYaw" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf3YxyMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_ZmixlB1yEeGwqd6kdEu5Ug" name="representedParameter" type="_ZlMtsB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixlR1yEeGwqd6kdEu5Ug"/>
+      <ownedAttribute xmi:id="_lf3YyCMsEeG5GfEOMmHYaw" name="representedParameter" type="_le4hUCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf3YySMsEeG5GfEOMmHYaw"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1shR1yEeGwqd6kdEu5Ug" name="implicit" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1shh1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm1shx1yEeGwqd6kdEu5Ug" value="false"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmr7cB1yEeGwqd6kdEu5Ug" name="VariableDeclaration" isAbstract="true">
-      <generalization xmi:id="_Zm1sgx1yEeGwqd6kdEu5Ug" general="_ZlMt2B1yEeGwqd6kdEu5Ug"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zmixmh1yEeGwqd6kdEu5Ug" name="VariableExp">
-      <generalization xmi:id="_Zmixmx1yEeGwqd6kdEu5Ug" general="_ZmZArR1yEeGwqd6kdEu5Ug"/>
-      <ownedAttribute xmi:id="_ZmixnB1yEeGwqd6kdEu5Ug" name="referredVariable" type="_Zmr7cB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmixnR1yEeGwqd6kdEu5Ug"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:id="_Zm1siB1yEeGwqd6kdEu5Ug" name="implicit" type="_ZlzKph1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zm1siR1yEeGwqd6kdEu5Ug"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Zm1sih1yEeGwqd6kdEu5Ug" value="false"/>
+      <ownedAttribute xmi:id="_lgMI4CMsEeG5GfEOMmHYaw" name="implicit" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgMI4SMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgMI4iMsEeG5GfEOMmHYaw" value="false"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_Zm1sfx1yEeGwqd6kdEu5Ug" name="VoidType">
-      <generalization xmi:id="_Zm1sgB1yEeGwqd6kdEu5Ug" general="_ZlDjxh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf-tgCMsEeG5GfEOMmHYaw" name="VariableDeclaration" isAbstract="true">
+      <generalization xmi:id="_lgLh0SMsEeG5GfEOMmHYaw" general="_le8LsCMsEeG5GfEOMmHYaw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPhR1yEeGwqd6kdEu5Ug" name="A_actual_templateParameterSubstitution" memberEnd="_Zl8UzR1yEeGwqd6kdEu5Ug _ZmPPhh1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPhh1yEeGwqd6kdEu5Ug" name="templateParameterSubstitution" type="_Zl8Uwx1yEeGwqd6kdEu5Ug" association="_ZmPPhR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPhx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmPPiB1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lf3_1CMsEeG5GfEOMmHYaw" name="VariableExp">
+      <generalization xmi:id="_lf3_1SMsEeG5GfEOMmHYaw" general="_lf2KpiMsEeG5GfEOMmHYaw"/>
+      <ownedAttribute xmi:id="_lf3_1iMsEeG5GfEOMmHYaw" name="referredVariable" type="_lf-tgCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lf3_1yMsEeG5GfEOMmHYaw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_lgMI4yMsEeG5GfEOMmHYaw" name="implicit" type="_lfV0UiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lgMI5CMsEeG5GfEOMmHYaw"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_lgMI5SMsEeG5GfEOMmHYaw" value="false"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lgJspiMsEeG5GfEOMmHYaw" name="VoidType">
+      <generalization xmi:id="_lgJspyMsEeG5GfEOMmHYaw" general="_le2FECMsEeG5GfEOMmHYaw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfovRSMsEeG5GfEOMmHYaw" name="A_actual_templateParameterSubstitution" memberEnd="_lfflWiMsEeG5GfEOMmHYaw _lfovRiMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfovRiMsEeG5GfEOMmHYaw" name="templateParameterSubstitution" type="_lfflUCMsEeG5GfEOMmHYaw" association="_lfovRSMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfovRyMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfovSCMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfDR1yEeGwqd6kdEu5Ug" name="A_annotatedElement_comment" memberEnd="_ZlWe9B1yEeGwqd6kdEu5Ug _ZlWfDh1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWfDh1yEeGwqd6kdEu5Ug" name="comment" type="_ZlWe7h1yEeGwqd6kdEu5Ug" association="_ZlWfDR1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWfDx1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWfEB1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfEHgyMsEeG5GfEOMmHYaw" name="A_annotatedElement_comment" memberEnd="_lfCSViMsEeG5GfEOMmHYaw _lfEHhCMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfEHhCMsEeG5GfEOMmHYaw" name="comment" type="_lfCSUCMsEeG5GfEOMmHYaw" association="_lfEHgyMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfEHhSMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfEHhiMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmZAih1yEeGwqd6kdEu5Ug" name="A_associationClass_property" memberEnd="_ZmZAgh1yEeGwqd6kdEu5Ug _ZmZAhR1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPmB1yEeGwqd6kdEu5Ug" name="A_constrainingType_typeTemplateParameter" memberEnd="_ZmGF3B1yEeGwqd6kdEu5Ug _ZmPPmR1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPmR1yEeGwqd6kdEu5Ug" name="typeTemplateParameter" type="_ZmGF0R1yEeGwqd6kdEu5Ug" association="_ZmPPmB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPmh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmPPmx1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfwEACMsEeG5GfEOMmHYaw" name="A_associationClass_property" memberEnd="_lfvc8iMsEeG5GfEOMmHYaw _lfvc9SMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfp9YiMsEeG5GfEOMmHYaw" name="A_constrainingType_typeTemplateParameter" memberEnd="_lfm6GyMsEeG5GfEOMmHYaw _lfp9YyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfp9YyMsEeG5GfEOMmHYaw" name="typeTemplateParameter" type="_lfm6ECMsEeG5GfEOMmHYaw" association="_lfp9YiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfp9ZCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfp9ZSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPjB1yEeGwqd6kdEu5Ug" name="A_default_templateParameter" memberEnd="_Zl8UrB1yEeGwqd6kdEu5Ug _ZmPPjR1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPjR1yEeGwqd6kdEu5Ug" name="templateParameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" association="_ZmPPjB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPjh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmPPjx1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfpWUiMsEeG5GfEOMmHYaw" name="A_default_templateParameter" memberEnd="_lfdJHSMsEeG5GfEOMmHYaw _lfpWUyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfpWUyMsEeG5GfEOMmHYaw" name="templateParameter" type="_lfdJECMsEeG5GfEOMmHYaw" association="_lfpWUiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfpWVCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfpWVSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmGF6B1yEeGwqd6kdEu5Ug" name="A_formal_templateParameterSubstitution" memberEnd="_Zl8UyR1yEeGwqd6kdEu5Ug _ZmGF6R1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmGF6R1yEeGwqd6kdEu5Ug" name="templateParameterSubstitution" type="_Zl8Uwx1yEeGwqd6kdEu5Ug" association="_ZmGF6B1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGF6h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmGF6x1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfoINiMsEeG5GfEOMmHYaw" name="A_formal_templateParameterSubstitution" memberEnd="_lfflViMsEeG5GfEOMmHYaw _lfoINyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfoINyMsEeG5GfEOMmHYaw" name="templateParameterSubstitution" type="_lfflUCMsEeG5GfEOMmHYaw" association="_lfoINiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfoIOCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfoIOSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfCx1yEeGwqd6kdEu5Ug" name="A_nestedPackage_nestingPackage" memberEnd="_ZlMt8R1yEeGwqd6kdEu5Ug _ZlMt9R1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPlx1yEeGwqd6kdEu5Ug" name="A_operation_templateParameter_parameteredElement" memberEnd="_ZmGFux1yEeGwqd6kdEu5Ug _ZmGFwR1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWe_R1yEeGwqd6kdEu5Ug" name="A_opposite_property" memberEnd="_ZlMtyh1yEeGwqd6kdEu5Ug _ZlWe_h1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWe_h1yEeGwqd6kdEu5Ug" name="property" type="_ZlMttx1yEeGwqd6kdEu5Ug" association="_ZlWe_R1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWe_x1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfEHgSMsEeG5GfEOMmHYaw" name="A_nestedPackage_nestingPackage" memberEnd="_le9Z0yMsEeG5GfEOMmHYaw _le9Z1yMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfp9YSMsEeG5GfEOMmHYaw" name="A_operation_templateParameter_parameteredElement" memberEnd="_lfkd0CMsEeG5GfEOMmHYaw _lflE4yMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfC5ZSMsEeG5GfEOMmHYaw" name="A_opposite_property" memberEnd="_le5vgyMsEeG5GfEOMmHYaw _lfC5ZiMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfC5ZiMsEeG5GfEOMmHYaw" name="property" type="_le5vcCMsEeG5GfEOMmHYaw" association="_lfC5ZSMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfC5ZyMsEeG5GfEOMmHYaw"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPkx1yEeGwqd6kdEu5Ug" name="A_ownedActual_templateParameterSubstitution" memberEnd="_Zl8Uzx1yEeGwqd6kdEu5Ug _ZmPPlB1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPlB1yEeGwqd6kdEu5Ug" name="templateParameterSubstitution" type="_Zl8Uwx1yEeGwqd6kdEu5Ug" association="_ZmPPkx1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPlR1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfpWWSMsEeG5GfEOMmHYaw" name="A_ownedActual_templateParameterSubstitution" memberEnd="_lfflXCMsEeG5GfEOMmHYaw _lfpWWiMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfpWWiMsEeG5GfEOMmHYaw" name="templateParameterSubstitution" type="_lfflUCMsEeG5GfEOMmHYaw" association="_lfpWWSMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfpWWyMsEeG5GfEOMmHYaw"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWe_B1yEeGwqd6kdEu5Ug" name="A_ownedAttribute_class" memberEnd="_ZlDjzB1yEeGwqd6kdEu5Ug _ZlMtxx1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmZAmR1yEeGwqd6kdEu5Ug" name="A_ownedAttribute_owningType" memberEnd="_ZmZAkB1yEeGwqd6kdEu5Ug _ZmZAjh1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfER1yEeGwqd6kdEu5Ug" name="A_ownedComment_owningElement" memberEnd="_ZlWe6h1yEeGwqd6kdEu5Ug _ZlWfEh1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWfEh1yEeGwqd6kdEu5Ug" name="owningElement" type="_ZlWe6B1yEeGwqd6kdEu5Ug" association="_ZlWfER1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWfEx1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfC5ZCMsEeG5GfEOMmHYaw" name="A_ownedAttribute_class" memberEnd="_le2FFiMsEeG5GfEOMmHYaw _le5vgCMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lf0VcCMsEeG5GfEOMmHYaw" name="A_ownedAttribute_owningType" memberEnd="_lfzHUCMsEeG5GfEOMmHYaw _lfygQCMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfEukCMsEeG5GfEOMmHYaw" name="A_ownedComment_owningElement" memberEnd="_lfBrQiMsEeG5GfEOMmHYaw _lfEukSMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfEukSMsEeG5GfEOMmHYaw" name="owningElement" type="_lfBrQCMsEeG5GfEOMmHYaw" association="_lfEukCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfEukiMsEeG5GfEOMmHYaw"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPkB1yEeGwqd6kdEu5Ug" name="A_ownedDefault_templateParameter" memberEnd="_Zl8Urx1yEeGwqd6kdEu5Ug _ZmPPkR1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPkR1yEeGwqd6kdEu5Ug" name="templateParameter" type="_Zl8Unx1yEeGwqd6kdEu5Ug" association="_ZmPPkB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPkh1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfpWViMsEeG5GfEOMmHYaw" name="A_ownedDefault_templateParameter" memberEnd="_lfdJICMsEeG5GfEOMmHYaw _lfpWVyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfpWVyMsEeG5GfEOMmHYaw" name="templateParameter" type="_lfdJECMsEeG5GfEOMmHYaw" association="_lfpWViMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfpWWCMsEeG5GfEOMmHYaw"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfCh1yEeGwqd6kdEu5Ug" name="A_ownedLiteral_enumeration" memberEnd="_ZlMt4R1yEeGwqd6kdEu5Ug _ZlMt6B1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfAR1yEeGwqd6kdEu5Ug" name="A_ownedOperation_class" memberEnd="_ZlDj0B1yEeGwqd6kdEu5Ug _ZlDj4x1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmZAmh1yEeGwqd6kdEu5Ug" name="A_ownedOperation_owningType" memberEnd="_ZmZAkx1yEeGwqd6kdEu5Ug _ZmZAjB1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfAB1yEeGwqd6kdEu5Ug" name="A_ownedParameter_operation" memberEnd="_ZlDj3x1yEeGwqd6kdEu5Ug _ZlMttB1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmGF5h1yEeGwqd6kdEu5Ug" name="A_ownedParameter_signature" memberEnd="_Zl8UmR1yEeGwqd6kdEu5Ug _Zl8UpR1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPix1yEeGwqd6kdEu5Ug" name="A_ownedParameteredElement_owningTemplateParameter" memberEnd="_Zl8UqR1yEeGwqd6kdEu5Ug _ZmGFrB1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPih1yEeGwqd6kdEu5Ug" name="A_ownedTemplateSignature_template" memberEnd="_ZmGFlx1yEeGwqd6kdEu5Ug _Zl8UnR1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfDB1yEeGwqd6kdEu5Ug" name="A_ownedType_package" memberEnd="_ZlMt-B1yEeGwqd6kdEu5Ug _ZlMt0B1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPhB1yEeGwqd6kdEu5Ug" name="A_parameterSubstitution_templateBinding" memberEnd="_Zl8Uvx1yEeGwqd6kdEu5Ug _Zl8Uyx1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmGF4h1yEeGwqd6kdEu5Ug" name="A_parameter_templateSignature" memberEnd="_Zl8Ulh1yEeGwqd6kdEu5Ug _ZmGF4x1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmGF4x1yEeGwqd6kdEu5Ug" name="templateSignature" type="_Zl8UkB1yEeGwqd6kdEu5Ug" association="_ZmGF4h1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmGF5B1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmGF5R1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfEHgCMsEeG5GfEOMmHYaw" name="A_ownedLiteral_enumeration" memberEnd="_le8LuSMsEeG5GfEOMmHYaw _le8ywyMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfDgcSMsEeG5GfEOMmHYaw" name="A_ownedOperation_class" memberEnd="_le2FGiMsEeG5GfEOMmHYaw _le36RCMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lf0VcSMsEeG5GfEOMmHYaw" name="A_ownedOperation_owningType" memberEnd="_lfzHUyMsEeG5GfEOMmHYaw _lfxSISMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfDgcCMsEeG5GfEOMmHYaw" name="A_ownedParameter_operation" memberEnd="_le36QCMsEeG5GfEOMmHYaw _le4hVCMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfoINCMsEeG5GfEOMmHYaw" name="A_ownedParameter_signature" memberEnd="_lfbT6SMsEeG5GfEOMmHYaw _lfdJFiMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfpWUSMsEeG5GfEOMmHYaw" name="A_ownedParameteredElement_owningTemplateParameter" memberEnd="_lfdJGiMsEeG5GfEOMmHYaw _lfhahiMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfpWUCMsEeG5GfEOMmHYaw" name="A_ownedTemplateSignature_template" memberEnd="_lfgMZyMsEeG5GfEOMmHYaw _lfbT7SMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfEHgiMsEeG5GfEOMmHYaw" name="A_ownedType_package" memberEnd="_le9Z2iMsEeG5GfEOMmHYaw _le69kyMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfovRCMsEeG5GfEOMmHYaw" name="A_parameterSubstitution_templateBinding" memberEnd="_lfe-TSMsEeG5GfEOMmHYaw _lfflWCMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfoIMCMsEeG5GfEOMmHYaw" name="A_parameter_templateSignature" memberEnd="_lfbT5iMsEeG5GfEOMmHYaw _lfoIMSMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfoIMSMsEeG5GfEOMmHYaw" name="templateSignature" type="_lfbT4CMsEeG5GfEOMmHYaw" association="_lfoIMCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfoIMiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfoIMyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPiR1yEeGwqd6kdEu5Ug" name="A_parameteredElement_templateParameter" memberEnd="_Zl8Upx1yEeGwqd6kdEu5Ug _ZmGFqR1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWe-B1yEeGwqd6kdEu5Ug" name="A_raisedException_operation" memberEnd="_ZlDj2x1yEeGwqd6kdEu5Ug _ZlWe-R1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWe-R1yEeGwqd6kdEu5Ug" name="operation" type="_ZlDjwR1yEeGwqd6kdEu5Ug" association="_ZlWe-B1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWe-h1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWe-x1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfovSSMsEeG5GfEOMmHYaw" name="A_parameteredElement_templateParameter" memberEnd="_lfdJGCMsEeG5GfEOMmHYaw _lfhagyMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfC5YCMsEeG5GfEOMmHYaw" name="A_raisedException_operation" memberEnd="_le3TMSMsEeG5GfEOMmHYaw _lfC5YSMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfC5YSMsEeG5GfEOMmHYaw" name="operation" type="_le028SMsEeG5GfEOMmHYaw" association="_lfC5YCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfC5YiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfC5YyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPgB1yEeGwqd6kdEu5Ug" name="A_signature_templateBinding" memberEnd="_Zl8UvR1yEeGwqd6kdEu5Ug _ZmPPgR1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZmPPgR1yEeGwqd6kdEu5Ug" name="templateBinding" type="_Zl8Ush1yEeGwqd6kdEu5Ug" association="_ZmPPgB1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZmPPgh1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZmPPgx1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfovQCMsEeG5GfEOMmHYaw" name="A_signature_templateBinding" memberEnd="_lfe-SyMsEeG5GfEOMmHYaw _lfovQSMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfovQSMsEeG5GfEOMmHYaw" name="templateBinding" type="_lfe-QCMsEeG5GfEOMmHYaw" association="_lfovQCMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfovQiMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfovQyMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfAh1yEeGwqd6kdEu5Ug" name="A_superClass_class" memberEnd="_ZlDj1B1yEeGwqd6kdEu5Ug _ZlWfAx1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWfAx1yEeGwqd6kdEu5Ug" name="class" type="_ZlDjxh1yEeGwqd6kdEu5Ug" association="_ZlWfAh1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWfBB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWfBR1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfDgciMsEeG5GfEOMmHYaw" name="A_superClass_class" memberEnd="_le2FHiMsEeG5GfEOMmHYaw _lfDgcyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfDgcyMsEeG5GfEOMmHYaw" name="class" type="_le2FECMsEeG5GfEOMmHYaw" association="_lfDgciMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfDgdCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfDgdSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmGF5x1yEeGwqd6kdEu5Ug" name="A_templateBinding_boundElement" memberEnd="_ZmGFkx1yEeGwqd6kdEu5Ug _Zl8Uux1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZmPPlh1yEeGwqd6kdEu5Ug" name="A_type_templateParameter_parameteredElement" memberEnd="_ZmGFyR1yEeGwqd6kdEu5Ug _ZmGF2h1yEeGwqd6kdEu5Ug"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZlWfBh1yEeGwqd6kdEu5Ug" name="A_type_typedElement" memberEnd="_ZlMt2x1yEeGwqd6kdEu5Ug _ZlWfBx1yEeGwqd6kdEu5Ug">
-      <ownedEnd xmi:id="_ZlWfBx1yEeGwqd6kdEu5Ug" name="typedElement" type="_ZlMt2B1yEeGwqd6kdEu5Ug" association="_ZlWfBh1yEeGwqd6kdEu5Ug">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZlWfCB1yEeGwqd6kdEu5Ug"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZlWfCR1yEeGwqd6kdEu5Ug" value="*"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfoINSMsEeG5GfEOMmHYaw" name="A_templateBinding_boundElement" memberEnd="_lfgMYyMsEeG5GfEOMmHYaw _lfe-SSMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfp9YCMsEeG5GfEOMmHYaw" name="A_type_templateParameter_parameteredElement" memberEnd="_lfmTACMsEeG5GfEOMmHYaw _lfm6GSMsEeG5GfEOMmHYaw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lfDgdiMsEeG5GfEOMmHYaw" name="A_type_typedElement" memberEnd="_le8LsyMsEeG5GfEOMmHYaw _lfDgdyMsEeG5GfEOMmHYaw">
+      <ownedEnd xmi:id="_lfDgdyMsEeG5GfEOMmHYaw" name="typedElement" type="_le8LsCMsEeG5GfEOMmHYaw" association="_lfDgdiMsEeG5GfEOMmHYaw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lfDgeCMsEeG5GfEOMmHYaw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lfDgeSMsEeG5GfEOMmHYaw" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_ZnSYYB1yEeGwqd6kdEu5Ug" name="Nameable" isAbstract="true"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_ZnSYZh1yEeGwqd6kdEu5Ug" name="Pivotable" isAbstract="true"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_ZnbiZR1yEeGwqd6kdEu5Ug" name="Visitable" isAbstract="true"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_ZnbiZh1yEeGwqd6kdEu5Ug" name="Visitor" isAbstract="true">
-      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_ZnbiZx1yEeGwqd6kdEu5Ug" parameter="_ZnbiaB1yEeGwqd6kdEu5Ug _Znbiah1yEeGwqd6kdEu5Ug">
-        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_ZnbiaB1yEeGwqd6kdEu5Ug" parameteredElement="_ZnbiaR1yEeGwqd6kdEu5Ug">
-          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_ZnbiaR1yEeGwqd6kdEu5Ug" name="R" templateParameter="_ZnbiaB1yEeGwqd6kdEu5Ug"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lgd1sCMsEeG5GfEOMmHYaw" name="Nameable" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lgfD0iMsEeG5GfEOMmHYaw" name="Pivotable" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lgqC8CMsEeG5GfEOMmHYaw" name="Visitable" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lgqC8SMsEeG5GfEOMmHYaw" name="Visitor" isAbstract="true">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_lgqC8iMsEeG5GfEOMmHYaw" parameter="_lgqC8yMsEeG5GfEOMmHYaw _lgqC9SMsEeG5GfEOMmHYaw">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_lgqC8yMsEeG5GfEOMmHYaw" parameteredElement="_lgqC9CMsEeG5GfEOMmHYaw">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_lgqC9CMsEeG5GfEOMmHYaw" name="R" templateParameter="_lgqC8yMsEeG5GfEOMmHYaw"/>
         </ownedParameter>
-        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_Znbiah1yEeGwqd6kdEu5Ug" parameteredElement="_Znbiax1yEeGwqd6kdEu5Ug">
-          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_Znbiax1yEeGwqd6kdEu5Ug" name="C" templateParameter="_Znbiah1yEeGwqd6kdEu5Ug"/>
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_lgqC9SMsEeG5GfEOMmHYaw" parameteredElement="_lgqC9iMsEeG5GfEOMmHYaw">
+          <ownedParameteredElement xmi:type="uml:Class" xmi:id="_lgqC9iMsEeG5GfEOMmHYaw" name="C" templateParameter="_lgqC9SMsEeG5GfEOMmHYaw"/>
         </ownedParameter>
       </ownedTemplateSignature>
     </packagedElement>
@@ -1299,22 +1299,22 @@
   <Ecore:EAttribute xmi:id="_yqM3UL2iEd-nQufuYygZtQ" isTransient="true"/>
   <Ecore:EPackage xmi:id="_hn2o4sinEd-sJIf4tYBt-g" base_Package="_0" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
   <Ecore:EPackage xmi:id="_6wkKcMknEd-bx742yyafXQ" base_Package="_0" nsPrefix="pivot" nsURI="http://www.eclipse.org/ocl/3.1.0/Pivot"/>
-  <Ecore:EReference xmi:id="_Zm-2YB1yEeGwqd6kdEu5Ug" isTransient="true" base_Property="_Zm1soh1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EReference xmi:id="_Zm-2YR1yEeGwqd6kdEu5Ug" isTransient="true" base_Property="_Zm1spB1yEeGwqd6kdEu5Ug" isResolveProxies="false"/>
-  <Ecore:EAttribute xmi:id="_ZnInax1yEeGwqd6kdEu5Ug" isTransient="true" base_Property="_ZnInZh1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnInbB1yEeGwqd6kdEu5Ug" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature" base_PrimitiveType="_ZnInaB1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnInbR1yEeGwqd6kdEu5Ug" instanceClassName="java.lang.Object" base_PrimitiveType="_ZnInaR1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnInbh1yEeGwqd6kdEu5Ug" instanceClassName="java.lang.Throwable" base_PrimitiveType="_ZnInah1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EClass xmi:id="_ZnSYax1yEeGwqd6kdEu5Ug" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable" base_Interface="_ZnSYYB1yEeGwqd6kdEu5Ug" className="Nameable"/>
-  <Ecore:EClass xmi:id="_ZnSYbB1yEeGwqd6kdEu5Ug" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="_ZnSYZh1yEeGwqd6kdEu5Ug" className="Pivotable"/>
-  <Ecore:EAttribute xmi:id="_ZnbiVh1yEeGwqd6kdEu5Ug" base_Property="_ZnbiVR1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiWB1yEeGwqd6kdEu5Ug" instanceClassName="boolean" base_PrimitiveType="_ZlzKph1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiWR1yEeGwqd6kdEu5Ug" instanceClassName="int" base_PrimitiveType="_ZnbiVx1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiWh1yEeGwqd6kdEu5Ug" instanceClassName="java.math.BigInteger" base_PrimitiveType="_ZlzKpB1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiWx1yEeGwqd6kdEu5Ug" instanceClassName="java.math.BigDecimal" base_PrimitiveType="_Zmr7gR1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiXB1yEeGwqd6kdEu5Ug" instanceClassName="java.lang.String" base_PrimitiveType="_ZlzKqB1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EDataType xmi:id="_ZnbiXR1yEeGwqd6kdEu5Ug" instanceClassName="java.math.BigInteger" base_PrimitiveType="_ZlzKqh1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EAttribute xmi:id="_ZnbiXh1yEeGwqd6kdEu5Ug" isUnsettable="true" base_Property="_ZmZAnx1yEeGwqd6kdEu5Ug"/>
-  <Ecore:EClass xmi:id="_ZnbibB1yEeGwqd6kdEu5Ug" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="_ZnbiZR1yEeGwqd6kdEu5Ug" className="Visitable"/>
-  <Ecore:EClass xmi:id="_ZnbibR1yEeGwqd6kdEu5Ug" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="_ZnbiZh1yEeGwqd6kdEu5Ug"/>
+  <Ecore:EReference xmi:id="_lgRocCMsEeG5GfEOMmHYaw" isTransient="true" base_Property="_lgPzQyMsEeG5GfEOMmHYaw"/>
+  <Ecore:EReference xmi:id="_lgSPgCMsEeG5GfEOMmHYaw" isTransient="true" base_Property="_lgQaUCMsEeG5GfEOMmHYaw" isResolveProxies="false"/>
+  <Ecore:EAttribute xmi:id="_lgYWIyMsEeG5GfEOMmHYaw" isTransient="true" base_Property="_lgXvEiMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lgY9MCMsEeG5GfEOMmHYaw" instanceClassName="org.eclipse.ocl.examples.domain.library.LibraryFeature" base_PrimitiveType="_lgYWICMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lgY9MSMsEeG5GfEOMmHYaw" instanceClassName="java.lang.Object" base_PrimitiveType="_lgYWISMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lgY9MiMsEeG5GfEOMmHYaw" instanceClassName="java.lang.Throwable" base_PrimitiveType="_lgYWIiMsEeG5GfEOMmHYaw"/>
+  <Ecore:EClass xmi:id="_lgg5ACMsEeG5GfEOMmHYaw" instanceClassName="org.eclipse.ocl.examples.pivot.util.Nameable" base_Interface="_lgd1sCMsEeG5GfEOMmHYaw" className="Nameable"/>
+  <Ecore:EClass xmi:id="_lghgECMsEeG5GfEOMmHYaw" instanceClassName="org.eclipse.ocl.examples.pivot.util.Pivotable" base_Interface="_lgfD0iMsEeG5GfEOMmHYaw" className="Pivotable"/>
+  <Ecore:EAttribute xmi:id="_lgkjYCMsEeG5GfEOMmHYaw" base_Property="_lgj8VSMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglKcCMsEeG5GfEOMmHYaw" instanceClassName="boolean" base_PrimitiveType="_lfV0UiMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglxgCMsEeG5GfEOMmHYaw" instanceClassName="int" base_PrimitiveType="_lgkjYSMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglxgSMsEeG5GfEOMmHYaw" instanceClassName="java.math.BigInteger" base_PrimitiveType="_lfV0UCMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglxgiMsEeG5GfEOMmHYaw" instanceClassName="java.math.BigDecimal" base_PrimitiveType="_lgGCQCMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglxgyMsEeG5GfEOMmHYaw" instanceClassName="java.lang.String" base_PrimitiveType="_lfV0VCMsEeG5GfEOMmHYaw"/>
+  <Ecore:EDataType xmi:id="_lglxhCMsEeG5GfEOMmHYaw" instanceClassName="java.math.BigInteger" base_PrimitiveType="_lfWbYCMsEeG5GfEOMmHYaw"/>
+  <Ecore:EAttribute xmi:id="_lglxhSMsEeG5GfEOMmHYaw" isUnsettable="true" base_Property="_lf1jkiMsEeG5GfEOMmHYaw"/>
+  <Ecore:EClass xmi:id="_lgqqACMsEeG5GfEOMmHYaw" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitable" base_Interface="_lgqC8CMsEeG5GfEOMmHYaw" className="Visitable"/>
+  <Ecore:EClass xmi:id="_lgqqASMsEeG5GfEOMmHYaw" instanceClassName="org.eclipse.ocl.examples.pivot.util.Visitor" base_Interface="_lgqC8SMsEeG5GfEOMmHYaw"/>
 </xmi:XMI>

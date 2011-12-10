@@ -225,8 +225,18 @@ public abstract class ParameterableElementImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCompatibleWith(ParameterableElement p)
+	{
 		/*
-		templateParameter->notEmpty()
+		p->oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -235,7 +245,7 @@ public abstract class ParameterableElementImpl
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
 			
 			final DomainType returnType = T_Boolean;
-			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			final Value result = ParameterableElementBodies._isCompatibleWith_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(p));
 			return (Boolean) valueFactory.getEcoreValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
@@ -396,8 +406,12 @@ public abstract class ParameterableElementImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
+			case PivotPackage.PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
 			case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

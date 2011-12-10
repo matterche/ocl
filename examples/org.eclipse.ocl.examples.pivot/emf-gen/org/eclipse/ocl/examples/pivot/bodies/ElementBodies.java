@@ -58,10 +58,10 @@ public class ElementBodies
 			final ExecutorOperation O_OclElement_oclContents = OCLstdlibTables.Operations._OclElement__oclContents;
 			
 			
-			DomainType static_A_symbol_35 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_35 = (LibraryUnaryOperation)static_A_symbol_35.lookupImplementation(standardLibrary, O_OclElement_oclContents);
-			Value A_symbol_35 = dynamic_A_symbol_35.evaluate(evaluator, T_Set_OclElement_, self);
-			return A_symbol_35;
+			DomainType static_A_symbol_17 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_17 = (LibraryUnaryOperation)static_A_symbol_17.lookupImplementation(standardLibrary, O_OclElement_oclContents);
+			Value A_symbol_17 = dynamic_A_symbol_17.evaluate(evaluator, T_Set_OclElement_, self);
+			return A_symbol_17;
 		}
 	}
 

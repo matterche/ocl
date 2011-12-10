@@ -1,4 +1,4 @@
-import 'pivot.ecore'
+import 'Pivot.ecore'
 
 context Constraint
 inv UniqueName: context.ownedRule->excluding(self).name->excludes(self.name)

@@ -325,10 +325,10 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateUniqueName(DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
 		/*
-		not constrainedElement->includes(self)
+		context.ownedRule->excluding(self).name->excludes(self.name)
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -337,49 +337,15 @@ public class ConstraintImpl
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
 			
 			final DomainType returnType = T_Boolean;
-			final Value result = ConstraintBodies._invariant_not_apply_to_self.INSTANCE.evaluate(evaluator, returnType, self);
+			final Value result = ConstraintBodies._invariant_UniqueName.INSTANCE.evaluate(evaluator, returnType, self);
 			final boolean resultIsNull = result.isNull();
 			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
 				return true;
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "not_apply_to_self", EObjectValidator.getObjectLabel(this, context));
-			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CONSTRAINT__NOT_APPLY_TO_SELF, message, new Object [] { this }));
-			}
-			return false;
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ConstraintBodies", e);
-		}
-		
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateValueSpecificationBoolean(
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		/*
-		self.specification.booleanValue().oclIsKindOf(Boolean)
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = ConstraintBodies._invariant_value_specification_boolean.INSTANCE.evaluate(evaluator, returnType, self);
-			final boolean resultIsNull = result.isNull();
-			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
-				return true;
-			}
-			if (diagnostics != null) {
-				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "value_specification_boolean", EObjectValidator.getObjectLabel(this, context));
-			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CONSTRAINT__VALUE_SPECIFICATION_BOOLEAN, message, new Object [] { this }));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "UniqueName", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CONSTRAINT__UNIQUE_NAME, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
@@ -579,10 +545,10 @@ public class ConstraintImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP:
-				return validateNotApplyToSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP:
-				return validateValueSpecificationBoolean((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.CONSTRAINT___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+			case PivotPackage.CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP:
+				return validateUniqueName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

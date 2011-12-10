@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -65,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
-import org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -458,28 +456,7 @@ public class TypeImpl
 	 * @generated
 	 */
 	public EList<ParameterableElement> parameterableElements() {
-		/*
-		allOwnedElements()
-		->select(
-		  oclIsKindOf(_'platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore'::pivot::ParameterableElement))
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
-			final ExecutorType T_pivot_ecore__pivot__Element = PivotTables.Types._Element;
-			final DomainCollectionType T_Set_pivot_ecore__pivot__Element_ = standardLibrary.getSetType(T_pivot_ecore__pivot__Element);
-			
-			final DomainType returnType = T_Set_pivot_ecore__pivot__Element_;
-			final Value result = TemplateableElementBodies._parameterableElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			@SuppressWarnings("unchecked")
-			EList<ParameterableElement> ecoreResult = (EList<ParameterableElement>) valueFactory.getEcoreValueOf(result);
-			return ecoreResult;
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
 	}
 
 	/**
@@ -488,8 +465,18 @@ public class TypeImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCompatibleWith(ParameterableElement p)
+	{
 		/*
-		templateParameter->notEmpty()
+		p->oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -498,7 +485,7 @@ public class TypeImpl
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
 			
 			final DomainType returnType = T_Boolean;
-			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			final Value result = ParameterableElementBodies._isCompatibleWith_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(p));
 			return (Boolean) valueFactory.getEcoreValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
@@ -1024,6 +1011,7 @@ public class TypeImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.TYPE___IS_TEMPLATE_PARAMETER;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 				default: return -1;
 			}
 		}
@@ -1040,12 +1028,16 @@ public class TypeImpl
 			throws InvocationTargetException {
 		switch (operationID)
 		{
+			case PivotPackage.TYPE___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
 			case PivotPackage.TYPE___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.TYPE___IS_TEMPLATE:
 				return isTemplate();
 			case PivotPackage.TYPE___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

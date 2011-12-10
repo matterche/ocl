@@ -20,11 +20,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
@@ -36,8 +34,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -66,7 +62,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
-import org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -562,8 +557,18 @@ public class OperationImpl
 	 * @generated
 	 */
 	public boolean isTemplateParameter() {
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCompatibleWith(ParameterableElement p)
+	{
 		/*
-		templateParameter->notEmpty()
+		p->oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -572,7 +577,7 @@ public class OperationImpl
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
 			
 			final DomainType returnType = T_Boolean;
-			final Value result = ParameterableElementBodies._isTemplateParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			final Value result = ParameterableElementBodies._isCompatibleWith_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(p));
 			return (Boolean) valueFactory.getEcoreValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
@@ -586,28 +591,7 @@ public class OperationImpl
 	 * @generated
 	 */
 	public EList<ParameterableElement> parameterableElements() {
-		/*
-		allOwnedElements()
-		->select(
-		  oclIsKindOf(_'platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore'::pivot::ParameterableElement))
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
-			final ExecutorType T_pivot_ecore__pivot__Element = PivotTables.Types._Element;
-			final DomainCollectionType T_Set_pivot_ecore__pivot__Element_ = standardLibrary.getSetType(T_pivot_ecore__pivot__Element);
-			
-			final DomainType returnType = T_Set_pivot_ecore__pivot__Element_;
-			final Value result = TemplateableElementBodies._parameterableElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			@SuppressWarnings("unchecked")
-			EList<ParameterableElement> ecoreResult = (EList<ParameterableElement>) valueFactory.getEcoreValueOf(result);
-			return ecoreResult;
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
 	}
 
 	/**
@@ -616,22 +600,7 @@ public class OperationImpl
 	 * @generated
 	 */
 	public boolean isTemplate() {
-		/*
-		ownedTemplateSignature->notEmpty()
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = TemplateableElementBodies._isTemplate_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (Boolean) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TemplateableElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
 	}
 
 	/**
@@ -1096,6 +1065,7 @@ public class OperationImpl
 			switch (baseOperationID)
 			{
 				case PivotPackage.PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER: return PivotPackage.OPERATION___IS_TEMPLATE_PARAMETER;
+				case PivotPackage.PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT: return PivotPackage.OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 				default: return -1;
 			}
 		}
@@ -1108,15 +1078,12 @@ public class OperationImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:
-				return validateLowerGe0((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP:
-				return validateUpperGeLower((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.OPERATION___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
 			case PivotPackage.OPERATION___LOWER_BOUND:
 				return lowerBound();
 			case PivotPackage.OPERATION___UPPER_BOUND:
@@ -1133,6 +1100,8 @@ public class OperationImpl
 				return isTemplate();
 			case PivotPackage.OPERATION___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
+			case PivotPackage.OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
+				return isCompatibleWith((ParameterableElement)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

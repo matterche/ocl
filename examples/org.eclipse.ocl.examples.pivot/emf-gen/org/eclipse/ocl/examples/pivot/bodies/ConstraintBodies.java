@@ -25,14 +25,17 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
 import org.eclipse.ocl.examples.domain.library.LibraryBinaryOperation;
+import org.eclipse.ocl.examples.domain.library.LibraryIteration;
 import org.eclipse.ocl.examples.domain.library.LibraryProperty;
-import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
+import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
 import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
+import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.PivotTables;
@@ -45,71 +48,72 @@ public class ConstraintBodies
 {
 
 	/** 
-	 * Implementation of the Constraint 'not_apply_to_self' invariant.
+	 * Implementation of the Constraint 'UniqueName' invariant.
 	 */
-	public static class _invariant_not_apply_to_self extends AbstractUnaryOperation
+	public static class _invariant_UniqueName extends AbstractUnaryOperation
 	{
-		public static _invariant_not_apply_to_self INSTANCE = new _invariant_not_apply_to_self();
+		public static _invariant_UniqueName INSTANCE = new _invariant_UniqueName();
 	
 		/*
-		not constrainedElement->includes(self)
+		context.ownedRule->excluding(self).name->excludes(self.name)
 		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			final ExecutorOperation O_Boolean_not = OCLstdlibTables.Operations._Boolean__not;
-			final ExecutorOperation O_Collection_includes = OCLstdlibTables.Operations._Collection__includes;
-			final ExecutorType T_pivot_ecore__pivot__Element = PivotTables.Types._Element;
-			final DomainCollectionType T_OrderedSet_pivot_ecore__pivot__Element_ = standardLibrary.getOrderedSetType(T_pivot_ecore__pivot__Element);
-			final ExecutorProperty P_Constraint_constrainedElement = PivotTables.Properties._Constraint__constrainedElement;
-			final LibraryProperty IP_Constraint_constrainedElement = P_Constraint_constrainedElement.getImplementation();
+			final ExecutorOperation O_Collection_excludes = OCLstdlibTables.Operations._Collection__excludes;
+			final ExecutorType T_String = OCLstdlibTables.Types._String;
+			final DomainCollectionType T_Sequence_String_ = standardLibrary.getSequenceType(T_String);
+			final ExecutorOperation O_Sequence_collect = OCLstdlibTables.Operations._Sequence__collect;
+			final ExecutorType T_Pivot_ecore__pivot__Constraint = PivotTables.Types._Constraint;
+			final DomainCollectionType T_OrderedSet_Pivot_ecore__pivot__Constraint_ = standardLibrary.getOrderedSetType(T_Pivot_ecore__pivot__Constraint);
+			final ExecutorOperation O_OrderedSet_excluding = OCLstdlibTables.Operations._OrderedSet__excluding;
+			final ExecutorProperty P_NamedElement_ownedRule = PivotTables.Properties._NamedElement__ownedRule;
+			final LibraryProperty IP_NamedElement_ownedRule = P_NamedElement_ownedRule.getImplementation();
+			final ExecutorType T_Pivot_ecore__pivot__NamedElement = PivotTables.Types._NamedElement;
+			final ExecutorProperty P_Constraint_context = PivotTables.Properties._Constraint__context;
+			final LibraryProperty IP_Constraint_context = P_Constraint_context.getImplementation();
+			final ExecutorProperty P_NamedElement_name = PivotTables.Properties._NamedElement__name;
+			final LibraryProperty IP_NamedElement_name = P_NamedElement_name.getImplementation();
 			
 			
-			Value A_symbol_36 = IP_Constraint_constrainedElement.evaluate(evaluator, T_OrderedSet_pivot_ecore__pivot__Element_, self, P_Constraint_constrainedElement);
+			Value A_symbol_2 = IP_Constraint_context.evaluate(evaluator, T_Pivot_ecore__pivot__NamedElement, self, P_Constraint_context);
+			
+			Value A_symbol_3 = IP_NamedElement_ownedRule.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_2, P_NamedElement_ownedRule);
 			
 			
-			DomainType static_A_symbol_37 = valueFactory.typeOf(A_symbol_36);
-			LibraryBinaryOperation dynamic_A_symbol_37 = (LibraryBinaryOperation)static_A_symbol_37.lookupImplementation(standardLibrary, O_Collection_includes);
-			Value A_symbol_37 = dynamic_A_symbol_37.evaluate(evaluator, T_Boolean, A_symbol_36, self);
-			DomainType static_A_symbol_38 = valueFactory.typeOf(A_symbol_37);
-			LibraryUnaryOperation dynamic_A_symbol_38 = (LibraryUnaryOperation)static_A_symbol_38.lookupImplementation(standardLibrary, O_Boolean_not);
-			Value A_symbol_38 = dynamic_A_symbol_38.evaluate(evaluator, T_Boolean, A_symbol_37);
-			return A_symbol_38;
-		}
-	}
-
-	/** 
-	 * Implementation of the Constraint 'value_specification_boolean' invariant.
-	 */
-	public static class _invariant_value_specification_boolean extends AbstractUnaryOperation
-	{
-		public static _invariant_value_specification_boolean INSTANCE = new _invariant_value_specification_boolean();
-	
-		/*
-		self.specification.booleanValue().oclIsKindOf(Boolean)
-		*/
-		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			final ExecutorOperation O_OclAny_oclIsKindOf = OCLstdlibTables.Operations._OclAny__oclIsKindOf;
-			final ExecutorOperation O_ValueSpecification_booleanValue = PivotTables.Operations._ValueSpecification__booleanValue;
-			final ExecutorType T_pivot_ecore__pivot__ValueSpecification = PivotTables.Types._ValueSpecification;
-			final ExecutorProperty P_Constraint_specification = PivotTables.Properties._Constraint__specification;
-			final LibraryProperty IP_Constraint_specification = P_Constraint_specification.getImplementation();
-			final Value T_ClassClassifier_Boolean_ = valueFactory.createTypeValue(OCLstdlibTables.Types._Boolean);
+			DomainType static_A_symbol_0 = valueFactory.typeOf(A_symbol_3);
+			LibraryBinaryOperation dynamic_A_symbol_0 = (LibraryBinaryOperation)static_A_symbol_0.lookupImplementation(standardLibrary, O_OrderedSet_excluding);
+			Value A_symbol_0 = dynamic_A_symbol_0.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_3, self);
 			
+			/** 
+			 * Implementation of the iterator body.
+			 */
+			AbstractBinaryOperation body_A_symbol_1 = new AbstractBinaryOperation()
+			{
+			/*
+			name
+			*/
+				public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value iterator1) throws InvalidValueException {
+					final Value V_1_ = iterator1;	// iterator: 1_
+					
+					Value A_symbol_4 = IP_NamedElement_name.evaluate(evaluator, T_String, V_1_, P_NamedElement_name);
+					
+					return A_symbol_4;
+				}
+			};
+			DomainType static_A_symbol_1 = A_symbol_0.getType();
+			LibraryIteration dynamic_A_symbol_1 = (LibraryIteration)static_A_symbol_1.lookupImplementation(standardLibrary, O_Sequence_collect);
+			Value acc_A_symbol_1 = dynamic_A_symbol_1.createAccumulatorValue(evaluator, T_Sequence_String_, T_String);
+			ExecutorSingleIterationManager manager_A_symbol_1 = new ExecutorSingleIterationManager(evaluator, T_Sequence_String_, body_A_symbol_1, (CollectionValue)A_symbol_0, acc_A_symbol_1);
+			Value A_symbol_1 = dynamic_A_symbol_1.evaluateIteration(manager_A_symbol_1);
 			
-			Value A_symbol_39 = IP_Constraint_specification.evaluate(evaluator, T_pivot_ecore__pivot__ValueSpecification, self, P_Constraint_specification);
+			Value A_symbol_5 = IP_NamedElement_name.evaluate(evaluator, T_String, self, P_NamedElement_name);
 			
-			DomainType static_A_symbol_40 = valueFactory.typeOf(A_symbol_39);
-			LibraryUnaryOperation dynamic_A_symbol_40 = (LibraryUnaryOperation)static_A_symbol_40.lookupImplementation(standardLibrary, O_ValueSpecification_booleanValue);
-			Value A_symbol_40 = dynamic_A_symbol_40.evaluate(evaluator, T_Boolean, A_symbol_39);
-			DomainType static_A_symbol_41 = valueFactory.typeOf(A_symbol_40);
-			LibraryBinaryOperation dynamic_A_symbol_41 = (LibraryBinaryOperation)static_A_symbol_41.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_41 = dynamic_A_symbol_41.evaluate(evaluator, T_Boolean, A_symbol_40, T_ClassClassifier_Boolean_);
-			return A_symbol_41;
+			DomainType static_A_symbol_6 = valueFactory.typeOf(A_symbol_1);
+			LibraryBinaryOperation dynamic_A_symbol_6 = (LibraryBinaryOperation)static_A_symbol_6.lookupImplementation(standardLibrary, O_Collection_excludes);
+			Value A_symbol_6 = dynamic_A_symbol_6.evaluate(evaluator, T_Boolean, A_symbol_1, A_symbol_5);
+			return A_symbol_6;
 		}
 	}
 

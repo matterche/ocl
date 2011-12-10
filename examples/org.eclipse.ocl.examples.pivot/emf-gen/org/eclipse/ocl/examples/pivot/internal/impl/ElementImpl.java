@@ -16,19 +16,33 @@
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
+import org.eclipse.ocl.examples.pivot.bodies.ElementBodies;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -101,6 +115,35 @@ public abstract class ElementImpl
 		Comment newOwnedComment = (Comment) create(PivotPackage.Literals.COMMENT);
 		getOwnedComments().add(newOwnedComment);
 		return newOwnedComment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> allOwnedElements()
+	{
+		/*
+		oclContents()
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			final ExecutorType T_OclElement = OCLstdlibTables.Types._OclElement;
+			final DomainCollectionType T_Set_OclElement_ = standardLibrary.getSetType(T_OclElement);
+			
+			final DomainType returnType = T_Set_OclElement_;
+			final Value result = ElementBodies._allOwnedElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
+			@SuppressWarnings("unchecked")
+			EList<Element> ecoreResult = (EList<Element>) valueFactory.getEcoreValueOf(result);
+			return ecoreResult;
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ElementBodies", e);
+		}
+		
 	}
 
 	/**
@@ -181,6 +224,22 @@ public abstract class ElementImpl
 				return ownedComments != null && !ownedComments.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
+		switch (operationID)
+		{
+			case PivotPackage.ELEMENT___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
+		}
+		return eDynamicInvoke(operationID, arguments);
 	}
 
 	/**

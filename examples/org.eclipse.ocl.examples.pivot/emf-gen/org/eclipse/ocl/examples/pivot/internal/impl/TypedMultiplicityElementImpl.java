@@ -19,37 +19,18 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.ValueFactory;
-import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
-import org.eclipse.ocl.examples.library.executor.ExecutorType;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies;
-import org.eclipse.ocl.examples.pivot.util.PivotValidator;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -260,96 +241,8 @@ public abstract class TypedMultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerGe0(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		/*
-		lowerBound()->notEmpty() implies lowerBound() >= 0
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = MultiplicityElementBodies._invariant_lower_ge_0.INSTANCE.evaluate(evaluator, returnType, self);
-			final boolean resultIsNull = result.isNull();
-			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
-				return true;
-			}
-			if (diagnostics != null) {
-				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "lower_ge_0", EObjectValidator.getObjectLabel(this, context));
-			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MULTIPLICITY_ELEMENT__LOWER_GE0, message, new Object [] { this }));
-			}
-			return false;
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUpperGeLower(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		/*
-		upperBound()
-		->notEmpty() and
-		lowerBound()
-		->notEmpty() implies
-		upperBound() >=
-		lowerBound()
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = MultiplicityElementBodies._invariant_upper_ge_lower.INSTANCE.evaluate(evaluator, returnType, self);
-			final boolean resultIsNull = result.isNull();
-			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
-				return true;
-			}
-			if (diagnostics != null) {
-				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "upper_ge_lower", EObjectValidator.getObjectLabel(this, context));
-			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.MULTIPLICITY_ELEMENT__UPPER_GE_LOWER, message, new Object [] { this }));
-			}
-			return false;
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BigInteger lowerBound() {
-		/*
-		if lower->notEmpty() then lower else 1 endif
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Integer = OCLstdlibTables.Types._Integer;
-			
-			final DomainType returnType = T_Integer;
-			final Value result = MultiplicityElementBodies._lowerBound_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (BigInteger) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lowerBound()
 	}
 
 	/**
@@ -358,22 +251,7 @@ public abstract class TypedMultiplicityElementImpl
 	 * @generated
 	 */
 	public BigInteger upperBound() {
-		/*
-		if upper->notEmpty() then upper else 1 endif
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Integer = OCLstdlibTables.Types._Integer;
-			
-			final DomainType returnType = T_Integer;
-			final Value result = MultiplicityElementBodies._upperBound_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (BigInteger) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upperBound()
 	}
 
 	/**
@@ -382,22 +260,7 @@ public abstract class TypedMultiplicityElementImpl
 	 * @generated
 	 */
 	public boolean isMultivalued() {
-		/*
-		upperBound() > 1
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = MultiplicityElementBodies._isMultivalued_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (Boolean) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isMultivalued()
 	}
 
 	/**
@@ -406,22 +269,7 @@ public abstract class TypedMultiplicityElementImpl
 	 * @generated
 	 */
 	public boolean includesCardinality(BigInteger C) {
-		/*
-		lowerBound() <= C and upperBound() >= C
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = MultiplicityElementBodies._includesCardinality_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(C));
-			return (Boolean) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesCardinality(http://www.eclipse.org/ocl/3.1.0/Pivot!Integer)
 	}
 
 	/**
@@ -430,22 +278,7 @@ public abstract class TypedMultiplicityElementImpl
 	 * @generated
 	 */
 	public boolean includesMultiplicity(MultiplicityElement M) {
-		/*
-		self.lowerBound() <= M.lowerBound() and self.upperBound() >= M.upperBound()
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = MultiplicityElementBodies._includesMultiplicity_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(M));
-			return (Boolean) valueFactory.getEcoreValueOf(result);
-		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.MultiplicityElementBodies", e);
-		}
-		
+		throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesMultiplicity(http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement)
 	}
 
 	/**
@@ -658,8 +491,6 @@ public abstract class TypedMultiplicityElementImpl
 		{
 			switch (baseOperationID)
 			{
-				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP: return PivotPackage.TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP: return PivotPackage.TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
 				case PivotPackage.MULTIPLICITY_ELEMENT___LOWER_BOUND: return PivotPackage.TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
 				case PivotPackage.MULTIPLICITY_ELEMENT___UPPER_BOUND: return PivotPackage.TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
 				case PivotPackage.MULTIPLICITY_ELEMENT___IS_MULTIVALUED: return PivotPackage.TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
@@ -677,15 +508,12 @@ public abstract class TypedMultiplicityElementImpl
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
 		{
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP:
-				return validateLowerGe0((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP:
-				return validateUpperGeLower((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS:
+				return allOwnedElements();
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND:
 				return lowerBound();
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND:

@@ -68,7 +68,7 @@ public class ProjectMapTest extends TestCase
 		packageDescriptor.setUseModel(true, resourceSet.getPackageRegistry());
 		Resource registeredResource = resourceSet.getResource(nsURI, true);
 		assertNull(registeredResource.getResourceSet());		// Registered packages have a private shared resource
-		assertEquals(registeredResource.getURI(), packageDescriptor.getEcoreModelURI().resolve(projectDescriptor.getLocation()));
+		assertEquals(registeredResource.getURI(), packageDescriptor.getEcoreModelURI().resolve(projectDescriptor.getLocationURI()));
 		Resource pluginResource = resourceSet.getResource(pluginURI, true);
 		Resource projectResource = resourceSet.getResource(resourceURI, true);
 		assertEquals(registeredResource, pluginResource);
@@ -91,13 +91,13 @@ public class ProjectMapTest extends TestCase
 	}
 	
 	public void testProjectMap_Pivot() {					// Almost certainly a workspace project; always a project on Hudson
-		String modelPath = PivotPackage.class.getPackage().getName() + "/model/pivot.ecore";
+		String modelPath = PivotPackage.class.getPackage().getName() + "/model/Pivot.ecore";
 		doTestProjectMapRegistered(PivotPackage.eINSTANCE, modelPath);
 	}
 	
 	public void testProjectMap_Pivot_Local() {					// Almost certainly a workspace project; always a project on Hudson
 		String project = PivotPackage.class.getPackage().getName();
-		String modelPath = project + "/model/pivot.ecore";
+		String modelPath = project + "/model/Pivot.ecore";
 		doTestProjectMapLocal(PivotPackage.eINSTANCE, project, modelPath);
 	}
 }

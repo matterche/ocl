@@ -4,7 +4,7 @@
     nsPrefix="completeOCLCST">
   <eClassifiers xsi:type="ecore:EClass" name="BodyCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierContextDeclCS" eSuperTypes="#//ContextDeclCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="selfName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteOCLDocumentCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//PackageCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//RootCS">
@@ -22,7 +22,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextDeclCS" abstract="true" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//ContextConstraintCS" containment="true" eOpposite="#//ContextConstraintCS/contextDecl"/>
   </eClassifiers>
@@ -45,7 +45,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IncludeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamespaceCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvCS" eSuperTypes="#//ContextConstraintCS"/>
@@ -54,7 +54,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationContextDeclCS" eSuperTypes="#//FeatureContextDeclCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//VariableCS"
         containment="true"/>
@@ -63,8 +63,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageDeclarationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Package"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Package"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//ContextDeclCS" containment="true"/>
   </eClassifiers>
@@ -72,6 +72,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="PreCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PreExpCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//DecoratedNamedExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyContextDeclCS" eSuperTypes="#//FeatureContextDeclCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"/>
   </eClassifiers>
 </ecore:EPackage>

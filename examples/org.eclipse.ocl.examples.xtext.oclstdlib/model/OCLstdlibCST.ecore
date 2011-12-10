@@ -25,19 +25,19 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibOperationCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//OperationCS #//JavaImplementationCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Precedence"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Boolean"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="precedence" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Precedence"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibPropertyCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//AttributeCS #//JavaImplementationCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Boolean"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Boolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LibRootPackageCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//RootPackageCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPrecedence" upperBound="-1"
         eType="#//PrecedenceCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MetaTypeName" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//VisitableCS ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Nameable">
+  <eClassifiers xsi:type="ecore:EClass" name="MetaTypeName" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//VisitableCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrecedenceCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS">

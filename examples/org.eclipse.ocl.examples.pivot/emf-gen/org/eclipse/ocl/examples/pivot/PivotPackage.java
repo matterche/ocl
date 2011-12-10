@@ -1031,13 +1031,22 @@ public interface PivotPackage
 	int ELEMENT_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT___ALL_OWNED_ELEMENTS = VISITABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_OPERATION_COUNT = VISITABLE_OPERATION_COUNT + 0;
+	int ELEMENT_OPERATION_COUNT = VISITABLE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -1092,6 +1101,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -1182,6 +1200,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANNOTATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Annotation</em>' class.
@@ -1337,6 +1364,15 @@ public interface PivotPackage
 	int TYPE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1364,13 +1400,22 @@ public interface PivotPackage
 	int TYPE___IS_TEMPLATE_PARAMETER = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = NAMED_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -1535,6 +1580,15 @@ public interface PivotPackage
 	int CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1560,6 +1614,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASS___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -1733,6 +1796,15 @@ public interface PivotPackage
 	int ANY_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1758,6 +1830,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Any Type</em>' class.
@@ -1940,6 +2021,15 @@ public interface PivotPackage
 	int ASSOCIATION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1965,6 +2055,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Association Class</em>' class.
@@ -2039,6 +2138,15 @@ public interface PivotPackage
 	int TYPED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2109,6 +2217,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OCL_EXPRESSION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Ocl Expression</em>' class.
@@ -2199,6 +2316,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Call Exp</em>' class.
@@ -2298,6 +2424,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CALL_EXP___ALL_OWNED_ELEMENTS = CALL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Feature Call Exp</em>' class.
@@ -2415,6 +2550,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_CALL_EXP___ALL_OWNED_ELEMENTS = FEATURE_CALL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Navigation Call Exp</em>' class.
@@ -2541,6 +2685,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS_CALL_EXP___ALL_OWNED_ELEMENTS = NAVIGATION_CALL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Association Class Call Exp</em>' class.
@@ -2732,6 +2885,15 @@ public interface PivotPackage
 	int DATA_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2757,6 +2919,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DATA_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Data Type</em>' class.
@@ -2957,6 +3128,15 @@ public interface PivotPackage
 	int COLLECTION_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2982,6 +3162,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Collection Type</em>' class.
@@ -3182,6 +3371,15 @@ public interface PivotPackage
 	int BAG_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___ALL_OWNED_ELEMENTS = COLLECTION_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3207,6 +3405,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Bag Type</em>' class.
@@ -3281,6 +3488,15 @@ public interface PivotPackage
 	int LITERAL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3351,6 +3567,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_LITERAL_EXP___ALL_OWNED_ELEMENTS = LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Primitive Literal Exp</em>' class.
@@ -3434,6 +3659,15 @@ public interface PivotPackage
 	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP___ALL_OWNED_ELEMENTS = PRIMITIVE_LITERAL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Boolean Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3504,6 +3738,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CALL_OPERATION_ACTION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_OPERATION_ACTION___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Call Operation Action</em>' class.
@@ -3714,6 +3957,15 @@ public interface PivotPackage
 	int CLASSIFIER_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_TYPE___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3739,6 +3991,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASSIFIER_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Classifier Type</em>' class.
@@ -3811,6 +4072,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_PART_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_PART___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Collection Literal Part</em>' class.
@@ -3892,6 +4162,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COLLECTION_ITEM_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_ITEM___ALL_OWNED_ELEMENTS = COLLECTION_LITERAL_PART___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Collection Item</em>' class.
@@ -3984,6 +4263,15 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___ALL_OWNED_ELEMENTS = LITERAL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Collection Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4074,6 +4362,15 @@ public interface PivotPackage
 	int COLLECTION_RANGE_FEATURE_COUNT = COLLECTION_LITERAL_PART_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_RANGE___ALL_OWNED_ELEMENTS = COLLECTION_LITERAL_PART___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Collection Range</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4117,6 +4414,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int COMMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Comment</em>' class.
@@ -4227,22 +4533,22 @@ public interface PivotPackage
 	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate Not Apply To Self</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int CONSTRAINT___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
-	 * The operation id for the '<em>Validate Value Specification Boolean</em>' operation.
+	 * The operation id for the '<em>Validate Unique Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Constraint</em>' class.
@@ -4251,7 +4557,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int CONSTRAINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -4315,6 +4621,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int DETAIL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DETAIL___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Detail</em>' class.
@@ -4396,6 +4711,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUM_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP___ALL_OWNED_ELEMENTS = LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Enum Literal Exp</em>' class.
@@ -4596,6 +4920,15 @@ public interface PivotPackage
 	int ENUMERATION_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4621,6 +4954,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Enumeration</em>' class.
@@ -4702,6 +5044,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION_LITERAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION_LITERAL___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Enumeration Literal</em>' class.
@@ -4794,6 +5145,15 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4803,13 +5163,22 @@ public interface PivotPackage
 	int VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The operation id for the '<em>Is Computable</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 1;
+	int VALUE_SPECIFICATION___IS_COMPUTABLE = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Integer Value</em>' operation.
@@ -4818,7 +5187,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 2;
+	int VALUE_SPECIFICATION___INTEGER_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Boolean Value</em>' operation.
@@ -4827,7 +5196,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 3;
+	int VALUE_SPECIFICATION___BOOLEAN_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>String Value</em>' operation.
@@ -4836,7 +5205,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 4;
+	int VALUE_SPECIFICATION___STRING_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Unlimited Value</em>' operation.
@@ -4845,7 +5214,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 5;
+	int VALUE_SPECIFICATION___UNLIMITED_VALUE = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Is Null</em>' operation.
@@ -4854,7 +5223,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 6;
+	int VALUE_SPECIFICATION___IS_NULL = TYPED_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Value Specification</em>' class.
@@ -4863,7 +5232,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
+	int VALUE_SPECIFICATION_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -4983,6 +5352,15 @@ public interface PivotPackage
 	int OPAQUE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_EXPRESSION___ALL_OWNED_ELEMENTS = VALUE_SPECIFICATION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4990,6 +5368,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPAQUE_EXPRESSION___IS_TEMPLATE_PARAMETER = VALUE_SPECIFICATION___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = VALUE_SPECIFICATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Is Computable</em>' operation.
@@ -5046,22 +5433,13 @@ public interface PivotPackage
 	int OPAQUE_EXPRESSION___IS_NULL = VALUE_SPECIFICATION___IS_NULL;
 
 	/**
-	 * The operation id for the '<em>Validate Language Body Size</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_EXPRESSION___VALIDATE_LANGUAGE_BODY_SIZE__DIAGNOSTICCHAIN_MAP = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Opaque Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_EXPRESSION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 1;
+	int OPAQUE_EXPRESSION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -5226,6 +5604,15 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = OPAQUE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL___ALL_OWNED_ELEMENTS = OPAQUE_EXPRESSION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5233,6 +5620,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL___IS_TEMPLATE_PARAMETER = OPAQUE_EXPRESSION___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = OPAQUE_EXPRESSION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The operation id for the '<em>Is Computable</em>' operation.
@@ -5287,15 +5683,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int EXPRESSION_IN_OCL___IS_NULL = OPAQUE_EXPRESSION___IS_NULL;
-
-	/**
-	 * The operation id for the '<em>Validate Language Body Size</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_IN_OCL___VALIDATE_LANGUAGE_BODY_SIZE__DIAGNOSTICCHAIN_MAP = OPAQUE_EXPRESSION___VALIDATE_LANGUAGE_BODY_SIZE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Expression In Ocl</em>' class.
@@ -5406,22 +5793,13 @@ public interface PivotPackage
 	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
+	int TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -5430,7 +5808,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
+	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Upper Bound</em>' operation.
@@ -5439,7 +5817,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
+	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Multivalued</em>' operation.
@@ -5448,7 +5826,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
+	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Includes Cardinality</em>' operation.
@@ -5457,7 +5835,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
@@ -5466,7 +5844,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
@@ -5475,7 +5853,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
+	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -5595,22 +5973,13 @@ public interface PivotPackage
 	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int FEATURE___ALL_OWNED_ELEMENTS = TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -5757,6 +6126,15 @@ public interface PivotPackage
 	int IF_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>If Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5827,6 +6205,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP___ALL_OWNED_ELEMENTS = PRIMITIVE_LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Numeric Literal Exp</em>' class.
@@ -5910,6 +6297,15 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP___ALL_OWNED_ELEMENTS = NUMERIC_LITERAL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5980,6 +6376,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_LITERAL_EXP___ALL_OWNED_ELEMENTS = LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Invalid Literal Exp</em>' class.
@@ -6153,6 +6558,15 @@ public interface PivotPackage
 	int INVALID_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6178,6 +6592,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int INVALID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Invalid Type</em>' class.
@@ -6295,6 +6718,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LOOP_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP___ALL_OWNED_ELEMENTS = CALL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Loop Exp</em>' class.
@@ -6421,6 +6853,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP___ALL_OWNED_ELEMENTS = LOOP_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Iterate Exp</em>' class.
@@ -6639,22 +7080,13 @@ public interface PivotPackage
 	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 10;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int OPERATION___ALL_OWNED_ELEMENTS = FEATURE___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -6729,13 +7161,22 @@ public interface PivotPackage
 	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -6963,22 +7404,13 @@ public interface PivotPackage
 	int ITERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int ITERATION___ALL_OWNED_ELEMENTS = OPERATION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -7051,6 +7483,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Iteration</em>' class.
@@ -7168,6 +7609,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATOR_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP___ALL_OWNED_ELEMENTS = LOOP_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Iterator Exp</em>' class.
@@ -7396,6 +7846,15 @@ public interface PivotPackage
 	int LAMBDA_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7421,6 +7880,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LAMBDA_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Lambda Type</em>' class.
@@ -7513,6 +7981,15 @@ public interface PivotPackage
 	int LET_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Let Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7574,6 +8051,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Namespace</em>' class.
@@ -7718,6 +8204,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE___ALL_OWNED_ELEMENTS = NAMESPACE___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -7882,6 +8377,15 @@ public interface PivotPackage
 	int LIBRARY_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY___ALL_OWNED_ELEMENTS = PACKAGE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8006,6 +8510,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Message Exp</em>' class.
@@ -8179,6 +8692,15 @@ public interface PivotPackage
 	int MESSAGE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8204,6 +8726,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int MESSAGE_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Message Type</em>' class.
@@ -8269,22 +8800,13 @@ public interface PivotPackage
 	int MULTIPLICITY_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 1;
+	int MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -8293,7 +8815,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___LOWER_BOUND = ELEMENT_OPERATION_COUNT + 2;
+	int MULTIPLICITY_ELEMENT___LOWER_BOUND = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Upper Bound</em>' operation.
@@ -8302,7 +8824,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___UPPER_BOUND = ELEMENT_OPERATION_COUNT + 3;
+	int MULTIPLICITY_ELEMENT___UPPER_BOUND = ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Multivalued</em>' operation.
@@ -8311,7 +8833,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___IS_MULTIVALUED = ELEMENT_OPERATION_COUNT + 4;
+	int MULTIPLICITY_ELEMENT___IS_MULTIVALUED = ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Includes Cardinality</em>' operation.
@@ -8320,7 +8842,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = ELEMENT_OPERATION_COUNT + 5;
+	int MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
@@ -8329,7 +8851,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = ELEMENT_OPERATION_COUNT + 6;
+	int MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Multiplicity Element</em>' class.
@@ -8338,7 +8860,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 7;
+	int MULTIPLICITY_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Nameable</em>' class.
@@ -8420,6 +8942,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NULL_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_EXP___ALL_OWNED_ELEMENTS = PRIMITIVE_LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Null Literal Exp</em>' class.
@@ -8539,6 +9070,15 @@ public interface PivotPackage
 	int OPERATION_CALL_EXP_FEATURE_COUNT = FEATURE_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP___ALL_OWNED_ELEMENTS = FEATURE_CALL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8611,13 +9151,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 0;
+	int TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Template Parameter</em>' class.
@@ -8626,7 +9166,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+	int TEMPLATE_PARAMETER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -8692,13 +9232,13 @@ public interface PivotPackage
 	int OPERATION_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP;
+	int OPERATION_TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Operation Template Parameter</em>' class.
@@ -8899,6 +9439,15 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___ALL_OWNED_ELEMENTS = COLLECTION_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8924,6 +9473,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ORDERED_SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Ordered Set Type</em>' class.
@@ -8971,6 +9529,15 @@ public interface PivotPackage
 	int PARAMETERABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8980,13 +9547,22 @@ public interface PivotPackage
 	int PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Parameterable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+	int PARAMETERABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -9025,6 +9601,15 @@ public interface PivotPackage
 	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___ALL_OWNED_ELEMENTS = PARAMETERABLE_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9032,6 +9617,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PACKAGEABLE_ELEMENT___IS_TEMPLATE_PARAMETER = PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Packageable Element</em>' class.
@@ -9151,22 +9745,13 @@ public interface PivotPackage
 	int PARAMETER_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int PARAMETER___ALL_OWNED_ELEMENTS = TYPED_MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -9311,6 +9896,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRECEDENCE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRECEDENCE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Precedence</em>' class.
@@ -9502,6 +10096,15 @@ public interface PivotPackage
 	int PRIMITIVE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9527,6 +10130,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Primitive Type</em>' class.
@@ -9808,22 +10420,13 @@ public interface PivotPackage
 	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 17;
 
 	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+	int PROPERTY___ALL_OWNED_ELEMENTS = FEATURE___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Lower Bound</em>' operation.
@@ -9880,13 +10483,31 @@ public interface PivotPackage
 	int PROPERTY___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 1;
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -10006,6 +10627,15 @@ public interface PivotPackage
 	int PROPERTY_CALL_EXP_FEATURE_COUNT = NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP___ALL_OWNED_ELEMENTS = NAVIGATION_CALL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10085,6 +10715,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP___ALL_OWNED_ELEMENTS = NUMERIC_LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Real Literal Exp</em>' class.
@@ -10268,6 +10907,15 @@ public interface PivotPackage
 	int SELF_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10293,6 +10941,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SELF_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Self Type</em>' class.
@@ -10365,6 +11022,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEND_SIGNAL_ACTION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEND_SIGNAL_ACTION___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Send Signal Action</em>' class.
@@ -10565,6 +11231,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___ALL_OWNED_ELEMENTS = COLLECTION_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10590,6 +11265,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SEQUENCE_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Sequence Type</em>' class.
@@ -10790,6 +11474,15 @@ public interface PivotPackage
 	int SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___ALL_OWNED_ELEMENTS = COLLECTION_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10815,6 +11508,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE___IS_TEMPLATE_PARAMETER = COLLECTION_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Set Type</em>' class.
@@ -10880,6 +11582,15 @@ public interface PivotPackage
 	int SIGNAL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNAL___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Signal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10941,6 +11652,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int STATE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE___ALL_OWNED_ELEMENTS = NAMED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -11024,6 +11744,15 @@ public interface PivotPackage
 	int STATE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>State Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11105,6 +11834,15 @@ public interface PivotPackage
 	int STRING_LITERAL_EXP_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP___ALL_OWNED_ELEMENTS = PRIMITIVE_LITERAL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>String Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11159,22 +11897,13 @@ public interface PivotPackage
 	int TEMPLATE_BINDING_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Validate Parameter Substitution Formal</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING___VALIDATE_PARAMETER_SUBSTITUTION_FORMAL__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate One Parameter Substitution</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING___VALIDATE_ONE_PARAMETER_SUBSTITUTION__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 1;
+	int TEMPLATE_BINDING___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Template Binding</em>' class.
@@ -11183,7 +11912,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_BINDING_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 2;
+	int TEMPLATE_BINDING_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -11240,13 +11969,13 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_SUBSTITUTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 0;
+	int TEMPLATE_PARAMETER_SUBSTITUTION___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Template Parameter Substitution</em>' class.
@@ -11255,7 +11984,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -11411,6 +12140,15 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE___ALL_OWNED_ELEMENTS = TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11436,6 +12174,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Template Parameter Type</em>' class.
@@ -11492,13 +12239,13 @@ public interface PivotPackage
 	int TEMPLATE_SIGNATURE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Validate Own Elements</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE___VALIDATE_OWN_ELEMENTS__DIAGNOSTICCHAIN_MAP = ELEMENT_OPERATION_COUNT + 0;
+	int TEMPLATE_SIGNATURE___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Template Signature</em>' class.
@@ -11507,7 +12254,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_SIGNATURE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 1;
+	int TEMPLATE_SIGNATURE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -11553,6 +12300,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TEMPLATEABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATEABLE_ELEMENT___ALL_OWNED_ELEMENTS = ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -11654,6 +12410,15 @@ public interface PivotPackage
 	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP___ALL_OWNED_ELEMENTS = LITERAL_EXP___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11724,6 +12489,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_DECLARATION_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS = TYPED_ELEMENT___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Variable Declaration</em>' class.
@@ -11805,6 +12579,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_PART___ALL_OWNED_ELEMENTS = VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Part</em>' class.
@@ -11996,6 +12779,15 @@ public interface PivotPackage
 	int TUPLE_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___ALL_OWNED_ELEMENTS = DATA_TYPE___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12021,6 +12813,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TUPLE_TYPE___IS_TEMPLATE_PARAMETER = DATA_TYPE___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Tuple Type</em>' class.
@@ -12102,6 +12903,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int TYPE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Type Exp</em>' class.
@@ -12194,22 +13004,13 @@ public interface PivotPackage
 	int TYPE_TEMPLATE_PARAMETER_FEATURE_COUNT = TEMPLATE_PARAMETER_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Validate Must Be Compatible</em>' operation.
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Has Constraining Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_TEMPLATE_PARAMETER___VALIDATE_HAS_CONSTRAINING_TYPE__DIAGNOSTICCHAIN_MAP = TEMPLATE_PARAMETER_OPERATION_COUNT + 0;
+	int TYPE_TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS = TEMPLATE_PARAMETER___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Type Template Parameter</em>' class.
@@ -12218,7 +13019,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEMPLATE_PARAMETER_OPERATION_COUNT = TEMPLATE_PARAMETER_OPERATION_COUNT + 1;
+	int TYPE_TEMPLATE_PARAMETER_OPERATION_COUNT = TEMPLATE_PARAMETER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -12291,6 +13092,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_NATURAL_LITERAL_EXP___ALL_OWNED_ELEMENTS = NUMERIC_LITERAL_EXP___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Unlimited Natural Literal Exp</em>' class.
@@ -12492,6 +13302,15 @@ public interface PivotPackage
 	int UNSPECIFIED_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12517,6 +13336,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Type</em>' class.
@@ -12589,6 +13417,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_VALUE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_VALUE_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Value Exp</em>' class.
@@ -12690,6 +13527,15 @@ public interface PivotPackage
 	int VARIABLE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE___ALL_OWNED_ELEMENTS = VARIABLE_DECLARATION___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The number of operations of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12778,6 +13624,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXP___ALL_OWNED_ELEMENTS = OCL_EXPRESSION___ALL_OWNED_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Variable Exp</em>' class.
@@ -12979,6 +13834,15 @@ public interface PivotPackage
 	int VOID_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>All Owned Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___ALL_OWNED_ELEMENTS = CLASS___ALL_OWNED_ELEMENTS;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13004,6 +13868,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Is Compatible With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
 	 * The number of operations of the '<em>Void Type</em>' class.
@@ -13239,6 +14112,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getElement_OwnedComment();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Element#allOwnedElements() <em>All Owned Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>All Owned Elements</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Element#allOwnedElements()
+	 * @generated
+	 */
+	EOperation getElement__AllOwnedElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.OclExpression <em>Ocl Expression</em>}'.
@@ -13694,16 +14577,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getOpaqueExpression_ValueExpression();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#validateLanguageBodySize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Language Body Size</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Language Body Size</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#validateLanguageBodySize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Variable <em>Variable</em>}'.
@@ -14792,26 +15665,6 @@ public interface PivotPackage
 	EReference getTemplateBinding_BoundElement();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#validateParameterSubstitutionFormal(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Parameter Substitution Formal</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Parameter Substitution Formal</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#validateParameterSubstitutionFormal(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#validateOneParameterSubstitution(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate One Parameter Substitution</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate One Parameter Substitution</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#validateOneParameterSubstitution(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateSignature <em>Template Signature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14853,16 +15706,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateSignature_Template();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#validateOwnElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Own Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Own Elements</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#validateOwnElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameter <em>Template Parameter</em>}'.
@@ -14930,16 +15773,6 @@ public interface PivotPackage
 	EReference getTemplateParameter_OwnedDefault();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#validateMustBeCompatible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Must Be Compatible</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Must Be Compatible</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#validateMustBeCompatible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.ParameterableElement <em>Parameterable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14980,6 +15813,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getParameterableElement__IsTemplateParameter();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.ParameterableElement#isCompatibleWith(org.eclipse.ocl.examples.pivot.ParameterableElement) <em>Is Compatible With</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Compatible With</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#isCompatibleWith(org.eclipse.ocl.examples.pivot.ParameterableElement)
+	 * @generated
+	 */
+	EOperation getParameterableElement__IsCompatibleWith__ParameterableElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution <em>Template Parameter Substitution</em>}'.
@@ -15034,16 +15877,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTemplateParameterSubstitution_TemplateBinding();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#validateMustBeCompatible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Must Be Compatible</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Must Be Compatible</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#validateMustBeCompatible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Package <em>Package</em>}'.
@@ -15194,16 +16027,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getTypeTemplateParameter_ConstrainingType();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#validateHasConstrainingType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Has Constraining Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Has Constraining Type</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#validateHasConstrainingType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Property <em>Property</em>}'.
@@ -15370,6 +16193,16 @@ public interface PivotPackage
 	EReference getProperty_OwningType();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Property#isAttribute(org.eclipse.ocl.examples.pivot.Property) <em>Is Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Attribute</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Property#isAttribute(org.eclipse.ocl.examples.pivot.Property)
+	 * @generated
+	 */
+	EOperation getProperty__IsAttribute__Property();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15454,26 +16287,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getMultiplicityElement_Upper();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.MultiplicityElement#validateLowerGe0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Lower Ge0</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Lower Ge0</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.MultiplicityElement#validateLowerGe0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.MultiplicityElement#validateUpperGeLower(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Upper Ge Lower</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.MultiplicityElement#validateUpperGeLower(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.MultiplicityElement#lowerBound() <em>Lower Bound</em>}' operation.
@@ -15760,24 +16573,14 @@ public interface PivotPackage
 	EAttribute getConstraint_IsCallable();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateNotApplyToSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Not Apply To Self</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unique Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Not Apply To Self</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Constraint#validateNotApplyToSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Unique Name</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateValueSpecificationBoolean(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Value Specification Boolean</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Value Specification Boolean</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Constraint#validateValueSpecificationBoolean(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map();
+	EOperation getConstraint__ValidateUniqueName__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.ValueSpecification <em>Value Specification</em>}'.
@@ -16244,6 +17047,14 @@ public interface PivotPackage
 		EReference ELEMENT__OWNED_COMMENT = eINSTANCE.getElement_OwnedComment();
 
 		/**
+		 * The meta object literal for the '<em><b>All Owned Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ELEMENT___ALL_OWNED_ELEMENTS = eINSTANCE.getElement__AllOwnedElements();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OclExpressionImpl <em>Ocl Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -16622,14 +17433,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference OPAQUE_EXPRESSION__VALUE_EXPRESSION = eINSTANCE.getOpaqueExpression_ValueExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Language Body Size</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation OPAQUE_EXPRESSION___VALIDATE_LANGUAGE_BODY_SIZE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getOpaqueExpression__ValidateLanguageBodySize__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl <em>Variable</em>}' class.
@@ -17550,22 +18353,6 @@ public interface PivotPackage
 		EReference TEMPLATE_BINDING__BOUND_ELEMENT = eINSTANCE.getTemplateBinding_BoundElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Parameter Substitution Formal</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATE_BINDING___VALIDATE_PARAMETER_SUBSTITUTION_FORMAL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTemplateBinding__ValidateParameterSubstitutionFormal__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate One Parameter Substitution</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATE_BINDING___VALIDATE_ONE_PARAMETER_SUBSTITUTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTemplateBinding__ValidateOneParameterSubstitution__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -17598,14 +18385,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_SIGNATURE__TEMPLATE = eINSTANCE.getTemplateSignature_Template();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Own Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATE_SIGNATURE___VALIDATE_OWN_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTemplateSignature__ValidateOwnElements__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -17658,14 +18437,6 @@ public interface PivotPackage
 		EReference TEMPLATE_PARAMETER__OWNED_DEFAULT = eINSTANCE.getTemplateParameter_OwnedDefault();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Must Be Compatible</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATE_PARAMETER___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTemplateParameter__ValidateMustBeCompatible__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -17698,6 +18469,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EOperation PARAMETERABLE_ELEMENT___IS_TEMPLATE_PARAMETER = eINSTANCE.getParameterableElement__IsTemplateParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Compatible With</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PARAMETERABLE_ELEMENT___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = eINSTANCE.getParameterableElement__IsCompatibleWith__ParameterableElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -17740,14 +18519,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING = eINSTANCE.getTemplateParameterSubstitution_TemplateBinding();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Must Be Compatible</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TEMPLATE_PARAMETER_SUBSTITUTION___VALIDATE_MUST_BE_COMPATIBLE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTemplateParameterSubstitution__ValidateMustBeCompatible__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -17868,14 +18639,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE = eINSTANCE.getTypeTemplateParameter_ConstrainingType();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Has Constraining Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation TYPE_TEMPLATE_PARAMETER___VALIDATE_HAS_CONSTRAINING_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTypeTemplateParameter__ValidateHasConstrainingType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -18000,6 +18763,14 @@ public interface PivotPackage
 		EReference PROPERTY__OWNING_TYPE = eINSTANCE.getProperty_OwningType();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Attribute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY___IS_ATTRIBUTE__PROPERTY = eINSTANCE.getProperty__IsAttribute__Property();
+
+		/**
 		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18066,22 +18837,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute MULTIPLICITY_ELEMENT__UPPER = eINSTANCE.getMultiplicityElement_Upper();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Lower Ge0</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultiplicityElement__ValidateLowerGe0__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Upper Ge Lower</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMultiplicityElement__ValidateUpperGeLower__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Lower Bound</b></em>' operation.
@@ -18316,20 +19071,12 @@ public interface PivotPackage
 		EAttribute CONSTRAINT__IS_CALLABLE = eINSTANCE.getConstraint_IsCallable();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Not Apply To Self</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Unique Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Value Specification Boolean</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConstraint__ValidateValueSpecificationBoolean__DiagnosticChain_Map();
+		EOperation CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConstraint__ValidateUniqueName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.

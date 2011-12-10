@@ -135,11 +135,11 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI("http://schema.omg.org/spec/XMI/2.1"), URI.createURI("http://www.omg.org/XMI", true)); //$NON-NLS-1$
 
-		L2Package.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
+		UMLPackage.eINSTANCE.eClass();
 		L3Package.eINSTANCE.eClass();
-		Ecore2XMLPackage.eINSTANCE.eClass();
-
-		
+		L2Package.eINSTANCE.eClass();
+		Ecore2XMLPackage.eINSTANCE.eClass();		
 		
 		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
 		packageRegistry.put("http://www.omg.org/spec/UML/20100901/PrimitiveTypes.xmi", TypesPackage.eINSTANCE);
