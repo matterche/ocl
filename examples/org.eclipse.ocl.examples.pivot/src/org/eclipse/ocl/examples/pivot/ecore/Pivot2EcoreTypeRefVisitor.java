@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -35,6 +36,8 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.TypeTracker;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -42,8 +45,11 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class Pivot2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
 {
+	protected final MetaModelManager metaModelManager;
+	
 	public Pivot2EcoreTypeRefVisitor(Pivot2Ecore context) {
 		super(context);
+		this.metaModelManager = context.getMetaModelManager();
 	}
 
 	public EGenericType resolveEGenericType(Type type) {
@@ -56,6 +62,14 @@ public class Pivot2EcoreTypeRefVisitor
 			eGenericType.setEClassifier((EClassifier) eType);
 			return eGenericType;
 		}
+	}
+
+	@Override
+	public EObject safeVisit(Visitable v) {
+		if (v instanceof Type) {
+			v = metaModelManager.getPrimaryType((Type)v);
+		}
+		return (v == null) ? null : v.accept(this);
 	}
 
 	public <T extends EObject> void safeVisitAll(List<T> eObjects, List<? extends Element> pivotObjects) {
@@ -71,6 +85,12 @@ public class Pivot2EcoreTypeRefVisitor
 
 	public EClassifier visiting(Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore TypeRef pass");
+	}
+
+	@Override
+	public EObject visitCollectionType(CollectionType object) {
+		// TODO Auto-generated method stub
+		return super.visitCollectionType(object);
 	}
 
 	@Override
@@ -91,19 +111,30 @@ public class Pivot2EcoreTypeRefVisitor
 			}
 			return eClassifier;
 		}
-		if (pivotType == context.getMetaModelManager().getBooleanType()) {
+		TypeTracker typeTracker = metaModelManager.findTypeTracker(pivotType);
+		if (typeTracker != null) {
+			for (Type aType : typeTracker.getTypeServer().getTypes()) {
+				if (!(aType instanceof PrimitiveType)) {
+					EDataType eClassifier = context.getCreated(EDataType.class, pivotType);
+					if (eClassifier != null) {
+						return eClassifier;
+					}
+				}
+			}
+		}
+		if (pivotType == metaModelManager.getBooleanType()) {
 			return EcorePackage.Literals.EBOOLEAN;
 		}
-		else if (pivotType == context.getMetaModelManager().getIntegerType()) {
+		else if (pivotType == metaModelManager.getIntegerType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
-		else if (pivotType == context.getMetaModelManager().getRealType()) {
+		else if (pivotType == metaModelManager.getRealType()) {
 			return EcorePackage.Literals.EBIG_DECIMAL;
 		}
-		else if (pivotType == context.getMetaModelManager().getStringType()) {
+		else if (pivotType == metaModelManager.getStringType()) {
 			return EcorePackage.Literals.ESTRING;
 		}
-		else if (pivotType == context.getMetaModelManager().getUnlimitedNaturalType()) {
+		else if (pivotType == metaModelManager.getUnlimitedNaturalType()) {
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
 		else {
