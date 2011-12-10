@@ -106,11 +106,9 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 			log.info("Generating to ' " + folder + "'");
 			acceleo.generate(null);
 		} catch (RuntimeException e) {
-			e.printStackTrace();
 			throw e;
 		} catch (Exception e) {
-			issues.addError(this, "libraryFile not specified.", null, e, null);
-			e.printStackTrace();
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 

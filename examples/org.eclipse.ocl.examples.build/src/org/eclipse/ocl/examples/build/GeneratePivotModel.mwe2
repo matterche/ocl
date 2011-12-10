@@ -23,7 +23,8 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
-var pivotSlot = "pivot"
+var ecoreSlot = "ecore"
+var umlSlot = "uml"
 var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
@@ -38,41 +39,44 @@ Workflow {
     bean = OCLStandaloneSetup {}
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.cmof"
     }
     component = PackageMerger { skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${umlSlot}"
     }
     component = PackageAlphabetizer { skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${umlSlot}"
     }
     component = ConstraintRemover { skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${umlSlot}"
     }
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.merged.uml"
     }
-    component = GenmodelReloader { skipOnErrors = true
+    component = GenmodelReloader { resourceSet = resourceSet skipOnErrors = true
+    	projectName = "${projectName}"
+    	modelSlot = "${ecoreSlot}"
     	genModel = "/${projectName}/model/Pivot.merged.genmodel"
     	ecoreFile = "/${projectName}/model/Pivot.ecore"
 //    	modelImporter = "org.eclipse.uml2.uml.ecore.importer.UMLImporter"
 //    	modelImporter = "org.eclipse.ocl.examples.build.utilities.UMLImporterWithDelegates"	
     }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${ecoreSlot}"
     	uri = "/${projectName}/model/Pivot.ecore"
     }
     component = ConstraintMerger { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
-    	uri = "/${projectName}/model/Pivot.ocl"
+    	projectName = "${projectName}"
+    	modelSlot = "${ecoreSlot}"
+    	uri = "model/Pivot.ocl"
     }
     component = EPackageAlphabetizer { skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${ecoreSlot}"
     }
     component = PruneSuperClasses { skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
+    	modelSlot = "${ecoreSlot}"
     }
 //    component = OCLDelegateActivator { skipOnErrors = true
 //    	modelSlot = "${pivotSlot}"
@@ -81,29 +85,32 @@ Workflow {
 //    	modelSlot = "${pivotSlot}"
 //    }
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
-    	modelSlot = "${pivotSlot}"
-    	uri = "/${projectName}/model/pivot.ecore"
+    	modelSlot = "${ecoreSlot}"
     }
     component = GenerateModel { resourceSet = resourceSet skipOnErrors = true
+//    	projectName = "${projectName}"
     	genModel = "/${projectName}/model/Pivot.merged.genmodel"
+//    	modelSlot = "${ecoreSlot}"
     }
 //  	component = @GeneratePivotVisitors {}
     component = PivotVisitorCodeGenerator { resourceSet = resourceSet
-    	ecoreFile = "/${projectName}/model/pivot.ecore"
-    	javaFolder = "/${projectName}/emf-gen"
+    	projectName = "${projectName}"
+    	ecoreFile = "model/Pivot.ecore"
+    	javaFolder = "emf-gen"
     	javaPackageName = "${projectName}"
     	javaClassName = "Visitor"
     }
 //  	component = @GenerateOclMetaModel {}
     component = OclMetaModelCodeGenerator { resourceSet = resourceSet
-    	libraryFile = "/${projectName}/model/pivot.ecore"
-    	javaFolder = "/${projectName}/emf-gen"
+    	projectName = "${projectName}"
+    	libraryFile = "model/Pivot.ecore"
+    	javaFolder = "emf-gen"
     	javaPackageName = "${projectName}.model"
     	javaClassName = "OclMetaModel"
     }
 //    component = @GeneratePivotTables {}
-    component = Model2tablesGenerator { resourceSet = resourceSet
-    	genModelFile = "/${projectName}/model/Pivot.merged.genmodel"
-    }
+//    component = Model2tablesGenerator { resourceSet = resourceSet
+//    	genModelFile = "/${projectName}/model/Pivot.merged.genmodel"
+//    }
 }
 

@@ -20,7 +20,6 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -65,7 +64,7 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 				inputResource.save(null);
 			}
 		} catch (IOException e) {
-			throw new WrappedException(e);
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 	

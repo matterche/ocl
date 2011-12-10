@@ -33,6 +33,7 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.codegen.ecore.CodeGenEcorePlugin;
 import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -154,7 +155,34 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected Map<String, String> createJavaBodies(GenModel genModel) {
+	protected void createClassBodies(GenModel genModel, Monitor monitor) {
+	  	try {
+	  		File projectFolder = getProjectFolder(genModel);
+            List<String> arguments = new ArrayList<String>();
+  			Model2bodies generator = new Model2bodies(genModel, projectFolder, arguments);
+	        generator.generate(monitor);
+//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
+		} catch (Exception e) {
+	        CodeGenEcorePlugin.INSTANCE.log(e);
+		}
+	}
+
+	protected void createDispatchTables(GenModel genModel, Monitor monitor) {
+	  	try {
+  			File projectFolder = getProjectFolder(genModel);
+            List<String> arguments = new ArrayList<String>();
+            Model2tables generator = new Model2tables(genModel, projectFolder, arguments);
+	        generator.generate(monitor);
+//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
+		} catch (Exception e) {
+	        CodeGenEcorePlugin.INSTANCE.log(e);
+		}
+	}
+
+	/**
+	 * Create a Map of feature identification to body to be embedded in the EMF model.
+	 */
+	protected Map<String, String> createFeatureBodies(GenModel genModel) {
 		Map<String, String> results = new HashMap<String, String>();
 	  	try {
             File folder = new File("/");       
@@ -172,36 +200,9 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				results.put(key2, value);
 	        }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	        CodeGenEcorePlugin.INSTANCE.log(e);
 		}
 		return results;
-	}
-
-	protected void createClassOperations(GenModel genModel, Monitor monitor) {
-	  	try {
-	  		File projectFolder = getProjectFolder(genModel);
-            List<String> arguments = new ArrayList<String>();
-  			Model2bodies generator = new Model2bodies(genModel, projectFolder, arguments);
-	        generator.generate(monitor);
-//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	protected void createDispatchTables(GenModel genModel, Monitor monitor) {
-	  	try {
-  			File projectFolder = getProjectFolder(genModel);
-            List<String> arguments = new ArrayList<String>();
-            Model2tables generator = new Model2tables(genModel, projectFolder, arguments);
-	        generator.generate(monitor);
-//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -220,7 +221,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 			metaModelManager = adapter.getMetaModelManager();
 			convertConstraintsToOperations(metaModelManager, genModel);
-		    Map<String, String> results = createJavaBodies(genModel);			
+		    Map<String, String> results = createFeatureBodies(genModel);			
 			installJavaBodies(metaModelManager, genModel, results);
 			pruneDelegates(genModel);
 		}
@@ -237,7 +238,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
 			createDispatchTables(genModel, monitor);
 		    monitor.worked(1);
-			createClassOperations(genModel, monitor);
+		    createClassBodies(genModel, monitor);
 		    monitor.worked(1);
 		}
 		return super.generateModel(object, monitor);
@@ -338,6 +339,10 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
+		oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation != null) {
+			eAnnotations.remove(oclAnnotation);
+		}
 		oclAnnotation = eOperation.getEAnnotation(UML2GenModelUtil.UML2_GEN_MODEL_PACKAGE_1_1_NS_URI);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
@@ -360,6 +365,10 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				eAnnotations.remove(oclAnnotation);
 			}
 			oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			if (oclAnnotation != null) {
+				eAnnotations.remove(oclAnnotation);
+			}
+			oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 			if (oclAnnotation != null) {
 				eAnnotations.remove(oclAnnotation);
 			}

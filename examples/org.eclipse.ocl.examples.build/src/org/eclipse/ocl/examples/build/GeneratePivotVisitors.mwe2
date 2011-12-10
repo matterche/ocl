@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.*
 var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
- *	Generate the Pivot Visitors to suit pivot.ecore.
+ *	Generate the Pivot Visitors to suit Pivot.ecore.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -34,7 +34,7 @@ Workflow {
     	platformUri = ".."
     }
     component = PivotVisitorCodeGenerator { resourceSet = resourceSet
-    	ecoreFile = "/${projectName}/model/pivot.ecore"
+    	ecoreFile = "/${projectName}/model/Pivot.ecore"
     	javaFolder = "/${projectName}/emf-gen"
     	javaPackageName = "${projectName}"
     	javaClassName = "Visitor"

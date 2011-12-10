@@ -364,8 +364,10 @@ public class Ocl2java4genmodel extends AbstractAcceleoGenerator {
 			resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(),
 							org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
 		}
-        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put("/org.eclipse.emf.codegen.ecore/model/GenModel.ecore", org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+//        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+//        resourceSet.getPackageRegistry().put("/org.eclipse.emf.codegen.ecore/model/GenModel.ecore", org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
+		ProjectMap.initializeURIResourceMap(resourceSet);
     }
 
     /**

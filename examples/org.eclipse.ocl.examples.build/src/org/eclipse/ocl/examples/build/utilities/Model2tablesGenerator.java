@@ -87,7 +87,7 @@ public class Model2tablesGenerator extends AbstractWorkflowComponent
 			log.info("Generating to ' " + targetFolder + "'");
 			acceleo.generate(null);
 		} catch (Exception e) {
-			issues.addError(this, "genModel failed.", null, e, null);
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 

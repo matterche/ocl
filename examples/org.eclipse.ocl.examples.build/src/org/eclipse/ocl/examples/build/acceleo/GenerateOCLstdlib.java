@@ -341,7 +341,7 @@ public class GenerateOCLstdlib extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
         registerPackagesGen(resourceSet);
-        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
     }
 
 	/**

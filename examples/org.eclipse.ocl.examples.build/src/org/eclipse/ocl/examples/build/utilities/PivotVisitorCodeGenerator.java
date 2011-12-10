@@ -31,8 +31,10 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GeneratePivotVisitors;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 /**
@@ -43,12 +45,20 @@ public class PivotVisitorCodeGenerator extends AbstractWorkflowComponent
 {
 	private Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
+	protected String projectName;
 	protected String javaClassName;
 	protected String javaFolder;
 	protected String javaPackageName;
 	protected String ecoreFile;
 
+	public PivotVisitorCodeGenerator() {
+		OCLstdlibStandaloneSetup.doSetup();
+	}
+
 	public void checkConfiguration(Issues issues) {
+		if (projectName == null) {
+			issues.addError(this, "projectName not specified.");
+		}
 		if (javaClassName == null) {
 			issues.addError(this, "javaClassName not specified.");
 		}
@@ -64,32 +74,29 @@ public class PivotVisitorCodeGenerator extends AbstractWorkflowComponent
 		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
-		OCLstdlibStandaloneSetup.doSetup();
 		return resourceSet;
 	}
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues issues) {
-		URI fileURI = URI.createPlatformResourceURI(ecoreFile, true);
-		String rootPath = StandaloneSetup.getPlatformRootPath();
-		File folder = new File(rootPath + javaFolder + '/' + javaPackageName.replace('.', '/') + "/util");
-		log.info("Loading Ecore Model '" + fileURI);
+		ResourceSet resourceSet = getResourceSet();
+		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
+		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
+		URI inputURI = projectDescriptor.getPlatformResourceURI(ecoreFile);
+		File outputFolder = projectDescriptor.getLocationFile(javaFolder + '/' + javaPackageName.replace('.', '/') + "/util");
+		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			ResourceSet resourceSet = getResourceSet();
-			Resource ecoreResource = resourceSet.getResource(fileURI, true);
+			resourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+			Resource ecoreResource = resourceSet.getResource(inputURI, true);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);
 			arguments.add(javaClassName);
 			arguments.add(ecoreFile);
 			EObject ecoreModel = ecoreResource.getContents().get(0);
-			GeneratePivotVisitors acceleo = new GeneratePivotVisitors(ecoreModel, folder, arguments);
-			log.info("Generating to ' " + folder + "'");
+			GeneratePivotVisitors acceleo = new GeneratePivotVisitors(ecoreModel, outputFolder, arguments);
+			log.info("Generating to ' " + outputFolder + "'");
 			acceleo.generate(null);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			throw e;
 		} catch (IOException e) {
-			issues.addError(this, "ecore File not specified.", null, e, null);
-			e.printStackTrace();
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 
@@ -103,6 +110,10 @@ public class PivotVisitorCodeGenerator extends AbstractWorkflowComponent
 
 	public void setJavaPackageName(String javaPackageName) {
 		this.javaPackageName = javaPackageName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public void setEcoreFile(String ecoreFile) {

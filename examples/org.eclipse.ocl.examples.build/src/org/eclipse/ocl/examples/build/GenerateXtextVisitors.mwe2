@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
 
 /**
- *	Generate the Pivot Visitors to suit pivot.ecore.
+ *	Generate the Pivot Visitors to suit Pivot.ecore.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}

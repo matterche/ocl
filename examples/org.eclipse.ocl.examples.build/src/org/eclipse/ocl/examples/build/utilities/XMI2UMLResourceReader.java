@@ -79,13 +79,8 @@ public class XMI2UMLResourceReader extends WorkflowComponentWithModelSlot
 			EcoreUtil.resolveAll(resourceSet);
 			ResourceUtils.checkResourceSet(resourceSet);
 			ctx.set(getModelSlot(), resource);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			throw e;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-//			throw e;
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 	

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
@@ -350,7 +351,9 @@ public class Model2bodies extends AbstractAcceleoGenerator {
         if (!isInWorkspace(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.class)) {
             resourceSet.getPackageRegistry().put(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(), org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
         }
-        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+//        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", PivotPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+		ProjectMap.initializeURIResourceMap(resourceSet);
     }
 
     /**

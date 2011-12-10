@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.*
 var projectName = "org.eclipse.ocl.examples.pivot"
 
 /**
- *	Generate the OCL Meta Model, by converting pivot.ecore to OclMetaModel.java.
+ *	Generate the OCL Meta Model, by converting Pivot.ecore to OclMetaModel.java.
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
@@ -34,7 +34,7 @@ Workflow {
     	platformUri = ".."
     }
     component = OclMetaModelCodeGenerator { resourceSet = resourceSet
-    	libraryFile = "/${projectName}/model/pivot.ecore"
+    	libraryFile = "/${projectName}/model/Pivot.ecore"
     	javaFolder = "/${projectName}/emf-gen"
     	javaPackageName = "${projectName}.model"
     	javaClassName = "OclMetaModel"

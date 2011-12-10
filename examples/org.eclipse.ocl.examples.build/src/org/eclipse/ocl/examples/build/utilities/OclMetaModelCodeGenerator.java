@@ -30,8 +30,9 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
-import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GenerateOclMetaModel;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap.IProjectDescriptor;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -48,16 +49,20 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 {
 	private Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
-//	protected String uri;
+	protected String projectName;
 	protected String javaClassName;
 	protected String javaFolder;
 	protected String javaPackageName;
 	protected String libraryFile;
 
+	public OclMetaModelCodeGenerator() {
+		OCLstdlibStandaloneSetup.doSetup();
+	}
+
 	public void checkConfiguration(Issues issues) {
-//		if (uri == null) {
-//			issues.addError(this, "uri not specified.");
-//		}
+		if (projectName == null) {
+			issues.addError(this, "projectName not specified.");
+		}
 		if (javaClassName == null) {
 			issues.addError(this, "javaClassName not specified.");
 		}
@@ -73,22 +78,22 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
-		OCLstdlibStandaloneSetup.doSetup();
 		return resourceSet;
 	}
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues issues) {
-		URI fileURI = URI.createPlatformResourceURI(libraryFile, true);
-		String rootPath = StandaloneSetup.getPlatformRootPath();
+		ResourceSet resourceSet = getResourceSet();
+		StandaloneProjectMap projectMap = StandaloneProjectMap.getAdapter(resourceSet);
+		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor(projectName);
+		URI inputURI = projectDescriptor.getPlatformResourceURI(libraryFile);
+		File outputFolder = projectDescriptor.getLocationFile(javaFolder + '/' + javaPackageName.replace('.', '/'));
 		OCLstdlib.install();
-		File folder = new File(rootPath + javaFolder + '/' + javaPackageName.replace('.', '/'));
-		log.info("Loading Pivot Model '" + fileURI);
+		log.info("Loading Pivot Model '" + inputURI);
 		try {
-			ResourceSet resourceSet = getResourceSet();
 			MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-			Resource ecoreResource = resourceSet.getResource(fileURI, true);
+			Resource ecoreResource = resourceSet.getResource(inputURI, true);
 			MetaModelManagerResourceAdapter.getAdapter(ecoreResource, metaModelManager);
-			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Loading " + fileURI, "\n");
+			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Loading " + inputURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
@@ -97,7 +102,7 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Package pivotPackage = pivotRoot.getNestedPackages().get(0);
 			Resource pivotResource = pivotRoot.eResource();
-			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Converting " + fileURI, "\n");
+			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Converting " + inputURI, "\n");
 			if (pivotErrorsString != null) {
 				issues.addError(this, pivotErrorsString, null, null, null);
 				return;
@@ -112,15 +117,11 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 //			if (orphanage != null) {
 //				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackages().add(orphanage);
 //			}
-			GenerateOclMetaModel acceleo = new GenerateOclMetaModel(pivotPackage, folder, arguments);
-			log.info("Generating to ' " + folder + "'");
+			GenerateOclMetaModel acceleo = new GenerateOclMetaModel(pivotPackage, outputFolder, arguments);
+			log.info("Generating to ' " + outputFolder + "'");
 			acceleo.generate(null);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			throw e;
 		} catch (IOException e) {
-			issues.addError(this, "libraryFile not specified.", null, e, null);
-			e.printStackTrace();
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 
@@ -139,12 +140,12 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 	public void setLibraryFile(String libraryFile) {
 		this.libraryFile = libraryFile;
 	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 	
 	public void setResourceSet(ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 	}
-	
-//	public void setUri(String uri) {
-//		this.uri = uri;
-//	}
 }

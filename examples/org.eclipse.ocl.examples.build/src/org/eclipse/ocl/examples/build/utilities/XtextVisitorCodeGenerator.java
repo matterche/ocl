@@ -97,12 +97,8 @@ public class XtextVisitorCodeGenerator extends AbstractWorkflowComponent
 			log.info("Generating to ' " + folder + "'");
 			EMF2MWEMonitorAdapter monitor = new EMF2MWEMonitorAdapter(arg1);
 			acceleo.generate(monitor);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			throw e;
 		} catch (IOException e) {
-			issues.addError(this, "ecore File not specified.", null, e, null);
-			e.printStackTrace();
+			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
 

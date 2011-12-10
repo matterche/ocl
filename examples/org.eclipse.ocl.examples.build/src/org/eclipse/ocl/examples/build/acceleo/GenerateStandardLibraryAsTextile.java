@@ -349,7 +349,7 @@ public class GenerateStandardLibraryAsTextile extends AbstractAcceleoGenerator {
 	        packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
 	    }
 //	    else {
-	        packageRegistry.put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", PivotPackage.eINSTANCE);
+	        packageRegistry.put("/org.eclipse.ocl.examples.pivot/model/Pivot.ecore", PivotPackage.eINSTANCE);
 //	    }
 	    if (!isInWorkspace(MarkupPackage.class)) {
 	        packageRegistry.put(MarkupPackage.eNS_URI, MarkupPackage.eINSTANCE);

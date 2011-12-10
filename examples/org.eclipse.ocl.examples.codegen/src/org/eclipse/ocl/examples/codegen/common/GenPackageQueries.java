@@ -111,23 +111,23 @@ public class GenPackageQueries
 //		if (usedGenPackage != null) {
 //			return usedGenPackage;
 //		}		
-		Resource resource = firstEPackage.eResource();
-		ResourceSet resourceSet = resource.getResourceSet();
-		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
+		Resource genModelResource = genPackage.eResource();
+		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
+		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
 		MetaModelManager metaModelManager = resourceSetAdapter.getMetaModelManager();
 		org.eclipse.ocl.examples.pivot.Package metaModelPackage = metaModelManager.getPivotMetaModel();
 		org.eclipse.ocl.examples.pivot.Package libraryPackage = metaModelManager.getLibraries().get(0);
 		if (pivotPackage == libraryPackage) {
 			GenPackage libraryGenPackage = getLibraryGenPackage(usedGenPackages);
 			if (libraryGenPackage == null) {
-				libraryGenPackage = loadGenPackage(resourceSet, LibraryConstants.GEN_MODEL_URI);
+				libraryGenPackage = loadGenPackage(genModelResourceSet, LibraryConstants.GEN_MODEL_URI);
 			}
 			return libraryGenPackage;
 		}
 		if (pivotPackage == metaModelPackage) {
 			GenPackage metaModelGenPackage = getMetaModelGenPackage(usedGenPackages);
 			if (metaModelGenPackage == null) {
-				metaModelGenPackage = loadGenPackage(resourceSet, PivotConstants.GEN_MODEL_URI);
+				metaModelGenPackage = loadGenPackage(genModelResourceSet, PivotConstants.GEN_MODEL_URI);
 			}
 			return metaModelGenPackage;
 		}
@@ -238,10 +238,10 @@ public class GenPackageQueries
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotPackage(GenPackage genPackage) {
 		EPackage ePackage = genPackage.getEcorePackage();
-		Resource resource = ePackage.eResource();
-		ResourceSet resourceSet = resource.getResourceSet();
-		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, null);
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, resourceSetAdapter.getMetaModelManager());
+		Resource ecoreResource = ePackage.eResource();
+		ResourceSet genModelResourceSet = genPackage.eResource().getResourceSet();
+		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, resourceSetAdapter.getMetaModelManager());
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
 		if (pivotPackage.getNsURI().equals(OCLstdlibPackage.eNS_URI)) {				// If generating OCLstdlibTables ...
 			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);

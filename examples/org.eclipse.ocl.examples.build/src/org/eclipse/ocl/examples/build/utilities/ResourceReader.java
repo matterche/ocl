@@ -50,16 +50,14 @@ public class ResourceReader extends WorkflowComponentWithModelSlot
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
 		URI fileURI = URI.createPlatformResourceURI(uri, true);
 		log.info("Reading '" + fileURI + "'");
-		try {
-			ResourceSet resourceSet = getResourceSet();
-			Resource resource = resourceSet.getResource(fileURI, true);
-			EcoreUtil.resolveAll(resourceSet);
-			ResourceUtils.checkResourceSet(resourceSet);
-			ctx.set(getModelSlot(), resource);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			throw e;
-		}
+		ResourceSet resourceSet = getResourceSet();
+		Resource resource = resourceSet.getResource(fileURI, true);
+		EcoreUtil.resolveAll(resource);
+//	    System.out.println("ResolvedAll " + resource.getClass().getName() + "@" + Integer.toHexString(resource.hashCode()) + " " + resource.getURI());
+		ResourceUtils.checkResource(resource);
+		EcoreUtil.resolveAll(resourceSet);
+		ResourceUtils.checkResourceSet(resourceSet);
+		ctx.set(getModelSlot(), resource);
 	}
 	
 	public void setResourceSet(ResourceSet resourceSet) {

@@ -18,30 +18,33 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 
 /**
  * Initializes Eclipse standalone support.
  */
 public class ProjectMapSetup
 {
-	private static StandaloneProjectMap projectMap;
+	private static ProjectMap projectMap;
 	private Logger log = Logger.getLogger(getClass());
 
 	public ProjectMapSetup() {
 		if (projectMap == null) {
 			log.info("Creating project map.");
-			projectMap = new StandaloneProjectMap();
+			projectMap = new ProjectMap();
 			projectMap.initializeResourceSet(null);
 		}
 		else {
 			log.info("Reusing project map.");
 		}
-//		projectMap.useDevelopmentVersion(null, "org.eclipse.ocl.examples.pivot", URI.createURI(PivotPackage.eNS_URI));
+//		IProjectDescriptor projectDescriptor = projectMap.getProjectDescriptor("org.eclipse.ocl.examples.pivot");
+//		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(PivotPackage.eNS_URI));
+//		packageDescriptor.setUseModel(true, ProjectMap.getPackageRegistry(null));
 	}
 
 	public void setResourceSet(ResourceSet resourceSet) {
 		log.info("Applying project map");
 		resourceSet.eAdapters().add(projectMap);
+		ProjectMap.initializeURIResourceMap(resourceSet);
 	}
 }

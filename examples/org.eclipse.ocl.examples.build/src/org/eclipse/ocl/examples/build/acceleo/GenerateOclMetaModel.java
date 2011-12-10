@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 
 /**
  * Entry point of the 'GenerateOCLmodel' generation module.
@@ -335,7 +336,7 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
         registerPackagesGen(resourceSet);
-        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
     }
 
 	/**
