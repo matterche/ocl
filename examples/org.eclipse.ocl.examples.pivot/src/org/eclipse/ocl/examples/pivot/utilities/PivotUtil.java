@@ -830,6 +830,7 @@ public class PivotUtil extends DomainUtil
 			}
 		}
 		StringBuffer s = new StringBuffer();
+		s.append("u_r_i:");
 		getNsURI(s, element);
 		return s.toString();
 	}
@@ -873,10 +874,10 @@ public class PivotUtil extends DomainUtil
 		else if (eContainer == null) {
 			String name = null;
 			if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
-				name = "$" + ((org.eclipse.ocl.examples.pivot.Package)element).getName() + "$";
+				name = ((org.eclipse.ocl.examples.pivot.Package)element).getName();
 			}
 			else if (element instanceof EPackage) {
-				name = "$" + ((EPackage)element).getName() + "$";
+				name = ((EPackage)element).getName();
 			}
 			if (name == null) {
 				name = "$null$";
