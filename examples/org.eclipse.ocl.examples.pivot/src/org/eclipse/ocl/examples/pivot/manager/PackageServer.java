@@ -69,14 +69,35 @@ public class PackageServer extends PackageTracker
 			nestedPackageServers = new HashMap<String, PackageServer>();
 		}
 		String packageName = pivotPackage.getName();
+		String nsURI = pivotPackage.getNsURI();
+		org.eclipse.ocl.examples.pivot.Package primaryPackage = null;
+		if (nsURI != null) {										// Explicit nsURI for explicit package (merge)
+			primaryPackage = packageManager.getPackageByURI(nsURI);
+			if (primaryPackage != null) {
+				PackageServer packageServer = packageManager.getPackageTracker(primaryPackage).getPackageServer();
+				if (primaryPackage != pivotPackage) {
+					packageServer.addSecondaryPackage(pivotPackage);
+				}
+				nestedPackageServers.put(packageName, packageServer);
+				return;
+			}
+		}
 		PackageServer nestedPackageServer = nestedPackageServers.get(packageName);
 		if (nestedPackageServer == null) {
-			nestedPackageServer = (PackageServer) EcoreUtil.getAdapter(pivotPackage.eAdapters(), packageManager);
-			if (nestedPackageServer == null) {
-				nestedPackageServer = new PackageServer(packageManager, pivotPackage);
+			PackageTracker nestedPackageTracker = (PackageTracker) EcoreUtil.getAdapter(pivotPackage.eAdapters(), packageManager);
+			if (nestedPackageTracker instanceof PackageClient) {
+				nestedPackageServer = nestedPackageTracker.getPackageServer();
+				nestedPackageServers.put(packageName, nestedPackageServer);
 			}
-			nestedPackageServers.put(packageName, nestedPackageServer);
-			packageManager.addedNestedPrimaryPackage(pivotPackage);
+			else if (nestedPackageTracker instanceof PackageServer) {
+				nestedPackageServers.put(packageName, nestedPackageServer);
+				packageManager.addedNestedPrimaryPackage(pivotPackage);
+			}
+			else {
+				nestedPackageServer = new PackageServer(packageManager, pivotPackage);
+				nestedPackageServers.put(packageName, nestedPackageServer);
+				packageManager.addedNestedPrimaryPackage(pivotPackage);
+			}
 		}
 		else {
 			nestedPackageServer.addSecondaryPackage(pivotPackage);
@@ -200,6 +221,10 @@ public class PackageServer extends PackageTracker
 			packageServer.removedPackage(nestedPackage);
 		}
 	}
+
+//	public void removePackage(Package pivotPackage) {
+//		removedPackage(pivotPackage);
+//	}
 
 	void removedPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		PackageTracker packageTracker = packageManager.findPackageTracker(pivotPackage);
