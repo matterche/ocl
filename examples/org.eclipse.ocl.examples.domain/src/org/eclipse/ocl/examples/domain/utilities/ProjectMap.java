@@ -184,7 +184,7 @@ public class ProjectMap extends StandaloneProjectMap
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type instanceof ProjectMap;
+		return (type instanceof Class<?>) && ((Class<?>)type).isAssignableFrom(ProjectMap.class);
 	}
 
 	@Override
@@ -222,7 +222,7 @@ public class ProjectMap extends StandaloneProjectMap
 				URI nsURI = URI.createURI(ePackageNsURI);
 				IPackageDescriptor.Internal packageDescriptor = (IPackageDescriptor.Internal) projectDescriptor.getPackageDescriptor(nsURI);
 				if (packageDescriptor == null) {
-					packageDescriptor = projectDescriptor.createPackageDescriptor(nsURI, genModelURI.deresolve(projectDescriptor.getLocation(), true, true, true));
+					packageDescriptor = projectDescriptor.createPackageDescriptor(nsURI, genModelURI.deresolve(projectDescriptor.getLocationURI(), true, true, true));
 				}
 				GenModelEcorePackageHandler genModelEcorePackageHandler = packageDescriptor.createGenModelEcorePackageHandler();
 		        InputStream inputStream = null;

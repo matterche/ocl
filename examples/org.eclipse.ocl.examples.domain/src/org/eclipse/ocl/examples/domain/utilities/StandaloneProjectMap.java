@@ -44,8 +44,8 @@ import org.eclipse.emf.common.notify.impl.SingletonAdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -188,7 +188,20 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		/**
 		 * Configure the package registry to load the Ecore Model rather than the Java Class.
 		 */
-		void setUseModel(boolean useModel, EPackage.Registry packageRegistry);		
+		void setUseModel(boolean useModel, EPackage.Registry packageRegistry);
+		/**
+		 * Configure the package registry to load the Java Class for the package URI, and the Ecore model
+		 * for the platform:/* accesses.
+		 */
+		void setUseModelAndPackage(final EPackage ePackage, EPackage.Registry packageRegistry);
+		/**
+		 * Configure the package registry to use the provided EPackage rather than the Java Class.
+		 */
+		void setUsePackage(EPackage ePackage, EPackage.Registry packageRegistry);
+		/**
+		 * Unload the package registry to force a reload.
+		 */
+		void unload(EPackage.Registry packageRegistry);		
 	}
 
 	/**
@@ -206,15 +219,31 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		/**
 		 * Return the physical location of this project.
 		 */
-		URI getLocation();
+		URI getLocationURI();
+		/**
+		 * Return the physical location of a projectRelativeFileName as a URI.
+		 */
+		URI getLocationURI(String projectRelativeFileName);
+		/**
+		 * Return the physical location of a projectRelativeFileName as a File.
+		 */
+		File getLocationFile(String projectRelativeFileName);
 		/**
 		 * Return the location of this project as a platform:/plugin URI.
 		 */
 		URI getPlatformPluginURI();
 		/**
+		 * Return the location of a projectRelativeFileName as a platform:/resource URI.
+		 */
+		URI getPlatformPluginURI(String projectRelativeFileName);
+		/**
 		 * Return the location of this project as a platform:/resource URI.
 		 */
 		URI getPlatformResourceURI();
+		/**
+		 * Return the location of a projectRelativeFileName as a platform:/resource URI.
+		 */
+		URI getPlatformResourceURI(String projectRelativeFileName);
 		/**
 		 * Return the package descriptor for the package with a given nsURI or null if none known in the project.
 		 */
@@ -224,9 +253,15 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		 */
 		Collection<IPackageDescriptor> getPackageDescriptors();
 		void initializeGenModelLocationMap();
-		void initializePackageRegistration(Registry packageRegistry, IPackageDescriptor packageDescriptor);
+		void initializePackageRegistration(EPackage.Registry packageRegistry, IPackageDescriptor packageDescriptor);
 		void initializePlatformResourceMap();
 		void initializeURIMap(Map<URI, URI> uriMap);
+		public void useModelsAndPackages(Resource ecoreResource);
+		/**
+		 * Treat any top level packages in ecoreResource as preloaded packages for use by corresponding URIs
+		 * in this project.
+		 */
+		public void usePackages(Resource ecoreResource);
 	}
 	
 	/**
@@ -258,7 +293,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 		public void addEcorePackage(String ecorePackage) {
 			URI uri = URI.createURI(ecorePackage);
-			URI locationURI = projectDescriptor.getLocation();
+			URI locationURI = projectDescriptor.getLocationURI();
 			URI absoluteGenModelURI = genModelURI.resolve(locationURI);
 			URI absolutePackageURI = uri.resolve(absoluteGenModelURI);
 			ecorePackageURI = absolutePackageURI.deresolve(locationURI, true, true, true);
@@ -276,9 +311,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public EPackage getEPackage() {
 			if (ePackage == null) {
 				if (useModel) {
-					URI uri = ecorePackageURI.resolve(projectDescriptor.getLocation());
+					URI uri = ecorePackageURI.resolve(projectDescriptor.getLocationURI());
 					ResourceSet resourceSet = new ResourceSetImpl();
 					ePackage = (EPackage) resourceSet.getEObject(uri, true);
+					EcoreUtil.resolveAll(resourceSet);
 					resourceSet.getResources().clear();
 				}
 				else if (className != null) {
@@ -304,6 +340,8 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 					}
 				}
 			}
+//	    	System.out.println("GetEPackage " + nsURI);
+//			System.out.println(DomainUtil.debugSimpleName(this) + " " + nsURI + " " + DomainUtil.debugSimpleName(ePackage));
 			return ePackage;
 		}
 
@@ -328,7 +366,76 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 
 		public void setUseModel(boolean useModel, EPackage.Registry packageRegistry) {
+			if (packageRegistry == null) {
+				packageRegistry = getPackageRegistry(null);
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use model " + useModel + " for " + nsURI + " in global " + DomainUtil.debugSimpleName(packageRegistry));
+			}
+//			else {
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use model " + useModel + " for " + nsURI + " in " + DomainUtil.debugSimpleName(packageRegistry));
+//			}
 			this.useModel = useModel;
+			String nsURIString = nsURI.toString();
+			if (packageRegistry.get(nsURIString) != this) {
+				packageRegistry.put(nsURIString, this);
+			}
+			URI resourceURI = projectDescriptor.getPlatformResourceURI();
+			URI pluginURI = projectDescriptor.getPlatformPluginURI();
+			URI ecoreURI = ecorePackageURI.trimFragment();
+			String ecorePackageResourceURIString = ecoreURI.resolve(resourceURI).toString();
+			String ecorePackagePluginURIString = ecoreURI.resolve(pluginURI).toString();
+			if (packageRegistry.get(ecorePackageResourceURIString) != this) {
+				packageRegistry.put(ecorePackageResourceURIString, this);
+			}
+			if (packageRegistry.get(ecorePackagePluginURIString) != this) {
+				packageRegistry.put(ecorePackagePluginURIString, this);
+			}
+		}
+
+		public void setUseModelAndPackage(final EPackage ePackage, EPackage.Registry packageRegistry) {
+			if (packageRegistry == null) {
+				packageRegistry = getPackageRegistry(null);
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use distinct model and package for " + nsURI + " in global " + DomainUtil.debugSimpleName(packageRegistry));
+			}
+//			else {
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use distinct model and package for " + nsURI + " in " + DomainUtil.debugSimpleName(packageRegistry));
+//			}
+			this.ePackage = null;
+			this.useModel = true;
+			String nsURIString = nsURI.toString();
+			packageRegistry.put(nsURIString, new EPackage.Descriptor()
+			{
+				public EPackage getEPackage() {
+//					System.out.println(DomainUtil.debugSimpleName(this) + " " + nsURI + " " + DomainUtil.debugSimpleName(ePackage));
+					return ePackage;
+				}
+
+				public EFactory getEFactory() {
+					return null;
+				}
+			});
+			URI resourceURI = projectDescriptor.getPlatformResourceURI();
+			URI pluginURI = projectDescriptor.getPlatformPluginURI();
+			URI ecoreURI = ecorePackageURI.trimFragment();
+			String ecorePackageResourceURIString = ecoreURI.resolve(resourceURI).toString();
+			String ecorePackagePluginURIString = ecoreURI.resolve(pluginURI).toString();
+			if (packageRegistry.get(ecorePackageResourceURIString) != this) {
+				packageRegistry.put(ecorePackageResourceURIString, this);
+			}
+			if (packageRegistry.get(ecorePackagePluginURIString) != this) {
+				packageRegistry.put(ecorePackagePluginURIString, this);
+			}
+		}
+
+		public void setUsePackage(EPackage ePackage, EPackage.Registry packageRegistry) {
+			if (packageRegistry == null) {
+				packageRegistry = getPackageRegistry(null);
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use package for " + nsURI + " in global " + DomainUtil.debugSimpleName(packageRegistry));
+			}
+//			else {
+//				System.out.println(DomainUtil.debugSimpleName(this) + " Use package for " + nsURI + " in " + DomainUtil.debugSimpleName(packageRegistry));
+//			}
+			this.ePackage = ePackage;
+			this.useModel = false;
 			String nsURIString = nsURI.toString();
 			if (packageRegistry.get(nsURIString) != this) {
 				packageRegistry.put(nsURIString, this);
@@ -361,6 +468,16 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				s.append(ecorePackageURI);
 			}
 			return s.toString();
+		}
+
+		public void unload(EPackage.Registry packageRegistry) {
+			ePackage = null;
+			packageRegistry.put(nsURI.toString(), this);
+			URI resourceURI = projectDescriptor.getPlatformResourceURI();
+			URI pluginURI = projectDescriptor.getPlatformPluginURI();
+			URI ecoreURI = ecorePackageURI.trimFragment();
+			packageRegistry.put(ecoreURI.resolve(resourceURI).toString(), this);
+			packageRegistry.put(ecoreURI.resolve(pluginURI).toString(), this);
 		}
 	}
 
@@ -421,7 +538,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public void scanContents(SAXParser saxParser) throws SAXParseException {
 			for (String genModel : genModelEcorePackageHandlers.keySet()) {
 				GenModelEcorePackageHandler genModelEcorePackageHandler = genModelEcorePackageHandlers.get(genModel);
-				URI locationURI = projectDescriptor.getLocation();
+				URI locationURI = projectDescriptor.getLocationURI();
 				URI genModelURI = URI.createURI(genModel).resolve(locationURI);
 				InputStream inputStream = null;
 				try {
@@ -464,9 +581,9 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 						URI nsURI = URI.createURI(attributes.getValue(uriAttribute));
 						String genModel = attributes.getValue(genModelAttribute);
 						if (genModel != null) {
-							URI locationURI = projectDescriptor.getLocation();
+							URI locationURI = projectDescriptor.getLocationURI();
 							URI absoluteGenModelURI = URI.createURI(genModel).resolve(locationURI);
-							URI projectGenModelURI = absoluteGenModelURI.deresolve(projectDescriptor.getLocation(), true, true, true);
+							URI projectGenModelURI = absoluteGenModelURI.deresolve(locationURI, true, true, true);
 							IPackageDescriptor.Internal packageDescriptor = (IPackageDescriptor.Internal) projectDescriptor.getPackageDescriptor(nsURI);
 							if (packageDescriptor == null) {
 								packageDescriptor = projectDescriptor.createPackageDescriptor(nsURI, projectGenModelURI);
@@ -576,8 +693,16 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return packageDescriptor;
 		}
 
-		public URI getLocation() {
+		public URI getLocationURI() {
 				return locationURI;
+		}
+
+		public URI getLocationURI(String projectRelativeFileName) {
+			return URI.createURI(projectRelativeFileName).resolve(locationURI);
+		}
+
+		public File getLocationFile(String projectRelativeFileName) {
+			return new File(getLocationURI(projectRelativeFileName).toFileString());
 		}
 
 		public String getName() {
@@ -596,8 +721,16 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 			return URI.createPlatformPluginURI("/" + name + "/", true);
 		}
 
+		public URI getPlatformPluginURI(String projectRelativeFileName) {
+			return URI.createURI(projectRelativeFileName).resolve(getPlatformPluginURI());
+		}
+
 		public URI getPlatformResourceURI() {
 			return URI.createPlatformResourceURI("/" + name + "/", true);
+		}
+
+		public URI getPlatformResourceURI(String projectRelativeFileName) {
+			return URI.createURI(projectRelativeFileName).resolve(getPlatformResourceURI());
 		}
 
 		public void installEcoreModel(ResourceSet resourceSet, URI nsURI) {
@@ -660,10 +793,34 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		public String toString() {
 			return name + " => " + locationURI.toString();
 		}
+
+		public void useModelsAndPackages(Resource ecoreResource) {
+			for (EObject eObject : ecoreResource.getContents()) {
+				if (eObject instanceof EPackage) {
+					EPackage ePackage = (EPackage)eObject;
+					IPackageDescriptor packageDescriptor = getPackageDescriptor(URI.createURI(ePackage.getNsURI()));
+					if (packageDescriptor != null) {
+						packageDescriptor.setUseModelAndPackage(ePackage, null);
+					}
+				}
+			}
+		}
+
+		public void usePackages(Resource ecoreResource) {
+			for (EObject eObject : ecoreResource.getContents()) {
+				if (eObject instanceof EPackage) {
+					EPackage ePackage = (EPackage)eObject;
+					IPackageDescriptor packageDescriptor = getPackageDescriptor(URI.createURI(ePackage.getNsURI()));
+					if (packageDescriptor != null) {
+						packageDescriptor.setUsePackage(ePackage, null);
+					}
+				}
+			}
+		}
 	}
 	
 	/**
-	 * Return any ProjectMap already installed as an adapter on a <tt>resourceSet</tt>.
+	 * Return any StandaloneProjectMap already installed as an adapter on a <tt>resourceSet</tt>.
 	 * Returns null if there is no such adapter. 
 	 */
 	public static StandaloneProjectMap findAdapter(ResourceSet resourceSet) {
@@ -671,8 +828,8 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	}
 
 	/**
-	 * Return the ProjectMap already installed as an adapter on a <tt>resourceSet</tt>
-	 * if one exists, else creates, installs, initializes and returns a new ProjectMap.  
+	 * Return the StandaloneProjectMap already installed as an adapter on a <tt>resourceSet</tt>
+	 * if one exists, else creates, installs, initializes and returns a new StandaloneProjectMap.  
 	 */
 	public static StandaloneProjectMap getAdapter(ResourceSet resourceSet) {
 		StandaloneProjectMap adapter = findAdapter(resourceSet);
@@ -725,6 +882,10 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		}
 	}
 	
+	public StandaloneProjectMap() {
+		super();
+	}
+
 	/**
 	 * Exceptions encountered during processing as a map from File to Exception.
 	 */
@@ -777,7 +938,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 		if (projectDescriptor == null) {
 			return null;
 		}
-		return projectDescriptor.getLocation();
+		return projectDescriptor.getLocationURI();
 	}
 	
 	/**
@@ -893,7 +1054,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type instanceof StandaloneProjectMap;
+		return (type instanceof Class<?>) && ((Class<?>)type).isAssignableFrom(StandaloneProjectMap.class);
 	}
 
 	protected void logException(File file, Exception e) {
@@ -1043,7 +1204,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 				}
 				s.append(projectName);
 				s.append(" => ");
-				s.append(project2descriptor.get(projectName).getLocation());
+				s.append(project2descriptor.get(projectName).getLocationURI());
 			}
 		}
 		return s.toString();

@@ -30,6 +30,24 @@ public class DomainUtil
 
 	private static final AdapterFactory defaultAdapterFactory =
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	
+	public static String debugFullName(Object object) {
+		if (object == null) {
+			return "null";
+		}
+		else {
+			return object.getClass().getName() + "@" + Integer.toHexString(object.hashCode());
+		}
+	}
+	
+	public static String debugSimpleName(Object object) {
+		if (object == null) {
+			return "null";
+		}
+		else {
+			return object.getClass().getSimpleName() + "@" + Integer.toHexString(object.hashCode());
+		}
+	}
 
 	public static String getLabel(EObject eObject) {
 		IItemLabelProvider labeler =
@@ -48,6 +66,8 @@ public class DomainUtil
 	 * an exception to avoid a compilation error.
 	 * 
 	 * @throws InvalidValueException
+	 * @deprecated
 	 */
+	@Deprecated
 	public static void suppressThrowWarnings()  throws InvalidValueException {}
 }
