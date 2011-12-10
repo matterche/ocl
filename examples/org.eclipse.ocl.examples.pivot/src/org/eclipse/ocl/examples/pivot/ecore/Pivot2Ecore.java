@@ -308,16 +308,18 @@ public class Pivot2Ecore extends AbstractConversion
 	
 	private List<Resource.Diagnostic> errors = null;
 	
-	protected final Pivot2EcoreDeclarationVisitor pass1 = new Pivot2EcoreDeclarationVisitor(this);	
-	protected final Pivot2EcoreReferenceVisitor pass2 = new Pivot2EcoreReferenceVisitor(this);
 	
 	protected final MetaModelManager metaModelManager;
+	protected final Pivot2EcoreDeclarationVisitor pass1;	
+	protected final Pivot2EcoreReferenceVisitor pass2;
 	protected final URI ecoreURI;
 	protected final Map<String,Object> options;
 	protected final String primitiveTypesUriPrefix;
 	
 	public Pivot2Ecore(MetaModelManager metaModelManager, URI ecoreURI, Map<String,Object> options) {
 		this.metaModelManager = metaModelManager;
+		this.pass1 = new Pivot2EcoreDeclarationVisitor(this);	
+		this.pass2 = new Pivot2EcoreReferenceVisitor(this);
 		this.ecoreURI = ecoreURI;
 		this.options = options;
 		this.primitiveTypesUriPrefix = getString(options, PRIMITIVE_TYPES_URI_PREFIX);
@@ -357,6 +359,13 @@ public class Pivot2Ecore extends AbstractConversion
 
 	public <T extends EObject> T getCreated(Class<T> requiredClass, Element pivotElement) {
 		EModelElement eModelElement = createMap.get(pivotElement);
+//		System.out.println("Get " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
+		if (eModelElement == null) {
+			Element primaryElement = metaModelManager.getPrimaryElement(pivotElement);
+			if (pivotElement != primaryElement) {
+				eModelElement = createMap.get(primaryElement);
+			}
+		}
 		if (eModelElement == null) {
 			return null;
 		}
@@ -386,7 +395,14 @@ public class Pivot2Ecore extends AbstractConversion
 	}
 
 	public void putCreated(Element pivotElement, EModelElement eModelElement) {
-		EModelElement old = createMap.put(pivotElement, eModelElement);
-		assert old == null;
+		Element primaryElement = metaModelManager.getPrimaryElement(pivotElement);
+//		System.out.println("Put1 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
+		EModelElement oldPivot = createMap.put(pivotElement, eModelElement);
+		assert oldPivot == null;
+		if (pivotElement != primaryElement) {
+//			System.out.println("Put2 " + PivotUtil.debugSimpleName(pivotElement) + " " + PivotUtil.debugSimpleName(eModelElement));
+			EModelElement oldPrimary = createMap.put(primaryElement, eModelElement);
+			assert oldPrimary == null;
+		}
 	}
 }
