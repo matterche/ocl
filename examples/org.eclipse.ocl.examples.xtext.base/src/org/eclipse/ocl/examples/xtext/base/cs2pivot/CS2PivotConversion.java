@@ -469,36 +469,45 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 		for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> entry : suspects) {
-			EObject referencedOrphan = entry.getKey();			
-//			PivotUtil.debugObjectUsage("kill ", referencedOrphan);
-			Collection<EStructuralFeature.Setting> referencesToOrphan = entry.getValue();
-			if (referencesToOrphan != null) {
-				for (EStructuralFeature.Setting setting : referencesToOrphan) {
-					EObject eObject = setting.getEObject();
-					EStructuralFeature eStructuralFeature = setting.getEStructuralFeature();
-					if (!eStructuralFeature.isDerived()) {
-//						PivotUtil.debugObjectUsage(" non-derived " + eStructuralFeature.getEContainingClass().getName() + "::" + eStructuralFeature.getName() + " : ", eObject);
-						if (eStructuralFeature.isMany()) {
-							@SuppressWarnings("unchecked")
-							Collection<Object> list = (Collection<Object>) eObject.eGet(eStructuralFeature);
-							list.remove(referencedOrphan);
-						}
-						else {
-							eObject.eSet(eStructuralFeature, null);
-						}
-					}
-					else {
-//						PivotUtil.debugObjectUsage(" derived " + eStructuralFeature.getEContainingClass().getName() + "::" + eStructuralFeature.getName() + " : ", eObject);
-//						System.out.println("  derived " + eObject.getClass().getName() + "@" + eObject.hashCode() + " " + eStructuralFeature.getName());
-					}
+			EObject referencedOrphan = entry.getKey();
+			boolean wantIt = false;
+			for (EObject eChild : referencedOrphan.eContents()) {		// FIXME this avoids a loss of the Ecore part of a Complete OCL resource
+				if (wantedOrphans.contains(eChild)) {					//  surely an earlier containment want search should have found this
+					wantIt = true;
+					break;
 				}
 			}
-			EObject eContainer = referencedOrphan.eContainer();
-			if (eContainer != null) {
-				PivotUtil.debugObjectUsage("  container ", eContainer);
-				referencedOrphan.eSet(referencedOrphan.eContainingFeature(), null);
-			}
+			if (!wantIt) {
+//				PivotUtil.debugObjectUsage("kill ", referencedOrphan);
+				Collection<EStructuralFeature.Setting> referencesToOrphan = entry.getValue();
+				if (referencesToOrphan != null) {
+					for (EStructuralFeature.Setting setting : referencesToOrphan) {
+						EObject eObject = setting.getEObject();
+						EStructuralFeature eStructuralFeature = setting.getEStructuralFeature();
+						if (!eStructuralFeature.isDerived()) {
+//							PivotUtil.debugObjectUsage(" non-derived " + eStructuralFeature.getEContainingClass().getName() + "::" + eStructuralFeature.getName() + " : ", eObject);
+							if (eStructuralFeature.isMany()) {
+								@SuppressWarnings("unchecked")
+								Collection<Object> list = (Collection<Object>) eObject.eGet(eStructuralFeature);
+								list.remove(referencedOrphan);
+							}
+							else {
+								eObject.eSet(eStructuralFeature, null);
+							}
+						}
+						else {
+//							PivotUtil.debugObjectUsage(" derived " + eStructuralFeature.getEContainingClass().getName() + "::" + eStructuralFeature.getName() + " : ", eObject);
+//							System.out.println("  derived " + eObject.getClass().getName() + "@" + eObject.hashCode() + " " + eStructuralFeature.getName());
+						}
+					}
+				}
+				EObject eContainer = referencedOrphan.eContainer();
+				if (eContainer != null) {
+					PivotUtil.debugObjectUsage("  container ", eContainer);
+					referencedOrphan.eSet(referencedOrphan.eContainingFeature(), null);
+				}
 //WIP			metaModelManager.kill(referencedOrphan);
+			}
 		}
 //		for (MonikeredElement element : oldMoniker2PivotMap.values()) {
 //			if (element.eResource() == null) {
