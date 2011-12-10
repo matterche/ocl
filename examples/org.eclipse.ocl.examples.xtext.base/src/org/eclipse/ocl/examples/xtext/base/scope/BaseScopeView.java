@@ -16,12 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -33,13 +31,11 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -82,24 +78,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		}
 		EStructuralFeature eContainingFeature = target.eContainingFeature();
 		return new BaseScopeView(metaModelManager, parent, parentScope, target, eContainingFeature, targetReference);
-	}
-
-	private static List<PathElement> getPath(AliasAnalysis aliasAnalysis, Element eObject) {
-		EObject eContainer = eObject.eContainer();
-		if (eContainer == null) {
-			return new ArrayList<PathElement>();
-		}
-		List<PathElement> result = getPath(aliasAnalysis, (Element) eContainer);
-		if (eObject instanceof NamedElement) {
-			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
-		}
-		else if (eObject instanceof ENamedElement) {
-			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
-		}
-		else if (eObject instanceof NamedElementCS) {
-			result.add(new PathElement(((NamedElementCS)eObject).getName(), eObject));
-		}
-		return result;
 	}
 	
 	protected final MetaModelManager metaModelManager;
@@ -226,8 +204,8 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 						break;
 					}
 				}
-				QualifiedPath contextPath = new QualifiedPath(getPath(aliasAnalysis, context));
-				QualifiedPath objectPath = new QualifiedPath(getPath(aliasAnalysis, (Element) object));
+				QualifiedPath contextPath = new QualifiedPath(aliasAnalysis.getPath(context));
+				QualifiedPath objectPath = new QualifiedPath(aliasAnalysis.getPath((Element) object));
 				QualifiedPath qualifiedRelativeName = objectPath.deresolve(contextPath);
 				IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
 				return Collections.singletonList(objectDescription);
@@ -252,8 +230,8 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 					break;
 				}
 			}
-			QualifiedPath contextPath = new QualifiedPath(getPath(aliasAnalysis, context));
-			QualifiedPath objectPath = new QualifiedPath(getPath(aliasAnalysis, (Element) object));
+			QualifiedPath contextPath = new QualifiedPath(aliasAnalysis.getPath(context));
+			QualifiedPath objectPath = new QualifiedPath(aliasAnalysis.getPath((Element) object));
 			QualifiedPath qualifiedRelativeName = objectPath.deresolve(contextPath);
 			IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
 			return Collections.singletonList(objectDescription);

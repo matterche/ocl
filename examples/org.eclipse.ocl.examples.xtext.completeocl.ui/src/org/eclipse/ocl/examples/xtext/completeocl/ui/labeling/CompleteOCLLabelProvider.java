@@ -19,11 +19,14 @@ package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
+import org.eclipse.ocl.examples.xtext.base.scope.QualifiedPath;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
@@ -171,7 +174,10 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PackageDeclarationCS ele) {
-		return safeGetMoniker(ele.getPackage());
+		AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(ele.eResource());
+		Element pivot = ele.getPackage();
+		QualifiedPath contextPath = new QualifiedPath(aliasAnalysis.getPath(pivot));
+		return contextPath.toString();
 	}
 
 	protected String image(PostCS ele) {

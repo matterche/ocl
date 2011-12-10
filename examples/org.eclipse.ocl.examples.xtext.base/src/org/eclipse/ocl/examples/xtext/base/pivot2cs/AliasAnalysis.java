@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,17 +26,21 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
 /**
@@ -241,6 +246,24 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		return metaModelManager;
+	}
+
+	public List<PathElement> getPath(Element eObject) {
+		EObject eContainer = eObject.eContainer();
+		if (eContainer == null) {
+			return new ArrayList<PathElement>();
+		}
+		List<PathElement> result = getPath((Element) eContainer);
+		if (eObject instanceof NamedElement) {
+			result.add(new PathElement(((NamedElement)eObject).getName(), eObject));
+		}
+		else if (eObject instanceof ENamedElement) {
+			result.add(new PathElement(((ENamedElement)eObject).getName(), eObject));
+		}
+		else if (eObject instanceof NamedElementCS) {
+			result.add(new PathElement(((NamedElementCS)eObject).getName(), eObject));
+		}
+		return result;
 	}
 	
 	@Override
