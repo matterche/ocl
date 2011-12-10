@@ -241,6 +241,7 @@ public class CompleteOCLPreOrderVisitor
 		org.eclipse.ocl.examples.pivot.Package contextNestingPackage = getContextPackage(modelPackage.getNestingPackage(), csResource, null);
 		org.eclipse.ocl.examples.pivot.Package contextPackage = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, csElement);
 		contextPackage.setName(modelPackage.getName());
+		contextPackage.setNsURI(modelPackage.getNsURI());
 		if (contextNestingPackage != null) {
 			contextNestingPackage.getNestedPackages().add(contextPackage);
 		}
