@@ -2463,10 +2463,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == pivotResourceSet;
+//		assert newTarget == pivotResourceSet;
 	}
 
 	public void unsetTarget(Notifier oldTarget) {
-		assert oldTarget == pivotResourceSet;
+//		assert oldTarget == pivotResourceSet;
 	}
 }
