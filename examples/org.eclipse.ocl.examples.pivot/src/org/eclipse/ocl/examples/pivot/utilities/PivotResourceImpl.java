@@ -17,8 +17,6 @@
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.xmi.XMLHelper;
-import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
@@ -29,18 +27,6 @@ public class PivotResourceImpl extends XMIResourceImpl implements PivotResource
 	 */
 	public PivotResourceImpl(URI uri) {
 		super(uri);
-	}
-
-	@Override
-	protected XMLHelper createXMLHelper() {
-		// TODO Auto-generated method stub
-		return super.createXMLHelper();
-	}
-
-	@Override
-	protected XMLLoad createXMLLoad() {
-		// TODO Auto-generated method stub
-		return super.createXMLLoad();
 	}
 
 	@Override
