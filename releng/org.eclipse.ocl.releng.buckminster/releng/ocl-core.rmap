@@ -10,7 +10,7 @@
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="ocl-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf\.examples\.library.*$" searchPathRef="emf-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
-  <rm:locator pattern="^org\.eclipse.\.uml2\.uml$" searchPathRef="uml-source-code"/>
+  <rm:locator pattern="^org\.eclipse\.uml2\.uml$" searchPathRef="uml-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2\.uml\.resources$" searchPathRef="uml-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
   <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse-tests-source-code"/>
