@@ -82,6 +82,10 @@ public abstract class AbstractTestSuite
 	protected static final ExecutorService exec = Executors
 		.newSingleThreadExecutor();
 	
+	@SuppressWarnings("unused")
+	private static org.eclipse.uml2.types.TypesPackage umltypes =
+        org.eclipse.uml2.types.TypesPackage.eINSTANCE;		// FIXME Until BUG 366083 fixed
+	
 	protected static org.eclipse.ocl.uml.UMLPackage ocltypes =
         org.eclipse.ocl.uml.UMLPackage.eINSTANCE;
 	
