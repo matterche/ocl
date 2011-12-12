@@ -151,6 +151,13 @@
 		  install location as secondary bundle pools so that only the desired components are installed
 		  in the install destination directory
 		-->
+		<echo>Launcher jar: ${launcher.jar}</echo>
+		<echo>Repository: file:/{$sp:repository}</echo>
+		<echo>Metadata Repository :file:/{$sp:target.platform.repository}</echo>
+		<echo>Install destination: {$install.destination}</echo>
+		<echo>Bundle pools for install : file:/{$bundle.pools.for.install}</echo>		
+		<echo>Content ius: ${content.ius}</echo>
+		<echo>Wildcard: ${wildcard}</echo>		
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
