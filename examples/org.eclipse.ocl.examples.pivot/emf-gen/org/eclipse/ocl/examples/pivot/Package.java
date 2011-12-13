@@ -61,7 +61,7 @@ public interface Package
 	 * @see #setNsPrefix(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NsPrefix()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsPrefix' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsPrefix'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsPrefix'"
 	 * @generated
 	 */
 	String getNsPrefix();
@@ -88,7 +88,7 @@ public interface Package
 	 * @see #setNsURI(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NsURI()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsURI' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsURI'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsURI'"
 	 * @generated
 	 */
 	String getNsURI();
@@ -115,7 +115,7 @@ public interface Package
 	 * @return the value of the '<em>Owned Precedence</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedPrecedence()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedPrecedence' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedPrecedence'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedPrecedence'"
 	 * @generated
 	 */
 	EList<Precedence> getOwnedPrecedences();
@@ -143,7 +143,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NestedPackage()
 	 * @see org.eclipse.ocl.examples.pivot.Package#getNestingPackage
 	 * @model opposite="nestingPackage" containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestedPackage' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestedPackage'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestedPackage'"
 	 * @generated
 	 */
 	EList<Package> getNestedPackages();
@@ -182,7 +182,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NestingPackage()
 	 * @see org.eclipse.ocl.examples.pivot.Package#getNestedPackages
 	 * @model opposite="nestedPackage" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestingPackage' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestingPackage'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestingPackage'"
 	 * @generated
 	 */
 	Package getNestingPackage();
@@ -210,7 +210,7 @@ public interface Package
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedType()
 	 * @see org.eclipse.ocl.examples.pivot.Type#getPackage
 	 * @model opposite="package" containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedType'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedType'"
 	 * @generated
 	 */
 	EList<Type> getOwnedTypes();

@@ -52,7 +52,7 @@ public interface Annotation
 	 * @return the value of the '<em>Owned Content</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_OwnedContent()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent'"
 	 * @generated
 	 */
 	EList<Element> getOwnedContents();
@@ -79,7 +79,7 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_Reference()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference'"
 	 * @generated
 	 */
 	EList<Element> getReferences();
@@ -96,7 +96,7 @@ public interface Annotation
 	 * @return the value of the '<em>Owned Detail</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_OwnedDetail()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail'"
 	 * @generated
 	 */
 	EList<Detail> getOwnedDetails();

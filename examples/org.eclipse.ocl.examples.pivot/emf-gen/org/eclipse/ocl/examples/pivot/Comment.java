@@ -53,7 +53,7 @@ public interface Comment
 	 * @see #setBody(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getComment_Body()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!body' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!body'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!body'"
 	 * @generated
 	 */
 	String getBody();
@@ -79,7 +79,7 @@ public interface Comment
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getComment_AnnotatedElement()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement'"
 	 * @generated
 	 */
 	EList<Element> getAnnotatedElements();

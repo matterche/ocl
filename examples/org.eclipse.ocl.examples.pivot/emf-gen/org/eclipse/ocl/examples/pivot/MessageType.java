@@ -48,7 +48,7 @@ public interface MessageType
 	 * @see #setReferredSignal(Signal)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageType_ReferredSignal()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredSignal' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredSignal'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredSignal'"
 	 * @generated
 	 */
 	Signal getReferredSignal();
@@ -75,7 +75,7 @@ public interface MessageType
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageType_ReferredOperation()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredOperation' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredOperation'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredOperation'"
 	 * @generated
 	 */
 	Operation getReferredOperation();

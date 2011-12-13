@@ -55,7 +55,7 @@ public interface EnumerationLiteral
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumerationLiteral_Enumeration()
 	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals
 	 * @model opposite="ownedLiteral" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration'"
 	 * @generated
 	 */
 	Enumeration getEnumeration();
@@ -83,7 +83,7 @@ public interface EnumerationLiteral
 	 * @see #setValue(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumerationLiteral_Value()
 	 * @model default="0" dataType="org.eclipse.ocl.examples.pivot.Integer" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!value' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!value'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!value'"
 	 * @generated
 	 */
 	BigInteger getValue();

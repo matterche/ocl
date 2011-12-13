@@ -499,6 +499,8 @@ public class PackageImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PACKAGE__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:

@@ -1567,7 +1567,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (oclAnyType != null) {
 				org.eclipse.ocl.examples.pivot.Package stdlibPackage = oclAnyType.getPackage();
 				for (org.eclipse.ocl.examples.pivot.Package aPackage : getAllPackages(stdlibPackage, false)) {
-					Type anyType = PivotUtil.getNamedElement(aPackage.getOwnedTypes(), "AnyType");
+					Type anyType = PivotUtil.getNamedElement(aPackage.getOwnedTypes(), PivotPackage.Literals.ELEMENT.getName());
 					if (anyType != null) {
 						pivotMetaModel = aPackage;
 						break;

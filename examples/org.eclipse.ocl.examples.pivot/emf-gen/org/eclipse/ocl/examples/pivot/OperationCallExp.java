@@ -51,7 +51,7 @@ public interface OperationCallExp
 	 * @return the value of the '<em>Argument</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperationCallExp_Argument()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!argument' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!argument'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!argument'"
 	 * @generated
 	 */
 	EList<OclExpression> getArguments();
@@ -79,7 +79,7 @@ public interface OperationCallExp
 	 * @see #setReferredOperation(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperationCallExp_ReferredOperation()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!referredOperation' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!referredOperation'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!referredOperation'"
 	 * @generated
 	 */
 	Operation getReferredOperation();

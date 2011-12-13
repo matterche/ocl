@@ -52,7 +52,7 @@ public interface LoopExp
 	 * @see #setBody(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Body()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!body' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!body'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!body'"
 	 * @generated
 	 */
 	OclExpression getBody();
@@ -90,7 +90,7 @@ public interface LoopExp
 	 * @return the value of the '<em>Iterator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Iterator()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator'"
 	 * @generated
 	 */
 	EList<Variable> getIterators();
@@ -117,7 +117,7 @@ public interface LoopExp
 	 * @see #setReferredIteration(Iteration)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_ReferredIteration()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!referredIteration' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!referredIteration'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!referredIteration'"
 	 * @generated
 	 */
 	Iteration getReferredIteration();

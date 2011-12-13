@@ -61,7 +61,7 @@ public interface Type
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_Package()
 	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedTypes
 	 * @model opposite="ownedType" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package'"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Package getPackage();
@@ -90,7 +90,7 @@ public interface Type
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedAttribute()
 	 * @see org.eclipse.ocl.examples.pivot.Property#getOwningType
 	 * @model opposite="owningType" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute'"
 	 * @generated
 	 */
 	EList<Property> getOwnedAttributes();
@@ -119,7 +119,7 @@ public interface Type
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_OwnedOperation()
 	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwningType
 	 * @model opposite="owningType" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation'"
 	 * @generated
 	 */
 	EList<Operation> getOwnedOperations();
@@ -156,7 +156,7 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Super Class</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_SuperClass()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass'"
 	 * @generated
 	 */
 	EList<Type> getSuperClasses();
@@ -173,7 +173,7 @@ public interface Type
 	 * @see #setInstanceClassName(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_InstanceClassName()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!instanceClassName' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!instanceClassName'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!instanceClassName'"
 	 * @generated
 	 */
 	String getInstanceClassName();

@@ -54,7 +54,7 @@ public interface TemplateBinding
 	 * @see #setSignature(TemplateSignature)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_Signature()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!signature' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!signature'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!signature'"
 	 * @generated
 	 */
 	TemplateSignature getSignature();
@@ -82,7 +82,7 @@ public interface TemplateBinding
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_ParameterSubstitution()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding
 	 * @model opposite="templateBinding" containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution'"
 	 * @generated
 	 */
 	EList<TemplateParameterSubstitution> getParameterSubstitutions();
@@ -110,7 +110,7 @@ public interface TemplateBinding
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_BoundElement()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings
 	 * @model opposite="templateBinding" required="true" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement'"
 	 * @generated
 	 */
 	TemplateableElement getBoundElement();

@@ -50,7 +50,7 @@ public interface CollectionRange
 	 * @see #setFirst(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_First()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!first' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!first'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!first'"
 	 * @generated
 	 */
 	OclExpression getFirst();
@@ -88,7 +88,7 @@ public interface CollectionRange
 	 * @see #setLast(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_Last()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!last' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!last'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!last'"
 	 * @generated
 	 */
 	OclExpression getLast();

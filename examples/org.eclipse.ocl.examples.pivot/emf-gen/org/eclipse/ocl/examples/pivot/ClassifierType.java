@@ -50,7 +50,7 @@ public interface ClassifierType extends DataType, org.eclipse.ocl.examples.domai
 	 * @see #setInstanceType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClassifierType_InstanceType()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType!instanceType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType!instanceType'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType!instanceType'"
 	 * @generated
 	 */
 	Type getInstanceType();

@@ -50,7 +50,7 @@ public interface LetExp
 	 * @see #setIn(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_In()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!in' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!in'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!in'"
 	 * @generated
 	 */
 	OclExpression getIn();
@@ -88,7 +88,7 @@ public interface LetExp
 	 * @see #setVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_Variable()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!variable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!variable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!variable'"
 	 * @generated
 	 */
 	Variable getVariable();

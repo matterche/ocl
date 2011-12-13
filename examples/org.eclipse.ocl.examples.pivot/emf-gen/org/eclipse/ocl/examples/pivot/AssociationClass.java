@@ -51,7 +51,7 @@ public interface AssociationClass
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAssociationClass_UnownedAttribute()
 	 * @see org.eclipse.ocl.examples.pivot.Property#getAssociation
 	 * @model opposite="association" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute'"
 	 * @generated
 	 */
 	EList<Property> getUnownedAttributes();

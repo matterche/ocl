@@ -36,9 +36,9 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElements <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,7 +59,7 @@ public interface Constraint
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constrained Element</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_ConstrainedElement()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement'"
 	 * @generated
 	 */
 	EList<Element> getConstrainedElements();
@@ -75,7 +75,7 @@ public interface Constraint
 	 * @see #setSpecification(ValueSpecification)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Specification()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!specification' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!specification'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!specification'"
 	 * @generated
 	 */
 	ValueSpecification getSpecification();
@@ -102,27 +102,29 @@ public interface Constraint
 	ValueSpecification createSpecification(EClass eClass);
 
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' reference.
+	 * Returns the value of the '<em><b>Context</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules <em>Owned Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' reference.
+	 * @return the value of the '<em>Context</em>' container reference.
 	 * @see #setContext(NamedElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Context()
-	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context'"
+	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules
+	 * @model opposite="ownedRule" transient="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context'"
 	 * @generated
 	 */
 	NamedElement getContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' reference.
+	 * @param value the new value of the '<em>Context</em>' container reference.
 	 * @see #getContext()
 	 * @generated
 	 */
@@ -140,7 +142,7 @@ public interface Constraint
 	 * @see #setStereotype(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Stereotype()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!stereotype' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!stereotype'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!stereotype'"
 	 * @generated
 	 */
 	String getStereotype();
@@ -168,7 +170,7 @@ public interface Constraint
 	 * @see #setIsCallable(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_IsCallable()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!isCallable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!isCallable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!isCallable'"
 	 * @generated
 	 */
 	boolean isCallable();

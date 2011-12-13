@@ -183,12 +183,12 @@
         <details key="documentation" value="A condition that must be true when evaluated in order for the constraint to be satisfied."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
-        eType="#//NamedElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" ordered="false"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+        eType="#//NamedElement" eOpposite="#//NamedElement/ownedRule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -409,7 +409,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" upperBound="-1"
-        eType="#//Constraint" containment="true"/>
+        eType="#//Constraint" containment="true" eOpposite="#//Constraint/context"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
         lowerBound="1" eType="#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"

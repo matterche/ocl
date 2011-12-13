@@ -47,7 +47,7 @@ public interface StringLiteralExp
 	 * @see #setStringSymbol(String)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getStringLiteralExp_StringSymbol()
 	 * @model dataType="org.eclipse.ocl.examples.pivot.String" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp!stringSymbol' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp!stringSymbol'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp!stringSymbol'"
 	 * @generated
 	 */
 	String getStringSymbol();

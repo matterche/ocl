@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -65,9 +66,9 @@ import org.eclipse.osgi.util.NLS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getConstrainedElements <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,16 +97,6 @@ public class ConstraintImpl
 	 * @ordered
 	 */
 	protected ValueSpecification specification;
-
-	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContext()
-	 * @generated
-	 * @ordered
-	 */
-	protected NamedElement context;
 
 	/**
 	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
@@ -242,17 +233,8 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	public NamedElement getContext() {
-		if (context != null && ((EObject)context).eIsProxy())
-		{
-			InternalEObject oldContext = (InternalEObject)context;
-			context = (NamedElement)eResolveProxy(oldContext);
-			if (context != oldContext)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.CONSTRAINT__CONTEXT, oldContext, context));
-			}
-		}
-		return context;
+		if (eContainerFeatureID() != PivotPackage.CONSTRAINT__CONTEXT) return null;
+		return (NamedElement)eContainer();
 	}
 
 	/**
@@ -260,8 +242,10 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement basicGetContext() {
-		return context;
+	public NotificationChain basicSetContext(NamedElement newContext, NotificationChain msgs)
+	{
+		msgs = eBasicSetContainer((InternalEObject)newContext, PivotPackage.CONSTRAINT__CONTEXT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -270,10 +254,20 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	public void setContext(NamedElement newContext) {
-		NamedElement oldContext = context;
-		context = newContext;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__CONTEXT, oldContext, context));
+		if (newContext != eInternalContainer() || (eContainerFeatureID() != PivotPackage.CONSTRAINT__CONTEXT && newContext != null))
+		{
+			if (EcoreUtil.isAncestor(this, (EObject)newContext))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContext != null)
+				msgs = ((InternalEObject)newContext).eInverseAdd(this, PivotPackage.NAMED_ELEMENT__OWNED_RULE, NamedElement.class, msgs);
+			msgs = basicSetContext(newContext, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__CONTEXT, newContext, newContext));
 	}
 
 	/**
@@ -359,6 +353,27 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.CONSTRAINT__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetContext((NamedElement)otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -372,8 +387,26 @@ public class ConstraintImpl
 				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				return basicSetContext(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
+	{
+		switch (eContainerFeatureID())
+		{
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				return eInternalContainer().eInverseRemove(this, PivotPackage.NAMED_ELEMENT__OWNED_RULE, NamedElement.class, msgs);
+		}
+		return eDynamicBasicRemoveFromContainer(msgs);
 	}
 
 	/**
@@ -399,13 +432,12 @@ public class ConstraintImpl
 				return getConstrainedElements();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return getSpecification();
-			case PivotPackage.CONSTRAINT__CONTEXT:
-				if (resolve) return getContext();
-				return basicGetContext();
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				return getStereotype();
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				return isCallable();
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				return getContext();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -445,14 +477,14 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((ValueSpecification)newValue);
 				return;
-			case PivotPackage.CONSTRAINT__CONTEXT:
-				setContext((NamedElement)newValue);
-				return;
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				setStereotype((String)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				setIsCallable((Boolean)newValue);
+				return;
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				setContext((NamedElement)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -488,14 +520,14 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((ValueSpecification)null);
 				return;
-			case PivotPackage.CONSTRAINT__CONTEXT:
-				setContext((NamedElement)null);
-				return;
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				setIsCallable(IS_CALLABLE_EDEFAULT);
+				return;
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				setContext((NamedElement)null);
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -524,12 +556,12 @@ public class ConstraintImpl
 				return constrainedElements != null && !constrainedElements.isEmpty();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return specification != null;
-			case PivotPackage.CONSTRAINT__CONTEXT:
-				return context != null;
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
 			case PivotPackage.CONSTRAINT__IS_CALLABLE:
 				return ((eFlags & IS_CALLABLE_EFLAG) != 0) != IS_CALLABLE_EDEFAULT;
+			case PivotPackage.CONSTRAINT__CONTEXT:
+				return getContext() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

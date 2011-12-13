@@ -53,7 +53,7 @@ public interface CollectionLiteralExp
 	 * @see #setKind(CollectionKind)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionLiteralExp_Kind()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!kind' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!kind'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!kind'"
 	 * @generated
 	 */
 	CollectionKind getKind();
@@ -81,7 +81,7 @@ public interface CollectionLiteralExp
 	 * @return the value of the '<em>Part</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionLiteralExp_Part()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part'"
 	 * @generated
 	 */
 	EList<CollectionLiteralPart> getParts();

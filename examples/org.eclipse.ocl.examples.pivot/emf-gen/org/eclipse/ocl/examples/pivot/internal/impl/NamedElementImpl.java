@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -161,6 +162,23 @@ public abstract class NamedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+		}
+		return eDynamicInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
 		return name;
 	}
@@ -185,7 +203,7 @@ public abstract class NamedElementImpl
 	public EList<Constraint> getOwnedRules() {
 		if (ownedRules == null)
 		{
-			ownedRules = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE);
+			ownedRules = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE, PivotPackage.CONSTRAINT__CONTEXT);
 		}
 		return ownedRules;
 	}

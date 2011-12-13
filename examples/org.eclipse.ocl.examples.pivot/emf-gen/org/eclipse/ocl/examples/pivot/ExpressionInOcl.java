@@ -54,7 +54,7 @@ public interface ExpressionInOcl
 	 * @see #setBodyExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_BodyExpression()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!bodyExpression' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!bodyExpression'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!bodyExpression'"
 	 * @generated
 	 */
 	OclExpression getBodyExpression();
@@ -92,7 +92,7 @@ public interface ExpressionInOcl
 	 * @see #setContextVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ContextVariable()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!contextVariable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!contextVariable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!contextVariable'"
 	 * @generated
 	 */
 	Variable getContextVariable();
@@ -129,7 +129,7 @@ public interface ExpressionInOcl
 	 * @see #setResultVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ResultVariable()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!resultVariable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!resultVariable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!resultVariable'"
 	 * @generated
 	 */
 	Variable getResultVariable();
@@ -166,7 +166,7 @@ public interface ExpressionInOcl
 	 * @return the value of the '<em>Parameter Variable</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ParameterVariable()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable'"
 	 * @generated
 	 */
 	EList<Variable> getParameterVariables();
@@ -193,7 +193,7 @@ public interface ExpressionInOcl
 	 * @see #setMessageExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_MessageExpression()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!messageExpression' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!messageExpression'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!messageExpression'"
 	 * @generated
 	 */
 	OclExpression getMessageExpression();

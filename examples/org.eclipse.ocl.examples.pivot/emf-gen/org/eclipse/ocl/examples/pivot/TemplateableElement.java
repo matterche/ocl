@@ -56,7 +56,7 @@ public interface TemplateableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_TemplateBinding()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement
 	 * @model opposite="boundElement" containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding'"
 	 * @generated
 	 */
 	EList<TemplateBinding> getTemplateBindings();
@@ -84,7 +84,7 @@ public interface TemplateableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedTemplateSignature()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate
 	 * @model opposite="template" containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature'"
 	 * @generated
 	 */
 	TemplateSignature getOwnedTemplateSignature();
@@ -121,7 +121,7 @@ public interface TemplateableElement
 	 * @see #setUnspecializedElement(TemplateableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_UnspecializedElement()
 	 * @model resolveProxies="false" transient="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement'"
 	 * @generated
 	 */
 	TemplateableElement getUnspecializedElement();

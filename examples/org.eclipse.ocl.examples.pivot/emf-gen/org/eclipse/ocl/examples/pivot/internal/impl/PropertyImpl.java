@@ -926,8 +926,8 @@ public class PropertyImpl
 		/*
 		let container : OclElement = oclContainer()
 		in
-		  container.oclIsKindOf(_'file:/C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'::pivot::Type) and
-		  container.oclAsType(_'file:/C:/GIT/org.eclipse.ocl/examples/org.eclipse.ocl.examples.pivot/model/Pivot.ecore'::pivot::Type)
+		  container.oclIsKindOf(Type) and
+		  container.oclAsType(Type)
 		  .ownedAttribute->includes(self)
 		*/
 		try {
@@ -950,11 +950,14 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.PROPERTY__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

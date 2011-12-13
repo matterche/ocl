@@ -4497,22 +4497,13 @@ public interface PivotPackage
 	int CONSTRAINT__SPECIFICATION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__CONTEXT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__STEREOTYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int CONSTRAINT__STEREOTYPE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
@@ -4521,7 +4512,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT__IS_CALLABLE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int CONSTRAINT__IS_CALLABLE = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CONTEXT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -16540,10 +16540,10 @@ public interface PivotPackage
 	EReference getConstraint_Specification();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @return the meta object for the container reference '<em>Context</em>'.
 	 * @see org.eclipse.ocl.examples.pivot.Constraint#getContext()
 	 * @see #getConstraint()
 	 * @generated
@@ -19047,7 +19047,7 @@ public interface PivotPackage
 		EReference CONSTRAINT__SPECIFICATION = eINSTANCE.getConstraint_Specification();
 
 		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Context</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

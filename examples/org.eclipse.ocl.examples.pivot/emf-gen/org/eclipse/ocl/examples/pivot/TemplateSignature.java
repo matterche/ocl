@@ -55,7 +55,7 @@ public interface TemplateSignature
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_Parameter()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter'"
 	 * @generated
 	 */
 	EList<TemplateParameter> getParameters();
@@ -73,7 +73,7 @@ public interface TemplateSignature
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_Template()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature
 	 * @model opposite="ownedTemplateSignature" required="true" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template'"
 	 * @generated
 	 */
 	TemplateableElement getTemplate();
@@ -107,7 +107,7 @@ public interface TemplateSignature
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
 	 * @model opposite="signature" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter'"
 	 * @generated
 	 */
 	EList<TemplateParameter> getOwnedParameters();

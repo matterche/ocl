@@ -53,7 +53,7 @@ public interface ParameterableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameterableElement_TemplateParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getParameteredElement
 	 * @model opposite="parameteredElement" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter'"
 	 * @generated
 	 */
 	TemplateParameter getTemplateParameter();
@@ -87,7 +87,7 @@ public interface ParameterableElement
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameterableElement_OwningTemplateParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getOwnedParameteredElement
 	 * @model opposite="ownedParameteredElement" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter'"
 	 * @generated
 	 */
 	TemplateParameter getOwningTemplateParameter();

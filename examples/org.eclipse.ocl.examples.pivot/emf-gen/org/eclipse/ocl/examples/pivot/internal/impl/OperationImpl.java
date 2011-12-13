@@ -614,6 +614,8 @@ public class OperationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.OPERATION__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:

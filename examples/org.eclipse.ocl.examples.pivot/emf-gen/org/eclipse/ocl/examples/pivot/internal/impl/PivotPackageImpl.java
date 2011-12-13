@@ -3176,7 +3176,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EReference getConstraint_Context() {
-		return (EReference)constraintEClass.getEStructuralFeatures().get(2);
+		return (EReference)constraintEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3185,7 +3185,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EAttribute getConstraint_Stereotype() {
-		return (EAttribute)constraintEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3195,7 +3195,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getConstraint_IsCallable()
 	{
-		return (EAttribute)constraintEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3592,9 +3592,9 @@ public class PivotPackageImpl
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__CONSTRAINED_ELEMENT);
 		createEReference(constraintEClass, CONSTRAINT__SPECIFICATION);
-		createEReference(constraintEClass, CONSTRAINT__CONTEXT);
 		createEAttribute(constraintEClass, CONSTRAINT__STEREOTYPE);
 		createEAttribute(constraintEClass, CONSTRAINT__IS_CALLABLE);
+		createEReference(constraintEClass, CONSTRAINT__CONTEXT);
 		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP);
 
 		dataTypeEClass = createEClass(DATA_TYPE);
@@ -4107,9 +4107,9 @@ public class PivotPackageImpl
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConstraint_ConstrainedElement(), this.getElement(), null, "constrainedElement", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_Specification(), this.getValueSpecification(), null, "specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getConstraint_Context(), this.getNamedElement(), null, "context", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_Stereotype(), this.getString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_IsCallable(), this.getBoolean(), "isCallable", "false", 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getConstraint_Context(), this.getNamedElement(), this.getNamedElement_OwnedRule(), "context", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = initEOperation(getConstraint__ValidateUniqueName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateUniqueName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -4227,7 +4227,7 @@ public class PivotPackageImpl
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNamedElement_Name(), this.getString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNamedElement_OwnedRule(), this.getConstraint(), null, "ownedRule", null, 0, -1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNamedElement_OwnedRule(), this.getConstraint(), this.getConstraint_Context(), "ownedRule", null, 0, -1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNamedElement_IsStatic(), this.getBoolean(), "isStatic", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getNamedElement_OwnedAnnotation(), this.getAnnotation(), null, "ownedAnnotation", null, 0, -1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

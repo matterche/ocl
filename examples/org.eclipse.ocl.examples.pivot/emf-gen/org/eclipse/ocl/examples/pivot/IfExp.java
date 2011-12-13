@@ -51,7 +51,7 @@ public interface IfExp
 	 * @see #setCondition(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_Condition()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!condition' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!condition'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!condition'"
 	 * @generated
 	 */
 	OclExpression getCondition();
@@ -89,7 +89,7 @@ public interface IfExp
 	 * @see #setThenExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_ThenExpression()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!thenExpression' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!thenExpression'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!thenExpression'"
 	 * @generated
 	 */
 	OclExpression getThenExpression();
@@ -127,7 +127,7 @@ public interface IfExp
 	 * @see #setElseExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_ElseExpression()
 	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!elseExpression' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!elseExpression'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!elseExpression'"
 	 * @generated
 	 */
 	OclExpression getElseExpression();

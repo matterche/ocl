@@ -49,7 +49,7 @@ public interface CollectionType
 	 * @see #setElementType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionType_ElementType()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType!elementType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType!elementType'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType!elementType'"
 	 * @generated
 	 */
 	Type getElementType();

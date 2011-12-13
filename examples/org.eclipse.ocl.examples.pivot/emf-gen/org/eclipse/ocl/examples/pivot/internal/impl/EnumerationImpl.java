@@ -122,6 +122,8 @@ public class EnumerationImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.ENUMERATION__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:

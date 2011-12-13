@@ -55,7 +55,7 @@ public interface TemplateParameterSubstitution
 	 * @see #setFormal(TemplateParameter)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_Formal()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!formal' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!formal'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!formal'"
 	 * @generated
 	 */
 	TemplateParameter getFormal();
@@ -81,7 +81,7 @@ public interface TemplateParameterSubstitution
 	 * @see #setActual(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_Actual()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!actual' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!actual'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!actual'"
 	 * @generated
 	 */
 	ParameterableElement getActual();
@@ -113,7 +113,7 @@ public interface TemplateParameterSubstitution
 	 * @see #setOwnedActual(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedActual()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!ownedActual' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!ownedActual'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!ownedActual'"
 	 * @generated
 	 */
 	ParameterableElement getOwnedActual();
@@ -152,7 +152,7 @@ public interface TemplateParameterSubstitution
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_TemplateBinding()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions
 	 * @model opposite="parameterSubstitution" required="true" transient="false" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding'"
 	 * @generated
 	 */
 	TemplateBinding getTemplateBinding();

@@ -49,7 +49,7 @@ public interface TupleLiteralExp
 	 * @return the value of the '<em>Part</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralExp_Part()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part'"
 	 * @generated
 	 */
 	EList<TupleLiteralPart> getParts();

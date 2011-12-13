@@ -56,7 +56,7 @@ public interface MultiplicityElement
 	 * @see #setIsOrdered(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_IsOrdered()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered'"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -83,7 +83,7 @@ public interface MultiplicityElement
 	 * @see #setIsUnique(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_IsUnique()
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique'"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -110,7 +110,7 @@ public interface MultiplicityElement
 	 * @see #setLower(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_Lower()
 	 * @model default="1" dataType="org.eclipse.ocl.examples.pivot.Integer" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower'"
 	 * @generated
 	 */
 	BigInteger getLower();
@@ -137,7 +137,7 @@ public interface MultiplicityElement
 	 * @see #setUpper(BigInteger)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMultiplicityElement_Upper()
 	 * @model default="1" dataType="org.eclipse.ocl.examples.pivot.UnlimitedNatural" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper'"
 	 * @generated
 	 */
 	BigInteger getUpper();

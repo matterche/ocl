@@ -52,7 +52,7 @@ public interface Class
 	 * @see #setIsAbstract(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsAbstract()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isAbstract' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isAbstract'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isAbstract'"
 	 * @generated
 	 */
 	boolean isAbstract();
@@ -80,7 +80,7 @@ public interface Class
 	 * @see #setIsInterface(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_IsInterface()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isInterface' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isInterface'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isInterface'"
 	 * @generated
 	 */
 	boolean isInterface();

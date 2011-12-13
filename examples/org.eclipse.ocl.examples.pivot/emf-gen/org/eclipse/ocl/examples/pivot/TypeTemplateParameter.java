@@ -54,7 +54,7 @@ public interface TypeTemplateParameter
 	 * @see #setAllowSubstitutable(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeTemplateParameter_AllowSubstitutable()
 	 * @model default="true" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!allowSubstitutable' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!allowSubstitutable'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!allowSubstitutable'"
 	 * @generated
 	 */
 	boolean isAllowSubstitutable();
@@ -80,7 +80,7 @@ public interface TypeTemplateParameter
 	 * @return the value of the '<em>Constraining Type</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTypeTemplateParameter_ConstrainingType()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType'"
 	 * @generated
 	 */
 	EList<Type> getConstrainingTypes();

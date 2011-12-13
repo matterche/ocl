@@ -375,7 +375,7 @@
               <body>A condition that must be true when evaluated in order for the constraint to be satisfied.</body>
             </ownedComment>
           </ownedAttribute>
-          <ownedAttribute xmi:type="cmof:Property" xmi:id="_JhArv65oEd-xTJkHwX_SlQ" name="context" type="_MUAiUK5pEd-xTJkHwX_SlQ" lower="0"/>
+          <ownedAttribute xmi:type="cmof:Property" xmi:id="_JhArv65oEd-xTJkHwX_SlQ" name="context" type="_MUAiUK5pEd-xTJkHwX_SlQ" lower="0" association="_R2wfcCWCEeGFuJPpmRVL1g"/>
         </ownedMember>
         <ownedMember xmi:type="cmof:Class" xmi:id="_N9Kt8K5oEd-xTJkHwX_SlQ" name="ValueSpecification" isAbstract="true">
           <ownedComment xmi:type="cmof:Comment" xmi:id="_N9Kt8a5oEd-xTJkHwX_SlQ" annotatedElement="_N9Kt8K5oEd-xTJkHwX_SlQ">
@@ -494,8 +494,9 @@
           </ownedAttribute>
         </ownedMember>
         <ownedMember xmi:type="cmof:Class" xmi:id="_MUAiUK5pEd-xTJkHwX_SlQ" name="NamedElement" isAbstract="true">
-          <ownedAttribute xmi:type="cmof:Property" xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" isOrdered="true" lower="0" upper="*" isComposite="true"/>
+          <ownedAttribute xmi:type="cmof:Property" xmi:id="_FR6McbB1Ed-sntd82PWy7Q" name="ownedRule" type="_JhArsK5oEd-xTJkHwX_SlQ" isOrdered="true" lower="0" upper="*" isComposite="true" association="_R2wfcCWCEeGFuJPpmRVL1g"/>
         </ownedMember>
+        <ownedMember xmi:type="cmof:Association" xmi:id="_R2wfcCWCEeGFuJPpmRVL1g" name="A_ownedRule_context" memberEnd="_FR6McbB1Ed-sntd82PWy7Q _JhArv65oEd-xTJkHwX_SlQ"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Package" xmi:id="_97IzMLB0Ed-sntd82PWy7Q" name="Namespaces">
         <ownedMember xmi:type="cmof:Class" xmi:id="_97IzMbB0Ed-sntd82PWy7Q" name="Class" superClass="_97IzQrB0Ed-sntd82PWy7Q"/>

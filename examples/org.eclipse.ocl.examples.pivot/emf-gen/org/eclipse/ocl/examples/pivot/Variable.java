@@ -51,7 +51,7 @@ public interface Variable
 	 * @see #setInitExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariable_InitExpression()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!initExpression' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!initExpression'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!initExpression'"
 	 * @generated
 	 */
 	OclExpression getInitExpression();
@@ -89,7 +89,7 @@ public interface Variable
 	 * @see #setRepresentedParameter(Parameter)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariable_RepresentedParameter()
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!representedParameter' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!representedParameter'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!representedParameter'"
 	 * @generated
 	 */
 	Parameter getRepresentedParameter();
@@ -117,7 +117,7 @@ public interface Variable
 	 * @see #setImplicit(boolean)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariable_Implicit()
 	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!implicit' body='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!implicit'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!implicit'"
 	 * @generated
 	 */
 	boolean isImplicit();

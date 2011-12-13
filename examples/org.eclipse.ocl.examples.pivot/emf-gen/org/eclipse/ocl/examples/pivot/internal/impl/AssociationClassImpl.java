@@ -108,6 +108,8 @@ public class AssociationClassImpl
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
+			case PivotPackage.ASSOCIATION_CLASS__OWNED_RULE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
