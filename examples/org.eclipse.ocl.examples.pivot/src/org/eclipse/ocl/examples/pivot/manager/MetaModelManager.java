@@ -560,8 +560,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		this.pivotResourceSet = pivotResourceSet;
 		pivotResourceSet.eAdapters().add(this);
 //		liveMetaModelManagers.put(this, null);
-//		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + Integer.toHexString(hashCode())
-//			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + Integer.toHexString(pivotResourceSet.hashCode()));		
+//		System.out.println(Thread.currentThread().getName() + " Create " + PivotUtil.debugSimpleName(this)
+//			+ " " + PivotUtil.debugSimpleName(pivotResourceSet));		
 	}
 
 	public void addClassLoader(ClassLoader classLoader) {
@@ -1566,9 +1566,18 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			AnyType oclAnyType = getOclAnyType();
 			if (oclAnyType != null) {
 				org.eclipse.ocl.examples.pivot.Package stdlibPackage = oclAnyType.getPackage();
-				OclMetaModel metaModelResource = new OclMetaModel(this, stdlibPackage.getName(), stdlibPackage.getNsURI());	// FIXME duplication of TypeCaches.loadPivotMetaModel
-				pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
-				addPackage(pivotMetaModel);
+				for (org.eclipse.ocl.examples.pivot.Package aPackage : getAllPackages(stdlibPackage, false)) {
+					Type anyType = PivotUtil.getNamedElement(aPackage.getOwnedTypes(), "AnyType");
+					if (anyType != null) {
+						pivotMetaModel = aPackage;
+						break;
+					}
+				}
+				if (pivotMetaModel == null) {
+					OclMetaModel metaModelResource = new OclMetaModel(this, stdlibPackage.getName(), stdlibPackage.getNsURI());	// FIXME duplication of TypeCaches.loadPivotMetaModel
+					pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
+					addPackage(pivotMetaModel);
+				}
 			}
 		}
 		return pivotMetaModel;
