@@ -10,10 +10,11 @@
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="ocl-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf\.examples\.library.*$" searchPathRef="emf-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
+  <rm:locator pattern="^org\.eclipse\.uml2\.uml$" searchPathRef="uml-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2\.uml\.resources$" searchPathRef="uml-source-code"/>
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
-  <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipe-tests-source-code"/>
-  <rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipe-tests-source-code"/>
+  <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse-tests-source-code"/>
+  <rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipse-tests-source-code"/>
   <rm:locator searchPathRef="eclipse-platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="ocl-source-code">
@@ -79,7 +80,7 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="eclipe-tests-source-code">
+  <rm:searchPath name="eclipse-tests-source-code">
     <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0},{1}">
@@ -161,7 +162,7 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" resolutionFilter="(resolve.target.platform=true)" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110907174232/repository">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/S20111201180206/repository">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>

@@ -87,9 +87,9 @@
 	</target>
 
 	<target name="publish.build">
-		<fail message="build.root property must be defined" unless="build.root" />
+		<fail message="build.archives property must be defined" unless="build.arhives" />
 		<property file="${publisher.properties.file.name}" />
-		<property name="property.file.location" location="${build.root}/archive/${promoter.properties.file.name}" />
+		<property name="property.file.location" location="${build.archives}/${promoter.properties.file.name}" />
 		<property name="property.load.prefix" value="saved." />
 
 		<antcall target="publish.build.stage.2" inheritall="true" />
@@ -159,18 +159,18 @@
 			</condition>
 		</fail>
 		<property file="${publisher.properties.file.name}" />
-		<fail message="build.root property must be defined" unless="build.root" />
+		<fail message="build.arhives property must be defined" unless="build.arhives" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
 
 		<!-- defaults -->
 		<property name="version" value="3.1.0" />
 		<property name="packages.base" value="downloads" />
 		<property name="tests.base" value="test.results" />
-		<property name="javadoc.base" value="javadoc" />
-
-		<property name="packages.directory" location="${build.root}/archive/${packages.base}" />
-		<property name="testresults.directory" location="${build.root}/archive/${tests.base}" />
-		<property name="javadoc.directory" location="${build.root}/archive/${javadoc.base}" />
+		<property name="javadoc.base" value="javadoc" />		
+			
+		<property name="packages.directory" location="${build.archives}/${packages.base}" />
+		<property name="testresults.directory" location="${build.archives}/${tests.base}" />
+		<property name="javadoc.directory" location="${build.archives}/${javadoc.base}" />
 
 		<property name="project.javadoc.directory" location="${downloads.area}/javadoc/${version}" />
 		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
