@@ -203,7 +203,7 @@ public class PivotQueries
 		ResourceSet resourceSet = type.eResource().getResourceSet();
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		List<Operation> operations = new ArrayList<Operation>();
-		for (Operation operation : metaModelManager.getLocalOperations(type, Boolean.FALSE)) {
+		for (Operation operation : metaModelManager.getLocalOperations(type, null)) {
 			operations.add(operation);
 		}
 //		if (type.getName().equals("MultiplicityElement")) {
@@ -216,7 +216,7 @@ public class PivotQueries
 		ResourceSet resourceSet = type.eResource().getResourceSet();
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
 		List<Property> properties = new ArrayList<Property>();
-		for (Property property : metaModelManager.getLocalProperties(type, Boolean.FALSE)) {
+		for (Property property : metaModelManager.getLocalProperties(type, null)) {
 			properties.add(property);
 		}
 		return properties;
