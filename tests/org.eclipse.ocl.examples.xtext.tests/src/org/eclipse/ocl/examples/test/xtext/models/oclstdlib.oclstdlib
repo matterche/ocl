@@ -560,8 +560,8 @@ type OclAny : AnyType {
 	**/
 	operation oclAsType<TT>(type : AnyClassifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation'
 	{
-		post: result = self;
-		post: result.oclIsTypeOf(type);
+		post IsSelf: result = self;
+		post IsType: result.oclIsTypeOf(type);
 	}
 	/**
 	Evaluates to oclText[true] if the oclText[self] is in the state indentified by statespec. 
@@ -842,9 +842,9 @@ type OrderedSet<T> : OrderedSetType conformsTo Sequence<T>,UniqueCollection<T> {
 	**/
 	operation prepend(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation'
 	{
-		post: result->size() = self->size() + 1;
-		post: result->at(1) = object;
-		post: Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1));
+		post IsSizePlusOne: result->size() = self->size() + 1;
+		post IsAtStart: result->at(1) = object;
+		post IsShiftedAlong: Sequence{1..self->size()}->forAll(index : Integer | self->at(index) = result->at(index + 1));
 	}
 	/**
 	The ordered set of elements with same elements but with the opposite order.

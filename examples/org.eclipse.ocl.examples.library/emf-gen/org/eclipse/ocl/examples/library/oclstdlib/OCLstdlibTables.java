@@ -1026,8 +1026,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._OrderedSet__OclAny /* 0 */,
 		    Fragments._OrderedSet__Collection /* 1 */,
-		    Fragments._OrderedSet__Sequence /* 2 */,
 		    Fragments._OrderedSet__UniqueCollection /* 2 */,
+		    Fragments._OrderedSet__Sequence /* 2 */,
 		    Fragments._OrderedSet__OrderedSet /* 3 */
 		};
 		private static final int[] __OrderedSet = { 1,1,2,1 };
