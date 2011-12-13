@@ -358,7 +358,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 		if (body != null) {
 			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
-			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
+//			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
 			List<EAnnotation> eAnnotations = eFeature.getEAnnotations();
 			EAnnotation oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {

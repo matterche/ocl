@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -88,6 +89,28 @@ public class PivotQueries
 		stringLiteral.setStringSymbol(string);
 		expressionInOcl.setMessageExpression(stringLiteral);
 		return expressionInOcl;
+	}
+
+	protected static PrettyPrintOptions.Global createOptions(Visitable element) {
+		Namespace scope = null;
+		if (element instanceof ExpressionInOcl) {
+			scope = PrettyPrintNameVisitor.getNamespace(((ExpressionInOcl)element).getContextVariable().getType());
+		}
+		else if (element instanceof EObject) {
+			scope = PrettyPrintNameVisitor.getNamespace((EObject)element);
+		}
+		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(scope);
+		createOptions.setLinelength(80);
+		if (element instanceof EObject) {
+			Resource resource = EcoreUtil.getRootContainer((EObject)element).eResource();
+			if (resource != null) {
+				MetaModelManager metaModelManager = MetaModelManager.getAdapter(resource.getResourceSet());
+				if (metaModelManager != null) {
+					createOptions.setMetaModelManager(metaModelManager);
+				}
+			}
+		}
+		return createOptions;
 	}
 	
 	protected int getAllSuperClasses(Map<Type, Integer> results, Type aClass) {
@@ -224,14 +247,12 @@ public class PivotQueries
 	}
 	
 	public static String prettyPrint(Visitable element) {
-		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(null);
-		createOptions.setLinelength(80);
+		PrettyPrintOptions.Global createOptions = createOptions(element);
 		return PrettyPrintExprVisitor.prettyPrint(element, createOptions);
 	}
 	
 	public static String prettyPrintName(Visitable element) {
-		PrettyPrintOptions.Global createOptions = PrettyPrintTypeVisitor.createOptions(null);
-		createOptions.setLinelength(80);
+		PrettyPrintOptions.Global createOptions = createOptions(element);
 		return PrettyPrintNameVisitor.prettyPrint(element, createOptions);
 	}
 	
