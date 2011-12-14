@@ -9,5 +9,3 @@ then
   mv buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc/MDT-OCL-javadoc.zip MDT-OCL.javadoc/MDT-OCL-javadoc.zip
   rm -rf buildroot/buckminster.output/org.eclipse.ocl.releng.buckminster_*-buckminster/javadoc
 fi
-
-cp -R MDT-OCL.* publishroot promote.properties /shared/jobs/${JOB_NAME}/lastSuccessful/archive

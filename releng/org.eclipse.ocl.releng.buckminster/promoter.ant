@@ -87,7 +87,7 @@
 	</target>
 
 	<target name="publish.build">
-		<fail message="build.archives property must be defined" unless="build.arhives" />
+		<fail message="build.archives property must be defined" unless="build.archives" />
 		<property file="${publisher.properties.file.name}" />
 		<property name="property.file.location" location="${build.archives}/${promoter.properties.file.name}" />
 		<property name="property.load.prefix" value="saved." />
