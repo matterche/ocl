@@ -35,6 +35,7 @@
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/modeling/emft/mwe/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="xpand">
