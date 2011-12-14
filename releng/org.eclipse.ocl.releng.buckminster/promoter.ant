@@ -159,7 +159,7 @@
 			</condition>
 		</fail>
 		<property file="${publisher.properties.file.name}" />
-		<fail message="build.arhives property must be defined" unless="build.arhives" />
+		<fail message="build.archives property must be defined" unless="build.archives" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
 
 		<!-- defaults -->
