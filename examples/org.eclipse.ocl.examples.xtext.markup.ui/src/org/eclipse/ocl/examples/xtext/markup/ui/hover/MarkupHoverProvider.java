@@ -23,17 +23,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
+import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintOptions;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.HTMLBuffer;
@@ -146,7 +149,6 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 
 	@Override
 	protected String getFirstLine(EObject eObject) {
-		String firstLine = super.getFirstLine(eObject);
 		Element pivotElement = null;
 		if (eObject instanceof Pivotable) {
 			pivotElement = PivotUtil.getPivot(Element.class, (Pivotable)eObject);
@@ -155,22 +157,63 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 			pivotElement = (Element)eObject;
 		}
 		if (pivotElement != null) {
-			Namespace namespace = PrettyPrintExprVisitor.getNamespace(pivotElement);
+			Namespace namespace = getNamespace(pivotElement);
+			if ((namespace != null) && (namespace.eContainer() instanceof Namespace)) {
+				namespace = (Namespace) namespace.eContainer();
+			}
 			String description;
-			if (pivotElement instanceof CallExp) {
-				description = PrettyPrintNameVisitor.prettyPrint(PivotUtil.getReferredFeature((CallExp)pivotElement), namespace);
+			PrettyPrintOptions.Global prettyPrintOptions = new PrettyPrintOptions.Global(namespace)
+			{
+				@Override
+				public Set<String> getReservedNames() {
+					return null;
+				}
+
+				@Override
+				public Set<String> getRestrictedNames() {
+					return null;
+				}				
+			};
+			prettyPrintOptions.setUseParentheses(true);
+			if (namespace != null) {
+				Resource eResource = EcoreUtil.getRootContainer(namespace).eResource();
+				if (eResource != null) {
+					prettyPrintOptions.setMetaModelManager(MetaModelManager.getAdapter(eResource.getResourceSet()));
+				}
+			}
+			/*if (pivotElement instanceof CallExp) {
+				description = PrettyPrintNameVisitor.prettyPrint(PivotUtil.getReferredFeature((CallExp)pivotElement), prettyPrintOptions);
+			}
+			else*/ if (pivotElement instanceof VariableExp) {
+				description = PrettyPrintExprVisitor.prettyPrint(((VariableExp)pivotElement).getReferredVariable(), prettyPrintOptions);
 			}
 			else if (pivotElement instanceof OclExpression) {
-				description = PrettyPrintTypeVisitor.prettyPrint(((OclExpression)pivotElement).getType(), namespace);
+				description = PrettyPrintTypeVisitor.prettyPrint(((OclExpression)pivotElement).getType(), prettyPrintOptions);
 			}
 			else {
-				description = PrettyPrintExprVisitor.prettyPrint(pivotElement, namespace);
+				description = PrettyPrintExprVisitor.prettyPrint(pivotElement, prettyPrintOptions);
 			}
-			return firstLine + "\n<br>" + pivotElement.eClass().getName() + " <b>" + description + "</b>";
+			return pivotElement.eClass().getName() + " <b>" + description + "</b>";
 		}
 		else {
+			String firstLine = super.getFirstLine(eObject);
 			return firstLine + "\n<br>" + eObject.eClass().getName();		// FIXME do better					
 		}
+	}
+
+	public static Namespace getNamespace(EObject element) {
+		int count = 0;
+		for (EObject eObject = element; eObject != null; eObject = eObject.eContainer()) {
+			if (eObject instanceof Namespace) {
+				if (count++ >= 2) {
+					return (Namespace) eObject;
+				}
+			}
+			if (eObject instanceof Type) {
+				count++;
+			}
+		}
+		return null;
 	}
 
 	@Override
