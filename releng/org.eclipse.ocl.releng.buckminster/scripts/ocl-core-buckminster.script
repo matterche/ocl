@@ -11,8 +11,6 @@ import --properties "${checkout.location}/buildroot/build.properties" "org.eclip
 
 build
 
-perform -DtargetPlatformPath="${checkout.location}/buildroot/target.platform" --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#create.javadoc"
-
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.tests.xml"
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.backtracking.tests.xml"
 junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Plugin).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.plugin.tests.xml"

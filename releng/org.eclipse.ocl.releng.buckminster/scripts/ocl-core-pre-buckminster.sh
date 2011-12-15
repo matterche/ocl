@@ -31,7 +31,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 
 	echo
 	echo "# Define if Huson Build should create javadoc (added by Hudson job definition)"
-	echo "manage.javadoc=${MANAGE_JAVADOC}"
+	echo "manage.javadoc=false"
 
 	echo
 	echo "# Override default locations (added by Hudson job definition)"
@@ -51,8 +51,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 	echo
 	echo "# Required Properties for Publishing (added by Hudson job definition)"
 	echo "packages.base=MDT-OCL.downloads"
-	echo "tests.base=MDT-OCL.test.results" 
-	echo "javadoc.base=MDT-OCL.javadoc"
+	echo "tests.base=MDT-OCL.test.results"
 	echo "version=4.0.0"
 	echo "component.name=core"
 	echo "downloads.area=/home/data/httpd/download.eclipse.org/modeling/mdt/ocl"
