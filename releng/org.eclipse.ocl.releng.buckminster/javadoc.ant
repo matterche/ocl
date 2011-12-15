@@ -12,7 +12,8 @@
 		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.ocl.git/examples/" />
 
 
-		<echo message="Source code location ${sourcesLocation}" />
+		<echo message="Plugins sources code location ${pluginsSourcesLocation}" />
+		<echo message="Examples sources code location ${examplesSourcesLocation}" />		
 		<echo message="Javadoc output location ${output}" />
 		<echo message="Target platform path ${targetPlatform}" />
 
