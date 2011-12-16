@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.6 2011/05/20 15:27:09 ewillink Exp $
+ * $Id$
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
+import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
@@ -52,6 +53,10 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return OCLstdlibScopeProvider.class;
+	}
+	
+	public Class<? extends ClasspathTypeProviderFactory> bindClasspathTypeProviderFactory() {
+		return ResourceSetClasspathTypeProviderFactory.class;
 	}
 	
 	@Override
