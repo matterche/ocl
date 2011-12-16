@@ -54,12 +54,18 @@ public class ImplementationManager
 	}
 
 	public void addClassLoader(ClassLoader classLoader) {
-		if (classLoaders == null) {
-			classLoaders = new ArrayList<ClassLoader>();
-		}
+		List<ClassLoader> classLoaders = getClassLoaders();
 		if (!classLoaders.contains(classLoader)) {
 			classLoaders.add(classLoader);
 		}
+	}
+
+	public List<ClassLoader> getClassLoaders() {
+		if (classLoaders == null) {
+			classLoaders = new ArrayList<ClassLoader>();
+			classLoaders.add(metaModelManager.getClass().getClassLoader());
+		}
+		return classLoaders;
 	}
 
 	protected LibraryFeature getOperationImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
@@ -138,25 +144,21 @@ public class ImplementationManager
 			String implementationClassName = feature.getImplementationClass();
 			if (implementationClassName != null) {
 				Class<?> theClass = null;
-				if (classLoaders == null) {
-					ClassLoader classLoader = feature.getClass().getClassLoader();
-					theClass = classLoader.loadClass(implementationClassName);
+				addClassLoader(feature.getClass().getClassLoader());
+				ClassNotFoundException e = null;
+				for (ClassLoader classLoader : getClassLoaders()) {
+					try {
+						theClass = classLoader.loadClass(implementationClassName);
+						e = null;
+						break;
+					} catch (ClassNotFoundException e1) {
+						if (e == null) {
+							e = e1;
+						}
+					}						
 				}
-				else {
-					ClassNotFoundException e = null;
-					for (ClassLoader classLoader : classLoaders) {
-						try {
-							theClass = classLoader.loadClass(implementationClassName);
-							break;
-						} catch (ClassNotFoundException e1) {
-							if (e == null) {
-								e = e1;
-							}
-						}						
-					}
-					if (e != null) {
-						throw e;
-					}
+				if (e != null) {
+					throw e;
 				}
 				@SuppressWarnings("null")
 				Field field = theClass.getField("INSTANCE");
