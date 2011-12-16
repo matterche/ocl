@@ -114,6 +114,7 @@ public class ImportTests extends XtextTestCase
 		if (metaModelManager == null) {
 			metaModelManager = new MetaModelManager();
 		}
+		metaModelManager.addClassLoader(getClass().getClassLoader());
 		try {
 			MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 			URI libraryURI = getProjectFileURI(fileName);
