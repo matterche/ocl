@@ -33,6 +33,7 @@ import com.google.inject.name.Names;
 /**
  * Use this class to register components to be used within the IDE.
  */
+@SuppressWarnings("restriction")
 public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclstdlib.AbstractOCLstdlibRuntimeModule
 {	
 	@Override

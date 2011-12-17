@@ -71,6 +71,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
  */
 public class EssentialOCLFragment extends DefaultGeneratorFragment
 {
+	@SuppressWarnings("restriction")
 	@Override
 	public Set<Binding> getGuiceBindingsRt(Grammar grammar) {
 		BindFactory bindFactory = new BindFactory();

@@ -23,6 +23,7 @@ import org.eclipse.xtext.common.types.access.impl.ClasspathTypeProvider;
 import com.google.inject.Inject;
 
 
+@SuppressWarnings("restriction")
 public class ResourceSetClasspathTypeProviderFactory extends ClasspathTypeProviderFactory
 {
 	@Inject
