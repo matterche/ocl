@@ -113,52 +113,52 @@ public abstract class AbstractEssentialOCLUiModule extends DefaultUiModule {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix.EssentialOCLQuickfixProvider.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.resource.ILocationInFileProvider> bindILocationInFileProvider() {
 		return org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder> bindIReferenceFinder() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.IURIEditorOpener> bindIURIEditorOpener() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
 		return org.eclipse.xtext.ui.editor.validation.ValidatingEditorCallback.class;
 	}
 
-	// contributed by org.eclipse.ocl.examples.build.utilities.EssentialOCLFragment
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocument> bindXtextDocument() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument.class;
 	}

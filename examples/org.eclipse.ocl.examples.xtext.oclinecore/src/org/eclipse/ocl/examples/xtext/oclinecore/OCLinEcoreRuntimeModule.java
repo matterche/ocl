@@ -16,13 +16,10 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.service.SingletonBinding;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -36,12 +33,6 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	public void configure(Binder binder) {
 		super.configure(binder);
 		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
-	}
-	
-	@Override
-	@SingletonBinding
-	public Class<? extends Diagnostician> bindDiagnostician() {
-		return PivotDiagnostician.class;
 	}
 
 	@Override

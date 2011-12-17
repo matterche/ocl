@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui;
 
+import org.eclipse.ocl.examples.xtext.completeocl.ui.internal.CompleteOCLActivator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -23,7 +24,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 {
-	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
+	public static final String EDITOR_ID = CompleteOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL;
 
 	public CompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

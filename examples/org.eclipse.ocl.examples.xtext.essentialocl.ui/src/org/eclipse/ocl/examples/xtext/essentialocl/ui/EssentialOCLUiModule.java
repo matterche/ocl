@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -23,7 +24,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essentialocl.ui.AbstractEssentialOCLUiModule
 {
-	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL";
+	public static final String EDITOR_ID = EssentialOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL;
 
 	public EssentialOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

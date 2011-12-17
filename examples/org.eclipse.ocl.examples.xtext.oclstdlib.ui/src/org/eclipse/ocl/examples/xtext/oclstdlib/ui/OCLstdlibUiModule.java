@@ -3,6 +3,7 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
 import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibReferenceUpdater;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
@@ -12,7 +13,7 @@ import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
  */
 public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 {
-	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib";
+	public static final String EDITOR_ID = OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB;
 
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

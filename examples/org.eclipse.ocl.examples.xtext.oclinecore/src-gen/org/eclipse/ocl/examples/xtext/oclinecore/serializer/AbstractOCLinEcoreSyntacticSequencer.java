@@ -41,24 +41,24 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (OCLinEcoreGrammarAccess) access;
-		match_AttributeCS_CommaKeyword_5_1_1_q = new TokenAlias(true, false, grammarAccess.getAttributeCSAccess().getCommaKeyword_5_1_1());
+		match_AttributeCS_CommaKeyword_5_1_1_q = new TokenAlias(false, true, grammarAccess.getAttributeCSAccess().getCommaKeyword_5_1_1());
 		match_AttributeCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_RightCurlyBracketKeyword_6_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getLeftCurlyBracketKeyword_6_0_0()), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getRightCurlyBracketKeyword_6_0_2())), new TokenAlias(false, false, grammarAccess.getAttributeCSAccess().getSemicolonKeyword_6_1()));
 		match_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getClassCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getClassCSAccess().getSemicolonKeyword_7_1()));
 		match_DataTypeCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_5_0_0()), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_5_0_2())), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getSemicolonKeyword_5_1()));
-		match_DataTypeCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_4_2()));
+		match_DataTypeCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getDataTypeCSAccess().getRightCurlyBracketKeyword_4_2()));
 		match_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getLeftCurlyBracketKeyword_5_0_0()), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getRightCurlyBracketKeyword_5_0_2())), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getSemicolonKeyword_5_1()));
-		match_EnumerationCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getRightCurlyBracketKeyword_4_2()));
+		match_EnumerationCS___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getEnumerationCSAccess().getRightCurlyBracketKeyword_4_2()));
 		match_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getLeftCurlyBracketKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getRightCurlyBracketKeyword_2_0_2())), new TokenAlias(false, false, grammarAccess.getEnumerationLiteralCSAccess().getSemicolonKeyword_2_1()));
-		match_InvariantConstraintCS_ColonKeyword_3_0_q = new TokenAlias(true, false, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0());
-		match_OperationCS_ColonKeyword_7_0_q = new TokenAlias(true, false, grammarAccess.getOperationCSAccess().getColonKeyword_7_0());
-		match_OperationCS_CommaKeyword_9_1_1_q = new TokenAlias(true, false, grammarAccess.getOperationCSAccess().getCommaKeyword_9_1_1());
+		match_InvariantConstraintCS_ColonKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0());
+		match_OperationCS_ColonKeyword_7_0_q = new TokenAlias(false, true, grammarAccess.getOperationCSAccess().getColonKeyword_7_0());
+		match_OperationCS_CommaKeyword_9_1_1_q = new TokenAlias(false, true, grammarAccess.getOperationCSAccess().getCommaKeyword_9_1_1());
 		match_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0_RightCurlyBracketKeyword_10_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getLeftCurlyBracketKeyword_10_0_0()), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getRightCurlyBracketKeyword_10_0_2())), new TokenAlias(false, false, grammarAccess.getOperationCSAccess().getSemicolonKeyword_10_1()));
 		match_PackageCS_SemicolonKeyword_4_1_or___LeftCurlyBracketKeyword_4_0_0_RightCurlyBracketKeyword_4_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageCSAccess().getLeftCurlyBracketKeyword_4_0_0()), new TokenAlias(false, false, grammarAccess.getPackageCSAccess().getRightCurlyBracketKeyword_4_0_2())), new TokenAlias(false, false, grammarAccess.getPackageCSAccess().getSemicolonKeyword_4_1()));
-		match_ParameterCS_CommaKeyword_2_1_1_q = new TokenAlias(true, false, grammarAccess.getParameterCSAccess().getCommaKeyword_2_1_1());
-		match_ParameterCS___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getRightCurlyBracketKeyword_3_2()));
-		match_ReferenceCS_CommaKeyword_6_1_1_q = new TokenAlias(true, false, grammarAccess.getReferenceCSAccess().getCommaKeyword_6_1_1());
+		match_ParameterCS_CommaKeyword_2_1_1_q = new TokenAlias(false, true, grammarAccess.getParameterCSAccess().getCommaKeyword_2_1_1());
+		match_ParameterCS___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getRightCurlyBracketKeyword_3_2()));
+		match_ReferenceCS_CommaKeyword_6_1_1_q = new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getCommaKeyword_6_1_1());
 		match_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1()));
-		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(true, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
+		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(false, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
 	}
 	
 	@Override
@@ -131,7 +131,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_ClassCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -203,7 +203,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0_RightCurlyBracketKeyword_10_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -243,7 +243,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -251,7 +251,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     (('(' ')') | ('<' '>'))?
+	 *     (('<' '>') | ('(' ')'))?
 	 */
 	protected void emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

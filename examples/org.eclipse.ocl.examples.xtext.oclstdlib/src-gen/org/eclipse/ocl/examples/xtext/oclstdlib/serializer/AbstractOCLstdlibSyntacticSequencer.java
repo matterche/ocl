@@ -31,8 +31,8 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 		match_LibIterationCS_SemicolonKeyword_12_1_or___LeftCurlyBracketKeyword_12_0_0_RightCurlyBracketKeyword_12_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getLeftCurlyBracketKeyword_12_0_0()), new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getRightCurlyBracketKeyword_12_0_2())), new TokenAlias(false, false, grammarAccess.getLibIterationCSAccess().getSemicolonKeyword_12_1()));
 		match_LibOperationCS_SemicolonKeyword_11_1_or___LeftCurlyBracketKeyword_11_0_0_RightCurlyBracketKeyword_11_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getLeftCurlyBracketKeyword_11_0_0()), new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getRightCurlyBracketKeyword_11_0_2())), new TokenAlias(false, false, grammarAccess.getLibOperationCSAccess().getSemicolonKeyword_11_1()));
 		match_LibPropertyCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_RightCurlyBracketKeyword_6_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getLibPropertyCSAccess().getLeftCurlyBracketKeyword_6_0_0()), new TokenAlias(false, false, grammarAccess.getLibPropertyCSAccess().getRightCurlyBracketKeyword_6_0_2())), new TokenAlias(false, false, grammarAccess.getLibPropertyCSAccess().getSemicolonKeyword_6_1()));
-		match_Library___SemicolonKeyword_5_1_2_PrecedenceKeyword_5_1_0__q = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getLibraryAccess().getSemicolonKeyword_5_1_2()), new TokenAlias(false, false, grammarAccess.getLibraryAccess().getPrecedenceKeyword_5_1_0()));
-		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(true, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
+		match_Library___SemicolonKeyword_5_1_2_PrecedenceKeyword_5_1_0__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getLibraryAccess().getSemicolonKeyword_5_1_2()), new TokenAlias(false, false, grammarAccess.getLibraryAccess().getPrecedenceKeyword_5_1_0()));
+		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(false, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
 	}
 	
 	@Override
@@ -79,7 +79,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_LibPropertyCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_RightCurlyBracketKeyword_6_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -95,7 +95,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 	
 	/**
 	 * Syntax:
-	 *     (('<' '>') | ('(' ')'))?
+	 *     (('(' ')') | ('<' '>'))?
 	 */
 	protected void emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
