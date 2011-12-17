@@ -133,7 +133,6 @@ public class DelegatesTest extends PivotTestSuite
 	public EReference companyDetritus;
 
 	public Map<Object, Object> context = new HashMap<Object, Object>();
-	public boolean eclipseIsRunning;
 	public boolean usedLocalRegistry;
 	//
 	// Test framework
@@ -141,27 +140,24 @@ public class DelegatesTest extends PivotTestSuite
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;
 		EValidator.Registry.INSTANCE.put(null, new OCLinEcoreEObjectValidator());
 
 		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
-		if (!eclipseIsRunning) {		// Install the 'plugin' registrations
-			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLInvocationDelegateFactory.Global());
-			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLSettingDelegateFactory.Global());
-			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLValidationDelegateFactory.Global());
-			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLQueryDelegateFactory.Global());
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				"xmi", new EcoreResourceFactoryImpl());		
-			EPackage.Registry.INSTANCE.remove(CompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference			
-			resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);	// In case previous test failed
-			EPackage.Registry.INSTANCE.remove(NoreflectioncompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference
-			resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);	// In case previous test failed
-		}
+		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+			new OCLInvocationDelegateFactory.Global());
+		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+			new OCLSettingDelegateFactory.Global());
+		EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
+			new OCLValidationDelegateFactory.Global());
+		QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+			new OCLQueryDelegateFactory.Global());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+			"xmi", new EcoreResourceFactoryImpl());		
+		EPackage.Registry.INSTANCE.remove(CompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference			
+		resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);	// In case previous test failed
+		EPackage.Registry.INSTANCE.remove(NoreflectioncompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference
+		resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);	// In case previous test failed
 
 		// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
 		DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
@@ -318,23 +314,17 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void initPackageRegistrations() {
-		if (!eclipseIsRunning) {
-			resourceSet.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
-			resourceSet.getPackageRegistry().put(NoreflectioncompanyPackage.eNS_URI, NoreflectioncompanyPackage.eINSTANCE);
-		}
+		resourceSet.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+		resourceSet.getPackageRegistry().put(NoreflectioncompanyPackage.eNS_URI, NoreflectioncompanyPackage.eINSTANCE);
 	}
 
 	protected void initCodeGeneratedPackageRegistrations() {
-		if (!eclipseIsRunning) {
-			resourceSet.getPackageRegistry().put(CodegencompanyPackage.eNS_URI, CodegencompanyPackage.eINSTANCE);
-		}
+		resourceSet.getPackageRegistry().put(CodegencompanyPackage.eNS_URI, CodegencompanyPackage.eINSTANCE);
 	}
 
 	protected void removePackageRegistrations() {
-		if (!eclipseIsRunning) {
-			resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);
-			resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);
-		}
+		resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);
+		resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);
 	}
 
 	public void doTest_allInstances(String modelName) {
@@ -539,7 +529,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_allInstances() {
 		doTest_allInstances(COMPANY_XMI);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_allInstances_registered() {
@@ -654,7 +644,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_constraintValidation() {
 		doTest_constraintValidation(COMPANY_XMI);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_constraintValidation_withoutReflection() {
@@ -784,7 +774,7 @@ public class DelegatesTest extends PivotTestSuite
 	
 	public void test_invariantValidation() {
 		doTest_invariantValidation(COMPANY_XMI, true);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_registered() {
@@ -850,7 +840,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_operationInvocation() throws InvocationTargetException {
 		doTest_operationInvocation(COMPANY_XMI);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 /*	public void test_operationInvocation_registered() throws InvocationTargetException {
@@ -968,7 +958,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_queryExecution() {
 		doTest_queryExecution(COMPANY_XMI);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_queryExecution_registered() {
@@ -985,7 +975,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_queryExecutionWithExceptions() throws InvocationTargetException {
 		doTest_queryExecutionWithExceptions(COMPANY_XMI);
-		assertEquals(!eclipseIsRunning, usedLocalRegistry);
+		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_queryExecutionWithExceptions_registered() throws InvocationTargetException {
