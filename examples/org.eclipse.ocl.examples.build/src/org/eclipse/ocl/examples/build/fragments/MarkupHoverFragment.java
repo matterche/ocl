@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.build.utilities;
+package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 

@@ -14,7 +14,7 @@
  *
  * $Id$
  */
-package org.eclipse.ocl.examples.build.utilities;
+package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
@@ -22,6 +22,8 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
+import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLHiddenTokenSequencer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
@@ -61,6 +63,8 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeI
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.editor.validation.ValidatingEditorCallback;
+import org.eclipse.xtext.validation.IDiagnosticConverter;
+import org.eclipse.xtext.validation.IResourceValidator;
 
 /**
  * Provide the standard EssentialOCL bindings as Abstract defaults
@@ -72,6 +76,7 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment
 		BindFactory bindFactory = new BindFactory();
 		bindFactory.addTypeToType(org.eclipse.xtext.serializer.tokens.ICrossReferenceSerializer.class.getName(), EssentialOCLCrossReferenceSerializer.class.getName());
 		// Potential resolution of Pivot fragments for CST resource
+		bindFactory.addTypeToType(IDiagnosticConverter.class.getName(), PivotDiagnosticConverter.class.getName());
 		bindFactory.addTypeToType(IFragmentProvider.class.getName(), BaseFragmentProvider.class.getName());
 		bindFactory.addTypeToType(org.eclipse.xtext.serializer.sequencer.IHiddenTokenSequencer.class.getName(), EssentialOCLHiddenTokenSequencer.class.getName());
 		bindFactory.addTypeToType(ILinker.class.getName(), CS2PivotLinker.class.getName());
@@ -84,6 +89,8 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment
 		bindFactory.addTypeToType(IQualifiedNameProvider.class.getName(), EssentialOCLQualifiedNameProvider.class.getName());
 		// pivot: scheme support
 		bindFactory.addTypeToType(IResourceServiceProvider.class.getName(), PivotResourceServiceProvider.class.getName());
+		// pivot AST validation support
+		bindFactory.addTypeToType(IResourceValidator.class.getName(), PivotResourceValidator.class.getName());
 		// DataType text to value parsing.
 		bindFactory.addTypeToType(IValueConverterService.class.getName(), EssentialOCLValueConverterService.class.getName());
 		bindFactory.addTypeToType(XtextResource.class.getName(), EssentialOCLCSResource.class.getName());

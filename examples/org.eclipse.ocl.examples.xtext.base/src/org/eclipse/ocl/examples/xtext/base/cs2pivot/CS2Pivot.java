@@ -265,6 +265,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		}
 		this.metaModelManager = metaModelManager;
 		metaModelManager.addListener(this);
+		metaModelManager.getPivotResourceSet().eAdapters().add(this);
 	}
 	
 	public CS2Pivot(CS2Pivot aConverter) {
