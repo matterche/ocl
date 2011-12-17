@@ -12,6 +12,8 @@ import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
  */
 public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 {
+	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib";
+
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

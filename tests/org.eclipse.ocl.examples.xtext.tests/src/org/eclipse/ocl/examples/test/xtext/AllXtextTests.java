@@ -25,6 +25,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.pivot.tests.DelegatesTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateBooleanOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateClassifierOperationsTest;
@@ -84,6 +85,9 @@ public class AllXtextTests
 		result.addTestSuite(MarkupTests.class);
 		result.addTestSuite(ValidateTests.class);
 		result.addTestSuite(DocumentationExamples.class);
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			result.addTestSuite(EditorTests.class);
+		}
 		return result;
 	}
 

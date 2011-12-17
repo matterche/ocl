@@ -31,6 +31,8 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
  */
 public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecore.ui.AbstractOCLinEcoreUiModule
 {
+	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore";
+
 	private static EMFPlugin.InternalHelper helper = new EMFPlugin.InternalHelper(OCLinEcoreActivator.getInstance());
 
 	/**

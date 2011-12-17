@@ -23,6 +23,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 {
+	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL";
+
 	public CompleteOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

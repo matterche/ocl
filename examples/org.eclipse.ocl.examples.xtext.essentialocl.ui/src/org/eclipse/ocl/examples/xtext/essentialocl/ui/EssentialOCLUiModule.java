@@ -21,7 +21,10 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essentialocl.ui.AbstractEssentialOCLUiModule {
+public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essentialocl.ui.AbstractEssentialOCLUiModule
+{
+	public static final String EDITOR_ID = "org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL";
+
 	public EssentialOCLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
