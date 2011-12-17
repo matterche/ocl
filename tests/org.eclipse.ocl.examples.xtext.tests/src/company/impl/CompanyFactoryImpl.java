@@ -32,7 +32,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 */
 	public static CompanyFactory init() {
 		try {
-			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/test/2010/Company.ecore"); //$NON-NLS-1$ 
+			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/test/Pivot/Company.ecore"); //$NON-NLS-1$ 
 			if (theCompanyFactory != null) {
 				return theCompanyFactory;
 			}
