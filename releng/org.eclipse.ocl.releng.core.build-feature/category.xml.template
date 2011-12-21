@@ -3,7 +3,7 @@
    <feature id="org.eclipse.ocl.all.sdk" version="0.0.0">
       <category name="mdt.ocl.core"/>
    </feature>
-   <category-def name="mdt.ocl.core" label="Eclipse OCL${package.qualifier}">
+   <category-def name="mdt.ocl.core" label="OCL Core${category.qualifier}">
       <description>
          Eclipse OCL Core features.
       </description>

@@ -6,7 +6,10 @@
    <feature id="org.eclipse.ocl.master" version="0.0.0">
       <category name="mdt.ocl.tools"/>
    </feature>
-   <category-def name="mdt.ocl.tools" label="Eclipse OCL${package.qualifier}">
+   <feature id="org.eclipse.ocl.all.sdk" version="0.0.0">
+      <category name="mdt.ocl.tools"/>
+   </feature>
+   <category-def name="mdt.ocl.tools" label="OCL Tools${category.qualifier}">
       <description>
          Eclipse OCL Tools features.
       </description>
