@@ -91,7 +91,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
@@ -239,43 +238,14 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 		return true;
-/*			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof ModelElementCS) {
-					ModelElementCS csElement = (ModelElementCS)eObject;
-					for (String error : csElement.getError()) {
-						ICompositeNode node = NodeModelUtils.getNode(csElement);
-						hasNoErrors = false;
-//						int offset = node.getOffset();
-//						int length = node.getLength();
-//						if (problemHandler != null) {				// FIXME Why null/why this check interactively
-//							problemHandler.analyzerProblem(ProblemHandler.Severity.ERROR, error, "CS2Pivot", offset, offset+length);
-//						}
-//						else {
-//							logger.error(error);
-//						}
-					}
-				}
-			}
-		}
-		return hasNoErrors; */
 	}
 
-	public Dependency createTypeIsReferenceableDependency(TypeRefCS csTemplateParameter) {		// WIP Duplication
+	public Dependency createTypeIsReferenceableDependency(TypeRefCS csTemplateParameter) {
 		if ((csTemplateParameter == null) || (csTemplateParameter instanceof WildcardTypeRefCS)) {
 			return null;
 		}
 		else {
 			return new PivotDependency(csTemplateParameter);
-		}
-	}
-
-	public Dependency createTypeIsReferenceableDependency(TypedRefCS csTypeRef) {
-		if (csTypeRef == null) {
-			return null;
-		}
-		else {
-			return new PivotDependency(csTypeRef);
 		}
 	}
 
@@ -531,18 +501,29 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	/**
-	 * Add any packages and nested packages pivoted by csObjects to newPackages. This
+	 * Add any packages and nested packages pivoted by csResource to newPackages. This
 	 * is invoked at the end of an update to identify redundant packages. 
 	 */
-	protected void gatherNewPackages(Set<org.eclipse.ocl.examples.pivot.Package> newPackages, List<? extends EObject> csElements) {
-		for (EObject csElement : csElements) {
-			if (csElement instanceof PackageCS) {
-				PackageCS csPackage = (PackageCS)csElement;
-				Element element = csPackage.getPivot();
-				if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
-					newPackages.add((org.eclipse.ocl.examples.pivot.Package)element);
+	protected void gatherNewPackages(Set<org.eclipse.ocl.examples.pivot.Package> newPackages, Resource csResource) {
+		for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Pivotable) {
+				Element pObject = ((Pivotable)eObject).getPivot();
+				if (pObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+					newPackages.add((org.eclipse.ocl.examples.pivot.Package)pObject);
 				}
-				gatherNewPackages(newPackages, csPackage.getOwnedNestedPackage());
+				else {		// CompleteOCL has package references from non-package contexts
+					if (pObject instanceof Type) {
+						newPackages.add(((Type)pObject).getPackage());
+					}
+					else if (pObject instanceof Operation) {
+						newPackages.add(((Operation)pObject).getOwningType().getPackage());
+					}
+					else if (pObject instanceof Property) {
+						newPackages.add(((Property)pObject).getOwningType().getPackage());
+					}
+					tit.prune();
+				}
 			}
 		}	
 	}
@@ -1482,10 +1463,16 @@ public class CS2PivotConversion extends AbstractConversion
 		//	Prune obsolete packages
 		//
 		Set<org.eclipse.ocl.examples.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-		for (Resource resource : csResources) {
-			gatherNewPackages(newPackages, resource.getContents());
+		for (Resource csResource : csResources) {
+			gatherNewPackages(newPackages, csResource);
 		}
 		Set<org.eclipse.ocl.examples.pivot.Package> obsoletePackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>(oldPackagesByQualifiedName.values());
+//		for (org.eclipse.ocl.examples.pivot.Package oldPackage : obsoletePackages) {
+//			System.out.println("Old package @" + Integer.toHexString(oldPackage.hashCode()) + " " + oldPackage.eResource().getURI() + " " + oldPackage.getName());
+//		}
+//		for (org.eclipse.ocl.examples.pivot.Package newPackage : newPackages) {
+//			System.out.println("New package @" + Integer.toHexString(newPackage.hashCode()) + " " + newPackage.eResource().getURI() + " " + newPackage.getName());
+//		}
 		obsoletePackages.removeAll(newPackages);
 		for (org.eclipse.ocl.examples.pivot.Package obsoletePackage : obsoletePackages) {
 			EObject eContainer = obsoletePackage.eContainer();

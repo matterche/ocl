@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -272,10 +273,16 @@ public class CompleteOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
 		for (LibraryCS csLibrary : object.getOwnedLibrary()) {
-			csLibrary.getPackage();						// Resolve the proxy to perform the import.
+			org.eclipse.ocl.examples.pivot.Package pPackage = csLibrary.getPackage();						// Resolve the proxy to perform the import.
+			if ((pPackage != null) && !pPackage.eIsProxy()) {
+				context.installPivotUsage(csLibrary, pPackage);
+			}
 		}
 		for (ImportCS csImport : object.getOwnedImport()) {
-			csImport.getNamespace();					// Resolve the proxy to perform the import.
+			Namespace namespace = csImport.getNamespace();					// Resolve the proxy to perform the import.
+			if ((namespace != null) && !namespace.eIsProxy()) {
+				context.installPivotUsage(csImport, namespace);
+			}
 		}
 		Continuation<?> continuation = super.visitCompleteOCLDocumentCS(object);
 		for (IncludeCS csInclude : object.getOwnedInclude()) {
@@ -309,7 +316,7 @@ public class CompleteOCLPreOrderVisitor
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
-//		context.installPivotElement(object, contextPackage);
+		context.installPivotUsage(csElement, contextPackage);
 		return null; //new CompletePackageContentContinuation(context, csElement);
 	}
 

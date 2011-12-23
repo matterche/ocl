@@ -290,6 +290,9 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 					ModelElementCS csElement = (ModelElementCS)eObject;
 					Element pivotElement = csElement.getPivot();
 					String csURI = getCSI(csElement);
+//					if (pivotElement == null) {
+//						System.out.println("No pivot for " + csElement.getClass().getSimpleName() + " " + csElement);
+//					}
 					map.put(csURI, pivotElement);
 				}
 			}
