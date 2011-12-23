@@ -32,7 +32,25 @@ public class PivotDiagnosticConverter extends DiagnosticConverterImpl
 			if (csModelElement != null) {
 				return csModelElement;
 			}
+			else {
+			  	ElementUtil.getCsElement((Element) causer);					// FIXME Just debugging
+			}
 		}
 		return causer;
+	}
+
+	@Override
+	protected IssueLocation getLocationData(Diagnostic diagnostic) {
+		if (diagnostic instanceof PivotResourceValidator.ValidationDiagnostic) {
+			PivotResourceValidator.ValidationDiagnostic node = (PivotResourceValidator.ValidationDiagnostic)diagnostic;
+			IssueLocation result = new IssueLocation();
+			result.lineNumber = node.getLine();
+			result.offset = node.getOffset();
+			result.length = node.getLength();
+			return result;
+		}
+		else {
+			return super.getLocationData(diagnostic);
+		}
 	}
 }
