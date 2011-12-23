@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -235,7 +236,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 				else {
 					objectLabel = String.valueOf(value);
 				}
-				message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+				message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 			}
 			int severity = result.isNull() ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));

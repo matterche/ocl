@@ -59,6 +59,7 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -1039,7 +1040,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
 		validateWithError("evaluatingToNull", badClassInstance,
-			OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", EObjectValidator.getObjectLabel(badClassInstance, null));
+			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", EObjectValidator.getObjectLabel(badClassInstance, null));
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
@@ -1327,7 +1328,7 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
-		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
@@ -1340,7 +1341,7 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
-		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 

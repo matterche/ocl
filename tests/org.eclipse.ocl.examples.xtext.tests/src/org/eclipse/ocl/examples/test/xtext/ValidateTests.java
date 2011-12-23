@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -131,7 +131,7 @@ public class ValidateTests extends XtextTestCase
 		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
 		try {
 			EObject testInstance = eCreate(validatePackage, "Level3");
-			String template = OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+			String template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			//
 			//	No errors
 			//
@@ -200,7 +200,7 @@ public class ValidateTests extends XtextTestCase
 			//	Check OCLinEcoreEObjectValidator warnings and distinct message
 			//
 			EValidator.Registry.INSTANCE.put(validatePackage, new OCLinEcoreEObjectValidator());
-			template = OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+			template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				NLS.bind(template,  "L1", objectLabel),
 				NLS.bind(template,  "L2a", objectLabel),

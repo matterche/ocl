@@ -244,7 +244,6 @@ public class OCLMessages
 	
 	public static String ValidationConstraintException_ERROR_;
 	public static String ValidationConstraintIsNotBoolean_ERROR_;
-	public static String ValidationConstraintIsNotSatisfied_ERROR_;
 	public static String ValidationMessageException_ERROR_;
 	public static String ValidationMessageIsNotString_ERROR_;
 	public static String ValidationResultIsInvalid_ERROR_;	
