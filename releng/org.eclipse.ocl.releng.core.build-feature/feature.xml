@@ -16,7 +16,7 @@
    </copyright>
 
    <includes
-         id="org.eclipse.ocl.all.sdk"
+         id="org.eclipse.ocl.core.sdk"
          version="0.0.0"/>
 
 </feature>
