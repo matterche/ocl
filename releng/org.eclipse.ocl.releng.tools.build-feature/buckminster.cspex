@@ -7,8 +7,7 @@
 		<cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature" />
 		
 		<!-- We explicitly need to specify this to add the some ocl Core featre sources into the target platform -->		
-		<cs:dependency name="org.eclipse.ocl.all.source" componentType="eclipse.feature" />
-		<cs:dependency name="org.eclipse.ocl.all.sdk.source" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.ocl.all.source" componentType="eclipse.feature" />		
 		<cs:dependency name="org.eclipse.ocl.core.sdk.source" componentType="eclipse.feature" />
 		
 	</cs:dependencies>
