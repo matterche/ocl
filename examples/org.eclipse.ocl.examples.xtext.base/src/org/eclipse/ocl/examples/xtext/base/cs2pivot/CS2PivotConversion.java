@@ -373,12 +373,15 @@ public class CS2PivotConversion extends AbstractConversion
 
 			@Override
 			protected void handleCrossReference(EObject eObject) {
-				super.handleCrossReference(eObject);
-			    InternalEObject internalEObject = (InternalEObject)eObject;
-				for (EObject eContent : eObject.eContents()) {
-					EReference eReference = (EReference) eContent.eContainingFeature();
-			        add(internalEObject, eReference, eContent);
+				try {
+					super.handleCrossReference(eObject);
+				    InternalEObject internalEObject = (InternalEObject)eObject;
+					for (EObject eContent : eObject.eContents()) {
+						EReference eReference = (EReference) eContent.eContainingFeature();
+				        add(internalEObject, eReference, eContent);
+					}
 				}
+				catch (Exception e) {}
 			}
 			
 			@Override
