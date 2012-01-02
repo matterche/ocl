@@ -582,6 +582,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier<Integer>");
     	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier<UnlimitedNatural>");
     	assertQueryResults(null, "Set{}", "Integer.oclType().allInstances()");
+		assertQueryEquals(null, "UnlimitedNatural", "4.oclType().name");
      }
 
     /**
@@ -644,6 +645,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier<Tuple(a:Integer)>");
     	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier<Tuple(a:Integer)>");	// FIXME
     	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
+		assertQueryEquals(null, "Tuple", "Tuple{a:Integer=3}.oclType().name");
      }
 
     /**
