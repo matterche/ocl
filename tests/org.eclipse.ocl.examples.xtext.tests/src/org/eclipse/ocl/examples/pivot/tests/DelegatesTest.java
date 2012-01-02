@@ -237,6 +237,9 @@ public class DelegatesTest extends PivotTestSuite
 		}
 		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
 		DelegateDomain delegateDomain = adapter.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (delegateDomain == null) {
+			delegateDomain = adapter.loadDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		}
 		metaModelManager = ((OCLDelegateDomain)delegateDomain).getOCL().getMetaModelManager();
 		valueFactory = metaModelManager.getValueFactory();
 	}
