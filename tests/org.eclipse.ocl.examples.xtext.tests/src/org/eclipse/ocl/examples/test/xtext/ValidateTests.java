@@ -28,13 +28,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -55,7 +55,7 @@ public class ValidateTests extends XtextTestCase
 		for (String message : expectedMessage) {
 			expectedMessages.add(message);
 		}
-		Diagnostic diagnostics = Diagnostician.INSTANCE.validate(testInstance);
+		Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(testInstance);
 		Bag<String> actualMessages = new BagImpl<String>();
 		for (Diagnostic diagnostic : diagnostics.getChildren()) {
 			assertEquals(severity, diagnostic.getSeverity());
@@ -140,7 +140,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "xx");
 			eSet(testInstance, "l2b", "xx");
 			eSet(testInstance, "l3", "xx");
-			String objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+			String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 			//
 			//	CompleteOCL errors all round
@@ -184,7 +184,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2a", "l2a");
 		eSet(testInstance, "l2b", "l2b");
 		eSet(testInstance, "l3", "l3");
-		String objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 		//
 		//	Check EObjectValidator errors
 		//
@@ -214,7 +214,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "ok");
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
-			objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 			//
 			//	Just one error
@@ -224,7 +224,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "ok");
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
-			objectLabel = EObjectValidator.getObjectLabel(testInstance, null);
+			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				NLS.bind(template,  "L1", objectLabel));
 		} finally {

@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -42,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
@@ -105,14 +105,14 @@ public class DocumentationExamples extends PivotTestCase
 		Object b2Available = queryEval.evaluate(b2Book);
 	    assertFalse((Boolean)b2Available);
 	    
-	    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary);
+	    Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
 	    assertEquals(3, diagnostics.getChildren().size());
 	    
 	    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
 		b2Available = queryEval.evaluate(b2Book);
 	    assertTrue((Boolean)b2Available);
 	    
-	    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary);
+	    diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
 	    assertEquals(2, diagnostics.getChildren().size());
 	    
 	    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
@@ -157,14 +157,14 @@ public class DocumentationExamples extends PivotTestCase
 			Value b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(b2Available.asBoolean());
 		    
-		    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary);
+		    Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
 		    assertEquals(3, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
 			b2Available = queryEval.evaluate(b2Book);
 		    assertTrue(b2Available.asBoolean());
 		    
-		    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary);
+		    diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
 		    assertEquals(2, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
