@@ -149,7 +149,7 @@ public static class Fragments {[for (cls : Class | pPackage.ownedType->filter(Cl
 
 [template public declareFragment(pPackage : Package, genPackage : GenPackage, cls : Class)]
 [for (superCls : Type | cls.getAllSuperTypes()->sortedBy(name))]
-public static final <%ExecutorFragment%> _[cls.name/]__[superCls.name/] = new <%ExecutorFragment%>([cls.getLiteralName()/], [superCls.emitQualifiedLiteralName(genPackage)/], null, null);
+public static final <%ExecutorFragment%> _[cls.name/]__[superCls.name/] = new <%ExecutorFragment%>([cls.getLiteralName()/], [superCls.emitQualifiedLiteralName(genPackage)/]);
 [/for]
 [/template]
 
