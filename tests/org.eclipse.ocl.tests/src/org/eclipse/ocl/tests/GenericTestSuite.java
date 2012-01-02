@@ -514,7 +514,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		String testCharacter = "´";
 		int length = testCharacter.length();
 		if ((length != 1) || (testCharacter.charAt(0) != 0xB4)) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append("The Resource text file encoding should be set to UTF-8: test character was");
 			for (int i = 0; i < length; i++){
 				s.append(" ");
@@ -644,7 +644,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	 * denormalization of xxx if defined or xxx otherwise.
 	 */
 	public String denormalize(String expression) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		int iMax = expression.length();
 		for (int i = 0; i < iMax; i++) {
 			char c = expression.charAt(i);

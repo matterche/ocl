@@ -195,13 +195,13 @@ public class MonikerTests extends XtextTestCase
 		MetaModelManager metaModelManager = adapter.getMetaModelManager();
 //		Map<String, MonikeredElement> pivotMonikerMap = checkPivotMonikers(metaModelManager.getPivotResourceSet());
 /*		{
-			StringBuffer s = null;
+			StringBuilder s = null;
 			for (String m : csMonikerMap.keySet()) {
 				if (!pivotMonikerMap.containsKey(m)) {
 					MonikeredElementCS csElement = csMonikerMap.get(m);
 					if (hasCorrespondingPivot(csElement)) {
 						if (s == null) {
-							s = new StringBuffer();
+							s = new StringBuilder();
 						}
 						s.append("\n    " + m);
 					}
@@ -212,13 +212,13 @@ public class MonikerTests extends XtextTestCase
 			}
 		}
 		{
-			StringBuffer s = null;
+			StringBuilder s = null;
 			for (String m : pivotMonikerMap.keySet()) {
 				if (!csMonikerMap.containsKey(m)) {
 					MonikeredElement pivotElement = pivotMonikerMap.get(m);
 					if (hasCorrespondingCS(pivotElement)) {
 						if (s == null) {
-							s = new StringBuffer();
+							s = new StringBuilder();
 						}
 						s.append("\n    " + pivotElement.eClass().getName() + " : " + m);
 					}

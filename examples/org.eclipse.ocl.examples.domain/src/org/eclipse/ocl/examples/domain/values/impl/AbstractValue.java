@@ -198,7 +198,7 @@ public abstract class AbstractValue implements Value
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Real");
 	}
 
-	public void toString(StringBuffer s, int sizeLimit) {
+	public void toString(StringBuilder s, int sizeLimit) {
 		s.append(toString());
 	}
 }

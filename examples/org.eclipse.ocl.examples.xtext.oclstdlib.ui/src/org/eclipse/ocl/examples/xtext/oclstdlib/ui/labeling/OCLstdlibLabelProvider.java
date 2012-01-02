@@ -34,10 +34,10 @@ public class OCLstdlibLabelProvider extends BaseLabelProvider {
 	}
 
 //	@Override
-//	protected void appendMultiplicity(StringBuffer s, TypedElementCS ele) {}	
+//	protected void appendMultiplicity(StringBuilder s, TypedElementCS ele) {}	
 
 /*	protected String text(LibClassCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendSuperTypes(s, ele.getOwnedConformsTo());

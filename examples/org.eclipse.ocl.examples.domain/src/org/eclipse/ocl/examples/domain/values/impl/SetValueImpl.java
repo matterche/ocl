@@ -201,7 +201,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("Set");
 		super.toString(s, lengthLimit);
 	}

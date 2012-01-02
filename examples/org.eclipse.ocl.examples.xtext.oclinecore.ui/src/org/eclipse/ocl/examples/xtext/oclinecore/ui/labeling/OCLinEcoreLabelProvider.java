@@ -45,7 +45,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 	}
 
 /*	public String text(AnnotationCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 //		String idName = ele.getIdSource();
 //		if (idName != null) {
 //			appendString(s, idName);			
@@ -97,7 +97,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 	}
 
 	public String text(OCLinEcoreConstraintCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("<");
 		appendString(s, ele.getStereotype());
 		s.append("> ");

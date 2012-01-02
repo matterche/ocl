@@ -46,7 +46,7 @@ public class LiveInstances<T>
 			System.out.println("No " + liveClass.getSimpleName() + " instances live");		
 		}
 		else {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append("Live instances of " + liveClass.getSimpleName());
 			for (T instance : instances.keySet()) {
 				s.append("\n\t");

@@ -323,7 +323,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	@Override
 	public String toString() {
 		EObject target = getTarget();
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("["); //$NON-NLS-1$
 		s.append(target.eClass().getName());
 		if (containmentFeature != null) {

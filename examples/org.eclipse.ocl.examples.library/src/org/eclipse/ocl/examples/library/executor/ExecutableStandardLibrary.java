@@ -166,7 +166,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 	}
 
 	public DomainTupleType getTupleType(List<? extends DomainTypedElement> parts) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (DomainTypedElement part : parts) {
 			s.append(part.getName());
 			s.append("\n"); //$NON-NLS-1$

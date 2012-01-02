@@ -655,7 +655,7 @@ public class EssentialOCLLeft2RightVisitor
 			resolveOperationReturnType(expression);
 		}
 		else {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			for (OclExpression argument : expression.getArguments()) {
 				Type argumentType = argument.getType();
 				if (argumentType instanceof LambdaType) {								// FIXME Modularize this
@@ -1273,7 +1273,7 @@ public class EssentialOCLLeft2RightVisitor
 			expression.setStringSymbol(names.get(0));
 		}
 		else {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			for (String name : names) {
 				s.append(name);
 			}

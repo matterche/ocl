@@ -103,7 +103,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	protected void diagnoseErrors(XtextResource xtextResource, Exception e) throws CoreException {
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
 		if (diagnostics.size() > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append("Concrete Syntax validation failed");
 			for (Diagnostic diagnostic : diagnostics) {
 				s.append("\n");
@@ -227,7 +227,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					}
 				}
 				if (allErrors != null) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					for (Resource.Diagnostic diagnostic : allErrors) {
 						s.append("\n");
 						s.append(diagnostic.toString());

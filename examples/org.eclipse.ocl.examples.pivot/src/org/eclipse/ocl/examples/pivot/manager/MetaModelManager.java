@@ -1050,7 +1050,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		super.finalize();
 		Set<MetaModelManager> keySet = liveMetaModelManagers.keySet();
 		if (!keySet.isEmpty()) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(" live");
 			for (MetaModelManager metaModelManager : keySet) {
 				s.append(" @" + Integer.toHexString(metaModelManager.hashCode()));		

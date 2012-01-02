@@ -79,7 +79,7 @@ public class StringValueImpl extends AbstractValue implements StringValue
 	}
 
 	@Override
-	public void toString(StringBuffer s, int sizeLimit) {
+	public void toString(StringBuilder s, int sizeLimit) {
 		s.append("'");
 		int length = value.length();
 		int available = sizeLimit - (length + 1);

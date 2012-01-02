@@ -264,7 +264,7 @@ public class ElementUtil
 			return NodeModelUtils.getTokenText(nodes.get(0));
 		}
 		else {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			for (INode node : nodes) {
 				s.append(NodeModelUtils.getTokenText(node));
 			}

@@ -378,7 +378,7 @@ public class OCLConsolePage extends Page
 
 		@Override
 		public String toString() {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			if (exception != null) {
 //				s.append(" : "); //$NON-NLS-1$
 				s.append(exception.getMessage());
@@ -569,7 +569,7 @@ public class OCLConsolePage extends Page
             TupleValue tuple = (TupleValue) object;
 			TupleType tupleType = tuple.getTupleType();
 			
-			StringBuffer result = new StringBuffer();
+			StringBuilder result = new StringBuilder();
 			result.append("Tuple{");//$NON-NLS-1$
 			
 			for (Iterator<?> iter = tupleType.oclProperties().iterator();

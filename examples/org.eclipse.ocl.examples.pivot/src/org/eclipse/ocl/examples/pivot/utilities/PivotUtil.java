@@ -119,7 +119,7 @@ public class PivotUtil extends DomainUtil
 		}
 	}
 
-	public static void appendMultiplicity(StringBuffer s, int lower, int upper) {
+	public static void appendMultiplicity(StringBuilder s, int lower, int upper) {
 		if (upper < 0) {
 			if (lower == 0) {
 				s.append("[*]");
@@ -271,7 +271,7 @@ public class PivotUtil extends DomainUtil
 		if (bufLen < 0) {
 			bufLen = Integer.MAX_VALUE;
 		}
-		StringBuffer outBuffer = new StringBuffer(bufLen);
+		StringBuilder outBuffer = new StringBuilder(bufLen);
 
 		for (int x = 0; x < len; x++) {
 			char aChar = theString.charAt(x);
@@ -365,7 +365,7 @@ public class PivotUtil extends DomainUtil
 	}
 
 	public static void debugObjectUsage(String prefix, EObject element) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(prefix);
 		if (element != null) {
 			s.append(element.eClass().getName());
@@ -419,7 +419,7 @@ public class PivotUtil extends DomainUtil
 		if (diagnostics.size() <= 0) {
 			return null;
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(messagePrefix);
 		for (Resource.Diagnostic diagnostic : diagnostics) {
 			s.append(newLine);
@@ -814,7 +814,7 @@ public class PivotUtil extends DomainUtil
 				return nsURI;
 			}
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		getNsURI(s, element);
 		return s.toString();
 	}
@@ -829,13 +829,13 @@ public class PivotUtil extends DomainUtil
 				return nsURI;
 			}
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("u_r_i:");
 		getNsURI(s, element);
 		return s.toString();
 	}
 
-	private static void getNsURI(StringBuffer s, EObject element) {
+	private static void getNsURI(StringBuilder s, EObject element) {
 		if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
 			String nsURI = ((org.eclipse.ocl.examples.pivot.Package)element).getNsURI();
 			if (nsURI != null) {

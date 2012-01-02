@@ -273,7 +273,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
             org.eclipse.ocl.examples.pivot.Class associationClass) {
         EReference result = null;
 
-        StringBuffer nameBuf = new StringBuffer(associationClass.getName());
+        StringBuilder nameBuf = new StringBuilder(associationClass.getName());
         UnicodeSupport.setCodePointAt(nameBuf, 0, UnicodeSupport
             .toLowerCase(UnicodeSupport.codePointAt(nameBuf, 0)));
         String name = nameBuf.toString();

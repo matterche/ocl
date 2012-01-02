@@ -187,7 +187,7 @@ public class StatusInfo implements IStatus {
 	 * for debugging purposes only.
 	 */
 	@Override public String toString() {
-		StringBuffer buf = new StringBuffer();
+		StringBuilder buf = new StringBuilder();
 		buf.append("StatusInfo "); //$NON-NLS-1$
 		if (fSeverity == OK) {
 			buf.append("OK"); //$NON-NLS-1$

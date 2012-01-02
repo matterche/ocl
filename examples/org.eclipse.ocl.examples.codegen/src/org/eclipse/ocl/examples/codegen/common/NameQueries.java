@@ -62,7 +62,7 @@ public class NameQueries
 		private Set<String> used = new HashSet<String>();
 
 		protected String computeUniqueText(String partName, Type partType) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			appendJavaCharacters(s, partName);
 			s.append('_');
 			appendJavaCharacters(s, String.valueOf(partType));
@@ -108,7 +108,7 @@ public class NameQueries
 	private static Map<Element, NameAllocation<Type>> uniqueTypes = new HashMap<Element, NameAllocation<Type>>();
 	private static Map<Element, NameAllocation<Variable>> uniqueVariables = new HashMap<Element, NameAllocation<Variable>>();
 
-	protected static void appendJavaCharacters(StringBuffer s, String string) {
+	protected static void appendJavaCharacters(StringBuilder s, String string) {
 		for (int i = 0; i < string.length(); i++) {
 			char c = string.charAt(i);
 			if (Character.isJavaIdentifierPart(c)) {
@@ -120,7 +120,7 @@ public class NameQueries
 		}
 	}
 
-	protected static void appendJavaCharacters(StringBuffer s, String string, int iMax) {
+	protected static void appendJavaCharacters(StringBuilder s, String string, int iMax) {
 		for (int i = 0; i < Math.min(iMax, string.length()); i++) {
 			char c = string.charAt(i);
 			if (Character.isJavaIdentifierPart(c)) {
@@ -192,7 +192,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(Constraint constraint) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					String name = constraint.getName();
 					if (name == null) {
 						@SuppressWarnings("unchecked")
@@ -230,7 +230,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(Operation operation) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, operation.getOwningType().getName());
 					s.append('_');
 					String string = operation.getName();
@@ -298,7 +298,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(Property property) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, property.getOwningType().getName());
 					s.append('_');
 					appendJavaCharacters(s, property.getName());
@@ -328,7 +328,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(String string) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					int iSize = string.length();
 					int iMax = 8;
 					appendJavaCharacters(s, string, iMax);
@@ -374,7 +374,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(TupleType type) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					String name = String.valueOf(type);
 					appendJavaCharacters(s, name);
 					if (isUsed(s.toString())) {
@@ -403,7 +403,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(Type type) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, String.valueOf(type));
 					if (isUsed(s.toString())) {
 						for (int i = 1; true; i++) {
@@ -431,7 +431,7 @@ public class NameQueries
 			{
 				@Override
 				protected String computeUniqueText(Variable variable) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					appendJavaCharacters(s, variable.getName());
 					if (isUsed(s.toString())) {
 						for (int i = 1; true; i++) {
@@ -450,7 +450,7 @@ public class NameQueries
 	}
 
 	protected static String rawEncodeName(NamedElement element) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		String name = element.getName();
 //		boolean prevCharIsLower = true;
 		for (int i = 0; i < name.length(); i++) {

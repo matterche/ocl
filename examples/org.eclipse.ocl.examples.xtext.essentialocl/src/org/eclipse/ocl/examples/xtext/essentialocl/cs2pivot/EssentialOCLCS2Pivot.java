@@ -101,7 +101,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 					messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
 				}
 				else {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					for (NavigatingArgCS csArgument : arguments) {
 						TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
 						if ((pivot != null) && !pivot.eIsProxy()) {

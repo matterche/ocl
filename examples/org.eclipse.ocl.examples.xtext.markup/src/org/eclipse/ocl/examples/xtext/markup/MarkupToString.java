@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
  * MarkupToTree gives a printable one line string presentation of the markup for
  * debugging purposes. New lines are replaced by printables.
  */
-public class MarkupToString extends MarkupSwitch<StringBuffer>
+public class MarkupToString extends MarkupSwitch<StringBuilder>
 {
 	public static String toString(MarkupElement element) {
 		MarkupToString toString = new MarkupToString();
@@ -40,10 +40,10 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 		return toString.toString();
 	}
 	
-	protected final StringBuffer s = new StringBuffer();
+	protected final StringBuilder s = new StringBuilder();
 
 	@Override
-	public StringBuffer caseBulletElement(BulletElement object) {
+	public StringBuilder caseBulletElement(BulletElement object) {
 		s.append("bullet");
 		String level = object.getLevel();
 		if (level != null) {
@@ -57,7 +57,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 	
 	@Override
-	public StringBuffer caseCompoundElement(CompoundElement object) {
+	public StringBuilder caseCompoundElement(CompoundElement object) {
 		for (MarkupElement element : object.getElements()) {
 			doSwitch(element);
 		}
@@ -65,7 +65,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFigureElement(FigureElement object) {
+	public StringBuilder caseFigureElement(FigureElement object) {
 		s.append("figure");
 		String def = object.getDef();
 		if (def != null) {
@@ -96,7 +96,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFigureRefElement(FigureRefElement object) {
+	public StringBuilder caseFigureRefElement(FigureRefElement object) {
 		s.append("figure");
 		s.append("[");
 		s.append(object.getRef().getDef());
@@ -105,7 +105,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFontElement(FontElement object) {
+	public StringBuilder caseFontElement(FontElement object) {
 		s.append(object.getFont());
 		s.append("[");
 		caseCompoundElement(object);
@@ -114,7 +114,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFootnoteElement(FootnoteElement object) {
+	public StringBuilder caseFootnoteElement(FootnoteElement object) {
 		s.append("footnote[");
 		caseCompoundElement(object);
 		s.append("]");
@@ -122,7 +122,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseHeadingElement(HeadingElement object) {
+	public StringBuilder caseHeadingElement(HeadingElement object) {
 		s.append("heading");
 		String level = object.getLevel();
 		if (level != null) {
@@ -136,13 +136,13 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseNewLineElement(NewLineElement object) {
+	public StringBuilder caseNewLineElement(NewLineElement object) {
 		s.append(object.getText());
 		return s;
 	}
 
 	@Override
-	public StringBuffer caseNullElement(NullElement object) {
+	public StringBuilder caseNullElement(NullElement object) {
 		s.append("[");
 		caseCompoundElement(object);
 		s.append("]");
@@ -150,7 +150,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseOclCodeElement(OclCodeElement object) {
+	public StringBuilder caseOclCodeElement(OclCodeElement object) {
 		s.append("oclCode[");
 		caseCompoundElement(object);
 		s.append("]");
@@ -158,7 +158,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseOclEvalElement(OclEvalElement object) {
+	public StringBuilder caseOclEvalElement(OclEvalElement object) {
 		s.append("oclEval[");
 		caseCompoundElement(object);
 		s.append("]");
@@ -166,7 +166,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseOclTextElement(OclTextElement object) {
+	public StringBuilder caseOclTextElement(OclTextElement object) {
 		s.append("oclText[");
 		caseCompoundElement(object);
 		s.append("]");
@@ -174,7 +174,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseTextElement(TextElement object) {
+	public StringBuilder caseTextElement(TextElement object) {
 		for (String text : object.getText()) {
 			s.append(text);
 		}
@@ -182,7 +182,7 @@ public class MarkupToString extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer defaultCase(EObject object) {
+	public StringBuilder defaultCase(EObject object) {
 		s.append("<Unsupported ");
 		s.append(object.eClass().getName());
 		s.append(">");

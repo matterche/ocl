@@ -26,7 +26,7 @@ import org.eclipse.xtext.parser.IParseResult;
 
 import com.google.inject.Injector;
 
-public class MarkupUtils extends MarkupSwitch<StringBuffer>
+public class MarkupUtils extends MarkupSwitch<StringBuilder>
 {
 /*	public static Markup decode(String text) {
 //		System.out.println("decode: " + text);	

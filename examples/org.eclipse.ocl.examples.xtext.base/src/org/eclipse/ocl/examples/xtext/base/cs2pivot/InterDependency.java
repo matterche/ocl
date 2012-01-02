@@ -52,7 +52,7 @@ public class InterDependency<T> extends AbstractDependency<Object>
 
 	@Override
 	public String toString() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(super.toString());
 		if ((dependency != null) && !dependency.canExecute()) {
 			s.append(" BLOCKED");

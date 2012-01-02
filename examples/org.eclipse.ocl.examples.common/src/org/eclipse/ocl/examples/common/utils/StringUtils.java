@@ -37,7 +37,7 @@ public class StringUtils
 			return "";
 		if (iMax == 1)
 			return strings.get(0);
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(strings.get(0));
 		for (int i = 1; i < iMax; i++) {
 			s.append(separator);

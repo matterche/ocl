@@ -239,7 +239,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("Sequence");
 		super.toString(s, lengthLimit);
 	}

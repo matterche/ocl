@@ -131,7 +131,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		return new ToStringVisitor();
 	}
 
-	protected StringBuffer result = new StringBuffer();
+	protected StringBuilder result = new StringBuilder();
 
 	/**
 	 * Initializes me.

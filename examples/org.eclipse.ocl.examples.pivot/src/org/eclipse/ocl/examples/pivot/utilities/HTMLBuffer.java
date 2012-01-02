@@ -17,11 +17,11 @@
 package org.eclipse.ocl.examples.pivot.utilities;
 
 /**
- * A StringBuffer that assists in production of valid HTML.
+ * A StringBuilder that assists in production of valid HTML.
  */
 public class HTMLBuffer
 {
-	protected final StringBuffer s = new StringBuffer();
+	protected final StringBuilder s = new StringBuilder();
 	private boolean inPara = false;
 
 	public void append(String string) {

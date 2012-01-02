@@ -103,7 +103,7 @@ public class EmitQueries
 	public String expandKnownImports(String knownImports, String markedUpDocument) {
 		Map<String, String> known2external = computeKnown2ExternalMap(knownImports);
 		String[] splits = markedUpDocument.split("(\\<%)|(%\\>)");	
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < splits.length; i += 2) {
 			s.append(splits[i]);
 			if (i+1 < splits.length) {
@@ -118,7 +118,7 @@ public class EmitQueries
 	}
 	
 	public String knownImports() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (Class<?> knownClass : knownClasses) {
 			s.append(knownClass.getName());
 			s.append("\n");
@@ -183,7 +183,7 @@ public class EmitQueries
 		List<String> allValues = new ArrayList<String>(internal2external.values());
 		allValues.remove(null);
 		Collections.sort(allValues);
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (String externalPath : allValues) {
 			s.append("import ");
 			s.append(externalPath);

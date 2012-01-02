@@ -1194,7 +1194,7 @@ public class StandaloneProjectMap extends SingletonAdapterImpl
 	
 	@Override
 	public String toString() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		if (project2descriptor != null) {
 			List<String> projectNames = new ArrayList<String>(project2descriptor.keySet());
 			Collections.sort(projectNames);

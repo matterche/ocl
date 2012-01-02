@@ -179,7 +179,7 @@ public class XtextTestCase extends PivotTestCase
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();
 		if (unmatchedSize > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(unmatchedSize);
 			s.append(" unmatched element(s)");
 			for (UnmatchElement unmatchedElement : unmatchedElements) {
@@ -196,7 +196,7 @@ public class XtextTestCase extends PivotTestCase
         DiffModel diff = DiffService.doDiff(match, false);
         int subchanges = diff.getSubchanges();
 		if (subchanges > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(subchanges);
 			s.append(" changes");
 			DiffSwitch<Boolean> diffSwitch = new DiffToText(s);
@@ -249,13 +249,13 @@ public class XtextTestCase extends PivotTestCase
 	public static String formatMessageDifferences(Bag<String> expectedMessages, Bag<String> actualMessages) {
 		Set<String> allMessages = new HashSet<String>(expectedMessages);
 		allMessages.addAll(actualMessages);
-		StringBuffer s = null;
+		StringBuilder s = null;
 		for (String message : allMessages) {
 			int actualCount = actualMessages.count(message);
 			int expectedCount = expectedMessages.count(message);
 			if (actualCount != expectedCount) {
 				if (s == null) {
-					s = new StringBuffer();
+					s = new StringBuilder();
 				}
 				s.append("\n  (" + expectedCount + "/" + actualCount + ") " + message);
 			}
