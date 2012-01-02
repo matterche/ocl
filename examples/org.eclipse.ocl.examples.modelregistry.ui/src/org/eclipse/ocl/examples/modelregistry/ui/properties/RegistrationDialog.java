@@ -261,7 +261,7 @@ public class RegistrationDialog extends StatusDialog
 					return super.getMessage();
 				if (statuses.length == 1)
 					return statuses[0].getMessage();
-				StringBuffer s = new StringBuffer(statuses[0].getMessage());
+				StringBuilder s = new StringBuilder(statuses[0].getMessage());
 				for (int i = 1; i < statuses.length; i++) {
 					s.append("\n");
 					s.append(statuses[i].getMessage());

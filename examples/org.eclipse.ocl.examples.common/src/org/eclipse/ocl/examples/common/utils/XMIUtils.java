@@ -118,11 +118,11 @@ public class XMIUtils
 		    	uriFragmentPath.add(((InternalEObject)container).eURIFragmentSegment(eObject.eContainmentFeature(), eObject));
 		    	eObject = container;
 		    }
-		    StringBuffer result;
+		    StringBuilder result;
 		    if (eObject instanceof ENamedElement)
-		    	result = new StringBuffer(((ENamedElement)eObject).getName());
+		    	result = new StringBuilder(((ENamedElement)eObject).getName());
 		    else
-		    	result = new StringBuffer("_" + Integer.toString(eObject.eResource().getContents().indexOf(eObject)));
+		    	result = new StringBuilder("_" + Integer.toString(eObject.eResource().getContents().indexOf(eObject)));
 		    for (ListIterator<String> i = uriFragmentPath.listIterator(uriFragmentPath.size()); i.hasPrevious(); ) {
 		    	result.append('.');
 		    	result.append(i.previous());
