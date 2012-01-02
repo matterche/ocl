@@ -60,6 +60,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 				property = delegateDomain.getPivot(Property.class, eStructuralFeature);
 			}
 			specification = SettingBehavior.INSTANCE.getExpressionInOcl(metaModelManager, property);
+			SettingBehavior.INSTANCE.validate(property);
 		}
 		OCL.Query query = ocl.createQuery(specification);
 		try {

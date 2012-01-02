@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
@@ -45,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -120,6 +120,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
 			ExpressionInOcl query = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, operation);
+			InvocationBehavior.INSTANCE.validate(operation);
 			return validateExpressionInOcl(eClass, eObject, null, context,
 				invariant.getName(), null, 0, query);
 		}
@@ -131,6 +132,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 				String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, contextType);
 				throw new OCLDelegateException(message);
 			}
+			ValidationBehavior.INSTANCE.validate(constraint);
 			return validateExpressionInOcl(eClass, eObject, null, context,
 				invariant.getName(), null, 0, query);
 		}
@@ -228,10 +230,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 			if (message == null) {
 				Object objectLabel;
 				if (eClassifier instanceof EDataType) {
-					objectLabel = EObjectValidator.getValueLabel((EDataType) eClassifier, value, context);
+					objectLabel = PivotDiagnostician.INSTANCE.getValueLabel((EDataType) eClassifier, value);
 				}
 				else if (value instanceof EObject) {
-					objectLabel = EObjectValidator.getObjectLabel((EObject) value, context);
+					objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel((EObject) value);
 				}
 				else {
 					objectLabel = String.valueOf(value);

@@ -68,6 +68,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 					operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 				}
 				specification = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, operation);
+				InvocationBehavior.INSTANCE.validate(operation);
 			}
 			OCL.Query query = ocl.createQuery(specification);
 			EvaluationEnvironment env = query.getEvaluationEnvironment();
