@@ -16,19 +16,9 @@
  */
 package org.eclipse.ocl.examples.pivot.executor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.library.executor.ExecutorManager;
-import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorValueFactory;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
-import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManageable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -41,7 +31,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 		this.metaModelManager = metaModelManager;		
 	}
 
-	protected int computeBases(List<List<Type>> bases, Type pivotClass) {
+/*	protected int computeBases(List<List<Type>> bases, Type pivotClass) {
 		int depth;
 		List<Type> superClasses = pivotClass.getSuperClasses();
 		if (superClasses.size() > 0) {
@@ -100,12 +90,12 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 		for (List<Type> equiDepthBases : bases) {
 			numFragments += equiDepthBases.size();
 		}
-		PivotInheritance pivotInheritance = metaModelManager.getInheritance(pivotClass);
+		PivotExecutorType pivotInheritance = metaModelManager.getInheritance(pivotClass);
 		PivotFragment[] fragments = new PivotFragment[numFragments];
 		numFragments = 0;
 		for (List<Type> equiDepthBases : bases) {
 			for (Type  base : equiDepthBases) {
-				PivotInheritance baseInheritance = metaModelManager.getInheritance(base);
+				PivotExecutorType baseInheritance = metaModelManager.getInheritance(base);
 				PivotExecutorOperation[] operations = computeOperations(base);
 				ExecutorProperty[] properties = computeProperties(base);
 				fragments[numFragments++] = new PivotFragment(pivotInheritance, baseInheritance, operations, properties, base);
@@ -115,7 +105,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 	}
 
 	protected PivotExecutorOperation[] computeOperations(Type pivotClass) {
-		PivotInheritance pivotInheritance = metaModelManager.getInheritance(pivotClass);
+		PivotExecutorType pivotInheritance = metaModelManager.getInheritance(pivotClass);
 		List<Operation> ownedOperations = pivotClass.getOwnedOperations();
 		PivotExecutorOperation[] operations = new PivotExecutorOperation[ownedOperations.size()];
 		for (int i = 0; i < ownedOperations.size(); i++) {			
@@ -134,15 +124,10 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 //			operations[i] = new PivotEvaluationOperation(evaluationClass, i, pivotOperation);
 //		}
 		return properties;		// WIP FIXME
-	}	
+	} */
 
 	public DomainEvaluator createNestedEvaluator() {
 		return new PivotExecutorManager(metaModelManager);
-	}
-
-	public PivotExecutorPackage getEvaluationPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
 	}
 
 	public MetaModelManager getMetaModelManager() {

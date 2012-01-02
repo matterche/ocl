@@ -16,17 +16,18 @@
  */
 package org.eclipse.ocl.examples.library.ecore;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 import org.eclipse.ocl.examples.library.executor.ExecutorPackage;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 
 public class EcoreExecutorPackage extends ExecutorPackage
 {
 	protected final EPackage ePackage;
+	private ExecutorType[] types;
 
 	public EcoreExecutorPackage(EPackage ePackage) {
-		super(ePackage.getName(), ePackage.getNsURI(), null);
+		super(ePackage.getName(), ePackage.getNsURI());
 		this.ePackage = ePackage;		
 	}
 
@@ -34,7 +35,11 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return ePackage;
 	}
 
-	public ExecutorType getType(EClass eClass) {		// FIXME put literals in EcoreExecutorType
+	public Iterable<ExecutorType> getOwnedTypes() {
+		return new ArrayIterable<ExecutorType>(types);
+	}
+
+/*	public ExecutorType getType(EClass eClass) {		// FIXME put literals in EcoreExecutorType
 		String typeName = eClass.getName();
 		for (ExecutorType type: getOwnedTypes()) {
 			if (type.getName().equals(typeName)) {
@@ -42,5 +47,23 @@ public class EcoreExecutorPackage extends ExecutorPackage
 			}
 		}
 		return null;
+	} */
+
+	public ExecutorType getType(String typeName) {
+		for (ExecutorType type: getOwnedTypes()) {
+			if (type.getName().equals(typeName)) {
+				return type;
+			}
+		}
+		return null;
+	}
+	
+	public void init(ExecutorType[] types) {
+		assert this.types == null;
+		this.types = types;
+	}
+	
+	public ExecutorType lookupType(int classIndex) {
+		return types[classIndex];
 	}
 }

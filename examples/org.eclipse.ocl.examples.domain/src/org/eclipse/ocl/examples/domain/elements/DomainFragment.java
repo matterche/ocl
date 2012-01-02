@@ -20,8 +20,12 @@ import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public interface DomainFragment
 {
+	DomainFragment getBaseFragment();
 	DomainInheritance getBaseInheritance();
+	DomainInheritance getDerivedInheritance();
 	LibraryFeature getImplementation(DomainOperation staticOperation);
-	DomainInheritance getInheritance();
-	DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes);
+//	Iterable<? extends DomainOperation> getOperations();
+//	Iterable<? extends DomainProperty> getProperties();
+//	void initOperations(String name);
+//	DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes);
 }

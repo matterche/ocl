@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.domain.types;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public abstract class AbstractSpecializedType extends AbstractType
@@ -45,11 +44,7 @@ public abstract class AbstractSpecializedType extends AbstractType
 		return containerType.isUnique();
 	}
 
-	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
 		return containerType.lookupImplementation(standardLibrary, staticOperation);
-	}
-
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		return containerType.lookupOperation(standardLibrary, operationName, argumentTypes);
 	}
 }

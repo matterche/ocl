@@ -17,18 +17,15 @@
 package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
-import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
 
-public class ExecutorPackage implements DomainPackage
+public abstract class ExecutorPackage implements DomainPackage
 {
 	protected final String name;
 	protected final String nsURI;
-	private ExecutorType[] types;
 
-	public ExecutorPackage(String name, String nsURI, ExecutorType[] types) {
+	protected ExecutorPackage(String name, String nsURI) {
 		this.name = name;
 		this.nsURI = nsURI;
-		this.types = types;
 	}
 
 	public final String getName() {
@@ -38,22 +35,9 @@ public class ExecutorPackage implements DomainPackage
 	public final String getNsURI() {
 		return nsURI;
 	}
-	
-	public void init(ExecutorType[] types) {
-		assert this.types == null;
-		this.types = types;
-	}
-	
-	public ExecutorType lookupType(int classIndex) {
-		return types[classIndex];
-	}
 
 	@Override
 	public String toString() {
 		return name;
-	}
-
-	public Iterable<ExecutorType> getOwnedTypes() {
-		return new ArrayIterable<ExecutorType>(types);
 	}
 }

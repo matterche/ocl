@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -141,8 +142,9 @@ public class SortedByIteration extends AbstractIteration
 
 	public SortedByIteration.SortingValue createAccumulatorValue(DomainEvaluator evaluator, DomainType accumulatorType, DomainType bodyType) throws InvalidValueException {
 		DomainStandardLibrary standardLibrary = evaluator.getValueFactory().getStandardLibrary();
-		DomainType comparableType = standardLibrary.getOclComparableType();
-		DomainOperation staticOperation = comparableType.lookupOperation(standardLibrary, EvaluatorMessages.CompareToOperation, comparableType);
+		DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
+		DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
+		DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, EvaluatorMessages.CompareToOperation, selfType);
 		try {
 			LibraryFeature implementation = bodyType.lookupImplementation(standardLibrary, staticOperation);
 			return new SortingValue(evaluator, accumulatorType, (LibraryBinaryOperation) implementation);

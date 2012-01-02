@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 
@@ -33,10 +34,26 @@ public class AbstractClassifierType extends AbstractSpecializedType implements D
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainClassifierType)) {
-			return false;
+		if (type instanceof DomainClassifierType) {
+			return instanceType.conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
 		}
-		return instanceType.conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
+		if (instanceType instanceof DomainCollectionType) {
+			String collectionTypeName;
+			if (instanceType.isOrdered()) {
+				collectionTypeName = instanceType.isUnique() ? "OrderedSetType" : "SequenceType";
+			}
+			else {
+				collectionTypeName = instanceType.isUnique() ? "SetType" : "BagType";
+			}
+			DomainType collectionType = standardLibrary.getOclType(collectionTypeName);	// FIXME change NPE to IllegalLibraryException
+			return collectionType.conformsTo(standardLibrary, type);
+		}
+//		if (!(type instanceof DomainClassifierType)) {
+//			return false;
+//		}
+//		return instanceType.conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
+//		return instanceType.conformsTo(standardLibrary, type);
+		return false;
 	}
 
 	@Override

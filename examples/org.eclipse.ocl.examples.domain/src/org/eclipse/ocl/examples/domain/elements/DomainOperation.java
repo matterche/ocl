@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2011,2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Bag.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.elements;
 
@@ -21,9 +21,28 @@ import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 
 public interface DomainOperation extends DomainNamedElement
 {
+	/**
+	 * Return the index of this operation in the operation dispatch table.
+	 */
 	int getIndex();
+	
+	/**
+	 * Return the implementation of this operation.
+	 */
 	LibraryFeature getImplementation();
-	DomainInheritance getInheritance();
+
+	/**
+	 * Return the Inheritance dispatch table for the owning type.
+	 */
+	DomainInheritance getInheritance(DomainStandardLibrary standardLibrary);
+	
+	/**
+	 * Return the ordered list of parameters of this operation.
+	 */
 	IndexableIterable<? extends DomainType> getParameterTypes();
+
+	/**
+	 * Return true if this is a static operation.
+	 */
 	boolean isStatic();
 }

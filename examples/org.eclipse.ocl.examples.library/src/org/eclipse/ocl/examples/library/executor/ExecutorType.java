@@ -16,72 +16,74 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
-import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 
-public class ExecutorType extends AbstractInheritance implements DomainClassifierType, ExecutorTypeArgument
+public class ExecutorType extends AbstractInheritance implements DomainType, ExecutorTypeArgument
 {
-	public static final int ORDERED = 1 << 0;
-	public static final int UNIQUE = 1 << 1;
+	/**
+	 * Depth ordered inheritance fragments. OclAny at depth 0, OclSelf at depth size-1.
+	 */
+	private DomainFragment[] fragments = null;
 	
-	protected final String name;
-	protected final ExecutorPackage evaluationPackage;
-	protected final int flags;
+	/**
+	 * The index in fragments at which inheritance fragments at a given depth start.
+	 * depthIndexes[0] is always zero since OclAny is always at depth 0.
+	 * depthIndexes[depthIndexes.length-2] is always depthIndexes.length-1 since OclSelf is always at depth depthIndexes.length-2.
+	 * depthIndexes[depthIndexes.length-1] is always depthIndexes.length to provide an easy end stop.
+	 */
+	private int[] indexes = null;
 	
 	public ExecutorType(String name, ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
-		this.name = name;
-		this.evaluationPackage = evaluationPackage;
-		this.flags = flags;
+		super(name, evaluationPackage, flags);
 	}
 	
-	@Override
-	protected AbstractFragment createFragment(DomainInheritance baseInheritance) {
-		return new ExecutorFragment(this, baseInheritance, null, null);
+	public FragmentIterable getAllSuperFragments() {
+		return new FragmentIterable(fragments);
 	}
 
-	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		return type.isSuperInheritanceOf(standardLibrary, this);
+	public int getDepth() {
+		return indexes.length-2;
+	}
+
+	public DomainFragment getFragment(int fragmentNumber) {
+		return fragments[fragmentNumber];
 	}
 	
-	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
-		DomainInheritance firstInheritance = this;
-		DomainInheritance secondInheritance = type.getInheritance(standardLibrary);
-		DomainInheritance commonInheritance = firstInheritance.getCommonInheritance(secondInheritance);
-		return commonInheritance.getType();
+	public int getIndex(int fragmentNumber) {
+		return indexes[fragmentNumber];
 	}
 
-	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
-		return this;
+	public int getIndexes(){
+		return indexes.length;
 	}
 
-	public DomainType getInstanceType() {
-		return this;
+	public Iterable<? extends DomainOperation> getLocalOperations() {
+		return getSelfFragment().getLocalOperations();
 	}
 
-	public final String getName() {
-		return name;
+	public Iterable<? extends DomainProperty> getLocalProperties() {
+		return getSelfFragment().getLocalProperties();
 	}
-	
-	public final ExecutorPackage getPackage() {
-		return evaluationPackage;
+
+	public Iterable<? extends DomainType> getLocalSuperTypes() {
+		return getSelfFragment().getLocalSuperTypes();
+	}
+
+	public ExecutorFragment getSelfFragment() {
+		return (ExecutorFragment) getFragment(fragments.length-1);
 	}
 
 	public DomainStandardLibrary getStandardLibrary() {
 		return ExecutorStandardLibrary.INSTANCE;
 	}
-
-	@Override
-	protected Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
-		throw new UnsupportedOperationException();		// Not called since fragments already in place
+	
+	public final FragmentIterable getSuperFragments(int depth) {
+		return new FragmentIterable(fragments, indexes[depth], indexes[depth+1]);
 	}
 
 	public DomainType getType() {
@@ -89,63 +91,19 @@ public class ExecutorType extends AbstractInheritance implements DomainClassifie
 	}
 
 	public void initFragments(ExecutorFragment[] fragments, int[] depthCounts) {
+		assert this.fragments == null;
 		if (fragments != null) {
 			int[] indexes = new int[depthCounts.length+1];
 			indexes[0] = 0;
 			for (int i = 0; i <  depthCounts.length; i++) {
 				indexes[i+1] = indexes[i] + depthCounts[i];
 			}
-			super.initFragments(fragments, indexes);
+			this.fragments = fragments;
+			this.indexes = indexes;
 		}
 		else {
-			super.initFragments(null, null);
+			this.fragments = null;
+			this.indexes = null;
 		}
-	}
-
-	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		throw new UnsupportedOperationException();		// WIP
-//		return false;
-	}
-
-	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isOrdered() {
-		return (flags & ORDERED) != 0;
-	}
-
-	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		DomainInheritance thisInheritance = this;
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance.isSuperInheritanceOf(standardLibrary, thatInheritance);
-	}
-
-	public boolean isUnique() {
-		return (flags & UNIQUE) != 0;
-	}
-
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		for (DomainFragment fragment : getFragments()) {
-			DomainOperation operation = fragment.lookupOperation(standardLibrary, this, operationName, argumentTypes);
-			if (operation != null) {
-				return operation;				// FIXME ambiguous lookups
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(evaluationPackage) + "::" + String.valueOf(name); //$NON-NLS-1$
 	}
 }

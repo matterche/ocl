@@ -21,10 +21,15 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.types.AbstractClassifierType;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
@@ -32,13 +37,14 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
 	public static final ExecutorStandardLibrary INSTANCE = new ExecutorStandardLibrary();
 	
-	private Map<EPackage, EcoreExecutorPackage> packageMap = new HashMap<EPackage, EcoreExecutorPackage>();
+	private Map<EPackage, EcoreExecutorPackage> ePackageMap = new HashMap<EPackage, EcoreExecutorPackage>();
+	private Map<DomainPackage, DomainExecutorPackage> domainPackageMap = null;
 	private Map<EClassifier, ExecutorType> typeMap = new HashMap<EClassifier, ExecutorType>();
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
 		for (EcoreExecutorPackage execPackage : execPackages) {
-			packageMap.put(execPackage.getEPackage(), execPackage);
+			ePackageMap.put(execPackage.getEPackage(), execPackage);
 		}
 	}
 
@@ -48,9 +54,48 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		DomainClassifierType classifierType = new AbstractClassifierType(anyClassifierType.getName(), anyClassifierType, classType);
 		return classifierType;
 	}
+	
+	@Override
+	public DomainEvaluator createEvaluator(EObject contextObject, Map<Object, Object> contextMap) {
+		return new EcoreExecutorManager(contextObject, contextMap, this);
+	}
+
+	public DomainInheritance getInheritance(DomainType type) {
+		if (type instanceof DomainInheritance) {
+			return (DomainInheritance) type;
+		}
+		if (type instanceof DomainClassifierType) {
+			DomainType instanceType = ((DomainClassifierType)type).getInstanceType();
+			DomainClassifierType classifierType = getClassifierType(instanceType);
+			DomainType containerType = classifierType.getContainerType();
+			return containerType.getInheritance(this);
+		}
+		if (domainPackageMap == null) {
+			domainPackageMap = new HashMap<DomainPackage, DomainExecutorPackage>();
+		}
+		DomainPackage domainPackage = type.getPackage();
+		DomainExecutorPackage domainExecutorPackage = domainPackageMap.get(domainPackage);
+		if (domainExecutorPackage == null) {
+			domainExecutorPackage = new DomainExecutorPackage(this, domainPackage);
+			domainPackageMap.put(domainPackage, domainExecutorPackage);
+		}
+		return domainExecutorPackage.getInheritance(type);
+	}
 
 	public EcoreExecutorPackage getPackage(EPackage ePackage) {
-		return packageMap.get(ePackage);
+		return ePackageMap.get(ePackage);
+	}
+
+	public ExecutorType getOclType(String typeName) {
+		for (EcoreExecutorPackage dPackage : ePackageMap.values()) {
+// FIXME			if (OCLstdlibTables.PACKAGE.getNsURI().equals(dPackage.getNsURI())) {	
+				ExecutorType type = dPackage.getType(typeName);
+				if (type != null) {
+					return type;
+				}
+//			}
+		}
+		return null;
 	}
 
 	public ExecutorType getType(EClass eClass) {
@@ -58,7 +103,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		if (type == null) {
 			EcoreExecutorPackage execPackage = getPackage(eClass.getEPackage());
 			if (execPackage != null) {
-				type = execPackage.getType(eClass);
+				type = execPackage.getType(eClass.getName());
 				typeMap.put(eClass, type);
 			}
 		}

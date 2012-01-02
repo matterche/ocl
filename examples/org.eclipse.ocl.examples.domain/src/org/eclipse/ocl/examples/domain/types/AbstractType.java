@@ -17,7 +17,9 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 
@@ -32,6 +34,18 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	public abstract DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type);
 
 	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+
+	public Iterable<? extends DomainOperation> getLocalOperations() {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+
+	public Iterable<? extends DomainProperty> getLocalProperties() {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+
+	public Iterable<? extends DomainType> getLocalSuperTypes() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
 	
@@ -52,14 +66,6 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 
 	public boolean isOrdered() {
 		return false;
-	}
-
-	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
-		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
-	}
-
-	public boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance) {
-		return isSuperClassOf(standardLibrary, inheritance.getType());
 	}
 
 	public boolean isUnique() {

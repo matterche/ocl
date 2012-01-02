@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 
 public class AbstractTupleType extends AbstractType implements DomainTupleType
@@ -67,11 +66,12 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 		return standardLibrary.isEqualToTupleType(this, (DomainTupleType)type);
 	}
 
-	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
 		return standardLibrary.getOclTupleType().lookupImplementation(standardLibrary, staticOperation);
 	}
 
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		return standardLibrary.getOclTupleType().lookupOperation(standardLibrary, operationName, argumentTypes);
-	}
+//	@Override
+//	public DomainOperation lookupLocalOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
+//		return standardLibrary.getOclTupleType().lookupLocalOperation(standardLibrary, operationName, argumentTypes);
+//	}
 }

@@ -43,13 +43,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -84,7 +85,6 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.executor.PivotInheritance;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
@@ -437,15 +437,6 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return adapter;
 	}
 
-	public static MetaModelManager getMetaModelManager(DomainStandardLibrary standardLibrary) {
-		if (standardLibrary instanceof MetaModelManageable) {
-			return ((MetaModelManageable)standardLibrary).getMetaModelManager();
-		}
-		else {
-			throw new IllegalStateException(standardLibrary.getClass().getName() + " is not MetaModelManageable");
-		}
-	}
-
 	public static void initializePivotResourceSet(ResourceSet pivotResourceSet) {
 		StandaloneProjectMap.initializeURIResourceMap(pivotResourceSet);
 		Registry resourceFactoryRegistry = pivotResourceSet.getResourceFactoryRegistry();
@@ -743,7 +734,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (secondType instanceof ClassifierType) {
 				return conformsToClassifierType((ClassifierType)firstType, (ClassifierType)secondType, bindings);
 			}
-			return false;
+			// Drop-through and maybe match xxClassifoer<xx> against OclType
 		}
 		else if (firstType instanceof CollectionType) {
 			if (secondType instanceof CollectionType) {
@@ -763,19 +754,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 			return false;
 		}
-		else {
-			for (Type superClass : getSuperClasses(firstType)) {
-				if (conformsTo(superClass, secondType, bindings)) {
-					return true;
-				}
+		for (Type superClass : getSuperClasses(firstType)) {
+			if (conformsTo(superClass, secondType, bindings)) {
+				return true;
 			}
-//				List<TemplateBinding> templateBindings = actualType.getTemplateBindings();
-//				if (templateBindings.size() > 0) {
-//					TemplateableElement template = PivotUtil.getUnspecializedTemplateableElement(actualType);
-//					return conformsToClass((org.eclipse.ocl.examples.pivot.Class)template, requiredType);
-//				}
-			return false;
 		}
+//		List<TemplateBinding> templateBindings = actualType.getTemplateBindings();
+//		if (templateBindings.size() > 0) {
+//			TemplateableElement template = PivotUtil.getUnspecializedTemplateableElement(actualType);
+//			return conformsToClass((org.eclipse.ocl.examples.pivot.Class)template, requiredType);
+//		}
+		return false;
 	}
 
 	protected boolean conformsToClassifierType(ClassifierType firstType, ClassifierType secondType,
@@ -1392,10 +1381,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
-	public PivotInheritance getInheritance(DomainType type) {
-		Type type2 = getType(type);
-		TypeServer typeServer = getTypeTracker(type2).getTypeServer();
-		return typeServer.getInheritance();
+	public ReflectiveExecutorType getInheritance(DomainType type) {
+		Type type1 = getType(type);
+		if (type1 == null) {
+			return null;
+		}
+		Type type2 = (Type) type1.getUnspecializedElement();
+		TypeServer typeServer = getTypeTracker(type2 != null ? type2 : type1).getTypeServer();
+		return typeServer.getExecutorType();
 	}
 
 	public LambdaTypeManager getLambdaManager() {
@@ -1536,6 +1529,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public MetaModelManager getMetaModelManager() {
 		return this;
+	}
+
+	public DomainType getOclType(String typeName) {
+		return getInheritance(getPivotType(typeName));
 	}
 
 	public CollectionType getOrderedSetType(DomainType elementType) {
@@ -1744,7 +1741,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return packageTracker.getPackageServer().getType(typeName);
 		}
 		else {
-			return PivotUtil.getNamedElement(parentPackage.getOwnedTypes(), typeName);
+			return PivotUtil.getNamedElement(getLocalClasses(parentPackage), typeName);
+//			return PivotUtil.getNamedElement(parentPackage.getOwnedTypes(), typeName);
 		}
 	}
 	
@@ -1945,8 +1943,17 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return tupleManager.getTupleType(tupleType, bindings);
 	}
 
-	public Type getType(DomainType type) {
-		return (Type) type;					// FIXME cast
+	public Type getType(DomainType dType) {
+		if (dType instanceof Type) {
+			return (Type) dType;
+		}
+		DomainPackage dPackage = dType.getPackage();
+		String nsURI = dPackage.getNsURI();
+		org.eclipse.ocl.examples.pivot.Package pPackage = packageManager.getPackageByURI(nsURI);
+		if (pPackage == null) {
+			throw new UnsupportedOperationException();		// FIXME
+		}
+		return getPrimaryType(pPackage, dType.getName());
 	}
 
 	public DomainType getType(EClass eClass) {

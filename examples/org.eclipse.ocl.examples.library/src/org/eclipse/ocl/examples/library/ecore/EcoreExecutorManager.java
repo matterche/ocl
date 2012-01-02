@@ -16,33 +16,52 @@
  */
 package org.eclipse.ocl.examples.library.ecore;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.executor.ExecutorManager;
 import org.eclipse.ocl.examples.library.executor.LazyModelManager;
 
 public class EcoreExecutorManager extends ExecutorManager
 {
-	private final EObject context;
+	protected static ValueFactory getValueFactory(Map<Object, Object> contextMap, DomainStandardLibrary standardLibrary) {
+		if (contextMap != null) {
+			Object valueFactory = contextMap.get(ValueFactory.class);
+			if (valueFactory instanceof ValueFactory) {
+				return (ValueFactory) valueFactory;
+			}
+		}
+		return new EcoreValueFactory(standardLibrary);
+	}
+
+	private final EObject contextObject;
+	private final Map<Object, Object> contextMap;
 	private LazyModelManager modelManager = null;
 	
-	public EcoreExecutorManager(EObject context, DomainStandardLibrary standardLibrary) {
-		super(new EcoreValueFactory(standardLibrary));
-		this.context = context;
+	public EcoreExecutorManager(EObject contextObject, DomainStandardLibrary standardLibrary) {
+		this(contextObject, null, standardLibrary);
+	}
+
+	public EcoreExecutorManager(EObject contextObject, Map<Object, Object> contextMap, DomainStandardLibrary standardLibrary) {
+		super(getValueFactory(contextMap, standardLibrary));
+		this.contextObject = contextObject;
+		this.contextMap = contextMap;
 	}
 
 	public DomainEvaluator createNestedEvaluator() {
-		return new EcoreExecutorManager(context, valueFactory.getStandardLibrary());
+		return new EcoreExecutorManager(contextObject, contextMap, valueFactory.getStandardLibrary());
 	}
 
 	@Override
 	public DomainModelManager getModelManager() {
 		if (modelManager == null) {
-			modelManager = new LazyModelManager(context)
+			modelManager = new LazyModelManager(contextObject)
 			{
 				@Override
 				protected boolean isInstance(DomainType type, EObject element) {

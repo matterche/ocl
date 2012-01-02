@@ -29,14 +29,15 @@ import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
 import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.osgi.util.NLS;
 
 public abstract class ExecutorManager implements DomainEvaluator
 {	
-	protected final ExecutorValueFactory valueFactory;
+	protected final ValueFactory valueFactory;
 //	protected final DomainEvaluationEnvironment evaluationEnvironment;
 	
-	public ExecutorManager(ExecutorValueFactory valueFactory) {
+	public ExecutorManager(ValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
 //		this.evaluationEnvironment = new ExecutorEvaluationEnvironment();
 	}
@@ -47,7 +48,7 @@ public abstract class ExecutorManager implements DomainEvaluator
 		throw new UnsupportedOperationException();
 	}
 
-	public ExecutorValueFactory getValueFactory() {
+	public ValueFactory getValueFactory() {
 		return valueFactory;
 	}
 	

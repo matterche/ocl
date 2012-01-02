@@ -18,12 +18,11 @@ package org.eclipse.ocl.examples.pivot.executor;
 
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.InvalidType;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotInvalidInheritance extends PivotInheritance
+public class PivotExecutorInvalidType extends PivotExecutorType
 {
-	public PivotInvalidInheritance(MetaModelManager metaModelManager, InvalidType type) {
-		super(metaModelManager, type);
+	public PivotExecutorInvalidType(PivotExecutorPackage executorPackage, InvalidType type) {
+		super(executorPackage, type);
 	}
 
 	@Override

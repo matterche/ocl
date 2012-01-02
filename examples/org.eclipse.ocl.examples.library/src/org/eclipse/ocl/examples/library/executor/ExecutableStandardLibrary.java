@@ -21,11 +21,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.types.AbstractCollectionType;
 import org.eclipse.ocl.examples.domain.types.AbstractStandardLibrary;
 import org.eclipse.ocl.examples.domain.types.AbstractTupleType;
@@ -38,6 +40,8 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 	private Map<String, List<DomainTupleType>> tupleTypeMap = new HashMap<String, List<DomainTupleType>>();
 
 	protected abstract DomainClassifierType createClassiferType(DomainType classType);
+	
+	public abstract DomainEvaluator createEvaluator(EObject contextObject, Map<Object, Object> contextMap);
 
 	public DomainType getAnyClassifierType() {
 		return OCLstdlibTables.Types._AnyClassifier;

@@ -16,9 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
-import java.util.List;
-
-import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 
 /**
  * An Inheritance provides access to the transitive inheritance relationships of a type
@@ -29,45 +27,41 @@ import org.eclipse.ocl.examples.domain.library.LibraryFeature;
  * KnownSubInheritances are also notified of invalidation avoiding the need for an adapting Inheritance
  * to adapt more than its own target class.
  */
-public interface DomainInheritance
+public interface DomainInheritance extends DomainType
 {
 	/**
 	 * Return a depth ordered, OclAny-first, OclSelf-last, Iterable of all the super-adapters including this one.
 	 */
-	Iterable<DomainInheritance> getAllSuperInheritances();
+	Iterable<DomainFragment> getAllSuperFragments();
 
 	/**
 	 * Return the inheritance depth of the target type: OclAny is at depth 0.
 	 */
 	int getDepth();
 	
+	/**
+	 * Return the Standard Library managing the dispatch tables.
+	 */
 	DomainStandardLibrary getStandardLibrary();
 	
 	/**
 	 * Return an Iterable of all the super-inheritances at a specified depth, between 0 and getDepth() inclusive.
 	 */
-	Iterable<DomainInheritance> getSuperInheritances(int depth);
-
-	DomainType getType();
+	IndexableIterable<DomainFragment> getSuperFragments(int depth);
 
 
-	boolean isSubInheritanceOf(DomainInheritance thatInheritance);
-	boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance thatInheritance);
+	boolean isSubInheritanceOf(DomainInheritance inheritance);
+	boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance);
 	
-	void addSubInheritance(DomainInheritance subInheritance);
-	void gatherUninstalledInheritances(List<DomainInheritance> inheritances);
-	DomainFragment[] getFragments();
-	int[] getIndexes();
-	boolean install();
-	void installIn(DomainInheritance subInheritance, List<List<DomainFragment>> all);
-	boolean isInstallable();
-	boolean isInstalled();
-	void removeSubInheritance(DomainInheritance subInheritance);
-	void uninstall();
+	DomainFragment getFragment(DomainInheritance thatInheritance);
+	DomainFragment getFragment(int fragmentNumber);
+	int getIndex(int fragmentNumber);
+	int getIndexes();
 
 	DomainInheritance getCommonInheritance(DomainInheritance inheritance);
 
 	boolean isUndefined();
 
-	LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation);
+	DomainFragment getSelfFragment();
+	DomainOperation lookupLocalOperation(DomainStandardLibrary standardLibrary, String operationName, DomainInheritance... argumentTypes);
 }

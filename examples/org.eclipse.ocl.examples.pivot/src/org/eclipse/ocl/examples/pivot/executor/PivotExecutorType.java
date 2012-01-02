@@ -19,40 +19,33 @@ package org.eclipse.ocl.examples.pivot.executor;
 import java.util.Iterator;
 
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
-import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
+import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotInheritance extends AbstractInheritance
+public class PivotExecutorType extends ReflectiveExecutorType
 {
 	protected final MetaModelManager metaModelManager;
 	protected final Type type;
 	
-	public PivotInheritance(MetaModelManager metaModelManager, Type type) {
-		this.metaModelManager = metaModelManager;
+	public PivotExecutorType(PivotExecutorPackage executorPackage, Type type) {
+		super(type.getName(), executorPackage, computeFlags(type));
+		this.metaModelManager = executorPackage.getMetaModelManager();
 		this.type = type;
 	}
 
 	@Override
 	protected AbstractFragment createFragment(DomainInheritance baseInheritance) {
-		return new PivotFragment(this, baseInheritance);
-	}
-
-	public void dispose() {
-	}
-	
-	public final MetaModelManager getMetaModelManager() {
-		return metaModelManager;
-	}
-
-	public final DomainStandardLibrary getStandardLibrary() {
-		return metaModelManager;
+		return new PivotExecutorFragment(this, baseInheritance);
 	}
 
 	@Override
-	protected Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
+	public Iterable<? extends DomainInheritance> getInitialSuperInheritances() {
 		final Iterator<Type> iterator = metaModelManager.getSuperClasses(type).iterator();
 		return new Iterable<DomainInheritance>()
 		{
@@ -75,7 +68,27 @@ public class PivotInheritance extends AbstractInheritance
 		};
 	}
 
-	public final Type getType() {
+	public Iterable<? extends DomainOperation> getLocalOperations() {
+		return type.getOwnedOperations();
+	}
+
+	public Iterable<? extends DomainProperty> getLocalProperties() {
+		return type.getOwnedAttributes();
+	}
+
+	public Iterable<? extends DomainType> getLocalSuperTypes() {
+		return type.getSuperClasses();
+	}
+	
+	public final MetaModelManager getMetaModelManager() {
+		return metaModelManager;
+	}
+
+	public final Type getPivotType() {
 		return type;
+	}
+
+	public final DomainStandardLibrary getStandardLibrary() {
+		return metaModelManager;
 	}
 }

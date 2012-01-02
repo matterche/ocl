@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.library.executor;
 
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.ArrayIterable;
@@ -47,7 +48,7 @@ public class ExecutorOperation implements DomainOperation
 		return index;
 	}
 
-	public final DomainInheritance getInheritance() {
+	public final DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
 		return inheritance;
 	}
 

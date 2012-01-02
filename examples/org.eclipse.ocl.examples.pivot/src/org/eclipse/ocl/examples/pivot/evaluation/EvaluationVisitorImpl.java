@@ -397,12 +397,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation(e);
 		}
 		DomainType dynamicSourceType = sourceValue.getType();
-		LibraryIteration implementation;
-		try {
-			implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
-		} catch (InvalidValueException e) {
-			return evaluationEnvironment.throwInvalidEvaluation(e, iterateExp, null, "Failed to load implementation");
-		}	
+		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
@@ -474,12 +469,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation(e);
 		}
 		DomainType dynamicSourceType = sourceValue.getType();
-		LibraryIteration implementation;
-		try {
-			implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
-		} catch (InvalidValueException e) {
-			return evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, null, "Failed to load implementation");
-		}	
+		LibraryIteration implementation = (LibraryIteration) dynamicSourceType.lookupImplementation(metaModelManager, staticIteration);
 /*		Operation dynamicIteration = metaModelManager.getDynamicOperation((org.eclipse.ocl.examples.pivot.Type) dynamicSourceType, staticIteration);
  		if (dynamicIteration == null) {
  			dynamicIteration = staticIteration;
@@ -605,15 +595,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//
 		//	Resolve operation to dispatch
 		//
-		LibraryFeature implementation;
-		try {
-			implementation = dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
-			if (implementation == null) {
-				return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + staticOperation + "'", operationCallExp, sourceValue);
-			}
-		} catch (InvalidValueException e) {
-			return evaluationEnvironment.throwInvalidEvaluation(e, operationCallExp, null, "Failed to load implementation");
-		}	
+		LibraryFeature implementation = dynamicSourceType.lookupImplementation(metaModelManager, staticOperation);
+		if (implementation == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + staticOperation + "'", operationCallExp, sourceValue);
+		}
 		//
 		//	Dispatch implementation avoiding variable argument list where possible
 		//

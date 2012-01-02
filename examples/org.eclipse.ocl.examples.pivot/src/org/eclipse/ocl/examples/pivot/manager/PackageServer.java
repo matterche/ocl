@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.executor.PivotExecutorPackage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -57,6 +58,11 @@ public class PackageServer extends PackageTracker
 	 * Map of nested package-name to multi-package server.
 	 */
 	private Map<String, PackageServer> nestedPackageServers = null;
+
+	/**
+	 * The Executor package containing the dispatch table representation.
+	 */
+	private PivotExecutorPackage executorPackage = null;
 	
 	protected PackageServer(PackageManager packageManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 		super(packageManager, primaryPackage);
@@ -172,6 +178,13 @@ public class PackageServer extends PackageTracker
 			nestedPackageServers = null;
 		}
 		super.dispose();
+	}
+
+	public PivotExecutorPackage getExecutorPackage() {
+		if (executorPackage == null) {
+			executorPackage = new PivotExecutorPackage(getMetaModelManager(), target);
+		}
+		return executorPackage ;
 	}
 
 	public org.eclipse.ocl.examples.pivot.Package getNestedPackage(String nestedPackageName) {

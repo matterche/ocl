@@ -16,8 +16,9 @@
  */
 package org.eclipse.ocl.examples.library.executor;
 
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.library.LibraryProperty;
 
 public class ExecutorProperty implements DomainProperty
@@ -40,16 +41,16 @@ public class ExecutorProperty implements DomainProperty
 		return implementation;
 	}
 
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		return executorType;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public DomainProperty getOpposite() {
 		return opposite;
-	}
-
-	public DomainType getOwningType() {
-		return executorType;
 	}
 
 	public ExecutorType getType() {

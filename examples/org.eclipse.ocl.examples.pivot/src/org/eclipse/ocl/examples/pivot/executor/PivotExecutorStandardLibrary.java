@@ -19,10 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.executor.ExecutableStandardLibrary;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -35,15 +41,22 @@ import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 
 public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary implements MetaModelManageable
 {
-	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetaModelManager(), OCLstdlib.STDLIB_URI);
+//	public static final PivotExecutorStandardLibrary INSTANCE = new PivotExecutorStandardLibrary(new MetaModelManager(), OCLstdlib.STDLIB_URI);
 
 	protected final MetaModelManager metaModelManager;
 	private Map<DomainType, Type> typeMap = null;
 	private Map<DomainPackage, org.eclipse.ocl.examples.pivot.Package> packageMap = null;
 	
-	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
-		this.metaModelManager = metaModelManager;
-		metaModelManager.setDefaultStandardLibraryURI(stdlibURI);
+//	public PivotExecutorStandardLibrary(MetaModelManager metaModelManager, String stdlibURI) {
+//		this.metaModelManager = metaModelManager;
+//		metaModelManager.setDefaultStandardLibraryURI(stdlibURI);
+//		PivotTables.PACKAGE.getClass();
+//	}
+
+	public PivotExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
+		OCLstdlibTables.PACKAGE.getClass();
+		this.metaModelManager = new MetaModelManager();
+		metaModelManager.setDefaultStandardLibraryURI(OCLstdlib.STDLIB_URI);
 		PivotTables.PACKAGE.getClass();
 	}
 
@@ -55,6 +68,11 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		classifierType.setUnspecializedElement(anyClassifierType);
 		classifierType.setInstanceType(getType(typeType));
 		return classifierType;
+	}
+	
+	@Override
+	public DomainEvaluator createEvaluator(EObject contextObject, Map<Object, Object> contextMap) {
+		return new PivotEcoreExecutorManager(contextObject, contextMap, this, metaModelManager);
 	}
 
 	protected Package createPackage(DomainPackage domainPackage) {
@@ -79,11 +97,23 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return metaModelManager.getAnyClassifierType();
 	}
 
+	public DomainInheritance getInheritance(DomainType type) {
+		return metaModelManager.getInheritance(type);
+	}
+
 	public MetaModelManager getMetaModelManager() {
 		return metaModelManager;
 	}
+
+	public DomainType getOclType(String typeName) {
+		return PivotTables.PACKAGE.getType(typeName);
+	}
 	
 	protected Type getType(DomainType typeType) {
+		if (typeType instanceof DomainCollectionType) {
+			DomainCollectionType domainCollectionType = (DomainCollectionType)typeType;
+			return metaModelManager.getCollectionType(domainCollectionType.getContainerType(), domainCollectionType.getElementType());
+		}
 		if (typeMap == null) {
 			typeMap = new HashMap<DomainType, Type>();
 		}

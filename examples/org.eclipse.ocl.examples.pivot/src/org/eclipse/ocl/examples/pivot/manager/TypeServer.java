@@ -24,19 +24,14 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.executor.PivotAnyInheritance;
-import org.eclipse.ocl.examples.pivot.executor.PivotInheritance;
-import org.eclipse.ocl.examples.pivot.executor.PivotInvalidInheritance;
-import org.eclipse.ocl.examples.pivot.executor.PivotVoidInheritance;
+import org.eclipse.ocl.examples.pivot.executor.PivotExecutorPackage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -69,7 +64,7 @@ public class TypeServer extends TypeTracker
 	/**
 	 * Compiled inheritance relationships used by compiled expressions.
 	 */
-	private PivotInheritance inheritance = null;
+	private ReflectiveExecutorType executorType = null;
 	
 	protected TypeServer(PackageManager packageManager, Type primaryType) {
 		super(packageManager, primaryType);
@@ -144,9 +139,9 @@ public class TypeServer extends TypeTracker
 		}
 		property2properties.clear();
 		operation2operations.clear();
-		if (inheritance != null) {
-			inheritance.dispose();
-			inheritance = null;
+		if (executorType != null) {
+			executorType.dispose();
+			executorType = null;
 		}
 		super.dispose();
 	}
@@ -191,23 +186,17 @@ public class TypeServer extends TypeTracker
 		return null;
 	}
 
-	public PivotInheritance getInheritance() {
-		if (inheritance == null) {
-			MetaModelManager metaModelManager = getMetaModelManager();
-			if (target instanceof InvalidType) {
-				inheritance = new PivotInvalidInheritance(metaModelManager, (InvalidType)target);
-			}
-			else if (target instanceof VoidType) {
-				inheritance = new PivotVoidInheritance(metaModelManager, (VoidType)target);
-			}
-			else if (target instanceof AnyType) {
-				inheritance = new PivotAnyInheritance(metaModelManager, (AnyType)target);
-			}
-			else {
-				inheritance = new PivotInheritance(metaModelManager, target);
-			}
+	protected PivotExecutorPackage getExecutorPackage() {
+		MetaModelManager metaModelManager = getMetaModelManager();
+		return metaModelManager.getPackageTracker(target.getPackage()).getPackageServer().getExecutorPackage();
+	}
+
+	public ReflectiveExecutorType getExecutorType() {
+		if (executorType == null) {
+			PivotExecutorPackage executorPackage = getExecutorPackage();
+			executorType = executorPackage.getInheritance(target);
 		}
-		return inheritance;
+		return executorType;
 	}
 
 	public Operation getOperation(Operation pivotOperation) {
@@ -268,7 +257,7 @@ public class TypeServer extends TypeTracker
 	 */
 	@Override
 	public void notifyChanged(Notification msg) {
-		if ((inheritance != null) && (msg.getNotifier() == target)) {
+		if ((executorType != null) && (msg.getNotifier() == target)) {
 			if (msg.getFeature() == PivotPackage.Literals.TYPE__SUPER_CLASS) {
 				switch (msg.getEventType()) {
 					case Notification.ADD:
@@ -278,8 +267,8 @@ public class TypeServer extends TypeTracker
 					case Notification.RESOLVE:
 					case Notification.SET:
 					case Notification.UNSET:
-						inheritance.uninstall();
-						inheritance = null;
+						executorType.uninstall();
+						executorType = null;
 						break;
 				}
 			}

@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.library.executor;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.types.AbstractType;
 
@@ -37,7 +36,7 @@ public class ExecutorLambdaType extends AbstractType implements ExecutorTypeArgu
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 
-	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
 		throw new UnsupportedOperationException();			// WIP fixme
 	}
 

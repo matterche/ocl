@@ -20,9 +20,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.domain.elements.DomainCallExp;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
@@ -49,8 +49,9 @@ public class ValidateSortedByIteration implements LibraryValidator
 		}
 		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
 		try {
-			DomainType comparableType = standardLibrary.getOclComparableType();
-			DomainOperation staticOperation = comparableType.lookupOperation(standardLibrary, EvaluatorMessages.CompareToOperation, comparableType);
+			DomainInheritance comparableType = standardLibrary.getOclComparableType().getInheritance(standardLibrary);
+			DomainInheritance selfType = standardLibrary.getOclSelfType().getInheritance(standardLibrary);
+			DomainOperation staticOperation = comparableType.lookupLocalOperation(standardLibrary, EvaluatorMessages.CompareToOperation, selfType);
 			if (staticOperation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(comparableType));
 			}
@@ -58,10 +59,6 @@ public class ValidateSortedByIteration implements LibraryValidator
 			if (implementation == null) {
 				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
 			}
-//			LibraryBinaryOperation implementation = (LibraryBinaryOperation) type.lookupImplementation(standardLibrary, staticOperation);
-//			if (implementation == null) {
-//				return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, EvaluatorMessages.CompareToOperation, String.valueOf(type));
-//			}
 			return null;
 		} catch (Exception e) {
 			return new ValidationWarning(e.getLocalizedMessage());

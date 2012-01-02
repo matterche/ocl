@@ -84,6 +84,11 @@ public interface DomainStandardLibrary
      * @return the <tt>Enumeration</tt> type (an instance of {@link Enumeration})
      */
 	DomainType getEnumerationType();
+
+	/**
+	 * Return the Inheritance dispatch table for a given type.
+	 */
+	DomainInheritance getInheritance(DomainType type);
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -156,6 +161,8 @@ public interface DomainStandardLibrary
      * @return the <tt>OclTuple</tt> type (an instance of {@link Class})
      */
 	DomainType getOclTupleType();
+	
+	DomainType getOclType(String typeName);
 	
     /**
      * Obtains the single instance of the {@link VoidType} metatype, named

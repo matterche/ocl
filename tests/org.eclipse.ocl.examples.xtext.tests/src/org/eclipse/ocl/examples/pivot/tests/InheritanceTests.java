@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.util.Iterator;
 
+import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -44,15 +45,15 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			PrimitiveType booleanType = metaModelManager.getBooleanType();
 			DomainInheritance booleanInheritance = metaModelManager.getInheritance(booleanType);
 			assert booleanInheritance.getDepth() == 1;
-			Iterator<DomainInheritance> allSuperInheritances = booleanInheritance.getAllSuperInheritances().iterator();
-			assert allSuperInheritances.next() == oclAnyInheritance;
-			assert allSuperInheritances.next() == booleanInheritance;
+			Iterator<DomainFragment> allSuperInheritances = booleanInheritance.getAllSuperFragments().iterator();
+			assert allSuperInheritances.next().getBaseInheritance() == oclAnyInheritance;
+			assert allSuperInheritances.next().getBaseInheritance() == booleanInheritance;
 			assert !allSuperInheritances.hasNext();
-			Iterator<DomainInheritance> depth0Inheritances = booleanInheritance.getSuperInheritances(0).iterator();
-			assert depth0Inheritances.next() == oclAnyInheritance;
+			Iterator<DomainFragment> depth0Inheritances = booleanInheritance.getSuperFragments(0).iterator();
+			assert depth0Inheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !depth0Inheritances.hasNext();
-			Iterator<DomainInheritance> depth1Inheritances = booleanInheritance.getSuperInheritances(1).iterator();
-			assert depth1Inheritances.next() == booleanInheritance;
+			Iterator<DomainFragment> depth1Inheritances = booleanInheritance.getSuperFragments(1).iterator();
+			assert depth1Inheritances.next().getBaseInheritance() == booleanInheritance;
 			assert !depth1Inheritances.hasNext();
 		} finally {
 			metaModelManager.dispose();
@@ -65,11 +66,11 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			AnyType oclAnyType = metaModelManager.getOclAnyType();
 			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(oclAnyType);
 			assert oclAnyInheritance.getDepth() == 0;
-			Iterator<DomainInheritance> allSuperInheritances = oclAnyInheritance.getAllSuperInheritances().iterator();
-			assert allSuperInheritances.next() == oclAnyInheritance;
+			Iterator<DomainFragment> allSuperInheritances = oclAnyInheritance.getAllSuperFragments().iterator();
+			assert allSuperInheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !allSuperInheritances.hasNext();
-			Iterator<DomainInheritance> depth0Inheritances = oclAnyInheritance.getSuperInheritances(0).iterator();
-			assert depth0Inheritances.next() == oclAnyInheritance;
+			Iterator<DomainFragment> depth0Inheritances = oclAnyInheritance.getSuperFragments(0).iterator();
+			assert depth0Inheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !depth0Inheritances.hasNext();
 		} finally {
 			metaModelManager.dispose();
@@ -84,23 +85,23 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			SetType setType = metaModelManager.getSetType();
 			DomainInheritance setInheritance = metaModelManager.getInheritance(setType);
 			assert setInheritance.getDepth() == 3;
-			Iterator<DomainInheritance> allSuperInheritances = setInheritance.getAllSuperInheritances().iterator();
-			assert allSuperInheritances.next() == oclAnyInheritance;
-	//		assert allSuperInheritances.next() == collectionInheritance;
-			DomainInheritance next = allSuperInheritances.next();
+			Iterator<DomainFragment> allSuperInheritances = setInheritance.getAllSuperFragments().iterator();
+			assert allSuperInheritances.next().getBaseInheritance() == oclAnyInheritance;
+	//		assert allSuperInheritances.next().getBaseInheritance() == collectionInheritance;
+			DomainInheritance next = allSuperInheritances.next().getBaseInheritance();
 			while (allSuperInheritances.hasNext()) {
-				next = allSuperInheritances.next();
+				next = allSuperInheritances.next().getBaseInheritance();
 			}
 			assert next == setInheritance;
 			assert !allSuperInheritances.hasNext();
-			Iterator<DomainInheritance> depth0Inheritances = setInheritance.getSuperInheritances(0).iterator();
-			assert depth0Inheritances.next() == oclAnyInheritance;
+			Iterator<DomainFragment> depth0Inheritances = setInheritance.getSuperFragments(0).iterator();
+			assert depth0Inheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !depth0Inheritances.hasNext();
-	//		Iterator<InheritanceInheritance> depth1Inheritances = setInheritance.getSuperInheritances(1).iterator();
+	//		Iterator<InheritanceInheritance> depth1Inheritances = setInheritance.getSuperFragments(1).iterator();
 	//		assert depth1Inheritances.next() == collectionInheritance;
 	//		assert !depth1Inheritances.hasNext();
-			Iterator<DomainInheritance> depth3Inheritances = setInheritance.getSuperInheritances(3).iterator();
-			assert depth3Inheritances.next() == setInheritance;
+			Iterator<DomainFragment> depth3Inheritances = setInheritance.getSuperFragments(3).iterator();
+			assert depth3Inheritances.next().getBaseInheritance() == setInheritance;
 			assert !depth3Inheritances.hasNext();
 		} finally {
 			metaModelManager.dispose();
@@ -112,19 +113,19 @@ public class InheritanceTests extends PivotSimpleTestSuite
 		try {
 			DomainInheritance oclAnyInheritance = metaModelManager.getInheritance(metaModelManager.getOclAnyType());
 			DomainInheritance ifInheritance = metaModelManager.getInheritance(metaModelManager.getPivotType("IfExp"));
-			Iterator<DomainInheritance> allSuperInheritances = ifInheritance.getAllSuperInheritances().iterator();
-			assert allSuperInheritances.next() == oclAnyInheritance;
-			DomainInheritance next = allSuperInheritances.next();
+			Iterator<DomainFragment> allSuperInheritances = ifInheritance.getAllSuperFragments().iterator();
+			assert allSuperInheritances.next().getBaseInheritance() == oclAnyInheritance;
+			DomainInheritance next = allSuperInheritances.next().getBaseInheritance();
 			while (allSuperInheritances.hasNext()) {
-				next = allSuperInheritances.next();
+				next = allSuperInheritances.next().getBaseInheritance();
 			}
 			assert next == ifInheritance;
 			assert !allSuperInheritances.hasNext();
-			Iterator<DomainInheritance> depth0Inheritances = ifInheritance.getSuperInheritances(0).iterator();
-			assert depth0Inheritances.next() == oclAnyInheritance;
+			Iterator<DomainFragment> depth0Inheritances = ifInheritance.getSuperFragments(0).iterator();
+			assert depth0Inheritances.next().getBaseInheritance() == oclAnyInheritance;
 			assert !depth0Inheritances.hasNext();
-			Iterator<DomainInheritance> depthNInheritances = ifInheritance.getSuperInheritances(ifInheritance.getDepth()).iterator();
-			assert depthNInheritances.next() == ifInheritance;
+			Iterator<DomainFragment> depthNInheritances = ifInheritance.getSuperFragments(ifInheritance.getDepth()).iterator();
+			assert depthNInheritances.next().getBaseInheritance() == ifInheritance;
 			assert !depthNInheritances.hasNext();
 			assert oclAnyInheritance.isSuperInheritanceOf(metaModelManager, ifInheritance);
 			assert !ifInheritance.isSuperInheritanceOf(metaModelManager, oclAnyInheritance);
@@ -147,19 +148,19 @@ public class InheritanceTests extends PivotSimpleTestSuite
 			DomainInheritance integerTypeInheritance = metaModelManager.getInheritance(metaModelManager.getIntegerType());
 			DomainInheritance unlimitedNaturalTypeInheritance = metaModelManager.getInheritance(metaModelManager.getUnlimitedNaturalType());
 			assertEquals(4, unlimitedNaturalTypeInheritance.getDepth());
-			Iterator<DomainInheritance> allSuperInheritances = unlimitedNaturalTypeInheritance.getAllSuperInheritances().iterator();
-			assertEquals(oclAnyInheritance, allSuperInheritances.next());
-			Iterator<DomainInheritance> depth0Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(0).iterator();
-			assertEquals(oclAnyInheritance, depth0Inheritances.next());
+			Iterator<DomainFragment> allSuperInheritances = unlimitedNaturalTypeInheritance.getAllSuperFragments().iterator();
+			assertEquals(oclAnyInheritance, allSuperInheritances.next().getBaseInheritance());
+			Iterator<DomainFragment> depth0Inheritances = unlimitedNaturalTypeInheritance.getSuperFragments(0).iterator();
+			assertEquals(oclAnyInheritance, depth0Inheritances.next().getBaseInheritance());
 			assert !depth0Inheritances.hasNext();
-			Iterator<DomainInheritance> depth2Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(2).iterator();
-			assertEquals(realTypeInheritance, depth2Inheritances.next());
+			Iterator<DomainFragment> depth2Inheritances = unlimitedNaturalTypeInheritance.getSuperFragments(2).iterator();
+			assertEquals(realTypeInheritance, depth2Inheritances.next().getBaseInheritance());
 			assert !depth2Inheritances.hasNext();
-			Iterator<DomainInheritance> depth3Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(3).iterator();
-			assertEquals(integerTypeInheritance, depth3Inheritances.next());
+			Iterator<DomainFragment> depth3Inheritances = unlimitedNaturalTypeInheritance.getSuperFragments(3).iterator();
+			assertEquals(integerTypeInheritance, depth3Inheritances.next().getBaseInheritance());
 			assert !depth3Inheritances.hasNext();
-			Iterator<DomainInheritance> depth4Inheritances = unlimitedNaturalTypeInheritance.getSuperInheritances(4).iterator();
-			assertEquals(unlimitedNaturalTypeInheritance, depth4Inheritances.next());
+			Iterator<DomainFragment> depth4Inheritances = unlimitedNaturalTypeInheritance.getSuperFragments(4).iterator();
+			assertEquals(unlimitedNaturalTypeInheritance, depth4Inheritances.next().getBaseInheritance());
 			assert !depth4Inheritances.hasNext();
 		} finally {
 			metaModelManager.dispose();

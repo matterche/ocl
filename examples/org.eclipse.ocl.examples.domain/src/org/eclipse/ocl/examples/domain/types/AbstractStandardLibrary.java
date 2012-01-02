@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
@@ -44,7 +45,9 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			if (secondContainerType == null) {
 				return false;
 			}
-			if (!secondContainerType.isSuperClassOf(this, firstContainerType)) {
+			DomainInheritance firstInheritance = firstCollectionType.getInheritance(this);
+			DomainInheritance secondInheritance = secondCollectionType.getInheritance(this);
+			if (!secondInheritance.isSuperInheritanceOf(this, firstInheritance)) {
 				return false;
 			}
 		}
@@ -72,7 +75,9 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		if (secondTupleType == null) {
 			return false;
 		}
-		return secondTupleType.isSuperClassOf(this, firstTupleType);
+		DomainInheritance firstInheritance = firstTupleType.getInheritance(this);
+		DomainInheritance secondInheritance = secondTupleType.getInheritance(this);
+		return firstInheritance.isSuperInheritanceOf(this, secondInheritance);
 	}
 
 	public void dispose() {

@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.domain.types;
 import org.eclipse.ocl.examples.domain.elements.DomainFragment;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 
-
 public abstract class AbstractFragment implements DomainFragment
 {
 	public final DomainInheritance derivedInheritance;
@@ -30,16 +29,75 @@ public abstract class AbstractFragment implements DomainFragment
 		this.baseInheritance = baseInheritance;
 	}
 
+	public final DomainFragment getBaseFragment() {
+		return baseInheritance.getSelfFragment();
+	}
+
 	public final DomainInheritance getBaseInheritance() {
 		return baseInheritance;
 	}
 
-	public final DomainInheritance getInheritance() {
+	public final DomainInheritance getDerivedInheritance() {
 		return derivedInheritance;
 	}
 
+	/**
+	 * Return true if anOperation overloads an existing operation.
+	 *
+	protected boolean isOverload(DomainOperation anOperation) {
+		int depth = derivedInheritance.getDepth();
+		for (int i = 0; i <= depth-1; i++) {
+			for (DomainInheritance superInheritance : derivedInheritance.getSuperInheritances(depth)) {
+				DomainFragment baseFragment = superInheritance.getSelfFragment();
+				for (DomainOperation baseOperation : baseFragment.getOperations()) {
+					if (isOverload(anOperation, baseOperation)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	} */
+
+/*	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, DomainType staticType, String operationName, DomainType[] argumentTypes) {
+		for (DomainOperation operation : getOperations()) {		// FIXME binary search
+			if (operation.getName().equals(operationName)) {
+				boolean gotIt = true;
+				IndexableIterable<? extends DomainType> parameterTypeArguments = operation.getParameterTypes();
+//				ExecutorTypeArgument[] parameterTypeArguments = operation.getParameterTypes();
+				if (parameterTypeArguments.size() == argumentTypes.length) {
+					for (int i = 0; i < parameterTypeArguments.size(); i++) {
+						DomainType argumentType = argumentTypes[i];
+						DomainType parameterTypeArgument = parameterTypeArguments.get(i);
+//						if (parameterTypeArgument instanceof ExecutorType) {
+							DomainType parameterType;
+							if (parameterTypeArgument == standardLibrary.getOclSelfType()) {
+								parameterType = staticType;
+							}
+							else {
+								parameterType = parameterTypeArgument;
+							}
+							if (!argumentType.conformsTo(standardLibrary, parameterType)) {
+								gotIt = false;
+								break;
+							}
+							
+//						}
+//						else {
+//							// FIXME
+//						}
+					}
+				}
+				if (gotIt) {
+					return operation;
+				}
+			}
+		}
+		return null;
+	} */
+
 	@Override
 	public String toString() {
-		return derivedInheritance.getType().getName() + "__" + baseInheritance.getType().getName(); //$NON-NLS-1$
+		return derivedInheritance.getName() + "__" + baseInheritance.getName(); //$NON-NLS-1$
 	}
 }

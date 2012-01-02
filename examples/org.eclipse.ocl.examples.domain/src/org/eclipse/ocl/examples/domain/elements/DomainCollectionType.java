@@ -21,4 +21,6 @@ public interface DomainCollectionType extends DomainType
 {
 	DomainType getContainerType();		
 	DomainType getElementType();
+	boolean isOrdered();
+	boolean isUnique();
 }
