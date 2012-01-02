@@ -6,19 +6,17 @@
  */
 package codegen.company.util;
 
-import codegen.company.*;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import codegen.company.CodegencompanyPackage;
+import codegen.company.Company;
+import codegen.company.CompanySizeKind;
+import codegen.company.Employee;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,20 +61,20 @@ public class CodegencompanyValidator extends EObjectValidator {
 	public static final int EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Invariant must Have Name' of 'Employee'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Nullmust Have Name' of 'Employee'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EMPLOYEE__INVARIANT_MUST_HAVE_NAME = 3;
+	public static final int EMPLOYEE__NULLMUST_HAVE_NAME = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Invariant must Have Non Empty Name' of 'Employee'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Nullmust Have Non Empty Name' of 'Employee'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EMPLOYEE__INVARIANT_MUST_HAVE_NON_EMPTY_NAME = 4;
+	public static final int EMPLOYEE__NULLMUST_HAVE_NON_EMPTY_NAME = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -93,16 +91,6 @@ public class CodegencompanyValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
-
-	/**
-	 * Delegates evaluation of the given invariant expression against the object in the given context.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context, String validationDelegate, EOperation invariant, String expression, int severity, String source, int code) {
-		return EObjectValidator.validate(eClass, eObject, diagnostics, context, validationDelegate, invariant, expression, severity, source, code);
-	}
 
 	/**
 	 * Creates an instance of the switch.
@@ -190,8 +178,8 @@ public class CodegencompanyValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(employee, diagnostics, context);
 		if (result || diagnostics != null) result &= validateEmployee_noManagerImpliesDirectReports(employee, diagnostics, context);
-		if (result || diagnostics != null) result &= validateEmployee_invariant_mustHaveName(employee, diagnostics, context);
-		if (result || diagnostics != null) result &= validateEmployee_invariant_mustHaveNonEmptyName(employee, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEmployee_nullmustHaveName(employee, diagnostics, context);
+		if (result || diagnostics != null) result &= validateEmployee_nullmustHaveNonEmptyName(employee, diagnostics, context);
 		return result;
 	}
 
@@ -206,23 +194,23 @@ public class CodegencompanyValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the invariant_mustHaveName constraint of '<em>Employee</em>'.
+	 * Validates the nullmustHaveName constraint of '<em>Employee</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEmployee_invariant_mustHaveName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return employee.invariant_mustHaveName(diagnostics, context);
+	public boolean validateEmployee_nullmustHaveName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return employee.nullmustHaveName(diagnostics, context);
 	}
 
 	/**
-	 * Validates the invariant_mustHaveNonEmptyName constraint of '<em>Employee</em>'.
+	 * Validates the nullmustHaveNonEmptyName constraint of '<em>Employee</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEmployee_invariant_mustHaveNonEmptyName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return employee.invariant_mustHaveNonEmptyName(diagnostics, context);
+	public boolean validateEmployee_nullmustHaveNonEmptyName(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return employee.nullmustHaveNonEmptyName(diagnostics, context);
 	}
 
 	/**

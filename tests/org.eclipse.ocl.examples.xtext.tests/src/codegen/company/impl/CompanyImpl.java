@@ -90,7 +90,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	protected EList<Employee> employees;
 
 	/**
-	 * The cached setting delegate for the '{@link #getSize() <em>Size</em>}' attribute.
+	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSize()
@@ -157,32 +157,33 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * @generated
 	 */
 	public CompanySizeKind getSize() {
-		/** 
-		 * let table : Set<Tuple(range:Sequence,size:CompanySizeKind)> = Set {Tuple{range : Sequence = Sequence {0 .. 49}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::small}, Tuple{range : Sequence = Sequence {50 .. 999}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::medium}, Tuple{range : Sequence = Sequence {1000 .. 1000000}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::large}} in table->any(1_ : Tuple(range:Sequence,size:CompanySizeKind) | 1_.range->includes(self.employees->size())).size
-		 */
+		/*
+		let
+		  table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{
+		    Tuple{range = Sequence{0..49}, size = CompanySizeKind::small
+		    }
+		    , Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium
+		    }
+		    , Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large
+		    }
+		  }
+		in
+		  table->any(range->includes(employees->size())).size
+		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Company_ecore__company__CompanySizeKind = CodegencompanyTables.Types._CompanySizeKind;
 			
-		final DomainType returnType = T_Company_ecore__company__CompanySizeKind;
+			final DomainType returnType = T_Company_ecore__company__CompanySizeKind;
 			final Value result = CompanyBodies._size_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Company__size);
 			return (CompanySizeKind) valueFactory.getEcoreValueOf(result);
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.CompanyBodies", e);
 		}
+		
 	}
-
-	/**
-	 * The cached validation expression for the '{@link #dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Dummy Invariant</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #dummyInvariant(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DUMMY_INVARIANT_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "true"; //$NON-NLS-1$
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,9 +191,9 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * @generated
 	 */
 	public boolean dummyInvariant(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		/** 
-		 * true
-		 */
+		/*
+		true
+		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, CodegencompanyTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
@@ -214,6 +215,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.CompanyBodies", e);
 		}
+		
 	}
 
 	/**
@@ -314,7 +316,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			case CodegencompanyPackage.COMPANY__EMPLOYEES:
 				return employees != null && !employees.isEmpty();
 			case CodegencompanyPackage.COMPANY__SIZE:
-                return true;
+				return getSize() != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

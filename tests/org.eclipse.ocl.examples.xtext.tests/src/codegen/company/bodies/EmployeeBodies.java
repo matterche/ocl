@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+
 /**
  * EmployeeBodies provides the Java implementation bodies of OCL-defined Employee operations and properties.
  */
@@ -42,13 +43,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee 'mustHaveName' invariant.
-	 *
-	 * self.name.oclIsUndefined().not().and(self.hasNameAsAttribute).and(self.hasNameAsOperation())
 	 */
 	public static class _invariant_mustHaveName extends AbstractUnaryOperation
 	{
 		public static _invariant_mustHaveName INSTANCE = new _invariant_mustHaveName();
 	
+		/*
+		not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -119,13 +121,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee 'mustHaveNonEmptyName' invariant.
-	 *
-	 * self.name.oclAsSet()->notEmpty().implies(self.name.size().>(0))
 	 */
 	public static class _invariant_mustHaveNonEmptyName extends AbstractUnaryOperation
 	{
 		public static _invariant_mustHaveNonEmptyName INSTANCE = new _invariant_mustHaveNonEmptyName();
 	
+		/*
+		name->notEmpty() implies name.size() > 0
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -183,13 +186,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee 'noManagerImpliesDirectReports' invariant.
-	 *
-	 * self.manager.oclIsUndefined().implies(self.directReports->size().>(0))
 	 */
 	public static class _invariant_noManagerImpliesDirectReports extends AbstractUnaryOperation
 	{
 		public static _invariant_noManagerImpliesDirectReports INSTANCE = new _invariant_noManagerImpliesDirectReports();
 	
+		/*
+		manager.oclIsUndefined() implies directReports->size() > 0
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -245,13 +249,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee::hasNameAsOperation '' <body>.
-	 *
-	 * self.name.<>(null)
 	 */
 	public static class _hasNameAsOperation_body_ extends AbstractUnaryOperation
 	{
 		public static _hasNameAsOperation_body_ INSTANCE = new _hasNameAsOperation_body_();
 	
+		/*
+		name <> null
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -274,13 +279,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee::reportsTo '' <body>.
-	 *
-	 * self.reportingChain->includes(self.manager)
 	 */
 	public static class _reportsTo_body_ extends AbstractBinaryOperation
 	{
 		public static _reportsTo_body_ INSTANCE = new _reportsTo_body_();
 	
+		/*
+		self.reportingChain->includes(manager)
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value self, Value manager) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -309,13 +315,14 @@ public class EmployeeBodies
 
 	/** 
 	 * Implementation of the Employee::allReports '' <derivation>.
-	 *
-	 * Company.ecore::company::Employee.allInstances()->select(1_ : Company.ecore::company::Employee | 1_.reportsTo(self))
 	 */
 	public static class _allReports_derivation_ extends AbstractProperty
 	{
 		public static _allReports_derivation_ INSTANCE = new _allReports_derivation_();
 	
+		/*
+		Employee.allInstances()->select(reportsTo(self))
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, DomainProperty property) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -333,13 +340,14 @@ public class EmployeeBodies
 			
 			/** 
 			 * Implementation of the iterator body.
-			 *
-			 * 1_.reportsTo(self)
 			 */
 			AbstractBinaryOperation body_A_symbol_26 = new AbstractBinaryOperation()
 			{
+			/*
+			reportsTo(self)
+			*/
 				public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value iterator1) throws InvalidValueException {
-					Value V_1_ = iterator1;	// iterator: 1_
+					final Value V_1_ = iterator1;	// iterator: 1_
 					
 					
 					DomainType static_A_symbol_27 = valueFactory.typeOf(V_1_);
@@ -354,19 +362,19 @@ public class EmployeeBodies
 			ExecutorSingleIterationManager manager_A_symbol_26 = new ExecutorSingleIterationManager(evaluator, T_Set_Company_ecore__company__Employee_, body_A_symbol_26, (CollectionValue)A_symbol_25, acc_A_symbol_26);
 			Value A_symbol_26 = dynamic_A_symbol_26.evaluateIteration(manager_A_symbol_26);
 			return A_symbol_26;
-		}
-	}
+		}}
 
 
 	/** 
 	 * Implementation of the Employee::directReports '' <derivation>.
-	 *
-	 * self.company.employees->select(1_ : Company.ecore::company::Employee | 1_.manager.=(self))
 	 */
 	public static class _directReports_derivation_ extends AbstractProperty
 	{
 		public static _directReports_derivation_ INSTANCE = new _directReports_derivation_();
 	
+		/*
+		company.employees->select(manager = self)
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, DomainProperty property) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -391,13 +399,14 @@ public class EmployeeBodies
 			
 			/** 
 			 * Implementation of the iterator body.
-			 *
-			 * 1_.manager.=(self)
 			 */
 			AbstractBinaryOperation body_A_symbol_29 = new AbstractBinaryOperation()
 			{
+			/*
+			manager = self
+			*/
 				public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value iterator1) throws InvalidValueException {
-					Value V_1_ = iterator1;	// iterator: 1_
+					final Value V_1_ = iterator1;	// iterator: 1_
 					
 					Value A_symbol_31 = IP_Employee_manager.evaluate(evaluator, T_Company_ecore__company__Employee, V_1_, P_Employee_manager);
 					
@@ -414,18 +423,18 @@ public class EmployeeBodies
 			ExecutorSingleIterationManager manager_A_symbol_29 = new ExecutorSingleIterationManager(evaluator, T_OrderedSet_Company_ecore__company__Employee_, body_A_symbol_29, (CollectionValue)A_symbol_28, acc_A_symbol_29);
 			Value A_symbol_29 = dynamic_A_symbol_29.evaluateIteration(manager_A_symbol_29);
 			return A_symbol_29;
-		}
-	}
+		}}
 
 	/** 
 	 * Implementation of the Employee::hasNameAsAttribute '' <derivation>.
-	 *
-	 * self.name.<>(null)
 	 */
 	public static class _hasNameAsAttribute_derivation_ extends AbstractProperty
 	{
 		public static _hasNameAsAttribute_derivation_ INSTANCE = new _hasNameAsAttribute_derivation_();
 	
+		/*
+		name <> null
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, DomainProperty property) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -443,20 +452,23 @@ public class EmployeeBodies
 			LibraryBinaryOperation dynamic_A_symbol_34 = (LibraryBinaryOperation)static_A_symbol_34.lookupImplementation(standardLibrary, O_String__lt__gt_);
 			Value A_symbol_34 = dynamic_A_symbol_34.evaluate(evaluator, T_Boolean, A_symbol_33, Null);
 			return A_symbol_34;
-		}
-	}
+		}}
 
 
 
 	/** 
 	 * Implementation of the Employee::reportingChain '' <derivation>.
-	 *
-	 * if self.manager.oclIsUndefined() then OrderedSet {} else self.manager.reportingChain->prepend(self.manager) endif
 	 */
 	public static class _reportingChain_derivation_ extends AbstractProperty
 	{
 		public static _reportingChain_derivation_ INSTANCE = new _reportingChain_derivation_();
 	
+		/*
+		if manager.oclIsUndefined()
+	then OrderedSet{}
+	else manager.reportingChain->prepend(manager)
+	endif
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, DomainProperty property) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -502,6 +514,6 @@ public class EmployeeBodies
 				A_symbol_38 = valueFactory.throwInvalidValueException("invalid if condition");
 			}
 			return A_symbol_38;
-		}
-	}
+		}}
 }
+

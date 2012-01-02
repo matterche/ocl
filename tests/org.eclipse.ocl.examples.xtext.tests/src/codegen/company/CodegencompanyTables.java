@@ -9,6 +9,7 @@
  */
 package codegen.company;
 
+import codegen.company.CodegencompanyTables;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty;
@@ -18,6 +19,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+
 /**
  * CodegencompanyTables provides the dispatch tables for the company for use by the OCL dispatcher.
  *
@@ -63,15 +65,15 @@ public class CodegencompanyTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
-		public static final ExecutorFragment _Company__Company = new ExecutorFragment(Types._Company, CodegencompanyTables.Types._Company, null, null);
-		public static final ExecutorFragment _Company__OclAny = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Company__OclElement = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Company__Company = new ExecutorFragment(Types._Company, CodegencompanyTables.Types._Company);
+		public static final ExecutorFragment _Company__OclAny = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Company__OclElement = new ExecutorFragment(Types._Company, OCLstdlibTables.Types._OclElement);
 		
-		public static final ExecutorFragment _CompanySizeKind__CompanySizeKind = new ExecutorFragment(Types._CompanySizeKind, CodegencompanyTables.Types._CompanySizeKind, null, null);
+		public static final ExecutorFragment _CompanySizeKind__CompanySizeKind = new ExecutorFragment(Types._CompanySizeKind, CodegencompanyTables.Types._CompanySizeKind);
 		
-		public static final ExecutorFragment _Employee__Employee = new ExecutorFragment(Types._Employee, CodegencompanyTables.Types._Employee, null, null);
-		public static final ExecutorFragment _Employee__OclAny = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Employee__OclElement = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _Employee__Employee = new ExecutorFragment(Types._Employee, CodegencompanyTables.Types._Employee);
+		public static final ExecutorFragment _Employee__OclAny = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Employee__OclElement = new ExecutorFragment(Types._Employee, OCLstdlibTables.Types._OclElement);
 		
 	}
 
@@ -163,8 +165,8 @@ public class CodegencompanyTables
 		};
 		private static final ExecutorOperation[] _Company__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer<U>() */,
-		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents<U>() */
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
 		private static final ExecutorOperation[] _CompanySizeKind__CompanySizeKind = {};
@@ -188,8 +190,8 @@ public class CodegencompanyTables
 		};
 		private static final ExecutorOperation[] _Employee__OclElement = {
 		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer<U>() */,
-		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents<U>() */
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
 		/*
@@ -245,7 +247,8 @@ public class CodegencompanyTables
 		public static void init() {}
 	}
 	
-//	static {
-//		Types.types[0].getClass();
-//	}
+	static {
+		Types.types[0].getClass();
+	}
 }
+

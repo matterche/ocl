@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see codegen.company.CodegencompanyFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface CodegencompanyPackage extends EPackage {
@@ -237,22 +236,22 @@ public interface CodegencompanyPackage extends EPackage {
 	int EMPLOYEE___HAS_NAME_AS_OPERATION = 2;
 
 	/**
-	 * The operation id for the '<em>Invariant must Have Name</em>' operation.
+	 * The operation id for the '<em>Nullmust Have Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYEE___INVARIANT_MUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP = 3;
+	int EMPLOYEE___NULLMUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
-	 * The operation id for the '<em>Invariant must Have Non Empty Name</em>' operation.
+	 * The operation id for the '<em>Nullmust Have Non Empty Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPLOYEE___INVARIANT_MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP = 4;
+	int EMPLOYEE___NULLMUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP = 4;
 
 	/**
 	 * The number of operations of the '<em>Employee</em>' class.
@@ -445,24 +444,24 @@ public interface CodegencompanyPackage extends EPackage {
 	EOperation getEmployee__HasNameAsOperation();
 
 	/**
-	 * Returns the meta object for the '{@link codegen.company.Employee#invariant_mustHaveName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Invariant must Have Name</em>}' operation.
+	 * Returns the meta object for the '{@link codegen.company.Employee#nullmustHaveName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Nullmust Have Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Invariant must Have Name</em>' operation.
-	 * @see codegen.company.Employee#invariant_mustHaveName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Nullmust Have Name</em>' operation.
+	 * @see codegen.company.Employee#nullmustHaveName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getEmployee__Invariant_mustHaveName__DiagnosticChain_Map();
+	EOperation getEmployee__NullmustHaveName__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link codegen.company.Employee#invariant_mustHaveNonEmptyName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Invariant must Have Non Empty Name</em>}' operation.
+	 * Returns the meta object for the '{@link codegen.company.Employee#nullmustHaveNonEmptyName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Nullmust Have Non Empty Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Invariant must Have Non Empty Name</em>' operation.
-	 * @see codegen.company.Employee#invariant_mustHaveNonEmptyName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Nullmust Have Non Empty Name</em>' operation.
+	 * @see codegen.company.Employee#nullmustHaveNonEmptyName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getEmployee__Invariant_mustHaveNonEmptyName__DiagnosticChain_Map();
+	EOperation getEmployee__NullmustHaveNonEmptyName__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for enum '{@link codegen.company.CompanySizeKind <em>Company Size Kind</em>}'.
@@ -630,20 +629,20 @@ public interface CodegencompanyPackage extends EPackage {
 		EOperation EMPLOYEE___HAS_NAME_AS_OPERATION = eINSTANCE.getEmployee__HasNameAsOperation();
 
 		/**
-		 * The meta object literal for the '<em><b>Invariant must Have Name</b></em>' operation.
+		 * The meta object literal for the '<em><b>Nullmust Have Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation EMPLOYEE___INVARIANT_MUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__Invariant_mustHaveName__DiagnosticChain_Map();
+		EOperation EMPLOYEE___NULLMUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__NullmustHaveName__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Invariant must Have Non Empty Name</b></em>' operation.
+		 * The meta object literal for the '<em><b>Nullmust Have Non Empty Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation EMPLOYEE___INVARIANT_MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__Invariant_mustHaveNonEmptyName__DiagnosticChain_Map();
+		EOperation EMPLOYEE___NULLMUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getEmployee__NullmustHaveNonEmptyName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link codegen.company.CompanySizeKind <em>Company Size Kind</em>}' enum.

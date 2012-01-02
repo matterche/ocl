@@ -272,7 +272,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEmployee__Invariant_mustHaveName__DiagnosticChain_Map() {
+	public EOperation getEmployee__NullmustHaveName__DiagnosticChain_Map() {
 		return employeeEClass.getEOperations().get(3);
 	}
 
@@ -281,7 +281,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getEmployee__Invariant_mustHaveNonEmptyName__DiagnosticChain_Map() {
+	public EOperation getEmployee__NullmustHaveNonEmptyName__DiagnosticChain_Map() {
 		return employeeEClass.getEOperations().get(4);
 	}
 
@@ -339,8 +339,8 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		createEOperation(employeeEClass, EMPLOYEE___REPORTS_TO__EMPLOYEE);
 		createEOperation(employeeEClass, EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(employeeEClass, EMPLOYEE___HAS_NAME_AS_OPERATION);
-		createEOperation(employeeEClass, EMPLOYEE___INVARIANT_MUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(employeeEClass, EMPLOYEE___INVARIANT_MUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(employeeEClass, EMPLOYEE___NULLMUST_HAVE_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(employeeEClass, EMPLOYEE___NULLMUST_HAVE_NON_EMPTY_NAME__DIAGNOSTICCHAIN_MAP);
 
 		// Create enums
 		companySizeKindEEnum = createEEnum(COMPANY_SIZE_KIND);
@@ -413,7 +413,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 
 		initEOperation(getEmployee__HasNameAsOperation(), ecorePackage.getEBoolean(), "hasNameAsOperation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEmployee__Invariant_mustHaveName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "invariant_mustHaveName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getEmployee__NullmustHaveName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "nullmustHaveName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -422,7 +422,7 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getEmployee__Invariant_mustHaveNonEmptyName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "invariant_mustHaveNonEmptyName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getEmployee__NullmustHaveNonEmptyName__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "nullmustHaveNonEmptyName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -443,8 +443,6 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
-		createPivotAnnotations();
 	}
 
 	/**
@@ -459,91 +457,12 @@ public class CodegencompanyPackageImpl extends EPackageImpl implements Codegenco
 		  (this, 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
 		   });						
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-		   });																		
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createPivotAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$			
-		addAnnotation
-		  (getCompany__DummyInvariant__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "true" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getCompany_Size(), 
-		   source, 
-		   new String[] {
-			 "derivation", "let table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{Tuple{range = Sequence{0..49}, size = CompanySizeKind::small}, Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium}, Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large}} in table->any(range->includes(employees->size())).size" //$NON-NLS-1$ //$NON-NLS-2$
-		   });				
-		addAnnotation
-		  (getEmployee__ReportsTo__Employee(), 
-		   source, 
-		   new String[] {
-			 "body", "self.reportingChain->includes(manager)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee__NoManagerImpliesDirectReports__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "manager.oclIsUndefined() implies directReports->size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee__HasNameAsOperation(), 
-		   source, 
-		   new String[] {
-			 "body", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee__Invariant_mustHaveName__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "not name.oclIsUndefined() and hasNameAsAttribute and hasNameAsOperation()" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee__Invariant_mustHaveNonEmptyName__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "name->notEmpty() implies name.size() > 0" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee_DirectReports(), 
-		   source, 
-		   new String[] {
-			 "derivation", "company.employees->select(manager = self)" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee_AllReports(), 
-		   source, 
-		   new String[] {
-			 "derivation", "Employee.allInstances()->select(reportsTo(self))" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee_ReportingChain(), 
-		   source, 
-		   new String[] {
-			 "derivation", "if manager.oclIsUndefined() then OrderedSet{} else manager.reportingChain->prepend(manager) endif" //$NON-NLS-1$ //$NON-NLS-2$
-		   });			
-		addAnnotation
-		  (getEmployee_HasNameAsAttribute(), 
-		   source, 
-		   new String[] {
-			 "derivation", "name <> null" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
+		   });												
 	}
 
 } //CodegencompanyPackageImpl

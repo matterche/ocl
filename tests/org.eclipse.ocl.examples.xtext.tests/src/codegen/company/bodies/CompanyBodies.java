@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorSingleIterationManager;
 import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
+
 /**
  * CompanyBodies provides the Java implementation bodies of OCL-defined Company operations and properties.
  */
@@ -50,13 +51,14 @@ public class CompanyBodies
 
 	/** 
 	 * Implementation of the Company 'dummyInvariant' invariant.
-	 *
-	 * true
 	 */
 	public static class _invariant_dummyInvariant extends AbstractUnaryOperation
 	{
 		public static _invariant_dummyInvariant INSTANCE = new _invariant_dummyInvariant();
 	
+		/*
+		true
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final BooleanValue True = valueFactory.getTrue();
@@ -70,13 +72,24 @@ public class CompanyBodies
 
 	/** 
 	 * Implementation of the Company::size '' <derivation>.
-	 *
-	 * let table : Set<Tuple(range:Sequence,size:CompanySizeKind)> = Set {Tuple{range : Sequence = Sequence {0 .. 49}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::small}, Tuple{range : Sequence = Sequence {50 .. 999}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::medium}, Tuple{range : Sequence = Sequence {1000 .. 1000000}, size : EnumerationClassifier = Company.ecore::company::CompanySizeKind::large}} in table->any(1_ : Tuple(range:Sequence,size:CompanySizeKind) | 1_.range->includes(self.employees->size())).size
 	 */
 	public static class _size_derivation_ extends AbstractProperty
 	{
 		public static _size_derivation_ INSTANCE = new _size_derivation_();
 	
+		/*
+		let
+	  table : Set(Tuple(range : Sequence(Integer), size : CompanySizeKind)) = Set{
+	    Tuple{range = Sequence{0..49}, size = CompanySizeKind::small
+	    }
+	    , Tuple{range = Sequence{50..999}, size = CompanySizeKind::medium
+	    }
+	    , Tuple{range = Sequence{1000..1000000}, size = CompanySizeKind::large
+	    }
+	  }
+	in
+	  table->any(range->includes(employees->size())).size
+		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, DomainProperty property) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
@@ -141,13 +154,14 @@ public class CompanyBodies
 			
 			/** 
 			 * Implementation of the iterator body.
-			 *
-			 * 1_.range->includes(self.employees->size())
 			 */
 			AbstractBinaryOperation body_A_symbol_53 = new AbstractBinaryOperation()
 			{
+			/*
+			range->includes(employees->size())
+			*/
 				public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value iterator1) throws InvalidValueException {
-					Value V_1_ = iterator1;	// iterator: 1_
+					final Value V_1_ = iterator1;	// iterator: 1_
 					
 					Value A_symbol_54 = ((TupleValue)V_1_).getValue(L_range_Sequence_Integer_);
 					
@@ -172,6 +186,6 @@ public class CompanyBodies
 			
 			final Value A_symbol_59 = A_symbol_58;
 			return A_symbol_59;
-		}
-	}
+		}}
 }
+
