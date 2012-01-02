@@ -54,7 +54,7 @@ public class MoreDelegatesTest extends DelegatesTest
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
-			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
+			getBoundMessage(OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean"));
 	}
 
 	// Passes in isolation; probably an adapter clean-up problem

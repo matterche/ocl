@@ -51,8 +51,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
@@ -88,6 +86,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -593,12 +592,15 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals(null, get(badClassInstance, eStructuralFeature));
 	}
 
-/*	public void test_attributeEvaluatingToWrongType() {
+	public void test_attributeEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		EStructuralFeature structuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToWrongType");
+		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Property.class, structuralFeature));
 		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
-			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
-	} */
+			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "CompatibleInitialiser", objectLabel));
+//			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
+	}
 
 	public void test_attributeParsingToLexicalError() {
 		initModelWithErrors();
@@ -804,7 +806,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
+			getBoundMessage(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
 	}
 
 	public void test_operationDefinedWithoutBodyBody() {
@@ -813,7 +815,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
+			getBoundMessage(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
 	}
 
 	public void test_operationEvaluatingToInvalid() {
@@ -822,7 +824,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+			getBoundMessage(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation));
 	}
 
 	public void test_operationEvaluatingToNull() throws InvocationTargetException {
@@ -832,12 +834,15 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals(null, invoke(badClassInstance, operation));
 	}
 
-/*	public void test_operationEvaluatingToWrongType() {
+	public void test_operationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToWrongType");
+		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Operation.class, eOperation));
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
-			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
-	} */
+			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "CompatibleReturn", objectLabel));
+//			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
+	}
 
 	public void test_operationInvocation() throws InvocationTargetException {
 		doTest_operationInvocation(COMPANY_XMI);
@@ -854,21 +859,21 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			getErrorsInMessage("'@@'") + getBoundMessage("no viable alternative at input ''{0}''", "'@'"));
+			getErrorsInMessage("@@") + getBoundMessage("no viable alternative at input ''{0}''", "@"));
 	}
 
 	public void test_operationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "'at'", "'Set<ModelWithErrors.ecore::modelWithErrors::BadClass>'", "'UnlimitedNatural'"));
+			getErrorsInMessage("self->at(1)") + getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set<ModelWithErrors.ecore::modelWithErrors::BadClass>", "UnlimitedNatural"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			getErrorsInMessage("'let in'") + getBoundMessage("no viable alternative at input ''{0}''", "'in'"));
+			getErrorsInMessage("let in") + getBoundMessage("no viable alternative at input ''{0}''", "in"));
 	}
 
 	/**
@@ -1040,7 +1045,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
 		validateWithError("evaluatingToNull", badClassInstance,
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", EObjectValidator.getObjectLabel(badClassInstance, null));
+			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", PivotDiagnostician.INSTANCE.getObjectLabel(badClassInstance));
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
@@ -1233,10 +1238,8 @@ public class DelegatesTest extends PivotTestSuite
 //		}
 	}
 
-	public void invokeWithException(EObject eObject, String name,
-			String messageTemplate, Object... bindings) {
+	public void invokeWithException(EObject eObject, String name, String expectedMessage) {
 		EClass eClass = eObject.eClass();
-		String expectedMessage = NLS.bind(messageTemplate, bindings);
 		for (EOperation eOperation : eClass.getEOperations()) {
 			if (name.equals(eOperation.getName())) {
 				try {
@@ -1302,7 +1305,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithoutError(EObject eObject) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		if (validation.getSeverity() != Diagnostic.OK) {
 			List<Diagnostic> diagnostics = validation.getChildren();
 			if (!diagnostics.isEmpty()) {
@@ -1320,37 +1323,37 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateConstraintWithError(String constraintName, EObject eObject) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
+		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
 		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
 	protected void validateConstraintWithWarning(String constraintName, EObject eObject) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
+		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
 		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
 	protected void validateInvariantWithError(String constraintName, EObject eObject) {
-		validateWithError(constraintName, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, EObjectValidator.getObjectLabel(eObject, context));
+		validateWithError(constraintName, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, PivotDiagnostician.INSTANCE.getObjectLabel(eObject));
 	}
 
 	protected void validateWithError(String constraintName, EObject eObject, String messageTemplate, Object... bindings) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1362,7 +1365,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithWarning(String constraintName, EObject eObject, String messageTemplate, Object... bindings) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1374,7 +1377,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithDelegationError(String constraintName, EObject eObject, String source, String messageTemplate, Object... bindings) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1382,7 +1385,7 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
-		String objectLabel = EObjectValidator.getObjectLabel(eObject, context);
+		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
 		String message1 = getBoundMessage(messageTemplate1, constraintName, objectLabel, "");
 		String message2 = getErrorsInMessage(source);
 		String message3 = NLS.bind(messageTemplate, bindings);
@@ -1391,7 +1394,7 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithDelegationWarning(String constraintName, EObject eObject, String source, String messageTemplate, Object... bindings) {
-		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1399,7 +1402,7 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
-		String objectLabel = EObjectValidator.getObjectLabel(eObject, context);
+		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
 		String message1 = getBoundMessage(messageTemplate1, constraintName, objectLabel, "");
 		String message2 = getErrorsInMessage(source);
 		String message3 = NLS.bind(messageTemplate, bindings);
