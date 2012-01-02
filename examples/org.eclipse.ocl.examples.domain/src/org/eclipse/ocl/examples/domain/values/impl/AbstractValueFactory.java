@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2011,2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -238,6 +238,10 @@ public abstract class AbstractValueFactory implements ValueFactory
 			if (eObject instanceof DomainClassifierType) {
 				return createTypeValue((DomainClassifierType) eObject);
 			}
+			if (eObject instanceof DomainType) {
+				DomainClassifierType classifierType = standardLibrary.getClassifierType((DomainType)eObject);
+				return createTypeValue(classifierType);
+			}
 			return createElementValue((DomainElement) eObject);
 		}
 		return null;
@@ -378,6 +382,11 @@ public abstract class AbstractValueFactory implements ValueFactory
 
 	public TypeValue createTypeValue(DomainClassifierType type) {
 		return new DomainTypeValueImpl(this, type);
+	}
+
+	public TypeValue createTypeValue(DomainType type) {
+		DomainClassifierType classifierType = standardLibrary.getClassifierType(type);
+		return new DomainTypeValueImpl(this, classifierType);
 	}
 
 	public void dispose() {

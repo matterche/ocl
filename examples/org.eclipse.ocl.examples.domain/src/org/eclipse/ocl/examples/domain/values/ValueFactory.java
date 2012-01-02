@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
+ * $Id$
  */
 package org.eclipse.ocl.examples.domain.values;
 
@@ -92,10 +92,10 @@ public interface ValueFactory
 	TupleValue createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values);
 
 	Value createTypeValue(DomainClassifierType type);
+	Value createTypeValue(DomainType type);
 
 	void dispose();
 
-//	DomainType getCommonType(DomainType firstType, DomainType secondType);
 	Object getEcoreValueOf(Value result);
     DomainType getElementType(Value... values);
     DomainType getElementType(Iterable<Value> values);
