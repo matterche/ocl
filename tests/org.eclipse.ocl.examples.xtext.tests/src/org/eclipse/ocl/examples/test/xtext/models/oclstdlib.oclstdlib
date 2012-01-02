@@ -91,7 +91,7 @@ annotation 'http://www.omg.org/ocl'(
 	ClassGroup_PrimitiveTypes='The primitive types defined in the OCL standard library are UnlimitedNatural, Integer, Real, String, and Boolean. They are all instances of the metaclass Primitive from the UML core package.'
 );
 
-type AnyClassifier<T> : ClassifierType conformsTo Class {
+type AnyClassifier<T> : ClassifierType conformsTo Class, OclType {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 }
 
@@ -757,6 +757,18 @@ type OclTuple conformsTo OclAny {
 }
 
 /**
+The type OclType is the implicit supertype of any UML type. Operations defined
+for OclType are therefore applicable to all UML types.
+**/
+type OclType conformsTo OclElement {
+	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
+	/**
+	Returns true if type2 conforms to self.
+	*/
+	operation conformsTo(type2 : OclType) : Boolean => 'org.eclipse.ocl.examples.library.classifier.OclTypeConformsToOperation';
+}
+
+/**
 The type OclVoid is a type that conforms to all other types except OclInvalid.
 It has one single instance, identified as oclText[null], that corresponds with the UML LiteralNull value specification.
 Any property call applied on oclText[null] results in oclText[invalid], except for the
@@ -1183,6 +1195,10 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	True if oclText[self] is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 	**/
 	operation ">="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
+}
+
+type Type conformsTo OclType {
+	operation "xyzzyx"() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
 /**

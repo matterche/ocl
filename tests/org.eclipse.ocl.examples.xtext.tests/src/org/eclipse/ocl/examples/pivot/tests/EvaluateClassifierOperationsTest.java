@@ -53,6 +53,22 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	}
 	
 	/**
+	 * Tests the conformsTo() operator.
+	 */
+	public void test_conformsTo() {
+		assertQueryTrue(null, "Boolean.conformsTo(Boolean)");
+		assertQueryFalse(null, "String.conformsTo(Boolean)");
+		assertQueryFalse(null, "Boolean.conformsTo(String)");
+		assertQueryTrue(null, "Integer.conformsTo(Real)");
+		assertQueryTrue(null, "UnlimitedNatural.conformsTo(Integer)");
+		assertQueryTrue(null, "UnlimitedNatural.conformsTo(Real)");
+		assertQueryFalse(null, "Real.conformsTo(Integer)");
+		assertQueryFalse(null, "Real.conformsTo(UnlimitedNatural)");
+		assertQueryFalse(null, "Integer.conformsTo(UnlimitedNatural)");
+		//FIXME much more
+	}
+	
+	/**
 	 * Tests the oclContainer() operator.
 	 */
 	public void test_oclContainer() {

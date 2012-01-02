@@ -68,6 +68,7 @@ public class OCLstdlibTables
 	    public static final ExecutorType _OclState = new ExecutorType("OclState", PACKAGE, 0);
 	    public static final ExecutorType _OclSummable = new ExecutorType("OclSummable", PACKAGE, 0);
 	    public static final ExecutorType _OclTuple = new ExecutorType("OclTuple", PACKAGE, 0);
+	    public static final ExecutorType _OclType = new ExecutorType("OclType", PACKAGE, 0);
 	    public static final ExecutorType _OclVoid = new ExecutorType("OclVoid", PACKAGE, 0);
 	    private static final ExecutorTypeParameter _OrderedSet_T = new ExecutorTypeParameter("T");
 	    public static final ExecutorType _OrderedSet = new ExecutorType("OrderedSet", PACKAGE, ExecutorType.ORDERED | ExecutorType.UNIQUE, _OrderedSet_T);
@@ -77,6 +78,7 @@ public class OCLstdlibTables
 	    private static final ExecutorTypeParameter _Set_T = new ExecutorTypeParameter("T");
 	    public static final ExecutorType _Set = new ExecutorType("Set", PACKAGE, ExecutorType.UNIQUE, _Set_T);
 	    public static final ExecutorType _String = new ExecutorType("String", PACKAGE, 0);
+	    public static final ExecutorType _Type = new ExecutorType("Type", PACKAGE, 0);
 	    private static final ExecutorTypeParameter _UniqueCollection_T = new ExecutorTypeParameter("T");
 	    public static final ExecutorType _UniqueCollection = new ExecutorType("UniqueCollection", PACKAGE, 0, _UniqueCollection_T);
 	    public static final ExecutorType _UnlimitedNatural = new ExecutorType("UnlimitedNatural", PACKAGE, 0);
@@ -107,10 +109,12 @@ public class OCLstdlibTables
 		    _OclState,
 		    _OclSummable,
 		    _OclTuple,
+		    _OclType,
 		    _OclVoid,
 		    _OrderedSet,
 		    _Sequence,
 		    _Set,
+		    _Type,
 		    _UniqueCollection,
 		    __Dummy
 		};
@@ -130,121 +134,138 @@ public class OCLstdlibTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
-		public static final ExecutorFragment _AnyClassifier__AnyClassifier = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._AnyClassifier, null, null);
-		public static final ExecutorFragment _AnyClassifier__Class = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._Class, null, null);
-		public static final ExecutorFragment _AnyClassifier__OclAny = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _AnyClassifier__AnyClassifier = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._AnyClassifier);
+		public static final ExecutorFragment _AnyClassifier__Class = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._Class);
+		public static final ExecutorFragment _AnyClassifier__OclAny = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _AnyClassifier__OclElement = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _AnyClassifier__OclType = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _Bag__Bag = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Bag, null, null);
-		public static final ExecutorFragment _Bag__Collection = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _Bag__OclAny = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Bag__Bag = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Bag);
+		public static final ExecutorFragment _Bag__Collection = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Bag__OclAny = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, OCLstdlibTables.Types._Boolean, null, null);
-		public static final ExecutorFragment _Boolean__OclAny = new ExecutorFragment(Types._Boolean, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, OCLstdlibTables.Types._Boolean);
+		public static final ExecutorFragment _Boolean__OclAny = new ExecutorFragment(Types._Boolean, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._Class, null, null);
-		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._Class);
+		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _ClassClassifier__AnyClassifier = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._AnyClassifier, null, null);
-		public static final ExecutorFragment _ClassClassifier__Class = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._Class, null, null);
-		public static final ExecutorFragment _ClassClassifier__ClassClassifier = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._ClassClassifier, null, null);
-		public static final ExecutorFragment _ClassClassifier__OclAny = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _ClassClassifier__AnyClassifier = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._AnyClassifier);
+		public static final ExecutorFragment _ClassClassifier__Class = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._Class);
+		public static final ExecutorFragment _ClassClassifier__ClassClassifier = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._ClassClassifier);
+		public static final ExecutorFragment _ClassClassifier__OclAny = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ClassClassifier__OclElement = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _ClassClassifier__OclType = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _Collection__Collection = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _Collection__OclAny = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Collection__Collection = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Collection__OclAny = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _CollectionClassifier__AnyClassifier = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._AnyClassifier, null, null);
-		public static final ExecutorFragment _CollectionClassifier__Class = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._Class, null, null);
-		public static final ExecutorFragment _CollectionClassifier__CollectionClassifier = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._CollectionClassifier, null, null);
-		public static final ExecutorFragment _CollectionClassifier__OclAny = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _CollectionClassifier__AnyClassifier = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._AnyClassifier);
+		public static final ExecutorFragment _CollectionClassifier__Class = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._Class);
+		public static final ExecutorFragment _CollectionClassifier__CollectionClassifier = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._CollectionClassifier);
+		public static final ExecutorFragment _CollectionClassifier__OclAny = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionClassifier__OclElement = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionClassifier__OclType = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._Enumeration, null, null);
-		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._Enumeration);
+		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _EnumerationClassifier__AnyClassifier = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._AnyClassifier, null, null);
-		public static final ExecutorFragment _EnumerationClassifier__Class = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._Class, null, null);
-		public static final ExecutorFragment _EnumerationClassifier__EnumerationClassifier = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._EnumerationClassifier, null, null);
-		public static final ExecutorFragment _EnumerationClassifier__OclAny = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _EnumerationClassifier__AnyClassifier = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._AnyClassifier);
+		public static final ExecutorFragment _EnumerationClassifier__Class = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._Class);
+		public static final ExecutorFragment _EnumerationClassifier__EnumerationClassifier = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._EnumerationClassifier);
+		public static final ExecutorFragment _EnumerationClassifier__OclAny = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _EnumerationClassifier__OclElement = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _EnumerationClassifier__OclType = new ExecutorFragment(Types._EnumerationClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._EnumerationLiteral, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._EnumerationLiteral);
+		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._Integer, null, null);
-		public static final ExecutorFragment _Integer__OclAny = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Integer__OclComparable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclComparable, null, null);
-		public static final ExecutorFragment _Integer__OclSummable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclSummable, null, null);
-		public static final ExecutorFragment _Integer__Real = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._Real, null, null);
+		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._Integer);
+		public static final ExecutorFragment _Integer__OclAny = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Integer__OclComparable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclComparable);
+		public static final ExecutorFragment _Integer__OclSummable = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._OclSummable);
+		public static final ExecutorFragment _Integer__Real = new ExecutorFragment(Types._Integer, OCLstdlibTables.Types._Real);
 		
-		public static final ExecutorFragment _OclAny__OclAny = new ExecutorFragment(Types._OclAny, OCLstdlibTables.Types._OclAny, null, null);
+		public static final ExecutorFragment _OclAny__OclAny = new ExecutorFragment(Types._OclAny, OCLstdlibTables.Types._OclAny);
 		
-		public static final ExecutorFragment _OclComparable__OclAny = new ExecutorFragment(Types._OclComparable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclComparable__OclComparable = new ExecutorFragment(Types._OclComparable, OCLstdlibTables.Types._OclComparable, null, null);
+		public static final ExecutorFragment _OclComparable__OclAny = new ExecutorFragment(Types._OclComparable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclComparable__OclComparable = new ExecutorFragment(Types._OclComparable, OCLstdlibTables.Types._OclComparable);
 		
-		public static final ExecutorFragment _OclElement__OclAny = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclElement__OclElement = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclElement, null, null);
+		public static final ExecutorFragment _OclElement__OclAny = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclElement__OclElement = new ExecutorFragment(Types._OclElement, OCLstdlibTables.Types._OclElement);
 		
-		public static final ExecutorFragment _OclInvalid__OclAny = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclInvalid__OclInvalid = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclInvalid, null, null);
-		public static final ExecutorFragment _OclInvalid__OclVoid = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclVoid, null, null);
+		public static final ExecutorFragment _OclInvalid__OclAny = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclInvalid__OclInvalid = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclInvalid);
+		public static final ExecutorFragment _OclInvalid__OclVoid = new ExecutorFragment(Types._OclInvalid, OCLstdlibTables.Types._OclVoid);
 		
-		public static final ExecutorFragment _OclLambda__OclAny = new ExecutorFragment(Types._OclLambda, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclLambda__OclLambda = new ExecutorFragment(Types._OclLambda, OCLstdlibTables.Types._OclLambda, null, null);
+		public static final ExecutorFragment _OclLambda__OclAny = new ExecutorFragment(Types._OclLambda, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclLambda__OclLambda = new ExecutorFragment(Types._OclLambda, OCLstdlibTables.Types._OclLambda);
 		
-		public static final ExecutorFragment _OclMessage__OclAny = new ExecutorFragment(Types._OclMessage, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclMessage__OclMessage = new ExecutorFragment(Types._OclMessage, OCLstdlibTables.Types._OclMessage, null, null);
+		public static final ExecutorFragment _OclMessage__OclAny = new ExecutorFragment(Types._OclMessage, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclMessage__OclMessage = new ExecutorFragment(Types._OclMessage, OCLstdlibTables.Types._OclMessage);
 		
-		public static final ExecutorFragment _OclSelf__OclAny = new ExecutorFragment(Types._OclSelf, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclSelf__OclSelf = new ExecutorFragment(Types._OclSelf, OCLstdlibTables.Types._OclSelf, null, null);
+		public static final ExecutorFragment _OclSelf__OclAny = new ExecutorFragment(Types._OclSelf, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclSelf__OclSelf = new ExecutorFragment(Types._OclSelf, OCLstdlibTables.Types._OclSelf);
 		
-		public static final ExecutorFragment _OclState__OclAny = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclState__OclState = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclState, null, null);
+		public static final ExecutorFragment _OclState__OclAny = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclState__OclState = new ExecutorFragment(Types._OclState, OCLstdlibTables.Types._OclState);
 		
-		public static final ExecutorFragment _OclSummable__OclAny = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclSummable__OclSummable = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclSummable, null, null);
+		public static final ExecutorFragment _OclSummable__OclAny = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclSummable__OclSummable = new ExecutorFragment(Types._OclSummable, OCLstdlibTables.Types._OclSummable);
 		
-		public static final ExecutorFragment _OclTuple__OclAny = new ExecutorFragment(Types._OclTuple, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclTuple__OclTuple = new ExecutorFragment(Types._OclTuple, OCLstdlibTables.Types._OclTuple, null, null);
+		public static final ExecutorFragment _OclTuple__OclAny = new ExecutorFragment(Types._OclTuple, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclTuple__OclTuple = new ExecutorFragment(Types._OclTuple, OCLstdlibTables.Types._OclTuple);
 		
-		public static final ExecutorFragment _OclVoid__OclAny = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclVoid__OclVoid = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclVoid, null, null);
+		public static final ExecutorFragment _OclType__OclAny = new ExecutorFragment(Types._OclType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclType__OclElement = new ExecutorFragment(Types._OclType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OclType__OclType = new ExecutorFragment(Types._OclType, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _OrderedSet__Collection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _OrderedSet__OclAny = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OrderedSet__OrderedSet = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OrderedSet, null, null);
-		public static final ExecutorFragment _OrderedSet__Sequence = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Sequence, null, null);
-		public static final ExecutorFragment _OrderedSet__UniqueCollection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._UniqueCollection, null, null);
+		public static final ExecutorFragment _OclVoid__OclAny = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclVoid__OclVoid = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclVoid);
 		
-		public static final ExecutorFragment _Real__OclAny = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Real__OclComparable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclComparable, null, null);
-		public static final ExecutorFragment _Real__OclSummable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclSummable, null, null);
-		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._Real, null, null);
+		public static final ExecutorFragment _OrderedSet__Collection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _OrderedSet__OclAny = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OrderedSet__OrderedSet = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OrderedSet);
+		public static final ExecutorFragment _OrderedSet__Sequence = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Sequence);
+		public static final ExecutorFragment _OrderedSet__UniqueCollection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._UniqueCollection);
 		
-		public static final ExecutorFragment _Sequence__Collection = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _Sequence__OclAny = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Sequence__Sequence = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Sequence, null, null);
+		public static final ExecutorFragment _Real__OclAny = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Real__OclComparable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclComparable);
+		public static final ExecutorFragment _Real__OclSummable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclSummable);
+		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._Real);
 		
-		public static final ExecutorFragment _Set__Bag = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Bag, null, null);
-		public static final ExecutorFragment _Set__Collection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _Set__OclAny = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Set__Set = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Set, null, null);
-		public static final ExecutorFragment _Set__UniqueCollection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._UniqueCollection, null, null);
+		public static final ExecutorFragment _Sequence__Collection = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Sequence__OclAny = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Sequence__Sequence = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Sequence);
 		
-		public static final ExecutorFragment _String__OclAny = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _String__OclComparable = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclComparable, null, null);
-		public static final ExecutorFragment _String__OclSummable = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclSummable, null, null);
-		public static final ExecutorFragment _String__String = new ExecutorFragment(Types._String, OCLstdlibTables.Types._String, null, null);
+		public static final ExecutorFragment _Set__Bag = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Bag);
+		public static final ExecutorFragment _Set__Collection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Set__OclAny = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Set__Set = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Set);
+		public static final ExecutorFragment _Set__UniqueCollection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._UniqueCollection);
 		
-		public static final ExecutorFragment _UniqueCollection__Collection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._Collection, null, null);
-		public static final ExecutorFragment _UniqueCollection__OclAny = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _UniqueCollection__UniqueCollection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._UniqueCollection, null, null);
+		public static final ExecutorFragment _String__OclAny = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _String__OclComparable = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclComparable);
+		public static final ExecutorFragment _String__OclSummable = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclSummable);
+		public static final ExecutorFragment _String__String = new ExecutorFragment(Types._String, OCLstdlibTables.Types._String);
 		
-		public static final ExecutorFragment _UnlimitedNatural__Integer = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Integer, null, null);
-		public static final ExecutorFragment _UnlimitedNatural__OclAny = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _UnlimitedNatural__OclComparable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclComparable, null, null);
-		public static final ExecutorFragment _UnlimitedNatural__OclSummable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclSummable, null, null);
-		public static final ExecutorFragment _UnlimitedNatural__Real = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Real, null, null);
-		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._UnlimitedNatural, null, null);
+		public static final ExecutorFragment _Type__OclAny = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Type__OclElement = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Type__OclType = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclType);
+		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._Type);
 		
-		public static final ExecutorFragment __Dummy___Dummy = new ExecutorFragment(Types.__Dummy, OCLstdlibTables.Types.__Dummy, null, null);
+		public static final ExecutorFragment _UniqueCollection__Collection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _UniqueCollection__OclAny = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _UniqueCollection__UniqueCollection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._UniqueCollection);
+		
+		public static final ExecutorFragment _UnlimitedNatural__Integer = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Integer);
+		public static final ExecutorFragment _UnlimitedNatural__OclAny = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _UnlimitedNatural__OclComparable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclComparable);
+		public static final ExecutorFragment _UnlimitedNatural__OclSummable = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclSummable);
+		public static final ExecutorFragment _UnlimitedNatural__Real = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Real);
+		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._UnlimitedNatural);
+		
+		public static final ExecutorFragment __Dummy___Dummy = new ExecutorFragment(Types.__Dummy, OCLstdlibTables.Types.__Dummy);
 		
 	}
 
@@ -545,6 +566,10 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _OclTuple___eq_ = new ExecutorOperation("=",
 			Types._OclTuple, 1, org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE,
 				OCLstdlibTables.Types._OclSelf);
+	
+		public static final ExecutorOperation _OclType__conformsTo = new ExecutorOperation("conformsTo",
+			Types._OclType, 0, org.eclipse.ocl.examples.library.classifier.OclTypeConformsToOperation.INSTANCE,
+				OCLstdlibTables.Types._OclType);
 	
 		public static final ExecutorOperation _OclVoid___lt__gt_ = new ExecutorOperation("<>",
 			Types._OclVoid, 0, org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE,
@@ -861,9 +886,11 @@ public class OCLstdlibTables
 		{
 		    Fragments._AnyClassifier__OclAny /* 0 */,
 		    Fragments._AnyClassifier__Class /* 1 */,
-		    Fragments._AnyClassifier__AnyClassifier /* 2 */
+		    Fragments._AnyClassifier__OclElement /* 1 */,
+		    Fragments._AnyClassifier__OclType /* 2 */,
+		    Fragments._AnyClassifier__AnyClassifier /* 3 */
 		};
-		private static final int[] __AnyClassifier = { 1,1,1 };
+		private static final int[] __AnyClassifier = { 1,2,1,1 };
 	
 		private static final ExecutorFragment[] _Bag =
 		{
@@ -891,10 +918,12 @@ public class OCLstdlibTables
 		{
 		    Fragments._ClassClassifier__OclAny /* 0 */,
 		    Fragments._ClassClassifier__Class /* 1 */,
-		    Fragments._ClassClassifier__AnyClassifier /* 2 */,
-		    Fragments._ClassClassifier__ClassClassifier /* 3 */
+		    Fragments._ClassClassifier__OclElement /* 1 */,
+		    Fragments._ClassClassifier__OclType /* 2 */,
+		    Fragments._ClassClassifier__AnyClassifier /* 3 */,
+		    Fragments._ClassClassifier__ClassClassifier /* 4 */
 		};
-		private static final int[] __ClassClassifier = { 1,1,1,1 };
+		private static final int[] __ClassClassifier = { 1,2,1,1,1 };
 	
 		private static final ExecutorFragment[] _Collection =
 		{
@@ -907,10 +936,12 @@ public class OCLstdlibTables
 		{
 		    Fragments._CollectionClassifier__OclAny /* 0 */,
 		    Fragments._CollectionClassifier__Class /* 1 */,
-		    Fragments._CollectionClassifier__AnyClassifier /* 2 */,
-		    Fragments._CollectionClassifier__CollectionClassifier /* 3 */
+		    Fragments._CollectionClassifier__OclElement /* 1 */,
+		    Fragments._CollectionClassifier__OclType /* 2 */,
+		    Fragments._CollectionClassifier__AnyClassifier /* 3 */,
+		    Fragments._CollectionClassifier__CollectionClassifier /* 4 */
 		};
-		private static final int[] __CollectionClassifier = { 1,1,1,1 };
+		private static final int[] __CollectionClassifier = { 1,2,1,1,1 };
 	
 		private static final ExecutorFragment[] _Enumeration =
 		{
@@ -923,10 +954,12 @@ public class OCLstdlibTables
 		{
 		    Fragments._EnumerationClassifier__OclAny /* 0 */,
 		    Fragments._EnumerationClassifier__Class /* 1 */,
-		    Fragments._EnumerationClassifier__AnyClassifier /* 2 */,
-		    Fragments._EnumerationClassifier__EnumerationClassifier /* 3 */
+		    Fragments._EnumerationClassifier__OclElement /* 1 */,
+		    Fragments._EnumerationClassifier__OclType /* 2 */,
+		    Fragments._EnumerationClassifier__AnyClassifier /* 3 */,
+		    Fragments._EnumerationClassifier__EnumerationClassifier /* 4 */
 		};
-		private static final int[] __EnumerationClassifier = { 1,1,1,1 };
+		private static final int[] __EnumerationClassifier = { 1,2,1,1,1 };
 	
 		private static final ExecutorFragment[] _EnumerationLiteral =
 		{
@@ -1015,6 +1048,14 @@ public class OCLstdlibTables
 		};
 		private static final int[] __OclTuple = { 1,1 };
 	
+		private static final ExecutorFragment[] _OclType =
+		{
+		    Fragments._OclType__OclAny /* 0 */,
+		    Fragments._OclType__OclElement /* 1 */,
+		    Fragments._OclType__OclType /* 2 */
+		};
+		private static final int[] __OclType = { 1,1,1 };
+	
 		private static final ExecutorFragment[] _OclVoid =
 		{
 		    Fragments._OclVoid__OclAny /* 0 */,
@@ -1026,8 +1067,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._OrderedSet__OclAny /* 0 */,
 		    Fragments._OrderedSet__Collection /* 1 */,
-		    Fragments._OrderedSet__UniqueCollection /* 2 */,
 		    Fragments._OrderedSet__Sequence /* 2 */,
+		    Fragments._OrderedSet__UniqueCollection /* 2 */,
 		    Fragments._OrderedSet__OrderedSet /* 3 */
 		};
 		private static final int[] __OrderedSet = { 1,1,2,1 };
@@ -1053,8 +1094,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Set__OclAny /* 0 */,
 		    Fragments._Set__Collection /* 1 */,
-		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__Bag /* 2 */,
+		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__Set /* 3 */
 		};
 		private static final int[] __Set = { 1,1,2,1 };
@@ -1067,6 +1108,15 @@ public class OCLstdlibTables
 		    Fragments._String__String /* 2 */
 		};
 		private static final int[] __String = { 1,2,1 };
+	
+		private static final ExecutorFragment[] _Type =
+		{
+		    Fragments._Type__OclAny /* 0 */,
+		    Fragments._Type__OclElement /* 1 */,
+		    Fragments._Type__OclType /* 2 */,
+		    Fragments._Type__Type /* 3 */
+		};
+		private static final int[] __Type = { 1,1,1,1 };
 	
 		private static final ExecutorFragment[] _UniqueCollection =
 		{
@@ -1118,12 +1168,14 @@ public class OCLstdlibTables
 			Types._OclState.initFragments(_OclState, __OclState);
 			Types._OclSummable.initFragments(_OclSummable, __OclSummable);
 			Types._OclTuple.initFragments(_OclTuple, __OclTuple);
+			Types._OclType.initFragments(_OclType, __OclType);
 			Types._OclVoid.initFragments(_OclVoid, __OclVoid);
 			Types._OrderedSet.initFragments(_OrderedSet, __OrderedSet);
 			Types._Real.initFragments(_Real, __Real);
 			Types._Sequence.initFragments(_Sequence, __Sequence);
 			Types._Set.initFragments(_Set, __Set);
 			Types._String.initFragments(_String, __String);
+			Types._Type.initFragments(_Type, __Type);
 			Types._UniqueCollection.initFragments(_UniqueCollection, __UniqueCollection);
 			Types._UnlimitedNatural.initFragments(_UnlimitedNatural, __UnlimitedNatural);
 			Types.__Dummy.initFragments(__Dummy, ___Dummy);
@@ -1153,6 +1205,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _AnyClassifier__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final ExecutorOperation[] _AnyClassifier__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
 		};
 	
 		private static final ExecutorOperation[] _Bag__Bag = {
@@ -1283,6 +1343,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
 		};
+		private static final ExecutorOperation[] _ClassClassifier__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final ExecutorOperation[] _ClassClassifier__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
 	
 		private static final ExecutorOperation[] _Collection__Collection = {
 		    OCLstdlibTables.Operations._Collection___lt__gt_ /* _'<>'(OclSelf) */,
@@ -1353,6 +1421,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
 		};
+		private static final ExecutorOperation[] _CollectionClassifier__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final ExecutorOperation[] _CollectionClassifier__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
 	
 		private static final ExecutorOperation[] _Enumeration__Enumeration = {
 		    OCLstdlibTables.Operations._Enumeration__allInstances /* allInstances() */,
@@ -1389,6 +1465,14 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 		    OCLstdlibTables.Operations._Class__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _EnumerationClassifier__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final ExecutorOperation[] _EnumerationClassifier__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
 		};
 	
 		private static final ExecutorOperation[] _EnumerationLiteral__EnumerationLiteral = {};
@@ -1640,6 +1724,28 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
 		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
 		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+	
+		private static final ExecutorOperation[] _OclType__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
+		private static final ExecutorOperation[] _OclType__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _OclType__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 	
 		private static final ExecutorOperation[] _OclVoid__OclVoid = {
@@ -2011,6 +2117,29 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclSummable__zero /* zero() */
 		};
 	
+		private static final ExecutorOperation[] _Type__Type = {};
+		private static final ExecutorOperation[] _Type__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _Type__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
+		private static final ExecutorOperation[] _Type__OclType = {
+		    OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType) */
+		};
+	
 		private static final ExecutorOperation[] _UniqueCollection__UniqueCollection = {
 		    OCLstdlibTables.Operations._UniqueCollection___sub_ /* _'-'(UniqueCollection(OclAny)) */,
 		    OCLstdlibTables.Operations._UniqueCollection__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
@@ -2135,6 +2264,8 @@ public class OCLstdlibTables
 			Fragments._AnyClassifier__AnyClassifier.initOperations(_AnyClassifier__AnyClassifier);
 			Fragments._AnyClassifier__Class.initOperations(_AnyClassifier__Class);
 			Fragments._AnyClassifier__OclAny.initOperations(_AnyClassifier__OclAny);
+			Fragments._AnyClassifier__OclElement.initOperations(_AnyClassifier__OclElement);
+			Fragments._AnyClassifier__OclType.initOperations(_AnyClassifier__OclType);
 	
 			Fragments._Bag__Bag.initOperations(_Bag__Bag);
 			Fragments._Bag__Collection.initOperations(_Bag__Collection);
@@ -2150,6 +2281,8 @@ public class OCLstdlibTables
 			Fragments._ClassClassifier__Class.initOperations(_ClassClassifier__Class);
 			Fragments._ClassClassifier__ClassClassifier.initOperations(_ClassClassifier__ClassClassifier);
 			Fragments._ClassClassifier__OclAny.initOperations(_ClassClassifier__OclAny);
+			Fragments._ClassClassifier__OclElement.initOperations(_ClassClassifier__OclElement);
+			Fragments._ClassClassifier__OclType.initOperations(_ClassClassifier__OclType);
 	
 			Fragments._Collection__Collection.initOperations(_Collection__Collection);
 			Fragments._Collection__OclAny.initOperations(_Collection__OclAny);
@@ -2158,6 +2291,8 @@ public class OCLstdlibTables
 			Fragments._CollectionClassifier__Class.initOperations(_CollectionClassifier__Class);
 			Fragments._CollectionClassifier__CollectionClassifier.initOperations(_CollectionClassifier__CollectionClassifier);
 			Fragments._CollectionClassifier__OclAny.initOperations(_CollectionClassifier__OclAny);
+			Fragments._CollectionClassifier__OclElement.initOperations(_CollectionClassifier__OclElement);
+			Fragments._CollectionClassifier__OclType.initOperations(_CollectionClassifier__OclType);
 	
 			Fragments._Enumeration__Enumeration.initOperations(_Enumeration__Enumeration);
 			Fragments._Enumeration__OclAny.initOperations(_Enumeration__OclAny);
@@ -2166,6 +2301,8 @@ public class OCLstdlibTables
 			Fragments._EnumerationClassifier__Class.initOperations(_EnumerationClassifier__Class);
 			Fragments._EnumerationClassifier__EnumerationClassifier.initOperations(_EnumerationClassifier__EnumerationClassifier);
 			Fragments._EnumerationClassifier__OclAny.initOperations(_EnumerationClassifier__OclAny);
+			Fragments._EnumerationClassifier__OclElement.initOperations(_EnumerationClassifier__OclElement);
+			Fragments._EnumerationClassifier__OclType.initOperations(_EnumerationClassifier__OclType);
 	
 			Fragments._EnumerationLiteral__EnumerationLiteral.initOperations(_EnumerationLiteral__EnumerationLiteral);
 			Fragments._EnumerationLiteral__OclAny.initOperations(_EnumerationLiteral__OclAny);
@@ -2206,6 +2343,10 @@ public class OCLstdlibTables
 			Fragments._OclTuple__OclAny.initOperations(_OclTuple__OclAny);
 			Fragments._OclTuple__OclTuple.initOperations(_OclTuple__OclTuple);
 	
+			Fragments._OclType__OclAny.initOperations(_OclType__OclAny);
+			Fragments._OclType__OclElement.initOperations(_OclType__OclElement);
+			Fragments._OclType__OclType.initOperations(_OclType__OclType);
+	
 			Fragments._OclVoid__OclAny.initOperations(_OclVoid__OclAny);
 			Fragments._OclVoid__OclVoid.initOperations(_OclVoid__OclVoid);
 	
@@ -2234,6 +2375,11 @@ public class OCLstdlibTables
 			Fragments._String__OclComparable.initOperations(_String__OclComparable);
 			Fragments._String__OclSummable.initOperations(_String__OclSummable);
 			Fragments._String__String.initOperations(_String__String);
+	
+			Fragments._Type__OclAny.initOperations(_Type__OclAny);
+			Fragments._Type__OclElement.initOperations(_Type__OclElement);
+			Fragments._Type__OclType.initOperations(_Type__OclType);
+			Fragments._Type__Type.initOperations(_Type__Type);
 	
 			Fragments._UniqueCollection__Collection.initOperations(_UniqueCollection__Collection);
 			Fragments._UniqueCollection__OclAny.initOperations(_UniqueCollection__OclAny);
@@ -2298,6 +2444,8 @@ public class OCLstdlibTables
 	
 		private static final ExecutorProperty[] _OclTuple = {};
 	
+		private static final ExecutorProperty[] _OclType = {};
+	
 		private static final ExecutorProperty[] _OclVoid = {};
 	
 		private static final ExecutorProperty[] _OrderedSet = {};
@@ -2309,6 +2457,8 @@ public class OCLstdlibTables
 		private static final ExecutorProperty[] _Set = {};
 	
 		private static final ExecutorProperty[] _String = {};
+	
+		private static final ExecutorProperty[] _Type = {};
 	
 		private static final ExecutorProperty[] _UniqueCollection = {};
 	
@@ -2341,12 +2491,14 @@ public class OCLstdlibTables
 	  	 	Fragments._OclState__OclState.initProperties(_OclState);
 	  	 	Fragments._OclSummable__OclSummable.initProperties(_OclSummable);
 	  	 	Fragments._OclTuple__OclTuple.initProperties(_OclTuple);
+	  	 	Fragments._OclType__OclType.initProperties(_OclType);
 	  	 	Fragments._OclVoid__OclVoid.initProperties(_OclVoid);
 	  	 	Fragments._OrderedSet__OrderedSet.initProperties(_OrderedSet);
 	  	 	Fragments._Real__Real.initProperties(_Real);
 	  	 	Fragments._Sequence__Sequence.initProperties(_Sequence);
 	  	 	Fragments._Set__Set.initProperties(_Set);
 	  	 	Fragments._String__String.initProperties(_String);
+	  	 	Fragments._Type__Type.initProperties(_Type);
 	  	 	Fragments._UniqueCollection__UniqueCollection.initProperties(_UniqueCollection);
 	  	 	Fragments._UnlimitedNatural__UnlimitedNatural.initProperties(_UnlimitedNatural);
 	  	 	Fragments.__Dummy___Dummy.initProperties(__Dummy);
