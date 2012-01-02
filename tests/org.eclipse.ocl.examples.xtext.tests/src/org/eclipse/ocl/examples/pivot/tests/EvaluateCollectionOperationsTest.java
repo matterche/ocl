@@ -827,17 +827,27 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryResults(null, "Sequence{'a', 'b', 'c', 'b'}", "Sequence{'a', 'b', 'c'}->insertAt(4, 'b')");
 		assertQueryResults(null, "OrderedSet{'b', 'a', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(1, 'b')");
 		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(2, 'b')");
-//		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b', 'c'}->insertAt(3, 'b')");
 		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b', 'c'}->insertAt(3, 'b')");
-//		assertQueryResults(null, "OrderedSet{'a', 'c', 'b'}", "OrderedSet{'a', 'b', 'c'}->insertAt(4, 'b')");
 		assertQueryInvalid(null, "OrderedSet{'a', 'b', 'c'}->insertAt(4, 'b')");
 	}
 
 	public void testCollectionIntersection() {
 		// No duplicates
 		assertQueryEquals(null, getEmptySetValue(), "Set{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getEmptySetValue(), "Set{'a', 'b'}->intersection(Sequence{'c', 'd'})");
+		assertQueryEquals(null, getEmptySetValue(), "Set{'a', 'b'}->intersection(OrderedSet{'c', 'd'})");
 		assertQueryEquals(null, getEmptySetValue(), "Set{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "Sequence{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getEmptyBagValue(), "Sequence{'a', 'b'}->intersection(Sequence{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "Sequence{'a', 'b'}->intersection(OrderedSet{'c', 'd'})");
+		assertQueryEquals(null, getEmptyBagValue(), "Sequence{'a', 'b'}->intersection(Bag{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "OrderedSet{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "OrderedSet{'a', 'b'}->intersection(Sequence{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "OrderedSet{'a', 'b'}->intersection(OrderedSet{'c', 'd'})");
+		assertQueryEquals(null, getEmptyOrderedSetValue(), "OrderedSet{'a', 'b'}->intersection(Bag{'c', 'd'})");
 		assertQueryEquals(null, getEmptySetValue(), "Bag{'a', 'b'}->intersection(Set{'c', 'd'})");
+		assertQueryEquals(null, getEmptyBagValue(), "Bag{'a', 'b'}->intersection(Sequence{'c', 'd'})");
+		assertQueryEquals(null, getEmptySetValue(), "Bag{'a', 'b'}->intersection(OrderedSet{'c', 'd'})");
 		assertQueryEquals(null, getEmptyBagValue(), "Bag{'a', 'b'}->intersection(Bag{'c', 'd'})");
 		// Duplicates
 		assertQueryResults(null, "Set{'a', 'b'}", "Set{'a', 'b', 'a'}->intersection(Set{'a', 'b', 'c'})");

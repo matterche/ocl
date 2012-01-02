@@ -53,7 +53,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     	if ((leftSize == 0) || (rightSize == 0)) {
             return valueFactory.createSetValue(type);
         }    	
-        Set<Value> results = new HashSet<Value>();
+        Set<Value> results;
         // loop over the smaller collection and add only elements
         // that are in the larger collection
         if (leftSize <= rightSize) {

@@ -38,7 +38,24 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 public class OrderedSetValueImpl
 	extends AbstractCollectionValue<OrderedSet<Value>>
 	implements OrderedSetValue
-{
+{    
+    public static OrderedSetValue intersection(ValueFactory valueFactory, DomainCollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException
+    {
+    	assert !left.isUndefined() && !right.isUndefined();
+		Collection<Value> leftElements = left.asCollection();
+        Collection<Value> rightElements = right.asCollection();
+        int leftSize = leftElements.size();
+        int rightSize = rightElements.size();
+    	if ((leftSize == 0) || (rightSize == 0)) {
+            return valueFactory.createOrderedSetValue(type);
+        }    	
+        OrderedSet<Value> results = new OrderedSetImpl<Value>(leftElements);
+        // loop over the left collection and add only elements
+        // that are in the right collection
+        results.retainAll(rightElements);
+     	return results.size() > 0 ? valueFactory.createOrderedSetValue(type, results) : valueFactory.createOrderedSetValue(type);
+    }
+
     public static OrderedSetValue union(ValueFactory valueFactory, DomainCollectionType type, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();

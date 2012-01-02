@@ -300,10 +300,10 @@ public class OCLstdlibTables
 			Types._Bag, 7, org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE,
 				OCLstdlibTables.Types._Bag_T);
 		public static final ExecutorOperation _Bag__0_intersection = new ExecutorOperation("intersection",
-			Types._Bag, 8, org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE,
+			Types._Bag, 8, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
 				new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._Bag_T));
 		public static final ExecutorOperation _Bag__1_intersection = new ExecutorOperation("intersection",
-			Types._Bag, 9, org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE,
+			Types._Bag, 9, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
 				new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.Types._Bag_T));
 		public static final ExecutorOperation _Bag__reject = new ExecutorOperation("reject",
 			Types._Bag, 10, org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE,
@@ -617,8 +617,8 @@ public class OCLstdlibTables
 				OCLstdlibTables.Types._Integer,
 				OCLstdlibTables.Types._OrderedSet_T);
 		public static final ExecutorOperation _OrderedSet__intersection = new ExecutorOperation("intersection",
-			Types._OrderedSet, 8, org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE,
-				new ExecutorSpecializedType("Set", OCLstdlibTables.Types._OrderedSet_T));
+			Types._OrderedSet, 8, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
+				new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._OrderedSet_T));
 		public static final ExecutorOperation _OrderedSet__prepend = new ExecutorOperation("prepend",
 			Types._OrderedSet, 9, org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE,
 				OCLstdlibTables.Types._OrderedSet_T);
@@ -731,27 +731,33 @@ public class OCLstdlibTables
 			Types._Sequence, 12, org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE,
 				OCLstdlibTables.Types._Integer,
 				OCLstdlibTables.Types._Sequence_T);
+		public static final ExecutorOperation _Sequence__0_intersection = new ExecutorOperation("intersection",
+			Types._Sequence, 13, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
+				new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._Sequence_T));
+		public static final ExecutorOperation _Sequence__1_intersection = new ExecutorOperation("intersection",
+			Types._Sequence, 14, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
+				new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.Types._Sequence_T));
 		public static final ExecutorOperation _Sequence__last = new ExecutorOperation("last",
-			Types._Sequence, 13, org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation.INSTANCE);
+			Types._Sequence, 15, org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation.INSTANCE);
 		public static final ExecutorOperation _Sequence__prepend = new ExecutorOperation("prepend",
-			Types._Sequence, 14, org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE,
+			Types._Sequence, 16, org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE,
 				OCLstdlibTables.Types._Sequence_T);
 		public static final ExecutorOperation _Sequence__reject = new ExecutorOperation("reject",
-			Types._Sequence, 15, org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE,
+			Types._Sequence, 17, org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE,
 				new ExecutorLambdaType("Lambda", OCLstdlibTables.Types._Sequence_T));
 		public static final ExecutorOperation _Sequence__reverse = new ExecutorOperation("reverse",
-			Types._Sequence, 16, org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
+			Types._Sequence, 18, org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
 		public static final ExecutorOperation _Sequence__select = new ExecutorOperation("select",
-			Types._Sequence, 17, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
+			Types._Sequence, 19, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType("Lambda", OCLstdlibTables.Types._Sequence_T));
 		public static final ExecutorOperation _Sequence__sortedBy = new ExecutorOperation("sortedBy",
-			Types._Sequence, 18, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._Sequence, 20, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType("Lambda", OCLstdlibTables.Types._Sequence_T));
 		public static final ExecutorOperation _Sequence__subSequence = new ExecutorOperation("subSequence",
-			Types._Sequence, 19, org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE,
+			Types._Sequence, 21, org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE,
 				OCLstdlibTables.Types._Integer);
 		public static final ExecutorOperation _Sequence__union = new ExecutorOperation("union",
-			Types._Sequence, 20, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._Sequence, 22, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType("Sequence", OCLstdlibTables.Types._Sequence_T));
 	
 		public static final ExecutorOperation _Set___sub_ = new ExecutorOperation("-",
@@ -773,7 +779,7 @@ public class OCLstdlibTables
 			Types._Set, 5, org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE,
 				OCLstdlibTables.Types._Set_T);
 		public static final ExecutorOperation _Set__intersection = new ExecutorOperation("intersection",
-			Types._Set, 6, org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE,
+			Types._Set, 6, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
 				new ExecutorSpecializedType("Set", OCLstdlibTables.Types._Set_T));
 		public static final ExecutorOperation _Set__reject = new ExecutorOperation("reject",
 			Types._Set, 7, org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE,
@@ -848,6 +854,9 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _String__toUpperCase = new ExecutorOperation("toUpperCase",
 			Types._String, 22, org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
 	
+		public static final ExecutorOperation _Type__xyzzyx = new ExecutorOperation("xyzzyx",
+			Types._Type, 0, org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+	
 		public static final ExecutorOperation _UniqueCollection___sub_ = new ExecutorOperation("-",
 			Types._UniqueCollection, 0, org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE,
 				new ExecutorSpecializedType("UniqueCollection", OCLstdlibTables.Types._OclAny));
@@ -885,8 +894,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _AnyClassifier =
 		{
 		    Fragments._AnyClassifier__OclAny /* 0 */,
-		    Fragments._AnyClassifier__Class /* 1 */,
 		    Fragments._AnyClassifier__OclElement /* 1 */,
+		    Fragments._AnyClassifier__Class /* 1 */,
 		    Fragments._AnyClassifier__OclType /* 2 */,
 		    Fragments._AnyClassifier__AnyClassifier /* 3 */
 		};
@@ -917,8 +926,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _ClassClassifier =
 		{
 		    Fragments._ClassClassifier__OclAny /* 0 */,
-		    Fragments._ClassClassifier__Class /* 1 */,
 		    Fragments._ClassClassifier__OclElement /* 1 */,
+		    Fragments._ClassClassifier__Class /* 1 */,
 		    Fragments._ClassClassifier__OclType /* 2 */,
 		    Fragments._ClassClassifier__AnyClassifier /* 3 */,
 		    Fragments._ClassClassifier__ClassClassifier /* 4 */
@@ -935,8 +944,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _CollectionClassifier =
 		{
 		    Fragments._CollectionClassifier__OclAny /* 0 */,
-		    Fragments._CollectionClassifier__Class /* 1 */,
 		    Fragments._CollectionClassifier__OclElement /* 1 */,
+		    Fragments._CollectionClassifier__Class /* 1 */,
 		    Fragments._CollectionClassifier__OclType /* 2 */,
 		    Fragments._CollectionClassifier__AnyClassifier /* 3 */,
 		    Fragments._CollectionClassifier__CollectionClassifier /* 4 */
@@ -953,8 +962,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _EnumerationClassifier =
 		{
 		    Fragments._EnumerationClassifier__OclAny /* 0 */,
-		    Fragments._EnumerationClassifier__Class /* 1 */,
 		    Fragments._EnumerationClassifier__OclElement /* 1 */,
+		    Fragments._EnumerationClassifier__Class /* 1 */,
 		    Fragments._EnumerationClassifier__OclType /* 2 */,
 		    Fragments._EnumerationClassifier__AnyClassifier /* 3 */,
 		    Fragments._EnumerationClassifier__EnumerationClassifier /* 4 */
@@ -1067,8 +1076,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._OrderedSet__OclAny /* 0 */,
 		    Fragments._OrderedSet__Collection /* 1 */,
-		    Fragments._OrderedSet__Sequence /* 2 */,
 		    Fragments._OrderedSet__UniqueCollection /* 2 */,
+		    Fragments._OrderedSet__Sequence /* 2 */,
 		    Fragments._OrderedSet__OrderedSet /* 3 */
 		};
 		private static final int[] __OrderedSet = { 1,1,2,1 };
@@ -1780,7 +1789,7 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OrderedSet__flatten /* flatten<T2>() */,
 		    OCLstdlibTables.Operations._OrderedSet__including /* including(T) */,
 		    OCLstdlibTables.Operations._OrderedSet__insertAt /* insertAt(Integer,T) */,
-		    OCLstdlibTables.Operations._OrderedSet__intersection /* intersection(Set(T)) */,
+		    OCLstdlibTables.Operations._OrderedSet__intersection /* intersection(Collection(T)) */,
 		    OCLstdlibTables.Operations._OrderedSet__prepend /* prepend(T) */,
 		    OCLstdlibTables.Operations._OrderedSet__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._OrderedSet__reverse /* reverse() */,
@@ -1853,6 +1862,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OrderedSet__including /* including(T) */,
 		    OCLstdlibTables.Operations._Sequence__indexOf /* indexOf(OclAny) */,
 		    OCLstdlibTables.Operations._OrderedSet__insertAt /* insertAt(Integer,T) */,
+		    OCLstdlibTables.Operations._OrderedSet__intersection /* intersection(Collection(T)) */,
+		    OCLstdlibTables.Operations._Sequence__1_intersection /* intersection(UniqueCollection(T)) */,
 		    OCLstdlibTables.Operations._Sequence__last /* last() */,
 		    OCLstdlibTables.Operations._OrderedSet__prepend /* prepend(T) */,
 		    OCLstdlibTables.Operations._OrderedSet__reject /* reject(T|Lambda T() : Boolean) */,
@@ -1924,6 +1935,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Sequence__including /* including(T) */,
 		    OCLstdlibTables.Operations._Sequence__indexOf /* indexOf(OclAny) */,
 		    OCLstdlibTables.Operations._Sequence__insertAt /* insertAt(Integer,T) */,
+		    OCLstdlibTables.Operations._Sequence__0_intersection /* intersection(Collection(T)) */,
+		    OCLstdlibTables.Operations._Sequence__1_intersection /* intersection(UniqueCollection(T)) */,
 		    OCLstdlibTables.Operations._Sequence__last /* last() */,
 		    OCLstdlibTables.Operations._Sequence__prepend /* prepend(T) */,
 		    OCLstdlibTables.Operations._Sequence__reject /* reject(T|Lambda T() : Boolean) */,
@@ -2117,7 +2130,9 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OclSummable__zero /* zero() */
 		};
 	
-		private static final ExecutorOperation[] _Type__Type = {};
+		private static final ExecutorOperation[] _Type__Type = {
+		    OCLstdlibTables.Operations._Type__xyzzyx /* xyzzyx() */
+		};
 		private static final ExecutorOperation[] _Type__OclAny = {
 		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
 		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,

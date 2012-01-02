@@ -155,11 +155,11 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	/**
 	The intersection of oclText[self] and bag; the bag of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(bag : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	operation intersection(bag : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The intersection of oclText[self] and s; the set of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(s : UniqueCollection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	operation intersection(s : UniqueCollection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The union of oclText[self] and bag; the bag of all elements that are in oclText[self] and all elements that are in bag.
 	**/
@@ -848,7 +848,7 @@ type OrderedSet<T> : OrderedSetType conformsTo Sequence<T>,UniqueCollection<T> {
 	The ordered set consisting of oclText[self] with object present at position index.
 	**/
 	operation insertAt(index : Integer, object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
-	operation intersection(o : Set<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	operation intersection(o : Collection<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The sequence consisting of object, followed by all elements in oclText[self].
 	**/
@@ -1029,6 +1029,14 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	**/
 	operation insertAt(index : Integer, object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
 	/**
+	The intersection of oclText[self] and bag; the bag of all elements that are in both oclText[self] and s.
+	**/
+	operation intersection(c : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	/**
+	The intersection of oclText[self] and s; the set of all elements that are in both oclText[self] and s.
+	**/
+	operation intersection(s : UniqueCollection<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	/**
 	The last element in oclText[self].
 	**/
 	operation last() : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation';
@@ -1092,7 +1100,7 @@ type Set<T> : SetType conformsTo Bag<T>,UniqueCollection<T> {
 	/**
 	The intersection of oclText[self] and s (i.e., the set of all elements that are in both oclText[self] and s).
 	**/
-	operation intersection(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	operation intersection(s : Collection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The set consisting of all elements in oclText[self] and all elements in s.
 	**/

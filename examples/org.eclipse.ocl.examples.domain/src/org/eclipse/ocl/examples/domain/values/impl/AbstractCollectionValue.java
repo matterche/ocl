@@ -218,7 +218,13 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
 	public CollectionValue intersection(CollectionValue c) throws InvalidValueException {
 		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
-        if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
+		if (this instanceof OrderedSetValue) {
+            return OrderedSetValueImpl.intersection(valueFactory, standardLibrary.getOrderedSetType(getElementType()), this, c);
+        }
+        else if (this instanceof SequenceValue && c instanceof UniqueCollectionValue) {
+            return OrderedSetValueImpl.intersection(valueFactory, standardLibrary.getOrderedSetType(getElementType()), this, c);
+        }
+        else if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
             return SetValueImpl.intersection(valueFactory, standardLibrary.getSetType(getElementType()), this, c);
         }
         else {
