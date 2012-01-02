@@ -192,7 +192,7 @@ public abstract class AbstractEvaluationVisitor
 	
 	@Override
     public String toString() {
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (evaluation environment: ");//$NON-NLS-1$
 		result.append(getEvaluationEnvironment());
 		result.append(')');

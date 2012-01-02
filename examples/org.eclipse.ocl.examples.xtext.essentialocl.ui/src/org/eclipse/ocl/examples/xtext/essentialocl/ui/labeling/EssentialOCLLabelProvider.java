@@ -38,12 +38,12 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 		super(delegate);
 	}
 
-	protected void appendTemplateParameter(StringBuffer s, TemplateParameterCS templateParameter) {
+	protected void appendTemplateParameter(StringBuilder s, TemplateParameterCS templateParameter) {
 		appendName(s, templateParameter);
 	}
 
 	@Override
-	protected void appendType(StringBuffer s, Type type) {
+	protected void appendType(StringBuilder s, Type type) {
 		if (type instanceof CollectionTypeCS) {
 			appendName(s, (CollectionTypeCS)type);
 			s.append("(");
@@ -76,7 +76,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 		if (!".".equals(op) &&  !"->".equals(op)) {
 			return op;
 		}
-	StringBuffer s = new StringBuffer();
+	StringBuilder s = new StringBuilder();
 	appendString(s, op);
 	ExpCS argument = ele.getArgument();
 	if (argument instanceof NamedExpCS) {

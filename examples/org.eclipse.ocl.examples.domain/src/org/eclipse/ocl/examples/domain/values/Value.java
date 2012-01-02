@@ -77,5 +77,5 @@ public interface Value
 	IntegerValue toIntegerValue() throws InvalidValueException;
 	Iterator<Value> toIteratorValue() throws InvalidValueException;
 	RealValue toRealValue() throws InvalidValueException;
-	void toString(StringBuffer s, int sizeLimit);
+	void toString(StringBuilder s, int sizeLimit);
 }

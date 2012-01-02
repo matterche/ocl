@@ -90,7 +90,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(DefCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("def ");
 		appendOptionalString(s, ele.getName());
 		s.append(": ");
@@ -143,7 +143,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(OperationContextDeclCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		Operation operation = ele.getOperation();
 		if (operation == null) {
 			return "<<null>>";
@@ -203,7 +203,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PropertyContextDeclCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		Property feature = ele.getProperty();
 		if (feature == null) {
 			return "<<null>>";

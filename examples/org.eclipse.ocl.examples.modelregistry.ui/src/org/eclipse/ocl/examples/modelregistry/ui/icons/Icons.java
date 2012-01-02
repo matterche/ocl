@@ -62,7 +62,7 @@ public final class Icons
 		Image baseImage = getImage(imageIcon);
 	    if ((overlayIcon == null) && (underlayIcon == null))
 	    	return baseImage;
-	    StringBuffer s = new StringBuffer();
+	    StringBuilder s = new StringBuilder();
 	    s.append(getFullIconName(imageIcon));
 	    s.append("+");
 	    if (overlayIcon != null)

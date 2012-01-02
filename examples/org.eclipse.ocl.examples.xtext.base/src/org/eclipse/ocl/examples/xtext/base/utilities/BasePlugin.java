@@ -134,7 +134,7 @@ public final class BasePlugin extends EMFPlugin {
 			} else {
 				// not in the Eclipse environment
 //				if (shouldTrace(OCLDebugOptions.DEBUG)) {
-					StringBuffer s = new StringBuffer();
+					StringBuilder s = new StringBuilder();
 					switch (code) {
 						case Diagnostic.WARNING :
 							s.append("WARNING "); //$NON-NLS-1$

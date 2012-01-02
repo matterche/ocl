@@ -183,12 +183,12 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 
 		@Override
 		public String toString() {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			toString(s, null, "  ");
 			return s.toString();
 		}
 		
-		public String toString(StringBuffer s, String newLine, String indent) {
+		public String toString(StringBuilder s, String newLine, String indent) {
 			if ((lineWrap || (newLine != null)) && (prefix != null)) {
 				if (lineWrap) {
 					newLine = "\n";
@@ -268,7 +268,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	
 	protected final PrettyPrintTypeVisitor delegate;
 	private String pendingPrefix = "";
-	private StringBuffer pendingText;
+	private StringBuilder pendingText;
 	protected Fragment fragment;
 
 	/**
@@ -277,7 +277,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	public PrettyPrintTypeVisitor(PrettyPrintOptions options) {
 		super(options);
 		this.delegate = null;
-		pendingText = new StringBuffer();
+		pendingText = new StringBuilder();
 		fragment = new Fragment(null, 0, "", "", "");
 	}
 
@@ -578,7 +578,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				return pendingPrefix + pendingText.toString();
 			}
 			fragment.configureLineWrapping(context.getIndentStep().length(), context.getLinelength());
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			String newLine = fragment.toString(s, null, "  ");
 			return s.toString() + newLine + pendingPrefix + pendingText.toString();
 		}
@@ -593,7 +593,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				return pendingPrefix + pendingText.toString();
 			}
 			fragment.configureLineWrapping(indent.length(), lineLength);
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			fragment.toString(s, null, indent);
 //			System.out.println(s.toString() + "--" + pendingPrefix + "--" + pendingText.toString());
 			return s.toString() + pendingPrefix + pendingText.toString();
@@ -782,7 +782,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		if ((keywords == null) || (!keywords.contains(name)) && PivotUtil.isValidIdentifier(name)) {
 			return name;
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("_'");
 		s.append(PivotUtil.convertToOCLString(name));
 		s.append("'");

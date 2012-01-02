@@ -54,7 +54,7 @@ public class PivotTestUtils extends TestCase
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
 		if (diagnostics.size() > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(message);
 			for (Diagnostic diagnostic : diagnostics) {
 				s.append("\n");
@@ -73,7 +73,7 @@ public class PivotTestUtils extends TestCase
 	public static void assertNoUnresolvedProxies(String message, Resource resource) {
 		Map<EObject, Collection<Setting>> unresolvedProxies = UnresolvedProxyCrossReferencer.find(resource);
 		if (unresolvedProxies.size() > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(unresolvedProxies.size());
 			s.append(" ");	
 			s.append(message);
@@ -103,7 +103,7 @@ public class PivotTestUtils extends TestCase
 		if (children.size() <= 0) {
 			return;
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(children.size() + " validation errors");
 		for (Diagnostic child : children){
 			s.append("\n\t");
@@ -118,13 +118,13 @@ public class PivotTestUtils extends TestCase
 			count = count == null ? 1 : count + 1;
 			expected.put(message, count);
 		}
-		StringBuffer s1 = null;
+		StringBuilder s1 = null;
 		for (Resource.Diagnostic error : resource.getErrors()) {
 			String actual = error.getMessage();
 			Integer expectedCount = expected.get(actual);
 			if ((expectedCount == null) || (expectedCount <= 0)) {
 				if (s1 == null) {
-					s1 = new StringBuffer();
+					s1 = new StringBuilder();
 					s1.append("\nUnexpected errors");
 				}
 				s1.append("\n");
@@ -134,12 +134,12 @@ public class PivotTestUtils extends TestCase
 				expected.put(actual, expectedCount-1);
 			}
 		}
-		StringBuffer s2 = null;
+		StringBuilder s2 = null;
 		for (String key : expected.keySet()) {
 			Integer count = expected.get(key);
 			while (count-- > 0) {
 				if (s2 == null) {
-					s2 = new StringBuffer();
+					s2 = new StringBuilder();
 					s2.append("\nMissing errors");
 				}
 				s2.append("\n");

@@ -70,11 +70,11 @@ public class Pivot2UMLDeclarationVisitor
 //			umlClassifier.eUnset(UMLPackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME);
 //		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
-		StringBuffer s = null;
+		StringBuilder s = null;
 		for (Constraint pivotConstraint : pivotType.getOwnedRules()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 			if (s == null) {
-				s = new StringBuffer();
+				s = new StringBuilder();
 			}
 			else {
 				s.append(" ");

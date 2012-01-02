@@ -65,10 +65,10 @@ public class MarkupTests extends XtextTestCase
 //		resource.load(inputStream, null);
 		Markup markup = (Markup) resource.getContents().get(0);
 		Iterable<Diagnostic> parseErrors = resource.getErrors();
-		StringBuffer s = null;
+		StringBuilder s = null;
 		for (Diagnostic parseError : parseErrors) {
 			if (s == null) {
-				 s = new StringBuffer("Testing '" + toPrintable(testString) + "'");
+				 s = new StringBuilder("Testing '" + toPrintable(testString) + "'");
 			}
 			String syntaxErrorMessage = parseError.getMessage();
 			s.append("\n  " + syntaxErrorMessage);

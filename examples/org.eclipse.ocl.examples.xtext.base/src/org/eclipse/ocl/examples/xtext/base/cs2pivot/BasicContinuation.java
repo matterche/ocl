@@ -89,7 +89,7 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 	
 	@Override
 	public String toString() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(getClass().getSimpleName());		
 		s.append("@");		
 		s.append(Integer.toHexString(hashCode()));		

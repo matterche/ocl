@@ -1196,7 +1196,7 @@ public class DelegatesTest extends AbstractTestSuite
 		if (validation.getSeverity() != Diagnostic.OK) {
 			List<Diagnostic> diagnostics = validation.getChildren();
 			if (!diagnostics.isEmpty()) {
-				StringBuffer s = new StringBuffer();
+				StringBuilder s = new StringBuilder();
 				for (Diagnostic diagnostic : diagnostics) {
 					s.append(diagnostic.getMessage());
 					s.append("\n");

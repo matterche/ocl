@@ -30,7 +30,7 @@ public class BaseDocumentationProvider extends MultiLineCommentDocumentationProv
 		if (o instanceof Element) {
 			List<Comment> comments = ((Element)o).getOwnedComments();
 			if (comments.size() > 0) {
-				StringBuffer s = new StringBuffer();
+				StringBuilder s = new StringBuilder();
 				for (Comment comment : comments) {
 					if (s.length() > 0) {
 						s.append("\n");

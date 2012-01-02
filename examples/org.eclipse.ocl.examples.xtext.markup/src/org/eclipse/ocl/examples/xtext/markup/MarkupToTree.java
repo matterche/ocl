@@ -23,14 +23,14 @@ import org.eclipse.ocl.examples.xtext.markup.util.MarkupSwitch;
  * MarkupToTree gives an indented textual tree presentation of the markup for
  * debugging purposes. Each line starts with a class name followed by attributes.
  */
-public class MarkupToTree extends MarkupSwitch<StringBuffer>
+public class MarkupToTree extends MarkupSwitch<StringBuilder>
 {
 	public static String toString(MarkupElement element) {
 		MarkupToTree toString = new MarkupToTree();
 		return toString.doSwitch(element).toString();
 	}
 	
-	protected final StringBuffer s = new StringBuffer();
+	protected final StringBuilder s = new StringBuilder();
 	private int depth = 0;
 
 	protected void appendClass(EObject object) {
@@ -58,7 +58,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseBulletElement(BulletElement object) {
+	public StringBuilder caseBulletElement(BulletElement object) {
 		appendClass(object);
 		s.append(" ");
 		s.append(object.getLevel());
@@ -67,14 +67,14 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 	
 	@Override
-	public StringBuffer caseCompoundElement(CompoundElement object) {
+	public StringBuilder caseCompoundElement(CompoundElement object) {
 		appendClass(object);
 		appendIndented(object.getElements());
 		return s;
 	}
 
 	@Override
-	public StringBuffer caseFigureElement(FigureElement object) {
+	public StringBuilder caseFigureElement(FigureElement object) {
 		appendClass(object);
 		s.append(" ");
 		s.append(object.getSrc());
@@ -89,7 +89,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFigureRefElement(FigureRefElement object) {
+	public StringBuilder caseFigureRefElement(FigureRefElement object) {
 		appendClass(object);
 		s.append(" ");
 		s.append(object.getRef().getDef());
@@ -98,7 +98,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseFontElement(FontElement object) {
+	public StringBuilder caseFontElement(FontElement object) {
 		String font = object.getFont();
 		appendClass(object);
 		s.append(font);
@@ -107,7 +107,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseHeadingElement(HeadingElement object) {
+	public StringBuilder caseHeadingElement(HeadingElement object) {
 		appendClass(object);
 		s.append(" ");
 		s.append(object.getLevel());
@@ -116,7 +116,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseNewLineElement(NewLineElement object) {
+	public StringBuilder caseNewLineElement(NewLineElement object) {
 		appendClass(object);
 		s.append(object.getText().replace("\n", "\\n").replace("\r", "\\r").replace("\t", "\\t"));
 		s.append("\n");
@@ -124,7 +124,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer caseTextElement(TextElement object) {
+	public StringBuilder caseTextElement(TextElement object) {
 		appendClass(object);
 		for (String text : object.getText()) {
 			s.append(text.replace("\t", "\\t"));
@@ -134,7 +134,7 @@ public class MarkupToTree extends MarkupSwitch<StringBuffer>
 	}
 
 	@Override
-	public StringBuffer defaultCase(EObject object) {
+	public StringBuilder defaultCase(EObject object) {
 		appendClass(object);
 		s.append("\n");
 		return s;

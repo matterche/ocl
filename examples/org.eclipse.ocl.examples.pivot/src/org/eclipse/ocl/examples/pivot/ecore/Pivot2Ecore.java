@@ -255,12 +255,12 @@ public class Pivot2Ecore extends AbstractConversion
 	}
 	
 	public static void installDelegates(MetaModelManager metaModelManager, EClassifier eClassifier, Type pivotType) {
-		StringBuffer s = null;
+		StringBuilder s = null;
 		for (Constraint pivotConstraint : metaModelManager.getLocalConstraints(pivotType)) {
 			String constraintName = pivotConstraint.getName();
 			if (!pivotConstraint.isCallable() && (constraintName != null)) {
 				if (s == null) {
-					s = new StringBuffer();
+					s = new StringBuilder();
 				}
 				else {
 					s.append(" ");

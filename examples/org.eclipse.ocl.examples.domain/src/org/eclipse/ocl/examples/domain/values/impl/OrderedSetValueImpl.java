@@ -305,7 +305,7 @@ public class OrderedSetValueImpl
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("OrderedSet");
 		super.toString(s, lengthLimit);
 	}

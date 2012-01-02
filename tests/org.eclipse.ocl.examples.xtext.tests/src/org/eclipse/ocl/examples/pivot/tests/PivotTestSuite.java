@@ -722,7 +722,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		String testCharacter = "´";
 		int length = testCharacter.length();
 		if ((length != 1) || (testCharacter.charAt(0) != 0xB4)) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append("The Resource text file encoding should be set to UTF-8: test character was");
 			for (int i = 0; i < length; i++){
 				s.append(" ");

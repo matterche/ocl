@@ -55,7 +55,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 	/**
 	 * The working buffer for the result.
 	 */
-	private final StringBuffer s = new StringBuffer();
+	private final StringBuilder s = new StringBuilder();
 	
 	/**
 	 * A pivot 2 moniker conversion visitor, if needed.

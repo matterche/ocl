@@ -183,7 +183,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 				eAnnotation.setSource(EcorePackage.eNS_URI);
 				ePackage.getEAnnotations().add(eAnnotation);
 			}
-			StringBuffer value = new StringBuffer();
+			StringBuilder value = new StringBuilder();
 			for (Iterator<String> i = delegateURIs.iterator(); i.hasNext();) {
 				value.append(i.next());
 				if (i.hasNext()) {

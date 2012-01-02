@@ -132,7 +132,7 @@ public class EcoreUtils
 					unresolvedURIs.put(uriString, entry);
 			}
     	}
-    	StringBuffer s = new StringBuffer();
+    	StringBuilder s = new StringBuilder();
 		s.append("Unresolved URIs in '" + String.valueOf(contextURI) + "' :");
     	for (Map.Entry<String, Map.Entry<EObject, Collection<EStructuralFeature.Setting>>> unresolvedURI : unresolvedURIs.entrySet())
  			s.append("\n    '" + unresolvedURI.getKey() + "'");

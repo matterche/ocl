@@ -175,7 +175,7 @@ public class BagValueImpl
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("Bag");
 		super.toString(s, lengthLimit);
 	}

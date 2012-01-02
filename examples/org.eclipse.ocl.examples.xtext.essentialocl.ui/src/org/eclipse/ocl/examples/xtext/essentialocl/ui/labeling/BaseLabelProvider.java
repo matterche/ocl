@@ -123,13 +123,13 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 
-	protected void appendClass(StringBuffer s, Object object) {
+	protected void appendClass(StringBuilder s, Object object) {
 		s.append("<");
 		s.append(object != null ? object.getClass().getSimpleName() : "null");
 		s.append(">");
 	}
 
-	protected void appendMultiplicity(StringBuffer s, TypedMultiplicityElement ele) {
+	protected void appendMultiplicity(StringBuilder s, TypedMultiplicityElement ele) {
 		int lower = ele.getLower().intValue();
 		int upper = ele.getUpper().intValue();
 		if ((lower != 1) || (upper != 1)) {
@@ -160,7 +160,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 
-	protected void appendName(StringBuffer s, NamedElement element) {
+	protected void appendName(StringBuilder s, NamedElement element) {
 		if (element != null) {
 			if (element.eIsProxy()) {
 				EcoreUtil.resolve(element, element);
@@ -169,7 +169,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendName(StringBuffer s, NamedElementCS csElement) {
+	protected void appendName(StringBuilder s, NamedElementCS csElement) {
 		if (csElement != null) {
 			if (csElement.eIsProxy()) {
 				EcoreUtil.resolve(csElement, csElement);
@@ -178,23 +178,23 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendName(StringBuffer s, Nameable csElement) {
+	protected void appendName(StringBuilder s, Nameable csElement) {
 		appendString(s, csElement.getName());
 	}
 
-	protected void appendOptionalName(StringBuffer s, Nameable csElement) {
+	protected void appendOptionalName(StringBuilder s, Nameable csElement) {
 		if (csElement != null) {
 			appendOptionalString(s, csElement.getName());
 		}	
 	}
 
-	protected void appendOptionalString(StringBuffer s, String string) {
+	protected void appendOptionalString(StringBuilder s, String string) {
 		if (string != null) {
 			s.append(string);
 		}	
 	}
 
-	protected void appendParameters(StringBuffer s, List<Parameter> parameters) {
+	protected void appendParameters(StringBuilder s, List<Parameter> parameters) {
 		s.append("(");
 		String prefix = "";
 		for (Parameter csParameter : parameters) {
@@ -206,7 +206,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		s.append(")");
 	}
 
-	protected void appendString(StringBuffer s, String string) {
+	protected void appendString(StringBuilder s, String string) {
 		if (string != null) {
 			s.append(string);
 		}	
@@ -215,7 +215,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendString(StringBuffer s, String string, int countLimit) {
+	protected void appendString(StringBuilder s, String string, int countLimit) {
 		if (string == null) {
 			s.append("<null>");
 		}	
@@ -228,7 +228,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}	
 	}
 
-	protected void appendSuperTypes(StringBuffer s, List<? extends Type> superTypes) {
+	protected void appendSuperTypes(StringBuilder s, List<? extends Type> superTypes) {
 		if (!superTypes.isEmpty()) {
 			String prefix = " -> ";
 			for (Type superType : superTypes) {
@@ -239,7 +239,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 
-	protected void appendTemplateBindings(StringBuffer s, TemplateableElement templateableElement) {
+	protected void appendTemplateBindings(StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			for (TemplateBinding templateBinding : templateableElement.getTemplateBindings()) {
 				s.append("<");
@@ -257,7 +257,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 
-	protected void appendTemplateSignature(StringBuffer s, TemplateableElement templateableElement) {
+	protected void appendTemplateSignature(StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
@@ -276,12 +276,12 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 
-	protected void appendType(StringBuffer s, Type type) {
+	protected void appendType(StringBuilder s, Type type) {
 		appendName(s, type);
 		appendTemplateBindings(s, type);
 	}
 
-	protected void appendType(StringBuffer s, TypeRefCS type) {
+	protected void appendType(StringBuilder s, TypeRefCS type) {
 		Element pivot = type.getPivot();
 		appendString(s, safeGetMoniker(pivot));
 	}
@@ -344,7 +344,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	public String text(Annotation ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("\"");
 		appendString(s, ele.getName(), 40);			
 		s.append("\"");
@@ -377,7 +377,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Class ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendSuperTypes(s, ele.getSuperClasses());
@@ -409,7 +409,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(CollectionType ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendType(s, ele);
 		return s.toString();
 	}
@@ -419,7 +419,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	public String text(Comment ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("\"");
 		appendString(s, ele.getBody(), 40);			
 		s.append("\"");
@@ -453,7 +453,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	public String text(Constraint ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("<");
 		appendString(s, ele.getStereotype());
 		s.append("> ");
@@ -465,7 +465,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(DataType ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendSuperTypes(s, ele.getSuperClasses());
@@ -483,7 +483,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Enumeration ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendSuperTypes(s, ele.getSuperClasses());
@@ -501,7 +501,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	public String text(Detail ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append("\"");
 		appendString(s, ele.getName());			
 		s.append("\" : ");
@@ -538,7 +538,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(ImportCS ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendOptionalName(s, ele);
 		s.append(" : ");
 //		appendString(s, ele.getUri());
@@ -566,7 +566,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Iteration ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendParameters(s, ele.getOwnedIterators());
@@ -618,7 +618,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected String text(OclExpression ele) {
 		Namespace namespace = PrettyPrintNameVisitor.getNamespace(ele.eContainer());
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		s.append(PrettyPrintExprVisitor.prettyPrint(ele, namespace));
 		s.append(" : ");
 		s.append(PrettyPrintTypeVisitor.prettyPrint(ele.getType(), namespace));
@@ -630,7 +630,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Operation ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
 		appendParameters(s, ele.getOwnedParameters());
@@ -661,7 +661,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Parameter ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		s.append(" : ");
 		appendType(s, ele.getType());
@@ -695,7 +695,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(Property ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		s.append(" : ");
 		appendType(s, ele.getType());
@@ -748,7 +748,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(TupleLiteralPart ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		return s.toString();
 	}
@@ -758,7 +758,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(TuplePart ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		s.append(" : ");
 		appendType(s, ele.getType());
@@ -771,13 +771,13 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String text(TupleType ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendType(s, ele);
 		return s.toString();
 	}
 
 	protected String text(Type ele) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		appendType(s, ele);
 		return s.toString();
 	}
@@ -787,7 +787,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 //	protected String text(TypeRefCS ele) {
-//		StringBuffer s = new StringBuffer();
+//		StringBuilder s = new StringBuilder();
 //		appendType(s, ele);
 //		return s.toString();
 //	}

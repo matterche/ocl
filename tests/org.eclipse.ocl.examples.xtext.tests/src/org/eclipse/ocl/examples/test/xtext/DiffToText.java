@@ -30,10 +30,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class DiffToText extends DiffSwitch<Boolean>
 {
-	protected final StringBuffer s;
+	protected final StringBuilder s;
 	protected int depth = 0;
 
-	public DiffToText(StringBuffer s) {
+	public DiffToText(StringBuilder s) {
 		this.s = s;
 	}
 

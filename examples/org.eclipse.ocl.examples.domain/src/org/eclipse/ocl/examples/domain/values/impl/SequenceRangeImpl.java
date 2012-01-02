@@ -184,7 +184,7 @@ public class SequenceRangeImpl extends AbstractSequenceValue<IntegerRange>
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("Sequence{");
 		s.append(elements.getFirst());
 		s.append("..");

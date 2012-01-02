@@ -259,7 +259,7 @@ public class CS2PivotConversion extends AbstractConversion
 				}
 			}
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		int i = 0;
 		for (BasicContinuation<?> continuation : continuations) {
 			s.append("\n  ");
@@ -543,14 +543,14 @@ public class CS2PivotConversion extends AbstractConversion
 				if (name == null) {
 					name = PivotConstants.NULL_ROOT;
 				}
-				String qualifiedName = getQualifiedName(new StringBuffer(), pkg);
+				String qualifiedName = getQualifiedName(new StringBuilder(), pkg);
 				org.eclipse.ocl.examples.pivot.Package oldPkg = oldPackagesByQualifiedName.put(qualifiedName, pkg);
 				if (oldPkg != null) {
 					logger.warn("Duplicate qualified package name: " + qualifiedName);
 				}
 				if (name.equals(qualifiedName)) {
 					oldPkg = oldPackagesByName.put(name, pkg);
-					if ((oldPkg != null) && name.equals(getQualifiedName(new StringBuffer(), oldPkg))) {
+					if ((oldPkg != null) && name.equals(getQualifiedName(new StringBuilder(), oldPkg))) {
 						logger.warn("Duplicate unqualified package name: " + qualifiedName);
 					}
 				}
@@ -640,7 +640,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return preOrderVisitor;
 	}
 
-	protected String getQualifiedName(StringBuffer s, org.eclipse.ocl.examples.pivot.Package pkg) {
+	protected String getQualifiedName(StringBuilder s, org.eclipse.ocl.examples.pivot.Package pkg) {
 		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getNestingPackage();
 		if (nestingPackage != null) {
 			getQualifiedName(s, nestingPackage);
@@ -654,7 +654,7 @@ public class CS2PivotConversion extends AbstractConversion
 		return s.toString();
 	}
 	
-	protected String getQualifiedName(StringBuffer s, PackageCS csPackage) {
+	protected String getQualifiedName(StringBuilder s, PackageCS csPackage) {
 		EObject eContainer = csPackage.eContainer();
 		if (eContainer instanceof PackageCS) {
 			getQualifiedName(s, (PackageCS) eContainer);
@@ -921,7 +921,7 @@ public class CS2PivotConversion extends AbstractConversion
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(Class<T> pivotClass, EClass pivotEClass, PackageCS csElement) {
 		Object pivotObject = csElement.getPivot();
 		if (pivotObject == null) {
-			String qualifiedName = getQualifiedName(new StringBuffer(), csElement);
+			String qualifiedName = getQualifiedName(new StringBuilder(), csElement);
 			pivotObject = oldPackagesByQualifiedName.get(qualifiedName);
 		}
 		String name = csElement.getName();
@@ -1352,7 +1352,7 @@ public class CS2PivotConversion extends AbstractConversion
 				break;
 			}
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (String line : strings) {
 			String trimmedLine = line.trim();
 			if (!isFormatted) {

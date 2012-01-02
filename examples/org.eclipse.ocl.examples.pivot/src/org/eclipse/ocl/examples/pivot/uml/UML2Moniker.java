@@ -67,7 +67,7 @@ public class UML2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	 */
 	protected boolean fullSignature;	
 
-	private StringBuffer s = new StringBuffer();
+	private StringBuilder s = new StringBuilder();
 	private List<ETypeParameter> emittedParameters = null;
 	
 	protected UML2Moniker(boolean fullSignature) {

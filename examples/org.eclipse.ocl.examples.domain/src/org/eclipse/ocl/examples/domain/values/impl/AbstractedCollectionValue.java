@@ -84,13 +84,13 @@ public abstract class AbstractedCollectionValue
 
 	@Override
 	public String toString() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		toString(s, 100);
 		return s.toString();
 	}
 
 	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
+	public void toString(StringBuilder s, int lengthLimit) {
 		s.append("{");
 		boolean isFirst = true;
 		for (Value element : this) {

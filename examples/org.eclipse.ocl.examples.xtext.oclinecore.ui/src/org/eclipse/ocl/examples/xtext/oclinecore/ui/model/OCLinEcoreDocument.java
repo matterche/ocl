@@ -59,7 +59,7 @@ public class OCLinEcoreDocument extends BaseDocument
 	protected void checkForErrors(Resource resource) throws CoreException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			for (Resource.Diagnostic diagnostic : errors) {
 				s.append("\n");
 				s.append(diagnostic.toString());

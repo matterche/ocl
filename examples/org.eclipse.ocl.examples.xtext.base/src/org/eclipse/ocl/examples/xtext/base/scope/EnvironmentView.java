@@ -422,7 +422,7 @@ public class EnvironmentView
 
 	@Override
 	public String toString() {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		if (reference != null) {
 			s.append(reference.getName());
 			s.append(" : "); //$NON-NLS-1$

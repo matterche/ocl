@@ -64,7 +64,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	 */
 	protected boolean fullSignature;	
 
-	private StringBuffer s = new StringBuffer();
+	private StringBuilder s = new StringBuilder();
 	private List<ETypeParameter> emittedParameters = null;
 	
 	protected Ecore2Moniker(boolean fullSignature) {

@@ -158,7 +158,7 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 			}
 			int newPendingCount = uninstalledInheritances.size();
 			if (newPendingCount >= oldPendingCount) {
-				StringBuffer s = new StringBuffer();
+				StringBuilder s = new StringBuilder();
 				s.append("Inheritance loop for "); //$NON-NLS-1$
 				for (ListIterator<ReflectiveExecutorType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
 					ReflectiveExecutorType uninstalledInheritance = it.next();

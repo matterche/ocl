@@ -157,7 +157,7 @@ public class OCLConsolePage
             Tuple<?, Object> tuple = (Tuple<?, Object>) object;
 			TupleType<?, ?> tupleType = tuple.getTupleType();
 			
-			StringBuffer result = new StringBuffer();
+			StringBuilder result = new StringBuilder();
 			result.append("Tuple{");//$NON-NLS-1$
 			
 			for (Iterator<?> iter = tupleType.oclProperties().iterator();
