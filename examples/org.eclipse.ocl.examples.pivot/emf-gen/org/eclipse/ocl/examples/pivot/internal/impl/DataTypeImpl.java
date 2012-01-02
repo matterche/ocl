@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -437,5 +440,11 @@ public class DataTypeImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitDataType(this);
+	}
+
+	@Override
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		DomainType behavioralType = getBehavioralType();
+		return standardLibrary.getInheritance(behavioralType != null ? behavioralType : this);
 	}
 } //DataTypeImpl

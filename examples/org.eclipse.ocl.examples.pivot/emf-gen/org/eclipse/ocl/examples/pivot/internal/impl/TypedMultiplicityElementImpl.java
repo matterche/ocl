@@ -22,15 +22,27 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.Value;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
+import org.eclipse.ocl.examples.library.executor.ExecutorType;
+import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies;
 
 /**
  * <!-- begin-user-doc -->
@@ -286,6 +298,50 @@ public abstract class TypedMultiplicityElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean CompatibleBody(ValueSpecification bodySpecification)
+	{
+		/*
+		let bodyType : Type = bodySpecification.type
+		in
+		  if bodyType.oclIsKindOf(CollectionType)
+		  then
+		    let
+		      bodyCollectionType : CollectionType = bodyType.oclAsType(CollectionType)
+		    in
+		      let bodyElementType : Type = bodyCollectionType.elementType
+		      in
+		        bodyElementType.conformsTo(self.type) and self.isOrdered =
+		        (
+		          bodyCollectionType.oclIsKindOf(OrderedSetType) or
+		          bodyCollectionType.oclIsKindOf(SequenceType)
+		        ) and self.isUnique =
+		        (
+		          bodyCollectionType.oclIsKindOf(OrderedSetType) or
+		          bodyCollectionType.oclIsKindOf(SetType)
+		        )
+		  else bodyType.conformsTo(self.type)
+		  endif
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = TypedMultiplicityElementBodies._CompatibleBody_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(bodySpecification));
+			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies", e);
+		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -524,6 +580,8 @@ public abstract class TypedMultiplicityElementImpl
 				return includesCardinality((BigInteger)arguments.get(0));
 			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT:
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
+			case PivotPackage.TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

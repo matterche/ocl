@@ -522,6 +522,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_3.setIsComposite(true);
 			symbol_3.setIsResolveProxies(true);
+			symbol_3.setOpposite(symbol_58);
 			
 			symbol_1.getOwnedAttributes().add(symbol_3);
 		}
@@ -546,7 +547,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_5.setIsOrdered(true);
 			
 			symbol_5.setIsResolveProxies(true);
-			symbol_5.setOpposite(symbol_58);
 			
 			symbol_1.getOwnedAttributes().add(symbol_5);
 		}
@@ -1337,6 +1337,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_82.setIsComposite(true);
 			symbol_82.setIsResolveProxies(true);
+			symbol_82.setOpposite(symbol_143);
 			
 			symbol_81.getOwnedAttributes().add(symbol_82);
 		}
@@ -1355,7 +1356,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_84.setIsComposite(true);
 			symbol_84.setIsResolveProxies(true);
-			symbol_84.setOpposite(symbol_143);
 			
 			symbol_81.getOwnedAttributes().add(symbol_84);
 		}
@@ -1485,7 +1485,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_100.setUpper(BigInteger.valueOf(-1));
 			
 			symbol_100.setIsResolveProxies(true);
-			symbol_100.setOpposite(symbol_274);
 			
 			symbol_98.getOwnedAttributes().add(symbol_100);
 		}
@@ -1494,6 +1493,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_101.setType(symbol_270);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
 			
 			symbol_101.setIsResolveProxies(true);
+			symbol_101.setOpposite(symbol_274);
 			
 			symbol_98.getOwnedAttributes().add(symbol_101);
 		}
@@ -2812,6 +2812,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_211.setUpper(BigInteger.valueOf(-1));
 			
 			symbol_211.setIsResolveProxies(true);
+			symbol_211.setOpposite(symbol_197);
 			
 			symbol_195.getOwnedAttributes().add(symbol_211);
 		}
@@ -2821,7 +2822,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_212.setLower(BigInteger.valueOf(0));
 			
 			symbol_212.setIsResolveProxies(true);
-			symbol_212.setOpposite(symbol_197);
 			{
 				Comment symbol_394 = PivotFactory.eINSTANCE.createComment();
 				symbol_394.setBody("Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.");
@@ -3200,7 +3200,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_248.setType(symbol_182);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
 			
 			symbol_248.setIsResolveProxies(true);
-			symbol_248.setOpposite(symbol_184);
 			{
 				Comment symbol_408 = PivotFactory.eINSTANCE.createComment();
 				symbol_408.setBody("The element that is the actual parameter for this substitution.");
@@ -3230,6 +3229,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_250.setIsComposite(true);
 			symbol_250.setIsResolveProxies(true);
+			symbol_250.setOpposite(symbol_184);
 			{
 				Comment symbol_410 = PivotFactory.eINSTANCE.createComment();
 				symbol_410.setBody("The actual parameter that is owned by this substitution.");
@@ -3777,6 +3777,20 @@ public class OclMetaModel extends XMLResourceImpl
 		symbol_293.setName("TypedMultiplicityElement");
 		symbol_293.getSuperClasses().add(symbol_291); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
 		symbol_293.getSuperClasses().add(symbol_120); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
+		{	// Pivot.ecore::pivot::TypedMultiplicityElement::CompatibleBody()
+			Operation symbol_431 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)
+			symbol_431.setName("CompatibleBody");
+			symbol_431.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
+			
+			Parameter symbol_432 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)!bodySpecification
+			symbol_432.setName("bodySpecification");
+			symbol_432.setType(symbol_301);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
+			
+			
+			symbol_431.getOwnedParameters().add(symbol_432);
+			
+			symbol_293.getOwnedOperations().add(symbol_431);
+		}
 		
 		symbol_0.getOwnedTypes().add(symbol_293); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
 		//
@@ -3843,87 +3857,87 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_301.getOwnedAttributes().add(symbol_302);
 		}
 		{	// Pivot.ecore::pivot::ValueSpecification::booleanValue()
-			Operation symbol_431 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
-			symbol_431.setName("booleanValue");
-			symbol_431.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_432 = PivotFactory.eINSTANCE.createComment();
-				symbol_432.setBody("The query booleanValue() gives a single Boolean value when one can be computed.");
-				symbol_431.getOwnedComments().add(symbol_432);
-			}
-			
-			symbol_301.getOwnedOperations().add(symbol_431);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::integerValue()
-			Operation symbol_433 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
-			symbol_433.setName("integerValue");
-			symbol_433.setType(symbol_86);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
+			Operation symbol_433 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
+			symbol_433.setName("booleanValue");
+			symbol_433.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_434 = PivotFactory.eINSTANCE.createComment();
-				symbol_434.setBody("The query integerValue() gives a single Integer value when one can be computed.");
+				symbol_434.setBody("The query booleanValue() gives a single Boolean value when one can be computed.");
 				symbol_433.getOwnedComments().add(symbol_434);
 			}
 			
 			symbol_301.getOwnedOperations().add(symbol_433);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isComputable()
-			Operation symbol_435 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
-			symbol_435.setName("isComputable");
-			symbol_435.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
+		{	// Pivot.ecore::pivot::ValueSpecification::integerValue()
+			Operation symbol_435 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
+			symbol_435.setName("integerValue");
+			symbol_435.setType(symbol_86);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
 			
 			{
 				Comment symbol_436 = PivotFactory.eINSTANCE.createComment();
-				symbol_436.setBody("The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
+				symbol_436.setBody("The query integerValue() gives a single Integer value when one can be computed.");
 				symbol_435.getOwnedComments().add(symbol_436);
 			}
 			
 			symbol_301.getOwnedOperations().add(symbol_435);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isNull()
-			Operation symbol_437 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
-			symbol_437.setName("isNull");
+		{	// Pivot.ecore::pivot::ValueSpecification::isComputable()
+			Operation symbol_437 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
+			symbol_437.setName("isComputable");
 			symbol_437.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_438 = PivotFactory.eINSTANCE.createComment();
-				symbol_438.setBody("The query isNull() returns true when it can be computed that the value is null.");
+				symbol_438.setBody("The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
 				symbol_437.getOwnedComments().add(symbol_438);
 			}
 			
 			symbol_301.getOwnedOperations().add(symbol_437);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::stringValue()
-			Operation symbol_439 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
-			symbol_439.setName("stringValue");
-			symbol_439.setType(symbol_232);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
+		{	// Pivot.ecore::pivot::ValueSpecification::isNull()
+			Operation symbol_439 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
+			symbol_439.setName("isNull");
+			symbol_439.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_440 = PivotFactory.eINSTANCE.createComment();
-				symbol_440.setBody("The query stringValue() gives a single String value when one can be computed.");
+				symbol_440.setBody("The query isNull() returns true when it can be computed that the value is null.");
 				symbol_439.getOwnedComments().add(symbol_440);
 			}
 			
 			symbol_301.getOwnedOperations().add(symbol_439);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::unlimitedValue()
-			Operation symbol_441 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
-			symbol_441.setName("unlimitedValue");
-			symbol_441.setType(symbol_294);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
+		{	// Pivot.ecore::pivot::ValueSpecification::stringValue()
+			Operation symbol_441 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
+			symbol_441.setName("stringValue");
+			symbol_441.setType(symbol_232);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
 			
 			{
 				Comment symbol_442 = PivotFactory.eINSTANCE.createComment();
-				symbol_442.setBody("The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
+				symbol_442.setBody("The query stringValue() gives a single String value when one can be computed.");
 				symbol_441.getOwnedComments().add(symbol_442);
 			}
 			
 			symbol_301.getOwnedOperations().add(symbol_441);
 		}
+		{	// Pivot.ecore::pivot::ValueSpecification::unlimitedValue()
+			Operation symbol_443 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
+			symbol_443.setName("unlimitedValue");
+			symbol_443.setType(symbol_294);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
+			
+			{
+				Comment symbol_444 = PivotFactory.eINSTANCE.createComment();
+				symbol_444.setBody("The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
+				symbol_443.getOwnedComments().add(symbol_444);
+			}
+			
+			symbol_301.getOwnedOperations().add(symbol_443);
+		}
 		{
-			Comment symbol_443 = PivotFactory.eINSTANCE.createComment();
-			symbol_443.setBody("A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			symbol_301.getOwnedComments().add(symbol_443);
+			Comment symbol_445 = PivotFactory.eINSTANCE.createComment();
+			symbol_445.setBody("A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			symbol_301.getOwnedComments().add(symbol_445);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_301); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification

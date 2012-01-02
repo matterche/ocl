@@ -1,7 +1,7 @@
 import 'Pivot.ecore'
 
 context Constraint
-inv UniqueName: context.ownedRule->excluding(self).name->excludes(self.name)
+inv UniqueName: context.ownedRule->excluding(self)->forAll(name <> self.name or stereotype <> self.stereotype)
 
 context Element
 def: allOwnedElements() : Set(Element) =
@@ -10,9 +10,40 @@ oclContents()
 
 context ParameterableElement
 def: isCompatibleWith(p : ParameterableElement) : Boolean =
-p->oclIsKindOf(self.oclType())
+p.oclIsKindOf(self.oclType())
 
 context Property
 def: isAttribute(p : Property) : Boolean =
 --Type.allInstances()->exists(c| c.ownedAttribute->includes(p))
 let container : ocl::OclElement = oclContainer() in container.oclIsKindOf(Type) and container.oclAsType(Type).ownedAttribute->includes(self)
+
+--inv DerivedIsInitialised: isDerived implies ownedRule->one(stereotype = 'derivation') or ownedRule->one(stereotype = 'initial')
+
+inv CompatibleInitialiser: isDerived implies
+	let derivedConstraint : Constraint = ownedRule->any(stereotype = 'derivation') in
+	let initialConstraint : Constraint = ownedRule->any(stereotype = 'initial') in
+	let derivedSpecification : ValueSpecification = if derivedConstraint <> null then derivedConstraint.specification else null endif in
+	let initialSpecification : ValueSpecification = if initialConstraint <> null then initialConstraint.specification else null endif in
+	let initialiser: ValueSpecification = if derivedSpecification <> null then derivedSpecification else initialSpecification endif in
+	initialiser <> null and initialiser.oclIsKindOf(ExpressionInOcl) implies CompatibleBody(initialiser)
+
+context Operation
+inv CompatibleReturn:
+	let bodyConstraint : Constraint = ownedRule->any(stereotype = 'body') in
+	bodyConstraint <> null implies
+	let bodySpecification : ValueSpecification = bodyConstraint.specification in
+	bodySpecification <> null and bodySpecification.oclIsKindOf(ExpressionInOcl) implies CompatibleBody(bodySpecification)
+
+context TypedMultiplicityElement
+def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
+	let bodyType : Type = bodySpecification.type in
+	if bodyType.oclIsKindOf(CollectionType) then
+		let bodyCollectionType : CollectionType = bodyType.oclAsType(CollectionType) in
+		let bodyElementType : Type = bodyCollectionType.elementType in
+		bodyElementType.conformsTo(self.type)
+		and self.isOrdered = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SequenceType))
+		and self.isUnique = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SetType))
+	else
+		bodyType.conformsTo(self.type)
+	endif
+

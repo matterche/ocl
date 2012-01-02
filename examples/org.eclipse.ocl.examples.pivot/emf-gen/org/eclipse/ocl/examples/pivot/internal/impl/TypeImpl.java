@@ -17,11 +17,7 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,12 +34,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
+import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
-import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
@@ -53,7 +49,6 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
@@ -64,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -476,7 +470,7 @@ public class TypeImpl
 	public boolean isCompatibleWith(ParameterableElement p)
 	{
 		/*
-		p->oclIsKindOf(self.oclType())
+		p.oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -1060,65 +1054,40 @@ public class TypeImpl
 	}
 	
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		return metaModelManager.conformsTo(this, metaModelManager.getType(type), null);
-	}
-	
-	protected List<Operation> findOperations(MetaModelManager metaModelManager, Type forType, String requiredOperationName, IndexableIterable<? extends DomainType> requiredParameterTypes, Set<Type> alreadyVisited) {
-		alreadyVisited.add(forType);
-		int iMax = requiredParameterTypes.size();
-		for (Operation candidateOperation : metaModelManager.getLocalOperations(forType, Boolean.FALSE)) {
-			if (requiredOperationName.equals(candidateOperation.getName())) {
-				List<Parameter> ownedParameters = candidateOperation.getOwnedParameters();
-				if (ownedParameters.size() == iMax) {
-					boolean gotIt = true;
-					for (int i = 0; i < iMax; i++) {
-						Parameter candidateParameter = ownedParameters.get(i);
-						Type candidateParameterType = candidateParameter.getType();
-						DomainType requiredParameterType = requiredParameterTypes.get(i);
-						if (!candidateParameterType.isEqualTo(metaModelManager, requiredParameterType)) {
-							gotIt = false;
-							break;
-						}
-					}
-					if (gotIt) {
-						ArrayList<Operation> result = new ArrayList<Operation>();
-						result.add(candidateOperation);
-						return result;
-					}
-				}
-			}
-		}
-		List<Operation> results = null;
-		for (Type superType : metaModelManager.getSuperClasses(forType)) {
-			if (!alreadyVisited.contains(superType)) {
-				List<Operation> partialResults = findOperations(metaModelManager, superType, requiredOperationName, requiredParameterTypes, alreadyVisited);
-				if (results == null) {
-					results = partialResults;
-				}
-				else if (partialResults != null) {
-					results.addAll(partialResults);
-				}
-			}
-		}
-		return results;
+		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		return thisInheritance.isSubInheritanceOf(thatInheritance);
 	}
 
 	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		return metaModelManager.getCommonType(this, metaModelManager.getType(type), null);
+		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		return thisInheritance.getCommonInheritance(thatInheritance);
 	}
 
 	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		return metaModelManager.getInheritance(this);
+		return standardLibrary.getInheritance(this);
+	}
+
+	public Iterable<? extends DomainOperation> getLocalOperations() {
+		return getOwnedOperations();
+	}
+
+	public Iterable<? extends DomainProperty> getLocalProperties() {
+		return getOwnedAttributes();
+	}
+
+	public Iterable<? extends DomainType> getLocalSuperTypes() {
+		return getSuperClasses();
 	}
 
 	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
-		return false;
+		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		return thisInheritance == thatInheritance;
 	}
 
 	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {
@@ -1136,74 +1105,8 @@ public class TypeImpl
 		return false;
 	}
 
-	public boolean isSuperClassOf(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (this == type) {
-			return true;
-		}
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		return metaModelManager.isSuperClassOf(this, metaModelManager.getType(type));
+	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) {
+		DomainInheritance inheritance = getInheritance(standardLibrary);
+		return inheritance.lookupImplementation(standardLibrary, staticOperation);
 	}
-
-	public boolean isSuperInheritanceOf(DomainStandardLibrary standardLibrary, DomainInheritance inheritance) {
-		return isSuperClassOf(standardLibrary, inheritance.getType());
-	}
-
-	public LibraryFeature lookupImplementation(DomainStandardLibrary standardLibrary, DomainOperation staticOperation) throws InvalidValueException {
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		DomainOperation dynamicOperation = staticOperation;
-		if (!staticOperation.isStatic()) {
-			String requiredOperationName = staticOperation.getName();
-			IndexableIterable<? extends DomainType> requiredParameterTypes = staticOperation.getParameterTypes();
-			List<Operation> partialResults = findOperations(metaModelManager, this, requiredOperationName, requiredParameterTypes, new HashSet<Type>());
-			dynamicOperation = resolveDuplicates(metaModelManager, partialResults);
-		}
-		try {
-			return metaModelManager.lookupImplementation(dynamicOperation);
-		} catch (Exception e) {
-			throw new InvalidValueException(e);
-		}
-	}
-
-	public DomainOperation lookupOperation(DomainStandardLibrary standardLibrary, String operationName, DomainType... argumentTypes) {
-		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-		if (argumentTypes == null) {
-			return metaModelManager.resolveOperation(this, operationName);
-		}
-		else if (argumentTypes.length == 1) {
-			return metaModelManager.resolveOperation(this, operationName, metaModelManager.getType(argumentTypes[0]));
-		}
-		else {
-			Type[] types = new Type[argumentTypes.length];
-			for (int i = 0; i < argumentTypes.length; i++) {
-				types[i] = metaModelManager.getType(argumentTypes[i]);
-			}
-			return metaModelManager.resolveOperation(this, operationName, types);
-		}
-	}
-	
-	protected Operation resolveDuplicates(DomainStandardLibrary standardLibrary, List<Operation> operations) {
-		if (operations == null) {
-			return null;
-		}
-		int iSize = operations.size();
-		if (iSize <= 0) {
-			return null;
-		}
-		Operation bestOperation = operations.get(0);
-		Type bestType = bestOperation.getOwningType();
-		for (int i = 1; i < iSize; i++) {
-			Operation candidateOperation = operations.get(i);
-			Type candidateType = candidateOperation.getOwningType();
-			if (candidateType.conformsTo(standardLibrary, bestType)) {
-				bestType = candidateType;
-				bestOperation = candidateOperation;
-			}
-		}
-		return bestOperation;
-	}
-
-//	public DomainType specializeType(DomainStandardLibrary standardLibrary, Map<TemplateParameter, ParameterableElement> bindings) {
-//		MetaModelManager metaModelManager = MetaModelManager.getMetaModelManager(standardLibrary);
-//		return metaModelManager.getSpecializedType(this, bindings);
-//	}
 } //TypeImpl

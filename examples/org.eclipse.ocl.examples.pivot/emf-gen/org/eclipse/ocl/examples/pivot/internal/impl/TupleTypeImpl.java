@@ -17,6 +17,9 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -56,5 +59,11 @@ public class TupleTypeImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitTupleType(this);
+	}
+
+	@Override
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		DomainType tupleType = standardLibrary.getOclTupleType();
+		return tupleType.getInheritance(standardLibrary);
 	}
 } //TupleTypeImpl

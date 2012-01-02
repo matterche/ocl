@@ -19,9 +19,13 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
@@ -30,12 +34,16 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
@@ -52,9 +60,12 @@ import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
 import org.eclipse.ocl.examples.pivot.bodies.PropertyBodies;
+import org.eclipse.ocl.examples.pivot.util.PivotValidator;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -899,7 +910,7 @@ public class PropertyImpl
 	public boolean isCompatibleWith(ParameterableElement p)
 	{
 		/*
-		p->oclIsKindOf(self.oclType())
+		p.oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
@@ -939,6 +950,66 @@ public class PropertyImpl
 			final DomainType returnType = T_Boolean;
 			final Value result = PropertyBodies._isAttribute_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(p));
 			return (Boolean) valueFactory.getEcoreValueOf(result);
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.PropertyBodies", e);
+		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompatibleInitialiser(DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		/*
+		isDerived implies
+		let
+		  derivedConstraint : Constraint = ownedRule->any(stereotype = 'derivation')
+		in
+		  let
+		    initialConstraint : Constraint = ownedRule->any(stereotype = 'initial')
+		  in
+		    let
+		      derivedSpecification : ValueSpecification = if derivedConstraint <> null
+		      then derivedConstraint.specification
+		      else null
+		      endif
+		    in
+		      let
+		        initialSpecification : ValueSpecification = if initialConstraint <> null
+		        then initialConstraint.specification
+		        else null
+		        endif
+		      in
+		        let
+		          initialiser : ValueSpecification = if derivedSpecification <> null
+		          then derivedSpecification
+		          else initialSpecification
+		          endif
+		        in initialiser <> null and
+		          initialiser.oclIsKindOf(ExpressionInOcl) implies
+		          CompatibleBody(initialiser)
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = PropertyBodies._invariant_CompatibleInitialiser.INSTANCE.evaluate(evaluator, returnType, self);
+			final boolean resultIsNull = result.isNull();
+			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
+				return true;
+			}
+			if (diagnostics != null) {
+				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "CompatibleInitialiser", EObjectValidator.getObjectLabel(this, context));
+			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.PROPERTY__COMPATIBLE_INITIALISER, message, new Object [] { this }));
+			}
+			return false;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.PropertyBodies", e);
 		}
@@ -1433,6 +1504,7 @@ public class PropertyImpl
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
@@ -1449,12 +1521,16 @@ public class PropertyImpl
 				return includesCardinality((BigInteger)arguments.get(0));
 			case PivotPackage.PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT:
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
+			case PivotPackage.PROPERTY___COMPATIBLE_BODY__VALUESPECIFICATION:
+				return CompatibleBody((ValueSpecification)arguments.get(0));
 			case PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
 			case PivotPackage.PROPERTY___IS_ATTRIBUTE__PROPERTY:
 				return isAttribute((Property)arguments.get(0));
+			case PivotPackage.PROPERTY___VALIDATE_COMPATIBLE_INITIALISER__DIAGNOSTICCHAIN_MAP:
+				return validateCompatibleInitialiser((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
@@ -1472,5 +1548,9 @@ public class PropertyImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitProperty(this);
+	}
+
+	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
+		return standardLibrary.getInheritance(getOwningType());
 	}
 } //PropertyImpl

@@ -288,1017 +288,1017 @@ public class PivotTables
 	 *	The fragment descriptors for the local elements of each type and its supertypes.
 	 */
 	public static class Fragments {
-		public static final ExecutorFragment _Annotation__Annotation = new ExecutorFragment(Types._Annotation, PivotTables.Types._Annotation, null, null);
-		public static final ExecutorFragment _Annotation__Element = new ExecutorFragment(Types._Annotation, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Annotation__Nameable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Annotation__NamedElement = new ExecutorFragment(Types._Annotation, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Annotation__OclAny = new ExecutorFragment(Types._Annotation, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Annotation__OclElement = new ExecutorFragment(Types._Annotation, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Annotation__Visitable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _AnyType__AnyType = new ExecutorFragment(Types._AnyType, PivotTables.Types._AnyType, null, null);
-		public static final ExecutorFragment _AnyType__Class = new ExecutorFragment(Types._AnyType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _AnyType__Element = new ExecutorFragment(Types._AnyType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _AnyType__Nameable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _AnyType__NamedElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _AnyType__Namespace = new ExecutorFragment(Types._AnyType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _AnyType__OclAny = new ExecutorFragment(Types._AnyType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _AnyType__OclElement = new ExecutorFragment(Types._AnyType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _AnyType__ParameterableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _AnyType__TemplateableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _AnyType__Type = new ExecutorFragment(Types._AnyType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _AnyType__Visitable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociationClass__AssociationClass = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._AssociationClass, null, null);
-		public static final ExecutorFragment _AssociationClass__Class = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _AssociationClass__Element = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _AssociationClass__Nameable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _AssociationClass__NamedElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _AssociationClass__Namespace = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _AssociationClass__OclAny = new ExecutorFragment(Types._AssociationClass, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _AssociationClass__OclElement = new ExecutorFragment(Types._AssociationClass, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _AssociationClass__ParameterableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _AssociationClass__TemplateableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _AssociationClass__Type = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _AssociationClass__Visitable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociationClassCallExp__AssociationClassCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._AssociationClassCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__CallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Element = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__FeatureCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._FeatureCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Nameable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__NamedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__NavigationCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NavigationCallExp, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclAny = new ExecutorFragment(Types._AssociationClassCallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclElement = new ExecutorFragment(Types._AssociationClassCallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__OclExpression = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__TypedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _AssociationClassCallExp__Visitable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _AssociativityKind__AssociativityKind = new ExecutorFragment(Types._AssociativityKind, PivotTables.Types._AssociativityKind, null, null);
-		
-		public static final ExecutorFragment _BagType__BagType = new ExecutorFragment(Types._BagType, PivotTables.Types._BagType, null, null);
-		public static final ExecutorFragment _BagType__Class = new ExecutorFragment(Types._BagType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _BagType__CollectionType = new ExecutorFragment(Types._BagType, PivotTables.Types._CollectionType, null, null);
-		public static final ExecutorFragment _BagType__DataType = new ExecutorFragment(Types._BagType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _BagType__Element = new ExecutorFragment(Types._BagType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _BagType__Nameable = new ExecutorFragment(Types._BagType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _BagType__NamedElement = new ExecutorFragment(Types._BagType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _BagType__Namespace = new ExecutorFragment(Types._BagType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _BagType__OclAny = new ExecutorFragment(Types._BagType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _BagType__OclElement = new ExecutorFragment(Types._BagType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _BagType__ParameterableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _BagType__TemplateableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _BagType__Type = new ExecutorFragment(Types._BagType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _BagType__Visitable = new ExecutorFragment(Types._BagType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, PivotTables.Types._Boolean, null, null);
-		
-		public static final ExecutorFragment _BooleanLiteralExp__BooleanLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._BooleanLiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Element = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__LiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Nameable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__NamedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclAny = new ExecutorFragment(Types._BooleanLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclElement = new ExecutorFragment(Types._BooleanLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__OclExpression = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__TypedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _BooleanLiteralExp__Visitable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CallExp__CallExp = new ExecutorFragment(Types._CallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _CallExp__Element = new ExecutorFragment(Types._CallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CallExp__Nameable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CallExp__NamedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CallExp__OclAny = new ExecutorFragment(Types._CallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CallExp__OclElement = new ExecutorFragment(Types._CallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CallExp__OclExpression = new ExecutorFragment(Types._CallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _CallExp__TypedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _CallExp__Visitable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CallOperationAction__CallOperationAction = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._CallOperationAction, null, null);
-		public static final ExecutorFragment _CallOperationAction__Element = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CallOperationAction__Nameable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CallOperationAction__NamedElement = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CallOperationAction__OclAny = new ExecutorFragment(Types._CallOperationAction, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CallOperationAction__OclElement = new ExecutorFragment(Types._CallOperationAction, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CallOperationAction__Visitable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Types._Class, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _Class__Element = new ExecutorFragment(Types._Class, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Class__Nameable = new ExecutorFragment(Types._Class, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Class__NamedElement = new ExecutorFragment(Types._Class, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Class__Namespace = new ExecutorFragment(Types._Class, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Class__OclElement = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Class__ParameterableElement = new ExecutorFragment(Types._Class, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Class__TemplateableElement = new ExecutorFragment(Types._Class, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Class__Type = new ExecutorFragment(Types._Class, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _Class__Visitable = new ExecutorFragment(Types._Class, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _ClassifierType__Class = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _ClassifierType__ClassifierType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ClassifierType, null, null);
-		public static final ExecutorFragment _ClassifierType__DataType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _ClassifierType__Element = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _ClassifierType__Nameable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _ClassifierType__NamedElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _ClassifierType__Namespace = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _ClassifierType__OclAny = new ExecutorFragment(Types._ClassifierType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _ClassifierType__OclElement = new ExecutorFragment(Types._ClassifierType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _ClassifierType__ParameterableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _ClassifierType__TemplateableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _ClassifierType__Type = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _ClassifierType__Visitable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionItem__CollectionItem = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionItem, null, null);
-		public static final ExecutorFragment _CollectionItem__CollectionLiteralPart = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionItem__Element = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CollectionItem__Nameable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CollectionItem__NamedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionItem__OclAny = new ExecutorFragment(Types._CollectionItem, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CollectionItem__OclElement = new ExecutorFragment(Types._CollectionItem, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CollectionItem__TypedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionItem__Visitable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionKind__CollectionKind = new ExecutorFragment(Types._CollectionKind, PivotTables.Types._CollectionKind, null, null);
-		
-		public static final ExecutorFragment _CollectionLiteralExp__CollectionLiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._CollectionLiteralExp, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Element = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__LiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Nameable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__NamedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclAny = new ExecutorFragment(Types._CollectionLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclElement = new ExecutorFragment(Types._CollectionLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__OclExpression = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__TypedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralExp__Visitable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionLiteralPart__CollectionLiteralPart = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Element = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Nameable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__NamedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__OclAny = new ExecutorFragment(Types._CollectionLiteralPart, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__OclElement = new ExecutorFragment(Types._CollectionLiteralPart, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__TypedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionLiteralPart__Visitable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionRange__CollectionLiteralPart = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionLiteralPart, null, null);
-		public static final ExecutorFragment _CollectionRange__CollectionRange = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionRange, null, null);
-		public static final ExecutorFragment _CollectionRange__Element = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CollectionRange__Nameable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CollectionRange__NamedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionRange__OclAny = new ExecutorFragment(Types._CollectionRange, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CollectionRange__OclElement = new ExecutorFragment(Types._CollectionRange, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CollectionRange__TypedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _CollectionRange__Visitable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _CollectionType__Class = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _CollectionType__CollectionType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._CollectionType, null, null);
-		public static final ExecutorFragment _CollectionType__DataType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _CollectionType__Element = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _CollectionType__Nameable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _CollectionType__NamedElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _CollectionType__Namespace = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _CollectionType__OclAny = new ExecutorFragment(Types._CollectionType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _CollectionType__OclElement = new ExecutorFragment(Types._CollectionType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _CollectionType__ParameterableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _CollectionType__TemplateableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _CollectionType__Type = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _CollectionType__Visitable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Comment__Comment = new ExecutorFragment(Types._Comment, PivotTables.Types._Comment, null, null);
-		public static final ExecutorFragment _Comment__Element = new ExecutorFragment(Types._Comment, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Comment__OclAny = new ExecutorFragment(Types._Comment, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Comment__OclElement = new ExecutorFragment(Types._Comment, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Comment__Visitable = new ExecutorFragment(Types._Comment, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Constraint__Constraint = new ExecutorFragment(Types._Constraint, PivotTables.Types._Constraint, null, null);
-		public static final ExecutorFragment _Constraint__Element = new ExecutorFragment(Types._Constraint, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Constraint__Nameable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Constraint__NamedElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _DataType__Class = new ExecutorFragment(Types._DataType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _DataType__DataType = new ExecutorFragment(Types._DataType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _DataType__Element = new ExecutorFragment(Types._DataType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _DataType__Nameable = new ExecutorFragment(Types._DataType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _DataType__NamedElement = new ExecutorFragment(Types._DataType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _DataType__Namespace = new ExecutorFragment(Types._DataType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _DataType__OclAny = new ExecutorFragment(Types._DataType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _DataType__OclElement = new ExecutorFragment(Types._DataType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _DataType__ParameterableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _DataType__TemplateableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _DataType__Type = new ExecutorFragment(Types._DataType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _DataType__Visitable = new ExecutorFragment(Types._DataType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Detail__Detail = new ExecutorFragment(Types._Detail, PivotTables.Types._Detail, null, null);
-		public static final ExecutorFragment _Detail__Element = new ExecutorFragment(Types._Detail, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Detail__Nameable = new ExecutorFragment(Types._Detail, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Detail__NamedElement = new ExecutorFragment(Types._Detail, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Detail__OclAny = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Detail__OclElement = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Detail__Visitable = new ExecutorFragment(Types._Detail, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Element__Element = new ExecutorFragment(Types._Element, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Element__OclAny = new ExecutorFragment(Types._Element, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Element__OclElement = new ExecutorFragment(Types._Element, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Element__Visitable = new ExecutorFragment(Types._Element, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _EnumLiteralExp__Element = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__EnumLiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._EnumLiteralExp, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__LiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__Nameable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__NamedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclAny = new ExecutorFragment(Types._EnumLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclElement = new ExecutorFragment(Types._EnumLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__OclExpression = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__TypedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _EnumLiteralExp__Visitable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Enumeration__Class = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _Enumeration__DataType = new ExecutorFragment(Types._Enumeration, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _Enumeration__Element = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Enumeration, null, null);
-		public static final ExecutorFragment _Enumeration__Nameable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Enumeration__NamedElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Enumeration__Namespace = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Enumeration__OclElement = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Enumeration__ParameterableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Enumeration__TemplateableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Enumeration__Type = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _Enumeration__Visitable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _EnumerationLiteral__Element = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._EnumerationLiteral, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__Nameable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__NamedElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__OclElement = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _EnumerationLiteral__Visitable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _ExpressionInOcl__Element = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ExpressionInOcl = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ExpressionInOcl, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__Nameable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__NamedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OclAny = new ExecutorFragment(Types._ExpressionInOcl, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OclElement = new ExecutorFragment(Types._ExpressionInOcl, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__OpaqueExpression = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._OpaqueExpression, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ParameterableElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__TypedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__ValueSpecification = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ValueSpecification, null, null);
-		public static final ExecutorFragment _ExpressionInOcl__Visitable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Feature__Element = new ExecutorFragment(Types._Feature, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Feature__Feature = new ExecutorFragment(Types._Feature, PivotTables.Types._Feature, null, null);
-		public static final ExecutorFragment _Feature__MultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Feature__Nameable = new ExecutorFragment(Types._Feature, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Feature__NamedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Feature__OclAny = new ExecutorFragment(Types._Feature, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Feature__OclElement = new ExecutorFragment(Types._Feature, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Feature__TypedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Feature__TypedMultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Feature__Visitable = new ExecutorFragment(Types._Feature, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _FeatureCallExp__CallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Element = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _FeatureCallExp__FeatureCallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._FeatureCallExp, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Nameable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _FeatureCallExp__NamedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclAny = new ExecutorFragment(Types._FeatureCallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclElement = new ExecutorFragment(Types._FeatureCallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__OclExpression = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _FeatureCallExp__TypedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _FeatureCallExp__Visitable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _IfExp__Element = new ExecutorFragment(Types._IfExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _IfExp__IfExp = new ExecutorFragment(Types._IfExp, PivotTables.Types._IfExp, null, null);
-		public static final ExecutorFragment _IfExp__Nameable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _IfExp__NamedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _IfExp__OclAny = new ExecutorFragment(Types._IfExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _IfExp__OclElement = new ExecutorFragment(Types._IfExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _IfExp__OclExpression = new ExecutorFragment(Types._IfExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _IfExp__TypedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _IfExp__Visitable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Int__Int = new ExecutorFragment(Types._Int, PivotTables.Types._Int, null, null);
-		
-		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Types._Integer, PivotTables.Types._Integer, null, null);
-		
-		public static final ExecutorFragment _IntegerLiteralExp__Element = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__IntegerLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._IntegerLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__LiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__Nameable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__NamedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclAny = new ExecutorFragment(Types._IntegerLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclElement = new ExecutorFragment(Types._IntegerLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__OclExpression = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__TypedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _IntegerLiteralExp__Visitable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _InvalidLiteralExp__Element = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__InvalidLiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._InvalidLiteralExp, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__LiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__Nameable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__NamedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclAny = new ExecutorFragment(Types._InvalidLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclElement = new ExecutorFragment(Types._InvalidLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__OclExpression = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__TypedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _InvalidLiteralExp__Visitable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _InvalidType__Class = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _InvalidType__Element = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _InvalidType__InvalidType = new ExecutorFragment(Types._InvalidType, PivotTables.Types._InvalidType, null, null);
-		public static final ExecutorFragment _InvalidType__Nameable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _InvalidType__NamedElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _InvalidType__Namespace = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _InvalidType__OclAny = new ExecutorFragment(Types._InvalidType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _InvalidType__OclElement = new ExecutorFragment(Types._InvalidType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _InvalidType__ParameterableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _InvalidType__TemplateableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _InvalidType__Type = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _InvalidType__Visitable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _IterateExp__CallExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _IterateExp__Element = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _IterateExp__IterateExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._IterateExp, null, null);
-		public static final ExecutorFragment _IterateExp__LoopExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._LoopExp, null, null);
-		public static final ExecutorFragment _IterateExp__Nameable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _IterateExp__NamedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _IterateExp__OclAny = new ExecutorFragment(Types._IterateExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _IterateExp__OclElement = new ExecutorFragment(Types._IterateExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _IterateExp__OclExpression = new ExecutorFragment(Types._IterateExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _IterateExp__TypedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _IterateExp__Visitable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Iteration__Element = new ExecutorFragment(Types._Iteration, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Iteration__Feature = new ExecutorFragment(Types._Iteration, PivotTables.Types._Feature, null, null);
-		public static final ExecutorFragment _Iteration__Iteration = new ExecutorFragment(Types._Iteration, PivotTables.Types._Iteration, null, null);
-		public static final ExecutorFragment _Iteration__MultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Iteration__Nameable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Iteration__NamedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Iteration__Namespace = new ExecutorFragment(Types._Iteration, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Iteration__OclAny = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Iteration__OclElement = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Iteration__Operation = new ExecutorFragment(Types._Iteration, PivotTables.Types._Operation, null, null);
-		public static final ExecutorFragment _Iteration__ParameterableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Iteration__TemplateableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Iteration__TypedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Iteration__TypedMultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Iteration__Visitable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _IteratorExp__CallExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _IteratorExp__Element = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _IteratorExp__IteratorExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._IteratorExp, null, null);
-		public static final ExecutorFragment _IteratorExp__LoopExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._LoopExp, null, null);
-		public static final ExecutorFragment _IteratorExp__Nameable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _IteratorExp__NamedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _IteratorExp__OclAny = new ExecutorFragment(Types._IteratorExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _IteratorExp__OclElement = new ExecutorFragment(Types._IteratorExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _IteratorExp__OclExpression = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _IteratorExp__TypedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _IteratorExp__Visitable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _LambdaType__Class = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _LambdaType__DataType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _LambdaType__Element = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _LambdaType__LambdaType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._LambdaType, null, null);
-		public static final ExecutorFragment _LambdaType__Nameable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _LambdaType__NamedElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _LambdaType__Namespace = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _LambdaType__OclAny = new ExecutorFragment(Types._LambdaType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _LambdaType__OclElement = new ExecutorFragment(Types._LambdaType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _LambdaType__ParameterableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _LambdaType__TemplateableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _LambdaType__Type = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _LambdaType__Visitable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _LetExp__Element = new ExecutorFragment(Types._LetExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _LetExp__LetExp = new ExecutorFragment(Types._LetExp, PivotTables.Types._LetExp, null, null);
-		public static final ExecutorFragment _LetExp__Nameable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _LetExp__NamedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _LetExp__OclAny = new ExecutorFragment(Types._LetExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _LetExp__OclElement = new ExecutorFragment(Types._LetExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _LetExp__OclExpression = new ExecutorFragment(Types._LetExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _LetExp__TypedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _LetExp__Visitable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Library__Element = new ExecutorFragment(Types._Library, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Library__Library = new ExecutorFragment(Types._Library, PivotTables.Types._Library, null, null);
-		public static final ExecutorFragment _Library__Nameable = new ExecutorFragment(Types._Library, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Library__NamedElement = new ExecutorFragment(Types._Library, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Library__Namespace = new ExecutorFragment(Types._Library, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Library__OclAny = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Library__OclElement = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Library__Package = new ExecutorFragment(Types._Library, PivotTables.Types._Package, null, null);
-		public static final ExecutorFragment _Library__TemplateableElement = new ExecutorFragment(Types._Library, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Library__Visitable = new ExecutorFragment(Types._Library, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _LibraryFeature__LibraryFeature = new ExecutorFragment(Types._LibraryFeature, PivotTables.Types._LibraryFeature, null, null);
-		
-		public static final ExecutorFragment _LiteralExp__Element = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _LiteralExp__LiteralExp = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _LiteralExp__Nameable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _LiteralExp__NamedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _LiteralExp__OclAny = new ExecutorFragment(Types._LiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _LiteralExp__OclElement = new ExecutorFragment(Types._LiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _LiteralExp__OclExpression = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _LiteralExp__TypedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _LiteralExp__Visitable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _LoopExp__CallExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _LoopExp__Element = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _LoopExp__LoopExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._LoopExp, null, null);
-		public static final ExecutorFragment _LoopExp__Nameable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _LoopExp__NamedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _LoopExp__OclAny = new ExecutorFragment(Types._LoopExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _LoopExp__OclElement = new ExecutorFragment(Types._LoopExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _LoopExp__OclExpression = new ExecutorFragment(Types._LoopExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _LoopExp__TypedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _LoopExp__Visitable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _MessageExp__Element = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _MessageExp__MessageExp = new ExecutorFragment(Types._MessageExp, PivotTables.Types._MessageExp, null, null);
-		public static final ExecutorFragment _MessageExp__Nameable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _MessageExp__NamedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _MessageExp__OclAny = new ExecutorFragment(Types._MessageExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _MessageExp__OclElement = new ExecutorFragment(Types._MessageExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _MessageExp__OclExpression = new ExecutorFragment(Types._MessageExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _MessageExp__TypedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _MessageExp__Visitable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _MessageType__Element = new ExecutorFragment(Types._MessageType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _MessageType__MessageType = new ExecutorFragment(Types._MessageType, PivotTables.Types._MessageType, null, null);
-		public static final ExecutorFragment _MessageType__Nameable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _MessageType__NamedElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _MessageType__OclAny = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _MessageType__OclElement = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _MessageType__ParameterableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _MessageType__TemplateableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _MessageType__Type = new ExecutorFragment(Types._MessageType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _MessageType__Visitable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _MultiplicityElement__Element = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _MultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _MultiplicityElement__OclAny = new ExecutorFragment(Types._MultiplicityElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _MultiplicityElement__OclElement = new ExecutorFragment(Types._MultiplicityElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _MultiplicityElement__Visitable = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Nameable__Nameable = new ExecutorFragment(Types._Nameable, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Nameable__OclAny = new ExecutorFragment(Types._Nameable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Nameable__OclElement = new ExecutorFragment(Types._Nameable, OCLstdlibTables.Types._OclElement, null, null);
-		
-		public static final ExecutorFragment _NamedElement__Element = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _NamedElement__Nameable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _NamedElement__NamedElement = new ExecutorFragment(Types._NamedElement, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _NamedElement__OclAny = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _NamedElement__OclElement = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _NamedElement__Visitable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Namespace__Element = new ExecutorFragment(Types._Namespace, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Namespace__Nameable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Namespace__NamedElement = new ExecutorFragment(Types._Namespace, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Namespace__Namespace = new ExecutorFragment(Types._Namespace, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Namespace__OclAny = new ExecutorFragment(Types._Namespace, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Namespace__OclElement = new ExecutorFragment(Types._Namespace, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Namespace__Visitable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _NavigationCallExp__CallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Element = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _NavigationCallExp__FeatureCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._FeatureCallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Nameable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _NavigationCallExp__NamedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__NavigationCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NavigationCallExp, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclAny = new ExecutorFragment(Types._NavigationCallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclElement = new ExecutorFragment(Types._NavigationCallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__OclExpression = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _NavigationCallExp__TypedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _NavigationCallExp__Visitable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _NullLiteralExp__Element = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _NullLiteralExp__LiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__Nameable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _NullLiteralExp__NamedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__NullLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NullLiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclAny = new ExecutorFragment(Types._NullLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclElement = new ExecutorFragment(Types._NullLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__OclExpression = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _NullLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _NullLiteralExp__TypedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _NullLiteralExp__Visitable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _NumericLiteralExp__Element = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__LiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__Nameable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__NamedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclAny = new ExecutorFragment(Types._NumericLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclElement = new ExecutorFragment(Types._NumericLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__OclExpression = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__TypedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _NumericLiteralExp__Visitable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Object__Object = new ExecutorFragment(Types._Object, PivotTables.Types._Object, null, null);
-		
-		public static final ExecutorFragment _OclExpression__Element = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _OclExpression__Nameable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _OclExpression__NamedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _OclExpression__OclAny = new ExecutorFragment(Types._OclExpression, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OclExpression__OclElement = new ExecutorFragment(Types._OclExpression, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _OclExpression__OclExpression = new ExecutorFragment(Types._OclExpression, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _OclExpression__TypedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _OclExpression__Visitable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _OpaqueExpression__Element = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _OpaqueExpression__Nameable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _OpaqueExpression__NamedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OclAny = new ExecutorFragment(Types._OpaqueExpression, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OclElement = new ExecutorFragment(Types._OpaqueExpression, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__OpaqueExpression = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._OpaqueExpression, null, null);
-		public static final ExecutorFragment _OpaqueExpression__ParameterableElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__TypedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _OpaqueExpression__ValueSpecification = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ValueSpecification, null, null);
-		public static final ExecutorFragment _OpaqueExpression__Visitable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Operation__Element = new ExecutorFragment(Types._Operation, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Operation__Feature = new ExecutorFragment(Types._Operation, PivotTables.Types._Feature, null, null);
-		public static final ExecutorFragment _Operation__MultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Operation__Nameable = new ExecutorFragment(Types._Operation, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Operation__NamedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Operation__Namespace = new ExecutorFragment(Types._Operation, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Operation__OclAny = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Operation__OclElement = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Operation__Operation = new ExecutorFragment(Types._Operation, PivotTables.Types._Operation, null, null);
-		public static final ExecutorFragment _Operation__ParameterableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Operation__TemplateableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Operation__TypedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Operation__TypedMultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Operation__Visitable = new ExecutorFragment(Types._Operation, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _OperationCallExp__CallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__Element = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _OperationCallExp__FeatureCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._FeatureCallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__Nameable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _OperationCallExp__NamedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclAny = new ExecutorFragment(Types._OperationCallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclElement = new ExecutorFragment(Types._OperationCallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__OclExpression = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _OperationCallExp__OperationCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OperationCallExp, null, null);
-		public static final ExecutorFragment _OperationCallExp__TypedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _OperationCallExp__Visitable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _OperationTemplateParameter__Element = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OclAny = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OclElement = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__OperationTemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._OperationTemplateParameter, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__TemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._TemplateParameter, null, null);
-		public static final ExecutorFragment _OperationTemplateParameter__Visitable = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _OrderedSetType__Class = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _OrderedSetType__CollectionType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._CollectionType, null, null);
-		public static final ExecutorFragment _OrderedSetType__DataType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _OrderedSetType__Element = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _OrderedSetType__Nameable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _OrderedSetType__NamedElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__Namespace = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _OrderedSetType__OclAny = new ExecutorFragment(Types._OrderedSetType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _OrderedSetType__OclElement = new ExecutorFragment(Types._OrderedSetType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__OrderedSetType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._OrderedSetType, null, null);
-		public static final ExecutorFragment _OrderedSetType__ParameterableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__TemplateableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _OrderedSetType__Type = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _OrderedSetType__Visitable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Package__Element = new ExecutorFragment(Types._Package, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Package__Nameable = new ExecutorFragment(Types._Package, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Package__NamedElement = new ExecutorFragment(Types._Package, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Package__Namespace = new ExecutorFragment(Types._Package, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _Package__OclAny = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Package__OclElement = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Package__Package = new ExecutorFragment(Types._Package, PivotTables.Types._Package, null, null);
-		public static final ExecutorFragment _Package__TemplateableElement = new ExecutorFragment(Types._Package, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Package__Visitable = new ExecutorFragment(Types._Package, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _PackageableElement__Element = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _PackageableElement__OclAny = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _PackageableElement__OclElement = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _PackageableElement__PackageableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._PackageableElement, null, null);
-		public static final ExecutorFragment _PackageableElement__ParameterableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _PackageableElement__Visitable = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Parameter__Element = new ExecutorFragment(Types._Parameter, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Parameter__MultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Parameter__Nameable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Parameter__NamedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Parameter__OclAny = new ExecutorFragment(Types._Parameter, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Parameter__OclElement = new ExecutorFragment(Types._Parameter, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Parameter__Parameter = new ExecutorFragment(Types._Parameter, PivotTables.Types._Parameter, null, null);
-		public static final ExecutorFragment _Parameter__TypedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Parameter__TypedMultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Parameter__VariableDeclaration = new ExecutorFragment(Types._Parameter, PivotTables.Types._VariableDeclaration, null, null);
-		public static final ExecutorFragment _Parameter__Visitable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _ParameterableElement__Element = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _ParameterableElement__OclAny = new ExecutorFragment(Types._ParameterableElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _ParameterableElement__OclElement = new ExecutorFragment(Types._ParameterableElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _ParameterableElement__ParameterableElement = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _ParameterableElement__Visitable = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Pivotable__OclAny = new ExecutorFragment(Types._Pivotable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Pivotable__OclElement = new ExecutorFragment(Types._Pivotable, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Pivotable__Pivotable = new ExecutorFragment(Types._Pivotable, PivotTables.Types._Pivotable, null, null);
-		
-		public static final ExecutorFragment _Precedence__Element = new ExecutorFragment(Types._Precedence, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Precedence__Nameable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Precedence__NamedElement = new ExecutorFragment(Types._Precedence, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Precedence__OclAny = new ExecutorFragment(Types._Precedence, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Precedence__OclElement = new ExecutorFragment(Types._Precedence, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Precedence__Precedence = new ExecutorFragment(Types._Precedence, PivotTables.Types._Precedence, null, null);
-		public static final ExecutorFragment _Precedence__Visitable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _PrimitiveLiteralExp__Element = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__LiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__Nameable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__NamedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclAny = new ExecutorFragment(Types._PrimitiveLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclElement = new ExecutorFragment(Types._PrimitiveLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__OclExpression = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__TypedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _PrimitiveLiteralExp__Visitable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _PrimitiveType__Class = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _PrimitiveType__DataType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _PrimitiveType__Element = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _PrimitiveType__Nameable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _PrimitiveType__NamedElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__Namespace = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _PrimitiveType__OclAny = new ExecutorFragment(Types._PrimitiveType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _PrimitiveType__OclElement = new ExecutorFragment(Types._PrimitiveType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__ParameterableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__PrimitiveType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._PrimitiveType, null, null);
-		public static final ExecutorFragment _PrimitiveType__TemplateableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _PrimitiveType__Type = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _PrimitiveType__Visitable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Property__Element = new ExecutorFragment(Types._Property, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Property__Feature = new ExecutorFragment(Types._Property, PivotTables.Types._Feature, null, null);
-		public static final ExecutorFragment _Property__MultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _Property__Nameable = new ExecutorFragment(Types._Property, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Property__NamedElement = new ExecutorFragment(Types._Property, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Property__OclAny = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Property__OclElement = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Property__ParameterableElement = new ExecutorFragment(Types._Property, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Property__Property = new ExecutorFragment(Types._Property, PivotTables.Types._Property, null, null);
-		public static final ExecutorFragment _Property__TypedElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Property__TypedMultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _Property__Visitable = new ExecutorFragment(Types._Property, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _PropertyCallExp__CallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._CallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Element = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _PropertyCallExp__FeatureCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._FeatureCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Nameable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _PropertyCallExp__NamedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__NavigationCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NavigationCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclAny = new ExecutorFragment(Types._PropertyCallExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclElement = new ExecutorFragment(Types._PropertyCallExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__OclExpression = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _PropertyCallExp__PropertyCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._PropertyCallExp, null, null);
-		public static final ExecutorFragment _PropertyCallExp__TypedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _PropertyCallExp__Visitable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, PivotTables.Types._Real, null, null);
-		
-		public static final ExecutorFragment _RealLiteralExp__Element = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _RealLiteralExp__LiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__Nameable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _RealLiteralExp__NamedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclAny = new ExecutorFragment(Types._RealLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclElement = new ExecutorFragment(Types._RealLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__OclExpression = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _RealLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__RealLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._RealLiteralExp, null, null);
-		public static final ExecutorFragment _RealLiteralExp__TypedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _RealLiteralExp__Visitable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _SelfType__Class = new ExecutorFragment(Types._SelfType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _SelfType__Element = new ExecutorFragment(Types._SelfType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _SelfType__Nameable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _SelfType__NamedElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _SelfType__Namespace = new ExecutorFragment(Types._SelfType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _SelfType__OclAny = new ExecutorFragment(Types._SelfType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _SelfType__OclElement = new ExecutorFragment(Types._SelfType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _SelfType__ParameterableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _SelfType__SelfType = new ExecutorFragment(Types._SelfType, PivotTables.Types._SelfType, null, null);
-		public static final ExecutorFragment _SelfType__TemplateableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _SelfType__Type = new ExecutorFragment(Types._SelfType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _SelfType__Visitable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _SendSignalAction__Element = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _SendSignalAction__Nameable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _SendSignalAction__NamedElement = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _SendSignalAction__OclAny = new ExecutorFragment(Types._SendSignalAction, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _SendSignalAction__OclElement = new ExecutorFragment(Types._SendSignalAction, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _SendSignalAction__SendSignalAction = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._SendSignalAction, null, null);
-		public static final ExecutorFragment _SendSignalAction__Visitable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _SequenceType__Class = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _SequenceType__CollectionType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._CollectionType, null, null);
-		public static final ExecutorFragment _SequenceType__DataType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _SequenceType__Element = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _SequenceType__Nameable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _SequenceType__NamedElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _SequenceType__Namespace = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _SequenceType__OclAny = new ExecutorFragment(Types._SequenceType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _SequenceType__OclElement = new ExecutorFragment(Types._SequenceType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _SequenceType__ParameterableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _SequenceType__SequenceType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._SequenceType, null, null);
-		public static final ExecutorFragment _SequenceType__TemplateableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _SequenceType__Type = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _SequenceType__Visitable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _SetType__Class = new ExecutorFragment(Types._SetType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _SetType__CollectionType = new ExecutorFragment(Types._SetType, PivotTables.Types._CollectionType, null, null);
-		public static final ExecutorFragment _SetType__DataType = new ExecutorFragment(Types._SetType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _SetType__Element = new ExecutorFragment(Types._SetType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _SetType__Nameable = new ExecutorFragment(Types._SetType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _SetType__NamedElement = new ExecutorFragment(Types._SetType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _SetType__Namespace = new ExecutorFragment(Types._SetType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _SetType__OclAny = new ExecutorFragment(Types._SetType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _SetType__OclElement = new ExecutorFragment(Types._SetType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _SetType__ParameterableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _SetType__SetType = new ExecutorFragment(Types._SetType, PivotTables.Types._SetType, null, null);
-		public static final ExecutorFragment _SetType__TemplateableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _SetType__Type = new ExecutorFragment(Types._SetType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _SetType__Visitable = new ExecutorFragment(Types._SetType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Signal__Element = new ExecutorFragment(Types._Signal, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Signal__Nameable = new ExecutorFragment(Types._Signal, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Signal__NamedElement = new ExecutorFragment(Types._Signal, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Signal__OclAny = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Signal__OclElement = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Signal__Signal = new ExecutorFragment(Types._Signal, PivotTables.Types._Signal, null, null);
-		public static final ExecutorFragment _Signal__Visitable = new ExecutorFragment(Types._Signal, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _State__Element = new ExecutorFragment(Types._State, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _State__Nameable = new ExecutorFragment(Types._State, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _State__NamedElement = new ExecutorFragment(Types._State, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _State__OclAny = new ExecutorFragment(Types._State, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _State__OclElement = new ExecutorFragment(Types._State, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _State__State = new ExecutorFragment(Types._State, PivotTables.Types._State, null, null);
-		public static final ExecutorFragment _State__Visitable = new ExecutorFragment(Types._State, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _StateExp__Element = new ExecutorFragment(Types._StateExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _StateExp__Nameable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _StateExp__NamedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _StateExp__OclAny = new ExecutorFragment(Types._StateExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _StateExp__OclElement = new ExecutorFragment(Types._StateExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _StateExp__OclExpression = new ExecutorFragment(Types._StateExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _StateExp__StateExp = new ExecutorFragment(Types._StateExp, PivotTables.Types._StateExp, null, null);
-		public static final ExecutorFragment _StateExp__TypedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _StateExp__Visitable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _String__String = new ExecutorFragment(Types._String, PivotTables.Types._String, null, null);
-		
-		public static final ExecutorFragment _StringLiteralExp__Element = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _StringLiteralExp__LiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__Nameable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _StringLiteralExp__NamedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclAny = new ExecutorFragment(Types._StringLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclElement = new ExecutorFragment(Types._StringLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__OclExpression = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _StringLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__StringLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._StringLiteralExp, null, null);
-		public static final ExecutorFragment _StringLiteralExp__TypedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _StringLiteralExp__Visitable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateBinding__Element = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateBinding__OclAny = new ExecutorFragment(Types._TemplateBinding, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateBinding__OclElement = new ExecutorFragment(Types._TemplateBinding, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateBinding__TemplateBinding = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._TemplateBinding, null, null);
-		public static final ExecutorFragment _TemplateBinding__Visitable = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameter__Element = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateParameter__OclAny = new ExecutorFragment(Types._TemplateParameter, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameter__OclElement = new ExecutorFragment(Types._TemplateParameter, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameter__TemplateParameter = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._TemplateParameter, null, null);
-		public static final ExecutorFragment _TemplateParameter__Visitable = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameterSubstitution__Element = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__OclAny = new ExecutorFragment(Types._TemplateParameterSubstitution, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__OclElement = new ExecutorFragment(Types._TemplateParameterSubstitution, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__TemplateParameterSubstitution = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._TemplateParameterSubstitution, null, null);
-		public static final ExecutorFragment _TemplateParameterSubstitution__Visitable = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateParameterType__Element = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Nameable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TemplateParameterType__NamedElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__OclAny = new ExecutorFragment(Types._TemplateParameterType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateParameterType__OclElement = new ExecutorFragment(Types._TemplateParameterType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__ParameterableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__TemplateParameterType = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateParameterType, null, null);
-		public static final ExecutorFragment _TemplateParameterType__TemplateableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Type = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _TemplateParameterType__Visitable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateSignature__Element = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateSignature__OclAny = new ExecutorFragment(Types._TemplateSignature, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateSignature__OclElement = new ExecutorFragment(Types._TemplateSignature, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateSignature__TemplateSignature = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._TemplateSignature, null, null);
-		public static final ExecutorFragment _TemplateSignature__Visitable = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TemplateableElement__Element = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TemplateableElement__OclAny = new ExecutorFragment(Types._TemplateableElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TemplateableElement__OclElement = new ExecutorFragment(Types._TemplateableElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TemplateableElement__TemplateableElement = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _TemplateableElement__Visitable = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Throwable__Throwable = new ExecutorFragment(Types._Throwable, PivotTables.Types._Throwable, null, null);
-		
-		public static final ExecutorFragment _TupleLiteralExp__Element = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__LiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__Nameable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__NamedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclAny = new ExecutorFragment(Types._TupleLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclElement = new ExecutorFragment(Types._TupleLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__OclExpression = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__TupleLiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TupleLiteralExp, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__TypedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralExp__Visitable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TupleLiteralPart__Element = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__Nameable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__NamedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__OclAny = new ExecutorFragment(Types._TupleLiteralPart, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__OclElement = new ExecutorFragment(Types._TupleLiteralPart, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__TupleLiteralPart = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TupleLiteralPart, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__TypedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__VariableDeclaration = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._VariableDeclaration, null, null);
-		public static final ExecutorFragment _TupleLiteralPart__Visitable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TupleType__Class = new ExecutorFragment(Types._TupleType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _TupleType__DataType = new ExecutorFragment(Types._TupleType, PivotTables.Types._DataType, null, null);
-		public static final ExecutorFragment _TupleType__Element = new ExecutorFragment(Types._TupleType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TupleType__Nameable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TupleType__NamedElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TupleType__Namespace = new ExecutorFragment(Types._TupleType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _TupleType__OclAny = new ExecutorFragment(Types._TupleType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TupleType__OclElement = new ExecutorFragment(Types._TupleType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TupleType__ParameterableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _TupleType__TemplateableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _TupleType__TupleType = new ExecutorFragment(Types._TupleType, PivotTables.Types._TupleType, null, null);
-		public static final ExecutorFragment _TupleType__Type = new ExecutorFragment(Types._TupleType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _TupleType__Visitable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Type__Element = new ExecutorFragment(Types._Type, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Type__Nameable = new ExecutorFragment(Types._Type, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Type__NamedElement = new ExecutorFragment(Types._Type, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Type__OclAny = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Type__OclElement = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Type__ParameterableElement = new ExecutorFragment(Types._Type, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _Type__TemplateableElement = new ExecutorFragment(Types._Type, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _Type__Visitable = new ExecutorFragment(Types._Type, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypeExp__Element = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TypeExp__Nameable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TypeExp__NamedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TypeExp__OclAny = new ExecutorFragment(Types._TypeExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TypeExp__OclElement = new ExecutorFragment(Types._TypeExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TypeExp__OclExpression = new ExecutorFragment(Types._TypeExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _TypeExp__TypeExp = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypeExp, null, null);
-		public static final ExecutorFragment _TypeExp__TypedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _TypeExp__Visitable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypeTemplateParameter__Element = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__OclAny = new ExecutorFragment(Types._TypeTemplateParameter, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__OclElement = new ExecutorFragment(Types._TypeTemplateParameter, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__TemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TemplateParameter, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__TypeTemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TypeTemplateParameter, null, null);
-		public static final ExecutorFragment _TypeTemplateParameter__Visitable = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypedElement__Element = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TypedElement__Nameable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TypedElement__NamedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TypedElement__OclAny = new ExecutorFragment(Types._TypedElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TypedElement__OclElement = new ExecutorFragment(Types._TypedElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TypedElement__TypedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _TypedElement__Visitable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _TypedMultiplicityElement__Element = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._MultiplicityElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__Nameable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__NamedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__OclAny = new ExecutorFragment(Types._TypedMultiplicityElement, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__OclElement = new ExecutorFragment(Types._TypedMultiplicityElement, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__TypedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__TypedMultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedMultiplicityElement, null, null);
-		public static final ExecutorFragment _TypedMultiplicityElement__Visitable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, PivotTables.Types._UnlimitedNatural, null, null);
-		
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Element = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__LiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._LiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Nameable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NamedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NumericLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclAny = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclExpression = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._PrimitiveLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__TypedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._UnlimitedNaturalLiteralExp, null, null);
-		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Visitable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnspecifiedType__Class = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Element = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Nameable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _UnspecifiedType__NamedElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Namespace = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _UnspecifiedType__OclAny = new ExecutorFragment(Types._UnspecifiedType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _UnspecifiedType__OclElement = new ExecutorFragment(Types._UnspecifiedType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__ParameterableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__TemplateableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Type = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _UnspecifiedType__UnspecifiedType = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._UnspecifiedType, null, null);
-		public static final ExecutorFragment _UnspecifiedType__Visitable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _UnspecifiedValueExp__Element = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__Nameable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__NamedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclAny = new ExecutorFragment(Types._UnspecifiedValueExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclElement = new ExecutorFragment(Types._UnspecifiedValueExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__OclExpression = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__TypedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__UnspecifiedValueExp = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._UnspecifiedValueExp, null, null);
-		public static final ExecutorFragment _UnspecifiedValueExp__Visitable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _ValueSpecification__Element = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _ValueSpecification__Nameable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _ValueSpecification__NamedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__OclAny = new ExecutorFragment(Types._ValueSpecification, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _ValueSpecification__OclElement = new ExecutorFragment(Types._ValueSpecification, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__ParameterableElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__TypedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _ValueSpecification__ValueSpecification = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ValueSpecification, null, null);
-		public static final ExecutorFragment _ValueSpecification__Visitable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Variable__Element = new ExecutorFragment(Types._Variable, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _Variable__Nameable = new ExecutorFragment(Types._Variable, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _Variable__NamedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _Variable__OclAny = new ExecutorFragment(Types._Variable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Variable__OclElement = new ExecutorFragment(Types._Variable, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Variable__TypedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _Variable__Variable = new ExecutorFragment(Types._Variable, PivotTables.Types._Variable, null, null);
-		public static final ExecutorFragment _Variable__VariableDeclaration = new ExecutorFragment(Types._Variable, PivotTables.Types._VariableDeclaration, null, null);
-		public static final ExecutorFragment _Variable__Visitable = new ExecutorFragment(Types._Variable, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _VariableDeclaration__Element = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _VariableDeclaration__Nameable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _VariableDeclaration__NamedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__OclAny = new ExecutorFragment(Types._VariableDeclaration, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _VariableDeclaration__OclElement = new ExecutorFragment(Types._VariableDeclaration, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__TypedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _VariableDeclaration__VariableDeclaration = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._VariableDeclaration, null, null);
-		public static final ExecutorFragment _VariableDeclaration__Visitable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _VariableExp__Element = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _VariableExp__Nameable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _VariableExp__NamedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _VariableExp__OclAny = new ExecutorFragment(Types._VariableExp, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _VariableExp__OclElement = new ExecutorFragment(Types._VariableExp, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _VariableExp__OclExpression = new ExecutorFragment(Types._VariableExp, PivotTables.Types._OclExpression, null, null);
-		public static final ExecutorFragment _VariableExp__TypedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._TypedElement, null, null);
-		public static final ExecutorFragment _VariableExp__VariableExp = new ExecutorFragment(Types._VariableExp, PivotTables.Types._VariableExp, null, null);
-		public static final ExecutorFragment _VariableExp__Visitable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Visitable__OclAny = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Visitable__OclElement = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Visitable__Visitable = new ExecutorFragment(Types._Visitable, PivotTables.Types._Visitable, null, null);
-		
-		public static final ExecutorFragment _Visitor__OclAny = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _Visitor__OclElement = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _Visitor__Visitor = new ExecutorFragment(Types._Visitor, PivotTables.Types._Visitor, null, null);
-		
-		public static final ExecutorFragment _VoidType__Class = new ExecutorFragment(Types._VoidType, PivotTables.Types._Class, null, null);
-		public static final ExecutorFragment _VoidType__Element = new ExecutorFragment(Types._VoidType, PivotTables.Types._Element, null, null);
-		public static final ExecutorFragment _VoidType__Nameable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Nameable, null, null);
-		public static final ExecutorFragment _VoidType__NamedElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._NamedElement, null, null);
-		public static final ExecutorFragment _VoidType__Namespace = new ExecutorFragment(Types._VoidType, PivotTables.Types._Namespace, null, null);
-		public static final ExecutorFragment _VoidType__OclAny = new ExecutorFragment(Types._VoidType, OCLstdlibTables.Types._OclAny, null, null);
-		public static final ExecutorFragment _VoidType__OclElement = new ExecutorFragment(Types._VoidType, OCLstdlibTables.Types._OclElement, null, null);
-		public static final ExecutorFragment _VoidType__ParameterableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._ParameterableElement, null, null);
-		public static final ExecutorFragment _VoidType__TemplateableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._TemplateableElement, null, null);
-		public static final ExecutorFragment _VoidType__Type = new ExecutorFragment(Types._VoidType, PivotTables.Types._Type, null, null);
-		public static final ExecutorFragment _VoidType__Visitable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Visitable, null, null);
-		public static final ExecutorFragment _VoidType__VoidType = new ExecutorFragment(Types._VoidType, PivotTables.Types._VoidType, null, null);
+		public static final ExecutorFragment _Annotation__Annotation = new ExecutorFragment(Types._Annotation, PivotTables.Types._Annotation);
+		public static final ExecutorFragment _Annotation__Element = new ExecutorFragment(Types._Annotation, PivotTables.Types._Element);
+		public static final ExecutorFragment _Annotation__Nameable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Annotation__NamedElement = new ExecutorFragment(Types._Annotation, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Annotation__OclAny = new ExecutorFragment(Types._Annotation, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Annotation__OclElement = new ExecutorFragment(Types._Annotation, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Annotation__Visitable = new ExecutorFragment(Types._Annotation, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _AnyType__AnyType = new ExecutorFragment(Types._AnyType, PivotTables.Types._AnyType);
+		public static final ExecutorFragment _AnyType__Class = new ExecutorFragment(Types._AnyType, PivotTables.Types._Class);
+		public static final ExecutorFragment _AnyType__Element = new ExecutorFragment(Types._AnyType, PivotTables.Types._Element);
+		public static final ExecutorFragment _AnyType__Nameable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _AnyType__NamedElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _AnyType__Namespace = new ExecutorFragment(Types._AnyType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _AnyType__OclAny = new ExecutorFragment(Types._AnyType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _AnyType__OclElement = new ExecutorFragment(Types._AnyType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _AnyType__ParameterableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _AnyType__TemplateableElement = new ExecutorFragment(Types._AnyType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _AnyType__Type = new ExecutorFragment(Types._AnyType, PivotTables.Types._Type);
+		public static final ExecutorFragment _AnyType__Visitable = new ExecutorFragment(Types._AnyType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _AssociationClass__AssociationClass = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._AssociationClass);
+		public static final ExecutorFragment _AssociationClass__Class = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Class);
+		public static final ExecutorFragment _AssociationClass__Element = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Element);
+		public static final ExecutorFragment _AssociationClass__Nameable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _AssociationClass__NamedElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _AssociationClass__Namespace = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _AssociationClass__OclAny = new ExecutorFragment(Types._AssociationClass, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _AssociationClass__OclElement = new ExecutorFragment(Types._AssociationClass, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _AssociationClass__ParameterableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _AssociationClass__TemplateableElement = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _AssociationClass__Type = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Type);
+		public static final ExecutorFragment _AssociationClass__Visitable = new ExecutorFragment(Types._AssociationClass, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _AssociationClassCallExp__AssociationClassCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._AssociationClassCallExp);
+		public static final ExecutorFragment _AssociationClassCallExp__CallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _AssociationClassCallExp__Element = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _AssociationClassCallExp__FeatureCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._FeatureCallExp);
+		public static final ExecutorFragment _AssociationClassCallExp__Nameable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _AssociationClassCallExp__NamedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _AssociationClassCallExp__NavigationCallExp = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._NavigationCallExp);
+		public static final ExecutorFragment _AssociationClassCallExp__OclAny = new ExecutorFragment(Types._AssociationClassCallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _AssociationClassCallExp__OclElement = new ExecutorFragment(Types._AssociationClassCallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _AssociationClassCallExp__OclExpression = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _AssociationClassCallExp__TypedElement = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _AssociationClassCallExp__Visitable = new ExecutorFragment(Types._AssociationClassCallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _AssociativityKind__AssociativityKind = new ExecutorFragment(Types._AssociativityKind, PivotTables.Types._AssociativityKind);
+		
+		public static final ExecutorFragment _BagType__BagType = new ExecutorFragment(Types._BagType, PivotTables.Types._BagType);
+		public static final ExecutorFragment _BagType__Class = new ExecutorFragment(Types._BagType, PivotTables.Types._Class);
+		public static final ExecutorFragment _BagType__CollectionType = new ExecutorFragment(Types._BagType, PivotTables.Types._CollectionType);
+		public static final ExecutorFragment _BagType__DataType = new ExecutorFragment(Types._BagType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _BagType__Element = new ExecutorFragment(Types._BagType, PivotTables.Types._Element);
+		public static final ExecutorFragment _BagType__Nameable = new ExecutorFragment(Types._BagType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _BagType__NamedElement = new ExecutorFragment(Types._BagType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _BagType__Namespace = new ExecutorFragment(Types._BagType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _BagType__OclAny = new ExecutorFragment(Types._BagType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _BagType__OclElement = new ExecutorFragment(Types._BagType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _BagType__ParameterableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _BagType__TemplateableElement = new ExecutorFragment(Types._BagType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _BagType__Type = new ExecutorFragment(Types._BagType, PivotTables.Types._Type);
+		public static final ExecutorFragment _BagType__Visitable = new ExecutorFragment(Types._BagType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, PivotTables.Types._Boolean);
+		
+		public static final ExecutorFragment _BooleanLiteralExp__BooleanLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._BooleanLiteralExp);
+		public static final ExecutorFragment _BooleanLiteralExp__Element = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _BooleanLiteralExp__LiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _BooleanLiteralExp__Nameable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _BooleanLiteralExp__NamedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _BooleanLiteralExp__OclAny = new ExecutorFragment(Types._BooleanLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _BooleanLiteralExp__OclElement = new ExecutorFragment(Types._BooleanLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _BooleanLiteralExp__OclExpression = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _BooleanLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _BooleanLiteralExp__TypedElement = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _BooleanLiteralExp__Visitable = new ExecutorFragment(Types._BooleanLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CallExp__CallExp = new ExecutorFragment(Types._CallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _CallExp__Element = new ExecutorFragment(Types._CallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _CallExp__Nameable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CallExp__NamedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CallExp__OclAny = new ExecutorFragment(Types._CallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CallExp__OclElement = new ExecutorFragment(Types._CallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CallExp__OclExpression = new ExecutorFragment(Types._CallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _CallExp__TypedElement = new ExecutorFragment(Types._CallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _CallExp__Visitable = new ExecutorFragment(Types._CallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CallOperationAction__CallOperationAction = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._CallOperationAction);
+		public static final ExecutorFragment _CallOperationAction__Element = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Element);
+		public static final ExecutorFragment _CallOperationAction__Nameable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CallOperationAction__NamedElement = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CallOperationAction__OclAny = new ExecutorFragment(Types._CallOperationAction, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CallOperationAction__OclElement = new ExecutorFragment(Types._CallOperationAction, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CallOperationAction__Visitable = new ExecutorFragment(Types._CallOperationAction, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Class__Class = new ExecutorFragment(Types._Class, PivotTables.Types._Class);
+		public static final ExecutorFragment _Class__Element = new ExecutorFragment(Types._Class, PivotTables.Types._Element);
+		public static final ExecutorFragment _Class__Nameable = new ExecutorFragment(Types._Class, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Class__NamedElement = new ExecutorFragment(Types._Class, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Class__Namespace = new ExecutorFragment(Types._Class, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Class__OclAny = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Class__OclElement = new ExecutorFragment(Types._Class, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Class__ParameterableElement = new ExecutorFragment(Types._Class, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Class__TemplateableElement = new ExecutorFragment(Types._Class, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Class__Type = new ExecutorFragment(Types._Class, PivotTables.Types._Type);
+		public static final ExecutorFragment _Class__Visitable = new ExecutorFragment(Types._Class, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _ClassifierType__Class = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Class);
+		public static final ExecutorFragment _ClassifierType__ClassifierType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ClassifierType);
+		public static final ExecutorFragment _ClassifierType__DataType = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _ClassifierType__Element = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Element);
+		public static final ExecutorFragment _ClassifierType__Nameable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _ClassifierType__NamedElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _ClassifierType__Namespace = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _ClassifierType__OclAny = new ExecutorFragment(Types._ClassifierType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ClassifierType__OclElement = new ExecutorFragment(Types._ClassifierType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _ClassifierType__ParameterableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _ClassifierType__TemplateableElement = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _ClassifierType__Type = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Type);
+		public static final ExecutorFragment _ClassifierType__Visitable = new ExecutorFragment(Types._ClassifierType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CollectionItem__CollectionItem = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionItem);
+		public static final ExecutorFragment _CollectionItem__CollectionLiteralPart = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._CollectionLiteralPart);
+		public static final ExecutorFragment _CollectionItem__Element = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Element);
+		public static final ExecutorFragment _CollectionItem__Nameable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CollectionItem__NamedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CollectionItem__OclAny = new ExecutorFragment(Types._CollectionItem, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionItem__OclElement = new ExecutorFragment(Types._CollectionItem, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionItem__TypedElement = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _CollectionItem__Visitable = new ExecutorFragment(Types._CollectionItem, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CollectionKind__CollectionKind = new ExecutorFragment(Types._CollectionKind, PivotTables.Types._CollectionKind);
+		
+		public static final ExecutorFragment _CollectionLiteralExp__CollectionLiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._CollectionLiteralExp);
+		public static final ExecutorFragment _CollectionLiteralExp__Element = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _CollectionLiteralExp__LiteralExp = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _CollectionLiteralExp__Nameable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CollectionLiteralExp__NamedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CollectionLiteralExp__OclAny = new ExecutorFragment(Types._CollectionLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionLiteralExp__OclElement = new ExecutorFragment(Types._CollectionLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionLiteralExp__OclExpression = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _CollectionLiteralExp__TypedElement = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _CollectionLiteralExp__Visitable = new ExecutorFragment(Types._CollectionLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CollectionLiteralPart__CollectionLiteralPart = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._CollectionLiteralPart);
+		public static final ExecutorFragment _CollectionLiteralPart__Element = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Element);
+		public static final ExecutorFragment _CollectionLiteralPart__Nameable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CollectionLiteralPart__NamedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CollectionLiteralPart__OclAny = new ExecutorFragment(Types._CollectionLiteralPart, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionLiteralPart__OclElement = new ExecutorFragment(Types._CollectionLiteralPart, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionLiteralPart__TypedElement = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _CollectionLiteralPart__Visitable = new ExecutorFragment(Types._CollectionLiteralPart, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CollectionRange__CollectionLiteralPart = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionLiteralPart);
+		public static final ExecutorFragment _CollectionRange__CollectionRange = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._CollectionRange);
+		public static final ExecutorFragment _CollectionRange__Element = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Element);
+		public static final ExecutorFragment _CollectionRange__Nameable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CollectionRange__NamedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CollectionRange__OclAny = new ExecutorFragment(Types._CollectionRange, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionRange__OclElement = new ExecutorFragment(Types._CollectionRange, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionRange__TypedElement = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _CollectionRange__Visitable = new ExecutorFragment(Types._CollectionRange, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _CollectionType__Class = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Class);
+		public static final ExecutorFragment _CollectionType__CollectionType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._CollectionType);
+		public static final ExecutorFragment _CollectionType__DataType = new ExecutorFragment(Types._CollectionType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _CollectionType__Element = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Element);
+		public static final ExecutorFragment _CollectionType__Nameable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _CollectionType__NamedElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _CollectionType__Namespace = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _CollectionType__OclAny = new ExecutorFragment(Types._CollectionType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _CollectionType__OclElement = new ExecutorFragment(Types._CollectionType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _CollectionType__ParameterableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _CollectionType__TemplateableElement = new ExecutorFragment(Types._CollectionType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _CollectionType__Type = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Type);
+		public static final ExecutorFragment _CollectionType__Visitable = new ExecutorFragment(Types._CollectionType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Comment__Comment = new ExecutorFragment(Types._Comment, PivotTables.Types._Comment);
+		public static final ExecutorFragment _Comment__Element = new ExecutorFragment(Types._Comment, PivotTables.Types._Element);
+		public static final ExecutorFragment _Comment__OclAny = new ExecutorFragment(Types._Comment, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Comment__OclElement = new ExecutorFragment(Types._Comment, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Comment__Visitable = new ExecutorFragment(Types._Comment, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Constraint__Constraint = new ExecutorFragment(Types._Constraint, PivotTables.Types._Constraint);
+		public static final ExecutorFragment _Constraint__Element = new ExecutorFragment(Types._Constraint, PivotTables.Types._Element);
+		public static final ExecutorFragment _Constraint__Nameable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Constraint__NamedElement = new ExecutorFragment(Types._Constraint, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Constraint__OclAny = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Constraint__OclElement = new ExecutorFragment(Types._Constraint, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Constraint__Visitable = new ExecutorFragment(Types._Constraint, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _DataType__Class = new ExecutorFragment(Types._DataType, PivotTables.Types._Class);
+		public static final ExecutorFragment _DataType__DataType = new ExecutorFragment(Types._DataType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _DataType__Element = new ExecutorFragment(Types._DataType, PivotTables.Types._Element);
+		public static final ExecutorFragment _DataType__Nameable = new ExecutorFragment(Types._DataType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _DataType__NamedElement = new ExecutorFragment(Types._DataType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _DataType__Namespace = new ExecutorFragment(Types._DataType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _DataType__OclAny = new ExecutorFragment(Types._DataType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _DataType__OclElement = new ExecutorFragment(Types._DataType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _DataType__ParameterableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _DataType__TemplateableElement = new ExecutorFragment(Types._DataType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _DataType__Type = new ExecutorFragment(Types._DataType, PivotTables.Types._Type);
+		public static final ExecutorFragment _DataType__Visitable = new ExecutorFragment(Types._DataType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Detail__Detail = new ExecutorFragment(Types._Detail, PivotTables.Types._Detail);
+		public static final ExecutorFragment _Detail__Element = new ExecutorFragment(Types._Detail, PivotTables.Types._Element);
+		public static final ExecutorFragment _Detail__Nameable = new ExecutorFragment(Types._Detail, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Detail__NamedElement = new ExecutorFragment(Types._Detail, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Detail__OclAny = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Detail__OclElement = new ExecutorFragment(Types._Detail, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Detail__Visitable = new ExecutorFragment(Types._Detail, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Element__Element = new ExecutorFragment(Types._Element, PivotTables.Types._Element);
+		public static final ExecutorFragment _Element__OclAny = new ExecutorFragment(Types._Element, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Element__OclElement = new ExecutorFragment(Types._Element, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Element__Visitable = new ExecutorFragment(Types._Element, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _EnumLiteralExp__Element = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _EnumLiteralExp__EnumLiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._EnumLiteralExp);
+		public static final ExecutorFragment _EnumLiteralExp__LiteralExp = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _EnumLiteralExp__Nameable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _EnumLiteralExp__NamedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _EnumLiteralExp__OclAny = new ExecutorFragment(Types._EnumLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _EnumLiteralExp__OclElement = new ExecutorFragment(Types._EnumLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _EnumLiteralExp__OclExpression = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _EnumLiteralExp__TypedElement = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _EnumLiteralExp__Visitable = new ExecutorFragment(Types._EnumLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Enumeration__Class = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Class);
+		public static final ExecutorFragment _Enumeration__DataType = new ExecutorFragment(Types._Enumeration, PivotTables.Types._DataType);
+		public static final ExecutorFragment _Enumeration__Element = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Element);
+		public static final ExecutorFragment _Enumeration__Enumeration = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Enumeration);
+		public static final ExecutorFragment _Enumeration__Nameable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Enumeration__NamedElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Enumeration__Namespace = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Enumeration__OclAny = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Enumeration__OclElement = new ExecutorFragment(Types._Enumeration, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Enumeration__ParameterableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Enumeration__TemplateableElement = new ExecutorFragment(Types._Enumeration, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Enumeration__Type = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Type);
+		public static final ExecutorFragment _Enumeration__Visitable = new ExecutorFragment(Types._Enumeration, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _EnumerationLiteral__Element = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Element);
+		public static final ExecutorFragment _EnumerationLiteral__EnumerationLiteral = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._EnumerationLiteral);
+		public static final ExecutorFragment _EnumerationLiteral__Nameable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _EnumerationLiteral__NamedElement = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _EnumerationLiteral__OclAny = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _EnumerationLiteral__OclElement = new ExecutorFragment(Types._EnumerationLiteral, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _EnumerationLiteral__Visitable = new ExecutorFragment(Types._EnumerationLiteral, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _ExpressionInOcl__Element = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Element);
+		public static final ExecutorFragment _ExpressionInOcl__ExpressionInOcl = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ExpressionInOcl);
+		public static final ExecutorFragment _ExpressionInOcl__Nameable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _ExpressionInOcl__NamedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _ExpressionInOcl__OclAny = new ExecutorFragment(Types._ExpressionInOcl, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ExpressionInOcl__OclElement = new ExecutorFragment(Types._ExpressionInOcl, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _ExpressionInOcl__OpaqueExpression = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._OpaqueExpression);
+		public static final ExecutorFragment _ExpressionInOcl__ParameterableElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _ExpressionInOcl__TypedElement = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _ExpressionInOcl__ValueSpecification = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._ValueSpecification);
+		public static final ExecutorFragment _ExpressionInOcl__Visitable = new ExecutorFragment(Types._ExpressionInOcl, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Feature__Element = new ExecutorFragment(Types._Feature, PivotTables.Types._Element);
+		public static final ExecutorFragment _Feature__Feature = new ExecutorFragment(Types._Feature, PivotTables.Types._Feature);
+		public static final ExecutorFragment _Feature__MultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _Feature__Nameable = new ExecutorFragment(Types._Feature, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Feature__NamedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Feature__OclAny = new ExecutorFragment(Types._Feature, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Feature__OclElement = new ExecutorFragment(Types._Feature, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Feature__TypedElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Feature__TypedMultiplicityElement = new ExecutorFragment(Types._Feature, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _Feature__Visitable = new ExecutorFragment(Types._Feature, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _FeatureCallExp__CallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _FeatureCallExp__Element = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _FeatureCallExp__FeatureCallExp = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._FeatureCallExp);
+		public static final ExecutorFragment _FeatureCallExp__Nameable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _FeatureCallExp__NamedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _FeatureCallExp__OclAny = new ExecutorFragment(Types._FeatureCallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _FeatureCallExp__OclElement = new ExecutorFragment(Types._FeatureCallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _FeatureCallExp__OclExpression = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _FeatureCallExp__TypedElement = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _FeatureCallExp__Visitable = new ExecutorFragment(Types._FeatureCallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _IfExp__Element = new ExecutorFragment(Types._IfExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _IfExp__IfExp = new ExecutorFragment(Types._IfExp, PivotTables.Types._IfExp);
+		public static final ExecutorFragment _IfExp__Nameable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _IfExp__NamedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _IfExp__OclAny = new ExecutorFragment(Types._IfExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _IfExp__OclElement = new ExecutorFragment(Types._IfExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _IfExp__OclExpression = new ExecutorFragment(Types._IfExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _IfExp__TypedElement = new ExecutorFragment(Types._IfExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _IfExp__Visitable = new ExecutorFragment(Types._IfExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Int__Int = new ExecutorFragment(Types._Int, PivotTables.Types._Int);
+		
+		public static final ExecutorFragment _Integer__Integer = new ExecutorFragment(Types._Integer, PivotTables.Types._Integer);
+		
+		public static final ExecutorFragment _IntegerLiteralExp__Element = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _IntegerLiteralExp__IntegerLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._IntegerLiteralExp);
+		public static final ExecutorFragment _IntegerLiteralExp__LiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _IntegerLiteralExp__Nameable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _IntegerLiteralExp__NamedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _IntegerLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._NumericLiteralExp);
+		public static final ExecutorFragment _IntegerLiteralExp__OclAny = new ExecutorFragment(Types._IntegerLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _IntegerLiteralExp__OclElement = new ExecutorFragment(Types._IntegerLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _IntegerLiteralExp__OclExpression = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _IntegerLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _IntegerLiteralExp__TypedElement = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _IntegerLiteralExp__Visitable = new ExecutorFragment(Types._IntegerLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _InvalidLiteralExp__Element = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _InvalidLiteralExp__InvalidLiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._InvalidLiteralExp);
+		public static final ExecutorFragment _InvalidLiteralExp__LiteralExp = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _InvalidLiteralExp__Nameable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _InvalidLiteralExp__NamedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _InvalidLiteralExp__OclAny = new ExecutorFragment(Types._InvalidLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _InvalidLiteralExp__OclElement = new ExecutorFragment(Types._InvalidLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _InvalidLiteralExp__OclExpression = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _InvalidLiteralExp__TypedElement = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _InvalidLiteralExp__Visitable = new ExecutorFragment(Types._InvalidLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _InvalidType__Class = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Class);
+		public static final ExecutorFragment _InvalidType__Element = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Element);
+		public static final ExecutorFragment _InvalidType__InvalidType = new ExecutorFragment(Types._InvalidType, PivotTables.Types._InvalidType);
+		public static final ExecutorFragment _InvalidType__Nameable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _InvalidType__NamedElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _InvalidType__Namespace = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _InvalidType__OclAny = new ExecutorFragment(Types._InvalidType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _InvalidType__OclElement = new ExecutorFragment(Types._InvalidType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _InvalidType__ParameterableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _InvalidType__TemplateableElement = new ExecutorFragment(Types._InvalidType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _InvalidType__Type = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Type);
+		public static final ExecutorFragment _InvalidType__Visitable = new ExecutorFragment(Types._InvalidType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _IterateExp__CallExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _IterateExp__Element = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _IterateExp__IterateExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._IterateExp);
+		public static final ExecutorFragment _IterateExp__LoopExp = new ExecutorFragment(Types._IterateExp, PivotTables.Types._LoopExp);
+		public static final ExecutorFragment _IterateExp__Nameable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _IterateExp__NamedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _IterateExp__OclAny = new ExecutorFragment(Types._IterateExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _IterateExp__OclElement = new ExecutorFragment(Types._IterateExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _IterateExp__OclExpression = new ExecutorFragment(Types._IterateExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _IterateExp__TypedElement = new ExecutorFragment(Types._IterateExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _IterateExp__Visitable = new ExecutorFragment(Types._IterateExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Iteration__Element = new ExecutorFragment(Types._Iteration, PivotTables.Types._Element);
+		public static final ExecutorFragment _Iteration__Feature = new ExecutorFragment(Types._Iteration, PivotTables.Types._Feature);
+		public static final ExecutorFragment _Iteration__Iteration = new ExecutorFragment(Types._Iteration, PivotTables.Types._Iteration);
+		public static final ExecutorFragment _Iteration__MultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _Iteration__Nameable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Iteration__NamedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Iteration__Namespace = new ExecutorFragment(Types._Iteration, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Iteration__OclAny = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Iteration__OclElement = new ExecutorFragment(Types._Iteration, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Iteration__Operation = new ExecutorFragment(Types._Iteration, PivotTables.Types._Operation);
+		public static final ExecutorFragment _Iteration__ParameterableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Iteration__TemplateableElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Iteration__TypedElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Iteration__TypedMultiplicityElement = new ExecutorFragment(Types._Iteration, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _Iteration__Visitable = new ExecutorFragment(Types._Iteration, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _IteratorExp__CallExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _IteratorExp__Element = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _IteratorExp__IteratorExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._IteratorExp);
+		public static final ExecutorFragment _IteratorExp__LoopExp = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._LoopExp);
+		public static final ExecutorFragment _IteratorExp__Nameable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _IteratorExp__NamedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _IteratorExp__OclAny = new ExecutorFragment(Types._IteratorExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _IteratorExp__OclElement = new ExecutorFragment(Types._IteratorExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _IteratorExp__OclExpression = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _IteratorExp__TypedElement = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _IteratorExp__Visitable = new ExecutorFragment(Types._IteratorExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _LambdaType__Class = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Class);
+		public static final ExecutorFragment _LambdaType__DataType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _LambdaType__Element = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Element);
+		public static final ExecutorFragment _LambdaType__LambdaType = new ExecutorFragment(Types._LambdaType, PivotTables.Types._LambdaType);
+		public static final ExecutorFragment _LambdaType__Nameable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _LambdaType__NamedElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _LambdaType__Namespace = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _LambdaType__OclAny = new ExecutorFragment(Types._LambdaType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _LambdaType__OclElement = new ExecutorFragment(Types._LambdaType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _LambdaType__ParameterableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _LambdaType__TemplateableElement = new ExecutorFragment(Types._LambdaType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _LambdaType__Type = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Type);
+		public static final ExecutorFragment _LambdaType__Visitable = new ExecutorFragment(Types._LambdaType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _LetExp__Element = new ExecutorFragment(Types._LetExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _LetExp__LetExp = new ExecutorFragment(Types._LetExp, PivotTables.Types._LetExp);
+		public static final ExecutorFragment _LetExp__Nameable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _LetExp__NamedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _LetExp__OclAny = new ExecutorFragment(Types._LetExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _LetExp__OclElement = new ExecutorFragment(Types._LetExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _LetExp__OclExpression = new ExecutorFragment(Types._LetExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _LetExp__TypedElement = new ExecutorFragment(Types._LetExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _LetExp__Visitable = new ExecutorFragment(Types._LetExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Library__Element = new ExecutorFragment(Types._Library, PivotTables.Types._Element);
+		public static final ExecutorFragment _Library__Library = new ExecutorFragment(Types._Library, PivotTables.Types._Library);
+		public static final ExecutorFragment _Library__Nameable = new ExecutorFragment(Types._Library, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Library__NamedElement = new ExecutorFragment(Types._Library, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Library__Namespace = new ExecutorFragment(Types._Library, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Library__OclAny = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Library__OclElement = new ExecutorFragment(Types._Library, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Library__Package = new ExecutorFragment(Types._Library, PivotTables.Types._Package);
+		public static final ExecutorFragment _Library__TemplateableElement = new ExecutorFragment(Types._Library, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Library__Visitable = new ExecutorFragment(Types._Library, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _LibraryFeature__LibraryFeature = new ExecutorFragment(Types._LibraryFeature, PivotTables.Types._LibraryFeature);
+		
+		public static final ExecutorFragment _LiteralExp__Element = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _LiteralExp__LiteralExp = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _LiteralExp__Nameable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _LiteralExp__NamedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _LiteralExp__OclAny = new ExecutorFragment(Types._LiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _LiteralExp__OclElement = new ExecutorFragment(Types._LiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _LiteralExp__OclExpression = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _LiteralExp__TypedElement = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _LiteralExp__Visitable = new ExecutorFragment(Types._LiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _LoopExp__CallExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _LoopExp__Element = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _LoopExp__LoopExp = new ExecutorFragment(Types._LoopExp, PivotTables.Types._LoopExp);
+		public static final ExecutorFragment _LoopExp__Nameable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _LoopExp__NamedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _LoopExp__OclAny = new ExecutorFragment(Types._LoopExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _LoopExp__OclElement = new ExecutorFragment(Types._LoopExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _LoopExp__OclExpression = new ExecutorFragment(Types._LoopExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _LoopExp__TypedElement = new ExecutorFragment(Types._LoopExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _LoopExp__Visitable = new ExecutorFragment(Types._LoopExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _MessageExp__Element = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _MessageExp__MessageExp = new ExecutorFragment(Types._MessageExp, PivotTables.Types._MessageExp);
+		public static final ExecutorFragment _MessageExp__Nameable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _MessageExp__NamedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _MessageExp__OclAny = new ExecutorFragment(Types._MessageExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _MessageExp__OclElement = new ExecutorFragment(Types._MessageExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _MessageExp__OclExpression = new ExecutorFragment(Types._MessageExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _MessageExp__TypedElement = new ExecutorFragment(Types._MessageExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _MessageExp__Visitable = new ExecutorFragment(Types._MessageExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _MessageType__Element = new ExecutorFragment(Types._MessageType, PivotTables.Types._Element);
+		public static final ExecutorFragment _MessageType__MessageType = new ExecutorFragment(Types._MessageType, PivotTables.Types._MessageType);
+		public static final ExecutorFragment _MessageType__Nameable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _MessageType__NamedElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _MessageType__OclAny = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _MessageType__OclElement = new ExecutorFragment(Types._MessageType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _MessageType__ParameterableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _MessageType__TemplateableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _MessageType__Type = new ExecutorFragment(Types._MessageType, PivotTables.Types._Type);
+		public static final ExecutorFragment _MessageType__Visitable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _MultiplicityElement__Element = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _MultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _MultiplicityElement__OclAny = new ExecutorFragment(Types._MultiplicityElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _MultiplicityElement__OclElement = new ExecutorFragment(Types._MultiplicityElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _MultiplicityElement__Visitable = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Nameable__Nameable = new ExecutorFragment(Types._Nameable, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Nameable__OclAny = new ExecutorFragment(Types._Nameable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Nameable__OclElement = new ExecutorFragment(Types._Nameable, OCLstdlibTables.Types._OclElement);
+		
+		public static final ExecutorFragment _NamedElement__Element = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _NamedElement__Nameable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _NamedElement__NamedElement = new ExecutorFragment(Types._NamedElement, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _NamedElement__OclAny = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _NamedElement__OclElement = new ExecutorFragment(Types._NamedElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _NamedElement__Visitable = new ExecutorFragment(Types._NamedElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Namespace__Element = new ExecutorFragment(Types._Namespace, PivotTables.Types._Element);
+		public static final ExecutorFragment _Namespace__Nameable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Namespace__NamedElement = new ExecutorFragment(Types._Namespace, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Namespace__Namespace = new ExecutorFragment(Types._Namespace, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Namespace__OclAny = new ExecutorFragment(Types._Namespace, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Namespace__OclElement = new ExecutorFragment(Types._Namespace, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Namespace__Visitable = new ExecutorFragment(Types._Namespace, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _NavigationCallExp__CallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _NavigationCallExp__Element = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _NavigationCallExp__FeatureCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._FeatureCallExp);
+		public static final ExecutorFragment _NavigationCallExp__Nameable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _NavigationCallExp__NamedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _NavigationCallExp__NavigationCallExp = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._NavigationCallExp);
+		public static final ExecutorFragment _NavigationCallExp__OclAny = new ExecutorFragment(Types._NavigationCallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _NavigationCallExp__OclElement = new ExecutorFragment(Types._NavigationCallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _NavigationCallExp__OclExpression = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _NavigationCallExp__TypedElement = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _NavigationCallExp__Visitable = new ExecutorFragment(Types._NavigationCallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _NullLiteralExp__Element = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _NullLiteralExp__LiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _NullLiteralExp__Nameable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _NullLiteralExp__NamedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _NullLiteralExp__NullLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._NullLiteralExp);
+		public static final ExecutorFragment _NullLiteralExp__OclAny = new ExecutorFragment(Types._NullLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _NullLiteralExp__OclElement = new ExecutorFragment(Types._NullLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _NullLiteralExp__OclExpression = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _NullLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _NullLiteralExp__TypedElement = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _NullLiteralExp__Visitable = new ExecutorFragment(Types._NullLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _NumericLiteralExp__Element = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _NumericLiteralExp__LiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _NumericLiteralExp__Nameable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _NumericLiteralExp__NamedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _NumericLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._NumericLiteralExp);
+		public static final ExecutorFragment _NumericLiteralExp__OclAny = new ExecutorFragment(Types._NumericLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _NumericLiteralExp__OclElement = new ExecutorFragment(Types._NumericLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _NumericLiteralExp__OclExpression = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _NumericLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _NumericLiteralExp__TypedElement = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _NumericLiteralExp__Visitable = new ExecutorFragment(Types._NumericLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Object__Object = new ExecutorFragment(Types._Object, PivotTables.Types._Object);
+		
+		public static final ExecutorFragment _OclExpression__Element = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Element);
+		public static final ExecutorFragment _OclExpression__Nameable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _OclExpression__NamedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _OclExpression__OclAny = new ExecutorFragment(Types._OclExpression, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OclExpression__OclElement = new ExecutorFragment(Types._OclExpression, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OclExpression__OclExpression = new ExecutorFragment(Types._OclExpression, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _OclExpression__TypedElement = new ExecutorFragment(Types._OclExpression, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _OclExpression__Visitable = new ExecutorFragment(Types._OclExpression, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _OpaqueExpression__Element = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Element);
+		public static final ExecutorFragment _OpaqueExpression__Nameable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _OpaqueExpression__NamedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _OpaqueExpression__OclAny = new ExecutorFragment(Types._OpaqueExpression, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OpaqueExpression__OclElement = new ExecutorFragment(Types._OpaqueExpression, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OpaqueExpression__OpaqueExpression = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._OpaqueExpression);
+		public static final ExecutorFragment _OpaqueExpression__ParameterableElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _OpaqueExpression__TypedElement = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _OpaqueExpression__ValueSpecification = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._ValueSpecification);
+		public static final ExecutorFragment _OpaqueExpression__Visitable = new ExecutorFragment(Types._OpaqueExpression, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Operation__Element = new ExecutorFragment(Types._Operation, PivotTables.Types._Element);
+		public static final ExecutorFragment _Operation__Feature = new ExecutorFragment(Types._Operation, PivotTables.Types._Feature);
+		public static final ExecutorFragment _Operation__MultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _Operation__Nameable = new ExecutorFragment(Types._Operation, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Operation__NamedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Operation__Namespace = new ExecutorFragment(Types._Operation, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Operation__OclAny = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Operation__OclElement = new ExecutorFragment(Types._Operation, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Operation__Operation = new ExecutorFragment(Types._Operation, PivotTables.Types._Operation);
+		public static final ExecutorFragment _Operation__ParameterableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Operation__TemplateableElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Operation__TypedElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Operation__TypedMultiplicityElement = new ExecutorFragment(Types._Operation, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _Operation__Visitable = new ExecutorFragment(Types._Operation, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _OperationCallExp__CallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _OperationCallExp__Element = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _OperationCallExp__FeatureCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._FeatureCallExp);
+		public static final ExecutorFragment _OperationCallExp__Nameable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _OperationCallExp__NamedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _OperationCallExp__OclAny = new ExecutorFragment(Types._OperationCallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OperationCallExp__OclElement = new ExecutorFragment(Types._OperationCallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OperationCallExp__OclExpression = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _OperationCallExp__OperationCallExp = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._OperationCallExp);
+		public static final ExecutorFragment _OperationCallExp__TypedElement = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _OperationCallExp__Visitable = new ExecutorFragment(Types._OperationCallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _OperationTemplateParameter__Element = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Element);
+		public static final ExecutorFragment _OperationTemplateParameter__OclAny = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OperationTemplateParameter__OclElement = new ExecutorFragment(Types._OperationTemplateParameter, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OperationTemplateParameter__OperationTemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._OperationTemplateParameter);
+		public static final ExecutorFragment _OperationTemplateParameter__TemplateParameter = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._TemplateParameter);
+		public static final ExecutorFragment _OperationTemplateParameter__Visitable = new ExecutorFragment(Types._OperationTemplateParameter, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _OrderedSetType__Class = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Class);
+		public static final ExecutorFragment _OrderedSetType__CollectionType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._CollectionType);
+		public static final ExecutorFragment _OrderedSetType__DataType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _OrderedSetType__Element = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Element);
+		public static final ExecutorFragment _OrderedSetType__Nameable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _OrderedSetType__NamedElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _OrderedSetType__Namespace = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _OrderedSetType__OclAny = new ExecutorFragment(Types._OrderedSetType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _OrderedSetType__OclElement = new ExecutorFragment(Types._OrderedSetType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _OrderedSetType__OrderedSetType = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._OrderedSetType);
+		public static final ExecutorFragment _OrderedSetType__ParameterableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _OrderedSetType__TemplateableElement = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _OrderedSetType__Type = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Type);
+		public static final ExecutorFragment _OrderedSetType__Visitable = new ExecutorFragment(Types._OrderedSetType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Package__Element = new ExecutorFragment(Types._Package, PivotTables.Types._Element);
+		public static final ExecutorFragment _Package__Nameable = new ExecutorFragment(Types._Package, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Package__NamedElement = new ExecutorFragment(Types._Package, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Package__Namespace = new ExecutorFragment(Types._Package, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _Package__OclAny = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Package__OclElement = new ExecutorFragment(Types._Package, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Package__Package = new ExecutorFragment(Types._Package, PivotTables.Types._Package);
+		public static final ExecutorFragment _Package__TemplateableElement = new ExecutorFragment(Types._Package, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Package__Visitable = new ExecutorFragment(Types._Package, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _PackageableElement__Element = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _PackageableElement__OclAny = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _PackageableElement__OclElement = new ExecutorFragment(Types._PackageableElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _PackageableElement__PackageableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._PackageableElement);
+		public static final ExecutorFragment _PackageableElement__ParameterableElement = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _PackageableElement__Visitable = new ExecutorFragment(Types._PackageableElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Parameter__Element = new ExecutorFragment(Types._Parameter, PivotTables.Types._Element);
+		public static final ExecutorFragment _Parameter__MultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _Parameter__Nameable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Parameter__NamedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Parameter__OclAny = new ExecutorFragment(Types._Parameter, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Parameter__OclElement = new ExecutorFragment(Types._Parameter, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Parameter__Parameter = new ExecutorFragment(Types._Parameter, PivotTables.Types._Parameter);
+		public static final ExecutorFragment _Parameter__TypedElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Parameter__TypedMultiplicityElement = new ExecutorFragment(Types._Parameter, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _Parameter__VariableDeclaration = new ExecutorFragment(Types._Parameter, PivotTables.Types._VariableDeclaration);
+		public static final ExecutorFragment _Parameter__Visitable = new ExecutorFragment(Types._Parameter, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _ParameterableElement__Element = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _ParameterableElement__OclAny = new ExecutorFragment(Types._ParameterableElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ParameterableElement__OclElement = new ExecutorFragment(Types._ParameterableElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _ParameterableElement__ParameterableElement = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _ParameterableElement__Visitable = new ExecutorFragment(Types._ParameterableElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Pivotable__OclAny = new ExecutorFragment(Types._Pivotable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Pivotable__OclElement = new ExecutorFragment(Types._Pivotable, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Pivotable__Pivotable = new ExecutorFragment(Types._Pivotable, PivotTables.Types._Pivotable);
+		
+		public static final ExecutorFragment _Precedence__Element = new ExecutorFragment(Types._Precedence, PivotTables.Types._Element);
+		public static final ExecutorFragment _Precedence__Nameable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Precedence__NamedElement = new ExecutorFragment(Types._Precedence, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Precedence__OclAny = new ExecutorFragment(Types._Precedence, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Precedence__OclElement = new ExecutorFragment(Types._Precedence, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Precedence__Precedence = new ExecutorFragment(Types._Precedence, PivotTables.Types._Precedence);
+		public static final ExecutorFragment _Precedence__Visitable = new ExecutorFragment(Types._Precedence, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _PrimitiveLiteralExp__Element = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _PrimitiveLiteralExp__LiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _PrimitiveLiteralExp__Nameable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _PrimitiveLiteralExp__NamedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclAny = new ExecutorFragment(Types._PrimitiveLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclElement = new ExecutorFragment(Types._PrimitiveLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _PrimitiveLiteralExp__OclExpression = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _PrimitiveLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _PrimitiveLiteralExp__TypedElement = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _PrimitiveLiteralExp__Visitable = new ExecutorFragment(Types._PrimitiveLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _PrimitiveType__Class = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Class);
+		public static final ExecutorFragment _PrimitiveType__DataType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _PrimitiveType__Element = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Element);
+		public static final ExecutorFragment _PrimitiveType__Nameable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _PrimitiveType__NamedElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _PrimitiveType__Namespace = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _PrimitiveType__OclAny = new ExecutorFragment(Types._PrimitiveType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _PrimitiveType__OclElement = new ExecutorFragment(Types._PrimitiveType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _PrimitiveType__ParameterableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _PrimitiveType__PrimitiveType = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._PrimitiveType);
+		public static final ExecutorFragment _PrimitiveType__TemplateableElement = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _PrimitiveType__Type = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Type);
+		public static final ExecutorFragment _PrimitiveType__Visitable = new ExecutorFragment(Types._PrimitiveType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Property__Element = new ExecutorFragment(Types._Property, PivotTables.Types._Element);
+		public static final ExecutorFragment _Property__Feature = new ExecutorFragment(Types._Property, PivotTables.Types._Feature);
+		public static final ExecutorFragment _Property__MultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _Property__Nameable = new ExecutorFragment(Types._Property, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Property__NamedElement = new ExecutorFragment(Types._Property, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Property__OclAny = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Property__OclElement = new ExecutorFragment(Types._Property, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Property__ParameterableElement = new ExecutorFragment(Types._Property, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Property__Property = new ExecutorFragment(Types._Property, PivotTables.Types._Property);
+		public static final ExecutorFragment _Property__TypedElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Property__TypedMultiplicityElement = new ExecutorFragment(Types._Property, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _Property__Visitable = new ExecutorFragment(Types._Property, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _PropertyCallExp__CallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._CallExp);
+		public static final ExecutorFragment _PropertyCallExp__Element = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _PropertyCallExp__FeatureCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._FeatureCallExp);
+		public static final ExecutorFragment _PropertyCallExp__Nameable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _PropertyCallExp__NamedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _PropertyCallExp__NavigationCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._NavigationCallExp);
+		public static final ExecutorFragment _PropertyCallExp__OclAny = new ExecutorFragment(Types._PropertyCallExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _PropertyCallExp__OclElement = new ExecutorFragment(Types._PropertyCallExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _PropertyCallExp__OclExpression = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _PropertyCallExp__PropertyCallExp = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._PropertyCallExp);
+		public static final ExecutorFragment _PropertyCallExp__TypedElement = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _PropertyCallExp__Visitable = new ExecutorFragment(Types._PropertyCallExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, PivotTables.Types._Real);
+		
+		public static final ExecutorFragment _RealLiteralExp__Element = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _RealLiteralExp__LiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _RealLiteralExp__Nameable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _RealLiteralExp__NamedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _RealLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._NumericLiteralExp);
+		public static final ExecutorFragment _RealLiteralExp__OclAny = new ExecutorFragment(Types._RealLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _RealLiteralExp__OclElement = new ExecutorFragment(Types._RealLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _RealLiteralExp__OclExpression = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _RealLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _RealLiteralExp__RealLiteralExp = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._RealLiteralExp);
+		public static final ExecutorFragment _RealLiteralExp__TypedElement = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _RealLiteralExp__Visitable = new ExecutorFragment(Types._RealLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _SelfType__Class = new ExecutorFragment(Types._SelfType, PivotTables.Types._Class);
+		public static final ExecutorFragment _SelfType__Element = new ExecutorFragment(Types._SelfType, PivotTables.Types._Element);
+		public static final ExecutorFragment _SelfType__Nameable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _SelfType__NamedElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _SelfType__Namespace = new ExecutorFragment(Types._SelfType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _SelfType__OclAny = new ExecutorFragment(Types._SelfType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _SelfType__OclElement = new ExecutorFragment(Types._SelfType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _SelfType__ParameterableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _SelfType__SelfType = new ExecutorFragment(Types._SelfType, PivotTables.Types._SelfType);
+		public static final ExecutorFragment _SelfType__TemplateableElement = new ExecutorFragment(Types._SelfType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _SelfType__Type = new ExecutorFragment(Types._SelfType, PivotTables.Types._Type);
+		public static final ExecutorFragment _SelfType__Visitable = new ExecutorFragment(Types._SelfType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _SendSignalAction__Element = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Element);
+		public static final ExecutorFragment _SendSignalAction__Nameable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _SendSignalAction__NamedElement = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _SendSignalAction__OclAny = new ExecutorFragment(Types._SendSignalAction, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _SendSignalAction__OclElement = new ExecutorFragment(Types._SendSignalAction, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _SendSignalAction__SendSignalAction = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._SendSignalAction);
+		public static final ExecutorFragment _SendSignalAction__Visitable = new ExecutorFragment(Types._SendSignalAction, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _SequenceType__Class = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Class);
+		public static final ExecutorFragment _SequenceType__CollectionType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._CollectionType);
+		public static final ExecutorFragment _SequenceType__DataType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _SequenceType__Element = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Element);
+		public static final ExecutorFragment _SequenceType__Nameable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _SequenceType__NamedElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _SequenceType__Namespace = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _SequenceType__OclAny = new ExecutorFragment(Types._SequenceType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _SequenceType__OclElement = new ExecutorFragment(Types._SequenceType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _SequenceType__ParameterableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _SequenceType__SequenceType = new ExecutorFragment(Types._SequenceType, PivotTables.Types._SequenceType);
+		public static final ExecutorFragment _SequenceType__TemplateableElement = new ExecutorFragment(Types._SequenceType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _SequenceType__Type = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Type);
+		public static final ExecutorFragment _SequenceType__Visitable = new ExecutorFragment(Types._SequenceType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _SetType__Class = new ExecutorFragment(Types._SetType, PivotTables.Types._Class);
+		public static final ExecutorFragment _SetType__CollectionType = new ExecutorFragment(Types._SetType, PivotTables.Types._CollectionType);
+		public static final ExecutorFragment _SetType__DataType = new ExecutorFragment(Types._SetType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _SetType__Element = new ExecutorFragment(Types._SetType, PivotTables.Types._Element);
+		public static final ExecutorFragment _SetType__Nameable = new ExecutorFragment(Types._SetType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _SetType__NamedElement = new ExecutorFragment(Types._SetType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _SetType__Namespace = new ExecutorFragment(Types._SetType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _SetType__OclAny = new ExecutorFragment(Types._SetType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _SetType__OclElement = new ExecutorFragment(Types._SetType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _SetType__ParameterableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _SetType__SetType = new ExecutorFragment(Types._SetType, PivotTables.Types._SetType);
+		public static final ExecutorFragment _SetType__TemplateableElement = new ExecutorFragment(Types._SetType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _SetType__Type = new ExecutorFragment(Types._SetType, PivotTables.Types._Type);
+		public static final ExecutorFragment _SetType__Visitable = new ExecutorFragment(Types._SetType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Signal__Element = new ExecutorFragment(Types._Signal, PivotTables.Types._Element);
+		public static final ExecutorFragment _Signal__Nameable = new ExecutorFragment(Types._Signal, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Signal__NamedElement = new ExecutorFragment(Types._Signal, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Signal__OclAny = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Signal__OclElement = new ExecutorFragment(Types._Signal, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Signal__Signal = new ExecutorFragment(Types._Signal, PivotTables.Types._Signal);
+		public static final ExecutorFragment _Signal__Visitable = new ExecutorFragment(Types._Signal, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _State__Element = new ExecutorFragment(Types._State, PivotTables.Types._Element);
+		public static final ExecutorFragment _State__Nameable = new ExecutorFragment(Types._State, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _State__NamedElement = new ExecutorFragment(Types._State, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _State__OclAny = new ExecutorFragment(Types._State, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _State__OclElement = new ExecutorFragment(Types._State, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _State__State = new ExecutorFragment(Types._State, PivotTables.Types._State);
+		public static final ExecutorFragment _State__Visitable = new ExecutorFragment(Types._State, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _StateExp__Element = new ExecutorFragment(Types._StateExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _StateExp__Nameable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _StateExp__NamedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _StateExp__OclAny = new ExecutorFragment(Types._StateExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _StateExp__OclElement = new ExecutorFragment(Types._StateExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _StateExp__OclExpression = new ExecutorFragment(Types._StateExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _StateExp__StateExp = new ExecutorFragment(Types._StateExp, PivotTables.Types._StateExp);
+		public static final ExecutorFragment _StateExp__TypedElement = new ExecutorFragment(Types._StateExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _StateExp__Visitable = new ExecutorFragment(Types._StateExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _String__String = new ExecutorFragment(Types._String, PivotTables.Types._String);
+		
+		public static final ExecutorFragment _StringLiteralExp__Element = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _StringLiteralExp__LiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _StringLiteralExp__Nameable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _StringLiteralExp__NamedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _StringLiteralExp__OclAny = new ExecutorFragment(Types._StringLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _StringLiteralExp__OclElement = new ExecutorFragment(Types._StringLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _StringLiteralExp__OclExpression = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _StringLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _StringLiteralExp__StringLiteralExp = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._StringLiteralExp);
+		public static final ExecutorFragment _StringLiteralExp__TypedElement = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _StringLiteralExp__Visitable = new ExecutorFragment(Types._StringLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateBinding__Element = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateBinding__OclAny = new ExecutorFragment(Types._TemplateBinding, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateBinding__OclElement = new ExecutorFragment(Types._TemplateBinding, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateBinding__TemplateBinding = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._TemplateBinding);
+		public static final ExecutorFragment _TemplateBinding__Visitable = new ExecutorFragment(Types._TemplateBinding, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateParameter__Element = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateParameter__OclAny = new ExecutorFragment(Types._TemplateParameter, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateParameter__OclElement = new ExecutorFragment(Types._TemplateParameter, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateParameter__TemplateParameter = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._TemplateParameter);
+		public static final ExecutorFragment _TemplateParameter__Visitable = new ExecutorFragment(Types._TemplateParameter, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateParameterSubstitution__Element = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateParameterSubstitution__OclAny = new ExecutorFragment(Types._TemplateParameterSubstitution, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateParameterSubstitution__OclElement = new ExecutorFragment(Types._TemplateParameterSubstitution, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateParameterSubstitution__TemplateParameterSubstitution = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._TemplateParameterSubstitution);
+		public static final ExecutorFragment _TemplateParameterSubstitution__Visitable = new ExecutorFragment(Types._TemplateParameterSubstitution, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateParameterType__Element = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateParameterType__Nameable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TemplateParameterType__NamedElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TemplateParameterType__OclAny = new ExecutorFragment(Types._TemplateParameterType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateParameterType__OclElement = new ExecutorFragment(Types._TemplateParameterType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateParameterType__ParameterableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _TemplateParameterType__TemplateParameterType = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateParameterType);
+		public static final ExecutorFragment _TemplateParameterType__TemplateableElement = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _TemplateParameterType__Type = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Type);
+		public static final ExecutorFragment _TemplateParameterType__Visitable = new ExecutorFragment(Types._TemplateParameterType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateSignature__Element = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateSignature__OclAny = new ExecutorFragment(Types._TemplateSignature, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateSignature__OclElement = new ExecutorFragment(Types._TemplateSignature, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateSignature__TemplateSignature = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._TemplateSignature);
+		public static final ExecutorFragment _TemplateSignature__Visitable = new ExecutorFragment(Types._TemplateSignature, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TemplateableElement__Element = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _TemplateableElement__OclAny = new ExecutorFragment(Types._TemplateableElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TemplateableElement__OclElement = new ExecutorFragment(Types._TemplateableElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TemplateableElement__TemplateableElement = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _TemplateableElement__Visitable = new ExecutorFragment(Types._TemplateableElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Throwable__Throwable = new ExecutorFragment(Types._Throwable, PivotTables.Types._Throwable);
+		
+		public static final ExecutorFragment _TupleLiteralExp__Element = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _TupleLiteralExp__LiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _TupleLiteralExp__Nameable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TupleLiteralExp__NamedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TupleLiteralExp__OclAny = new ExecutorFragment(Types._TupleLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TupleLiteralExp__OclElement = new ExecutorFragment(Types._TupleLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TupleLiteralExp__OclExpression = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _TupleLiteralExp__TupleLiteralExp = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TupleLiteralExp);
+		public static final ExecutorFragment _TupleLiteralExp__TypedElement = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _TupleLiteralExp__Visitable = new ExecutorFragment(Types._TupleLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TupleLiteralPart__Element = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Element);
+		public static final ExecutorFragment _TupleLiteralPart__Nameable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TupleLiteralPart__NamedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TupleLiteralPart__OclAny = new ExecutorFragment(Types._TupleLiteralPart, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TupleLiteralPart__OclElement = new ExecutorFragment(Types._TupleLiteralPart, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TupleLiteralPart__TupleLiteralPart = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TupleLiteralPart);
+		public static final ExecutorFragment _TupleLiteralPart__TypedElement = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _TupleLiteralPart__VariableDeclaration = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._VariableDeclaration);
+		public static final ExecutorFragment _TupleLiteralPart__Visitable = new ExecutorFragment(Types._TupleLiteralPart, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TupleType__Class = new ExecutorFragment(Types._TupleType, PivotTables.Types._Class);
+		public static final ExecutorFragment _TupleType__DataType = new ExecutorFragment(Types._TupleType, PivotTables.Types._DataType);
+		public static final ExecutorFragment _TupleType__Element = new ExecutorFragment(Types._TupleType, PivotTables.Types._Element);
+		public static final ExecutorFragment _TupleType__Nameable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TupleType__NamedElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TupleType__Namespace = new ExecutorFragment(Types._TupleType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _TupleType__OclAny = new ExecutorFragment(Types._TupleType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TupleType__OclElement = new ExecutorFragment(Types._TupleType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TupleType__ParameterableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _TupleType__TemplateableElement = new ExecutorFragment(Types._TupleType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _TupleType__TupleType = new ExecutorFragment(Types._TupleType, PivotTables.Types._TupleType);
+		public static final ExecutorFragment _TupleType__Type = new ExecutorFragment(Types._TupleType, PivotTables.Types._Type);
+		public static final ExecutorFragment _TupleType__Visitable = new ExecutorFragment(Types._TupleType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Type__Element = new ExecutorFragment(Types._Type, PivotTables.Types._Element);
+		public static final ExecutorFragment _Type__Nameable = new ExecutorFragment(Types._Type, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Type__NamedElement = new ExecutorFragment(Types._Type, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Type__OclAny = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Type__OclElement = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Type__ParameterableElement = new ExecutorFragment(Types._Type, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _Type__TemplateableElement = new ExecutorFragment(Types._Type, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, PivotTables.Types._Type);
+		public static final ExecutorFragment _Type__Visitable = new ExecutorFragment(Types._Type, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TypeExp__Element = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _TypeExp__Nameable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TypeExp__NamedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TypeExp__OclAny = new ExecutorFragment(Types._TypeExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TypeExp__OclElement = new ExecutorFragment(Types._TypeExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TypeExp__OclExpression = new ExecutorFragment(Types._TypeExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _TypeExp__TypeExp = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypeExp);
+		public static final ExecutorFragment _TypeExp__TypedElement = new ExecutorFragment(Types._TypeExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _TypeExp__Visitable = new ExecutorFragment(Types._TypeExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TypeTemplateParameter__Element = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Element);
+		public static final ExecutorFragment _TypeTemplateParameter__OclAny = new ExecutorFragment(Types._TypeTemplateParameter, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TypeTemplateParameter__OclElement = new ExecutorFragment(Types._TypeTemplateParameter, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TypeTemplateParameter__TemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TemplateParameter);
+		public static final ExecutorFragment _TypeTemplateParameter__TypeTemplateParameter = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._TypeTemplateParameter);
+		public static final ExecutorFragment _TypeTemplateParameter__Visitable = new ExecutorFragment(Types._TypeTemplateParameter, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TypedElement__Element = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _TypedElement__Nameable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TypedElement__NamedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TypedElement__OclAny = new ExecutorFragment(Types._TypedElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TypedElement__OclElement = new ExecutorFragment(Types._TypedElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TypedElement__TypedElement = new ExecutorFragment(Types._TypedElement, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _TypedElement__Visitable = new ExecutorFragment(Types._TypedElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _TypedMultiplicityElement__Element = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Element);
+		public static final ExecutorFragment _TypedMultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._MultiplicityElement);
+		public static final ExecutorFragment _TypedMultiplicityElement__Nameable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _TypedMultiplicityElement__NamedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _TypedMultiplicityElement__OclAny = new ExecutorFragment(Types._TypedMultiplicityElement, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _TypedMultiplicityElement__OclElement = new ExecutorFragment(Types._TypedMultiplicityElement, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _TypedMultiplicityElement__TypedElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _TypedMultiplicityElement__TypedMultiplicityElement = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._TypedMultiplicityElement);
+		public static final ExecutorFragment _TypedMultiplicityElement__Visitable = new ExecutorFragment(Types._TypedMultiplicityElement, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _UnlimitedNatural__UnlimitedNatural = new ExecutorFragment(Types._UnlimitedNatural, PivotTables.Types._UnlimitedNatural);
+		
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Element = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__LiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._LiteralExp);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Nameable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NamedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__NumericLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._NumericLiteralExp);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclAny = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__OclExpression = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__PrimitiveLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._PrimitiveLiteralExp);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__TypedElement = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__UnlimitedNaturalLiteralExp = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._UnlimitedNaturalLiteralExp);
+		public static final ExecutorFragment _UnlimitedNaturalLiteralExp__Visitable = new ExecutorFragment(Types._UnlimitedNaturalLiteralExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _UnspecifiedType__Class = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Class);
+		public static final ExecutorFragment _UnspecifiedType__Element = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Element);
+		public static final ExecutorFragment _UnspecifiedType__Nameable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _UnspecifiedType__NamedElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _UnspecifiedType__Namespace = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _UnspecifiedType__OclAny = new ExecutorFragment(Types._UnspecifiedType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _UnspecifiedType__OclElement = new ExecutorFragment(Types._UnspecifiedType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _UnspecifiedType__ParameterableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _UnspecifiedType__TemplateableElement = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _UnspecifiedType__Type = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Type);
+		public static final ExecutorFragment _UnspecifiedType__UnspecifiedType = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._UnspecifiedType);
+		public static final ExecutorFragment _UnspecifiedType__Visitable = new ExecutorFragment(Types._UnspecifiedType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _UnspecifiedValueExp__Element = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _UnspecifiedValueExp__Nameable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _UnspecifiedValueExp__NamedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclAny = new ExecutorFragment(Types._UnspecifiedValueExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclElement = new ExecutorFragment(Types._UnspecifiedValueExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _UnspecifiedValueExp__OclExpression = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _UnspecifiedValueExp__TypedElement = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _UnspecifiedValueExp__UnspecifiedValueExp = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._UnspecifiedValueExp);
+		public static final ExecutorFragment _UnspecifiedValueExp__Visitable = new ExecutorFragment(Types._UnspecifiedValueExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _ValueSpecification__Element = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Element);
+		public static final ExecutorFragment _ValueSpecification__Nameable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _ValueSpecification__NamedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _ValueSpecification__OclAny = new ExecutorFragment(Types._ValueSpecification, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _ValueSpecification__OclElement = new ExecutorFragment(Types._ValueSpecification, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _ValueSpecification__ParameterableElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _ValueSpecification__TypedElement = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _ValueSpecification__ValueSpecification = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._ValueSpecification);
+		public static final ExecutorFragment _ValueSpecification__Visitable = new ExecutorFragment(Types._ValueSpecification, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Variable__Element = new ExecutorFragment(Types._Variable, PivotTables.Types._Element);
+		public static final ExecutorFragment _Variable__Nameable = new ExecutorFragment(Types._Variable, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _Variable__NamedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _Variable__OclAny = new ExecutorFragment(Types._Variable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Variable__OclElement = new ExecutorFragment(Types._Variable, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Variable__TypedElement = new ExecutorFragment(Types._Variable, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _Variable__Variable = new ExecutorFragment(Types._Variable, PivotTables.Types._Variable);
+		public static final ExecutorFragment _Variable__VariableDeclaration = new ExecutorFragment(Types._Variable, PivotTables.Types._VariableDeclaration);
+		public static final ExecutorFragment _Variable__Visitable = new ExecutorFragment(Types._Variable, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _VariableDeclaration__Element = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Element);
+		public static final ExecutorFragment _VariableDeclaration__Nameable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _VariableDeclaration__NamedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _VariableDeclaration__OclAny = new ExecutorFragment(Types._VariableDeclaration, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _VariableDeclaration__OclElement = new ExecutorFragment(Types._VariableDeclaration, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _VariableDeclaration__TypedElement = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _VariableDeclaration__VariableDeclaration = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._VariableDeclaration);
+		public static final ExecutorFragment _VariableDeclaration__Visitable = new ExecutorFragment(Types._VariableDeclaration, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _VariableExp__Element = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Element);
+		public static final ExecutorFragment _VariableExp__Nameable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _VariableExp__NamedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _VariableExp__OclAny = new ExecutorFragment(Types._VariableExp, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _VariableExp__OclElement = new ExecutorFragment(Types._VariableExp, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _VariableExp__OclExpression = new ExecutorFragment(Types._VariableExp, PivotTables.Types._OclExpression);
+		public static final ExecutorFragment _VariableExp__TypedElement = new ExecutorFragment(Types._VariableExp, PivotTables.Types._TypedElement);
+		public static final ExecutorFragment _VariableExp__VariableExp = new ExecutorFragment(Types._VariableExp, PivotTables.Types._VariableExp);
+		public static final ExecutorFragment _VariableExp__Visitable = new ExecutorFragment(Types._VariableExp, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Visitable__OclAny = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Visitable__OclElement = new ExecutorFragment(Types._Visitable, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Visitable__Visitable = new ExecutorFragment(Types._Visitable, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _Visitor__OclAny = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _Visitor__OclElement = new ExecutorFragment(Types._Visitor, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _Visitor__Visitor = new ExecutorFragment(Types._Visitor, PivotTables.Types._Visitor);
+		
+		public static final ExecutorFragment _VoidType__Class = new ExecutorFragment(Types._VoidType, PivotTables.Types._Class);
+		public static final ExecutorFragment _VoidType__Element = new ExecutorFragment(Types._VoidType, PivotTables.Types._Element);
+		public static final ExecutorFragment _VoidType__Nameable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Nameable);
+		public static final ExecutorFragment _VoidType__NamedElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._NamedElement);
+		public static final ExecutorFragment _VoidType__Namespace = new ExecutorFragment(Types._VoidType, PivotTables.Types._Namespace);
+		public static final ExecutorFragment _VoidType__OclAny = new ExecutorFragment(Types._VoidType, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _VoidType__OclElement = new ExecutorFragment(Types._VoidType, OCLstdlibTables.Types._OclElement);
+		public static final ExecutorFragment _VoidType__ParameterableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._ParameterableElement);
+		public static final ExecutorFragment _VoidType__TemplateableElement = new ExecutorFragment(Types._VoidType, PivotTables.Types._TemplateableElement);
+		public static final ExecutorFragment _VoidType__Type = new ExecutorFragment(Types._VoidType, PivotTables.Types._Type);
+		public static final ExecutorFragment _VoidType__Visitable = new ExecutorFragment(Types._VoidType, PivotTables.Types._Visitable);
+		public static final ExecutorFragment _VoidType__VoidType = new ExecutorFragment(Types._VoidType, PivotTables.Types._VoidType);
 		
 	}
 
@@ -1513,6 +1513,13 @@ public class PivotTables
 			Types._TemplateableElement, 0, null);
 		public static final ExecutorOperation _TemplateableElement__parameterableElements = new ExecutorOperation("parameterableElements",
 			Types._TemplateableElement, 1, null);
+	
+		public static final ExecutorOperation _Type__xyzzyx = new ExecutorOperation("xyzzyx",
+			Types._Type, 0, org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
+	
+		public static final ExecutorOperation _TypedMultiplicityElement__CompatibleBody = new ExecutorOperation("CompatibleBody",
+			Types._TypedMultiplicityElement, 0, org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies._CompatibleBody_body_.INSTANCE,
+				PivotTables.Types._ValueSpecification);
 	
 		public static final ExecutorTypeParameter __UnlimitedNatural__oclAsType_TT = new ExecutorTypeParameter("TT");
 		public static final ExecutorOperation _UnlimitedNatural__oclAsType = new ExecutorOperation("oclAsType",
@@ -1815,8 +1822,8 @@ public class PivotTables
 		{
 		    Fragments._Annotation__OclAny /* 0 */,
 		    Fragments._Annotation__OclElement /* 1 */,
-		    Fragments._Annotation__Nameable /* 2 */,
 		    Fragments._Annotation__Visitable /* 2 */,
+		    Fragments._Annotation__Nameable /* 2 */,
 		    Fragments._Annotation__Element /* 3 */,
 		    Fragments._Annotation__NamedElement /* 4 */,
 		    Fragments._Annotation__Annotation /* 5 */
@@ -1827,14 +1834,14 @@ public class PivotTables
 		{
 		    Fragments._AnyType__OclAny /* 0 */,
 		    Fragments._AnyType__OclElement /* 1 */,
-		    Fragments._AnyType__Nameable /* 2 */,
 		    Fragments._AnyType__Visitable /* 2 */,
+		    Fragments._AnyType__Nameable /* 2 */,
 		    Fragments._AnyType__Element /* 3 */,
-		    Fragments._AnyType__ParameterableElement /* 4 */,
 		    Fragments._AnyType__TemplateableElement /* 4 */,
+		    Fragments._AnyType__ParameterableElement /* 4 */,
 		    Fragments._AnyType__NamedElement /* 4 */,
-		    Fragments._AnyType__Namespace /* 5 */,
 		    Fragments._AnyType__Type /* 5 */,
+		    Fragments._AnyType__Namespace /* 5 */,
 		    Fragments._AnyType__Class /* 6 */,
 		    Fragments._AnyType__AnyType /* 7 */
 		};
@@ -1844,14 +1851,14 @@ public class PivotTables
 		{
 		    Fragments._AssociationClass__OclAny /* 0 */,
 		    Fragments._AssociationClass__OclElement /* 1 */,
-		    Fragments._AssociationClass__Nameable /* 2 */,
 		    Fragments._AssociationClass__Visitable /* 2 */,
+		    Fragments._AssociationClass__Nameable /* 2 */,
 		    Fragments._AssociationClass__Element /* 3 */,
-		    Fragments._AssociationClass__ParameterableElement /* 4 */,
 		    Fragments._AssociationClass__TemplateableElement /* 4 */,
+		    Fragments._AssociationClass__ParameterableElement /* 4 */,
 		    Fragments._AssociationClass__NamedElement /* 4 */,
-		    Fragments._AssociationClass__Namespace /* 5 */,
 		    Fragments._AssociationClass__Type /* 5 */,
+		    Fragments._AssociationClass__Namespace /* 5 */,
 		    Fragments._AssociationClass__Class /* 6 */,
 		    Fragments._AssociationClass__AssociationClass /* 7 */
 		};
@@ -1861,8 +1868,8 @@ public class PivotTables
 		{
 		    Fragments._AssociationClassCallExp__OclAny /* 0 */,
 		    Fragments._AssociationClassCallExp__OclElement /* 1 */,
-		    Fragments._AssociationClassCallExp__Nameable /* 2 */,
 		    Fragments._AssociationClassCallExp__Visitable /* 2 */,
+		    Fragments._AssociationClassCallExp__Nameable /* 2 */,
 		    Fragments._AssociationClassCallExp__Element /* 3 */,
 		    Fragments._AssociationClassCallExp__NamedElement /* 4 */,
 		    Fragments._AssociationClassCallExp__TypedElement /* 5 */,
@@ -1884,11 +1891,11 @@ public class PivotTables
 		{
 		    Fragments._BagType__OclAny /* 0 */,
 		    Fragments._BagType__OclElement /* 1 */,
-		    Fragments._BagType__Nameable /* 2 */,
 		    Fragments._BagType__Visitable /* 2 */,
+		    Fragments._BagType__Nameable /* 2 */,
 		    Fragments._BagType__Element /* 3 */,
-		    Fragments._BagType__ParameterableElement /* 4 */,
 		    Fragments._BagType__TemplateableElement /* 4 */,
+		    Fragments._BagType__ParameterableElement /* 4 */,
 		    Fragments._BagType__NamedElement /* 4 */,
 		    Fragments._BagType__Type /* 5 */,
 		    Fragments._BagType__Namespace /* 5 */,
@@ -1903,8 +1910,8 @@ public class PivotTables
 		{
 		    Fragments._BooleanLiteralExp__OclAny /* 0 */,
 		    Fragments._BooleanLiteralExp__OclElement /* 1 */,
-		    Fragments._BooleanLiteralExp__Nameable /* 2 */,
 		    Fragments._BooleanLiteralExp__Visitable /* 2 */,
+		    Fragments._BooleanLiteralExp__Nameable /* 2 */,
 		    Fragments._BooleanLiteralExp__Element /* 3 */,
 		    Fragments._BooleanLiteralExp__NamedElement /* 4 */,
 		    Fragments._BooleanLiteralExp__TypedElement /* 5 */,
@@ -1919,8 +1926,8 @@ public class PivotTables
 		{
 		    Fragments._CallExp__OclAny /* 0 */,
 		    Fragments._CallExp__OclElement /* 1 */,
-		    Fragments._CallExp__Nameable /* 2 */,
 		    Fragments._CallExp__Visitable /* 2 */,
+		    Fragments._CallExp__Nameable /* 2 */,
 		    Fragments._CallExp__Element /* 3 */,
 		    Fragments._CallExp__NamedElement /* 4 */,
 		    Fragments._CallExp__TypedElement /* 5 */,
@@ -1933,8 +1940,8 @@ public class PivotTables
 		{
 		    Fragments._CallOperationAction__OclAny /* 0 */,
 		    Fragments._CallOperationAction__OclElement /* 1 */,
-		    Fragments._CallOperationAction__Nameable /* 2 */,
 		    Fragments._CallOperationAction__Visitable /* 2 */,
+		    Fragments._CallOperationAction__Nameable /* 2 */,
 		    Fragments._CallOperationAction__Element /* 3 */,
 		    Fragments._CallOperationAction__NamedElement /* 4 */,
 		    Fragments._CallOperationAction__CallOperationAction /* 5 */
@@ -1945,14 +1952,14 @@ public class PivotTables
 		{
 		    Fragments._Class__OclAny /* 0 */,
 		    Fragments._Class__OclElement /* 1 */,
-		    Fragments._Class__Nameable /* 2 */,
 		    Fragments._Class__Visitable /* 2 */,
+		    Fragments._Class__Nameable /* 2 */,
 		    Fragments._Class__Element /* 3 */,
-		    Fragments._Class__ParameterableElement /* 4 */,
 		    Fragments._Class__TemplateableElement /* 4 */,
+		    Fragments._Class__ParameterableElement /* 4 */,
 		    Fragments._Class__NamedElement /* 4 */,
-		    Fragments._Class__Namespace /* 5 */,
 		    Fragments._Class__Type /* 5 */,
+		    Fragments._Class__Namespace /* 5 */,
 		    Fragments._Class__Class /* 6 */
 		};
 		private static final int[] __Class = { 1,1,2,1,3,2,1 };
@@ -1961,14 +1968,14 @@ public class PivotTables
 		{
 		    Fragments._ClassifierType__OclAny /* 0 */,
 		    Fragments._ClassifierType__OclElement /* 1 */,
-		    Fragments._ClassifierType__Nameable /* 2 */,
 		    Fragments._ClassifierType__Visitable /* 2 */,
+		    Fragments._ClassifierType__Nameable /* 2 */,
 		    Fragments._ClassifierType__Element /* 3 */,
-		    Fragments._ClassifierType__ParameterableElement /* 4 */,
 		    Fragments._ClassifierType__TemplateableElement /* 4 */,
+		    Fragments._ClassifierType__ParameterableElement /* 4 */,
 		    Fragments._ClassifierType__NamedElement /* 4 */,
-		    Fragments._ClassifierType__Namespace /* 5 */,
 		    Fragments._ClassifierType__Type /* 5 */,
+		    Fragments._ClassifierType__Namespace /* 5 */,
 		    Fragments._ClassifierType__Class /* 6 */,
 		    Fragments._ClassifierType__DataType /* 7 */,
 		    Fragments._ClassifierType__ClassifierType /* 8 */
@@ -1979,8 +1986,8 @@ public class PivotTables
 		{
 		    Fragments._CollectionItem__OclAny /* 0 */,
 		    Fragments._CollectionItem__OclElement /* 1 */,
-		    Fragments._CollectionItem__Nameable /* 2 */,
 		    Fragments._CollectionItem__Visitable /* 2 */,
+		    Fragments._CollectionItem__Nameable /* 2 */,
 		    Fragments._CollectionItem__Element /* 3 */,
 		    Fragments._CollectionItem__NamedElement /* 4 */,
 		    Fragments._CollectionItem__TypedElement /* 5 */,
@@ -1999,8 +2006,8 @@ public class PivotTables
 		{
 		    Fragments._CollectionLiteralExp__OclAny /* 0 */,
 		    Fragments._CollectionLiteralExp__OclElement /* 1 */,
-		    Fragments._CollectionLiteralExp__Nameable /* 2 */,
 		    Fragments._CollectionLiteralExp__Visitable /* 2 */,
+		    Fragments._CollectionLiteralExp__Nameable /* 2 */,
 		    Fragments._CollectionLiteralExp__Element /* 3 */,
 		    Fragments._CollectionLiteralExp__NamedElement /* 4 */,
 		    Fragments._CollectionLiteralExp__TypedElement /* 5 */,
@@ -2014,8 +2021,8 @@ public class PivotTables
 		{
 		    Fragments._CollectionLiteralPart__OclAny /* 0 */,
 		    Fragments._CollectionLiteralPart__OclElement /* 1 */,
-		    Fragments._CollectionLiteralPart__Nameable /* 2 */,
 		    Fragments._CollectionLiteralPart__Visitable /* 2 */,
+		    Fragments._CollectionLiteralPart__Nameable /* 2 */,
 		    Fragments._CollectionLiteralPart__Element /* 3 */,
 		    Fragments._CollectionLiteralPart__NamedElement /* 4 */,
 		    Fragments._CollectionLiteralPart__TypedElement /* 5 */,
@@ -2027,8 +2034,8 @@ public class PivotTables
 		{
 		    Fragments._CollectionRange__OclAny /* 0 */,
 		    Fragments._CollectionRange__OclElement /* 1 */,
-		    Fragments._CollectionRange__Nameable /* 2 */,
 		    Fragments._CollectionRange__Visitable /* 2 */,
+		    Fragments._CollectionRange__Nameable /* 2 */,
 		    Fragments._CollectionRange__Element /* 3 */,
 		    Fragments._CollectionRange__NamedElement /* 4 */,
 		    Fragments._CollectionRange__TypedElement /* 5 */,
@@ -2041,14 +2048,14 @@ public class PivotTables
 		{
 		    Fragments._CollectionType__OclAny /* 0 */,
 		    Fragments._CollectionType__OclElement /* 1 */,
-		    Fragments._CollectionType__Nameable /* 2 */,
 		    Fragments._CollectionType__Visitable /* 2 */,
+		    Fragments._CollectionType__Nameable /* 2 */,
 		    Fragments._CollectionType__Element /* 3 */,
-		    Fragments._CollectionType__ParameterableElement /* 4 */,
 		    Fragments._CollectionType__TemplateableElement /* 4 */,
+		    Fragments._CollectionType__ParameterableElement /* 4 */,
 		    Fragments._CollectionType__NamedElement /* 4 */,
-		    Fragments._CollectionType__Namespace /* 5 */,
 		    Fragments._CollectionType__Type /* 5 */,
+		    Fragments._CollectionType__Namespace /* 5 */,
 		    Fragments._CollectionType__Class /* 6 */,
 		    Fragments._CollectionType__DataType /* 7 */,
 		    Fragments._CollectionType__CollectionType /* 8 */
@@ -2069,8 +2076,8 @@ public class PivotTables
 		{
 		    Fragments._Constraint__OclAny /* 0 */,
 		    Fragments._Constraint__OclElement /* 1 */,
-		    Fragments._Constraint__Nameable /* 2 */,
 		    Fragments._Constraint__Visitable /* 2 */,
+		    Fragments._Constraint__Nameable /* 2 */,
 		    Fragments._Constraint__Element /* 3 */,
 		    Fragments._Constraint__NamedElement /* 4 */,
 		    Fragments._Constraint__Constraint /* 5 */
@@ -2081,14 +2088,14 @@ public class PivotTables
 		{
 		    Fragments._DataType__OclAny /* 0 */,
 		    Fragments._DataType__OclElement /* 1 */,
-		    Fragments._DataType__Nameable /* 2 */,
 		    Fragments._DataType__Visitable /* 2 */,
+		    Fragments._DataType__Nameable /* 2 */,
 		    Fragments._DataType__Element /* 3 */,
-		    Fragments._DataType__ParameterableElement /* 4 */,
 		    Fragments._DataType__TemplateableElement /* 4 */,
+		    Fragments._DataType__ParameterableElement /* 4 */,
 		    Fragments._DataType__NamedElement /* 4 */,
-		    Fragments._DataType__Namespace /* 5 */,
 		    Fragments._DataType__Type /* 5 */,
+		    Fragments._DataType__Namespace /* 5 */,
 		    Fragments._DataType__Class /* 6 */,
 		    Fragments._DataType__DataType /* 7 */
 		};
@@ -2098,8 +2105,8 @@ public class PivotTables
 		{
 		    Fragments._Detail__OclAny /* 0 */,
 		    Fragments._Detail__OclElement /* 1 */,
-		    Fragments._Detail__Nameable /* 2 */,
 		    Fragments._Detail__Visitable /* 2 */,
+		    Fragments._Detail__Nameable /* 2 */,
 		    Fragments._Detail__Element /* 3 */,
 		    Fragments._Detail__NamedElement /* 4 */,
 		    Fragments._Detail__Detail /* 5 */
@@ -2119,8 +2126,8 @@ public class PivotTables
 		{
 		    Fragments._EnumLiteralExp__OclAny /* 0 */,
 		    Fragments._EnumLiteralExp__OclElement /* 1 */,
-		    Fragments._EnumLiteralExp__Nameable /* 2 */,
 		    Fragments._EnumLiteralExp__Visitable /* 2 */,
+		    Fragments._EnumLiteralExp__Nameable /* 2 */,
 		    Fragments._EnumLiteralExp__Element /* 3 */,
 		    Fragments._EnumLiteralExp__NamedElement /* 4 */,
 		    Fragments._EnumLiteralExp__TypedElement /* 5 */,
@@ -2134,14 +2141,14 @@ public class PivotTables
 		{
 		    Fragments._Enumeration__OclAny /* 0 */,
 		    Fragments._Enumeration__OclElement /* 1 */,
-		    Fragments._Enumeration__Nameable /* 2 */,
 		    Fragments._Enumeration__Visitable /* 2 */,
+		    Fragments._Enumeration__Nameable /* 2 */,
 		    Fragments._Enumeration__Element /* 3 */,
-		    Fragments._Enumeration__ParameterableElement /* 4 */,
 		    Fragments._Enumeration__TemplateableElement /* 4 */,
+		    Fragments._Enumeration__ParameterableElement /* 4 */,
 		    Fragments._Enumeration__NamedElement /* 4 */,
-		    Fragments._Enumeration__Namespace /* 5 */,
 		    Fragments._Enumeration__Type /* 5 */,
+		    Fragments._Enumeration__Namespace /* 5 */,
 		    Fragments._Enumeration__Class /* 6 */,
 		    Fragments._Enumeration__DataType /* 7 */,
 		    Fragments._Enumeration__Enumeration /* 8 */
@@ -2152,8 +2159,8 @@ public class PivotTables
 		{
 		    Fragments._EnumerationLiteral__OclAny /* 0 */,
 		    Fragments._EnumerationLiteral__OclElement /* 1 */,
-		    Fragments._EnumerationLiteral__Nameable /* 2 */,
 		    Fragments._EnumerationLiteral__Visitable /* 2 */,
+		    Fragments._EnumerationLiteral__Nameable /* 2 */,
 		    Fragments._EnumerationLiteral__Element /* 3 */,
 		    Fragments._EnumerationLiteral__NamedElement /* 4 */,
 		    Fragments._EnumerationLiteral__EnumerationLiteral /* 5 */
@@ -2164,8 +2171,8 @@ public class PivotTables
 		{
 		    Fragments._ExpressionInOcl__OclAny /* 0 */,
 		    Fragments._ExpressionInOcl__OclElement /* 1 */,
-		    Fragments._ExpressionInOcl__Nameable /* 2 */,
 		    Fragments._ExpressionInOcl__Visitable /* 2 */,
+		    Fragments._ExpressionInOcl__Nameable /* 2 */,
 		    Fragments._ExpressionInOcl__Element /* 3 */,
 		    Fragments._ExpressionInOcl__ParameterableElement /* 4 */,
 		    Fragments._ExpressionInOcl__NamedElement /* 4 */,
@@ -2180,8 +2187,8 @@ public class PivotTables
 		{
 		    Fragments._Feature__OclAny /* 0 */,
 		    Fragments._Feature__OclElement /* 1 */,
-		    Fragments._Feature__Nameable /* 2 */,
 		    Fragments._Feature__Visitable /* 2 */,
+		    Fragments._Feature__Nameable /* 2 */,
 		    Fragments._Feature__Element /* 3 */,
 		    Fragments._Feature__MultiplicityElement /* 4 */,
 		    Fragments._Feature__NamedElement /* 4 */,
@@ -2195,8 +2202,8 @@ public class PivotTables
 		{
 		    Fragments._FeatureCallExp__OclAny /* 0 */,
 		    Fragments._FeatureCallExp__OclElement /* 1 */,
-		    Fragments._FeatureCallExp__Nameable /* 2 */,
 		    Fragments._FeatureCallExp__Visitable /* 2 */,
+		    Fragments._FeatureCallExp__Nameable /* 2 */,
 		    Fragments._FeatureCallExp__Element /* 3 */,
 		    Fragments._FeatureCallExp__NamedElement /* 4 */,
 		    Fragments._FeatureCallExp__TypedElement /* 5 */,
@@ -2210,8 +2217,8 @@ public class PivotTables
 		{
 		    Fragments._IfExp__OclAny /* 0 */,
 		    Fragments._IfExp__OclElement /* 1 */,
-		    Fragments._IfExp__Nameable /* 2 */,
 		    Fragments._IfExp__Visitable /* 2 */,
+		    Fragments._IfExp__Nameable /* 2 */,
 		    Fragments._IfExp__Element /* 3 */,
 		    Fragments._IfExp__NamedElement /* 4 */,
 		    Fragments._IfExp__TypedElement /* 5 */,
@@ -2224,8 +2231,8 @@ public class PivotTables
 		{
 		    Fragments._IntegerLiteralExp__OclAny /* 0 */,
 		    Fragments._IntegerLiteralExp__OclElement /* 1 */,
-		    Fragments._IntegerLiteralExp__Nameable /* 2 */,
 		    Fragments._IntegerLiteralExp__Visitable /* 2 */,
+		    Fragments._IntegerLiteralExp__Nameable /* 2 */,
 		    Fragments._IntegerLiteralExp__Element /* 3 */,
 		    Fragments._IntegerLiteralExp__NamedElement /* 4 */,
 		    Fragments._IntegerLiteralExp__TypedElement /* 5 */,
@@ -2241,8 +2248,8 @@ public class PivotTables
 		{
 		    Fragments._InvalidLiteralExp__OclAny /* 0 */,
 		    Fragments._InvalidLiteralExp__OclElement /* 1 */,
-		    Fragments._InvalidLiteralExp__Nameable /* 2 */,
 		    Fragments._InvalidLiteralExp__Visitable /* 2 */,
+		    Fragments._InvalidLiteralExp__Nameable /* 2 */,
 		    Fragments._InvalidLiteralExp__Element /* 3 */,
 		    Fragments._InvalidLiteralExp__NamedElement /* 4 */,
 		    Fragments._InvalidLiteralExp__TypedElement /* 5 */,
@@ -2256,14 +2263,14 @@ public class PivotTables
 		{
 		    Fragments._InvalidType__OclAny /* 0 */,
 		    Fragments._InvalidType__OclElement /* 1 */,
-		    Fragments._InvalidType__Nameable /* 2 */,
 		    Fragments._InvalidType__Visitable /* 2 */,
+		    Fragments._InvalidType__Nameable /* 2 */,
 		    Fragments._InvalidType__Element /* 3 */,
-		    Fragments._InvalidType__ParameterableElement /* 4 */,
 		    Fragments._InvalidType__TemplateableElement /* 4 */,
+		    Fragments._InvalidType__ParameterableElement /* 4 */,
 		    Fragments._InvalidType__NamedElement /* 4 */,
-		    Fragments._InvalidType__Namespace /* 5 */,
 		    Fragments._InvalidType__Type /* 5 */,
+		    Fragments._InvalidType__Namespace /* 5 */,
 		    Fragments._InvalidType__Class /* 6 */,
 		    Fragments._InvalidType__InvalidType /* 7 */
 		};
@@ -2273,8 +2280,8 @@ public class PivotTables
 		{
 		    Fragments._IterateExp__OclAny /* 0 */,
 		    Fragments._IterateExp__OclElement /* 1 */,
-		    Fragments._IterateExp__Nameable /* 2 */,
 		    Fragments._IterateExp__Visitable /* 2 */,
+		    Fragments._IterateExp__Nameable /* 2 */,
 		    Fragments._IterateExp__Element /* 3 */,
 		    Fragments._IterateExp__NamedElement /* 4 */,
 		    Fragments._IterateExp__TypedElement /* 5 */,
@@ -2289,12 +2296,12 @@ public class PivotTables
 		{
 		    Fragments._Iteration__OclAny /* 0 */,
 		    Fragments._Iteration__OclElement /* 1 */,
-		    Fragments._Iteration__Nameable /* 2 */,
 		    Fragments._Iteration__Visitable /* 2 */,
+		    Fragments._Iteration__Nameable /* 2 */,
 		    Fragments._Iteration__Element /* 3 */,
-		    Fragments._Iteration__ParameterableElement /* 4 */,
 		    Fragments._Iteration__TemplateableElement /* 4 */,
 		    Fragments._Iteration__MultiplicityElement /* 4 */,
+		    Fragments._Iteration__ParameterableElement /* 4 */,
 		    Fragments._Iteration__NamedElement /* 4 */,
 		    Fragments._Iteration__Namespace /* 5 */,
 		    Fragments._Iteration__TypedElement /* 5 */,
@@ -2309,8 +2316,8 @@ public class PivotTables
 		{
 		    Fragments._IteratorExp__OclAny /* 0 */,
 		    Fragments._IteratorExp__OclElement /* 1 */,
-		    Fragments._IteratorExp__Nameable /* 2 */,
 		    Fragments._IteratorExp__Visitable /* 2 */,
+		    Fragments._IteratorExp__Nameable /* 2 */,
 		    Fragments._IteratorExp__Element /* 3 */,
 		    Fragments._IteratorExp__NamedElement /* 4 */,
 		    Fragments._IteratorExp__TypedElement /* 5 */,
@@ -2325,14 +2332,14 @@ public class PivotTables
 		{
 		    Fragments._LambdaType__OclAny /* 0 */,
 		    Fragments._LambdaType__OclElement /* 1 */,
-		    Fragments._LambdaType__Nameable /* 2 */,
 		    Fragments._LambdaType__Visitable /* 2 */,
+		    Fragments._LambdaType__Nameable /* 2 */,
 		    Fragments._LambdaType__Element /* 3 */,
-		    Fragments._LambdaType__ParameterableElement /* 4 */,
 		    Fragments._LambdaType__TemplateableElement /* 4 */,
+		    Fragments._LambdaType__ParameterableElement /* 4 */,
 		    Fragments._LambdaType__NamedElement /* 4 */,
-		    Fragments._LambdaType__Namespace /* 5 */,
 		    Fragments._LambdaType__Type /* 5 */,
+		    Fragments._LambdaType__Namespace /* 5 */,
 		    Fragments._LambdaType__Class /* 6 */,
 		    Fragments._LambdaType__DataType /* 7 */,
 		    Fragments._LambdaType__LambdaType /* 8 */
@@ -2343,8 +2350,8 @@ public class PivotTables
 		{
 		    Fragments._LetExp__OclAny /* 0 */,
 		    Fragments._LetExp__OclElement /* 1 */,
-		    Fragments._LetExp__Nameable /* 2 */,
 		    Fragments._LetExp__Visitable /* 2 */,
+		    Fragments._LetExp__Nameable /* 2 */,
 		    Fragments._LetExp__Element /* 3 */,
 		    Fragments._LetExp__NamedElement /* 4 */,
 		    Fragments._LetExp__TypedElement /* 5 */,
@@ -2357,8 +2364,8 @@ public class PivotTables
 		{
 		    Fragments._Library__OclAny /* 0 */,
 		    Fragments._Library__OclElement /* 1 */,
-		    Fragments._Library__Nameable /* 2 */,
 		    Fragments._Library__Visitable /* 2 */,
+		    Fragments._Library__Nameable /* 2 */,
 		    Fragments._Library__Element /* 3 */,
 		    Fragments._Library__TemplateableElement /* 4 */,
 		    Fragments._Library__NamedElement /* 4 */,
@@ -2378,8 +2385,8 @@ public class PivotTables
 		{
 		    Fragments._LiteralExp__OclAny /* 0 */,
 		    Fragments._LiteralExp__OclElement /* 1 */,
-		    Fragments._LiteralExp__Nameable /* 2 */,
 		    Fragments._LiteralExp__Visitable /* 2 */,
+		    Fragments._LiteralExp__Nameable /* 2 */,
 		    Fragments._LiteralExp__Element /* 3 */,
 		    Fragments._LiteralExp__NamedElement /* 4 */,
 		    Fragments._LiteralExp__TypedElement /* 5 */,
@@ -2392,8 +2399,8 @@ public class PivotTables
 		{
 		    Fragments._LoopExp__OclAny /* 0 */,
 		    Fragments._LoopExp__OclElement /* 1 */,
-		    Fragments._LoopExp__Nameable /* 2 */,
 		    Fragments._LoopExp__Visitable /* 2 */,
+		    Fragments._LoopExp__Nameable /* 2 */,
 		    Fragments._LoopExp__Element /* 3 */,
 		    Fragments._LoopExp__NamedElement /* 4 */,
 		    Fragments._LoopExp__TypedElement /* 5 */,
@@ -2407,8 +2414,8 @@ public class PivotTables
 		{
 		    Fragments._MessageExp__OclAny /* 0 */,
 		    Fragments._MessageExp__OclElement /* 1 */,
-		    Fragments._MessageExp__Nameable /* 2 */,
 		    Fragments._MessageExp__Visitable /* 2 */,
+		    Fragments._MessageExp__Nameable /* 2 */,
 		    Fragments._MessageExp__Element /* 3 */,
 		    Fragments._MessageExp__NamedElement /* 4 */,
 		    Fragments._MessageExp__TypedElement /* 5 */,
@@ -2421,11 +2428,11 @@ public class PivotTables
 		{
 		    Fragments._MessageType__OclAny /* 0 */,
 		    Fragments._MessageType__OclElement /* 1 */,
-		    Fragments._MessageType__Nameable /* 2 */,
 		    Fragments._MessageType__Visitable /* 2 */,
+		    Fragments._MessageType__Nameable /* 2 */,
 		    Fragments._MessageType__Element /* 3 */,
-		    Fragments._MessageType__ParameterableElement /* 4 */,
 		    Fragments._MessageType__TemplateableElement /* 4 */,
+		    Fragments._MessageType__ParameterableElement /* 4 */,
 		    Fragments._MessageType__NamedElement /* 4 */,
 		    Fragments._MessageType__Type /* 5 */,
 		    Fragments._MessageType__MessageType /* 6 */
@@ -2454,8 +2461,8 @@ public class PivotTables
 		{
 		    Fragments._NamedElement__OclAny /* 0 */,
 		    Fragments._NamedElement__OclElement /* 1 */,
-		    Fragments._NamedElement__Nameable /* 2 */,
 		    Fragments._NamedElement__Visitable /* 2 */,
+		    Fragments._NamedElement__Nameable /* 2 */,
 		    Fragments._NamedElement__Element /* 3 */,
 		    Fragments._NamedElement__NamedElement /* 4 */
 		};
@@ -2465,8 +2472,8 @@ public class PivotTables
 		{
 		    Fragments._Namespace__OclAny /* 0 */,
 		    Fragments._Namespace__OclElement /* 1 */,
-		    Fragments._Namespace__Nameable /* 2 */,
 		    Fragments._Namespace__Visitable /* 2 */,
+		    Fragments._Namespace__Nameable /* 2 */,
 		    Fragments._Namespace__Element /* 3 */,
 		    Fragments._Namespace__NamedElement /* 4 */,
 		    Fragments._Namespace__Namespace /* 5 */
@@ -2477,8 +2484,8 @@ public class PivotTables
 		{
 		    Fragments._NavigationCallExp__OclAny /* 0 */,
 		    Fragments._NavigationCallExp__OclElement /* 1 */,
-		    Fragments._NavigationCallExp__Nameable /* 2 */,
 		    Fragments._NavigationCallExp__Visitable /* 2 */,
+		    Fragments._NavigationCallExp__Nameable /* 2 */,
 		    Fragments._NavigationCallExp__Element /* 3 */,
 		    Fragments._NavigationCallExp__NamedElement /* 4 */,
 		    Fragments._NavigationCallExp__TypedElement /* 5 */,
@@ -2493,8 +2500,8 @@ public class PivotTables
 		{
 		    Fragments._NullLiteralExp__OclAny /* 0 */,
 		    Fragments._NullLiteralExp__OclElement /* 1 */,
-		    Fragments._NullLiteralExp__Nameable /* 2 */,
 		    Fragments._NullLiteralExp__Visitable /* 2 */,
+		    Fragments._NullLiteralExp__Nameable /* 2 */,
 		    Fragments._NullLiteralExp__Element /* 3 */,
 		    Fragments._NullLiteralExp__NamedElement /* 4 */,
 		    Fragments._NullLiteralExp__TypedElement /* 5 */,
@@ -2509,8 +2516,8 @@ public class PivotTables
 		{
 		    Fragments._NumericLiteralExp__OclAny /* 0 */,
 		    Fragments._NumericLiteralExp__OclElement /* 1 */,
-		    Fragments._NumericLiteralExp__Nameable /* 2 */,
 		    Fragments._NumericLiteralExp__Visitable /* 2 */,
+		    Fragments._NumericLiteralExp__Nameable /* 2 */,
 		    Fragments._NumericLiteralExp__Element /* 3 */,
 		    Fragments._NumericLiteralExp__NamedElement /* 4 */,
 		    Fragments._NumericLiteralExp__TypedElement /* 5 */,
@@ -2531,8 +2538,8 @@ public class PivotTables
 		{
 		    Fragments._OclExpression__OclAny /* 0 */,
 		    Fragments._OclExpression__OclElement /* 1 */,
-		    Fragments._OclExpression__Nameable /* 2 */,
 		    Fragments._OclExpression__Visitable /* 2 */,
+		    Fragments._OclExpression__Nameable /* 2 */,
 		    Fragments._OclExpression__Element /* 3 */,
 		    Fragments._OclExpression__NamedElement /* 4 */,
 		    Fragments._OclExpression__TypedElement /* 5 */,
@@ -2544,8 +2551,8 @@ public class PivotTables
 		{
 		    Fragments._OpaqueExpression__OclAny /* 0 */,
 		    Fragments._OpaqueExpression__OclElement /* 1 */,
-		    Fragments._OpaqueExpression__Nameable /* 2 */,
 		    Fragments._OpaqueExpression__Visitable /* 2 */,
+		    Fragments._OpaqueExpression__Nameable /* 2 */,
 		    Fragments._OpaqueExpression__Element /* 3 */,
 		    Fragments._OpaqueExpression__ParameterableElement /* 4 */,
 		    Fragments._OpaqueExpression__NamedElement /* 4 */,
@@ -2559,12 +2566,12 @@ public class PivotTables
 		{
 		    Fragments._Operation__OclAny /* 0 */,
 		    Fragments._Operation__OclElement /* 1 */,
-		    Fragments._Operation__Nameable /* 2 */,
 		    Fragments._Operation__Visitable /* 2 */,
+		    Fragments._Operation__Nameable /* 2 */,
 		    Fragments._Operation__Element /* 3 */,
-		    Fragments._Operation__ParameterableElement /* 4 */,
 		    Fragments._Operation__TemplateableElement /* 4 */,
 		    Fragments._Operation__MultiplicityElement /* 4 */,
+		    Fragments._Operation__ParameterableElement /* 4 */,
 		    Fragments._Operation__NamedElement /* 4 */,
 		    Fragments._Operation__Namespace /* 5 */,
 		    Fragments._Operation__TypedElement /* 5 */,
@@ -2578,8 +2585,8 @@ public class PivotTables
 		{
 		    Fragments._OperationCallExp__OclAny /* 0 */,
 		    Fragments._OperationCallExp__OclElement /* 1 */,
-		    Fragments._OperationCallExp__Nameable /* 2 */,
 		    Fragments._OperationCallExp__Visitable /* 2 */,
+		    Fragments._OperationCallExp__Nameable /* 2 */,
 		    Fragments._OperationCallExp__Element /* 3 */,
 		    Fragments._OperationCallExp__NamedElement /* 4 */,
 		    Fragments._OperationCallExp__TypedElement /* 5 */,
@@ -2605,11 +2612,11 @@ public class PivotTables
 		{
 		    Fragments._OrderedSetType__OclAny /* 0 */,
 		    Fragments._OrderedSetType__OclElement /* 1 */,
-		    Fragments._OrderedSetType__Nameable /* 2 */,
 		    Fragments._OrderedSetType__Visitable /* 2 */,
+		    Fragments._OrderedSetType__Nameable /* 2 */,
 		    Fragments._OrderedSetType__Element /* 3 */,
-		    Fragments._OrderedSetType__ParameterableElement /* 4 */,
 		    Fragments._OrderedSetType__TemplateableElement /* 4 */,
+		    Fragments._OrderedSetType__ParameterableElement /* 4 */,
 		    Fragments._OrderedSetType__NamedElement /* 4 */,
 		    Fragments._OrderedSetType__Type /* 5 */,
 		    Fragments._OrderedSetType__Namespace /* 5 */,
@@ -2624,8 +2631,8 @@ public class PivotTables
 		{
 		    Fragments._Package__OclAny /* 0 */,
 		    Fragments._Package__OclElement /* 1 */,
-		    Fragments._Package__Nameable /* 2 */,
 		    Fragments._Package__Visitable /* 2 */,
+		    Fragments._Package__Nameable /* 2 */,
 		    Fragments._Package__Element /* 3 */,
 		    Fragments._Package__TemplateableElement /* 4 */,
 		    Fragments._Package__NamedElement /* 4 */,
@@ -2649,8 +2656,8 @@ public class PivotTables
 		{
 		    Fragments._Parameter__OclAny /* 0 */,
 		    Fragments._Parameter__OclElement /* 1 */,
-		    Fragments._Parameter__Nameable /* 2 */,
 		    Fragments._Parameter__Visitable /* 2 */,
+		    Fragments._Parameter__Nameable /* 2 */,
 		    Fragments._Parameter__Element /* 3 */,
 		    Fragments._Parameter__MultiplicityElement /* 4 */,
 		    Fragments._Parameter__NamedElement /* 4 */,
@@ -2683,8 +2690,8 @@ public class PivotTables
 		{
 		    Fragments._Precedence__OclAny /* 0 */,
 		    Fragments._Precedence__OclElement /* 1 */,
-		    Fragments._Precedence__Nameable /* 2 */,
 		    Fragments._Precedence__Visitable /* 2 */,
+		    Fragments._Precedence__Nameable /* 2 */,
 		    Fragments._Precedence__Element /* 3 */,
 		    Fragments._Precedence__NamedElement /* 4 */,
 		    Fragments._Precedence__Precedence /* 5 */
@@ -2695,8 +2702,8 @@ public class PivotTables
 		{
 		    Fragments._PrimitiveLiteralExp__OclAny /* 0 */,
 		    Fragments._PrimitiveLiteralExp__OclElement /* 1 */,
-		    Fragments._PrimitiveLiteralExp__Nameable /* 2 */,
 		    Fragments._PrimitiveLiteralExp__Visitable /* 2 */,
+		    Fragments._PrimitiveLiteralExp__Nameable /* 2 */,
 		    Fragments._PrimitiveLiteralExp__Element /* 3 */,
 		    Fragments._PrimitiveLiteralExp__NamedElement /* 4 */,
 		    Fragments._PrimitiveLiteralExp__TypedElement /* 5 */,
@@ -2710,14 +2717,14 @@ public class PivotTables
 		{
 		    Fragments._PrimitiveType__OclAny /* 0 */,
 		    Fragments._PrimitiveType__OclElement /* 1 */,
-		    Fragments._PrimitiveType__Nameable /* 2 */,
 		    Fragments._PrimitiveType__Visitable /* 2 */,
+		    Fragments._PrimitiveType__Nameable /* 2 */,
 		    Fragments._PrimitiveType__Element /* 3 */,
-		    Fragments._PrimitiveType__ParameterableElement /* 4 */,
 		    Fragments._PrimitiveType__TemplateableElement /* 4 */,
+		    Fragments._PrimitiveType__ParameterableElement /* 4 */,
 		    Fragments._PrimitiveType__NamedElement /* 4 */,
-		    Fragments._PrimitiveType__Namespace /* 5 */,
 		    Fragments._PrimitiveType__Type /* 5 */,
+		    Fragments._PrimitiveType__Namespace /* 5 */,
 		    Fragments._PrimitiveType__Class /* 6 */,
 		    Fragments._PrimitiveType__DataType /* 7 */,
 		    Fragments._PrimitiveType__PrimitiveType /* 8 */
@@ -2728,8 +2735,8 @@ public class PivotTables
 		{
 		    Fragments._Property__OclAny /* 0 */,
 		    Fragments._Property__OclElement /* 1 */,
-		    Fragments._Property__Nameable /* 2 */,
 		    Fragments._Property__Visitable /* 2 */,
+		    Fragments._Property__Nameable /* 2 */,
 		    Fragments._Property__Element /* 3 */,
 		    Fragments._Property__ParameterableElement /* 4 */,
 		    Fragments._Property__MultiplicityElement /* 4 */,
@@ -2745,8 +2752,8 @@ public class PivotTables
 		{
 		    Fragments._PropertyCallExp__OclAny /* 0 */,
 		    Fragments._PropertyCallExp__OclElement /* 1 */,
-		    Fragments._PropertyCallExp__Nameable /* 2 */,
 		    Fragments._PropertyCallExp__Visitable /* 2 */,
+		    Fragments._PropertyCallExp__Nameable /* 2 */,
 		    Fragments._PropertyCallExp__Element /* 3 */,
 		    Fragments._PropertyCallExp__NamedElement /* 4 */,
 		    Fragments._PropertyCallExp__TypedElement /* 5 */,
@@ -2762,8 +2769,8 @@ public class PivotTables
 		{
 		    Fragments._RealLiteralExp__OclAny /* 0 */,
 		    Fragments._RealLiteralExp__OclElement /* 1 */,
-		    Fragments._RealLiteralExp__Nameable /* 2 */,
 		    Fragments._RealLiteralExp__Visitable /* 2 */,
+		    Fragments._RealLiteralExp__Nameable /* 2 */,
 		    Fragments._RealLiteralExp__Element /* 3 */,
 		    Fragments._RealLiteralExp__NamedElement /* 4 */,
 		    Fragments._RealLiteralExp__TypedElement /* 5 */,
@@ -2779,14 +2786,14 @@ public class PivotTables
 		{
 		    Fragments._SelfType__OclAny /* 0 */,
 		    Fragments._SelfType__OclElement /* 1 */,
-		    Fragments._SelfType__Nameable /* 2 */,
 		    Fragments._SelfType__Visitable /* 2 */,
+		    Fragments._SelfType__Nameable /* 2 */,
 		    Fragments._SelfType__Element /* 3 */,
-		    Fragments._SelfType__ParameterableElement /* 4 */,
 		    Fragments._SelfType__TemplateableElement /* 4 */,
+		    Fragments._SelfType__ParameterableElement /* 4 */,
 		    Fragments._SelfType__NamedElement /* 4 */,
-		    Fragments._SelfType__Namespace /* 5 */,
 		    Fragments._SelfType__Type /* 5 */,
+		    Fragments._SelfType__Namespace /* 5 */,
 		    Fragments._SelfType__Class /* 6 */,
 		    Fragments._SelfType__SelfType /* 7 */
 		};
@@ -2796,8 +2803,8 @@ public class PivotTables
 		{
 		    Fragments._SendSignalAction__OclAny /* 0 */,
 		    Fragments._SendSignalAction__OclElement /* 1 */,
-		    Fragments._SendSignalAction__Nameable /* 2 */,
 		    Fragments._SendSignalAction__Visitable /* 2 */,
+		    Fragments._SendSignalAction__Nameable /* 2 */,
 		    Fragments._SendSignalAction__Element /* 3 */,
 		    Fragments._SendSignalAction__NamedElement /* 4 */,
 		    Fragments._SendSignalAction__SendSignalAction /* 5 */
@@ -2808,11 +2815,11 @@ public class PivotTables
 		{
 		    Fragments._SequenceType__OclAny /* 0 */,
 		    Fragments._SequenceType__OclElement /* 1 */,
-		    Fragments._SequenceType__Nameable /* 2 */,
 		    Fragments._SequenceType__Visitable /* 2 */,
+		    Fragments._SequenceType__Nameable /* 2 */,
 		    Fragments._SequenceType__Element /* 3 */,
-		    Fragments._SequenceType__ParameterableElement /* 4 */,
 		    Fragments._SequenceType__TemplateableElement /* 4 */,
+		    Fragments._SequenceType__ParameterableElement /* 4 */,
 		    Fragments._SequenceType__NamedElement /* 4 */,
 		    Fragments._SequenceType__Type /* 5 */,
 		    Fragments._SequenceType__Namespace /* 5 */,
@@ -2827,11 +2834,11 @@ public class PivotTables
 		{
 		    Fragments._SetType__OclAny /* 0 */,
 		    Fragments._SetType__OclElement /* 1 */,
-		    Fragments._SetType__Nameable /* 2 */,
 		    Fragments._SetType__Visitable /* 2 */,
+		    Fragments._SetType__Nameable /* 2 */,
 		    Fragments._SetType__Element /* 3 */,
-		    Fragments._SetType__ParameterableElement /* 4 */,
 		    Fragments._SetType__TemplateableElement /* 4 */,
+		    Fragments._SetType__ParameterableElement /* 4 */,
 		    Fragments._SetType__NamedElement /* 4 */,
 		    Fragments._SetType__Type /* 5 */,
 		    Fragments._SetType__Namespace /* 5 */,
@@ -2846,8 +2853,8 @@ public class PivotTables
 		{
 		    Fragments._Signal__OclAny /* 0 */,
 		    Fragments._Signal__OclElement /* 1 */,
-		    Fragments._Signal__Nameable /* 2 */,
 		    Fragments._Signal__Visitable /* 2 */,
+		    Fragments._Signal__Nameable /* 2 */,
 		    Fragments._Signal__Element /* 3 */,
 		    Fragments._Signal__NamedElement /* 4 */,
 		    Fragments._Signal__Signal /* 5 */
@@ -2858,8 +2865,8 @@ public class PivotTables
 		{
 		    Fragments._State__OclAny /* 0 */,
 		    Fragments._State__OclElement /* 1 */,
-		    Fragments._State__Nameable /* 2 */,
 		    Fragments._State__Visitable /* 2 */,
+		    Fragments._State__Nameable /* 2 */,
 		    Fragments._State__Element /* 3 */,
 		    Fragments._State__NamedElement /* 4 */,
 		    Fragments._State__State /* 5 */
@@ -2870,8 +2877,8 @@ public class PivotTables
 		{
 		    Fragments._StateExp__OclAny /* 0 */,
 		    Fragments._StateExp__OclElement /* 1 */,
-		    Fragments._StateExp__Nameable /* 2 */,
 		    Fragments._StateExp__Visitable /* 2 */,
+		    Fragments._StateExp__Nameable /* 2 */,
 		    Fragments._StateExp__Element /* 3 */,
 		    Fragments._StateExp__NamedElement /* 4 */,
 		    Fragments._StateExp__TypedElement /* 5 */,
@@ -2884,8 +2891,8 @@ public class PivotTables
 		{
 		    Fragments._StringLiteralExp__OclAny /* 0 */,
 		    Fragments._StringLiteralExp__OclElement /* 1 */,
-		    Fragments._StringLiteralExp__Nameable /* 2 */,
 		    Fragments._StringLiteralExp__Visitable /* 2 */,
+		    Fragments._StringLiteralExp__Nameable /* 2 */,
 		    Fragments._StringLiteralExp__Element /* 3 */,
 		    Fragments._StringLiteralExp__NamedElement /* 4 */,
 		    Fragments._StringLiteralExp__TypedElement /* 5 */,
@@ -2930,11 +2937,11 @@ public class PivotTables
 		{
 		    Fragments._TemplateParameterType__OclAny /* 0 */,
 		    Fragments._TemplateParameterType__OclElement /* 1 */,
-		    Fragments._TemplateParameterType__Nameable /* 2 */,
 		    Fragments._TemplateParameterType__Visitable /* 2 */,
+		    Fragments._TemplateParameterType__Nameable /* 2 */,
 		    Fragments._TemplateParameterType__Element /* 3 */,
-		    Fragments._TemplateParameterType__ParameterableElement /* 4 */,
 		    Fragments._TemplateParameterType__TemplateableElement /* 4 */,
+		    Fragments._TemplateParameterType__ParameterableElement /* 4 */,
 		    Fragments._TemplateParameterType__NamedElement /* 4 */,
 		    Fragments._TemplateParameterType__Type /* 5 */,
 		    Fragments._TemplateParameterType__TemplateParameterType /* 6 */
@@ -2971,8 +2978,8 @@ public class PivotTables
 		{
 		    Fragments._TupleLiteralExp__OclAny /* 0 */,
 		    Fragments._TupleLiteralExp__OclElement /* 1 */,
-		    Fragments._TupleLiteralExp__Nameable /* 2 */,
 		    Fragments._TupleLiteralExp__Visitable /* 2 */,
+		    Fragments._TupleLiteralExp__Nameable /* 2 */,
 		    Fragments._TupleLiteralExp__Element /* 3 */,
 		    Fragments._TupleLiteralExp__NamedElement /* 4 */,
 		    Fragments._TupleLiteralExp__TypedElement /* 5 */,
@@ -2986,8 +2993,8 @@ public class PivotTables
 		{
 		    Fragments._TupleLiteralPart__OclAny /* 0 */,
 		    Fragments._TupleLiteralPart__OclElement /* 1 */,
-		    Fragments._TupleLiteralPart__Nameable /* 2 */,
 		    Fragments._TupleLiteralPart__Visitable /* 2 */,
+		    Fragments._TupleLiteralPart__Nameable /* 2 */,
 		    Fragments._TupleLiteralPart__Element /* 3 */,
 		    Fragments._TupleLiteralPart__NamedElement /* 4 */,
 		    Fragments._TupleLiteralPart__TypedElement /* 5 */,
@@ -3000,14 +3007,14 @@ public class PivotTables
 		{
 		    Fragments._TupleType__OclAny /* 0 */,
 		    Fragments._TupleType__OclElement /* 1 */,
-		    Fragments._TupleType__Nameable /* 2 */,
 		    Fragments._TupleType__Visitable /* 2 */,
+		    Fragments._TupleType__Nameable /* 2 */,
 		    Fragments._TupleType__Element /* 3 */,
-		    Fragments._TupleType__ParameterableElement /* 4 */,
 		    Fragments._TupleType__TemplateableElement /* 4 */,
+		    Fragments._TupleType__ParameterableElement /* 4 */,
 		    Fragments._TupleType__NamedElement /* 4 */,
-		    Fragments._TupleType__Namespace /* 5 */,
 		    Fragments._TupleType__Type /* 5 */,
+		    Fragments._TupleType__Namespace /* 5 */,
 		    Fragments._TupleType__Class /* 6 */,
 		    Fragments._TupleType__DataType /* 7 */,
 		    Fragments._TupleType__TupleType /* 8 */
@@ -3018,11 +3025,11 @@ public class PivotTables
 		{
 		    Fragments._Type__OclAny /* 0 */,
 		    Fragments._Type__OclElement /* 1 */,
-		    Fragments._Type__Nameable /* 2 */,
 		    Fragments._Type__Visitable /* 2 */,
+		    Fragments._Type__Nameable /* 2 */,
 		    Fragments._Type__Element /* 3 */,
-		    Fragments._Type__ParameterableElement /* 4 */,
 		    Fragments._Type__TemplateableElement /* 4 */,
+		    Fragments._Type__ParameterableElement /* 4 */,
 		    Fragments._Type__NamedElement /* 4 */,
 		    Fragments._Type__Type /* 5 */
 		};
@@ -3032,8 +3039,8 @@ public class PivotTables
 		{
 		    Fragments._TypeExp__OclAny /* 0 */,
 		    Fragments._TypeExp__OclElement /* 1 */,
-		    Fragments._TypeExp__Nameable /* 2 */,
 		    Fragments._TypeExp__Visitable /* 2 */,
+		    Fragments._TypeExp__Nameable /* 2 */,
 		    Fragments._TypeExp__Element /* 3 */,
 		    Fragments._TypeExp__NamedElement /* 4 */,
 		    Fragments._TypeExp__TypedElement /* 5 */,
@@ -3057,8 +3064,8 @@ public class PivotTables
 		{
 		    Fragments._TypedElement__OclAny /* 0 */,
 		    Fragments._TypedElement__OclElement /* 1 */,
-		    Fragments._TypedElement__Nameable /* 2 */,
 		    Fragments._TypedElement__Visitable /* 2 */,
+		    Fragments._TypedElement__Nameable /* 2 */,
 		    Fragments._TypedElement__Element /* 3 */,
 		    Fragments._TypedElement__NamedElement /* 4 */,
 		    Fragments._TypedElement__TypedElement /* 5 */
@@ -3069,8 +3076,8 @@ public class PivotTables
 		{
 		    Fragments._TypedMultiplicityElement__OclAny /* 0 */,
 		    Fragments._TypedMultiplicityElement__OclElement /* 1 */,
-		    Fragments._TypedMultiplicityElement__Nameable /* 2 */,
 		    Fragments._TypedMultiplicityElement__Visitable /* 2 */,
+		    Fragments._TypedMultiplicityElement__Nameable /* 2 */,
 		    Fragments._TypedMultiplicityElement__Element /* 3 */,
 		    Fragments._TypedMultiplicityElement__MultiplicityElement /* 4 */,
 		    Fragments._TypedMultiplicityElement__NamedElement /* 4 */,
@@ -3083,8 +3090,8 @@ public class PivotTables
 		{
 		    Fragments._UnlimitedNaturalLiteralExp__OclAny /* 0 */,
 		    Fragments._UnlimitedNaturalLiteralExp__OclElement /* 1 */,
-		    Fragments._UnlimitedNaturalLiteralExp__Nameable /* 2 */,
 		    Fragments._UnlimitedNaturalLiteralExp__Visitable /* 2 */,
+		    Fragments._UnlimitedNaturalLiteralExp__Nameable /* 2 */,
 		    Fragments._UnlimitedNaturalLiteralExp__Element /* 3 */,
 		    Fragments._UnlimitedNaturalLiteralExp__NamedElement /* 4 */,
 		    Fragments._UnlimitedNaturalLiteralExp__TypedElement /* 5 */,
@@ -3100,14 +3107,14 @@ public class PivotTables
 		{
 		    Fragments._UnspecifiedType__OclAny /* 0 */,
 		    Fragments._UnspecifiedType__OclElement /* 1 */,
-		    Fragments._UnspecifiedType__Nameable /* 2 */,
 		    Fragments._UnspecifiedType__Visitable /* 2 */,
+		    Fragments._UnspecifiedType__Nameable /* 2 */,
 		    Fragments._UnspecifiedType__Element /* 3 */,
-		    Fragments._UnspecifiedType__ParameterableElement /* 4 */,
 		    Fragments._UnspecifiedType__TemplateableElement /* 4 */,
+		    Fragments._UnspecifiedType__ParameterableElement /* 4 */,
 		    Fragments._UnspecifiedType__NamedElement /* 4 */,
-		    Fragments._UnspecifiedType__Namespace /* 5 */,
 		    Fragments._UnspecifiedType__Type /* 5 */,
+		    Fragments._UnspecifiedType__Namespace /* 5 */,
 		    Fragments._UnspecifiedType__Class /* 6 */,
 		    Fragments._UnspecifiedType__UnspecifiedType /* 7 */
 		};
@@ -3117,8 +3124,8 @@ public class PivotTables
 		{
 		    Fragments._UnspecifiedValueExp__OclAny /* 0 */,
 		    Fragments._UnspecifiedValueExp__OclElement /* 1 */,
-		    Fragments._UnspecifiedValueExp__Nameable /* 2 */,
 		    Fragments._UnspecifiedValueExp__Visitable /* 2 */,
+		    Fragments._UnspecifiedValueExp__Nameable /* 2 */,
 		    Fragments._UnspecifiedValueExp__Element /* 3 */,
 		    Fragments._UnspecifiedValueExp__NamedElement /* 4 */,
 		    Fragments._UnspecifiedValueExp__TypedElement /* 5 */,
@@ -3131,8 +3138,8 @@ public class PivotTables
 		{
 		    Fragments._ValueSpecification__OclAny /* 0 */,
 		    Fragments._ValueSpecification__OclElement /* 1 */,
-		    Fragments._ValueSpecification__Nameable /* 2 */,
 		    Fragments._ValueSpecification__Visitable /* 2 */,
+		    Fragments._ValueSpecification__Nameable /* 2 */,
 		    Fragments._ValueSpecification__Element /* 3 */,
 		    Fragments._ValueSpecification__ParameterableElement /* 4 */,
 		    Fragments._ValueSpecification__NamedElement /* 4 */,
@@ -3145,8 +3152,8 @@ public class PivotTables
 		{
 		    Fragments._Variable__OclAny /* 0 */,
 		    Fragments._Variable__OclElement /* 1 */,
-		    Fragments._Variable__Nameable /* 2 */,
 		    Fragments._Variable__Visitable /* 2 */,
+		    Fragments._Variable__Nameable /* 2 */,
 		    Fragments._Variable__Element /* 3 */,
 		    Fragments._Variable__NamedElement /* 4 */,
 		    Fragments._Variable__TypedElement /* 5 */,
@@ -3159,8 +3166,8 @@ public class PivotTables
 		{
 		    Fragments._VariableDeclaration__OclAny /* 0 */,
 		    Fragments._VariableDeclaration__OclElement /* 1 */,
-		    Fragments._VariableDeclaration__Nameable /* 2 */,
 		    Fragments._VariableDeclaration__Visitable /* 2 */,
+		    Fragments._VariableDeclaration__Nameable /* 2 */,
 		    Fragments._VariableDeclaration__Element /* 3 */,
 		    Fragments._VariableDeclaration__NamedElement /* 4 */,
 		    Fragments._VariableDeclaration__TypedElement /* 5 */,
@@ -3172,8 +3179,8 @@ public class PivotTables
 		{
 		    Fragments._VariableExp__OclAny /* 0 */,
 		    Fragments._VariableExp__OclElement /* 1 */,
-		    Fragments._VariableExp__Nameable /* 2 */,
 		    Fragments._VariableExp__Visitable /* 2 */,
+		    Fragments._VariableExp__Nameable /* 2 */,
 		    Fragments._VariableExp__Element /* 3 */,
 		    Fragments._VariableExp__NamedElement /* 4 */,
 		    Fragments._VariableExp__TypedElement /* 5 */,
@@ -3202,14 +3209,14 @@ public class PivotTables
 		{
 		    Fragments._VoidType__OclAny /* 0 */,
 		    Fragments._VoidType__OclElement /* 1 */,
-		    Fragments._VoidType__Nameable /* 2 */,
 		    Fragments._VoidType__Visitable /* 2 */,
+		    Fragments._VoidType__Nameable /* 2 */,
 		    Fragments._VoidType__Element /* 3 */,
-		    Fragments._VoidType__ParameterableElement /* 4 */,
 		    Fragments._VoidType__TemplateableElement /* 4 */,
+		    Fragments._VoidType__ParameterableElement /* 4 */,
 		    Fragments._VoidType__NamedElement /* 4 */,
-		    Fragments._VoidType__Namespace /* 5 */,
 		    Fragments._VoidType__Type /* 5 */,
+		    Fragments._VoidType__Namespace /* 5 */,
 		    Fragments._VoidType__Class /* 6 */,
 		    Fragments._VoidType__VoidType /* 7 */
 		};
@@ -4113,7 +4120,9 @@ public class PivotTables
 		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final ExecutorOperation[] _Feature__TypedElement = {};
-		private static final ExecutorOperation[] _Feature__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _Feature__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _Feature__Visitable = {};
 	
 		private static final ExecutorOperation[] _FeatureCallExp__FeatureCallExp = {};
@@ -4343,7 +4352,9 @@ public class PivotTables
 		    PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
 		};
 		private static final ExecutorOperation[] _Iteration__TypedElement = {};
-		private static final ExecutorOperation[] _Iteration__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _Iteration__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _Iteration__Visitable = {};
 	
 		private static final ExecutorOperation[] _IteratorExp__IteratorExp = {};
@@ -4897,7 +4908,9 @@ public class PivotTables
 		    PivotTables.Operations._TemplateableElement__parameterableElements /* parameterableElements() */
 		};
 		private static final ExecutorOperation[] _Operation__TypedElement = {};
-		private static final ExecutorOperation[] _Operation__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _Operation__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _Operation__Visitable = {};
 	
 		private static final ExecutorOperation[] _OperationCallExp__OperationCallExp = {};
@@ -5085,7 +5098,9 @@ public class PivotTables
 		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
 		};
 		private static final ExecutorOperation[] _Parameter__TypedElement = {};
-		private static final ExecutorOperation[] _Parameter__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _Parameter__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _Parameter__VariableDeclaration = {};
 		private static final ExecutorOperation[] _Parameter__Visitable = {};
 	
@@ -5268,7 +5283,9 @@ public class PivotTables
 		    PivotTables.Operations._ParameterableElement__isTemplateParameter /* isTemplateParameter() */
 		};
 		private static final ExecutorOperation[] _Property__TypedElement = {};
-		private static final ExecutorOperation[] _Property__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _Property__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _Property__Visitable = {};
 	
 		private static final ExecutorOperation[] _PropertyCallExp__PropertyCallExp = {};
@@ -5952,7 +5969,9 @@ public class PivotTables
 		};
 		private static final ExecutorOperation[] _TypedElement__Visitable = {};
 	
-		private static final ExecutorOperation[] _TypedMultiplicityElement__TypedMultiplicityElement = {};
+		private static final ExecutorOperation[] _TypedMultiplicityElement__TypedMultiplicityElement = {
+		    PivotTables.Operations._TypedMultiplicityElement__CompatibleBody /* CompatibleBody(ValueSpecification) */
+		};
 		private static final ExecutorOperation[] _TypedMultiplicityElement__Element = {
 		    PivotTables.Operations._Element__allOwnedElements /* allOwnedElements() */
 		};

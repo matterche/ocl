@@ -24,14 +24,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
-import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
-import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -39,7 +34,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
@@ -551,56 +545,5 @@ public class ClassImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitClass(this);
-	}
-
-	@Override
-	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		if (type == null) {
-			return false;
-		}
-		if (!(type instanceof org.eclipse.ocl.examples.pivot.Class)) {
-			return false;	// WIP FIXME domain type, bad tuple etc inheritance
-		}
-		if (this == type) {
-			return true;
-		}
-/*		if (secondType instanceof AnyType) {			// FIXME Shouldn't the library model definitions apply here too
-			return true;
-		}
-		else if (firstType instanceof AnyType) {
-			return false;
-		}
-		else if (firstType instanceof InvalidType) {
-			return true;
-		}
-		else if (secondType instanceof InvalidType) {
-			return false;
-		}
-		else if (firstType instanceof VoidType) {
-			return true;
-		}
-		else if (secondType instanceof VoidType) {
-			return false;
-		} */
-		if (type instanceof ClassifierType) {
-			return false;
-		}
-		else if (type instanceof CollectionType) {
-			return false;
-		}
-		else if (type instanceof LambdaType) {
-			return false;
-		}
-		else if (type instanceof TupleType) {
-			return false;
-		}
-		else {
-			for (Type superClass : getSuperClasses()) {
-				if (superClass.conformsTo(standardLibrary, type)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 } //ClassImpl

@@ -458,6 +458,7 @@ public class EnumerationImpl
 
 	@Override
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
-		throw new UnsupportedOperationException();		// WIP
+		return super.conformsTo(standardLibrary, type);
+//		throw new UnsupportedOperationException();		// WIP
 	}
 } //EnumerationImpl

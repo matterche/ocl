@@ -21,7 +21,6 @@
 package org.eclipse.ocl.examples.pivot.bodies;
 
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
-import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -51,7 +50,7 @@ public class ParameterableElementBodies
 		public static _isCompatibleWith_body_ INSTANCE = new _isCompatibleWith_body_();
 	
 		/*
-		p->oclIsKindOf(self.oclType())
+		p.oclIsKindOf(self.oclType())
 		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value self, Value p) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
@@ -59,23 +58,18 @@ public class ParameterableElementBodies
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
 			final ExecutorOperation O_OclAny_oclIsKindOf = OCLstdlibTables.Operations._OclAny__oclIsKindOf;
 			final ExecutorType T_Pivot_ecore__pivot__ParameterableElement = PivotTables.Types._ParameterableElement;
-			final DomainCollectionType T_Set_Pivot_ecore__pivot__ParameterableElement_ = standardLibrary.getSetType(T_Pivot_ecore__pivot__ParameterableElement);
-			final ExecutorOperation O_OclAny_oclAsSet = OCLstdlibTables.Operations._OclAny__oclAsSet;
 			final DomainClassifierType T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_ = standardLibrary.getClassifierType(T_Pivot_ecore__pivot__ParameterableElement);
 			final ExecutorOperation O_OclAny_oclType = OCLstdlibTables.Operations._OclAny__oclType;
 			
 			
-			DomainType static_A_symbol_7 = valueFactory.typeOf(p);
-			LibraryUnaryOperation dynamic_A_symbol_7 = (LibraryUnaryOperation)static_A_symbol_7.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-			Value A_symbol_7 = dynamic_A_symbol_7.evaluate(evaluator, T_Set_Pivot_ecore__pivot__ParameterableElement_, p);
 			
-			DomainType static_A_symbol_8 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_8 = (LibraryUnaryOperation)static_A_symbol_8.lookupImplementation(standardLibrary, O_OclAny_oclType);
-			Value A_symbol_8 = dynamic_A_symbol_8.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
-			DomainType static_A_symbol_9 = valueFactory.typeOf(A_symbol_7);
-			LibraryBinaryOperation dynamic_A_symbol_9 = (LibraryBinaryOperation)static_A_symbol_9.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_9 = dynamic_A_symbol_9.evaluate(evaluator, T_Boolean, A_symbol_7, A_symbol_8);
-			return A_symbol_9;
+			DomainType static_A_symbol_0 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_0 = (LibraryUnaryOperation)static_A_symbol_0.lookupImplementation(standardLibrary, O_OclAny_oclType);
+			Value A_symbol_0 = dynamic_A_symbol_0.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
+			DomainType static_A_symbol_1 = valueFactory.typeOf(p);
+			LibraryBinaryOperation dynamic_A_symbol_1 = (LibraryBinaryOperation)static_A_symbol_1.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
+			Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Boolean, p, A_symbol_0);
+			return A_symbol_1;
 		}
 	}
 

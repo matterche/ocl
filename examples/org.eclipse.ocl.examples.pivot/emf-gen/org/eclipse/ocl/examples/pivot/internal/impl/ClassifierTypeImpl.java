@@ -23,6 +23,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -396,5 +399,17 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitClassifierType(this);
+	}
+
+	@Override
+	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (!(type instanceof DomainClassifierType)) {
+			return super.conformsTo(standardLibrary, type);
+		}
+		return getInstanceType().conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
+	}
+
+	public DomainType getContainerType() {
+		return (DomainType) getUnspecializedElement();
 	}
 } //ClassifierTypeImpl

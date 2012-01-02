@@ -236,7 +236,7 @@ public abstract class ParameterableElementImpl
 	public boolean isCompatibleWith(ParameterableElement p)
 	{
 		/*
-		p->oclIsKindOf(self.oclType())
+		p.oclIsKindOf(self.oclType())
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);

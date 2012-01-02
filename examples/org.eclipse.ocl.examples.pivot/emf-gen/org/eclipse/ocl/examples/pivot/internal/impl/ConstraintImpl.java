@@ -322,7 +322,8 @@ public class ConstraintImpl
 	public boolean validateUniqueName(DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		/*
-		context.ownedRule->excluding(self).name->excludes(self.name)
+		context.ownedRule->excluding(self)
+		->forAll(name <> self.name or stereotype <> self.stereotype)
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);

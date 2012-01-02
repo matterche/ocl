@@ -5847,13 +5847,22 @@ public interface PivotPackage
 	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 5;
+	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -6025,6 +6034,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+
+	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -7134,6 +7152,15 @@ public interface PivotPackage
 	int OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7170,13 +7197,22 @@ public interface PivotPackage
 	int OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = FEATURE_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Operation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -7458,6 +7494,15 @@ public interface PivotPackage
 	int ITERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___COMPATIBLE_BODY__VALUESPECIFICATION = OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7492,6 +7537,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = OPERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Validate Compatible Return</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Iteration</em>' class.
@@ -9799,6 +9853,15 @@ public interface PivotPackage
 	int PARAMETER___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER___COMPATIBLE_BODY__VALUESPECIFICATION = TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10474,6 +10537,15 @@ public interface PivotPackage
 	int PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
 
 	/**
+	 * The operation id for the '<em>Compatible Body</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___COMPATIBLE_BODY__VALUESPECIFICATION = FEATURE___COMPATIBLE_BODY__VALUESPECIFICATION;
+
+	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10501,13 +10573,22 @@ public interface PivotPackage
 	int PROPERTY___IS_ATTRIBUTE__PROPERTY = FEATURE_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Compatible Initialiser</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___VALIDATE_COMPATIBLE_INITIALISER__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Property</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 3;
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -16203,6 +16284,16 @@ public interface PivotPackage
 	EOperation getProperty__IsAttribute__Property();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Property#validateCompatibleInitialiser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Initialiser</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Initialiser</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Property#validateCompatibleInitialiser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getProperty__ValidateCompatibleInitialiser__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.Property#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16349,6 +16440,16 @@ public interface PivotPackage
 	EClass getTypedMultiplicityElement();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification) <em>Compatible Body</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Compatible Body</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.TypedMultiplicityElement#CompatibleBody(org.eclipse.ocl.examples.pivot.ValueSpecification)
+	 * @generated
+	 */
+	EOperation getTypedMultiplicityElement__CompatibleBody__ValueSpecification();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.AssociationClass <em>Association Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16433,6 +16534,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getOperation_Class();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Operation#validateCompatibleReturn(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Compatible Return</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Compatible Return</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Operation#validateCompatibleReturn(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getOperation__ValidateCompatibleReturn__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Parameter <em>Parameter</em>}'.
@@ -18771,6 +18882,14 @@ public interface PivotPackage
 		EOperation PROPERTY___IS_ATTRIBUTE__PROPERTY = eINSTANCE.getProperty__IsAttribute__Property();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Initialiser</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROPERTY___VALIDATE_COMPATIBLE_INITIALISER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getProperty__ValidateCompatibleInitialiser__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Class</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18889,6 +19008,14 @@ public interface PivotPackage
 		EClass TYPED_MULTIPLICITY_ELEMENT = eINSTANCE.getTypedMultiplicityElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Compatible Body</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPED_MULTIPLICITY_ELEMENT___COMPATIBLE_BODY__VALUESPECIFICATION = eINSTANCE.getTypedMultiplicityElement__CompatibleBody__ValueSpecification();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18955,6 +19082,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference OPERATION__CLASS = eINSTANCE.getOperation_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Compatible Return</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OPERATION___VALIDATE_COMPATIBLE_RETURN__DIAGNOSTICCHAIN_MAP = eINSTANCE.getOperation__ValidateCompatibleReturn__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.

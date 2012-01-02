@@ -161,7 +161,7 @@
     </eAnnotations>
     <eOperations name="UniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="context.ownedRule->excluding(self).name->excludes(self.name)"/>
+        <details key="body" value="context.ownedRule->excluding(self)->forAll(name &lt;> self.name or stereotype &lt;> self.stereotype)"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -458,6 +458,18 @@
         <eAnnotations source="redefines" references="#//ParameterableElement/templateParameter"/>
       </contents>
     </eAnnotations>
+    <eOperations name="CompatibleReturn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let bodyConstraint : Constraint = ownedRule->any(stereotype = 'body') in bodyConstraint &lt;> null implies let bodySpecification : ValueSpecification = bodyConstraint.specification in bodySpecification &lt;> null and bodySpecification.oclIsKindOf(ExpressionInOcl) implies CompatibleBody(bodySpecification)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="raisedException" ordered="false"
         upperBound="-1" eType="#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -560,7 +572,7 @@
     </eOperations>
     <eOperations name="isCompatibleWith" ordered="false" lowerBound="1" eType="#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="p->oclIsKindOf(self.oclType())"/>
+        <details key="body" value="p.oclIsKindOf(self.oclType())"/>
       </eAnnotations>
       <eParameters name="p" ordered="false" lowerBound="1" eType="#//ParameterableElement"/>
     </eOperations>
@@ -602,6 +614,18 @@
         <details key="body" value="let container : OclElement = oclContainer() in container.oclIsKindOf(Type) and container.oclAsType(Type).ownedAttribute->includes(self)"/>
       </eAnnotations>
       <eParameters name="p" ordered="false" lowerBound="1" eType="#//Property"/>
+    </eOperations>
+    <eOperations name="CompatibleInitialiser" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="isDerived implies let derivedConstraint : Constraint = ownedRule->any(stereotype = 'derivation') in let initialConstraint : Constraint = ownedRule->any(stereotype = 'initial') in let derivedSpecification : ValueSpecification = if derivedConstraint &lt;> null then derivedConstraint.specification else null endif in let initialSpecification : ValueSpecification = if initialConstraint &lt;> null then initialConstraint.specification else null endif in let initialiser : ValueSpecification = if derivedSpecification &lt;> null then derivedSpecification else initialSpecification endif in initialiser &lt;> null and initialiser.oclIsKindOf(ExpressionInOcl) implies CompatibleBody(initialiser)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false">
@@ -917,7 +941,14 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedMultiplicityElement" abstract="true"
-      eSuperTypes="#//TypedElement #//MultiplicityElement"/>
+      eSuperTypes="#//TypedElement #//MultiplicityElement">
+    <eOperations name="CompatibleBody" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let bodyType : Type = bodySpecification.type in if bodyType.oclIsKindOf(CollectionType) then let bodyCollectionType : CollectionType = bodyType.oclAsType(CollectionType) in let bodyElementType : Type = bodyCollectionType.elementType in bodyElementType.conformsTo(self.type) and self.isOrdered = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SequenceType)) and self.isUnique = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SetType)) else bodyType.conformsTo(self.type) endif"/>
+      </eAnnotations>
+      <eParameters name="bodySpecification" ordered="false" lowerBound="1" eType="#//ValueSpecification"/>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
         ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>

@@ -157,12 +157,28 @@ public class PivotValidator
 	public static final int CONSTRAINT__UNIQUE_NAME = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Return' of 'Operation'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int OPERATION__COMPATIBLE_RETURN = 2;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Compatible Initialiser' of 'Property'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PROPERTY__COMPATIBLE_INITIALISER = 3;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -510,7 +526,28 @@ public class PivotValidator
 	 */
 	public boolean validateProperty(Property property,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)property, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)property, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProperty_validateCompatibleInitialiser(property, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateCompatibleInitialiser constraint of '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProperty_validateCompatibleInitialiser(Property property, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return property.validateCompatibleInitialiser(diagnostics, context);
 	}
 
 	/**
@@ -678,7 +715,28 @@ public class PivotValidator
 	 */
 	public boolean validateOperation(Operation operation,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)operation, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)operation, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)operation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateOperation_validateCompatibleReturn(operation, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateCompatibleReturn constraint of '<em>Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOperation_validateCompatibleReturn(Operation operation, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return operation.validateCompatibleReturn(diagnostics, context);
 	}
 
 	/**
@@ -1094,7 +1152,17 @@ public class PivotValidator
 	 */
 	public boolean validateIteration(Iteration iteration, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		return validate_EveryDefaultConstraint((EObject)iteration, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)iteration, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)iteration, diagnostics, context);
+		if (result || diagnostics != null) result &= validateOperation_validateCompatibleReturn(iteration, diagnostics, context);
+		return result;
 	}
 
 	/**

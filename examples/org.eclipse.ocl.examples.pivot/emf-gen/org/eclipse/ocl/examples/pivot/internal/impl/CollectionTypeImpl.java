@@ -399,10 +399,13 @@ public class CollectionTypeImpl
 		if (this == type) {
 			return true;
 		}
-		if (!(type instanceof DomainCollectionType)) {
-			return false;
+		if (type instanceof DomainCollectionType) {
+			return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
 		}
-		return standardLibrary.conformsToCollectionType(this, (DomainCollectionType)type);
+		if (getUnspecializedElement() != null) {
+			return ((Type)getUnspecializedElement()).conformsTo(standardLibrary, type);
+		}
+		return super.conformsTo(standardLibrary, type);
 	}
 
 	public Type getContainerType() {
