@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -103,10 +104,10 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 
 	protected String getLabel(EClassifier eClassifier, Object object, Map<Object, Object> context) {
 		if (eClassifier instanceof EDataType) {
-			return EObjectValidator.getValueLabel((EDataType) eClassifier, object, context);
+			return PivotDiagnostician.INSTANCE.getValueLabel((EDataType) eClassifier, object);
 		}
 		else if (object instanceof EObject) {
-			return EObjectValidator.getObjectLabel((EObject)object, context);
+			return PivotDiagnostician.INSTANCE.getObjectLabel((EObject)object);
 		}
 		else {			// Never happens
 			return String.valueOf(object);
