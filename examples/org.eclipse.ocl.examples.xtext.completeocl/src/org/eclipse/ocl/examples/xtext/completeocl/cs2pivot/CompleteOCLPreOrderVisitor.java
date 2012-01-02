@@ -96,6 +96,11 @@ public class CompleteOCLPreOrderVisitor
 			}
 			else {
 				pivotProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
+				pivotProperty.setIsDerived(true);
+				pivotProperty.setIsReadOnly(true);
+				pivotProperty.setIsTransient(true);
+				pivotProperty.setIsVolatile(true);
+				pivotProperty.setIsResolveProxies(false);
 				pivotFeature = pivotProperty;
 			}
 //			context.installPivotElement(csElement, pivotFeature);
