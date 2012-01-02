@@ -453,7 +453,7 @@ public class OCLUMLUtil extends UMLUtil {
 			List<String> packageNames,
 			EPackage.Registry registry) {
 
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder stringBuffer = new StringBuilder();
 		Iterator<String> it = packageNames.iterator();
 		while (it.hasNext()) {
 			stringBuffer.append(it.next());

@@ -241,7 +241,7 @@ public abstract class AbstractAnalyzer {
 	 * @return the qualified name comprising the list of name elements
 	 */
 	protected String makeName(EList<String> namelist) {
-		StringBuffer msg = new StringBuffer();
+		StringBuilder msg = new StringBuilder();
 		for (int i = 0; i < namelist.size(); i++) {
 			if (i > 0) {
 				msg.append("::");//$NON-NLS-1$
@@ -259,7 +259,7 @@ public abstract class AbstractAnalyzer {
 	 * @return string representation of the list of string elements
 	 */
 	protected String makeString(EList<String> namelist) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		for (int i = 0; i < namelist.size(); i++) {
 			if (i > 0) {
 				s.append(" ");		//$NON-NLS-1$

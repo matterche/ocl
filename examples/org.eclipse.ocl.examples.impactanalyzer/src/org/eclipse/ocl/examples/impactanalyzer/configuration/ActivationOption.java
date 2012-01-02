@@ -120,7 +120,7 @@ public class ActivationOption {
     }
 
     public String getActivationString() {
-	StringBuffer activationInformation = new StringBuffer();
+	StringBuilder activationInformation = new StringBuilder();
 	
 	activationInformation.append("[TM=");
 	activationInformation.append(isTracebackStepISAActive);

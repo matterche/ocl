@@ -165,7 +165,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		C sourceType = source != null ? source.getType() : null;
 		O oper = oc.getReferredOperation();
 		
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		result.append(sourceResult);
 		result.append(sourceType instanceof CollectionType<?, ?> ? "->" : "."); //$NON-NLS-1$ //$NON-NLS-2$
 		result.append(getName(oper));
@@ -226,7 +226,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 			return getName(property);
 		}
 		
-		StringBuffer result = new StringBuffer(
+		StringBuilder result = new StringBuilder(
 			maybeAtPre(pc, sourceResult + "." + getName(property)));//$NON-NLS-1$
 		
 		if (!qualifierResults.isEmpty()) {
@@ -259,7 +259,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		C ref = ac.getReferredAssociationClass();
 		String name = initialLower(getName(ref));
 		
-		StringBuffer result = new StringBuffer(
+		StringBuilder result = new StringBuilder(
 			maybeAtPre(ac, sourceResult + "." + name));//$NON-NLS-1$
 		
 		if (!qualifierResults.isEmpty()) {
@@ -274,7 +274,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 			return name;
 		}
 		
-		StringBuffer result = new StringBuffer(name);
+		StringBuilder result = new StringBuilder(name);
 		result.setCharAt(0, Character.toLowerCase(result.charAt(0)));
 		return result.toString();
 	}
@@ -313,7 +313,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
     @Override
     protected String handleIfExp(IfExp<C> ifExp, String conditionResult, String thenResult, String elseResult) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         
         result.append("if ").append(conditionResult); //$NON-NLS-1$
         result.append(" then ").append(thenResult); //$NON-NLS-1$
@@ -340,7 +340,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 	 */
 	@Override
     public String visitUnspecifiedValueExp(UnspecifiedValueExp<C> uv) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		result.append("?"); //$NON-NLS-1$
 		if (uv.getType() != null && !(uv.getType() instanceof VoidType<?>)) {
 			result.append(" : "); //$NON-NLS-1$
@@ -419,7 +419,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     protected String handleLetExp(LetExp<C,PM> letExp, String variableResult,
             String inResult) {
         
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 		result.append("let ").append(variableResult); //$NON-NLS-1$
         result.append(" in ").append(inResult); //$NON-NLS-1$
         
@@ -437,7 +437,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
             String sourceResult, List<String> variableResults,
             String resultResult, String bodyResult) {
         
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         
         result.append(sourceResult).append("->iterate("); //$NON-NLS-1$
         
@@ -464,7 +464,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     protected String handleIteratorExp(IteratorExp<C,PM> callExp,
             String sourceResult, List<String> variableResults, String bodyResult) {
         
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         String name = callExp.getName();
         result.append(sourceResult).append("->").append(name).append('('); //$NON-NLS-1$
@@ -490,7 +490,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     protected String handleCollectionLiteralExp(CollectionLiteralExp<C> cl,
             List<String> partResults) {
         
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
@@ -549,7 +549,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
         
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
         result.append("Tuple{");//$NON-NLS-1$
         
 		for (Iterator<String> iter = partResults.iterator(); iter.hasNext();) {
@@ -572,7 +572,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		String varName = part.getName();
 		C type = part.getType();
         
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
         
         result.append(varName);
 
@@ -590,7 +590,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     @Override
     protected String handleMessageExp(MessageExp<C, COA, SSA> messageExp,
             String targetResult, List<String> argumentResults) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		
 		result.append(targetResult);
 		
@@ -639,7 +639,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
      */
     @Override
     public String visitConstraint(CT constraint) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         
         List<? extends EObject> constrained = getConstrainedElements(constraint);
         
@@ -725,7 +725,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return (uml == null)? null : uml.getSpecification(constraint);
 	}
 	
-	private void appendOperationSignature(StringBuffer buf, O operation) {
+	private void appendOperationSignature(StringBuilder buf, O operation) {
 		buf.append(getName(operation)).append('(');
 		
 		boolean comma = false;
@@ -761,7 +761,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return (uml == null)? null : uml.getParameters(operation);
 	}
 
-	private void appendPropertySignature(StringBuffer buf, P property) {
+	private void appendPropertySignature(StringBuilder buf, P property) {
 		buf.append(getName(property));
 		if (getType(property) != null) {
 			buf.append(" : ").append(getName(getType(property))); //$NON-NLS-1$

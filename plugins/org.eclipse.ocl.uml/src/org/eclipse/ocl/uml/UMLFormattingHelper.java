@@ -100,7 +100,7 @@ class UMLFormattingHelper
 
     @Override
     public String formatPath(List<String> pathName, String name) {
-        StringBuffer s = new StringBuffer();
+        StringBuilder s = new StringBuilder();
         
         if (pathName != null) {
             int iMax = pathName.size();

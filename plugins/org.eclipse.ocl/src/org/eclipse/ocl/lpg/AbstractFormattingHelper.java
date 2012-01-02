@@ -88,7 +88,7 @@ public class AbstractFormattingHelper implements FormattingHelper
     }
 
 	public String formatPath(List<String> pathName) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		if (pathName != null) {
 			int iMax = pathName.size();
 			for (int i = 0; i < iMax; i++) {
@@ -102,7 +102,7 @@ public class AbstractFormattingHelper implements FormattingHelper
 	}
 
 	public String formatPath(List<String> pathName, String name) {
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		if (pathName != null) {
 			int iMax = pathName.size();
 			for (int i = 0; i < iMax; i++) {
@@ -128,7 +128,7 @@ public class AbstractFormattingHelper implements FormattingHelper
         } else if (type instanceof AnyType<?>) {
             return "<any-type>"; //$NON-NLS-1$
         } else if (type instanceof CollectionType<?, ?>) {
-			StringBuffer s = new StringBuffer();
+			StringBuilder s = new StringBuilder();
 			s.append(((CollectionType<?, ?>)type).getKind().toString());
 			s.append('(');
 			s.append(formatType(((CollectionType<?, ?>)type).getElementType()));

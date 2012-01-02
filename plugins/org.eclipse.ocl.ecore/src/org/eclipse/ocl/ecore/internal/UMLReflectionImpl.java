@@ -110,7 +110,7 @@ public class UMLReflectionImpl
      * Helper for the {@link #getQualifiedName(Object)}.
      */
     private String getQualifiedName(ENamedElement namedElement) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         
         getQualifiedName(result, namedElement);
         
@@ -120,7 +120,7 @@ public class UMLReflectionImpl
     /**
      * Helper for the {@link #getQualifiedName(Object)}.
      */
-    private void getQualifiedName(StringBuffer buf, ENamedElement namedElement) {
+    private void getQualifiedName(StringBuilder buf, ENamedElement namedElement) {
         EObject container = namedElement.eContainer();
         if (container instanceof ENamedElement) {
             getQualifiedName(buf, (ENamedElement) container);

@@ -97,7 +97,7 @@ class ChoiceImpl implements Choice {
 	
 	@Override
     public String toString() {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		
 		result.append("Choice["); //$NON-NLS-1$
 		result.append(getKind().name());

@@ -25,7 +25,7 @@ package org.eclipse.ocl.lpg;
 public class StringProblemHandler extends AbstractProblemHandler
 {	
 	private int problemCount = 0;
-	private StringBuffer problemString = new StringBuffer();
+	private StringBuilder problemString = new StringBuilder();
 
 	public StringProblemHandler(AbstractParser parser) {
 		super(parser);

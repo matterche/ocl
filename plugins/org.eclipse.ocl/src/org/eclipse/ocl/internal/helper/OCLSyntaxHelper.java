@@ -254,7 +254,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return its string description
 	 */
 	private String getOperationDescription(O operation) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		
 		result.append(uml.getName(operation));
 		result.append('(');
@@ -293,7 +293,7 @@ public class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return its string description
 	 */
 	private String getSignalDescription(C signal) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		
 		// not translatable; as indicated by the OCL spec
 		result.append("<<signal>> "); //$NON-NLS-1$

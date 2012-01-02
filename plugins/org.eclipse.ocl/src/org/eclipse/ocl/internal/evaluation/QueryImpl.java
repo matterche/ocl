@@ -295,7 +295,7 @@ public class QueryImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	
 	@Override
     public String toString() {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		
 		result.append("Query["); //$NON-NLS-1$
 		result.append(queryText());

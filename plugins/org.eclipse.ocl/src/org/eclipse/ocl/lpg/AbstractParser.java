@@ -74,7 +74,7 @@ public abstract class AbstractParser {
 	 * @return a single line string representation of the input chars
 	 */
 	public String computeInputString(int left, int right) {
-		StringBuffer result = new StringBuffer(right - left + 1);
+		StringBuilder result = new StringBuilder(right - left + 1);
 		char[] chars = getIPrsStream().getInputChars();
 		if (chars.length > 0) {
 			for (int i = left; i <= right; i++) {
@@ -457,7 +457,7 @@ public abstract class AbstractParser {
 		if (string.indexOf('\\') < 0) {
 			return string;			
 		}
-		StringBuffer s = new StringBuffer();
+		StringBuilder s = new StringBuilder();
 		StringCharacterIterator i = new StringCharacterIterator(string);
 		for (char c = i.first(); c != StringCharacterIterator.DONE; c = i.next()) {
 			if (c != '\\') {

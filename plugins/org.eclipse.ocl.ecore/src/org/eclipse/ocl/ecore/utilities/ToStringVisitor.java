@@ -72,7 +72,7 @@ public class ToStringVisitor
 			return "oppositeOf(" + getName(property) + ")";   //$NON-NLS-1$//$NON-NLS-2$
 		}
 		
-		StringBuffer result = new StringBuffer(
+		StringBuilder result = new StringBuilder(
 			maybeAtPre(callExp, sourceResult + ".oppositeOf(" + getName(property) + ")"));//$NON-NLS-1$ //$NON-NLS-2$
 		
 		return result.toString();
