@@ -367,7 +367,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitClassifierType(ClassifierType object) {
 		appendName(object);
-		appendTemplateBindings(object.getTemplateBindings());
+		if (object.getTemplateBindings().size() > 0) {
+			appendTemplateBindings(object.getTemplateBindings());
+		}
+		else if (object.getInstanceType() != null) {
+			append("<");
+			appendQualifiedName(object.getInstanceType());
+			append(">");
+		}
 		appendTemplateSignature(object.getOwnedTemplateSignature());
 		return null;
 	}
@@ -761,7 +768,18 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			if (!isFirst) {
 				append(",");
 			}
-			appendQualifiedName(parameter.getType());
+			Type type = parameter.getType();
+			boolean isMany = parameter.getUpper().intValue() != 1;
+			boolean isOrdered = parameter.isOrdered();
+			boolean isUnique = parameter.isUnique();
+			if (isMany) {
+				append(isOrdered ? isUnique ? "OrderedSet" : "Sequence" : isUnique ? "Set" : "Bag");
+				append("(");
+			}
+			appendQualifiedName(type);
+			if (isMany) {
+				append(")");
+			}
 			isFirst = false;
 		}
 		append(")");
