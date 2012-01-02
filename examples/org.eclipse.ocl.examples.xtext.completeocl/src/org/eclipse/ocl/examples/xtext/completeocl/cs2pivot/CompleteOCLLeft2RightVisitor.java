@@ -143,13 +143,16 @@ public class CompleteOCLLeft2RightVisitor
 		Feature contextFeature;
 		Operation contextOperation = null;
 		Property contextProperty = null;
+		String stereotype;
 		if (csDef.isOperation()) {
 			contextOperation = PivotUtil.getPivot(Operation.class, csDef);
 			contextFeature = contextOperation;
+			stereotype = UMLReflection.BODY;
 		}
 		else {
 			contextProperty = PivotUtil.getPivot(Property.class, csDef);
 			contextFeature = contextProperty;
+			stereotype = UMLReflection.INITIAL;
 		}
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csDef.getSpecification();
 		ExpressionInOcl pivotSpecification = context.refreshModelElement(ExpressionInOcl.class,
@@ -164,7 +167,7 @@ public class CompleteOCLLeft2RightVisitor
 				PivotPackage.Literals.CONSTRAINT, null);
 		}
 		pivotConstraint.setSpecification(pivotSpecification);
-		pivotConstraint.setStereotype(UMLReflection.BODY);
+		pivotConstraint.setStereotype(stereotype);
 
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable == null) {
