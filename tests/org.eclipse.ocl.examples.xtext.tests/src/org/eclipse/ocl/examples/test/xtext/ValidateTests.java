@@ -120,6 +120,20 @@ public class ValidateTests extends XtextTestCase
 		super.tearDown();
 	}
 
+	public void testValidate_Bug366229_oclinecore() throws IOException, InterruptedException {
+		//
+		//	Create model
+		//
+		Resource ecoreResource = doLoadOCLinEcore("Bug366229");
+		EPackage overloadsPackage = (EPackage) ecoreResource.getContents().get(0);
+		EObject testInstance = eCreate(overloadsPackage, "SubClass");
+		//
+		//	Check EObjectValidator errors
+		//
+		EValidator.Registry.INSTANCE.put(overloadsPackage, EObjectValidator.INSTANCE);
+		checkValidationDiagnostics(testInstance, Diagnostic.ERROR);
+	}
+
 	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
 		//
 		//	Create model

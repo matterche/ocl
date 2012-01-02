@@ -21,8 +21,10 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -37,13 +39,13 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter
 		environmentView.addNamedElements(forType, metaModelManager.getLocalOperations(pivotClass, selectStatic));
 		environmentView.addNamedElements(forType, metaModelManager.getLocalProperties(pivotClass, selectStatic));
 		alreadyVisited.add(pivotClass);
-		if (!environmentView.hasFinalResult()) {
+//		if (!environmentView.hasFinalResult()) {
 			for (Type superClass : metaModelManager.getSuperClasses(pivotClass)) {
 				if (!alreadyVisited.contains(superClass)) {
 					addAllContents(environmentView, forType, scopeView, superClass, selectStatic, alreadyVisited);
 				}
 			}
-		}
+//		}
 	}
 
 	@Override
@@ -57,7 +59,13 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter
 			return null;
 		}
 		if (targetClass.getTemplateBindings().size() == 0) {
-			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetClass));
+			EObject scopeTarget = scopeView.getTarget();
+			if (scopeTarget instanceof Pivotable) {
+				Element pivot = ((Pivotable)scopeTarget).getPivot();
+				if (pivot == target) {		// Inherited template parameters are invisible.
+					environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetClass));
+				}
+			}
 		}
 		if (target instanceof ClassifierType) {
 			Type instanceType = ((ClassifierType)target).getInstanceType();
@@ -68,7 +76,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter
 		}
 		environmentView.addNamedElements(targetClass, metaModelManager.getLocalOperations(targetClass, Boolean.FALSE));
 		environmentView.addNamedElements(targetClass, metaModelManager.getLocalProperties(targetClass, Boolean.FALSE));
-		if (!environmentView.hasFinalResult()) {
+//		if (!environmentView.hasFinalResult()) {
 			if (target instanceof ClassifierType) {
 				Set<Type> alreadyVisitedMetaTypes = new HashSet<Type>();
 				Type instanceType = ((ClassifierType)target).getInstanceType();
@@ -81,7 +89,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter
 			for (Type superClass : metaModelManager.getSuperClasses(targetClass)) {
 				addAllContents(environmentView, targetClass, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
 			}
-		}
+//		}
 		return scopeView.getOuterScope();
 	}
 }

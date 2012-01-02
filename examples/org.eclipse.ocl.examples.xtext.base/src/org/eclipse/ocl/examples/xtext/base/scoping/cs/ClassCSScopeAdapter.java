@@ -76,7 +76,7 @@ public class ClassCSScopeAdapter extends ElementCSScopeAdapter
 				environmentView.addNamedElements(metaModelManager.getLocalOperations(pivot, false));
 				environmentView.addNamedElements(metaModelManager.getLocalProperties(pivot, false));
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
-				if (!environmentView.hasFinalResult()) {
+//				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
 					addInheritedContents(environmentView, pivot, scopeView);
 //				if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
@@ -87,7 +87,7 @@ public class ClassCSScopeAdapter extends ElementCSScopeAdapter
 //	//					}
 //						environmentView.addElementsOfScope(superClass, nestedScopeView);
 //					}
-				}
+//				}
 			}
 		}
 		return scopeView.getOuterScope();
