@@ -132,7 +132,7 @@ return false; // FIXME errors in OCL definition of [pRule.prettyPrintName()/]
 [expInOcl.prettyPrint().trim()/]
 */
 try {
-	final <%DomainEvaluator%> evaluator = new <%EcoreExecutorManager%>(this, <%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
+	final <%DomainEvaluator%> evaluator = new <%EcoreExecutorManager%>(this, [if (pRule.isCallable)], context[/if]<%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
 	[expInOcl.emitConstants(constants)/]
 	final <%DomainType%> returnType = [expInOcl.type.symbolName(expInOcl)/];
 	final <%Value%> result = <%[className/]%>.[constraintName/].INSTANCE.evaluate(evaluator, returnType, self[for (pParameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([pParameter.name/])[/for]);
