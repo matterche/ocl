@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifie
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
@@ -98,7 +97,6 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment
 		return bindFactory.getBindings();
 	}
 
-	@SuppressWarnings("restriction")
 	@Override
 	public Set<Binding> getGuiceBindingsUi(Grammar grammar) {
 		BindFactory bindFactory = new BindFactory();
@@ -106,7 +104,7 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment
 		bindFactory.addTypeToType(AbstractEditStrategyProvider.class.getName(), BaseAutoEditStrategyProvider.class.getName());
 		bindFactory.addTypeToType(IHighlightingConfiguration.class.getName(), EssentialOCLHighlightingConfiguration.class.getName());
 		bindFactory.addTypeToType(ILocationInFileProvider.class.getName(), BaseLocationInFileProvider.class.getName());
-		bindFactory.addTypeToType(org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder.class.getName(), BaseReferenceFinder.class.getName());
+//		bindFactory.addTypeToType(org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder.class.getName(), BaseReferenceFinder.class.getName());
 		bindFactory.addTypeToType(ISemanticHighlightingCalculator.class.getName(), EssentialOCLSemanticHighlightingCalculator.class.getName());
 		bindFactory.addTypeToType(ITokenTypeToPartitionTypeMapper.class.getName(), BaseTerminalsTokenTypeToPartitionMapper.class.getName());
 		bindFactory.addTypeToType(IURIEditorOpener.class.getName(), BaseURIEditorOpener.class.getName());

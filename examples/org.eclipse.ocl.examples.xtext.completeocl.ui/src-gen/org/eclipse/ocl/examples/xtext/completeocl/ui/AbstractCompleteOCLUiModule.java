@@ -134,11 +134,6 @@ public abstract class AbstractCompleteOCLUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
-	public Class<? extends org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder> bindIReferenceFinder() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder.class;
-	}
-
-	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator.class;
 	}
