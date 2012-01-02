@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -38,6 +40,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -129,6 +132,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			OpaqueExpression opaqueExpression = (OpaqueExpression)valueSpecification;
 			ExpressionInOcl expressionInOcl = opaqueExpression.getValueExpression();
 			if (expressionInOcl != null) {
+				constraint.setSpecification(expressionInOcl);
 				return expressionInOcl;
 			}
 			try {
@@ -138,6 +142,8 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 					expressionInOcl = PivotUtil.resolveSpecification(metaModelManager, uriBody, namedElement, expression);
 					if (expressionInOcl != null) {
 						opaqueExpression.setValueExpression(expressionInOcl);
+//						opaqueExpression.setType(expressionInOcl.getType());
+						constraint.setSpecification(expressionInOcl);
 						String message = PivotUtil.getMessage(opaqueExpression);
 						if ((message != null) && (message.length() > 0)) {
 							URI uriMessage = metaModelManager.getResourceIdentifier(constraint, "message");
@@ -191,5 +197,24 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	@Override
 	public String toString() {
 		return getName() + " => " + getFactoryClass().getName(); //$NON-NLS-1$
+	}
+
+	public void validate(EObject eObject) {
+		BasicDiagnostic diagnostics = PivotDiagnostician.INSTANCE.createDefaultDiagnostic(eObject);
+		if (!PivotDiagnostician.INSTANCE.validate(eObject, diagnostics)) {
+			StringBuilder s = null;
+			for (Diagnostic diagnostic : diagnostics.getChildren()) {
+				if (s == null) {
+					s = new StringBuilder();
+				}
+				else {
+					s.append("\n");
+				}
+				s.append(diagnostic.getMessage());
+			}
+			if (s != null) {
+				throw new OCLDelegateException(s.toString());
+			}
+		}
 	}
 }
