@@ -353,7 +353,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModel(modelName);
 		EObject employee = create(acme, companyEmployees, employeeClass, null);
 		set(employee, employeeManager, employee("Bob"));
-		validateConstraintWithWarning("mustHaveName", employee);
+		validateConstraintWithSeverity("mustHaveName", Diagnostic.WARNING, employee);
 		
 		set(employee, employeeName, "Joe");
 		validateWithoutError(employee);
@@ -399,14 +399,14 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals(0, sallyReports.size());
 	}
 
-	public void doTest_invariantValidation(String modelName, boolean hasInvariants) {
+	public void doTest_invariantValidation(String modelName, boolean hasInvariants, int severity) {
 		initModel(modelName);
 		EObject joe = create(acme, companyEmployees, employeeClass, "Joe");
 		if (hasInvariants) {
-			validateInvariantWithError("noManagerImpliesDirectReports", joe);
+			validateInvariantWithSeverity("noManagerImpliesDirectReports", severity, joe);
 		}
 		else {
-			validateConstraintWithError("noManagerImpliesDirectReports", joe);
+			validateConstraintWithSeverity("noManagerImpliesDirectReports", severity, joe);
 		}
 
 		set(employee("Amy"), employeeManager, joe);
@@ -779,24 +779,24 @@ public class DelegatesTest extends PivotTestSuite
 	} */
 	
 	public void test_invariantValidation() {
-		doTest_invariantValidation(COMPANY_XMI, true);
+		doTest_invariantValidation(COMPANY_XMI, true, Diagnostic.ERROR);
 		assertTrue(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_registered() {
 		initPackageRegistrations();
-		doTest_invariantValidation(COMPANY_XMI, true);
+		doTest_invariantValidation(COMPANY_XMI, true, Diagnostic.ERROR);
 		assertFalse(usedLocalRegistry);
 	}
 	
 	public void test_invariantValidation_codeGenerated() {
 		initCodeGeneratedPackageRegistrations();
-		doTest_invariantValidation(COMPANY_XMI, true);
+		doTest_invariantValidation(COMPANY_XMI, false, Diagnostic.WARNING);
 		assertFalse(usedLocalRegistry);
 	}
 
 	public void test_invariantValidation_withoutReflection() {
-		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
+		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true, Diagnostic.ERROR);
 	}
 /*	public void test_invariantValidation_withoutReflection_registered() {
 		initPackageRegistrations();
@@ -1040,42 +1040,42 @@ public class DelegatesTest extends PivotTestSuite
 	public void test_validationEvaluatingToInvalid() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToInvalid"), null);
-		validateWithDelegationError("evaluatingToInvalid", badClassInstance, null,
+		validateWithDelegationSeverity("evaluatingToInvalid", Diagnostic.ERROR, badClassInstance, null,
 			OCLMessages.ValidationResultIsInvalid_ERROR_, "evaluatingToInvalid");
 	}
 	
 	public void test_validationEvaluatingToNull() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
-		validateWithError("evaluatingToNull", badClassInstance,
+		validateWithSeverity("evaluatingToNull", Diagnostic.ERROR, badClassInstance,
 			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", PivotDiagnostician.INSTANCE.getObjectLabel(badClassInstance));
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		validateWithDelegationError("evaluatingToWrongType", badClassInstance, null,
+		validateWithDelegationSeverity("evaluatingToWrongType", Diagnostic.ERROR, badClassInstance, null,
 			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
 	}
 	
 	public void test_validationParsingToLexicalError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToLexicalError"), null);
-		validateWithDelegationError("parsingToLexicalError", badClassInstance, "'part",
+		validateWithDelegationSeverity("parsingToLexicalError", Diagnostic.ERROR, badClassInstance, "'part",
 			"mismatched character ''{0}'' expecting ''{1}''", "<EOF>", "'");
 	}
 	
 	public void test_validationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
-		validateWithDelegationError("parsingToSemanticError", badClassInstance, "not '5'",
+		validateWithDelegationSeverity("parsingToSemanticError", Diagnostic.ERROR, badClassInstance, "not '5'",
 			OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
 	}
 	
 	public void test_validationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSyntacticError"), null);
-		validateWithDelegationError("parsingToSyntacticError", badClassInstance, "else", 
+		validateWithDelegationSeverity("parsingToSyntacticError", Diagnostic.ERROR, badClassInstance, "else", 
 			"no viable alternative at input ''{0}''", "else");
 	}
 	
@@ -1083,7 +1083,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationWithMessage"), null);
-		validateWithWarning("ValidationWithMessage", badClassInstance, 
+		validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, badClassInstance, 
 			"custom message ");
 	}
 	
@@ -1092,7 +1092,7 @@ public class DelegatesTest extends PivotTestSuite
 		
 		EClass eClassifier = (EClass) companyPackage.getEClassifier("Detritus");
 		EObject badClassInstance = create(acme, companyDetritus, eClassifier, null);
-		validateWithWarning("CompleteOCLInvariant", badClassInstance, 
+		validateWithSeverity("CompleteOCLInvariant", Diagnostic.WARNING, badClassInstance, 
 			"Failure on " + eClassifier.getName());
 	}
 	
@@ -1128,7 +1128,7 @@ public class DelegatesTest extends PivotTestSuite
 					}
 				}
 			}
-			validateWithWarning("ValidationWithMessage", book,  message);
+			validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, book,  message);
 		} finally {
 			metaModelManager.dispose();
 		}
@@ -1325,9 +1325,9 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation child count:", 0, diagnostics.size());
 	}
 
-	protected void validateConstraintWithError(String constraintName, EObject eObject) {
+	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject) {
 		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
@@ -1338,26 +1338,13 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
-	protected void validateConstraintWithWarning(String constraintName, EObject eObject) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
-		List<Diagnostic> diagnostics = validation.getChildren();
-		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
-		Diagnostic diagnostic = diagnostics.get(0);
-		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
-		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
-		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
-		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+	protected void validateInvariantWithSeverity(String constraintName, int severity, EObject eObject) {
+		validateWithSeverity(constraintName, severity, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, PivotDiagnostician.INSTANCE.getObjectLabel(eObject));
 	}
 
-	protected void validateInvariantWithError(String constraintName, EObject eObject) {
-		validateWithError(constraintName, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, PivotDiagnostician.INSTANCE.getObjectLabel(eObject));
-	}
-
-	protected void validateWithError(String constraintName, EObject eObject, String messageTemplate, Object... bindings) {
+	protected void validateWithSeverity(String constraintName, int severity, EObject eObject, String messageTemplate, Object... bindings) {
 		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);
@@ -1367,38 +1354,9 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
-	protected void validateWithWarning(String constraintName, EObject eObject, String messageTemplate, Object... bindings) {
+	protected void validateWithDelegationSeverity(String constraintName, int severity, EObject eObject, String source, String messageTemplate, Object... bindings) {
 		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
-		List<Diagnostic> diagnostics = validation.getChildren();
-		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
-		Diagnostic diagnostic = diagnostics.get(0);
-		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
-		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		String message = NLS.bind(messageTemplate, bindings);
-		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
-	}
-
-	protected void validateWithDelegationError(String constraintName, EObject eObject, String source, String messageTemplate, Object... bindings) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
-		List<Diagnostic> diagnostics = validation.getChildren();
-		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
-		Diagnostic diagnostic = diagnostics.get(0);
-		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
-		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
-		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
-		String message1 = getBoundMessage(messageTemplate1, constraintName, objectLabel, "");
-		String message2 = getErrorsInMessage(source);
-		String message3 = NLS.bind(messageTemplate, bindings);
-		String message = message1 + message2 + message3;
-		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
-	}
-
-	protected void validateWithDelegationWarning(String constraintName, EObject eObject, String source, String messageTemplate, Object... bindings) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
-		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.WARNING, validation.getSeverity());
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
 		Diagnostic diagnostic = diagnostics.get(0);

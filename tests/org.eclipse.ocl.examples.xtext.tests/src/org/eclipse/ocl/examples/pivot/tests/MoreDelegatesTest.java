@@ -20,8 +20,7 @@ package org.eclipse.ocl.examples.pivot.tests;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.emf.common.util.Diagnostic;
 
 /**
  * Tests for the OCL delegate implementations.
@@ -29,14 +28,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 @SuppressWarnings("nls")
 public class MoreDelegatesTest extends DelegatesTest
 {
-	// Fails because no model validation
-	public void test_attributeEvaluatingToWrongType() {
-		initModelWithErrors();
-		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
-			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
-	}
-
 	// Passes in isolation; probably an adapter clean-up problem
 	public void test_eAttributeDerivation_registered() {
 		initPackageRegistrations();
@@ -46,15 +37,7 @@ public class MoreDelegatesTest extends DelegatesTest
 	// Passes in isolation; probably an adapter clean-up problem
 	public void test_invariantValidation_withoutReflection_registered() {
 		initPackageRegistrations();
-		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
-	}
-
-	// Fails because no model validation
-	public void test_operationEvaluatingToWrongType() {
-		initModelWithErrors();
-		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
-			getBoundMessage(OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean"));
+		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true, Diagnostic.ERROR);
 	}
 
 	// Passes in isolation; probably an adapter clean-up problem
