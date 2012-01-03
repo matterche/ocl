@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
@@ -442,6 +443,9 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI pivotURI) {
 		Resource pivotResource = metaModelManager.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
+		if (isPivot(ecoreContents)) {
+			metaModelManager.loadLibrary(new OCLstdlib(OCLstdlib.STDLIB_URI, "ocl", "ocl", ((EPackage)ecoreContents.iterator().next()).getNsURI()));
+		}
 		pivotRoot = metaModelManager.createPackage(pivotURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
@@ -481,6 +485,30 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 	public boolean isAdapterForType(Object type) {
 		return type == Ecore2Pivot.class;
+	}
+
+	protected boolean isPivot(Collection<EObject> ecoreContents) {
+		if (ecoreContents.size() != 1) {
+			return false;
+		}
+		EObject ecoreRoot = ecoreContents.iterator().next();
+		if (!(ecoreRoot instanceof EPackage)) {
+			return false;
+		}
+		EPackage ecorePackage = (EPackage) ecoreRoot;
+		if (ecorePackage.getEClassifier(PivotPackage.Literals.ENUMERATION_LITERAL.getName()) == null) {
+			return false;
+		}
+		if (ecorePackage.getEClassifier(PivotPackage.Literals.EXPRESSION_IN_OCL.getName()) == null) {
+			return false;
+		}
+		if (ecorePackage.getEClassifier(PivotPackage.Literals.OPERATION_CALL_EXP.getName()) == null) {
+			return false;
+		}
+		if (ecorePackage.getEClassifier(PivotPackage.Literals.TEMPLATE_PARAMETER_SUBSTITUTION.getName()) == null) {
+			return false;
+		}
+		return true;
 	}
 
 	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {

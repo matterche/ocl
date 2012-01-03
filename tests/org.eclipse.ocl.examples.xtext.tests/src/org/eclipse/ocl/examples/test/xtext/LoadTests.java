@@ -104,11 +104,62 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+			if (xtextResource.getContents().size() > 0) {
+				assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+			}
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 			xtextResource.setURI(output2URI);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
 			xtextResource.save(null);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+			assertNoResourceErrors("Save failed", xtextResource);
+		}
+		finally {
+			if (xtextResource instanceof BaseCSResource) {
+				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+				adapter.dispose();
+			}
+			metaModelManager.dispose();
+		}
+		Resource xmiResource = resourceSet.createResource(outputURI);
+		xmiResource.getContents().addAll(xtextResource.getContents());
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+//		xmiResource.save(null);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+//		assertNoResourceErrors("Save failed", xmiResource);
+		return xmiResource;
+	}
+
+	public Resource doLoad_OCL(URI inputURI) throws IOException {
+//		long startTime = System.currentTimeMillis();
+//		System.out.println("Start at " + startTime);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		getProjectMap().initializeResourceSet(resourceSet);
+		String extension = inputURI.fileExtension();
+		String stem = inputURI.trimFileExtension().lastSegment();
+		String outputName = stem + "." + extension + ".xmi";
+		String output2Name = stem + ".saved." + extension;
+		URI outputURI = getProjectFileURI(outputName);
+		URI output2URI = getProjectFileURI(output2Name);
+		if (metaModelManager == null) {
+			metaModelManager = new MetaModelManager();
+		}
+		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+		
+		Resource xtextResource = null;
+		try {
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
+			xtextResource = resourceSet.getResource(inputURI, true);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
+			assertNoResourceErrors("Load failed", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+			assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+			xtextResource.setURI(output2URI);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+	//		xtextResource.save(null); -- BUG 361649
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
 			assertNoResourceErrors("Save failed", xtextResource);
 		}
@@ -160,7 +211,7 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+			assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 			xtextResource.setURI(output2URI);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -245,7 +296,7 @@ public class LoadTests extends XtextTestCase
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
 			assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+			assertNoValidationErrors("Validation errors", pivotResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
 //			xtextResource.setURI(output2URI);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -449,6 +500,11 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Names_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad("Names", "ocl");
+	}	
+
+	public void testLoad_Pivot_ocl() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
+		doLoad_OCL(URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model/Pivot.ocl", true));
 	}	
 
 /* FIXME waiting for BUG 361649
