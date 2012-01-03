@@ -780,7 +780,7 @@ public class OCLstdlibTables
 				OCLstdlibTables.Types._Set_T);
 		public static final ExecutorOperation _Set__intersection = new ExecutorOperation("intersection",
 			Types._Set, 6, org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation.INSTANCE,
-				new ExecutorSpecializedType("Set", OCLstdlibTables.Types._Set_T));
+				new ExecutorSpecializedType("Collection", OCLstdlibTables.Types._Set_T));
 		public static final ExecutorOperation _Set__reject = new ExecutorOperation("reject",
 			Types._Set, 7, org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE,
 				new ExecutorLambdaType("Lambda", OCLstdlibTables.Types._Set_T));
@@ -980,8 +980,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Integer =
 		{
 		    Fragments._Integer__OclAny /* 0 */,
-		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__OclSummable /* 1 */,
+		    Fragments._Integer__OclComparable /* 1 */,
 		    Fragments._Integer__Real /* 2 */,
 		    Fragments._Integer__Integer /* 3 */
 		};
@@ -1085,8 +1085,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _Real =
 		{
 		    Fragments._Real__OclAny /* 0 */,
-		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__OclSummable /* 1 */,
+		    Fragments._Real__OclComparable /* 1 */,
 		    Fragments._Real__Real /* 2 */
 		};
 		private static final int[] __Real = { 1,2,1 };
@@ -1103,8 +1103,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Set__OclAny /* 0 */,
 		    Fragments._Set__Collection /* 1 */,
-		    Fragments._Set__Bag /* 2 */,
 		    Fragments._Set__UniqueCollection /* 2 */,
+		    Fragments._Set__Bag /* 2 */,
 		    Fragments._Set__Set /* 3 */
 		};
 		private static final int[] __Set = { 1,1,2,1 };
@@ -1112,8 +1112,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _String =
 		{
 		    Fragments._String__OclAny /* 0 */,
-		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__OclSummable /* 1 */,
+		    Fragments._String__OclComparable /* 1 */,
 		    Fragments._String__String /* 2 */
 		};
 		private static final int[] __String = { 1,2,1 };
@@ -1138,8 +1138,8 @@ public class OCLstdlibTables
 		private static final ExecutorFragment[] _UnlimitedNatural =
 		{
 		    Fragments._UnlimitedNatural__OclAny /* 0 */,
-		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__OclSummable /* 1 */,
+		    Fragments._UnlimitedNatural__OclComparable /* 1 */,
 		    Fragments._UnlimitedNatural__Real /* 2 */,
 		    Fragments._UnlimitedNatural__Integer /* 3 */,
 		    Fragments._UnlimitedNatural__UnlimitedNatural /* 4 */
@@ -2004,7 +2004,7 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Set__excluding /* excluding(OclAny) */,
 		    OCLstdlibTables.Operations._Set__flatten /* flatten<T2>() */,
 		    OCLstdlibTables.Operations._Set__including /* including(T) */,
-		    OCLstdlibTables.Operations._Set__intersection /* intersection(Set(T)) */,
+		    OCLstdlibTables.Operations._Set__intersection /* intersection(Collection(T)) */,
 		    OCLstdlibTables.Operations._Set__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__select /* select(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
@@ -2019,7 +2019,7 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Set__excluding /* excluding(OclAny) */,
 		    OCLstdlibTables.Operations._Set__flatten /* flatten<T2>() */,
 		    OCLstdlibTables.Operations._Set__including /* including(T) */,
-		    OCLstdlibTables.Operations._Bag__0_intersection /* intersection(Collection(T)) */,
+		    OCLstdlibTables.Operations._Set__intersection /* intersection(Collection(T)) */,
 		    OCLstdlibTables.Operations._Bag__1_intersection /* intersection(UniqueCollection(T)) */,
 		    OCLstdlibTables.Operations._Set__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__select /* select(T|Lambda T() : Boolean) */,

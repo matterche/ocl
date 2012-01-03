@@ -8,7 +8,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -74,7 +74,7 @@ public class [javaClass/] extends XMLResourceImpl
 	 */
 	public static OCLstdlib getDefault() {
 		if (INSTANCE == null) {
-			INSTANCE = new OCLstdlib();
+			INSTANCE = new OCLstdlib(STDLIB_URI, "[pkg.name/]", "[pkg.nsPrefix/]", "[pkg.nsURI/]");
 		}
 		return INSTANCE;
 	}
@@ -115,9 +115,15 @@ public class [javaClass/] extends XMLResourceImpl
 		}
 	}
 	
-	private [javaClass/]() {
-		super(URI.createURI(STDLIB_URI));
-		getContents().add(create());
+	/**
+	 *	Construct the standard OCL Standard Library with specified resource URI,
+	 *  and package name, prefix and namespace URI. Construction normally occurs
+	 *  through the default Loader, but alternate construction may be needed when
+	 *	using a custom pivot model that requires a matching library URI.
+	 */
+	public [javaClass/](String uri, String name, String nsPrefix, String nsURI) {
+		super(URI.createURI(uri));
+		getContents().add(create(name, nsPrefix, nsURI));
 	}
 
 	/**
@@ -125,7 +131,7 @@ public class [javaClass/] extends XMLResourceImpl
 	 *  This static definition auto-generated from [sourceFile/]
 	 *  is used as the default when no overriding copy is registered. 
 	 */
-	public static Library create()
+	public static Library create(String name, String nsPrefix, String nsURI)
 	{
 		Library [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createLibrary(); // [pkg.getMoniker()/]
 		[for (precedence : Precedence | pkg.ownedPrecedence)]
@@ -138,12 +144,12 @@ public class [javaClass/] extends XMLResourceImpl
 		[declarePackage(nestedPackage)/]
 		[/for]
 
-		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[pkg.getSymbolName()/].setName(name);
 		[if (pkg.nsPrefix <> null)]
-		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
+		[pkg.getSymbolName()/].setNsPrefix(nsPrefix);
 		[/if]
 		[if (pkg.nsURI <> null)]
-		[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
+		[pkg.getSymbolName()/].setNsURI(nsURI);
 		[/if]
 		[for (precedence : Precedence | pkg.ownedPrecedence)]
 		[emitPrecedence(precedence)/]
