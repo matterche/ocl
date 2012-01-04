@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -125,6 +126,7 @@ public class ValidateTests extends XtextTestCase
 		//	Create model
 		//
 		Resource ecoreResource = doLoadOCLinEcore("Bug366229");
+		MetaModelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metaModelManager);
 		EPackage overloadsPackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(overloadsPackage, "SubClass");
 		//
@@ -191,6 +193,7 @@ public class ValidateTests extends XtextTestCase
 		//	Create model
 		//
 		Resource ecoreResource = doLoadOCLinEcore("Validate");
+		MetaModelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metaModelManager);
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(validatePackage, "Level3");
 		eSet(testInstance, "ref", "ref");

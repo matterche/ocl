@@ -1046,7 +1046,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 /*	@Override
 	protected void finalize() throws Throwable {
-		System.out.println("Finalize " + getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()));		
+		System.out.println("Finalize " + PivotUtil.debugSimpleName(this));		
 		super.finalize();
 		Set<MetaModelManager> keySet = liveMetaModelManagers.keySet();
 		if (!keySet.isEmpty()) {

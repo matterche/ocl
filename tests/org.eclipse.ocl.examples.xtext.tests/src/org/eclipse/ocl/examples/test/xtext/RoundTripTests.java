@@ -127,8 +127,8 @@ public class RoundTripTests extends XtextTestCase
 	
 	public void doRoundTripFromCompleteOCL(URI inputURI) throws IOException, InterruptedException {
 		MessageBinder savedMessageBinder = CS2Pivot.setMessageBinder(CS2Pivot.MessageBinderWithLineContext.INSTANCE);
+		ProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 		try {
-			ProjectMap projectMap = ProjectMap.getAdapter(resourceSet);
 			projectMap.initializeResourceSet(null);			
 			UMLUtils.initializeContentHandlers(resourceSet);
 //			String inputName = stem + ".ocl";
@@ -156,6 +156,7 @@ public class RoundTripTests extends XtextTestCase
 			metaModelManager3.dispose();
 		}
 		finally {
+			projectMap.dispose();
 			CS2Pivot.setMessageBinder(savedMessageBinder);
 		}
 	}
