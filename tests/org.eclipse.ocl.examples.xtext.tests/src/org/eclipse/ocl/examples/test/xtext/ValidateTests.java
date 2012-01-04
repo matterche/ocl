@@ -17,13 +17,22 @@
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -43,6 +52,8 @@ import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectV
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.osgi.util.NLS;
+
+import codegen.company.CodegencompanyPackage;
 
 /**
  * Tests that OCL for model validation works.
@@ -108,7 +119,6 @@ public class ValidateTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		metaModelManager = new MetaModelManager();
 	}
 
 	@Override
@@ -122,6 +132,7 @@ public class ValidateTests extends XtextTestCase
 	}
 
 	public void testValidate_Bug366229_oclinecore() throws IOException, InterruptedException {
+		metaModelManager = new MetaModelManager();
 		//
 		//	Create model
 		//
@@ -137,6 +148,7 @@ public class ValidateTests extends XtextTestCase
 	}
 
 	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
+		metaModelManager = new MetaModelManager();
 		//
 		//	Create model
 		//
@@ -189,6 +201,7 @@ public class ValidateTests extends XtextTestCase
 	}
 
 	public void testValidate_Validate_oclinecore() throws IOException, InterruptedException {
+		metaModelManager = new MetaModelManager();
 		//
 		//	Create model
 		//
@@ -247,5 +260,198 @@ public class ValidateTests extends XtextTestCase
 		} finally {
 			EValidator.Registry.INSTANCE.remove(validatePackage);
 		}
+	}
+
+	public Resource testResource;
+	public EPackage companyPackage;
+	public EFactory companyFactory;
+	public EClass companyClass;
+	public EAttribute companyName;
+	public EReference companyEmployees;
+	public EAttribute companySize;
+	public EClass employeeClass;
+	public EAttribute employeeName;
+	public EReference employeeManager;
+	public EReference employeeDirectReports;
+	public EReference employeeAllReports;
+	public EOperation employeeReportsTo;
+	public EEnum sizeKind;
+	public Enumerator sizeSmall;
+	public Enumerator sizeMedium;
+	public Enumerator sizeLarge;
+	public EObject acme;
+	public Map<String, EObject> employees;
+	public EClass badClassClass;
+	public EReference companyDetritus;
+	
+	protected static final String COMPANY_XMI = "/model/Company.xmi";	
+	public Map<Object, Object> context = new HashMap<Object, Object>();
+	
+	void add(EObject owner, EStructuralFeature feature, Object value) {
+		this.<EList<Object>> get(owner, feature).add(value);
+	}
+
+	EObject create(EObject owner, EReference containment, EClass type,
+			String name) {
+		EObject result = companyFactory.create(type);
+
+		if (containment.isMany()) {
+			add(owner, containment, result);
+		} else {
+			set(owner, containment, result);
+		}
+
+		if (name != null) {
+			set(result, type.getEStructuralFeature("name"), name);
+		}
+
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	<T> T get(EObject owner, EStructuralFeature feature) {
+		Object result = owner.eGet(feature);
+		return (T) result;
+	}
+
+	public EOperation getOperation(EClass eClass, String name) {
+		for (EOperation eOperation : eClass.getEOperations()) {
+			if (name.equals(eOperation.getName())) {
+				return eOperation;
+			}
+		}
+		fail("Expected to find operation: " + name);
+		return null;
+	}
+
+	public void doTest_invariantValidation(String modelName, boolean hasInvariants, int severity) {
+		initModel(modelName);
+		EObject joe = create(acme, companyEmployees, employeeClass, "Joe");
+		if (hasInvariants) {
+			validateInvariantWithSeverity("noManagerImpliesDirectReports", severity, joe);
+		}
+		else {
+			validateConstraintWithSeverity("noManagerImpliesDirectReports", severity, joe);
+		}
+
+		set(employee("Amy"), employeeManager, joe);
+		validateWithoutError(joe);
+	}
+
+	EObject employee(String name) {
+		EObject result = employees.get(name);
+
+		if (result == null) {
+			EList<EObject> emps = get(acme, companyEmployees);
+
+			for (EObject next : emps) {
+
+				if (name.equals(name(next))) {
+					result = next;
+					employees.put(name, result);
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	protected void initModel(String testModelName) {
+		URI uri = getTestModelURI(testModelName);
+		testResource = resourceSet.getResource(uri, true);
+		
+		acme = testResource.getContents().get(0);
+
+		companyClass = acme.eClass();
+		companyPackage = companyClass.getEPackage();
+		companyFactory = companyPackage.getEFactoryInstance();
+
+		companyName = (EAttribute) companyClass.getEStructuralFeature("name");
+		companyEmployees = (EReference) companyClass
+			.getEStructuralFeature("employees");
+		companySize = (EAttribute) companyClass.getEStructuralFeature("size");
+
+		employeeClass = companyEmployees.getEReferenceType();
+		employeeName = (EAttribute) employeeClass.getEStructuralFeature("name");
+		employeeManager = (EReference) employeeClass
+			.getEStructuralFeature("manager");
+		employeeDirectReports = (EReference) employeeClass
+			.getEStructuralFeature("directReports");
+		employeeAllReports = (EReference) employeeClass
+			.getEStructuralFeature("allReports");
+		employeeReportsTo = getOperation(employeeClass, "reportsTo");
+
+		sizeKind = (EEnum) companySize.getEAttributeType();
+		sizeSmall = sizeKind.getEEnumLiteral("small").getInstance();
+		sizeMedium = sizeKind.getEEnumLiteral("medium").getInstance();
+		sizeLarge = sizeKind.getEEnumLiteral("large").getInstance();
+
+		employees = new java.util.HashMap<String, EObject>();
+//		MetaModelManagerResourceAdapter.getAdapter(companyPackage.eResource(), metaModelManager);
+	}
+
+	String name(EObject employeeOrCompany) {
+		EAttribute name = employeeClass.isInstance(employeeOrCompany)
+			? employeeName
+			: companyName;
+
+		return get(employeeOrCompany, name);
+	}
+
+	void set(EObject owner, EStructuralFeature feature, Object value) {
+		owner.eSet(feature, value);
+	}
+
+	public void testValidate_Company_Ecore() {
+		resourceSet.getPackageRegistry().put(CodegencompanyPackage.eNS_URI, CodegencompanyPackage.eINSTANCE);
+		doTest_invariantValidation(COMPANY_XMI, false, Diagnostic.WARNING);
+	}
+
+	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject) {
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
+		List<Diagnostic> diagnostics = validation.getChildren();
+		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
+		Diagnostic diagnostic = diagnostics.get(0);
+		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
+		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
+		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
+		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+	}
+
+	protected void validateInvariantWithSeverity(String constraintName, int severity, EObject eObject) {
+		validateWithSeverity(constraintName, severity, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, PivotDiagnostician.INSTANCE.getObjectLabel(eObject));
+	}
+
+	protected void validateWithoutError(EObject eObject) {
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		if (validation.getSeverity() != Diagnostic.OK) {
+			List<Diagnostic> diagnostics = validation.getChildren();
+			if (!diagnostics.isEmpty()) {
+				StringBuilder s = new StringBuilder();
+				for (Diagnostic diagnostic : diagnostics) {
+					s.append(diagnostic.getMessage());
+					s.append("\n");
+				}
+				fail(s.toString());
+			}
+		}
+		assertEquals("Validation severity:", Diagnostic.OK, validation.getSeverity());
+		List<Diagnostic> diagnostics = validation.getChildren();
+		assertEquals("Validation child count:", 0, diagnostics.size());
+	}
+
+	protected void validateWithSeverity(String constraintName, int severity, EObject eObject, String messageTemplate, Object... bindings) {
+		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
+		List<Diagnostic> diagnostics = validation.getChildren();
+		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
+		Diagnostic diagnostic = diagnostics.get(0);
+		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
+		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
+		String message = NLS.bind(messageTemplate, bindings);
+		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 }
