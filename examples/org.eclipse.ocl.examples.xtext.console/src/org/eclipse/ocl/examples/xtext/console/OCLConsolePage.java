@@ -86,6 +86,7 @@ import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
+import org.eclipse.ocl.examples.xtext.console.actions.ValidateAction;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
@@ -549,6 +550,8 @@ public class OCLConsolePage extends Page
 	private final CancelableMetaModelManager metaModelManager;
 	private DomainModelManager modelManager = null;
 	
+	private ValidateAction validateAction = null;
+	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();
 	
@@ -760,9 +763,11 @@ public class OCLConsolePage extends Page
 		SaveExpressionAction saveExpression = new SaveExpressionAction(this);
 		LoadExpressionAction loadExpression = new LoadExpressionAction(this);
 		Action loadResource = new LoadResourceAction(this);		
+		validateAction = new ValidateAction(this);		
 		
 		IMenuManager menu = getSite().getActionBars().getMenuManager();
 		menu.add(loadResource);
+		menu.add(validateAction);
 		menu.add(loadExpression);
 		menu.add(saveExpression);
 		menu.add(clear);
@@ -796,6 +801,7 @@ public class OCLConsolePage extends Page
 //        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
 //        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, loadResource);
+		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, validateAction);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, loadExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, saveExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
@@ -1137,6 +1143,9 @@ public class OCLConsolePage extends Page
 			    }	        
 		        editorDocument.setContext((EssentialOCLCSResource) resource, contextClassifier, null);
 		        console.setSelection(contextClassifier, contextObject);
+		        if (validateAction != null) {
+		        	validateAction.setSelection(contextObject);
+		        }
 		        return null;
 			}
 		});

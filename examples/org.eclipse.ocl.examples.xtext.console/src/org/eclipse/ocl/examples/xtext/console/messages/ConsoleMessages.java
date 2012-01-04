@@ -42,6 +42,7 @@ public class ConsoleMessages
 	public static String LoadActionWarning_Title;
 	public static String LoadActionWarning_NoExpression;
 	public static String LoadResourceAction_Tip;
+	public static String ValidateAction_Tip;
 	public static String Output_Exception;
 //	public static String Progress_AST;
 //	public static String Progress_CST;
