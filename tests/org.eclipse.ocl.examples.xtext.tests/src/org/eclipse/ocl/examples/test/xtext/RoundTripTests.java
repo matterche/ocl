@@ -381,10 +381,9 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("OCLCST");
 	}
 
-/* FIXME Bug 363224 disabled by EMF Compare Bug 362997
 	public void testOCLEcoreRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("OCLEcore");
-	} */
+	}
 
 	public void testQVTRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("QVT");
@@ -394,10 +393,12 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromEcore("Types");
 	}
 
-//	public void testTypes_oclinecore() throws IOException, InterruptedException {
-//		BaseScopeProvider.LOOKUP.setState(true);		// FIXME CCE if this line commented out
-//		doRoundTripFromOclInEcore("Types");
-//	}
+	public void testTypes_oclinecore() throws IOException, InterruptedException {
+//		BaseScopeProvider.LOOKUP.setState(true);
+		MetaModelManager metaModelManager = new MetaModelManager();
+		doRoundTripFromOCLinEcore(metaModelManager, "Types");
+		metaModelManager.dispose();
+	}
 
 	public void testXMLNamespaceRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("XMLNamespace");
