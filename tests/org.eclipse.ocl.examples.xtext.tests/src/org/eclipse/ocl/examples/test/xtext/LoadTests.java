@@ -145,7 +145,7 @@ public class LoadTests extends XtextTestCase
 			metaModelManager = new MetaModelManager();
 		}
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-		
+		metaModelManager.getPivotResourceSet().eAdapters().add(getProjectMap());
 		Resource xtextResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
