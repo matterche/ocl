@@ -234,6 +234,7 @@ public class Pivot2EcoreReferenceVisitor
 			eTypedElement.setEGenericType(eGenericType);
 		}
 		else {
+			@SuppressWarnings("unused")
 			EObject eObject2 = typeRefVisitor.safeVisit(pivotType);
 			throw new IllegalArgumentException("Unsupported pivot type '" + pivotType + "' in Pivot2Ecore Reference pass");
 		}

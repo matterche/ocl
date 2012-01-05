@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -86,6 +87,11 @@ public class Pivot2EcoreTypeRefVisitor
 	public EClassifier visiting(Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore TypeRef pass");
 	}
+
+	@Override
+	public EObject visitAnyType(AnyType object) {
+		return EcorePackage.Literals.EOBJECT;			// FIXME Something more reversible
+	}	
 
 	@Override
 	public EObject visitCollectionType(CollectionType object) {

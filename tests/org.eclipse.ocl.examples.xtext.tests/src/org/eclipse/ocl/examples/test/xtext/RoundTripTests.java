@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -324,6 +324,13 @@ public class RoundTripTests extends XtextTestCase
 		doRoundTripFromOCLinEcore(metaModelManager2, "Bug350894B");
 		metaModelManager2.dispose();
 	}
+
+/* BUG 356243
+	public void testBug356243_oclinecore() throws IOException, InterruptedException {
+		MetaModelManager metaModelManager = new MetaModelManager();
+		doRoundTripFromOCLinEcore(metaModelManager, "Bug356243");
+		metaModelManager.dispose();
+	} */
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("Company", "Company.reference");
