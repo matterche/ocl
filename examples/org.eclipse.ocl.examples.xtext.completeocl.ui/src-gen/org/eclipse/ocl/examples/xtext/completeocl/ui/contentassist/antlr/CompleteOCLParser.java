@@ -83,6 +83,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerCSAccess().getGroup(), "rule__DerCS__Group__0");
 					put(grammarAccess.getImportCSAccess().getGroup(), "rule__ImportCS__Group__0");
 					put(grammarAccess.getImportCSAccess().getGroup_1(), "rule__ImportCS__Group_1__0");
+					put(grammarAccess.getImportCSAccess().getGroup_3(), "rule__ImportCS__Group_3__0");
 					put(grammarAccess.getIncludeCSAccess().getGroup(), "rule__IncludeCS__Group__0");
 					put(grammarAccess.getInitCSAccess().getGroup(), "rule__InitCS__Group__0");
 					put(grammarAccess.getInvCSAccess().getGroup(), "rule__InvCS__Group__0");
@@ -198,6 +199,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerCSAccess().getSpecificationAssignment_2(), "rule__DerCS__SpecificationAssignment_2");
 					put(grammarAccess.getImportCSAccess().getNameAssignment_1_0(), "rule__ImportCS__NameAssignment_1_0");
 					put(grammarAccess.getImportCSAccess().getNamespaceAssignment_2(), "rule__ImportCS__NamespaceAssignment_2");
+					put(grammarAccess.getImportCSAccess().getAllAssignment_3_0(), "rule__ImportCS__AllAssignment_3_0");
 					put(grammarAccess.getIncludeCSAccess().getNamespaceAssignment_1(), "rule__IncludeCS__NamespaceAssignment_1");
 					put(grammarAccess.getInitCSAccess().getStereotypeAssignment_0(), "rule__InitCS__StereotypeAssignment_0");
 					put(grammarAccess.getInitCSAccess().getSpecificationAssignment_2(), "rule__InitCS__SpecificationAssignment_2");

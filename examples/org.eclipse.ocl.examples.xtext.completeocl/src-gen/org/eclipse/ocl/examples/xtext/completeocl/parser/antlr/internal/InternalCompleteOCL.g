@@ -1038,7 +1038,26 @@ ruleImportCS returns [EObject current=null]
 	    }
 
 )
-))
+)((
+(
+		lv_all_4_0=	'::' 
+    {
+        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonKeyword_3_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImportCSRule());
+	        }
+       		setWithLastConsumed($current, "all", true, "::");
+	    }
+
+)
+)	otherlv_5='*' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getImportCSAccess().getAsteriskKeyword_3_1());
+    }
+)?)
 ;
 
 

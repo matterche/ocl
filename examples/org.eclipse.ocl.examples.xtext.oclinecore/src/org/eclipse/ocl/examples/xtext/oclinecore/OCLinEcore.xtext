@@ -212,7 +212,7 @@ EnumerationLiteralCS returns base::EnumerationLiteralCS:
 ;
 
 ImportCS returns base::ImportCS:
-	'import' (name=UnrestrictedName ':')? namespace=[pivot::Namespace|URI] ';'
+	'import' (name=UnrestrictedName ':')? namespace=[pivot::Namespace|URI] (all?='::' '*')? ';'
 ;
 
 LibraryCS returns base::LibraryCS:

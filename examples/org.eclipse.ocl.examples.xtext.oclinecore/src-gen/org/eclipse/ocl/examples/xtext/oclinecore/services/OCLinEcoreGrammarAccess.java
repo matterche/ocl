@@ -1739,13 +1739,17 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNamespaceAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cNamespaceNamespaceCrossReference_2_0 = (CrossReference)cNamespaceAssignment_2.eContents().get(0);
 		private final RuleCall cNamespaceNamespaceURIParserRuleCall_2_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_2_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cAllAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cAllColonColonKeyword_3_0_0 = (Keyword)cAllAssignment_3_0.eContents().get(0);
+		private final Keyword cAsteriskKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ImportCS returns base::ImportCS:
-		//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";";
+		//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] (all?="::" "*")? ";";
 		public ParserRule getRule() { return rule; }
 
-		//"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";"
+		//"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] (all?="::" "*")? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"import"
@@ -1772,8 +1776,20 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//URI
 		public RuleCall getNamespaceNamespaceURIParserRuleCall_2_0_1() { return cNamespaceNamespaceURIParserRuleCall_2_0_1; }
 
+		//(all?="::" "*")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//all?="::"
+		public Assignment getAllAssignment_3_0() { return cAllAssignment_3_0; }
+
+		//"::"
+		public Keyword getAllColonColonKeyword_3_0_0() { return cAllColonColonKeyword_3_0_0; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_3_1() { return cAsteriskKeyword_3_1; }
+
 		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 
 	public class LibraryCSElements extends AbstractParserRuleElementFinder {
@@ -3785,7 +3801,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportCS returns base::ImportCS:
-	//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] ";";
+	//	"import" (name=UnrestrictedName ":")? namespace=[pivot::Namespace|URI] (all?="::" "*")? ";";
 	public ImportCSElements getImportCSAccess() {
 		return (pImportCS != null) ? pImportCS : (pImportCS = new ImportCSElements());
 	}

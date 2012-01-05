@@ -2859,9 +2859,28 @@ ruleImportCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=';' 
+)((
+(
+		lv_all_4_0=	'::' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getImportCSAccess().getSemicolonKeyword_3());
+        newLeafNode(lv_all_4_0, grammarAccess.getImportCSAccess().getAllColonColonKeyword_3_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImportCSRule());
+	        }
+       		setWithLastConsumed($current, "all", true, "::");
+	    }
+
+)
+)	otherlv_5='*' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getImportCSAccess().getAsteriskKeyword_3_1());
+    }
+)?	otherlv_6=';' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getImportCSAccess().getSemicolonKeyword_4());
     }
 )
 ;

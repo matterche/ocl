@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ImportCSImpl#getUri <em>Uri</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ImportCSImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ImportCSImpl#isAll <em>All</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +70,25 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * @ordered
 	 */
 	protected Namespace namespace;
+
+	/**
+	 * The default value of the '{@link #isAll() <em>All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAll()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ALL_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isAll() <em>All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAll()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean all = ALL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -158,6 +178,29 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isAll()
+	{
+		return all;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAll(boolean newAll)
+	{
+		boolean oldAll = all;
+		all = newAll;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.IMPORT_CS__ALL, oldAll, all));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
@@ -167,6 +210,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
 				if (resolve) return getNamespace();
 				return basicGetNamespace();
+			case BaseCSTPackage.IMPORT_CS__ALL:
+				return isAll();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -185,6 +230,9 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 				return;
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
 				setNamespace((Namespace)newValue);
+				return;
+			case BaseCSTPackage.IMPORT_CS__ALL:
+				setAll((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,6 +253,9 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
 				setNamespace((Namespace)null);
 				return;
+			case BaseCSTPackage.IMPORT_CS__ALL:
+				setAll(ALL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -222,6 +273,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 			case BaseCSTPackage.IMPORT_CS__NAMESPACE:
 				return namespace != null;
+			case BaseCSTPackage.IMPORT_CS__ALL:
+				return all != ALL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

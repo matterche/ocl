@@ -818,7 +818,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName? namespace=[Namespace|URI])
+	 *     (name=UnrestrictedName? namespace=[Namespace|URI] all?='::'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

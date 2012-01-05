@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS#getUri <em>Uri</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS#isAll <em>All</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,5 +90,32 @@ public interface ImportCS extends NamespaceCS {
 	 * @generated
 	 */
 	void setNamespace(Namespace value);
+
+	/**
+	 * Returns the value of the '<em><b>All</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All</em>' attribute.
+	 * @see #setAll(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getImportCS_All()
+	 * @model default="false" transient="true"
+	 * @generated
+	 */
+	boolean isAll();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS#isAll <em>All</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>All</em>' attribute.
+	 * @see #isAll()
+	 * @generated
+	 */
+	void setAll(boolean value);
 
 } // ImportCS

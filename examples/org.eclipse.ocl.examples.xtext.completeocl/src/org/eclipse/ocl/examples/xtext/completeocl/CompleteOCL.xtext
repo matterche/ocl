@@ -89,7 +89,7 @@ DerCS returns DerCS:
 	stereotype='derive' ':' specification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
-	'import' (name=Identifier ':')? namespace=[pivot::Namespace|URI];
+	'import' (name=Identifier ':')? namespace=[pivot::Namespace|URI] (all?='::' '*')?;
 
 IncludeCS returns IncludeCS:
 	'include' namespace=[pivot::Namespace|URI];

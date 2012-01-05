@@ -665,7 +665,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=Identifier? namespace=[Namespace|URI])
+	 *     (name=Identifier? namespace=[Namespace|URI] all?='::'?)
 	 */
 	protected void sequence_ImportCS(EObject context, ImportCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

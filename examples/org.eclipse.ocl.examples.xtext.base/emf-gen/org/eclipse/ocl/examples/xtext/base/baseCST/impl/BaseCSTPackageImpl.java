@@ -866,6 +866,16 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getImportCS_All()
+	{
+		return (EAttribute)importCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLambdaTypeCS()
 	{
 		return lambdaTypeCSEClass;
@@ -1725,6 +1735,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		importCSEClass = createEClass(IMPORT_CS);
 		createEAttribute(importCSEClass, IMPORT_CS__URI);
 		createEReference(importCSEClass, IMPORT_CS__NAMESPACE);
+		createEAttribute(importCSEClass, IMPORT_CS__ALL);
 
 		lambdaTypeCSEClass = createEClass(LAMBDA_TYPE_CS);
 		createEAttribute(lambdaTypeCSEClass, LAMBDA_TYPE_CS__NAME);
@@ -1991,6 +2002,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(importCSEClass, ImportCS.class, "ImportCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getImportCS_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, ImportCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getImportCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, 1, ImportCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getImportCS_All(), ecorePackage.getEBoolean(), "all", "false", 0, 1, ImportCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(lambdaTypeCSEClass, LambdaTypeCS.class, "LambdaTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getLambdaTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, LambdaTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

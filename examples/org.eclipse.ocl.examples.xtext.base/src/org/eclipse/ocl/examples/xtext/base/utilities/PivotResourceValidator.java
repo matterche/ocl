@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.IAcceptor;
 import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.validation.ResourceValidatorImpl;
 
@@ -145,12 +146,12 @@ public class PivotResourceValidator extends ResourceValidatorImpl
 				Resource pivotResource = cs2pivotAdapter.getPivotResource(csResource);
 				if (pivotResource != null) {
 					IAcceptor<Issue> acceptor = createAcceptor(issues);
-//					if (mode.shouldCheck(CheckType.EXPENSIVE)) {
+					if (mode.shouldCheck(CheckType.EXPENSIVE)) {
 						performValidation(acceptor, pivotResource, monitor);
-//					}
-//					else {
-//						reuseValidation(acceptor, pivotResource, monitor);
-//					}
+					}
+					else {
+						reuseValidation(acceptor, pivotResource, monitor);
+					}
 					if (monitor.isCanceled())
 						return null;
 				}
