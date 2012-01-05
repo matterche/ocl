@@ -187,9 +187,7 @@ public class DocumentationExamples extends PivotTestCase
 	
 	@Override
 	protected void tearDown() throws Exception {
-		for (Resource resource : resourceSet.getResources()) {
-			resource.unload();
-		}
+		unloadResourceSet(resourceSet);
 		resourceSet = null;
 		super.tearDown();
 	}

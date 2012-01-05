@@ -256,6 +256,13 @@ public class PivotTestCase extends TestCase
 		}
 		return pivotResource;
 	}
+
+	public static void unloadResourceSet(ResourceSet resourceSet) {
+		for (Resource resource : resourceSet.getResources()) {
+			resource.unload();
+		}
+		resourceSet.eAdapters().clear();
+	}
 	
 	protected static boolean noDebug = false;
 	

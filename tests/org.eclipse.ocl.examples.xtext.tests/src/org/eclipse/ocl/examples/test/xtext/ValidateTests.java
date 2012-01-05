@@ -49,8 +49,6 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ValidateTests extends XtextTestCase
 {	
-	protected MetaModelManager metaModelManager;
-
 	public static void checkValidationDiagnostics(EObject testInstance, int severity, String... expectedMessage) {
 		Bag<String> expectedMessages = new BagImpl<String>();
 		for (String message : expectedMessage) {
@@ -68,28 +66,21 @@ public class ValidateTests extends XtextTestCase
 		}
 	}	
 
-	public Resource doLoadOCLinEcore(String stem) throws IOException {
+	public Resource doLoadOCLinEcore(MetaModelManager metaModelManager, String stem) throws IOException {
 		String inputName = stem + ".oclinecore";
 		String ecoreName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI ecoreURI = getProjectFileURI(ecoreName);
-		MetaModelManager metaModelManager = new MetaModelManager();
-		try {
-//			ResourceSet resourceSet = new ResourceSetImpl();
-			BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
-			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
-			xtextResource.load(null);
-			assertNoResourceErrors("Load failed", xtextResource);
-			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
-			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-			Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
-			return ecoreResource;
-		}
-		finally {
-			metaModelManager.dispose();
-		}
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(inputURI);
+		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		xtextResource.load(null);
+		assertNoResourceErrors("Load failed", xtextResource);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		Resource pivotResource = adapter.getPivotResource(xtextResource);
+		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+		assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+		Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
+		return ecoreResource;
 	}
 
 	protected EObject eCreate(EPackage ePackage, String className) {
@@ -108,15 +99,10 @@ public class ValidateTests extends XtextTestCase
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		metaModelManager = new MetaModelManager();
 	}
 
 	@Override
 	protected void tearDown() throws Exception {
-		if (metaModelManager != null) {
-			metaModelManager.dispose();
-			metaModelManager = null;
-		}
 		PivotEnvironmentFactory.disposeGlobalRegistryInstance();
 		super.tearDown();
 	}
@@ -125,8 +111,11 @@ public class ValidateTests extends XtextTestCase
 		//
 		//	Create model
 		//
-		Resource ecoreResource = doLoadOCLinEcore("Bug366229");
-		MetaModelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metaModelManager);
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		MetaModelManager metaModelManager2 = new MetaModelManager();
+		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Bug366229");
+		metaModelManager2.getExternalResourceSet().getResources().add(ecoreResource);
+		metaModelManager1.dispose();
 		EPackage overloadsPackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(overloadsPackage, "SubClass");
 		//
@@ -134,16 +123,19 @@ public class ValidateTests extends XtextTestCase
 		//
 		EValidator.Registry.INSTANCE.put(overloadsPackage, EObjectValidator.INSTANCE);
 		checkValidationDiagnostics(testInstance, Diagnostic.ERROR);
+		metaModelManager2.dispose();
 	}
 
 	public void testValidate_Validate_completeocl() throws IOException, InterruptedException {
 		//
 		//	Create model
 		//
-		Resource ecoreResource = doLoadOCLinEcore("Validate");
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		MetaModelManager metaModelManager2 = new MetaModelManager();
+		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Validate");
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		URI oclURI = getProjectFileURI("Validate.ocl");
-		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager);
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager2);
 		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
 		try {
 			EObject testInstance = eCreate(validatePackage, "Level3");
@@ -184,6 +176,8 @@ public class ValidateTests extends XtextTestCase
 				NLS.bind(template,  "V2a", objectLabel));
 		}
 		finally {
+			metaModelManager1.dispose();
+			metaModelManager2.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);			
 		}
 	}
@@ -192,8 +186,9 @@ public class ValidateTests extends XtextTestCase
 		//
 		//	Create model
 		//
-		Resource ecoreResource = doLoadOCLinEcore("Validate");
-		MetaModelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metaModelManager);
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Validate");
+		MetaModelManagerResourceSetAdapter.getAdapter(ecoreResource.getResourceSet(), metaModelManager1);
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		EObject testInstance = eCreate(validatePackage, "Level3");
 		eSet(testInstance, "ref", "ref");
@@ -245,6 +240,7 @@ public class ValidateTests extends XtextTestCase
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				NLS.bind(template,  "L1", objectLabel));
 		} finally {
+			metaModelManager1.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);
 		}
 	}

@@ -1129,6 +1129,7 @@ public class DelegatesTest extends PivotTestSuite
 				}
 			}
 			validateWithSeverity("ValidationWithMessage", Diagnostic.WARNING, book,  message);
+			unloadResourceSet(resourceSet);
 		} finally {
 			metaModelManager.dispose();
 		}

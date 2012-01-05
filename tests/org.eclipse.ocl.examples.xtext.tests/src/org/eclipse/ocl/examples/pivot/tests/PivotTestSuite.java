@@ -1305,6 +1305,8 @@ public abstract class PivotTestSuite extends PivotTestCase
 				}
 			}
 		}
+		unloadResourceSet(resourceSet);
+		resourceSet = null;
 		super.tearDown();
 	}
 

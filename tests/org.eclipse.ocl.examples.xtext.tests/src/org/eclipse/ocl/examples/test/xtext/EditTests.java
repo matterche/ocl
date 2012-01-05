@@ -63,20 +63,18 @@ public class EditTests extends XtextTestCase
 		super.tearDown();
 	}
 
-	protected Resource getEcoreFromCS(String testDocument, URI ecoreURI) throws IOException {
+	protected Resource getEcoreFromCS1(MetaModelManager metaModelManager1, String testDocument, URI ecoreURI) throws IOException {
 		InputStream inputStream = new ByteArrayInputStream(testDocument.getBytes());
 		URI xtextURI = URI.createURI("test.oclinecore");
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EssentialOCLCSResource xtextResource = (EssentialOCLCSResource) resourceSet.createResource(xtextURI, null);
-//		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
+		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager1);
 		xtextResource.load(inputStream, null);
 		assertNoResourceErrors("Loading Xtext", xtextResource);
-		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, null);
-		MetaModelManager metaModelManager = adapter.getMetaModelManager();
-		Resource pivotResource = savePivotFromCS(metaModelManager, xtextResource, null);
-		Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
+		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager1);
+		Resource pivotResource = savePivotFromCS(metaModelManager1, xtextResource, null);
+		Resource ecoreResource = savePivotAsEcore(metaModelManager1, pivotResource, ecoreURI, true);
 		adapter.dispose();
-		metaModelManager.dispose();
 		return ecoreResource;
 	}
 
@@ -107,7 +105,8 @@ public class EditTests extends XtextTestCase
 			"package p1 : p2 = 'p3' {\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
-		Resource ecoreResource0 = getEcoreFromCS(testDocument, ecoreURI0);
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		Resource ecoreResource0 = getEcoreFromCS1(metaModelManager1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
 		InputStream inputStream = new ByteArrayInputStream(testDocument.getBytes());
 		URI outputURI = getProjectFileURI("test.oclinecore");
@@ -142,6 +141,7 @@ public class EditTests extends XtextTestCase
 		Resource ecoreResource4 = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI4, true);
 		((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
 		assertSameModel(ecoreResource0, ecoreResource4);		
+		metaModelManager1.dispose();
 	}	
 
 	public void testEdit_Rename_Restore_ecore() throws Exception {
@@ -160,7 +160,8 @@ public class EditTests extends XtextTestCase
 			"	}\n" +
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
-		Resource ecoreResource0 = getEcoreFromCS(testDocument, ecoreURI0);
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		Resource ecoreResource0 = getEcoreFromCS1(metaModelManager1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
 		InputStream inputStream = new ByteArrayInputStream(testDocument.getBytes());
 		URI outputURI = getProjectFileURI("test.oclinecore");
@@ -220,6 +221,7 @@ public class EditTests extends XtextTestCase
 		assertSameModel(ecoreResource0, doRename(xtextResource, pivotResource, "testOperation(s : String)", "testOperation(i : Integer)"));
 		//
 		adapter.dispose();
+		metaModelManager1.dispose();
 	}
 
 	public void testEdit_StaleReference_ecore() throws Exception {
@@ -238,7 +240,8 @@ public class EditTests extends XtextTestCase
 			"}\n";
 		URI ecoreURI0 = getProjectFileURI("test0.ecore");
 //		System.out.println("*************load-reference*********************************************************");
-		Resource ecoreResource0 = getEcoreFromCS(testDocument, ecoreURI0);
+		MetaModelManager metaModelManager1 = new MetaModelManager();
+		Resource ecoreResource0 = getEcoreFromCS1(metaModelManager1, testDocument, ecoreURI0);
 		URI ecoreURI1 = getProjectFileURI("test1.ecore");
 		InputStream inputStream = new ByteArrayInputStream(testDocument.getBytes());
 		URI outputURI = getProjectFileURI("test.oclinecore");
@@ -272,6 +275,7 @@ public class EditTests extends XtextTestCase
 		pivotTestClass1 = metaModelManager.getPrimaryType("TestPackage", "TestClass1");
 		//
 		adapter.dispose();
+		metaModelManager1.dispose();
 	}
 
 	public void testEdit_StaleSpecialization() throws Exception {
