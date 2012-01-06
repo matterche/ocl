@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006,2012 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,18 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - 364797
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.4 2009/08/26 05:57:41 ewillink Exp $
+ * $Id$
  */
 
 package org.eclipse.ocl.ecore;
 
+import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -27,11 +31,11 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.internal.OCLStandardLibraryPackage;
 import org.eclipse.ocl.helper.OCLHelper;
 
 /**
@@ -74,10 +78,11 @@ public class OCL extends org.eclipse.ocl.OCL<
 			: Resource.Factory.Registry.INSTANCE;
 		resourceFactoryRegistry.getExtensionToFactoryMap().put(
 			"ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
-		EPackage.Registry packageRegistry = resourceSet != null
-				? resourceSet.getPackageRegistry()
-				: EPackage.Registry.INSTANCE;
-		packageRegistry.put(OCLStandardLibraryPackage.eNS_URI, OCLStandardLibraryPackage.eINSTANCE);
+		Map<URI,URI> uriMap = resourceSet != null
+				? resourceSet.getURIConverter().getURIMap()
+				: URIConverter.URI_MAP;
+		uriMap.put(URI.createURI(EcoreEnvironment.OCL_STANDARD_LIBRARY_NS_URI),
+			URI.createURI("no-such-protocol:/this/does/not/exist")); //$NON-NLS-1$
 		return null;
 	}
 

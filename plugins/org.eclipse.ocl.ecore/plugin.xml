@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 
 <!--
- Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
+ Copyright (c) 2006,2012 IBM Corporation and others.
  All rights reserved.   This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
  which accompanies this distribution, and is available at
@@ -12,8 +12,9 @@
    IBM - initial API and implementation
    Zeligsoft - Bugs 231435, 248869, 256040
    Kenn Hussey - 191689, 291361, 291365, 331143
+   E.D.Willink - 364797
 
- $Id: plugin.xml,v 1.6 2010/12/09 17:16:18 ewillink Exp $
+ $Id$
 -->
 
 <plugin>
@@ -33,18 +34,12 @@
     </environmentFactory>
   </extension>
   
-  <!--extension
+  <extension
         point="org.eclipse.emf.ecore.uri_mapping">
      <mapping
            source="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore"
-           target="platform:/plugin/org.eclipse.ocl.ecore/model/oclstdlib.ecore">
+           target="no-such-protocol:/this/does/not/exist">
      </mapping>
-  </extension-->
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore" 
-       class = "org.eclipse.ocl.ecore.internal.OCLStandardLibraryPackage" /> 
   </extension>
 
   <extension
