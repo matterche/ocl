@@ -365,11 +365,10 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompleteOCLRoundTrip_UML() throws IOException, InterruptedException {
-		URI uml_2_5 = URI.createPlatformResourceURI("/UML-2.5/XMI-23-Nov-2001/Semanticed UML.ocl", true);
-		if (uml_2_5.isFile()) {
+		URI uml_2_5 = URI.createPlatformResourceURI("/UML-2.5/XMI-4-Jan-2012/Semanticed UML.ocl", false);
+		if (uml_2_5.isFile()) {		// FIXME test actual rather than potential file
 			doRoundTripFromCompleteOCL(uml_2_5);
 		}
-//		doRoundTripFromCompleteOCL(URI.createPlatformResourceURI("/UML-2.5/XMI-23-Nov-2001/UML.xmi", true));
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {

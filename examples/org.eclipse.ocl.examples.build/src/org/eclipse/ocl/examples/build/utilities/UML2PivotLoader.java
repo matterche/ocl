@@ -23,6 +23,7 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.WorkflowComponentWithModelSlot;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 
 /**
@@ -33,6 +34,7 @@ public class UML2PivotLoader extends WorkflowComponentWithModelSlot
 	private Logger log = Logger.getLogger(getClass());
 
 	public void invokeInternal(WorkflowContext ctx, ProgressMonitor arg1, Issues arg2) {
+		OCLstdlib.install();
 		Resource resource = (Resource) ctx.get(getUmlSlot());
 		log.info("Pivoting '" + resource.getURI() + "'");
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resource.getResourceSet());
