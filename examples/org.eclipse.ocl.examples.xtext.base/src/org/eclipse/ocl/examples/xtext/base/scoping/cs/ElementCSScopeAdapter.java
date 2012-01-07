@@ -44,20 +44,19 @@ public class ElementCSScopeAdapter extends AbstractScopeAdapter implements CSSco
 	protected ScopeView getNamespaceScope(EnvironmentView environmentView,
 			ScopeView scopeView, List<Namespace> namespaces) {
 		int namespaceCount = namespaces.size();
-		if (namespaceCount > 0) {
-			Namespace namespace = namespaces.get(namespaceCount-1);
-			if ((namespace == null) || namespace.eIsProxy()) {
-				return null;
-			}
-			PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(namespace);
-			if (scopeAdapter != null) {
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, namespace, scopeAdapter, null, scopeView.getTargetReference(), null);
-				environmentView.computeLookups(nestedScopeView);
-			}				
+		if (namespaceCount <= 0) {
+			return scopeView.getOuterScope();
+		}
+		Namespace namespace = namespaces.get(namespaceCount-1);
+		if ((namespace == null) || namespace.eIsProxy()) {
 			return null;
 		}
-		return scopeView.getOuterScope();
+		PivotScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(namespace);
+		if (scopeAdapter == null) {
+			return null;
+		}
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		return new BaseScopeView(metaModelManager, namespace, scopeAdapter, null, scopeView.getTargetReference(), null);
 	}
 
 	/**

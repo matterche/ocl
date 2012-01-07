@@ -43,7 +43,14 @@ public class OperationContextScopeAdapter extends ElementCSScopeAdapter
 			Filter filter = new OperationContextFilter(targetElement);
 			try {
 				environmentView.addFilter(filter);
-				return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
+				ScopeView namespaceScope = getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
+				if ("conformsTo".equals(environmentView.getName())) {		// FIXME debugging
+					environmentView.computeLookups(namespaceScope);
+				}
+				else {
+					environmentView.computeLookups(namespaceScope);
+				}
+				return null;
 			}
 			finally {
 				environmentView.removeFilter(filter);
