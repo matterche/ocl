@@ -233,7 +233,7 @@ public class CS2PivotConversion extends AbstractConversion
 
 	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {
 		for (Resource csResource : csResources) {
-			if (!csResource.getErrors().isEmpty()) {
+			if (ElementUtil.hasSyntaxError(csResource.getErrors())) {
 				return false;
 			}
 		}

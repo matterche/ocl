@@ -62,7 +62,7 @@ public class CS2PivotLinker extends LazyLinker
 		Resource eResource = model.eResource();		// FIXME Try to do a narrower refresh
 //		System.out.println(Thread.currentThread().getName() + " afterModelLinked " + getClass().getSimpleName() + "@" + hashCode()
 //			+ " " + eResource.getClass().getSimpleName() + "@" + eResource.hashCode() + " " + eResource.getURI());		
-		if ((eResource instanceof BaseCSResource) && eResource.getErrors().isEmpty()) {
+		if ((eResource instanceof BaseCSResource) && !ElementUtil.hasSyntaxError(eResource.getErrors())) {
 //			System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
 			BaseCSResource csResource = (BaseCSResource) eResource;
 			try {

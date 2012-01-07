@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -47,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.PivotScopeVisitor;
 import org.eclipse.ocl.examples.xtext.base.scope.RootScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
@@ -56,6 +58,7 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 
 public class ElementUtil
 {
@@ -289,6 +292,18 @@ public class ElementUtil
 			return 1;
 		}
 		return csTypedElement.getUpper();
+	}
+
+	public static boolean hasSyntaxError(List<Diagnostic> diagnostics) {
+		for (Diagnostic diagnostic : diagnostics) {
+			if (diagnostic instanceof LibraryDiagnostic) {
+				return true;
+			}
+			else if (diagnostic instanceof XtextSyntaxDiagnostic) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static boolean isInOperation(ElementCS csElement) {

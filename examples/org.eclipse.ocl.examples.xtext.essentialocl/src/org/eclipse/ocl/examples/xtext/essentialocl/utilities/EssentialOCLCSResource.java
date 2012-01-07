@@ -34,9 +34,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
-import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
 import org.eclipse.xtext.util.CancelIndicator;
 
 public class EssentialOCLCSResource extends LazyLinkingResource
@@ -120,20 +120,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	@Override
 	public void resolveLazyCrossReferences(CancelIndicator mon) {	// FIXME move to Validation rules
 		List<Diagnostic> errors = getErrors();
-		if (errors.size() > 0) {
-			boolean hasSyntaxError = false;
-			for (int i = errors.size(); --i >= 0; ) {
-				Diagnostic error = errors.get(i);
-				if (error instanceof LibraryDiagnostic) {
-					hasSyntaxError = true;
-				}
-				else if (error instanceof XtextSyntaxDiagnostic) {
-					hasSyntaxError = true;
-				}
-			}
-			if (hasSyntaxError) {
-				return;
-			}
+		if (ElementUtil.hasSyntaxError(errors)) {
+			return;
 		}
 		MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(this);
 		if (adapter != null) {
