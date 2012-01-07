@@ -1,18 +1,3 @@
-package org.eclipse.ocl.examples.xtext.completeocl.scoping;
-
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-
 /**
  * <copyright>
  *
@@ -29,6 +14,23 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * $Id: OperationContextFilter.java,v 1.2 2011/04/25 19:39:58 ewillink Exp $
  */
+package org.eclipse.ocl.examples.xtext.completeocl.scoping;
+
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
+
 public class OperationContextFilter implements EnvironmentView.Filter
 {
 	private final OperationContextDeclCS csOperationContext;
@@ -45,8 +47,13 @@ public class OperationContextFilter implements EnvironmentView.Filter
 		if (!(eObject instanceof Operation)) {
 			return false;
 		}
-		List<VariableCS> contextParameters = csOperationContext.getParameters();
 		Operation candidateOperation = (Operation) eObject;
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		Type context = metaModelManager.getPrimaryType(candidateOperation.getOwningType());
+		if (context != metaModelManager.getPrimaryElement(forType)) {
+			return false;
+		}
+		List<VariableCS> contextParameters = csOperationContext.getParameters();
 		List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
 		int iMax = contextParameters.size();
 		if (iMax != candidateParameters.size()) {
@@ -55,8 +62,12 @@ public class OperationContextFilter implements EnvironmentView.Filter
 		for (int i = 0; i < iMax; i++) {
 			VariableCS contextParameter = contextParameters.get(i);
 			Parameter candidateParameter = candidateParameters.get(i);
-			Type candidateType = candidateParameter.getType();
-			// FIXME Check more than just argument counts
+			Type contextType = metaModelManager.getPrimaryType(PivotUtil.getPivot(Type.class, contextParameter.getOwnedType()));
+			Type candidateType = metaModelManager.getPrimaryType(candidateParameter.getType());
+// FIXME Need to resolve parameter type pivots first
+//			if (contextType != candidateType) {
+//				return false;
+//			}
 		}
 		return true;
 	}
