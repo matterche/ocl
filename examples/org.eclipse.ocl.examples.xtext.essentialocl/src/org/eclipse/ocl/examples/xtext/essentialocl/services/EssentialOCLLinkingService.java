@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -82,9 +83,10 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				return Collections.emptyList();
 			}
 			QualifiedName qualifiedName = QualifiedName.create(text);	// FIXME use IQualifiedNameConverter
-			IEObjectDescription eObjectDescription = scope.getSingleElement(qualifiedName);
-			if (eObjectDescription != null) {
+			List<EObject> linkedObjects = new ArrayList<EObject>();
+			for (IEObjectDescription eObjectDescription : scope.getElements(qualifiedName)) {
 				EObject eObjectOrProxy = eObjectDescription.getEObjectOrProxy();
+				linkedObjects.add(eObjectOrProxy);
 				if (traceLookup) {
 					if (eObjectOrProxy instanceof ModelElementCS) {
 						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + CS2Moniker.toString((ModelElementCS)eObjectOrProxy));
@@ -93,13 +95,18 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " => " + eObjectOrProxy);									
 					}
 				}
-				return Collections.singletonList(eObjectOrProxy);
 			}
 			if (traceLookup) {
 				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
 			}
-			eObjectDescription = scope.getSingleElement(qualifiedName);	// FIXME conditionalise this retry for debug
-			return Collections.emptyList();
+			if (linkedObjects.size() > 1) {
+				scope.getElements(qualifiedName);	// FIXME conditionalise this retry for debug
+				return Collections.emptyList();		// BUG FIXME return some form of ambiguity
+			}
+			if (linkedObjects.size() <= 0) {
+				scope.getElements(qualifiedName);	// FIXME conditionalise this retry for debug
+			}
+			return linkedObjects;
 		}
 		catch (IllegalLibraryException e) {
 			context.eAdapters().add(new ExceptionAdapter(e));

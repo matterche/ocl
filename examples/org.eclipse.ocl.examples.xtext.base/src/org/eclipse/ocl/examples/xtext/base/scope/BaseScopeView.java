@@ -267,7 +267,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			return environmentView.getDescription();
 		}
 		else {
-			return null;
+			return null;			// FIXME Return an 'ambiguous' description
 //			return environmentView.getDescriptions().get(0);
 		}
 	}
