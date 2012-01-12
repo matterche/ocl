@@ -1206,7 +1206,6 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 }
 
 type Type conformsTo OclType {
-	operation "xyzzyx"() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
 /**
