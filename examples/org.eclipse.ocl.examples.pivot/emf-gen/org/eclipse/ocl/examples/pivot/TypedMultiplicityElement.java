@@ -37,4 +37,13 @@ public interface TypedMultiplicityElement
 	 * @generated
 	 */
 	boolean CompatibleBody(ValueSpecification bodySpecification);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='/*\nParameter{name = \'name\'}\n\052/\ntry {\n\tfinal <%org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator%> evaluator = new <%org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager%>(this, <%org.eclipse.ocl.examples.pivot.PivotTables%>.LIBRARY);\n\tfinal <%org.eclipse.ocl.examples.domain.values.ValueFactory%> valueFactory = evaluator.getValueFactory();\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> self = valueFactory.valueOf(this);\n\tfinal <%org.eclipse.ocl.examples.library.executor.ExecutorType%> T_Pivot_ecore__pivot__Parameter = <%org.eclipse.ocl.examples.pivot.PivotTables%>.Types._Parameter;\n\t\n\tfinal <%org.eclipse.ocl.examples.domain.elements.DomainType%> returnType = T_Pivot_ecore__pivot__Parameter;\n\tfinal <%org.eclipse.ocl.examples.domain.values.Value%> result = <%org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies%>._makeParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);\n\treturn (Parameter) valueFactory.getEcoreValueOf(result);\n} catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {\n\tthrow new <%org.eclipse.emf.common.util.WrappedException%>(\"Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies\", e);\n}\n'"
+	 * @generated
+	 */
+	Parameter makeParameter();
 } // TypedMultiplicityElement

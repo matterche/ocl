@@ -42,6 +42,8 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
@@ -166,6 +168,8 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
+			case PivotPackage.CONSTRUCTOR_EXP: return (EObject)createConstructorExp();
+			case PivotPackage.CONSTRUCTOR_PART: return (EObject)createConstructorPart();
 			case PivotPackage.DATA_TYPE: return (EObject)createDataType();
 			case PivotPackage.DETAIL: return (EObject)createDetail();
 			case PivotPackage.ENUM_LITERAL_EXP: return (EObject)createEnumLiteralExp();
@@ -468,6 +472,28 @@ public class PivotFactoryImpl
 	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstructorExp createConstructorExp()
+	{
+		ConstructorExpImpl constructorExp = new ConstructorExpImpl();
+		return constructorExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstructorPart createConstructorPart()
+	{
+		ConstructorPartImpl constructorPart = new ConstructorPartImpl();
+		return constructorPart;
 	}
 
 	/**

@@ -344,7 +344,8 @@ public class ConstraintImpl
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ConstraintBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Constraint", "UniqueName", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}
@@ -580,6 +581,8 @@ public class ConstraintImpl
 		{
 			case PivotPackage.CONSTRAINT___ALL_OWNED_ELEMENTS:
 				return allOwnedElements();
+			case PivotPackage.CONSTRAINT___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotOwnSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP:
 				return validateUniqueName((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

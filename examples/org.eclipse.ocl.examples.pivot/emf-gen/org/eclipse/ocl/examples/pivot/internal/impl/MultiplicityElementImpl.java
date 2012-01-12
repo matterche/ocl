@@ -20,7 +20,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -388,12 +390,15 @@ public abstract class MultiplicityElementImpl
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT___ALL_OWNED_ELEMENTS:
 				return allOwnedElements();
+			case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotOwnSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.MULTIPLICITY_ELEMENT___LOWER_BOUND:
 				return lowerBound();
 			case PivotPackage.MULTIPLICITY_ELEMENT___UPPER_BOUND:

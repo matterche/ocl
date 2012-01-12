@@ -191,6 +191,24 @@ public interface PivotFactory
 	Constraint createConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Constructor Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constructor Exp</em>'.
+	 * @generated
+	 */
+	ConstructorExp createConstructorExp();
+
+	/**
+	 * Returns a new object of class '<em>Constructor Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constructor Part</em>'.
+	 * @generated
+	 */
+	ConstructorPart createConstructorPart();
+
+	/**
 	 * Returns a new object of class '<em>Detail</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

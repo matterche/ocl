@@ -18,9 +18,11 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
@@ -40,6 +42,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
@@ -1020,12 +1023,15 @@ public class TypeImpl
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments)
 			throws InvocationTargetException {
 		switch (operationID)
 		{
 			case PivotPackage.TYPE___ALL_OWNED_ELEMENTS:
 				return allOwnedElements();
+			case PivotPackage.TYPE___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotOwnSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.TYPE___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.TYPE___IS_TEMPLATE:
@@ -1057,6 +1063,16 @@ public class TypeImpl
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.isSubInheritanceOf(thatInheritance);
+	}
+
+	public ObjectValue createInstance(ValueFactory valueFactory) {
+		EObject eTarget = getETarget();
+		if (eTarget instanceof EClass) {
+			EClass eClass = (EClass) eTarget;
+			EObject element = eClass.getEPackage().getEFactoryInstance().create(eClass);
+			return valueFactory.createObjectValue(element);
+		}
+		throw new UnsupportedOperationException();
 	}
 
 	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {

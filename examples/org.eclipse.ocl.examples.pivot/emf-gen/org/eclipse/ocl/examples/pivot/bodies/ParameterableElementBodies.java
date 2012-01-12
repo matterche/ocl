@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -63,13 +63,13 @@ public class ParameterableElementBodies
 			
 			
 			
-			DomainType static_A_symbol_0 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_0 = (LibraryUnaryOperation)static_A_symbol_0.lookupImplementation(standardLibrary, O_OclAny_oclType);
-			Value A_symbol_0 = dynamic_A_symbol_0.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
-			DomainType static_A_symbol_1 = valueFactory.typeOf(p);
-			LibraryBinaryOperation dynamic_A_symbol_1 = (LibraryBinaryOperation)static_A_symbol_1.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Boolean, p, A_symbol_0);
-			return A_symbol_1;
+			DomainType static_A_symbol_36 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_36 = (LibraryUnaryOperation)static_A_symbol_36.lookupImplementation(standardLibrary, O_OclAny_oclType);
+			Value A_symbol_36 = dynamic_A_symbol_36.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
+			DomainType static_A_symbol_37 = valueFactory.typeOf(p);
+			LibraryBinaryOperation dynamic_A_symbol_37 = (LibraryBinaryOperation)static_A_symbol_37.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
+			Value A_symbol_37 = dynamic_A_symbol_37.evaluate(evaluator, T_Boolean, p, A_symbol_36);
+			return A_symbol_37;
 		}
 	}
 

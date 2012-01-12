@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,6 +45,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager;
@@ -1011,7 +1013,8 @@ public class PropertyImpl
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.PropertyBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Property", "CompatibleInitialiser", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}
@@ -1511,6 +1514,8 @@ public class PropertyImpl
 		{
 			case PivotPackage.PROPERTY___ALL_OWNED_ELEMENTS:
 				return allOwnedElements();
+			case PivotPackage.PROPERTY___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotOwnSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.PROPERTY___LOWER_BOUND:
 				return lowerBound();
 			case PivotPackage.PROPERTY___UPPER_BOUND:
@@ -1523,6 +1528,8 @@ public class PropertyImpl
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
 			case PivotPackage.PROPERTY___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.PROPERTY___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.PROPERTY___IS_TEMPLATE_PARAMETER:
 				return isTemplateParameter();
 			case PivotPackage.PROPERTY___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
@@ -1552,5 +1559,17 @@ public class PropertyImpl
 
 	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {
 		return standardLibrary.getInheritance(getOwningType());
+	}
+
+	public void setValue(ObjectValue objectValue, Value propertyValue) throws InvalidValueException {
+		EObject eTarget = getETarget();
+		if (eTarget instanceof EStructuralFeature) {
+			EStructuralFeature eFeature = (EStructuralFeature) eTarget;
+			EObject eObject = objectValue.asNavigableObject();
+			Object eValue = propertyValue.getValueFactory().getEcoreValueOf(propertyValue);
+			eObject.eSet(eFeature, eValue);
+			return;
+		}
+		throw new UnsupportedOperationException();
 	}
 } //PropertyImpl

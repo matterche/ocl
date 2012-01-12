@@ -631,7 +631,8 @@ public class OperationImpl
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.OperationBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Operation", "CompatibleReturn", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}
@@ -1138,6 +1139,8 @@ public class OperationImpl
 		{
 			case PivotPackage.OPERATION___ALL_OWNED_ELEMENTS:
 				return allOwnedElements();
+			case PivotPackage.OPERATION___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotOwnSelf((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case PivotPackage.OPERATION___LOWER_BOUND:
 				return lowerBound();
 			case PivotPackage.OPERATION___UPPER_BOUND:
@@ -1150,6 +1153,8 @@ public class OperationImpl
 				return includesMultiplicity((MultiplicityElement)arguments.get(0));
 			case PivotPackage.OPERATION___COMPATIBLE_BODY__VALUESPECIFICATION:
 				return CompatibleBody((ValueSpecification)arguments.get(0));
+			case PivotPackage.OPERATION___MAKE_PARAMETER:
+				return makeParameter();
 			case PivotPackage.OPERATION___PARAMETERABLE_ELEMENTS:
 				return parameterableElements();
 			case PivotPackage.OPERATION___IS_TEMPLATE:

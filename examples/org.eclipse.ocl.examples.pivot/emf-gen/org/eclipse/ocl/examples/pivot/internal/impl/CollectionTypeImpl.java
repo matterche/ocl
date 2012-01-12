@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -38,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.executor.PivotReflectiveType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -406,6 +408,22 @@ public class CollectionTypeImpl
 			return ((Type)getUnspecializedElement()).conformsTo(standardLibrary, type);
 		}
 		return super.conformsTo(standardLibrary, type);
+	}
+
+	@Override
+	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
+		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
+		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
+		DomainInheritance commonInheritance = thisInheritance.getCommonInheritance(thatInheritance);
+		if (type instanceof DomainCollectionType) {
+			DomainType thisElementType = this.getElementType();
+			DomainType thatElementType = ((DomainCollectionType)type).getElementType();
+			DomainType commonElementType = thisElementType.getCommonType(standardLibrary, thatElementType);
+			return standardLibrary.getCollectionType((DomainCollectionType)((PivotReflectiveType)commonInheritance).getPivotType(), commonElementType);
+		}
+		else {
+			return commonInheritance;
+		}
 	}
 
 	public Type getContainerType() {
