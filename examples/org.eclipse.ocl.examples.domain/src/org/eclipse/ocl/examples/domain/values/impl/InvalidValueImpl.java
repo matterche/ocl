@@ -30,7 +30,7 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	}
 
 	public Value asValidValue() throws InvalidValueException {
-		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "valid");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "valid", getType());
 		return null;
 	}
 

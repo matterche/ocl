@@ -59,4 +59,5 @@ public class EvaluatorMessages
 	public static String Validation;
 	
 	public static String ValidationConstraintIsNotSatisfied_ERROR_;
+	public static String ValidationEvaluationFailed_ERROR_;
 }

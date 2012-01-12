@@ -17,10 +17,13 @@
 package org.eclipse.ocl.examples.domain.elements;
 
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public interface DomainType extends DomainElement
 {
 	boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type);
+	ObjectValue createInstance(ValueFactory valueFactory);
 	DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type);
 	DomainInheritance getInheritance(DomainStandardLibrary standardLibrary);
 	Iterable<? extends DomainOperation> getLocalOperations();

@@ -106,7 +106,8 @@ try {
 	}
 	return false;
 } catch (<%InvalidValueException%> e) {
-	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);
+	String message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationEvaluationFailed_ERROR_, new Object['[]'/]{"[pType.name/]", "[pRule.name/]", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context)});
+	throw new <%org.eclipse.emf.common.util.WrappedException%>(message, e);
 }[/let][/let][else]
 /*
 [pRule.specification.prettyPrint().trim()/]

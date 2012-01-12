@@ -48,7 +48,7 @@ public class DomainTypeValueImpl extends AbstractObjectValue<DomainClassifierTyp
 			return (EObject) navigableObject;
 		}
 		else {
-			return (EObject) valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object");
+			return (EObject) valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getType());
 		}
 	}
 
