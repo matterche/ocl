@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
@@ -41,13 +42,20 @@ public class ClassifierOclContentsOperation extends AbstractUnaryOperation
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		ObjectValue objectVal = sourceValue.asObjectValue();
 		Object object = objectVal.getObject();
-		if (!(object instanceof EObject)) {
+		if (object instanceof EObject) {
+	    	Set<Value> collection = new HashSet<Value>();
+			for (Object eContent : ((EObject)object).eContents()) {
+				collection.add(valueFactory.valueOf(eContent));
+	    	}
+	    	return valueFactory.createSetValue((DomainCollectionType)returnType, collection);
+		}
+		else if (object instanceof DomainElement) {
+	    	Set<Value> collection = new HashSet<Value>();
+	    	// FIXME contents
+	    	return valueFactory.createSetValue((DomainCollectionType)returnType, collection);
+		}
+		else {
 			return valueFactory.throwInvalidValueException(EvaluatorMessages.EObjectRequired, object.getClass().getName());
 		}
-    	Set<Value> collection = new HashSet<Value>();
-		for (Object eContent : ((EObject)object).eContents()) {
-			collection.add(valueFactory.valueOf(eContent));
-    	}
-    	return valueFactory.createSetValue((DomainCollectionType)returnType, collection);
 	}
 }

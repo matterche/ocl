@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.library.classifier;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
@@ -37,15 +38,21 @@ public class ClassifierOclContainerOperation extends AbstractUnaryOperation
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		ObjectValue objectVal = sourceVal.asObjectValue();
 		Object object = objectVal.getObject();
-		if (!(object instanceof EObject)) {
-			return valueFactory.throwInvalidValueException(EvaluatorMessages.EObjectRequired, object.getClass().getName());
+		if (object instanceof EObject) {
+			EObject eContainer = ((EObject)object).eContainer();
+			if (eContainer != null) {
+				return valueFactory.valueOf(eContainer);
+			}
+			else {
+				return valueFactory.getNull();
+			}
 		}
-		EObject eContainer = ((EObject)object).eContainer();
-		if (eContainer != null) {
-			return valueFactory.valueOf(eContainer);
+		else if (object instanceof DomainElement) {
+			// FIXME containers
+			return valueFactory.getNull();
 		}
 		else {
-			return valueFactory.getNull();
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.EObjectRequired, object.getClass().getName());
 		}
 	}
 }
