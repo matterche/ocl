@@ -181,15 +181,14 @@ public class PivotTestCase extends TestCase
 			if (eCause != null) {
 				return failOn(expression, eCause);
 			}
-	        fail("Failed to evaluate \"" + expression + "\": " + e.getLocalizedMessage());
+			throw new Error("Failed to evaluate \"" + expression + "\"", e);
 		}
 		else if (e instanceof DomainException) {
-	        fail("Failed to parse or evaluate \"" + expression + "\": " + e.getLocalizedMessage());
+			throw new Error("Failed to parse or evaluate \"" + expression + "\"", e);
 		}
 		else {
-	        fail("Failure for \"" + expression + "\": " + e.getLocalizedMessage());
+	        throw new Error("Failure for \"" + expression + "\"", e);
 		}
-		return null;
 	}
 	
 	public static Resource getEcoreFromCS(MetaModelManager metaModelManager, String testDocument, URI ecoreURI) throws IOException {
