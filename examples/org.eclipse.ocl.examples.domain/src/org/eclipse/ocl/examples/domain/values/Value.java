@@ -59,6 +59,17 @@ public interface Value
 	UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException;
 	Value asValidValue() throws InvalidValueException;
 	
+	/**
+	 * Return the type of this value determined from its content. In the case of collections
+	 * this may differ from the constructed type. The actual type is used for validating
+	 * oclAsType conversions.
+	 */
+	DomainType getActualType();
+	/**
+	 * 
+	 * Return the type of this value determined from its construction context. In the case of collections
+	 * this may differ from the actual type.
+	 */
 	DomainType getType();
 	ValueFactory getValueFactory();	
 	CollectionValue isCollectionValue();

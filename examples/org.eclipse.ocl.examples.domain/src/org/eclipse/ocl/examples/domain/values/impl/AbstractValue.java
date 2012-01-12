@@ -20,6 +20,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.BagValue;
@@ -48,24 +49,24 @@ public abstract class AbstractValue implements Value
 	}
 
 	public BagValue asBagValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Bag");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Bag", getType());
 	}
 
 	public boolean asBoolean() throws InvalidValueException {
-		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean", getType());
 		return false;
 	}
 
 	public BooleanValue asBooleanValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean", getType());
 	}
 
 	public CollectionValue asCollectionValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Collection");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Collection", getType());
 	}
 
 	public Double asDouble() throws InvalidValueException {
-		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Double");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Double", getType());
 		return null;
 	}
 
@@ -74,16 +75,16 @@ public abstract class AbstractValue implements Value
 	}
 
 	public ElementValue asElementValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Element");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Element", getType());
 	}
 
 	public Integer asInteger() throws InvalidValueException {
-		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer", getType());
 		return null;
 	}
 
 	public IntegerValue asIntegerValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer", getType());
 	}
 
 	public EObject asNavigableObject() throws InvalidValueException {
@@ -92,49 +93,53 @@ public abstract class AbstractValue implements Value
 			return (EObject) object;
 		}
 		else {
-			return (EObject) valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object");
+			return (EObject) valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getType());
 		}
 	}
 
 	public ObjectValue asObjectValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getType());
 	}
 
 	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Ordered Collection");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Ordered Collection", getType());
 	}
 
 	public OrderedSetValue asOrderedSetValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "OrderedSet");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "OrderedSet", getType());
 	}
 
 	public RealValue asRealValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Real");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Real", getType());
 	}
 
 	public SequenceValue asSequenceValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Sequence");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Sequence", getType());
 	}
 
 	public SetValue asSetValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Set");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Set", getType());
 	}
 
 	public String asString() throws InvalidValueException {
-		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String", getType());
 		return null;
 	}
 
 	public StringValue asStringValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String", getType());
 	}
 
 	public TypeValue asTypeValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Type");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Type", getType());
 	}
 
 	public UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection");
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection", getType());
+	}
+
+	public DomainType getActualType() {
+		return getType();
 	}
 	
 	public ValueFactory getValueFactory() {

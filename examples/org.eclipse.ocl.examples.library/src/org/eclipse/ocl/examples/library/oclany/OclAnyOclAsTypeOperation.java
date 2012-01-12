@@ -34,7 +34,7 @@ public class OclAnyOclAsTypeOperation extends AbstractBinaryOperation
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal, Value argVal) throws InvalidValueException {
 		ValueFactory valueFactory = evaluator.getValueFactory();
-		DomainType sourceType = sourceVal.getType();
+		DomainType sourceType = sourceVal.getActualType();
 		if (sourceType == null) {
 			return valueFactory.throwInvalidValueException(EvaluatorMessages.MissingSourceType);
 		}

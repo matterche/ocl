@@ -83,6 +83,27 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	public void dispose() {
 		tupleParts = null;	
 	}
+	
+	public DomainCollectionType getCollectionType(DomainCollectionType containerType, DomainType elementType) {
+		boolean isOrdered = containerType.isOrdered();
+		boolean isUnique = containerType.isUnique();
+		if (isOrdered) {
+			if (isUnique) {
+				return getOrderedSetType(elementType);
+			}
+			else {
+				return getSequenceType(elementType);
+			}
+		}
+		else {
+			if (isUnique) {
+				return getSetType(elementType);
+			}
+			else {
+				return getBagType(elementType);
+			}
+		}
+	}
 
 	public DomainTypedElement getTuplePart(String name, DomainType type) {
 		if (tupleParts == null) {

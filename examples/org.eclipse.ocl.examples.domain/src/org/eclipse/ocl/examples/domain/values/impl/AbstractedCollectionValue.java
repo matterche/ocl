@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
@@ -31,9 +33,10 @@ public abstract class AbstractedCollectionValue
 	extends AbstractValue
 	implements CollectionValue
 {
-	protected final DomainType type;
+	protected final DomainCollectionType type;
+	private DomainType actualType = null;			// Lazily computed
 
-	protected AbstractedCollectionValue(ValueFactory valueFactory, DomainType type) {
+	protected AbstractedCollectionValue(ValueFactory valueFactory, DomainCollectionType type) {
 		super(valueFactory);
 		this.type = type;
 	}
@@ -59,9 +62,35 @@ public abstract class AbstractedCollectionValue
 		return this;
 	}
 
+	@Override
+	public DomainType getActualType() {
+		if (actualType == null) {
+			DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+			DomainType elementType = null;
+			for (Value value : getElements()) {
+				DomainType valueType = value.getActualType();
+				if (valueType != null) {
+					if (elementType == null) {
+						elementType = valueType;
+					}
+					else {
+						elementType = elementType.getCommonType(standardLibrary, valueType);
+					}
+				}
+			}
+			if (elementType == null) {
+				actualType = type;
+			}
+			else {
+				actualType = standardLibrary.getCollectionType(type, elementType);
+			}
+		}	
+		return actualType;
+	}
+
 	protected abstract Collection<Value> getElements();
 
-	public DomainType getType() {
+	public DomainCollectionType getType() {
 		return type;
 	}
 

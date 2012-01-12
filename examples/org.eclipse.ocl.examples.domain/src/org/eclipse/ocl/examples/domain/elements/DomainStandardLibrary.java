@@ -77,6 +77,8 @@ public interface DomainStandardLibrary
      */
 	DomainType getCollectionType();
 	
+	DomainCollectionType getCollectionType(DomainCollectionType containerType, DomainType elementType);
+	
     /**
      * Obtains the single instance of the {@link EnumerationType} metatype, named
      * <tt>Enumeration</tt>.
