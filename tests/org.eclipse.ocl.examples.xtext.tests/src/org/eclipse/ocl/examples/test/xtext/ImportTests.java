@@ -108,6 +108,7 @@ public class ImportTests extends XtextTestCase
 				"    class F;\n" +
 				"}\n";
 		createEcoreFile(metaModelManager, "Bug353793F.ecore", testFileF);
+		metaModelManager.dispose();
 	}	
 
 	protected void doBadLoadFromString(String fileName, String testFile, Bag<String> expectedErrorMessages) throws Exception {
