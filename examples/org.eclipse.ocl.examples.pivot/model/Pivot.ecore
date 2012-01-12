@@ -190,6 +190,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
         eType="#//NamedElement" eOpposite="#//NamedElement/ownedRule"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorExp" eSuperTypes="#//OclExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="part" upperBound="-1" eType="#//ConstructorPart"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorPart" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredProperty" ordered="false"
+        lowerBound="1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" ordered="false"
+        lowerBound="1" eType="#//OclExpression" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="DataType is an abstract class that acts as a common superclass for different kinds of data types."/>
@@ -211,6 +221,24 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="oclContents()"/>
       </eAnnotations>
+    </eOperations>
+    <eOperations name="not_own_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Elements that must be owned must have an owner."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An element may not directly or indirectly own itself."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="not allOwnedElements()->includes(self)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
         upperBound="-1" eType="#//Comment" containment="true">
@@ -947,6 +975,11 @@
         <details key="body" value="let bodyType : Type = bodySpecification.type in if bodyType.oclIsKindOf(CollectionType) then let bodyCollectionType : CollectionType = bodyType.oclAsType(CollectionType) in let bodyElementType : Type = bodyCollectionType.elementType in bodyElementType.conformsTo(self.type) and self.isOrdered = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SequenceType)) and self.isUnique = (bodyCollectionType.oclIsKindOf(OrderedSetType) or bodyCollectionType.oclIsKindOf(SetType)) else bodyType.conformsTo(self.type) endif"/>
       </eAnnotations>
       <eParameters name="bodySpecification" ordered="false" lowerBound="1" eType="#//ValueSpecification"/>
+    </eOperations>
+    <eOperations name="makeParameter" ordered="false" lowerBound="1" eType="#//Parameter">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="Parameter{name = 'name'}"/>
+      </eAnnotations>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">

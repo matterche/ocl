@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -202,6 +203,35 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(collectionTypeCS);
 				if (result == null) result = casePivotable(collectionTypeCS);
 				if (result == null) result = caseVisitableCS(collectionTypeCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS:
+			{
+				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
+				T result = caseConstructorExpCS(constructorExpCS);
+				if (result == null) result = caseNameExpCS(constructorExpCS);
+				if (result == null) result = caseSimpleNamedExpCS(constructorExpCS);
+				if (result == null) result = caseNamedExpCS(constructorExpCS);
+				if (result == null) result = caseExpCS(constructorExpCS);
+				if (result == null) result = caseModelElementCS(constructorExpCS);
+				if (result == null) result = casePivotableElementCS(constructorExpCS);
+				if (result == null) result = caseElementCS(constructorExpCS);
+				if (result == null) result = casePivotable(constructorExpCS);
+				if (result == null) result = caseVisitableCS(constructorExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.CONSTRUCTOR_PART_CS:
+			{
+				ConstructorPartCS constructorPartCS = (ConstructorPartCS)theEObject;
+				T result = caseConstructorPartCS(constructorPartCS);
+				if (result == null) result = caseModelElementCS(constructorPartCS);
+				if (result == null) result = caseNameable(constructorPartCS);
+				if (result == null) result = casePivotableElementCS(constructorPartCS);
+				if (result == null) result = caseElementCS(constructorPartCS);
+				if (result == null) result = casePivotable(constructorPartCS);
+				if (result == null) result = caseVisitableCS(constructorPartCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -743,6 +773,38 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstructorExpCS(ConstructorExpCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constructor Part CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructor Part CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstructorPartCS(ConstructorPartCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Context CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;

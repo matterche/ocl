@@ -610,7 +610,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage("gh##jk") +
-			getBoundMessage("no viable alternative at input ''{0}''", "gh"));
+			getBoundMessage("no viable alternative at input ''{0}''", "#"));
 	}
 
 	public void test_attributeParsingToSemanticError() {

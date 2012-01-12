@@ -34,6 +34,8 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -488,6 +490,41 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		append(" = "); //$NON-NLS-1$
 */
 		safeVisit(constraint.getSpecification());
+		return null;
+	}
+
+	/**
+	 * Callback for a ConstructorExp visit.
+	 * 
+	 * @param constructorExp
+	 *            constructor expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitConstructorExp(ConstructorExp constructorExp) {
+		appendQualifiedName(constructorExp.getType());
+		append("{");//$NON-NLS-1$
+		String prefix = "";
+		for (ConstructorPart part : constructorExp.getParts()) {
+			append(prefix);
+            safeVisit(part);
+			prefix = ", ";//$NON-NLS-1$
+		}
+		append("}");
+		return null;
+	}
+	
+    /**
+     * Visits the tuple constructor part's value, if any.
+     */
+	@Override
+	public String visitConstructorPart(ConstructorPart part) {
+		appendName(part.getReferredProperty());
+		OclExpression initExpression = part.getInitExpression();
+		if (initExpression != null) {
+			append(" = ");
+			safeVisit(initExpression);
+		}
 		return null;
 	}
 

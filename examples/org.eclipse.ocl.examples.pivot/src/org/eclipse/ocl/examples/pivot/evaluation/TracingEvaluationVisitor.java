@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -148,6 +149,11 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
     @Override
     public Value visitConstraint(Constraint constraint) {
         return trace(constraint, getDelegate().visitConstraint(constraint));
+    }
+
+    @Override
+	public Value visitConstructorExp(ConstructorExp constraint) {
+        return trace(constraint, getDelegate().visitConstructorExp(constraint));
     }
 
     @Override

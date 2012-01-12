@@ -90,6 +90,13 @@ final <%DomainClassifierType%> [ast.symbolName(expInOcl)/] = standardLibrary.get
 [ast.last.emitConstants(genPackage, expInOcl)/]
 [/template]
 
+[template public emitConstants(ast : ConstructorExp, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
+[/template]
+
+[template public emitConstants(ast : ConstructorPart, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
+final <%ExecutorProperty%> [ast.referredProperty.symbolName(expInOcl)/] = [ast.referredProperty.emitQualifiedLiteralName(genPackage)/];
+[/template]
+
 [template protected emitConstants(ast : Element, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 [/template]
 

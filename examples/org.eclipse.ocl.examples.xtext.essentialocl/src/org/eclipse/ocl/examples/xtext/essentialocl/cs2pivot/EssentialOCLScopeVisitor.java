@@ -23,6 +23,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperato
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
@@ -38,6 +40,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralP
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ConstructorExpCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ConstructorPartCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
@@ -74,6 +78,16 @@ public class EssentialOCLScopeVisitor
 	@Override
 	public CSScopeAdapter visitCollectionTypeCS(CollectionTypeCS eObject) {
 		return EmptyCSScopeAdapter.INSTANCE;
+	}
+
+	@Override
+	public CSScopeAdapter visitConstructorExpCS(ConstructorExpCS eObject) {
+		return ConstructorExpCSScopeAdapter.INSTANCE;
+	}
+
+	@Override
+	public CSScopeAdapter visitConstructorPartCS(ConstructorPartCS object) {
+		return ConstructorPartCSScopeAdapter.INSTANCE;
 	}
 
 	@Override

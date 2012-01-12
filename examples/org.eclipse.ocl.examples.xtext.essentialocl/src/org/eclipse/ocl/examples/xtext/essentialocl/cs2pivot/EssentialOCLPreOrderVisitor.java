@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
@@ -89,6 +90,20 @@ public class EssentialOCLPreOrderVisitor
 		}
 	}
 
+	protected static class ConstructorExpContinuation extends SingleContinuation<ConstructorExpCS>
+	{
+		public ConstructorExpContinuation(CS2PivotConversion context, ConstructorExpCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			context.resolveNamespaces(csElement.getNamespace());
+			csElement.getElement();
+			return null;
+		}
+	}
+
 	protected static class NameExpContinuation extends SingleContinuation<NameExpCS>
 	{
 		public NameExpContinuation(CS2PivotConversion context, NameExpCS csElement) {
@@ -130,6 +145,11 @@ public class EssentialOCLPreOrderVisitor
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
 		// Must at least wait till library types defined
 		return new CollectionTypeContinuation(context, csCollectionType);
+	}
+
+	@Override
+	public Continuation<?> visitConstructorExpCS(ConstructorExpCS csConstructorExp) {
+		return new ConstructorExpContinuation(context, csConstructorExp);
 	}
 
 	@Override

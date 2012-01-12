@@ -173,6 +173,15 @@ CollectionLiteralExpCS returns CollectionLiteralExpCS:
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
 	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?;
 
+ConstructorExpCS returns ConstructorExpCS:
+	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
+	element=[pivot::Type|UnreservedName])
+	| element=[pivot::Type|UnrestrictedName])
+	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
+
+ConstructorPartCS returns ConstructorPartCS:
+	property=[pivot::Property|UnrestrictedName] '=' initExpression=ExpCS;
+
 PrimitiveLiteralExpCS returns PrimitiveLiteralExpCS:
 	NumberLiteralExpCS
 	| StringLiteralExpCS
@@ -261,6 +270,7 @@ PrimaryExpCS returns ExpCS:
 	| PrimitiveLiteralExpCS
 	| TupleLiteralExpCS
 	| CollectionLiteralExpCS
+	| ConstructorExpCS
 	| TypeLiteralExpCS
 	| LetExpCS
 	| IfExpCS

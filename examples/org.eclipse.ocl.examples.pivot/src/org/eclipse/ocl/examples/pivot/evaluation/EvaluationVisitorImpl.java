@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.SequenceRangeImpl;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
@@ -61,6 +62,8 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -320,6 +323,21 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	public Value visitCollectionRange(CollectionRange range) {
 		throw new UnsupportedOperationException("evaluation of CollectionRange"); //$NON-NLS-1$
 	}
+
+    @Override
+	public Value visitConstructorExp(ConstructorExp ce) {
+		DomainType type = ce.getType();
+		ObjectValue objectValue = type.createInstance(valueFactory);
+		for (ConstructorPart part : ce.getParts()) {
+			Value propertyValue = part.getInitExpression().accept(getUndecoratedVisitor());
+			try {
+				part.getReferredProperty().setValue(objectValue, propertyValue);
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation(e);
+			}
+		}
+		return objectValue;
+    }
 
 	/**
 	 * Callback for an EnumLiteralExp visit. Get the referred enum literal and

@@ -64,6 +64,8 @@ public interface Visitor<R, C>
 	R visitCollectionType(org.eclipse.ocl.examples.pivot.CollectionType object);
 	R visitComment(org.eclipse.ocl.examples.pivot.Comment object);
 	R visitConstraint(org.eclipse.ocl.examples.pivot.Constraint object);
+	R visitConstructorExp(org.eclipse.ocl.examples.pivot.ConstructorExp object);
+	R visitConstructorPart(org.eclipse.ocl.examples.pivot.ConstructorPart object);
 	R visitDataType(org.eclipse.ocl.examples.pivot.DataType object);
 	R visitDetail(org.eclipse.ocl.examples.pivot.Detail object);
 	R visitElement(org.eclipse.ocl.examples.pivot.Element object);

@@ -150,6 +150,24 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		metaModelManager.addGlobalNamespace("zz", fruitPackage);
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "zz::Tree.allInstances()");
 //
-//BUG 344931		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Fruit.allInstances()->oclAsType(Set<Apple>)");		
+		assertQueryEquals(redApple, valueFactory.createBagOf(redApple), "Fruit.allInstances().oclAsType(Apple)");		
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "Fruit.allInstances()->oclAsType(Set<Apple>)");		
+	}
+	
+	/**
+	 * Tests construction of a type instance with property values
+	 */
+	public void test_type_construction() throws InvocationTargetException {
+		initFruitPackage();
+		EObject context = fruitEFactory.create(tree);
+		assertQueryEquals(context, "RedApple", "Apple{name='RedApple',color=Color::red}.name");
+		assertQueryEquals(context, color_red, "Apple{name='RedApple',color=Color::red}.color");
+		assertQueryFalse(context, "Apple{name='RedApple',color=Color::red} = Apple{name='RedApple',color=Color::red}");
+		assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple = thatApple");
+		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name");
+		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.color = thatApple.color");
+		assertQueryTrue(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+		assertQueryFalse(context, "let thisApple = Apple{name='ThisApple',color=Color::red}, thatApple = Apple{name='ThatApple',color=Color::red} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
+		assertQueryFalse(context, "let thisApple = Apple{name='AnApple',color=Color::red}, thatApple = Apple{name='AnApple',color=Color::black} in thisApple.name = thatApple.name and thisApple.color = thatApple.color");
 	}
 }

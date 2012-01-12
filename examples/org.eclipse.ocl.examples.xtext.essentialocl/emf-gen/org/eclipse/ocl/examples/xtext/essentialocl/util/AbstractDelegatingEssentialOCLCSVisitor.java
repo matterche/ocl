@@ -61,6 +61,14 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitCollectionTypeCS(object);
 	}
 
+	public R visitConstructorExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS object) {
+		return delegate.visitConstructorExpCS(object);
+	}
+
+	public R visitConstructorPartCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS object) {
+		return delegate.visitConstructorPartCS(object);
+	}
+
 	public R visitContextCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS object) {
 		return delegate.visitContextCS(object);
 	}

@@ -61,6 +61,14 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitConstructorExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS object) {
+		return null;
+	}
+
+	public R visitConstructorPartCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS object) {
+		return null;
+	}
+
 	public R visitContextCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS object) {
 		return null;
 	}

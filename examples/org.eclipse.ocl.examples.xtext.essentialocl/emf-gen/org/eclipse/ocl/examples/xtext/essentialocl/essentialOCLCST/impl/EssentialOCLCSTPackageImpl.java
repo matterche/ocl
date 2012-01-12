@@ -30,6 +30,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
@@ -93,6 +95,20 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * @generated
 	 */
 	private EClass collectionTypeCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constructorExpCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass constructorPartCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -486,6 +502,56 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	public EReference getCollectionTypeCS_OwnedType()
 	{
 		return (EReference)collectionTypeCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstructorExpCS()
+	{
+		return constructorExpCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstructorExpCS_OwnedParts()
+	{
+		return (EReference)constructorExpCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstructorPartCS()
+	{
+		return constructorPartCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstructorPartCS_Property()
+	{
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstructorPartCS_InitExpression()
+	{
+		return (EReference)constructorPartCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1254,6 +1320,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		createEAttribute(collectionTypeCSEClass, COLLECTION_TYPE_CS__NAME);
 		createEReference(collectionTypeCSEClass, COLLECTION_TYPE_CS__OWNED_TYPE);
 
+		constructorExpCSEClass = createEClass(CONSTRUCTOR_EXP_CS);
+		createEReference(constructorExpCSEClass, CONSTRUCTOR_EXP_CS__OWNED_PARTS);
+
+		constructorPartCSEClass = createEClass(CONSTRUCTOR_PART_CS);
+		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__PROPERTY);
+		createEReference(constructorPartCSEClass, CONSTRUCTOR_PART_CS__INIT_EXPRESSION);
+
 		contextCSEClass = createEClass(CONTEXT_CS);
 		createEReference(contextCSEClass, CONTEXT_CS__OWNED_EXPRESSION);
 
@@ -1399,6 +1472,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		collectionLiteralPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
 		collectionTypeCSEClass.getESuperTypes().add(theBaseCSTPackage.getTypedRefCS());
 		collectionTypeCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
+		constructorExpCSEClass.getESuperTypes().add(this.getNameExpCS());
+		constructorPartCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
+		constructorPartCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamedElementCS());
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		decoratedNamedExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
@@ -1453,6 +1529,13 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(collectionTypeCSEClass, CollectionTypeCS.class, "CollectionTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCollectionTypeCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCollectionTypeCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, CollectionTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(constructorExpCSEClass, ConstructorExpCS.class, "ConstructorExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getConstructorExpCS_OwnedParts(), this.getConstructorPartCS(), null, "ownedParts", null, 0, -1, ConstructorExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(constructorPartCSEClass, ConstructorPartCS.class, "ConstructorPartCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getConstructorPartCS_Property(), thePivotPackage.getProperty(), null, "property", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstructorPartCS_InitExpression(), this.getExpCS(), null, "initExpression", null, 1, 1, ConstructorPartCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(contextCSEClass, ContextCS.class, "ContextCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getContextCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ContextCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

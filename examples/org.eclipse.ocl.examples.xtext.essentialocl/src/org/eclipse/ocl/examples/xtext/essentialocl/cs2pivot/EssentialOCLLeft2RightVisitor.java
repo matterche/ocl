@@ -39,6 +39,8 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -98,6 +100,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -916,6 +920,27 @@ public class EssentialOCLLeft2RightVisitor
 	@Override
 	public Element visitCollectionTypeCS(CollectionTypeCS object) {
 		return null;
+	}
+
+	@Override
+	public Element visitConstructorExpCS(ConstructorExpCS csConstructorExp) {
+		ConstructorExp expression = context.refreshModelElement(ConstructorExp.class, PivotPackage.Literals.CONSTRUCTOR_EXP, csConstructorExp);	
+		expression.setType((Type) csConstructorExp.getNamedElement());
+		for (ConstructorPartCS csPart : csConstructorExp.getOwnedParts()) {
+			@SuppressWarnings("unused")
+			ConstructorPart pivotPart = context.visitLeft2Right(ConstructorPart.class, csPart);
+		}
+		context.refreshPivotList(ConstructorPart.class, expression.getParts(), csConstructorExp.getOwnedParts());
+		return expression;
+	}
+
+	@Override
+	public Element visitConstructorPartCS(ConstructorPartCS csConstructorPart) {
+		ConstructorPart pivotElement = context.refreshModelElement(ConstructorPart.class, PivotPackage.Literals.CONSTRUCTOR_PART, csConstructorPart);	
+		pivotElement.setReferredProperty(csConstructorPart.getProperty());
+		OclExpression initExpression = context.visitLeft2Right(OclExpression.class, csConstructorPart.getInitExpression());
+		pivotElement.setInitExpression(initExpression);
+		return pivotElement;
 	}
 
 	@Override

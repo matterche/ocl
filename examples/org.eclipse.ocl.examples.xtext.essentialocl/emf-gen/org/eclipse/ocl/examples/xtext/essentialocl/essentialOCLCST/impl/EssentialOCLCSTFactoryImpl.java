@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
@@ -112,6 +113,8 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_EXP_CS: return createCollectionLiteralExpCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS: return createCollectionLiteralPartCS();
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS: return createConstructorExpCS();
+			case EssentialOCLCSTPackage.CONSTRUCTOR_PART_CS: return createConstructorPartCS();
 			case EssentialOCLCSTPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSTPackage.EXP_CS: return createExpCS();
 			case EssentialOCLCSTPackage.EXP_SPECIFICATION_CS: return createExpSpecificationCS();
@@ -210,6 +213,28 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public CollectionTypeCS createCollectionTypeCS() {
 		CollectionTypeCSImpl collectionTypeCS = new CollectionTypeCSImpl();
 		return collectionTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstructorExpCS createConstructorExpCS()
+	{
+		ConstructorExpCSImpl constructorExpCS = new ConstructorExpCSImpl();
+		return constructorExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstructorPartCS createConstructorPartCS()
+	{
+		ConstructorPartCSImpl constructorPartCS = new ConstructorPartCSImpl();
+		return constructorPartCS;
 	}
 
 	/**

@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -266,6 +267,22 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public String visitConstructorExp(ConstructorExp constructorExp) {
+		appendExpPrefix(constructorExp);
+		context.append(MONIKER_TUPLE_LITERAL_EXP);
+//		appendQualifiedName(constructorExp.getReferredType());
+//		append("{");//$NON-NLS-1$
+//		String prefix = "";
+//		for (TupleLiteralPart part : constructorExp.getParts()) {
+//			append(prefix);
+//           safeVisit(part);
+//			prefix = ", ";//$NON-NLS-1$
+//		}
+//		append("}");
+		return null;
 	}
 
 	@Override

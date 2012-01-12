@@ -129,6 +129,14 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 		return delegate.visitConstraint(object);
 	}
 
+	public R visitConstructorExp(org.eclipse.ocl.examples.pivot.ConstructorExp object) {
+		return delegate.visitConstructorExp(object);
+	}
+
+	public R visitConstructorPart(org.eclipse.ocl.examples.pivot.ConstructorPart object) {
+		return delegate.visitConstructorPart(object);
+	}
+
 	public R visitDataType(org.eclipse.ocl.examples.pivot.DataType object) {
 		return delegate.visitDataType(object);
 	}

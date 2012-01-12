@@ -26,6 +26,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorExpCS" eSuperTypes="#//NameExpCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedParts" upperBound="-1"
+        eType="#//ConstructorPartCS" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorPartCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initExpression" lowerBound="1"
+        eType="#//ExpCS" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamedElementCS ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//RootCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" eType="#//ExpCS"
         containment="true"/>

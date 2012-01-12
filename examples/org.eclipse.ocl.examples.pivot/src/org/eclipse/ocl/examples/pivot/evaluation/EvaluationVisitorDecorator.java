@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -168,6 +169,14 @@ public abstract class EvaluationVisitorDecorator extends AbstractExtendingVisito
     @Override
 	public Value visitCollectionRange(CollectionRange range) {
         return getDelegate().visitCollectionRange(range);
+    }
+
+    /**
+     * Delegates to my decorated visitor.
+     */
+    @Override
+	public Value visitConstructorExp(ConstructorExp constructorExp) {
+        return getDelegate().visitConstructorExp(constructorExp);
     }
 
     /**

@@ -49,6 +49,13 @@
 [/if]
 [/template]
 
+[template public emitExpression(ast : ConstructorExp, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
+<%ObjectValue%> [ast.symbolName(expInOcl)/] = [ast.type.emitQualifiedLiteralName(genPackage)/].createInstance(valueFactory);
+[for (part : ConstructorPart | ast.part)]
+[part.initExpression.emitExpression(importer, genPackage, expInOcl)/]
+[part.referredProperty.symbolName(expInOcl)/].setValue([ast.symbolName(expInOcl)/], [part.initExpression.symbolName(expInOcl)/]);
+[/for][/template]
+
 [template public emitExpression(ast : Element, importer : NamedElement, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 <%Value%> [ast.symbolName(expInOcl)/] = <<[ast.eClass().name/]>>;
 [/template]

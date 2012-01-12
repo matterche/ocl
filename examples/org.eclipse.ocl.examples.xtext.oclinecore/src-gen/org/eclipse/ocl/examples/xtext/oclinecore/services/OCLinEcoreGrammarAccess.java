@@ -4349,6 +4349,28 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
+	//ConstructorExpCS:
+	//	((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
+	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
+	//	ownedParts+=ConstructorPartCS)* "}";
+	public EssentialOCLGrammarAccess.ConstructorExpCSElements getConstructorExpCSAccess() {
+		return gaEssentialOCL.getConstructorExpCSAccess();
+	}
+	
+	public ParserRule getConstructorExpCSRule() {
+		return getConstructorExpCSAccess().getRule();
+	}
+
+	//ConstructorPartCS:
+	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
+	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
+		return gaEssentialOCL.getConstructorPartCSAccess();
+	}
+	
+	public ParserRule getConstructorPartCSRule() {
+		return getConstructorPartCSAccess().getRule();
+	}
+
 	//PrimitiveLiteralExpCS:
 	//	NumberLiteralExpCS | StringLiteralExpCS | BooleanLiteralExpCS | UnlimitedNaturalLiteralExpCS | InvalidLiteralExpCS |
 	//	NullLiteralExpCS;
@@ -4562,8 +4584,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimaryExpCS returns ExpCS:
-	//	NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | TypeLiteralExpCS |
-	//	LetExpCS | IfExpCS | NestedExpCS;
+	//	NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | ConstructorExpCS |
+	//	TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
 	public EssentialOCLGrammarAccess.PrimaryExpCSElements getPrimaryExpCSAccess() {
 		return gaEssentialOCL.getPrimaryExpCSAccess();
 	}

@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.pivot.prettyprint;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -27,6 +28,8 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -206,6 +209,32 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		delegate.push(":", " ");
         safeVisit(object.getSpecification());
 		delegate.pop();
+		return null;
+	}
+
+    @Override
+	public Value visitConstructorExp(ConstructorExp object) {
+		delegate.appendQualifiedName(object.getType());
+		delegate.push("{", "");
+		String prefix = ""; //$NON-NLS-1$
+		for (ConstructorPart part : object.getParts()) {
+			delegate.append(prefix);
+			safeVisit(part);
+			prefix = ", ";
+		}
+		delegate.exdent("", "}", "");
+		delegate.pop();
+		return null;
+    }
+
+	@Override
+	public String visitConstructorPart(ConstructorPart part) {
+		delegate.appendName(part.getReferredProperty());
+		OclExpression initExpression = part.getInitExpression();
+		if (initExpression != null) {
+			delegate.append(" = ");
+			safeVisit(initExpression);
+		}
 		return null;
 	}
 

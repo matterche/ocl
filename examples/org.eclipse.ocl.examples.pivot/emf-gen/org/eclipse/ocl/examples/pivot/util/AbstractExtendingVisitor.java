@@ -113,6 +113,14 @@ public abstract class AbstractExtendingVisitor<R, C>
 		return visitNamedElement(object);
 	}
 
+	public R visitConstructorExp(org.eclipse.ocl.examples.pivot.ConstructorExp object) {
+		return visitOclExpression(object);
+	}
+
+	public R visitConstructorPart(org.eclipse.ocl.examples.pivot.ConstructorPart object) {
+		return visitElement(object);
+	}
+
 	public R visitDataType(org.eclipse.ocl.examples.pivot.DataType object) {
 		return visitClass(object);
 	}

@@ -638,6 +638,24 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//ConstructorExp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorExp/part"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="Pivot.ecore#//ConstructorPart"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorPart/referredProperty"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="Pivot.ecore#//ConstructorPart/initExpression"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="Pivot.ecore#//EnumLiteralExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true">

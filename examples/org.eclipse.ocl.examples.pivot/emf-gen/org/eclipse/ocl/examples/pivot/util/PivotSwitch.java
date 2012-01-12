@@ -35,6 +35,8 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ConstructorExp;
+import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -406,6 +408,28 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(constraint);
 				if (result == null) result = caseNameable(constraint);
 				if (result == null) result = caseVisitable(constraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.CONSTRUCTOR_EXP:
+			{
+				ConstructorExp constructorExp = (ConstructorExp)theEObject;
+				T result = caseConstructorExp(constructorExp);
+				if (result == null) result = caseOclExpression(constructorExp);
+				if (result == null) result = caseTypedElement(constructorExp);
+				if (result == null) result = caseNamedElement(constructorExp);
+				if (result == null) result = caseElement(constructorExp);
+				if (result == null) result = caseNameable(constructorExp);
+				if (result == null) result = caseVisitable(constructorExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.CONSTRUCTOR_PART:
+			{
+				ConstructorPart constructorPart = (ConstructorPart)theEObject;
+				T result = caseConstructorPart(constructorPart);
+				if (result == null) result = caseElement(constructorPart);
+				if (result == null) result = caseVisitable(constructorPart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2737,6 +2761,38 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstraint(Constraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constructor Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructor Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstructorExp(ConstructorExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constructor Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructor Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstructorPart(ConstructorPart object)
+	{
 		return null;
 	}
 

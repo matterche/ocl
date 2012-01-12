@@ -109,6 +109,14 @@ public abstract class AbstractNullVisitor<R, C>
 		return null;
 	}
 
+	public R visitConstructorExp(org.eclipse.ocl.examples.pivot.ConstructorExp object) {
+		return null;
+	}
+
+	public R visitConstructorPart(org.eclipse.ocl.examples.pivot.ConstructorPart object) {
+		return null;
+	}
+
 	public R visitDataType(org.eclipse.ocl.examples.pivot.DataType object) {
 		return null;
 	}

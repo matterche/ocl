@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
@@ -235,6 +236,21 @@ public class EssentialOCLCS2MonikerVisitor
 			context.appendElementCS(type);
 			context.append(TEMPLATE_BINDING_SUFFIX);
 		}
+		return true;
+	}
+
+	@Override
+	public Boolean visitConstructorExpCS(ConstructorExpCS object) {
+		appendExpPrefix(object);
+		appendNameExpCSName(object);
+//		List<TupleLiteralPartCS> parts = new ArrayList<TupleLiteralPartCS>(object.getOwnedParts());
+//		Collections.sort(parts, new Comparator<TupleLiteralPartCS>()
+//		{
+//			public int compare(TupleLiteralPartCS o1, TupleLiteralPartCS o2) {
+//				return o1.getName().compareTo(o2.getName());
+//			}
+//		});
+//		context.append(MONIKER_TUPLE_LITERAL_EXP);		
 		return true;
 	}
 

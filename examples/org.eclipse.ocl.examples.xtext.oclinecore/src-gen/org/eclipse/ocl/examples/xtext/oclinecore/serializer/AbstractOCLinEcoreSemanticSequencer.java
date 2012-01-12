@@ -34,6 +34,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLitera
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
@@ -328,6 +330,24 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_CollectionTypeCS(context, (CollectionTypeCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case EssentialOCLCSTPackage.CONSTRUCTOR_EXP_CS:
+				if(context == grammarAccess.getConstructorExpCSRule() ||
+				   context == grammarAccess.getExpCSRule() ||
+				   context == grammarAccess.getInfixedExpCSRule() ||
+				   context == grammarAccess.getInfixedExpCSAccess().getInfixExpCSOwnedExpressionAction_1_0() ||
+				   context == grammarAccess.getNavigatingArgExpCSRule() ||
+				   context == grammarAccess.getPrefixedExpCSRule() ||
+				   context == grammarAccess.getPrimaryExpCSRule()) {
+					sequence_ConstructorExpCS(context, (ConstructorExpCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case EssentialOCLCSTPackage.CONSTRUCTOR_PART_CS:
+				if(context == grammarAccess.getConstructorPartCSRule()) {
+					sequence_ConstructorPartCS(context, (ConstructorPartCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -728,6 +748,31 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)?)
 	 */
 	protected void sequence_CollectionTypeCS(EObject context, CollectionTypeCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
+	 *             element=[Type|UnrestrictedName]
+	 *         ) 
+	 *         ownedParts+=ConstructorPartCS 
+	 *         ownedParts+=ConstructorPartCS*
+	 *     )
+	 */
+	protected void sequence_ConstructorExpCS(EObject context, ConstructorExpCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (property=[Property|UnrestrictedName] initExpression=ExpCS)
+	 */
+	protected void sequence_ConstructorPartCS(EObject context, ConstructorPartCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
 	}
 	
