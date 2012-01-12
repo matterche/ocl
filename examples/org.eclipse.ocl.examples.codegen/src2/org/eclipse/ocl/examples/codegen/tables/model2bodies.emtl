@@ -1024,7 +1024,7 @@
               <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;&#x9;"/>
               <body xsi:type="mtl:TemplateInvocation">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                <definition href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+                <definition href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
                 <argument xsi:type="ocl.ecore:PropertyCallExp">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//OclExpression"/>
                   <source xsi:type="ocl.ecore:VariableExp" name="expInOcl" referredVariable="/0/generateInvariant/expInOcl">
@@ -1134,7 +1134,7 @@
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=") throws &lt;%InvalidValueException%> {&#xA;&#x9;&#x9;&#x9;"/>
                 <body xsi:type="mtl:TemplateInvocation">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                  <definition href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+                  <definition href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
                   <argument xsi:type="ocl.ecore:PropertyCallExp">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//OclExpression"/>
                     <source xsi:type="ocl.ecore:VariableExp" name="expInOcl" referredVariable="/0/generateInvariant/expInOcl">
@@ -1426,7 +1426,7 @@
               <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;&#x9;"/>
               <body xsi:type="mtl:TemplateInvocation">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-                <definition href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+                <definition href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
                 <argument xsi:type="ocl.ecore:PropertyCallExp">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//OclExpression"/>
                   <source xsi:type="ocl.ecore:VariableExp" name="expInOcl" referredVariable="/0/generateOperationConstraint/expInOcl">
@@ -1683,7 +1683,7 @@
             <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;&#x9;"/>
             <body xsi:type="mtl:TemplateInvocation">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-              <definition href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+              <definition href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
               <argument xsi:type="ocl.ecore:PropertyCallExp">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//OclExpression"/>
                 <source xsi:type="ocl.ecore:VariableExp" name="expInOcl" referredVariable="/0/generatePropertyConstraint/expInOcl">
@@ -2327,6 +2327,42 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
+      <eOperations name="emitConstants">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/constantTemplates.emtl#/0/emitConstants.9"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="ast">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ConstructorExp"/>
+        </eParameters>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="emitConstants">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/constantTemplates.emtl#/0/emitConstants.10"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="ast">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ConstructorPart"/>
+        </eParameters>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="emitLiteral">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -2828,7 +2864,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Element"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ConstructorExp"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2849,7 +2885,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IfExp"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Element"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2870,7 +2906,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IterateExp"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IfExp"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2891,7 +2927,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IteratorExp"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IterateExp"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2912,7 +2948,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//LetExp"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//IteratorExp"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2933,7 +2969,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//LiteralExp"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//LetExp"/>
         </eParameters>
         <eParameters name="importer">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
@@ -2951,6 +2987,27 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/expressionTemplates.emtl#/0/emitExpression.9"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="ast">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//LiteralExp"/>
+        </eParameters>
+        <eParameters name="importer">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+        </eParameters>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="emitExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.10"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -2992,7 +3049,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.11"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.12"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -3013,7 +3070,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.12"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.13"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -3034,7 +3091,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.13"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.14"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -3055,7 +3112,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.14"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.15"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -3105,6 +3162,21 @@
         </eParameters>
         <eParameters name="ast">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//VariableExp"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getAnotherType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/getAnotherType"/>
+        </eAnnotations>
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
       </eOperations>
       <eOperations name="getBodiesClassSuffix">
@@ -3464,6 +3536,21 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
         </eParameters>
       </eOperations>
+      <eOperations name="hasAnotherType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/hasAnotherType"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="hasEcore">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -3477,6 +3564,21 @@
         </eParameters>
         <eParameters name="property">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasEcore">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/hasEcore.1"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
       </eOperations>
       <eOperations name="isProperty">
@@ -3687,7 +3789,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllProperSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3699,7 +3801,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
         </eParameters>
@@ -3711,7 +3813,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Type)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Type)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3773,7 +3875,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="elem">
-          <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+          <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Class)"/>
         </eParameters>
       </eOperations>
       <eOperations name="getLiteralName">
@@ -3819,7 +3921,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalOperationsOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Operation)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Operation)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3831,7 +3933,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3843,7 +3945,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getOperations"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../common/pivotQueries.emtl#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2tables.emtl#/3/OrderedSet(Operation)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3870,7 +3972,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getProperties"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../common/pivotQueries.emtl#/3/OrderedSet(Property)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2tables.emtl#/3/OrderedSet(Property)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3894,7 +3996,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperSignatures"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(String)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -3906,7 +4008,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -4511,6 +4613,18 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//VariableExp"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getAnotherType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/getAnotherType"/>
+        </eAnnotations>
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="getBodiesClassSuffix">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4733,6 +4847,18 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
+      <eOperations name="hasAnotherType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/hasAnotherType"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="hasEcore">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4743,6 +4869,18 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
         <eParameters name="property">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasEcore">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/genPackageQueries.emtl#/0/hasEcore.1"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
       </eOperations>
       <eOperations name="isProperty">
@@ -4905,7 +5043,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5022,6 +5160,64 @@
           <references href="../common/symbolTemplates.emtl#/0/symbolName.1"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConstructorExp_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ConstructorExp"/>
+      </eAnnotations>
+      <eOperations name="emitConstants">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/constantTemplates.emtl#/0/emitConstants.9"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="emitExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.3"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="importer">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+        </eParameters>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+        <eParameters name="expInOcl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConstructorPart_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ConstructorPart"/>
+      </eAnnotations>
+      <eOperations name="emitConstants">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../common/constantTemplates.emtl#/0/emitConstants.10"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
         <eParameters name="expInOcl">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//ExpressionInOcl"/>
         </eParameters>
@@ -5330,7 +5526,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.12"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.13"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5418,7 +5614,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllProperSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Class)"/>
       </eOperations>
       <eOperations name="getAllSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5427,7 +5623,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Type)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Type)"/>
       </eOperations>
       <eOperations name="getBehavioralType">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5463,7 +5659,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalOperationsOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Operation)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Operation)"/>
       </eOperations>
       <eOperations name="getLocalPropertiesOf">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5472,7 +5668,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Property)"/>
       </eOperations>
       <eOperations name="getOperations">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5481,7 +5677,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getOperations"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../common/pivotQueries.emtl#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2tables.emtl#/3/OrderedSet(Operation)"/>
       </eOperations>
       <eOperations name="getOverloadOp">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5502,7 +5698,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getProperties"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../common/pivotQueries.emtl#/3/OrderedSet(Property)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2tables.emtl#/3/OrderedSet(Property)"/>
       </eOperations>
       <eOperations name="getSuperSignatures">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5511,7 +5707,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperSignatures"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(String)"/>
       </eOperations>
       <eOperations name="getSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5520,7 +5716,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Class)"/>
       </eOperations>
       <eOperations name="getUnspecializedClass">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -5625,7 +5821,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.13"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.14"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5686,7 +5882,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.4"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.5"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5709,7 +5905,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.5"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.6"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5732,7 +5928,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.6"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.7"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5755,7 +5951,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.7"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.8"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5778,7 +5974,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.8"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.9"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5801,7 +5997,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.9"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.10"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5851,7 +6047,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.11"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.12"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5874,7 +6070,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../common/expressionTemplates.emtl#/0/emitExpression.14"/>
+          <references href="../common/expressionTemplates.emtl#/0/emitExpression.15"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="importer">
@@ -5960,12 +6156,12 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="../common/pivotQueries.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2tables.emtl#/3/Set(Property)"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Set(Class)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="../common/pivotQueries.emtl#/3/Set(Class)"/>
+        <references href="model2tables.emtl#/3/Set(Class)"/>
       </eAnnotations>
       <eOperations name="getLiteralName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
