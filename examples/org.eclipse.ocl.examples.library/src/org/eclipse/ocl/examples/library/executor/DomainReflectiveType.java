@@ -25,12 +25,12 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 
-public class DomainExecutorType extends ReflectiveExecutorType
+public class DomainReflectiveType extends ReflectiveType
 {
 	protected final DomainStandardLibrary standardLibrary;
 	protected final DomainType domainType;
 
-	public DomainExecutorType(DomainExecutorPackage evaluationPackage, DomainType domainType) {
+	public DomainReflectiveType(DomainReflectivePackage evaluationPackage, DomainType domainType) {
 		super(domainType.getName(), evaluationPackage, computeFlags(domainType));
 		this.standardLibrary = evaluationPackage.getStandardLibrary();
 		this.domainType = domainType;
@@ -38,7 +38,7 @@ public class DomainExecutorType extends ReflectiveExecutorType
 
 	@Override
 	protected AbstractFragment createFragment(DomainInheritance baseInheritance) {
-		return new DomainExecutorFragment(this, baseInheritance);
+		return new DomainReflectiveFragment(this, baseInheritance);
 	}
 
 	@Override

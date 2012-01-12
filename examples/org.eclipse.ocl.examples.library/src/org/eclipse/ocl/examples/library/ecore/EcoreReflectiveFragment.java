@@ -21,11 +21,11 @@ import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.library.executor.ReflectiveFragment;
 
-public class EcoreExecutorFragment extends ReflectiveFragment
+public class EcoreReflectiveFragment extends ReflectiveFragment
 {
 	protected final EClassifier eClassifier;
 
-	public EcoreExecutorFragment(EcoreExecutorType derivedInheritance, DomainInheritance baseInheritance) {
+	public EcoreReflectiveFragment(EcoreReflectiveType derivedInheritance, DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 		this.eClassifier = derivedInheritance.getEClassifier();		
 	}

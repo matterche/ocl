@@ -18,37 +18,37 @@ package org.eclipse.ocl.examples.pivot.executor;
 
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
-import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorPackage;
+import org.eclipse.ocl.examples.library.executor.ReflectivePackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotExecutorPackage extends ReflectiveExecutorPackage
+public class PivotReflectivePackage extends ReflectivePackage
 {
 	protected final MetaModelManager metaModelManager;
 	protected final org.eclipse.ocl.examples.pivot.Package pivotPackage;
 
-	public PivotExecutorPackage(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+	public PivotReflectivePackage(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		super(pivotPackage.getName(), pivotPackage.getNsURI());
 		this.metaModelManager = metaModelManager;		
 		this.pivotPackage = pivotPackage;		
 	}
 
 	@Override
-	protected PivotExecutorType createExecutorType(DomainType domainType) {
+	protected PivotReflectiveType createExecutorType(DomainType domainType) {
 		if (domainType instanceof InvalidType) {
-			return new PivotExecutorInvalidType(this, (InvalidType)domainType);
+			return new PivotReflectiveInvalidType(this, (InvalidType)domainType);
 		}
 		else if (domainType instanceof VoidType) {
-			return new PivotExecutorVoidType(this, (VoidType)domainType);
+			return new PivotReflectiveVoidType(this, (VoidType)domainType);
 		}
 		else if (domainType instanceof AnyType) {
-			return new PivotExecutorAnyType(this, (AnyType)domainType);
+			return new PivotReflectiveAnyType(this, (AnyType)domainType);
 		}
 		else {
-			return new PivotExecutorType(this, (Type) domainType);
+			return new PivotReflectiveType(this, (Type) domainType);
 		}
 	}
 

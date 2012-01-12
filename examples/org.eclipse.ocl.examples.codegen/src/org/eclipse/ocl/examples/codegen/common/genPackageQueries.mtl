@@ -22,6 +22,9 @@
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
 [import org::eclipse::ocl::examples::codegen::common::stringQueries/]
 
+[query public getAnotherType(genPackage : GenPackage, type : Type) : Type = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getAnotherType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type)', Sequence{genPackage, type}) /]
+
 [query public getBodiesClassSuffix(genPackage : GenPackage) : String = 'Bodies' /]
 	
 [query public getBodiesPackageName(genPackage : GenPackage) : String = 'bodies' /]
@@ -124,8 +127,14 @@ genPackage.prefix + 'Tables' /]
 [template public getTablesClassName(ast : Type, genPackage : GenPackage)] 
 [ast._package.getGenPackage(genPackage).prefix/]Tables[/template]
 
+[query public hasAnotherType(genPackage : GenPackage, type : Type) : Boolean = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasAnotherType(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type)', Sequence{genPackage, type}) /]
+
 [query public hasEcore(genPackage : GenPackage, property : Property) : Boolean = 
 invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasEcore(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Property)', Sequence{genPackage, property}) /]
+
+[query public hasEcore(genPackage : GenPackage, type : Type) : Boolean = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasEcore(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type)', Sequence{genPackage, type}) /]
 
 [query public isProperty(genPackage : GenPackage, property : Property) : Boolean =
 genPackage.hasEcore(property) or ((property.opposite <> null) and genPackage.hasEcore(property.opposite))/]

@@ -23,29 +23,29 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 
 /**
- * A ReflectiveExecutorPackage builds a dispatch table representative of a model package at run-time using a minimal reflective API.
+ * A ReflectivePackage builds a dispatch table representative of a model package at run-time using a minimal reflective API.
  */
-public abstract class ReflectiveExecutorPackage extends ExecutorPackage
+public abstract class ReflectivePackage extends ExecutorPackage
 {
-	protected Map<DomainType, ReflectiveExecutorType> types = null;
+	protected Map<DomainType, ReflectiveType> types = null;
 
-	public ReflectiveExecutorPackage(String name, String nsURI) {
+	public ReflectivePackage(String name, String nsURI) {
 		super(name, nsURI);
 	}
 	
 	protected void computeClasses() {
-		types = new HashMap<DomainType, ReflectiveExecutorType>();
+		types = new HashMap<DomainType, ReflectiveType>();
 		for (DomainType domainType : getDomainTypes()) {
-			ReflectiveExecutorType executorType = createExecutorType(domainType);
+			ReflectiveType executorType = createExecutorType(domainType);
 			types.put(domainType, executorType);
 		}
 	}
 
-	protected abstract ReflectiveExecutorType createExecutorType(DomainType domainType);
+	protected abstract ReflectiveType createExecutorType(DomainType domainType);
 
 	protected abstract Iterable<? extends DomainType> getDomainTypes();
 
-	public ReflectiveExecutorType getInheritance(DomainType type) {
+	public ReflectiveType getInheritance(DomainType type) {
 		if (types == null) {
 			computeClasses();
 		}

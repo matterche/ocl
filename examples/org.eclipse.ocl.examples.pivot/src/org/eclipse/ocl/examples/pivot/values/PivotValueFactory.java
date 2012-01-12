@@ -59,12 +59,6 @@ public class PivotValueFactory extends AbstractValueFactory
 	}
 
 	@Override
-	public ObjectValue createObjectValue(Object object) {
-		// TODO Auto-generated method stub
-		return super.createObjectValue(object);
-	}
-
-	@Override
 	public TypeValue createTypeValue(DomainClassifierType domainType) {
 		if (domainType instanceof ClassifierType) {
 			return new TypeValueImpl(this, (ClassifierType)domainType);
@@ -88,30 +82,5 @@ public class PivotValueFactory extends AbstractValueFactory
 	public MetaModelManager getMetaModelManager() {
 		return (MetaModelManager) getStandardLibrary();
 	}
-	
-/*	@Override
-	public Value valueOf(Object object) {
-		Value value = super.valueOf(object);
-		if (value != null) {
-			return value;
-		}
-		if (object instanceof Element) {
-			if (object instanceof ClassifierType) {
-				return createTypeValue((ClassifierType) object);
-			}
-			return createElementValue((DomainElement) object);
-		}
-		if (object instanceof EObject) {
-			return new EObjectValueImpl(this, (EObject) object);
-		}
-		DomainType type = null;
-		if (object instanceof EObject) {
-			type = PivotUtil.findTypeOf(getMetaModelManager(), ((EObject)object).eClass());
-		}
-		if (type == null) {
-			type = getStandardLibrary().getAnyClassifierType();	// WIP A better type
-		}
-		return new ObjectValueImpl(this, type, object);
-	} */
 }
  

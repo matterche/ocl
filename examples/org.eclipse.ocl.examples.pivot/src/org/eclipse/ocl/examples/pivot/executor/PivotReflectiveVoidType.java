@@ -19,9 +19,9 @@ package org.eclipse.ocl.examples.pivot.executor;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.VoidType;
 
-public class PivotExecutorVoidType extends PivotExecutorType
+public class PivotReflectiveVoidType extends PivotReflectiveType
 {
-	public PivotExecutorVoidType(PivotExecutorPackage executorPackage, VoidType type) {
+	public PivotReflectiveVoidType(PivotReflectivePackage executorPackage, VoidType type) {
 		super(executorPackage, type);
 	}
 

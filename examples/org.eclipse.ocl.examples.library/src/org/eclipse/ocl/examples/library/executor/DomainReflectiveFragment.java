@@ -19,11 +19,11 @@ package org.eclipse.ocl.examples.library.executor;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 
-public class DomainExecutorFragment extends ReflectiveFragment
+public class DomainReflectiveFragment extends ReflectiveFragment
 {
 //	protected final EClassifier eClassifier;
 
-	public DomainExecutorFragment(DomainExecutorType derivedInheritance, DomainInheritance baseInheritance) {
+	public DomainReflectiveFragment(DomainReflectiveType derivedInheritance, DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 //		this.eClassifier = derivedInheritance.getEClassifier();		
 	}

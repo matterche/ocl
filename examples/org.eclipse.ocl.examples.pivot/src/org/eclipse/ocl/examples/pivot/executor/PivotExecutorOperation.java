@@ -23,7 +23,7 @@ public class PivotExecutorOperation extends ExecutorOperation
 {
 	protected final Operation pivotOperation;
 	
-	public PivotExecutorOperation(PivotExecutorType inheritance, int operationIndex, Operation pivotOperation) {
+	public PivotExecutorOperation(PivotReflectiveType inheritance, int operationIndex, Operation pivotOperation) {
 		super(pivotOperation.getName(), inheritance, operationIndex, pivotOperation.getImplementation());
 		this.pivotOperation = pivotOperation;		
 	}

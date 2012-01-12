@@ -50,6 +50,12 @@ import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
 public class GenPackageQueries
 {		
+	public Type getAnotherType(GenPackage genPackage, Type type) {
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
+		Type primaryType = metaModelManager.getPrimaryType(type);
+		return primaryType;
+	}
+	
 	public String getCopyright(GenPackage genPackage, String indentation) {
 		return genPackage.getCopyright(indentation);
 	}
@@ -113,8 +119,7 @@ public class GenPackageQueries
 //		}		
 		Resource genModelResource = genPackage.eResource();
 		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
-		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
-		MetaModelManager metaModelManager = resourceSetAdapter.getMetaModelManager();
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
 		org.eclipse.ocl.examples.pivot.Package metaModelPackage = metaModelManager.getPivotMetaModel();
 		org.eclipse.ocl.examples.pivot.Package libraryPackage = metaModelManager.getLibraries().get(0);
 		if (pivotPackage == libraryPackage) {
@@ -132,6 +137,14 @@ public class GenPackageQueries
 			return metaModelGenPackage;
 		}
 		return genPackage;	// FIXME
+	}
+
+	protected MetaModelManager getMetaModelManager(GenPackage genPackage) {
+		Resource genModelResource = genPackage.eResource();
+		ResourceSet genModelResourceSet = genModelResource.getResourceSet();
+		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
+		MetaModelManager metaModelManager = resourceSetAdapter.getMetaModelManager();
+		return metaModelManager;
 	}
 	
 	public String getInterfacePackageName(GenPackage genPackage) {
@@ -239,21 +252,20 @@ public class GenPackageQueries
 	public org.eclipse.ocl.examples.pivot.Package getPivotPackage(GenPackage genPackage) {
 		EPackage ePackage = genPackage.getEcorePackage();
 		Resource ecoreResource = ePackage.eResource();
-		ResourceSet genModelResourceSet = genPackage.eResource().getResourceSet();
-		MetaModelManagerResourceSetAdapter resourceSetAdapter = MetaModelManagerResourceSetAdapter.getAdapter(genModelResourceSet, null);
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, resourceSetAdapter.getMetaModelManager());
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = ecore2Pivot.getCreated(org.eclipse.ocl.examples.pivot.Package.class, ePackage);
 		if (pivotPackage.getNsURI().equals(OCLstdlibPackage.eNS_URI)) {				// If generating OCLstdlibTables ...
-			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
+			mergeLibrary(metaModelManager, pivotPackage);
 		}
 //		else if (pivotPackage.getNsURI().equals(PivotPackage.eNS_URI)) {			// If generating PivotTables ...
-//			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
+//			mergeLibrary(metaModelManager, pivotPackage);
 //		}
 //		else if (pivotPackage.getNsURI().equals(OCLPackage.eNS_URI)) {
-//			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
+//			mergeLibrary(metaModelManager, pivotPackage);
 //		}
 //		else if (pivotPackage.getNsURI().equals(OCLPackage.eNS_URI + ".oclstdlib")) {
-//			mergeLibrary(resourceSetAdapter.getMetaModelManager(), pivotPackage);
+//			mergeLibrary(metaModelManager, pivotPackage);
 //		}
 		return pivotPackage;
 	}
@@ -283,6 +295,20 @@ public class GenPackageQueries
 	}
 	
 	/**
+	 * Return  true if type has another definition counterpart. The Standard Library
+	 * providers a base definition for the pivot model.
+	 */
+	public Boolean hasAnotherType(GenPackage genPackage, Type type) {
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
+		Type primaryType = metaModelManager.getPrimaryType(type);
+//		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), type.getName());
+//		if (genClass == null) {
+			return primaryType != type;
+//		}
+//		return true;
+	}
+	
+	/**
 	 * Return  true if property has an Ecore counterpart. Non-navigable opposites may have a Property
 	 * but no Ecore EReference.
 	 */
@@ -293,6 +319,18 @@ public class GenPackageQueries
 		}
 		GenFeature genFeature = getNamedElement2(genClass.getAllGenFeatures(), property.getName());
 		if (genFeature == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Return  true if type has an Ecore counterpart. The Standard Library genmodel has
+	 * no Ecore types, unless the Pivot model is also in use.
+	 */
+	public Boolean hasEcore(GenPackage genPackage, Type type) {
+		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), type.getName());
+		if (genClass == null) {
 			return false;
 		}
 		return true;

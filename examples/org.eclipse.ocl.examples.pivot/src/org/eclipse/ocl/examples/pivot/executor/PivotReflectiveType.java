@@ -24,16 +24,16 @@ import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
-import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
+import org.eclipse.ocl.examples.library.executor.ReflectiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
-public class PivotExecutorType extends ReflectiveExecutorType
+public class PivotReflectiveType extends ReflectiveType
 {
 	protected final MetaModelManager metaModelManager;
 	protected final Type type;
 	
-	public PivotExecutorType(PivotExecutorPackage executorPackage, Type type) {
+	public PivotReflectiveType(PivotReflectivePackage executorPackage, Type type) {
 		super(type.getName(), executorPackage, computeFlags(type));
 		this.metaModelManager = executorPackage.getMetaModelManager();
 		this.type = type;
@@ -41,7 +41,7 @@ public class PivotExecutorType extends ReflectiveExecutorType
 
 	@Override
 	protected AbstractFragment createFragment(DomainInheritance baseInheritance) {
-		return new PivotExecutorFragment(this, baseInheritance);
+		return new PivotReflectiveFragment(this, baseInheritance);
 	}
 
 	@Override

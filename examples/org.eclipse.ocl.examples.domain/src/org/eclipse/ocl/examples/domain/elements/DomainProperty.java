@@ -16,6 +16,10 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
+import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.Value;
+
 
 public interface DomainProperty extends DomainTypedElement
 {
@@ -28,4 +32,6 @@ public interface DomainProperty extends DomainTypedElement
 	 * Return the opposite Property if there is one, else null.
 	 */
 	DomainProperty getOpposite();
+	
+	void setValue(ObjectValue objectValue, Value propertyValue) throws InvalidValueException;
 }

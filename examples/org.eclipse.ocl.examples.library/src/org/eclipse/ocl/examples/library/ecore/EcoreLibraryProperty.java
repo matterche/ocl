@@ -34,6 +34,7 @@ public class EcoreLibraryProperty extends AbstractProperty
 {
 	protected final EStructuralFeature eFeature;
 
+
 	public EcoreLibraryProperty(EStructuralFeature eFeature) {
 		this.eFeature = eFeature;
 	}
@@ -43,6 +44,10 @@ public class EcoreLibraryProperty extends AbstractProperty
 		EObject eObject = sourceValue.asNavigableObject();
 		Object eValue = eObject.eGet(eFeature);
 		return valueFactory.valueOf(eValue, eFeature);
+	}
+	
+	public EStructuralFeature getEFeature() {
+		return eFeature;
 	}
 
 	@Override

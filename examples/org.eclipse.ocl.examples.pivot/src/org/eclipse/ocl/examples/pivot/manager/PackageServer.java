@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.executor.PivotExecutorPackage;
+import org.eclipse.ocl.examples.pivot.executor.PivotReflectivePackage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -62,7 +62,7 @@ public class PackageServer extends PackageTracker
 	/**
 	 * The Executor package containing the dispatch table representation.
 	 */
-	private PivotExecutorPackage executorPackage = null;
+	private PivotReflectivePackage executorPackage = null;
 	
 	protected PackageServer(PackageManager packageManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 		super(packageManager, primaryPackage);
@@ -180,9 +180,9 @@ public class PackageServer extends PackageTracker
 		super.dispose();
 	}
 
-	public PivotExecutorPackage getExecutorPackage() {
+	public PivotReflectivePackage getExecutorPackage() {
 		if (executorPackage == null) {
-			executorPackage = new PivotExecutorPackage(getMetaModelManager(), target);
+			executorPackage = new PivotReflectivePackage(getMetaModelManager(), target);
 		}
 		return executorPackage ;
 	}

@@ -19,9 +19,9 @@ package org.eclipse.ocl.examples.pivot.executor;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 
-public class PivotExecutorInvalidType extends PivotExecutorType
+public class PivotReflectiveInvalidType extends PivotReflectiveType
 {
-	public PivotExecutorInvalidType(PivotExecutorPackage executorPackage, InvalidType type) {
+	public PivotReflectiveInvalidType(PivotReflectivePackage executorPackage, InvalidType type) {
 		super(executorPackage, type);
 	}
 

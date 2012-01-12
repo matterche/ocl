@@ -26,20 +26,20 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
  * 
  * This typically occurs when a dynamic Ecore model is used but no MetaModelManager is accessible.
  */
-public class DomainExecutorPackage extends ReflectiveExecutorPackage
+public class DomainReflectivePackage extends ReflectivePackage
 {
 	protected final DomainStandardLibrary standardLibrary;
 	protected final DomainPackage domainPackage;
 
-	public DomainExecutorPackage(DomainStandardLibrary standardLibrary, DomainPackage domainPackage) {
+	public DomainReflectivePackage(DomainStandardLibrary standardLibrary, DomainPackage domainPackage) {
 		super(domainPackage.getName(), domainPackage.getNsURI());
 		this.standardLibrary = standardLibrary;
 		this.domainPackage = domainPackage;
 	}
 
 	@Override
-	protected ReflectiveExecutorType createExecutorType(final DomainType domainType) {
-		return new DomainExecutorType(this, domainType);
+	protected ReflectiveType createExecutorType(final DomainType domainType) {
+		return new DomainReflectiveType(this, domainType);
 	}
 
 	@Override

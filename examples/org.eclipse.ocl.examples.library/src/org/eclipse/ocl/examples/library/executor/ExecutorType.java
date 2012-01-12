@@ -91,7 +91,6 @@ public class ExecutorType extends AbstractInheritance implements DomainType, Exe
 	}
 
 	public void initFragments(ExecutorFragment[] fragments, int[] depthCounts) {
-		assert this.fragments == null;
 		if (fragments != null) {
 			int[] indexes = new int[depthCounts.length+1];
 			indexes[0] = 0;

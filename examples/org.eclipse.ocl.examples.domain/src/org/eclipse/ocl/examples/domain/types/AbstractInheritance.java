@@ -24,6 +24,8 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
+import org.eclipse.ocl.examples.domain.values.ObjectValue;
+import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public abstract class AbstractInheritance implements DomainInheritance
 {
@@ -114,6 +116,10 @@ public abstract class AbstractInheritance implements DomainInheritance
 			return true;
 		}
 		return thatInheritance.isSuperInheritanceOf(standardLibrary, this);
+	}
+
+	public ObjectValue createInstance(ValueFactory valueFactory) {
+		throw new UnsupportedOperationException();
 	}
 
 	public DomainInheritance getCommonInheritance(DomainInheritance thatInheritance) {

@@ -24,14 +24,14 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
+import org.eclipse.ocl.examples.library.executor.ReflectiveType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.executor.PivotExecutorPackage;
+import org.eclipse.ocl.examples.pivot.executor.PivotReflectivePackage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -64,7 +64,7 @@ public class TypeServer extends TypeTracker
 	/**
 	 * Compiled inheritance relationships used by compiled expressions.
 	 */
-	private ReflectiveExecutorType executorType = null;
+	private ReflectiveType executorType = null;
 	
 	protected TypeServer(PackageManager packageManager, Type primaryType) {
 		super(packageManager, primaryType);
@@ -186,14 +186,14 @@ public class TypeServer extends TypeTracker
 		return null;
 	}
 
-	protected PivotExecutorPackage getExecutorPackage() {
+	protected PivotReflectivePackage getExecutorPackage() {
 		MetaModelManager metaModelManager = getMetaModelManager();
 		return metaModelManager.getPackageTracker(target.getPackage()).getPackageServer().getExecutorPackage();
 	}
 
-	public ReflectiveExecutorType getExecutorType() {
+	public ReflectiveType getExecutorType() {
 		if (executorType == null) {
-			PivotExecutorPackage executorPackage = getExecutorPackage();
+			PivotReflectivePackage executorPackage = getExecutorPackage();
 			executorType = executorPackage.getInheritance(target);
 		}
 		return executorType;

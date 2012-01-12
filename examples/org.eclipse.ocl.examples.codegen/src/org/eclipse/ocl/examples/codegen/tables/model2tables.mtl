@@ -104,7 +104,7 @@ public static class Types {[for (cls : Class | pPackage.ownedType->filter(Class)
     [pPackage.declareType(genPackage, cls)/]
 [/for]
 
-	private static final <%ExecutorType%>['[]'/] types = {
+	private static final <%EcoreExecutorType%>['[]'/] types = {
 [for (type : Type | pPackage.ownedType->sortedBy(t : Type | t.getMoniker())) separator(',\n') after('\n')]
 	    _[type.name/][/for]
 	};
@@ -129,13 +129,15 @@ private static final <%ExecutorTypeParameter%> _[cls.name/]_[parameteredElement.
 [/let]
 [/for]
 [/if]
-[if (false and cls.getBehavioralType()->notEmpty())]
-public static final <%ExecutorType%> _[cls.name/] = [genPackage.getQualifiedTypeLiteralName(cls.getBehavioralType(), cls._package)/];[else]
-public static final <%ExecutorType%> _[cls.name/] = new <%ExecutorType%>("[cls.name/]", PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
+public static final <%EcoreExecutorType%> _[cls.name/] = [if (genPackage.hasAnotherType(cls))]
+[genPackage.getAnotherType(cls).emitQualifiedLiteralName(genPackage)/][else]
+[if (not genPackage.hasEcore(cls))]
+new <%EcoreExecutorType%>("[cls.name/]"[else]
+new <%EcoreExecutorType%>([genPackage.prefix + 'Package.Literals.' + cls.name.upperName()/][/if], PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
 , _[cls.name/]_[parameteredElement.name/][/let][/for]
-[/if]);[/if]
+[/if])[/if];
 [/template]
 
 [template public declareFragments(pPackage : Package, genPackage : GenPackage)]
@@ -274,7 +276,7 @@ public static class TypeFragments {[for (cls : Type | types) before('\n') separa
 	 */
 	static {
 [for (cls : Type | types)]
-		[cls.getLiteralName()/].initFragments(_[cls.name/], __[cls.name/]);
+		[cls.getLiteralName()/].initFragments(_[cls.name/], __[cls.name/][if (genPackage.hasAnotherType(cls))], [genPackage.prefix + 'Package.Literals.' + cls.name.upperName()/][/if]);
 [/for]
 	}
 

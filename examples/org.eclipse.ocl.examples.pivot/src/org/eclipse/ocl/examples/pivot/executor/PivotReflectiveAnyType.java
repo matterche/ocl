@@ -21,9 +21,9 @@ import java.util.Collections;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.pivot.AnyType;
 
-public class PivotExecutorAnyType extends PivotExecutorType
+public class PivotReflectiveAnyType extends PivotReflectiveType
 {
-	public PivotExecutorAnyType(PivotExecutorPackage executorPackage, AnyType type) {
+	public PivotReflectiveAnyType(PivotReflectivePackage executorPackage, AnyType type) {
 		super(executorPackage, type);
 	}
 

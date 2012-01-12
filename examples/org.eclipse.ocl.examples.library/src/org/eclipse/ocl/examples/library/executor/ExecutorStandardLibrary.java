@@ -38,7 +38,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	public static final ExecutorStandardLibrary INSTANCE = new ExecutorStandardLibrary();
 	
 	private Map<EPackage, EcoreExecutorPackage> ePackageMap = new HashMap<EPackage, EcoreExecutorPackage>();
-	private Map<DomainPackage, DomainExecutorPackage> domainPackageMap = null;
+	private Map<DomainPackage, DomainReflectivePackage> domainPackageMap = null;
 	private Map<EClassifier, ExecutorType> typeMap = new HashMap<EClassifier, ExecutorType>();
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
@@ -71,12 +71,12 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			return containerType.getInheritance(this);
 		}
 		if (domainPackageMap == null) {
-			domainPackageMap = new HashMap<DomainPackage, DomainExecutorPackage>();
+			domainPackageMap = new HashMap<DomainPackage, DomainReflectivePackage>();
 		}
 		DomainPackage domainPackage = type.getPackage();
-		DomainExecutorPackage domainExecutorPackage = domainPackageMap.get(domainPackage);
+		DomainReflectivePackage domainExecutorPackage = domainPackageMap.get(domainPackage);
 		if (domainExecutorPackage == null) {
-			domainExecutorPackage = new DomainExecutorPackage(this, domainPackage);
+			domainExecutorPackage = new DomainReflectivePackage(this, domainPackage);
 			domainPackageMap.put(domainPackage, domainExecutorPackage);
 		}
 		return domainExecutorPackage.getInheritance(type);

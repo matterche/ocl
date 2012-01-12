@@ -50,7 +50,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
-import org.eclipse.ocl.examples.library.executor.ReflectiveExecutorType;
+import org.eclipse.ocl.examples.library.executor.ReflectiveType;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -1386,7 +1386,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return precedenceManager.getInfixPrecedence(operatorName);
 	}
 
-	public ReflectiveExecutorType getInheritance(DomainType type) {
+	public ReflectiveType getInheritance(DomainType type) {
 		Type type1 = getType(type);
 		if (type1 == null) {
 			return null;

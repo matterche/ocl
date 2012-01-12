@@ -23,15 +23,15 @@ import org.eclipse.ocl.examples.domain.utilities.IndexableIterable;
 import org.eclipse.ocl.examples.library.executor.ReflectiveFragment;
 import org.eclipse.ocl.examples.pivot.Type;
 
-public class PivotExecutorFragment extends ReflectiveFragment
+public class PivotReflectiveFragment extends ReflectiveFragment
 {
-	public PivotExecutorFragment(PivotExecutorType derivedInheritance, DomainInheritance baseInheritance) {
+	public PivotReflectiveFragment(PivotReflectiveType derivedInheritance, DomainInheritance baseInheritance) {
 		super(derivedInheritance, baseInheritance);
 	}
 
 	@Override
 	protected DomainOperation getOperationOverload(DomainOperation baseOperation) {
-		Type pivotType = ((PivotExecutorType) derivedInheritance).getPivotType();
+		Type pivotType = ((PivotReflectiveType) derivedInheritance).getPivotType();
 		IndexableIterable<? extends DomainType> baseParameterTypes = baseOperation.getParameterTypes();
 		int iMax = baseParameterTypes.size();
 		for (DomainOperation localOperation : pivotType.getOwnedOperations()) {

@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.types.AbstractFragment;
 import org.eclipse.ocl.examples.domain.types.AbstractInheritance;
 
-public abstract class ReflectiveExecutorType extends AbstractInheritance implements DomainType
+public abstract class ReflectiveType extends AbstractInheritance
 {	
 	protected static int computeFlags(DomainType type) {
 		if (type instanceof DomainCollectionType) {
@@ -58,15 +58,15 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 	 * The Inheritances of sub-types that have been installed, and which must be
 	 * uninstalled in the event of an inheritance change for this Inheritance.
 	 */
-	private Set<ReflectiveExecutorType> knownSubInheritances = null;
+	private Set<ReflectiveType> knownSubInheritances = null;
 
-	public ReflectiveExecutorType(String name, ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
+	public ReflectiveType(String name, ExecutorPackage evaluationPackage, int flags, ExecutorTypeParameter... typeParameters) {
 		super(name, evaluationPackage, flags);
 	}
 
-	public void addSubInheritance(ReflectiveExecutorType subInheritance) {
+	public void addSubInheritance(ReflectiveType subInheritance) {
 		if (knownSubInheritances == null) {
-			knownSubInheritances = new HashSet<ReflectiveExecutorType>();
+			knownSubInheritances = new HashSet<ReflectiveType>();
 		}
 		knownSubInheritances.add(subInheritance);
 	}
@@ -78,13 +78,13 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 	/**
 	 * Add this Inheritance and all un-installed super-Inheritances to inheritances.
 	 */
-	public void gatherUninstalledInheritances(List<ReflectiveExecutorType> inheritances) {
+	public void gatherUninstalledInheritances(List<ReflectiveType> inheritances) {
 		if (!inheritances.contains(this)) {
 			inheritances.add(this);
 			if (fragments == null) {
 				for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
-					if (superInheritance instanceof ReflectiveExecutorType) {
-						((ReflectiveExecutorType)superInheritance).gatherUninstalledInheritances(inheritances);
+					if (superInheritance instanceof ReflectiveType) {
+						((ReflectiveType)superInheritance).gatherUninstalledInheritances(inheritances);
 					}
 				}
 			}
@@ -142,12 +142,12 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 	}
 
 	protected void initialize() {
-		List<ReflectiveExecutorType> uninstalledInheritances = new ArrayList<ReflectiveExecutorType>();
+		List<ReflectiveType> uninstalledInheritances = new ArrayList<ReflectiveType>();
 		gatherUninstalledInheritances(uninstalledInheritances);
 		int oldPendingCount = uninstalledInheritances.size();
 		while (true) {
-			for (ListIterator<ReflectiveExecutorType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
-				ReflectiveExecutorType uninstalledInheritance = it.next();
+			for (ListIterator<ReflectiveType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
+				ReflectiveType uninstalledInheritance = it.next();
 				if (uninstalledInheritance.isInstallable()) {
 					uninstalledInheritance.install();
 					it.remove();
@@ -160,8 +160,8 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 			if (newPendingCount >= oldPendingCount) {
 				StringBuilder s = new StringBuilder();
 				s.append("Inheritance loop for "); //$NON-NLS-1$
-				for (ListIterator<ReflectiveExecutorType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
-					ReflectiveExecutorType uninstalledInheritance = it.next();
+				for (ListIterator<ReflectiveType> it = uninstalledInheritances.listIterator(); it.hasNext(); ) {
+					ReflectiveType uninstalledInheritance = it.next();
 					if (!uninstalledInheritance.isInstallable()) {
 						s.append("\n  "); //$NON-NLS-1$
 						s.append(uninstalledInheritance);
@@ -204,8 +204,8 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 						DomainInheritance baseInheritance = superInheritance.getFragment(j).getBaseInheritance();
 						if (!some.contains(baseInheritance)) {
 							some.add(baseInheritance);
-							if (baseInheritance instanceof ReflectiveExecutorType) {
-								((ReflectiveExecutorType)baseInheritance).addSubInheritance(this);
+							if (baseInheritance instanceof ReflectiveType) {
+								((ReflectiveType)baseInheritance).addSubInheritance(this);
 							}
 						}
 					}
@@ -250,7 +250,7 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
 		if (this != oclAnyInheritance) {
 			for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
-				if ((superInheritance instanceof ReflectiveExecutorType) && !((ReflectiveExecutorType)superInheritance).isInstalled()) {
+				if ((superInheritance instanceof ReflectiveType) && !((ReflectiveType)superInheritance).isInstalled()) {
 					return false;
 				}
 			}
@@ -265,7 +265,7 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 		return fragments != null;
 	}
 
-	public void removeSubInheritance(ReflectiveExecutorType subInheritance) {
+	public void removeSubInheritance(ReflectiveType subInheritance) {
 		if (knownSubInheritances != null) {
 			knownSubInheritances.remove(subInheritance);
 		}
@@ -275,16 +275,16 @@ public abstract class ReflectiveExecutorType extends AbstractInheritance impleme
 		if (fragments != null) {
 			for (DomainFragment fragment : fragments) {
 				DomainInheritance baseInheritance = fragment.getBaseInheritance();
-				if (baseInheritance instanceof ReflectiveExecutorType) {
-					((ReflectiveExecutorType)baseInheritance).removeSubInheritance(this);
+				if (baseInheritance instanceof ReflectiveType) {
+					((ReflectiveType)baseInheritance).removeSubInheritance(this);
 				}
 			}
 			fragments = null;
 			indexes = null;
 			if (knownSubInheritances != null) {
-				Set<ReflectiveExecutorType> previouslyKnownSubInheritances = knownSubInheritances;
+				Set<ReflectiveType> previouslyKnownSubInheritances = knownSubInheritances;
 				knownSubInheritances = null;
-				for (ReflectiveExecutorType subInheritance : previouslyKnownSubInheritances) {
+				for (ReflectiveType subInheritance : previouslyKnownSubInheritances) {
 					subInheritance.uninstall();
 				}
 			}
