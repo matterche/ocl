@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.impl.*
 var xmiSlot = "xmi"
 var pivotSlot = "pivot"
 var oclSlot = "ocl"
-var umlFolder = "/UML-2.5/XMI-4-Jan-2012"
+var umlFolder = "/UML-2.5/XMI-5-Jan-2012"
  
 /**
  *	Generate the Pivot Model, by performing the merge to create the flattened package
@@ -53,6 +53,13 @@ Workflow {
     	modelSlot = "${xmiSlot}"
     	uri = "${umlFolder}/UML.xmi"
     	nsURI = "http:///UML2-5"
+    }
+    component = UMLAssociationNormalizer { skipOnErrors = true
+    	modelSlot = "${xmiSlot}"
+    	uri = "${umlFolder}/UML.pivot.uml"
+    }
+    component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
+    	modelSlot = "${xmiSlot}"
     }
     component = UML2PivotLoader { skipOnErrors = true
     	umlSlot = "${xmiSlot}"
