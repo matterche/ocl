@@ -202,29 +202,27 @@ public class LoadTests extends XtextTestCase
 			metaModelManager = new MetaModelManager();
 		}
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-		Resource xtextResource = null;
+		Resource ecoreResource = null;
 		try {
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
-			xtextResource = resourceSet.getResource(inputURI, true);
+			ecoreResource = resourceSet.getResource(inputURI, true);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-			assertNoResourceErrors("Load failed", xtextResource);
+			assertNoResourceErrors("Load failed", ecoreResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", ecoreResource);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-			assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+			assertNoValidationErrors("Validation errors", ecoreResource.getContents().get(0));
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
-			xtextResource.setURI(output2URI);
+			ecoreResource.setURI(output2URI);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
-			xtextResource.save(null);
+			ecoreResource.save(null);
 	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-			assertNoResourceErrors("Save failed", xtextResource);
+			assertNoResourceErrors("Save failed", ecoreResource);
+			ecoreResource.setURI(inputURI);
 		}
 		finally {
-			if (xtextResource instanceof BaseCSResource) {
-				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
-				adapter.dispose();
-			}
 			metaModelManager.dispose();
+			unloadResourceSet(resourceSet);
 		}		
 //		Resource xmiResource = resourceSet.createResource(outputURI);
 //		xmiResource.getContents().addAll(xtextResource.getContents());

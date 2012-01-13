@@ -165,6 +165,7 @@ public class XtextTestCase extends PivotTestCase
 			}
 		}
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
+		unloadResourceSet(reloadResourceSet);
 	}
 	
 	public static void assertSameModel(Resource expectedResource, Resource actualResource) throws IOException, InterruptedException {
