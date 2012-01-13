@@ -70,7 +70,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		}
 		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		}
 	}
 
