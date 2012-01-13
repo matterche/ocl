@@ -104,9 +104,13 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		Type pType = ecore2pivot.getCreated(Type.class, eClassifier);
 		List<Constraint> ownedRules = pType.getOwnedRules();
 		for (Constraint rule : ownedRules) {
-			if (rule.getStereotype().equals(UMLReflection.INVARIANT) && rule.getName().equals(key)) {
+			String ruleName = rule.getName();
+			if (ruleName == null) {
+				ruleName = "";
+			}
+			if (rule.getStereotype().equals(UMLReflection.INVARIANT) && ruleName.equals(key)) {
 				String prefix = UML2GenModelUtil.getInvariantPrefix(genModel);
-				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, prefix + rule.getName());
+				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(rule, prefix + ruleName);
 				((EClass)eClassifier).getEOperations().add(eOperation);
 				ecore2pivot.addMapping(eOperation, rule);
 				EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT, "body", body);
