@@ -54,13 +54,13 @@
 
 [template public generateType(pType : Type, genPackage : GenPackage)]
 [for (pRule : Constraint | pType.ownedRule->select(stereotype = 'invariant'))]
-[file (pType.getFragmentURI() + '==' + pRule.name, false, 'UTF-8')]
+[file (pType.getFragmentURI() + '==' + pRule.getRuleName(), false, 'UTF-8')]
 [expandKnownImports(knownImports(), pRule.generateTypeRule(pType, genPackage))/]
 [/file][/for][/template]
 
 [template public generateTypeRule(pRule : Constraint, pType : Type, genPackage : GenPackage)]
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
-[let constraintName : String = '_' + pRule.stereotype + '_' + pRule.name]
+[let constraintName : String = '_' + pRule.getRuleStereotype() + '_' + pRule.getRuleName()]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pType)]
 [if (expInOcl.contextVariable->notEmpty())]
 /*
@@ -96,17 +96,17 @@ try {
 			else {
 				objectLabel = String.valueOf(result);
 			}
-			message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, "[genPackage.getOperationID(pType, pRule, false)/]", objectLabel);
+			message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, new Object['[]'/]{"[pType.name/]", "[genPackage.getOperationID(pType, pRule, false)/]", objectLabel});
 		}
 	    diagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>(severity, <%[genPackage.getQualifiedValidatorClassName()/]%>.DIAGNOSTIC_SOURCE, <%[genPackage.getQualifiedValidatorClassName()/]%>.[genPackage.getOperationID(pType, pRule, true)/], message, new Object ['[]'/] { result }));
 [else]
-		String message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, "[pRule.name/]", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context));
+		String message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationConstraintIsNotSatisfied_ERROR_, new Object['[]'/]{"[pType.name/]", "[pRule.getRuleName()/]", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context)});
 	    diagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>(severity, <%[genPackage.getQualifiedValidatorClassName()/]%>.DIAGNOSTIC_SOURCE, <%[genPackage.getQualifiedValidatorClassName()/]%>.[genPackage.getOperationID(pType, pRule, true)/], message, new Object ['[]'/] { this }));
 [/if]
 	}
 	return false;
 } catch (<%InvalidValueException%> e) {
-	String message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationEvaluationFailed_ERROR_, new Object['[]'/]{"[pType.name/]", "[pRule.name/]", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context)});
+	String message = <%org.eclipse.osgi.util.NLS%>.bind(<%EvaluatorMessages%>.ValidationEvaluationFailed_ERROR_, new Object['[]'/]{"[pType.name/]", "[pRule.getRuleName()/]", <%org.eclipse.emf.ecore.util.EObjectValidator%>.getObjectLabel(this, context)});
 	throw new <%org.eclipse.emf.common.util.WrappedException%>(message, e);
 }[/let][/let][else]
 /*
@@ -124,7 +124,7 @@ return false; // FIXME errors in OCL definition of [pRule.prettyPrintName()/]
 
 [template public generateOperationRule(pRule : Constraint, pType : Type, genPackage : GenPackage, pOperation : Operation)]
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
-[let constraintName : String = '_' + pOperation.name + '_' + pRule.stereotype + '_' + pRule.name]
+[let constraintName : String = '_' + pOperation.name + '_' + pRule.getRuleStereotype() + '_' + pRule.getRuleName()]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pOperation)]
 [let ecoreReturnType : String = genPackage.getOperationReturnType(pOperation)]
 [if (expInOcl.contextVariable->notEmpty())]
@@ -168,7 +168,7 @@ return null; // FIXME errors in OCL definition of [pOperation.prettyPrintName()/
 
 [template public generatePropertyRule(pRule : Constraint, pType : Type, genPackage : GenPackage, pProperty : Property)]
 [let className : String = pType.getQualifiedBodiesClassName(genPackage)]
-[let constraintName : String = '_' + pProperty.name + '_' + pRule.stereotype + '_' + pRule.name]
+[let constraintName : String = '_' + pProperty.name + '_' + pRule.getRuleStereotype() + '_' + pRule.getRuleName()]
 [let expInOcl : ExpressionInOcl = pRule.specification.getExpressionInOcl(pProperty)]
 [let ecoreReturnType : String = genPackage.getPropertyType(pProperty)]
 [if (expInOcl.contextVariable->notEmpty())]
@@ -209,3 +209,8 @@ final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/] = valueFac
 [expInOcl.type.gatherConstants(genPackage, expInOcl)/]
 [/template]
 
+[query public getRuleName(pRule : Constraint) : String = 
+if pRule.name->notEmpty() then pRule.name else '' endif /]
+
+[query public getRuleStereotype(pRule : Constraint) : String = 
+if pRule.stereotype->notEmpty() then pRule.stereotype else '' endif /]

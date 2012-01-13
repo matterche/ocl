@@ -601,7 +601,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature structuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToWrongType");
 		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Property.class, structuralFeature));
 		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
-			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "CompatibleInitialiser", objectLabel));
+			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleInitialiser", objectLabel));
 //			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
 	}
 
@@ -843,7 +843,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToWrongType");
 		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Operation.class, eOperation));
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
-			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "CompatibleReturn", objectLabel));
+			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Operation", "CompatibleReturn", objectLabel));
 //			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
 	}
 
