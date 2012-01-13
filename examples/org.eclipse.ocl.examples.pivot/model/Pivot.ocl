@@ -66,3 +66,65 @@ def: CompatibleBody(bodySpecification : ValueSpecification) : Boolean =
 	endif
 
 def: makeParameter() : Parameter = Parameter{name='name'}
+
+---ExpressionWFRs.ocl-----
+
+--context PropertyCallExp
+/** The type of the call expression is the type of the referred property. */
+--inv TypeIsReferredPropertyType: type = referredProperty.type
+
+--context BooleanLiteralExp
+/** The type of a boolean Literal expression is the type Boolean. */
+--inv TypeIsBoolean: self.type.name = 'Boolean'
+
+context CollectionLiteralExp
+/** 'Collection' is an abstract class on the M1 level and has no M0 instances. */
+inv CollectionKindIsConcrete: kind <> CollectionKind::Collection
+
+context CollectionLiteralExp
+/** The type of a collection literal expression is determined by the collection kind selection and the common
+supertype of all elements. Note that the definition below defines only an upper bound on the elementType. The usage of
+the CollectionLiteralExp defines a lower bound. If the elementType is not explicitly specified, the elementType must be
+chosen to ensure the well-formedness of the elements of the CollectionLiteralExp and the usage of the
+CollectionLiteralExp.
+
+For instance in
+acc : Set(Real) = Set{1}->excluding(-1)
+Set{1} is well formed for any type Set(T) where T ≤ UnlimitedNatural. Well-formedness of the excluding operation call
+requires T ≤ Integer, and well-formedness of the initializer requires Real ≤ T. The overall expression is therefore only
+well-formed if Real ≤ T ≤ Integer. Either Set(Real) or Set(Integer) are well-formed. The most general type, Set(Real), is
+recommended since it minimizes type conversions and can often be easily deduced by considering the result type.
+*/
+inv SetKindIsSet: kind = CollectionKind::Set implies type.oclIsKindOf (SetType)
+inv OrderedSetKindIsOrderedSet: kind = CollectionKind::OrderedSet implies type.oclIsKindOf (OrderedSetType)
+inv SequenceKindIsSequence: kind = CollectionKind::Sequence implies type.oclIsKindOf (SequenceType)
+inv BagKindIsBag: kind = CollectionKind::Bag implies type.oclIsKindOf (BagType)
+--inv: let elementType : Type = part->iterate (p; c : Classifier = OclVoid | c.commonSuperType (p.type))
+--in elementType.conformsTo(type.oclAsType (CollectionType).elementType)
+
+/* CollectionLiteralPart
+No additional well-formedness rules. */
+
+--context CollectionItem
+/** The type of a CollectionItem is the type of the item expression. */
+--inv TypeIsItemType: type = item.type
+
+--context CollectionRange
+/** The type of a CollectionRange is the common supertype of the expressions taking part in the range. */
+--inv: type = first.type.commonSuperType (last.type)
+
+--context EnumLiteralExp
+/** The type of an enum Literal expression is the type of the referred literal. */
+--inv TypeIsEnumerationType: self.type = referredEnumLiteral.enumeration
+
+--context IfExp
+/** The type of the condition of an if expression must be Boolean. */
+--inv ConditionTypeIsBoolean: self.condition.type.oclIsKindOf(PrimitiveType) and self.condition.type.name = 'Boolean'
+
+/* The type of the if expression is the most common supertype of the else and then expressions. */
+--context IfExp
+--inv TypeIsCommonType: self.type = thenExpression.type.commonSuperType(elseExpression.type)
+
+context IntegerLiteralExp
+/** The type of an integer Literal expression is the type Integer. */
+inv TypeIsInteger: self.type.name = 'Integer'

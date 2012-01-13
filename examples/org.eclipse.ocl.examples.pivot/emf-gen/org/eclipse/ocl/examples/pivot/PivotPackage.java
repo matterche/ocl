@@ -4488,13 +4488,58 @@ public interface PivotPackage
 	int COLLECTION_LITERAL_EXP___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP = LITERAL_EXP___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Bag Kind Is Bag</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_BAG_KIND_IS_BAG__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Sequence Kind Is Sequence</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_SEQUENCE_KIND_IS_SEQUENCE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Validate Ordered Set Kind Is Ordered Set</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Validate Set Kind Is Set</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_SET_KIND_IS_SET__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Collection Kind Is Concrete</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP = LITERAL_EXP_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Collection Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
+	int COLLECTION_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -6875,13 +6920,22 @@ public interface PivotPackage
 	int INTEGER_LITERAL_EXP___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP = NUMERIC_LITERAL_EXP___VALIDATE_NOT_OWN_SELF__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Type Is Integer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP___VALIDATE_TYPE_IS_INTEGER__DIAGNOSTICCHAIN_MAP = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
+	int INTEGER_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15477,6 +15531,56 @@ public interface PivotPackage
 	EReference getCollectionLiteralExp_Part();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateBagKindIsBag(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Bag Kind Is Bag</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Bag Kind Is Bag</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateBagKindIsBag(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateBagKindIsBag__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateSequenceKindIsSequence(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Sequence Kind Is Sequence</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Sequence Kind Is Sequence</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateSequenceKindIsSequence(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateSequenceKindIsSequence__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateOrderedSetKindIsOrderedSet(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Ordered Set Kind Is Ordered Set</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Ordered Set Kind Is Ordered Set</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateOrderedSetKindIsOrderedSet(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateOrderedSetKindIsOrderedSet__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateSetKindIsSet(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Set Kind Is Set</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Set Kind Is Set</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateSetKindIsSet(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateSetKindIsSet__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateCollectionKindIsConcrete(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Collection Kind Is Concrete</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Collection Kind Is Concrete</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#validateCollectionKindIsConcrete(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CollectionRange <em>Collection Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15839,6 +15943,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getIntegerLiteralExp_IntegerSymbol();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.IntegerLiteralExp#validateTypeIsInteger(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Type Is Integer</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Type Is Integer</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.IntegerLiteralExp#validateTypeIsInteger(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getIntegerLiteralExp__ValidateTypeIsInteger__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.NumericLiteralExp <em>Numeric Literal Exp</em>}'.
@@ -18485,6 +18599,46 @@ public interface PivotPackage
 		EReference COLLECTION_LITERAL_EXP__PART = eINSTANCE.getCollectionLiteralExp_Part();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Bag Kind Is Bag</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_BAG_KIND_IS_BAG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateBagKindIsBag__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Sequence Kind Is Sequence</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_SEQUENCE_KIND_IS_SEQUENCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateSequenceKindIsSequence__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Ordered Set Kind Is Ordered Set</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_ORDERED_SET_KIND_IS_ORDERED_SET__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateOrderedSetKindIsOrderedSet__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Set Kind Is Set</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_SET_KIND_IS_SET__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateSetKindIsSet__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Collection Kind Is Concrete</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COLLECTION_LITERAL_EXP___VALIDATE_COLLECTION_KIND_IS_CONCRETE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCollectionLiteralExp__ValidateCollectionKindIsConcrete__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionRangeImpl <em>Collection Range</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -18775,6 +18929,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute INTEGER_LITERAL_EXP__INTEGER_SYMBOL = eINSTANCE.getIntegerLiteralExp_IntegerSymbol();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Type Is Integer</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation INTEGER_LITERAL_EXP___VALIDATE_TYPE_IS_INTEGER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getIntegerLiteralExp__ValidateTypeIsInteger__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
