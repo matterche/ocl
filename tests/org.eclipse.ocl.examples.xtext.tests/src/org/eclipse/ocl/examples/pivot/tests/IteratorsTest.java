@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -398,7 +399,7 @@ public class IteratorsTest extends PivotTestSuite
      * Tests parsing the closure of operation calls.
      */
     public void test_closure_operations() {
-    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
+    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
@@ -425,7 +426,7 @@ public class IteratorsTest extends PivotTestSuite
      * body type with the iterator variable (source element) type.
      */
     public void test_closureValidation_typeConformance_154695() {
-    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
+    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
     	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
