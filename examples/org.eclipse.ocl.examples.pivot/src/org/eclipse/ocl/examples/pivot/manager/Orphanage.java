@@ -21,6 +21,7 @@ import java.util.WeakHashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -44,6 +45,16 @@ public class Orphanage extends ResourceImpl
 		private WeakHashMap<EObject, Object> weakContents = new WeakHashMap<EObject, Object>();
 
 		@Override
+		public void clear() {
+			for (EObject eObject : weakContents.keySet()) {
+				if (eObject instanceof InternalEObject) {
+					((InternalEObject)eObject).eSetResource(null, null);
+				}
+			}
+			weakContents.clear();
+		}
+
+		@Override
 		public boolean contains(Object object) {
 			return weakContents.containsKey(object);
 		}
@@ -55,7 +66,14 @@ public class Orphanage extends ResourceImpl
 	}
 
 	public static final URI ORPHANAGE_URI = URI.createURI(PivotConstants.ORPHANAGE_URI);
-	public static final Orphanage INSTANCE = new Orphanage(ORPHANAGE_URI);
+	private static Orphanage INSTANCE = null;
+	
+	public static void disposeInstance() {
+		if (INSTANCE != null) {
+			INSTANCE.unload();
+			INSTANCE = null;
+		}
+	}
 
 	/**
 	 * Return the Orphanage for an eObject, which is the Orphanage resource in the same ResourceSet as
@@ -79,7 +97,10 @@ public class Orphanage extends ResourceImpl
 	 */
 	public static Orphanage getOrphanage(ResourceSet resourceSet) {
 		if (resourceSet == null) {
-			return Orphanage.INSTANCE;
+			if (INSTANCE == null) {
+				INSTANCE = new Orphanage(ORPHANAGE_URI);
+			}
+			return INSTANCE;
 		}
 		for (Resource aResource : resourceSet.getResources()) {
 			if (aResource instanceof Orphanage) {
@@ -93,10 +114,20 @@ public class Orphanage extends ResourceImpl
 	
 	public Orphanage(URI uri) {
 		super(uri);
+		setLoaded(true);
 	}
 
 	public void add(EObject eObject) {
 		getContents().add(eObject);
+	}
+
+	@Override
+	protected void doUnload() {
+		super.doUnload();
+		if (contents != null) {
+			contents.clear();
+			contents = null;
+		}
 	}
 
 	@Override
