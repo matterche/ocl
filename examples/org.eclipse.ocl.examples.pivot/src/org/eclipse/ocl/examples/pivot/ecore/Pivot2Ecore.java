@@ -88,7 +88,7 @@ public class Pivot2Ecore extends AbstractConversion
 
 	public static EOperation createConstraintEOperation(Constraint pivotConstraint, String operationName) {
 		EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
-		eOperation.setName(operationName);
+		eOperation.setName(operationName != null ? operationName : "");
 		eOperation.setEType(EcorePackage.Literals.EBOOLEAN);
 		EParameter firstParameter = EcoreFactory.eINSTANCE.createEParameter();
 		firstParameter.setName("diagnostics");
