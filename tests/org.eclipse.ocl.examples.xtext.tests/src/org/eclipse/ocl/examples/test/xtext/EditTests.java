@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
-import org.eclipse.ocl.examples.pivot.manager.TypeSpecializationAdapter;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -294,17 +294,17 @@ public class EditTests extends XtextTestCase
 		//
 		Type myType = metaModelManager.getPrimaryType("http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "MyType");
 		SequenceType sequenceType = metaModelManager.getSequenceType();
-		TypeSpecializationAdapter sequenceTypeSpecializations = TypeSpecializationAdapter.getAdapter(sequenceType);
-		WeakReference<Type> sequenceMyType = new WeakReference<Type>(sequenceTypeSpecializations.findSpecializedType(Collections.singletonList(myType)));
+		TypeServer sequenceTypeServer = metaModelManager.getTypeServer(sequenceType);
+		WeakReference<Type> sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNull(sequenceMyType.get()); 
 		//
 		doRename(xtextResource, pivotResource, "Boolean", "Sequence<MyType>");
-		sequenceMyType = new WeakReference<Type>(sequenceTypeSpecializations.findSpecializedType(Collections.singletonList(myType)));
+		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNotNull(sequenceMyType.get()); 
 		//		
 		doRename(xtextResource, pivotResource, "Sequence<MyType>", "Set<MyType>");
 		System.gc();
-		sequenceMyType = new WeakReference<Type>(sequenceTypeSpecializations.findSpecializedType(Collections.singletonList(myType)));
+		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNull(sequenceMyType.get()); 
 	}
 }

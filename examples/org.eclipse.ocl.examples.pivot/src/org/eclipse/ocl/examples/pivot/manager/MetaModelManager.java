@@ -1392,7 +1392,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return null;
 		}
 		Type type2 = (Type) type1.getUnspecializedElement();
-		TypeServer typeServer = getTypeTracker(type2 != null ? type2 : type1).getTypeServer();
+		TypeServer typeServer = getTypeServer(type2 != null ? type2 : type1);
 		return typeServer.getExecutorType();
 	}
 
@@ -1438,9 +1438,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (isUnspecialized) {
 			return libraryType;	
 		}
-		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(libraryType);
+		TypeServer typeServer = getTypeServer(libraryType);
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		T specializedType = (T) typeServer.getSpecializedType(templateArguments);
 		return specializedType;
 	}
 
@@ -1577,6 +1577,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				}
 				if (pivotMetaModel == null) {
 					OclMetaModel metaModelResource = new OclMetaModel(this, stdlibPackage.getName(), stdlibPackage.getNsURI());	// FIXME duplication of TypeCaches.loadPivotMetaModel
+					pivotResourceSet.getResources().add(metaModelResource);
 					pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
 					addPackage(pivotMetaModel);
 				}
@@ -1643,11 +1644,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		Type pivotClass = pivotOperation.getOwningType();
 		TypeTracker typeTracker = packageManager.findTypeTracker(pivotClass);
 		if (typeTracker != null) {
-			return typeTracker.getTypeServer().getOperation(pivotOperation);
+			Operation operation = typeTracker.getTypeServer().getOperation(pivotOperation);
+			if (operation != null) {
+				return operation;
+			}
 		}
-		else {
-			return pivotOperation;
-		}
+		return pivotOperation;
 	}
 
 	/**
@@ -1877,9 +1879,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 	
 	protected <T extends Type> T getSpecializedTypeServer(T unspecializedType, List<? extends ParameterableElement> templateArguments) {
-		TypeSpecializationAdapter typeSpecializationAdapter = TypeSpecializationAdapter.getAdapter(unspecializedType);
+		TypeServer typeServer = getTypeServer(unspecializedType);
 		@SuppressWarnings("unchecked")
-		T specializedType = (T) typeSpecializationAdapter.getSpecializedType(templateArguments);
+		T specializedType = (T) typeServer.getSpecializedType(templateArguments);
 		return specializedType;
 	}
 	
@@ -1965,6 +1967,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClass.eResource(), this);
 		Type pivotType = ecore2Pivot.getCreated(Type.class, eClass);
 		return pivotType;
+	}
+	
+	public TypeServer getTypeServer(Type pivotType) {
+		return getTypeTracker(pivotType).getTypeServer();
 	}
 	
 	public TypeTracker getTypeTracker(Type pivotType) {

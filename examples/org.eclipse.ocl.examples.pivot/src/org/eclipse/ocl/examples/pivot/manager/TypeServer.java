@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot.manager;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,15 +24,26 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.library.executor.ReflectiveType;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.executor.PivotReflectivePackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -39,6 +51,9 @@ import com.google.common.collect.Iterables;
 /**
  * A TypeServer adapts the primary Type to coordinate the coherent behaviour of a primary and one or more
  * secondary Types as required for Complete OCL type extension.
+ * 
+ * For specializeable types, a TypeServer keeps track of zero or more specializations
+ * using WeakReferences so that the specializations vanish once no longer required.
  */
 public class TypeServer extends TypeTracker
 {
@@ -65,6 +80,11 @@ public class TypeServer extends TypeTracker
 	 * Compiled inheritance relationships used by compiled expressions.
 	 */
 	private ReflectiveType executorType = null;
+	
+	/**
+	 * Map from first actual type to list of specialized types for further actual types. 
+	 */
+	private Map<ParameterableElement, List<WeakReference<Type>>> firstActual2specializations = null;
 	
 	protected TypeServer(PackageManager packageManager, Type primaryType) {
 		super(packageManager, primaryType);
@@ -124,6 +144,50 @@ public class TypeServer extends TypeTracker
 			Property pivotProperty = (Property)object;
 			addProperty(pivotProperty);
 		}
+	}
+	
+	protected Type createSpecialization(List<? extends ParameterableElement> templateArguments) {
+		Type unspecializedType = getTarget();
+		String typeName = unspecializedType.getName();
+		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		EClass eClass = unspecializedType.eClass();
+		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
+		Type specializedType = (Type) eFactoryInstance.create(eClass);		
+		specializedType.setName(typeName);
+		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
+		templateBinding.setSignature(templateSignature);
+		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
+		for (int i = 0; i < templateParameters.size(); i++) {
+			TemplateParameter formalParameter = templateParameters.get(i);
+			ParameterableElement actualType = templateArguments.get(i);
+			allBindings.put(formalParameter, templateArguments.get(i));
+			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+			templateParameterSubstitution.setFormal(formalParameter);
+			if ((actualType != null) && (actualType.eResource() == null)) {
+				templateParameterSubstitution.setOwnedActual(actualType);
+			}
+			else {
+				templateParameterSubstitution.setActual(actualType);
+			}
+			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+		}
+		specializedType.getTemplateBindings().add(templateBinding);
+		resolveSuperClasses(specializedType, unspecializedType, allBindings);
+		if (specializedType instanceof CollectionType) {
+			ParameterableElement templateArgument = templateArguments.get(0);
+			CollectionType specializedCollectionType = (CollectionType)specializedType;
+			specializedCollectionType.setElementType((Type) templateArgument);
+		}
+		else if (specializedType instanceof ClassifierType) {
+			ParameterableElement templateArgument = templateArguments.get(0);
+			ClassifierType specializedClassifierType = (ClassifierType)specializedType;
+			specializedClassifierType.setInstanceType((Type)templateArgument);
+		}
+		specializedType.setUnspecializedElement(unspecializedType);
+		Orphanage.getOrphanage(getMetaModelManager().getPivotResourceSet()).add(specializedType);
+//		specializeableClassServer.metaModelManager.addOrphanClass(specializedType);
+		return specializedType;
 	}
 
 	@Override
@@ -186,6 +250,57 @@ public class TypeServer extends TypeTracker
 		return null;
 	}
 
+	protected Type findSpecialization(List<WeakReference<Type>> partialSpecializations, List<? extends ParameterableElement> templateArguments) {
+		for (int j = partialSpecializations.size(); --j >= 0; ) {
+			Type specializedType = partialSpecializations.get(j).get();
+			if (specializedType == null) {
+				partialSpecializations.remove(j);
+			}
+			else {
+				int i = 0;
+				boolean gotIt = true;
+				for (TemplateBinding templateBinding : specializedType.getTemplateBindings()) {
+					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitutions()) {
+						if (i > 0) {
+							ParameterableElement requiredTemplateArgument = templateArguments.get(i);
+							ParameterableElement actualTemplateArgument = parameterSubstitution.getActual();
+							if (requiredTemplateArgument != actualTemplateArgument) {			// WIP isEquals ???
+								gotIt = false;
+								break;
+							}
+						}
+						i++;
+					}
+					if (!gotIt) {
+						break;
+					}
+				}
+				if (gotIt) {
+					return specializedType;
+				}
+			}
+		}
+		return null;
+	}
+
+	public synchronized Type findSpecializedType(List<? extends ParameterableElement> templateArguments) {
+		TemplateSignature templateSignature = getTarget().getOwnedTemplateSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getParameters();
+		int iMax = templateParameters.size();
+		if (templateArguments.size() != iMax) {
+			return null;
+		}
+		if (firstActual2specializations == null) {
+			return null;
+		}
+		ParameterableElement firstTemplateArgument = templateArguments.get(0);
+		List<WeakReference<Type>> partialSpecializations = firstActual2specializations.get(firstTemplateArgument);
+		if (partialSpecializations == null) {
+			return null;
+		}
+		return findSpecialization(partialSpecializations, templateArguments);
+	}
+
 	protected PivotReflectivePackage getExecutorPackage() {
 		MetaModelManager metaModelManager = getMetaModelManager();
 		return metaModelManager.getPackageTracker(target.getPackage()).getPackageServer().getExecutorPackage();
@@ -232,6 +347,30 @@ public class TypeServer extends TypeTracker
 			return null;
 		}
 		return properties.isEmpty() ? null : properties.get(0);
+	}
+
+	public synchronized Type getSpecializedType(List<? extends ParameterableElement> templateArguments) {
+		TemplateSignature templateSignature = getTarget().getOwnedTemplateSignature();
+		List<TemplateParameter> templateParameters = templateSignature.getParameters();
+		int iMax = templateParameters.size();
+		if (templateArguments.size() != iMax) {
+			return null;
+		}
+		if (firstActual2specializations == null) {
+			firstActual2specializations = new HashMap<ParameterableElement, List<WeakReference<Type>>>();
+		}
+		ParameterableElement firstTemplateArgument = templateArguments.get(0);
+		List<WeakReference<Type>> partialSpecializations = firstActual2specializations.get(firstTemplateArgument);
+		if (partialSpecializations == null) {
+			partialSpecializations = new ArrayList<WeakReference<Type>>();
+			firstActual2specializations.put(firstTemplateArgument, partialSpecializations);
+		}
+		Type specializedType = findSpecialization(partialSpecializations, templateArguments);
+		if (specializedType == null) {
+			specializedType = createSpecialization(templateArguments);
+			partialSpecializations.add(new WeakReference<Type>(specializedType));
+		}
+		return specializedType;
 	}
 
 	public Iterable<Type> getTypes() {
@@ -325,6 +464,40 @@ public class TypeServer extends TypeTracker
 				}
 			}
 //			removeOrphan(pivotProperty);
+		}
+	}
+
+	protected void resolveSuperClasses(Type specializedClass, Type libraryClass, Map<TemplateParameter, ParameterableElement> allBindings) {
+		for (Type superType : libraryClass.getSuperClasses()) {
+			List<TemplateBinding> superTemplateBindings = superType.getTemplateBindings();
+			if (superTemplateBindings.size() > 0) {
+//				Map<TemplateParameter, ParameterableElement> superTemplateArgumentMap = new HashMap<TemplateParameter, ParameterableElement>();
+				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
+				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
+					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getParameterSubstitutions()) {
+						ParameterableElement superActual = superParameterSubstitution.getActual();
+//						TemplateParameter superFormal = superParameterSubstitution.getFormal();
+						TemplateParameter superTemplateParameter = superActual.getTemplateParameter();
+						ParameterableElement actualActual = allBindings.get(superTemplateParameter);
+//						superTemplateArgumentMap.put(superFormal, actualActual);
+						superTemplateArgumentList.add(actualActual);
+					}
+				}
+				Type unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(superType);
+				TypeServer superTypeServer = getMetaModelManager().getTypeServer(unspecializedSuperType);
+/*				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
+				for (TemplateBinding templateBinding : superTemplateBindings) {
+					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitutions()) {
+						ParameterableElement templateArgument = parameterSubstitution.getActual();
+						superTemplateArgumentList.add(templateArgument);
+					}
+				} */
+				Type specializedSuperType = superTypeServer.getSpecializedType(superTemplateArgumentList);
+				specializedClass.getSuperClasses().add(specializedSuperType);
+			}
+			else {
+				specializedClass.getSuperClasses().add(superType);
+			}
 		}
 	}
 }
