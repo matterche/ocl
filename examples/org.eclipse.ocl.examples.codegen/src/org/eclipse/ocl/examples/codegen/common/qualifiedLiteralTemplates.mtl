@@ -22,6 +22,10 @@
 [import org::eclipse::ocl::examples::codegen::common::nameQueries/]
 [import org::eclipse::ocl::examples::codegen::common::pivotQueries/]
 [import org::eclipse::ocl::examples::codegen::common::stringQueries/]
+	
+[template public emitQualifiedLiteralName(ast : CollectionType, genPackage : GenPackage)]
+[let rawAst : CollectionType = if ast.unspecializedElement <> null then ast.unspecializedElement.oclAsType(CollectionType) else ast endif]
+<%[rawAst.getQualifiedTablesClassName(genPackage)/]%>.Types._[ast.encodeName()/][/let][/template]
 
 [template public emitQualifiedLiteralName(ast : Element, genPackage : GenPackage)]
 null[/template]

@@ -653,7 +653,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.3"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
           <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.10/ast">
@@ -859,7 +859,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.1"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Iteration"/>
           <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.15/ast">
@@ -945,7 +945,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.1"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Iteration"/>
           <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.16/ast">
@@ -1039,7 +1039,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.1"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
           <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.18/ast">
@@ -1233,7 +1233,7 @@
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
           <body xsi:type="mtl:TemplateInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
+            <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.3"/>
             <argument xsi:type="ocl.ecore:PropertyCallExp">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
               <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.20/ast">
@@ -1695,7 +1695,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.5"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="type" referredVariable="/0/emitConstants.28/type">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </argument>
@@ -1733,7 +1733,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = valueFactory.createTypeValue("/>
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.5"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
           <source xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitConstants.29/ast">
@@ -2648,7 +2648,7 @@
     <ownedModuleElement xsi:type="mtl:Template" name="emitLiteral" visibility="Public">
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
+        <definition href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.5"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="ast" referredVariable="/0/emitLiteral.12/ast">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </argument>
@@ -4508,6 +4508,18 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getSharedLibrary">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="genPackageQueries.emtl#/0/getSharedLibrary"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="getTablesClassName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -4593,6 +4605,18 @@
         </eParameters>
         <eParameters name="type">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="hasSharedLibrary">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="genPackageQueries.emtl#/0/hasSharedLibrary"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
         </eParameters>
       </eOperations>
       <eOperations name="isProperty">
@@ -4805,7 +4829,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Element"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//CollectionType"/>
         </eParameters>
         <eParameters name="genPackage">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
@@ -4820,7 +4844,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Element"/>
         </eParameters>
         <eParameters name="genPackage">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
@@ -4835,7 +4859,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
         </eParameters>
         <eParameters name="genPackage">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
@@ -4850,7 +4874,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//TupleType"/>
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
         </eParameters>
         <eParameters name="genPackage">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
@@ -4862,6 +4886,21 @@
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="ast">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//TupleType"/>
+        </eParameters>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="emitQualifiedLiteralName">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.5"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="ast">
@@ -5557,7 +5596,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName"/>
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.1"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="genPackage">
@@ -6258,7 +6297,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.3"/>
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="genPackage">
@@ -6361,7 +6400,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.4"/>
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.5"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="genPackage">
@@ -6743,6 +6782,15 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getSharedLibrary">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="genPackageQueries.emtl#/0/getSharedLibrary"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
       <eOperations name="getTablesClassName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -6787,6 +6835,15 @@
         <eParameters name="type">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
+      </eOperations>
+      <eOperations name="hasSharedLibrary">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="genPackageQueries.emtl#/0/hasSharedLibrary"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
       </eOperations>
       <eOperations name="isProperty">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6841,6 +6898,23 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionType_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/3.1.0/Pivot#//CollectionType"/>
+      </eAnnotations>
+      <eOperations name="emitQualifiedLiteralName">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="genPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Operation_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
@@ -6850,7 +6924,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.1"/>
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="genPackage">
@@ -6879,7 +6953,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.2"/>
+          <references href="qualifiedLiteralTemplates.emtl#/0/emitQualifiedLiteralName.3"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="genPackage">

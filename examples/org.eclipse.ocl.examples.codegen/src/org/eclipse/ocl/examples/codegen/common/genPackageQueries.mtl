@@ -118,6 +118,9 @@ else if arity = 1 then 'BinaryOperation'
 else if arity = 2 then 'TernaryOperation'
 else 'Operation' endif endif endif/]
 
+[query public getSharedLibrary(genPackage : GenPackage) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'getSharedLibrary(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
+
 [query public getTablesClassName(genPackage : GenPackage) : String = 
 genPackage.prefix + 'Tables' /]
 
@@ -135,6 +138,9 @@ invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasEcore(or
 
 [query public hasEcore(genPackage : GenPackage, type : Type) : Boolean = 
 invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasEcore(org.eclipse.emf.codegen.ecore.genmodel.GenPackage, org.eclipse.ocl.examples.pivot.Type)', Sequence{genPackage, type}) /]
+
+[query public hasSharedLibrary(genPackage : GenPackage) : Boolean = 
+invoke('org.eclipse.ocl.examples.codegen.common.GenPackageQueries', 'hasSharedLibrary(org.eclipse.emf.codegen.ecore.genmodel.GenPackage)', Sequence{genPackage}) /]
 
 [query public isProperty(genPackage : GenPackage, property : Property) : Boolean =
 genPackage.hasEcore(property) or ((property.opposite <> null) and genPackage.hasEcore(property.opposite))/]

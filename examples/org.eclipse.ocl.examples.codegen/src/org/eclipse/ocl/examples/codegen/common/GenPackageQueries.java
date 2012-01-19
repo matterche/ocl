@@ -40,11 +40,13 @@ import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.codegen.ecore.genmodel.util.UML2GenModelUtil;
 
@@ -293,7 +295,21 @@ public class GenPackageQueries
 	public String getQualifiedValidatorClassName(GenPackage genPackage) {
 		return genPackage.getQualifiedValidatorClassName();
 	}
-	
+
+	public String getSharedLibrary(GenPackage genPackage) {
+		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
+		PrimitiveType booleanType = metaModelManager.getBooleanType();
+		TypeServer typeServer = metaModelManager.getTypeServer(booleanType);
+		for (Type type : typeServer.getTypes()) {
+			if (type.getPackage() != thisPackage) {
+				GenPackage gPackage = getGenPackage(genPackage, type.getPackage());
+				return getInterfacePackageName(gPackage) + "." + gPackage.getPrefix() + "Tables";
+			}
+		}
+		return "";
+	}
+		
 	/**
 	 * Return  true if type has another definition counterpart. The Standard Library
 	 * providers a base definition for the pivot model.
@@ -334,6 +350,24 @@ public class GenPackageQueries
 			return false;
 		}
 		return true;
+	}
+
+	public Boolean hasSharedLibrary(GenPackage genPackage) {
+		org.eclipse.ocl.examples.pivot.Package thisPackage = getPivotPackage(genPackage);
+		MetaModelManager metaModelManager = getMetaModelManager(genPackage);
+		PrimitiveType booleanType = metaModelManager.getBooleanType();
+		TypeServer typeServer = metaModelManager.getTypeServer(booleanType);
+		boolean gotThatPackage = false;
+		boolean gotThisPackage = false;
+		for (Type type : typeServer.getTypes()) {
+			if (type.getPackage() == thisPackage) {
+				gotThisPackage = true;
+			}
+			else {
+				gotThatPackage = true;
+			}
+		}
+		return gotThisPackage && gotThatPackage;
 	}
 
 	private GenPackage loadGenPackage(ResourceSet resourceSet, URI genModelURI) {
