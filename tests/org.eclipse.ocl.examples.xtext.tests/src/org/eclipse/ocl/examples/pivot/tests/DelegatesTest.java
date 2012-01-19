@@ -1313,12 +1313,19 @@ public class DelegatesTest extends PivotTestSuite
 		if (validation.getSeverity() != Diagnostic.OK) {
 			List<Diagnostic> diagnostics = validation.getChildren();
 			if (!diagnostics.isEmpty()) {
-				StringBuilder s = new StringBuilder();
+				StringBuilder s = null;
 				for (Diagnostic diagnostic : diagnostics) {
+					if (s == null) {
+						s = new StringBuilder();
+					}
+					else {
+						s.append("\n");
+					}
 					s.append(diagnostic.getMessage());
-					s.append("\n");
 				}
-				fail(s.toString());
+				@SuppressWarnings("null")
+				String string = s.toString();
+				fail(string);
 			}
 		}
 		assertEquals("Validation severity:", Diagnostic.OK, validation.getSeverity());
