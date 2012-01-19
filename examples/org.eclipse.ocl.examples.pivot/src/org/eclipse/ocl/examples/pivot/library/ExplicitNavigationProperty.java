@@ -16,9 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot.library;
 
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
@@ -28,11 +26,8 @@ import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractProperty;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * The static instance of ExplicitNavigationProperty supports evaluation of
@@ -56,15 +51,6 @@ public class ExplicitNavigationProperty extends AbstractProperty
 			}
 		}
 		Object eValue = eObject.eGet(eFeature);
-		if (eValue instanceof Enumerator) {
-			Enumerator eEnumerator = (Enumerator) eValue;
-			EClassifier eEnum = eFeature.getEType();
-			org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = ((MetaModelManager)valueFactory.getStandardLibrary()).getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
-			EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
-			return valueFactory.createElementValue(pivotEnumLiteral);
-		}
-		else {
-			return valueFactory.valueOf(eValue, eFeature);
-		}
+		return valueFactory.valueOf(eValue, eFeature);
 	}
 }

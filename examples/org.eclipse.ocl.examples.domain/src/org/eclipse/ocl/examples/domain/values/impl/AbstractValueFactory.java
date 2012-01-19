@@ -27,15 +27,19 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.Bag;
@@ -43,6 +47,7 @@ import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.ElementValue;
+import org.eclipse.ocl.examples.domain.values.EnumerationLiteralValue;
 import org.eclipse.ocl.examples.domain.values.IntegerRange;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.InvalidValue;
@@ -235,20 +240,34 @@ public abstract class AbstractValueFactory implements ValueFactory
 
 	public ObjectValue createEObjectValue(EObject eObject) {
 		if (eObject instanceof DomainElement) {
-			if (eObject instanceof DomainClassifierType) {
-				return createTypeValue((DomainClassifierType) eObject);
-			}
 			if (eObject instanceof DomainType) {
-				DomainClassifierType classifierType = standardLibrary.getClassifierType((DomainType)eObject);
-				return createTypeValue(classifierType);
+				return createTypeValue((DomainType) eObject);
+			}
+			if (eObject instanceof DomainEnumerationLiteral) {
+				return createEnumerationLiteralValue((DomainEnumerationLiteral) eObject);
 			}
 			return createElementValue((DomainElement) eObject);
+		}
+		else if (eObject instanceof EEnumLiteral) {
+			return new EEnumLiteralValueImpl(this, (EEnumLiteral) eObject);
 		}
 		return null;
 	}
 
 	public ElementValue createElementValue(DomainElement element) {
-		return new DomainElementValueImpl(this, element);
+		return new ElementValueImpl(this, element);
+	}
+
+	public EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element) {
+		return new EnumerationLiteralValueImpl(this, element);
+	}
+
+	public InvalidValue createInvalidValue(InvalidEvaluationException exception) {
+		return new InvalidValueImpl(this, exception);
+	}
+
+	public InvalidValue createInvalidValue(InvalidValueException exception) {
+		return new InvalidValueImpl(this, new InvalidEvaluationException(null, exception));
 	}
 
 	public ObjectValue createObjectValue(Object object) {
@@ -380,13 +399,19 @@ public abstract class AbstractValueFactory implements ValueFactory
 		return new TupleValueImpl(this, type, values);
 	}
 
-	public TypeValue createTypeValue(DomainClassifierType type) {
-		return new DomainTypeValueImpl(this, type);
-	}
-
 	public TypeValue createTypeValue(DomainType type) {
-		DomainClassifierType classifierType = standardLibrary.getClassifierType(type);
-		return new DomainTypeValueImpl(this, classifierType);
+		if (type instanceof DomainClassifierType) {
+			return new ClassifierTypeValueImpl(this, (DomainClassifierType)type);
+		}
+		else if (type instanceof DomainCollectionType) {
+			return new CollectionTypeValueImpl(this, (DomainCollectionType)type);
+		}
+		else if (type instanceof DomainEnumeration) {
+			return new EnumerationTypeValueImpl(this, (DomainEnumeration)type);
+		}
+		else {
+			return new SimpleTypeValueImpl(this, type);
+		}
 	}
 
 	public void dispose() {

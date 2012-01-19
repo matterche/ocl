@@ -43,7 +43,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -369,11 +368,6 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 */
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		try {
-			if (expected instanceof EEnumLiteral) {
-				Resource resource = ((EEnumLiteral)expected).eResource();
-				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, metaModelManager);
-				expected = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)expected);
-			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
 //			typeManager.addLockedElement(expectedValue.getType());
 			Value value = evaluate(helper, context, expression);
@@ -487,7 +481,9 @@ public abstract class PivotTestSuite extends PivotTestCase
 //           fail("Expected invalid for \"" + expression + "\"");
 		} catch (DomainException e) {
 			assertEquals("Invalid Value Reason", reason, e.getMessage());
-			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
+			if (exceptionClass != null) {
+				assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
+			}
 		} catch (Exception e) {
 			failOn(expression, e);
 		}

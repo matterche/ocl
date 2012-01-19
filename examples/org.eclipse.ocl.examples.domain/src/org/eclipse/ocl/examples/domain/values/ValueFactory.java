@@ -25,13 +25,14 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.elements.DomainTypedElement;
+import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
 public interface ValueFactory
@@ -60,8 +61,11 @@ public interface ValueFactory
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Value... values);
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Collection<Value> values);
 	
+	InvalidValue createInvalidValue(InvalidEvaluationException exception);
+	InvalidValue createInvalidValue(InvalidValueException exception);
 	ObjectValue createEObjectValue(EObject eObject);	
 	ElementValue createElementValue(DomainElement element);
+	EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element);
 	ObjectValue createObjectValue(Object object);
 
     OrderedSetValue createOrderedSetOf(Object... objects);
@@ -91,7 +95,6 @@ public interface ValueFactory
 	
 	TupleValue createTupleValue(DomainTupleType type, Map<? extends DomainTypedElement, Value> values);
 
-	Value createTypeValue(DomainClassifierType type);
 	Value createTypeValue(DomainType type);
 
 	void dispose();
