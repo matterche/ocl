@@ -30,7 +30,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </iterator>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getAllProperSuperTypes" type="/3/Set(Class)">
       <parameter name="elem" eType="/3/Collection(Type)"/>
@@ -69,7 +69,7 @@
         </source>
         <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Bag(T)_Class/asSet"/>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getAllSuperTypes" visibility="Public">
       <parameter name="elem">
@@ -105,7 +105,7 @@
         </source>
         <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/asSet"/>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Type)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Type)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getBehavioralType" visibility="Public">
       <parameter name="elem">
@@ -236,7 +236,7 @@
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getLiteralName" visibility="Public">
       <parameter name="elem">
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
       </parameter>
       <expression xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -474,7 +474,7 @@
           </initExpression>
         </variable>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Operation)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Operation)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getLocalPropertiesOf" visibility="Public">
       <parameter name="cls">
@@ -489,7 +489,7 @@
         </source>
         <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/asSet"/>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getOperations" visibility="Public">
       <parameter name="elem">
@@ -515,7 +515,7 @@
           </part>
         </argument>
       </expression>
-      <type xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Operation)"/>
+      <type xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Operation)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getOverloadOp" visibility="Public">
       <parameter name="cls">
@@ -668,7 +668,7 @@
           </part>
         </argument>
       </expression>
-      <type xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Property)"/>
+      <type xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Property)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getSignature" visibility="Public">
       <parameter name="elem">
@@ -746,7 +746,7 @@
         </source>
         <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Bag(T)_Class/asSet"/>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(String)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(String)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getSuperTypes" visibility="Public">
       <parameter name="elem">
@@ -772,7 +772,7 @@
         </source>
         <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)_Class/asSet"/>
       </expression>
-      <type xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+      <type xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="getUnspecializedClass" visibility="Public">
       <parameter name="elem">
@@ -1221,7 +1221,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllProperSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1238,7 +1238,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllPropertiesOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
         </eParameters>
@@ -1248,7 +1248,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Type)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Type)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1300,7 +1300,7 @@
         <eAnnotations source="MTL" references="/0/getLiteralName.2"/>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="elem">
-          <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+          <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
         </eParameters>
       </eOperations>
       <eOperations name="getLiteralName">
@@ -1338,7 +1338,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getLocalOperationsOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Operation)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Operation)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1348,7 +1348,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getLocalPropertiesOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1358,7 +1358,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getOperations"/>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Operation)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1381,7 +1381,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getProperties"/>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Property)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Property)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1401,7 +1401,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getSuperSignatures"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(String)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1411,7 +1411,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -1829,14 +1829,14 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllProperSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
       </eOperations>
       <eOperations name="getAllSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Type)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Type)"/>
       </eOperations>
       <eOperations name="getBehavioralType">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -1864,21 +1864,21 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getLocalOperationsOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Operation)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Operation)"/>
       </eOperations>
       <eOperations name="getLocalPropertiesOf">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getLocalPropertiesOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
       </eOperations>
       <eOperations name="getOperations">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getOperations"/>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Operation)"/>
       </eOperations>
       <eOperations name="getOverloadOp">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -1895,21 +1895,21 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getProperties"/>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="../tables/model2tables.emtl#/3/OrderedSet(Property)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="expressionTemplates.emtl#/3/OrderedSet(Property)"/>
       </eOperations>
       <eOperations name="getSuperSignatures">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getSuperSignatures"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(String)"/>
       </eOperations>
       <eOperations name="getSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getSuperTypes"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
       </eOperations>
       <eOperations name="getUnspecializedClass">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -1937,7 +1937,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL" references="/0/getAllPropertiesOf"/>
-        <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Property)"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Package_Class">
@@ -1954,7 +1954,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Set(Class)_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="../tables/model2tables.emtl#/3/Set(Class)"/>
+        <references href="expressionTemplates.emtl#/3/Set(Class)"/>
       </eAnnotations>
       <eOperations name="getLiteralName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -2306,10 +2306,10 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+    <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:SetType" href="../tables/model2tables.emtl#/3/Set(Class)"/>
+    <eType xsi:type="ocl.ecore:SetType" href="expressionTemplates.emtl#/3/Set(Class)"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>

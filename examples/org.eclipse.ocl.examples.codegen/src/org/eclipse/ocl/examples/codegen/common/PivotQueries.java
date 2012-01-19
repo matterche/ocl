@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.codegen.common;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -199,10 +199,10 @@ public class PivotQueries
 		return Pivot2Moniker.toString(element);
 	}
 	
-	public List<Operation> getOperations(Type type) {
+	public LinkedHashSet<Operation> getOperations(Type type) {
 		ResourceSet resourceSet = type.eResource().getResourceSet();
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-		List<Operation> operations = new ArrayList<Operation>();
+		LinkedHashSet<Operation> operations = new LinkedHashSet<Operation>();
 		for (Operation operation : metaModelManager.getLocalOperations(type, null)) {
 			operations.add(operation);
 		}
@@ -212,10 +212,10 @@ public class PivotQueries
 		return operations;
 	}
 	
-	public List<Property> getProperties(Type type) {
+	public LinkedHashSet<Property> getProperties(Type type) {
 		ResourceSet resourceSet = type.eResource().getResourceSet();
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
-		List<Property> properties = new ArrayList<Property>();
+		LinkedHashSet<Property> properties = new LinkedHashSet<Property>();
 		for (Property property : metaModelManager.getLocalProperties(type, null)) {
 			properties.add(property);
 		}
