@@ -39,7 +39,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 	private Map<DomainType, Map<DomainType, AbstractCollectionType>> specializations = new HashMap<DomainType, Map<DomainType, AbstractCollectionType>>();
 	private Map<String, List<DomainTupleType>> tupleTypeMap = new HashMap<String, List<DomainTupleType>>();
 
-	protected abstract DomainClassifierType createClassiferType(DomainType classType);
+	protected abstract DomainClassifierType createClassifierType(DomainType classType);
 	
 	public abstract DomainEvaluator createEvaluator(EObject contextObject, Map<Object, Object> contextMap);
 
@@ -62,7 +62,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 	public DomainClassifierType getClassifierType(DomainType classType) {
 		DomainClassifierType classifierType = classifiers.get(classType);
 		if (classifierType == null) {
-			classifierType = createClassiferType(classType);
+			classifierType = createClassifierType(classType);
 			classifiers.put(classType, classifierType);
 		}
 		return classifierType;
@@ -83,7 +83,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 			specializedType = map.get(elementType);
 		}
 		if (specializedType == null) {
-			specializedType = new AbstractCollectionType(genericType.getName(), genericType, elementType);
+			specializedType = new AbstractCollectionType(this, genericType.getName(), genericType, elementType);
 			map.put(elementType, specializedType);
 		}
 		return specializedType;
@@ -191,7 +191,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 			tupleTypes = new ArrayList<DomainTupleType>();
 			tupleTypeMap.put(key, tupleTypes);
 		}
-		DomainTupleType tupleType = new AbstractTupleType(parts);
+		DomainTupleType tupleType = new AbstractTupleType(this, parts);
 		tupleTypes.add(tupleType);
 		return tupleType;
 	}

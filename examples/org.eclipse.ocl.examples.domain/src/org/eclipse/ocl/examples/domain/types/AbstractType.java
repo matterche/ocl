@@ -27,9 +27,12 @@ import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 public abstract class AbstractType implements DomainType	// FIXME rename as perhaps DerivativeType
 {
+	protected final DomainStandardLibrary standardLibrary;
+
 	protected final String name;
 
-	public AbstractType(String name) {
+	public AbstractType(DomainStandardLibrary standardLibrary, String name) {
+		this.standardLibrary = standardLibrary;
 		this.name = name;
 	}
 
@@ -54,13 +57,25 @@ public abstract class AbstractType implements DomainType	// FIXME rename as perh
 	public Iterable<? extends DomainType> getLocalSuperTypes() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
 	}
+
+	public String getMetaTypeName() {
+		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
 	
 	public final String getName() {
 		return name;
 	}
 
+	public DomainType getNormalizedType(DomainStandardLibrary standardLibrary) {
+		return getInheritance(standardLibrary);
+	}
+
 	public DomainPackage getPackage() {
 		throw new UnsupportedOperationException();			// WIP fixme / DerivativeType should not be used as full types
+	}
+	
+	public final DomainStandardLibrary getStandardLibrary() {
+		return standardLibrary;
 	}
 
 	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {

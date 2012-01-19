@@ -24,8 +24,8 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 {
 	protected final DomainType elementType;
 	
-	public AbstractCollectionType(String name, DomainType containerType, DomainType elementType) {
-		super(name, containerType);
+	public AbstractCollectionType(DomainStandardLibrary standardLibrary, String name, DomainType containerType, DomainType elementType) {
+		super(standardLibrary, name, containerType);
 		this.elementType = elementType;
 	}
 
@@ -77,6 +77,25 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 	public DomainType getElementType() {
 		return elementType;
 	}
+
+/*	public DomainType getMetaType(DomainStandardLibrary standardLibrary) {
+		if (containerType.isOrdered()) {
+			if (containerType.isUnique()) {
+				return standardLibrary.getOrderedSetType(elementType);
+			}
+			else {
+				return standardLibrary.getSequenceType(elementType);
+			}
+		}
+		else {
+			if (containerType.isUnique()) {
+				return standardLibrary.getSetType(elementType);
+			}
+			else {
+				return standardLibrary.getBagType(elementType);
+			}
+		}
+	} */
 
 	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {

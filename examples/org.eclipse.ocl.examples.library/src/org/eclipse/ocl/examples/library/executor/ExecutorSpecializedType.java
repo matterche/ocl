@@ -24,8 +24,13 @@ import org.eclipse.ocl.examples.domain.types.AbstractType;
 
 public class ExecutorSpecializedType extends AbstractType implements ExecutorTypeArgument
 {
+	public ExecutorSpecializedType(DomainStandardLibrary standardLibrary, String name, ExecutorTypeArgument... typeArguments) {
+		super(standardLibrary, name);
+	}
+
+	@Deprecated
 	public ExecutorSpecializedType(String name, ExecutorTypeArgument... typeArguments) {
-		super(name);
+		super(null, name);
 	}
 
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {

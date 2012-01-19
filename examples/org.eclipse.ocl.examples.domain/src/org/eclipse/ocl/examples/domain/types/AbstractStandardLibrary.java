@@ -21,7 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -105,6 +107,10 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 		}
 	}
 
+	public DomainType getMetaType(DomainType instanceType) {
+		throw new UnsupportedOperationException();
+	}
+
 	public DomainTypedElement getTuplePart(String name, DomainType type) {
 		if (tupleParts == null) {
 			tupleParts = new HashMap<String, Map<DomainType, DomainTypedElement>>();
@@ -128,6 +134,13 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 			partsList.add(part);
 		}
 		return getTupleType(partsList);
+	}
+
+	public DomainType getType(DomainElement element) {
+		if (element instanceof EObject) {
+			return getType(((EObject)element).eClass());
+		}
+		throw new UnsupportedOperationException();
 	}
 	
 	public boolean isEqualToCollectionType(DomainCollectionType firstCollectionType, DomainCollectionType secondCollectionType) {

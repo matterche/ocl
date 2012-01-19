@@ -74,6 +74,10 @@ public class ExecutorType extends AbstractInheritance implements DomainType, Exe
 		return getSelfFragment().getLocalSuperTypes();
 	}
 
+	public String getMetaTypeName() {
+		throw new UnsupportedOperationException();
+	}
+
 	public ExecutorFragment getSelfFragment() {
 		return (ExecutorFragment) getFragment(fragments.length-1);
 	}

@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.library.oclany;
 
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
@@ -34,7 +33,6 @@ public class OclAnyOclTypeOperation extends AbstractUnaryOperation
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceVal) throws InvalidValueException {
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		DomainType sourceType = sourceVal.getType();
-		DomainClassifierType classifierType = valueFactory.getStandardLibrary().getClassifierType(sourceType);
-		return valueFactory.createTypeValue(classifierType);
+		return valueFactory.createTypeValue(sourceType);
 	}
 }

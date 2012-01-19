@@ -33,6 +33,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
+import org.eclipse.ocl.examples.domain.elements.DomainElement;
 import org.eclipse.ocl.examples.domain.elements.DomainOperation;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
@@ -72,6 +74,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -1536,6 +1539,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return this;
 	}
 
+	@Override
+	public DomainType getMetaType(DomainType instanceType) {
+		if (instanceType instanceof PrimitiveType) {
+			return getPivotType("PrimitiveType");
+		}
+		throw new UnsupportedOperationException();
+	}
+
 	public DomainType getOclType(String typeName) {
 		return getInheritance(getPivotType(typeName));
 	}
@@ -1950,6 +1961,14 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return tupleManager.getTupleType(tupleType, bindings);
 	}
 
+	@Override
+	public DomainType getType(DomainElement element) {
+		if (element instanceof EObject) {
+			return getPivotType(((EObject)element).eClass().getName());
+		}
+		return super.getType(element);
+	}
+
 	public Type getType(DomainType dType) {
 		if (dType instanceof Type) {
 			return (Type) dType;
@@ -1963,9 +1982,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return getPrimaryType(pPackage, dType.getName());
 	}
 
-	public DomainType getType(EClass eClass) {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClass.eResource(), this);
-		Type pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+	public DomainType getType(EClassifier eClassifier) {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClassifier.eResource(), this);
+		Type pivotType = ecore2Pivot.getCreated(Type.class, eClassifier);
 		return pivotType;
 	}
 	

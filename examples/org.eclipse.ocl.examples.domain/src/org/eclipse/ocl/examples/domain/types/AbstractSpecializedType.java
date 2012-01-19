@@ -25,8 +25,8 @@ public abstract class AbstractSpecializedType extends AbstractType
 {
 	protected final DomainType containerType;
 	
-	public AbstractSpecializedType(String name, DomainType containerType) {
-		super(name);
+	public AbstractSpecializedType(DomainStandardLibrary standardLibrary, String name, DomainType containerType) {
+		super(standardLibrary, name);
 		this.containerType = containerType;
 	}
 

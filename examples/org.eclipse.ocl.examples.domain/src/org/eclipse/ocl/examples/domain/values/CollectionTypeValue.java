@@ -16,13 +16,9 @@
  */
 package org.eclipse.ocl.examples.domain.values;
 
-import org.eclipse.ocl.examples.domain.elements.DomainType;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 
-/**
- * A TypeValue is a value object whose value is a type, such as Boolean. The type of
- * a type value is a classifier such as Classifier&lt;Boolean&gt;. 
- */
-public interface TypeValue extends ElementValue
+public interface CollectionTypeValue extends TypeValue
 {
-	DomainType getInstanceType();
+	DomainCollectionType getInstanceType();
 }

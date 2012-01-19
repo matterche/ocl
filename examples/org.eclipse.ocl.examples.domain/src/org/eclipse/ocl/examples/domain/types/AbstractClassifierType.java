@@ -17,16 +17,18 @@
 package org.eclipse.ocl.examples.domain.types;
 
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
-import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 
 public class AbstractClassifierType extends AbstractSpecializedType implements DomainClassifierType
 {
 	protected final DomainType instanceType;
+	protected DomainType metaType = null;
+	private DomainType normalizedInstanceType = null;
+	private int hashCode;
 	
-	public AbstractClassifierType(String name, DomainType containerType, DomainType instanceType) {
-		super(name, containerType);
+	public AbstractClassifierType(DomainStandardLibrary standardLibrary, DomainType containerType, DomainType instanceType) {
+		super(standardLibrary, containerType.getName(), containerType);
 		this.instanceType = instanceType;
 	}
 
@@ -34,27 +36,20 @@ public class AbstractClassifierType extends AbstractSpecializedType implements D
 		if (this == type) {
 			return true;
 		}
-		if (type instanceof DomainClassifierType) {
-			return instanceType.conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
-		}
-		if (instanceType instanceof DomainCollectionType) {
-			String collectionTypeName;
-			if (instanceType.isOrdered()) {
-				collectionTypeName = instanceType.isUnique() ? "OrderedSetType" : "SequenceType";
-			}
-			else {
-				collectionTypeName = instanceType.isUnique() ? "SetType" : "BagType";
-			}
-			DomainType collectionType = standardLibrary.getOclType(collectionTypeName);	// FIXME change NPE to IllegalLibraryException
-			return collectionType.conformsTo(standardLibrary, type);
-		}
-//		if (!(type instanceof DomainClassifierType)) {
-//			return false;
-//		}
-//		return instanceType.conformsTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
-//		return instanceType.conformsTo(standardLibrary, type);
-		return false;
+		DomainType thisMetaType = getMetaType();
+		DomainType thatMetaType = type;
+		return thisMetaType != null ? thisMetaType.conformsTo(standardLibrary, thatMetaType) : false;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof DomainClassifierType)) {
+			return false;
+		}
+		DomainType thisInstanceType = getNormalizedInstanceType();
+		DomainType thatInstanceType = ((DomainClassifierType)obj).getInstanceType().getNormalizedType(standardLibrary);
+		return thisInstanceType.isEqualTo(standardLibrary, thatInstanceType);
+	} 
 
 	@Override
 	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
@@ -77,6 +72,30 @@ public class AbstractClassifierType extends AbstractSpecializedType implements D
 	public DomainType getInstanceType() {
 		return instanceType;
 	}
+	
+	protected DomainType getMetaType() {
+		String metaTypeName = instanceType.getMetaTypeName();
+		if (metaTypeName != null) {
+			metaType = standardLibrary.getOclType(metaTypeName);
+		}
+		return metaType;
+	}
+	
+	protected DomainType getNormalizedInstanceType() {
+		if (normalizedInstanceType == null) {
+			normalizedInstanceType = instanceType.getNormalizedType(standardLibrary);
+			hashCode = normalizedInstanceType.hashCode();
+		}
+		return normalizedInstanceType;
+	}
+
+	@Override
+	public int hashCode() {
+		if (normalizedInstanceType == null) {
+			getNormalizedInstanceType();
+		}
+		return hashCode;
+	}
 
 	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
@@ -85,7 +104,9 @@ public class AbstractClassifierType extends AbstractSpecializedType implements D
 		if (!(type instanceof DomainClassifierType)) {
 			return false;
 		}
-		return instanceType.isEqualTo(standardLibrary, ((DomainClassifierType)type).getInstanceType());
+		DomainType thisInstanceType = getNormalizedInstanceType();
+		DomainType thatInstanceType = ((DomainClassifierType)type).getInstanceType().getNormalizedType(standardLibrary);
+		return thisInstanceType.isEqualTo(standardLibrary, thatInstanceType);
 	}
 
 	@Override

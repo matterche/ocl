@@ -29,8 +29,8 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 {
 	private List<? extends DomainTypedElement> parts;
 	
-	public AbstractTupleType(List<? extends DomainTypedElement> parts) {
-		super("Tuple");
+	public AbstractTupleType(DomainStandardLibrary standardLibrary, List<? extends DomainTypedElement> parts) {
+		super(standardLibrary, "Tuple");
 		this.parts = parts;
 	}
 

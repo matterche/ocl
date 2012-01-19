@@ -1373,9 +1373,9 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryEquals(null, 13, "Bag{4, 4, 5}->sum()");
 		assertQueryEquals(null, 9.0, "Set{4, 4.0, 5.0}->sum()");
 		assertQueryEquals(null, 9.0, "OrderedSet{4.0, 4.0, 5.0}->sum()");
-		assertQueryEquals(null, getClassifierType(metaModelManager.getRealType()), "Bag{4.0, 4, 5}->sum().oclType()");
-		assertQueryEquals(null, getClassifierType(metaModelManager.getIntegerType()), "Bag{4, -4, -5}->sum().oclType()");
-		assertQueryEquals(null, getClassifierType(metaModelManager.getUnlimitedNaturalType()), "Bag{4, 4, 5}->sum().oclType()");
+		assertQueryEquals(null, metaModelManager.getRealType(), "Bag{4.0, 4, 5}->sum().oclType()");
+		assertQueryEquals(null, metaModelManager.getIntegerType(), "Bag{4, -4, -5}->sum().oclType()");
+		assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Bag{4, 4, 5}->sum().oclType()");
 
 		assertQueryEquals(null, 4, "4->sum()");
 		// invalid collection

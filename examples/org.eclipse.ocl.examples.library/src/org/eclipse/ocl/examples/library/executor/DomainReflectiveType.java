@@ -77,6 +77,10 @@ public class DomainReflectiveType extends ReflectiveType
 		return domainType.getLocalSuperTypes();
 	}
 
+	public String getMetaTypeName() {
+		return domainType.getMetaTypeName();
+	}
+
 	public DomainStandardLibrary getStandardLibrary() {
 		return standardLibrary;
 	}

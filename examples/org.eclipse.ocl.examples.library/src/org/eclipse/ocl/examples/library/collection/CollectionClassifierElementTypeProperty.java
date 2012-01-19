@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.library.collection;
 
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -39,7 +38,6 @@ public class CollectionClassifierElementTypeProperty extends AbstractProperty
 		TypeValue sourceTypeValue = sourceValue.asTypeValue();
 		DomainType sourceType = sourceTypeValue.getInstanceType();
 		DomainType elementType = ((DomainCollectionType)sourceType).getElementType();
-		DomainClassifierType elementClassifierType = valueFactory.getStandardLibrary().getClassifierType(elementType);
-		return valueFactory.createTypeValue(elementClassifierType);
+		return valueFactory.createTypeValue(elementType);
 	}
 }

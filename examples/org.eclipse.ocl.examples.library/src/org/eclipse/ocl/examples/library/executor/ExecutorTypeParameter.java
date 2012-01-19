@@ -24,8 +24,13 @@ import org.eclipse.ocl.examples.domain.types.AbstractType;
 
 public class ExecutorTypeParameter extends AbstractType implements ExecutorTypeArgument
 {
+	public ExecutorTypeParameter(DomainStandardLibrary standardLibrary, String name) {
+		super(standardLibrary, name);
+	}
+
+	@Deprecated
 	public ExecutorTypeParameter(String name) {
-		super(name);
+		super(null, name);
 	}
 
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {

@@ -58,6 +58,11 @@ public class EcoreExecutorType extends ExecutorType
 	public final EClassifier getEClassifier() {
 		return eClassifier;
 	}
+
+	@Override
+	public String getMetaTypeName() {
+		return eClassifier.getName();
+	}
 	
 	/**
 	 * Define the EClassifier associated with an executable type. This initialization may

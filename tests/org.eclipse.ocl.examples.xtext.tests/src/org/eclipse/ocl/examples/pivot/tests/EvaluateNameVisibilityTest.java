@@ -107,7 +107,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		//
 		//	type/property ambiguity is resolved to type.
 		//
-		assertQueryEquals(redApple, metaModelManager.getClassifierType(pivotTree), "Tree");
+		assertQueryEquals(redApple, pivotTree, "Tree");
 		//
 		//	type/property ambiguity is resolved to type.
 		//

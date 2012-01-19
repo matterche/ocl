@@ -19,8 +19,7 @@ package org.eclipse.ocl.examples.domain.elements;
 import java.util.Enumeration;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.xml.type.AnyType;
+import org.eclipse.emf.ecore.EClassifier;
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -77,6 +76,9 @@ public interface DomainStandardLibrary
      */
 	DomainType getCollectionType();
 	
+	/**
+	 * Return the specialized collection type for the containerType for elementType.
+	 */
 	DomainCollectionType getCollectionType(DomainCollectionType containerType, DomainType elementType);
 	
     /**
@@ -99,6 +101,11 @@ public interface DomainStandardLibrary
      * @return the <tt>Integer</tt> type (an instance of {@link PrimitiveType})
      */
 	DomainType getIntegerType();
+
+    /**
+     * Returns the meta-type of a given type.
+     */
+	DomainType getMetaType(DomainType type);
 	
     /**
      * Obtains the single instance of the {@link AnyType} metatype, named
@@ -241,7 +248,8 @@ public interface DomainStandardLibrary
 	DomainTupleType getTupleType(List<? extends DomainTypedElement> parts);
 	DomainTupleType getTupleType(DomainTypedElement... parts);
 
-	DomainType getType(EClass eClass);
+	DomainType getType(DomainElement element);
+	DomainType getType(EClassifier eClassifier);
     
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype,

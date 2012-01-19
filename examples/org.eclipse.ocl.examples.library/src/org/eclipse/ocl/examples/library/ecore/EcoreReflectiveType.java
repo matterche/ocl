@@ -75,6 +75,10 @@ public class EcoreReflectiveType extends ReflectiveType
 		throw new UnsupportedOperationException();		// FIXME
 	}
 
+	public String getMetaTypeName() {
+		return eClassifier.getName();
+	}
+
 	public DomainStandardLibrary getStandardLibrary() {
 		return ExecutorStandardLibrary.INSTANCE;
 	}

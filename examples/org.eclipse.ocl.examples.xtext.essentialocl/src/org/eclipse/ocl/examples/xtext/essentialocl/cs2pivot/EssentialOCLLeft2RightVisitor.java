@@ -283,7 +283,7 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected EnumLiteralExp resolveEnumLiteral(ExpCS csExp, EnumerationLiteral enumerationLiteral) {
 		EnumLiteralExp expression = context.refreshModelElement(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
-		context.setType(expression, metaModelManager.getClassifierType(enumerationLiteral.getEnumeration()));
+		context.setType(expression, enumerationLiteral.getEnumeration());
 		expression.setReferredEnumLiteral(enumerationLiteral);
 		return expression;
 	}

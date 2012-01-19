@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.pivot.executor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
@@ -61,7 +61,7 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 	}
 
 	@Override
-	protected DomainClassifierType createClassiferType(DomainType typeType) {
+	protected DomainClassifierType createClassifierType(DomainType typeType) {
 		ClassifierType anyClassifierType = getAnyClassifierType();
 		ClassifierType classifierType = PivotFactory.eINSTANCE.createClassifierType();
 		classifierType.setName(anyClassifierType.getName());
@@ -138,9 +138,9 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		return metaModelManager.getPrimaryType(pivotPackage, typeType.getName());
 	}
 
-	public DomainType getType(EClass eClass) {
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClass.eResource(), metaModelManager);
-		Type pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+	public DomainType getType(EClassifier eClassifier) {
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eClassifier.eResource(), metaModelManager);
+		Type pivotType = ecore2Pivot.getCreated(Type.class, eClassifier);
 		return pivotType;
 	}
 }

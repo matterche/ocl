@@ -84,6 +84,10 @@ public class PivotReflectiveType extends ReflectiveType
 		return metaModelManager;
 	}
 
+	public String getMetaTypeName() {
+		return type.getMetaTypeName();
+	}
+
 	public final Type getPivotType() {
 		return type;
 	}

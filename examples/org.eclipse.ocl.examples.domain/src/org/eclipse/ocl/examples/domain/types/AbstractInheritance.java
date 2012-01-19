@@ -174,6 +174,10 @@ public abstract class AbstractInheritance implements DomainInheritance
 		return name;
 	}
 
+	public DomainType getNormalizedType(DomainStandardLibrary standardLibrary) {
+		return this;
+	}
+
 	protected DomainInheritance getOclAnyInheritance() {
 		DomainStandardLibrary standardLibrary = getStandardLibrary();
 		DomainType oclAnyType = standardLibrary.getOclAnyType();

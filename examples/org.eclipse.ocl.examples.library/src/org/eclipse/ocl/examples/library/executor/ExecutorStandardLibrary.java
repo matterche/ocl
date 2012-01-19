@@ -19,11 +19,11 @@ package org.eclipse.ocl.examples.library.executor;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
@@ -37,21 +37,33 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 {
 	public static final ExecutorStandardLibrary INSTANCE = new ExecutorStandardLibrary();
 	
-	private Map<EPackage, EcoreExecutorPackage> ePackageMap = new HashMap<EPackage, EcoreExecutorPackage>();
+//	private Map<EPackage, EcoreExecutorPackage> ePackageMap = new HashMap<EPackage, EcoreExecutorPackage>();
+	private Map<String, EcoreExecutorPackage> ePackageMap = new HashMap<String, EcoreExecutorPackage>();
 	private Map<DomainPackage, DomainReflectivePackage> domainPackageMap = null;
 	private Map<EClassifier, ExecutorType> typeMap = new HashMap<EClassifier, ExecutorType>();
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
 		for (EcoreExecutorPackage execPackage : execPackages) {
-			ePackageMap.put(execPackage.getEPackage(), execPackage);
+			addPackage(execPackage);
 		}
 	}
 
+	public void addPackage(EcoreExecutorPackage execPackage) {
+		@SuppressWarnings("unused")
+		EcoreExecutorPackage oldExecPackage = ePackageMap.put(execPackage.getNsURI(), execPackage);
+//		if ((oldExecPackage != null) && (oldExecPackage != execPackage)) {
+//			Iterable<ExecutorType> newTypes = execPackage.getOwnedTypes();
+//			for (DomainType oldType : oldExecPackage.getOwnedTypes()) {
+//				-- check for type compatibility
+//			}
+//		}
+	}
+
 	@Override
-	protected DomainClassifierType createClassiferType(DomainType classType) {
+	protected DomainClassifierType createClassifierType(DomainType classType) {
 		DomainType anyClassifierType = getAnyClassifierType();
-		DomainClassifierType classifierType = new AbstractClassifierType(anyClassifierType.getName(), anyClassifierType, classType);
+		DomainClassifierType classifierType = new AbstractClassifierType(this, anyClassifierType, classType);
 		return classifierType;
 	}
 	
@@ -70,10 +82,23 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 			DomainType containerType = classifierType.getContainerType();
 			return containerType.getInheritance(this);
 		}
+		if (type instanceof DomainCollectionType) {
+			DomainType containerType = ((DomainCollectionType)type).getContainerType();
+			if ((containerType != null) && (containerType != type)) {
+				return containerType.getInheritance(this);
+			}
+		}
+		DomainPackage domainPackage = type.getPackage();
+		EcoreExecutorPackage ecoreExecutorPackage = ePackageMap.get(domainPackage.getNsURI());
+		if (ecoreExecutorPackage != null) {
+			ExecutorType executorType = ecoreExecutorPackage.getType(type.getName());
+			if (executorType != null) {
+				return executorType;
+			}
+		}
 		if (domainPackageMap == null) {
 			domainPackageMap = new HashMap<DomainPackage, DomainReflectivePackage>();
 		}
-		DomainPackage domainPackage = type.getPackage();
 		DomainReflectivePackage domainExecutorPackage = domainPackageMap.get(domainPackage);
 		if (domainExecutorPackage == null) {
 			domainExecutorPackage = new DomainReflectivePackage(this, domainPackage);
@@ -83,7 +108,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	}
 
 	public EcoreExecutorPackage getPackage(EPackage ePackage) {
-		return ePackageMap.get(ePackage);
+		return ePackageMap.get(ePackage.getNsURI());
 	}
 
 	public ExecutorType getOclType(String typeName) {
@@ -98,13 +123,13 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		return null;
 	}
 
-	public ExecutorType getType(EClass eClass) {
-		ExecutorType type = typeMap.get(eClass);
+	public ExecutorType getType(EClassifier eClassifier) {
+		ExecutorType type = typeMap.get(eClassifier);
 		if (type == null) {
-			EcoreExecutorPackage execPackage = getPackage(eClass.getEPackage());
+			EcoreExecutorPackage execPackage = getPackage(eClassifier.getEPackage());
 			if (execPackage != null) {
-				type = execPackage.getType(eClass.getName());
-				typeMap.put(eClass, type);
+				type = execPackage.getType(eClassifier.getName());
+				typeMap.put(eClassifier, type);
 			}
 		}
 		return type;

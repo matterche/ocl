@@ -18,32 +18,36 @@ package org.eclipse.ocl.examples.domain.values.impl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
+import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class DomainTypeValueImpl extends AbstractObjectValue<DomainClassifierType> implements TypeValue
+public abstract class AbstractTypeValueImpl<T extends DomainType> extends AbstractObjectValue<T> implements TypeValue
 {
-	public DomainTypeValueImpl(ValueFactory valueFactory, DomainClassifierType type) {
+	private DomainClassifierType classifierType;
+	
+	public AbstractTypeValueImpl(ValueFactory valueFactory, T type) {
 		super(valueFactory, type);
+		this.classifierType = null;
 	}
 
 	@Override
-	public DomainClassifierType asElement() {
+	public T asElement() {
 		return object;
 	}
 
 	@Override
-	public ElementValue asElementValue() {
+	public TypeValue asElementValue() {
 		return this;
 	}
 
 	@Override
 	public EObject asNavigableObject() throws InvalidValueException {
-		DomainType navigableObject = object.getInstanceType();
+		DomainType navigableObject = object;
 		if (navigableObject instanceof EObject) {
 			return (EObject) navigableObject;
 		}
@@ -53,19 +57,36 @@ public class DomainTypeValueImpl extends AbstractObjectValue<DomainClassifierTyp
 	}
 
 	@Override
-	public DomainTypeValueImpl asTypeValue() {
+	public AbstractTypeValueImpl<T> asTypeValue() {
 		return this;
 	}
 
-	public DomainClassifierType getElement() {
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (!(that instanceof TypeValue)) {
+			return false;
+		}
+		DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
+		DomainInheritance thisInheritance = object.getInheritance(standardLibrary); 
+		DomainInheritance thatInheritance = ((TypeValue)that).getInstanceType().getInheritance(standardLibrary); 
+		return thisInheritance == thatInheritance;
+	}
+
+	public T getElement() {
 		return object;
 	}
 
-	public DomainType getInstanceType() {
-		return object.getInstanceType();
+	public T getInstanceType() {
+		return object;
 	}
 
 	public DomainClassifierType getType() {
-		return object;
+		if (classifierType == null) {
+			classifierType = valueFactory.getStandardLibrary().getClassifierType(object);
+		}
+		return classifierType;
 	}
 }

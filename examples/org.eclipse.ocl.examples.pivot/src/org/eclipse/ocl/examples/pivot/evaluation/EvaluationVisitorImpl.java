@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
@@ -56,7 +57,6 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.SequenceRangeImpl;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -349,7 +349,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitEnumLiteralExp(EnumLiteralExp el) {
-		return valueFactory.createElementValue(el.getReferredEnumLiteral());
+		return valueFactory.createEnumerationLiteralValue(el.getReferredEnumLiteral());
 	}
 
 	@Override
@@ -550,7 +550,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			value = variable.accept(this);
 		}
 		catch (InvalidEvaluationException e) {
-			value = valueFactory.getInvalid();
+			value = valueFactory.createInvalidValue(e);
 		}
     	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedEvaluator();		
 		nestedVisitor.getEvaluationEnvironment().add(variable, value);
@@ -596,18 +596,18 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			sourceValue = source.accept(undecoratedVisitor);
 		}
 		catch (InvalidEvaluationException e) {
-			sourceValue = valueFactory.getInvalid();	// FIXME ?? propagate part of environment
+			sourceValue = valueFactory.createInvalidValue(e);	// FIXME ?? propagate part of environment
 		}
 		//
 		//	Resolve source dispatch type
 		//
  		DomainType dynamicSourceType = sourceValue.getType();
 		List<OclExpression> arguments = operationCallExp.getArguments();
-		Value firstArgument = null;
+		Value onlyArgument = null;
 		List<Parameter> ownedParameters = staticOperation.getOwnedParameters();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
-			firstArgument =  arguments.get(0).accept(undecoratedVisitor);
-			DomainType argType = firstArgument.getType();
+			onlyArgument =  arguments.get(0).accept(undecoratedVisitor);
+			DomainType argType = onlyArgument.getType();
 			dynamicSourceType = dynamicSourceType.getCommonType(metaModelManager, argType);
 	 	}
 		//
@@ -630,24 +630,23 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				}
 				case 1: {
 					LibraryBinaryOperation binaryOperation = (LibraryBinaryOperation)implementation;
-					Value argument;
-					if (binaryOperation.argumentsMayBeInvalid()) {
-						try {
-							argument = arguments.get(0).accept(undecoratedVisitor);
-						} catch (InvalidEvaluationException e) {
-							argument = valueFactory.getInvalid();
+					if (onlyArgument == null) {
+						if (binaryOperation.argumentsMayBeInvalid()) {
+							try {
+								onlyArgument = arguments.get(0).accept(undecoratedVisitor);
+							} catch (InvalidEvaluationException e) {
+								onlyArgument = valueFactory.createInvalidValue(e);
+							}
+						}
+						else {
+							onlyArgument = arguments.get(0).accept(undecoratedVisitor);
 						}
 					}
-					else {
-						argument = arguments.get(0).accept(undecoratedVisitor);
-					}
-					result = binaryOperation.evaluate(evaluator, operationCallExp, sourceValue, argument);
+					result = binaryOperation.evaluate(evaluator, operationCallExp, sourceValue, onlyArgument);
 					break;
 				}
 				case 2: {
-					if (firstArgument == null) {
-						firstArgument = arguments.get(0).accept(undecoratedVisitor);
-					}
+					Value firstArgument = arguments.get(0).accept(undecoratedVisitor);
 					Value secondArgument = arguments.get(1).accept(undecoratedVisitor);
 					result = ((LibraryTernaryOperation)implementation).evaluate(evaluator, operationCallExp, sourceValue, firstArgument, secondArgument);
 					break;
@@ -777,7 +776,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitTypeExp(TypeExp t) {
-		return valueFactory.createTypeValue((ClassifierType)t.getType());
+		return valueFactory.createTypeValue(((DomainClassifierType)t.getType()).getInstanceType());
 	}
     
     /**
