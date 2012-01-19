@@ -1,47 +1,47 @@
 
-Options in effect for C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:
+Options in effect for C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:
 
-    ACTION-BLOCK=("C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParser.java","/.","./")
+    ACTION-BLOCK=("C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParser.java","/.","./")
 
     AST-DIRECTORY=""  AST-TYPE="CSTNode"  NOATTRIBUTES  NOAUTOMATIC-AST  
     NOBACKTRACK  BYTE  CONFLICTS  
-    DAT-DIRECTORY="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\"
+    DAT-DIRECTORY="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\"
     
-    DAT-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdcl.data"
+    DAT-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdcl.data"
     
-    DCL-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdcl.java"
+    DCL-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdcl.java"
     NODEBUG  
-    DEF-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdef.java"
+    DEF-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserdef.java"
     NOEDIT  ERROR-MAPS  ESCAPE='$'  
-    EXPORT-TERMINALS=("C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserexp.java","","")
+    EXPORT-TERMINALS=("C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserexp.java","","")
     EXTENDS-PARSETABLE  FACTORY="new "  FILE-PREFIX="OCLParser"  NOFIRST  
     NOFOLLOW  NOGLR  NOGOTO-DEFAULT  
-    GRM-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g"
+    GRM-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g"
     
-    IMP-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserimp.java"
+    IMP-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserimp.java"
     IMPORT-TERMINALS="OCLLexer.gi"  INCLUDE-DIRECTORY=".;../lpg"  LALR=1  LEGACY
     NOLIST  MARGIN=4  MAX-CASES=1024  NAMES=OPTIMIZED  NONT-CHECK  OR_MARKER='|'
-    OUT-DIRECTORY="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\"
+    OUT-DIRECTORY="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\"
     PACKAGE="org.eclipse.ocl.examples.xtext.essentialocl.parser"  NOPARENT-SAVE
     PARSETABLE-INTERFACES="lpg.runtime.ParseTable"  PREFIX="TK_"  PRIORITY  
     PROGRAMMING_LANGUAGE=JAVA  
-    PRS-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserprs.java"
+    PRS-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParserprs.java"
     NOQUIET  READ-REDUCE  REMAP-TERMINALS  SCOPES  NOSERIALIZE  NOSHIFT-DEFAULT
     NOSINGLE-PRODUCTIONS  NOSOFT-KEYWORDS  NOSTATES  SUFFIX=""  
-    SYM-FILE="C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParsersym.java"
+    SYM-FILE="C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParsersym.java"
     TAB-FILE="OCLParser.t"  TABLE  TEMPLATE="dtParserTemplateF.gi"  
     TRACE=CONFLICTS  NOVARIABLES  NOVERBOSE  NOVISITOR  VISITOR-TYPE="Visitor"
     WARNINGS  NOXREF  
 
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:92:4:92:6:2781:2783: Warning: The macro "$Id" is undefined. No substitution made
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:92:68:92:68:2845:2845: Warning: The macro "$" is undefined. No substitution made
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:161:9:161:27:3948:3966: Informative: The terminal SINGLE_LINE_COMMENT is useless.
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:162:9:162:26:3970:3987: Informative: The terminal MULTI_LINE_COMMENT is useless.
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:115:9:115:23:3198:3212: Warning: The nonterminal reservedKeyword is useless.
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:292:5:292:21:8655:8671: Warning: The nonterminal reservedKeywordCS is useless.
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:92:4:92:6:2686:2688: Warning: The macro "$Id" is undefined. No substitution made
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:92:64:92:64:2746:2746: Warning: The macro "$" is undefined. No substitution made
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:159:9:159:27:3703:3721: Informative: The terminal SINGLE_LINE_COMMENT is useless.
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLLexer.gi:160:9:160:26:3724:3741: Informative: The terminal MULTI_LINE_COMMENT is useless.
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:113:9:113:23:3012:3026: Warning: The nonterminal reservedKeyword is useless.
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCL.gi:292:5:292:21:8356:8372: Warning: The nonterminal reservedKeywordCS is useless.
 
 
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:32:9:32:12:883:886: Informative: Grammar is  LALR(1).
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLParser.g:30:9:30:12:780:783: Informative: Grammar is  LALR(1).
 
 Number of Terminals: 79
 Number of Nonterminals: 80

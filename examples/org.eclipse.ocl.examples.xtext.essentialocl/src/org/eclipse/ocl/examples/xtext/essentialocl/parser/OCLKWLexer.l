@@ -1,63 +1,63 @@
 
-Options in effect for C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.gi:
+Options in effect for C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.gi:
 
-    ACTION-BLOCK=("C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.java","/.","./")
+    ACTION-BLOCK=("C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.java","/.","./")
 
     AST-DIRECTORY=""  AST-TYPE="Ast"  NOATTRIBUTES  NOAUTOMATIC-AST  NOBACKTRACK
     BYTE  CONFLICTS  
-    DAT-DIRECTORY="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/"
+    DAT-DIRECTORY="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/"
     
-    DAT-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdcl.data"
+    DAT-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdcl.data"
     
-    DCL-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdcl.java"
+    DCL-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdcl.java"
     NODEBUG  
-    DEF-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdef.java"
+    DEF-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerdef.java"
     NOEDIT  NOERROR-MAPS  ESCAPE='$'  
-    EXPORT-TERMINALS=("C:\Development\HartLibrary\Workspace3.5.1\org.eclipse.ocl.examples.xtext.essentialocl\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParsersym.java","TK_","")
+    EXPORT-TERMINALS=("C:\Development\OCL3.2.0\Workspace3.6\org.eclipse.ocl.examples.lpg.lexer\src\org\eclipse\ocl\examples\xtext\essentialocl\parser\OCLParsersym.java","TK_","")
     EXTENDS-PARSETABLE  FACTORY="new "  FILE-PREFIX="OCLKWLexer"  NOFIRST  
     NOFOLLOW  NOGLR  NOGOTO-DEFAULT  
-    GRM-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.gi"
+    GRM-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexer.gi"
     
-    IMP-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerimp.java"
+    IMP-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerimp.java"
     INCLUDE-DIRECTORY=".;../lpg"  LEGACY  NOLIST  MARGIN=4  MAX-CASES=1024  
     NAMES=OPTIMIZED  NONT-CHECK  OR_MARKER='|'  
-    OUT-DIRECTORY="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/"
+    OUT-DIRECTORY="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/"
     PACKAGE="org.eclipse.ocl.examples.xtext.essentialocl.parser"  NOPARENT-SAVE
     PARSETABLE-INTERFACES="lpg.runtime.ParseTable"  PREFIX="Char_"  PRIORITY  
     PROGRAMMING_LANGUAGE=JAVA  
-    PRS-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerprs.java"
+    PRS-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexerprs.java"
     NOQUIET  READ-REDUCE  REMAP-TERMINALS  NOSCOPES  NOSERIALIZE  
     NOSHIFT-DEFAULT  SINGLE-PRODUCTIONS  SLR  NOSOFT-KEYWORDS  NOSTATES  
     SUFFIX=""  
-    SYM-FILE="C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexersym.java"
+    SYM-FILE="C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/OCLKWLexersym.java"
     TAB-FILE="OCLKWLexer.t"  TABLE  TEMPLATE="../lpg/KeywordTemplateF.gi"  
     TRACE=CONFLICTS  NOVARIABLES  NOVERBOSE  NOVISITOR  VISITOR-TYPE="Visitor"
     WARNINGS  NOXREF  
 
-../lpg/KWLexerMapF.gi:14:24:14:24:309:309: Warning: The macro "$" is undefined. No substitution made
-../lpg/KWLexerMapF.gi:2:5:2:14:17:26: Informative: The terminal DollarSign is useless.
-../lpg/KWLexerMapF.gi:3:5:3:11:41:47: Informative: The terminal Percent is useless.
-../lpg/KWLexerMapF.gi:4:5:4:5:62:62: Informative: The terminal _ is useless.
-../lpg/KWLexerMapF.gi:5:23:5:23:87:87: Informative: The terminal j is useless.
-../lpg/KWLexerMapF.gi:5:49:5:49:113:113: Informative: The terminal w is useless.
-../lpg/KWLexerMapF.gi:5:55:5:55:119:119: Informative: The terminal z is useless.
-../lpg/KWLexerMapF.gi:6:11:6:11:132:132: Informative: The terminal D is useless.
-../lpg/KWLexerMapF.gi:6:13:6:13:134:134: Informative: The terminal E is useless.
-../lpg/KWLexerMapF.gi:6:15:6:15:136:136: Informative: The terminal F is useless.
-../lpg/KWLexerMapF.gi:6:17:6:17:138:138: Informative: The terminal G is useless.
-../lpg/KWLexerMapF.gi:6:19:6:19:140:140: Informative: The terminal H is useless.
-../lpg/KWLexerMapF.gi:6:23:6:23:144:144: Informative: The terminal J is useless.
-../lpg/KWLexerMapF.gi:6:25:6:25:146:146: Informative: The terminal K is useless.
-../lpg/KWLexerMapF.gi:6:27:6:27:148:148: Informative: The terminal L is useless.
-../lpg/KWLexerMapF.gi:6:35:6:35:156:156: Informative: The terminal P is useless.
-../lpg/KWLexerMapF.gi:6:37:6:37:158:158: Informative: The terminal Q is useless.
-../lpg/KWLexerMapF.gi:6:49:6:49:170:170: Informative: The terminal W is useless.
-../lpg/KWLexerMapF.gi:6:51:6:51:172:172: Informative: The terminal X is useless.
-../lpg/KWLexerMapF.gi:6:53:6:53:174:174: Informative: The terminal Y is useless.
-../lpg/KWLexerMapF.gi:6:55:6:55:176:176: Informative: The terminal Z is useless.
+../lpg/KWLexerMapF.gi:14:24:14:24:296:296: Warning: The macro "$" is undefined. No substitution made
+../lpg/KWLexerMapF.gi:2:5:2:14:16:25: Informative: The terminal DollarSign is useless.
+../lpg/KWLexerMapF.gi:3:5:3:11:39:45: Informative: The terminal Percent is useless.
+../lpg/KWLexerMapF.gi:4:5:4:5:59:59: Informative: The terminal _ is useless.
+../lpg/KWLexerMapF.gi:5:23:5:23:83:83: Informative: The terminal j is useless.
+../lpg/KWLexerMapF.gi:5:49:5:49:109:109: Informative: The terminal w is useless.
+../lpg/KWLexerMapF.gi:5:55:5:55:115:115: Informative: The terminal z is useless.
+../lpg/KWLexerMapF.gi:6:11:6:11:127:127: Informative: The terminal D is useless.
+../lpg/KWLexerMapF.gi:6:13:6:13:129:129: Informative: The terminal E is useless.
+../lpg/KWLexerMapF.gi:6:15:6:15:131:131: Informative: The terminal F is useless.
+../lpg/KWLexerMapF.gi:6:17:6:17:133:133: Informative: The terminal G is useless.
+../lpg/KWLexerMapF.gi:6:19:6:19:135:135: Informative: The terminal H is useless.
+../lpg/KWLexerMapF.gi:6:23:6:23:139:139: Informative: The terminal J is useless.
+../lpg/KWLexerMapF.gi:6:25:6:25:141:141: Informative: The terminal K is useless.
+../lpg/KWLexerMapF.gi:6:27:6:27:143:143: Informative: The terminal L is useless.
+../lpg/KWLexerMapF.gi:6:35:6:35:151:151: Informative: The terminal P is useless.
+../lpg/KWLexerMapF.gi:6:37:6:37:153:153: Informative: The terminal Q is useless.
+../lpg/KWLexerMapF.gi:6:49:6:49:165:165: Informative: The terminal W is useless.
+../lpg/KWLexerMapF.gi:6:51:6:51:167:167: Informative: The terminal X is useless.
+../lpg/KWLexerMapF.gi:6:53:6:53:169:169: Informative: The terminal Y is useless.
+../lpg/KWLexerMapF.gi:6:55:6:55:171:171: Informative: The terminal Z is useless.
 
 
-C:/Development/HartLibrary/Workspace3.5.1/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLKWLexer.gi:115:9:115:15:2399:2405: Informative: Grammar is  SLR(1).
+C:/Development/OCL3.2.0/Workspace3.6/org.eclipse.ocl.examples.lpg.lexer/src/org/eclipse/ocl/examples/xtext/essentialocl/parser/EssentialOCLKWLexer.gi:115:9:115:15:2281:2287: Informative: Grammar is  SLR(1).
 
 Number of Terminals: 56
 Number of Nonterminals: 1

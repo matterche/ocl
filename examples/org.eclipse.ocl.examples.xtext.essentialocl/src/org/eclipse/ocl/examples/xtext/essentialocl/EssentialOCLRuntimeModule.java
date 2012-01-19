@@ -16,7 +16,13 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.parser.antlr.internal.InternalEssentialOCLLexer;
+import org.eclipse.xtext.parser.IParser;
+import org.eclipse.xtext.parser.antlr.Lexer;
+import org.eclipse.xtext.parser.antlr.LexerProvider;
+
 import com.google.inject.Binder;
+import com.google.inject.Provider;
 import com.google.inject.name.Names;
 
 /**
@@ -31,6 +37,25 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 		super.configure(binder);
 		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
 	}
+
+	@Override
+	public Class<? extends Lexer> bindLexer() {
+		return MyEssentialOCLLexer.class;
+	}
+
+	@Override
+	public Class<? extends IParser> bindIParser() {
+		return MyEssentialOCLParser.class;
+	}
+
+	@Override
+	public Provider<InternalEssentialOCLLexer> provideInternalEssentialOCLLexer() {
+		return new MyLexerProvider<InternalEssentialOCLLexer>(MyEssentialOCLLexer.class);
+	}
+
+//	public Provider<MyEssentialOCLLexer> provideMyEssentialOCLLexer() {
+//		return LexerProvider.create(MyEssentialOCLLexer.class);
+//	}
 	
 //	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
 //		return NoEObjectCompositeEValidator.class;

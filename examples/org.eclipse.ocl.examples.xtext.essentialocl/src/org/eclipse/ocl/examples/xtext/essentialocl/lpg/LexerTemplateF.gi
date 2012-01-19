@@ -77,7 +77,8 @@
                 ./
 
     $DefaultAction
-    /.$Header: /home/data/cvs/modeling/org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/lpg/LexerTemplateF.gi,v 1.2 2011/01/24 21:31:47 ewillink Exp $case $rule_number: { ./
+    /.$Header
+				case $rule_number: { ./
 
     $BeginAction /.$DefaultAction./
 
@@ -92,7 +93,8 @@
     $EndJava /.$EndAction./
 
     $NoAction
-    /.$Header: /home/data/cvs/modeling/org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/lpg/LexerTemplateF.gi,v 1.2 2011/01/24 21:31:47 ewillink Exp $case $rule_number:
+    /.$Header
+			case $rule_number:
                     break; ./
 
     $BeginActions
