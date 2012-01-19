@@ -21,11 +21,11 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
-public class DomainElementValueImpl extends AbstractObjectValue<DomainElement> implements ElementValue
+public class ElementValueImpl extends AbstractObjectValue<DomainElement> implements ElementValue
 {
 	protected DomainType type = null;
 	
-	public DomainElementValueImpl(ValueFactory valueFactory, DomainElement element) {
+	public ElementValueImpl(ValueFactory valueFactory, DomainElement element) {
 		super(valueFactory, element);
 	}
 
@@ -44,9 +44,9 @@ public class DomainElementValueImpl extends AbstractObjectValue<DomainElement> i
 	}
 
 	public DomainType getType() {
-//		if (type == null) {
-//			type = valueFactory.getStandardLibrary().getType(object.eClass());
-//		}
-		return type;		// FIXME
+		if (type == null) {
+			type = valueFactory.getStandardLibrary().getType(object);
+		}
+		return type;
 	}
 }

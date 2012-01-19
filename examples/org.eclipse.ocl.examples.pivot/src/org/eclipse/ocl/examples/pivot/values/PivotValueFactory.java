@@ -18,15 +18,8 @@ package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
-import org.eclipse.ocl.examples.domain.elements.DomainElement;
-import org.eclipse.ocl.examples.domain.values.ElementValue;
-import org.eclipse.ocl.examples.domain.values.ObjectValue;
-import org.eclipse.ocl.examples.domain.values.TypeValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.AbstractValueFactory;
-import org.eclipse.ocl.examples.domain.values.impl.DomainTypeValueImpl;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 
@@ -34,36 +27,6 @@ public class PivotValueFactory extends AbstractValueFactory
 {
 	public PivotValueFactory(MetaModelManager metaModelManager) {
 		super(metaModelManager);
-	}
-	
-	@Override
-	public ObjectValue createEObjectValue(EObject eObject) {
-		if (eObject instanceof Element) {
-			if (eObject instanceof ClassifierType) {
-				return createTypeValue((ClassifierType) eObject);
-			}
-			return new ElementValueImpl(this, (Element)eObject);
-		}
-		return super.createEObjectValue(eObject);
-	}
-
-	@Override
-	public ElementValue createElementValue(DomainElement domainElement) {
-		if (domainElement instanceof Element) {
-			if (domainElement instanceof ClassifierType) {
-				return new TypeValueImpl(this, (ClassifierType)domainElement);
-			}
-			return new ElementValueImpl(this, (Element)domainElement);
-		}
-		return super.createElementValue(domainElement);
-	}
-
-	@Override
-	public TypeValue createTypeValue(DomainClassifierType domainType) {
-		if (domainType instanceof ClassifierType) {
-			return new TypeValueImpl(this, (ClassifierType)domainType);
-		}
-		return new DomainTypeValueImpl(this, domainType);
 	}
 
 	@Override
