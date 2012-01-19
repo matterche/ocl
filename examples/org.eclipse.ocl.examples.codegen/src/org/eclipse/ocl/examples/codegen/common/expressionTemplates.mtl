@@ -169,7 +169,7 @@ try {
 	[ast.source.emitExpression(importer, genPackage, expInOcl)/]
 	left[astName/] = [ast.source.symbolName(expInOcl)/];
 } catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {
-	left[astName/] = valueFactory.getInvalid();
+	left[astName/] = valueFactory.createInvalidValue(e);
 }
 <%Value%> [ast.source.symbolName(expInOcl)/] = left[astName/];
 [/if]
@@ -180,7 +180,7 @@ try {
 	[right.emitExpression(importer, genPackage, expInOcl)/]
 	right[astName/] = [right.symbolName(expInOcl)/];
 } catch (<%org.eclipse.ocl.examples.domain.evaluation.InvalidValueException%> e) {
-	right[astName/] = valueFactory.getInvalid();
+	right[astName/] = valueFactory.createInvalidValue(e);
 }
 <%Value%> [right.symbolName(expInOcl)/] = right[astName/];
 [/if]
