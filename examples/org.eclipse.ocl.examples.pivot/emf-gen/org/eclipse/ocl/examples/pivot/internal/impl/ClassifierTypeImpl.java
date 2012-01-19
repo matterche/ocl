@@ -53,7 +53,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
+public class ClassifierTypeImpl extends ClassImpl implements ClassifierType
 {
 	/**
 	 * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference.
@@ -174,11 +174,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 				return isAbstract();
 			case PivotPackage.CLASSIFIER_TYPE__IS_INTERFACE:
 				return isInterface();
-			case PivotPackage.CLASSIFIER_TYPE__IS_SERIALIZABLE:
-				return isSerializable();
-			case PivotPackage.CLASSIFIER_TYPE__BEHAVIORAL_TYPE:
-				if (resolve) return getBehavioralType();
-				return basicGetBehavioralType();
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_TYPE:
 				if (resolve) return getInstanceType();
 				return basicGetInstanceType();
@@ -255,12 +250,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__IS_INTERFACE:
 				setIsInterface((Boolean)newValue);
 				return;
-			case PivotPackage.CLASSIFIER_TYPE__IS_SERIALIZABLE:
-				setIsSerializable((Boolean)newValue);
-				return;
-			case PivotPackage.CLASSIFIER_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)newValue);
-				return;
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_TYPE:
 				setInstanceType((Type)newValue);
 				return;
@@ -329,12 +318,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__IS_INTERFACE:
 				setIsInterface(IS_INTERFACE_EDEFAULT);
 				return;
-			case PivotPackage.CLASSIFIER_TYPE__IS_SERIALIZABLE:
-				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
-				return;
-			case PivotPackage.CLASSIFIER_TYPE__BEHAVIORAL_TYPE:
-				setBehavioralType((Type)null);
-				return;
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_TYPE:
 				setInstanceType((Type)null);
 				return;
@@ -386,10 +369,6 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.CLASSIFIER_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
-			case PivotPackage.CLASSIFIER_TYPE__IS_SERIALIZABLE:
-				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
-			case PivotPackage.CLASSIFIER_TYPE__BEHAVIORAL_TYPE:
-				return behavioralType != null;
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_TYPE:
 				return instanceType != null;
 		}
@@ -411,5 +390,11 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 
 	public DomainType getContainerType() {
 		return (DomainType) getUnspecializedElement();
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
 } //ClassifierTypeImpl

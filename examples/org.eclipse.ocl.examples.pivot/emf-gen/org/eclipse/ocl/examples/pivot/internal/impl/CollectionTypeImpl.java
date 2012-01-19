@@ -419,7 +419,28 @@ public class CollectionTypeImpl
 			DomainType thisElementType = this.getElementType();
 			DomainType thatElementType = ((DomainCollectionType)type).getElementType();
 			DomainType commonElementType = thisElementType.getCommonType(standardLibrary, thatElementType);
-			return standardLibrary.getCollectionType((DomainCollectionType)((PivotReflectiveType)commonInheritance).getPivotType(), commonElementType);
+			if (commonInheritance instanceof PivotReflectiveType) {
+				DomainCollectionType commonCollectionType = (DomainCollectionType)((PivotReflectiveType)commonInheritance).getPivotType();
+				return standardLibrary.getCollectionType(commonCollectionType, commonElementType);
+			}
+			else {
+				if (commonInheritance.isOrdered()) {
+					if (commonInheritance.isUnique()) {
+						return standardLibrary.getOrderedSetType(commonElementType);
+					}
+					else {
+						return standardLibrary.getSequenceType(commonElementType);
+					}
+				}
+				else {
+					if (commonInheritance.isUnique()) {
+						return standardLibrary.getSetType(commonElementType);
+					}
+					else {
+						return standardLibrary.getBagType(commonElementType);
+					}
+				}
+			}
 		}
 		else {
 			return commonInheritance;

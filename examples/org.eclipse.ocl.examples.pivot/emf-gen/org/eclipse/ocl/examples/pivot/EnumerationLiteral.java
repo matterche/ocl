@@ -21,6 +21,7 @@ import java.math.BigInteger;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enumeration Literal</b></em>'.
+ * @implements org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -40,7 +41,7 @@ import java.math.BigInteger;
  * @generated
  */
 public interface EnumerationLiteral
-		extends NamedElement {
+		extends NamedElement, org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral {
 
 	/**
 	 * Returns the value of the '<em><b>Enumeration</b></em>' container reference.

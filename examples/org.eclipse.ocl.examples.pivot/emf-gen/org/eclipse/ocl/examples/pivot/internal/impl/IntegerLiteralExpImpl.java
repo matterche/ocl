@@ -136,7 +136,7 @@ public class IntegerLiteralExpImpl
 	public boolean validateTypeIsInteger(DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		/*
-		self.type.name = 'Integer'
+		self.type = Integer
 		*/
 		try {
 			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);

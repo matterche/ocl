@@ -315,12 +315,12 @@ public abstract class TypedMultiplicityElementImpl
 		      in
 		        bodyElementType.conformsTo(self.type) and self.isOrdered =
 		        (
-		          bodyCollectionType.oclIsKindOf(OrderedSetType) or
-		          bodyCollectionType.oclIsKindOf(SequenceType)
+		          bodyCollectionType.conformsTo(OrderedSet(OclAny)) or
+		          bodyCollectionType.conformsTo(Sequence(OclAny))
 		        ) and self.isUnique =
 		        (
-		          bodyCollectionType.oclIsKindOf(OrderedSetType) or
-		          bodyCollectionType.oclIsKindOf(SetType)
+		          bodyCollectionType.conformsTo(OrderedSet(OclAny)) or
+		          bodyCollectionType.conformsTo(Set(OclAny))
 		        )
 		  else bodyType.conformsTo(self.type)
 		  endif

@@ -357,4 +357,8 @@ public class EnumerationLiteralImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitEnumerationLiteral(this);
 	}
+
+	public int getOrdinal() {
+		return value.intValue();
+	}
 } //EnumerationLiteralImpl

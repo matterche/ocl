@@ -82,7 +82,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitClassifierType(org.eclipse.ocl.examples.pivot.ClassifierType object) {
-		return visitDataType(object);
+		return visitClass(object);
 	}
 
 	public R visitCollectionItem(org.eclipse.ocl.examples.pivot.CollectionItem object) {

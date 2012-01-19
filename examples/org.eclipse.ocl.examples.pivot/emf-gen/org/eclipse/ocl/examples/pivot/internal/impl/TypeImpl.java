@@ -1085,6 +1085,15 @@ public class TypeImpl
 		return standardLibrary.getInheritance(this);
 	}
 
+	public DomainType getNormalizedType(DomainStandardLibrary standardLibrary) {
+		try {
+			return standardLibrary.getInheritance(this);
+		}
+		catch (Throwable e) {
+			return this;			// WIP FIXME should never happen
+		}
+	}
+
 	public Iterable<? extends DomainOperation> getLocalOperations() {
 		return getOwnedOperations();
 	}
@@ -1097,13 +1106,17 @@ public class TypeImpl
 		return getSuperClasses();
 	}
 
+	public String getMetaTypeName() {
+		return eClass().getName();
+	}
+
 	public boolean isEqualTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		if (this == type) {
 			return true;
 		}
-		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
-		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
-		return thisInheritance == thatInheritance;
+		DomainType thisType = this.getNormalizedType(standardLibrary);
+		DomainType thatType = type.getNormalizedType(standardLibrary);
+		return thisType == thatType;
 	}
 
 	public boolean isEqualToUnspecializedType(DomainStandardLibrary standardLibrary, DomainType type) {

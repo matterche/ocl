@@ -309,7 +309,6 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				ClassifierType classifierType = (ClassifierType)theEObject;
 				T result = caseClassifierType(classifierType);
-				if (result == null) result = caseDataType(classifierType);
 				if (result == null) result = caseClass(classifierType);
 				if (result == null) result = caseType(classifierType);
 				if (result == null) result = caseNamespace(classifierType);

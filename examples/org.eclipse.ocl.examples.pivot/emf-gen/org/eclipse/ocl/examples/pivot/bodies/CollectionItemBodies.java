@@ -36,21 +36,21 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 
 /**
- * IntegerLiteralExpBodies provides the Java implementation bodies of OCL-defined IntegerLiteralExp operations and properties.
+ * CollectionItemBodies provides the Java implementation bodies of OCL-defined CollectionItem operations and properties.
  */
 @SuppressWarnings("nls")
-public class IntegerLiteralExpBodies
+public class CollectionItemBodies
 {
 
 	/** 
-	 * Implementation of the IntegerLiteralExp 'TypeIsInteger' invariant.
+	 * Implementation of the CollectionItem 'TypeIsItemType' invariant.
 	 */
-	public static class _invariant_TypeIsInteger extends AbstractUnaryOperation
+	public static class _invariant_TypeIsItemType extends AbstractUnaryOperation
 	{
-		public static _invariant_TypeIsInteger INSTANCE = new _invariant_TypeIsInteger();
+		public static _invariant_TypeIsItemType INSTANCE = new _invariant_TypeIsItemType();
 	
 		/*
-		self.type = Integer
+		type = item.type
 		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
@@ -60,15 +60,22 @@ public class IntegerLiteralExpBodies
 			final ExecutorType T_Pivot_ecore__pivot__Type = PivotTables.Types._Type;
 			final ExecutorProperty P_TypedElement_type = PivotTables.Properties._TypedElement__type;
 			final LibraryProperty IP_TypedElement_type = P_TypedElement_type.getImplementation();
-			final Value T_ClassClassifier_Integer_ = valueFactory.createTypeValue(OCLstdlibTables.Types._Integer);
+			final ExecutorType T_Pivot_ecore__pivot__OclExpression = PivotTables.Types._OclExpression;
+			final ExecutorProperty P_CollectionItem_item = PivotTables.Properties._CollectionItem__item;
+			final LibraryProperty IP_CollectionItem_item = P_CollectionItem_item.getImplementation();
 			
 			
-			Value A_symbol_413 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
+			Value A_symbol_346 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
 			
-			DomainType static_A_symbol_414 = valueFactory.typeOf(A_symbol_413, T_ClassClassifier_Integer_);
-			LibraryBinaryOperation dynamic_A_symbol_414 = (LibraryBinaryOperation)static_A_symbol_414.lookupImplementation(standardLibrary, O_OclAny__eq_);
-			Value A_symbol_414 = dynamic_A_symbol_414.evaluate(evaluator, T_Boolean, A_symbol_413, T_ClassClassifier_Integer_);
-			return A_symbol_414;
+			
+			Value A_symbol_347 = IP_CollectionItem_item.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, self, P_CollectionItem_item);
+			
+			Value A_symbol_348 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_347, P_TypedElement_type);
+			
+			DomainType static_A_symbol_349 = valueFactory.typeOf(A_symbol_346, A_symbol_348);
+			LibraryBinaryOperation dynamic_A_symbol_349 = (LibraryBinaryOperation)static_A_symbol_349.lookupImplementation(standardLibrary, O_OclAny__eq_);
+			Value A_symbol_349 = dynamic_A_symbol_349.evaluate(evaluator, T_Boolean, A_symbol_346, A_symbol_348);
+			return A_symbol_349;
 		}
 	}
 

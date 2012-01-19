@@ -36,21 +36,21 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 
 /**
- * IntegerLiteralExpBodies provides the Java implementation bodies of OCL-defined IntegerLiteralExp operations and properties.
+ * EnumLiteralExpBodies provides the Java implementation bodies of OCL-defined EnumLiteralExp operations and properties.
  */
 @SuppressWarnings("nls")
-public class IntegerLiteralExpBodies
+public class EnumLiteralExpBodies
 {
 
 	/** 
-	 * Implementation of the IntegerLiteralExp 'TypeIsInteger' invariant.
+	 * Implementation of the EnumLiteralExp 'TypeIsEnumerationType' invariant.
 	 */
-	public static class _invariant_TypeIsInteger extends AbstractUnaryOperation
+	public static class _invariant_TypeIsEnumerationType extends AbstractUnaryOperation
 	{
-		public static _invariant_TypeIsInteger INSTANCE = new _invariant_TypeIsInteger();
+		public static _invariant_TypeIsEnumerationType INSTANCE = new _invariant_TypeIsEnumerationType();
 	
 		/*
-		self.type = Integer
+		self.type = referredEnumLiteral.enumeration
 		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
@@ -60,15 +60,25 @@ public class IntegerLiteralExpBodies
 			final ExecutorType T_Pivot_ecore__pivot__Type = PivotTables.Types._Type;
 			final ExecutorProperty P_TypedElement_type = PivotTables.Properties._TypedElement__type;
 			final LibraryProperty IP_TypedElement_type = P_TypedElement_type.getImplementation();
-			final Value T_ClassClassifier_Integer_ = valueFactory.createTypeValue(OCLstdlibTables.Types._Integer);
+			final ExecutorType T_Pivot_ecore__pivot__Enumeration = PivotTables.Types._Enumeration;
+			final ExecutorProperty P_EnumerationLiteral_enumeration = PivotTables.Properties._EnumerationLiteral__enumeration;
+			final LibraryProperty IP_EnumerationLiteral_enumeration = P_EnumerationLiteral_enumeration.getImplementation();
+			final ExecutorType T_Pivot_ecore__pivot__EnumerationLiteral = PivotTables.Types._EnumerationLiteral;
+			final ExecutorProperty P_EnumLiteralExp_referredEnumLiteral = PivotTables.Properties._EnumLiteralExp__referredEnumLiteral;
+			final LibraryProperty IP_EnumLiteralExp_referredEnumLiteral = P_EnumLiteralExp_referredEnumLiteral.getImplementation();
 			
 			
-			Value A_symbol_413 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
+			Value A_symbol_61 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
 			
-			DomainType static_A_symbol_414 = valueFactory.typeOf(A_symbol_413, T_ClassClassifier_Integer_);
-			LibraryBinaryOperation dynamic_A_symbol_414 = (LibraryBinaryOperation)static_A_symbol_414.lookupImplementation(standardLibrary, O_OclAny__eq_);
-			Value A_symbol_414 = dynamic_A_symbol_414.evaluate(evaluator, T_Boolean, A_symbol_413, T_ClassClassifier_Integer_);
-			return A_symbol_414;
+			
+			Value A_symbol_62 = IP_EnumLiteralExp_referredEnumLiteral.evaluate(evaluator, T_Pivot_ecore__pivot__EnumerationLiteral, self, P_EnumLiteralExp_referredEnumLiteral);
+			
+			Value A_symbol_63 = IP_EnumerationLiteral_enumeration.evaluate(evaluator, T_Pivot_ecore__pivot__Enumeration, A_symbol_62, P_EnumerationLiteral_enumeration);
+			
+			DomainType static_A_symbol_64 = valueFactory.typeOf(A_symbol_61, A_symbol_63);
+			LibraryBinaryOperation dynamic_A_symbol_64 = (LibraryBinaryOperation)static_A_symbol_64.lookupImplementation(standardLibrary, O_OclAny__eq_);
+			Value A_symbol_64 = dynamic_A_symbol_64.evaluate(evaluator, T_Boolean, A_symbol_61, A_symbol_63);
+			return A_symbol_64;
 		}
 	}
 

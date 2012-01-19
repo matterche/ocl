@@ -2013,7 +2013,7 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_24.getOwnedParameters().add(symbol_25);
 		
 		symbol_23.setOwnedTemplateSignature(symbol_24);
-		symbol_23.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_23.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		{	// ocl::Bag::<>()
 			Operation symbol_477 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}!<>(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclSelf)
 			symbol_477.setName("<>");
@@ -2205,7 +2205,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_502 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}!intersection(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T])!bag
 			symbol_502.setName("bag");
-			symbol_502.setType(symbol_223);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+			symbol_502.setType(symbol_221);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 			
 			
 			symbol_501.getOwnedParameters().add(symbol_502);
@@ -2226,7 +2226,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_505 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}!intersection(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[T])!s
 			symbol_505.setName("s");
-			symbol_505.setType(symbol_281);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+			symbol_505.setType(symbol_283);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 			
 			
 			symbol_504.getOwnedParameters().add(symbol_505);
@@ -2325,7 +2325,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_520 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}!union(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T])!bag
 			symbol_520.setName("bag");
-			symbol_520.setType(symbol_223);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+			symbol_520.setType(symbol_221);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 			
 			
 			symbol_519.getOwnedParameters().add(symbol_520);
@@ -2346,7 +2346,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_523 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}!union(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[T])!s
 			symbol_523.setName("s");
-			symbol_523.setType(symbol_281);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+			symbol_523.setType(symbol_283);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 			
 			
 			symbol_522.getOwnedParameters().add(symbol_523);
@@ -2737,7 +2737,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_567.getOwnedIterators().add(symbol_568);
 			Parameter symbol_569 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T|Lambda~T()Boolean)!body
 			symbol_569.setName("body");
-			symbol_569.setType(symbol_148);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_569.setType(symbol_145);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_567.getOwnedParameters().add(symbol_569);
@@ -2756,19 +2756,19 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_571.setName("exists");
 			symbol_571.setType(symbol_11);  // Boolean
 			
-			Parameter symbol_572 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T,T|Lambda~T()Boolean)!j
-			symbol_572.setName("j");
+			Parameter symbol_572 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T,T|Lambda~T()Boolean)!i
+			symbol_572.setName("i");
 			symbol_572.setType(symbol_51); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T
 			
 			symbol_571.getOwnedIterators().add(symbol_572);
-			Parameter symbol_573 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T,T|Lambda~T()Boolean)!i
-			symbol_573.setName("i");
+			Parameter symbol_573 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T,T|Lambda~T()Boolean)!j
+			symbol_573.setName("j");
 			symbol_573.setType(symbol_51); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T
 			
 			symbol_571.getOwnedIterators().add(symbol_573);
 			Parameter symbol_574 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!exists(T,T|Lambda~T()Boolean)!body
 			symbol_574.setName("body");
-			symbol_574.setType(symbol_147);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_574.setType(symbol_142);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_571.getOwnedParameters().add(symbol_574);
@@ -2809,7 +2809,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_577.getOwnedIterators().add(symbol_578);
 			Parameter symbol_579 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!forAll(T|Lambda~T()Boolean)!body
 			symbol_579.setName("body");
-			symbol_579.setType(symbol_141);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_579.setType(symbol_148);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_577.getOwnedParameters().add(symbol_579);
@@ -2840,7 +2840,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_581.getOwnedIterators().add(symbol_583);
 			Parameter symbol_584 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!forAll(T,T|Lambda~T()Boolean)!body
 			symbol_584.setName("body");
-			symbol_584.setType(symbol_146);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_584.setType(symbol_141);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_581.getOwnedParameters().add(symbol_584);
@@ -2944,7 +2944,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_596.getOwnedIterators().add(symbol_597);
 			Parameter symbol_598 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!isUnique(T|Lambda~T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny)!body
 			symbol_598.setName("body");
-			symbol_598.setType(symbol_153);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny
+			symbol_598.setType(symbol_152);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny
 			
 			
 			symbol_596.getOwnedParameters().add(symbol_598);
@@ -3061,7 +3061,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_612.getOwnedIterators().add(symbol_613);
 			Parameter symbol_614 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!one(T|Lambda~T()Boolean)!body
 			symbol_614.setName("body");
-			symbol_614.setType(symbol_144);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_614.setType(symbol_147);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_612.getOwnedParameters().add(symbol_614);
@@ -3113,7 +3113,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_619.getOwnedIterators().add(symbol_620);
 			Parameter symbol_621 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!reject(T|Lambda~T()Boolean)!body
 			symbol_621.setName("body");
-			symbol_621.setType(symbol_145);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_621.setType(symbol_146);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_619.getOwnedParameters().add(symbol_621);
@@ -3139,7 +3139,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_623.getOwnedIterators().add(symbol_624);
 			Parameter symbol_625 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!select(T|Lambda~T()Boolean)!body
 			symbol_625.setName("body");
-			symbol_625.setType(symbol_142);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
+			symbol_625.setType(symbol_144);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()Boolean
 			
 			
 			symbol_623.getOwnedParameters().add(symbol_625);
@@ -3180,7 +3180,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_629.getOwnedIterators().add(symbol_630);
 			Parameter symbol_631 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!sortedBy(T|Lambda~T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny)!body
 			symbol_631.setName("body");
-			symbol_631.setType(symbol_152);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny
+			symbol_631.setType(symbol_153);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T()http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny
 			
 			
 			symbol_629.getOwnedParameters().add(symbol_631);
@@ -4264,7 +4264,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_760 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}!intersection(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T])!o
 			symbol_760.setName("o");
-			symbol_760.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
+			symbol_760.setType(symbol_240);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
 			
 			
 			symbol_759.getOwnedParameters().add(symbol_760);
@@ -4770,7 +4770,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_829 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}!intersection(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[T])!s
 			symbol_829.setName("s");
-			symbol_829.setType(symbol_297);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
+			symbol_829.setType(symbol_298);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 			
 			
 			symbol_828.getOwnedParameters().add(symbol_829);
@@ -4832,7 +4832,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_836.getOwnedIterators().add(symbol_837);
 			Parameter symbol_838 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}!reject(T|Lambda~T()Boolean)!body
 			symbol_838.setName("body");
-			symbol_838.setType(symbol_157);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T()Boolean
+			symbol_838.setType(symbol_158);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T()Boolean
 			
 			
 			symbol_836.getOwnedParameters().add(symbol_838);
@@ -4873,7 +4873,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_842.getOwnedIterators().add(symbol_843);
 			Parameter symbol_844 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}!select(T|Lambda~T()Boolean)!body
 			symbol_844.setName("body");
-			symbol_844.setType(symbol_158);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T()Boolean
+			symbol_844.setType(symbol_157);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T()Boolean
 			
 			
 			symbol_842.getOwnedParameters().add(symbol_844);
@@ -5110,7 +5110,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_875 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}!intersection(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T])!s
 			symbol_875.setName("s");
-			symbol_875.setType(symbol_247);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
+			symbol_875.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 			
 			
 			symbol_874.getOwnedParameters().add(symbol_875);
@@ -5136,7 +5136,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_877.getOwnedIterators().add(symbol_878);
 			Parameter symbol_879 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}!reject(T|Lambda~T()Boolean)!body
 			symbol_879.setName("body");
-			symbol_879.setType(symbol_163);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T()Boolean
+			symbol_879.setType(symbol_164);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T()Boolean
 			
 			
 			symbol_877.getOwnedParameters().add(symbol_879);
@@ -5162,7 +5162,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_881.getOwnedIterators().add(symbol_882);
 			Parameter symbol_883 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}!select(T|Lambda~T()Boolean)!body
 			symbol_883.setName("body");
-			symbol_883.setType(symbol_164);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T()Boolean
+			symbol_883.setType(symbol_163);  // Lambda~http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T()Boolean
 			
 			
 			symbol_881.getOwnedParameters().add(symbol_883);
@@ -5209,7 +5209,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			Parameter symbol_890 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}!union(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T])!s
 			symbol_890.setName("s");
-			symbol_890.setType(symbol_247);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
+			symbol_890.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 			
 			
 			symbol_889.getOwnedParameters().add(symbol_890);
@@ -5959,7 +5959,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::$$::Bag http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_190.setName("Bag");
-		symbol_190.setElementType(symbol_173);
+		symbol_190.setElementType(symbol_176);
 		symbol_190.setUnspecializedElement(symbol_23);
 		{
 			TemplateBinding symbol_928 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -5967,19 +5967,19 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_929 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_929.setFormal(symbol_25);	
-				symbol_929.setActual(symbol_176);	
+				symbol_929.setActual(symbol_170);	
 				symbol_928.getParameterSubstitutions().add(symbol_929);
 			}
 			symbol_190.getTemplateBindings().add(symbol_928);
 		}
-		symbol_190.getSuperClasses().add(symbol_217); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
+		symbol_190.getSuperClasses().add(symbol_218); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		
 		symbol_134.getOwnedTypes().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		// ocl::$$::Bag http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_191.setName("Bag");
-		symbol_191.setElementType(symbol_173);
+		symbol_191.setElementType(symbol_176);
 		symbol_191.setUnspecializedElement(symbol_23);
 		{
 			TemplateBinding symbol_930 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -5987,12 +5987,12 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_931 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_931.setFormal(symbol_25);	
-				symbol_931.setActual(symbol_176);	
+				symbol_931.setActual(symbol_170);	
 				symbol_930.getParameterSubstitutions().add(symbol_931);
 			}
 			symbol_191.getTemplateBindings().add(symbol_930);
 		}
-		symbol_191.getSuperClasses().add(symbol_217); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
+		symbol_191.getSuperClasses().add(symbol_218); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		
 		symbol_134.getOwnedTypes().add(symbol_191); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
@@ -6052,7 +6052,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_194.getTemplateBindings().add(symbol_936);
 		}
-		symbol_194.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_194.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_194); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -6072,7 +6072,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_195.getTemplateBindings().add(symbol_938);
 		}
-		symbol_195.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_195.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_195); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -6092,7 +6092,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_196.getTemplateBindings().add(symbol_940);
 		}
-		symbol_196.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_196.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_196); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -6112,7 +6112,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_197.getTemplateBindings().add(symbol_942);
 		}
-		symbol_197.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_197.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_197); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -6132,7 +6132,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_198.getTemplateBindings().add(symbol_944);
 		}
-		symbol_198.getSuperClasses().add(symbol_230); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
+		symbol_198.getSuperClasses().add(symbol_229); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_198); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		//
@@ -6332,7 +6332,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_208.getTemplateBindings().add(symbol_964);
 		}
-		symbol_208.getSuperClasses().add(symbol_247); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
+		symbol_208.getSuperClasses().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_208); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		//
@@ -6392,7 +6392,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_211.getTemplateBindings().add(symbol_970);
 		}
-		symbol_211.getSuperClasses().add(symbol_186); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!AnyClassifier[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclInvalid]
+		symbol_211.getSuperClasses().add(symbol_187); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!AnyClassifier[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclInvalid]
 		
 		symbol_134.getOwnedTypes().add(symbol_211); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!ClassClassifier[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclInvalid]
 		//
@@ -6446,13 +6446,13 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_976.setSignature(symbol_42);
 			{
 				TemplateParameterSubstitution symbol_977 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_977.setFormal(symbol_45);	
-				symbol_977.setActual(symbol_51);	
+				symbol_977.setFormal(symbol_43);	
+				symbol_977.setActual(symbol_96);	
 				symbol_976.getParameterSubstitutions().add(symbol_977);
 			}{
 				TemplateParameterSubstitution symbol_978 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-				symbol_978.setFormal(symbol_43);	
-				symbol_978.setActual(symbol_96);	
+				symbol_978.setFormal(symbol_45);	
+				symbol_978.setActual(symbol_51);	
 				symbol_976.getParameterSubstitutions().add(symbol_978);
 			}
 			symbol_214.getTemplateBindings().add(symbol_976);
@@ -6504,7 +6504,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::$$::Collection http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_217.setName("Collection");
-		symbol_217.setElementType(symbol_170);
+		symbol_217.setElementType(symbol_167);
 		symbol_217.setUnspecializedElement(symbol_48);
 		{
 			TemplateBinding symbol_983 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -6512,7 +6512,7 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_984 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_984.setFormal(symbol_50);	
-				symbol_984.setActual(symbol_170);	
+				symbol_984.setActual(symbol_167);	
 				symbol_983.getParameterSubstitutions().add(symbol_984);
 			}
 			symbol_217.getTemplateBindings().add(symbol_983);
@@ -6524,7 +6524,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::$$::Collection http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_218.setName("Collection");
-		symbol_218.setElementType(symbol_170);
+		symbol_218.setElementType(symbol_167);
 		symbol_218.setUnspecializedElement(symbol_48);
 		{
 			TemplateBinding symbol_985 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -6532,7 +6532,7 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_986 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_986.setFormal(symbol_50);	
-				symbol_986.setActual(symbol_170);	
+				symbol_986.setActual(symbol_167);	
 				symbol_985.getParameterSubstitutions().add(symbol_986);
 			}
 			symbol_218.getTemplateBindings().add(symbol_985);
@@ -7280,8 +7280,8 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_255.getTemplateBindings().add(symbol_1059);
 		}
-		symbol_255.getSuperClasses().add(symbol_267); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
-		symbol_255.getSuperClasses().add(symbol_298); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
+		symbol_255.getSuperClasses().add(symbol_269); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
+		symbol_255.getSuperClasses().add(symbol_299); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_255); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		//
@@ -7383,7 +7383,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_260.getTemplateBindings().add(symbol_1069);
 		}
-		symbol_260.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_260.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_260); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -7403,7 +7403,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_261.getTemplateBindings().add(symbol_1071);
 		}
-		symbol_261.getSuperClasses().add(symbol_231); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
+		symbol_261.getSuperClasses().add(symbol_230); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_261); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		//
@@ -7463,7 +7463,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_264.getTemplateBindings().add(symbol_1077);
 		}
-		symbol_264.getSuperClasses().add(symbol_240); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
+		symbol_264.getSuperClasses().add(symbol_241); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_264); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
 		//
@@ -7583,7 +7583,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_270.getTemplateBindings().add(symbol_1089);
 		}
-		symbol_270.getSuperClasses().add(symbol_247); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
+		symbol_270.getSuperClasses().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_270); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		//
@@ -7610,7 +7610,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::$$::Set http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_272.setName("Set");
-		symbol_272.setElementType(symbol_173);
+		symbol_272.setElementType(symbol_176);
 		symbol_272.setUnspecializedElement(symbol_122);
 		{
 			TemplateBinding symbol_1093 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -7618,13 +7618,13 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_1094 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_1094.setFormal(symbol_124);	
-				symbol_1094.setActual(symbol_176);	
+				symbol_1094.setActual(symbol_170);	
 				symbol_1093.getParameterSubstitutions().add(symbol_1094);
 			}
 			symbol_272.getTemplateBindings().add(symbol_1093);
 		}
 		symbol_272.getSuperClasses().add(symbol_191); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
-		symbol_272.getSuperClasses().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
+		symbol_272.getSuperClasses().add(symbol_280); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		
 		symbol_134.getOwnedTypes().add(symbol_272); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
@@ -7644,7 +7644,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_273.getTemplateBindings().add(symbol_1095);
 		}
-		symbol_273.getSuperClasses().add(symbol_196); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_273.getSuperClasses().add(symbol_194); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		symbol_273.getSuperClasses().add(symbol_284); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_273); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
@@ -7708,7 +7708,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_276.getTemplateBindings().add(symbol_1101);
 		}
 		symbol_276.getSuperClasses().add(symbol_202); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclSelf]
-		symbol_276.getSuperClasses().add(symbol_294); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclSelf]
+		symbol_276.getSuperClasses().add(symbol_289); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclSelf]
 		
 		symbol_134.getOwnedTypes().add(symbol_276); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclSelf]
 		//
@@ -7757,7 +7757,7 @@ public class OCLstdlib extends XMLResourceImpl
 		// ocl::$$::UniqueCollection http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_279.setName("UniqueCollection");
-		symbol_279.setElementType(symbol_173);
+		symbol_279.setElementType(symbol_176);
 		symbol_279.setUnspecializedElement(symbol_130);
 		{
 			TemplateBinding symbol_1107 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -7765,19 +7765,19 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_1108 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_1108.setFormal(symbol_132);	
-				symbol_1108.setActual(symbol_176);	
+				symbol_1108.setActual(symbol_170);	
 				symbol_1107.getParameterSubstitutions().add(symbol_1108);
 			}
 			symbol_279.getTemplateBindings().add(symbol_1107);
 		}
-		symbol_279.getSuperClasses().add(symbol_217); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
+		symbol_279.getSuperClasses().add(symbol_218); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		
 		symbol_134.getOwnedTypes().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		// ocl::$$::UniqueCollection http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
 		symbol_280.setName("UniqueCollection");
-		symbol_280.setElementType(symbol_173);
+		symbol_280.setElementType(symbol_176);
 		symbol_280.setUnspecializedElement(symbol_130);
 		{
 			TemplateBinding symbol_1109 = PivotFactory.eINSTANCE.createTemplateBinding();
@@ -7785,12 +7785,12 @@ public class OCLstdlib extends XMLResourceImpl
 			{
 				TemplateParameterSubstitution symbol_1110 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_1110.setFormal(symbol_132);	
-				symbol_1110.setActual(symbol_176);	
+				symbol_1110.setActual(symbol_170);	
 				symbol_1109.getParameterSubstitutions().add(symbol_1110);
 			}
 			symbol_280.getTemplateBindings().add(symbol_1109);
 		}
-		symbol_280.getSuperClasses().add(symbol_217); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
+		symbol_280.getSuperClasses().add(symbol_218); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		
 		symbol_134.getOwnedTypes().add(symbol_280); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[Tuple{first:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T,second:http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}!product{T2}(http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[T2])?T2}]
 		//
@@ -7830,7 +7830,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_282.getTemplateBindings().add(symbol_1113);
 		}
-		symbol_282.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_282.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_282); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -7870,7 +7870,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_284.getTemplateBindings().add(symbol_1117);
 		}
-		symbol_284.getSuperClasses().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
+		symbol_284.getSuperClasses().add(symbol_221); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_284); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Bag{T}?T]
 		//
@@ -7890,7 +7890,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_285.getTemplateBindings().add(symbol_1119);
 		}
-		symbol_285.getSuperClasses().add(symbol_230); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
+		symbol_285.getSuperClasses().add(symbol_229); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_285); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection{T}?T]
 		//
@@ -7930,7 +7930,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_287.getTemplateBindings().add(symbol_1123);
 		}
-		symbol_287.getSuperClasses().add(symbol_235); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny]
+		symbol_287.getSuperClasses().add(symbol_236); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny]
 		
 		symbol_134.getOwnedTypes().add(symbol_287); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OclAny]
 		//
@@ -8110,7 +8110,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_296.getTemplateBindings().add(symbol_1141);
 		}
-		symbol_296.getSuperClasses().add(symbol_241); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
+		symbol_296.getSuperClasses().add(symbol_240); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_296); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!OrderedSet{T}?T]
 		//
@@ -8130,7 +8130,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_297.getTemplateBindings().add(symbol_1143);
 		}
-		symbol_297.getSuperClasses().add(symbol_245); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
+		symbol_297.getSuperClasses().add(symbol_244); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_297); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		//
@@ -8150,7 +8150,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_298.getTemplateBindings().add(symbol_1145);
 		}
-		symbol_298.getSuperClasses().add(symbol_244); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
+		symbol_298.getSuperClasses().add(symbol_245); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_298); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Sequence{T}?T]
 		//
@@ -8210,7 +8210,7 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_301.getTemplateBindings().add(symbol_1151);
 		}
-		symbol_301.getSuperClasses().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
+		symbol_301.getSuperClasses().add(symbol_247); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Collection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		
 		symbol_134.getOwnedTypes().add(symbol_301); // http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!UniqueCollection[http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib!Set{T}?T]
 		//
