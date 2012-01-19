@@ -104,7 +104,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			return result.asString();
 		} catch (InvalidValueException e) {
 			String message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		}
 	}
 
@@ -192,10 +192,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 			return result.asBoolean();
 		} catch (InvalidValueException e) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		}
 	}
 
@@ -220,10 +220,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 			}
 		} catch (InvalidValueException e) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
+			throw new OCLDelegateException(message, e);
 		}
 		if (diagnostics != null) {
 			String message = evaluateMessage(evaluationVisitor, constraintName, query);
