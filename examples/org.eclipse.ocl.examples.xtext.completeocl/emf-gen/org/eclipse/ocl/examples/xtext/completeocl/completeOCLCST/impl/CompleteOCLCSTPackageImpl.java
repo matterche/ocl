@@ -780,6 +780,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		contextConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
 		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
+		contextDeclCSEClass.getESuperTypes().add(thePivotPackage.getMorePivotable());
 		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 		defCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		derCSEClass.getESuperTypes().add(this.getContextConstraintCS());
@@ -790,6 +791,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
 		packageDeclarationCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
+		packageDeclarationCSEClass.getESuperTypes().add(thePivotPackage.getMorePivotable());
 		postCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preExpCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getDecoratedNamedExpCS());

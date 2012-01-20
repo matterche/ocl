@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -275,5 +277,10 @@ public class PackageDeclarationCSImpl extends ModelElementCSImpl implements Pack
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPackageDeclarationCS(this);
+	}
+
+	public Iterable<Element> getMorePivots() {
+		org.eclipse.ocl.examples.pivot.Package pPackage = getPackage();
+		return pPackage != null ? Collections.<Element>singletonList(pPackage) :  Collections.<Element>emptyList();
 	}
 } //PackageDeclarationCSImpl

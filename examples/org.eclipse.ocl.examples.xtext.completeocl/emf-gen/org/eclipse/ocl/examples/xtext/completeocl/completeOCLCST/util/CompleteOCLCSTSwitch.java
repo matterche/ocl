@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
@@ -141,6 +142,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseClassifierContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseModelElementCS(classifierContextDeclCS);
+				if (result == null) result = caseMorePivotable(classifierContextDeclCS);
 				if (result == null) result = casePivotableElementCS(classifierContextDeclCS);
 				if (result == null) result = caseElementCS(classifierContextDeclCS);
 				if (result == null) result = casePivotable(classifierContextDeclCS);
@@ -185,6 +187,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				ContextDeclCS contextDeclCS = (ContextDeclCS)theEObject;
 				T result = caseContextDeclCS(contextDeclCS);
 				if (result == null) result = caseModelElementCS(contextDeclCS);
+				if (result == null) result = caseMorePivotable(contextDeclCS);
 				if (result == null) result = casePivotableElementCS(contextDeclCS);
 				if (result == null) result = caseElementCS(contextDeclCS);
 				if (result == null) result = casePivotable(contextDeclCS);
@@ -244,6 +247,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseFeatureContextDeclCS(featureContextDeclCS);
 				if (result == null) result = caseContextDeclCS(featureContextDeclCS);
 				if (result == null) result = caseModelElementCS(featureContextDeclCS);
+				if (result == null) result = caseMorePivotable(featureContextDeclCS);
 				if (result == null) result = casePivotableElementCS(featureContextDeclCS);
 				if (result == null) result = caseElementCS(featureContextDeclCS);
 				if (result == null) result = casePivotable(featureContextDeclCS);
@@ -318,6 +322,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseFeatureContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseModelElementCS(operationContextDeclCS);
+				if (result == null) result = caseMorePivotable(operationContextDeclCS);
 				if (result == null) result = casePivotableElementCS(operationContextDeclCS);
 				if (result == null) result = caseElementCS(operationContextDeclCS);
 				if (result == null) result = casePivotable(operationContextDeclCS);
@@ -330,6 +335,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				PackageDeclarationCS packageDeclarationCS = (PackageDeclarationCS)theEObject;
 				T result = casePackageDeclarationCS(packageDeclarationCS);
 				if (result == null) result = caseModelElementCS(packageDeclarationCS);
+				if (result == null) result = caseMorePivotable(packageDeclarationCS);
 				if (result == null) result = casePivotableElementCS(packageDeclarationCS);
 				if (result == null) result = caseElementCS(packageDeclarationCS);
 				if (result == null) result = casePivotable(packageDeclarationCS);
@@ -391,6 +397,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseFeatureContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseModelElementCS(propertyContextDeclCS);
+				if (result == null) result = caseMorePivotable(propertyContextDeclCS);
 				if (result == null) result = casePivotableElementCS(propertyContextDeclCS);
 				if (result == null) result = caseElementCS(propertyContextDeclCS);
 				if (result == null) result = casePivotable(propertyContextDeclCS);
@@ -483,6 +490,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>More Pivotable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>More Pivotable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMorePivotable(MorePivotable object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Context Decl CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;

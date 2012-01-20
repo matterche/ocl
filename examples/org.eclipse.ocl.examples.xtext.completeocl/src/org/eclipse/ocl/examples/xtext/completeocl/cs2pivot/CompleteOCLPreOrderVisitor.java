@@ -178,6 +178,7 @@ public class CompleteOCLPreOrderVisitor
 		public BasicContinuation<?> execute() {
 			Operation modelOperation = csElement.getOperation();
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
+				System.out.println(" Pre:visitOperationContextDeclCS FAIL " + csElement);
 				return null;
 			}
 			Type contextType = getContextClassifier(modelOperation.getOwningType(), csElement);
@@ -208,6 +209,7 @@ public class CompleteOCLPreOrderVisitor
 			contextType.getOwnedOperations().add(contextOperation);
 			context.refreshComments(contextOperation, csElement);
 //			metaModelManager.addContextOperation(modelOperation, contextOperation);
+			System.out.println(" Pre:visitOperationContextDeclCS OK " + contextOperation);
 			return null;
 		}
 	}
@@ -223,6 +225,7 @@ public class CompleteOCLPreOrderVisitor
 		Resource pivotResource = context.getConverter().getPivotResource(csElement.eResource());
 		for (Type aType : metaModelManager.getAllTypes(modelType)) {
 			if (aType.eResource() == pivotResource) {
+				System.out.println(" getContextClassifier FOUND " + aType);
 				return aType;
 			}
 		}
@@ -231,16 +234,19 @@ public class CompleteOCLPreOrderVisitor
 		contextType.setName(modelType.getName());
 		contextPackage.getOwnedTypes().add(contextType);
 		// WIP Install class synonym
+		System.out.println(" getContextClassifier INSTALL " + contextType);
 		return contextType;
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package getContextPackage(org.eclipse.ocl.examples.pivot.Package modelPackage, Resource csResource, ModelElementCS csElement) {
 		if (modelPackage == null) {
+			System.out.println(" getContextPackage FAIL " + csElement);
 			return null;
 		}
 		Resource pivotResource = context.getConverter().getPivotResource(csResource);
 		for (org.eclipse.ocl.examples.pivot.Package aPackage : metaModelManager.getAllPackages(modelPackage, true)) {
 			if (aPackage.eResource() == pivotResource) {	// WIP FIXME A CS2P cache would avoid searching
+				System.out.println(" getContextPackage FOUND @" + Integer.toHexString(aPackage.hashCode()) + " " + aPackage.eResource().getURI() + " " + aPackage.getName());
 				return aPackage;
 			}
 		}
@@ -255,6 +261,7 @@ public class CompleteOCLPreOrderVisitor
 			pivotResource.getContents().add(contextPackage);
 		}
 		metaModelManager.installPackage(contextPackage);
+		System.out.println(" getContextPackage INSTALL @" + Integer.toHexString(contextPackage.hashCode()) + " " + contextPackage.eResource().getURI() + " " + contextPackage.getName());
 		return contextPackage;
 	}
 
@@ -263,6 +270,7 @@ public class CompleteOCLPreOrderVisitor
 		context.resolveNamespaces(csElement.getNamespace());
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
+			System.out.println(" Pre:visitClassifierContextDeclCS FAIL " + csElement);
 			return null;
 		}
 		Type contextClassifier = getContextClassifier(modelClassifier, csElement);
@@ -272,6 +280,7 @@ public class CompleteOCLPreOrderVisitor
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
 		context.installPivotUsage(csElement, contextClassifier);		// WIP ?? reference
+		System.out.println(" Pre:visitClassifierContextDeclCS OK " + contextClassifier);
 		return null;
 	}
 
@@ -313,6 +322,7 @@ public class CompleteOCLPreOrderVisitor
 		context.resolveNamespaces(csElement.getNamespace());
 		org.eclipse.ocl.examples.pivot.Package modelPackage = csElement.getPackage();
 		if ((modelPackage == null) || modelPackage.eIsProxy()) {
+			System.out.println(" Pre:visitPackageDeclarationCS FAIL " + csElement);
 			return null;
 		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, csElement.eResource(), csElement);
@@ -322,6 +332,7 @@ public class CompleteOCLPreOrderVisitor
 //			element = context.getMetaModelManager().getOclInvalidType();	// FIXME with reason
 //		}
 		context.installPivotUsage(csElement, contextPackage);
+		System.out.println(" Pre:visitPackageDeclarationCS OK " + contextPackage);
 		return null; //new CompletePackageContentContinuation(context, csElement);
 	}
 

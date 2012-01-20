@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
@@ -35,10 +36,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS()
- * @model
+ * @model superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS org.eclipse.ocl.examples.pivot.MorePivotable"
  * @generated
  */
-public interface PackageDeclarationCS extends ModelElementCS {
+public interface PackageDeclarationCS extends ModelElementCS, MorePivotable {
 	/**
 	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.

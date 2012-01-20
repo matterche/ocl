@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -503,6 +504,16 @@ public class CS2PivotConversion extends AbstractConversion
 //		}
 	}
 
+	protected void gatherNewPackage(Set<org.eclipse.ocl.examples.pivot.Package> newPackages, EObject pivot) {
+		if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
+			newPackages.add((org.eclipse.ocl.examples.pivot.Package)pivot);
+		}
+		EObject eContainer = pivot.eContainer();
+		if (eContainer != null) {
+			gatherNewPackage(newPackages, eContainer);
+		}
+	}
+
 	/**
 	 * Add any packages and nested packages pivoted by csResource to newPackages. This
 	 * is invoked at the end of an update to identify redundant packages. 
@@ -513,19 +524,24 @@ public class CS2PivotConversion extends AbstractConversion
 			if (eObject instanceof Pivotable) {
 				Element pObject = ((Pivotable)eObject).getPivot();
 				if (pObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					newPackages.add((org.eclipse.ocl.examples.pivot.Package)pObject);
+					gatherNewPackage(newPackages, pObject);
 				}
 				else {		// CompleteOCL has package references from non-package contexts
 					if (pObject instanceof Type) {
-						newPackages.add(((Type)pObject).getPackage());
+						gatherNewPackage(newPackages, pObject);
 					}
 					else if (pObject instanceof Operation) {
-						newPackages.add(((Operation)pObject).getOwningType().getPackage());
+						gatherNewPackage(newPackages, pObject);
 					}
 					else if (pObject instanceof Property) {
-						newPackages.add(((Property)pObject).getOwningType().getPackage());
+						gatherNewPackage(newPackages, pObject);
 					}
 					tit.prune();
+				}
+				if (eObject instanceof MorePivotable) {  // CompleteOCL has package references from non-package contexts
+					for (Element pivot : ((MorePivotable)eObject).getMorePivots()) {
+						gatherNewPackage(newPackages, pivot);
+					}
 				}
 			}
 		}	
@@ -1483,6 +1499,7 @@ public class CS2PivotConversion extends AbstractConversion
 				EReference eContainmentFeature = obsoletePackage.eContainmentFeature();
 				if (eContainmentFeature.isMany()) {
 					List<?> siblings = (List<?>) eContainer.eGet(eContainmentFeature);
+//					System.out.println("Kill package @" + Integer.toHexString(obsoletePackage.hashCode()) + " " + obsoletePackage.eResource().getURI() + " " + obsoletePackage.getName());
 					siblings.remove(obsoletePackage);
 				}
 				else {

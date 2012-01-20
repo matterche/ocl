@@ -104,6 +104,7 @@ public class PivotTables
 	    public static final EcoreExecutorType _LoopExp = new EcoreExecutorType(PivotPackage.Literals.LOOP_EXP, PACKAGE, 0);
 	    public static final EcoreExecutorType _MessageExp = new EcoreExecutorType(PivotPackage.Literals.MESSAGE_EXP, PACKAGE, 0);
 	    public static final EcoreExecutorType _MessageType = new EcoreExecutorType(PivotPackage.Literals.MESSAGE_TYPE, PACKAGE, 0);
+	    public static final EcoreExecutorType _MorePivotable = new EcoreExecutorType(PivotPackage.Literals.MORE_PIVOTABLE, PACKAGE, 0);
 	    public static final EcoreExecutorType _MultiplicityElement = new EcoreExecutorType(PivotPackage.Literals.MULTIPLICITY_ELEMENT, PACKAGE, 0);
 	    public static final EcoreExecutorType _Nameable = new EcoreExecutorType(PivotPackage.Literals.NAMEABLE, PACKAGE, 0);
 	    public static final EcoreExecutorType _NamedElement = new EcoreExecutorType(PivotPackage.Literals.NAMED_ELEMENT, PACKAGE, 0);
@@ -217,6 +218,7 @@ public class PivotTables
 		    _LoopExp,
 		    _MessageExp,
 		    _MessageType,
+		    _MorePivotable,
 		    _MultiplicityElement,
 		    _Nameable,
 		    _NamedElement,
@@ -764,6 +766,10 @@ public class PivotTables
 		public static final ExecutorFragment _MessageType__TemplateableElement = new ExecutorFragment(Types._MessageType, PivotTables.Types._TemplateableElement);
 		public static final ExecutorFragment _MessageType__Type = new ExecutorFragment(Types._MessageType, PivotTables.Types._Type);
 		public static final ExecutorFragment _MessageType__Visitable = new ExecutorFragment(Types._MessageType, PivotTables.Types._Visitable);
+		
+		public static final ExecutorFragment _MorePivotable__MorePivotable = new ExecutorFragment(Types._MorePivotable, PivotTables.Types._MorePivotable);
+		public static final ExecutorFragment _MorePivotable__OclAny = new ExecutorFragment(Types._MorePivotable, OCLstdlibTables.Types._OclAny);
+		public static final ExecutorFragment _MorePivotable__OclElement = new ExecutorFragment(Types._MorePivotable, OCLstdlibTables.Types._OclElement);
 		
 		public static final ExecutorFragment _MultiplicityElement__Element = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._Element);
 		public static final ExecutorFragment _MultiplicityElement__MultiplicityElement = new ExecutorFragment(Types._MultiplicityElement, PivotTables.Types._MultiplicityElement);
@@ -2491,6 +2497,14 @@ public class PivotTables
 		};
 		private static final int[] __MessageType = { 1,1,2,1,3,1,1 };
 	
+		private static final ExecutorFragment[] _MorePivotable =
+		{
+		    Fragments._MorePivotable__OclAny /* 0 */,
+		    Fragments._MorePivotable__OclElement /* 1 */,
+		    Fragments._MorePivotable__MorePivotable /* 2 */
+		};
+		private static final int[] __MorePivotable = { 1,1,1 };
+	
 		private static final ExecutorFragment[] _MultiplicityElement =
 		{
 		    Fragments._MultiplicityElement__OclAny /* 0 */,
@@ -3323,6 +3337,7 @@ public class PivotTables
 			Types._LoopExp.initFragments(_LoopExp, __LoopExp);
 			Types._MessageExp.initFragments(_MessageExp, __MessageExp);
 			Types._MessageType.initFragments(_MessageType, __MessageType);
+			Types._MorePivotable.initFragments(_MorePivotable, __MorePivotable);
 			Types._MultiplicityElement.initFragments(_MultiplicityElement, __MultiplicityElement);
 			Types._Nameable.initFragments(_Nameable, __Nameable);
 			Types._NamedElement.initFragments(_NamedElement, __NamedElement);
@@ -4713,6 +4728,26 @@ public class PivotTables
 		};
 		private static final ExecutorOperation[] _MessageType__Type = {};
 		private static final ExecutorOperation[] _MessageType__Visitable = {};
+	
+		private static final ExecutorOperation[] _MorePivotable__MorePivotable = {};
+		private static final ExecutorOperation[] _MorePivotable__OclAny = {
+		    OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf) */,
+		    OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+		    OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+		    OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf<T>(AnyClassifier<T>) */,
+		    OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+		    OCLstdlibTables.Operations._OclAny__oclType /* oclType() */
+		};
+		private static final ExecutorOperation[] _MorePivotable__OclElement = {
+		    OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+		    OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+		    OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */
+		};
 	
 		private static final ExecutorOperation[] _MultiplicityElement__MultiplicityElement = {
 		    PivotTables.Operations._MultiplicityElement__includesCardinality /* includesCardinality(Integer) */,
@@ -6881,6 +6916,10 @@ public class PivotTables
 			Fragments._MessageType__Type.initOperations(_MessageType__Type);
 			Fragments._MessageType__Visitable.initOperations(_MessageType__Visitable);
 	
+			Fragments._MorePivotable__MorePivotable.initOperations(_MorePivotable__MorePivotable);
+			Fragments._MorePivotable__OclAny.initOperations(_MorePivotable__OclAny);
+			Fragments._MorePivotable__OclElement.initOperations(_MorePivotable__OclElement);
+	
 			Fragments._MultiplicityElement__Element.initOperations(_MultiplicityElement__Element);
 			Fragments._MultiplicityElement__MultiplicityElement.initOperations(_MultiplicityElement__MultiplicityElement);
 			Fragments._MultiplicityElement__OclAny.initOperations(_MultiplicityElement__OclAny);
@@ -8387,6 +8426,8 @@ public class PivotTables
 		    PivotTables.Properties._TemplateableElement__unspecializedElement
 		};
 	
+		private static final ExecutorProperty[] _MorePivotable = {};
+	
 		private static final ExecutorProperty[] _MultiplicityElement = {
 		    PivotTables.Properties._Element__Comment,
 		    PivotTables.Properties._Element__Constraint,
@@ -9473,6 +9514,7 @@ public class PivotTables
 	  	 	Fragments._LoopExp__LoopExp.initProperties(_LoopExp);
 	  	 	Fragments._MessageExp__MessageExp.initProperties(_MessageExp);
 	  	 	Fragments._MessageType__MessageType.initProperties(_MessageType);
+	  	 	Fragments._MorePivotable__MorePivotable.initProperties(_MorePivotable);
 	  	 	Fragments._MultiplicityElement__MultiplicityElement.initProperties(_MultiplicityElement);
 	  	 	Fragments._Nameable__Nameable.initProperties(_Nameable);
 	  	 	Fragments._NamedElement__NamedElement.initProperties(_NamedElement);

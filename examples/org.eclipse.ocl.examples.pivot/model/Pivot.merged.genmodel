@@ -991,6 +991,9 @@
       <ecoreClass href="Pivot.ecore#//VoidType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
+      <ecoreClass href="Pivot.ecore#//MorePivotable"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="Pivot.ecore#//Pivotable"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">

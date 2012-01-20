@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -315,5 +317,10 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitOperationContextDeclCS(this);
+	}
+
+	public Iterable<Element> getMorePivots() {
+		Operation operation = getOperation();
+		return operation != null ? Collections.<Element>singletonList(operation) :  Collections.<Element>emptyList();
 	}
 } //OperationContextDeclCSImpl

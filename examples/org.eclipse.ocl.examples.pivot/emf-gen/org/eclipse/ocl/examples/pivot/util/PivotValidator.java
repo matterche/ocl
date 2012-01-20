@@ -698,6 +698,8 @@ public class PivotValidator
 				return validateMessageExp((MessageExp)value, diagnostics, context);
 			case PivotPackage.MESSAGE_TYPE:
 				return validateMessageType((MessageType)value, diagnostics, context);
+			case PivotPackage.MORE_PIVOTABLE:
+				return validateMorePivotable((MorePivotable)value, diagnostics, context);
 			case PivotPackage.MULTIPLICITY_ELEMENT:
 				return validateMultiplicityElement((MultiplicityElement)value, diagnostics, context);
 			case PivotPackage.NAMEABLE:
@@ -2894,6 +2896,16 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)messageType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateElement_validateNotOwnSelf(messageType, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMorePivotable(MorePivotable morePivotable, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)morePivotable, diagnostics, context);
 	}
 
 	/**

@@ -386,6 +386,11 @@ public class PivotAdapterFactory
 				return createMessageTypeAdapter();
 			}
 			@Override
+			public Adapter caseMorePivotable(MorePivotable object)
+			{
+				return createMorePivotableAdapter();
+			}
+			@Override
 			public Adapter caseMultiplicityElement(MultiplicityElement object)
 			{
 				return createMultiplicityElementAdapter();
@@ -1219,6 +1224,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createMessageTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.util.MorePivotable <em>More Pivotable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.util.MorePivotable
+	 * @generated
+	 */
+	public Adapter createMorePivotableAdapter()
+	{
 		return null;
 	}
 
