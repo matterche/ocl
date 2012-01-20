@@ -36,12 +36,17 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 	private Logger log = Logger.getLogger(getClass());	
 	private ResourceSet resourceSet = null;	
 	private String uri;
+	private String contentTypeIdentifier = null;
 
 	public ResourceSet getResourceSet() {
 		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
 		}
 		return resourceSet;
+	}
+
+	public String getContentTypeIdentifier() {
+		return contentTypeIdentifier;
 	}
 
 	public String getUri() {
@@ -54,7 +59,7 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 			if (uri != null) {
 				URI fileURI = URI.createPlatformResourceURI(uri, true);
 				log.info("Writing '" + fileURI + "'");
-				Resource saveResource = resourceSet.createResource(fileURI);
+				Resource saveResource = resourceSet.createResource(fileURI, contentTypeIdentifier);
 				saveResource.getContents().addAll(inputResource.getContents());
 				saveResource.save(null);
 				inputResource.getContents().addAll(saveResource.getContents());
@@ -66,6 +71,10 @@ public class ResourceWriter extends WorkflowComponentWithModelSlot
 		} catch (IOException e) {
 			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
+	}
+
+	public void setContentTypeIdentifier(String contentTypeIdentifier) {
+		this.contentTypeIdentifier = contentTypeIdentifier;
 	}
 	
 	public void setResourceSet(ResourceSet resourceSet) {
