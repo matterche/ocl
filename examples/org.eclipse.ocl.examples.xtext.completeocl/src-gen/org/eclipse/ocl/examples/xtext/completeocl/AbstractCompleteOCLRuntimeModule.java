@@ -190,6 +190,11 @@ public abstract class AbstractCompleteOCLRuntimeModule extends DefaultRuntimeMod
 	}
 
 	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
+	public Class<? extends org.eclipse.emf.ecore.util.Diagnostician> bindDiagnostician() {
+		return org.eclipse.ocl.examples.xtext.base.utilities.PivotCancelableDiagnostician.class;
+	}
+
+	// contributed by org.eclipse.ocl.examples.build.fragments.EssentialOCLFragment
 	public Class<? extends org.eclipse.xtext.validation.IResourceValidator> bindIResourceValidator() {
 		return org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator.class;
 	}

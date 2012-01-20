@@ -18,10 +18,12 @@ package org.eclipse.ocl.examples.build.fragments;
 
 import java.util.Set;
 
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.base.services.PivotResourceServiceProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.base.utilities.PivotCancelableDiagnostician;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.essentialocl.serializer.EssentialOCLCrossReferenceSerializer;
@@ -90,6 +92,7 @@ public class EssentialOCLFragment extends DefaultGeneratorFragment
 		// pivot: scheme support
 		bindFactory.addTypeToType(IResourceServiceProvider.class.getName(), PivotResourceServiceProvider.class.getName());
 		// pivot AST validation support
+		bindFactory.addTypeToType(Diagnostician.class.getName(), PivotCancelableDiagnostician.class.getName());
 		bindFactory.addTypeToType(IResourceValidator.class.getName(), PivotResourceValidator.class.getName());
 		// DataType text to value parsing.
 		bindFactory.addTypeToType(IValueConverterService.class.getName(), EssentialOCLValueConverterService.class.getName());
