@@ -22,6 +22,7 @@ import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.ecore.resource.impl.*
+import org.eclipse.uml2.uml.resource.XMI2UMLResource
 
 var ecoreSlot = "ecore"
 var umlSlot = "uml"
@@ -35,13 +36,13 @@ var projectName = "org.eclipse.ocl.examples.pivot"
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
     bean = ProjectMapSetup { resourceSet = resourceSet }
-    bean = UMLStandaloneSetup {}
+    bean = UMLStandaloneSetup { resourceSet = resourceSet }
     bean = OCLStandaloneSetup {}
     bean = UMLGenModelSetup { resourceSet = resourceSet }
     component = ResourceReader { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.cmof"
-    }
+	}
     component = PackageMerger { skipOnErrors = true
     	modelSlot = "${umlSlot}"
     }
@@ -54,6 +55,7 @@ Workflow {
     component = ResourceWriter { resourceSet = resourceSet skipOnErrors = true
     	modelSlot = "${umlSlot}"
     	uri = "/${projectName}/model/Pivot.merged.uml"
+		contentTypeIdentifier = "org.omg.uml_2_4_1" // XMI2UMLResource.UML_CONTENT_TYPE_IDENTIFIER
     }
     component = GenmodelReloader { resourceSet = resourceSet skipOnErrors = true
     	projectName = "${projectName}"

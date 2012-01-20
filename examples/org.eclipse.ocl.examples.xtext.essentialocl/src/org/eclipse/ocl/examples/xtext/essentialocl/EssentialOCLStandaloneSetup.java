@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.uml.UMLUtils;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
@@ -61,9 +62,9 @@ public class EssentialOCLStandaloneSetup extends EssentialOCLStandaloneSetupGene
 	public Injector createInjector() {
 		if (Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("xmi"))
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().remove("xmi");
-		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("*"))
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey(Resource.Factory.Registry.DEFAULT_EXTENSION))
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"*", new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl());
+				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		return super.createInjector();
 	}
 
