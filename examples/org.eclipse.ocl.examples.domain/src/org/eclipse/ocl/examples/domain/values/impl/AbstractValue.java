@@ -70,6 +70,10 @@ public abstract class AbstractValue implements Value
 		return null;
 	}
 
+	public Object asEcoreObject() {
+		return asObject();
+	}
+
 	public DomainElement asElement() {
 		return null;
 	}

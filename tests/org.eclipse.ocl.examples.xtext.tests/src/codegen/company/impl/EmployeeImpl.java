@@ -242,7 +242,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._directReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__directReports);
 			@SuppressWarnings("unchecked")
-			EList<Employee> ecoreResult = (EList<Employee>) valueFactory.getEcoreValueOf(result);
+			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
@@ -271,7 +271,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			final DomainType returnType = T_Set_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._allReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__allReports);
 			@SuppressWarnings("unchecked")
-			EList<Employee> ecoreResult = (EList<Employee>) valueFactory.getEcoreValueOf(result);
+			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
@@ -303,7 +303,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._reportingChain_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__reportingChain);
 			@SuppressWarnings("unchecked")
-			EList<Employee> ecoreResult = (EList<Employee>) valueFactory.getEcoreValueOf(result);
+			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
@@ -328,7 +328,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_Boolean;
 			final Value result = EmployeeBodies._hasNameAsAttribute_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__hasNameAsAttribute);
-			return (Boolean) valueFactory.getEcoreValueOf(result);
+			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
 		}
@@ -352,7 +352,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_Boolean;
 			final Value result = EmployeeBodies._reportsTo_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(manager));
-			return (Boolean) valueFactory.getEcoreValueOf(result);
+			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
 		}
@@ -382,12 +382,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Employee", "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context)});
 			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Employee", "noManagerImpliesDirectReports", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}
@@ -409,7 +410,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_Boolean;
 			final Value result = EmployeeBodies._hasNameAsOperation_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (Boolean) valueFactory.getEcoreValueOf(result);
+			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
 		}
@@ -439,12 +440,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "mustHaveName", EObjectValidator.getObjectLabel(this, context));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Employee", "mustHaveName", EObjectValidator.getObjectLabel(this, context)});
 			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NULLMUST_HAVE_NAME, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Employee", "mustHaveName", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}
@@ -472,12 +474,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "mustHaveNonEmptyName", EObjectValidator.getObjectLabel(this, context));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Employee", "mustHaveNonEmptyName", EObjectValidator.getObjectLabel(this, context)});
 			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.EMPLOYEE__NULLMUST_HAVE_NON_EMPTY_NAME, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate codegen.company.bodies.EmployeeBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Employee", "mustHaveNonEmptyName", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}

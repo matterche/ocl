@@ -178,7 +178,7 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			
 			final DomainType returnType = T_Company_ecore__company__CompanySizeKind;
 			final Value result = CompanyBodies._size_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Company__size);
-			return (CompanySizeKind) valueFactory.getEcoreValueOf(result);
+			return (CompanySizeKind) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate codegen.company.bodies.CompanyBodies", e);
 		}
@@ -208,12 +208,13 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			}
 			if (diagnostics != null) {
 				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "dummyInvariant", EObjectValidator.getObjectLabel(this, context));
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Company", "dummyInvariant", EObjectValidator.getObjectLabel(this, context)});
 			    diagnostics.add(new BasicDiagnostic(severity, CodegencompanyValidator.DIAGNOSTIC_SOURCE, CodegencompanyValidator.COMPANY__DUMMY_INVARIANT, message, new Object [] { this }));
 			}
 			return false;
 		} catch (InvalidValueException e) {
-			throw new WrappedException("Failed to evaluate codegen.company.bodies.CompanyBodies", e);
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Company", "dummyInvariant", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
 		}
 		
 	}

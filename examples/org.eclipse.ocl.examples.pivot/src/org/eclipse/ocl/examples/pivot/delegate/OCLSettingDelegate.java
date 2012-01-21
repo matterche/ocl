@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
 import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -65,8 +64,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		OCL.Query query = ocl.createQuery(specification);
 		try {
 			Value result = query.evaluate(owner);
-			ValueFactory valueFactory = metaModelManager.getValueFactory();
-			return valueFactory.getEcoreValueOf(result);
+			return result.asEcoreObject();
 		}
 		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);

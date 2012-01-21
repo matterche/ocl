@@ -28,6 +28,11 @@ public class EnumerationLiteralValueImpl extends AbstractEnumerationLiteralValue
 	}
 
 	@Override
+	public Object asEcoreObject() {
+		return object.asEcoreObject(valueFactory.getStandardLibrary());
+	}
+
+	@Override
 	public DomainEnumerationLiteral asElement() {
 		return object;
 	}

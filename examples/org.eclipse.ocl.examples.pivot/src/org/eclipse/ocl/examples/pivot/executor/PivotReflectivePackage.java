@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.library.executor.ReflectivePackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
@@ -46,6 +47,9 @@ public class PivotReflectivePackage extends ReflectivePackage
 		}
 		else if (domainType instanceof AnyType) {
 			return new PivotReflectiveAnyType(this, (AnyType)domainType);
+		}
+		else if (domainType instanceof Enumeration) {
+			return new PivotReflectiveEnumerationType(this, (Enumeration)domainType);
 		}
 		else {
 			return new PivotReflectiveType(this, (Type) domainType);

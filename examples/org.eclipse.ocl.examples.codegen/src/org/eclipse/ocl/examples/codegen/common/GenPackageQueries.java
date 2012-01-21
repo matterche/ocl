@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClassifier;
+import org.eclipse.emf.codegen.ecore.genmodel.GenEnum;
 import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenOperation;
@@ -341,15 +342,19 @@ public class GenPackageQueries
 	}
 	
 	/**
-	 * Return  true if type has an Ecore counterpart. The Standard Library genmodel has
+	 * Return true if type has an Ecore counterpart. The Standard Library genmodel has
 	 * no Ecore types, unless the Pivot model is also in use.
 	 */
 	public Boolean hasEcore(GenPackage genPackage, Type type) {
 		GenClass genClass = getNamedElement1(genPackage.getGenClasses(), type.getName());
-		if (genClass == null) {
-			return false;
+		if (genClass != null) {
+			return true;
 		}
-		return true;
+		GenEnum genEnum = getNamedElement1(genPackage.getGenEnums(), type.getName());
+		if (genEnum != null) {
+			return true;
+		}
+		return false;
 	}
 
 	public Boolean hasSharedLibrary(GenPackage genPackage) {

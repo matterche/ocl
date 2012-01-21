@@ -43,7 +43,7 @@ public class EnumerationClassifierOwnedLiteralProperty extends AbstractProperty
 		TypeValue sourceTypeValue = sourceValue.asTypeValue();
 		DomainType sourceType = sourceTypeValue.getInstanceType();
 		Set<Value> results = new OrderedSetImpl<Value>();
-		for (DomainElement instance : ((DomainEnumeration)sourceType).getOwnedLiterals()) {
+		for (DomainElement instance : ((DomainEnumeration)sourceType).getEnumerationLiterals()) {
 			results.add(valueFactory.valueOf(instance));
 		}
 		return valueFactory.createOrderedSetValue((DomainCollectionType)returnType, results);

@@ -41,6 +41,12 @@ public interface Value
 	BooleanValue asBooleanValue() throws InvalidValueException;
 	CollectionValue asCollectionValue() throws InvalidValueException;
 	Double asDouble() throws InvalidValueException;
+	
+	/**
+	 * Return the Ecore representation of this value.
+	 */
+	Object asEcoreObject();
+
 	DomainElement asElement(); 
 	ElementValue asElementValue() throws InvalidValueException;
 	Integer asInteger() throws InvalidValueException;
@@ -65,6 +71,7 @@ public interface Value
 	 * oclAsType conversions.
 	 */
 	DomainType getActualType();
+
 	/**
 	 * 
 	 * Return the type of this value determined from its construction context. In the case of collections

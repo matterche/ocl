@@ -11,13 +11,12 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  */
 package org.eclipse.ocl.examples.domain.elements;
 
 
 public interface DomainEnumerationLiteral extends DomainNamedElement
 {
+	Object asEcoreObject(DomainStandardLibrary standardLibrary);
 	DomainEnumeration getEnumeration();
 }

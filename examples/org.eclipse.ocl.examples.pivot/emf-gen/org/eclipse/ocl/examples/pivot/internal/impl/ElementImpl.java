@@ -146,7 +146,7 @@ public abstract class ElementImpl
 			final DomainType returnType = T_Set_OclElement_;
 			final Value result = ElementBodies._allOwnedElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
 			@SuppressWarnings("unchecked")
-			EList<Element> ecoreResult = (EList<Element>) valueFactory.getEcoreValueOf(result);
+			EList<Element> ecoreResult = (EList<Element>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ElementBodies", e);

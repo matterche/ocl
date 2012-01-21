@@ -1,7 +1,7 @@
 [**
  * <copyright>
  *
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2011,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -91,6 +91,7 @@ public class [tablesClassName/]
 	[pPackage.declareFragmentOperations(genPackage)/]
 
 	[pPackage.declareFragmentProperties(genPackage)/]
+	[pPackage.declareEnumerationLiterals(genPackage)/]
 	
 	static {
 		Types.types['[0]'/].getClass();
@@ -108,7 +109,7 @@ public static class Types {[for (cls : Class | pPackage.ownedType->filter(Class)
 [/for]
 
 	private static final <%EcoreExecutorType%>['[]'/] types = {
-[for (type : Type | pPackage.ownedType->sortedBy(t : Type | t.getMoniker())) separator(',\n') after('\n')]
+[for (type : Type | pPackage.ownedType->sortedBy(name)) separator(',\n') after('\n')]
 	    _[type.name/][/for]
 	};
 
@@ -120,11 +121,15 @@ public static class Types {[for (cls : Class | pPackage.ownedType->filter(Class)
 		TypeFragments.init();
 		FragmentOperations.init();
 		FragmentProperties.init();
+[if (pPackage.ownedType->filter(Enumeration)->notEmpty())]
+		EnumerationLiterals.init();
+[/if]
 	}
 }
 [/template]
 
 [template public declareType(pPackage : Package, genPackage : GenPackage, cls : Class)]
+[let typeName : String = if cls.oclIsKindOf(Enumeration) then 'EcoreExecutorEnumeration' else 'EcoreExecutorType' endif]
 [if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
@@ -132,15 +137,15 @@ private static final <%ExecutorTypeParameter%> _[cls.name/]_[parameteredElement.
 [/let]
 [/for]
 [/if]
-public static final <%EcoreExecutorType%> _[cls.name/] = [if (genPackage.hasAnotherType(cls))]
+public static final <%[typeName/]%> _[cls.name/] = [if (genPackage.hasAnotherType(cls))]
 [genPackage.getAnotherType(cls).emitQualifiedLiteralName(genPackage)/][else]
 [if (not genPackage.hasEcore(cls))]
-new <%EcoreExecutorType%>("[cls.name/]"[else]
-new <%EcoreExecutorType%>([genPackage.prefix + 'Package.Literals.' + cls.name.upperName()/][/if], PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
+new <%[typeName/]%>("[cls.name/]"[else]
+new <%[typeName/]%>([genPackage.prefix + 'Package.Literals.' + cls.name.upperName()/][/if], PACKAGE, [pPackage.getTypeFlags(cls)/][if (cls.ownedTemplateSignature->notEmpty())]
 [for (parameter : TypeTemplateParameter | cls.ownedTemplateSignature.parameter->filter(TypeTemplateParameter))]
 [let parameteredElement : Type = parameter.parameteredElement.oclAsType(Type)]
 , _[cls.name/]_[parameteredElement.name/][/let][/for]
-[/if])[/if];
+[/if])[/if];[/let]
 [/template]
 
 [template public declareFragments(pPackage : Package, genPackage : GenPackage)]
@@ -252,7 +257,7 @@ public static class Constraints {[for (cls : Class | pPackage.ownedType->filter(
 [/template]
 
 [template public declareConstraints(pPackage : Package, genPackage : GenPackage, cls : Class)]
-[let rules : OrderedSet(Constraint) = cls.ownedRule->asOrderedSet()->sortedBy(getMoniker())]
+[let rules : OrderedSet(Constraint) = cls.ownedRule->asOrderedSet()->sortedBy(getLiteralName())]
 [for (i : Integer | Sequence{1..rules->size()}) separator('\n')]
 [let rule : Constraint = rules->at(i)]
 [pPackage.declareConstraint(genPackage, rule, i, cls)/][/let][/for][/let]
@@ -389,6 +394,45 @@ private static final <%ExecutorProperty%>['[]'/] _[cls.name/] = [if props->isEmp
 [for (i : Integer | Sequence{1..props->size()}) separator (',\n') after ('\n')]
     [props->at(i).emitQualifiedLiteralName(genPackage)/][/for]
 [/if]};[/let][/let]
+[/template]
+
+[template public declareEnumerationLiterals(pPackage : Package, genPackage : GenPackage)]
+[let enums : OrderedSet(Enumeration) = pPackage.ownedType->filter(Enumeration)->sortedBy(name)]
+[if (enums->notEmpty())]
+
+/**
+ *	The lists of enumeration literals for each enumeration.
+ */
+public static class EnumerationLiterals {
+[for (enum : Enumeration | enums) separator('\n')]
+	[pPackage.declareEnumerationLiteral(genPackage, enum)/]
+[/for]
+
+	/**
+	 *	Install the enumeration literals in the enumerations.
+	 */
+	static {
+[for (enum : Enumeration | enums)]
+  	 	Types._[enum.name/].initLiterals(_[enum.name/]);
+[/for]
+	}
+
+	public static void init() {}
+}[/if][/let]
+[/template]
+
+[template public declareEnumerationLiteral(pPackage : Package, genPackage : GenPackage, enum : Enumeration)]
+[let enumLiterals : OrderedSet(EnumerationLiteral) = enum.ownedLiteral]
+[for (i : Integer | Sequence{1..enumLiterals->size()}) after ('\n')]
+[let enumLiteral : EnumerationLiteral = enumLiterals->at(i)]
+public static <%EcoreExecutorEnumerationLiteral%> _[enumLiteral.enumeration.name/]__[enumLiteral.name/] = new <%EcoreExecutorEnumerationLiteral%>([genPackage.prefix + 'Package.Literals.' + enum.name.upperName()/].getEEnumLiteral("[enumLiteral.name/]"), Types._[enum.name/], [i-1/]);
+[/let][/for]
+private static final <%EcoreExecutorEnumerationLiteral%>['[]'/] _[enum.name/] = [if enumLiterals->isEmpty()]{[else]
+{
+[for (i : Integer | Sequence{1..enumLiterals->size()}) separator (',\n') after ('\n')]
+[let enumLiteral : EnumerationLiteral = enumLiterals->at(i)]
+    _[enumLiteral.enumeration.name/]__[enumLiteral.name/][/let][/for]
+[/if]};[/let]
 [/template]
 
 [query public getTypeFlags(pPackage : Package, elem : Type) : String =

@@ -29,6 +29,11 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 	}
 
 	@Override
+	public Object asEcoreObject() {
+		return null;
+	}
+
+	@Override
 	public DomainElement asElement() {
 		return null;
 	}

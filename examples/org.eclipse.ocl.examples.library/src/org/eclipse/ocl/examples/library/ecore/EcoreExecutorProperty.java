@@ -33,7 +33,7 @@ public class EcoreExecutorProperty extends ExecutorProperty
 	@Override
 	public void setValue(ObjectValue objectValue, Value propertyValue) throws InvalidValueException {
 		EObject eObject = objectValue.asNavigableObject();
-		Object eValue = objectValue.getValueFactory().getEcoreValueOf(propertyValue);
+		Object eValue = propertyValue.asEcoreObject();
 		eObject.eSet(eFeature, eValue);
 	}
 }

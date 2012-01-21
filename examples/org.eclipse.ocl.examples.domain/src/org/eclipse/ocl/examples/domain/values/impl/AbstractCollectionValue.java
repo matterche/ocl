@@ -20,8 +20,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainTupleType;
@@ -68,6 +70,15 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     public BagValue asBagValue() {
         return valueFactory.createBagValue(getBagType(), getElements());
     }
+
+	@Override
+	public Object asEcoreObject() {
+		List<Object> ecoreResult = new BasicEList<Object>(intSize());
+		for (Value elementValue : this) {
+			ecoreResult.add(elementValue.asEcoreObject());
+		}
+		return ecoreResult;
+	}
 
     @Override
 	public OrderedSetValue asOrderedSetValue() {

@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.domain.elements;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
 
 /**
@@ -80,6 +81,11 @@ public interface DomainStandardLibrary
 	 * Return the specialized collection type for the containerType for elementType.
 	 */
 	DomainCollectionType getCollectionType(DomainCollectionType containerType, DomainType elementType);
+
+	/**
+	 * Return the enumeration for a given enumerator.
+	 */
+	DomainEnumeration getEnumeration(Enumerator enumerator);
 	
     /**
      * Obtains the single instance of the {@link EnumerationType} metatype, named

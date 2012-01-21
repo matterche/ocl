@@ -82,7 +82,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 				}
 			}
 			Value result = query.evaluate(target);
-			return valueFactory.getEcoreValueOf(result);
+			return result.asEcoreObject();
 		}
 		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);

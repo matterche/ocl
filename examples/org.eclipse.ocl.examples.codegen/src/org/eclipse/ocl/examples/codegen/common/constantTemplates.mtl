@@ -102,7 +102,7 @@ final <%ExecutorProperty%> [ast.referredProperty.symbolName(expInOcl)/] = [ast.r
 
 [template protected emitConstants(ast : EnumLiteralExp, genPackage : GenPackage, expInOcl : ExpressionInOcl)]
 [emitValueFactory()/]
-final <%Value%> [ast.symbolName(expInOcl)/] = valueFactory.valueOf(<%[ast.referredEnumLiteral.enumeration.getQualifiedEcoreClassName(genPackage)/]%>.[ast.referredEnumLiteral.name.upperName()/]);
+final <%Value%> [ast.symbolName(expInOcl)/] = valueFactory.createEnumerationLiteralValue([ast.referredEnumLiteral.emitQualifiedLiteralName(genPackage)/]);
 [/template]
 
 [template protected emitConstants(ast : IntegerLiteralExp, genPackage : GenPackage, expInOcl : ExpressionInOcl)]

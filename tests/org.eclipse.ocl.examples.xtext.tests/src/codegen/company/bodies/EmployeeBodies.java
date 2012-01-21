@@ -80,7 +80,7 @@ public class EmployeeBodies
 					Value A_symbol_4 = dynamic_A_symbol_4.evaluate(evaluator, T_Boolean, A_symbol_3);
 					leftA_symbol_1 = A_symbol_4;
 				} catch (InvalidValueException e) {
-					leftA_symbol_1 = valueFactory.getInvalid();
+					leftA_symbol_1 = valueFactory.createInvalidValue(e);
 				}
 				Value A_symbol_4 = leftA_symbol_1;
 				Value rightA_symbol_1;
@@ -90,7 +90,7 @@ public class EmployeeBodies
 					
 					rightA_symbol_1 = A_symbol_5;
 				} catch (InvalidValueException e) {
-					rightA_symbol_1 = valueFactory.getInvalid();
+					rightA_symbol_1 = valueFactory.createInvalidValue(e);
 				}
 				Value A_symbol_5 = rightA_symbol_1;
 				DomainType static_A_symbol_1 = valueFactory.typeOf(A_symbol_4);
@@ -98,7 +98,7 @@ public class EmployeeBodies
 				Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Boolean, A_symbol_4, A_symbol_5);
 				leftA_symbol_0 = A_symbol_1;
 			} catch (InvalidValueException e) {
-				leftA_symbol_0 = valueFactory.getInvalid();
+				leftA_symbol_0 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_1 = leftA_symbol_0;
 			Value rightA_symbol_0;
@@ -109,7 +109,7 @@ public class EmployeeBodies
 				Value A_symbol_6 = dynamic_A_symbol_6.evaluate(evaluator, T_Boolean, self);
 				rightA_symbol_0 = A_symbol_6;
 			} catch (InvalidValueException e) {
-				rightA_symbol_0 = valueFactory.getInvalid();
+				rightA_symbol_0 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_6 = rightA_symbol_0;
 			DomainType static_A_symbol_0 = valueFactory.typeOf(A_symbol_1);
@@ -158,7 +158,7 @@ public class EmployeeBodies
 				Value A_symbol_10 = dynamic_A_symbol_10.evaluate(evaluator, T_Boolean, A_symbol_9);
 				leftA_symbol_7 = A_symbol_10;
 			} catch (InvalidValueException e) {
-				leftA_symbol_7 = valueFactory.getInvalid();
+				leftA_symbol_7 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_10 = leftA_symbol_7;
 			Value rightA_symbol_7;
@@ -174,7 +174,7 @@ public class EmployeeBodies
 				Value A_symbol_13 = dynamic_A_symbol_13.evaluate(evaluator, T_Boolean, A_symbol_12, I_0);
 				rightA_symbol_7 = A_symbol_13;
 			} catch (InvalidValueException e) {
-				rightA_symbol_7 = valueFactory.getInvalid();
+				rightA_symbol_7 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_13 = rightA_symbol_7;
 			DomainType static_A_symbol_7 = valueFactory.typeOf(A_symbol_10);
@@ -221,7 +221,7 @@ public class EmployeeBodies
 				Value A_symbol_16 = dynamic_A_symbol_16.evaluate(evaluator, T_Boolean, A_symbol_15);
 				leftA_symbol_14 = A_symbol_16;
 			} catch (InvalidValueException e) {
-				leftA_symbol_14 = valueFactory.getInvalid();
+				leftA_symbol_14 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_16 = leftA_symbol_14;
 			Value rightA_symbol_14;
@@ -237,7 +237,7 @@ public class EmployeeBodies
 				Value A_symbol_19 = dynamic_A_symbol_19.evaluate(evaluator, T_Boolean, A_symbol_18, I_0);
 				rightA_symbol_14 = A_symbol_19;
 			} catch (InvalidValueException e) {
-				rightA_symbol_14 = valueFactory.getInvalid();
+				rightA_symbol_14 = valueFactory.createInvalidValue(e);
 			}
 			Value A_symbol_19 = rightA_symbol_14;
 			DomainType static_A_symbol_14 = valueFactory.typeOf(A_symbol_16);

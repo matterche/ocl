@@ -28,7 +28,10 @@
 <%[rawAst.getQualifiedTablesClassName(genPackage)/]%>.Types._[ast.encodeName()/][/let][/template]
 
 [template public emitQualifiedLiteralName(ast : Element, genPackage : GenPackage)]
-null[/template]
+null/*[ast.eClass().name/]*/[/template]
+
+[template public emitQualifiedLiteralName(ast : EnumerationLiteral, genPackage : GenPackage)]
+<%[ast.enumeration.getQualifiedTablesClassName(genPackage)/]%>.EnumerationLiterals._[ast.enumeration.name/]__[ast.encodeName()/][/template]
 
 [template public emitQualifiedLiteralName(ast : Operation, genPackage : GenPackage)] 
 <%[ast.owningType.getQualifiedTablesClassName(genPackage)/]%>.Operations._[ast.owningType.name/]__[ast.encodeName()/][/template]

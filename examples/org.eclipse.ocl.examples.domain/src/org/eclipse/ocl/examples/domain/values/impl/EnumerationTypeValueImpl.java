@@ -16,7 +16,6 @@
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.values.EnumerationTypeValue;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -42,11 +41,5 @@ public class EnumerationTypeValueImpl extends AbstractTypeValueImpl<DomainEnumer
 
 	public DomainEnumeration getEnumeration() {
 		return object;
-	}
-
-	@Override
-	public DomainClassifierType getType() {
-		// TODO Auto-generated method stub
-		return super.getType();
 	}
 }

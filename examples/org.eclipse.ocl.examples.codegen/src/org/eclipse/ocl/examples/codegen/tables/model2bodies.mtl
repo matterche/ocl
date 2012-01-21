@@ -85,7 +85,7 @@ public class [className/]
 		Library[genPackage.emitOperationArity(pOperation.ownedParameter->size())/] codeGen = [pType.name + '_' + pOperation.name + '_' + pConstraint.stereotype + '_' + pConstraint.name/].INSTANCE;
 		try {
 			final <%Value%> result = codeGen.evaluate(evaluator, null, valueFactory.valueOf(self)[for (parameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([parameter.name/])[/for]);
-			return ([pOperation.type.name/]) valueFactory.getEcoreValueOf(result);
+			return ([pOperation.type.name/]) result.asEcoreObject();
 		} catch (<%InvalidValueException%> e) {
 			throw new WrappedException(e);
 		}

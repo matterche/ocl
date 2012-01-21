@@ -10,10 +10,8 @@
 package codegen.company.bodies;
 
 import codegen.company.CodegencompanyTables;
-import codegen.company.CompanySizeKind;
 import java.util.HashMap;
 import java.util.Map;
-import org.eclipse.ocl.examples.domain.elements.DomainClassifierType;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainProperty;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -109,46 +107,44 @@ public class CompanyBodies
 			final LibraryProperty IP_Company_employees = P_Company_employees.getImplementation();
 			final ExecutorType T_UnlimitedNatural = OCLstdlibTables.Types._UnlimitedNatural;
 			final DomainCollectionType T_Sequence_UnlimitedNatural_ = standardLibrary.getSequenceType(T_UnlimitedNatural);
-			final DomainClassifierType T_EnumerationClassifier_Company_ecore__company__CompanySizeKind_ = standardLibrary.getClassifierType(T_Company_ecore__company__CompanySizeKind);
 			final DomainTypedElement L_range_Sequence_UnlimitedNatural_ = standardLibrary.getTuplePart("range", T_Sequence_UnlimitedNatural_);
-			final DomainTypedElement L_size_EnumerationClassifier_Company_ecore__company__CompanySizeKind_ = standardLibrary.getTuplePart("size", T_EnumerationClassifier_Company_ecore__company__CompanySizeKind_);
-			final DomainTupleType U_Tuple_range_Sequence_size_EnumerationClassifier_ = standardLibrary.getTupleType(L_range_Sequence_UnlimitedNatural_, L_size_EnumerationClassifier_Company_ecore__company__CompanySizeKind_);
-			final DomainCollectionType T_Set_Tuple_range_Sequence_size_EnumerationClassifier__ = standardLibrary.getSetType(U_Tuple_range_Sequence_size_EnumerationClassifier_);
+			final DomainTupleType U_Tuple_range_Sequence_size_CompanySizeKind_1 = standardLibrary.getTupleType(L_range_Sequence_UnlimitedNatural_, L_size_Company_ecore__company__CompanySizeKind);
+			final DomainCollectionType T_Set_Tuple_range_Sequence_size_CompanySizeKind__ = standardLibrary.getSetType(U_Tuple_range_Sequence_size_CompanySizeKind_1);
 			final IntegerValue I_0 = valueFactory.integerValueOf(0);
 			final IntegerValue I_49 = valueFactory.integerValueOf(49);
 			final IntegerRange rA_symbol_43 = valueFactory.createRange(I_0.asIntegerValue(), I_49.asIntegerValue());
 			final Value A_symbol_43 = valueFactory.createSequenceRange(T_Sequence_UnlimitedNatural_, rA_symbol_43);
-			final Value A_symbol_44 = valueFactory.valueOf(CompanySizeKind.SMALL);
+			final Value A_symbol_44 = valueFactory.createEnumerationLiteralValue(CodegencompanyTables.EnumerationLiterals._CompanySizeKind__small);
 			final IntegerValue I_50 = valueFactory.integerValueOf(50);
 			final IntegerValue I_999 = valueFactory.integerValueOf(999);
 			final IntegerRange rA_symbol_45 = valueFactory.createRange(I_50.asIntegerValue(), I_999.asIntegerValue());
 			final Value A_symbol_45 = valueFactory.createSequenceRange(T_Sequence_UnlimitedNatural_, rA_symbol_45);
-			final Value A_symbol_46 = valueFactory.valueOf(CompanySizeKind.MEDIUM);
+			final Value A_symbol_46 = valueFactory.createEnumerationLiteralValue(CodegencompanyTables.EnumerationLiterals._CompanySizeKind__medium);
 			final IntegerValue I_1000 = valueFactory.integerValueOf(1000);
 			final IntegerValue I_1000000 = valueFactory.integerValueOf(1000000);
 			final IntegerRange rA_symbol_47 = valueFactory.createRange(I_1000.asIntegerValue(), I_1000000.asIntegerValue());
 			final Value A_symbol_47 = valueFactory.createSequenceRange(T_Sequence_UnlimitedNatural_, rA_symbol_47);
-			final Value A_symbol_48 = valueFactory.valueOf(CompanySizeKind.LARGE);
+			final Value A_symbol_48 = valueFactory.createEnumerationLiteralValue(CodegencompanyTables.EnumerationLiterals._CompanySizeKind__large);
 			
 			
 			final Map<DomainTypedElement, Value> mA_symbol_49 = new HashMap<DomainTypedElement, Value>();
 			mA_symbol_49.put(L_range_Sequence_UnlimitedNatural_, A_symbol_43);
-			mA_symbol_49.put(L_size_EnumerationClassifier_Company_ecore__company__CompanySizeKind_, A_symbol_44);
-			TupleValue A_symbol_49 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_EnumerationClassifier_, mA_symbol_49);
+			mA_symbol_49.put(L_size_Company_ecore__company__CompanySizeKind, A_symbol_44);
+			TupleValue A_symbol_49 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_CompanySizeKind_1, mA_symbol_49);
 			
 			
 			final Map<DomainTypedElement, Value> mA_symbol_50 = new HashMap<DomainTypedElement, Value>();
 			mA_symbol_50.put(L_range_Sequence_UnlimitedNatural_, A_symbol_45);
-			mA_symbol_50.put(L_size_EnumerationClassifier_Company_ecore__company__CompanySizeKind_, A_symbol_46);
-			TupleValue A_symbol_50 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_EnumerationClassifier_, mA_symbol_50);
+			mA_symbol_50.put(L_size_Company_ecore__company__CompanySizeKind, A_symbol_46);
+			TupleValue A_symbol_50 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_CompanySizeKind_1, mA_symbol_50);
 			
 			
 			final Map<DomainTypedElement, Value> mA_symbol_51 = new HashMap<DomainTypedElement, Value>();
 			mA_symbol_51.put(L_range_Sequence_UnlimitedNatural_, A_symbol_47);
-			mA_symbol_51.put(L_size_EnumerationClassifier_Company_ecore__company__CompanySizeKind_, A_symbol_48);
-			TupleValue A_symbol_51 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_EnumerationClassifier_, mA_symbol_51);
+			mA_symbol_51.put(L_size_Company_ecore__company__CompanySizeKind, A_symbol_48);
+			TupleValue A_symbol_51 = valueFactory.createTupleValue(U_Tuple_range_Sequence_size_CompanySizeKind_1, mA_symbol_51);
 			
-			final Value A_symbol_52 = valueFactory.createSetValue(T_Set_Tuple_range_Sequence_size_EnumerationClassifier__, A_symbol_49, A_symbol_50, A_symbol_51);
+			final Value A_symbol_52 = valueFactory.createSetValue(T_Set_Tuple_range_Sequence_size_CompanySizeKind__, A_symbol_49, A_symbol_50, A_symbol_51);
 			final Value V_table = A_symbol_52;
 			
 			

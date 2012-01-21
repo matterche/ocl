@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -227,17 +227,6 @@ public abstract class AbstractValueFactory implements ValueFactory
 		}
 	}
 
-    public OrderedSetValue createOrderedSetOf(Object... objects) {
-    	OrderedSet<Value> collection = new OrderedSetImpl<Value>();
-    	if (objects != null) {
-    		for (Object object : objects) {
- 				collection.add(valueOf(object));
-    		}
-    	}
-    	DomainType elementType = getElementType(collection);
-    	return createOrderedSetValue(standardLibrary.getOrderedSetType(elementType), collection);
-    }
-
 	public ObjectValue createEObjectValue(EObject eObject) {
 		if (eObject instanceof DomainElement) {
 			if (eObject instanceof DomainType) {
@@ -249,7 +238,7 @@ public abstract class AbstractValueFactory implements ValueFactory
 			return createElementValue((DomainElement) eObject);
 		}
 		else if (eObject instanceof EEnumLiteral) {
-			return new EEnumLiteralValueImpl(this, (EEnumLiteral) eObject);
+			return createEnumerationLiteralValue((EEnumLiteral) eObject);
 		}
 		return null;
 	}
@@ -261,6 +250,24 @@ public abstract class AbstractValueFactory implements ValueFactory
 	public EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element) {
 		return new EnumerationLiteralValueImpl(this, element);
 	}
+
+	public EnumerationLiteralValue createEnumerationLiteralValue(EEnumLiteral eEnumLiteral) {
+		DomainEnumeration enumeration = (DomainEnumeration) standardLibrary.getType(eEnumLiteral.getEEnum());
+		DomainEnumerationLiteral enumerationLiteral = enumeration.getEnumerationLiteral(eEnumLiteral.getName());
+		return createEnumerationLiteralValue(enumerationLiteral);
+	}
+
+/*	public EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EClassifier eClassifier) {
+		DomainEnumeration enumeration;
+		if (eClassifier == null) {
+			enumeration = standardLibrary.getEnumeration(enumerator);
+		}
+		else {
+			enumeration = (DomainEnumeration) standardLibrary.getType(eClassifier);
+		}
+		DomainEnumerationLiteral enumerationLiteral = enumeration.getEnumerationLiteral(enumerator.getName());
+		return createEnumerationLiteralValue(enumerationLiteral);
+	} */
 
 	public InvalidValue createInvalidValue(InvalidEvaluationException exception) {
 		return new InvalidValueImpl(this, exception);
@@ -275,6 +282,17 @@ public abstract class AbstractValueFactory implements ValueFactory
 	}
 
     public OrderedSetValue createOrderedSetOf(Iterable<?> objects) {
+    	OrderedSet<Value> collection = new OrderedSetImpl<Value>();
+    	if (objects != null) {
+    		for (Object object : objects) {
+ 				collection.add(valueOf(object));
+    		}
+    	}
+    	DomainType elementType = getElementType(collection);
+    	return createOrderedSetValue(standardLibrary.getOrderedSetType(elementType), collection);
+    }
+
+    public OrderedSetValue createOrderedSetOf(Object... objects) {
     	OrderedSet<Value> collection = new OrderedSetImpl<Value>();
     	if (objects != null) {
     		for (Object object : objects) {
@@ -432,36 +450,8 @@ public abstract class AbstractValueFactory implements ValueFactory
      	return elementType;
     }
 
-	public Object getEcoreValueOf(Value value) {
-		if (value instanceof NullValue) {
-			return null;
-		}
-		else if (value instanceof CollectionValue) {
-			CollectionValue collectionValue = (CollectionValue) value;
-			List<Object> ecoreResult = new BasicEList<Object>(collectionValue.intSize());
-			for (Value elementValue : collectionValue) {
-				ecoreResult.add(getEcoreValueOf(elementValue));
-			}
-			return ecoreResult;
-		}
-		else if (value instanceof BooleanValueImpl) {
-			return ((BooleanValueImpl)value).asBoolean();
-		}
-		else if (value instanceof IntegerIntValueImpl) {
-			return ((IntegerIntValueImpl)value).intValue();
-		}
-		else if (value instanceof IntegerLongValueImpl) {
-			return ((IntegerLongValueImpl)value).longValue();
-		}
-		else if (value instanceof IntegerValueImpl) {
-			return ((IntegerValueImpl)value).bigIntegerValue();
-		}
-		else if (value instanceof RealValueImpl) {
-			return ((RealValueImpl)value).doubleValue();
-		}
-		else {
-			return value.asObject();
-		}
+	public final Object getEcoreValueOf(Value value) {
+		return value.asEcoreObject();
 	}
 
     public DomainType getElementType(Iterable<Value> values) {
@@ -644,6 +634,9 @@ public abstract class AbstractValueFactory implements ValueFactory
 				return new EObjectValueImpl(this, (EObject) object);
 			}
 		}
+//		else if (object instanceof Enumerator) {
+//			return createEnumerationLiteralValue((Enumerator) object, null);
+//		}
 		else if (object instanceof Number) {
 			if ((object instanceof Integer) || (object instanceof Long) || (object instanceof Short) || (object instanceof Byte)) {
 				return integerValueOf(((Number) object).longValue());
@@ -690,23 +683,31 @@ public abstract class AbstractValueFactory implements ValueFactory
 		return createObjectValue(object);
 	}
 
+	public Value valueOf(Object eValue, EClassifier eClassifier) {
+		if (eValue instanceof Value) {
+			return (Value) eValue;		
+		}
+//		else if (eValue instanceof Enumerator) {
+//			return createEnumerationLiteralValue((Enumerator)eValue, eClassifier);		
+//		}
+		else {
+			return valueOf(eValue);
+		}
+	}
+
 	public Value valueOf(Object eValue, ETypedElement eFeature) {
+		EClassifier eClassifier = eFeature.getEType();
 		if (eFeature.isMany()) {
 			Collection<?> eValues = (Collection<?>) eValue;
 			ArrayList<Value> values = new ArrayList<Value>(eValues.size());
 			for (Object eVal : eValues) {
-				values.add(valueOf(eVal));
+				values.add(valueOf(eVal, eClassifier));
 			}
 			boolean isOrdered = eFeature.isOrdered();
 			boolean isUnique = eFeature.isUnique();
 			return createCollectionValue(isOrdered, isUnique, values);
 		}
-		else if (eValue instanceof Value) {
-			return (Value) eValue;		
-		}
-		else {
-			return valueOf(eValue);
-		}
+		return valueOf(eValue, eClassifier);
 	}
 }
  

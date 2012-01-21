@@ -144,8 +144,8 @@ public class OCLstdlibTables
 		public static final ExecutorFragment _AnyClassifier__OclElement = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclElement);
 		public static final ExecutorFragment _AnyClassifier__OclType = new ExecutorFragment(Types._AnyClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _Bag__Bag = new ExecutorFragment(Types._Bag, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Bag);
-		public static final ExecutorFragment _Bag__Collection = new ExecutorFragment(Types._Bag, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Bag__Bag = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Bag);
+		public static final ExecutorFragment _Bag__Collection = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _Bag__OclAny = new ExecutorFragment(Types._Bag, OCLstdlibTables.Types._OclAny);
 		
 		public static final ExecutorFragment _Boolean__Boolean = new ExecutorFragment(Types._Boolean, OCLstdlibTables.Types._Boolean);
@@ -161,7 +161,7 @@ public class OCLstdlibTables
 		public static final ExecutorFragment _ClassClassifier__OclElement = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclElement);
 		public static final ExecutorFragment _ClassClassifier__OclType = new ExecutorFragment(Types._ClassClassifier, OCLstdlibTables.Types._OclType);
 		
-		public static final ExecutorFragment _Collection__Collection = new ExecutorFragment(Types._Collection, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Collection__Collection = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _Collection__OclAny = new ExecutorFragment(Types._Collection, OCLstdlibTables.Types._OclAny);
 		
 		public static final ExecutorFragment _CollectionClassifier__AnyClassifier = new ExecutorFragment(Types._CollectionClassifier, OCLstdlibTables.Types._AnyClassifier);
@@ -227,26 +227,26 @@ public class OCLstdlibTables
 		public static final ExecutorFragment _OclVoid__OclAny = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _OclVoid__OclVoid = new ExecutorFragment(Types._OclVoid, OCLstdlibTables.Types._OclVoid);
 		
-		public static final ExecutorFragment _OrderedSet__Collection = new ExecutorFragment(Types._OrderedSet, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _OrderedSet__Collection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _OrderedSet__OclAny = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OclAny);
-		public static final ExecutorFragment _OrderedSet__OrderedSet = new ExecutorFragment(Types._OrderedSet, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._OrderedSet);
-		public static final ExecutorFragment _OrderedSet__Sequence = new ExecutorFragment(Types._OrderedSet, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Sequence);
-		public static final ExecutorFragment _OrderedSet__UniqueCollection = new ExecutorFragment(Types._OrderedSet, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._UniqueCollection);
+		public static final ExecutorFragment _OrderedSet__OrderedSet = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._OrderedSet);
+		public static final ExecutorFragment _OrderedSet__Sequence = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._Sequence);
+		public static final ExecutorFragment _OrderedSet__UniqueCollection = new ExecutorFragment(Types._OrderedSet, OCLstdlibTables.Types._UniqueCollection);
 		
 		public static final ExecutorFragment _Real__OclAny = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _Real__OclComparable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclComparable);
 		public static final ExecutorFragment _Real__OclSummable = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._OclSummable);
 		public static final ExecutorFragment _Real__Real = new ExecutorFragment(Types._Real, OCLstdlibTables.Types._Real);
 		
-		public static final ExecutorFragment _Sequence__Collection = new ExecutorFragment(Types._Sequence, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Sequence__Collection = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _Sequence__OclAny = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._OclAny);
-		public static final ExecutorFragment _Sequence__Sequence = new ExecutorFragment(Types._Sequence, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Sequence);
+		public static final ExecutorFragment _Sequence__Sequence = new ExecutorFragment(Types._Sequence, OCLstdlibTables.Types._Sequence);
 		
-		public static final ExecutorFragment _Set__Bag = new ExecutorFragment(Types._Set, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Bag);
-		public static final ExecutorFragment _Set__Collection = new ExecutorFragment(Types._Set, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _Set__Bag = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Bag);
+		public static final ExecutorFragment _Set__Collection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _Set__OclAny = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._OclAny);
-		public static final ExecutorFragment _Set__Set = new ExecutorFragment(Types._Set, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Set);
-		public static final ExecutorFragment _Set__UniqueCollection = new ExecutorFragment(Types._Set, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._UniqueCollection);
+		public static final ExecutorFragment _Set__Set = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._Set);
+		public static final ExecutorFragment _Set__UniqueCollection = new ExecutorFragment(Types._Set, OCLstdlibTables.Types._UniqueCollection);
 		
 		public static final ExecutorFragment _String__OclAny = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclAny);
 		public static final ExecutorFragment _String__OclComparable = new ExecutorFragment(Types._String, OCLstdlibTables.Types._OclComparable);
@@ -258,9 +258,9 @@ public class OCLstdlibTables
 		public static final ExecutorFragment _Type__OclType = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._OclType);
 		public static final ExecutorFragment _Type__Type = new ExecutorFragment(Types._Type, OCLstdlibTables.Types._Type);
 		
-		public static final ExecutorFragment _UniqueCollection__Collection = new ExecutorFragment(Types._UniqueCollection, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._Collection);
+		public static final ExecutorFragment _UniqueCollection__Collection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._Collection);
 		public static final ExecutorFragment _UniqueCollection__OclAny = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._OclAny);
-		public static final ExecutorFragment _UniqueCollection__UniqueCollection = new ExecutorFragment(Types._UniqueCollection, /*org.eclipse.emf.ecore.impl.DynamicEObjectImpl@15bc68c (eClass: org.eclipse.emf.ecore.impl.EClassImpl@48268a (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))*/OCLstdlibTables.Types._UniqueCollection);
+		public static final ExecutorFragment _UniqueCollection__UniqueCollection = new ExecutorFragment(Types._UniqueCollection, OCLstdlibTables.Types._UniqueCollection);
 		
 		public static final ExecutorFragment _UnlimitedNatural__Integer = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._Integer);
 		public static final ExecutorFragment _UnlimitedNatural__OclAny = new ExecutorFragment(Types._UnlimitedNatural, OCLstdlibTables.Types._OclAny);
@@ -1077,8 +1077,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._OrderedSet__OclAny /* 0 */,
 		    Fragments._OrderedSet__Collection /* 1 */,
-		    Fragments._OrderedSet__UniqueCollection /* 2 */,
 		    Fragments._OrderedSet__Sequence /* 2 */,
+		    Fragments._OrderedSet__UniqueCollection /* 2 */,
 		    Fragments._OrderedSet__OrderedSet /* 3 */
 		};
 		private static final int[] __OrderedSet = { 1,1,2,1 };
@@ -1104,8 +1104,8 @@ public class OCLstdlibTables
 		{
 		    Fragments._Set__OclAny /* 0 */,
 		    Fragments._Set__Collection /* 1 */,
-		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__Bag /* 2 */,
+		    Fragments._Set__UniqueCollection /* 2 */,
 		    Fragments._Set__Set /* 3 */
 		};
 		private static final int[] __Set = { 1,1,2,1 };
@@ -2516,6 +2516,20 @@ public class OCLstdlibTables
 	  	 	Fragments._UniqueCollection__UniqueCollection.initProperties(_UniqueCollection);
 	  	 	Fragments._UnlimitedNatural__UnlimitedNatural.initProperties(_UnlimitedNatural);
 	  	 	Fragments.__Dummy___Dummy.initProperties(__Dummy);
+		}
+	
+		public static void init() {}
+	}
+
+	/**
+	 *	The lists of local properties for the local fragment of each type.
+	 */
+	public static class EnumerationLiterals {
+	
+		/**
+		 *	Install the property descriptors in the fragment descriptors.
+		 */
+		static {
 		}
 	
 		public static void init() {}

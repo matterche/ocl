@@ -214,10 +214,10 @@ public class ValidateTests extends XtextTestCase
 			EValidator.Registry.INSTANCE.put(validatePackage, new OCLinEcoreEObjectValidator());
 			template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template,  "L1", objectLabel),
-				NLS.bind(template,  "L2a", objectLabel),
+				NLS.bind(template, new Object[]{"Level1", "L1", objectLabel}),
+				NLS.bind(template,  new Object[]{"Level2a", "L2a", objectLabel}),
 	//BUG355184		NLS.bind(template,  "L2b", objectLabel),
-				NLS.bind(template,  "L3", objectLabel));
+				NLS.bind(template,  new Object[]{"Level3", "L3", objectLabel}));
 			//
 			//	No errors
 			//
@@ -238,7 +238,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l3", "ok");
 			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template,  "L1", objectLabel));
+				NLS.bind(template,  new Object[]{"Level1", "L1", objectLabel}));
 		} finally {
 			metaModelManager1.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);

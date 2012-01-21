@@ -137,7 +137,7 @@ public class OCLQueryDelegate implements QueryDelegate
 	//			throw new OCLDelegateException(message);
 	//		}
 	//		return converter.convert(ocl, result);
-			return valueFactory.getEcoreValueOf(result);
+			return result.asEcoreObject();
 		}
 		catch (DomainException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, PivotUtil.getBody(specification));

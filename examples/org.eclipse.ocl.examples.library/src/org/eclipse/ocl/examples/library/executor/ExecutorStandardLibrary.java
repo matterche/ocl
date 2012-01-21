@@ -41,6 +41,7 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	private Map<String, EcoreExecutorPackage> ePackageMap = new HashMap<String, EcoreExecutorPackage>();
 	private Map<DomainPackage, DomainReflectivePackage> domainPackageMap = null;
 	private Map<EClassifier, ExecutorType> typeMap = new HashMap<EClassifier, ExecutorType>();
+//	private Map<Class<?>, DomainEnumeration> enumerationMap = null;
 	
 	public ExecutorStandardLibrary(EcoreExecutorPackage... execPackages) {
 		OCLstdlibTables.PACKAGE.getClass();
@@ -71,6 +72,32 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 	public DomainEvaluator createEvaluator(EObject contextObject, Map<Object, Object> contextMap) {
 		return new EcoreExecutorManager(contextObject, contextMap, this);
 	}
+
+/*	@Override
+	public DomainEnumeration getEnumeration(Enumerator enumerator) {
+		Class<?> enumeratorClass = enumerator.getClass();
+		String enumerationName = enumeratorClass.getSimpleName();
+		if (enumerationMap == null) {
+			enumerationMap = new HashMap<Class<?>, DomainEnumeration>();
+		}
+		else {
+			DomainEnumeration enumeration = enumerationMap.get(enumeratorClass);
+			if (enumeration != null) {
+				return enumeration;
+			}
+		}
+		Package enumeratorPackage = enumeratorClass.getPackage();
+		for (EcoreExecutorPackage dPackage : ePackageMap.values()) {
+// FIXME			if (OCLstdlibTables.PACKAGE.getNsURI().equals(dPackage.getNsURI())) {	
+							ExecutorType type = dPackage.getType(enumerationName);
+							if (type != null) {
+								enumerationMap.put(enumeratorClass, (DomainEnumeration)type);
+								return (DomainEnumeration)type;
+							}
+//						}
+					}
+		return super.getEnumeration(enumerator);
+	} */
 
 	public DomainInheritance getInheritance(DomainType type) {
 		if (type instanceof DomainInheritance) {

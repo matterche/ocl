@@ -20,6 +20,8 @@
  */
 package org.eclipse.ocl.examples.pivot;
 
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumeration;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorType;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
@@ -60,7 +62,7 @@ public class PivotTables
 	    public static final EcoreExecutorType _AnyType = new EcoreExecutorType(PivotPackage.Literals.ANY_TYPE, PACKAGE, 0);
 	    public static final EcoreExecutorType _AssociationClass = new EcoreExecutorType(PivotPackage.Literals.ASSOCIATION_CLASS, PACKAGE, 0);
 	    public static final EcoreExecutorType _AssociationClassCallExp = new EcoreExecutorType(PivotPackage.Literals.ASSOCIATION_CLASS_CALL_EXP, PACKAGE, 0);
-	    public static final EcoreExecutorType _AssociativityKind = new EcoreExecutorType("AssociativityKind", PACKAGE, 0);
+	    public static final EcoreExecutorEnumeration _AssociativityKind = new EcoreExecutorEnumeration(PivotPackage.Literals.ASSOCIATIVITY_KIND, PACKAGE, 0);
 	    public static final EcoreExecutorType _BagType = new EcoreExecutorType(PivotPackage.Literals.BAG_TYPE, PACKAGE, 0);
 	    public static final EcoreExecutorType _Boolean = OCLstdlibTables.Types._Boolean;
 	    public static final EcoreExecutorType _BooleanLiteralExp = new EcoreExecutorType(PivotPackage.Literals.BOOLEAN_LITERAL_EXP, PACKAGE, 0);
@@ -69,7 +71,7 @@ public class PivotTables
 	    public static final EcoreExecutorType _Class = OCLstdlibTables.Types._Class;
 	    public static final EcoreExecutorType _ClassifierType = new EcoreExecutorType(PivotPackage.Literals.CLASSIFIER_TYPE, PACKAGE, 0);
 	    public static final EcoreExecutorType _CollectionItem = new EcoreExecutorType(PivotPackage.Literals.COLLECTION_ITEM, PACKAGE, 0);
-	    public static final EcoreExecutorType _CollectionKind = new EcoreExecutorType("CollectionKind", PACKAGE, 0);
+	    public static final EcoreExecutorEnumeration _CollectionKind = new EcoreExecutorEnumeration(PivotPackage.Literals.COLLECTION_KIND, PACKAGE, 0);
 	    public static final EcoreExecutorType _CollectionLiteralExp = new EcoreExecutorType(PivotPackage.Literals.COLLECTION_LITERAL_EXP, PACKAGE, 0);
 	    public static final EcoreExecutorType _CollectionLiteralPart = new EcoreExecutorType(PivotPackage.Literals.COLLECTION_LITERAL_PART, PACKAGE, 0);
 	    public static final EcoreExecutorType _CollectionRange = new EcoreExecutorType(PivotPackage.Literals.COLLECTION_RANGE, PACKAGE, 0);
@@ -290,6 +292,7 @@ public class PivotTables
 			TypeFragments.init();
 			FragmentOperations.init();
 			FragmentProperties.init();
+			EnumerationLiterals.init();
 		}
 	}
 
@@ -9576,6 +9579,43 @@ public class PivotTables
 	  	 	Fragments._Visitable__Visitable.initProperties(_Visitable);
 	  	 	Fragments._Visitor__Visitor.initProperties(_Visitor);
 	  	 	Fragments._VoidType__VoidType.initProperties(_VoidType);
+		}
+	
+		public static void init() {}
+	}
+	
+	/**
+	 *	The lists of enumeration literals for each enumeration.
+	 */
+	public static class EnumerationLiterals {
+		public static EcoreExecutorEnumerationLiteral _AssociativityKind__Left = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("Left"), Types._AssociativityKind, 0);
+		public static EcoreExecutorEnumerationLiteral _AssociativityKind__Right = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.ASSOCIATIVITY_KIND.getEEnumLiteral("Right"), Types._AssociativityKind, 1);
+		
+		private static final EcoreExecutorEnumerationLiteral[] _AssociativityKind = {
+		    _AssociativityKind__Left,
+		    _AssociativityKind__Right
+		};
+	
+		public static EcoreExecutorEnumerationLiteral _CollectionKind__Collection = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Collection"), Types._CollectionKind, 0);
+		public static EcoreExecutorEnumerationLiteral _CollectionKind__Set = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Set"), Types._CollectionKind, 1);
+		public static EcoreExecutorEnumerationLiteral _CollectionKind__OrderedSet = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("OrderedSet"), Types._CollectionKind, 2);
+		public static EcoreExecutorEnumerationLiteral _CollectionKind__Bag = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Bag"), Types._CollectionKind, 3);
+		public static EcoreExecutorEnumerationLiteral _CollectionKind__Sequence = new EcoreExecutorEnumerationLiteral(PivotPackage.Literals.COLLECTION_KIND.getEEnumLiteral("Sequence"), Types._CollectionKind, 4);
+		
+		private static final EcoreExecutorEnumerationLiteral[] _CollectionKind = {
+		    _CollectionKind__Collection,
+		    _CollectionKind__Set,
+		    _CollectionKind__OrderedSet,
+		    _CollectionKind__Bag,
+		    _CollectionKind__Sequence
+		};
+	
+		/**
+		 *	Install the enumeration literals in the enumerations.
+		 */
+		static {
+	  	 	Types._AssociativityKind.initLiterals(_AssociativityKind);
+	  	 	Types._CollectionKind.initLiterals(_CollectionKind);
 		}
 	
 		public static void init() {}

@@ -21,9 +21,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
 import org.eclipse.ocl.examples.domain.elements.DomainInheritance;
 import org.eclipse.ocl.examples.domain.elements.DomainLambdaType;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
@@ -105,6 +107,10 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 				return getBagType(elementType);
 			}
 		}
+	}
+
+	public DomainEnumeration getEnumeration(Enumerator enumerator) {
+		throw new UnsupportedOperationException();
 	}
 
 	public DomainType getMetaType(DomainType instanceType) {

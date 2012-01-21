@@ -27,6 +27,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumeration;
+import org.eclipse.ocl.examples.domain.elements.DomainEnumerationLiteral;
+import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
+import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -358,7 +362,10 @@ public class EnumerationLiteralImpl
 		return visitor.visitEnumerationLiteral(this);
 	}
 
-	public int getOrdinal() {
-		return value.intValue();
+	public Object asEcoreObject(DomainStandardLibrary standardLibrary) {
+		DomainType normalizedType = getEnumeration().getNormalizedType(standardLibrary);
+		DomainEnumeration normalizedEnumeration = (DomainEnumeration) normalizedType;
+		DomainEnumerationLiteral enumerationLiteral = normalizedEnumeration.getEnumerationLiteral(getName());
+		return enumerationLiteral.asEcoreObject(standardLibrary);
 	}
 } //EnumerationLiteralImpl

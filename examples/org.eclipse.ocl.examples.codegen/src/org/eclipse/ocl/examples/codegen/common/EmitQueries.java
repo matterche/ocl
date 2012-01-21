@@ -64,6 +64,8 @@ public class EmitQueries
 		org.eclipse.ocl.examples.domain.values.UnlimitedValue.class,
 		org.eclipse.ocl.examples.domain.values.Value.class,
 		org.eclipse.ocl.examples.domain.values.ValueFactory.class,
+		org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumeration.class,
+		org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral.class,
 		org.eclipse.ocl.examples.library.ecore.EcoreExecutorManager.class,
 		org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage.class,
 		org.eclipse.ocl.examples.library.ecore.EcoreExecutorType.class,

@@ -10,14 +10,16 @@
 package codegen.company;
 
 import codegen.company.CodegencompanyTables;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumeration;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorEnumerationLiteral;
 import org.eclipse.ocl.examples.library.ecore.EcoreExecutorPackage;
+import org.eclipse.ocl.examples.library.ecore.EcoreExecutorType;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryOppositeProperty;
 import org.eclipse.ocl.examples.library.ecore.EcoreLibraryProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorFragment;
 import org.eclipse.ocl.examples.library.executor.ExecutorOperation;
 import org.eclipse.ocl.examples.library.executor.ExecutorProperty;
 import org.eclipse.ocl.examples.library.executor.ExecutorStandardLibrary;
-import org.eclipse.ocl.examples.library.executor.ExecutorType;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 
 /**
@@ -34,17 +36,20 @@ public class CodegencompanyTables
 	 */
 	public static final EcoreExecutorPackage PACKAGE = new EcoreExecutorPackage(CodegencompanyPackage.eINSTANCE);
 
+/**
+	 *	The library of all packages and types.
+	 */
 	public static final ExecutorStandardLibrary LIBRARY = new ExecutorStandardLibrary(PACKAGE); 
 
 	/**
 	 *	The type descriptors for each type.
 	 */
 	public static class Types {
-	    public static final ExecutorType _Company = new ExecutorType("Company", PACKAGE, 0);
-	    public static final ExecutorType _CompanySizeKind = new ExecutorType("CompanySizeKind", PACKAGE, 0);
-	    public static final ExecutorType _Employee = new ExecutorType("Employee", PACKAGE, 0);
+	    public static final EcoreExecutorType _Company = new EcoreExecutorType(CodegencompanyPackage.Literals.COMPANY, PACKAGE, 0);
+	    public static final EcoreExecutorEnumeration _CompanySizeKind = new EcoreExecutorEnumeration(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND, PACKAGE, 0);
+	    public static final EcoreExecutorType _Employee = new EcoreExecutorType(CodegencompanyPackage.Literals.EMPLOYEE, PACKAGE, 0);
 	
-		private static final ExecutorType[] types = {
+		private static final EcoreExecutorType[] types = {
 		    _Company,
 		    _CompanySizeKind,
 		    _Employee
@@ -54,10 +59,11 @@ public class CodegencompanyTables
 		 *	Install the type descriptors in the package descriptor.
 		 */
 		static {
-			PACKAGE.init(types);
+			PACKAGE.init(LIBRARY, types);
 			TypeFragments.init();
 			FragmentOperations.init();
 			FragmentProperties.init();
+			EnumerationLiterals.init();
 		}
 	}
 
@@ -242,6 +248,30 @@ public class CodegencompanyTables
 	  	 	Fragments._Company__Company.initProperties(_Company);
 	  	 	Fragments._CompanySizeKind__CompanySizeKind.initProperties(_CompanySizeKind);
 	  	 	Fragments._Employee__Employee.initProperties(_Employee);
+		}
+	
+		public static void init() {}
+	}
+	
+	/**
+	 *	The lists of enumeration literals for each enumeration.
+	 */
+	public static class EnumerationLiterals {
+		public static EcoreExecutorEnumerationLiteral _CompanySizeKind__small = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("small"), Types._CompanySizeKind, 0);
+		public static EcoreExecutorEnumerationLiteral _CompanySizeKind__medium = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("medium"), Types._CompanySizeKind, 1);
+		public static EcoreExecutorEnumerationLiteral _CompanySizeKind__large = new EcoreExecutorEnumerationLiteral(CodegencompanyPackage.Literals.COMPANY_SIZE_KIND.getEEnumLiteral("large"), Types._CompanySizeKind, 2);
+		
+		private static final EcoreExecutorEnumerationLiteral[] _CompanySizeKind = {
+		    _CompanySizeKind__small,
+		    _CompanySizeKind__medium,
+		    _CompanySizeKind__large
+		};
+	
+		/**
+		 *	Install the enumeration literals in the enumerations.
+		 */
+		static {
+	  	 	Types._CompanySizeKind.initLiterals(_CompanySizeKind);
 		}
 	
 		public static void init() {}

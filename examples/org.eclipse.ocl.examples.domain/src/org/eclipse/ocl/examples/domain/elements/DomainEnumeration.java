@@ -16,8 +16,8 @@
  */
 package org.eclipse.ocl.examples.domain.elements;
 
-
 public interface DomainEnumeration extends DomainType
 {
-	Iterable<? extends DomainEnumerationLiteral> getOwnedLiterals();
+	DomainEnumerationLiteral getEnumerationLiteral(String name);
+	Iterable<? extends DomainEnumerationLiteral> getEnumerationLiterals();
 }

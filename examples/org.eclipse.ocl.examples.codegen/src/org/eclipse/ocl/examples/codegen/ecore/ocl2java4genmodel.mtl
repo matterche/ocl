@@ -139,10 +139,10 @@ try {
 	final <%Value%> result = <%[className/]%>.[constraintName/].INSTANCE.evaluate(evaluator, returnType, self[for (pParameter : Parameter | pOperation.ownedParameter)], valueFactory.valueOf([pParameter.name/])[/for]);
 [if (ecoreReturnType.index('<') > 0)]
 	@SuppressWarnings("unchecked")
-	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) result.asEcoreObject();
 	return ecoreResult;
 [else]
-	return ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	return ([ecoreReturnType/]) result.asEcoreObject();
 [/if]
 } catch (<%InvalidValueException%> e) {
 	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);
@@ -183,10 +183,10 @@ try {
 	final <%Value%> result = <%[className/]%>.[constraintName/].INSTANCE.evaluate(evaluator, returnType, self, [pProperty.emitQualifiedLiteralName(genPackage)/]);
 [if (ecoreReturnType.index('<') > 0)]
 	@SuppressWarnings("unchecked")
-	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	[ecoreReturnType/] ecoreResult = ([ecoreReturnType/]) result.asEcoreObject();
 	return ecoreResult;
 [else]
-	return ([ecoreReturnType/]) valueFactory.getEcoreValueOf(result);
+	return ([ecoreReturnType/]) result.asEcoreObject();
 [/if]
 } catch (<%InvalidValueException%> e) {
 	throw new <%org.eclipse.emf.common.util.WrappedException%>("Failed to evaluate [className/]", e);

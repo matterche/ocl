@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -460,5 +461,18 @@ public class EnumerationImpl
 	public boolean conformsTo(DomainStandardLibrary standardLibrary, DomainType type) {
 		return super.conformsTo(standardLibrary, type);
 //		throw new UnsupportedOperationException();		// WIP
+	}
+
+	public EnumerationLiteral getEnumerationLiteral(String name) {
+		for (EnumerationLiteral enumerationLiteral : getEnumerationLiterals()) {
+			if (name.equals(enumerationLiteral.getName())) {
+				return enumerationLiteral;
+			}
+		}
+		return null;
+	}
+
+	public List<EnumerationLiteral> getEnumerationLiterals() {
+		return getOwnedLiterals();
 	}
 } //EnumerationImpl

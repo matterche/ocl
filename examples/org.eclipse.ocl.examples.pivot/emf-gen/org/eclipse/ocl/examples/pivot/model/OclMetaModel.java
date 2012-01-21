@@ -534,6 +534,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_3.setIsComposite(true);
 			symbol_3.setIsResolveProxies(true);
+			symbol_3.setOpposite(symbol_64);
 			
 			symbol_1.getOwnedAttributes().add(symbol_3);
 		}
@@ -558,7 +559,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_5.setIsOrdered(true);
 			
 			symbol_5.setIsResolveProxies(true);
-			symbol_5.setOpposite(symbol_64);
 			
 			symbol_1.getOwnedAttributes().add(symbol_5);
 		}
@@ -1406,7 +1406,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_88.setIsComposite(true);
 			symbol_88.setIsResolveProxies(true);
-			symbol_88.setOpposite(symbol_151);
 			
 			symbol_87.getOwnedAttributes().add(symbol_88);
 		}
@@ -1425,6 +1424,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_90.setIsComposite(true);
 			symbol_90.setIsResolveProxies(true);
+			symbol_90.setOpposite(symbol_151);
 			
 			symbol_87.getOwnedAttributes().add(symbol_90);
 		}
@@ -1510,7 +1510,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_101.setIsComposite(true);
 			symbol_101.setIsResolveProxies(true);
-			symbol_101.setOpposite(symbol_187);
 			
 			symbol_99.getOwnedAttributes().add(symbol_101);
 		}
@@ -1522,6 +1521,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_102.setIsComposite(true);
 			symbol_102.setIsResolveProxies(true);
+			symbol_102.setOpposite(symbol_187);
 			
 			symbol_99.getOwnedAttributes().add(symbol_102);
 		}
@@ -1670,7 +1670,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_119.setIsComposite(true);
 			symbol_119.setIsResolveProxies(true);
-			symbol_119.setOpposite(symbol_154);
 			
 			symbol_118.getOwnedAttributes().add(symbol_119);
 		}
@@ -1702,6 +1701,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_122.setIsComposite(true);
 			symbol_122.setIsResolveProxies(true);
+			symbol_122.setOpposite(symbol_154);
 			
 			symbol_118.getOwnedAttributes().add(symbol_122);
 		}

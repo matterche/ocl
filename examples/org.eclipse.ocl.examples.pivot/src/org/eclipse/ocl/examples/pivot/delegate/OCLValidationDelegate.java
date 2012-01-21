@@ -238,7 +238,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 				else {
 					objectLabel = String.valueOf(value);
 				}
-				message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+				message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+					new Object[]{eClassifier.getName(), constraintName, objectLabel});
 			}
 			int severity = result.isNull() ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));

@@ -57,6 +57,15 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	}
 
 	@Override
+	public Object asEcoreObject() {
+		if (exception != null) {
+			throw exception;
+		}
+//		throw new RuntimeException();
+		return null;
+	}
+
+	@Override
 	public BagValue asBagValue() throws InvalidValueException {
 		if (exception != null) {
 			throw exception;

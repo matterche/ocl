@@ -44,7 +44,7 @@ public class EnumerationAllInstancesOperation extends AbstractUnaryOperation
 		DomainType sourceType = sourceTypeValue.getInstanceType();
 		Set<Value> results = new HashSet<Value>();
 		DomainEnumeration domainEnumeration = sourceType instanceof DomainEnumeration ? (DomainEnumeration)sourceType : (DomainEnumeration)((DomainClassifierType)sourceType).getInstanceType();
-		for (DomainElement instance : domainEnumeration.getOwnedLiterals()) {
+		for (DomainElement instance : domainEnumeration.getEnumerationLiterals()) {
 			results.add(valueFactory.valueOf(instance));
 		}
 		return valueFactory.createSetValue((DomainCollectionType)returnType, results);

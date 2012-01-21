@@ -589,7 +589,7 @@ public class OperationImpl
 			
 			final DomainType returnType = T_Boolean;
 			final Value result = ParameterableElementBodies._isCompatibleWith_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(p));
-			return (Boolean) valueFactory.getEcoreValueOf(result);
+			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
 		}

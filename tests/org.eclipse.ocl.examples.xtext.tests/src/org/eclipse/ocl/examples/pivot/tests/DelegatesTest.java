@@ -1048,7 +1048,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
 		validateWithSeverity("evaluatingToNull", Diagnostic.ERROR, badClassInstance,
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "evaluatingToNull", PivotDiagnostician.INSTANCE.getObjectLabel(badClassInstance));
+			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, badClassInstance.eClass().getName(), "evaluatingToNull", PivotDiagnostician.INSTANCE.getObjectLabel(badClassInstance));
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
@@ -1342,7 +1342,8 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
-		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+			new Object[]{eObject.eClass().getName(), constraintName, objectLabel});
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 

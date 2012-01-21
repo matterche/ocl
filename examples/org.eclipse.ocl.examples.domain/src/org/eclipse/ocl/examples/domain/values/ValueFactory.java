@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
@@ -60,12 +62,17 @@ public interface ValueFactory
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values);
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Value... values);
 	CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, DomainType elementType, Collection<Value> values);
+
+	ObjectValue createEObjectValue(EObject eObject);	
+	ElementValue createElementValue(DomainElement element);
+	
+	EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element);
+	EnumerationLiteralValue createEnumerationLiteralValue(EEnumLiteral eEnumLiteral);
+//	EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EClassifier eClassifier);
 	
 	InvalidValue createInvalidValue(InvalidEvaluationException exception);
 	InvalidValue createInvalidValue(InvalidValueException exception);
-	ObjectValue createEObjectValue(EObject eObject);	
-	ElementValue createElementValue(DomainElement element);
-	EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element);
+
 	ObjectValue createObjectValue(Object object);
 
     OrderedSetValue createOrderedSetOf(Object... objects);
@@ -129,6 +136,7 @@ public interface ValueFactory
 	DomainType typeOf(Value value, Value... values);
 
 	Value valueOf(Object object);
+	Value valueOf(Object eValue, EClassifier eClassifier);
 	Value valueOf(Object eValue, ETypedElement eFeature);
 }
  

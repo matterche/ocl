@@ -333,7 +333,7 @@ public abstract class TypedMultiplicityElementImpl
 			
 			final DomainType returnType = T_Boolean;
 			final Value result = TypedMultiplicityElementBodies._CompatibleBody_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(bodySpecification));
-			return (Boolean) valueFactory.getEcoreValueOf(result);
+			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies", e);
 		}
@@ -358,7 +358,7 @@ public abstract class TypedMultiplicityElementImpl
 			
 			final DomainType returnType = T_Pivot_ecore__pivot__Parameter;
 			final Value result = TypedMultiplicityElementBodies._makeParameter_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			return (Parameter) valueFactory.getEcoreValueOf(result);
+			return (Parameter) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TypedMultiplicityElementBodies", e);
 		}
