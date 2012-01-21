@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,10 +52,21 @@ import org.eclipse.uml2.uml.resource.XMI2UMLResource;
 
 public class UMLUtils	// FIXME This should be in MDT/UML2
 {		
+	private static final String CMOF_CONTENT_TYPE_IDENTIFIER = UMLUtils.class.getName() + ".cmof";
+	private static final String UML_CONTENT_TYPE_IDENTIFIER = UMLUtils.class.getName() + ".uml";
+	private static final String XMI_CONTENT_TYPE_IDENTIFIER = UMLUtils.class.getName() + ".xmi";
+
 	private static final String[] CMOF_EXTENSIONS = new String[] { "cmof", "xmi", "xml" };
 	private static final String[] UML_EXTENSIONS = new String[] { "uml", "xmi", "xml" };
+
 //	private static final RootXMLContentHandlerImpl UML2_4_0_0 = new RootXMLContentHandlerImpl("org.eclipse.uml2.uml_4_0_0", new String[]{ "xmi" },
 //		RootXMLContentHandlerImpl.XMI_KIND, "http://www.eclipse.org/uml2/4.0.0/UML", null);
+	private static final RootXMLContentHandlerImpl CMOF_DEFAULT = new RootXMLContentHandlerImpl(CMOF_CONTENT_TYPE_IDENTIFIER, new String[]{ "cmof" },
+		RootXMLContentHandlerImpl.XMI_KIND, "", null);
+	private static final RootXMLContentHandlerImpl UML_DEFAULT = new RootXMLContentHandlerImpl(UML_CONTENT_TYPE_IDENTIFIER, new String[]{ "uml" },
+		RootXMLContentHandlerImpl.XMI_KIND, "", null);
+	private static final RootXMLContentHandlerImpl XMI_DEFAULT = new RootXMLContentHandlerImpl(XMI_CONTENT_TYPE_IDENTIFIER, new String[]{ "xmi", "xml" },
+		RootXMLContentHandlerImpl.XMI_KIND, "", null);
 	private static final RootXMLContentHandlerImpl ORG_OMG_CMOF_2_0 = new RootXMLContentHandlerImpl(CMOF2UMLResource.CMOF_2_0_CONTENT_TYPE_IDENTIFIER, CMOF_EXTENSIONS,
 		RootXMLContentHandlerImpl.XMI_KIND, CMOF2UMLResource.CMOF_2_0_METAMODEL_NS_URI/*http://schema.omg.org/spec/MOF/2.0/cmof.xml*/, null);
 	private static final RootXMLContentHandlerImpl ORG_OMG_CMOF_2_4 = new RootXMLContentHandlerImpl(CMOF2UMLResource.CMOF_2_4_CONTENT_TYPE_IDENTIFIER, CMOF_EXTENSIONS,
@@ -85,14 +97,29 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 
 	/**
 	 * Install the UML content handlers in the resourceSet's URIConverter, using the
-	 * global URIConverter if resourceSet null. Note that installing content handlers in
-	 * the global URIConverter is generally a pointless exercise since ResourceSet
-	 * ResourceFactoryRegistry delegation to globals does not use the gloabl URIOConverter.
+	 * global URIConverter if resourceSet null.
 	 */
 	public static void initializeContentHandlers(ResourceSet resourceSet) {
-		URIConverter uriConverter = resourceSet != null ? resourceSet.getURIConverter() : URIConverter.INSTANCE;;
-		List<ContentHandler> contentHandlers = uriConverter.getContentHandlers();
-//		initializeContentHandler(contentHandlers, UML2_4_0_0);
+		List<ContentHandler> contentHandlers;
+		if (resourceSet != null) {
+			contentHandlers = resourceSet.getURIConverter().getContentHandlers();
+		}
+		else {
+			contentHandlers = ContentHandler.Registry.INSTANCE.get(ContentHandler.Registry.NORMAL_PRIORITY);
+			if (contentHandlers == null) {
+				contentHandlers = new ArrayList<ContentHandler>();
+				ContentHandler.Registry.INSTANCE.put(ContentHandler.Registry.NORMAL_PRIORITY, contentHandlers);
+			}
+		}
+		//
+		//	Defaults first for use for extension only matches.
+		//
+		initializeContentHandler(contentHandlers, CMOF_DEFAULT);		
+		initializeContentHandler(contentHandlers, UML_DEFAULT);		
+		initializeContentHandler(contentHandlers, XMI_DEFAULT);		
+		//
+		//	Explicit NS URIs later for use for exact matches.
+		//
 		initializeContentHandler(contentHandlers, ORG_OMG_CMOF_2_0);		
 		initializeContentHandler(contentHandlers, ORG_OMG_CMOF_2_4);		
 		initializeContentHandler(contentHandlers, ORG_OMG_CMOF_2_4_1);		
@@ -134,17 +161,19 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		Map<String, Object> extensionToFactoryMap = resourceFactoryRegistry.getExtensionToFactoryMap();
 		extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl()); //$NON-NLS-1$
 		extensionToFactoryMap.put(Ecore2XMLResource.FILE_EXTENSION, Ecore2XMLResource.Factory.INSTANCE);
-		if (resourceSet == null) {
-			extensionToFactoryMap.put(CMOF2UMLResource.FILE_EXTENSION, CMOF2UMLResource.Factory.INSTANCE);
-//			extensionToFactoryMap.put(CMOF202UMLResource.FILE_EXTENSION, CMOF202UMLResource.Factory.INSTANCE);
-			extensionToFactoryMap.put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-			extensionToFactoryMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-		}
-		else {
-			extensionToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_EXTENSION);
-		}
+		//
+		//	Remove extensions handled by content type
+		//
+		extensionToFactoryMap.remove(CMOF2UMLResource.FILE_EXTENSION);
+		extensionToFactoryMap.remove(UMLResource.FILE_EXTENSION);
+		extensionToFactoryMap.remove("xmi");
+		extensionToFactoryMap.remove("xml");
+		extensionToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_EXTENSION);
 
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
+		contentTypeToFactoryMap.put(CMOF_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
+		contentTypeToFactoryMap.put(UML_CONTENT_TYPE_IDENTIFIER, UML302UMLResource.Factory.INSTANCE);
+		contentTypeToFactoryMap.put(XMI_CONTENT_TYPE_IDENTIFIER, new XMIResourceFactoryImpl());
 //		contentTypeToFactoryMap.put(UML212UMLResource.UML_2_0_0_CONTENT_TYPE_IDENTIFIER, UML212UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(UML212UMLResource.UML_2_1_0_CONTENT_TYPE_IDENTIFIER, UML212UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(UML302UMLResource.UML_3_0_0_CONTENT_TYPE_IDENTIFIER, UML302UMLResource.Factory.INSTANCE);
@@ -158,14 +187,11 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		contentTypeToFactoryMap.put(CMOF202UMLResource.CMOF_2_0_CONTENT_TYPE_IDENTIFIER, CMOF202UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_2_4_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_2_4_1_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
-		if (resourceSet == null) {
-//			contentTypeToFactoryMap.put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, new XMIResourceFactoryImpl());
-		}
-		else {
-			contentTypeToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER);
-		}
+//		if (resourceSet != null) {
+//			contentTypeToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER);
+//		}
 		
-		Map<URI, URI> uriMap = resourceSet != null ? resourceSet.getURIConverter().getURIMap() : URIConverter.URI_MAP;;
+		Map<URI, URI> uriMap = resourceSet != null ? resourceSet.getURIConverter().getURIMap() : URIConverter.URI_MAP;
 		uriMap.putAll(UML302UMLExtendedMetaData.getURIMap());
 		uriMap.putAll(UML212UMLExtendedMetaData.getURIMap());
 		uriMap.putAll(UML22UMLExtendedMetaData.getURIMap());
@@ -174,7 +200,7 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/profiles/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
-		uriMap.put(URI.createURI("http://schema.omg.org/spec/XMI/2.1"), URI.createURI("http://www.omg.org/XMI", true)); //$NON-NLS-1$
+//		uriMap.put(URI.createURI("http://schema.omg.org/spec/XMI/2.1"), URI.createURI("http://www.omg.org/XMI", true)); //$NON-NLS-1$
 
 		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
