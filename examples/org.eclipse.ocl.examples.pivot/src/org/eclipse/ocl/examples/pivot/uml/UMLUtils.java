@@ -168,7 +168,6 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		extensionToFactoryMap.remove(UMLResource.FILE_EXTENSION);
 		extensionToFactoryMap.remove("xmi");
 		extensionToFactoryMap.remove("xml");
-		extensionToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_EXTENSION);
 
 		Map<String, Object> contentTypeToFactoryMap = resourceFactoryRegistry.getContentTypeToFactoryMap();
 		contentTypeToFactoryMap.put(CMOF_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
@@ -187,9 +186,6 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		contentTypeToFactoryMap.put(CMOF202UMLResource.CMOF_2_0_CONTENT_TYPE_IDENTIFIER, CMOF202UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_2_4_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
 		contentTypeToFactoryMap.put(CMOF2UMLResource.CMOF_2_4_1_CONTENT_TYPE_IDENTIFIER, CMOF2UMLResource.Factory.INSTANCE);
-//		if (resourceSet != null) {
-//			contentTypeToFactoryMap.remove(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER);
-//		}
 		
 		Map<URI, URI> uriMap = resourceSet != null ? resourceSet.getURIConverter().getURIMap() : URIConverter.URI_MAP;
 		uriMap.putAll(UML302UMLExtendedMetaData.getURIMap());
@@ -200,7 +196,6 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/profiles/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
-//		uriMap.put(URI.createURI("http://schema.omg.org/spec/XMI/2.1"), URI.createURI("http://www.omg.org/XMI", true)); //$NON-NLS-1$
 
 		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
