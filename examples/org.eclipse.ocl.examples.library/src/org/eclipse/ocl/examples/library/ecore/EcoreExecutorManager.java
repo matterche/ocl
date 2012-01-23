@@ -18,8 +18,11 @@ package org.eclipse.ocl.examples.library.ecore;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
@@ -30,14 +33,23 @@ import org.eclipse.ocl.examples.library.executor.LazyModelManager;
 
 public class EcoreExecutorManager extends ExecutorManager
 {
-	protected static ValueFactory getValueFactory(Map<Object, Object> contextMap, DomainStandardLibrary standardLibrary) {
+	protected static ValueFactory getValueFactory(EObject contextObject, Map<Object, Object> contextMap, DomainStandardLibrary standardLibrary) {
 		if (contextMap != null) {
 			Object valueFactory = contextMap.get(ValueFactory.class);
 			if (valueFactory instanceof ValueFactory) {
 				return (ValueFactory) valueFactory;
 			}
 		}
-		return new EcoreValueFactory(standardLibrary);
+		EPackage ePackage = contextObject.eClass().getEPackage();
+		EList<Adapter> eAdapters = ePackage.eAdapters();
+		for (Adapter adapter : eAdapters) {
+			if (adapter instanceof ValueFactory) {
+				return (ValueFactory) adapter;
+			}
+		}
+		EcoreValueFactory ecoreValueFactory = new EcoreValueFactory(standardLibrary);
+		eAdapters.add(ecoreValueFactory);
+		return ecoreValueFactory;
 	}
 
 	private final EObject contextObject;
@@ -49,7 +61,7 @@ public class EcoreExecutorManager extends ExecutorManager
 	}
 
 	public EcoreExecutorManager(EObject contextObject, Map<Object, Object> contextMap, DomainStandardLibrary standardLibrary) {
-		super(getValueFactory(contextMap, standardLibrary));
+		super(getValueFactory(contextObject, contextMap, standardLibrary));
 		this.contextObject = contextObject;
 		this.contextMap = contextMap;
 	}
