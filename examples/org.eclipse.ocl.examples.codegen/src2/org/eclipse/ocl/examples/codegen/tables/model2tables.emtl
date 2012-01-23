@@ -993,7 +993,7 @@
             </source>
             <body xsi:type="ocl.ecore:OperationCallExp">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-              <source xsi:type="mtl:QueryInvocation" eType="/3/OrderedSet()">
+              <source xsi:type="mtl:QueryInvocation" eType="/3/OrderedSet(Operation)">
                 <definition href="../common/pivotQueries.emtl#/0/getOperations"/>
                 <argument xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/declareOperations/@body.1/sortedBy/select/temp5">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
@@ -1100,7 +1100,7 @@
           </letVariable>
         </body>
         <letVariable name="ops1" eType="/3/OrderedSet(Operation)">
-          <initExpression xsi:type="mtl:QueryInvocation" eType="/3/OrderedSet()">
+          <initExpression xsi:type="mtl:QueryInvocation" eType="/3/OrderedSet(Operation)">
             <definition href="../common/pivotQueries.emtl#/0/getOperations"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="cls" referredVariable="/0/declareOperations.1/cls">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
@@ -5269,7 +5269,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllProperSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5281,7 +5281,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
         </eParameters>
@@ -5293,7 +5293,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Type)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Type)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5355,7 +5355,7 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="elem">
-          <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Class)"/>
+          <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Class)"/>
         </eParameters>
       </eOperations>
       <eOperations name="getLiteralName">
@@ -5401,7 +5401,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalOperationsOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Operation)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Operation)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5413,7 +5413,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Property)"/>
         <eParameters name="cls">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5425,7 +5425,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getOperations"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2bodies.emtl#/3/OrderedSet(Operation)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5445,13 +5445,14 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
         </eParameters>
       </eOperations>
-      <eOperations name="getProperties" eType="/3/OrderedSet(Property)">
+      <eOperations name="getProperties">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getProperties"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2bodies.emtl#/3/OrderedSet(Property)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5475,7 +5476,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperSignatures"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(String)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -5487,7 +5488,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Class)"/>
         <eParameters name="elem">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
         </eParameters>
@@ -6836,21 +6837,23 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
         </eParameters>
       </eOperations>
-      <eOperations name="getAllProperSuperTypes" eType="/3/Set(Class)">
+      <eOperations name="getAllProperSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllProperSuperTypes"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Class)"/>
       </eOperations>
-      <eOperations name="getAllSuperTypes" eType="/3/Set(Type)">
+      <eOperations name="getAllSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllSuperTypes"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Type)"/>
       </eOperations>
       <eOperations name="getBehavioralType">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6879,13 +6882,14 @@
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
-      <eOperations name="getLocalOperationsOf" eType="/3/Set(Operation)">
+      <eOperations name="getLocalOperationsOf">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalOperationsOf"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Operation)"/>
       </eOperations>
       <eOperations name="getLocalPropertiesOf">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6894,7 +6898,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getLocalPropertiesOf"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Property)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Property)"/>
       </eOperations>
       <eOperations name="getOperations">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6903,7 +6907,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getOperations"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:OrderedSetType" href="#/3/OrderedSet(Operation)"/>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2bodies.emtl#/3/OrderedSet(Operation)"/>
       </eOperations>
       <eOperations name="getOverloadOp">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6917,13 +6921,14 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
         </eParameters>
       </eOperations>
-      <eOperations name="getProperties" eType="/3/OrderedSet(Property)">
+      <eOperations name="getProperties">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getProperties"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:OrderedSetType" href="model2bodies.emtl#/3/OrderedSet(Property)"/>
       </eOperations>
       <eOperations name="getSuperSignatures">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6932,7 +6937,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperSignatures"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(String)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(String)"/>
       </eOperations>
       <eOperations name="getSuperTypes">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -6941,7 +6946,7 @@
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getSuperTypes"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SetType" href="#/3/Set(Class)"/>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Class)"/>
       </eOperations>
       <eOperations name="getUnspecializedClass">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -7287,17 +7292,20 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
       </eAnnotations>
-      <eOperations name="getAllPropertiesOf" eType="/3/Set(Property)">
+      <eOperations name="getAllPropertiesOf">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
           <references href="../common/pivotQueries.emtl#/0/getAllPropertiesOf"/>
         </eAnnotations>
+        <eType xsi:type="ocl.ecore:SetType" href="model2bodies.emtl#/3/Set(Property)"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Set()_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="/3/Set(Class)"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Set(Class)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="model2bodies.emtl#/3/Set(Class)"/>
+      </eAnnotations>
       <eOperations name="getLiteralName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -7650,7 +7658,9 @@
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Property)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Property"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set()" instanceClassName="java.util.Set"/>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Class)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(GenPackage)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/GenModel#//GenPackage"/>
     </eClassifiers>
@@ -7659,9 +7669,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Type)" instanceClassName="java.util.Set">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Class)" instanceClassName="java.util.Set">
-      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Class)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Class"/>
@@ -7678,7 +7685,6 @@
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(TypeTemplateParameter)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//TypeTemplateParameter"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet()" instanceClassName="java.util.LinkedHashSet"/>
     <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Operation)" instanceClassName="java.util.LinkedHashSet">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Operation"/>
     </eClassifiers>

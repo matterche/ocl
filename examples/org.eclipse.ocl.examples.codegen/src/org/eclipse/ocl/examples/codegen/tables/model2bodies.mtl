@@ -1,7 +1,7 @@
 [**
  * <copyright>
  *
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2011,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id$
  **/]
 [comment encoding = UTF-8 /]
 [module org::eclipse::ocl::examples::codegen::tables::model2bodies('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/GenModel')/]
@@ -80,7 +78,7 @@ public class [className/]
 [if (expInOcl.contextVariable->notEmpty())]
 [if (false and pConstraint.stereotype = 'body')]
 	public static [pOperation.type.name/] [pOperation.name/]([pType.name/] self[for (parameter : Parameter | pOperation.ownedParameter)], [parameter.type.name/] [parameter.name/][/for]) {
-		final <%ExecutorManager%> evaluator = new <%EcoreExecutorManager%>(this, <%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
+		final <%ExecutorManager%> evaluator = new <%EcoreExecutorManager%>(this, null, <%[pType.getQualifiedTablesClassName(genPackage)/]%>.LIBRARY);
 		final <%ValueFactory%> valueFactory = evaluator.getValueFactory();
 		Library[genPackage.emitOperationArity(pOperation.ownedParameter->size())/] codeGen = [pType.name + '_' + pOperation.name + '_' + pConstraint.stereotype + '_' + pConstraint.name/].INSTANCE;
 		try {
@@ -126,7 +124,7 @@ public static class [className/] extends <%Abstract[genPackage.emitOperationArit
 	*/
 	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
 [for (parameter : Variable | expInOcl.parameterVariable)]
-, <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
+, final <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
 		[expInOcl.emitConstants(constants)/]
 		[expInOcl.bodyExpression.emitExpression(pType, genPackage, expInOcl)/]
 		return [expInOcl.bodyExpression.symbolName(expInOcl)/];
@@ -163,9 +161,9 @@ public static class [className/] extends <%Abstract[genPackage.emitOperationArit
 	/*
 	[expInOcl.prettyPrint().trim()/]
 	*/
-	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
+	public <%Value%> evaluate(<%DomainEvaluator%> evaluator, <%DomainType%> returnType, final <%Value%> [defineSymbolName(expInOcl.contextVariable, 'self')/][if expInOcl.parameterVariable->notEmpty()]
 [for (parameter : Variable | expInOcl.parameterVariable)]
-, <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
+, final <%Value%> [defineSymbolName(parameter, parameter.name)/][/for][/if]) throws <%InvalidValueException%> {
 		[expInOcl.emitConstants(constants)/]
 		[expInOcl.bodyExpression.emitExpression(pType, genPackage, expInOcl)/]
 		return [expInOcl.bodyExpression.symbolName(expInOcl)/];
