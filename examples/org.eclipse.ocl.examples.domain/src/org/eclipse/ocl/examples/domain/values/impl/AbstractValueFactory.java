@@ -26,7 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -257,17 +259,17 @@ public abstract class AbstractValueFactory implements ValueFactory
 		return createEnumerationLiteralValue(enumerationLiteral);
 	}
 
-/*	public EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EClassifier eClassifier) {
+	public EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EEnum eEnum) {
 		DomainEnumeration enumeration;
-		if (eClassifier == null) {
+		if (eEnum == null) {
 			enumeration = standardLibrary.getEnumeration(enumerator);
 		}
 		else {
-			enumeration = (DomainEnumeration) standardLibrary.getType(eClassifier);
+			enumeration = (DomainEnumeration) standardLibrary.getType(eEnum);
 		}
 		DomainEnumerationLiteral enumerationLiteral = enumeration.getEnumerationLiteral(enumerator.getName());
 		return createEnumerationLiteralValue(enumerationLiteral);
-	} */
+	}
 
 	public InvalidValue createInvalidValue(InvalidEvaluationException exception) {
 		return new InvalidValueImpl(this, exception);
@@ -686,6 +688,9 @@ public abstract class AbstractValueFactory implements ValueFactory
 	public Value valueOf(Object eValue, EClassifier eClassifier) {
 		if (eValue instanceof Value) {
 			return (Value) eValue;		
+		}
+		else if (eClassifier instanceof EEnum) {
+			return createEnumerationLiteralValue((Enumerator)eValue, (EEnum)eClassifier);		
 		}
 //		else if (eValue instanceof Enumerator) {
 //			return createEnumerationLiteralValue((Enumerator)eValue, eClassifier);		

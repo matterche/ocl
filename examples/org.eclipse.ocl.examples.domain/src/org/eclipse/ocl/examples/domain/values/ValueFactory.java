@@ -23,7 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -68,7 +70,7 @@ public interface ValueFactory
 	
 	EnumerationLiteralValue createEnumerationLiteralValue(DomainEnumerationLiteral element);
 	EnumerationLiteralValue createEnumerationLiteralValue(EEnumLiteral eEnumLiteral);
-//	EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EClassifier eClassifier);
+	EnumerationLiteralValue createEnumerationLiteralValue(Enumerator enumerator, EEnum eEnum);
 	
 	InvalidValue createInvalidValue(InvalidEvaluationException exception);
 	InvalidValue createInvalidValue(InvalidValueException exception);
