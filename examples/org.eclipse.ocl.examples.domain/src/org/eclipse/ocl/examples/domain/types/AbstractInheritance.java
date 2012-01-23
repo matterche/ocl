@@ -123,6 +123,9 @@ public abstract class AbstractInheritance implements DomainInheritance
 	}
 
 	public DomainInheritance getCommonInheritance(DomainInheritance thatInheritance) {
+		if (this == thatInheritance) {
+			return this;
+		}
 		int thatDepth = thatInheritance.getDepth();
 		if ((thatDepth ==  1) && thatInheritance.isUndefined()) {
 			return this;

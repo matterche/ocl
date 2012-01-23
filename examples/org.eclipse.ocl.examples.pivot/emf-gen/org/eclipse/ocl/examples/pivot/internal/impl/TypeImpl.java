@@ -1076,6 +1076,9 @@ public class TypeImpl
 	}
 
 	public DomainType getCommonType(DomainStandardLibrary standardLibrary, DomainType type) {
+		if (type == this) {
+			return this;
+		}
 		DomainInheritance thisInheritance = this.getInheritance(standardLibrary);
 		DomainInheritance thatInheritance = type.getInheritance(standardLibrary);
 		return thisInheritance.getCommonInheritance(thatInheritance);
