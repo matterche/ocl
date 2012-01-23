@@ -25,6 +25,7 @@ public class PivotReflectiveAnyType extends PivotReflectiveType
 {
 	public PivotReflectiveAnyType(PivotReflectivePackage executorPackage, AnyType type) {
 		super(executorPackage, type);
+		installOclAny();
 	}
 
 	@Override

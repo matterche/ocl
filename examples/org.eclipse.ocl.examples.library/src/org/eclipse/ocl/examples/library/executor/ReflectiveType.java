@@ -184,11 +184,7 @@ public abstract class ReflectiveType extends AbstractInheritance
 			return true;
 		}
 		DomainInheritance oclAnyInheritance = getOclAnyInheritance();
-		if (this == oclAnyInheritance){
-			fragments = new DomainFragment[] { createFragment(oclAnyInheritance) };
-			indexes = new int[] { 0, 1 };
-		}
-		else {
+		if (this != oclAnyInheritance){
 			List<List<DomainInheritance>> all = new ArrayList<List<DomainInheritance>>();
 			for (DomainInheritance superInheritance : getInitialSuperInheritances()) {
 //				installIn(superInheritance, this, all);
@@ -237,6 +233,15 @@ public abstract class ReflectiveType extends AbstractInheritance
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Install the root OclAny Inheritance.
+	 */
+	protected final void installOclAny() {
+		assert fragments == null;
+		fragments = new DomainFragment[] { createFragment(this) };
+		indexes = new int[] { 0, 1 };
 	}
 	
 	/**
