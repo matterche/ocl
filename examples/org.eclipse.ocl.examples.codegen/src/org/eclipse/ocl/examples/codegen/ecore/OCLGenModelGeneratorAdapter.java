@@ -29,8 +29,10 @@ import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy
 import org.eclipse.acceleo.engine.generation.strategy.PreviewStrategy;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.ecore.CodeGenEcorePlugin;
@@ -236,13 +238,24 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected Diagnostic generateModel(Object object, Monitor monitor) {
 		GenModel genModel = (GenModel) object;
 		if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
-		    monitor.beginTask("", 3);
+		    monitor.beginTask("", 4);
 		    monitor.subTask("Generating Dispatch Tables");
 		    GenPackage genPackage = genModel.getGenPackages().get(0);
 		    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
 			createDispatchTables(genModel, monitor);
 		    monitor.worked(1);
 		    createClassBodies(genModel, monitor);
+		    monitor.worked(1);
+			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+			    IWorkspace workspace = ResourcesPlugin.getWorkspace();
+				String modelProjectDirectory = genModel.getModelProjectDirectory();
+			    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
+			    try {
+					modelProject.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(monitor));
+				} catch (CoreException e) {
+			        CodeGenEcorePlugin.INSTANCE.log(e);
+				}
+			}
 		    monitor.worked(1);
 		}
 		return super.generateModel(object, monitor);
