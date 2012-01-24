@@ -64,12 +64,14 @@ public class CS2PivotResourceAdapter extends MetaModelManagerResourceAdapter
 		CS2PivotResourceAdapter adapter = findAdapter(csResource);
 		if (adapter == null) {
 			if (metaModelManager == null) {
-				MetaModelManagerResourceSetAdapter rsAdapter = MetaModelManagerResourceSetAdapter.findAdapter(csResource.getResourceSet());
+				ResourceSet csResourceSet = csResource.getResourceSet();
+				MetaModelManagerResourceSetAdapter rsAdapter = MetaModelManagerResourceSetAdapter.findAdapter(csResourceSet);
 				if (rsAdapter != null) {
 					metaModelManager = rsAdapter.getMetaModelManager();					
 				}
 				if (metaModelManager == null) {
 					metaModelManager = csResource.createMetaModelManager();
+					MetaModelManagerResourceSetAdapter.getAdapter(csResourceSet, metaModelManager);
 				}
 				metaModelManager.addClassLoader(csResource.getClass().getClassLoader());
 			}
