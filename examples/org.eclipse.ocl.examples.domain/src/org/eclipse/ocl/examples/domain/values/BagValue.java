@@ -16,6 +16,6 @@
  */
 package org.eclipse.ocl.examples.domain.values;
 
-public interface BagValue extends NonOrderedCollectionValue
+public interface BagValue extends CollectionValue
 {
 }

@@ -328,14 +328,17 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
     }
 
     public CollectionValue union(CollectionValue c) throws InvalidValueException {
-        if (this instanceof BagValue || c instanceof BagValue) {
+    	if (this instanceof SetValue && c instanceof SetValue) {
+            return SetValueImpl.union(valueFactory, getSetType(), this, c);
+        }
+        else if (this instanceof BagValue || c instanceof BagValue) {
             return BagValueImpl.union(valueFactory, getBagType(), this, c);
+        }
+        else if (this instanceof OrderedSetValue && c instanceof OrderedSetValue) {
+            return OrderedSetValueImpl.union(valueFactory, getOrderedSetType(), this, c);
         }
         else if (this instanceof SequenceValue || c instanceof SequenceValue) {
             return SequenceValueImpl.union(valueFactory, getSequenceType(), this, c);
-        }
-        else if (this instanceof OrderedSetValue || c instanceof OrderedSetValue) {
-            return OrderedSetValueImpl.union(valueFactory, getOrderedSetType(), this, c);
         }
         else {
             return SetValueImpl.union(valueFactory, getSetType(), this, c);

@@ -16,6 +16,6 @@
  */
 package org.eclipse.ocl.examples.domain.values;
 
-public interface SetValue extends NonOrderedCollectionValue, UniqueCollectionValue
+public interface SetValue extends BagValue, UniqueCollectionValue
 {
 }
