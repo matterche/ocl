@@ -18,7 +18,7 @@ package org.eclipse.ocl.examples.domain.values;
 
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
-public interface SequenceValue extends OrderedCollectionValue, NonUniqueCollectionValue
+public interface SequenceValue extends OrderedCollectionValue
 {
     SequenceValue subSequence(int lower, int upper) throws InvalidValueException;
 }
