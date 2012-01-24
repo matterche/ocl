@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -43,11 +42,6 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 	@Override
 	public List<Value> asList() {
 		return elements;
-	}
-
-	@Override
-	public OrderedCollectionValue asOrderedCollectionValue() {
-		return this;
 	}
 
     @Override
@@ -234,7 +228,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
         return valueFactory.createSequenceValue(getCollectionType(), result);
     }
 
-	public OrderedCollectionValue toOrderedCollectionValue() {
+	public SequenceValue toSequenceValue() {
 		return this;
 	}
 

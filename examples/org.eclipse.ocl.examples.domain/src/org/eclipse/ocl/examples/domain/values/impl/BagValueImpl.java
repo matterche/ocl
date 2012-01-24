@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -170,7 +169,7 @@ public class BagValueImpl
     	return new SequenceValueImpl(valueFactory, getSequenceType(), values);
     }
     
-	public OrderedCollectionValue toOrderedCollectionValue() {
+	public SequenceValue toSequenceValue() {
 		return new SequenceValueImpl(valueFactory, getSequenceType(), elements);
 	}
 

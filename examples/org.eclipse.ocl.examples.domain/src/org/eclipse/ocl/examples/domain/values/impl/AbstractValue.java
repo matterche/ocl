@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
@@ -103,10 +102,6 @@ public abstract class AbstractValue implements Value
 
 	public ObjectValue asObjectValue() throws InvalidValueException {
 		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object", getType());
-	}
-
-	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
-		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Ordered Collection", getType());
 	}
 
 	public OrderedSetValue asOrderedSetValue() throws InvalidValueException {

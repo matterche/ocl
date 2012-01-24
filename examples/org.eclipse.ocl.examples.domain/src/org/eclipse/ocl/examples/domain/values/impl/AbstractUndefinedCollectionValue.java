@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.NullValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.TupleValue;
 import org.eclipse.ocl.examples.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -57,7 +57,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		super(valueFactory);
 	}
 
-	public OrderedCollectionValue append(Value object) throws InvalidValueException {
+	public SequenceValue append(Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -135,7 +135,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return toInvalidValue();
 	}
 
-	public OrderedCollectionValue insertAt(int index, Value object) throws InvalidValueException {
+	public SequenceValue insertAt(int index, Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -171,7 +171,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
     	return toInvalidValue();
 	}
 
-	public OrderedCollectionValue prepend(Value object) throws InvalidValueException {
+	public SequenceValue prepend(Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -179,7 +179,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return null;
 	}
 
-	public OrderedCollectionValue reverse() throws InvalidValueException {
+	public SequenceValue reverse() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -195,7 +195,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
     	return toInvalidValue();
 	}
 
-    public OrderedCollectionValue sort(Comparator<Value> comparator) throws InvalidValueException {
+    public SequenceValue sort(Comparator<Value> comparator) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -215,7 +215,7 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return toInvalidValue();
 	}
     
-	public OrderedCollectionValue toOrderedCollectionValue() {
+	public SequenceValue toSequenceValue() {
 		return this;
 	}
 

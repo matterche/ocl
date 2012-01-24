@@ -27,9 +27,10 @@ import java.util.Set;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.values.BagValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.SetValue;
 import org.eclipse.ocl.examples.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.domain.values.Value;
@@ -117,6 +118,11 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	}
 
     @Override
+	public BagValue asBagValue() {
+        return this;
+    }
+
+    @Override
 	public UniqueCollectionValue asUniqueCollectionValue() {
         return this;
 	}
@@ -196,7 +202,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
         return new SetValueImpl(valueFactory, getCollectionType(), result);
     }
     
-	public OrderedCollectionValue toOrderedCollectionValue() {
+	public SequenceValue toSequenceValue() {
 		return new OrderedSetValueImpl(valueFactory, getOrderedSetType(), elements);
 	}
 

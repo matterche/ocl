@@ -28,9 +28,9 @@ import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSet;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
@@ -112,12 +112,12 @@ public class OrderedSetValueImpl
     }
 
 	@Override
-	public OrderedCollectionValue asOrderedCollectionValue() {
+	public OrderedSetValueImpl asOrderedSetValue() {
 		return this;
 	}
 
 	@Override
-	public OrderedSetValueImpl asOrderedSetValue() {
+	public SequenceValue asSequenceValue() {
 		return this;
 	}
 
@@ -305,6 +305,10 @@ public class OrderedSetValueImpl
         return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
+	public SequenceValue subSequence(int lower, int upper) throws InvalidValueException {
+		return subOrderedSet(lower, upper);
+	}
+
     public OrderedSetValue symmetricDifference(UniqueCollectionValue set) {       
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);       
         for (Value e : set) {
@@ -317,7 +321,7 @@ public class OrderedSetValueImpl
         return new OrderedSetValueImpl(valueFactory, getCollectionType(), result);
     }
 
-	public OrderedCollectionValue toOrderedCollectionValue() {
+	public SequenceValue toSequenceValue() {
 		return this;
 	}
 

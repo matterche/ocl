@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.domain.values.ElementValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
 import org.eclipse.ocl.examples.domain.values.InvalidValue;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.domain.values.OrderedSetValue;
 import org.eclipse.ocl.examples.domain.values.RealValue;
 import org.eclipse.ocl.examples.domain.values.SequenceValue;
@@ -151,14 +150,6 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 			throw exception;
 		}
 		return super.asObjectValue();
-	}
-
-	@Override
-	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
-		if (exception != null) {
-			throw exception;
-		}
-		return super.asOrderedCollectionValue();
 	}
 
 	@Override

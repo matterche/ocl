@@ -54,7 +54,6 @@ public interface Value
 	EObject asNavigableObject() throws InvalidValueException;
 	Object asObject();
 	ObjectValue asObjectValue() throws InvalidValueException;
-	OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException;
 	OrderedSetValue asOrderedSetValue() throws InvalidValueException;
 	RealValue asRealValue() throws InvalidValueException;
 	SequenceValue asSequenceValue() throws InvalidValueException;

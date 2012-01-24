@@ -18,7 +18,15 @@ package org.eclipse.ocl.examples.domain.values;
 
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
-public interface SequenceValue extends OrderedCollectionValue
+public interface SequenceValue extends CollectionValue
 {
+	SequenceValue append(Value object) throws InvalidValueException;
+    Value at(int index) throws InvalidValueException;
+	Value first() throws InvalidValueException;
+	SequenceValue insertAt(int index, Value object) throws InvalidValueException;
+    IntegerValue indexOf(Value object) throws InvalidValueException;
+    Value last() throws InvalidValueException;
+    SequenceValue prepend(Value object) throws InvalidValueException;
+    SequenceValue reverse() throws InvalidValueException;
     SequenceValue subSequence(int lower, int upper) throws InvalidValueException;
 }

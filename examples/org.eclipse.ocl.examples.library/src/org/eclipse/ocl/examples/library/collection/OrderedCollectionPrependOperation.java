@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
@@ -31,7 +31,7 @@ public class OrderedCollectionPrependOperation extends AbstractBinaryOperation
 	public static final OrderedCollectionPrependOperation INSTANCE = new OrderedCollectionPrependOperation();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value left, Value right) throws InvalidValueException {
-		OrderedCollectionValue leftOrderedCollectionValue = left.asOrderedCollectionValue();
+		SequenceValue leftOrderedCollectionValue = left.asSequenceValue();
 		Value rightValue = right.asValidValue();
 		return leftOrderedCollectionValue.prepend(rightValue);
 	}

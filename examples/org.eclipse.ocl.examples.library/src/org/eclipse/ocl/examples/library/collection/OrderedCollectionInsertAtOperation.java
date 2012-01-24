@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractTernaryOperation;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
@@ -31,7 +31,7 @@ public class OrderedCollectionInsertAtOperation extends AbstractTernaryOperation
 	public static final OrderedCollectionInsertAtOperation INSTANCE = new OrderedCollectionInsertAtOperation();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException {
-		OrderedCollectionValue selfValue = sourceValue.asOrderedCollectionValue();
+		SequenceValue selfValue = sourceValue.asSequenceValue();
 		Integer indexValue = firstArgumentValue.asInteger();
 		Value insertValue = secondArgumentValue.asValidValue();
 		return selfValue.insertAt(indexValue, insertValue);

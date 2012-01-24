@@ -20,8 +20,7 @@ import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 
 public interface NullValue
 	extends BooleanValue, IntegerValue, RealValue, StringValue, UnlimitedValue,
-		BagValue, OrderedSetValue, SequenceValue, SetValue,
-		ObjectValue, TypeValue
+		OrderedSetValue, SetValue, ObjectValue, TypeValue
 {
 	NullValue negate() throws InvalidValueException;	
 }

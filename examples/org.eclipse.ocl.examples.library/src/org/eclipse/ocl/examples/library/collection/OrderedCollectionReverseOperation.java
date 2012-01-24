@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractUnaryOperation;
-import org.eclipse.ocl.examples.domain.values.OrderedCollectionValue;
+import org.eclipse.ocl.examples.domain.values.SequenceValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
@@ -31,7 +31,7 @@ public class OrderedCollectionReverseOperation extends AbstractUnaryOperation
 	public static final OrderedCollectionReverseOperation INSTANCE = new OrderedCollectionReverseOperation();
 
 	public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value argument) throws InvalidValueException {
-		OrderedCollectionValue orderedCollectionValue = argument.asOrderedCollectionValue();
+		SequenceValue orderedCollectionValue = argument.asSequenceValue();
 		return orderedCollectionValue.reverse();
 	}
 }

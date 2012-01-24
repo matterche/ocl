@@ -58,8 +58,8 @@ public interface CollectionValue extends Value, Iterable<Value>
 //	CollectionValue selectAsType(Type elementType) throws InvalidValueException;
 //	CollectionValue selectByKind(Type elementType) throws InvalidValueException;
 	IntegerValue size() throws InvalidValueException;
-    OrderedCollectionValue sort(Comparator<Value> comparator) throws InvalidValueException;
+	SequenceValue sort(Comparator<Value> comparator) throws InvalidValueException;
 	Value sum(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation binaryOperation, Value zero) throws InvalidValueException;
-	OrderedCollectionValue toOrderedCollectionValue() throws InvalidValueException;
+	SequenceValue toSequenceValue() throws InvalidValueException;
     CollectionValue union(CollectionValue c) throws InvalidValueException;
 }
