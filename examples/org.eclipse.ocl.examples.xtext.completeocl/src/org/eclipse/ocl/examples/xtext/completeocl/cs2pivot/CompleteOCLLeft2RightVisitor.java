@@ -202,6 +202,7 @@ public class CompleteOCLLeft2RightVisitor
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		OclExpression bodyExpression = context.visitLeft2Right(OclExpression.class, csExpression);		
 		pivotSpecification.setBodyExpression(bodyExpression);
+		context.setType(pivotSpecification, bodyExpression.getType());
 		contextFeature.getOwnedRules().add(pivotConstraint);
 		return contextFeature;
 	}

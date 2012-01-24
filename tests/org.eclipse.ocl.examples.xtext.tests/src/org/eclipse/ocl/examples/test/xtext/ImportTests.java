@@ -176,28 +176,6 @@ public class ImportTests extends XtextTestCase
 		}
 	}
 	
-	public void testImport_CompleteOCL_CompleteOCL() throws Exception {
-		testCaseAppender.uninstall();
-		String moreCompleteOCL =
-			"package ocl\n" +
-			"context _'Integer'\n" +
-			"def: isPositive() : Boolean = true\n" +
-			"endpackage\n";
-		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
-		String testFile =
-			"include 'more.ocl'\n" +
-			"package ocl\n" +
-			"context _'Integer'\n" +
-			"def: signum : Integer = 0\n" +
-			"context _'UnlimitedNatural'\n" +
-			"inv CheckIt: isPositive() = signum > 0\n" +
-			"inv unCheckIt: isNegative() = signum < 0\n" +
-			"endpackage\n";
-		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "isNegative", "UnlimitedNatural"));
-		doBadLoadFromString("string.ocl", testFile, bag);
-	}
-	
 	public void testImport_CompleteOCL_Ecore() throws Exception {
 		testCaseAppender.uninstall();
 		String testFile =
@@ -463,5 +441,46 @@ public class ImportTests extends XtextTestCase
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib",
 			NLS.bind(OCLMessages.ImportedLibraryURI_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
 		doBadLoadFromString("string.oclstdlib", testFile, bag);
+	}
+	
+	public void testInclude_CompleteOCL() throws Exception {
+		testCaseAppender.uninstall();
+		String moreCompleteOCL =
+			"package ocl\n" +
+			"context _'Integer'\n" +
+			"def: isPositive(Integer) : Boolean = true\n" +
+			"endpackage\n";
+		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
+		String testFile =
+			"include 'more.ocl'\n" +
+			"package ocl\n" +
+			"context _'Integer'\n" +
+			"def: signum : Integer = 0\n" +
+			"context _'UnlimitedNatural'\n" +
+			"inv CheckIt: isPositive(1) = signum > 0\n" +
+			"endpackage\n";
+		doLoadFromString("string.ocl", testFile);
+	}
+	
+	public void testInclude_CompleteOCL_UnresolvedOperation() throws Exception {
+		testCaseAppender.uninstall();
+		String moreCompleteOCL =
+			"package ocl\n" +
+			"context _'Integer'\n" +
+			"def: isPositive() : Boolean = true\n" +
+			"endpackage\n";
+		createOCLinEcoreFile("more.ocl", moreCompleteOCL);
+		String testFile =
+			"include 'more.ocl'\n" +
+			"package ocl\n" +
+			"context _'Integer'\n" +
+			"def: signum : Integer = 0\n" +
+			"context _'UnlimitedNatural'\n" +
+			"inv CheckIt: isPositive() = signum > 0\n" +
+			"inv unCheckIt: isNegative() = signum < 0\n" +
+			"endpackage\n";
+		Bag<String> bag = new BagImpl<String>();
+		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "isNegative", "UnlimitedNatural"));
+		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 }
