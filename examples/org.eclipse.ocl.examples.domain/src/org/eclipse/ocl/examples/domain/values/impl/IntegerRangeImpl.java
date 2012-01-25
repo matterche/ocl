@@ -41,7 +41,12 @@ class IntegerRangeImpl extends AbstractList<Value> implements IntegerRange
 //		}
 
 		public boolean hasNext() {
-			return !last.equals(curr);
+			if (curr == null) {
+				return first.compareTo(last) <= 0;
+			}
+			else {
+				return !last.equals(curr);
+			}
 		}
 
 		public IntegerValue next() {

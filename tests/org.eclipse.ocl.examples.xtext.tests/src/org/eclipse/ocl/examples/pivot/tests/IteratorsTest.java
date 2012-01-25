@@ -220,6 +220,9 @@ public class IteratorsTest extends PivotTestSuite
         assertQueryTrue(pkg1, "Sequence{}->forAll(e | e = 'c')");
 
         assertQueryTrue(pkg1, "nestedPackage->forAll(true)");
+        //
+        assertQueryTrue(pkg1, "Sequence{1..0}->forAll(false)");
+        assertQueryFalse(pkg1, "Sequence{1..1}->forAll(false)");
     }
 
     /**
