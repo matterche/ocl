@@ -197,23 +197,68 @@ public class UMLUtils	// FIXME This should be in MDT/UML2
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/metamodels/", true)); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/libraries/", true)); //$NON-NLS-1$
 
-		TypesPackage.eINSTANCE.eClass();
-		UMLPackage.eINSTANCE.eClass();
-		L3Package.eINSTANCE.eClass();
-		L2Package.eINSTANCE.eClass();
+//		TypesPackage.eINSTANCE.eClass();
+//		UMLPackage.eINSTANCE.eClass();
+//		L3Package.eINSTANCE.eClass();
+//		L2Package.eINSTANCE.eClass();
 		Ecore2XMLPackage.eINSTANCE.eClass();		
 		
 		EPackage.Registry packageRegistry = resourceSet != null ? resourceSet.getPackageRegistry() : EPackage.Registry.INSTANCE;
+		// UML_PRIMITIVE_TYPES_LIBRARY_for 2.1, 2.1.1, 2.2 are synonyms for the shared UML package
 		packageRegistry.put(XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_2_4_URI, TypesPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI, TypesPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_2_4_NS_URI, TypesPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_NS_URI, TypesPackage.eINSTANCE);
+		packageRegistry.put(TypesPackage.eNS_URI, TypesPackage.eINSTANCE);
+
+/*		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_1_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_2_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_1_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(UML302UMLResource.UML_METAMODEL_URI, UMLPackage.eINSTANCE); */
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_1_1_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_2_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_2_4_1_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.UML_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(UML302UMLResource.UML_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
 		packageRegistry.put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 
-		packageRegistry.put(CMOF2UMLResource.CMOF_2_0_METAMODEL_URI, UMLPackage.eINSTANCE);
+/*		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_1_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_1_1_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_2_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_4_1_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_URI, L2Package.eINSTANCE); */
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_1_NS_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_1_1_NS_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_2_NS_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_2_4_1_NS_URI, L2Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L2_PROFILE_NS_URI, L2Package.eINSTANCE);
+		packageRegistry.put(L2Package.eNS_URI, L2Package.eINSTANCE);
+
+/*		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_1_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_1_1_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_2_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_4_1_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_URI, L3Package.eINSTANCE); */
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_1_NS_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_1_1_NS_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_2_NS_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_2_4_1_NS_URI, L3Package.eINSTANCE);
+		packageRegistry.put(XMI2UMLResource.STANDARD_L3_PROFILE_NS_URI, L3Package.eINSTANCE);
+		packageRegistry.put(L3Package.eNS_URI, L3Package.eINSTANCE);
+
+/*		packageRegistry.put(CMOF2UMLResource.CMOF_2_0_METAMODEL_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_4_METAMODEL_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_4_1_METAMODEL_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_METAMODEL_URI, UMLPackage.eINSTANCE); */
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_0_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_4_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_2_4_1_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
+		packageRegistry.put(CMOF2UMLResource.CMOF_METAMODEL_NS_URI, UMLPackage.eINSTANCE);
 
 		initializeContentHandlers(resourceSet);
 	}
