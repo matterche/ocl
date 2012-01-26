@@ -108,8 +108,9 @@ public class EvaluationVisitorImpl
 		}
 		else if (result == null) {
 			if (InvocationBehavior.INSTANCE.hasCompileableOperationBody(operation)) {
-				result = InvocationBehavior.INSTANCE.getOperationBody(
-					OCL.newInstance(getEnvironment().getFactory()), operation);
+				OCL ocl = OCL.newInstance(getEnvironment().getFactory());
+				result = InvocationBehavior.INSTANCE.getOperationBody(ocl, operation);
+				ocl.dispose();
 			}
 			if (result == null) {
 				result = super.getOperationBody(operation);
@@ -128,8 +129,9 @@ public class EvaluationVisitorImpl
 		}
 		else if (result == null) {
 			if (SettingBehavior.INSTANCE.hasCompileableFeatureBody(property)) {
-				result = SettingBehavior.INSTANCE.getFeatureBody(
-					OCL.newInstance(getEnvironment().getFactory()), property);
+				OCL ocl = OCL.newInstance(getEnvironment().getFactory());
+				result = SettingBehavior.INSTANCE.getFeatureBody(ocl, property);
+				ocl.dispose();
 			}
 			if (result == null) {
 				result = super.getPropertyBody(property);
