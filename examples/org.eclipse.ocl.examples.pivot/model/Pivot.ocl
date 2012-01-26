@@ -1,5 +1,9 @@
 import 'Pivot.ecore'
 
+include 'Types.ocl'
+
+package ocl
+
 context Constraint
 inv UniqueName: context.ownedRule->excluding(self)->forAll(name <> self.name or stereotype <> self.stereotype)
 
@@ -341,8 +345,15 @@ inv TargetIsNotACollection: not target.type.oclIsKindOf (CollectionType)
 /*------------- spelling: arguments */
 --context OperationCallExp
 /** All the arguments must conform to the parameters of the referred operation. */
---inv ArgumentType: argument->forAll (a | a.type.conformsTo
---(self.referredOperation.ownedParameter->at (argument->indexOf (a)).type))
+/*inv ArgumentType:
+	let operation : Operation = self.referredOperation in
+	let parameters : OrderedSet(Parameter) = operation.ownedParameter in
+	let selfType : Type = operation.owningType in
+	Sequence{1..argument->size()}->forAll (i | 
+		let argument : OclExpression = argument->at(i) in
+		let parameter : Parameter = parameters->at(i) in
+		let parameterType : Type = parameter.type in
+		argument.type.conformsTo(parameterType.resolveSelfType(selfType))) */
 
 /*------------- spelling: arguments */
 context OperationCallExp
@@ -354,3 +365,5 @@ inv ArgumentCount: argument->size() = referredOperation.ownedParameter->size()
 --def: refParams: Sequence(Parameter) = referredOperation.ownedParameter->select (p |
 --p.kind <> ParameterDirectionKind::return or
 --p.kind <> ParameterDirectionKind::out)
+
+endpackage

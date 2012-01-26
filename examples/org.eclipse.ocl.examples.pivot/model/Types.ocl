@@ -1,0 +1,11 @@
+import 'Pivot.ecore'
+
+package ocl
+
+context SelfType
+def: resolveSelfType(selfType : Type) : Type = selfType
+
+context Type
+def: resolveSelfType(selfType : Type) : Type = self
+
+endpackage

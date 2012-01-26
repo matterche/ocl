@@ -343,7 +343,7 @@ public class MessageExpImpl
 		not target.type.oclIsKindOf(CollectionType)
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -378,7 +378,7 @@ public class MessageExpImpl
 		calledOperation->size() + sentSignal->size() = 1
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;

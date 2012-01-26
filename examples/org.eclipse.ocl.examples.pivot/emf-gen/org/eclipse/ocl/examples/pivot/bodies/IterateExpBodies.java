@@ -71,19 +71,19 @@ public class IterateExpBodies
 			final LibraryProperty IP_IterateExp_result = P_IterateExp_result.getImplementation();
 			
 			
-			Value A_symbol_345 = IP_LoopExp_body.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, self, P_LoopExp_body);
+			Value A_symbol_384 = IP_LoopExp_body.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, self, P_LoopExp_body);
 			
-			Value A_symbol_346 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_345, P_TypedElement_type);
+			Value A_symbol_385 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_384, P_TypedElement_type);
 			
 			
-			Value A_symbol_347 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
+			Value A_symbol_386 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
 			
-			Value A_symbol_348 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_347, P_TypedElement_type);
+			Value A_symbol_387 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_386, P_TypedElement_type);
 			
-			DomainType static_A_symbol_349 = valueFactory.typeOf(A_symbol_346);
-			LibraryBinaryOperation dynamic_A_symbol_349 = (LibraryBinaryOperation)static_A_symbol_349.lookupImplementation(standardLibrary, O_OclType_conformsTo);
-			Value A_symbol_349 = dynamic_A_symbol_349.evaluate(evaluator, T_Boolean, A_symbol_346, A_symbol_348);
-			return A_symbol_349;
+			DomainType static_A_symbol_388 = valueFactory.typeOf(A_symbol_385);
+			LibraryBinaryOperation dynamic_A_symbol_388 = (LibraryBinaryOperation)static_A_symbol_388.lookupImplementation(standardLibrary, O_OclType_conformsTo);
+			Value A_symbol_388 = dynamic_A_symbol_388.evaluate(evaluator, T_Boolean, A_symbol_385, A_symbol_387);
+			return A_symbol_388;
 		}
 	}
 
@@ -115,20 +115,20 @@ public class IterateExpBodies
 			final IntegerValue I_1 = valueFactory.integerValueOf(1);
 			
 			
-			Value A_symbol_350 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
+			Value A_symbol_389 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
 			
-			Value A_symbol_351 = IP_Variable_initExpression.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, A_symbol_350, P_Variable_initExpression);
+			Value A_symbol_390 = IP_Variable_initExpression.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, A_symbol_389, P_Variable_initExpression);
 			
-			DomainType static_A_symbol_352 = valueFactory.typeOf(A_symbol_351);
-			LibraryUnaryOperation dynamic_A_symbol_352 = (LibraryUnaryOperation)static_A_symbol_352.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
-			Value A_symbol_352 = dynamic_A_symbol_352.evaluate(evaluator, T_Set_Pivot_ecore__pivot__OclExpression_, A_symbol_351);
-			DomainType static_A_symbol_353 = valueFactory.typeOf(A_symbol_352);
-			LibraryUnaryOperation dynamic_A_symbol_353 = (LibraryUnaryOperation)static_A_symbol_353.lookupImplementation(standardLibrary, O_Collection_size);
-			Value A_symbol_353 = dynamic_A_symbol_353.evaluate(evaluator, T_Integer, A_symbol_352);
-			DomainType static_A_symbol_354 = valueFactory.typeOf(A_symbol_353, I_1);
-			LibraryBinaryOperation dynamic_A_symbol_354 = (LibraryBinaryOperation)static_A_symbol_354.lookupImplementation(standardLibrary, O_Real__eq_);
-			Value A_symbol_354 = dynamic_A_symbol_354.evaluate(evaluator, T_Boolean, A_symbol_353, I_1);
-			return A_symbol_354;
+			DomainType static_A_symbol_391 = valueFactory.typeOf(A_symbol_390);
+			LibraryUnaryOperation dynamic_A_symbol_391 = (LibraryUnaryOperation)static_A_symbol_391.lookupImplementation(standardLibrary, O_OclAny_oclAsSet);
+			Value A_symbol_391 = dynamic_A_symbol_391.evaluate(evaluator, T_Set_Pivot_ecore__pivot__OclExpression_, A_symbol_390);
+			DomainType static_A_symbol_392 = valueFactory.typeOf(A_symbol_391);
+			LibraryUnaryOperation dynamic_A_symbol_392 = (LibraryUnaryOperation)static_A_symbol_392.lookupImplementation(standardLibrary, O_Collection_size);
+			Value A_symbol_392 = dynamic_A_symbol_392.evaluate(evaluator, T_Integer, A_symbol_391);
+			DomainType static_A_symbol_393 = valueFactory.typeOf(A_symbol_392, I_1);
+			LibraryBinaryOperation dynamic_A_symbol_393 = (LibraryBinaryOperation)static_A_symbol_393.lookupImplementation(standardLibrary, O_Real__eq_);
+			Value A_symbol_393 = dynamic_A_symbol_393.evaluate(evaluator, T_Boolean, A_symbol_392, I_1);
+			return A_symbol_393;
 		}
 	}
 
@@ -155,17 +155,17 @@ public class IterateExpBodies
 			final LibraryProperty IP_IterateExp_result = P_IterateExp_result.getImplementation();
 			
 			
-			Value A_symbol_355 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
+			Value A_symbol_394 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, self, P_TypedElement_type);
 			
 			
-			Value A_symbol_356 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
+			Value A_symbol_395 = IP_IterateExp_result.evaluate(evaluator, T_Pivot_ecore__pivot__Variable, self, P_IterateExp_result);
 			
-			Value A_symbol_357 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_356, P_TypedElement_type);
+			Value A_symbol_396 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_395, P_TypedElement_type);
 			
-			DomainType static_A_symbol_358 = valueFactory.typeOf(A_symbol_355, A_symbol_357);
-			LibraryBinaryOperation dynamic_A_symbol_358 = (LibraryBinaryOperation)static_A_symbol_358.lookupImplementation(standardLibrary, O_OclAny__eq_);
-			Value A_symbol_358 = dynamic_A_symbol_358.evaluate(evaluator, T_Boolean, A_symbol_355, A_symbol_357);
-			return A_symbol_358;
+			DomainType static_A_symbol_397 = valueFactory.typeOf(A_symbol_394, A_symbol_396);
+			LibraryBinaryOperation dynamic_A_symbol_397 = (LibraryBinaryOperation)static_A_symbol_397.lookupImplementation(standardLibrary, O_OclAny__eq_);
+			Value A_symbol_397 = dynamic_A_symbol_397.evaluate(evaluator, T_Boolean, A_symbol_394, A_symbol_396);
+			return A_symbol_397;
 		}
 	}
 

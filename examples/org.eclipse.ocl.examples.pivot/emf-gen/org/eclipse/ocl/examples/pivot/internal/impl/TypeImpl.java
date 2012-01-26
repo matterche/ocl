@@ -62,6 +62,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
+import org.eclipse.ocl.examples.pivot.bodies.TypeBodies;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -476,7 +477,7 @@ public class TypeImpl
 		p.oclIsKindOf(self.oclType())
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -486,6 +487,31 @@ public class TypeImpl
 			return (Boolean) result.asEcoreObject();
 		} catch (InvalidValueException e) {
 			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies", e);
+		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type resolveSelfType(Type selfType)
+	{
+		/*
+		self
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Pivot_ecore__pivot__Type = PivotTables.Types._Type;
+			
+			final DomainType returnType = T_Pivot_ecore__pivot__Type;
+			final Value result = TypeBodies._resolveSelfType_body_.INSTANCE.evaluate(evaluator, returnType, self, valueFactory.valueOf(selfType));
+			return (Type) result.asEcoreObject();
+		} catch (InvalidValueException e) {
+			throw new WrappedException("Failed to evaluate org.eclipse.ocl.examples.pivot.bodies.TypeBodies", e);
 		}
 		
 	}
@@ -1040,6 +1066,8 @@ public class TypeImpl
 				return isTemplateParameter();
 			case PivotPackage.TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT:
 				return isCompatibleWith((ParameterableElement)arguments.get(0));
+			case PivotPackage.TYPE___RESOLVE_SELF_TYPE__TYPE:
+				return resolveSelfType((Type)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

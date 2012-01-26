@@ -207,7 +207,7 @@ public class CollectionLiteralExpImpl
 		kind = CollectionKind::Bag implies type.oclIsKindOf(BagType)
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -243,7 +243,7 @@ public class CollectionLiteralExpImpl
 		type.oclIsKindOf(SequenceType)
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -279,7 +279,7 @@ public class CollectionLiteralExpImpl
 		type.oclIsKindOf(OrderedSetType)
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -314,7 +314,7 @@ public class CollectionLiteralExpImpl
 		kind = CollectionKind::Set implies type.oclIsKindOf(SetType)
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -349,7 +349,7 @@ public class CollectionLiteralExpImpl
 		kind <> CollectionKind::Collection
 		*/
 		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final Value self = valueFactory.valueOf(this);
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;

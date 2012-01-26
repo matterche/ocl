@@ -27,42 +27,27 @@ import org.eclipse.ocl.examples.domain.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.domain.values.Value;
 
 /**
- * TypeBodies provides the Java implementation bodies of OCL-defined Type operations and properties.
+ * SelfTypeBodies provides the Java implementation bodies of OCL-defined SelfType operations and properties.
  */
 @SuppressWarnings("nls")
-public class TypeBodies
+public class SelfTypeBodies
 {
 
 	/** 
-	 * Implementation of the Type::resolveSelfType '' <body>.
+	 * Implementation of the SelfType::resolveSelfType '' <body>.
 	 */
 	public static class _resolveSelfType_body_ extends AbstractBinaryOperation
 	{
 		public static _resolveSelfType_body_ INSTANCE = new _resolveSelfType_body_();
 	
 		/*
-		self
+		selfType
 		*/
 		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, final Value selfType) throws InvalidValueException {
 			
 			
-			return self;
+			return selfType;
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 

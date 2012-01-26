@@ -1445,13 +1445,22 @@ public interface PivotPackage
 	int TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE___RESOLVE_SELF_TYPE__TYPE = NAMED_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 4;
+	int TYPE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -1668,6 +1677,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___RESOLVE_SELF_TYPE__TYPE = TYPE___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -1893,6 +1911,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ANY_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANY_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Any Type</em>' class.
@@ -2127,6 +2154,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_CLASS___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Association Class</em>' class.
@@ -3056,6 +3092,15 @@ public interface PivotPackage
 	int DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3308,6 +3353,15 @@ public interface PivotPackage
 	int COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE___RESOLVE_SELF_TYPE__TYPE = DATA_TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Collection Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3558,6 +3612,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int BAG_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_TYPE___RESOLVE_SELF_TYPE__TYPE = COLLECTION_TYPE___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Bag Type</em>' class.
@@ -4180,6 +4243,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int CLASSIFIER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Classifier Type</em>' class.
@@ -5469,6 +5541,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ENUMERATION___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUMERATION___RESOLVE_SELF_TYPE__TYPE = DATA_TYPE___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Enumeration</em>' class.
@@ -7262,6 +7343,15 @@ public interface PivotPackage
 	int INVALID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Invalid Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9000,6 +9090,15 @@ public interface PivotPackage
 	int LAMBDA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE___RESOLVE_SELF_TYPE__TYPE = DATA_TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Lambda Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9927,6 +10026,15 @@ public interface PivotPackage
 	int MESSAGE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_TYPE___RESOLVE_SELF_TYPE__TYPE = TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Message Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10765,6 +10873,15 @@ public interface PivotPackage
 	int ORDERED_SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_TYPE___RESOLVE_SELF_TYPE__TYPE = COLLECTION_TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Ordered Set Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11483,6 +11600,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE___RESOLVE_SELF_TYPE__TYPE = DATA_TYPE___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Primitive Type</em>' class.
@@ -12359,13 +12485,31 @@ public interface PivotPackage
 	int SELF_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELF_TYPE___RESOLVE_SELF_TYPE__TYPE_1 = CLASS_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Self Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SELF_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+	int SELF_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -12701,6 +12845,15 @@ public interface PivotPackage
 	int SEQUENCE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_TYPE___RESOLVE_SELF_TYPE__TYPE = COLLECTION_TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Sequence Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12951,6 +13104,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int SET_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = COLLECTION_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_TYPE___RESOLVE_SELF_TYPE__TYPE = COLLECTION_TYPE___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Set Type</em>' class.
@@ -13682,6 +13844,15 @@ public interface PivotPackage
 	int TEMPLATE_PARAMETER_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE___RESOLVE_SELF_TYPE__TYPE = TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Template Parameter Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14375,6 +14546,15 @@ public interface PivotPackage
 	int TUPLE_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = DATA_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE___RESOLVE_SELF_TYPE__TYPE = DATA_TYPE___RESOLVE_SELF_TYPE__TYPE;
+
+	/**
 	 * The number of operations of the '<em>Tuple Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14932,6 +15112,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int UNSPECIFIED_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Type</em>' class.
@@ -15500,6 +15689,15 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int VOID_TYPE___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT = CLASS___IS_COMPATIBLE_WITH__PARAMETERABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Resolve Self Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VOID_TYPE___RESOLVE_SELF_TYPE__TYPE = CLASS___RESOLVE_SELF_TYPE__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Void Type</em>' class.
@@ -17272,6 +17470,16 @@ public interface PivotPackage
 	EClass getSelfType();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.SelfType#resolveSelfType(org.eclipse.ocl.examples.pivot.Type) <em>Resolve Self Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Resolve Self Type</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.SelfType#resolveSelfType(org.eclipse.ocl.examples.pivot.Type)
+	 * @generated
+	 */
+	EOperation getSelfType__ResolveSelfType__Type_1();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.SequenceType <em>Sequence Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17681,6 +17889,16 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getType_InstanceClassName();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Type#resolveSelfType(org.eclipse.ocl.examples.pivot.Type) <em>Resolve Self Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Resolve Self Type</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Type#resolveSelfType(org.eclipse.ocl.examples.pivot.Type)
+	 * @generated
+	 */
+	EOperation getType__ResolveSelfType__Type();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.TemplateableElement <em>Templateable Element</em>}'.
@@ -18715,6 +18933,16 @@ public interface PivotPackage
 	EReference getConstraint_Context();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unique Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Unique Name</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getConstraint__ValidateUniqueName__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Constraint#getStereotype <em>Stereotype</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18735,16 +18963,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getConstraint_IsCallable();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Unique Name</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Unique Name</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.Constraint#validateUniqueName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getConstraint__ValidateUniqueName__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.ConstructorExp <em>Constructor Exp</em>}'.
@@ -20536,6 +20754,14 @@ public interface PivotPackage
 		EClass SELF_TYPE = eINSTANCE.getSelfType();
 
 		/**
+		 * The meta object literal for the '<em><b>Resolve Self Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SELF_TYPE___RESOLVE_SELF_TYPE__TYPE_1 = eINSTANCE.getSelfType__ResolveSelfType__Type_1();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20886,6 +21112,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute TYPE__INSTANCE_CLASS_NAME = eINSTANCE.getType_InstanceClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolve Self Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE___RESOLVE_SELF_TYPE__TYPE = eINSTANCE.getType__ResolveSelfType__Type();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl <em>Templateable Element</em>}' class.
@@ -21706,6 +21940,14 @@ public interface PivotPackage
 		EReference CONSTRAINT__CONTEXT = eINSTANCE.getConstraint_Context();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Unique Name</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConstraint__ValidateUniqueName__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Stereotype</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21720,14 +21962,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute CONSTRAINT__IS_CALLABLE = eINSTANCE.getConstraint_IsCallable();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Unique Name</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONSTRAINT___VALIDATE_UNIQUE_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConstraint__ValidateUniqueName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstructorExpImpl <em>Constructor Exp</em>}' class.

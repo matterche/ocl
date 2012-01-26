@@ -275,6 +275,42 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateUniqueName(DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		/*
+		context.ownedRule->excluding(self)
+		->forAll(name <> self.name or stereotype <> self.stereotype)
+		*/
+		try {
+			final DomainEvaluator evaluator = new EcoreExecutorManager(this, null, PivotTables.LIBRARY);
+			final ValueFactory valueFactory = evaluator.getValueFactory();
+			final Value self = valueFactory.valueOf(this);
+			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
+			
+			final DomainType returnType = T_Boolean;
+			final Value result = ConstraintBodies._invariant_UniqueName.INSTANCE.evaluate(evaluator, returnType, self);
+			final boolean resultIsNull = result.isNull();
+			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
+				return true;
+			}
+			if (diagnostics != null) {
+				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
+				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Constraint", "UniqueName", EObjectValidator.getObjectLabel(this, context)});
+			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CONSTRAINT__UNIQUE_NAME, message, new Object [] { this }));
+			}
+			return false;
+		} catch (InvalidValueException e) {
+			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Constraint", "UniqueName", EObjectValidator.getObjectLabel(this, context)});
+			throw new WrappedException(message, e);
+		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getStereotype() {
 		return stereotype;
 	}
@@ -312,42 +348,6 @@ public class ConstraintImpl
 		if (newIsCallable) eFlags |= IS_CALLABLE_EFLAG; else eFlags &= ~IS_CALLABLE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__IS_CALLABLE, oldIsCallable, newIsCallable));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUniqueName(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		/*
-		context.ownedRule->excluding(self)
-		->forAll(name <> self.name or stereotype <> self.stereotype)
-		*/
-		try {
-			final DomainEvaluator evaluator = new EcoreExecutorManager(this, PivotTables.LIBRARY);
-			final ValueFactory valueFactory = evaluator.getValueFactory();
-			final Value self = valueFactory.valueOf(this);
-			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
-			
-			final DomainType returnType = T_Boolean;
-			final Value result = ConstraintBodies._invariant_UniqueName.INSTANCE.evaluate(evaluator, returnType, self);
-			final boolean resultIsNull = result.isNull();
-			if (!resultIsNull && result.asBoolean()) {	// true => true, false/null => dropthrough, invalid => exception
-				return true;
-			}
-			if (diagnostics != null) {
-				int severity = resultIsNull ? Diagnostic.ERROR : Diagnostic.WARNING;
-				String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, new Object[]{"Constraint", "UniqueName", EObjectValidator.getObjectLabel(this, context)});
-			    diagnostics.add(new BasicDiagnostic(severity, PivotValidator.DIAGNOSTIC_SOURCE, PivotValidator.CONSTRAINT__UNIQUE_NAME, message, new Object [] { this }));
-			}
-			return false;
-		} catch (InvalidValueException e) {
-			String message = NLS.bind(EvaluatorMessages.ValidationEvaluationFailed_ERROR_, new Object[]{"Constraint", "UniqueName", EObjectValidator.getObjectLabel(this, context)});
-			throw new WrappedException(message, e);
-		}
-		
 	}
 
 	/**
@@ -575,8 +575,8 @@ public class ConstraintImpl
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
+	{
 		switch (operationID)
 		{
 			case PivotPackage.CONSTRAINT___ALL_OWNED_ELEMENTS:

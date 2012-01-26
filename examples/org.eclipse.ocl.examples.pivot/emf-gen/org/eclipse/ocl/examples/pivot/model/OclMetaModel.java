@@ -534,7 +534,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_3.setIsComposite(true);
 			symbol_3.setIsResolveProxies(true);
-			symbol_3.setOpposite(symbol_64);
 			
 			symbol_1.getOwnedAttributes().add(symbol_3);
 		}
@@ -559,6 +558,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_5.setIsOrdered(true);
 			
 			symbol_5.setIsResolveProxies(true);
+			symbol_5.setOpposite(symbol_64);
 			
 			symbol_1.getOwnedAttributes().add(symbol_5);
 		}
@@ -856,7 +856,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_37.setIsComposite(true);
 			symbol_37.setIsResolveProxies(true);
-			symbol_37.setOpposite(symbol_148);
 			
 			symbol_36.getOwnedAttributes().add(symbol_37);
 		}
@@ -866,6 +865,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_38.setIsComposite(true);
 			symbol_38.setIsResolveProxies(true);
+			symbol_38.setOpposite(symbol_148);
 			
 			symbol_36.getOwnedAttributes().add(symbol_38);
 		}
@@ -1315,6 +1315,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_78.setIsComposite(true);
 			symbol_78.setIsResolveProxies(true);
+			symbol_78.setOpposite(symbol_313);
 			
 			symbol_76.getOwnedAttributes().add(symbol_78);
 		}
@@ -1338,7 +1339,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_80.setIsComposite(true);
 			symbol_80.setIsResolveProxies(true);
-			symbol_80.setOpposite(symbol_313);
 			
 			symbol_76.getOwnedAttributes().add(symbol_80);
 		}
@@ -1415,6 +1415,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_89.setIsComposite(true);
 			symbol_89.setIsResolveProxies(true);
+			symbol_89.setOpposite(symbol_151);
 			
 			symbol_87.getOwnedAttributes().add(symbol_89);
 		}
@@ -1424,7 +1425,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_90.setIsComposite(true);
 			symbol_90.setIsResolveProxies(true);
-			symbol_90.setOpposite(symbol_151);
 			
 			symbol_87.getOwnedAttributes().add(symbol_90);
 		}
@@ -1510,6 +1510,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_101.setIsComposite(true);
 			symbol_101.setIsResolveProxies(true);
+			symbol_101.setOpposite(symbol_187);
 			
 			symbol_99.getOwnedAttributes().add(symbol_101);
 		}
@@ -1521,7 +1522,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_102.setIsComposite(true);
 			symbol_102.setIsResolveProxies(true);
-			symbol_102.setOpposite(symbol_187);
 			
 			symbol_99.getOwnedAttributes().add(symbol_102);
 		}
@@ -1670,6 +1670,7 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_119.setIsComposite(true);
 			symbol_119.setIsResolveProxies(true);
+			symbol_119.setOpposite(symbol_154);
 			
 			symbol_118.getOwnedAttributes().add(symbol_119);
 		}
@@ -1701,7 +1702,6 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_122.setIsComposite(true);
 			symbol_122.setIsResolveProxies(true);
-			symbol_122.setOpposite(symbol_154);
 			
 			symbol_118.getOwnedAttributes().add(symbol_122);
 		}
@@ -2997,6 +2997,20 @@ public class OclMetaModel extends XMLResourceImpl
 		//
 		symbol_228.setName("SelfType");
 		symbol_228.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
+		{	// Pivot.ecore::pivot::SelfType::resolveSelfType()
+			Operation symbol_407 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)
+			symbol_407.setName("resolveSelfType");
+			symbol_407.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
+			
+			Parameter symbol_408 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)!selfType
+			symbol_408.setName("selfType");
+			symbol_408.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
+			
+			
+			symbol_407.getOwnedParameters().add(symbol_408);
+			
+			symbol_228.getOwnedOperations().add(symbol_407);
+		}
 		
 		symbol_0.getOwnedTypes().add(symbol_228); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType
 		//
@@ -3134,9 +3148,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_245.setIsResolveProxies(true);
 			symbol_245.setOpposite(symbol_270);
 			{
-				Comment symbol_407 = PivotFactory.eINSTANCE.createComment();
-				symbol_407.setBody("The element that is bound by this binding.");
-				symbol_245.getOwnedComments().add(symbol_407);
+				Comment symbol_409 = PivotFactory.eINSTANCE.createComment();
+				symbol_409.setBody("The element that is bound by this binding.");
+				symbol_245.getOwnedComments().add(symbol_409);
 			}
 			
 			symbol_244.getOwnedAttributes().add(symbol_245);
@@ -3151,9 +3165,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_246.setIsResolveProxies(true);
 			symbol_246.setOpposite(symbol_260);
 			{
-				Comment symbol_408 = PivotFactory.eINSTANCE.createComment();
-				symbol_408.setBody("The parameter substitutions owned by this template binding.");
-				symbol_246.getOwnedComments().add(symbol_408);
+				Comment symbol_410 = PivotFactory.eINSTANCE.createComment();
+				symbol_410.setBody("The parameter substitutions owned by this template binding.");
+				symbol_246.getOwnedComments().add(symbol_410);
 			}
 			
 			symbol_244.getOwnedAttributes().add(symbol_246);
@@ -3165,17 +3179,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_247.setIsResolveProxies(true);
 			symbol_247.setOpposite(symbol_264);
 			{
-				Comment symbol_409 = PivotFactory.eINSTANCE.createComment();
-				symbol_409.setBody("The template signature for the template that is the target of the binding.");
-				symbol_247.getOwnedComments().add(symbol_409);
+				Comment symbol_411 = PivotFactory.eINSTANCE.createComment();
+				symbol_411.setBody("The template signature for the template that is the target of the binding.");
+				symbol_247.getOwnedComments().add(symbol_411);
 			}
 			
 			symbol_244.getOwnedAttributes().add(symbol_247);
 		}
 		{
-			Comment symbol_410 = PivotFactory.eINSTANCE.createComment();
-			symbol_410.setBody("A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
-			symbol_244.getOwnedComments().add(symbol_410);
+			Comment symbol_412 = PivotFactory.eINSTANCE.createComment();
+			symbol_412.setBody("A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
+			symbol_244.getOwnedComments().add(symbol_412);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_244); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
@@ -3216,9 +3230,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_251.setIsResolveProxies(true);
 			symbol_251.setOpposite(symbol_191);
 			{
-				Comment symbol_411 = PivotFactory.eINSTANCE.createComment();
-				symbol_411.setBody("The element that is the default for this formal template parameter.");
-				symbol_251.getOwnedComments().add(symbol_411);
+				Comment symbol_413 = PivotFactory.eINSTANCE.createComment();
+				symbol_413.setBody("The element that is the default for this formal template parameter.");
+				symbol_251.getOwnedComments().add(symbol_413);
 			}
 			
 			symbol_248.getOwnedAttributes().add(symbol_251);
@@ -3231,9 +3245,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_252.setIsComposite(true);
 			symbol_252.setIsResolveProxies(true);
 			{
-				Comment symbol_412 = PivotFactory.eINSTANCE.createComment();
-				symbol_412.setBody("The element that is owned by this template parameter for the purpose of providing a default.");
-				symbol_252.getOwnedComments().add(symbol_412);
+				Comment symbol_414 = PivotFactory.eINSTANCE.createComment();
+				symbol_414.setBody("The element that is owned by this template parameter for the purpose of providing a default.");
+				symbol_252.getOwnedComments().add(symbol_414);
 			}
 			
 			symbol_248.getOwnedAttributes().add(symbol_252);
@@ -3247,9 +3261,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_253.setIsResolveProxies(true);
 			symbol_253.setOpposite(symbol_193);
 			{
-				Comment symbol_413 = PivotFactory.eINSTANCE.createComment();
-				symbol_413.setBody("The element that is owned by this template parameter.");
-				symbol_253.getOwnedComments().add(symbol_413);
+				Comment symbol_415 = PivotFactory.eINSTANCE.createComment();
+				symbol_415.setBody("The element that is owned by this template parameter.");
+				symbol_253.getOwnedComments().add(symbol_415);
 			}
 			
 			symbol_248.getOwnedAttributes().add(symbol_253);
@@ -3261,9 +3275,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_254.setIsResolveProxies(true);
 			symbol_254.setOpposite(symbol_194);
 			{
-				Comment symbol_414 = PivotFactory.eINSTANCE.createComment();
-				symbol_414.setBody("The element exposed by this template parameter.");
-				symbol_254.getOwnedComments().add(symbol_414);
+				Comment symbol_416 = PivotFactory.eINSTANCE.createComment();
+				symbol_416.setBody("The element exposed by this template parameter.");
+				symbol_254.getOwnedComments().add(symbol_416);
 			}
 			
 			symbol_248.getOwnedAttributes().add(symbol_254);
@@ -3275,17 +3289,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_255.setIsResolveProxies(true);
 			symbol_255.setOpposite(symbol_265);
 			{
-				Comment symbol_415 = PivotFactory.eINSTANCE.createComment();
-				symbol_415.setBody("The template signature that owns this template parameter.");
-				symbol_255.getOwnedComments().add(symbol_415);
+				Comment symbol_417 = PivotFactory.eINSTANCE.createComment();
+				symbol_417.setBody("The template signature that owns this template parameter.");
+				symbol_255.getOwnedComments().add(symbol_417);
 			}
 			
 			symbol_248.getOwnedAttributes().add(symbol_255);
 		}
 		{
-			Comment symbol_416 = PivotFactory.eINSTANCE.createComment();
-			symbol_416.setBody("A template parameter exposes a parameterable element as a formal template parameter of a template.");
-			symbol_248.getOwnedComments().add(symbol_416);
+			Comment symbol_418 = PivotFactory.eINSTANCE.createComment();
+			symbol_418.setBody("A template parameter exposes a parameterable element as a formal template parameter of a template.");
+			symbol_248.getOwnedComments().add(symbol_418);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
@@ -3300,9 +3314,9 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_257.setIsResolveProxies(true);
 			{
-				Comment symbol_417 = PivotFactory.eINSTANCE.createComment();
-				symbol_417.setBody("The element that is the actual parameter for this substitution.");
-				symbol_257.getOwnedComments().add(symbol_417);
+				Comment symbol_419 = PivotFactory.eINSTANCE.createComment();
+				symbol_419.setBody("The element that is the actual parameter for this substitution.");
+				symbol_257.getOwnedComments().add(symbol_419);
 			}
 			
 			symbol_256.getOwnedAttributes().add(symbol_257);
@@ -3314,9 +3328,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_258.setIsResolveProxies(true);
 			symbol_258.setOpposite(symbol_249);
 			{
-				Comment symbol_418 = PivotFactory.eINSTANCE.createComment();
-				symbol_418.setBody("The formal template parameter that is associated with this substitution.");
-				symbol_258.getOwnedComments().add(symbol_418);
+				Comment symbol_420 = PivotFactory.eINSTANCE.createComment();
+				symbol_420.setBody("The formal template parameter that is associated with this substitution.");
+				symbol_258.getOwnedComments().add(symbol_420);
 			}
 			
 			symbol_256.getOwnedAttributes().add(symbol_258);
@@ -3330,9 +3344,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_259.setIsResolveProxies(true);
 			symbol_259.setOpposite(symbol_192);
 			{
-				Comment symbol_419 = PivotFactory.eINSTANCE.createComment();
-				symbol_419.setBody("The actual parameter that is owned by this substitution.");
-				symbol_259.getOwnedComments().add(symbol_419);
+				Comment symbol_421 = PivotFactory.eINSTANCE.createComment();
+				symbol_421.setBody("The actual parameter that is owned by this substitution.");
+				symbol_259.getOwnedComments().add(symbol_421);
 			}
 			
 			symbol_256.getOwnedAttributes().add(symbol_259);
@@ -3344,17 +3358,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_260.setIsResolveProxies(true);
 			symbol_260.setOpposite(symbol_246);
 			{
-				Comment symbol_420 = PivotFactory.eINSTANCE.createComment();
-				symbol_420.setBody("The optional bindings from this element to templates.");
-				symbol_260.getOwnedComments().add(symbol_420);
+				Comment symbol_422 = PivotFactory.eINSTANCE.createComment();
+				symbol_422.setBody("The optional bindings from this element to templates.");
+				symbol_260.getOwnedComments().add(symbol_422);
 			}
 			
 			symbol_256.getOwnedAttributes().add(symbol_260);
 		}
 		{
-			Comment symbol_421 = PivotFactory.eINSTANCE.createComment();
-			symbol_421.setBody("A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
-			symbol_256.getOwnedComments().add(symbol_421);
+			Comment symbol_423 = PivotFactory.eINSTANCE.createComment();
+			symbol_423.setBody("A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
+			symbol_256.getOwnedComments().add(symbol_423);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_256); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
@@ -3402,9 +3416,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_265.setIsResolveProxies(true);
 			symbol_265.setOpposite(symbol_255);
 			{
-				Comment symbol_422 = PivotFactory.eINSTANCE.createComment();
-				symbol_422.setBody("The formal template parameters that are owned by this template signature.");
-				symbol_265.getOwnedComments().add(symbol_422);
+				Comment symbol_424 = PivotFactory.eINSTANCE.createComment();
+				symbol_424.setBody("The formal template parameters that are owned by this template signature.");
+				symbol_265.getOwnedComments().add(symbol_424);
 			}
 			
 			symbol_263.getOwnedAttributes().add(symbol_265);
@@ -3418,9 +3432,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_266.setIsResolveProxies(true);
 			symbol_266.setOpposite(symbol_250);
 			{
-				Comment symbol_423 = PivotFactory.eINSTANCE.createComment();
-				symbol_423.setBody("The ordered set of all formal template parameters for this template signature.");
-				symbol_266.getOwnedComments().add(symbol_423);
+				Comment symbol_425 = PivotFactory.eINSTANCE.createComment();
+				symbol_425.setBody("The ordered set of all formal template parameters for this template signature.");
+				symbol_266.getOwnedComments().add(symbol_425);
 			}
 			
 			symbol_263.getOwnedAttributes().add(symbol_266);
@@ -3432,17 +3446,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_267.setIsResolveProxies(true);
 			symbol_267.setOpposite(symbol_269);
 			{
-				Comment symbol_424 = PivotFactory.eINSTANCE.createComment();
-				symbol_424.setBody("The element that owns this template signature.");
-				symbol_267.getOwnedComments().add(symbol_424);
+				Comment symbol_426 = PivotFactory.eINSTANCE.createComment();
+				symbol_426.setBody("The element that owns this template signature.");
+				symbol_267.getOwnedComments().add(symbol_426);
 			}
 			
 			symbol_263.getOwnedAttributes().add(symbol_267);
 		}
 		{
-			Comment symbol_425 = PivotFactory.eINSTANCE.createComment();
-			symbol_425.setBody("A template signature bundles the set of formal template parameters for a templated element.");
-			symbol_263.getOwnedComments().add(symbol_425);
+			Comment symbol_427 = PivotFactory.eINSTANCE.createComment();
+			symbol_427.setBody("A template signature bundles the set of formal template parameters for a templated element.");
+			symbol_263.getOwnedComments().add(symbol_427);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_263); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
@@ -3460,9 +3474,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_269.setIsResolveProxies(true);
 			symbol_269.setOpposite(symbol_267);
 			{
-				Comment symbol_426 = PivotFactory.eINSTANCE.createComment();
-				symbol_426.setBody("The optional template signature specifying the formal template parameters.");
-				symbol_269.getOwnedComments().add(symbol_426);
+				Comment symbol_428 = PivotFactory.eINSTANCE.createComment();
+				symbol_428.setBody("The optional template signature specifying the formal template parameters.");
+				symbol_269.getOwnedComments().add(symbol_428);
 			}
 			
 			symbol_268.getOwnedAttributes().add(symbol_269);
@@ -3477,9 +3491,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_270.setIsResolveProxies(true);
 			symbol_270.setOpposite(symbol_245);
 			{
-				Comment symbol_427 = PivotFactory.eINSTANCE.createComment();
-				symbol_427.setBody("The optional bindings from this element to templates.");
-				symbol_270.getOwnedComments().add(symbol_427);
+				Comment symbol_429 = PivotFactory.eINSTANCE.createComment();
+				symbol_429.setBody("The optional bindings from this element to templates.");
+				symbol_270.getOwnedComments().add(symbol_429);
 			}
 			
 			symbol_268.getOwnedAttributes().add(symbol_270);
@@ -3494,37 +3508,37 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_268.getOwnedAttributes().add(symbol_271);
 		}
 		{	// Pivot.ecore::pivot::TemplateableElement::isTemplate()
-			Operation symbol_428 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
-			symbol_428.setName("isTemplate");
-			symbol_428.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_429 = PivotFactory.eINSTANCE.createComment();
-				symbol_429.setBody("The query isTemplate() returns whether this templateable element is actually a template.");
-				symbol_428.getOwnedComments().add(symbol_429);
-			}
-			
-			symbol_268.getOwnedOperations().add(symbol_428);
-		}
-		{	// Pivot.ecore::pivot::TemplateableElement::parameterableElements()
-			Operation symbol_430 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-			symbol_430.setName("parameterableElements");
-			symbol_430.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_430.setLower(BigInteger.valueOf(0));
-			symbol_430.setUpper(BigInteger.valueOf(-1));
+			Operation symbol_430 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
+			symbol_430.setName("isTemplate");
+			symbol_430.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_431 = PivotFactory.eINSTANCE.createComment();
-				symbol_431.setBody("The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.");
+				symbol_431.setBody("The query isTemplate() returns whether this templateable element is actually a template.");
 				symbol_430.getOwnedComments().add(symbol_431);
 			}
 			
 			symbol_268.getOwnedOperations().add(symbol_430);
 		}
+		{	// Pivot.ecore::pivot::TemplateableElement::parameterableElements()
+			Operation symbol_432 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
+			symbol_432.setName("parameterableElements");
+			symbol_432.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
+			symbol_432.setLower(BigInteger.valueOf(0));
+			symbol_432.setUpper(BigInteger.valueOf(-1));
+			
+			{
+				Comment symbol_433 = PivotFactory.eINSTANCE.createComment();
+				symbol_433.setBody("The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.");
+				symbol_432.getOwnedComments().add(symbol_433);
+			}
+			
+			symbol_268.getOwnedOperations().add(symbol_432);
+		}
 		{
-			Comment symbol_432 = PivotFactory.eINSTANCE.createComment();
-			symbol_432.setBody("A templateable element is an element that can optionally be defined as a template and bound to other templates.");
-			symbol_268.getOwnedComments().add(symbol_432);
+			Comment symbol_434 = PivotFactory.eINSTANCE.createComment();
+			symbol_434.setBody("A templateable element is an element that can optionally be defined as a template and bound to other templates.");
+			symbol_268.getOwnedComments().add(symbol_434);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_268); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
@@ -3759,9 +3773,9 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_293.setIsResolveProxies(true);
 			symbol_293.setOpposite(symbol_184);
 			{
-				Comment symbol_433 = PivotFactory.eINSTANCE.createComment();
-				symbol_433.setBody("Specifies the owning package of this classifier, if any.");
-				symbol_293.getOwnedComments().add(symbol_433);
+				Comment symbol_435 = PivotFactory.eINSTANCE.createComment();
+				symbol_435.setBody("Specifies the owning package of this classifier, if any.");
+				symbol_293.getOwnedComments().add(symbol_435);
 			}
 			
 			symbol_279.getOwnedAttributes().add(symbol_293);
@@ -3778,10 +3792,24 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_279.getOwnedAttributes().add(symbol_294);
 		}
+		{	// Pivot.ecore::pivot::Type::resolveSelfType()
+			Operation symbol_436 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)
+			symbol_436.setName("resolveSelfType");
+			symbol_436.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
+			
+			Parameter symbol_437 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)!selfType
+			symbol_437.setName("selfType");
+			symbol_437.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
+			
+			
+			symbol_436.getOwnedParameters().add(symbol_437);
+			
+			symbol_279.getOwnedOperations().add(symbol_436);
+		}
 		{
-			Comment symbol_434 = PivotFactory.eINSTANCE.createComment();
-			symbol_434.setBody("A type is a named element that is used as the type for a typed element. A type can be contained in a package.\r\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
-			symbol_279.getOwnedComments().add(symbol_434);
+			Comment symbol_438 = PivotFactory.eINSTANCE.createComment();
+			symbol_438.setBody("A type is a named element that is used as the type for a typed element. A type can be contained in a package.\r\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
+			symbol_279.getOwnedComments().add(symbol_438);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
@@ -3813,9 +3841,9 @@ public class OclMetaModel extends XMLResourceImpl
 			
 			symbol_298.setIsResolveProxies(true);
 			{
-				Comment symbol_435 = PivotFactory.eINSTANCE.createComment();
-				symbol_435.setBody("Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
-				symbol_298.getOwnedComments().add(symbol_435);
+				Comment symbol_439 = PivotFactory.eINSTANCE.createComment();
+				symbol_439.setBody("Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
+				symbol_298.getOwnedComments().add(symbol_439);
 			}
 			
 			symbol_297.getOwnedAttributes().add(symbol_298);
@@ -3829,17 +3857,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_299.setIsResolveProxies(true);
 			symbol_299.setOpposite(symbol_287);
 			{
-				Comment symbol_436 = PivotFactory.eINSTANCE.createComment();
-				symbol_436.setBody("The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
-				symbol_299.getOwnedComments().add(symbol_436);
+				Comment symbol_440 = PivotFactory.eINSTANCE.createComment();
+				symbol_440.setBody("The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
+				symbol_299.getOwnedComments().add(symbol_440);
 			}
 			
 			symbol_297.getOwnedAttributes().add(symbol_299);
 		}
 		{
-			Comment symbol_437 = PivotFactory.eINSTANCE.createComment();
-			symbol_437.setBody("A type template parameter exposes a type as a formal template parameter.");
-			symbol_297.getOwnedComments().add(symbol_437);
+			Comment symbol_441 = PivotFactory.eINSTANCE.createComment();
+			symbol_441.setBody("A type template parameter exposes a type as a formal template parameter.");
+			symbol_297.getOwnedComments().add(symbol_441);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_297); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter
@@ -3856,17 +3884,17 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_301.setIsResolveProxies(true);
 			symbol_301.setOpposite(symbol_288);
 			{
-				Comment symbol_438 = PivotFactory.eINSTANCE.createComment();
-				symbol_438.setBody("The type of the TypedElement.");
-				symbol_301.getOwnedComments().add(symbol_438);
+				Comment symbol_442 = PivotFactory.eINSTANCE.createComment();
+				symbol_442.setBody("The type of the TypedElement.");
+				symbol_301.getOwnedComments().add(symbol_442);
 			}
 			
 			symbol_300.getOwnedAttributes().add(symbol_301);
 		}
 		{
-			Comment symbol_439 = PivotFactory.eINSTANCE.createComment();
-			symbol_439.setBody("A typed element is a kind of named element that represents an element with a type.");
-			symbol_300.getOwnedComments().add(symbol_439);
+			Comment symbol_443 = PivotFactory.eINSTANCE.createComment();
+			symbol_443.setBody("A typed element is a kind of named element that represents an element with a type.");
+			symbol_300.getOwnedComments().add(symbol_443);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
@@ -3877,26 +3905,26 @@ public class OclMetaModel extends XMLResourceImpl
 		symbol_302.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
 		symbol_302.getSuperClasses().add(symbol_127); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
 		{	// Pivot.ecore::pivot::TypedMultiplicityElement::CompatibleBody()
-			Operation symbol_440 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)
-			symbol_440.setName("CompatibleBody");
-			symbol_440.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
+			Operation symbol_444 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)
+			symbol_444.setName("CompatibleBody");
+			symbol_444.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
-			Parameter symbol_441 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)!bodySpecification
-			symbol_441.setName("bodySpecification");
-			symbol_441.setType(symbol_310);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
+			Parameter symbol_445 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)!bodySpecification
+			symbol_445.setName("bodySpecification");
+			symbol_445.setType(symbol_310);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
 			
 			
-			symbol_440.getOwnedParameters().add(symbol_441);
+			symbol_444.getOwnedParameters().add(symbol_445);
 			
-			symbol_302.getOwnedOperations().add(symbol_440);
+			symbol_302.getOwnedOperations().add(symbol_444);
 		}
 		{	// Pivot.ecore::pivot::TypedMultiplicityElement::makeParameter()
-			Operation symbol_442 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!makeParameter()
-			symbol_442.setName("makeParameter");
-			symbol_442.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
+			Operation symbol_446 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!makeParameter()
+			symbol_446.setName("makeParameter");
+			symbol_446.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
 			
 			
-			symbol_302.getOwnedOperations().add(symbol_442);
+			symbol_302.getOwnedOperations().add(symbol_446);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_302); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
@@ -3925,7 +3953,6 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_307.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
 			
 			symbol_307.setIsResolveProxies(true);
-			symbol_307.setOpposite(symbol_289);
 			
 			symbol_306.getOwnedAttributes().add(symbol_307);
 		}
@@ -3934,6 +3961,7 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_308.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
 			
 			symbol_308.setIsResolveProxies(true);
+			symbol_308.setOpposite(symbol_289);
 			
 			symbol_306.getOwnedAttributes().add(symbol_308);
 		}
@@ -3964,87 +3992,87 @@ public class OclMetaModel extends XMLResourceImpl
 			symbol_310.getOwnedAttributes().add(symbol_311);
 		}
 		{	// Pivot.ecore::pivot::ValueSpecification::booleanValue()
-			Operation symbol_443 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
-			symbol_443.setName("booleanValue");
-			symbol_443.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_444 = PivotFactory.eINSTANCE.createComment();
-				symbol_444.setBody("The query booleanValue() gives a single Boolean value when one can be computed.");
-				symbol_443.getOwnedComments().add(symbol_444);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_443);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::integerValue()
-			Operation symbol_445 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
-			symbol_445.setName("integerValue");
-			symbol_445.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			{
-				Comment symbol_446 = PivotFactory.eINSTANCE.createComment();
-				symbol_446.setBody("The query integerValue() gives a single Integer value when one can be computed.");
-				symbol_445.getOwnedComments().add(symbol_446);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_445);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isComputable()
-			Operation symbol_447 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
-			symbol_447.setName("isComputable");
+			Operation symbol_447 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
+			symbol_447.setName("booleanValue");
 			symbol_447.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_448 = PivotFactory.eINSTANCE.createComment();
-				symbol_448.setBody("The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
+				symbol_448.setBody("The query booleanValue() gives a single Boolean value when one can be computed.");
 				symbol_447.getOwnedComments().add(symbol_448);
 			}
 			
 			symbol_310.getOwnedOperations().add(symbol_447);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isNull()
-			Operation symbol_449 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
-			symbol_449.setName("isNull");
-			symbol_449.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
+		{	// Pivot.ecore::pivot::ValueSpecification::integerValue()
+			Operation symbol_449 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
+			symbol_449.setName("integerValue");
+			symbol_449.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
 			
 			{
 				Comment symbol_450 = PivotFactory.eINSTANCE.createComment();
-				symbol_450.setBody("The query isNull() returns true when it can be computed that the value is null.");
+				symbol_450.setBody("The query integerValue() gives a single Integer value when one can be computed.");
 				symbol_449.getOwnedComments().add(symbol_450);
 			}
 			
 			symbol_310.getOwnedOperations().add(symbol_449);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::stringValue()
-			Operation symbol_451 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
-			symbol_451.setName("stringValue");
-			symbol_451.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
+		{	// Pivot.ecore::pivot::ValueSpecification::isComputable()
+			Operation symbol_451 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
+			symbol_451.setName("isComputable");
+			symbol_451.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_452 = PivotFactory.eINSTANCE.createComment();
-				symbol_452.setBody("The query stringValue() gives a single String value when one can be computed.");
+				symbol_452.setBody("The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
 				symbol_451.getOwnedComments().add(symbol_452);
 			}
 			
 			symbol_310.getOwnedOperations().add(symbol_451);
 		}
-		{	// Pivot.ecore::pivot::ValueSpecification::unlimitedValue()
-			Operation symbol_453 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
-			symbol_453.setName("unlimitedValue");
-			symbol_453.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
+		{	// Pivot.ecore::pivot::ValueSpecification::isNull()
+			Operation symbol_453 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
+			symbol_453.setName("isNull");
+			symbol_453.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
 			
 			{
 				Comment symbol_454 = PivotFactory.eINSTANCE.createComment();
-				symbol_454.setBody("The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
+				symbol_454.setBody("The query isNull() returns true when it can be computed that the value is null.");
 				symbol_453.getOwnedComments().add(symbol_454);
 			}
 			
 			symbol_310.getOwnedOperations().add(symbol_453);
 		}
+		{	// Pivot.ecore::pivot::ValueSpecification::stringValue()
+			Operation symbol_455 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
+			symbol_455.setName("stringValue");
+			symbol_455.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
+			
+			{
+				Comment symbol_456 = PivotFactory.eINSTANCE.createComment();
+				symbol_456.setBody("The query stringValue() gives a single String value when one can be computed.");
+				symbol_455.getOwnedComments().add(symbol_456);
+			}
+			
+			symbol_310.getOwnedOperations().add(symbol_455);
+		}
+		{	// Pivot.ecore::pivot::ValueSpecification::unlimitedValue()
+			Operation symbol_457 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
+			symbol_457.setName("unlimitedValue");
+			symbol_457.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
+			
+			{
+				Comment symbol_458 = PivotFactory.eINSTANCE.createComment();
+				symbol_458.setBody("The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
+				symbol_457.getOwnedComments().add(symbol_458);
+			}
+			
+			symbol_310.getOwnedOperations().add(symbol_457);
+		}
 		{
-			Comment symbol_455 = PivotFactory.eINSTANCE.createComment();
-			symbol_455.setBody("A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			symbol_310.getOwnedComments().add(symbol_455);
+			Comment symbol_459 = PivotFactory.eINSTANCE.createComment();
+			symbol_459.setBody("A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			symbol_310.getOwnedComments().add(symbol_459);
 		}
 		
 		symbol_0.getOwnedTypes().add(symbol_310); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification

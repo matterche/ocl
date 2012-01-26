@@ -52,7 +52,7 @@ public class ParameterableElementBodies
 		/*
 		p.oclIsKindOf(self.oclType())
 		*/
-		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value self, Value p) throws InvalidValueException {
+		public Value evaluate(DomainEvaluator evaluator, DomainType returnType, final Value self, final Value p) throws InvalidValueException {
 			final ValueFactory valueFactory = evaluator.getValueFactory();
 			final DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 			final ExecutorType T_Boolean = OCLstdlibTables.Types._Boolean;
@@ -63,13 +63,13 @@ public class ParameterableElementBodies
 			
 			
 			
-			DomainType static_A_symbol_407 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_407 = (LibraryUnaryOperation)static_A_symbol_407.lookupImplementation(standardLibrary, O_OclAny_oclType);
-			Value A_symbol_407 = dynamic_A_symbol_407.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
-			DomainType static_A_symbol_408 = valueFactory.typeOf(p);
-			LibraryBinaryOperation dynamic_A_symbol_408 = (LibraryBinaryOperation)static_A_symbol_408.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_408 = dynamic_A_symbol_408.evaluate(evaluator, T_Boolean, p, A_symbol_407);
-			return A_symbol_408;
+			DomainType static_A_symbol_114 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_114 = (LibraryUnaryOperation)static_A_symbol_114.lookupImplementation(standardLibrary, O_OclAny_oclType);
+			Value A_symbol_114 = dynamic_A_symbol_114.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
+			DomainType static_A_symbol_115 = valueFactory.typeOf(p);
+			LibraryBinaryOperation dynamic_A_symbol_115 = (LibraryBinaryOperation)static_A_symbol_115.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
+			Value A_symbol_115 = dynamic_A_symbol_115.evaluate(evaluator, T_Boolean, p, A_symbol_114);
+			return A_symbol_115;
 		}
 	}
 
