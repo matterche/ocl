@@ -39,8 +39,9 @@ import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.TypeServer;
+import org.eclipse.ocl.examples.pivot.manager.TypeTracker;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 
@@ -73,13 +74,14 @@ public class ConstraintMerger extends AbstractProjectComponent
 		URI inputURI = projectDescriptor.getPlatformResourceURI(uri);
 		log.info("Merging '" + inputURI + "'");
 		Resource ecoreResource = (Resource) ctx.get(getModelSlot());
-		final EPackage ecorePivotPackage = (EPackage) ecoreResource.getContents().get(0);
-		String pivotNsURI = ecorePivotPackage.getNsURI();
+		EPackage ecorePivotPackage = (EPackage) ecoreResource.getContents().get(0);
+		final String pivotNsURI = ecorePivotPackage.getNsURI();
 //		IPackageDescriptor packageDescriptor = projectDescriptor.getPackageDescriptor(URI.createURI(pivotNsURI));
 		ResourceSet resourceSet = new ResourceSetImpl();
 //		packageDescriptor.setUseModel(true, null);				// Hide packages installed by CompleteOCLStandaloneSetup
 			
 		MetaModelManager metaModelManager = MetaModelManager.getAdapter(resourceSet);
+		metaModelManager.getExternalResourceSet().getResources().add(ecoreResource);		// Don't load another copy
 		metaModelManager.setDefaultStandardLibraryURI(pivotNsURI);
 		StandardLibraryContribution.REGISTRY.put(pivotNsURI, new OCLstdlib.Loader()
 		{
@@ -87,7 +89,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 			public Resource getResource() {
 				Resource resource = super.getResource();
 				Library library = (Library) resource.getContents().get(0);
-				library.setNsURI(ecorePivotPackage.getNsURI());
+				library.setNsURI(pivotNsURI);
 //				library.setName(ecorePivotPackage.getName());
 				return resource;
 			}			
@@ -103,25 +105,49 @@ public class ConstraintMerger extends AbstractProjectComponent
 			MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 			xtextResource.load(null);
 			ResourceUtils.checkResourceSet(resourceSet);
-			CS2PivotResourceAdapter cs2pivot = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
-			Resource oclResource = cs2pivot.getPivotResource(xtextResource);
-			for (TreeIterator<EObject> tit = oclResource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				if (eObject instanceof NamedElement) {
-					NamedElement pivotNamedElement = (NamedElement)eObject;
-					NamedElement primaryNamedElement = metaModelManager.getPrimaryElement(pivotNamedElement);
-					for (Constraint constraint : pivotNamedElement.getOwnedRules()) {
-						constraint.setIsCallable(true);
-					}
-					primaryNamedElement.getOwnedRules().addAll(pivotNamedElement.getOwnedRules());
-//					tit.prune();
+//			CS2PivotResourceAdapter cs2pivot = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
+//			Resource oclResource = cs2pivot.getPivotResource(xtextResource);
+//			Set<Resource> primaryPivotResources = new HashSet<Resource>();
+//			Set<Resource> libraryPivotResources = new HashSet<Resource>();
+//			Iterable<org.eclipse.ocl.examples.pivot.Package> somePackages = metaModelManager.getPackageManager().getAllPackages();
+//			identifyResources(metaModelManager, somePackages, primaryPivotResources, libraryPivotResources);
+//			Set<Resource> secondaryPivotResources = new HashSet<Resource>(metaModelManager.getPivotResourceSet().getResources());
+//			secondaryPivotResources.removeAll(primaryPivotResources);
+//			secondaryPivotResources.removeAll(libraryPivotResources);
+//			primaryPivotResources.removeAll(libraryPivotResources);
+//			for (Resource secondaryPivotResource : secondaryPivotResources) {
+			for (Resource resource : metaModelManager.getPivotResourceSet().getResources()) {
+				if (resource == pivotResource) {
+					continue;
 				}
-				if (eObject instanceof Type) {
-					Type pivotType = (Type)eObject;
-					Type primaryType = metaModelManager.getPrimaryType(pivotType);
-					primaryType.getOwnedAttributes().addAll(pivotType.getOwnedAttributes());
-					primaryType.getOwnedOperations().addAll(pivotType.getOwnedOperations());
-					tit.prune();
+				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+					EObject eObject = tit.next();
+					if (eObject instanceof Library) {
+						tit.prune();
+						continue;
+					}
+					if (eObject instanceof NamedElement) {
+						NamedElement pivotNamedElement = (NamedElement)eObject;
+						NamedElement primaryNamedElement = metaModelManager.getPrimaryElement(pivotNamedElement);
+						for (Constraint constraint : pivotNamedElement.getOwnedRules()) {
+							constraint.setIsCallable(true);
+						}
+						primaryNamedElement.getOwnedRules().addAll(pivotNamedElement.getOwnedRules());
+	//					tit.prune();
+					}
+					if (eObject instanceof Type) {
+						Type pivotType = (Type)eObject;
+						TypeServer typeServer = metaModelManager.getTypeServer(pivotType);
+						for (TypeTracker typeTracker : typeServer.getTypeTrackers()) {
+							Type pType = typeTracker.getTarget();
+							if (pType.eResource() == pivotResource) {
+								pType.getOwnedAttributes().addAll(pivotType.getOwnedAttributes());
+								pType.getOwnedOperations().addAll(pivotType.getOwnedOperations());
+								break;
+							}
+						}
+						tit.prune();
+					}
 				}
 			}
 //			List<Resource> resources = resourceSet.getResources();
@@ -132,6 +158,7 @@ public class ConstraintMerger extends AbstractProjectComponent
 //					resources.remove(resource);
 //				}
 //			}
+//				System.out.println("Pivot2Ecore " + pivotResource.getURI());
 			Resource ecoreResource2 = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, null);
 			ctx.set(getModelSlot(), ecoreResource2);
 			projectDescriptor.useModelsAndPackages(ecoreResource2);
@@ -151,6 +178,25 @@ public class ConstraintMerger extends AbstractProjectComponent
 			throw new RuntimeException("Problems running " + getClass().getSimpleName(), e);
 		}
 	}
+
+/*	public void identifyResources(MetaModelManager metaModelManager, Iterable<org.eclipse.ocl.examples.pivot.Package> somePackages,
+			Set<Resource> primaryPivotResources, Set<Resource> libraryPivotResources) {
+		for (org.eclipse.ocl.examples.pivot.Package pPackage : somePackages) {
+			if (pPackage instanceof Library) {
+				libraryPivotResources.add(pPackage.eResource());
+			}
+			else {
+				for (Type pType : pPackage.getOwnedTypes()) {
+					TypeTracker typeTracker = metaModelManager.getTypeTracker(pType);
+					if (typeTracker instanceof TypeServer) {
+						primaryPivotResources.add(pPackage.eResource());
+						break;
+					}
+				}
+				identifyResources(metaModelManager, pPackage.getNestedPackages(),  primaryPivotResources, libraryPivotResources);
+			}
+		}
+	} */
 
 	public void setUri(String uri) {
 		this.uri = uri;

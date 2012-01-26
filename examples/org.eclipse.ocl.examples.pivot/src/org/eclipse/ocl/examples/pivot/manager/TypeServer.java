@@ -391,6 +391,10 @@ public class TypeServer extends TypeTracker
 		return addSecondaryType(pivotType);
 	}
 
+	public List<TypeTracker> getTypeTrackers() {
+		return trackers;
+	}
+
 	/**
 	 * Observe any superclass changes and uninstall all affected Inheritances.
 	 */
