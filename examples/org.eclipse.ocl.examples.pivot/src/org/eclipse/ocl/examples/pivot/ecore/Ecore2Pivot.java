@@ -444,7 +444,8 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	public Resource importObjects(Collection<EObject> ecoreContents, URI pivotURI) {
 		Resource pivotResource = metaModelManager.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
 		if ((metaModelManager.getLibraryResource() == null) && isPivot(ecoreContents)) {
-			metaModelManager.loadLibrary(new OCLstdlib(OCLstdlib.STDLIB_URI, "ocl", "ocl", ((EPackage)ecoreContents.iterator().next()).getNsURI()));
+			OCLstdlib library = OCLstdlib.create(OCLstdlib.STDLIB_URI, "ocl", "ocl", ((EPackage)ecoreContents.iterator().next()).getNsURI());
+			metaModelManager.loadLibrary(library);
 		}
 		pivotRoot = metaModelManager.createPackage(pivotURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);

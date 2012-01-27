@@ -138,12 +138,12 @@ public class NameQueries
 	}
 	
 	public static String encodeName(NamedElement element) {
-		String rawEncodeName = rawEncodeName(element);
+		String rawEncodeName = rawEncodeName(element.getName());
 		if (element instanceof Operation) {
 			int sameNames = 0;
 			int myIndex = 0;
 			for (Operation operation : ((Operation)element).getOwningType().getOwnedOperations()) {
-				String rawName = rawEncodeName(operation);
+				String rawName = rawEncodeName(operation.getName());
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {
 						myIndex = sameNames;
@@ -449,9 +449,8 @@ public class NameQueries
 		return allocation.get(variable);
 	}
 
-	protected static String rawEncodeName(NamedElement element) {
+	public static String rawEncodeName(String name) {
 		StringBuilder s = new StringBuilder();
-		String name = element.getName();
 //		boolean prevCharIsLower = true;
 		for (int i = 0; i < name.length(); i++) {
 			char ch = name.charAt(i);
@@ -488,6 +487,9 @@ public class NameQueries
 			}
 			else if (ch == '/') {
 				s.append("_div_");
+			}
+			else if (!Character.isJavaIdentifierPart(ch)) {
+				s.append("_" + Integer.toString(ch) + "_");
 			}
 			else {
 				s.append(ch);

@@ -1,0 +1,271 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ */
+package	org.eclipse.ocl.examples.pivot.model;
+
+import java.util.List;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.AssociativityKind;
+import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Comment;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.VoidType;
+
+public class AbstractPivotModel extends XMLResourceImpl
+{	
+	public AbstractPivotModel(URI uri) {
+		super(uri);
+	}
+
+	public static AnyType createAnyType(String name) {
+		AnyType pivotType = PivotFactory.eINSTANCE.createAnyType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static BagType createBagType(String name) {
+		BagType pivotType = PivotFactory.eINSTANCE.createBagType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static Class createClass(String name) {
+		Class pivotType = PivotFactory.eINSTANCE.createClass();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static ClassifierType createClassifierType(String name) {
+		ClassifierType pivotType = PivotFactory.eINSTANCE.createClassifierType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static CollectionType createCollectionType(String name) {
+		CollectionType pivotType = PivotFactory.eINSTANCE.createCollectionType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static Comment createComment(String body) {
+		Comment pivotComment = PivotFactory.eINSTANCE.createComment();
+		pivotComment.setBody(body);
+		return pivotComment;
+	}
+	
+	public static Enumeration createEnumeration(String name, EnumerationLiteral... enumerationLiterals) {
+		Enumeration pivotType = PivotFactory.eINSTANCE.createEnumeration();
+		pivotType.setName(name);
+		List<EnumerationLiteral> ownedLiterals = pivotType.getOwnedLiterals();
+		for (EnumerationLiteral enumerationLiteral : enumerationLiterals) {
+			ownedLiterals.add(enumerationLiteral);
+		}
+		return pivotType;
+	}
+
+	public static EnumerationLiteral createEnumerationLiteral(String name) {
+		EnumerationLiteral pivotEnumerationLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
+		pivotEnumerationLiteral.setName(name);
+		return pivotEnumerationLiteral;
+	}
+	
+	public static Iteration createIteration(String name, Type type, String implementationClass, LibraryFeature implementation, Parameter body, Parameter... iterators) {
+		Iteration pivotIteration = PivotFactory.eINSTANCE.createIteration();
+		pivotIteration.setName(name);
+		pivotIteration.setType(type);
+		pivotIteration.setImplementationClass(implementationClass);
+		pivotIteration.setImplementation(implementation);
+		pivotIteration.getOwnedParameters().add(body);
+		List<Parameter> ownedIterators = pivotIteration.getOwnedIterators();
+		for (Parameter iterator : iterators) {
+			ownedIterators.add(iterator);
+		}
+		return pivotIteration;
+	}
+
+	public static InvalidType createInvalidType(String name) {
+		InvalidType pivotType = PivotFactory.eINSTANCE.createInvalidType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+	
+	public static LambdaType createLambdaType(String name) {
+		LambdaType pivotType = PivotFactory.eINSTANCE.createLambdaType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static Library createLibrary(String name, String nsPrefix, String nsURI) {
+		Library pivotLibrary = PivotFactory.eINSTANCE.createLibrary();
+		pivotLibrary.setName(name);
+		pivotLibrary.setNsPrefix(nsPrefix);
+		pivotLibrary.setNsURI(nsURI);
+		return pivotLibrary;
+	}
+	
+	public static Operation createOperation(String name, Type type, String implementationClass, LibraryFeature implementation, Parameter... parameters) {
+		Operation pivotOperation = PivotFactory.eINSTANCE.createOperation();
+		pivotOperation.setName(name);
+		pivotOperation.setType(type);
+		pivotOperation.setImplementationClass(implementationClass);
+		pivotOperation.setImplementation(implementation);
+		List<Parameter> ownedParameters = pivotOperation.getOwnedParameters();
+		for (Parameter parameter : parameters) {
+			ownedParameters.add(parameter);
+		}
+		return pivotOperation;
+	}
+
+	public static OrderedSetType createOrderedSetType(String name) {
+		OrderedSetType pivotType = PivotFactory.eINSTANCE.createOrderedSetType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static Package createPackage(String name, String nsPrefix, String nsURI) {
+		Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
+		pivotPackage.setName(name);
+		pivotPackage.setNsPrefix(nsPrefix);
+		pivotPackage.setNsURI(nsURI);
+		return pivotPackage;
+	}
+	
+	public static Parameter createParameter(String name, Type type) {
+		Parameter pivotParameter = PivotFactory.eINSTANCE.createParameter();
+		pivotParameter.setName(name);
+		pivotParameter.setType(type);
+		return pivotParameter;
+	}
+	
+	public static Precedence createPrecedence(String name, AssociativityKind kind) {
+		Precedence pivotPrecedence = PivotFactory.eINSTANCE.createPrecedence();
+		pivotPrecedence.setName(name);
+		pivotPrecedence.setAssociativity(kind);
+		return pivotPrecedence;
+	}
+	
+	public static PrimitiveType createPrimitiveType(String name) {
+		PrimitiveType pivotType = PivotFactory.eINSTANCE.createPrimitiveType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+	
+	public static Property createProperty(String name, Type type, String implementationClass, LibraryFeature implementation) {
+		Property pivotProperty = PivotFactory.eINSTANCE.createProperty();
+		pivotProperty.setName(name);
+		pivotProperty.setType(type);
+		pivotProperty.setImplementationClass(implementationClass);
+		pivotProperty.setImplementation(implementation);
+		return pivotProperty;
+	}
+
+	public static SelfType createSelfType(String name) {
+		SelfType pivotType = PivotFactory.eINSTANCE.createSelfType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static SequenceType createSequenceType(String name) {
+		SequenceType pivotType = PivotFactory.eINSTANCE.createSequenceType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static SetType createSetType(String name) {
+		SetType pivotType = PivotFactory.eINSTANCE.createSetType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+
+	public static TemplateBinding createTemplateBinding(TemplateSignature templateSignature, TemplateParameterSubstitution... templateParameterSubstitutions) {
+		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
+		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getParameterSubstitutions();
+		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
+			parameterSubstitutions.add(templateParameterSubstitution);
+		}
+		pivotTemplateBinding.setSignature(templateSignature);
+		return pivotTemplateBinding;
+	}
+
+	public static TemplateParameterSubstitution createTemplateParameterSubstitution(TemplateParameter formal, ParameterableElement actual) {
+		TemplateParameterSubstitution pivotTemplateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+		pivotTemplateParameterSubstitution.setFormal(formal);
+		pivotTemplateParameterSubstitution.setActual(actual);
+		return pivotTemplateParameterSubstitution;
+	}
+
+	public static TemplateSignature createTemplateSignature(TemplateableElement templateableElement, TemplateParameter... templateParameters) {
+		TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
+		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameters();
+		for (TemplateParameter templateParameter : templateParameters) {
+			parameters.add(templateParameter);
+		}
+		pivotTemplateSignature.setTemplate(templateableElement);
+		return pivotTemplateSignature;
+	}
+	
+	public static TupleType createTupleType(String name, Property... properties) {
+		TupleType pivotType = PivotFactory.eINSTANCE.createTupleType();
+		pivotType.setName(name);
+		List<Property> ownedProperties = pivotType.getOwnedAttributes();
+		for (Property property : properties) {
+			ownedProperties.add(property);
+		}
+		return pivotType;
+	}
+
+	public static TypeTemplateParameter createTypeTemplateParameter(Type type) {
+		TypeTemplateParameter pivotTypeTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
+		pivotTypeTemplateParameter.setOwnedParameteredElement(type);
+		return pivotTypeTemplateParameter;
+	}
+
+	public static VoidType createVoidType(String name) {
+		VoidType pivotType = PivotFactory.eINSTANCE.createVoidType();
+		pivotType.setName(name);
+		return pivotType;
+	}
+}

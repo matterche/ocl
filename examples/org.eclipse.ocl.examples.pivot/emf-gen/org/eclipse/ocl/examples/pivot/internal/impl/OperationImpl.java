@@ -407,7 +407,8 @@ public class OperationImpl
 	 */
 	public TemplateableElement getUnspecializedElement()
 	{
-		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
+//		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
+		return null;
 	}
 
 	/**
@@ -1185,7 +1186,7 @@ public class OperationImpl
 	}
 
 	public int getIndex() {
-		throw new UnsupportedOperationException();		// WIP
+		return -1;		// WIP
 	}
 
 	public DomainInheritance getInheritance(DomainStandardLibrary standardLibrary) {

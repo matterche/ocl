@@ -89,20 +89,17 @@ public class OCLstdlibTables
 	    public static final EcoreExecutorType __Dummy = new EcoreExecutorType("_Dummy", PACKAGE, 0);
 	
 		private static final EcoreExecutorType[] types = {
-		    _Boolean,
-		    _Integer,
-		    _Real,
-		    _String,
-		    _UnlimitedNatural,
 		    _AnyClassifier,
 		    _Bag,
+		    _Boolean,
 		    _Class,
 		    _ClassClassifier,
-		    _CollectionClassifier,
 		    _Collection,
+		    _CollectionClassifier,
 		    _Enumeration,
 		    _EnumerationClassifier,
 		    _EnumerationLiteral,
+		    _Integer,
 		    _OclAny,
 		    _OclComparable,
 		    _OclElement,
@@ -116,10 +113,13 @@ public class OCLstdlibTables
 		    _OclType,
 		    _OclVoid,
 		    _OrderedSet,
+		    _Real,
 		    _Sequence,
 		    _Set,
+		    _String,
 		    _Type,
 		    _UniqueCollection,
+		    _UnlimitedNatural,
 		    __Dummy
 		};
 	
@@ -315,14 +315,22 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _Bag__select = new ExecutorOperation("select",
 			Types._Bag, 11, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Bag_T));
+		public static final ExecutorTypeParameter __Bag__selectByKind_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Bag__selectByKind = new ExecutorOperation("selectByKind",
+			Types._Bag, 12, org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Bag__selectByKind_TT));
+		public static final ExecutorTypeParameter __Bag__selectByType_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Bag__selectByType = new ExecutorOperation("selectByType",
+			Types._Bag, 13, org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Bag__selectByType_TT));
 		public static final ExecutorOperation _Bag__sortedBy = new ExecutorOperation("sortedBy",
-			Types._Bag, 12, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._Bag, 14, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Bag_T));
 		public static final ExecutorOperation _Bag__0_union = new ExecutorOperation("union",
-			Types._Bag, 13, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._Bag, 15, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.Types._Bag_T));
 		public static final ExecutorOperation _Bag__1_union = new ExecutorOperation("union",
-			Types._Bag, 14, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._Bag, 16, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType(LIBRARY, "UniqueCollection", OCLstdlibTables.Types._Bag_T));
 	
 		public static final ExecutorOperation _Boolean___lt__gt_ = new ExecutorOperation("<>",
@@ -446,13 +454,21 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _Collection__select = new ExecutorOperation("select",
 			Types._Collection, 31, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Collection_T));
+		public static final ExecutorTypeParameter __Collection__selectByKind_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Collection__selectByKind = new ExecutorOperation("selectByKind",
+			Types._Collection, 32, org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Collection__selectByKind_TT));
+		public static final ExecutorTypeParameter __Collection__selectByType_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Collection__selectByType = new ExecutorOperation("selectByType",
+			Types._Collection, 33, org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Collection__selectByType_TT));
 		public static final ExecutorOperation _Collection__size = new ExecutorOperation("size",
-			Types._Collection, 32, org.eclipse.ocl.examples.library.collection.CollectionSizeOperation.INSTANCE);
+			Types._Collection, 34, org.eclipse.ocl.examples.library.collection.CollectionSizeOperation.INSTANCE);
 		public static final ExecutorOperation _Collection__sortedBy = new ExecutorOperation("sortedBy",
-			Types._Collection, 33, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._Collection, 35, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Collection_T));
 		public static final ExecutorOperation _Collection__sum = new ExecutorOperation("sum",
-			Types._Collection, 34, org.eclipse.ocl.examples.library.collection.CollectionSumOperation.INSTANCE);
+			Types._Collection, 36, org.eclipse.ocl.examples.library.collection.CollectionSumOperation.INSTANCE);
 	
 		public static final ExecutorOperation _Enumeration__allInstances = new ExecutorOperation("allInstances",
 			Types._Enumeration, 0, org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
@@ -634,14 +650,22 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _OrderedSet__select = new ExecutorOperation("select",
 			Types._OrderedSet, 12, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._OrderedSet_T));
+		public static final ExecutorTypeParameter __OrderedSet__selectByKind_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _OrderedSet__selectByKind = new ExecutorOperation("selectByKind",
+			Types._OrderedSet, 13, org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__OrderedSet__selectByKind_TT));
+		public static final ExecutorTypeParameter __OrderedSet__selectByType_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _OrderedSet__selectByType = new ExecutorOperation("selectByType",
+			Types._OrderedSet, 14, org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__OrderedSet__selectByType_TT));
 		public static final ExecutorOperation _OrderedSet__sortedBy = new ExecutorOperation("sortedBy",
-			Types._OrderedSet, 13, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._OrderedSet, 15, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._OrderedSet_T));
 		public static final ExecutorOperation _OrderedSet__subOrderedSet = new ExecutorOperation("subOrderedSet",
-			Types._OrderedSet, 14, org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE,
+			Types._OrderedSet, 16, org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE,
 				OCLstdlibTables.Types._Integer);
 		public static final ExecutorOperation _OrderedSet__union = new ExecutorOperation("union",
-			Types._OrderedSet, 15, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._OrderedSet, 17, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType(LIBRARY, "Sequence", OCLstdlibTables.Types._OrderedSet_T));
 	
 		public static final ExecutorOperation _Real___mul_ = new ExecutorOperation("*",
@@ -754,14 +778,22 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _Sequence__select = new ExecutorOperation("select",
 			Types._Sequence, 19, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Sequence_T));
+		public static final ExecutorTypeParameter __Sequence__selectByKind_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Sequence__selectByKind = new ExecutorOperation("selectByKind",
+			Types._Sequence, 20, org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Sequence__selectByKind_TT));
+		public static final ExecutorTypeParameter __Sequence__selectByType_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Sequence__selectByType = new ExecutorOperation("selectByType",
+			Types._Sequence, 21, org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Sequence__selectByType_TT));
 		public static final ExecutorOperation _Sequence__sortedBy = new ExecutorOperation("sortedBy",
-			Types._Sequence, 20, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._Sequence, 22, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Sequence_T));
 		public static final ExecutorOperation _Sequence__subSequence = new ExecutorOperation("subSequence",
-			Types._Sequence, 21, org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE,
+			Types._Sequence, 23, org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE,
 				OCLstdlibTables.Types._Integer);
 		public static final ExecutorOperation _Sequence__union = new ExecutorOperation("union",
-			Types._Sequence, 22, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._Sequence, 24, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType(LIBRARY, "Sequence", OCLstdlibTables.Types._Sequence_T));
 	
 		public static final ExecutorOperation _Set___sub_ = new ExecutorOperation("-",
@@ -791,11 +823,19 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _Set__select = new ExecutorOperation("select",
 			Types._Set, 8, org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Set_T));
+		public static final ExecutorTypeParameter __Set__selectByKind_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Set__selectByKind = new ExecutorOperation("selectByKind",
+			Types._Set, 9, org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Set__selectByKind_TT));
+		public static final ExecutorTypeParameter __Set__selectByType_TT = new ExecutorTypeParameter(LIBRARY, "TT");
+		public static final ExecutorOperation _Set__selectByType = new ExecutorOperation("selectByType",
+			Types._Set, 10, org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation.INSTANCE,
+				new ExecutorSpecializedType(LIBRARY, "AnyClassifier", OCLstdlibTables.Operations.__Set__selectByType_TT));
 		public static final ExecutorOperation _Set__sortedBy = new ExecutorOperation("sortedBy",
-			Types._Set, 9, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
+			Types._Set, 11, org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE,
 				new ExecutorLambdaType(LIBRARY, "Lambda", OCLstdlibTables.Types._Set_T));
 		public static final ExecutorOperation _Set__union = new ExecutorOperation("union",
-			Types._Set, 10, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
+			Types._Set, 12, org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE,
 				new ExecutorSpecializedType(LIBRARY, "Collection", OCLstdlibTables.Types._Set_T));
 	
 		public static final ExecutorOperation _String___add_ = new ExecutorOperation("+",
@@ -1238,6 +1278,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Bag__1_intersection /* intersection(UniqueCollection(T)) */,
 		    OCLstdlibTables.Operations._Bag__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Bag__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Bag__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Bag__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Bag__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Bag__0_union /* union(Collection(T)) */,
 		    OCLstdlibTables.Operations._Bag__1_union /* union(UniqueCollection(T)) */
@@ -1275,6 +1317,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._Bag__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Bag__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Bag__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Bag__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._Bag__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -1395,6 +1439,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._Collection__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Collection__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Collection__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Collection__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._Collection__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -1795,6 +1841,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OrderedSet__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._OrderedSet__reverse /* reverse() */,
 		    OCLstdlibTables.Operations._OrderedSet__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._OrderedSet__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._OrderedSet__subOrderedSet /* subOrderedSet(Integer,Integer) */,
 		    OCLstdlibTables.Operations._OrderedSet__union /* union(Sequence(T)) */
@@ -1832,6 +1880,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._OrderedSet__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._OrderedSet__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._OrderedSet__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -1870,6 +1920,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._OrderedSet__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._OrderedSet__reverse /* reverse() */,
 		    OCLstdlibTables.Operations._OrderedSet__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._OrderedSet__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._OrderedSet__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Sequence__subSequence /* subSequence(Integer,Integer) */,
 		    OCLstdlibTables.Operations._OrderedSet__union /* union(Sequence(T)) */
@@ -1943,6 +1995,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Sequence__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Sequence__reverse /* reverse() */,
 		    OCLstdlibTables.Operations._Sequence__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Sequence__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Sequence__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Sequence__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Sequence__subSequence /* subSequence(Integer,Integer) */,
 		    OCLstdlibTables.Operations._Sequence__union /* union(Sequence(T)) */
@@ -1980,6 +2034,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._Sequence__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Sequence__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Sequence__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Sequence__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._Sequence__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -2008,6 +2064,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Set__intersection /* intersection(Collection(T)) */,
 		    OCLstdlibTables.Operations._Set__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Set__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Set__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Set__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Set__union /* union(Collection(T)) */
 		};
@@ -2024,6 +2082,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Bag__1_intersection /* intersection(UniqueCollection(T)) */,
 		    OCLstdlibTables.Operations._Set__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Set__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Set__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Set__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Set__union /* union(Collection(T)) */,
 		    OCLstdlibTables.Operations._Bag__1_union /* union(UniqueCollection(T)) */
@@ -2061,6 +2121,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._Set__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Set__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Set__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Set__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._Set__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -2193,6 +2255,8 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._Collection__product /* product<T2>(Collection(T2)) */,
 		    OCLstdlibTables.Operations._Collection__reject /* reject(T|Lambda T() : Boolean) */,
 		    OCLstdlibTables.Operations._Collection__select /* select(T|Lambda T() : Boolean) */,
+		    OCLstdlibTables.Operations._Collection__selectByKind /* selectByKind<TT>(AnyClassifier<TT>) */,
+		    OCLstdlibTables.Operations._Collection__selectByType /* selectByType<TT>(AnyClassifier<TT>) */,
 		    OCLstdlibTables.Operations._Collection__size /* size() */,
 		    OCLstdlibTables.Operations._UniqueCollection__sortedBy /* sortedBy(T|Lambda T() : OclAny) */,
 		    OCLstdlibTables.Operations._Collection__sum /* sum() */
@@ -2520,20 +2584,7 @@ public class OCLstdlibTables
 	
 		public static void init() {}
 	}
-
-	/**
-	 *	The lists of local properties for the local fragment of each type.
-	 */
-	public static class EnumerationLiterals {
 	
-		/**
-		 *	Install the property descriptors in the fragment descriptors.
-		 */
-		static {
-		}
-	
-		public static void init() {}
-	}
 	
 	static {
 		Types.types[0].getClass();

@@ -17,283 +17,205 @@ let parent : EObject = elem.eContainer() in
 if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
 else elem.name endif + '()'/]
 
-[query public getSymbolName(elem : Element) : String = 
-invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
+[query public getPrefixedSymbolName(elem : EObject, prefix : String) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getPrefixedSymbolName(java.lang.String, java.lang.Object)', Sequence{prefix, elem}) /]
 
-[query public getSymbolName(elem : EObject) : String = elem.oclAsType(Element).getSymbolName()/]
+[query public getSymbolName(elem : EObject) : String = 
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'getSymbolName(java.lang.Object)', Sequence{elem}) /]
 
 [query public isEcoreConstraint(operation : Operation) : Boolean =
 operation.ownedParameter->select(p : Parameter
 | (p.name = 'diagnostics') and (p.type.name = 'EDiagnosticChain'))->notEmpty()
 /]
 
-[template public declarePackage(pkg : Package)]
-Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.getMoniker()/]
-[for (ownedType : Type | pkg.ownedType->sortedBy(getMoniker()))]
-[declareType(ownedType)/]
+[template public defineConstants(pkg : Package)]
+[let allComments : OrderedSet(Comment) = pkg.eAllContents(Comment)->asSet()->sortedBy(_body)]
+[for (pComment : Comment | allComments)]
+private static Comment [pComment.getPrefixedSymbolName('co_'+pComment.partialName())/] = createComment("[pComment.javaString()/]");
 [/for]
-[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
-[declarePackage(nestedPackage)/][/for]
-[/template]
+[/let]
 
-[template public declarePrecedence(precedence : Precedence)]
-Precedence [precedence.getSymbolName()/] = PivotFactory.eINSTANCE.createPrecedence(); // [precedence.name/]
-[/template]
-
-[template public declareProperty(property : Property)]
-Property [property.getSymbolName()/] = PivotFactory.eINSTANCE.createProperty(); // [property.getMoniker()/]
-[/template]
-
-[template public declareTemplateParameter(templateParameter : TemplateParameter)]
-[/template]
-
-[template public declareTemplateParameter(templateParameter : TypeTemplateParameter)]
-TypeTemplateParameter [templateParameter.getSymbolName()/] = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-Class [templateParameter.ownedParameteredElement.getSymbolName()/] = PivotFactory.eINSTANCE.createClass(); // [templateParameter.ownedParameteredElement.getMoniker()/]
-[/template]
-
-[template public declareTemplateSignature(templateSignature : TemplateSignature)]
-TemplateSignature [templateSignature.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateSignature(); // [templateSignature.getMoniker()/]
-[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
-[declareTemplateParameter(templateParameter)/]
+[let allPrecedences : OrderedSet(Precedence) = pkg.eAllContents(Precedence)->asSet()->sortedBy(getMoniker())]
+[for (precedence : Precedence | allPrecedences)]
+private static Precedence [precedence.getPrefixedSymbolName('prec_'+precedence.partialName())/] = createPrecedence("[precedence.name/]", AssociativityKind.[precedence.associativity.toString().toUpper()/]);
 [/for]
-[/template]
+[/let]
 
-[template public declareType(type : Type)]
-{
-}
-[/template]
+[let allEnumerationLiterals : OrderedSet(EnumerationLiteral) = pkg.eAllContents(EnumerationLiteral)->asSet()->sortedBy(getMoniker())]
+[for (enumerationLiteral : EnumerationLiteral | allEnumerationLiterals)]
+private static EnumerationLiteral [enumerationLiteral.getPrefixedSymbolName('el_'+enumerationLiteral.partialName())/] = createEnumerationLiteral("[enumerationLiteral.name/]");
+[/for]
+[/let]
 
-[template public declareType(type : Class)]
-[type.eClass().name/] [type.getSymbolName()/] = PivotFactory.eINSTANCE.create[type.eClass().name/](); // [type.getMoniker()/]
-[if (type.ownedTemplateSignature->notEmpty())]
-[declareTemplateSignature(type.ownedTemplateSignature)/]
-[/if]
-[for (property : Property | type.ownedAttribute->sortedBy(name))]
-[declareProperty(property)/] // [property.getSignature()/] [property.getMoniker()/]
+[let allTypes : OrderedSet(Type) = pkg.eAllContents(Type)->asSet()->sortedBy(getMoniker())]
+[for (type : Type | allTypes)]
+private static [type.eClass().name/] [type.getPrefixedSymbolName('t_'+type.partialName())/] = create[type.eClass().name/]("[type.name/]");
 [/for]
-[for (operation : Operation | type.ownedOperation->sortedBy(name))]
-[if (operation.ownedTemplateSignature->notEmpty())]
-[declareTemplateSignature(operation.ownedTemplateSignature)/]
-[/if]
+[/let]
+
+[let allParameters : OrderedSet(Parameter) = pkg.eAllContents(Parameter)->asSet()->sortedBy(getMoniker())]
+[for (parameter : Parameter | allParameters)]
+private static Parameter [parameter.getPrefixedSymbolName('pa_'+partialName())/] = createParameter("[parameter.name/]", [parameter.type.getSymbolName()/]);
 [/for]
+[/let]
+
+[let allIterations : OrderedSet(Iteration) = pkg.eAllContents(Iteration)->asSet()->sortedBy(getMoniker())]
+[for (iteration : Iteration | allIterations)]
+private static Iteration [iteration.getPrefixedSymbolName('it_'+iteration.partialName())/] = createIteration("[iteration.name/]", [iteration.type.getSymbolName()/], [if (iteration.implementationClass->notEmpty())]"[iteration.implementationClass/]", [iteration.implementationClass/].INSTANCE[else]null, null[/if], [iteration.ownedParameter->first().getSymbolName()/][for (iterator : Parameter | iteration.ownedIterator)], [iterator.getSymbolName()/][/for]);
+[/for]
+[/let]
+
+[let allOperations : OrderedSet(Operation) = pkg.eAllContents(Operation)->asSet()->sortedBy(getMoniker())]
+[for (operation : Operation | allOperations->reject(oclIsKindOf(Iteration))->select(not isEcoreConstraint()))]
+private static Operation [operation.getPrefixedSymbolName('op_'+operation.partialName())/] = createOperation("[operation.name/]", [operation.type.getSymbolName()/], [if (operation.implementationClass->notEmpty())]"[operation.implementationClass/]", [operation.implementationClass/].INSTANCE[else]null, null[/if][for (parameter : Parameter | operation.ownedParameter)], [parameter.getSymbolName()/][/for]);
+[/for]
+[/let]
+
+[let allProperties : OrderedSet(Property) = pkg.eAllContents(Property)->asSet()->sortedBy(getMoniker())]
+[for (property : Property | allProperties)]
+private static Property [property.getPrefixedSymbolName('pr_'+property.partialName())/] = createProperty("[property.name/]", [property.type.getSymbolName()/], [if (property.implementationClass->notEmpty())]"[property.implementationClass/]", [property.implementationClass/].INSTANCE[else]null, null[/if]);
+[/for]
+[/let]
+
+[let allTemplateParameters : OrderedSet(TemplateParameter) = pkg.eAllContents(TemplateParameter)->asSet()->sortedBy(getMoniker())]
+[for (templateParameter : TemplateParameter | allTemplateParameters)]
+private static TypeTemplateParameter [templateParameter.getPrefixedSymbolName('tp_'+templateParameter.partialName())/] = createTypeTemplateParameter([templateParameter.ownedParameteredElement.getSymbolName()/]);
+[/for]
+[/let]
+
+[let allTemplateSignatures : OrderedSet(TemplateSignature) = pkg.eAllContents(TemplateSignature)->asSet()->sortedBy(getMoniker())]
+[for (templateSignature : TemplateSignature | allTemplateSignatures)]
+private static TemplateSignature [templateSignature.getPrefixedSymbolName('ts_'+templateSignature.partialName())/] = createTemplateSignature([templateSignature.template.getSymbolName()/][for (templateParameter : TemplateParameter | templateSignature.ownedParameter)], [templateParameter.getSymbolName()/][/for]);
+[/for]
+[/let]
+
+[let allPackages : OrderedSet(Package) = pkg.eAllContents(Package)->asSet()->sortedBy(getMoniker())]
+[for (pkg : Package | allPackages)]
+private static [pkg.eClass().name/] [pkg.getPrefixedSymbolName('pk_'+pkg.partialName())/] = create[pkg.eClass().name/]("[pkg.name/]", [if pkg.nsPrefix <> null]"[pkg.nsPrefix/]"[else]null[/if], [if pkg.nsURI <> null]"[pkg.nsURI/]"[else]null[/if]);
+[/for]
+[/let]
+
+[let allTemplateParameterSubstitutions : OrderedSet(TemplateParameterSubstitution) = pkg.eAllContents(TemplateParameterSubstitution)->asSet()->sortedBy(getMoniker())]
+[for (templateParameterSubstitution : TemplateParameterSubstitution | allTemplateParameterSubstitutions)]
+private static TemplateParameterSubstitution [templateParameterSubstitution.getPrefixedSymbolName('tps_'+templateParameterSubstitution.partialName())/] = createTemplateParameterSubstitution([templateParameterSubstitution.formal.getSymbolName()/], [templateParameterSubstitution.actual.getSymbolName()/]);
+[/for]
+[/let]
+
+[let allTemplateBindings : OrderedSet(TemplateBinding) = pkg.eAllContents(TemplateBinding)->asSet()->sortedBy(getMoniker())]
+[for (templateBinding : TemplateBinding | allTemplateBindings)]
+private static TemplateBinding [templateBinding.getPrefixedSymbolName('tb_'+templateBinding.partialName())/] = createTemplateBinding([templateBinding.signature.getSymbolName()/][for (templateParameterSubstitution : TemplateParameterSubstitution | templateBinding.parameterSubstitution)], [templateParameterSubstitution.getSymbolName()/][/for]);
+[/for]
+[/let]
 [/template]
 
 [template public emitAccumulator(parameter : Parameter)]
-Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(); // [parameter.getMoniker()/]
-[parameter.getSymbolName()/].setName("[parameter.name/]");
-[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]); // [parameter.type.getMoniker()/]
+[if (parameter.ownedComment->notEmpty())]
 [parameter.emitComments()/]
-[parameter.eContainer().getSymbolName()/].getOwnedAccumulators().add([parameter.getSymbolName()/]);
-[/template]
+[/if][parameter.eContainer().getSymbolName()/].getOwnedAccumulators().add([parameter.getSymbolName()/]);[/template]
 
 [template public emitComments(namedElement : NamedElement)]
 [for (pComment : Comment | namedElement.ownedComment)]
-{
-	Comment [pComment.getSymbolName()/] = PivotFactory.eINSTANCE.createComment();
-	[pComment.getSymbolName()/].setBody("[pComment.javaString()/]");
-	[namedElement.getSymbolName()/].getOwnedComments().add([pComment.getSymbolName()/]);
-}
-[/for]
-[/template]
+[namedElement.getSymbolName()/].getOwnedComments().add([pComment.getSymbolName()/]);[/for][/template]
 
 [template public emitIterator(parameter : Parameter)]
-Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(); // [parameter.getMoniker()/]
-[parameter.getSymbolName()/].setName("[parameter.name/]");
-[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]); // [parameter.type.getMoniker()/]
+[if (parameter.ownedComment->notEmpty())]
 [parameter.emitComments()/]
-[parameter.eContainer().getSymbolName()/].getOwnedIterators().add([parameter.getSymbolName()/]);
-[/template]
+[/if][/template]
 
-[template public emitMultiplicityElement(multiplicityElement : MultiplicityElement)]
+[template public emitMultiplicityElement(multiplicityElement : TypedMultiplicityElement)]
 [if (multiplicityElement.lower <> 1)]
 [multiplicityElement.getSymbolName()/].setLower(BigInteger.valueOf([multiplicityElement.lower/]));
-[/if]
-[if (multiplicityElement.upper <> 1)]
+[/if][if (multiplicityElement.upper <> 1)]
 [multiplicityElement.getSymbolName()/].setUpper(BigInteger.valueOf([multiplicityElement.upper/]));
-[/if]
-[if (multiplicityElement.isOrdered)]
+[/if][if (multiplicityElement.isOrdered)]
 [multiplicityElement.getSymbolName()/].setIsOrdered(true);
-[/if]
-[if (not multiplicityElement.isUnique)]
+[/if][if (not multiplicityElement.isUnique)]
 [multiplicityElement.getSymbolName()/].setIsUnique(false);
-[/if]
-[/template]
+[/if][/template]
 
 [template public emitOperation(iteration : Iteration)]
-Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(); // [iteration.getMoniker()/]
-[if (iteration.ownedTemplateSignature->notEmpty())]
-[emitTemplateSignature(iteration.ownedTemplateSignature)/]
-[iteration.getSymbolName()/].setOwnedTemplateSignature([iteration.ownedTemplateSignature.getSymbolName()/]);
-[/if]
-[iteration.getSymbolName()/].setName("[iteration.name/]");
-[iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.getMoniker()/]
-[emitMultiplicityElement(iteration)/]
-[for (parameter : Parameter | iteration.ownedIterator)]
-[emitIterator(parameter)/]
-[/for]
-[for (parameter : Parameter | iteration.ownedAccumulator)]
-[emitAccumulator(parameter)/]
-[/for]
-[for (parameter : Parameter | iteration.ownedParameter)]
-[emitParameter(parameter)/]
-[/for]
-[if (iteration.precedence->notEmpty())]
+[emitMultiplicityElement(iteration)/][for (parameter : Parameter | iteration.ownedIterator)]
+[emitIterator(parameter)/][/for][for (parameter : Parameter | iteration.ownedAccumulator)]
+[emitAccumulator(parameter)/][/for][for (parameter : Parameter | iteration.ownedParameter)]
+[emitParameter(parameter)/][/for][if (iteration.precedence->notEmpty())]
 [iteration.getSymbolName()/].setPrecedence([iteration.precedence.getSymbolName()/]);
-[/if]
-[if (iteration.implementationClass->notEmpty())]
-[iteration.getSymbolName()/].setImplementationClass("[iteration.implementationClass/]");
-[iteration.getSymbolName()/].setImplementation([iteration.implementationClass/].INSTANCE);
-[/if]
+[/if][if (iteration.ownedComment->notEmpty())]
 [iteration.emitComments()/]
-[iteration.eContainer().getSymbolName()/].getOwnedOperations().add([iteration.getSymbolName()/]);
+[/if][iteration.eContainer().getSymbolName()/].getOwnedOperations().add([iteration.getSymbolName()/]);
 [/template]
 
 [template public emitOperation(operation : Operation)]
-Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(); // [operation.getMoniker()/]
-[if (operation.ownedTemplateSignature->notEmpty())]
-[emitTemplateSignature(operation.ownedTemplateSignature)/]
-[operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
-[/if]
-[operation.getSymbolName()/].setName("[operation.name/]");
-[operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);  // [operation.type.getMoniker()/]
-[emitMultiplicityElement(operation)/]
-[for (parameter : Parameter | operation.ownedParameter)]
-[emitParameter(parameter)/]
-[/for]
-[if (operation.isStatic)]
+[emitMultiplicityElement(operation)/][if (operation.isStatic)]
 [operation.getSymbolName()/].setIsStatic(true);
-[/if]
-[if (operation.precedence->notEmpty())]
+[/if][if (operation.precedence->notEmpty())]
 [operation.getSymbolName()/].setPrecedence([operation.precedence.getSymbolName()/]);
-[/if]
-[if (operation.implementationClass->notEmpty())]
-[operation.getSymbolName()/].setImplementationClass("[operation.implementationClass/]");
-[operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
-[/if]
+[/if][if (operation.ownedComment->notEmpty())]
 [operation.emitComments()/]
-[operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
+[/if][operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
 [/template]
 
 [template public emitPackage(pkg : Package)]
 //
-// [pkg.getSignature()/] [pkg.getMoniker()/]
+// [pkg.getSignature()/]
 //
-[pkg.getSymbolName()/].setName("[pkg.name/]");
-[if (pkg.nsPrefix <> null)]
-[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
-[/if]
-[if (pkg.nsURI <> null)]
-[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
-[/if]
 [for (ownedType : Type | pkg.ownedType->sortedBy(getMoniker()))]
 [emitType(ownedType)/]
 [/for]
 [for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
 [emitPackage(nestedPackage)/]
 [/for]
+[if (pkg.ownedComment->notEmpty())]
 [pkg.emitComments()/]
+[/if]
 [pkg.eContainer().getSymbolName()/].getNestedPackages().add([pkg.getSymbolName()/]);
 [/template]
 
 [template public emitParameter(parameter : Parameter)]
-Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(); // [parameter.getMoniker()/]
-[parameter.getSymbolName()/].setName("[parameter.name/]");
-[parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.getMoniker()/]
-[emitMultiplicityElement(parameter)/]
-[parameter.emitComments()/]
-[parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
-[/template]
+[emitMultiplicityElement(parameter)/][if (parameter.ownedComment->notEmpty())]
+[parameter.emitComments()/][/if][/template]
 
 [template public emitPrecedence(precedence : Precedence)]
-[precedence.getSymbolName()/].setName("[precedence.name/]");
-[precedence.getSymbolName()/].setAssociativity(AssociativityKind.[precedence.associativity.toString().toUpper()/]);
+[if (precedence.ownedComment->notEmpty())]
 [precedence.emitComments()/]
-[precedence.eContainer().getSymbolName()/].getOwnedPrecedences().add([precedence.getSymbolName()/]);
+[/if]
+ownedPrecedences.add([precedence.getSymbolName()/]);
 [/template]
 
 [template public emitProperty(property : Property)]
-[property.getSymbolName()/].setName("[property.name/]");
-[property.getSymbolName()/].setType([property.type.getSymbolName()/]);  // [property.type.getMoniker()/]
-[emitMultiplicityElement(property)/]
-[if (property.isComposite)]
+[emitMultiplicityElement(property)/][if (property.isComposite)]
 [property.getSymbolName()/].setIsComposite(true);
-[/if]
-[if (property.isDerived)]
+[/if][if (property.isDerived)]
 [property.getSymbolName()/].setIsDerived(true);
-[/if]
-[if (property.isID)]
+[/if][if (property.isID)]
 [property.getSymbolName()/].setIsID(true);
-[/if]
-[if (property.implicit)]
+[/if][if (property.implicit)]
 [property.getSymbolName()/].setImplicit(true);
-[/if]
-[if (property.isReadOnly)]
+[/if][if (property.isReadOnly)]
 [property.getSymbolName()/].setIsReadOnly(true);
-[/if]
-[if (property.isResolveProxies)]
+[/if][if (property.isResolveProxies)]
 [property.getSymbolName()/].setIsResolveProxies(true);
-[/if]
-[if (property.isStatic)]
+[/if][if (property.isStatic)]
 [property.getSymbolName()/].setIsStatic(true);
-[/if]
-[if (property.isTransient)]
+[/if][if (property.isTransient)]
 [property.getSymbolName()/].setIsTransient(true);
-[/if]
-[if (property.isUnsettable)]
+[/if][if (property.isUnsettable)]
 [property.getSymbolName()/].setIsUnsettable(true);
-[/if]
-[if (property.isVolatile)]
+[/if][if (property.isVolatile)]
 [property.getSymbolName()/].setIsVolatile(true);
-[/if]
-[if (property.opposite->notEmpty())]
+[/if][if (property.opposite->notEmpty())]
 [property.getSymbolName()/].setOpposite([property.opposite.getSymbolName()/]);
-[/if]
-[if (property.implementationClass->notEmpty())]
-[property.getSymbolName()/].setImplementationClass("[property.implementationClass/]");
-[property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
-[/if]
+[/if][if (property.ownedComment->notEmpty())]
 [property.emitComments()/]
-[property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
-[/template]
-
-[template public emitTemplateBinding(templateBinding : TemplateBinding)]
-TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateBinding();
-[templateBinding.getSymbolName()/].setSignature([templateBinding.signature.getSymbolName()/]);
-[for (templateParameterSubstitution : TemplateParameterSubstitution | templateBinding.parameterSubstitution)]
-{
-	TemplateParameterSubstitution [templateParameterSubstitution.getSymbolName()/] = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-	[templateParameterSubstitution.getSymbolName()/].setFormal([templateParameterSubstitution.formal.getSymbolName()/]);	
-	[templateParameterSubstitution.getSymbolName()/].setActual([templateParameterSubstitution.actual.getSymbolName()/]);	
-	[templateBinding.getSymbolName()/].getParameterSubstitutions().add([templateParameterSubstitution.getSymbolName()/]);
-}[/for]
-[/template]
-
-[template public emitTemplateParameter(templateParameter : TemplateParameter)]
-[/template]
-
-[template public emitTemplateParameter(templateParameter : TypeTemplateParameter)]
-[templateParameter.ownedParameteredElement.getSymbolName()/].setName("[templateParameter.ownedParameteredElement.oclAsType(NamedElement).name/]");
-[templateParameter.getSymbolName()/].setOwnedParameteredElement([templateParameter.ownedParameteredElement.getSymbolName()/]);
-[templateParameter.eContainer().getSymbolName()/].getOwnedParameters().add([templateParameter.getSymbolName()/]);
-[/template]
-
-[template public emitTemplateSignature(templateSignature : TemplateSignature)]
-[for (templateParameter : TemplateParameter | templateSignature.ownedParameter)]
-[emitTemplateParameter(templateParameter)/]
-[/for]
+[/if][property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
 [/template]
 
 [template public emitType(type : Type)]
-{
-}
 [/template]
 
 [template public emitType(type : Class)]
 //
-// [type.getSignature()/] [type.getMoniker()/]
+// [type.getSignature()/]
 //
-[type.getSymbolName()/].setName("[type.name/]");
 [if (type.oclIsKindOf(ClassifierType))]
 [type.getSymbolName()/].setInstanceType([type.oclAsType(ClassifierType).instanceType.getSymbolName()/]);
 [/if]
@@ -307,66 +229,144 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 	[type.getSymbolName()/].getParameterTypes().add([parameterType.getSymbolName()/]);
 [/for]
 [type.getSymbolName()/].setResultType([lambdaType.resultType.getSymbolName()/]);
-[/let]
-[/if]
-[if (type.ownedTemplateSignature->notEmpty())]
-[emitTemplateSignature(type.ownedTemplateSignature)/]
-[type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
-[/if]
+[/let][/if]
 [if (type.unspecializedElement->notEmpty())]
 [type.getSymbolName()/].setUnspecializedElement([type.unspecializedElement.getSymbolName()/]);
 [/if]
 [if (type.templateBinding->notEmpty())]
-{
 [for (templateBinding : TemplateBinding | type.templateBinding)]
-	[emitTemplateBinding(templateBinding)/]
-	[type.getSymbolName()/].getTemplateBindings().add([templateBinding.getSymbolName()/]);
+[type.getSymbolName()/].getTemplateBindings().add([templateBinding.getSymbolName()/]);
 [/for]
-}
 [/if]
 [let superClasses : OrderedSet(Type) = type.superClass->select(_package.getRootPackage() = type._package.getRootPackage())]
 [if (superClasses->notEmpty())]
 [for (superClass : Type | superClasses)]
-[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.getMoniker()/]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);
 [/for]
 [elseif (not type.oclIsKindOf(AnyType))]
 [type.getSymbolName()/].getSuperClasses().add(standardLibrary.getOclElementType());
 [/if]
 [/let]
 [for (property : Property | type.ownedAttribute->sortedBy(name))]
-{ // [property.getSignature()/]
-	[emitProperty(property)/]
-}
+//
+// [property.getSignature()/]
+//
+[emitProperty(property)/]
 [/for]
 [for (operation : Operation | type.ownedOperation->sortedBy(name)->select(not isEcoreConstraint()))]
-{	// [operation.getSignature()/]
-	[emitOperation(operation)/]
-}
+//
+// [operation.getSignature()/]
+//
+[emitOperation(operation)/]
 [/for]
+[if (type.ownedComment->notEmpty())]
 [type.emitComments()/]
-[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]); // [type.getMoniker()/]
+[/if]
+[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
 [/template]
 
 [template public emitType(type : Enumeration)]
 //
-// [type.getSignature()/] [type.getMoniker()/]
+// [type.getSignature()/]
 //
-[type.getSymbolName()/].setName("[type.name/]");
 [for (superClass : Type | type.superClass)]
 [if (type._package.getRootPackage() = superClass._package.getRootPackage())]
-[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.getMoniker()/]
-[/if]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);[/if]
 [/for]
 {
 [for (literal : EnumerationLiteral | type.ownedLiteral)]
-	EnumerationLiteral [literal.getSymbolName()/] = PivotFactory.eINSTANCE.createEnumerationLiteral(); // [literal.getSignature()/] [literal.getMoniker()/]
-	[literal.getSymbolName()/].setName("[literal.name/]");
 	[type.getSymbolName()/].getOwnedLiterals().add([literal.getSymbolName()/]);
 [/for]
 }
+[if (type.ownedComment->notEmpty())]
 [type.emitComments()/]
-[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]); // [type.getMoniker()/]
+[/if]
+[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
 [/template]
+
+[template public partialName(element : Comment)] 
+[element._body.substring(1, 12.min(element._body.size())).javaName() /]
+[/template]
+
+[template public partialName(element : LambdaType)] 
+[element.name.javaName() + '_' + element.contextType.partialName()/]
+[/template]
+
+[template public partialName(element : OclAny)] 
+['xyzzy'+element.eClass().name /]
+[/template]
+
+[template public partialName(element : Operation)] 
+[element.owningType.partialName()+'_'+element.name.javaName() /]
+[/template]
+
+[template public partialName(element : Package)] 
+[element.name.javaName() /]
+[/template]
+
+[template public partialName(element : Parameter)] 
+[element.eContainer().partialName()+'_'+element.name.javaName()/]
+[/template]
+
+[template public partialName(element : Precedence)] 
+[element.name.javaName() /]
+[/template]
+
+[template public partialName(element : Property)] 
+[element.owningType.partialName()+'_'+element.name.javaName() /]
+[/template]
+
+[template public partialName(element : TemplateBinding)] 
+[element.boundElement.partialName() /]
+[/template]
+
+[template public partialName(element : TemplateParameter)] 
+[if element.signature.template <> null]
+[element.signature.template.partialName()/][else]
+['['+element.signature.partialName()+']'/][/if]
+[/template]
+
+[template public partialName(element : TemplateParameterSubstitution)] 
+[element.templateBinding.boundElement.partialName() /]
+[/template]
+
+[template public partialName(element : TemplateSignature)] 
+[element.template.partialName() /]
+[/template]
+
+[template public partialName(element : Type)] 
+[if element.templateParameter <> null]
+[element.templateParameter.simpleName()+'_'+element.name.javaName()/][elseif element.templateBinding->notEmpty()]
+[element.templateBinding.parameterSubstitution->iterate(tps; acc : String = element.name.javaName() | acc +'_'+tps.actual.simpleName())/][else]
+[element.name.javaName()/][/if]
+[/template]
+
+[template public simpleName(element : OclAny)] 
+['xyzzy'+element.eClass().name /]
+[/template]
+
+[template public simpleName(element : Operation)] 
+[element.owningType.simpleName()+'_'+element.name.javaName() /]
+[/template]
+
+[template public simpleName(element : TemplateParameter)] 
+[if element.signature.template <> null]
+[element.signature.template.simpleName()/][else]
+['['+element.signature.simpleName()+']'/][/if]
+[/template]
+
+[template public simpleName(element : TemplateParameterSubstitution)] 
+[element.templateBinding.boundElement.simpleName() /]
+[/template]
+
+[template public simpleName(element : Type)] 
+[if element.templateParameter <> null]
+[element.templateParameter.simpleName()+'_'+element.name.javaName()/][else]
+[element.name.javaName()/][/if]
+[/template]
+
+[query public javaName(string : String) : String = 
+invoke('org.eclipse.ocl.examples.codegen.common.NameQueries', 'rawEncodeName(java.lang.String)', Sequence{string}) /]
 
 [query public javaString(aComment : Comment) : String = 
 invoke('org.eclipse.xtext.util.Strings', 'convertToJavaString(java.lang.String)', Sequence{aComment._body}) /]

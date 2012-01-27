@@ -49,7 +49,7 @@ public class NameQueries
 			Integer count = counters.get(prefix);
 			Integer newCount = count != null ? count+1 : 0;
 			counters.put(prefix, newCount);
-			symbol = prefix + newCount.toString();
+			symbol = count != null ? prefix + "_" + newCount.toString() : prefix;
 			definedSymbols.put(elem, symbol);
 		}
 		return symbol;
