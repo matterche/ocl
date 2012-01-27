@@ -16,6 +16,7 @@
  */
 package org.eclipse.ocl.examples.domain.values.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -279,32 +280,40 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return result;
     }
 
-/*	public CollectionValue selectAsType(Type elementType) throws InvalidValueException {
+	public CollectionValue selectByKind(DomainType requiredElementType) throws InvalidValueException {
+    	DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		boolean changedContents = false;
 		Collection<Value> newElements = new ArrayList<Value>();
         for (Value element : elements) {
-        	Value newElement = element.conformingTo(elementType);
-        	if (newElement.isInvalid()) {
-        		return (InvalidValue)newElement;
-        	}
-        	newElements.add(element);
-        	if (newElement != element) {
+			if (element.isNull()) {
         		changedContents = true;
-        	}
+			}
+			else {
+				DomainType elementType = element.getType();
+				if (elementType.conformsTo(standardLibrary, requiredElementType)) {
+	        		newElements.add(element);
+	        	}
+	        	else {
+	        		changedContents = true;
+	        	}
+			}
         }
         if (changedContents) {
-        	return valueFactory.createCollectionValue(getKind(), newElements);
+        	DomainCollectionType collectionType = getType();
+        	return valueFactory.createCollectionValue(collectionType.isOrdered(), collectionType.isUnique(), newElements);
         }
         else {
         	return this;
         }
 	}
 
-	public CollectionValue selectByKind(Type elementType) throws InvalidValueException {
+	public CollectionValue selectByType(DomainType requiredElementType) throws InvalidValueException {
+    	DomainStandardLibrary standardLibrary = valueFactory.getStandardLibrary();
 		boolean changedContents = false;
 		Collection<Value> newElements = new ArrayList<Value>();
         for (Value element : elements) {
-        	if (element.conformsTo(elementType)) {
+			DomainType elementType = element.getType();
+			if (elementType.isEqualTo(standardLibrary, requiredElementType)) {
         		newElements.add(element);
         	}
         	else {
@@ -312,12 +321,13 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         	}
         }
         if (changedContents) {
-        	return valueFactory.createCollectionValue(getKind(), newElements);
+        	DomainCollectionType collectionType = getType();
+        	return valueFactory.createCollectionValue(collectionType.isOrdered(), collectionType.isUnique(), newElements);
         }
         else {
         	return this;
         }
-	} */
+	}
 
 	public Value sum(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation binaryOperation, Value zero) throws InvalidValueException {
 		Value result = zero;

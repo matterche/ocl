@@ -1307,6 +1307,78 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		// FIXME Test-not-implemented
 	}
 
+	public void testCollectionSelectByKind() {
+		assertQueryResults(null, "Bag{4,4}", "Bag{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertQueryResults(null, "Sequence{4,4}", "Sequence{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test', null}->selectByKind(Integer)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{}->selectByKind(Integer)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{}->selectByKind(Integer)");
+		assertQueryResults(null, "Sequence{}", "Sequence{}->selectByKind(Integer)");
+		assertQueryResults(null, "Set{}", "Set{}->selectByKind(Integer)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{null}->selectByKind(Integer)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{null}->selectByKind(Integer)");
+		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByKind(Integer)");
+		assertQueryResults(null, "Set{}", "Set{null}->selectByKind(Integer)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{null}->selectByKind(OclVoid)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{null}->selectByKind(OclVoid)");
+		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByKind(OclVoid)");
+		assertQueryResults(null, "Set{}", "Set{null}->selectByKind(OclVoid)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{null}->selectByKind(OclInvalid)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{null}->selectByKind(OclInvalid)");
+		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByKind(OclInvalid)");
+		assertQueryResults(null, "Set{}", "Set{null}->selectByKind(OclInvalid)");
+		//
+		assertQueryResults(null, "Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)");
+		//
+		assertQueryResults(null, "Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByKind(String).toUpper()");
+		assertQueryEquals(null, 9.0, "Set{4, 4, 5.0, 'test'}->selectByKind(Real)->sum()");
+		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByKind(UnlimitedNatural)->sum()");
+	}
+
+	public void testCollectionSelectByType() {
+		assertQueryResults(null, "Bag{}", "Bag{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "Sequence{}", "Sequence{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		assertQueryResults(null, "Set{}", "Set{4, 4, 5.0, 'test', null}->selectByType(Integer)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{}->selectByType(Integer)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{}->selectByType(Integer)");
+		assertQueryResults(null, "Sequence{}", "Sequence{}->selectByType(Integer)");
+		assertQueryResults(null, "Set{}", "Set{}->selectByType(Integer)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{null}->selectByType(Integer)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{null}->selectByType(Integer)");
+		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByType(Integer)");
+		assertQueryResults(null, "Set{}", "Set{null}->selectByType(Integer)");
+		//
+		assertQueryResults(null, "Bag{null}", "Bag{null}->selectByType(OclVoid)");
+		assertQueryResults(null, "OrderedSet{null}", "OrderedSet{null}->selectByType(OclVoid)");
+		assertQueryResults(null, "Sequence{null}", "Sequence{null}->selectByType(OclVoid)");
+		assertQueryResults(null, "Set{null}", "Set{null}->selectByType(OclVoid)");
+		//
+		assertQueryResults(null, "Bag{}", "Bag{null}->selectByType(OclInvalid)");
+		assertQueryResults(null, "OrderedSet{}", "OrderedSet{null}->selectByType(OclInvalid)");
+		assertQueryResults(null, "Sequence{}", "Sequence{null}->selectByType(OclInvalid)");
+		assertQueryResults(null, "Set{}", "Set{null}->selectByType(OclInvalid)");
+		//
+		assertQueryResults(null, "Bag{4, 4}", "Bag{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "OrderedSet{4}", "OrderedSet{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "Sequence{4, 4}", "Sequence{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		assertQueryResults(null, "Set{4}", "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)");
+		//
+		assertQueryResults(null, "Sequence{'TEST'}", "Sequence{4, 4, 5.0, 'test'}->selectByType(String).toUpper()");
+		assertQueryEquals(null, 5.0, "Set{4, 4, 5.0, 'test'}->selectByType(Real)->sum()");
+		assertQueryEquals(null, 4, "Set{4, 4, 5.0, 'test'}->selectByType(UnlimitedNatural)->sum()");
+	}
+
 	public void testCollectionSize() {
 		assertQueryEquals(null, 4, "Sequence{4, 4, 5, 'test'}->size()");
 		assertQueryEquals(null, 4, "Bag{4, 4, 5, 'test'}->size()");

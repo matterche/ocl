@@ -160,6 +160,8 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	The intersection of oclText[self] and s; the set of all elements that are in both oclText[self] and s.
 	**/
 	operation intersection(s : UniqueCollection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation selectByKind<TT>(type : AnyClassifier<TT>) : Bag<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : AnyClassifier<TT>) : Bag<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The union of oclText[self] and bag; the bag of all elements that are in oclText[self] and all elements that are in bag.
 	**/
@@ -393,6 +395,8 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	The cartesian product operation of oclText[self] and c2.
 	**/
 	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>> => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
+	operation selectByKind<TT>(type : AnyClassifier<TT>) : Collection<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : AnyClassifier<TT>) : Collection<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The number of elements in the collection oclText[self].
 	**/
@@ -862,6 +866,8 @@ type OrderedSet<T> : OrderedSetType conformsTo Sequence<T>,UniqueCollection<T> {
 	The ordered set of elements with same elements but with the opposite order.
 	**/
 	operation reverse() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	operation selectByKind<TT>(type : AnyClassifier<TT>) : OrderedSet<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : AnyClassifier<TT>) : OrderedSet<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-set of oclText[self] starting at number lower, up to and including element number upper.
 	**/
@@ -1048,6 +1054,8 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	The sequence containing the same elements but with the opposite order.
 	**/
 	operation reverse() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	operation selectByKind<TT>(type : AnyClassifier<TT>) : Sequence<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : AnyClassifier<TT>) : Sequence<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-sequence of oclText[self] starting at number lower, up to and including element number upper.
 	**/
@@ -1101,6 +1109,8 @@ type Set<T> : SetType conformsTo Bag<T>,UniqueCollection<T> {
 	The intersection of oclText[self] and s (i.e., the set of all elements that are in both oclText[self] and s).
 	**/
 	operation intersection(s : Collection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation selectByKind<TT>(type : AnyClassifier<TT>) : Set<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType<TT>(type : AnyClassifier<TT>) : Set<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The set consisting of all elements in oclText[self] and all elements in s.
 	**/

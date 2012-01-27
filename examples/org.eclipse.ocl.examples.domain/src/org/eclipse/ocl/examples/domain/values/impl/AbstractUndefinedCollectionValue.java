@@ -183,13 +183,13 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return toInvalidValue();
 	}
 
-/*	public CollectionValue selectAsType(Type elementType) throws InvalidValueException {
+	public CollectionValue selectByKind(DomainType elementType) throws InvalidValueException {
     	return toInvalidValue();
 	}
 
-	public CollectionValue selectByKind(Type elementType) throws InvalidValueException {
+	public CollectionValue selectByType(DomainType elementType) throws InvalidValueException {
     	return toInvalidValue();
-	} */
+	}
 
 	public IntegerValue size() throws InvalidValueException {
     	return toInvalidValue();

@@ -55,8 +55,8 @@ public interface CollectionValue extends Value, Iterable<Value>
 	Value maxMin(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation binaryOperation) throws InvalidValueException;
 	BooleanValue notEmpty() throws InvalidValueException;
 	Set<TupleValue> product(CollectionValue c, DomainTupleType tupleType) throws InvalidValueException;   	
-//	CollectionValue selectAsType(Type elementType) throws InvalidValueException;
-//	CollectionValue selectByKind(Type elementType) throws InvalidValueException;
+	CollectionValue selectByKind(DomainType typeValue) throws InvalidValueException;
+	CollectionValue selectByType(DomainType typeValue) throws InvalidValueException;
 	IntegerValue size() throws InvalidValueException;
 	SequenceValue sort(Comparator<Value> comparator) throws InvalidValueException;
 	Value sum(DomainEvaluator evaluator, DomainType returnType, LibraryBinaryOperation binaryOperation, Value zero) throws InvalidValueException;
