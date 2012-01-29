@@ -1587,7 +1587,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 					}
 				}
 				if (pivotMetaModel == null) {
-					OclMetaModel metaModelResource = new OclMetaModel(this, stdlibPackage.getName(), stdlibPackage.getNsURI());	// FIXME duplication of TypeCaches.loadPivotMetaModel
+					OclMetaModel metaModelResource = new OclMetaModel(this, stdlibPackage.getName(), stdlibPackage.getNsPrefix(), stdlibPackage.getNsURI());	// FIXME duplication of TypeCaches.loadPivotMetaModel
 					pivotResourceSet.getResources().add(metaModelResource);
 					pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
 					addPackage(pivotMetaModel);
@@ -2096,6 +2096,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			opposite.setUpper(BigInteger.valueOf(-1));
 			return;
 		}
+		// If there is more than one opposite-less Property to the same type don't create an Ambiguity.
+		for (Property aThisProperty : thisType.getOwnedAttributes()) {
+			if ((aThisProperty != thisProperty) && (aThisProperty.getType() == thatType)) {	// FIXME conformsTo
+				return;
+			}
+		}
 		// If there is no implicit property with the implicit name, create one
 		//   result a pair of mutual opposites		
 		opposite = PivotFactory.eINSTANCE.createProperty();
@@ -2263,7 +2269,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				return;
 			}
 		}
-		OclMetaModel metaModelResource = new OclMetaModel(this, pivotLibrary.getName(), pivotLibrary.getNsURI());		// Standard meta-model
+		OclMetaModel metaModelResource = new OclMetaModel(this, pivotLibrary.getName(), pivotLibrary.getNsPrefix(), pivotLibrary.getNsURI());		// Standard meta-model
 		pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
 		addPackage(pivotMetaModel);
 	}

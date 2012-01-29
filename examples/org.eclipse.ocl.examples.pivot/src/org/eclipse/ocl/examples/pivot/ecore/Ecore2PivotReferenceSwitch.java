@@ -163,9 +163,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		if (oppositeProperty != null) {
 			pivotElement.setOpposite(oppositeProperty);
 		}
-		else if (eObject.eContainer() instanceof EClass) {		// Skip annotation references
-			converter.getMetaModelManager().installPropertyDeclaration(pivotElement);
-		}
+//		else if (eObject.eContainer() instanceof EClass) {		// Skip annotation references
+//			converter.getMetaModelManager().installPropertyDeclaration(pivotElement);
+//		}
 		return pivotElement;
 	}
 

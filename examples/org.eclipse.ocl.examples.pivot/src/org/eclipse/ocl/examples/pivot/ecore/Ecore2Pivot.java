@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
@@ -466,6 +468,16 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		for (EObject eObject : referencers) {
 			referencePass.doInPackageSwitch(eObject);
+		}
+		for (EObject eObject : referencers) {
+			if (eObject instanceof EReference) {
+				Property pivotElement = getCreated(Property.class, eObject);		
+				Property oppositeProperty = pivotElement.getOpposite();
+				if ((oppositeProperty == null) && (eObject.eContainer() instanceof EClass)) {		// Skip annotation references
+					metaModelManager.installPropertyDeclaration(pivotElement);
+				}
+				
+			}
 		}
 		if (errors != null) {
 			pivotResource.getErrors().addAll(errors);
