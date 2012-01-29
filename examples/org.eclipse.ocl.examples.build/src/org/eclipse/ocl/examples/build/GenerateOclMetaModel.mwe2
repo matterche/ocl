@@ -30,13 +30,18 @@ var projectName = "org.eclipse.ocl.examples.pivot"
  */
 Workflow {
 	bean = ResourceSetImpl : resourceSet {}
-    bean = StandaloneSetup { resourceSet = resourceSet
-    	platformUri = ".."
-    }
+    bean = ProjectMapSetup { resourceSet = resourceSet }
+    bean = UMLStandaloneSetup { resourceSet = resourceSet }
+    bean = OCLStandaloneSetup {}
+    bean = UMLGenModelSetup { resourceSet = resourceSet }
+//    bean = StandaloneSetup { resourceSet = resourceSet
+//    	platformUri = ".."
+ //   }
     component = OclMetaModelCodeGenerator { resourceSet = resourceSet
-    	libraryFile = "/${projectName}/model/Pivot.ecore"
-    	javaFolder = "/${projectName}/emf-gen"
-    	javaPackageName = "${projectName}.model"
+    	projectName = "${projectName}"
+    	libraryFile = "model/Pivot.ecore"
+    	javaFolder = "emf-gen"
+    	javaPackageName = "${projectName}"
     	javaClassName = "OclMetaModel"
     }
 }

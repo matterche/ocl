@@ -1,9 +1,10 @@
 [comment encoding = UTF-8 /]
-[module generateOCLstdlib('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
-[import generateOclCommon/]
+[module org::eclipse::ocl::examples::build::acceleo::generateOCLstdlib('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
+[import org::eclipse::ocl::examples::build::acceleo::generateOclCommon/]
 
 [template public generate(pkg : Package, javaPackage : String, javaClass : String, sourceFile : String, uri : String) ? (pkg.eContainer() = null)]
 [comment @main /]
+[let allEnumerations : Sequence(Enumeration) = pkg.eAllContents(Enumeration)]
 [file (javaClass + '.java', false, 'UTF-8')]
 /**
  * <copyright>
@@ -33,16 +34,13 @@ package	[javaPackage/];
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.uml2.common.util.SubsetSupersetEObjectEList;
 
 /**
  * This is the [uri/] Standard Library
@@ -56,8 +54,8 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectEList;
  * to locate a library type when its default Standard Library URI is the same
  * as this Standard Library.
  */
-@SuppressWarnings("nls")
-public class [javaClass/] extends AbstractPivotModel
+@SuppressWarnings({"nls", "unused"})
+public class [javaClass/] extends XMIResourceImpl
 {
 	/**
 	 *	The static package-of-types pivot model of the Standard Library.
@@ -69,8 +67,6 @@ public class [javaClass/] extends AbstractPivotModel
 	 */
 	public static final String STDLIB_URI = "[uri/]";
 
-	[pkg.defineConstants()/]
-
 	/**
 	 * Return the default OCL standard Library. 
 	 *  This static definition auto-generated from [sourceFile/]
@@ -78,7 +74,8 @@ public class [javaClass/] extends AbstractPivotModel
 	 */
 	public static OCLstdlib getDefault() {
 		if (INSTANCE == null) {
-			Library library = create("[pkg.name/]", "[pkg.nsPrefix/]", "[pkg.nsURI/]");
+			Contents contents = new Contents();
+			Library library = contents.create("[pkg.name/]", "[pkg.nsPrefix/]", "[pkg.nsURI/]");
 			INSTANCE = new OCLstdlib(STDLIB_URI, library);
 		}
 		return INSTANCE;
@@ -121,56 +118,91 @@ public class [javaClass/] extends AbstractPivotModel
 	}
 	
 	/**
+	 *	Construct a copy of the OCL Standard Library with specified resource URI,
+	 *  and package name, prefix and namespace URI.
+	 */
+	public static [javaClass/] create(String uri, String name, String nsPrefix, String nsURI) {
+		Contents contents = new Contents();
+		Library library = contents.create(name, nsPrefix, nsURI);
+		return new [javaClass/](uri, library);
+	}
+	
+	/**
 	 *	Construct an OCL Standard Library with specified resource URI and library content.
 	 */
 	public [javaClass/](String uri, Library library) {
 		super(URI.createURI(uri));
 		getContents().add(library);
 	}
-	
-	/**
-	 *	Construct a copy of the OCL Standard Library with specified resource URI,
-	 *  and package name, prefix and namespace URI.
-	 */
-	public static [javaClass/] create(String uri, String name, String nsPrefix, String nsURI) {
-		@SuppressWarnings("serial")
-		EcoreUtil.Copier copier = new EcoreUtil.Copier(true, false)
-		{
-			@Override
-			protected void copyReference(EReference eReference, EObject eObject, EObject copyEObject) {
-				Object eGet = eObject.eGet(eReference);
-				if (eGet instanceof SubsetSupersetEObjectEList) {
-					if (eReference == PivotPackage.Literals.TEMPLATE_SIGNATURE__PARAMETER) {
-						return;	// Avoid doubling up on TEMPLATE_SIGNATURE__OWNED_PARAMETER
-					}
-					System.out.println(eReference.getContainerClass().getName() + "::" + eReference.getName());
-				}
-				super.copyReference(eReference, eObject, copyEObject);
-			}			
-		};
-		Library library = (Library) copier.copy(getDefault().getContents().get(0));
-		copier.copyReferences();
-		library.setName(name);
-		library.setNsPrefix(nsPrefix);
-		library.setNsURI(nsURI);
-		return new [javaClass/](uri, library);
-	}
 
-	private static Library create(String name, String nsPrefix, String nsURI)
+	protected static class Contents extends AbstractContents
 	{
-		Library [pkg.getPrefixedSymbolName('library')/] = createLibrary("[pkg.name/]", nsPrefix, nsURI);
-		List<Precedence> ownedPrecedences = library.getOwnedPrecedences();
-	[for (precedence : Precedence | pkg.ownedPrecedence)]
-		[emitPrecedence(precedence)/]
-	[/for]
-	[for (ownedType : Type | pkg.ownedType->sortedBy(getMoniker()))]
-		[emitType(ownedType)/]
-	[/for]
-	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
-		[emitPackage(nestedPackage)/]
-	[/for]
-		return [pkg.getSymbolName()/];
+		protected Library [pkg.getPrefixedSymbolName('library')/];
+
+		protected Library create(String name, String nsPrefix, String nsURI)
+		{
+			[pkg.getPrefixedSymbolName('library')/] = createLibrary("[pkg.name/]", nsPrefix, nsURI);
+			installPackages();
+			installOclTypes();
+			installPrimitiveTypes();
+[if (allEnumerations->notEmpty())]
+			installEnumerations();
+[/if]
+			installParameterTypes();
+			installCollectionTypes();
+			installClassifierTypes();
+			installLambdaTypes();
+			installTupleTypes();
+			installOperations();
+			installIterations();
+			installProperties();
+			installTemplateSignatures();
+			installTemplateBindings();
+			installPrecedences();
+			installComments();
+			return [pkg.getSymbolName()/];
+		}
+	
+		[pkg.definePackages()/]
+		[pkg.declareOclTypes()/]
+		[pkg.declarePrimitiveTypes()/]
+[if (allEnumerations->notEmpty())]
+		[pkg.declareEnumerations()/]
+[/if]
+		[pkg.declareParameterTypes()/]
+		[pkg.declareCollectionTypes()/]
+		[pkg.declareClassifierTypes()/]
+		[pkg.declareTupleTypes()/]
+		[pkg.defineOclTypes()/]
+		[pkg.definePrimitiveTypes()/]
+[if (allEnumerations->notEmpty())]
+		[pkg.defineEnumerations()/]
+[/if]
+		[pkg.defineParameterTypes()/]
+		[pkg.defineCollectionTypes()/]
+		[pkg.defineClassifierTypes()/]
+		[pkg.defineTupleTypes()/]
+		[pkg.defineLambdaTypes()/]	
+		[pkg.defineOperations()/]	
+		[pkg.defineIterations()/]	
+		[pkg.defineProperties()/]
+		[pkg.defineTemplateSignatures()/]
+		[pkg.defineTemplateBindings()/]
+		[pkg.definePrecedences()/]
+		[pkg.defineComments()/]
 	}
 }
 [/file]
+[/let]
+[/template]
+
+[template public defineConstantType(type : DataType)]
+[if (type.name = 'Boolean')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._Boolean;[elseif (type.name = 'Classifier')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._Classifier;[elseif (type.name = 'Integer')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._Integer;[elseif (type.name = 'Real')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._Real;[elseif (type.name = 'String')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._String;[elseif (type.name = 'UnlimitedNatural')]
+protected final PrimitiveType [type.getPrefixedSymbolName('_'+type.partialName())/] = OCLstdlib._UnlimitedNatural;[else]
+protected final DataType [type.getPrefixedSymbolName('_'+type.partialName())/] = createDataType("[type.name/]");[/if]
 [/template]

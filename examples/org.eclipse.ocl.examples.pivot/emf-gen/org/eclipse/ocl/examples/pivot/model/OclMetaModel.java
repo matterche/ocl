@@ -29,11 +29,13 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -41,4215 +43,1911 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * auto-generated from model/Pivot.ecore.
  * It facilitates efficient model loading without the overheads of model reading.
  */
-@SuppressWarnings("nls")
-public class OclMetaModel extends XMLResourceImpl
+@SuppressWarnings({"nls", "unused"})
+public class OclMetaModel extends XMIResourceImpl
 {
 	/**
 	 *	The URI of this Standard Library.
 	 */
 	public static final String PIVOT_URI = "http://www.eclipse.org/ocl/3.1.0/Pivot";
 
-	public OclMetaModel(PivotStandardLibrary standardLibrary, String name, String nsURI) {
+	public OclMetaModel(PivotStandardLibrary standardLibrary, String name, String nsPrefix, String nsURI) {
 		super(URI.createURI(PIVOT_URI));
-		Package metaModel = create(standardLibrary);
+		Contents contents = new Contents(standardLibrary);
+		Package metaModel = contents.create(name != null ? name : "pivot", nsPrefix != null ? nsPrefix : "pivot", nsURI != null ? nsURI : "http://www.eclipse.org/ocl/3.1.0/Pivot");
 		getContents().add(metaModel);
-		if (name != null) {
-			metaModel.setName(name);
-		}
-		if (nsURI != null) {
-			metaModel.setNsURI(nsURI);
-		}
 	}
-	
-	/**
-	 *	Create and return a pivot model of the Pivot Model.
-	 */
-	public static Package create(PivotStandardLibrary standardLibrary)
+
+	protected static class Contents extends AbstractContents
 	{
-		Package symbol_0 = PivotFactory.eINSTANCE.createPackage(); // http://www.eclipse.org/ocl/3.1.0/Pivot
-		Class symbol_1 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-		Property symbol_2 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!NamedElement // Pivot.ecore::pivot::Annotation::NamedElement http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!NamedElement
-		Property symbol_3 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent // Pivot.ecore::pivot::Annotation::ownedContent http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent
-		Property symbol_4 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail // Pivot.ecore::pivot::Annotation::ownedDetail http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail
-		Property symbol_5 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference // Pivot.ecore::pivot::Annotation::reference http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference
-		
-		Class symbol_6 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AnyType
-		
-		Class symbol_7 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass
-		Property symbol_8 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!AssociationClassCallExp // Pivot.ecore::pivot::AssociationClass::AssociationClassCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!AssociationClassCallExp
-		Property symbol_9 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute // Pivot.ecore::pivot::AssociationClass::unownedAttribute http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute
-		
-		Class symbol_10 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp
-		Property symbol_11 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp!referredAssociationClass // Pivot.ecore::pivot::AssociationClassCallExp::referredAssociationClass http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp!referredAssociationClass
-		
-		Enumeration symbol_12 = PivotFactory.eINSTANCE.createEnumeration(); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind
-		
-		Class symbol_13 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!BagType
-		
-		PrimitiveType symbol_14 = standardLibrary.getBooleanType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-		Class symbol_15 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!BooleanLiteralExp
-		Property symbol_16 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!BooleanLiteralExp!booleanSymbol // Pivot.ecore::pivot::BooleanLiteralExp::booleanSymbol http://www.eclipse.org/ocl/3.1.0/Pivot!BooleanLiteralExp!booleanSymbol
-		
-		Class symbol_17 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-		Property symbol_18 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!implicit // Pivot.ecore::pivot::CallExp::implicit http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!implicit
-		Property symbol_19 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!source // Pivot.ecore::pivot::CallExp::source http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp!source
-		
-		Class symbol_20 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction
-		Property symbol_21 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction!MessageExp // Pivot.ecore::pivot::CallOperationAction::MessageExp http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction!MessageExp
-		Property symbol_22 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction!operation // Pivot.ecore::pivot::CallOperationAction::operation http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction!operation
-		
-		Class symbol_23 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		Property symbol_24 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isAbstract // Pivot.ecore::pivot::Class::isAbstract http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isAbstract
-		Property symbol_25 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isInterface // Pivot.ecore::pivot::Class::isInterface http://www.eclipse.org/ocl/3.1.0/Pivot!Class!isInterface
-		
-		Class symbol_26 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType
-		Property symbol_27 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType!instanceType // Pivot.ecore::pivot::ClassifierType::instanceType http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType!instanceType
-		
-		Class symbol_28 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem
-		Property symbol_29 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem!item // Pivot.ecore::pivot::CollectionItem::item http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem!item
-		
-		Enumeration symbol_30 = PivotFactory.eINSTANCE.createEnumeration(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind
-		
-		Class symbol_31 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp
-		Property symbol_32 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!kind // Pivot.ecore::pivot::CollectionLiteralExp::kind http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!kind
-		Property symbol_33 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part // Pivot.ecore::pivot::CollectionLiteralExp::part http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part
-		
-		Class symbol_34 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-		Property symbol_35 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart!CollectionLiteralExp // Pivot.ecore::pivot::CollectionLiteralPart::CollectionLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart!CollectionLiteralExp
-		
-		Class symbol_36 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange
-		Property symbol_37 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!first // Pivot.ecore::pivot::CollectionRange::first http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!first
-		Property symbol_38 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!last // Pivot.ecore::pivot::CollectionRange::last http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange!last
-		
-		Class symbol_39 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		Property symbol_40 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType!elementType // Pivot.ecore::pivot::CollectionType::elementType http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType!elementType
-		
-		Class symbol_41 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment
-		Property symbol_42 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!Element // Pivot.ecore::pivot::Comment::Element http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!Element
-		Property symbol_43 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement // Pivot.ecore::pivot::Comment::annotatedElement http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement
-		Property symbol_44 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!body // Pivot.ecore::pivot::Comment::body http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!body
-		
-		Class symbol_45 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-		Property symbol_46 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement // Pivot.ecore::pivot::Constraint::constrainedElement http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement
-		Property symbol_47 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context // Pivot.ecore::pivot::Constraint::context http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context
-		Property symbol_48 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!isCallable // Pivot.ecore::pivot::Constraint::isCallable http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!isCallable
-		Property symbol_49 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!specification // Pivot.ecore::pivot::Constraint::specification http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!specification
-		Property symbol_50 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!stereotype // Pivot.ecore::pivot::Constraint::stereotype http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!stereotype
-		
-		Class symbol_51 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp
-		Property symbol_52 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp!part // Pivot.ecore::pivot::ConstructorExp::part http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp!part
-		
-		Class symbol_53 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-		Property symbol_54 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!ConstructorExp // Pivot.ecore::pivot::ConstructorPart::ConstructorExp http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!ConstructorExp
-		Property symbol_55 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!initExpression // Pivot.ecore::pivot::ConstructorPart::initExpression http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!initExpression
-		Property symbol_56 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!referredProperty // Pivot.ecore::pivot::ConstructorPart::referredProperty http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart!referredProperty
-		
-		Class symbol_57 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		Property symbol_58 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!behavioralType // Pivot.ecore::pivot::DataType::behavioralType http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!behavioralType
-		Property symbol_59 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!isSerializable // Pivot.ecore::pivot::DataType::isSerializable http://www.eclipse.org/ocl/3.1.0/Pivot!DataType!isSerializable
-		
-		Class symbol_60 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Detail
-		Property symbol_61 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!Annotation // Pivot.ecore::pivot::Detail::Annotation http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!Annotation
-		Property symbol_62 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!value // Pivot.ecore::pivot::Detail::value http://www.eclipse.org/ocl/3.1.0/Pivot!Detail!value
-		
-		Class symbol_63 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		Property symbol_64 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Annotation // Pivot.ecore::pivot::Element::Annotation http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Annotation
-		Property symbol_65 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Comment // Pivot.ecore::pivot::Element::Comment http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Comment
-		Property symbol_66 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Constraint // Pivot.ecore::pivot::Element::Constraint http://www.eclipse.org/ocl/3.1.0/Pivot!Element!Constraint
-		Property symbol_67 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element!ownedComment // Pivot.ecore::pivot::Element::ownedComment http://www.eclipse.org/ocl/3.1.0/Pivot!Element!ownedComment
-		
-		Class symbol_68 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp
-		Property symbol_69 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp!referredEnumLiteral // Pivot.ecore::pivot::EnumLiteralExp::referredEnumLiteral http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp!referredEnumLiteral
-		
-		Class symbol_70 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration
-		Property symbol_71 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration!ownedLiteral // Pivot.ecore::pivot::Enumeration::ownedLiteral http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration!ownedLiteral
-		
-		Class symbol_72 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral
-		Property symbol_73 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!EnumLiteralExp // Pivot.ecore::pivot::EnumerationLiteral::EnumLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!EnumLiteralExp
-		Property symbol_74 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration // Pivot.ecore::pivot::EnumerationLiteral::enumeration http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration
-		Property symbol_75 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!value // Pivot.ecore::pivot::EnumerationLiteral::value http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!value
-		
-		Class symbol_76 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-		Property symbol_77 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!bodyExpression // Pivot.ecore::pivot::ExpressionInOcl::bodyExpression http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!bodyExpression
-		Property symbol_78 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!contextVariable // Pivot.ecore::pivot::ExpressionInOcl::contextVariable http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!contextVariable
-		Property symbol_79 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!messageExpression // Pivot.ecore::pivot::ExpressionInOcl::messageExpression http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!messageExpression
-		Property symbol_80 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable // Pivot.ecore::pivot::ExpressionInOcl::parameterVariable http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable
-		Property symbol_81 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!resultVariable // Pivot.ecore::pivot::ExpressionInOcl::resultVariable http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!resultVariable
-		
-		Class symbol_82 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature
-		Property symbol_83 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature!implementation // Pivot.ecore::pivot::Feature::implementation http://www.eclipse.org/ocl/3.1.0/Pivot!Feature!implementation
-		Property symbol_84 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature!implementationClass // Pivot.ecore::pivot::Feature::implementationClass http://www.eclipse.org/ocl/3.1.0/Pivot!Feature!implementationClass
-		
-		Class symbol_85 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp
-		Property symbol_86 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp!isPre // Pivot.ecore::pivot::FeatureCallExp::isPre http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp!isPre
-		
-		Class symbol_87 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp
-		Property symbol_88 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!condition // Pivot.ecore::pivot::IfExp::condition http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!condition
-		Property symbol_89 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!elseExpression // Pivot.ecore::pivot::IfExp::elseExpression http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!elseExpression
-		Property symbol_90 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!thenExpression // Pivot.ecore::pivot::IfExp::thenExpression http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp!thenExpression
-		
-		DataType symbol_91 = PivotFactory.eINSTANCE.createDataType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Int
-		
-		PrimitiveType symbol_92 = standardLibrary.getIntegerType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-		Class symbol_93 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp
-		Property symbol_94 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp!integerSymbol // Pivot.ecore::pivot::IntegerLiteralExp::integerSymbol http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp!integerSymbol
-		
-		Class symbol_95 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidLiteralExp
-		
-		Class symbol_96 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidType
-		
-		Class symbol_97 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp
-		Property symbol_98 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp!result // Pivot.ecore::pivot::IterateExp::result http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp!result
-		
-		Class symbol_99 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
-		Property symbol_100 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!LoopExp // Pivot.ecore::pivot::Iteration::LoopExp http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!LoopExp
-		Property symbol_101 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedAccumulator // Pivot.ecore::pivot::Iteration::ownedAccumulator http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedAccumulator
-		Property symbol_102 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedIterator // Pivot.ecore::pivot::Iteration::ownedIterator http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedIterator
-		
-		Class symbol_103 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!IteratorExp
-		
-		Class symbol_104 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType
-		Property symbol_105 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!contextType // Pivot.ecore::pivot::LambdaType::contextType http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!contextType
-		Property symbol_106 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!parameterType // Pivot.ecore::pivot::LambdaType::parameterType http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!parameterType
-		Property symbol_107 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!resultType // Pivot.ecore::pivot::LambdaType::resultType http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!resultType
-		
-		Class symbol_108 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp
-		Property symbol_109 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!in // Pivot.ecore::pivot::LetExp::in http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!in
-		Property symbol_110 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!variable // Pivot.ecore::pivot::LetExp::variable http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp!variable
-		
-		Class symbol_111 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Library
-		
-		DataType symbol_112 = PivotFactory.eINSTANCE.createDataType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LibraryFeature
-		
-		Class symbol_113 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		
-		Class symbol_114 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-		Property symbol_115 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!body // Pivot.ecore::pivot::LoopExp::body http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!body
-		Property symbol_116 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator // Pivot.ecore::pivot::LoopExp::iterator http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator
-		Property symbol_117 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!referredIteration // Pivot.ecore::pivot::LoopExp::referredIteration http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!referredIteration
-		
-		Class symbol_118 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-		Property symbol_119 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!argument // Pivot.ecore::pivot::MessageExp::argument http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!argument
-		Property symbol_120 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!calledOperation // Pivot.ecore::pivot::MessageExp::calledOperation http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!calledOperation
-		Property symbol_121 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!sentSignal // Pivot.ecore::pivot::MessageExp::sentSignal http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!sentSignal
-		Property symbol_122 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!target // Pivot.ecore::pivot::MessageExp::target http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!target
-		
-		Class symbol_123 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType
-		Property symbol_124 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredOperation // Pivot.ecore::pivot::MessageType::referredOperation http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredOperation
-		Property symbol_125 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredSignal // Pivot.ecore::pivot::MessageType::referredSignal http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType!referredSignal
-		
-		Class symbol_126 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MorePivotable
-		
-		Class symbol_127 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
-		Property symbol_128 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered // Pivot.ecore::pivot::MultiplicityElement::isOrdered http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isOrdered
-		Property symbol_129 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique // Pivot.ecore::pivot::MultiplicityElement::isUnique http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isUnique
-		Property symbol_130 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower // Pivot.ecore::pivot::MultiplicityElement::lower http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lower
-		Property symbol_131 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper // Pivot.ecore::pivot::MultiplicityElement::upper http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upper
-		
-		Class symbol_132 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Nameable
-		
-		Class symbol_133 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		Property symbol_134 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!isStatic // Pivot.ecore::pivot::NamedElement::isStatic http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!isStatic
-		Property symbol_135 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!name // Pivot.ecore::pivot::NamedElement::name http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!name
-		Property symbol_136 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation // Pivot.ecore::pivot::NamedElement::ownedAnnotation http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation
-		Property symbol_137 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedRule // Pivot.ecore::pivot::NamedElement::ownedRule http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedRule
-		
-		Class symbol_138 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		
-		Class symbol_139 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-		Property symbol_140 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp!navigationSource // Pivot.ecore::pivot::NavigationCallExp::navigationSource http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp!navigationSource
-		Property symbol_141 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp!qualifier // Pivot.ecore::pivot::NavigationCallExp::qualifier http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp!qualifier
-		
-		Class symbol_142 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NullLiteralExp
-		
-		Class symbol_143 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		
-		DataType symbol_144 = PivotFactory.eINSTANCE.createDataType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Object
-		
-		Class symbol_145 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		Property symbol_146 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CallExp // Pivot.ecore::pivot::OclExpression::CallExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CallExp
-		Property symbol_147 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CollectionItem // Pivot.ecore::pivot::OclExpression::CollectionItem http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CollectionItem
-		Property symbol_148 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CollectionRange // Pivot.ecore::pivot::OclExpression::CollectionRange http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!CollectionRange
-		Property symbol_149 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!ConstructorPart // Pivot.ecore::pivot::OclExpression::ConstructorPart http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!ConstructorPart
-		Property symbol_150 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!ExpressionInOcl // Pivot.ecore::pivot::OclExpression::ExpressionInOcl http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!ExpressionInOcl
-		Property symbol_151 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!IfExp // Pivot.ecore::pivot::OclExpression::IfExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!IfExp
-		Property symbol_152 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!LetExp // Pivot.ecore::pivot::OclExpression::LetExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!LetExp
-		Property symbol_153 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!LoopExp // Pivot.ecore::pivot::OclExpression::LoopExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!LoopExp
-		Property symbol_154 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!MessageExp // Pivot.ecore::pivot::OclExpression::MessageExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!MessageExp
-		Property symbol_155 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!NavigationCallExp // Pivot.ecore::pivot::OclExpression::NavigationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!NavigationCallExp
-		Property symbol_156 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!OperationCallExp // Pivot.ecore::pivot::OclExpression::OperationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!OperationCallExp
-		Property symbol_157 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!TupleLiteralPart // Pivot.ecore::pivot::OclExpression::TupleLiteralPart http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!TupleLiteralPart
-		Property symbol_158 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!Variable // Pivot.ecore::pivot::OclExpression::Variable http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression!Variable
-		
-		Class symbol_159 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression
-		Property symbol_160 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!body // Pivot.ecore::pivot::OpaqueExpression::body http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!body
-		Property symbol_161 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!language // Pivot.ecore::pivot::OpaqueExpression::language http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!language
-		Property symbol_162 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!message // Pivot.ecore::pivot::OpaqueExpression::message http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!message
-		Property symbol_163 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!valueExpression // Pivot.ecore::pivot::OpaqueExpression::valueExpression http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!valueExpression
-		
-		Class symbol_164 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-		Property symbol_165 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!CallOperationAction // Pivot.ecore::pivot::Operation::CallOperationAction http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!CallOperationAction
-		Property symbol_166 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!MessageType // Pivot.ecore::pivot::Operation::MessageType http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!MessageType
-		Property symbol_167 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!OperationCallExp // Pivot.ecore::pivot::Operation::OperationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!OperationCallExp
-		Property symbol_168 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!class // Pivot.ecore::pivot::Operation::class http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!class
-		Property symbol_169 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!ownedParameter // Pivot.ecore::pivot::Operation::ownedParameter http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!ownedParameter
-		Property symbol_170 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!owningType // Pivot.ecore::pivot::Operation::owningType http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!owningType
-		Property symbol_171 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!precedence // Pivot.ecore::pivot::Operation::precedence http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!precedence
-		Property symbol_172 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!raisedException // Pivot.ecore::pivot::Operation::raisedException http://www.eclipse.org/ocl/3.1.0/Pivot!Operation!raisedException
-		
-		Class symbol_173 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp
-		Property symbol_174 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!argument // Pivot.ecore::pivot::OperationCallExp::argument http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!argument
-		Property symbol_175 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!referredOperation // Pivot.ecore::pivot::OperationCallExp::referredOperation http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp!referredOperation
-		
-		Class symbol_176 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationTemplateParameter
-		
-		Class symbol_177 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!OrderedSetType
-		
-		Class symbol_178 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-		Property symbol_179 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestedPackage // Pivot.ecore::pivot::Package::nestedPackage http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestedPackage
-		Property symbol_180 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestingPackage // Pivot.ecore::pivot::Package::nestingPackage http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nestingPackage
-		Property symbol_181 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsPrefix // Pivot.ecore::pivot::Package::nsPrefix http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsPrefix
-		Property symbol_182 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsURI // Pivot.ecore::pivot::Package::nsURI http://www.eclipse.org/ocl/3.1.0/Pivot!Package!nsURI
-		Property symbol_183 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedPrecedence // Pivot.ecore::pivot::Package::ownedPrecedence http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedPrecedence
-		Property symbol_184 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedType // Pivot.ecore::pivot::Package::ownedType http://www.eclipse.org/ocl/3.1.0/Pivot!Package!ownedType
-		
-		Class symbol_185 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!PackageableElement
-		
-		Class symbol_186 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-		Property symbol_187 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!Iteration // Pivot.ecore::pivot::Parameter::Iteration http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!Iteration
-		Property symbol_188 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!Variable // Pivot.ecore::pivot::Parameter::Variable http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!Variable
-		Property symbol_189 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!operation // Pivot.ecore::pivot::Parameter::operation http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!operation
-		
-		Class symbol_190 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		Property symbol_191 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!TemplateParameter // Pivot.ecore::pivot::ParameterableElement::TemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!TemplateParameter
-		Property symbol_192 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!TemplateParameterSubstitution // Pivot.ecore::pivot::ParameterableElement::TemplateParameterSubstitution http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!TemplateParameterSubstitution
-		Property symbol_193 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter // Pivot.ecore::pivot::ParameterableElement::owningTemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!owningTemplateParameter
-		Property symbol_194 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter // Pivot.ecore::pivot::ParameterableElement::templateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!templateParameter
-		
-		Class symbol_195 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Pivotable
-		
-		Class symbol_196 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence
-		Property symbol_197 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!Operation // Pivot.ecore::pivot::Precedence::Operation http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!Operation
-		Property symbol_198 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!Package // Pivot.ecore::pivot::Precedence::Package http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!Package
-		Property symbol_199 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!associativity // Pivot.ecore::pivot::Precedence::associativity http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!associativity
-		Property symbol_200 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!order // Pivot.ecore::pivot::Precedence::order http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence!order
-		
-		Class symbol_201 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		
-		Class symbol_202 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveType
-		
-		Class symbol_203 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-		Property symbol_204 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!ConstructorPart // Pivot.ecore::pivot::Property::ConstructorPart http://www.eclipse.org/ocl/3.1.0/Pivot!Property!ConstructorPart
-		Property symbol_205 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!NavigationCallExp // Pivot.ecore::pivot::Property::NavigationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!Property!NavigationCallExp
-		Property symbol_206 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!Property // Pivot.ecore::pivot::Property::Property http://www.eclipse.org/ocl/3.1.0/Pivot!Property!Property
-		Property symbol_207 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!PropertyCallExp // Pivot.ecore::pivot::Property::PropertyCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!Property!PropertyCallExp
-		Property symbol_208 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!association // Pivot.ecore::pivot::Property::association http://www.eclipse.org/ocl/3.1.0/Pivot!Property!association
-		Property symbol_209 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!class // Pivot.ecore::pivot::Property::class http://www.eclipse.org/ocl/3.1.0/Pivot!Property!class
-		Property symbol_210 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!default // Pivot.ecore::pivot::Property::default http://www.eclipse.org/ocl/3.1.0/Pivot!Property!default
-		Property symbol_211 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!implicit // Pivot.ecore::pivot::Property::implicit http://www.eclipse.org/ocl/3.1.0/Pivot!Property!implicit
-		Property symbol_212 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isComposite // Pivot.ecore::pivot::Property::isComposite http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isComposite
-		Property symbol_213 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isDerived // Pivot.ecore::pivot::Property::isDerived http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isDerived
-		Property symbol_214 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isID // Pivot.ecore::pivot::Property::isID http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isID
-		Property symbol_215 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isReadOnly // Pivot.ecore::pivot::Property::isReadOnly http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isReadOnly
-		Property symbol_216 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isResolveProxies // Pivot.ecore::pivot::Property::isResolveProxies http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isResolveProxies
-		Property symbol_217 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isTransient // Pivot.ecore::pivot::Property::isTransient http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isTransient
-		Property symbol_218 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isUnsettable // Pivot.ecore::pivot::Property::isUnsettable http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isUnsettable
-		Property symbol_219 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isVolatile // Pivot.ecore::pivot::Property::isVolatile http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isVolatile
-		Property symbol_220 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!keys // Pivot.ecore::pivot::Property::keys http://www.eclipse.org/ocl/3.1.0/Pivot!Property!keys
-		Property symbol_221 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!opposite // Pivot.ecore::pivot::Property::opposite http://www.eclipse.org/ocl/3.1.0/Pivot!Property!opposite
-		Property symbol_222 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!owningType // Pivot.ecore::pivot::Property::owningType http://www.eclipse.org/ocl/3.1.0/Pivot!Property!owningType
-		
-		Class symbol_223 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp
-		Property symbol_224 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp!referredProperty // Pivot.ecore::pivot::PropertyCallExp::referredProperty http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp!referredProperty
-		
-		PrimitiveType symbol_225 = standardLibrary.getRealType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Real
-		Class symbol_226 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp
-		Property symbol_227 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp!realSymbol // Pivot.ecore::pivot::RealLiteralExp::realSymbol http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp!realSymbol
-		
-		Class symbol_228 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType
-		
-		Class symbol_229 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction
-		Property symbol_230 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!MessageExp // Pivot.ecore::pivot::SendSignalAction::MessageExp http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!MessageExp
-		Property symbol_231 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!signal // Pivot.ecore::pivot::SendSignalAction::signal http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction!signal
-		
-		Class symbol_232 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SequenceType
-		
-		Class symbol_233 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SetType
-		
-		Class symbol_234 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal
-		Property symbol_235 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal!MessageType // Pivot.ecore::pivot::Signal::MessageType http://www.eclipse.org/ocl/3.1.0/Pivot!Signal!MessageType
-		Property symbol_236 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal!SendSignalAction // Pivot.ecore::pivot::Signal::SendSignalAction http://www.eclipse.org/ocl/3.1.0/Pivot!Signal!SendSignalAction
-		
-		Class symbol_237 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!State
-		Property symbol_238 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!State!StateExp // Pivot.ecore::pivot::State::StateExp http://www.eclipse.org/ocl/3.1.0/Pivot!State!StateExp
-		
-		Class symbol_239 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp
-		Property symbol_240 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp!referredState // Pivot.ecore::pivot::StateExp::referredState http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp!referredState
-		
-		PrimitiveType symbol_241 = standardLibrary.getStringType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-		Class symbol_242 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp
-		Property symbol_243 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp!stringSymbol // Pivot.ecore::pivot::StringLiteralExp::stringSymbol http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp!stringSymbol
-		
-		Class symbol_244 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-		Property symbol_245 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement // Pivot.ecore::pivot::TemplateBinding::boundElement http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement
-		Property symbol_246 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution // Pivot.ecore::pivot::TemplateBinding::parameterSubstitution http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution
-		Property symbol_247 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!signature // Pivot.ecore::pivot::TemplateBinding::signature http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!signature
-		
-		Class symbol_248 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-		Property symbol_249 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!TemplateParameterSubstitution // Pivot.ecore::pivot::TemplateParameter::TemplateParameterSubstitution http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!TemplateParameterSubstitution
-		Property symbol_250 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!TemplateSignature // Pivot.ecore::pivot::TemplateParameter::TemplateSignature http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!TemplateSignature
-		Property symbol_251 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!default // Pivot.ecore::pivot::TemplateParameter::default http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!default
-		Property symbol_252 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedDefault // Pivot.ecore::pivot::TemplateParameter::ownedDefault http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedDefault
-		Property symbol_253 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedParameteredElement // Pivot.ecore::pivot::TemplateParameter::ownedParameteredElement http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!ownedParameteredElement
-		Property symbol_254 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!parameteredElement // Pivot.ecore::pivot::TemplateParameter::parameteredElement http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!parameteredElement
-		Property symbol_255 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!signature // Pivot.ecore::pivot::TemplateParameter::signature http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!signature
-		
-		Class symbol_256 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-		Property symbol_257 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!actual // Pivot.ecore::pivot::TemplateParameterSubstitution::actual http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!actual
-		Property symbol_258 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!formal // Pivot.ecore::pivot::TemplateParameterSubstitution::formal http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!formal
-		Property symbol_259 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!ownedActual // Pivot.ecore::pivot::TemplateParameterSubstitution::ownedActual http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!ownedActual
-		Property symbol_260 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding // Pivot.ecore::pivot::TemplateParameterSubstitution::templateBinding http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding
-		
-		Class symbol_261 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterType
-		Property symbol_262 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterType!specification // Pivot.ecore::pivot::TemplateParameterType::specification http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterType!specification
-		
-		Class symbol_263 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-		Property symbol_264 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!TemplateBinding // Pivot.ecore::pivot::TemplateSignature::TemplateBinding http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!TemplateBinding
-		Property symbol_265 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter // Pivot.ecore::pivot::TemplateSignature::ownedParameter http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter
-		Property symbol_266 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter // Pivot.ecore::pivot::TemplateSignature::parameter http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter
-		Property symbol_267 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template // Pivot.ecore::pivot::TemplateSignature::template http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!template
-		
-		Class symbol_268 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		Property symbol_269 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature // Pivot.ecore::pivot::TemplateableElement::ownedTemplateSignature http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!ownedTemplateSignature
-		Property symbol_270 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding // Pivot.ecore::pivot::TemplateableElement::templateBinding http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding
-		Property symbol_271 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement // Pivot.ecore::pivot::TemplateableElement::unspecializedElement http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!unspecializedElement
-		
-		DataType symbol_272 = PivotFactory.eINSTANCE.createDataType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Throwable
-		
-		Class symbol_273 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp
-		Property symbol_274 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part // Pivot.ecore::pivot::TupleLiteralExp::part http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part
-		
-		Class symbol_275 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart
-		Property symbol_276 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart!TupleLiteralExp // Pivot.ecore::pivot::TupleLiteralPart::TupleLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart!TupleLiteralExp
-		Property symbol_277 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart!initExpression // Pivot.ecore::pivot::TupleLiteralPart::initExpression http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart!initExpression
-		
-		Class symbol_278 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleType
-		
-		Class symbol_279 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		Property symbol_280 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ClassifierType // Pivot.ecore::pivot::Type::ClassifierType http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ClassifierType
-		Property symbol_281 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!CollectionType // Pivot.ecore::pivot::Type::CollectionType http://www.eclipse.org/ocl/3.1.0/Pivot!Type!CollectionType
-		Property symbol_282 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!DataType // Pivot.ecore::pivot::Type::DataType http://www.eclipse.org/ocl/3.1.0/Pivot!Type!DataType
-		Property symbol_283 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!LambdaType // Pivot.ecore::pivot::Type::LambdaType http://www.eclipse.org/ocl/3.1.0/Pivot!Type!LambdaType
-		Property symbol_284 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!Operation // Pivot.ecore::pivot::Type::Operation http://www.eclipse.org/ocl/3.1.0/Pivot!Type!Operation
-		Property symbol_285 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!Type // Pivot.ecore::pivot::Type::Type http://www.eclipse.org/ocl/3.1.0/Pivot!Type!Type
-		Property symbol_286 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypeExp // Pivot.ecore::pivot::Type::TypeExp http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypeExp
-		Property symbol_287 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypeTemplateParameter // Pivot.ecore::pivot::Type::TypeTemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypeTemplateParameter
-		Property symbol_288 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypedElement // Pivot.ecore::pivot::Type::TypedElement http://www.eclipse.org/ocl/3.1.0/Pivot!Type!TypedElement
-		Property symbol_289 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!UnspecifiedType // Pivot.ecore::pivot::Type::UnspecifiedType http://www.eclipse.org/ocl/3.1.0/Pivot!Type!UnspecifiedType
-		Property symbol_290 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!instanceClassName // Pivot.ecore::pivot::Type::instanceClassName http://www.eclipse.org/ocl/3.1.0/Pivot!Type!instanceClassName
-		Property symbol_291 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute // Pivot.ecore::pivot::Type::ownedAttribute http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute
-		Property symbol_292 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation // Pivot.ecore::pivot::Type::ownedOperation http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation
-		Property symbol_293 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package // Pivot.ecore::pivot::Type::package http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package
-		Property symbol_294 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass // Pivot.ecore::pivot::Type::superClass http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass
-		
-		Class symbol_295 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp
-		Property symbol_296 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp!referredType // Pivot.ecore::pivot::TypeExp::referredType http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp!referredType
-		
-		Class symbol_297 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter
-		Property symbol_298 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!allowSubstitutable // Pivot.ecore::pivot::TypeTemplateParameter::allowSubstitutable http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!allowSubstitutable
-		Property symbol_299 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType // Pivot.ecore::pivot::TypeTemplateParameter::constrainingType http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType
-		
-		Class symbol_300 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		Property symbol_301 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement!type // Pivot.ecore::pivot::TypedElement::type http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement!type
-		
-		Class symbol_302 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
-		
-		PrimitiveType symbol_303 = standardLibrary.getUnlimitedNaturalType(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
-		Class symbol_304 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp
-		Property symbol_305 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp!unlimitedNaturalSymbol // Pivot.ecore::pivot::UnlimitedNaturalLiteralExp::unlimitedNaturalSymbol http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp!unlimitedNaturalSymbol
-		
-		Class symbol_306 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType
-		Property symbol_307 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!lowerBound // Pivot.ecore::pivot::UnspecifiedType::lowerBound http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!lowerBound
-		Property symbol_308 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!upperBound // Pivot.ecore::pivot::UnspecifiedType::upperBound http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType!upperBound
-		
-		Class symbol_309 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedValueExp
-		
-		Class symbol_310 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-		Property symbol_311 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!Constraint // Pivot.ecore::pivot::ValueSpecification::Constraint http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!Constraint
-		
-		Class symbol_312 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-		Property symbol_313 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!ExpressionInOcl // Pivot.ecore::pivot::Variable::ExpressionInOcl http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!ExpressionInOcl
-		Property symbol_314 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!IterateExp // Pivot.ecore::pivot::Variable::IterateExp http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!IterateExp
-		Property symbol_315 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!LetExp // Pivot.ecore::pivot::Variable::LetExp http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!LetExp
-		Property symbol_316 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!LoopExp // Pivot.ecore::pivot::Variable::LoopExp http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!LoopExp
-		Property symbol_317 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!implicit // Pivot.ecore::pivot::Variable::implicit http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!implicit
-		Property symbol_318 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!initExpression // Pivot.ecore::pivot::Variable::initExpression http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!initExpression
-		Property symbol_319 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!representedParameter // Pivot.ecore::pivot::Variable::representedParameter http://www.eclipse.org/ocl/3.1.0/Pivot!Variable!representedParameter
-		
-		Class symbol_320 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		Property symbol_321 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration!VariableExp // Pivot.ecore::pivot::VariableDeclaration::VariableExp http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration!VariableExp
-		
-		Class symbol_322 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp
-		Property symbol_323 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp!implicit // Pivot.ecore::pivot::VariableExp::implicit http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp!implicit
-		Property symbol_324 = PivotFactory.eINSTANCE.createProperty(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp!referredVariable // Pivot.ecore::pivot::VariableExp::referredVariable http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp!referredVariable
-		
-		Class symbol_325 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitable
-		
-		Class symbol_326 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}
-		TemplateSignature symbol_327 = PivotFactory.eINSTANCE.createTemplateSignature(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}!
-		TypeTemplateParameter symbol_328 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_329 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}?R
-		TypeTemplateParameter symbol_330 = PivotFactory.eINSTANCE.createTypeTemplateParameter();
-		Class symbol_331 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}?C
-		
-		
-		Class symbol_332 = PivotFactory.eINSTANCE.createClass(); // http://www.eclipse.org/ocl/3.1.0/Pivot!VoidType
-		
+		protected Contents(PivotStandardLibrary standardLibrary) {
+			super(standardLibrary);
+		}
 
-		symbol_0.setName("pivot");
-		symbol_0.setNsPrefix("pivot");
-		symbol_0.setNsURI("http://www.eclipse.org/ocl/3.1.0/Pivot");
-		//
-		// Pivot.ecore::pivot::Annotation http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-		//
-		symbol_1.setName("Annotation");
-		symbol_1.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::Annotation::NamedElement
-			symbol_2.setName("NamedElement");
-			symbol_2.setType(symbol_133);  // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-			symbol_2.setLower(BigInteger.valueOf(0));
-			
-			symbol_2.setImplicit(true);
-			symbol_2.setIsResolveProxies(true);
-			symbol_2.setOpposite(symbol_136);
-			
-			symbol_1.getOwnedAttributes().add(symbol_2);
-		}
-		{ // Pivot.ecore::pivot::Annotation::ownedContent
-			symbol_3.setName("ownedContent");
-			symbol_3.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_3.setLower(BigInteger.valueOf(0));
-			symbol_3.setUpper(BigInteger.valueOf(-1));
-			symbol_3.setIsOrdered(true);
-			
-			symbol_3.setIsComposite(true);
-			symbol_3.setIsResolveProxies(true);
-			
-			symbol_1.getOwnedAttributes().add(symbol_3);
-		}
-		{ // Pivot.ecore::pivot::Annotation::ownedDetail
-			symbol_4.setName("ownedDetail");
-			symbol_4.setType(symbol_60);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Detail
-			symbol_4.setLower(BigInteger.valueOf(0));
-			symbol_4.setUpper(BigInteger.valueOf(-1));
-			symbol_4.setIsOrdered(true);
-			
-			symbol_4.setIsComposite(true);
-			symbol_4.setIsResolveProxies(true);
-			symbol_4.setOpposite(symbol_61);
-			
-			symbol_1.getOwnedAttributes().add(symbol_4);
-		}
-		{ // Pivot.ecore::pivot::Annotation::reference
-			symbol_5.setName("reference");
-			symbol_5.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_5.setLower(BigInteger.valueOf(0));
-			symbol_5.setUpper(BigInteger.valueOf(-1));
-			symbol_5.setIsOrdered(true);
-			
-			symbol_5.setIsResolveProxies(true);
-			symbol_5.setOpposite(symbol_64);
-			
-			symbol_1.getOwnedAttributes().add(symbol_5);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_1); // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-		//
-		// Pivot.ecore::pivot::AnyType http://www.eclipse.org/ocl/3.1.0/Pivot!AnyType
-		//
-		symbol_6.setName("AnyType");
-		symbol_6.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		
-		symbol_0.getOwnedTypes().add(symbol_6); // http://www.eclipse.org/ocl/3.1.0/Pivot!AnyType
-		//
-		// Pivot.ecore::pivot::AssociationClass http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass
-		//
-		symbol_7.setName("AssociationClass");
-		symbol_7.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		{ // Pivot.ecore::pivot::AssociationClass::AssociationClassCallExp
-			symbol_8.setName("AssociationClassCallExp");
-			symbol_8.setType(symbol_10);  // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp
-			symbol_8.setLower(BigInteger.valueOf(0));
-			symbol_8.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_8.setImplicit(true);
-			symbol_8.setIsResolveProxies(true);
-			symbol_8.setOpposite(symbol_11);
-			
-			symbol_7.getOwnedAttributes().add(symbol_8);
-		}
-		{ // Pivot.ecore::pivot::AssociationClass::unownedAttribute
-			symbol_9.setName("unownedAttribute");
-			symbol_9.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_9.setLower(BigInteger.valueOf(0));
-			symbol_9.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_9.setIsResolveProxies(true);
-			symbol_9.setOpposite(symbol_208);
-			
-			symbol_7.getOwnedAttributes().add(symbol_9);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_7); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass
-		//
-		// Pivot.ecore::pivot::AssociationClassCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp
-		//
-		symbol_10.setName("AssociationClassCallExp");
-		symbol_10.getSuperClasses().add(symbol_139); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-		{ // Pivot.ecore::pivot::AssociationClassCallExp::referredAssociationClass
-			symbol_11.setName("referredAssociationClass");
-			symbol_11.setType(symbol_7);  // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass
-			symbol_11.setLower(BigInteger.valueOf(0));
-			
-			symbol_11.setIsResolveProxies(true);
-			symbol_11.setOpposite(symbol_8);
-			
-			symbol_10.getOwnedAttributes().add(symbol_11);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_10); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClassCallExp
-		//
-		// Pivot.ecore::pivot::AssociativityKind http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind
-		//
-		symbol_12.setName("AssociativityKind");
-		{
-			EnumerationLiteral symbol_333 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::AssociativityKind::Left http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind!Left
-			symbol_333.setName("Left");
-			symbol_12.getOwnedLiterals().add(symbol_333);
-			EnumerationLiteral symbol_334 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::AssociativityKind::Right http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind!Right
-			symbol_334.setName("Right");
-			symbol_12.getOwnedLiterals().add(symbol_334);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_12); // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind
-		//
-		// Pivot.ecore::pivot::BagType http://www.eclipse.org/ocl/3.1.0/Pivot!BagType
-		//
-		symbol_13.setName("BagType");
-		symbol_13.getSuperClasses().add(symbol_39); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		
-		symbol_0.getOwnedTypes().add(symbol_13); // http://www.eclipse.org/ocl/3.1.0/Pivot!BagType
-		//
-		// Pivot.ecore::pivot::BooleanLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!BooleanLiteralExp
-		//
-		symbol_15.setName("BooleanLiteralExp");
-		symbol_15.getSuperClasses().add(symbol_201); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		{ // Pivot.ecore::pivot::BooleanLiteralExp::booleanSymbol
-			symbol_16.setName("booleanSymbol");
-			symbol_16.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_16.setIsResolveProxies(true);
-			symbol_16.setIsUnsettable(true);
-			
-			symbol_15.getOwnedAttributes().add(symbol_16);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_15); // http://www.eclipse.org/ocl/3.1.0/Pivot!BooleanLiteralExp
-		//
-		// Pivot.ecore::pivot::CallExp http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-		//
-		symbol_17.setName("CallExp");
-		symbol_17.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::CallExp::implicit
-			symbol_18.setName("implicit");
-			symbol_18.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			symbol_18.setLower(BigInteger.valueOf(0));
-			
-			symbol_18.setIsResolveProxies(true);
-			
-			symbol_17.getOwnedAttributes().add(symbol_18);
-		}
-		{ // Pivot.ecore::pivot::CallExp::source
-			symbol_19.setName("source");
-			symbol_19.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_19.setLower(BigInteger.valueOf(0));
-			
-			symbol_19.setIsComposite(true);
-			symbol_19.setIsResolveProxies(true);
-			symbol_19.setOpposite(symbol_146);
-			
-			symbol_17.getOwnedAttributes().add(symbol_19);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_17); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-		//
-		// Pivot.ecore::pivot::CallOperationAction http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction
-		//
-		symbol_20.setName("CallOperationAction");
-		symbol_20.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::CallOperationAction::MessageExp
-			symbol_21.setName("MessageExp");
-			symbol_21.setType(symbol_118);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-			symbol_21.setLower(BigInteger.valueOf(0));
-			
-			symbol_21.setImplicit(true);
-			symbol_21.setIsResolveProxies(true);
-			symbol_21.setOpposite(symbol_120);
-			
-			symbol_20.getOwnedAttributes().add(symbol_21);
-		}
-		{ // Pivot.ecore::pivot::CallOperationAction::operation
-			symbol_22.setName("operation");
-			symbol_22.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			
-			symbol_22.setIsResolveProxies(true);
-			symbol_22.setOpposite(symbol_165);
-			
-			symbol_20.getOwnedAttributes().add(symbol_22);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_20); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction
-		//
-		// Pivot.ecore::pivot::Class http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		//
-		symbol_23.setName("Class");
-		symbol_23.getSuperClasses().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		symbol_23.getSuperClasses().add(symbol_138); // http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		{ // Pivot.ecore::pivot::Class::isAbstract
-			symbol_24.setName("isAbstract");
-			symbol_24.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_24.setIsResolveProxies(true);
-			{
-				Comment symbol_335 = PivotFactory.eINSTANCE.createComment();
-				symbol_335.setBody("True when a class is abstract.");
-				symbol_24.getOwnedComments().add(symbol_335);
-			}
-			
-			symbol_23.getOwnedAttributes().add(symbol_24);
-		}
-		{ // Pivot.ecore::pivot::Class::isInterface
-			symbol_25.setName("isInterface");
-			symbol_25.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_25.setIsResolveProxies(true);
-			
-			symbol_23.getOwnedAttributes().add(symbol_25);
-		}
-		{
-			Comment symbol_336 = PivotFactory.eINSTANCE.createComment();
-			symbol_336.setBody("A class is a type that has objects as its instances.");
-			symbol_23.getOwnedComments().add(symbol_336);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		//
-		// Pivot.ecore::pivot::ClassifierType http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType
-		//
-		symbol_26.setName("ClassifierType");
-		symbol_26.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		{ // Pivot.ecore::pivot::ClassifierType::instanceType
-			symbol_27.setName("instanceType");
-			symbol_27.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_27.setIsResolveProxies(true);
-			symbol_27.setOpposite(symbol_280);
-			
-			symbol_26.getOwnedAttributes().add(symbol_27);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_26); // http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType
-		//
-		// Pivot.ecore::pivot::CollectionItem http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem
-		//
-		symbol_28.setName("CollectionItem");
-		symbol_28.getSuperClasses().add(symbol_34); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-		{ // Pivot.ecore::pivot::CollectionItem::item
-			symbol_29.setName("item");
-			symbol_29.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_29.setIsComposite(true);
-			symbol_29.setIsResolveProxies(true);
-			symbol_29.setOpposite(symbol_147);
-			
-			symbol_28.getOwnedAttributes().add(symbol_29);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_28); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem
-		//
-		// Pivot.ecore::pivot::CollectionKind http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind
-		//
-		symbol_30.setName("CollectionKind");
-		{
-			EnumerationLiteral symbol_337 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::CollectionKind::Collection http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind!Collection
-			symbol_337.setName("Collection");
-			symbol_30.getOwnedLiterals().add(symbol_337);
-			EnumerationLiteral symbol_338 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::CollectionKind::Set http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind!Set
-			symbol_338.setName("Set");
-			symbol_30.getOwnedLiterals().add(symbol_338);
-			EnumerationLiteral symbol_339 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::CollectionKind::OrderedSet http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind!OrderedSet
-			symbol_339.setName("OrderedSet");
-			symbol_30.getOwnedLiterals().add(symbol_339);
-			EnumerationLiteral symbol_340 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::CollectionKind::Bag http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind!Bag
-			symbol_340.setName("Bag");
-			symbol_30.getOwnedLiterals().add(symbol_340);
-			EnumerationLiteral symbol_341 = PivotFactory.eINSTANCE.createEnumerationLiteral(); // Pivot.ecore::pivot::CollectionKind::Sequence http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind!Sequence
-			symbol_341.setName("Sequence");
-			symbol_30.getOwnedLiterals().add(symbol_341);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_30); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind
-		//
-		// Pivot.ecore::pivot::CollectionLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp
-		//
-		symbol_31.setName("CollectionLiteralExp");
-		symbol_31.getSuperClasses().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		{ // Pivot.ecore::pivot::CollectionLiteralExp::kind
-			symbol_32.setName("kind");
-			symbol_32.setType(symbol_30);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionKind
-			
-			symbol_32.setIsResolveProxies(true);
-			
-			symbol_31.getOwnedAttributes().add(symbol_32);
-		}
-		{ // Pivot.ecore::pivot::CollectionLiteralExp::part
-			symbol_33.setName("part");
-			symbol_33.setType(symbol_34);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-			symbol_33.setLower(BigInteger.valueOf(0));
-			symbol_33.setUpper(BigInteger.valueOf(-1));
-			symbol_33.setIsOrdered(true);
-			
-			symbol_33.setIsComposite(true);
-			symbol_33.setIsResolveProxies(true);
-			symbol_33.setOpposite(symbol_35);
-			
-			symbol_31.getOwnedAttributes().add(symbol_33);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_31); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp
-		//
-		// Pivot.ecore::pivot::CollectionLiteralPart http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-		//
-		symbol_34.setName("CollectionLiteralPart");
-		symbol_34.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		{ // Pivot.ecore::pivot::CollectionLiteralPart::CollectionLiteralExp
-			symbol_35.setName("CollectionLiteralExp");
-			symbol_35.setType(symbol_31);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp
-			symbol_35.setLower(BigInteger.valueOf(0));
-			
-			symbol_35.setImplicit(true);
-			symbol_35.setIsResolveProxies(true);
-			symbol_35.setOpposite(symbol_33);
-			
-			symbol_34.getOwnedAttributes().add(symbol_35);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_34); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-		//
-		// Pivot.ecore::pivot::CollectionRange http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange
-		//
-		symbol_36.setName("CollectionRange");
-		symbol_36.getSuperClasses().add(symbol_34); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralPart
-		{ // Pivot.ecore::pivot::CollectionRange::first
-			symbol_37.setName("first");
-			symbol_37.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_37.setIsComposite(true);
-			symbol_37.setIsResolveProxies(true);
-			
-			symbol_36.getOwnedAttributes().add(symbol_37);
-		}
-		{ // Pivot.ecore::pivot::CollectionRange::last
-			symbol_38.setName("last");
-			symbol_38.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_38.setIsComposite(true);
-			symbol_38.setIsResolveProxies(true);
-			symbol_38.setOpposite(symbol_148);
-			
-			symbol_36.getOwnedAttributes().add(symbol_38);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_36); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange
-		//
-		// Pivot.ecore::pivot::CollectionType http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		//
-		symbol_39.setName("CollectionType");
-		symbol_39.getSuperClasses().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		{ // Pivot.ecore::pivot::CollectionType::elementType
-			symbol_40.setName("elementType");
-			symbol_40.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_40.setIsResolveProxies(true);
-			symbol_40.setOpposite(symbol_281);
-			
-			symbol_39.getOwnedAttributes().add(symbol_40);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_39); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		//
-		// Pivot.ecore::pivot::Comment http://www.eclipse.org/ocl/3.1.0/Pivot!Comment
-		//
-		symbol_41.setName("Comment");
-		symbol_41.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::Comment::Element
-			symbol_42.setName("Element");
-			symbol_42.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_42.setLower(BigInteger.valueOf(0));
-			
-			symbol_42.setImplicit(true);
-			symbol_42.setIsResolveProxies(true);
-			symbol_42.setOpposite(symbol_67);
-			
-			symbol_41.getOwnedAttributes().add(symbol_42);
-		}
-		{ // Pivot.ecore::pivot::Comment::annotatedElement
-			symbol_43.setName("annotatedElement");
-			symbol_43.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_43.setLower(BigInteger.valueOf(0));
-			symbol_43.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_43.setIsResolveProxies(true);
-			symbol_43.setOpposite(symbol_65);
-			{
-				Comment symbol_342 = PivotFactory.eINSTANCE.createComment();
-				symbol_342.setBody("References the Element(s) being commented.");
-				symbol_43.getOwnedComments().add(symbol_342);
-			}
-			
-			symbol_41.getOwnedAttributes().add(symbol_43);
-		}
-		{ // Pivot.ecore::pivot::Comment::body
-			symbol_44.setName("body");
-			symbol_44.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_44.setLower(BigInteger.valueOf(0));
-			
-			symbol_44.setIsResolveProxies(true);
-			{
-				Comment symbol_343 = PivotFactory.eINSTANCE.createComment();
-				symbol_343.setBody("Specifies a string that is the comment.");
-				symbol_44.getOwnedComments().add(symbol_343);
-			}
-			
-			symbol_41.getOwnedAttributes().add(symbol_44);
-		}
-		{
-			Comment symbol_344 = PivotFactory.eINSTANCE.createComment();
-			symbol_344.setBody("A comment is a textual annotation that can be attached to a set of elements.");
-			symbol_41.getOwnedComments().add(symbol_344);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_41); // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment
-		//
-		// Pivot.ecore::pivot::Constraint http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-		//
-		symbol_45.setName("Constraint");
-		symbol_45.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::Constraint::constrainedElement
-			symbol_46.setName("constrainedElement");
-			symbol_46.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_46.setLower(BigInteger.valueOf(0));
-			symbol_46.setUpper(BigInteger.valueOf(-1));
-			symbol_46.setIsOrdered(true);
-			
-			symbol_46.setIsResolveProxies(true);
-			symbol_46.setOpposite(symbol_66);
-			{
-				Comment symbol_345 = PivotFactory.eINSTANCE.createComment();
-				symbol_345.setBody("The ordered set of Elements referenced by this Constraint.");
-				symbol_46.getOwnedComments().add(symbol_345);
-			}
-			
-			symbol_45.getOwnedAttributes().add(symbol_46);
-		}
-		{ // Pivot.ecore::pivot::Constraint::context
-			symbol_47.setName("context");
-			symbol_47.setType(symbol_133);  // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-			symbol_47.setLower(BigInteger.valueOf(0));
-			
-			symbol_47.setIsResolveProxies(true);
-			symbol_47.setOpposite(symbol_137);
-			
-			symbol_45.getOwnedAttributes().add(symbol_47);
-		}
-		{ // Pivot.ecore::pivot::Constraint::isCallable
-			symbol_48.setName("isCallable");
-			symbol_48.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_48.setIsResolveProxies(true);
-			
-			symbol_45.getOwnedAttributes().add(symbol_48);
-		}
-		{ // Pivot.ecore::pivot::Constraint::specification
-			symbol_49.setName("specification");
-			symbol_49.setType(symbol_310);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-			
-			symbol_49.setIsComposite(true);
-			symbol_49.setIsResolveProxies(true);
-			symbol_49.setOpposite(symbol_311);
-			{
-				Comment symbol_346 = PivotFactory.eINSTANCE.createComment();
-				symbol_346.setBody("A condition that must be true when evaluated in order for the constraint to be satisfied.");
-				symbol_49.getOwnedComments().add(symbol_346);
-			}
-			
-			symbol_45.getOwnedAttributes().add(symbol_49);
-		}
-		{ // Pivot.ecore::pivot::Constraint::stereotype
-			symbol_50.setName("stereotype");
-			symbol_50.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_50.setLower(BigInteger.valueOf(0));
-			
-			symbol_50.setIsResolveProxies(true);
-			
-			symbol_45.getOwnedAttributes().add(symbol_50);
-		}
-		{
-			Comment symbol_347 = PivotFactory.eINSTANCE.createComment();
-			symbol_347.setBody("A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.");
-			symbol_45.getOwnedComments().add(symbol_347);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_45); // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-		//
-		// Pivot.ecore::pivot::ConstructorExp http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp
-		//
-		symbol_51.setName("ConstructorExp");
-		symbol_51.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::ConstructorExp::part
-			symbol_52.setName("part");
-			symbol_52.setType(symbol_53);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-			symbol_52.setLower(BigInteger.valueOf(0));
-			symbol_52.setUpper(BigInteger.valueOf(-1));
-			symbol_52.setIsOrdered(true);
-			
-			symbol_52.setIsComposite(true);
-			symbol_52.setIsResolveProxies(true);
-			symbol_52.setOpposite(symbol_54);
-			
-			symbol_51.getOwnedAttributes().add(symbol_52);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_51); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp
-		//
-		// Pivot.ecore::pivot::ConstructorPart http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-		//
-		symbol_53.setName("ConstructorPart");
-		symbol_53.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::ConstructorPart::ConstructorExp
-			symbol_54.setName("ConstructorExp");
-			symbol_54.setType(symbol_51);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp
-			symbol_54.setLower(BigInteger.valueOf(0));
-			
-			symbol_54.setImplicit(true);
-			symbol_54.setIsResolveProxies(true);
-			symbol_54.setOpposite(symbol_52);
-			
-			symbol_53.getOwnedAttributes().add(symbol_54);
-		}
-		{ // Pivot.ecore::pivot::ConstructorPart::initExpression
-			symbol_55.setName("initExpression");
-			symbol_55.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_55.setIsComposite(true);
-			symbol_55.setIsResolveProxies(true);
-			symbol_55.setOpposite(symbol_149);
-			
-			symbol_53.getOwnedAttributes().add(symbol_55);
-		}
-		{ // Pivot.ecore::pivot::ConstructorPart::referredProperty
-			symbol_56.setName("referredProperty");
-			symbol_56.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			
-			symbol_56.setIsResolveProxies(true);
-			symbol_56.setOpposite(symbol_204);
-			
-			symbol_53.getOwnedAttributes().add(symbol_56);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_53); // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-		//
-		// Pivot.ecore::pivot::DataType http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		//
-		symbol_57.setName("DataType");
-		symbol_57.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		{ // Pivot.ecore::pivot::DataType::behavioralType
-			symbol_58.setName("behavioralType");
-			symbol_58.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_58.setLower(BigInteger.valueOf(0));
-			
-			symbol_58.setIsResolveProxies(true);
-			symbol_58.setOpposite(symbol_282);
-			
-			symbol_57.getOwnedAttributes().add(symbol_58);
-		}
-		{ // Pivot.ecore::pivot::DataType::isSerializable
-			symbol_59.setName("isSerializable");
-			symbol_59.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_59.setIsResolveProxies(true);
-			
-			symbol_57.getOwnedAttributes().add(symbol_59);
-		}
-		{
-			Comment symbol_348 = PivotFactory.eINSTANCE.createComment();
-			symbol_348.setBody("DataType is an abstract class that acts as a common superclass for different kinds of data types.");
-			symbol_57.getOwnedComments().add(symbol_348);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		//
-		// Pivot.ecore::pivot::Detail http://www.eclipse.org/ocl/3.1.0/Pivot!Detail
-		//
-		symbol_60.setName("Detail");
-		symbol_60.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::Detail::Annotation
-			symbol_61.setName("Annotation");
-			symbol_61.setType(symbol_1);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-			symbol_61.setLower(BigInteger.valueOf(0));
-			
-			symbol_61.setImplicit(true);
-			symbol_61.setIsResolveProxies(true);
-			symbol_61.setOpposite(symbol_4);
-			
-			symbol_60.getOwnedAttributes().add(symbol_61);
-		}
-		{ // Pivot.ecore::pivot::Detail::value
-			symbol_62.setName("value");
-			symbol_62.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_62.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_62.setIsResolveProxies(true);
-			
-			symbol_60.getOwnedAttributes().add(symbol_62);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_60); // http://www.eclipse.org/ocl/3.1.0/Pivot!Detail
-		//
-		// Pivot.ecore::pivot::Element http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		//
-		symbol_63.setName("Element");
-		symbol_63.getSuperClasses().add(symbol_325); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitable
-		{ // Pivot.ecore::pivot::Element::Annotation
-			symbol_64.setName("Annotation");
-			symbol_64.setType(symbol_1);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-			symbol_64.setLower(BigInteger.valueOf(0));
-			symbol_64.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_64.setImplicit(true);
-			symbol_64.setIsResolveProxies(true);
-			
-			symbol_63.getOwnedAttributes().add(symbol_64);
-		}
-		{ // Pivot.ecore::pivot::Element::Comment
-			symbol_65.setName("Comment");
-			symbol_65.setType(symbol_41);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment
-			symbol_65.setLower(BigInteger.valueOf(0));
-			symbol_65.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_65.setImplicit(true);
-			symbol_65.setIsResolveProxies(true);
-			symbol_65.setOpposite(symbol_43);
-			
-			symbol_63.getOwnedAttributes().add(symbol_65);
-		}
-		{ // Pivot.ecore::pivot::Element::Constraint
-			symbol_66.setName("Constraint");
-			symbol_66.setType(symbol_45);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-			symbol_66.setLower(BigInteger.valueOf(0));
-			symbol_66.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_66.setImplicit(true);
-			symbol_66.setIsResolveProxies(true);
-			symbol_66.setOpposite(symbol_46);
-			
-			symbol_63.getOwnedAttributes().add(symbol_66);
-		}
-		{ // Pivot.ecore::pivot::Element::ownedComment
-			symbol_67.setName("ownedComment");
-			symbol_67.setType(symbol_41);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Comment
-			symbol_67.setLower(BigInteger.valueOf(0));
-			symbol_67.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_67.setIsComposite(true);
-			symbol_67.setIsResolveProxies(true);
-			symbol_67.setOpposite(symbol_42);
-			{
-				Comment symbol_349 = PivotFactory.eINSTANCE.createComment();
-				symbol_349.setBody("The Comments owned by this element.");
-				symbol_67.getOwnedComments().add(symbol_349);
-			}
-			
-			symbol_63.getOwnedAttributes().add(symbol_67);
-		}
-		{	// Pivot.ecore::pivot::Element::allOwnedElements()
-			Operation symbol_350 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element!allOwnedElements()
-			symbol_350.setName("allOwnedElements");
-			symbol_350.setType(symbol_63);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-			symbol_350.setLower(BigInteger.valueOf(0));
-			symbol_350.setUpper(BigInteger.valueOf(-1));
-			
-			
-			symbol_63.getOwnedOperations().add(symbol_350);
-		}
-		{
-			Comment symbol_351 = PivotFactory.eINSTANCE.createComment();
-			symbol_351.setBody("An element is a constituent of a model.");
-			symbol_63.getOwnedComments().add(symbol_351);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		//
-		// Pivot.ecore::pivot::EnumLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp
-		//
-		symbol_68.setName("EnumLiteralExp");
-		symbol_68.getSuperClasses().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		{ // Pivot.ecore::pivot::EnumLiteralExp::referredEnumLiteral
-			symbol_69.setName("referredEnumLiteral");
-			symbol_69.setType(symbol_72);  // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral
-			symbol_69.setLower(BigInteger.valueOf(0));
-			
-			symbol_69.setIsResolveProxies(true);
-			symbol_69.setOpposite(symbol_73);
-			
-			symbol_68.getOwnedAttributes().add(symbol_69);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_68); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp
-		//
-		// Pivot.ecore::pivot::Enumeration http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration
-		//
-		symbol_70.setName("Enumeration");
-		symbol_70.getSuperClasses().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		{ // Pivot.ecore::pivot::Enumeration::ownedLiteral
-			symbol_71.setName("ownedLiteral");
-			symbol_71.setType(symbol_72);  // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral
-			symbol_71.setLower(BigInteger.valueOf(0));
-			symbol_71.setUpper(BigInteger.valueOf(-1));
-			symbol_71.setIsOrdered(true);
-			
-			symbol_71.setIsComposite(true);
-			symbol_71.setIsResolveProxies(true);
-			symbol_71.setOpposite(symbol_74);
-			{
-				Comment symbol_352 = PivotFactory.eINSTANCE.createComment();
-				symbol_352.setBody("The ordered set of literals for this Enumeration.");
-				symbol_71.getOwnedComments().add(symbol_352);
-			}
-			
-			symbol_70.getOwnedAttributes().add(symbol_71);
-		}
-		{
-			Comment symbol_353 = PivotFactory.eINSTANCE.createComment();
-			symbol_353.setBody("An enumeration defines a set of literals that can be used as its values.");
-			symbol_70.getOwnedComments().add(symbol_353);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_70); // http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration
-		//
-		// Pivot.ecore::pivot::EnumerationLiteral http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral
-		//
-		symbol_72.setName("EnumerationLiteral");
-		symbol_72.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::EnumerationLiteral::EnumLiteralExp
-			symbol_73.setName("EnumLiteralExp");
-			symbol_73.setType(symbol_68);  // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumLiteralExp
-			symbol_73.setLower(BigInteger.valueOf(0));
-			symbol_73.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_73.setImplicit(true);
-			symbol_73.setIsResolveProxies(true);
-			symbol_73.setOpposite(symbol_69);
-			
-			symbol_72.getOwnedAttributes().add(symbol_73);
-		}
-		{ // Pivot.ecore::pivot::EnumerationLiteral::enumeration
-			symbol_74.setName("enumeration");
-			symbol_74.setType(symbol_70);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration
-			symbol_74.setLower(BigInteger.valueOf(0));
-			
-			symbol_74.setIsResolveProxies(true);
-			symbol_74.setOpposite(symbol_71);
-			{
-				Comment symbol_354 = PivotFactory.eINSTANCE.createComment();
-				symbol_354.setBody("The Enumeration that this EnumerationLiteral is a member of.");
-				symbol_74.getOwnedComments().add(symbol_354);
-			}
-			
-			symbol_72.getOwnedAttributes().add(symbol_74);
-		}
-		{ // Pivot.ecore::pivot::EnumerationLiteral::value
-			symbol_75.setName("value");
-			symbol_75.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			symbol_75.setLower(BigInteger.valueOf(0));
-			
-			symbol_75.setIsResolveProxies(true);
-			
-			symbol_72.getOwnedAttributes().add(symbol_75);
-		}
-		{
-			Comment symbol_355 = PivotFactory.eINSTANCE.createComment();
-			symbol_355.setBody("An enumeration literal is a value of an enumeration.");
-			symbol_72.getOwnedComments().add(symbol_355);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_72); // http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral
-		//
-		// Pivot.ecore::pivot::ExpressionInOcl http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-		//
-		symbol_76.setName("ExpressionInOcl");
-		symbol_76.getSuperClasses().add(symbol_159); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression
-		{ // Pivot.ecore::pivot::ExpressionInOcl::bodyExpression
-			symbol_77.setName("bodyExpression");
-			symbol_77.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_77.setIsComposite(true);
-			symbol_77.setIsResolveProxies(true);
-			
-			symbol_76.getOwnedAttributes().add(symbol_77);
-		}
-		{ // Pivot.ecore::pivot::ExpressionInOcl::contextVariable
-			symbol_78.setName("contextVariable");
-			symbol_78.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_78.setLower(BigInteger.valueOf(0));
-			
-			symbol_78.setIsComposite(true);
-			symbol_78.setIsResolveProxies(true);
-			symbol_78.setOpposite(symbol_313);
-			
-			symbol_76.getOwnedAttributes().add(symbol_78);
-		}
-		{ // Pivot.ecore::pivot::ExpressionInOcl::messageExpression
-			symbol_79.setName("messageExpression");
-			symbol_79.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_79.setLower(BigInteger.valueOf(0));
-			
-			symbol_79.setIsComposite(true);
-			symbol_79.setIsResolveProxies(true);
-			symbol_79.setOpposite(symbol_150);
-			
-			symbol_76.getOwnedAttributes().add(symbol_79);
-		}
-		{ // Pivot.ecore::pivot::ExpressionInOcl::parameterVariable
-			symbol_80.setName("parameterVariable");
-			symbol_80.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_80.setLower(BigInteger.valueOf(0));
-			symbol_80.setUpper(BigInteger.valueOf(-1));
-			symbol_80.setIsOrdered(true);
-			
-			symbol_80.setIsComposite(true);
-			symbol_80.setIsResolveProxies(true);
-			
-			symbol_76.getOwnedAttributes().add(symbol_80);
-		}
-		{ // Pivot.ecore::pivot::ExpressionInOcl::resultVariable
-			symbol_81.setName("resultVariable");
-			symbol_81.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_81.setLower(BigInteger.valueOf(0));
-			
-			symbol_81.setIsComposite(true);
-			symbol_81.setIsResolveProxies(true);
-			
-			symbol_76.getOwnedAttributes().add(symbol_81);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_76); // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-		//
-		// Pivot.ecore::pivot::Feature http://www.eclipse.org/ocl/3.1.0/Pivot!Feature
-		//
-		symbol_82.setName("Feature");
-		symbol_82.getSuperClasses().add(symbol_302); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
-		{ // Pivot.ecore::pivot::Feature::implementation
-			symbol_83.setName("implementation");
-			symbol_83.setType(symbol_112);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LibraryFeature
-			symbol_83.setLower(BigInteger.valueOf(0));
-			
-			symbol_83.setIsResolveProxies(true);
-			symbol_83.setIsTransient(true);
-			
-			symbol_82.getOwnedAttributes().add(symbol_83);
-		}
-		{ // Pivot.ecore::pivot::Feature::implementationClass
-			symbol_84.setName("implementationClass");
-			symbol_84.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_84.setLower(BigInteger.valueOf(0));
-			
-			symbol_84.setIsResolveProxies(true);
-			
-			symbol_82.getOwnedAttributes().add(symbol_84);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_82); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature
-		//
-		// Pivot.ecore::pivot::FeatureCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp
-		//
-		symbol_85.setName("FeatureCallExp");
-		symbol_85.getSuperClasses().add(symbol_17); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-		{ // Pivot.ecore::pivot::FeatureCallExp::isPre
-			symbol_86.setName("isPre");
-			symbol_86.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_86.setIsResolveProxies(true);
-			
-			symbol_85.getOwnedAttributes().add(symbol_86);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_85); // http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp
-		//
-		// Pivot.ecore::pivot::IfExp http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp
-		//
-		symbol_87.setName("IfExp");
-		symbol_87.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::IfExp::condition
-			symbol_88.setName("condition");
-			symbol_88.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_88.setIsComposite(true);
-			symbol_88.setIsResolveProxies(true);
-			
-			symbol_87.getOwnedAttributes().add(symbol_88);
-		}
-		{ // Pivot.ecore::pivot::IfExp::elseExpression
-			symbol_89.setName("elseExpression");
-			symbol_89.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_89.setIsComposite(true);
-			symbol_89.setIsResolveProxies(true);
-			symbol_89.setOpposite(symbol_151);
-			
-			symbol_87.getOwnedAttributes().add(symbol_89);
-		}
-		{ // Pivot.ecore::pivot::IfExp::thenExpression
-			symbol_90.setName("thenExpression");
-			symbol_90.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_90.setIsComposite(true);
-			symbol_90.setIsResolveProxies(true);
-			
-			symbol_87.getOwnedAttributes().add(symbol_90);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_87); // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp
-		//
-		// Pivot.ecore::pivot::Int http://www.eclipse.org/ocl/3.1.0/Pivot!Int
-		//
-		symbol_91.setName("Int");
-		symbol_91.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_91); // http://www.eclipse.org/ocl/3.1.0/Pivot!Int
-		//
-		// Pivot.ecore::pivot::IntegerLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp
-		//
-		symbol_93.setName("IntegerLiteralExp");
-		symbol_93.getSuperClasses().add(symbol_143); // http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		{ // Pivot.ecore::pivot::IntegerLiteralExp::integerSymbol
-			symbol_94.setName("integerSymbol");
-			symbol_94.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			symbol_94.setIsResolveProxies(true);
-			
-			symbol_93.getOwnedAttributes().add(symbol_94);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_93); // http://www.eclipse.org/ocl/3.1.0/Pivot!IntegerLiteralExp
-		//
-		// Pivot.ecore::pivot::InvalidLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidLiteralExp
-		//
-		symbol_95.setName("InvalidLiteralExp");
-		symbol_95.getSuperClasses().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		
-		symbol_0.getOwnedTypes().add(symbol_95); // http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidLiteralExp
-		//
-		// Pivot.ecore::pivot::InvalidType http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidType
-		//
-		symbol_96.setName("InvalidType");
-		symbol_96.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		
-		symbol_0.getOwnedTypes().add(symbol_96); // http://www.eclipse.org/ocl/3.1.0/Pivot!InvalidType
-		//
-		// Pivot.ecore::pivot::IterateExp http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp
-		//
-		symbol_97.setName("IterateExp");
-		symbol_97.getSuperClasses().add(symbol_114); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-		{ // Pivot.ecore::pivot::IterateExp::result
-			symbol_98.setName("result");
-			symbol_98.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_98.setLower(BigInteger.valueOf(0));
-			symbol_98.setIsOrdered(true);
-			
-			symbol_98.setIsComposite(true);
-			symbol_98.setIsResolveProxies(true);
-			symbol_98.setOpposite(symbol_314);
-			
-			symbol_97.getOwnedAttributes().add(symbol_98);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_97); // http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp
-		//
-		// Pivot.ecore::pivot::Iteration http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
-		//
-		symbol_99.setName("Iteration");
-		symbol_99.getSuperClasses().add(symbol_164); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-		{ // Pivot.ecore::pivot::Iteration::LoopExp
-			symbol_100.setName("LoopExp");
-			symbol_100.setType(symbol_114);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-			symbol_100.setLower(BigInteger.valueOf(0));
-			symbol_100.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_100.setImplicit(true);
-			symbol_100.setIsResolveProxies(true);
-			symbol_100.setOpposite(symbol_117);
-			
-			symbol_99.getOwnedAttributes().add(symbol_100);
-		}
-		{ // Pivot.ecore::pivot::Iteration::ownedAccumulator
-			symbol_101.setName("ownedAccumulator");
-			symbol_101.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-			symbol_101.setLower(BigInteger.valueOf(0));
-			symbol_101.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_101.setIsComposite(true);
-			symbol_101.setIsResolveProxies(true);
-			symbol_101.setOpposite(symbol_187);
-			
-			symbol_99.getOwnedAttributes().add(symbol_101);
-		}
-		{ // Pivot.ecore::pivot::Iteration::ownedIterator
-			symbol_102.setName("ownedIterator");
-			symbol_102.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-			symbol_102.setLower(BigInteger.valueOf(0));
-			symbol_102.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_102.setIsComposite(true);
-			symbol_102.setIsResolveProxies(true);
-			
-			symbol_99.getOwnedAttributes().add(symbol_102);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_99); // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
-		//
-		// Pivot.ecore::pivot::IteratorExp http://www.eclipse.org/ocl/3.1.0/Pivot!IteratorExp
-		//
-		symbol_103.setName("IteratorExp");
-		symbol_103.getSuperClasses().add(symbol_114); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-		
-		symbol_0.getOwnedTypes().add(symbol_103); // http://www.eclipse.org/ocl/3.1.0/Pivot!IteratorExp
-		//
-		// Pivot.ecore::pivot::LambdaType http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType
-		//
-		symbol_104.setName("LambdaType");
-		symbol_104.getSuperClasses().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		{ // Pivot.ecore::pivot::LambdaType::contextType
-			symbol_105.setName("contextType");
-			symbol_105.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_105.setIsResolveProxies(true);
-			
-			symbol_104.getOwnedAttributes().add(symbol_105);
-		}
-		{ // Pivot.ecore::pivot::LambdaType::parameterType
-			symbol_106.setName("parameterType");
-			symbol_106.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_106.setLower(BigInteger.valueOf(0));
-			symbol_106.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_106.setIsResolveProxies(true);
-			symbol_106.setOpposite(symbol_283);
-			
-			symbol_104.getOwnedAttributes().add(symbol_106);
-		}
-		{ // Pivot.ecore::pivot::LambdaType::resultType
-			symbol_107.setName("resultType");
-			symbol_107.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_107.setIsResolveProxies(true);
-			
-			symbol_104.getOwnedAttributes().add(symbol_107);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_104); // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType
-		//
-		// Pivot.ecore::pivot::LetExp http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp
-		//
-		symbol_108.setName("LetExp");
-		symbol_108.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::LetExp::in
-			symbol_109.setName("in");
-			symbol_109.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_109.setIsComposite(true);
-			symbol_109.setIsResolveProxies(true);
-			symbol_109.setOpposite(symbol_152);
-			
-			symbol_108.getOwnedAttributes().add(symbol_109);
-		}
-		{ // Pivot.ecore::pivot::LetExp::variable
-			symbol_110.setName("variable");
-			symbol_110.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			
-			symbol_110.setIsComposite(true);
-			symbol_110.setIsResolveProxies(true);
-			symbol_110.setOpposite(symbol_315);
-			
-			symbol_108.getOwnedAttributes().add(symbol_110);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_108); // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp
-		//
-		// Pivot.ecore::pivot::Library http://www.eclipse.org/ocl/3.1.0/Pivot!Library
-		//
-		symbol_111.setName("Library");
-		symbol_111.getSuperClasses().add(symbol_178); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-		
-		symbol_0.getOwnedTypes().add(symbol_111); // http://www.eclipse.org/ocl/3.1.0/Pivot!Library
-		//
-		// Pivot.ecore::pivot::LibraryFeature http://www.eclipse.org/ocl/3.1.0/Pivot!LibraryFeature
-		//
-		symbol_112.setName("LibraryFeature");
-		symbol_112.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_112); // http://www.eclipse.org/ocl/3.1.0/Pivot!LibraryFeature
-		//
-		// Pivot.ecore::pivot::LiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		//
-		symbol_113.setName("LiteralExp");
-		symbol_113.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		
-		symbol_0.getOwnedTypes().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		//
-		// Pivot.ecore::pivot::LoopExp http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-		//
-		symbol_114.setName("LoopExp");
-		symbol_114.getSuperClasses().add(symbol_17); // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-		{ // Pivot.ecore::pivot::LoopExp::body
-			symbol_115.setName("body");
-			symbol_115.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_115.setIsComposite(true);
-			symbol_115.setIsResolveProxies(true);
-			symbol_115.setOpposite(symbol_153);
-			
-			symbol_114.getOwnedAttributes().add(symbol_115);
-		}
-		{ // Pivot.ecore::pivot::LoopExp::iterator
-			symbol_116.setName("iterator");
-			symbol_116.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_116.setLower(BigInteger.valueOf(0));
-			symbol_116.setUpper(BigInteger.valueOf(-1));
-			symbol_116.setIsOrdered(true);
-			
-			symbol_116.setIsComposite(true);
-			symbol_116.setIsResolveProxies(true);
-			symbol_116.setOpposite(symbol_316);
-			
-			symbol_114.getOwnedAttributes().add(symbol_116);
-		}
-		{ // Pivot.ecore::pivot::LoopExp::referredIteration
-			symbol_117.setName("referredIteration");
-			symbol_117.setType(symbol_99);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
-			symbol_117.setLower(BigInteger.valueOf(0));
-			
-			symbol_117.setIsResolveProxies(true);
-			symbol_117.setOpposite(symbol_100);
-			
-			symbol_114.getOwnedAttributes().add(symbol_117);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_114); // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-		//
-		// Pivot.ecore::pivot::MessageExp http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-		//
-		symbol_118.setName("MessageExp");
-		symbol_118.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::MessageExp::argument
-			symbol_119.setName("argument");
-			symbol_119.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_119.setLower(BigInteger.valueOf(0));
-			symbol_119.setUpper(BigInteger.valueOf(-1));
-			symbol_119.setIsOrdered(true);
-			
-			symbol_119.setIsComposite(true);
-			symbol_119.setIsResolveProxies(true);
-			symbol_119.setOpposite(symbol_154);
-			
-			symbol_118.getOwnedAttributes().add(symbol_119);
-		}
-		{ // Pivot.ecore::pivot::MessageExp::calledOperation
-			symbol_120.setName("calledOperation");
-			symbol_120.setType(symbol_20);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction
-			symbol_120.setLower(BigInteger.valueOf(0));
-			
-			symbol_120.setIsComposite(true);
-			symbol_120.setIsResolveProxies(true);
-			symbol_120.setOpposite(symbol_21);
-			
-			symbol_118.getOwnedAttributes().add(symbol_120);
-		}
-		{ // Pivot.ecore::pivot::MessageExp::sentSignal
-			symbol_121.setName("sentSignal");
-			symbol_121.setType(symbol_229);  // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction
-			symbol_121.setLower(BigInteger.valueOf(0));
-			
-			symbol_121.setIsComposite(true);
-			symbol_121.setIsResolveProxies(true);
-			symbol_121.setOpposite(symbol_230);
-			
-			symbol_118.getOwnedAttributes().add(symbol_121);
-		}
-		{ // Pivot.ecore::pivot::MessageExp::target
-			symbol_122.setName("target");
-			symbol_122.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			
-			symbol_122.setIsComposite(true);
-			symbol_122.setIsResolveProxies(true);
-			
-			symbol_118.getOwnedAttributes().add(symbol_122);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_118); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-		//
-		// Pivot.ecore::pivot::MessageType http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType
-		//
-		symbol_123.setName("MessageType");
-		symbol_123.getSuperClasses().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		{ // Pivot.ecore::pivot::MessageType::referredOperation
-			symbol_124.setName("referredOperation");
-			symbol_124.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_124.setLower(BigInteger.valueOf(0));
-			
-			symbol_124.setIsResolveProxies(true);
-			symbol_124.setOpposite(symbol_166);
-			
-			symbol_123.getOwnedAttributes().add(symbol_124);
-		}
-		{ // Pivot.ecore::pivot::MessageType::referredSignal
-			symbol_125.setName("referredSignal");
-			symbol_125.setType(symbol_234);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal
-			symbol_125.setLower(BigInteger.valueOf(0));
-			
-			symbol_125.setIsResolveProxies(true);
-			symbol_125.setOpposite(symbol_235);
-			
-			symbol_123.getOwnedAttributes().add(symbol_125);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_123); // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType
-		//
-		// Pivot.ecore::pivot::MorePivotable http://www.eclipse.org/ocl/3.1.0/Pivot!MorePivotable
-		//
-		symbol_126.setName("MorePivotable");
-		symbol_126.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_126); // http://www.eclipse.org/ocl/3.1.0/Pivot!MorePivotable
-		//
-		// Pivot.ecore::pivot::MultiplicityElement http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
-		//
-		symbol_127.setName("MultiplicityElement");
-		symbol_127.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::MultiplicityElement::isOrdered
-			symbol_128.setName("isOrdered");
-			symbol_128.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_128.setIsResolveProxies(true);
-			{
-				Comment symbol_356 = PivotFactory.eINSTANCE.createComment();
-				symbol_356.setBody("For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered.");
-				symbol_128.getOwnedComments().add(symbol_356);
-			}
-			
-			symbol_127.getOwnedAttributes().add(symbol_128);
-		}
-		{ // Pivot.ecore::pivot::MultiplicityElement::isUnique
-			symbol_129.setName("isUnique");
-			symbol_129.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_129.setIsResolveProxies(true);
-			{
-				Comment symbol_357 = PivotFactory.eINSTANCE.createComment();
-				symbol_357.setBody("For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique.");
-				symbol_129.getOwnedComments().add(symbol_357);
-			}
-			
-			symbol_127.getOwnedAttributes().add(symbol_129);
-		}
-		{ // Pivot.ecore::pivot::MultiplicityElement::lower
-			symbol_130.setName("lower");
-			symbol_130.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			symbol_130.setLower(BigInteger.valueOf(0));
-			
-			symbol_130.setIsResolveProxies(true);
-			{
-				Comment symbol_358 = PivotFactory.eINSTANCE.createComment();
-				symbol_358.setBody("Specifies the lower bound of the multiplicity interval.");
-				symbol_130.getOwnedComments().add(symbol_358);
-			}
-			
-			symbol_127.getOwnedAttributes().add(symbol_130);
-		}
-		{ // Pivot.ecore::pivot::MultiplicityElement::upper
-			symbol_131.setName("upper");
-			symbol_131.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
-			symbol_131.setLower(BigInteger.valueOf(0));
-			
-			symbol_131.setIsResolveProxies(true);
-			{
-				Comment symbol_359 = PivotFactory.eINSTANCE.createComment();
-				symbol_359.setBody("Specifies the upper bound of the multiplicity interval.");
-				symbol_131.getOwnedComments().add(symbol_359);
-			}
-			
-			symbol_127.getOwnedAttributes().add(symbol_131);
-		}
-		{	// Pivot.ecore::pivot::MultiplicityElement::includesCardinality()
-			Operation symbol_360 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesCardinality(http://www.eclipse.org/ocl/3.1.0/Pivot!Integer)
-			symbol_360.setName("includesCardinality");
-			symbol_360.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			Parameter symbol_361 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesCardinality(http://www.eclipse.org/ocl/3.1.0/Pivot!Integer)!C
-			symbol_361.setName("C");
-			symbol_361.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			
-			symbol_360.getOwnedParameters().add(symbol_361);
-			{
-				Comment symbol_362 = PivotFactory.eINSTANCE.createComment();
-				symbol_362.setBody("The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.");
-				symbol_360.getOwnedComments().add(symbol_362);
-			}
-			
-			symbol_127.getOwnedOperations().add(symbol_360);
-		}
-		{	// Pivot.ecore::pivot::MultiplicityElement::includesMultiplicity()
-			Operation symbol_363 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesMultiplicity(http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement)
-			symbol_363.setName("includesMultiplicity");
-			symbol_363.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			Parameter symbol_364 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!includesMultiplicity(http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement)!M
-			symbol_364.setName("M");
-			symbol_364.setType(symbol_127);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
-			
-			
-			symbol_363.getOwnedParameters().add(symbol_364);
-			{
-				Comment symbol_365 = PivotFactory.eINSTANCE.createComment();
-				symbol_365.setBody("The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.");
-				symbol_363.getOwnedComments().add(symbol_365);
-			}
-			
-			symbol_127.getOwnedOperations().add(symbol_363);
-		}
-		{	// Pivot.ecore::pivot::MultiplicityElement::isMultivalued()
-			Operation symbol_366 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!isMultivalued()
-			symbol_366.setName("isMultivalued");
-			symbol_366.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_367 = PivotFactory.eINSTANCE.createComment();
-				symbol_367.setBody("The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.");
-				symbol_366.getOwnedComments().add(symbol_367);
-			}
-			
-			symbol_127.getOwnedOperations().add(symbol_366);
-		}
-		{	// Pivot.ecore::pivot::MultiplicityElement::lowerBound()
-			Operation symbol_368 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!lowerBound()
-			symbol_368.setName("lowerBound");
-			symbol_368.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			{
-				Comment symbol_369 = PivotFactory.eINSTANCE.createComment();
-				symbol_369.setBody("The query lowerBound() returns the lower bound of the multiplicity as an integer.");
-				symbol_368.getOwnedComments().add(symbol_369);
-			}
-			
-			symbol_127.getOwnedOperations().add(symbol_368);
-		}
-		{	// Pivot.ecore::pivot::MultiplicityElement::upperBound()
-			Operation symbol_370 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement!upperBound()
-			symbol_370.setName("upperBound");
-			symbol_370.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
-			
-			{
-				Comment symbol_371 = PivotFactory.eINSTANCE.createComment();
-				symbol_371.setBody("The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.");
-				symbol_370.getOwnedComments().add(symbol_371);
-			}
-			
-			symbol_127.getOwnedOperations().add(symbol_370);
-		}
-		{
-			Comment symbol_372 = PivotFactory.eINSTANCE.createComment();
-			symbol_372.setBody("A multiplicity is a definition of an inclusive interval of non-negative integers beginning with a lower bound and ending with a (possibly infinite) upper bound. A multiplicity element embeds this information to specify the allowable cardinalities for an instantiation of this element.");
-			symbol_127.getOwnedComments().add(symbol_372);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_127); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
-		//
-		// Pivot.ecore::pivot::Nameable http://www.eclipse.org/ocl/3.1.0/Pivot!Nameable
-		//
-		symbol_132.setName("Nameable");
-		symbol_132.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_132); // http://www.eclipse.org/ocl/3.1.0/Pivot!Nameable
-		//
-		// Pivot.ecore::pivot::NamedElement http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		//
-		symbol_133.setName("NamedElement");
-		symbol_133.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		symbol_133.getSuperClasses().add(symbol_132); // http://www.eclipse.org/ocl/3.1.0/Pivot!Nameable
-		{ // Pivot.ecore::pivot::NamedElement::isStatic
-			symbol_134.setName("isStatic");
-			symbol_134.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_134.setIsResolveProxies(true);
-			
-			symbol_133.getOwnedAttributes().add(symbol_134);
-		}
-		{ // Pivot.ecore::pivot::NamedElement::name
-			symbol_135.setName("name");
-			symbol_135.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_135.setLower(BigInteger.valueOf(0));
-			
-			symbol_135.setIsResolveProxies(true);
-			{
-				Comment symbol_373 = PivotFactory.eINSTANCE.createComment();
-				symbol_373.setBody("The name of the NamedElement.");
-				symbol_135.getOwnedComments().add(symbol_373);
-			}
-			
-			symbol_133.getOwnedAttributes().add(symbol_135);
-		}
-		{ // Pivot.ecore::pivot::NamedElement::ownedAnnotation
-			symbol_136.setName("ownedAnnotation");
-			symbol_136.setType(symbol_1);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation
-			symbol_136.setLower(BigInteger.valueOf(0));
-			symbol_136.setUpper(BigInteger.valueOf(-1));
-			symbol_136.setIsOrdered(true);
-			
-			symbol_136.setIsComposite(true);
-			symbol_136.setIsResolveProxies(true);
-			symbol_136.setOpposite(symbol_2);
-			
-			symbol_133.getOwnedAttributes().add(symbol_136);
-		}
-		{ // Pivot.ecore::pivot::NamedElement::ownedRule
-			symbol_137.setName("ownedRule");
-			symbol_137.setType(symbol_45);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-			symbol_137.setLower(BigInteger.valueOf(0));
-			symbol_137.setUpper(BigInteger.valueOf(-1));
-			symbol_137.setIsOrdered(true);
-			
-			symbol_137.setIsComposite(true);
-			symbol_137.setIsResolveProxies(true);
-			symbol_137.setOpposite(symbol_47);
-			
-			symbol_133.getOwnedAttributes().add(symbol_137);
-		}
-		{
-			Comment symbol_374 = PivotFactory.eINSTANCE.createComment();
-			symbol_374.setBody("A named element represents an element with a name.");
-			symbol_133.getOwnedComments().add(symbol_374);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		//
-		// Pivot.ecore::pivot::Namespace http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		//
-		symbol_138.setName("Namespace");
-		symbol_138.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		
-		symbol_0.getOwnedTypes().add(symbol_138); // http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		//
-		// Pivot.ecore::pivot::NavigationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-		//
-		symbol_139.setName("NavigationCallExp");
-		symbol_139.getSuperClasses().add(symbol_85); // http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp
-		{ // Pivot.ecore::pivot::NavigationCallExp::navigationSource
-			symbol_140.setName("navigationSource");
-			symbol_140.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_140.setLower(BigInteger.valueOf(0));
-			symbol_140.setIsOrdered(true);
-			
-			symbol_140.setIsResolveProxies(true);
-			symbol_140.setOpposite(symbol_205);
-			
-			symbol_139.getOwnedAttributes().add(symbol_140);
-		}
-		{ // Pivot.ecore::pivot::NavigationCallExp::qualifier
-			symbol_141.setName("qualifier");
-			symbol_141.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_141.setLower(BigInteger.valueOf(0));
-			symbol_141.setUpper(BigInteger.valueOf(-1));
-			symbol_141.setIsOrdered(true);
-			
-			symbol_141.setIsResolveProxies(true);
-			symbol_141.setOpposite(symbol_155);
-			
-			symbol_139.getOwnedAttributes().add(symbol_141);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_139); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-		//
-		// Pivot.ecore::pivot::NullLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!NullLiteralExp
-		//
-		symbol_142.setName("NullLiteralExp");
-		symbol_142.getSuperClasses().add(symbol_201); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		
-		symbol_0.getOwnedTypes().add(symbol_142); // http://www.eclipse.org/ocl/3.1.0/Pivot!NullLiteralExp
-		//
-		// Pivot.ecore::pivot::NumericLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		//
-		symbol_143.setName("NumericLiteralExp");
-		symbol_143.getSuperClasses().add(symbol_201); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		
-		symbol_0.getOwnedTypes().add(symbol_143); // http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		//
-		// Pivot.ecore::pivot::Object http://www.eclipse.org/ocl/3.1.0/Pivot!Object
-		//
-		symbol_144.setName("Object");
-		symbol_144.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_144); // http://www.eclipse.org/ocl/3.1.0/Pivot!Object
-		//
-		// Pivot.ecore::pivot::OclExpression http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		//
-		symbol_145.setName("OclExpression");
-		symbol_145.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		{ // Pivot.ecore::pivot::OclExpression::CallExp
-			symbol_146.setName("CallExp");
-			symbol_146.setType(symbol_17);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CallExp
-			symbol_146.setLower(BigInteger.valueOf(0));
-			
-			symbol_146.setImplicit(true);
-			symbol_146.setIsResolveProxies(true);
-			symbol_146.setOpposite(symbol_19);
-			
-			symbol_145.getOwnedAttributes().add(symbol_146);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::CollectionItem
-			symbol_147.setName("CollectionItem");
-			symbol_147.setType(symbol_28);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionItem
-			symbol_147.setLower(BigInteger.valueOf(0));
-			
-			symbol_147.setImplicit(true);
-			symbol_147.setIsResolveProxies(true);
-			symbol_147.setOpposite(symbol_29);
-			
-			symbol_145.getOwnedAttributes().add(symbol_147);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::CollectionRange
-			symbol_148.setName("CollectionRange");
-			symbol_148.setType(symbol_36);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionRange
-			symbol_148.setLower(BigInteger.valueOf(0));
-			symbol_148.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_148.setImplicit(true);
-			symbol_148.setIsResolveProxies(true);
-			
-			symbol_145.getOwnedAttributes().add(symbol_148);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::ConstructorPart
-			symbol_149.setName("ConstructorPart");
-			symbol_149.setType(symbol_53);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-			symbol_149.setLower(BigInteger.valueOf(0));
-			
-			symbol_149.setImplicit(true);
-			symbol_149.setIsResolveProxies(true);
-			symbol_149.setOpposite(symbol_55);
-			
-			symbol_145.getOwnedAttributes().add(symbol_149);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::ExpressionInOcl
-			symbol_150.setName("ExpressionInOcl");
-			symbol_150.setType(symbol_76);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-			symbol_150.setLower(BigInteger.valueOf(0));
-			symbol_150.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_150.setImplicit(true);
-			symbol_150.setIsResolveProxies(true);
-			
-			symbol_145.getOwnedAttributes().add(symbol_150);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::IfExp
-			symbol_151.setName("IfExp");
-			symbol_151.setType(symbol_87);  // http://www.eclipse.org/ocl/3.1.0/Pivot!IfExp
-			symbol_151.setLower(BigInteger.valueOf(0));
-			symbol_151.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_151.setImplicit(true);
-			symbol_151.setIsResolveProxies(true);
-			
-			symbol_145.getOwnedAttributes().add(symbol_151);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::LetExp
-			symbol_152.setName("LetExp");
-			symbol_152.setType(symbol_108);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp
-			symbol_152.setLower(BigInteger.valueOf(0));
-			
-			symbol_152.setImplicit(true);
-			symbol_152.setIsResolveProxies(true);
-			symbol_152.setOpposite(symbol_109);
-			
-			symbol_145.getOwnedAttributes().add(symbol_152);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::LoopExp
-			symbol_153.setName("LoopExp");
-			symbol_153.setType(symbol_114);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-			symbol_153.setLower(BigInteger.valueOf(0));
-			
-			symbol_153.setImplicit(true);
-			symbol_153.setIsResolveProxies(true);
-			symbol_153.setOpposite(symbol_115);
-			
-			symbol_145.getOwnedAttributes().add(symbol_153);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::MessageExp
-			symbol_154.setName("MessageExp");
-			symbol_154.setType(symbol_118);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-			symbol_154.setLower(BigInteger.valueOf(0));
-			symbol_154.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_154.setImplicit(true);
-			symbol_154.setIsResolveProxies(true);
-			
-			symbol_145.getOwnedAttributes().add(symbol_154);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::NavigationCallExp
-			symbol_155.setName("NavigationCallExp");
-			symbol_155.setType(symbol_139);  // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-			symbol_155.setLower(BigInteger.valueOf(0));
-			symbol_155.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_155.setImplicit(true);
-			symbol_155.setIsResolveProxies(true);
-			symbol_155.setOpposite(symbol_141);
-			
-			symbol_145.getOwnedAttributes().add(symbol_155);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::OperationCallExp
-			symbol_156.setName("OperationCallExp");
-			symbol_156.setType(symbol_173);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp
-			symbol_156.setLower(BigInteger.valueOf(0));
-			
-			symbol_156.setImplicit(true);
-			symbol_156.setIsResolveProxies(true);
-			symbol_156.setOpposite(symbol_174);
-			
-			symbol_145.getOwnedAttributes().add(symbol_156);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::TupleLiteralPart
-			symbol_157.setName("TupleLiteralPart");
-			symbol_157.setType(symbol_275);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart
-			symbol_157.setLower(BigInteger.valueOf(0));
-			
-			symbol_157.setImplicit(true);
-			symbol_157.setIsResolveProxies(true);
-			symbol_157.setOpposite(symbol_277);
-			
-			symbol_145.getOwnedAttributes().add(symbol_157);
-		}
-		{ // Pivot.ecore::pivot::OclExpression::Variable
-			symbol_158.setName("Variable");
-			symbol_158.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_158.setLower(BigInteger.valueOf(0));
-			
-			symbol_158.setImplicit(true);
-			symbol_158.setIsResolveProxies(true);
-			symbol_158.setOpposite(symbol_318);
-			
-			symbol_145.getOwnedAttributes().add(symbol_158);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		//
-		// Pivot.ecore::pivot::OpaqueExpression http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression
-		//
-		symbol_159.setName("OpaqueExpression");
-		symbol_159.getSuperClasses().add(symbol_310); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-		{ // Pivot.ecore::pivot::OpaqueExpression::body
-			symbol_160.setName("body");
-			symbol_160.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_160.setLower(BigInteger.valueOf(0));
-			symbol_160.setUpper(BigInteger.valueOf(-1));
-			symbol_160.setIsOrdered(true);
-			symbol_160.setIsUnique(false);
-			
-			symbol_160.setIsResolveProxies(true);
-			{
-				Comment symbol_375 = PivotFactory.eINSTANCE.createComment();
-				symbol_375.setBody("The text of the expression, possibly in multiple languages.");
-				symbol_160.getOwnedComments().add(symbol_375);
-			}
-			
-			symbol_159.getOwnedAttributes().add(symbol_160);
-		}
-		{ // Pivot.ecore::pivot::OpaqueExpression::language
-			symbol_161.setName("language");
-			symbol_161.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_161.setLower(BigInteger.valueOf(0));
-			symbol_161.setUpper(BigInteger.valueOf(-1));
-			symbol_161.setIsOrdered(true);
-			
-			symbol_161.setIsResolveProxies(true);
-			{
-				Comment symbol_376 = PivotFactory.eINSTANCE.createComment();
-				symbol_376.setBody("Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
-				symbol_161.getOwnedComments().add(symbol_376);
-			}
-			
-			symbol_159.getOwnedAttributes().add(symbol_161);
-		}
-		{ // Pivot.ecore::pivot::OpaqueExpression::message
-			symbol_162.setName("message");
-			symbol_162.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_162.setLower(BigInteger.valueOf(0));
-			symbol_162.setUpper(BigInteger.valueOf(-1));
-			symbol_162.setIsOrdered(true);
-			symbol_162.setIsUnique(false);
-			
-			symbol_162.setIsResolveProxies(true);
-			
-			symbol_159.getOwnedAttributes().add(symbol_162);
-		}
-		{ // Pivot.ecore::pivot::OpaqueExpression::valueExpression
-			symbol_163.setName("valueExpression");
-			symbol_163.setType(symbol_76);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-			symbol_163.setLower(BigInteger.valueOf(0));
-			
-			symbol_163.setIsResolveProxies(true);
-			symbol_163.setIsTransient(true);
-			
-			symbol_159.getOwnedAttributes().add(symbol_163);
-		}
-		{
-			Comment symbol_377 = PivotFactory.eINSTANCE.createComment();
-			symbol_377.setBody("An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
-			symbol_159.getOwnedComments().add(symbol_377);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_159); // http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression
-		//
-		// Pivot.ecore::pivot::Operation http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-		//
-		symbol_164.setName("Operation");
-		symbol_164.getSuperClasses().add(symbol_82); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature
-		symbol_164.getSuperClasses().add(symbol_138); // http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		symbol_164.getSuperClasses().add(symbol_268); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		symbol_164.getSuperClasses().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		{ // Pivot.ecore::pivot::Operation::CallOperationAction
-			symbol_165.setName("CallOperationAction");
-			symbol_165.setType(symbol_20);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CallOperationAction
-			symbol_165.setLower(BigInteger.valueOf(0));
-			symbol_165.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_165.setImplicit(true);
-			symbol_165.setIsResolveProxies(true);
-			symbol_165.setOpposite(symbol_22);
-			
-			symbol_164.getOwnedAttributes().add(symbol_165);
-		}
-		{ // Pivot.ecore::pivot::Operation::MessageType
-			symbol_166.setName("MessageType");
-			symbol_166.setType(symbol_123);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType
-			symbol_166.setLower(BigInteger.valueOf(0));
-			symbol_166.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_166.setImplicit(true);
-			symbol_166.setIsResolveProxies(true);
-			symbol_166.setOpposite(symbol_124);
-			
-			symbol_164.getOwnedAttributes().add(symbol_166);
-		}
-		{ // Pivot.ecore::pivot::Operation::OperationCallExp
-			symbol_167.setName("OperationCallExp");
-			symbol_167.setType(symbol_173);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp
-			symbol_167.setLower(BigInteger.valueOf(0));
-			symbol_167.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_167.setImplicit(true);
-			symbol_167.setIsResolveProxies(true);
-			symbol_167.setOpposite(symbol_175);
-			
-			symbol_164.getOwnedAttributes().add(symbol_167);
-		}
-		{ // Pivot.ecore::pivot::Operation::class
-			symbol_168.setName("class");
-			symbol_168.setType(symbol_23);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-			symbol_168.setLower(BigInteger.valueOf(0));
-			
-			symbol_168.setIsReadOnly(true);
-			symbol_168.setIsResolveProxies(true);
-			symbol_168.setIsTransient(true);
-			symbol_168.setIsVolatile(true);
-			{
-				Comment symbol_378 = PivotFactory.eINSTANCE.createComment();
-				symbol_378.setBody("The class that owns the operation.");
-				symbol_168.getOwnedComments().add(symbol_378);
-			}
-			
-			symbol_164.getOwnedAttributes().add(symbol_168);
-		}
-		{ // Pivot.ecore::pivot::Operation::ownedParameter
-			symbol_169.setName("ownedParameter");
-			symbol_169.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-			symbol_169.setLower(BigInteger.valueOf(0));
-			symbol_169.setUpper(BigInteger.valueOf(-1));
-			symbol_169.setIsOrdered(true);
-			
-			symbol_169.setIsComposite(true);
-			symbol_169.setIsResolveProxies(true);
-			symbol_169.setOpposite(symbol_189);
-			{
-				Comment symbol_379 = PivotFactory.eINSTANCE.createComment();
-				symbol_379.setBody("The parameters to the operation.");
-				symbol_169.getOwnedComments().add(symbol_379);
-			}
-			
-			symbol_164.getOwnedAttributes().add(symbol_169);
-		}
-		{ // Pivot.ecore::pivot::Operation::owningType
-			symbol_170.setName("owningType");
-			symbol_170.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_170.setLower(BigInteger.valueOf(0));
-			
-			symbol_170.setIsResolveProxies(true);
-			symbol_170.setOpposite(symbol_292);
-			
-			symbol_164.getOwnedAttributes().add(symbol_170);
-		}
-		{ // Pivot.ecore::pivot::Operation::precedence
-			symbol_171.setName("precedence");
-			symbol_171.setType(symbol_196);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence
-			symbol_171.setLower(BigInteger.valueOf(0));
-			
-			symbol_171.setIsResolveProxies(true);
-			symbol_171.setOpposite(symbol_197);
-			
-			symbol_164.getOwnedAttributes().add(symbol_171);
-		}
-		{ // Pivot.ecore::pivot::Operation::raisedException
-			symbol_172.setName("raisedException");
-			symbol_172.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_172.setLower(BigInteger.valueOf(0));
-			symbol_172.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_172.setIsResolveProxies(true);
-			symbol_172.setOpposite(symbol_284);
-			{
-				Comment symbol_380 = PivotFactory.eINSTANCE.createComment();
-				symbol_380.setBody("The exceptions that are declared as possible during an invocation of the operation.");
-				symbol_172.getOwnedComments().add(symbol_380);
-			}
-			
-			symbol_164.getOwnedAttributes().add(symbol_172);
-		}
-		{
-			Comment symbol_381 = PivotFactory.eINSTANCE.createComment();
-			symbol_381.setBody("An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.\r\nOperation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			symbol_164.getOwnedComments().add(symbol_381);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_164); // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-		//
-		// Pivot.ecore::pivot::OperationCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp
-		//
-		symbol_173.setName("OperationCallExp");
-		symbol_173.getSuperClasses().add(symbol_85); // http://www.eclipse.org/ocl/3.1.0/Pivot!FeatureCallExp
-		{ // Pivot.ecore::pivot::OperationCallExp::argument
-			symbol_174.setName("argument");
-			symbol_174.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_174.setLower(BigInteger.valueOf(0));
-			symbol_174.setUpper(BigInteger.valueOf(-1));
-			symbol_174.setIsOrdered(true);
-			
-			symbol_174.setIsComposite(true);
-			symbol_174.setIsResolveProxies(true);
-			symbol_174.setOpposite(symbol_156);
-			
-			symbol_173.getOwnedAttributes().add(symbol_174);
-		}
-		{ // Pivot.ecore::pivot::OperationCallExp::referredOperation
-			symbol_175.setName("referredOperation");
-			symbol_175.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_175.setLower(BigInteger.valueOf(0));
-			
-			symbol_175.setIsResolveProxies(true);
-			symbol_175.setOpposite(symbol_167);
-			
-			symbol_173.getOwnedAttributes().add(symbol_175);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_173); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationCallExp
-		//
-		// Pivot.ecore::pivot::OperationTemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!OperationTemplateParameter
-		//
-		symbol_176.setName("OperationTemplateParameter");
-		symbol_176.getSuperClasses().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-		{
-			Comment symbol_382 = PivotFactory.eINSTANCE.createComment();
-			symbol_382.setBody("An operation template parameter exposes an operation as a formal parameter for a template.");
-			symbol_176.getOwnedComments().add(symbol_382);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_176); // http://www.eclipse.org/ocl/3.1.0/Pivot!OperationTemplateParameter
-		//
-		// Pivot.ecore::pivot::OrderedSetType http://www.eclipse.org/ocl/3.1.0/Pivot!OrderedSetType
-		//
-		symbol_177.setName("OrderedSetType");
-		symbol_177.getSuperClasses().add(symbol_39); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		
-		symbol_0.getOwnedTypes().add(symbol_177); // http://www.eclipse.org/ocl/3.1.0/Pivot!OrderedSetType
-		//
-		// Pivot.ecore::pivot::Package http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-		//
-		symbol_178.setName("Package");
-		symbol_178.getSuperClasses().add(symbol_138); // http://www.eclipse.org/ocl/3.1.0/Pivot!Namespace
-		symbol_178.getSuperClasses().add(symbol_268); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		{ // Pivot.ecore::pivot::Package::nestedPackage
-			symbol_179.setName("nestedPackage");
-			symbol_179.setType(symbol_178);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-			symbol_179.setLower(BigInteger.valueOf(0));
-			symbol_179.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_179.setIsComposite(true);
-			symbol_179.setIsResolveProxies(true);
-			symbol_179.setOpposite(symbol_180);
-			{
-				Comment symbol_383 = PivotFactory.eINSTANCE.createComment();
-				symbol_383.setBody("The set of contained packages.");
-				symbol_179.getOwnedComments().add(symbol_383);
-			}
-			
-			symbol_178.getOwnedAttributes().add(symbol_179);
-		}
-		{ // Pivot.ecore::pivot::Package::nestingPackage
-			symbol_180.setName("nestingPackage");
-			symbol_180.setType(symbol_178);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-			symbol_180.setLower(BigInteger.valueOf(0));
-			
-			symbol_180.setIsResolveProxies(true);
-			symbol_180.setOpposite(symbol_179);
-			{
-				Comment symbol_384 = PivotFactory.eINSTANCE.createComment();
-				symbol_384.setBody("The containing package.");
-				symbol_180.getOwnedComments().add(symbol_384);
-			}
-			
-			symbol_178.getOwnedAttributes().add(symbol_180);
-		}
-		{ // Pivot.ecore::pivot::Package::nsPrefix
-			symbol_181.setName("nsPrefix");
-			symbol_181.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_181.setLower(BigInteger.valueOf(0));
-			
-			symbol_181.setIsResolveProxies(true);
-			
-			symbol_178.getOwnedAttributes().add(symbol_181);
-		}
-		{ // Pivot.ecore::pivot::Package::nsURI
-			symbol_182.setName("nsURI");
-			symbol_182.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_182.setLower(BigInteger.valueOf(0));
-			
-			symbol_182.setIsResolveProxies(true);
-			
-			symbol_178.getOwnedAttributes().add(symbol_182);
-		}
-		{ // Pivot.ecore::pivot::Package::ownedPrecedence
-			symbol_183.setName("ownedPrecedence");
-			symbol_183.setType(symbol_196);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence
-			symbol_183.setLower(BigInteger.valueOf(0));
-			symbol_183.setUpper(BigInteger.valueOf(-1));
-			symbol_183.setIsOrdered(true);
-			
-			symbol_183.setIsComposite(true);
-			symbol_183.setIsResolveProxies(true);
-			symbol_183.setOpposite(symbol_198);
-			
-			symbol_178.getOwnedAttributes().add(symbol_183);
-		}
-		{ // Pivot.ecore::pivot::Package::ownedType
-			symbol_184.setName("ownedType");
-			symbol_184.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_184.setLower(BigInteger.valueOf(0));
-			symbol_184.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_184.setIsComposite(true);
-			symbol_184.setIsResolveProxies(true);
-			symbol_184.setOpposite(symbol_293);
-			{
-				Comment symbol_385 = PivotFactory.eINSTANCE.createComment();
-				symbol_385.setBody("The set of contained types.");
-				symbol_184.getOwnedComments().add(symbol_385);
-			}
-			
-			symbol_178.getOwnedAttributes().add(symbol_184);
-		}
-		{
-			Comment symbol_386 = PivotFactory.eINSTANCE.createComment();
-			symbol_386.setBody("A package is a container for types and other packages.\r\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.");
-			symbol_178.getOwnedComments().add(symbol_386);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_178); // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-		//
-		// Pivot.ecore::pivot::PackageableElement http://www.eclipse.org/ocl/3.1.0/Pivot!PackageableElement
-		//
-		symbol_185.setName("PackageableElement");
-		symbol_185.getSuperClasses().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		{
-			Comment symbol_387 = PivotFactory.eINSTANCE.createComment();
-			symbol_387.setBody("Packageable elements are able to serve as a template parameter.");
-			symbol_185.getOwnedComments().add(symbol_387);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_185); // http://www.eclipse.org/ocl/3.1.0/Pivot!PackageableElement
-		//
-		// Pivot.ecore::pivot::Parameter http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-		//
-		symbol_186.setName("Parameter");
-		symbol_186.getSuperClasses().add(symbol_302); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
-		symbol_186.getSuperClasses().add(symbol_320); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		{ // Pivot.ecore::pivot::Parameter::Iteration
-			symbol_187.setName("Iteration");
-			symbol_187.setType(symbol_99);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration
-			symbol_187.setLower(BigInteger.valueOf(0));
-			symbol_187.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_187.setImplicit(true);
-			symbol_187.setIsResolveProxies(true);
-			
-			symbol_186.getOwnedAttributes().add(symbol_187);
-		}
-		{ // Pivot.ecore::pivot::Parameter::Variable
-			symbol_188.setName("Variable");
-			symbol_188.setType(symbol_312);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-			symbol_188.setLower(BigInteger.valueOf(0));
-			symbol_188.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_188.setImplicit(true);
-			symbol_188.setIsResolveProxies(true);
-			symbol_188.setOpposite(symbol_319);
-			
-			symbol_186.getOwnedAttributes().add(symbol_188);
-		}
-		{ // Pivot.ecore::pivot::Parameter::operation
-			symbol_189.setName("operation");
-			symbol_189.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_189.setLower(BigInteger.valueOf(0));
-			
-			symbol_189.setIsResolveProxies(true);
-			symbol_189.setOpposite(symbol_169);
-			{
-				Comment symbol_388 = PivotFactory.eINSTANCE.createComment();
-				symbol_388.setBody("The operation that owns the parameter.");
-				symbol_189.getOwnedComments().add(symbol_388);
-			}
-			
-			symbol_186.getOwnedAttributes().add(symbol_189);
-		}
-		{
-			Comment symbol_389 = PivotFactory.eINSTANCE.createComment();
-			symbol_389.setBody("A parameter is a typed element that represents a parameter of an operation.");
-			symbol_186.getOwnedComments().add(symbol_389);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_186); // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-		//
-		// Pivot.ecore::pivot::ParameterableElement http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		//
-		symbol_190.setName("ParameterableElement");
-		symbol_190.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::ParameterableElement::TemplateParameter
-			symbol_191.setName("TemplateParameter");
-			symbol_191.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			symbol_191.setLower(BigInteger.valueOf(0));
-			symbol_191.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_191.setImplicit(true);
-			symbol_191.setIsResolveProxies(true);
-			
-			symbol_190.getOwnedAttributes().add(symbol_191);
-		}
-		{ // Pivot.ecore::pivot::ParameterableElement::TemplateParameterSubstitution
-			symbol_192.setName("TemplateParameterSubstitution");
-			symbol_192.setType(symbol_256);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-			symbol_192.setLower(BigInteger.valueOf(0));
-			symbol_192.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_192.setImplicit(true);
-			symbol_192.setIsResolveProxies(true);
-			
-			symbol_190.getOwnedAttributes().add(symbol_192);
-		}
-		{ // Pivot.ecore::pivot::ParameterableElement::owningTemplateParameter
-			symbol_193.setName("owningTemplateParameter");
-			symbol_193.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			symbol_193.setLower(BigInteger.valueOf(0));
-			
-			symbol_193.setIsResolveProxies(true);
-			symbol_193.setOpposite(symbol_253);
-			{
-				Comment symbol_390 = PivotFactory.eINSTANCE.createComment();
-				symbol_390.setBody("The formal template parameter that owns this element.");
-				symbol_193.getOwnedComments().add(symbol_390);
-			}
-			
-			symbol_190.getOwnedAttributes().add(symbol_193);
-		}
-		{ // Pivot.ecore::pivot::ParameterableElement::templateParameter
-			symbol_194.setName("templateParameter");
-			symbol_194.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			symbol_194.setLower(BigInteger.valueOf(0));
-			
-			symbol_194.setIsResolveProxies(true);
-			symbol_194.setOpposite(symbol_254);
-			{
-				Comment symbol_391 = PivotFactory.eINSTANCE.createComment();
-				symbol_391.setBody("The template parameter that exposes this element as a formal parameter.");
-				symbol_194.getOwnedComments().add(symbol_391);
-			}
-			
-			symbol_190.getOwnedAttributes().add(symbol_194);
-		}
-		{	// Pivot.ecore::pivot::ParameterableElement::isCompatibleWith()
-			Operation symbol_392 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement)
-			symbol_392.setName("isCompatibleWith");
-			symbol_392.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			Parameter symbol_393 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isCompatibleWith(http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement)!p
-			symbol_393.setName("p");
-			symbol_393.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			
-			
-			symbol_392.getOwnedParameters().add(symbol_393);
-			
-			symbol_190.getOwnedOperations().add(symbol_392);
-		}
-		{	// Pivot.ecore::pivot::ParameterableElement::isTemplateParameter()
-			Operation symbol_394 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement!isTemplateParameter()
-			symbol_394.setName("isTemplateParameter");
-			symbol_394.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_395 = PivotFactory.eINSTANCE.createComment();
-				symbol_395.setBody("The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.");
-				symbol_394.getOwnedComments().add(symbol_395);
-			}
-			
-			symbol_190.getOwnedOperations().add(symbol_394);
-		}
-		{
-			Comment symbol_396 = PivotFactory.eINSTANCE.createComment();
-			symbol_396.setBody("A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.");
-			symbol_190.getOwnedComments().add(symbol_396);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		//
-		// Pivot.ecore::pivot::Pivotable http://www.eclipse.org/ocl/3.1.0/Pivot!Pivotable
-		//
-		symbol_195.setName("Pivotable");
-		symbol_195.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_195); // http://www.eclipse.org/ocl/3.1.0/Pivot!Pivotable
-		//
-		// Pivot.ecore::pivot::Precedence http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence
-		//
-		symbol_196.setName("Precedence");
-		symbol_196.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::Precedence::Operation
-			symbol_197.setName("Operation");
-			symbol_197.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_197.setLower(BigInteger.valueOf(0));
-			symbol_197.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_197.setImplicit(true);
-			symbol_197.setIsResolveProxies(true);
-			symbol_197.setOpposite(symbol_171);
-			
-			symbol_196.getOwnedAttributes().add(symbol_197);
-		}
-		{ // Pivot.ecore::pivot::Precedence::Package
-			symbol_198.setName("Package");
-			symbol_198.setType(symbol_178);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-			symbol_198.setLower(BigInteger.valueOf(0));
-			
-			symbol_198.setImplicit(true);
-			symbol_198.setIsResolveProxies(true);
-			symbol_198.setOpposite(symbol_183);
-			
-			symbol_196.getOwnedAttributes().add(symbol_198);
-		}
-		{ // Pivot.ecore::pivot::Precedence::associativity
-			symbol_199.setName("associativity");
-			symbol_199.setType(symbol_12);  // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociativityKind
-			symbol_199.setLower(BigInteger.valueOf(0));
-			
-			symbol_199.setIsResolveProxies(true);
-			
-			symbol_196.getOwnedAttributes().add(symbol_199);
-		}
-		{ // Pivot.ecore::pivot::Precedence::order
-			symbol_200.setName("order");
-			symbol_200.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			symbol_200.setIsDerived(true);
-			symbol_200.setIsResolveProxies(true);
-			symbol_200.setIsTransient(true);
-			symbol_200.setIsVolatile(true);
-			
-			symbol_196.getOwnedAttributes().add(symbol_200);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_196); // http://www.eclipse.org/ocl/3.1.0/Pivot!Precedence
-		//
-		// Pivot.ecore::pivot::PrimitiveLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		//
-		symbol_201.setName("PrimitiveLiteralExp");
-		symbol_201.getSuperClasses().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		
-		symbol_0.getOwnedTypes().add(symbol_201); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		//
-		// Pivot.ecore::pivot::PrimitiveType http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveType
-		//
-		symbol_202.setName("PrimitiveType");
-		symbol_202.getSuperClasses().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		{
-			Comment symbol_397 = PivotFactory.eINSTANCE.createComment();
-			symbol_397.setBody("A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");
-			symbol_202.getOwnedComments().add(symbol_397);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_202); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveType
-		//
-		// Pivot.ecore::pivot::Property http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-		//
-		symbol_203.setName("Property");
-		symbol_203.getSuperClasses().add(symbol_82); // http://www.eclipse.org/ocl/3.1.0/Pivot!Feature
-		symbol_203.getSuperClasses().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		{ // Pivot.ecore::pivot::Property::ConstructorPart
-			symbol_204.setName("ConstructorPart");
-			symbol_204.setType(symbol_53);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorPart
-			symbol_204.setLower(BigInteger.valueOf(0));
-			symbol_204.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_204.setImplicit(true);
-			symbol_204.setIsResolveProxies(true);
-			symbol_204.setOpposite(symbol_56);
-			
-			symbol_203.getOwnedAttributes().add(symbol_204);
-		}
-		{ // Pivot.ecore::pivot::Property::NavigationCallExp
-			symbol_205.setName("NavigationCallExp");
-			symbol_205.setType(symbol_139);  // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-			symbol_205.setLower(BigInteger.valueOf(0));
-			symbol_205.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_205.setImplicit(true);
-			symbol_205.setIsResolveProxies(true);
-			symbol_205.setOpposite(symbol_140);
-			
-			symbol_203.getOwnedAttributes().add(symbol_205);
-		}
-		{ // Pivot.ecore::pivot::Property::Property
-			symbol_206.setName("Property");
-			symbol_206.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_206.setLower(BigInteger.valueOf(0));
-			symbol_206.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_206.setImplicit(true);
-			symbol_206.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_206);
-		}
-		{ // Pivot.ecore::pivot::Property::PropertyCallExp
-			symbol_207.setName("PropertyCallExp");
-			symbol_207.setType(symbol_223);  // http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp
-			symbol_207.setLower(BigInteger.valueOf(0));
-			symbol_207.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_207.setImplicit(true);
-			symbol_207.setIsResolveProxies(true);
-			symbol_207.setOpposite(symbol_224);
-			
-			symbol_203.getOwnedAttributes().add(symbol_207);
-		}
-		{ // Pivot.ecore::pivot::Property::association
-			symbol_208.setName("association");
-			symbol_208.setType(symbol_7);  // http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass
-			symbol_208.setLower(BigInteger.valueOf(0));
-			
-			symbol_208.setIsResolveProxies(true);
-			symbol_208.setOpposite(symbol_9);
-			
-			symbol_203.getOwnedAttributes().add(symbol_208);
-		}
-		{ // Pivot.ecore::pivot::Property::class
-			symbol_209.setName("class");
-			symbol_209.setType(symbol_23);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-			symbol_209.setLower(BigInteger.valueOf(0));
-			
-			symbol_209.setIsReadOnly(true);
-			symbol_209.setIsResolveProxies(true);
-			symbol_209.setIsTransient(true);
-			symbol_209.setIsVolatile(true);
-			{
-				Comment symbol_398 = PivotFactory.eINSTANCE.createComment();
-				symbol_398.setBody("The class that owns the property, and of which the property is an attribute.");
-				symbol_209.getOwnedComments().add(symbol_398);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_209);
-		}
-		{ // Pivot.ecore::pivot::Property::default
-			symbol_210.setName("default");
-			symbol_210.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_210.setLower(BigInteger.valueOf(0));
-			
-			symbol_210.setIsResolveProxies(true);
-			{
-				Comment symbol_399 = PivotFactory.eINSTANCE.createComment();
-				symbol_399.setBody("A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.");
-				symbol_210.getOwnedComments().add(symbol_399);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_210);
-		}
-		{ // Pivot.ecore::pivot::Property::implicit
-			symbol_211.setName("implicit");
-			symbol_211.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			symbol_211.setLower(BigInteger.valueOf(0));
-			
-			symbol_211.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_211);
-		}
-		{ // Pivot.ecore::pivot::Property::isComposite
-			symbol_212.setName("isComposite");
-			symbol_212.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_212.setIsResolveProxies(true);
-			{
-				Comment symbol_400 = PivotFactory.eINSTANCE.createComment();
-				symbol_400.setBody("If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.");
-				symbol_212.getOwnedComments().add(symbol_400);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_212);
-		}
-		{ // Pivot.ecore::pivot::Property::isDerived
-			symbol_213.setName("isDerived");
-			symbol_213.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_213.setIsResolveProxies(true);
-			{
-				Comment symbol_401 = PivotFactory.eINSTANCE.createComment();
-				symbol_401.setBody("If isDerived is true, the value of the attribute is derived from information elsewhere.");
-				symbol_213.getOwnedComments().add(symbol_401);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_213);
-		}
-		{ // Pivot.ecore::pivot::Property::isID
-			symbol_214.setName("isID");
-			symbol_214.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_214.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_214);
-		}
-		{ // Pivot.ecore::pivot::Property::isReadOnly
-			symbol_215.setName("isReadOnly");
-			symbol_215.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_215.setIsResolveProxies(true);
-			{
-				Comment symbol_402 = PivotFactory.eINSTANCE.createComment();
-				symbol_402.setBody("If isReadOnly is true, the attribute may not be written to after initialization.");
-				symbol_215.getOwnedComments().add(symbol_402);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_215);
-		}
-		{ // Pivot.ecore::pivot::Property::isResolveProxies
-			symbol_216.setName("isResolveProxies");
-			symbol_216.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_216.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_216);
-		}
-		{ // Pivot.ecore::pivot::Property::isTransient
-			symbol_217.setName("isTransient");
-			symbol_217.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_217.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_217);
-		}
-		{ // Pivot.ecore::pivot::Property::isUnsettable
-			symbol_218.setName("isUnsettable");
-			symbol_218.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_218.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_218);
-		}
-		{ // Pivot.ecore::pivot::Property::isVolatile
-			symbol_219.setName("isVolatile");
-			symbol_219.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_219.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_219);
-		}
-		{ // Pivot.ecore::pivot::Property::keys
-			symbol_220.setName("keys");
-			symbol_220.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_220.setLower(BigInteger.valueOf(0));
-			symbol_220.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_220.setIsResolveProxies(true);
-			
-			symbol_203.getOwnedAttributes().add(symbol_220);
-		}
-		{ // Pivot.ecore::pivot::Property::opposite
-			symbol_221.setName("opposite");
-			symbol_221.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_221.setLower(BigInteger.valueOf(0));
-			
-			symbol_221.setIsResolveProxies(true);
-			symbol_221.setOpposite(symbol_206);
-			{
-				Comment symbol_403 = PivotFactory.eINSTANCE.createComment();
-				symbol_403.setBody("Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.");
-				symbol_221.getOwnedComments().add(symbol_403);
-			}
-			
-			symbol_203.getOwnedAttributes().add(symbol_221);
-		}
-		{ // Pivot.ecore::pivot::Property::owningType
-			symbol_222.setName("owningType");
-			symbol_222.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_222.setLower(BigInteger.valueOf(0));
-			
-			symbol_222.setIsResolveProxies(true);
-			symbol_222.setOpposite(symbol_291);
-			
-			symbol_203.getOwnedAttributes().add(symbol_222);
-		}
-		{	// Pivot.ecore::pivot::Property::isAttribute()
-			Operation symbol_404 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isAttribute(http://www.eclipse.org/ocl/3.1.0/Pivot!Property)
-			symbol_404.setName("isAttribute");
-			symbol_404.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			Parameter symbol_405 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property!isAttribute(http://www.eclipse.org/ocl/3.1.0/Pivot!Property)!p
-			symbol_405.setName("p");
-			symbol_405.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			
-			
-			symbol_404.getOwnedParameters().add(symbol_405);
-			
-			symbol_203.getOwnedOperations().add(symbol_404);
-		}
-		{
-			Comment symbol_406 = PivotFactory.eINSTANCE.createComment();
-			symbol_406.setBody("A property is a typed element that represents an attribute of a class.\r\nProperty specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			symbol_203.getOwnedComments().add(symbol_406);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_203); // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-		//
-		// Pivot.ecore::pivot::PropertyCallExp http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp
-		//
-		symbol_223.setName("PropertyCallExp");
-		symbol_223.getSuperClasses().add(symbol_139); // http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp
-		{ // Pivot.ecore::pivot::PropertyCallExp::referredProperty
-			symbol_224.setName("referredProperty");
-			symbol_224.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_224.setLower(BigInteger.valueOf(0));
-			
-			symbol_224.setIsResolveProxies(true);
-			symbol_224.setOpposite(symbol_207);
-			
-			symbol_223.getOwnedAttributes().add(symbol_224);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_223); // http://www.eclipse.org/ocl/3.1.0/Pivot!PropertyCallExp
-		//
-		// Pivot.ecore::pivot::RealLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp
-		//
-		symbol_226.setName("RealLiteralExp");
-		symbol_226.getSuperClasses().add(symbol_143); // http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		{ // Pivot.ecore::pivot::RealLiteralExp::realSymbol
-			symbol_227.setName("realSymbol");
-			symbol_227.setType(symbol_225);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Real
-			
-			symbol_227.setIsResolveProxies(true);
-			
-			symbol_226.getOwnedAttributes().add(symbol_227);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_226); // http://www.eclipse.org/ocl/3.1.0/Pivot!RealLiteralExp
-		//
-		// Pivot.ecore::pivot::SelfType http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType
-		//
-		symbol_228.setName("SelfType");
-		symbol_228.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		{	// Pivot.ecore::pivot::SelfType::resolveSelfType()
-			Operation symbol_407 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)
-			symbol_407.setName("resolveSelfType");
-			symbol_407.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			Parameter symbol_408 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)!selfType
-			symbol_408.setName("selfType");
-			symbol_408.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			
-			symbol_407.getOwnedParameters().add(symbol_408);
-			
-			symbol_228.getOwnedOperations().add(symbol_407);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_228); // http://www.eclipse.org/ocl/3.1.0/Pivot!SelfType
-		//
-		// Pivot.ecore::pivot::SendSignalAction http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction
-		//
-		symbol_229.setName("SendSignalAction");
-		symbol_229.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::SendSignalAction::MessageExp
-			symbol_230.setName("MessageExp");
-			symbol_230.setType(symbol_118);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp
-			symbol_230.setLower(BigInteger.valueOf(0));
-			
-			symbol_230.setImplicit(true);
-			symbol_230.setIsResolveProxies(true);
-			symbol_230.setOpposite(symbol_121);
-			
-			symbol_229.getOwnedAttributes().add(symbol_230);
-		}
-		{ // Pivot.ecore::pivot::SendSignalAction::signal
-			symbol_231.setName("signal");
-			symbol_231.setType(symbol_234);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal
-			
-			symbol_231.setIsResolveProxies(true);
-			symbol_231.setOpposite(symbol_236);
-			
-			symbol_229.getOwnedAttributes().add(symbol_231);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_229); // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction
-		//
-		// Pivot.ecore::pivot::SequenceType http://www.eclipse.org/ocl/3.1.0/Pivot!SequenceType
-		//
-		symbol_232.setName("SequenceType");
-		symbol_232.getSuperClasses().add(symbol_39); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		
-		symbol_0.getOwnedTypes().add(symbol_232); // http://www.eclipse.org/ocl/3.1.0/Pivot!SequenceType
-		//
-		// Pivot.ecore::pivot::SetType http://www.eclipse.org/ocl/3.1.0/Pivot!SetType
-		//
-		symbol_233.setName("SetType");
-		symbol_233.getSuperClasses().add(symbol_39); // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-		
-		symbol_0.getOwnedTypes().add(symbol_233); // http://www.eclipse.org/ocl/3.1.0/Pivot!SetType
-		//
-		// Pivot.ecore::pivot::Signal http://www.eclipse.org/ocl/3.1.0/Pivot!Signal
-		//
-		symbol_234.setName("Signal");
-		symbol_234.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::Signal::MessageType
-			symbol_235.setName("MessageType");
-			symbol_235.setType(symbol_123);  // http://www.eclipse.org/ocl/3.1.0/Pivot!MessageType
-			symbol_235.setLower(BigInteger.valueOf(0));
-			symbol_235.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_235.setImplicit(true);
-			symbol_235.setIsResolveProxies(true);
-			symbol_235.setOpposite(symbol_125);
-			
-			symbol_234.getOwnedAttributes().add(symbol_235);
-		}
-		{ // Pivot.ecore::pivot::Signal::SendSignalAction
-			symbol_236.setName("SendSignalAction");
-			symbol_236.setType(symbol_229);  // http://www.eclipse.org/ocl/3.1.0/Pivot!SendSignalAction
-			symbol_236.setLower(BigInteger.valueOf(0));
-			symbol_236.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_236.setImplicit(true);
-			symbol_236.setIsResolveProxies(true);
-			symbol_236.setOpposite(symbol_231);
-			
-			symbol_234.getOwnedAttributes().add(symbol_236);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_234); // http://www.eclipse.org/ocl/3.1.0/Pivot!Signal
-		//
-		// Pivot.ecore::pivot::State http://www.eclipse.org/ocl/3.1.0/Pivot!State
-		//
-		symbol_237.setName("State");
-		symbol_237.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::State::StateExp
-			symbol_238.setName("StateExp");
-			symbol_238.setType(symbol_239);  // http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp
-			symbol_238.setLower(BigInteger.valueOf(0));
-			symbol_238.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_238.setImplicit(true);
-			symbol_238.setIsResolveProxies(true);
-			symbol_238.setOpposite(symbol_240);
-			
-			symbol_237.getOwnedAttributes().add(symbol_238);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_237); // http://www.eclipse.org/ocl/3.1.0/Pivot!State
-		//
-		// Pivot.ecore::pivot::StateExp http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp
-		//
-		symbol_239.setName("StateExp");
-		symbol_239.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::StateExp::referredState
-			symbol_240.setName("referredState");
-			symbol_240.setType(symbol_237);  // http://www.eclipse.org/ocl/3.1.0/Pivot!State
-			symbol_240.setLower(BigInteger.valueOf(0));
-			
-			symbol_240.setIsResolveProxies(true);
-			symbol_240.setOpposite(symbol_238);
-			
-			symbol_239.getOwnedAttributes().add(symbol_240);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_239); // http://www.eclipse.org/ocl/3.1.0/Pivot!StateExp
-		//
-		// Pivot.ecore::pivot::StringLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp
-		//
-		symbol_242.setName("StringLiteralExp");
-		symbol_242.getSuperClasses().add(symbol_201); // http://www.eclipse.org/ocl/3.1.0/Pivot!PrimitiveLiteralExp
-		{ // Pivot.ecore::pivot::StringLiteralExp::stringSymbol
-			symbol_243.setName("stringSymbol");
-			symbol_243.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			
-			symbol_243.setIsResolveProxies(true);
-			
-			symbol_242.getOwnedAttributes().add(symbol_243);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_242); // http://www.eclipse.org/ocl/3.1.0/Pivot!StringLiteralExp
-		//
-		// Pivot.ecore::pivot::TemplateBinding http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-		//
-		symbol_244.setName("TemplateBinding");
-		symbol_244.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::TemplateBinding::boundElement
-			symbol_245.setName("boundElement");
-			symbol_245.setType(symbol_268);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-			
-			symbol_245.setIsResolveProxies(true);
-			symbol_245.setOpposite(symbol_270);
-			{
-				Comment symbol_409 = PivotFactory.eINSTANCE.createComment();
-				symbol_409.setBody("The element that is bound by this binding.");
-				symbol_245.getOwnedComments().add(symbol_409);
-			}
-			
-			symbol_244.getOwnedAttributes().add(symbol_245);
-		}
-		{ // Pivot.ecore::pivot::TemplateBinding::parameterSubstitution
-			symbol_246.setName("parameterSubstitution");
-			symbol_246.setType(symbol_256);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-			symbol_246.setLower(BigInteger.valueOf(0));
-			symbol_246.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_246.setIsComposite(true);
-			symbol_246.setIsResolveProxies(true);
-			symbol_246.setOpposite(symbol_260);
-			{
-				Comment symbol_410 = PivotFactory.eINSTANCE.createComment();
-				symbol_410.setBody("The parameter substitutions owned by this template binding.");
-				symbol_246.getOwnedComments().add(symbol_410);
-			}
-			
-			symbol_244.getOwnedAttributes().add(symbol_246);
-		}
-		{ // Pivot.ecore::pivot::TemplateBinding::signature
-			symbol_247.setName("signature");
-			symbol_247.setType(symbol_263);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-			
-			symbol_247.setIsResolveProxies(true);
-			symbol_247.setOpposite(symbol_264);
-			{
-				Comment symbol_411 = PivotFactory.eINSTANCE.createComment();
-				symbol_411.setBody("The template signature for the template that is the target of the binding.");
-				symbol_247.getOwnedComments().add(symbol_411);
-			}
-			
-			symbol_244.getOwnedAttributes().add(symbol_247);
-		}
-		{
-			Comment symbol_412 = PivotFactory.eINSTANCE.createComment();
-			symbol_412.setBody("A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
-			symbol_244.getOwnedComments().add(symbol_412);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_244); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-		//
-		// Pivot.ecore::pivot::TemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-		//
-		symbol_248.setName("TemplateParameter");
-		symbol_248.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::TemplateParameter::TemplateParameterSubstitution
-			symbol_249.setName("TemplateParameterSubstitution");
-			symbol_249.setType(symbol_256);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-			symbol_249.setLower(BigInteger.valueOf(0));
-			symbol_249.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_249.setImplicit(true);
-			symbol_249.setIsResolveProxies(true);
-			symbol_249.setOpposite(symbol_258);
-			
-			symbol_248.getOwnedAttributes().add(symbol_249);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::TemplateSignature
-			symbol_250.setName("TemplateSignature");
-			symbol_250.setType(symbol_263);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-			symbol_250.setLower(BigInteger.valueOf(0));
-			symbol_250.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_250.setImplicit(true);
-			symbol_250.setIsResolveProxies(true);
-			symbol_250.setOpposite(symbol_266);
-			
-			symbol_248.getOwnedAttributes().add(symbol_250);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::default
-			symbol_251.setName("default");
-			symbol_251.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_251.setLower(BigInteger.valueOf(0));
-			
-			symbol_251.setIsResolveProxies(true);
-			symbol_251.setOpposite(symbol_191);
-			{
-				Comment symbol_413 = PivotFactory.eINSTANCE.createComment();
-				symbol_413.setBody("The element that is the default for this formal template parameter.");
-				symbol_251.getOwnedComments().add(symbol_413);
-			}
-			
-			symbol_248.getOwnedAttributes().add(symbol_251);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::ownedDefault
-			symbol_252.setName("ownedDefault");
-			symbol_252.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_252.setLower(BigInteger.valueOf(0));
-			
-			symbol_252.setIsComposite(true);
-			symbol_252.setIsResolveProxies(true);
-			{
-				Comment symbol_414 = PivotFactory.eINSTANCE.createComment();
-				symbol_414.setBody("The element that is owned by this template parameter for the purpose of providing a default.");
-				symbol_252.getOwnedComments().add(symbol_414);
-			}
-			
-			symbol_248.getOwnedAttributes().add(symbol_252);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::ownedParameteredElement
-			symbol_253.setName("ownedParameteredElement");
-			symbol_253.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_253.setLower(BigInteger.valueOf(0));
-			
-			symbol_253.setIsComposite(true);
-			symbol_253.setIsResolveProxies(true);
-			symbol_253.setOpposite(symbol_193);
-			{
-				Comment symbol_415 = PivotFactory.eINSTANCE.createComment();
-				symbol_415.setBody("The element that is owned by this template parameter.");
-				symbol_253.getOwnedComments().add(symbol_415);
-			}
-			
-			symbol_248.getOwnedAttributes().add(symbol_253);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::parameteredElement
-			symbol_254.setName("parameteredElement");
-			symbol_254.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			
-			symbol_254.setIsResolveProxies(true);
-			symbol_254.setOpposite(symbol_194);
-			{
-				Comment symbol_416 = PivotFactory.eINSTANCE.createComment();
-				symbol_416.setBody("The element exposed by this template parameter.");
-				symbol_254.getOwnedComments().add(symbol_416);
-			}
-			
-			symbol_248.getOwnedAttributes().add(symbol_254);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameter::signature
-			symbol_255.setName("signature");
-			symbol_255.setType(symbol_263);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-			
-			symbol_255.setIsResolveProxies(true);
-			symbol_255.setOpposite(symbol_265);
-			{
-				Comment symbol_417 = PivotFactory.eINSTANCE.createComment();
-				symbol_417.setBody("The template signature that owns this template parameter.");
-				symbol_255.getOwnedComments().add(symbol_417);
-			}
-			
-			symbol_248.getOwnedAttributes().add(symbol_255);
-		}
-		{
-			Comment symbol_418 = PivotFactory.eINSTANCE.createComment();
-			symbol_418.setBody("A template parameter exposes a parameterable element as a formal template parameter of a template.");
-			symbol_248.getOwnedComments().add(symbol_418);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-		//
-		// Pivot.ecore::pivot::TemplateParameterSubstitution http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-		//
-		symbol_256.setName("TemplateParameterSubstitution");
-		symbol_256.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::TemplateParameterSubstitution::actual
-			symbol_257.setName("actual");
-			symbol_257.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			
-			symbol_257.setIsResolveProxies(true);
-			{
-				Comment symbol_419 = PivotFactory.eINSTANCE.createComment();
-				symbol_419.setBody("The element that is the actual parameter for this substitution.");
-				symbol_257.getOwnedComments().add(symbol_419);
-			}
-			
-			symbol_256.getOwnedAttributes().add(symbol_257);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameterSubstitution::formal
-			symbol_258.setName("formal");
-			symbol_258.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			
-			symbol_258.setIsResolveProxies(true);
-			symbol_258.setOpposite(symbol_249);
-			{
-				Comment symbol_420 = PivotFactory.eINSTANCE.createComment();
-				symbol_420.setBody("The formal template parameter that is associated with this substitution.");
-				symbol_258.getOwnedComments().add(symbol_420);
-			}
-			
-			symbol_256.getOwnedAttributes().add(symbol_258);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameterSubstitution::ownedActual
-			symbol_259.setName("ownedActual");
-			symbol_259.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_259.setLower(BigInteger.valueOf(0));
-			
-			symbol_259.setIsComposite(true);
-			symbol_259.setIsResolveProxies(true);
-			symbol_259.setOpposite(symbol_192);
-			{
-				Comment symbol_421 = PivotFactory.eINSTANCE.createComment();
-				symbol_421.setBody("The actual parameter that is owned by this substitution.");
-				symbol_259.getOwnedComments().add(symbol_421);
-			}
-			
-			symbol_256.getOwnedAttributes().add(symbol_259);
-		}
-		{ // Pivot.ecore::pivot::TemplateParameterSubstitution::templateBinding
-			symbol_260.setName("templateBinding");
-			symbol_260.setType(symbol_244);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-			
-			symbol_260.setIsResolveProxies(true);
-			symbol_260.setOpposite(symbol_246);
-			{
-				Comment symbol_422 = PivotFactory.eINSTANCE.createComment();
-				symbol_422.setBody("The optional bindings from this element to templates.");
-				symbol_260.getOwnedComments().add(symbol_422);
-			}
-			
-			symbol_256.getOwnedAttributes().add(symbol_260);
-		}
-		{
-			Comment symbol_423 = PivotFactory.eINSTANCE.createComment();
-			symbol_423.setBody("A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
-			symbol_256.getOwnedComments().add(symbol_423);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_256); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution
-		//
-		// Pivot.ecore::pivot::TemplateParameterType http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterType
-		//
-		symbol_261.setName("TemplateParameterType");
-		symbol_261.getSuperClasses().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		{ // Pivot.ecore::pivot::TemplateParameterType::specification
-			symbol_262.setName("specification");
-			symbol_262.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_262.setLower(BigInteger.valueOf(0));
-			
-			symbol_262.setIsResolveProxies(true);
-			
-			symbol_261.getOwnedAttributes().add(symbol_262);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_261); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterType
-		//
-		// Pivot.ecore::pivot::TemplateSignature http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-		//
-		symbol_263.setName("TemplateSignature");
-		symbol_263.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::TemplateSignature::TemplateBinding
-			symbol_264.setName("TemplateBinding");
-			symbol_264.setType(symbol_244);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-			symbol_264.setLower(BigInteger.valueOf(0));
-			symbol_264.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_264.setImplicit(true);
-			symbol_264.setIsResolveProxies(true);
-			symbol_264.setOpposite(symbol_247);
-			
-			symbol_263.getOwnedAttributes().add(symbol_264);
-		}
-		{ // Pivot.ecore::pivot::TemplateSignature::ownedParameter
-			symbol_265.setName("ownedParameter");
-			symbol_265.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			symbol_265.setLower(BigInteger.valueOf(0));
-			symbol_265.setUpper(BigInteger.valueOf(-1));
-			symbol_265.setIsOrdered(true);
-			
-			symbol_265.setIsComposite(true);
-			symbol_265.setIsResolveProxies(true);
-			symbol_265.setOpposite(symbol_255);
-			{
-				Comment symbol_424 = PivotFactory.eINSTANCE.createComment();
-				symbol_424.setBody("The formal template parameters that are owned by this template signature.");
-				symbol_265.getOwnedComments().add(symbol_424);
-			}
-			
-			symbol_263.getOwnedAttributes().add(symbol_265);
-		}
-		{ // Pivot.ecore::pivot::TemplateSignature::parameter
-			symbol_266.setName("parameter");
-			symbol_266.setType(symbol_248);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-			symbol_266.setUpper(BigInteger.valueOf(-1));
-			symbol_266.setIsOrdered(true);
-			
-			symbol_266.setIsResolveProxies(true);
-			symbol_266.setOpposite(symbol_250);
-			{
-				Comment symbol_425 = PivotFactory.eINSTANCE.createComment();
-				symbol_425.setBody("The ordered set of all formal template parameters for this template signature.");
-				symbol_266.getOwnedComments().add(symbol_425);
-			}
-			
-			symbol_263.getOwnedAttributes().add(symbol_266);
-		}
-		{ // Pivot.ecore::pivot::TemplateSignature::template
-			symbol_267.setName("template");
-			symbol_267.setType(symbol_268);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-			
-			symbol_267.setIsResolveProxies(true);
-			symbol_267.setOpposite(symbol_269);
-			{
-				Comment symbol_426 = PivotFactory.eINSTANCE.createComment();
-				symbol_426.setBody("The element that owns this template signature.");
-				symbol_267.getOwnedComments().add(symbol_426);
-			}
-			
-			symbol_263.getOwnedAttributes().add(symbol_267);
-		}
-		{
-			Comment symbol_427 = PivotFactory.eINSTANCE.createComment();
-			symbol_427.setBody("A template signature bundles the set of formal template parameters for a templated element.");
-			symbol_263.getOwnedComments().add(symbol_427);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_263); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-		//
-		// Pivot.ecore::pivot::TemplateableElement http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		//
-		symbol_268.setName("TemplateableElement");
-		symbol_268.getSuperClasses().add(symbol_63); // http://www.eclipse.org/ocl/3.1.0/Pivot!Element
-		{ // Pivot.ecore::pivot::TemplateableElement::ownedTemplateSignature
-			symbol_269.setName("ownedTemplateSignature");
-			symbol_269.setType(symbol_263);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature
-			symbol_269.setLower(BigInteger.valueOf(0));
-			
-			symbol_269.setIsComposite(true);
-			symbol_269.setIsResolveProxies(true);
-			symbol_269.setOpposite(symbol_267);
-			{
-				Comment symbol_428 = PivotFactory.eINSTANCE.createComment();
-				symbol_428.setBody("The optional template signature specifying the formal template parameters.");
-				symbol_269.getOwnedComments().add(symbol_428);
-			}
-			
-			symbol_268.getOwnedAttributes().add(symbol_269);
-		}
-		{ // Pivot.ecore::pivot::TemplateableElement::templateBinding
-			symbol_270.setName("templateBinding");
-			symbol_270.setType(symbol_244);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding
-			symbol_270.setLower(BigInteger.valueOf(0));
-			symbol_270.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_270.setIsComposite(true);
-			symbol_270.setIsResolveProxies(true);
-			symbol_270.setOpposite(symbol_245);
-			{
-				Comment symbol_429 = PivotFactory.eINSTANCE.createComment();
-				symbol_429.setBody("The optional bindings from this element to templates.");
-				symbol_270.getOwnedComments().add(symbol_429);
-			}
-			
-			symbol_268.getOwnedAttributes().add(symbol_270);
-		}
-		{ // Pivot.ecore::pivot::TemplateableElement::unspecializedElement
-			symbol_271.setName("unspecializedElement");
-			symbol_271.setType(symbol_268);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-			symbol_271.setLower(BigInteger.valueOf(0));
-			
-			symbol_271.setIsTransient(true);
-			
-			symbol_268.getOwnedAttributes().add(symbol_271);
-		}
-		{	// Pivot.ecore::pivot::TemplateableElement::isTemplate()
-			Operation symbol_430 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!isTemplate()
-			symbol_430.setName("isTemplate");
-			symbol_430.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_431 = PivotFactory.eINSTANCE.createComment();
-				symbol_431.setBody("The query isTemplate() returns whether this templateable element is actually a template.");
-				symbol_430.getOwnedComments().add(symbol_431);
-			}
-			
-			symbol_268.getOwnedOperations().add(symbol_430);
-		}
-		{	// Pivot.ecore::pivot::TemplateableElement::parameterableElements()
-			Operation symbol_432 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!parameterableElements()
-			symbol_432.setName("parameterableElements");
-			symbol_432.setType(symbol_190);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-			symbol_432.setLower(BigInteger.valueOf(0));
-			symbol_432.setUpper(BigInteger.valueOf(-1));
-			
-			{
-				Comment symbol_433 = PivotFactory.eINSTANCE.createComment();
-				symbol_433.setBody("The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.");
-				symbol_432.getOwnedComments().add(symbol_433);
-			}
-			
-			symbol_268.getOwnedOperations().add(symbol_432);
-		}
-		{
-			Comment symbol_434 = PivotFactory.eINSTANCE.createComment();
-			symbol_434.setBody("A templateable element is an element that can optionally be defined as a template and bound to other templates.");
-			symbol_268.getOwnedComments().add(symbol_434);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_268); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		//
-		// Pivot.ecore::pivot::Throwable http://www.eclipse.org/ocl/3.1.0/Pivot!Throwable
-		//
-		symbol_272.setName("Throwable");
-		symbol_272.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_272); // http://www.eclipse.org/ocl/3.1.0/Pivot!Throwable
-		//
-		// Pivot.ecore::pivot::TupleLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp
-		//
-		symbol_273.setName("TupleLiteralExp");
-		symbol_273.getSuperClasses().add(symbol_113); // http://www.eclipse.org/ocl/3.1.0/Pivot!LiteralExp
-		{ // Pivot.ecore::pivot::TupleLiteralExp::part
-			symbol_274.setName("part");
-			symbol_274.setType(symbol_275);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart
-			symbol_274.setLower(BigInteger.valueOf(0));
-			symbol_274.setUpper(BigInteger.valueOf(-1));
-			symbol_274.setIsOrdered(true);
-			
-			symbol_274.setIsComposite(true);
-			symbol_274.setIsResolveProxies(true);
-			symbol_274.setOpposite(symbol_276);
-			
-			symbol_273.getOwnedAttributes().add(symbol_274);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_273); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp
-		//
-		// Pivot.ecore::pivot::TupleLiteralPart http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart
-		//
-		symbol_275.setName("TupleLiteralPart");
-		symbol_275.getSuperClasses().add(symbol_320); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		{ // Pivot.ecore::pivot::TupleLiteralPart::TupleLiteralExp
-			symbol_276.setName("TupleLiteralExp");
-			symbol_276.setType(symbol_273);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp
-			symbol_276.setLower(BigInteger.valueOf(0));
-			
-			symbol_276.setImplicit(true);
-			symbol_276.setIsResolveProxies(true);
-			symbol_276.setOpposite(symbol_274);
-			
-			symbol_275.getOwnedAttributes().add(symbol_276);
-		}
-		{ // Pivot.ecore::pivot::TupleLiteralPart::initExpression
-			symbol_277.setName("initExpression");
-			symbol_277.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_277.setLower(BigInteger.valueOf(0));
-			
-			symbol_277.setIsComposite(true);
-			symbol_277.setIsResolveProxies(true);
-			symbol_277.setOpposite(symbol_157);
-			
-			symbol_275.getOwnedAttributes().add(symbol_277);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_275); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralPart
-		//
-		// Pivot.ecore::pivot::TupleType http://www.eclipse.org/ocl/3.1.0/Pivot!TupleType
-		//
-		symbol_278.setName("TupleType");
-		symbol_278.getSuperClasses().add(symbol_57); // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-		
-		symbol_0.getOwnedTypes().add(symbol_278); // http://www.eclipse.org/ocl/3.1.0/Pivot!TupleType
-		//
-		// Pivot.ecore::pivot::Type http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		//
-		symbol_279.setName("Type");
-		symbol_279.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		symbol_279.getSuperClasses().add(symbol_268); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement
-		symbol_279.getSuperClasses().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		{ // Pivot.ecore::pivot::Type::ClassifierType
-			symbol_280.setName("ClassifierType");
-			symbol_280.setType(symbol_26);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ClassifierType
-			symbol_280.setLower(BigInteger.valueOf(0));
-			symbol_280.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_280.setImplicit(true);
-			symbol_280.setIsResolveProxies(true);
-			symbol_280.setOpposite(symbol_27);
-			
-			symbol_279.getOwnedAttributes().add(symbol_280);
-		}
-		{ // Pivot.ecore::pivot::Type::CollectionType
-			symbol_281.setName("CollectionType");
-			symbol_281.setType(symbol_39);  // http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionType
-			symbol_281.setLower(BigInteger.valueOf(0));
-			symbol_281.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_281.setImplicit(true);
-			symbol_281.setIsResolveProxies(true);
-			symbol_281.setOpposite(symbol_40);
-			
-			symbol_279.getOwnedAttributes().add(symbol_281);
-		}
-		{ // Pivot.ecore::pivot::Type::DataType
-			symbol_282.setName("DataType");
-			symbol_282.setType(symbol_57);  // http://www.eclipse.org/ocl/3.1.0/Pivot!DataType
-			symbol_282.setLower(BigInteger.valueOf(0));
-			symbol_282.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_282.setImplicit(true);
-			symbol_282.setIsResolveProxies(true);
-			symbol_282.setOpposite(symbol_58);
-			
-			symbol_279.getOwnedAttributes().add(symbol_282);
-		}
-		{ // Pivot.ecore::pivot::Type::LambdaType
-			symbol_283.setName("LambdaType");
-			symbol_283.setType(symbol_104);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType
-			symbol_283.setLower(BigInteger.valueOf(0));
-			symbol_283.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_283.setImplicit(true);
-			symbol_283.setIsResolveProxies(true);
-			
-			symbol_279.getOwnedAttributes().add(symbol_283);
-		}
-		{ // Pivot.ecore::pivot::Type::Operation
-			symbol_284.setName("Operation");
-			symbol_284.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_284.setLower(BigInteger.valueOf(0));
-			symbol_284.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_284.setImplicit(true);
-			symbol_284.setIsResolveProxies(true);
-			symbol_284.setOpposite(symbol_172);
-			
-			symbol_279.getOwnedAttributes().add(symbol_284);
-		}
-		{ // Pivot.ecore::pivot::Type::Type
-			symbol_285.setName("Type");
-			symbol_285.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_285.setLower(BigInteger.valueOf(0));
-			symbol_285.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_285.setImplicit(true);
-			symbol_285.setIsResolveProxies(true);
-			symbol_285.setOpposite(symbol_294);
-			
-			symbol_279.getOwnedAttributes().add(symbol_285);
-		}
-		{ // Pivot.ecore::pivot::Type::TypeExp
-			symbol_286.setName("TypeExp");
-			symbol_286.setType(symbol_295);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp
-			symbol_286.setLower(BigInteger.valueOf(0));
-			symbol_286.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_286.setImplicit(true);
-			symbol_286.setIsResolveProxies(true);
-			symbol_286.setOpposite(symbol_296);
-			
-			symbol_279.getOwnedAttributes().add(symbol_286);
-		}
-		{ // Pivot.ecore::pivot::Type::TypeTemplateParameter
-			symbol_287.setName("TypeTemplateParameter");
-			symbol_287.setType(symbol_297);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter
-			symbol_287.setLower(BigInteger.valueOf(0));
-			symbol_287.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_287.setImplicit(true);
-			symbol_287.setIsResolveProxies(true);
-			symbol_287.setOpposite(symbol_299);
-			
-			symbol_279.getOwnedAttributes().add(symbol_287);
-		}
-		{ // Pivot.ecore::pivot::Type::TypedElement
-			symbol_288.setName("TypedElement");
-			symbol_288.setType(symbol_300);  // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-			symbol_288.setLower(BigInteger.valueOf(0));
-			symbol_288.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_288.setImplicit(true);
-			symbol_288.setIsResolveProxies(true);
-			symbol_288.setOpposite(symbol_301);
-			
-			symbol_279.getOwnedAttributes().add(symbol_288);
-		}
-		{ // Pivot.ecore::pivot::Type::UnspecifiedType
-			symbol_289.setName("UnspecifiedType");
-			symbol_289.setType(symbol_306);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType
-			symbol_289.setLower(BigInteger.valueOf(0));
-			symbol_289.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_289.setImplicit(true);
-			symbol_289.setIsResolveProxies(true);
-			
-			symbol_279.getOwnedAttributes().add(symbol_289);
-		}
-		{ // Pivot.ecore::pivot::Type::instanceClassName
-			symbol_290.setName("instanceClassName");
-			symbol_290.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			symbol_290.setLower(BigInteger.valueOf(0));
-			
-			symbol_290.setIsResolveProxies(true);
-			
-			symbol_279.getOwnedAttributes().add(symbol_290);
-		}
-		{ // Pivot.ecore::pivot::Type::ownedAttribute
-			symbol_291.setName("ownedAttribute");
-			symbol_291.setType(symbol_203);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Property
-			symbol_291.setLower(BigInteger.valueOf(0));
-			symbol_291.setUpper(BigInteger.valueOf(-1));
-			symbol_291.setIsOrdered(true);
-			
-			symbol_291.setIsComposite(true);
-			symbol_291.setIsResolveProxies(true);
-			symbol_291.setOpposite(symbol_222);
-			
-			symbol_279.getOwnedAttributes().add(symbol_291);
-		}
-		{ // Pivot.ecore::pivot::Type::ownedOperation
-			symbol_292.setName("ownedOperation");
-			symbol_292.setType(symbol_164);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Operation
-			symbol_292.setLower(BigInteger.valueOf(0));
-			symbol_292.setUpper(BigInteger.valueOf(-1));
-			symbol_292.setIsOrdered(true);
-			
-			symbol_292.setIsComposite(true);
-			symbol_292.setIsResolveProxies(true);
-			symbol_292.setOpposite(symbol_170);
-			
-			symbol_279.getOwnedAttributes().add(symbol_292);
-		}
-		{ // Pivot.ecore::pivot::Type::package
-			symbol_293.setName("package");
-			symbol_293.setType(symbol_178);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Package
-			symbol_293.setLower(BigInteger.valueOf(0));
-			
-			symbol_293.setIsResolveProxies(true);
-			symbol_293.setOpposite(symbol_184);
-			{
-				Comment symbol_435 = PivotFactory.eINSTANCE.createComment();
-				symbol_435.setBody("Specifies the owning package of this classifier, if any.");
-				symbol_293.getOwnedComments().add(symbol_435);
-			}
-			
-			symbol_279.getOwnedAttributes().add(symbol_293);
-		}
-		{ // Pivot.ecore::pivot::Type::superClass
-			symbol_294.setName("superClass");
-			symbol_294.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_294.setLower(BigInteger.valueOf(0));
-			symbol_294.setUpper(BigInteger.valueOf(-1));
-			symbol_294.setIsOrdered(true);
-			
-			symbol_294.setIsResolveProxies(true);
-			symbol_294.setOpposite(symbol_285);
-			
-			symbol_279.getOwnedAttributes().add(symbol_294);
-		}
-		{	// Pivot.ecore::pivot::Type::resolveSelfType()
-			Operation symbol_436 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)
-			symbol_436.setName("resolveSelfType");
-			symbol_436.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			Parameter symbol_437 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type!resolveSelfType(http://www.eclipse.org/ocl/3.1.0/Pivot!Type)!selfType
-			symbol_437.setName("selfType");
-			symbol_437.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			
-			symbol_436.getOwnedParameters().add(symbol_437);
-			
-			symbol_279.getOwnedOperations().add(symbol_436);
-		}
-		{
-			Comment symbol_438 = PivotFactory.eINSTANCE.createComment();
-			symbol_438.setBody("A type is a named element that is used as the type for a typed element. A type can be contained in a package.\r\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
-			symbol_279.getOwnedComments().add(symbol_438);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_279); // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-		//
-		// Pivot.ecore::pivot::TypeExp http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp
-		//
-		symbol_295.setName("TypeExp");
-		symbol_295.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::TypeExp::referredType
-			symbol_296.setName("referredType");
-			symbol_296.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_296.setLower(BigInteger.valueOf(0));
-			
-			symbol_296.setIsResolveProxies(true);
-			symbol_296.setOpposite(symbol_286);
-			
-			symbol_295.getOwnedAttributes().add(symbol_296);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_295); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeExp
-		//
-		// Pivot.ecore::pivot::TypeTemplateParameter http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter
-		//
-		symbol_297.setName("TypeTemplateParameter");
-		symbol_297.getSuperClasses().add(symbol_248); // http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter
-		{ // Pivot.ecore::pivot::TypeTemplateParameter::allowSubstitutable
-			symbol_298.setName("allowSubstitutable");
-			symbol_298.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			symbol_298.setIsResolveProxies(true);
-			{
-				Comment symbol_439 = PivotFactory.eINSTANCE.createComment();
-				symbol_439.setBody("Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
-				symbol_298.getOwnedComments().add(symbol_439);
-			}
-			
-			symbol_297.getOwnedAttributes().add(symbol_298);
-		}
-		{ // Pivot.ecore::pivot::TypeTemplateParameter::constrainingType
-			symbol_299.setName("constrainingType");
-			symbol_299.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_299.setLower(BigInteger.valueOf(0));
-			symbol_299.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_299.setIsResolveProxies(true);
-			symbol_299.setOpposite(symbol_287);
-			{
-				Comment symbol_440 = PivotFactory.eINSTANCE.createComment();
-				symbol_440.setBody("The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
-				symbol_299.getOwnedComments().add(symbol_440);
-			}
-			
-			symbol_297.getOwnedAttributes().add(symbol_299);
-		}
-		{
-			Comment symbol_441 = PivotFactory.eINSTANCE.createComment();
-			symbol_441.setBody("A type template parameter exposes a type as a formal template parameter.");
-			symbol_297.getOwnedComments().add(symbol_441);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_297); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter
-		//
-		// Pivot.ecore::pivot::TypedElement http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		//
-		symbol_300.setName("TypedElement");
-		symbol_300.getSuperClasses().add(symbol_133); // http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement
-		{ // Pivot.ecore::pivot::TypedElement::type
-			symbol_301.setName("type");
-			symbol_301.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			symbol_301.setLower(BigInteger.valueOf(0));
-			
-			symbol_301.setIsResolveProxies(true);
-			symbol_301.setOpposite(symbol_288);
-			{
-				Comment symbol_442 = PivotFactory.eINSTANCE.createComment();
-				symbol_442.setBody("The type of the TypedElement.");
-				symbol_301.getOwnedComments().add(symbol_442);
-			}
-			
-			symbol_300.getOwnedAttributes().add(symbol_301);
-		}
-		{
-			Comment symbol_443 = PivotFactory.eINSTANCE.createComment();
-			symbol_443.setBody("A typed element is a kind of named element that represents an element with a type.");
-			symbol_300.getOwnedComments().add(symbol_443);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		//
-		// Pivot.ecore::pivot::TypedMultiplicityElement http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
-		//
-		symbol_302.setName("TypedMultiplicityElement");
-		symbol_302.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		symbol_302.getSuperClasses().add(symbol_127); // http://www.eclipse.org/ocl/3.1.0/Pivot!MultiplicityElement
-		{	// Pivot.ecore::pivot::TypedMultiplicityElement::CompatibleBody()
-			Operation symbol_444 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)
-			symbol_444.setName("CompatibleBody");
-			symbol_444.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			Parameter symbol_445 = PivotFactory.eINSTANCE.createParameter(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!CompatibleBody(http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification)!bodySpecification
-			symbol_445.setName("bodySpecification");
-			symbol_445.setType(symbol_310);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-			
-			
-			symbol_444.getOwnedParameters().add(symbol_445);
-			
-			symbol_302.getOwnedOperations().add(symbol_444);
-		}
-		{	// Pivot.ecore::pivot::TypedMultiplicityElement::makeParameter()
-			Operation symbol_446 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement!makeParameter()
-			symbol_446.setName("makeParameter");
-			symbol_446.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-			
-			
-			symbol_302.getOwnedOperations().add(symbol_446);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_302); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedMultiplicityElement
-		//
-		// Pivot.ecore::pivot::UnlimitedNaturalLiteralExp http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp
-		//
-		symbol_304.setName("UnlimitedNaturalLiteralExp");
-		symbol_304.getSuperClasses().add(symbol_143); // http://www.eclipse.org/ocl/3.1.0/Pivot!NumericLiteralExp
-		{ // Pivot.ecore::pivot::UnlimitedNaturalLiteralExp::unlimitedNaturalSymbol
-			symbol_305.setName("unlimitedNaturalSymbol");
-			symbol_305.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
-			
-			symbol_305.setIsResolveProxies(true);
-			
-			symbol_304.getOwnedAttributes().add(symbol_305);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_304); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNaturalLiteralExp
-		//
-		// Pivot.ecore::pivot::UnspecifiedType http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType
-		//
-		symbol_306.setName("UnspecifiedType");
-		symbol_306.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		{ // Pivot.ecore::pivot::UnspecifiedType::lowerBound
-			symbol_307.setName("lowerBound");
-			symbol_307.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_307.setIsResolveProxies(true);
-			
-			symbol_306.getOwnedAttributes().add(symbol_307);
-		}
-		{ // Pivot.ecore::pivot::UnspecifiedType::upperBound
-			symbol_308.setName("upperBound");
-			symbol_308.setType(symbol_279);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Type
-			
-			symbol_308.setIsResolveProxies(true);
-			symbol_308.setOpposite(symbol_289);
-			
-			symbol_306.getOwnedAttributes().add(symbol_308);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_306); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedType
-		//
-		// Pivot.ecore::pivot::UnspecifiedValueExp http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedValueExp
-		//
-		symbol_309.setName("UnspecifiedValueExp");
-		symbol_309.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		
-		symbol_0.getOwnedTypes().add(symbol_309); // http://www.eclipse.org/ocl/3.1.0/Pivot!UnspecifiedValueExp
-		//
-		// Pivot.ecore::pivot::ValueSpecification http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-		//
-		symbol_310.setName("ValueSpecification");
-		symbol_310.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		symbol_310.getSuperClasses().add(symbol_190); // http://www.eclipse.org/ocl/3.1.0/Pivot!ParameterableElement
-		{ // Pivot.ecore::pivot::ValueSpecification::Constraint
-			symbol_311.setName("Constraint");
-			symbol_311.setType(symbol_45);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint
-			symbol_311.setLower(BigInteger.valueOf(0));
-			
-			symbol_311.setImplicit(true);
-			symbol_311.setIsResolveProxies(true);
-			symbol_311.setOpposite(symbol_49);
-			
-			symbol_310.getOwnedAttributes().add(symbol_311);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::booleanValue()
-			Operation symbol_447 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!booleanValue()
-			symbol_447.setName("booleanValue");
-			symbol_447.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_448 = PivotFactory.eINSTANCE.createComment();
-				symbol_448.setBody("The query booleanValue() gives a single Boolean value when one can be computed.");
-				symbol_447.getOwnedComments().add(symbol_448);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_447);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::integerValue()
-			Operation symbol_449 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!integerValue()
-			symbol_449.setName("integerValue");
-			symbol_449.setType(symbol_92);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Integer
-			
-			{
-				Comment symbol_450 = PivotFactory.eINSTANCE.createComment();
-				symbol_450.setBody("The query integerValue() gives a single Integer value when one can be computed.");
-				symbol_449.getOwnedComments().add(symbol_450);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_449);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isComputable()
-			Operation symbol_451 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isComputable()
-			symbol_451.setName("isComputable");
-			symbol_451.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_452 = PivotFactory.eINSTANCE.createComment();
-				symbol_452.setBody("The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
-				symbol_451.getOwnedComments().add(symbol_452);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_451);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::isNull()
-			Operation symbol_453 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!isNull()
-			symbol_453.setName("isNull");
-			symbol_453.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			
-			{
-				Comment symbol_454 = PivotFactory.eINSTANCE.createComment();
-				symbol_454.setBody("The query isNull() returns true when it can be computed that the value is null.");
-				symbol_453.getOwnedComments().add(symbol_454);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_453);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::stringValue()
-			Operation symbol_455 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!stringValue()
-			symbol_455.setName("stringValue");
-			symbol_455.setType(symbol_241);  // http://www.eclipse.org/ocl/3.1.0/Pivot!String
-			
-			{
-				Comment symbol_456 = PivotFactory.eINSTANCE.createComment();
-				symbol_456.setBody("The query stringValue() gives a single String value when one can be computed.");
-				symbol_455.getOwnedComments().add(symbol_456);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_455);
-		}
-		{	// Pivot.ecore::pivot::ValueSpecification::unlimitedValue()
-			Operation symbol_457 = PivotFactory.eINSTANCE.createOperation(); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification!unlimitedValue()
-			symbol_457.setName("unlimitedValue");
-			symbol_457.setType(symbol_303);  // http://www.eclipse.org/ocl/3.1.0/Pivot!UnlimitedNatural
-			
-			{
-				Comment symbol_458 = PivotFactory.eINSTANCE.createComment();
-				symbol_458.setBody("The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
-				symbol_457.getOwnedComments().add(symbol_458);
-			}
-			
-			symbol_310.getOwnedOperations().add(symbol_457);
-		}
-		{
-			Comment symbol_459 = PivotFactory.eINSTANCE.createComment();
-			symbol_459.setBody("A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
-			symbol_310.getOwnedComments().add(symbol_459);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_310); // http://www.eclipse.org/ocl/3.1.0/Pivot!ValueSpecification
-		//
-		// Pivot.ecore::pivot::Variable http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-		//
-		symbol_312.setName("Variable");
-		symbol_312.getSuperClasses().add(symbol_320); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		{ // Pivot.ecore::pivot::Variable::ExpressionInOcl
-			symbol_313.setName("ExpressionInOcl");
-			symbol_313.setType(symbol_76);  // http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl
-			symbol_313.setLower(BigInteger.valueOf(0));
-			symbol_313.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_313.setImplicit(true);
-			symbol_313.setIsResolveProxies(true);
-			
-			symbol_312.getOwnedAttributes().add(symbol_313);
-		}
-		{ // Pivot.ecore::pivot::Variable::IterateExp
-			symbol_314.setName("IterateExp");
-			symbol_314.setType(symbol_97);  // http://www.eclipse.org/ocl/3.1.0/Pivot!IterateExp
-			symbol_314.setLower(BigInteger.valueOf(0));
-			
-			symbol_314.setImplicit(true);
-			symbol_314.setIsResolveProxies(true);
-			symbol_314.setOpposite(symbol_98);
-			
-			symbol_312.getOwnedAttributes().add(symbol_314);
-		}
-		{ // Pivot.ecore::pivot::Variable::LetExp
-			symbol_315.setName("LetExp");
-			symbol_315.setType(symbol_108);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LetExp
-			symbol_315.setLower(BigInteger.valueOf(0));
-			
-			symbol_315.setImplicit(true);
-			symbol_315.setIsResolveProxies(true);
-			symbol_315.setOpposite(symbol_110);
-			
-			symbol_312.getOwnedAttributes().add(symbol_315);
-		}
-		{ // Pivot.ecore::pivot::Variable::LoopExp
-			symbol_316.setName("LoopExp");
-			symbol_316.setType(symbol_114);  // http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp
-			symbol_316.setLower(BigInteger.valueOf(0));
-			
-			symbol_316.setImplicit(true);
-			symbol_316.setIsResolveProxies(true);
-			symbol_316.setOpposite(symbol_116);
-			
-			symbol_312.getOwnedAttributes().add(symbol_316);
-		}
-		{ // Pivot.ecore::pivot::Variable::implicit
-			symbol_317.setName("implicit");
-			symbol_317.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			symbol_317.setLower(BigInteger.valueOf(0));
-			
-			symbol_317.setIsResolveProxies(true);
-			
-			symbol_312.getOwnedAttributes().add(symbol_317);
-		}
-		{ // Pivot.ecore::pivot::Variable::initExpression
-			symbol_318.setName("initExpression");
-			symbol_318.setType(symbol_145);  // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-			symbol_318.setLower(BigInteger.valueOf(0));
-			
-			symbol_318.setIsComposite(true);
-			symbol_318.setIsResolveProxies(true);
-			symbol_318.setOpposite(symbol_158);
-			
-			symbol_312.getOwnedAttributes().add(symbol_318);
-		}
-		{ // Pivot.ecore::pivot::Variable::representedParameter
-			symbol_319.setName("representedParameter");
-			symbol_319.setType(symbol_186);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter
-			symbol_319.setLower(BigInteger.valueOf(0));
-			
-			symbol_319.setIsResolveProxies(true);
-			symbol_319.setOpposite(symbol_188);
-			
-			symbol_312.getOwnedAttributes().add(symbol_319);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_312); // http://www.eclipse.org/ocl/3.1.0/Pivot!Variable
-		//
-		// Pivot.ecore::pivot::VariableDeclaration http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		//
-		symbol_320.setName("VariableDeclaration");
-		symbol_320.getSuperClasses().add(symbol_300); // http://www.eclipse.org/ocl/3.1.0/Pivot!TypedElement
-		{ // Pivot.ecore::pivot::VariableDeclaration::VariableExp
-			symbol_321.setName("VariableExp");
-			symbol_321.setType(symbol_322);  // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp
-			symbol_321.setLower(BigInteger.valueOf(0));
-			symbol_321.setUpper(BigInteger.valueOf(-1));
-			
-			symbol_321.setImplicit(true);
-			symbol_321.setIsResolveProxies(true);
-			symbol_321.setOpposite(symbol_324);
-			
-			symbol_320.getOwnedAttributes().add(symbol_321);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_320); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-		//
-		// Pivot.ecore::pivot::VariableExp http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp
-		//
-		symbol_322.setName("VariableExp");
-		symbol_322.getSuperClasses().add(symbol_145); // http://www.eclipse.org/ocl/3.1.0/Pivot!OclExpression
-		{ // Pivot.ecore::pivot::VariableExp::implicit
-			symbol_323.setName("implicit");
-			symbol_323.setType(symbol_14);  // http://www.eclipse.org/ocl/3.1.0/Pivot!Boolean
-			symbol_323.setLower(BigInteger.valueOf(0));
-			
-			symbol_323.setIsResolveProxies(true);
-			
-			symbol_322.getOwnedAttributes().add(symbol_323);
-		}
-		{ // Pivot.ecore::pivot::VariableExp::referredVariable
-			symbol_324.setName("referredVariable");
-			symbol_324.setType(symbol_320);  // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableDeclaration
-			symbol_324.setLower(BigInteger.valueOf(0));
-			
-			symbol_324.setIsResolveProxies(true);
-			symbol_324.setOpposite(symbol_321);
-			
-			symbol_322.getOwnedAttributes().add(symbol_324);
-		}
-		
-		symbol_0.getOwnedTypes().add(symbol_322); // http://www.eclipse.org/ocl/3.1.0/Pivot!VariableExp
-		//
-		// Pivot.ecore::pivot::Visitable http://www.eclipse.org/ocl/3.1.0/Pivot!Visitable
-		//
-		symbol_325.setName("Visitable");
-		symbol_325.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_325); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitable
-		//
-		// Pivot.ecore::pivot::Visitor http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}
-		//
-		symbol_326.setName("Visitor");
-		symbol_329.setName("R");
-		symbol_328.setOwnedParameteredElement(symbol_329);
-		symbol_327.getOwnedParameters().add(symbol_328);
-		symbol_331.setName("C");
-		symbol_330.setOwnedParameteredElement(symbol_331);
-		symbol_327.getOwnedParameters().add(symbol_330);
-		
-		symbol_326.setOwnedTemplateSignature(symbol_327);
-		symbol_326.getSuperClasses().add(standardLibrary.getOclElementType());
-		
-		symbol_0.getOwnedTypes().add(symbol_326); // http://www.eclipse.org/ocl/3.1.0/Pivot!Visitor{R,C}
-		//
-		// Pivot.ecore::pivot::VoidType http://www.eclipse.org/ocl/3.1.0/Pivot!VoidType
-		//
-		symbol_332.setName("VoidType");
-		symbol_332.getSuperClasses().add(symbol_23); // http://www.eclipse.org/ocl/3.1.0/Pivot!Class
-		
-		symbol_0.getOwnedTypes().add(symbol_332); // http://www.eclipse.org/ocl/3.1.0/Pivot!VoidType
+		protected final PrimitiveType _Boolean = standardLibrary.getBooleanType();
+		protected final PrimitiveType _Integer = standardLibrary.getIntegerType();
+		protected final Class _OclElement = standardLibrary.getOclElementType();
+		protected final PrimitiveType _Real = standardLibrary.getRealType();
+		protected final PrimitiveType _String = standardLibrary.getStringType();
+		protected final PrimitiveType _UnlimitedNatural = standardLibrary.getUnlimitedNaturalType();
 
-		Class elementClass = (Class) PivotUtil.getNamedElement(symbol_0.getOwnedTypes(), "Element");
-		elementClass.getSuperClasses().clear();
-		elementClass.getSuperClasses().add(standardLibrary.getOclElementType());
-		for (Type pivotClass : symbol_0.getOwnedTypes()) {
-			if (pivotClass instanceof Enumeration) {
-				List<Type> superClasses = ((Enumeration) pivotClass).getSuperClasses();
-				if (superClasses.isEmpty()) {
-					superClasses.add(standardLibrary.getEnumerationType());
-				}
-			}
-//			else if (pivotClass instanceof Class) {
-//				List<Class> superClasses = ((Class) pivotClass).getSuperClasses();
-//				if (superClasses.isEmpty()) {
-//					superClasses.add(standardLibrary.getClassifierType());
-//				}
-//			}
+		protected Package metaModel;
+
+		protected Package create(String name, String nsPrefix, String nsURI)
+		{
+			metaModel = createPackage(name, nsPrefix, nsURI);
+			installPackages();
+			installOclTypes();
+			installPrimitiveTypes();
+			installEnumerations();
+			installParameterTypes();
+			installCollectionTypes();
+			installClassifierTypes();
+			installOperations();
+			installIterations();
+			installProperties();
+			installTemplateSignatures();
+			installTemplateBindings();
+			installPrecedences();
+			installComments();
+			return metaModel;
+		}
+	
+		
+		protected void installPackages() {
+			
 		}
 		
-		return symbol_0;
+		protected final Class _Annotation = createClass("Annotation");
+		protected final Class _AnyType = createClass("AnyType");
+		protected final Class _AssociationClass = createClass("AssociationClass");
+		protected final Class _AssociationClassCallExp = createClass("AssociationClassCallExp");
+		protected final Class _BagType = createClass("BagType");
+		protected final Class _BooleanLiteralExp = createClass("BooleanLiteralExp");
+		protected final Class _CallExp = createClass("CallExp");
+		protected final Class _CallOperationAction = createClass("CallOperationAction");
+		protected final Class _Class = createClass("Class");
+		protected final Class _ClassifierType = createClass("ClassifierType");
+		protected final Class _CollectionItem = createClass("CollectionItem");
+		protected final Class _CollectionLiteralExp = createClass("CollectionLiteralExp");
+		protected final Class _CollectionLiteralPart = createClass("CollectionLiteralPart");
+		protected final Class _CollectionRange = createClass("CollectionRange");
+		protected final Class _CollectionType = createClass("CollectionType");
+		protected final Class _Comment = createClass("Comment");
+		protected final Class _Constraint = createClass("Constraint");
+		protected final Class _ConstructorExp = createClass("ConstructorExp");
+		protected final Class _ConstructorPart = createClass("ConstructorPart");
+		protected final Class _DataType = createClass("DataType");
+		protected final Class _Detail = createClass("Detail");
+		protected final Class _Element = createClass("Element");
+		protected final Class _EnumLiteralExp = createClass("EnumLiteralExp");
+		protected final Class _Enumeration = createClass("Enumeration");
+		protected final Class _EnumerationLiteral = createClass("EnumerationLiteral");
+		protected final Class _ExpressionInOcl = createClass("ExpressionInOcl");
+		protected final Class _Feature = createClass("Feature");
+		protected final Class _FeatureCallExp = createClass("FeatureCallExp");
+		protected final Class _IfExp = createClass("IfExp");
+		protected final DataType _Int = createDataType("Int");
+		protected final Class _IntegerLiteralExp = createClass("IntegerLiteralExp");
+		protected final Class _InvalidLiteralExp = createClass("InvalidLiteralExp");
+		protected final Class _InvalidType = createClass("InvalidType");
+		protected final Class _IterateExp = createClass("IterateExp");
+		protected final Class _Iteration = createClass("Iteration");
+		protected final Class _IteratorExp = createClass("IteratorExp");
+		protected final Class _LambdaType = createClass("LambdaType");
+		protected final Class _LetExp = createClass("LetExp");
+		protected final Class _Library = createClass("Library");
+		protected final DataType _LibraryFeature = createDataType("LibraryFeature");
+		protected final Class _LiteralExp = createClass("LiteralExp");
+		protected final Class _LoopExp = createClass("LoopExp");
+		protected final Class _MessageExp = createClass("MessageExp");
+		protected final Class _MessageType = createClass("MessageType");
+		protected final Class _MorePivotable = createClass("MorePivotable");
+		protected final Class _MultiplicityElement = createClass("MultiplicityElement");
+		protected final Class _Nameable = createClass("Nameable");
+		protected final Class _NamedElement = createClass("NamedElement");
+		protected final Class _Namespace = createClass("Namespace");
+		protected final Class _NavigationCallExp = createClass("NavigationCallExp");
+		protected final Class _NullLiteralExp = createClass("NullLiteralExp");
+		protected final Class _NumericLiteralExp = createClass("NumericLiteralExp");
+		protected final DataType _Object = createDataType("Object");
+		protected final Class _OclExpression = createClass("OclExpression");
+		protected final Class _OpaqueExpression = createClass("OpaqueExpression");
+		protected final Class _Operation = createClass("Operation");
+		protected final Class _OperationCallExp = createClass("OperationCallExp");
+		protected final Class _OperationTemplateParameter = createClass("OperationTemplateParameter");
+		protected final Class _OrderedSetType = createClass("OrderedSetType");
+		protected final Class _Package = createClass("Package");
+		protected final Class _PackageableElement = createClass("PackageableElement");
+		protected final Class _Parameter = createClass("Parameter");
+		protected final Class _ParameterableElement = createClass("ParameterableElement");
+		protected final Class _Pivotable = createClass("Pivotable");
+		protected final Class _Precedence = createClass("Precedence");
+		protected final Class _PrimitiveLiteralExp = createClass("PrimitiveLiteralExp");
+		protected final Class _PrimitiveType = createClass("PrimitiveType");
+		protected final Class _Property = createClass("Property");
+		protected final Class _PropertyCallExp = createClass("PropertyCallExp");
+		protected final Class _RealLiteralExp = createClass("RealLiteralExp");
+		protected final Class _SelfType = createClass("SelfType");
+		protected final Class _SendSignalAction = createClass("SendSignalAction");
+		protected final Class _SequenceType = createClass("SequenceType");
+		protected final Class _SetType = createClass("SetType");
+		protected final Class _Signal = createClass("Signal");
+		protected final Class _State = createClass("State");
+		protected final Class _StateExp = createClass("StateExp");
+		protected final Class _StringLiteralExp = createClass("StringLiteralExp");
+		protected final Class _TemplateBinding = createClass("TemplateBinding");
+		protected final Class _TemplateParameter = createClass("TemplateParameter");
+		protected final Class _TemplateParameterSubstitution = createClass("TemplateParameterSubstitution");
+		protected final Class _TemplateParameterType = createClass("TemplateParameterType");
+		protected final Class _TemplateSignature = createClass("TemplateSignature");
+		protected final Class _TemplateableElement = createClass("TemplateableElement");
+		protected final DataType _Throwable = createDataType("Throwable");
+		protected final Class _TupleLiteralExp = createClass("TupleLiteralExp");
+		protected final Class _TupleLiteralPart = createClass("TupleLiteralPart");
+		protected final Class _TupleType = createClass("TupleType");
+		protected final Class _Type = createClass("Type");
+		protected final Class _TypeExp = createClass("TypeExp");
+		protected final Class _TypeTemplateParameter = createClass("TypeTemplateParameter");
+		protected final Class _TypedElement = createClass("TypedElement");
+		protected final Class _TypedMultiplicityElement = createClass("TypedMultiplicityElement");
+		protected final Class _UnlimitedNaturalLiteralExp = createClass("UnlimitedNaturalLiteralExp");
+		protected final Class _UnspecifiedType = createClass("UnspecifiedType");
+		protected final Class _UnspecifiedValueExp = createClass("UnspecifiedValueExp");
+		protected final Class _ValueSpecification = createClass("ValueSpecification");
+		protected final Class _Variable = createClass("Variable");
+		protected final Class _VariableDeclaration = createClass("VariableDeclaration");
+		protected final Class _VariableExp = createClass("VariableExp");
+		protected final Class _Visitable = createClass("Visitable");
+		protected final Class _Visitor = createClass("Visitor");
+		protected final Class _VoidType = createClass("VoidType");
+		
+		
+		protected final Enumeration _AssociativityKind = createEnumeration("AssociativityKind");
+		protected final Enumeration _CollectionKind = createEnumeration("CollectionKind");
+		
+		protected final Class _Visitor_C = createClass("C");
+		protected final Class _Visitor_R = createClass("R");
+		
+		
+		
+		protected void installOclTypes() {
+			final List<Type> ownedTypes = metaModel.getOwnedTypes();
+			Type type;
+			List<Type> superClasses;
+			ownedTypes.add(type = _Annotation);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _AnyType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _AssociationClass);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _AssociationClassCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NavigationCallExp);
+			ownedTypes.add(type = _BagType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionType);
+			ownedTypes.add(type = _BooleanLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PrimitiveLiteralExp);
+			ownedTypes.add(type = _CallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _CallOperationAction);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _Class);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Type);
+			superClasses.add(_Namespace);
+			ownedTypes.add(type = _ClassifierType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _CollectionItem);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionLiteralPart);
+			ownedTypes.add(type = _CollectionLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _CollectionLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedElement);
+			ownedTypes.add(type = _CollectionRange);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionLiteralPart);
+			ownedTypes.add(type = _CollectionType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
+			ownedTypes.add(type = _Comment);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _Constraint);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _ConstructorExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _ConstructorPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _DataType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _Detail);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _Element);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Visitable);
+			ownedTypes.add(type = _EnumLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _Enumeration);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
+			ownedTypes.add(type = _EnumerationLiteral);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _ExpressionInOcl);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OpaqueExpression);
+			ownedTypes.add(type = _Feature);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedMultiplicityElement);
+			ownedTypes.add(type = _FeatureCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CallExp);
+			ownedTypes.add(type = _IfExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _Int);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _IntegerLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NumericLiteralExp);
+			ownedTypes.add(type = _InvalidLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _InvalidType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _IterateExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LoopExp);
+			ownedTypes.add(type = _Iteration);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Operation);
+			ownedTypes.add(type = _IteratorExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LoopExp);
+			ownedTypes.add(type = _LambdaType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
+			ownedTypes.add(type = _LetExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _Library);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Package);
+			ownedTypes.add(type = _LibraryFeature);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _LiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _LoopExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CallExp);
+			ownedTypes.add(type = _MessageExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _MessageType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Type);
+			ownedTypes.add(type = _MorePivotable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _MultiplicityElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _Nameable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _NamedElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			superClasses.add(_Nameable);
+			ownedTypes.add(type = _Namespace);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _NavigationCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_FeatureCallExp);
+			ownedTypes.add(type = _NullLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PrimitiveLiteralExp);
+			ownedTypes.add(type = _NumericLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PrimitiveLiteralExp);
+			ownedTypes.add(type = _Object);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _OclExpression);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedElement);
+			ownedTypes.add(type = _OpaqueExpression);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_ValueSpecification);
+			ownedTypes.add(type = _Operation);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Feature);
+			superClasses.add(_Namespace);
+			superClasses.add(_TemplateableElement);
+			superClasses.add(_ParameterableElement);
+			ownedTypes.add(type = _OperationCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_FeatureCallExp);
+			ownedTypes.add(type = _OperationTemplateParameter);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TemplateParameter);
+			ownedTypes.add(type = _OrderedSetType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionType);
+			ownedTypes.add(type = _Package);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Namespace);
+			superClasses.add(_TemplateableElement);
+			ownedTypes.add(type = _PackageableElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_ParameterableElement);
+			ownedTypes.add(type = _Parameter);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedMultiplicityElement);
+			superClasses.add(_VariableDeclaration);
+			ownedTypes.add(type = _ParameterableElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _Pivotable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _Precedence);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _PrimitiveLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _PrimitiveType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
+			ownedTypes.add(type = _Property);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Feature);
+			superClasses.add(_ParameterableElement);
+			ownedTypes.add(type = _PropertyCallExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NavigationCallExp);
+			ownedTypes.add(type = _RealLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NumericLiteralExp);
+			ownedTypes.add(type = _SelfType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _SendSignalAction);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _SequenceType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionType);
+			ownedTypes.add(type = _SetType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_CollectionType);
+			ownedTypes.add(type = _Signal);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _State);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _StateExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _StringLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_PrimitiveLiteralExp);
+			ownedTypes.add(type = _TemplateBinding);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _TemplateParameter);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _TemplateParameterSubstitution);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _TemplateParameterType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Type);
+			ownedTypes.add(type = _TemplateSignature);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _TemplateableElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Element);
+			ownedTypes.add(type = _Throwable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _TupleLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_LiteralExp);
+			ownedTypes.add(type = _TupleLiteralPart);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_VariableDeclaration);
+			ownedTypes.add(type = _TupleType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_DataType);
+			ownedTypes.add(type = _Type);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			superClasses.add(_TemplateableElement);
+			superClasses.add(_ParameterableElement);
+			ownedTypes.add(type = _TypeExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _TypeTemplateParameter);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TemplateParameter);
+			ownedTypes.add(type = _TypedElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NamedElement);
+			ownedTypes.add(type = _TypedMultiplicityElement);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedElement);
+			superClasses.add(_MultiplicityElement);
+			ownedTypes.add(type = _UnlimitedNaturalLiteralExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_NumericLiteralExp);
+			ownedTypes.add(type = _UnspecifiedType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+			ownedTypes.add(type = _UnspecifiedValueExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _ValueSpecification);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedElement);
+			superClasses.add(_ParameterableElement);
+			ownedTypes.add(type = _Variable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_VariableDeclaration);
+			ownedTypes.add(type = _VariableDeclaration);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_TypedElement);
+			ownedTypes.add(type = _VariableExp);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclExpression);
+			ownedTypes.add(type = _Visitable);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _Visitor);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_OclElement);
+			ownedTypes.add(type = _VoidType);
+			superClasses = type.getSuperClasses();
+			superClasses.add(_Class);
+		}
+		
+		protected void installPrimitiveTypes() {
+			final List<Type> ownedTypes = metaModel.getOwnedTypes();
+			PrimitiveType type;
+		}
+		
+		protected void installEnumerations() {
+			final List<Type> ownedTypes = metaModel.getOwnedTypes();
+			Enumeration type;
+			List<EnumerationLiteral> enumerationLiterals;
+			ownedTypes.add(type = _AssociativityKind);
+			enumerationLiterals = type.getOwnedLiterals();
+			enumerationLiterals.add(createEnumerationLiteral("Left"));
+			enumerationLiterals.add(createEnumerationLiteral("Right"));
+			type.getSuperClasses().add(_Enumeration);
+			ownedTypes.add(type = _CollectionKind);
+			enumerationLiterals = type.getOwnedLiterals();
+			enumerationLiterals.add(createEnumerationLiteral("Collection"));
+			enumerationLiterals.add(createEnumerationLiteral("Set"));
+			enumerationLiterals.add(createEnumerationLiteral("OrderedSet"));
+			enumerationLiterals.add(createEnumerationLiteral("Bag"));
+			enumerationLiterals.add(createEnumerationLiteral("Sequence"));
+			type.getSuperClasses().add(_Enumeration);
+		}
+		
+		protected void installParameterTypes() {
+		}
+		
+		protected void installCollectionTypes() {
+			final List<Type> ownedTypes = metaModel.getOwnedTypes();
+			CollectionType type;
+			List<Type> superClasses;
+		}
+		
+		protected void installClassifierTypes() {
+			final List<Type> ownedTypes = metaModel.getOwnedTypes();
+			ClassifierType type;
+			List<Type> superClasses;
+		}
+		
+		protected final Operation op_Element_allOwnedElements = createOperation("allOwnedElements", _Element, null, null);
+		protected final Operation op_MultiplicityElement_includesCardinality = createOperation("includesCardinality", _Boolean, null, null);
+		protected final Operation op_MultiplicityElement_includesMultiplicity = createOperation("includesMultiplicity", _Boolean, null, null);
+		protected final Operation op_MultiplicityElement_isMultivalued = createOperation("isMultivalued", _Boolean, null, null);
+		protected final Operation op_MultiplicityElement_lowerBound = createOperation("lowerBound", _Integer, null, null);
+		protected final Operation op_MultiplicityElement_upperBound = createOperation("upperBound", _UnlimitedNatural, null, null);
+		protected final Operation op_ParameterableElement_isCompatibleWith = createOperation("isCompatibleWith", _Boolean, null, null);
+		protected final Operation op_ParameterableElement_isTemplateParameter = createOperation("isTemplateParameter", _Boolean, null, null);
+		protected final Operation op_Property_isAttribute = createOperation("isAttribute", _Boolean, null, null);
+		protected final Operation op_SelfType_resolveSelfType = createOperation("resolveSelfType", _Type, null, null);
+		protected final Operation op_TemplateableElement_isTemplate = createOperation("isTemplate", _Boolean, null, null);
+		protected final Operation op_TemplateableElement_parameterableElements = createOperation("parameterableElements", _ParameterableElement, null, null);
+		protected final Operation op_null_isTemplate = createOperation("isTemplate", _Boolean, null, null);
+		protected final Operation op_Type_resolveSelfType = createOperation("resolveSelfType", _Type, null, null);
+		protected final Operation op_TypedMultiplicityElement_CompatibleBody = createOperation("CompatibleBody", _Boolean, null, null);
+		protected final Operation op_TypedMultiplicityElement_makeParameter = createOperation("makeParameter", _Parameter, null, null);
+		protected final Operation op_ValueSpecification_booleanValue = createOperation("booleanValue", _Boolean, null, null);
+		protected final Operation op_ValueSpecification_integerValue = createOperation("integerValue", _Integer, null, null);
+		protected final Operation op_ValueSpecification_isComputable = createOperation("isComputable", _Boolean, null, null);
+		protected final Operation op_ValueSpecification_isNull = createOperation("isNull", _Boolean, null, null);
+		protected final Operation op_ValueSpecification_stringValue = createOperation("stringValue", _String, null, null);
+		protected final Operation op_ValueSpecification_unlimitedValue = createOperation("unlimitedValue", _UnlimitedNatural, null, null);
+		
+		protected void installOperations() {
+			List<Operation> ownedOperations;
+			List<Parameter> ownedParameters;
+			Operation operation;
+			Parameter parameter;
+			ownedOperations = _Element.getOwnedOperations();
+			ownedOperations.add(operation = op_Element_allOwnedElements);
+			operation.setLower(BigInteger.valueOf(0));
+			operation.setUpper(BigInteger.valueOf(-1));
+			ownedOperations = _MultiplicityElement.getOwnedOperations();
+			ownedOperations.add(operation = op_MultiplicityElement_includesCardinality);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("C", _Integer));
+			ownedOperations.add(operation = op_MultiplicityElement_includesMultiplicity);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("M", _MultiplicityElement));
+			ownedOperations.add(operation = op_MultiplicityElement_isMultivalued);
+			ownedOperations.add(operation = op_MultiplicityElement_lowerBound);
+			ownedOperations.add(operation = op_MultiplicityElement_upperBound);
+			ownedOperations = _ParameterableElement.getOwnedOperations();
+			ownedOperations.add(operation = op_ParameterableElement_isCompatibleWith);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("p", _ParameterableElement));
+			ownedOperations.add(operation = op_ParameterableElement_isTemplateParameter);
+			ownedOperations = _Property.getOwnedOperations();
+			ownedOperations.add(operation = op_Property_isAttribute);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("p", _Property));
+			ownedOperations = _SelfType.getOwnedOperations();
+			ownedOperations.add(operation = op_SelfType_resolveSelfType);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("selfType", _Type));
+			ownedOperations = _TemplateableElement.getOwnedOperations();
+			ownedOperations.add(operation = op_TemplateableElement_isTemplate);
+			ownedOperations.add(operation = op_TemplateableElement_parameterableElements);
+			operation.setLower(BigInteger.valueOf(0));
+			operation.setUpper(BigInteger.valueOf(-1));
+			ownedOperations = _Type.getOwnedOperations();
+			ownedOperations.add(operation = op_Type_resolveSelfType);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("selfType", _Type));
+			ownedOperations = _TypedMultiplicityElement.getOwnedOperations();
+			ownedOperations.add(operation = op_TypedMultiplicityElement_CompatibleBody);
+			ownedParameters = operation.getOwnedParameters();
+			ownedParameters.add(parameter = createParameter("bodySpecification", _ValueSpecification));
+			ownedOperations.add(operation = op_TypedMultiplicityElement_makeParameter);
+			ownedOperations = _ValueSpecification.getOwnedOperations();
+			ownedOperations.add(operation = op_ValueSpecification_booleanValue);
+			ownedOperations.add(operation = op_ValueSpecification_integerValue);
+			ownedOperations.add(operation = op_ValueSpecification_isComputable);
+			ownedOperations.add(operation = op_ValueSpecification_isNull);
+			ownedOperations.add(operation = op_ValueSpecification_stringValue);
+			ownedOperations.add(operation = op_ValueSpecification_unlimitedValue);
+		}
+		
+		
+		protected void installIterations() {
+			List<Operation> ownedIterations;
+			List<Parameter> ownedParameters;
+			Iteration iteration;
+			Parameter parameter;
+		}
+			
+		protected final Property pr_Annotation_NamedElement = createProperty("NamedElement", _NamedElement);
+		protected final Property pr_Annotation_ownedContent = createProperty("ownedContent", _Element);
+		protected final Property pr_Annotation_ownedDetail = createProperty("ownedDetail", _Detail);
+		protected final Property pr_Annotation_reference = createProperty("reference", _Element);
+		protected final Property pr_AssociationClass_AssociationClassCallExp = createProperty("AssociationClassCallExp", _AssociationClassCallExp);
+		protected final Property pr_AssociationClass_unownedAttribute = createProperty("unownedAttribute", _Property);
+		protected final Property pr_AssociationClassCallExp_referredAssociationClass = createProperty("referredAssociationClass", _AssociationClass);
+		protected final Property pr_BooleanLiteralExp_booleanSymbol = createProperty("booleanSymbol", _Boolean);
+		protected final Property pr_CallExp_implicit = createProperty("implicit", _Boolean);
+		protected final Property pr_CallExp_source = createProperty("source", _OclExpression);
+		protected final Property pr_CallOperationAction_MessageExp = createProperty("MessageExp", _MessageExp);
+		protected final Property pr_CallOperationAction_operation = createProperty("operation", _Operation);
+		protected final Property pr_null_instanceClassName = createProperty("instanceClassName", _String);
+		protected final Property pr_null_ownedAttribute = createProperty("ownedAttribute", _Property);
+		protected final Property pr_null_ownedOperation = createProperty("ownedOperation", _Operation);
+		protected final Property pr_null_superClass = createProperty("superClass", _Class);
+		protected final Property pr_Class_isAbstract = createProperty("isAbstract", _Boolean);
+		protected final Property pr_Class_isInterface = createProperty("isInterface", _Boolean);
+		protected final Property pr_ClassifierType_instanceType = createProperty("instanceType", _Type);
+		protected final Property pr_CollectionItem_item = createProperty("item", _OclExpression);
+		protected final Property pr_CollectionLiteralExp_kind = createProperty("kind", _CollectionKind);
+		protected final Property pr_CollectionLiteralExp_part = createProperty("part", _CollectionLiteralPart);
+		protected final Property pr_CollectionLiteralPart_CollectionLiteralExp = createProperty("CollectionLiteralExp", _CollectionLiteralExp);
+		protected final Property pr_CollectionRange_first = createProperty("first", _OclExpression);
+		protected final Property pr_CollectionRange_last = createProperty("last", _OclExpression);
+		protected final Property pr_CollectionType_elementType = createProperty("elementType", _Type);
+		protected final Property pr_Comment_Element = createProperty("Element", _Element);
+		protected final Property pr_Comment_annotatedElement = createProperty("annotatedElement", _Element);
+		protected final Property pr_Comment_body = createProperty("body", _String);
+		protected final Property pr_Constraint_constrainedElement = createProperty("constrainedElement", _Element);
+		protected final Property pr_Constraint_context = createProperty("context", _NamedElement);
+		protected final Property pr_Constraint_isCallable = createProperty("isCallable", _Boolean);
+		protected final Property pr_Constraint_specification = createProperty("specification", _ValueSpecification);
+		protected final Property pr_Constraint_stereotype = createProperty("stereotype", _String);
+		protected final Property pr_ConstructorExp_part = createProperty("part", _ConstructorPart);
+		protected final Property pr_ConstructorPart_ConstructorExp = createProperty("ConstructorExp", _ConstructorExp);
+		protected final Property pr_ConstructorPart_initExpression = createProperty("initExpression", _OclExpression);
+		protected final Property pr_ConstructorPart_referredProperty = createProperty("referredProperty", _Property);
+		protected final Property pr_DataType_behavioralType = createProperty("behavioralType", _Type);
+		protected final Property pr_DataType_isSerializable = createProperty("isSerializable", _Boolean);
+		protected final Property pr_Detail_Annotation = createProperty("Annotation", _Annotation);
+		protected final Property pr_Detail_value = createProperty("value", _String);
+		protected final Property pr_Element_Constraint = createProperty("Constraint", _Constraint);
+		protected final Property pr_Element_ownedComment = createProperty("ownedComment", _Comment);
+		protected final Property pr_EnumLiteralExp_referredEnumLiteral = createProperty("referredEnumLiteral", _EnumerationLiteral);
+		protected final Property pr_Enumeration_ownedLiteral = createProperty("ownedLiteral", _EnumerationLiteral);
+		protected final Property pr_EnumerationLiteral_EnumLiteralExp = createProperty("EnumLiteralExp", _EnumLiteralExp);
+		protected final Property pr_EnumerationLiteral_enumeration = createProperty("enumeration", _Enumeration);
+		protected final Property pr_EnumerationLiteral_value = createProperty("value", _Integer);
+		protected final Property pr_ExpressionInOcl_bodyExpression = createProperty("bodyExpression", _OclExpression);
+		protected final Property pr_ExpressionInOcl_contextVariable = createProperty("contextVariable", _Variable);
+		protected final Property pr_ExpressionInOcl_messageExpression = createProperty("messageExpression", _OclExpression);
+		protected final Property pr_ExpressionInOcl_parameterVariable = createProperty("parameterVariable", _Variable);
+		protected final Property pr_ExpressionInOcl_resultVariable = createProperty("resultVariable", _Variable);
+		protected final Property pr_null_isStatic = createProperty("isStatic", _Boolean);
+		protected final Property pr_Feature_implementation = createProperty("implementation", _LibraryFeature);
+		protected final Property pr_Feature_implementationClass = createProperty("implementationClass", _String);
+		protected final Property pr_FeatureCallExp_isPre = createProperty("isPre", _Boolean);
+		protected final Property pr_IfExp_condition = createProperty("condition", _OclExpression);
+		protected final Property pr_IfExp_elseExpression = createProperty("elseExpression", _OclExpression);
+		protected final Property pr_IfExp_thenExpression = createProperty("thenExpression", _OclExpression);
+		protected final Property pr_IntegerLiteralExp_integerSymbol = createProperty("integerSymbol", _Integer);
+		protected final Property pr_IterateExp_result = createProperty("result", _Variable);
+		protected final Property pr_Iteration_LoopExp = createProperty("LoopExp", _LoopExp);
+		protected final Property pr_Iteration_ownedAccumulator = createProperty("ownedAccumulator", _Parameter);
+		protected final Property pr_Iteration_ownedIterator = createProperty("ownedIterator", _Parameter);
+		protected final Property pr_LambdaType_contextType = createProperty("contextType", _Type);
+		protected final Property pr_LambdaType_parameterType = createProperty("parameterType", _Type);
+		protected final Property pr_LambdaType_resultType = createProperty("resultType", _Type);
+		protected final Property pr_LetExp_in = createProperty("in", _OclExpression);
+		protected final Property pr_LetExp_variable = createProperty("variable", _Variable);
+		protected final Property pr_LoopExp_body = createProperty("body", _OclExpression);
+		protected final Property pr_LoopExp_iterator = createProperty("iterator", _Variable);
+		protected final Property pr_LoopExp_referredIteration = createProperty("referredIteration", _Iteration);
+		protected final Property pr_MessageExp_argument = createProperty("argument", _OclExpression);
+		protected final Property pr_MessageExp_calledOperation = createProperty("calledOperation", _CallOperationAction);
+		protected final Property pr_MessageExp_sentSignal = createProperty("sentSignal", _SendSignalAction);
+		protected final Property pr_MessageExp_target = createProperty("target", _OclExpression);
+		protected final Property pr_MessageType_referredOperation = createProperty("referredOperation", _Operation);
+		protected final Property pr_MessageType_referredSignal = createProperty("referredSignal", _Signal);
+		protected final Property pr_MultiplicityElement_isOrdered = createProperty("isOrdered", _Boolean);
+		protected final Property pr_MultiplicityElement_isUnique = createProperty("isUnique", _Boolean);
+		protected final Property pr_MultiplicityElement_lower = createProperty("lower", _Integer);
+		protected final Property pr_MultiplicityElement_upper = createProperty("upper", _UnlimitedNatural);
+		protected final Property pr_NamedElement_isStatic = createProperty("isStatic", _Boolean);
+		protected final Property pr_NamedElement_name = createProperty("name", _String);
+		protected final Property pr_NamedElement_ownedAnnotation = createProperty("ownedAnnotation", _Annotation);
+		protected final Property pr_NamedElement_ownedRule = createProperty("ownedRule", _Constraint);
+		protected final Property pr_NavigationCallExp_navigationSource = createProperty("navigationSource", _Property);
+		protected final Property pr_NavigationCallExp_qualifier = createProperty("qualifier", _OclExpression);
+		protected final Property pr_OclExpression_CallExp = createProperty("CallExp", _CallExp);
+		protected final Property pr_OclExpression_CollectionItem = createProperty("CollectionItem", _CollectionItem);
+		protected final Property pr_OclExpression_ConstructorPart = createProperty("ConstructorPart", _ConstructorPart);
+		protected final Property pr_OclExpression_LetExp = createProperty("LetExp", _LetExp);
+		protected final Property pr_OclExpression_LoopExp = createProperty("LoopExp", _LoopExp);
+		protected final Property pr_OclExpression_NavigationCallExp = createProperty("NavigationCallExp", _NavigationCallExp);
+		protected final Property pr_OclExpression_OperationCallExp = createProperty("OperationCallExp", _OperationCallExp);
+		protected final Property pr_OclExpression_TupleLiteralPart = createProperty("TupleLiteralPart", _TupleLiteralPart);
+		protected final Property pr_OclExpression_Variable = createProperty("Variable", _Variable);
+		protected final Property pr_OpaqueExpression_body = createProperty("body", _String);
+		protected final Property pr_OpaqueExpression_language = createProperty("language", _String);
+		protected final Property pr_OpaqueExpression_message = createProperty("message", _String);
+		protected final Property pr_OpaqueExpression_valueExpression = createProperty("valueExpression", _ExpressionInOcl);
+		protected final Property pr_null_templateParameter = createProperty("templateParameter", _TemplateParameter);
+		protected final Property pr_Operation_CallOperationAction = createProperty("CallOperationAction", _CallOperationAction);
+		protected final Property pr_Operation_MessageType = createProperty("MessageType", _MessageType);
+		protected final Property pr_Operation_OperationCallExp = createProperty("OperationCallExp", _OperationCallExp);
+		protected final Property pr_Operation_class = createProperty("class", _Class);
+		protected final Property pr_Operation_ownedParameter = createProperty("ownedParameter", _Parameter);
+		protected final Property pr_Operation_owningType = createProperty("owningType", _Type);
+		protected final Property pr_Operation_precedence = createProperty("precedence", _Precedence);
+		protected final Property pr_Operation_raisedException = createProperty("raisedException", _Type);
+		protected final Property pr_OperationCallExp_argument = createProperty("argument", _OclExpression);
+		protected final Property pr_OperationCallExp_referredOperation = createProperty("referredOperation", _Operation);
+		protected final Property pr_null_parameteredElement = createProperty("parameteredElement", _ParameterableElement);
+		protected final Property pr_Package_nestedPackage = createProperty("nestedPackage", _Package);
+		protected final Property pr_Package_nestingPackage = createProperty("nestingPackage", _Package);
+		protected final Property pr_Package_nsPrefix = createProperty("nsPrefix", _String);
+		protected final Property pr_Package_nsURI = createProperty("nsURI", _String);
+		protected final Property pr_Package_ownedPrecedence = createProperty("ownedPrecedence", _Precedence);
+		protected final Property pr_Package_ownedType = createProperty("ownedType", _Type);
+		protected final Property pr_Parameter_Variable = createProperty("Variable", _Variable);
+		protected final Property pr_Parameter_operation = createProperty("operation", _Operation);
+		protected final Property pr_ParameterableElement_owningTemplateParameter = createProperty("owningTemplateParameter", _TemplateParameter);
+		protected final Property pr_ParameterableElement_templateParameter = createProperty("templateParameter", _TemplateParameter);
+		protected final Property pr_Precedence_Operation = createProperty("Operation", _Operation);
+		protected final Property pr_Precedence_Package = createProperty("Package", _Package);
+		protected final Property pr_Precedence_associativity = createProperty("associativity", _AssociativityKind);
+		protected final Property pr_Precedence_order = createProperty("order", _Integer);
+		protected final Property pr_Property_ConstructorPart = createProperty("ConstructorPart", _ConstructorPart);
+		protected final Property pr_Property_NavigationCallExp = createProperty("NavigationCallExp", _NavigationCallExp);
+		protected final Property pr_Property_PropertyCallExp = createProperty("PropertyCallExp", _PropertyCallExp);
+		protected final Property pr_Property_association = createProperty("association", _AssociationClass);
+		protected final Property pr_Property_class = createProperty("class", _Class);
+		protected final Property pr_Property_default = createProperty("default", _String);
+		protected final Property pr_Property_implicit = createProperty("implicit", _Boolean);
+		protected final Property pr_Property_isComposite = createProperty("isComposite", _Boolean);
+		protected final Property pr_Property_isDerived = createProperty("isDerived", _Boolean);
+		protected final Property pr_Property_isID = createProperty("isID", _Boolean);
+		protected final Property pr_Property_isReadOnly = createProperty("isReadOnly", _Boolean);
+		protected final Property pr_Property_isResolveProxies = createProperty("isResolveProxies", _Boolean);
+		protected final Property pr_Property_isTransient = createProperty("isTransient", _Boolean);
+		protected final Property pr_Property_isUnsettable = createProperty("isUnsettable", _Boolean);
+		protected final Property pr_Property_isVolatile = createProperty("isVolatile", _Boolean);
+		protected final Property pr_Property_keys = createProperty("keys", _Property);
+		protected final Property pr_Property_opposite = createProperty("opposite", _Property);
+		protected final Property pr_Property_owningType = createProperty("owningType", _Type);
+		protected final Property pr_PropertyCallExp_referredProperty = createProperty("referredProperty", _Property);
+		protected final Property pr_RealLiteralExp_realSymbol = createProperty("realSymbol", _Real);
+		protected final Property pr_SendSignalAction_MessageExp = createProperty("MessageExp", _MessageExp);
+		protected final Property pr_SendSignalAction_signal = createProperty("signal", _Signal);
+		protected final Property pr_Signal_MessageType = createProperty("MessageType", _MessageType);
+		protected final Property pr_Signal_SendSignalAction = createProperty("SendSignalAction", _SendSignalAction);
+		protected final Property pr_State_StateExp = createProperty("StateExp", _StateExp);
+		protected final Property pr_StateExp_referredState = createProperty("referredState", _State);
+		protected final Property pr_StringLiteralExp_stringSymbol = createProperty("stringSymbol", _String);
+		protected final Property pr_TemplateBinding_boundElement = createProperty("boundElement", _TemplateableElement);
+		protected final Property pr_TemplateBinding_parameterSubstitution = createProperty("parameterSubstitution", _TemplateParameterSubstitution);
+		protected final Property pr_TemplateBinding_signature = createProperty("signature", _TemplateSignature);
+		protected final Property pr_TemplateParameter_TemplateParameterSubstitution = createProperty("TemplateParameterSubstitution", _TemplateParameterSubstitution);
+		protected final Property pr_TemplateParameter_default = createProperty("default", _ParameterableElement);
+		protected final Property pr_TemplateParameter_ownedDefault = createProperty("ownedDefault", _ParameterableElement);
+		protected final Property pr_TemplateParameter_ownedParameteredElement = createProperty("ownedParameteredElement", _ParameterableElement);
+		protected final Property pr_TemplateParameter_parameteredElement = createProperty("parameteredElement", _ParameterableElement);
+		protected final Property pr_TemplateParameter_signature = createProperty("signature", _TemplateSignature);
+		protected final Property pr_TemplateParameterSubstitution_actual = createProperty("actual", _ParameterableElement);
+		protected final Property pr_TemplateParameterSubstitution_formal = createProperty("formal", _TemplateParameter);
+		protected final Property pr_TemplateParameterSubstitution_ownedActual = createProperty("ownedActual", _ParameterableElement);
+		protected final Property pr_TemplateParameterSubstitution_templateBinding = createProperty("templateBinding", _TemplateBinding);
+		protected final Property pr_TemplateParameterType_specification = createProperty("specification", _String);
+		protected final Property pr_TemplateSignature_TemplateBinding = createProperty("TemplateBinding", _TemplateBinding);
+		protected final Property pr_TemplateSignature_ownedParameter = createProperty("ownedParameter", _TemplateParameter);
+		protected final Property pr_TemplateSignature_parameter = createProperty("parameter", _TemplateParameter);
+		protected final Property pr_TemplateSignature_template = createProperty("template", _TemplateableElement);
+		protected final Property pr_TemplateableElement_ownedTemplateSignature = createProperty("ownedTemplateSignature", _TemplateSignature);
+		protected final Property pr_TemplateableElement_templateBinding = createProperty("templateBinding", _TemplateBinding);
+		protected final Property pr_TemplateableElement_unspecializedElement = createProperty("unspecializedElement", _TemplateableElement);
+		protected final Property pr_TupleLiteralExp_part = createProperty("part", _TupleLiteralPart);
+		protected final Property pr_TupleLiteralPart_TupleLiteralExp = createProperty("TupleLiteralExp", _TupleLiteralExp);
+		protected final Property pr_TupleLiteralPart_initExpression = createProperty("initExpression", _OclExpression);
+		protected final Property pr_null_templateParameter_1 = createProperty("templateParameter", _TemplateParameter);
+		protected final Property pr_Type_ClassifierType = createProperty("ClassifierType", _ClassifierType);
+		protected final Property pr_Type_CollectionType = createProperty("CollectionType", _CollectionType);
+		protected final Property pr_Type_DataType = createProperty("DataType", _DataType);
+		protected final Property pr_Type_Type = createProperty("Type", _Type);
+		protected final Property pr_Type_TypeExp = createProperty("TypeExp", _TypeExp);
+		protected final Property pr_Type_TypeTemplateParameter = createProperty("TypeTemplateParameter", _TypeTemplateParameter);
+		protected final Property pr_Type_TypedElement = createProperty("TypedElement", _TypedElement);
+		protected final Property pr_Type_instanceClassName = createProperty("instanceClassName", _String);
+		protected final Property pr_Type_ownedAttribute = createProperty("ownedAttribute", _Property);
+		protected final Property pr_Type_ownedOperation = createProperty("ownedOperation", _Operation);
+		protected final Property pr_Type_package = createProperty("package", _Package);
+		protected final Property pr_Type_superClass = createProperty("superClass", _Type);
+		protected final Property pr_TypeExp_referredType = createProperty("referredType", _Type);
+		protected final Property pr_null_parameteredElement_1 = createProperty("parameteredElement", _ParameterableElement);
+		protected final Property pr_TypeTemplateParameter_allowSubstitutable = createProperty("allowSubstitutable", _Boolean);
+		protected final Property pr_TypeTemplateParameter_constrainingType = createProperty("constrainingType", _Type);
+		protected final Property pr_TypedElement_type = createProperty("type", _Type);
+		protected final Property pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol = createProperty("unlimitedNaturalSymbol", _UnlimitedNatural);
+		protected final Property pr_UnspecifiedType_lowerBound = createProperty("lowerBound", _Type);
+		protected final Property pr_UnspecifiedType_upperBound = createProperty("upperBound", _Type);
+		protected final Property pr_ValueSpecification_Constraint = createProperty("Constraint", _Constraint);
+		protected final Property pr_Variable_IterateExp = createProperty("IterateExp", _IterateExp);
+		protected final Property pr_Variable_LetExp = createProperty("LetExp", _LetExp);
+		protected final Property pr_Variable_LoopExp = createProperty("LoopExp", _LoopExp);
+		protected final Property pr_Variable_implicit = createProperty("implicit", _Boolean);
+		protected final Property pr_Variable_initExpression = createProperty("initExpression", _OclExpression);
+		protected final Property pr_Variable_representedParameter = createProperty("representedParameter", _Parameter);
+		protected final Property pr_VariableDeclaration_VariableExp = createProperty("VariableExp", _VariableExp);
+		protected final Property pr_VariableExp_implicit = createProperty("implicit", _Boolean);
+		protected final Property pr_VariableExp_referredVariable = createProperty("referredVariable", _VariableDeclaration);
+		
+		protected void installProperties() {
+			List<Property> ownedProperties;
+			Property property;
+			ownedProperties = _Annotation.getOwnedAttributes();
+			ownedProperties.add(property = pr_Annotation_NamedElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_NamedElement_ownedAnnotation);
+			ownedProperties.add(property = pr_Annotation_ownedContent);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Annotation_ownedDetail);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Detail_Annotation);
+			ownedProperties.add(property = pr_Annotation_reference);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _AssociationClass.getOwnedAttributes();
+			ownedProperties.add(property = pr_AssociationClass_AssociationClassCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_AssociationClassCallExp_referredAssociationClass);
+			ownedProperties.add(property = pr_AssociationClass_unownedAttribute);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_association);
+			ownedProperties = _AssociationClassCallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_AssociationClassCallExp_referredAssociationClass);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_AssociationClass_AssociationClassCallExp);
+			ownedProperties = _BooleanLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_BooleanLiteralExp_booleanSymbol);
+			property.setIsResolveProxies(true);
+			property.setIsUnsettable(true);
+			ownedProperties = _CallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_CallExp_implicit);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_CallExp_source);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_CallExp);
+			ownedProperties = _CallOperationAction.getOwnedAttributes();
+			ownedProperties.add(property = pr_CallOperationAction_MessageExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MessageExp_calledOperation);
+			ownedProperties.add(property = pr_CallOperationAction_operation);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_CallOperationAction);
+			ownedProperties = _Class.getOwnedAttributes();
+			ownedProperties.add(property = pr_Class_isAbstract);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Class_isInterface);
+			property.setIsResolveProxies(true);
+			ownedProperties = _ClassifierType.getOwnedAttributes();
+			ownedProperties.add(property = pr_ClassifierType_instanceType);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_ClassifierType);
+			ownedProperties = _CollectionItem.getOwnedAttributes();
+			ownedProperties.add(property = pr_CollectionItem_item);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_CollectionItem);
+			ownedProperties = _CollectionLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_CollectionLiteralExp_kind);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_CollectionLiteralExp_part);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CollectionLiteralPart_CollectionLiteralExp);
+			ownedProperties = _CollectionLiteralPart.getOwnedAttributes();
+			ownedProperties.add(property = pr_CollectionLiteralPart_CollectionLiteralExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CollectionLiteralExp_part);
+			ownedProperties = _CollectionRange.getOwnedAttributes();
+			ownedProperties.add(property = pr_CollectionRange_first);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_CollectionRange_last);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _CollectionType.getOwnedAttributes();
+			ownedProperties.add(property = pr_CollectionType_elementType);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_CollectionType);
+			ownedProperties = _Comment.getOwnedAttributes();
+			ownedProperties.add(property = pr_Comment_Element);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Element_ownedComment);
+			ownedProperties.add(property = pr_Comment_annotatedElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Comment_body);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _Constraint.getOwnedAttributes();
+			ownedProperties.add(property = pr_Constraint_constrainedElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Element_Constraint);
+			ownedProperties.add(property = pr_Constraint_context);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_NamedElement_ownedRule);
+			ownedProperties.add(property = pr_Constraint_isCallable);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Constraint_specification);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ValueSpecification_Constraint);
+			ownedProperties.add(property = pr_Constraint_stereotype);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _ConstructorExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_ConstructorExp_part);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ConstructorPart_ConstructorExp);
+			ownedProperties = _ConstructorPart.getOwnedAttributes();
+			ownedProperties.add(property = pr_ConstructorPart_ConstructorExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ConstructorExp_part);
+			ownedProperties.add(property = pr_ConstructorPart_initExpression);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_ConstructorPart);
+			ownedProperties.add(property = pr_ConstructorPart_referredProperty);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_ConstructorPart);
+			ownedProperties = _DataType.getOwnedAttributes();
+			ownedProperties.add(property = pr_DataType_behavioralType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_DataType);
+			ownedProperties.add(property = pr_DataType_isSerializable);
+			property.setIsResolveProxies(true);
+			ownedProperties = _Detail.getOwnedAttributes();
+			ownedProperties.add(property = pr_Detail_Annotation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Annotation_ownedDetail);
+			ownedProperties.add(property = pr_Detail_value);
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			ownedProperties = _Element.getOwnedAttributes();
+			ownedProperties.add(property = pr_Element_Constraint);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_constrainedElement);
+			ownedProperties.add(property = pr_Element_ownedComment);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Comment_Element);
+			ownedProperties = _EnumLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_EnumLiteralExp_referredEnumLiteral);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_EnumerationLiteral_EnumLiteralExp);
+			ownedProperties = _Enumeration.getOwnedAttributes();
+			ownedProperties.add(property = pr_Enumeration_ownedLiteral);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_EnumerationLiteral_enumeration);
+			ownedProperties = _EnumerationLiteral.getOwnedAttributes();
+			ownedProperties.add(property = pr_EnumerationLiteral_EnumLiteralExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_EnumLiteralExp_referredEnumLiteral);
+			ownedProperties.add(property = pr_EnumerationLiteral_enumeration);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Enumeration_ownedLiteral);
+			ownedProperties.add(property = pr_EnumerationLiteral_value);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _ExpressionInOcl.getOwnedAttributes();
+			ownedProperties.add(property = pr_ExpressionInOcl_bodyExpression);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_ExpressionInOcl_contextVariable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_ExpressionInOcl_messageExpression);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_ExpressionInOcl_parameterVariable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_ExpressionInOcl_resultVariable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _Feature.getOwnedAttributes();
+			ownedProperties.add(property = pr_Feature_implementation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			ownedProperties.add(property = pr_Feature_implementationClass);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _FeatureCallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_FeatureCallExp_isPre);
+			property.setIsResolveProxies(true);
+			ownedProperties = _IfExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_IfExp_condition);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_IfExp_elseExpression);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_IfExp_thenExpression);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _IntegerLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_IntegerLiteralExp_integerSymbol);
+			property.setIsResolveProxies(true);
+			ownedProperties = _IterateExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_IterateExp_result);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_IterateExp);
+			ownedProperties = _Iteration.getOwnedAttributes();
+			ownedProperties.add(property = pr_Iteration_LoopExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LoopExp_referredIteration);
+			ownedProperties.add(property = pr_Iteration_ownedAccumulator);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Iteration_ownedIterator);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _LambdaType.getOwnedAttributes();
+			ownedProperties.add(property = pr_LambdaType_contextType);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_LambdaType_parameterType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_LambdaType_resultType);
+			property.setIsResolveProxies(true);
+			ownedProperties = _LetExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_LetExp_in);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_LetExp);
+			ownedProperties.add(property = pr_LetExp_variable);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_LetExp);
+			ownedProperties = _LoopExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_LoopExp_body);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_LoopExp);
+			ownedProperties.add(property = pr_LoopExp_iterator);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_LoopExp);
+			ownedProperties.add(property = pr_LoopExp_referredIteration);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Iteration_LoopExp);
+			ownedProperties = _MessageExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_MessageExp_argument);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_MessageExp_calledOperation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CallOperationAction_MessageExp);
+			ownedProperties.add(property = pr_MessageExp_sentSignal);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_SendSignalAction_MessageExp);
+			ownedProperties.add(property = pr_MessageExp_target);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties = _MessageType.getOwnedAttributes();
+			ownedProperties.add(property = pr_MessageType_referredOperation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_MessageType);
+			ownedProperties.add(property = pr_MessageType_referredSignal);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Signal_MessageType);
+			ownedProperties = _MultiplicityElement.getOwnedAttributes();
+			ownedProperties.add(property = pr_MultiplicityElement_isOrdered);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_MultiplicityElement_isUnique);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_MultiplicityElement_lower);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_MultiplicityElement_upper);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _NamedElement.getOwnedAttributes();
+			ownedProperties.add(property = pr_NamedElement_isStatic);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_NamedElement_name);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_NamedElement_ownedAnnotation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Annotation_NamedElement);
+			ownedProperties.add(property = pr_NamedElement_ownedRule);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_context);
+			ownedProperties = _NavigationCallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_NavigationCallExp_navigationSource);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_NavigationCallExp);
+			ownedProperties.add(property = pr_NavigationCallExp_qualifier);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_NavigationCallExp);
+			ownedProperties = _OclExpression.getOwnedAttributes();
+			ownedProperties.add(property = pr_OclExpression_CallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CallExp_source);
+			ownedProperties.add(property = pr_OclExpression_CollectionItem);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CollectionItem_item);
+			ownedProperties.add(property = pr_OclExpression_ConstructorPart);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ConstructorPart_initExpression);
+			ownedProperties.add(property = pr_OclExpression_LetExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LetExp_in);
+			ownedProperties.add(property = pr_OclExpression_LoopExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LoopExp_body);
+			ownedProperties.add(property = pr_OclExpression_NavigationCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_NavigationCallExp_qualifier);
+			ownedProperties.add(property = pr_OclExpression_OperationCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OperationCallExp_argument);
+			ownedProperties.add(property = pr_OclExpression_TupleLiteralPart);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TupleLiteralPart_initExpression);
+			ownedProperties.add(property = pr_OclExpression_Variable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_initExpression);
+			ownedProperties = _OpaqueExpression.getOwnedAttributes();
+			ownedProperties.add(property = pr_OpaqueExpression_body);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsUnique(false);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_OpaqueExpression_language);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_OpaqueExpression_message);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsUnique(false);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_OpaqueExpression_valueExpression);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			ownedProperties = _Operation.getOwnedAttributes();
+			ownedProperties.add(property = pr_Operation_CallOperationAction);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CallOperationAction_operation);
+			ownedProperties.add(property = pr_Operation_MessageType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MessageType_referredOperation);
+			ownedProperties.add(property = pr_Operation_OperationCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OperationCallExp_referredOperation);
+			ownedProperties.add(property = pr_Operation_class);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsReadOnly(true);
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
+			ownedProperties.add(property = pr_Operation_ownedParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Parameter_operation);
+			ownedProperties.add(property = pr_Operation_owningType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_ownedOperation);
+			ownedProperties.add(property = pr_Operation_precedence);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Precedence_Operation);
+			ownedProperties.add(property = pr_Operation_raisedException);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			ownedProperties = _OperationCallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_OperationCallExp_argument);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_OperationCallExp);
+			ownedProperties.add(property = pr_OperationCallExp_referredOperation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_OperationCallExp);
+			ownedProperties = _Package.getOwnedAttributes();
+			ownedProperties.add(property = pr_Package_nestedPackage);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_nestingPackage);
+			ownedProperties.add(property = pr_Package_nestingPackage);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_nestedPackage);
+			ownedProperties.add(property = pr_Package_nsPrefix);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Package_nsURI);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Package_ownedPrecedence);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Precedence_Package);
+			ownedProperties.add(property = pr_Package_ownedType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_package);
+			ownedProperties = _Parameter.getOwnedAttributes();
+			ownedProperties.add(property = pr_Parameter_Variable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Variable_representedParameter);
+			ownedProperties.add(property = pr_Parameter_operation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_ownedParameter);
+			ownedProperties = _ParameterableElement.getOwnedAttributes();
+			ownedProperties.add(property = pr_ParameterableElement_owningTemplateParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameter_ownedParameteredElement);
+			ownedProperties.add(property = pr_ParameterableElement_templateParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameter_parameteredElement);
+			ownedProperties = _Precedence.getOwnedAttributes();
+			ownedProperties.add(property = pr_Precedence_Operation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_precedence);
+			ownedProperties.add(property = pr_Precedence_Package);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedPrecedence);
+			ownedProperties.add(property = pr_Precedence_associativity);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Precedence_order);
+			property.setIsDerived(true);
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
+			ownedProperties = _Property.getOwnedAttributes();
+			ownedProperties.add(property = pr_Property_ConstructorPart);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ConstructorPart_referredProperty);
+			ownedProperties.add(property = pr_Property_NavigationCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_NavigationCallExp_navigationSource);
+			ownedProperties.add(property = pr_Property_PropertyCallExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_PropertyCallExp_referredProperty);
+			ownedProperties.add(property = pr_Property_association);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_AssociationClass_unownedAttribute);
+			ownedProperties.add(property = pr_Property_class);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsReadOnly(true);
+			property.setIsResolveProxies(true);
+			property.setIsTransient(true);
+			property.setIsVolatile(true);
+			ownedProperties.add(property = pr_Property_default);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_implicit);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isComposite);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isDerived);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isID);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isReadOnly);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isResolveProxies);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isTransient);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isUnsettable);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_isVolatile);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_keys);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_opposite);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Property_owningType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_ownedAttribute);
+			ownedProperties = _PropertyCallExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_PropertyCallExp_referredProperty);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_PropertyCallExp);
+			ownedProperties = _RealLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_RealLiteralExp_realSymbol);
+			property.setIsResolveProxies(true);
+			ownedProperties = _SendSignalAction.getOwnedAttributes();
+			ownedProperties.add(property = pr_SendSignalAction_MessageExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MessageExp_sentSignal);
+			ownedProperties.add(property = pr_SendSignalAction_signal);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Signal_SendSignalAction);
+			ownedProperties = _Signal.getOwnedAttributes();
+			ownedProperties.add(property = pr_Signal_MessageType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_MessageType_referredSignal);
+			ownedProperties.add(property = pr_Signal_SendSignalAction);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_SendSignalAction_signal);
+			ownedProperties = _State.getOwnedAttributes();
+			ownedProperties.add(property = pr_State_StateExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_StateExp_referredState);
+			ownedProperties = _StateExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_StateExp_referredState);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_State_StateExp);
+			ownedProperties = _StringLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_StringLiteralExp_stringSymbol);
+			property.setIsResolveProxies(true);
+			ownedProperties = _TemplateBinding.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateBinding_boundElement);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateableElement_templateBinding);
+			ownedProperties.add(property = pr_TemplateBinding_parameterSubstitution);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameterSubstitution_templateBinding);
+			ownedProperties.add(property = pr_TemplateBinding_signature);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateSignature_TemplateBinding);
+			ownedProperties = _TemplateParameter.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateParameter_TemplateParameterSubstitution);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameterSubstitution_formal);
+			ownedProperties.add(property = pr_TemplateParameter_default);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TemplateParameter_ownedDefault);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TemplateParameter_ownedParameteredElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ParameterableElement_owningTemplateParameter);
+			ownedProperties.add(property = pr_TemplateParameter_parameteredElement);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ParameterableElement_templateParameter);
+			ownedProperties.add(property = pr_TemplateParameter_signature);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateSignature_ownedParameter);
+			ownedProperties = _TemplateParameterSubstitution.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_actual);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_formal);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameter_TemplateParameterSubstitution);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_ownedActual);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TemplateParameterSubstitution_templateBinding);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateBinding_parameterSubstitution);
+			ownedProperties = _TemplateParameterType.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateParameterType_specification);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties = _TemplateSignature.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateSignature_TemplateBinding);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateBinding_signature);
+			ownedProperties.add(property = pr_TemplateSignature_ownedParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateParameter_signature);
+			ownedProperties.add(property = pr_TemplateSignature_parameter);
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TemplateSignature_template);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateableElement_ownedTemplateSignature);
+			ownedProperties = _TemplateableElement.getOwnedAttributes();
+			ownedProperties.add(property = pr_TemplateableElement_ownedTemplateSignature);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateSignature_template);
+			ownedProperties.add(property = pr_TemplateableElement_templateBinding);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TemplateBinding_boundElement);
+			ownedProperties.add(property = pr_TemplateableElement_unspecializedElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsTransient(true);
+			ownedProperties = _TupleLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_TupleLiteralExp_part);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TupleLiteralPart_TupleLiteralExp);
+			ownedProperties = _TupleLiteralPart.getOwnedAttributes();
+			ownedProperties.add(property = pr_TupleLiteralPart_TupleLiteralExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TupleLiteralExp_part);
+			ownedProperties.add(property = pr_TupleLiteralPart_initExpression);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_TupleLiteralPart);
+			ownedProperties = _Type.getOwnedAttributes();
+			ownedProperties.add(property = pr_Type_ClassifierType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_ClassifierType_instanceType);
+			ownedProperties.add(property = pr_Type_CollectionType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_CollectionType_elementType);
+			ownedProperties.add(property = pr_Type_DataType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_DataType_behavioralType);
+			ownedProperties.add(property = pr_Type_Type);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_superClass);
+			ownedProperties.add(property = pr_Type_TypeExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TypeExp_referredType);
+			ownedProperties.add(property = pr_Type_TypeTemplateParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TypeTemplateParameter_constrainingType);
+			ownedProperties.add(property = pr_Type_TypedElement);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_TypedElement_type);
+			ownedProperties.add(property = pr_Type_instanceClassName);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Type_ownedAttribute);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Property_owningType);
+			ownedProperties.add(property = pr_Type_ownedOperation);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Operation_owningType);
+			ownedProperties.add(property = pr_Type_package);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Package_ownedType);
+			ownedProperties.add(property = pr_Type_superClass);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsOrdered(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_Type);
+			ownedProperties = _TypeExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_TypeExp_referredType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_TypeExp);
+			ownedProperties = _TypeTemplateParameter.getOwnedAttributes();
+			ownedProperties.add(property = pr_TypeTemplateParameter_allowSubstitutable);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_TypeTemplateParameter_constrainingType);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_TypeTemplateParameter);
+			ownedProperties = _TypedElement.getOwnedAttributes();
+			ownedProperties.add(property = pr_TypedElement_type);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Type_TypedElement);
+			ownedProperties = _UnlimitedNaturalLiteralExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_UnlimitedNaturalLiteralExp_unlimitedNaturalSymbol);
+			property.setIsResolveProxies(true);
+			ownedProperties = _UnspecifiedType.getOwnedAttributes();
+			ownedProperties.add(property = pr_UnspecifiedType_lowerBound);
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_UnspecifiedType_upperBound);
+			property.setIsResolveProxies(true);
+			ownedProperties = _ValueSpecification.getOwnedAttributes();
+			ownedProperties.add(property = pr_ValueSpecification_Constraint);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Constraint_specification);
+			ownedProperties = _Variable.getOwnedAttributes();
+			ownedProperties.add(property = pr_Variable_IterateExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_IterateExp_result);
+			ownedProperties.add(property = pr_Variable_LetExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LetExp_variable);
+			ownedProperties.add(property = pr_Variable_LoopExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_LoopExp_iterator);
+			ownedProperties.add(property = pr_Variable_implicit);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_Variable_initExpression);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsComposite(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_OclExpression_Variable);
+			ownedProperties.add(property = pr_Variable_representedParameter);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_Parameter_Variable);
+			ownedProperties = _VariableDeclaration.getOwnedAttributes();
+			ownedProperties.add(property = pr_VariableDeclaration_VariableExp);
+			property.setLower(BigInteger.valueOf(0));
+			property.setUpper(BigInteger.valueOf(-1));
+			property.setImplicit(true);
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_VariableExp_referredVariable);
+			ownedProperties = _VariableExp.getOwnedAttributes();
+			ownedProperties.add(property = pr_VariableExp_implicit);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			ownedProperties.add(property = pr_VariableExp_referredVariable);
+			property.setLower(BigInteger.valueOf(0));
+			property.setIsResolveProxies(true);
+			property.setOpposite(pr_VariableDeclaration_VariableExp);
+		}
+		protected final TypeTemplateParameter tp_Visitor = createTypeTemplateParameter(_Visitor_C);
+		protected final TypeTemplateParameter tp_Visitor_1 = createTypeTemplateParameter(_Visitor_R);
+		
+		protected final TemplateSignature ts_Visitor = createTemplateSignature(_Visitor, tp_Visitor_1, tp_Visitor);
+		
+		protected void installTemplateSignatures() {
+		}
+		
+		protected void installTemplateBindings() {
+		}
+		
+		protected void installPrecedences() {
+		
+			final List<Precedence> ownedPrecedences = metaModel.getOwnedPrecedences();
+		
+		}
+		
+		protected void installComments() {
+			installComment(_Boolean, "A Boolean type is used for logical expression, consisting of the predefined values true and false.");
+			installComment(_Class, "A class is a type that has objects as its instances.");
+			installComment(pr_null_ownedAttribute, "The attributes owned by a class. These do not include the inherited attributes. Attributes are represented by instances of Property.");
+			installComment(pr_null_ownedOperation, "The operations owned by a class. These do not include the inherited operations.");
+			installComment(pr_null_superClass, "The immediate superclasses of a class, from which the class inherits.");
+			installComment(pr_Class_isAbstract, "True when a class is abstract.");
+			installComment(_Comment, "A comment is a textual annotation that can be attached to a set of elements.");
+			installComment(pr_Comment_annotatedElement, "References the Element(s) being commented.");
+			installComment(pr_Comment_body, "Specifies a string that is the comment.");
+			installComment(_Constraint, "A constraint is a condition or restriction expressed in natural language text or in a machine readable language for the purpose of declaring some of the semantics of an element.");
+			installComment(pr_Constraint_constrainedElement, "The ordered set of Elements referenced by this Constraint.");
+			installComment(pr_Constraint_specification, "A condition that must be true when evaluated in order for the constraint to be satisfied.");
+			installComment(_DataType, "DataType is an abstract class that acts as a common superclass for different kinds of data types.");
+			installComment(_Element, "An element is a constituent of a model.");
+			installComment(pr_Element_ownedComment, "The Comments owned by this element.");
+			installComment(_Enumeration, "An enumeration defines a set of literals that can be used as its values.");
+			installComment(pr_Enumeration_ownedLiteral, "The ordered set of literals for this Enumeration.");
+			installComment(_EnumerationLiteral, "An enumeration literal is a value of an enumeration.");
+			installComment(pr_EnumerationLiteral_enumeration, "The Enumeration that this EnumerationLiteral is a member of.");
+			installComment(_Integer, "An integer is a primitive type representing integer values.");
+			installComment(_MultiplicityElement, "A multiplicity is a definition of an inclusive interval of non-negative integers beginning with a lower bound and ending with a (possibly infinite) upper bound. A multiplicity element embeds this information to specify the allowable cardinalities for an instantiation of this element.");
+			installComment(op_MultiplicityElement_includesCardinality, "The query includesCardinality() checks whether the specified cardinality is valid for this multiplicity.");
+			installComment(op_MultiplicityElement_includesMultiplicity, "The query includesMultiplicity() checks whether this multiplicity includes all the cardinalities allowed by the specified multiplicity.");
+			installComment(op_MultiplicityElement_isMultivalued, "The query isMultivalued() checks whether this multiplicity has an upper bound greater than one.");
+			installComment(pr_MultiplicityElement_isOrdered, "For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered.");
+			installComment(pr_MultiplicityElement_isUnique, "For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique.");
+			installComment(pr_MultiplicityElement_lower, "Specifies the lower bound of the multiplicity interval.");
+			installComment(op_MultiplicityElement_lowerBound, "The query lowerBound() returns the lower bound of the multiplicity as an integer.");
+			installComment(pr_MultiplicityElement_upper, "Specifies the upper bound of the multiplicity interval.");
+			installComment(op_MultiplicityElement_upperBound, "The query upperBound() returns the upper bound of the multiplicity for a bounded multiplicity as an unlimited natural.");
+			installComment(_NamedElement, "A named element represents an element with a name.");
+			installComment(pr_NamedElement_name, "The name of the NamedElement.");
+			installComment(_OpaqueExpression, "An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.");
+			installComment(pr_OpaqueExpression_body, "The text of the expression, possibly in multiple languages.");
+			installComment(pr_OpaqueExpression_language, "Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order.");
+			installComment(_Operation, "An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.\r\nOperation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(pr_null_templateParameter, "The template parameter that exposes this element as a formal parameter.");
+			installComment(pr_Operation_class, "The class that owns the operation.");
+			installComment(pr_Operation_ownedParameter, "The parameters to the operation.");
+			installComment(pr_Operation_raisedException, "The exceptions that are declared as possible during an invocation of the operation.");
+			installComment(_OperationTemplateParameter, "An operation template parameter exposes an operation as a formal parameter for a template.");
+			installComment(pr_null_parameteredElement, "The operation for this template parameter.");
+			installComment(_Package, "A package is a container for types and other packages.\r\nPackage specializes TemplateableElement and PackageableElement specializes ParameterableElement to specify that a package can be used as a template and a PackageableElement as a template parameter.");
+			installComment(pr_Package_nestedPackage, "The set of contained packages.");
+			installComment(pr_Package_nestingPackage, "The containing package.");
+			installComment(pr_Package_ownedType, "The set of contained types.");
+			installComment(_PackageableElement, "Packageable elements are able to serve as a template parameter.");
+			installComment(_Parameter, "A parameter is a typed element that represents a parameter of an operation.");
+			installComment(pr_Parameter_operation, "The operation that owns the parameter.");
+			installComment(_ParameterableElement, "A parameterable element is an element that can be exposed as a formal template parameter for a template, or specified as an actual parameter in a binding of a template.");
+			installComment(op_ParameterableElement_isTemplateParameter, "The query isTemplateParameter() determines if this parameterable element is exposed as a formal template parameter.");
+			installComment(pr_ParameterableElement_owningTemplateParameter, "The formal template parameter that owns this element.");
+			installComment(pr_ParameterableElement_templateParameter, "The template parameter that exposes this element as a formal parameter.");
+			installComment(_PrimitiveType, "A primitive type is a data type implemented by the underlying infrastructure and made available for modeling.");
+			installComment(_Property, "A property is a typed element that represents an attribute of a class.\r\nProperty specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(pr_Property_class, "The class that owns the property, and of which the property is an attribute.");
+			installComment(pr_Property_default, "A string that is evaluated to give a default value for the attribute when an object of the owning class is instantiated.");
+			installComment(pr_Property_isComposite, "If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.");
+			installComment(pr_Property_isDerived, "If isDerived is true, the value of the attribute is derived from information elsewhere.");
+			installComment(pr_Property_isReadOnly, "If isReadOnly is true, the attribute may not be written to after initialization.");
+			installComment(pr_Property_opposite, "Two attributes attr1 and attr2 of two objects o1 and o2 (which may be the same object) may be paired with each other so that o1.attr1 refers to o2 if and only if o2.attr2 refers to o1. In such a case attr1 is the opposite of attr2 and attr2 is the opposite of attr1.");
+			installComment(_String, "A string is a sequence of characters in some suitable character set used to display information about the model. Character sets may include non-Roman alphabets and characters.");
+			installComment(_TemplateBinding, "A template binding represents a relationship between a templateable element and a template. A template binding specifies the substitutions of actual parameters for the formal parameters of the template.");
+			installComment(pr_TemplateBinding_boundElement, "The element that is bound by this binding.");
+			installComment(pr_TemplateBinding_parameterSubstitution, "The parameter substitutions owned by this template binding.");
+			installComment(pr_TemplateBinding_signature, "The template signature for the template that is the target of the binding.");
+			installComment(_TemplateParameter, "A template parameter exposes a parameterable element as a formal template parameter of a template.");
+			installComment(pr_TemplateParameter_default, "The element that is the default for this formal template parameter.");
+			installComment(pr_TemplateParameter_ownedDefault, "The element that is owned by this template parameter for the purpose of providing a default.");
+			installComment(pr_TemplateParameter_ownedParameteredElement, "The element that is owned by this template parameter.");
+			installComment(pr_TemplateParameter_parameteredElement, "The element exposed by this template parameter.");
+			installComment(pr_TemplateParameter_signature, "The template signature that owns this template parameter.");
+			installComment(_TemplateParameterSubstitution, "A template parameter substitution relates the actual parameter to a formal template parameter as part of a template binding.");
+			installComment(pr_TemplateParameterSubstitution_actual, "The element that is the actual parameter for this substitution.");
+			installComment(pr_TemplateParameterSubstitution_formal, "The formal template parameter that is associated with this substitution.");
+			installComment(pr_TemplateParameterSubstitution_ownedActual, "The actual parameter that is owned by this substitution.");
+			installComment(pr_TemplateParameterSubstitution_templateBinding, "The optional bindings from this element to templates.");
+			installComment(_TemplateSignature, "A template signature bundles the set of formal template parameters for a templated element.");
+			installComment(pr_TemplateSignature_ownedParameter, "The formal template parameters that are owned by this template signature.");
+			installComment(pr_TemplateSignature_parameter, "The ordered set of all formal template parameters for this template signature.");
+			installComment(pr_TemplateSignature_template, "The element that owns this template signature.");
+			installComment(_TemplateableElement, "A templateable element is an element that can optionally be defined as a template and bound to other templates.");
+			installComment(op_TemplateableElement_isTemplate, "The query isTemplate() returns whether this templateable element is actually a template.");
+			installComment(pr_TemplateableElement_ownedTemplateSignature, "The optional template signature specifying the formal template parameters.");
+			installComment(op_TemplateableElement_parameterableElements, "The query parameterableElements() returns the set of elements that may be used as the parametered elements for a template parameter of this templateable element. By default, this set includes all the owned elements. Subclasses may override this operation if they choose to restrict the set of parameterable elements.");
+			installComment(pr_TemplateableElement_templateBinding, "The optional bindings from this element to templates.");
+			installComment(_Type, "A type is a named element that is used as the type for a typed element. A type can be contained in a package.\r\nType is defined to be a kind of templateable element so that a type can be parameterized. It is also defined to be a kind of parameterable element so that a type can be a formal template parameter.");
+			installComment(op_null_isTemplate, "The query isTemplate() returns whether this templateable element is actually a template.");
+			installComment(pr_null_templateParameter_1, "The template parameter that exposes this element as a formal parameter.");
+			installComment(pr_Type_package, "Specifies the owning package of this classifier, if any.");
+			installComment(_TypeTemplateParameter, "A type template parameter exposes a type as a formal template parameter.");
+			installComment(pr_null_parameteredElement_1, "The parameterable classifier for this template parameter.");
+			installComment(pr_TypeTemplateParameter_allowSubstitutable, "Constrains the required relationship between an actual parameter and the parameteredElement for this formal parameter.");
+			installComment(pr_TypeTemplateParameter_constrainingType, "The classifiers that constrain the argument that can be used for the parameter. If the allowSubstitutable attribute is true, then any classifier that is compatible with this constraining classifier can be substituted; otherwise, it must be either this classifier or one of its subclasses. If this property is empty, there are no constraints on the classifier that can be used as an argument.");
+			installComment(_TypedElement, "A typed element is a kind of named element that represents an element with a type.");
+			installComment(pr_TypedElement_type, "The type of the TypedElement.");
+			installComment(_UnlimitedNatural, "An unlimited natural is a primitive type representing unlimited natural values.");
+			installComment(_ValueSpecification, "A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.\r\nValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.");
+			installComment(op_ValueSpecification_booleanValue, "The query booleanValue() gives a single Boolean value when one can be computed.");
+			installComment(op_ValueSpecification_integerValue, "The query integerValue() gives a single Integer value when one can be computed.");
+			installComment(op_ValueSpecification_isComputable, "The query isComputable() determines whether a value specification can be computed in a model. This operation cannot be fully defined in OCL. A conforming implementation is expected to deliver true for this operation for all value specifications that it can compute, and to compute all of those for which the operation is true. A conforming implementation is expected to be able to compute the value of all literals.");
+			installComment(op_ValueSpecification_isNull, "The query isNull() returns true when it can be computed that the value is null.");
+			installComment(op_ValueSpecification_stringValue, "The query stringValue() gives a single String value when one can be computed.");
+			installComment(op_ValueSpecification_unlimitedValue, "The query unlimitedValue() gives a single UnlimitedNatural value when one can be computed.");
+		}
 	}
 }

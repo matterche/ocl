@@ -1,9 +1,11 @@
 [comment encoding = UTF-8 /]
-[module generateOclMetaModel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
-[import generateOclCommon/]
+[module org::eclipse::ocl::examples::build::acceleo::generateOclMetaModel('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore') extends org::eclipse::ocl::examples::build::acceleo::generateOclCommon/]
 
 [template public generate(pkg : Package, javaPackage : String, javaClass : String, sourceFile : String, uri : String)]
 [comment @main /]
+[let allEnumerations : Sequence(Enumeration) = pkg.eAllContents(Enumeration)]
+[let allLambdaTypes : Sequence(LambdaType) = pkg.eAllContents(LambdaType)]
+[let allTupleTypes : Sequence(TupleType) = pkg.eAllContents(TupleType)]
 [file (javaClass + '.java', false, 'UTF-8')]
 /**
  * <copyright>
@@ -36,12 +38,13 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.manager.PivotStandardLibrary;
+import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -49,92 +52,101 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
  * auto-generated from [sourceFile/].
  * It facilitates efficient model loading without the overheads of model reading.
  */
-@SuppressWarnings("nls")
-public class [javaClass/] extends XMLResourceImpl
+@SuppressWarnings({"nls", "unused"})
+public class [javaClass/] extends XMIResourceImpl
 {
 	/**
 	 *	The URI of this Standard Library.
 	 */
 	public static final String PIVOT_URI = "[uri/]";
 
-	[pkg.defineConstants()/]
-
-	public [javaClass/](PivotStandardLibrary standardLibrary, String name, String nsURI) {
+	public [javaClass/](PivotStandardLibrary standardLibrary, String name, String nsPrefix, String nsURI) {
 		super(URI.createURI(PIVOT_URI));
-		Package metaModel = create(standardLibrary);
+		Contents contents = new Contents(standardLibrary);
+		Package metaModel = contents.create(name != null ? name : "[pkg.name/]", nsPrefix != null ? nsPrefix : "[pkg.nsPrefix/]", nsURI != null ? nsURI : "[pkg.nsURI/]");
 		getContents().add(metaModel);
-		if (name != null) {
-			metaModel.setName(name);
-		}
-		if (nsURI != null) {
-			metaModel.setNsURI(nsURI);
-		}
 	}
-	
-	/**
-	 *	Create and return a pivot model of the Pivot Model.
-	 */
-	public static Package create(PivotStandardLibrary standardLibrary)
+
+	protected static class Contents extends AbstractContents
 	{
-		Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.getMoniker()/]
-		[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
-		[if (ownedType.name = 'Boolean')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getBooleanType(); // [ownedType.getMoniker()/]
-		[elseif (ownedType.name = 'Classifier')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getClassifierType(); // [ownedType.getMoniker()/]
-		[elseif (ownedType.name = 'Integer')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getIntegerType(); // [ownedType.getMoniker()/]
-		[elseif (ownedType.name = 'Real')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getRealType(); // [ownedType.getMoniker()/]
-		[elseif (ownedType.name = 'String')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getStringType(); // [ownedType.getMoniker()/]
-		[elseif (ownedType.name = 'UnlimitedNatural')]
-		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getUnlimitedNaturalType(); // [ownedType.getMoniker()/]
-		[/if]
-		[/for]
-
-		[pkg.getSymbolName()/].setName("[pkg.name/]");
-		[if (pkg.nsPrefix <> null)]
-		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
-		[/if]
-		[if (pkg.nsURI <> null)]
-		[pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
-		[/if]
-	[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
-		[if (ownedType.name = 'Boolean')]
-		[elseif (ownedType.name = 'Integer')]
-		[elseif (ownedType.name = 'Real')]
-		[elseif (ownedType.name = 'String')]
-		[elseif (ownedType.name = 'UnlimitedNatural')]
-		[else]
-		[emitType(ownedType)/]
-		[/if]
-	[/for]
-	[for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
-		[emitPackage(nestedPackage)/]
-	[/for]
-
-		Class elementClass = (Class) PivotUtil.getNamedElement([pkg.getSymbolName()/].getOwnedTypes(), "Element");
-		elementClass.getSuperClasses().clear();
-		elementClass.getSuperClasses().add(standardLibrary.getOclElementType());
-		for (Type pivotClass : [pkg.getSymbolName()/].getOwnedTypes()) {
-			if (pivotClass instanceof Enumeration) {
-				List<Type> superClasses = ((Enumeration) pivotClass).getSuperClasses();
-				if (superClasses.isEmpty()) {
-					superClasses.add(standardLibrary.getEnumerationType());
-				}
-			}
-//			else if (pivotClass instanceof Class) {
-//				List<Class> superClasses = ((Class) pivotClass).getSuperClasses();
-//				if (superClasses.isEmpty()) {
-//					superClasses.add(standardLibrary.getClassifierType());
-//				}
-//			}
+		protected Contents(PivotStandardLibrary standardLibrary) {
+			super(standardLibrary);
 		}
-		
-		return [pkg.getSymbolName()/];
+
+		protected final PrimitiveType [pkg.ownedType->select(name='Boolean')->any(true).getPrefixedSymbolName('_Boolean')/] = standardLibrary.getBooleanType();
+		protected final PrimitiveType [pkg.ownedType->select(name='Integer')->any(true).getPrefixedSymbolName('_Integer')/] = standardLibrary.getIntegerType();
+		protected final Class [pkg.ownedType->select(name='OclElement')->any(true).getPrefixedSymbolName('_OclElement')/] = standardLibrary.getOclElementType();
+		protected final PrimitiveType [pkg.ownedType->select(name='Real')->any(true).getPrefixedSymbolName('_Real')/] = standardLibrary.getRealType();
+		protected final PrimitiveType [pkg.ownedType->select(name='String')->any(true).getPrefixedSymbolName('_String')/] = standardLibrary.getStringType();
+		protected final PrimitiveType [pkg.ownedType->select(name='UnlimitedNatural')->any(true).getPrefixedSymbolName('_UnlimitedNatural')/] = standardLibrary.getUnlimitedNaturalType();
+
+		protected Package [pkg.getPrefixedSymbolName('metaModel')/];
+
+		protected Package create(String name, String nsPrefix, String nsURI)
+		{
+			[pkg.getSymbolName()/] = createPackage(name, nsPrefix, nsURI);
+			installPackages();
+			installOclTypes();
+			installPrimitiveTypes();
+[if (allEnumerations->notEmpty())]
+			installEnumerations();
+[/if]
+			installParameterTypes();
+			installCollectionTypes();
+			installClassifierTypes();
+[if (allLambdaTypes->notEmpty())]
+			installLambdaTypes();
+[/if]
+[if (allTupleTypes->notEmpty())]
+			installTupleTypes();
+[/if]
+			installOperations();
+			installIterations();
+			installProperties();
+			installTemplateSignatures();
+			installTemplateBindings();
+			installPrecedences();
+			installComments();
+			return [pkg.getSymbolName()/];
+		}
+	
+		[pkg.definePackages()/]
+		[pkg.declareOclTypes()/]
+		[pkg.declarePrimitiveTypes()/]
+[if (allEnumerations->notEmpty())]
+		[pkg.declareEnumerations()/]
+[/if]
+		[pkg.declareParameterTypes()/]
+		[pkg.declareCollectionTypes()/]
+		[pkg.declareClassifierTypes()/]
+[if (allTupleTypes->notEmpty())]
+		[pkg.declareTupleTypes()/]
+[/if]
+		[pkg.defineOclTypes()/]
+		[pkg.definePrimitiveTypes()/]
+[if (allEnumerations->notEmpty())]
+		[pkg.defineEnumerations()/]
+[/if]
+		[pkg.defineParameterTypes()/]
+		[pkg.defineCollectionTypes()/]
+		[pkg.defineClassifierTypes()/]
+[if (allTupleTypes->notEmpty())]
+		[pkg.defineTupleTypes()/]
+[/if]	
+[if (allLambdaTypes->notEmpty())]
+		[pkg.defineLambdaTypes()/]	
+[/if]	
+		[pkg.defineOperations()/]
+		[pkg.defineIterations()/]	
+		[pkg.defineProperties()/]
+		[pkg.defineTemplateSignatures()/]
+		[pkg.defineTemplateBindings()/]
+		[pkg.definePrecedences()/]
+		[pkg.defineComments()/]
 	}
 }
 [/file]
+[/let]
+[/let]
+[/let]
 [/template]
-

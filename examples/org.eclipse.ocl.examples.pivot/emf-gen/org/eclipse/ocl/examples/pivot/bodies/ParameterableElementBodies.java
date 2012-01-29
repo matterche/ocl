@@ -63,17 +63,15 @@ public class ParameterableElementBodies
 			
 			
 			
-			DomainType static_A_symbol_114 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_114 = (LibraryUnaryOperation)static_A_symbol_114.lookupImplementation(standardLibrary, O_OclAny_oclType);
-			Value A_symbol_114 = dynamic_A_symbol_114.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
-			DomainType static_A_symbol_115 = valueFactory.typeOf(p);
-			LibraryBinaryOperation dynamic_A_symbol_115 = (LibraryBinaryOperation)static_A_symbol_115.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
-			Value A_symbol_115 = dynamic_A_symbol_115.evaluate(evaluator, T_Boolean, p, A_symbol_114);
-			return A_symbol_115;
+			DomainType static_A_symbol_325 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_325 = (LibraryUnaryOperation)static_A_symbol_325.lookupImplementation(standardLibrary, O_OclAny_oclType);
+			Value A_symbol_325 = dynamic_A_symbol_325.evaluate(evaluator, T_AnyClassifier_Pivot_ecore__pivot__ParameterableElement_, self);
+			DomainType static_A_symbol_326 = valueFactory.typeOf(p);
+			LibraryBinaryOperation dynamic_A_symbol_326 = (LibraryBinaryOperation)static_A_symbol_326.lookupImplementation(standardLibrary, O_OclAny_oclIsKindOf);
+			Value A_symbol_326 = dynamic_A_symbol_326.evaluate(evaluator, T_Boolean, p, A_symbol_325);
+			return A_symbol_326;
 		}
 	}
-
-
 
 
 
