@@ -75,6 +75,7 @@
     <rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/uml2/org.eclipse.uml2.git"/>
+      <rm:property key="git.auto.fetch" value="true"/>
       <rm:uri format="${checkout.location}/org.eclipse.uml2.git,plugins/{0}">
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
