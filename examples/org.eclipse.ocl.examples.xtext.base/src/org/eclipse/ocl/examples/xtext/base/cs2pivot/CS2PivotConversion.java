@@ -1519,6 +1519,9 @@ public class CS2PivotConversion extends AbstractConversion
 			throw new IllegalArgumentException("Unsupportable " + csObject.eClass().getName() + " for CS2Pivot Left2Right pass");
 		}
 		Element monikeredElement = csObject.accept(left2RightVisitor);
+		if (monikeredElement == null) {
+			return null;
+		}
 		if (!pivotClass.isAssignableFrom(monikeredElement.getClass())) {
 			throw new ClassCastException(monikeredElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}

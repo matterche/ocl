@@ -47,9 +47,12 @@ public class ExpSpecificationCSScopeAdapter extends ElementCSScopeAdapter
 				environmentView.addNamedElement(contextVariable);
 				if (!environmentView.hasFinalResult()) {
 					Type type = contextVariable.getType();
-					environmentView.addElementsOfScope(type, scopeView);
-					if (!environmentView.hasFinalResult()) {
-						environmentView.addElementsOfScope(type.getPackage(), scopeView);
+					if (type != null)
+					{
+						environmentView.addElementsOfScope(type, scopeView);
+						if (!environmentView.hasFinalResult()) {
+							environmentView.addElementsOfScope(type.getPackage(), scopeView);
+						}
 					}
 				}
 			}
