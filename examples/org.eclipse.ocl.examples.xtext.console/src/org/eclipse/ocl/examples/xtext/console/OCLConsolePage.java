@@ -501,7 +501,7 @@ public class OCLConsolePage extends Page
 		public void keyReleased(KeyEvent e) {
 			switch (e.keyCode) {
 			case SWT.CR :
-				if ((e.stateMask & SWT.CTRL) == 0) {
+				if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
 					if (evaluationSuccess) {
 						getEditorDocument().set(""); //$NON-NLS-1$
 						// history
@@ -850,7 +850,9 @@ public class OCLConsolePage extends Page
 			public void verifyKey(VerifyEvent e) {
 //				System.out.println("verifyKey: " + e.keyCode);
 				if (e.keyCode == SWT.KEYPAD_CR || e.keyCode == SWT.CR) {
-					e.doit = false;
+					if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
+						e.doit = false;
+					}
 				}
 			}
 		});
