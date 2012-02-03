@@ -124,6 +124,8 @@
 			</syspropertyset>
 			<arg value="-data" />
 			<arg value="${publisher.workspace}" />
+			<arg value="-configuration" />
+			<arg value="${publisher.workspace}/configuration" />
 			<arg value="-application" />
 			<arg value="org.eclipse.ant.core.antRunner" />
 			<arg value="-buildfile" />

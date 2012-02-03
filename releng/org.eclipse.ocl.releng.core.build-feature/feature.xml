@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.ocl.releng.core.build"
-      label="Eclipse OCL Core Build Site"
+      label="OCL Core Build Site"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.ocl.license"
@@ -12,7 +12,7 @@
    </description>
 
    <copyright>
-	[Documentation] Copyright text will be taken from the shared license feature
+      [Documentation] Copyright text will be taken from the shared license feature
    </copyright>
 
    <includes

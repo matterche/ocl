@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.ocl.releng.tools.build"
-      label="Eclipse OCL Tools Build Site"
+      label="OCL Tools Build Site"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.ocl.license"
