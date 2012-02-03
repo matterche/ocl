@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.pivot,
+ org.eclipse.ocl.examples.pivot.bodies,
  org.eclipse.ocl.examples.pivot.delegate,
  org.eclipse.ocl.examples.pivot.ecore,
  org.eclipse.ocl.examples.pivot.evaluation,
@@ -16,6 +17,7 @@ Export-Package: org.eclipse.ocl.examples.pivot,
  org.eclipse.ocl.examples.pivot.helper,
  org.eclipse.ocl.examples.pivot.internal.impl,
  org.eclipse.ocl.examples.pivot.library,
+ org.eclipse.ocl.examples.pivot.library.validators,
  org.eclipse.ocl.examples.pivot.manager,
  org.eclipse.ocl.examples.pivot.messages,
  org.eclipse.ocl.examples.pivot.model,
