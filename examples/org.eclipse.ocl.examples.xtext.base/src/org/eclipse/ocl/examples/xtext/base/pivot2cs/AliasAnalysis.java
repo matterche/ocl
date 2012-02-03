@@ -72,7 +72,6 @@ public class AliasAnalysis extends AdapterImpl
 	private Map<String, EObject> allNames = new HashMap<String, EObject>();
 	private Set<org.eclipse.ocl.examples.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 	private Set<org.eclipse.ocl.examples.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-	private Set<org.eclipse.ocl.examples.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 	private Map<org.eclipse.ocl.examples.pivot.Package, String> allAliases = new HashMap<org.eclipse.ocl.examples.pivot.Package, String>();
 
 	public AliasAnalysis(Resource resource) {
@@ -126,10 +125,9 @@ public class AliasAnalysis extends AdapterImpl
 			if (eObject instanceof NamedElement) {
 				addName(((NamedElement)eObject).getName(), eObject);
 				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					addName(((org.eclipse.ocl.examples.pivot.Package)eObject).getNsPrefix(), eObject);
-				}
-				if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-					org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+					org.eclipse.ocl.examples.pivot.Package pPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
+					addName(pPackage.getNsPrefix(), eObject);
+					org.eclipse.ocl.examples.pivot.Package pivotPackage = pPackage;
 					localPackages.add(pivotPackage);
 				}
 				else {
@@ -146,6 +144,7 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		otherPackages.removeAll(localPackages);
+		Set<org.eclipse.ocl.examples.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			EObject eContainer = localPackage.eContainer();
 			if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
