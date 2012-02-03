@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -63,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * A CompleteOCLEObjectValidator validates CompleteOCL invariants during an EMF validation, provided
@@ -73,7 +73,9 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 {	
 	private static final Logger logger = Logger.getLogger(CompleteOCLEObjectValidator.class);
 
-	protected final EPackage ePackage;
+	protected final Resource ecoreResource;
+	@Deprecated
+	protected EPackage ePackage;
 	protected final URI oclURI;
 	protected final MetaModelManager metaModelManager;
 	private Ecore2Pivot ecore2Pivot = null;
@@ -91,8 +93,18 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 	/**
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
 	 */
+	@Deprecated
 	public CompleteOCLEObjectValidator(EPackage ePackage, URI oclURI, MetaModelManager metaModelManager) {
-		this.ePackage =  ePackage;
+		this(ePackage.eResource(), oclURI, metaModelManager);
+		this.ePackage = ePackage;
+	}
+	
+	/**
+	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
+	 */
+	public CompleteOCLEObjectValidator(Resource ecoreResource, URI oclURI, MetaModelManager metaModelManager) {
+		this.ecoreResource =  ecoreResource;
+		this.ePackage =  null;
 		this.oclURI =  oclURI;
 		this.metaModelManager =  metaModelManager != null ? metaModelManager : new MetaModelManager();
 	}
@@ -115,10 +127,9 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 	}
 	
 	protected void initialize() {
-		ecore2Pivot = Ecore2Pivot.getAdapter(ePackage.eResource(), metaModelManager);
+		ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-		Resource ecoreResource = ePackage.eResource();
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
@@ -204,7 +215,7 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 					int severity = Diagnostic.ERROR;
 					String message = null;
 					if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-						message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+						message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 					}
 					try {
 						Value expressionResult = query.accept(evaluationVisitor);
@@ -223,22 +234,22 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 										message = messageResult.asString();
 									}
 								} catch (InvalidValueException e) {
-									message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+									message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
 									severity = Diagnostic.ERROR;
 								}
 								catch (Exception e) {
-									message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
+									message = DomainUtil.bind(OCLMessages.ValidationMessageException_ERROR_, constraintName, objectLabel, e.getMessage());
 									severity = Diagnostic.ERROR;
 								}
 							}
 							if (message == null) {
-								message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+								message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 							}
 						}
 					} catch (InvalidValueException e) {
-						message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+						message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
 					} catch (InvalidEvaluationException e) {
-						message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+						message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 					}
 					if (message != null) {
 						diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));

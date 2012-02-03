@@ -97,6 +97,12 @@
                menubarPath="additions"
                icon="$nl$/icons/elcl16/oclconsole_co.gif"
                id="org.eclipse.ocl.examples.xtext.console.ShowEcoreConsoleAction"/>
+         <action
+               label="%_UI_LoadOCLResource_label"
+               class="org.eclipse.ocl.examples.xtext.console.actions.LoadOCLResourceDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.xtext.console.LoadEcoreOCLResourceAction"/>
       </viewerContribution>
       <viewerContribution
             targetID="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
@@ -107,6 +113,12 @@
                menubarPath="additions"
                icon="$nl$/icons/elcl16/oclconsole_co.gif"
                id="org.eclipse.ocl.examples.xtext.console.ShowEcoreReflectiveConsoleAction"/>
+         <action
+               label="%_UI_LoadOCLResource_label"
+               class="org.eclipse.ocl.examples.xtext.console.actions.LoadOCLResourceDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.xtext.console.LoadEcoreReflectiveOCLResourceAction"/>
       </viewerContribution>
       <viewerContribution
             targetID="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
@@ -117,6 +129,12 @@
                menubarPath="additions"
                icon="$nl$/icons/elcl16/oclconsole_co.gif"
                id="org.eclipse.ocl.examples.xtext.console.ShowUMLConsoleAction"/>
+         <action
+               label="%_UI_LoadOCLResource_label"
+               class="org.eclipse.ocl.examples.xtext.console.actions.LoadOCLResourceDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.xtext.console.LoadUMLOCLResourceAction"/>
       </viewerContribution>
    </extension>
    

@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -84,7 +83,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.PivotValueFactory;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
-import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
@@ -759,10 +757,8 @@ public class OCLConsolePage extends Page
 		CloseAction close = new CloseAction();
 		SaveExpressionAction saveExpression = new SaveExpressionAction(this);
 		LoadExpressionAction loadExpression = new LoadExpressionAction(this);
-		Action loadResource = new LoadResourceAction(this);		
 		
 		IMenuManager menu = getSite().getActionBars().getMenuManager();
-		menu.add(loadResource);
 		menu.add(loadExpression);
 		menu.add(saveExpression);
 		menu.add(clear);
@@ -795,7 +791,6 @@ public class OCLConsolePage extends Page
 		IToolBarManager toolbar = getSite().getActionBars().getToolBarManager();
 //        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
 //        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
-		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, loadResource);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, loadExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, saveExpression);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
