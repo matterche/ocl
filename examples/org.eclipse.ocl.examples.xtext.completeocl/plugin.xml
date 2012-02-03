@@ -10,4 +10,11 @@
        genModel = "model/CompleteOCLCST.genmodel" /> 
   </extension>
 
+  <extension point="org.eclipse.core.contenttype.contentTypes">
+	<content-type id="org.eclipse.ocl.examples.completeOCL" name="%completeOCLName" 
+		base-type="org.eclipse.core.runtime.text"
+		file-extensions="ocl"
+        default-charset="UTF-8"/>
+  </extension>
+
 </plugin>
