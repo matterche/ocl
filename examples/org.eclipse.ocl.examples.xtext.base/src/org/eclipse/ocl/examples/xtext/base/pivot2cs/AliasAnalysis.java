@@ -47,6 +47,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
  * An AliasAnalysis is dynamically created to support the serialization
  * of cross-references following a Pivot to CS conversion. It ensures the
  * resource-wide uniqueness of aliases for package names.
+ * 
+ * Uniqueness is achieved with respect to all names to avoid the complexity
+ * of considering which name usages are not actually conflicting.
  */
 public class AliasAnalysis extends AdapterImpl
 {
@@ -61,7 +64,6 @@ public class AliasAnalysis extends AdapterImpl
 	}
 
 	public static AliasAnalysis getAdapter(Resource resource) {
-//		Resource resource = eObject.eResource();
 		if (resource == null) {
 			return null;
 		}
@@ -69,9 +71,11 @@ public class AliasAnalysis extends AdapterImpl
 		AliasAnalysis adapter = PivotUtil.getAdapter(AliasAnalysis.class, eAdapters);
 		if (adapter == null) {
 			adapter = new AliasAnalysis(resource);
+			Set<org.eclipse.ocl.examples.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+			Set<org.eclipse.ocl.examples.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 			MetaModelManager metaModelManager = adapter.getMetaModelManager();
-			adapter.computePackages(metaModelManager);
-			adapter.computeAliases(metaModelManager);
+			adapter.computePackages(metaModelManager, localPackages, otherPackages);
+			adapter.computeAliases(metaModelManager, localPackages, otherPackages);
 		}
 		return adapter;
 	}
@@ -82,16 +86,22 @@ public class AliasAnalysis extends AdapterImpl
 	 * null for a shared name.
 	 */
 	private Map<String, EObject> allNames = new HashMap<String, EObject>();
-	private Set<org.eclipse.ocl.examples.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-	private Set<org.eclipse.ocl.examples.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-	private Set<org.eclipse.ocl.examples.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+	
+	/**
+	 * The known or assigned package aliases/
+	 */
 	private Map<org.eclipse.ocl.examples.pivot.Package, String> allAliases = new HashMap<org.eclipse.ocl.examples.pivot.Package, String>();
 
 	public AliasAnalysis(Resource resource) {
 		resource.eAdapters().add(this);
 	}
 
-	private void computeAliases(MetaModelManager metaModelManager) {		
+	/**
+	 * Assign a unique alias to each localPackage then to each otherPackage.
+	 */
+	private void computeAliases(MetaModelManager metaModelManager,
+			Set<org.eclipse.ocl.examples.pivot.Package> localPackages,
+			Set<org.eclipse.ocl.examples.pivot.Package> otherPackages) {		
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			if (metaModelManager != null) {
 				localPackage = metaModelManager.getPrimaryPackage(localPackage);
@@ -114,6 +124,10 @@ public class AliasAnalysis extends AdapterImpl
 		}
 	}
 
+	/**
+	 * Register the usage of name by primaryElement, and if name is already in use
+	 * register the ambiguity as a usage by null.
+	 */
 	private void addName(String name, EObject primaryElement) {
 		if (name != null) {
 			if (!allNames.containsKey(name)) {
@@ -125,6 +139,9 @@ public class AliasAnalysis extends AdapterImpl
 		}
 	}
 
+	/**
+	 * Determine a unique alias for primaryPackage/
+	 */
 	private String computeAlias(org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 		String nsPrefix = primaryPackage.getNsPrefix();
 		String aliasBase = nsPrefix != null ? nsPrefix : getDefaultAlias(primaryPackage.getName());
@@ -139,7 +156,15 @@ public class AliasAnalysis extends AdapterImpl
 		return alias;
 	}
 
-	private void computePackages(MetaModelManager metaModelManager) {
+	/**
+	 * Scan the target resource to identify allNames of any form that appear,
+	 * allAliases assigned by explicit imports, all localPackages whose name is
+	 * defined within the target resource all all otherPackages. Nested packages
+	 * of localPackages are excluded from localPackages.
+	 */
+	private void computePackages(MetaModelManager metaModelManager,
+			Set<org.eclipse.ocl.examples.pivot.Package> localPackages,
+			Set<org.eclipse.ocl.examples.pivot.Package> otherPackages) {
 		for (TreeIterator<EObject> tit = ((Resource)target).getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof ImportCS) {
@@ -177,6 +202,7 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		otherPackages.removeAll(localPackages);
+		Set<org.eclipse.ocl.examples.pivot.Package> nestedPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 		for (org.eclipse.ocl.examples.pivot.Package localPackage : localPackages) {
 			EObject eContainer = localPackage.eContainer();
 			if (eContainer instanceof org.eclipse.ocl.examples.pivot.Package) {
@@ -193,6 +219,9 @@ public class AliasAnalysis extends AdapterImpl
 		target.eAdapters().remove(this);
 	}
 
+	/**
+	 * Return the alias for eObject.
+	 */
 	public String getAlias(EObject eObject) {
 		if (eObject instanceof Pivotable) {
 			eObject = ((Pivotable)eObject).getPivot();
