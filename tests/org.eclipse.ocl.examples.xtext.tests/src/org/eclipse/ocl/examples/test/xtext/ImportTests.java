@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.AbstractOperation;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
@@ -40,7 +41,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
@@ -208,10 +208,10 @@ public class ImportTests extends XtextTestCase
 			"inv Bogus: r.toString() and s.toString()\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "OclInvalid"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "Real"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "OclInvalid"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "Real"));
 		// There are no precedences so =(s) ratherb than =(s.toString())
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"and", "OclInvalid", "String"}));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "and", "OclInvalid", "String"));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 	
@@ -234,7 +234,7 @@ public class ImportTests extends XtextTestCase
 			"inv Standard_Real_ToString_DoesNotExist: r.toString()\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "Real"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "toString", "Real"));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 	
@@ -257,9 +257,9 @@ public class ImportTests extends XtextTestCase
 			"import 'NoSuchFile1'\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template2 = getNoSuchFileMessage();
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 
@@ -308,24 +308,24 @@ public class ImportTests extends XtextTestCase
 				"    class GDC extends G0::C1::GD01;\n" +
 				"}\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A3"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
-//BUG353966		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
-//BUG353966		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B2"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B3"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "C1"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A3"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
+//BUG353966		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
+//BUG353966		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B2"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B3"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "C1"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
 		doBadLoadFromString("Bug353793bad.oclinecore", testFileBad, bag);
 	}
 	
@@ -343,9 +343,9 @@ public class ImportTests extends XtextTestCase
 			"}\n" +
 			"}\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "xyzzy"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
+		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "xyzzy"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
 		doBadLoadFromString("string.oclinecore", testFile, bag);
 	}
 	
@@ -363,9 +363,9 @@ public class ImportTests extends XtextTestCase
 			"}\n" +
 			"}\n";
 		Bag<String> bag = new BagImpl<String>();
-//		bag.add(NLS.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "xyzzy"));
-//		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
-//		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
+//		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "xyzzy"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
 		doBadLoadFromString("string.oclinecore", testFile, bag);
 	}
 	
@@ -377,9 +377,9 @@ public class ImportTests extends XtextTestCase
 			"import 'NoSuchFile1';\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template2 = getNoSuchFileMessage();
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ecore", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ecore").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ecore", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile2.ecore").toFileString())));
 		doBadLoadFromString("string.oclinecore", testFile, bag);
 	}
 	
@@ -402,7 +402,7 @@ public class ImportTests extends XtextTestCase
 			"}\n" +
 			"}\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedType_ERROR_, "WhatsThis"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "WhatsThis"));
 		doBadLoadFromString("string.oclstdlib", testFile, bag);
 	}
 	
@@ -416,9 +416,9 @@ public class ImportTests extends XtextTestCase
 			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template2 = getNoSuchFileMessage();
-		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
-		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", NLS.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile1").toFileString())));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", DomainUtil.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
 		doBadLoadFromString("string.oclstdlib", testFile, bag);
 	}
 	
@@ -438,8 +438,8 @@ public class ImportTests extends XtextTestCase
 			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1/OCL.oclstdlib'{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(OCLMessages.EmptyLibrary_ERROR_);
-		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib",
-			NLS.bind(OCLMessages.ImportedLibraryURI_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedLibrary_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib",
+			DomainUtil.bind(OCLMessages.ImportedLibraryURI_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
 		doBadLoadFromString("string.oclstdlib", testFile, bag);
 	}
 	
@@ -480,7 +480,7 @@ public class ImportTests extends XtextTestCase
 			"inv unCheckIt: isNegative() = signum < 0\n" +
 			"endpackage\n";
 		Bag<String> bag = new BagImpl<String>();
-		bag.add(NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "isNegative", "UnlimitedNatural"));
+		bag.add(DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, "isNegative", "UnlimitedNatural"));
 		doBadLoadFromString("string.ocl", testFile, bag);
 	}
 }

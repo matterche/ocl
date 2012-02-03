@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -42,7 +43,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.validation.CompleteOCLEObjectValidator;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * Tests that OCL for model validation works.
@@ -135,7 +135,7 @@ public class ValidateTests extends XtextTestCase
 		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Validate");
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		URI oclURI = getProjectFileURI("Validate.ocl");
-		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager2);
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(ecoreResource, oclURI, metaModelManager2);
 		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
 		try {
 			EObject testInstance = eCreate(validatePackage, "Level3");
@@ -159,10 +159,10 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2b", "xxx");
 			eSet(testInstance, "l3", "xxx");
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template,  "V1", objectLabel),
-				NLS.bind(template,  "V2a", objectLabel),
-				NLS.bind(template,  "V2b", objectLabel),
-				NLS.bind(template,  "V3", objectLabel));
+				DomainUtil.bind(template,  "V1", objectLabel),
+				DomainUtil.bind(template,  "V2a", objectLabel),
+				DomainUtil.bind(template,  "V2b", objectLabel),
+				DomainUtil.bind(template,  "V3", objectLabel));
 			//
 			//	One CompleteOCl and one OCLinEcore
 			//
@@ -172,8 +172,8 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template,  "L2a", objectLabel),
-				NLS.bind(template,  "V2a", objectLabel));
+				DomainUtil.bind(template,  "L2a", objectLabel),
+				DomainUtil.bind(template,  "V2a", objectLabel));
 		}
 		finally {
 			metaModelManager1.dispose();
@@ -204,20 +204,20 @@ public class ValidateTests extends XtextTestCase
 		try {
 			String template = EcorePlugin.INSTANCE.getString("_UI_GenericConstraint_diagnostic");
 			checkValidationDiagnostics(testInstance, Diagnostic.ERROR,
-				NLS.bind(template,  "L1", objectLabel),
-				NLS.bind(template,  "L2a", objectLabel),
-	//BUG355184		NLS.bind(template,  "L2b", objectLabel),
-				NLS.bind(template,  "L3", objectLabel));
+				DomainUtil.bind(template,  "L1", objectLabel),
+				DomainUtil.bind(template,  "L2a", objectLabel),
+	//BUG355184		DomainUtil.bind(template,  "L2b", objectLabel),
+				DomainUtil.bind(template,  "L3", objectLabel));
 			//
 			//	Check OCLinEcoreEObjectValidator warnings and distinct message
 			//
 			EValidator.Registry.INSTANCE.put(validatePackage, new OCLinEcoreEObjectValidator());
 			template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template, new Object[]{"Level1", "L1", objectLabel}),
-				NLS.bind(template,  new Object[]{"Level2a", "L2a", objectLabel}),
-	//BUG355184		NLS.bind(template,  "L2b", objectLabel),
-				NLS.bind(template,  new Object[]{"Level3", "L3", objectLabel}));
+				DomainUtil.bind(template, "Level1", "L1", objectLabel),
+				DomainUtil.bind(template, "Level2a", "L2a", objectLabel),
+	//BUG355184		DomainUtil.bind(template,  "L2b", objectLabel),
+				DomainUtil.bind(template, "Level3", "L3", objectLabel));
 			//
 			//	No errors
 			//
@@ -238,7 +238,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l3", "ok");
 			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				NLS.bind(template,  new Object[]{"Level1", "L1", objectLabel}));
+				DomainUtil.bind(template, "Level1", "L1", objectLabel));
 		} finally {
 			metaModelManager1.dispose();
 			EValidator.Registry.INSTANCE.remove(validatePackage);

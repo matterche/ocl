@@ -58,6 +58,7 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -93,7 +94,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
-import org.eclipse.osgi.util.NLS;
 
 import codegen.company.CodegencompanyPackage;
 
@@ -498,13 +498,13 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
 		executeWithException(delegate, amy, null, getErrorsInMessage("'n='") + 
-			getBoundMessage("extraneous input ''{0}'' expecting {1}", "'='", "EOF"));
+			DomainUtil.bind("extraneous input ''{0}'' expecting {1}", "'='", "EOF"));
 		//
 		//	Undeclared variable
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
 		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
-			getBoundMessage(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'" + PivotConstants.UNKNOWN_TYPE_TEXT + "'"));
+			DomainUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'" + PivotConstants.UNKNOWN_TYPE_TEXT + "'"));
 		//
 		//	Definition of undeclared variable
 		//
@@ -567,7 +567,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivation");
 		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
-			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
+			DomainUtil.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
 
 	public void test_attributeDefinedWithoutDerivationBody() {
@@ -576,7 +576,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
 		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
-			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
+			DomainUtil.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
 
 	public void test_attributeEvaluatingToInvalid() {
@@ -585,7 +585,7 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToInvalid");
 		Property property = metaModelManager.getPivotOfEcore(Property.class, eStructuralFeature);
 		getWithException(badClassInstance, eStructuralFeature.getName(),
-			getBoundMessage(OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
+			DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
 	}
 
 	public void test_attributeEvaluatingToNull() {
@@ -601,8 +601,8 @@ public class DelegatesTest extends PivotTestSuite
 		EStructuralFeature structuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToWrongType");
 		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Property.class, structuralFeature));
 		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
-			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleInitialiser", objectLabel));
-//			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleInitialiser", objectLabel));
+//			DomainUtil.bind(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
 	}
 
 	public void test_attributeParsingToLexicalError() {
@@ -610,7 +610,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage("gh##jk") +
-			getBoundMessage("no viable alternative at input ''{0}''", "#"));
+			DomainUtil.bind("no viable alternative at input ''{0}''", "#"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
@@ -618,7 +618,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
 			getErrorsInMessage("'5' and 6") +
-			getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
+			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {
@@ -626,7 +626,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
 			getErrorsInMessage("invalid null") +
-			getBoundMessage("no viable alternative at input ''{0}''", "null"));
+			DomainUtil.bind("no viable alternative at input ''{0}''", "null"));
 	}
 
 	/**
@@ -809,7 +809,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			getBoundMessage(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
+			DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
 	}
 
 	public void test_operationDefinedWithoutBodyBody() {
@@ -818,7 +818,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			getBoundMessage(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
+			DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation));
 	}
 
 	public void test_operationEvaluatingToInvalid() {
@@ -827,7 +827,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
 		Operation operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
 		invokeWithException(badClassInstance, eOperation.getName(),
-			getBoundMessage(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation));
+			DomainUtil.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation));
 	}
 
 	public void test_operationEvaluatingToNull() throws InvocationTargetException {
@@ -843,7 +843,7 @@ public class DelegatesTest extends PivotTestSuite
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToWrongType");
 		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Operation.class, eOperation));
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
-			getBoundMessage(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Operation", "CompatibleReturn", objectLabel));
+			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Operation", "CompatibleReturn", objectLabel));
 //			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
 	}
 
@@ -862,21 +862,21 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			getErrorsInMessage("@@") + getBoundMessage("no viable alternative at input ''{0}''", "@"));
+			getErrorsInMessage("@@") + DomainUtil.bind("no viable alternative at input ''{0}''", "@"));
 	}
 
 	public void test_operationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("self->at(1)") + getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set<ModelWithErrors.ecore::modelWithErrors::BadClass>", "UnlimitedNatural"));
+			getErrorsInMessage("self->at(1)") + DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set<ModelWithErrors.ecore::modelWithErrors::BadClass>", "UnlimitedNatural"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			getErrorsInMessage("let in") + getBoundMessage("no viable alternative at input ''{0}''", "in"));
+			getErrorsInMessage("let in") + DomainUtil.bind("no viable alternative at input ''{0}''", "in"));
 	}
 
 	/**
@@ -1273,7 +1273,7 @@ public class DelegatesTest extends PivotTestSuite
 	public void executeWithException(QueryDelegate delegate, Object target,
 			Map<String, Object> bindings, String messageTemplate,
 			Object... messageBindings) {
-		String expectedMessage = NLS.bind(messageTemplate, messageBindings);
+		String expectedMessage = DomainUtil.bind(messageTemplate, messageBindings);
 		try {
 			@SuppressWarnings("unused")
 			Object object = delegate.execute(target, bindings);
@@ -1342,8 +1342,8 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
-		String message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-			new Object[]{eObject.eClass().getName(), constraintName, objectLabel});
+		String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+			eObject.eClass().getName(), constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
@@ -1359,7 +1359,7 @@ public class DelegatesTest extends PivotTestSuite
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		String message = NLS.bind(messageTemplate, bindings);
+		String message = DomainUtil.bind(messageTemplate, bindings);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
@@ -1373,18 +1373,14 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
 		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
-		String message1 = getBoundMessage(messageTemplate1, constraintName, objectLabel, "");
+		String message1 = DomainUtil.bind(messageTemplate1, constraintName, objectLabel, "");
 		String message2 = getErrorsInMessage(source);
-		String message3 = NLS.bind(messageTemplate, bindings);
+		String message3 = DomainUtil.bind(messageTemplate, bindings);
 		String message = message1 + message2 + message3;
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
-	protected String getBoundMessage(String messageTemplate, Object... bindings) {
-		return NLS.bind(messageTemplate, bindings);
-	}
-
 	protected String getErrorsInMessage(String source) {
-		return source != null ? (NLS.bind(OCLMessages.ErrorsInResource, source) + "\n") : "";
+		return source != null ? (DomainUtil.bind(OCLMessages.ErrorsInResource, source) + "\n") : "";
 	}
 }

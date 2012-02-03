@@ -201,7 +201,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, linkText, typeText);
 			}
 			else {
-				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, new Object[]{linkText, typeText, argumentText});
+				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, linkText, typeText, argumentText);
 			}
 		}
 	}

@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -45,7 +46,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
@@ -103,7 +103,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Value result = messageExpression.accept(evaluationVisitor);
 			return result.asString();
 		} catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 	}
@@ -129,7 +129,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			NamedElement contextType = constraint.getContext();
 			ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, contextType, constraint);
 			if (query == null) {
-				String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, contextType);
+				String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, contextType);
 				throw new OCLDelegateException(message);
 			}
 			ValidationBehavior.INSTANCE.validate(constraint);
@@ -167,12 +167,12 @@ public class OCLValidationDelegate implements ValidationDelegate
 		Type type = delegateDomain.getPivot(Type.class, eClassifier);
 		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(metaModelManager, eClassifier, constraintName);
 		if (constraint == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(message);
 		}
 		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, type, constraint);
 		if (query == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+			String message = DomainUtil.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(message);
 		}
 		return validateExpressionInOcl(eClassifier, value, diagnostics, context,
@@ -180,21 +180,21 @@ public class OCLValidationDelegate implements ValidationDelegate
 	}
 	protected boolean check(EvaluationVisitor evaluationVisitor, String constraintName, ExpressionInOcl query) {
 		if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 			throw new OCLDelegateException(message);
 		}
 		try {
 			Value result = query.accept(evaluationVisitor);
 			if (result.isNull()) {
-				String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+				String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
 				throw new OCLDelegateException(message);
 			}
 			return result.asBoolean();
 		} catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
 			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 	}
@@ -203,7 +203,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Map<Object, Object> context, String constraintName, String source, int code, ExpressionInOcl query) {
 		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(value, query);
 		if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 			throw new OCLDelegateException(message);
 		}
 		Value result;
@@ -211,7 +211,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			result = query.accept(evaluationVisitor);
 			if (result.isNull()) {
 				if (diagnostics == null) {
-					String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+					String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
 					throw new OCLDelegateException(message);
 				}
 			}
@@ -219,10 +219,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 				return true;
 			}
 		} catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
 			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 		if (diagnostics != null) {
@@ -238,8 +238,8 @@ public class OCLValidationDelegate implements ValidationDelegate
 				else {
 					objectLabel = String.valueOf(value);
 				}
-				message = NLS.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-					new Object[]{eClassifier.getName(), constraintName, objectLabel});
+				message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
+					eClassifier.getName(), constraintName, objectLabel);
 			}
 			int severity = result.isNull() ? Diagnostic.ERROR : Diagnostic.WARNING;
 		    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));

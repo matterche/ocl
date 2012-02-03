@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.domain.library.LibraryFeature;
 import org.eclipse.ocl.examples.domain.library.LibraryValidator;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
@@ -137,7 +138,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ImplicitCollectionFil
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.UnaryOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLUtils;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -636,7 +636,7 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		if ((csArgumentCount != parametersCount) && (operation != getBadOperation())) {
-			String boundMessage = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			String boundMessage = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNavigatingExp, boundMessage);			
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
@@ -674,10 +674,10 @@ public class EssentialOCLLeft2RightVisitor
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{csOperator, sourceType, s.toString()});
+				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, csOperator, sourceType, s.toString());
 			}
 			else {
-				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType});
+				boundMessage = DomainUtil.bind(OCLMessages.UnresolvedOperation_ERROR_, csOperator, sourceType);
 			}
 //			context.addBadExpressionError(csOperator, boundMessage);
 			context.addDiagnostic(csOperator, boundMessage);

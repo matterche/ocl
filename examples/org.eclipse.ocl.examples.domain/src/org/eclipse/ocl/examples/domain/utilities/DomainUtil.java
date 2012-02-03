@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
+import org.eclipse.osgi.util.NLS;
 
 public class DomainUtil
 {	
@@ -30,6 +31,10 @@ public class DomainUtil
 
 	private static final AdapterFactory defaultAdapterFactory =
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+	public static String bind(String messageTemplate, Object... bindings) {
+		return NLS.bind(messageTemplate, bindings);
+	}
 	
 	public static String debugFullName(Object object) {
 		if (object == null) {
