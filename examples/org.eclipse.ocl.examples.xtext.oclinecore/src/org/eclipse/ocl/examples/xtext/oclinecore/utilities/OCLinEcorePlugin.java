@@ -28,6 +28,7 @@ import org.osgi.framework.BundleContext;
  * @generated
  */
 public final class OCLinEcorePlugin extends EMFPlugin {
+	public static final String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore";
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
