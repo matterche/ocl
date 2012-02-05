@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.presentation.EcoreActionBarContributor.ExtendedLoadResourceAction.ExtendedLoadResourceDialog;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -185,10 +184,8 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 					return false;
 				}
 			}
-		    EObjectValidator completeOCLEObjectValidator = new BasicCompleteOCLEObjectValidator(metaModelManager);
-			for (EPackage mmPackage : mmPackages) {
-				EValidator.Registry.INSTANCE.put(mmPackage, completeOCLEObjectValidator);
-			}
+		    BasicCompleteOCLEObjectValidator.install(resourceSet, metaModelManager);
+		    BasicCompleteOCLEObjectValidator.install(EValidator.Registry.INSTANCE, mmPackages);
 			return true;
 		}
 

@@ -48,6 +48,7 @@ public class CompleteOCLEObjectValidator extends BasicCompleteOCLEObjectValidato
 {	
 	private static final Logger logger = Logger.getLogger(CompleteOCLEObjectValidator.class);
 
+	protected final MetaModelManager metaModelManager;
 	protected final EPackage ePackage;
 	protected final URI oclURI;
 	private Ecore2Pivot ecore2Pivot = null;
@@ -65,14 +66,19 @@ public class CompleteOCLEObjectValidator extends BasicCompleteOCLEObjectValidato
 	 * for the meta-models managed by metaModelManager.
 	 */
 	public CompleteOCLEObjectValidator(EPackage ePackage, URI oclURI, MetaModelManager metaModelManager) {
-		super(metaModelManager != null ? metaModelManager : new MetaModelManager());
+		this.metaModelManager = metaModelManager != null ? metaModelManager : new MetaModelManager();
 		this.ePackage = ePackage;
 		this.oclURI = oclURI;
+		install(ePackage.eResource().getResourceSet(), metaModelManager);
 	}
 	
 	@Override
 	protected EPackage getEPackage() {
 		return ePackage;
+	}
+	
+	public MetaModelManager getMetaModelManager() {
+		return metaModelManager;
 	}
 	
 	/**
