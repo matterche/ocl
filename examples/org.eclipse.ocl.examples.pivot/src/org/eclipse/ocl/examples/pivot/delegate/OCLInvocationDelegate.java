@@ -64,9 +64,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			MetaModelManager metaModelManager = ocl.getMetaModelManager();
 			ValueFactory valueFactory = metaModelManager.getValueFactory();
 			if (specification == null) {
-				if (operation == null) {
-					operation = metaModelManager.getPivotOfEcore(Operation.class, eOperation);
-				}
+				Operation operation = getOperation();
 				specification = InvocationBehavior.INSTANCE.getExpressionInOcl(metaModelManager, operation);
 				InvocationBehavior.INSTANCE.validate(operation);
 			}
@@ -92,6 +90,13 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			throw new InvocationTargetException(e);
 		}
 	}
+
+	public Operation getOperation() {
+		if (operation == null) {
+			operation = delegateDomain.getPivot(Operation.class, eOperation);
+		}
+		return operation;
+	}
 	
 	@Override
 	public String toString() {
@@ -105,5 +110,4 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			return "<" + delegateDomain.getURI() + ":invocation> " + name; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
-
 }
