@@ -135,7 +135,7 @@ public class ValidateTests extends XtextTestCase
 		Resource ecoreResource = doLoadOCLinEcore(metaModelManager1, "Validate");
 		EPackage validatePackage = (EPackage) ecoreResource.getContents().get(0);
 		URI oclURI = getProjectFileURI("Validate.ocl");
-		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(ecoreResource, oclURI, metaModelManager2);
+		CompleteOCLEObjectValidator completeOCLEObjectValidator = new CompleteOCLEObjectValidator(validatePackage, oclURI, metaModelManager2);
 		EValidator.Registry.INSTANCE.put(validatePackage, completeOCLEObjectValidator);
 		try {
 			EObject testInstance = eCreate(validatePackage, "Level3");

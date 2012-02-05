@@ -102,7 +102,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Value result = messageExpression.accept(evaluationVisitor);
 			return result.asString();
 		} catch (InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 	}
@@ -179,21 +179,21 @@ public class OCLValidationDelegate implements ValidationDelegate
 	}
 	protected boolean check(EvaluationVisitor evaluationVisitor, String constraintName, ExpressionInOcl query) {
 		if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message);
 		}
 		try {
 			Value result = query.accept(evaluationVisitor);
 			if (result.isNull()) {
-				String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+				String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, eClassifier.getName(), constraintName);
 				throw new OCLDelegateException(message);
 			}
 			return result.asBoolean();
 		} catch (InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 	}
@@ -202,7 +202,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			Map<Object, Object> context, String constraintName, String source, int code, ExpressionInOcl query) {
 		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(value, query);
 		if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message);
 		}
 		Value result;
@@ -210,7 +210,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 			result = query.accept(evaluationVisitor);
 			if (result.isNull()) {
 				if (diagnostics == null) {
-					String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+					String message = DomainUtil.bind(OCLMessages.ValidationResultIsNull_ERROR_, eClassifier.getName(), constraintName);
 					throw new OCLDelegateException(message);
 				}
 			}
@@ -218,10 +218,10 @@ public class OCLValidationDelegate implements ValidationDelegate
 				return true;
 			}
 		} catch (InvalidValueException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message, e);
 		} catch (InvalidEvaluationException e) {
-			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			String message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, eClassifier.getName(), constraintName);
 			throw new OCLDelegateException(message, e);
 		}
 		if (diagnostics != null) {

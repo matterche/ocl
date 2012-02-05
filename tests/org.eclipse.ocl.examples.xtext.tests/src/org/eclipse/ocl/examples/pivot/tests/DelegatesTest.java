@@ -1045,7 +1045,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToInvalid"), null);
 		validateWithDelegationSeverity("evaluatingToInvalid", Diagnostic.ERROR, badClassInstance, null,
-			OCLMessages.ValidationResultIsInvalid_ERROR_, "evaluatingToInvalid");
+			OCLMessages.ValidationResultIsInvalid_ERROR_, "ValidationEvaluatingToInvalid", "evaluatingToInvalid");
 	}
 	
 	public void test_validationEvaluatingToNull() {
@@ -1059,7 +1059,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
 		validateWithDelegationSeverity("evaluatingToWrongType", Diagnostic.ERROR, badClassInstance, null,
-			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
+			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "ValidationEvaluatingToWrongType", "evaluatingToWrongType");
 	}
 	
 	public void test_validationParsingToLexicalError() {
