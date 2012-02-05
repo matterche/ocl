@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  * A BasicCompleteOCLEObjectValidator validates CompleteOCL invariants during an EMF validation, for each
@@ -109,8 +110,9 @@ public class BasicCompleteOCLEObjectValidator extends EObjectValidator
 						int severity = Diagnostic.ERROR;
 						String message = null;
 						if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
+							String objectLabel = DomainUtil.getLabel(eClassifier, object, context);
 							message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_,
-								eClassifier.getName(), constraintName);
+								PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
 						}
 						try {
 							Value expressionResult = query.accept(evaluationVisitor);
@@ -130,26 +132,28 @@ public class BasicCompleteOCLEObjectValidator extends EObjectValidator
 										}
 									} catch (InvalidValueException e) {
 										message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_,
-											eClassifier.getName(), constraintName);
+											PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
 										severity = Diagnostic.ERROR;
 									}
 									catch (Exception e) {
 										message = DomainUtil.bind(OCLMessages.ValidationMessageException_ERROR_,
-											eClassifier.getName(), constraintName, objectLabel, e.getMessage());
+											PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel, e.getMessage());
 										severity = Diagnostic.ERROR;
 									}
 								}
 								if (message == null) {
 									message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
-										eClassifier.getName(), constraintName, objectLabel);
+										PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
 								}
 							}
 						} catch (InvalidValueException e) {
+							String objectLabel = DomainUtil.getLabel(eClassifier, object, context);
 							message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_,
-								eClassifier.getName(), constraintName);
+								PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
 						} catch (InvalidEvaluationException e) {
+							String objectLabel = DomainUtil.getLabel(eClassifier, object, context);
 							message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
-								eClassifier.getName(), constraintName);
+								PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
 						}
 						if (message != null) {
 							diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));

@@ -65,6 +65,7 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateEPackageAdapter;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateResourceSetAdapter;
@@ -1044,8 +1045,9 @@ public class DelegatesTest extends PivotTestSuite
 	public void test_validationEvaluatingToInvalid() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToInvalid"), null);
+		Type type = metaModelManager.getPivotOfEcore(Type.class, badClassInstance.eClass());
 		validateWithDelegationSeverity("evaluatingToInvalid", Diagnostic.ERROR, badClassInstance, null,
-			OCLMessages.ValidationResultIsInvalid_ERROR_, "ValidationEvaluatingToInvalid", "evaluatingToInvalid");
+			OCLMessages.ValidationResultIsInvalid_ERROR_, "ValidationEvaluatingToInvalid", "evaluatingToInvalid", DomainUtil.getLabel(type));
 	}
 	
 	public void test_validationEvaluatingToNull() {
@@ -1058,8 +1060,9 @@ public class DelegatesTest extends PivotTestSuite
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
+		Type type = metaModelManager.getPivotOfEcore(Type.class, badClassInstance.eClass());
 		validateWithDelegationSeverity("evaluatingToWrongType", Diagnostic.ERROR, badClassInstance, null,
-			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "ValidationEvaluatingToWrongType", "evaluatingToWrongType");
+			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "ValidationEvaluatingToWrongType", "evaluatingToWrongType", DomainUtil.getLabel(type));
 	}
 	
 	public void test_validationParsingToLexicalError() {

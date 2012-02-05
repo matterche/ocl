@@ -140,6 +140,7 @@ public class ValidateTests extends XtextTestCase
 		try {
 			EObject testInstance = eCreate(validatePackage, "Level3");
 			String template = EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_;
+			String objectLabel;
 			//
 			//	No errors
 			//
@@ -148,7 +149,6 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "xx");
 			eSet(testInstance, "l2b", "xx");
 			eSet(testInstance, "l3", "xx");
-			String objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 			//
 			//	CompleteOCL errors all round
@@ -158,10 +158,11 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "xxx");
 			eSet(testInstance, "l2b", "xxx");
 			eSet(testInstance, "l3", "xxx");
+			objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				DomainUtil.bind(template,  "Level3", "V1", objectLabel),
-				DomainUtil.bind(template,  "Level3", "V2a", objectLabel),
-				DomainUtil.bind(template,  "Level3", "V2b", objectLabel),
+				DomainUtil.bind(template,  "Level1", "V1", objectLabel),
+				DomainUtil.bind(template,  "Level2a", "V2a", objectLabel),
+				DomainUtil.bind(template,  "Level2b", "V2b", objectLabel),
 				DomainUtil.bind(template,  "Level3", "V3", objectLabel));
 			//
 			//	One CompleteOCl and one OCLinEcore
@@ -171,9 +172,10 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "bad");
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
+			objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				DomainUtil.bind(template,  "Level3", "L2a", objectLabel),
-				DomainUtil.bind(template,  "Level3", "V2a", objectLabel));
+				DomainUtil.bind(template,  "Level2a", "L2a", objectLabel),
+				DomainUtil.bind(template,  "Level2a", "V2a", objectLabel));
 		}
 		finally {
 			metaModelManager1.dispose();

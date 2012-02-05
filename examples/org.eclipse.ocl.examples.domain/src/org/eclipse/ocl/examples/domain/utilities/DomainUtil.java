@@ -68,7 +68,7 @@ public class DomainUtil
 		if (labeler == null) {
 			labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(eObject, IItemLabelProvider.class);
 		}		
-		if ((labeler != null) && (eObject != null) && (eObject.eResource() != null)) {
+		if ((labeler != null) && (eObject != null)) {
 			return labeler.getText(eObject);
 		}
 		return String.valueOf(eObject);

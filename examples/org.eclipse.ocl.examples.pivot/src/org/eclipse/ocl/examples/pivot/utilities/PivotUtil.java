@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -620,6 +621,14 @@ public class PivotUtil extends DomainUtil
 		else {
 			return CollectionKind.COLLECTION;
 		}
+	}
+
+	public static String getConstraintTypeName(ExpressionInOcl expression) {
+		return ((NamedElement) expression.eContainer().eContainer()).getName();
+	}
+
+	public static String getConstraintTypeName(Constraint constraint) {
+		return ((NamedElement) constraint.eContainer()).getName();
 	}
 
 	/**
