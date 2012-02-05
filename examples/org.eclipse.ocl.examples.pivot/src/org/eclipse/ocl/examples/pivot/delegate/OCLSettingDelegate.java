@@ -55,9 +55,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		OCL ocl = delegateDomain.getOCL();
 		MetaModelManager metaModelManager = ocl.getEnvironment().getMetaModelManager();
 		if (specification == null) {
-			if (property == null) {
-				property = delegateDomain.getPivot(Property.class, eStructuralFeature);
-			}
+			Property property = getProperty();
 			specification = SettingBehavior.INSTANCE.getExpressionInOcl(metaModelManager, property);
 			SettingBehavior.INSTANCE.validate(property);
 		}
@@ -70,6 +68,13 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 			throw new OCLDelegateException(message, e);
 		}
+	}
+
+	public Property getProperty() {
+		if (property == null) {
+			property = delegateDomain.getPivot(Property.class, eStructuralFeature);
+		}
+		return property;
 	}
 
 	@Override
