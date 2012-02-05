@@ -16,8 +16,13 @@
  */
 package org.eclipse.ocl.examples.domain.utilities;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -54,6 +59,9 @@ public class DomainUtil
 		}
 	}
 
+	/**
+	 * Return a simple readable description of eObject using an IItemLabelProvider if possible.
+	 */
 	public static String getLabel(EObject eObject) {
 		IItemLabelProvider labeler =
 			(IItemLabelProvider) defaultAdapterFactory.adapt(eObject, IItemLabelProvider.class);		
@@ -67,7 +75,28 @@ public class DomainUtil
 	}
 
 	/**
-	 * This dummy function may be invoked from auto-generated code that does not thrwo
+	 * Return a simple readable description of object. If non-null eClassifier
+	 * identifoes the type of object. If non-null context may provide an ESubstitutionLabelProvider.
+	 */
+	public static String getLabel(EClassifier eClassifier, Object object, Map<Object, Object> context) {
+		if (eClassifier instanceof EDataType) {
+			return EObjectValidator.getValueLabel((EDataType) eClassifier, object, context);
+		}
+		else if (object instanceof EObject) {
+			if (context != null) {					// Use an ESubstitutionLabelProvider
+				return EObjectValidator.getObjectLabel((EObject)object, context);
+			}
+			else {									// Use an ItemProvider rather than EcoreUtil.getIdentification
+				return getLabel((EObject)object);
+			}
+		}
+		else {			// Never happens
+			return String.valueOf(object);
+		}
+	}
+
+	/**
+	 * This dummy function may be invoked from auto-generated code that does not throw
 	 * an exception to avoid a compilation error.
 	 * 
 	 * @throws InvalidValueException

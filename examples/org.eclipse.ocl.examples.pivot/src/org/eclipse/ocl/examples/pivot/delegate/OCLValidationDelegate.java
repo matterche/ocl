@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 
 /**
  * An implementation of the dynamic validation delegate API, maintaining a cache
@@ -228,16 +227,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		if (diagnostics != null) {
 			String message = evaluateMessage(evaluationVisitor, constraintName, query);
 			if (message == null) {
-				Object objectLabel;
-				if (eClassifier instanceof EDataType) {
-					objectLabel = PivotDiagnostician.INSTANCE.getValueLabel((EDataType) eClassifier, value);
-				}
-				else if (value instanceof EObject) {
-					objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel((EObject) value);
-				}
-				else {
-					objectLabel = String.valueOf(value);
-				}
+				Object objectLabel = DomainUtil.getLabel(eClassifier, value, context);
 				message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 					eClassifier.getName(), constraintName, objectLabel);
 			}

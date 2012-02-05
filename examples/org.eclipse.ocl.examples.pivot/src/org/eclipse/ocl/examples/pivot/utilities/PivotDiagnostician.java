@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 
 public class PivotDiagnostician extends Diagnostician
 {
@@ -27,16 +28,16 @@ public class PivotDiagnostician extends Diagnostician
 	
 	@Override
 	public String getObjectLabel(EObject eObject) {
-		return String.valueOf(eObject);
+		return DomainUtil.getLabel(eObject);
 	}
 
 	@Override
 	public String getFeatureLabel(EStructuralFeature eStructuralFeature) {
-		return String.valueOf(eStructuralFeature);
+		return DomainUtil.getLabel(eStructuralFeature);
 	}
 
 	@Override
 	public String getValueLabel(EDataType eDataType, Object value) {
-		return String.valueOf(value);
+		return DomainUtil.getLabel(eDataType, value, null);
 	}
 }
