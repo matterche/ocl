@@ -40,11 +40,9 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -74,8 +72,10 @@ import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomainFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateException;
+import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
 import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.PivotInstaller;
@@ -188,7 +188,7 @@ public class DelegatesTest extends PivotTestSuite
 		settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory() {
 
 			@Override
-			public SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+			public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 				usedLocalRegistry = true;
 				return super.createSettingDelegate(structuralFeature);
 			}
@@ -201,7 +201,7 @@ public class DelegatesTest extends PivotTestSuite
 			new EOperation.Internal.InvocationDelegate.Factory.Registry.Impl();
 		invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory() {
 			@Override
-			public InvocationDelegate createInvocationDelegate(EOperation operation) {
+			public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 				usedLocalRegistry = true;
 				return super.createInvocationDelegate(operation);
 			}
@@ -597,10 +597,12 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void test_attributeEvaluatingToWrongType() {
 		initModelWithErrors();
-		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
+		EObject testEObject = create(acme, companyDetritus, badClassClass, null);
 		EStructuralFeature structuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToWrongType");
-		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Property.class, structuralFeature));
-		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
+		EStructuralFeature.Internal.SettingDelegate settingDelegate = ((EStructuralFeature.Internal)structuralFeature).getSettingDelegate();
+		Property property = ((OCLSettingDelegate) settingDelegate).getProperty();
+		String objectLabel = DomainUtil.getLabel(property);
+		getWithException(testEObject, "attributeEvaluatingToWrongType",
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Property", "CompatibleInitialiser", objectLabel));
 //			DomainUtil.bind(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
 	}
@@ -841,7 +843,9 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToWrongType");
-		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(metaModelManager.getPivotOfEcore(Operation.class, eOperation));
+		EOperation.Internal.InvocationDelegate invocationDelegate = ((EOperation.Internal)eOperation).getInvocationDelegate();
+		Operation pperation = ((OCLInvocationDelegate) invocationDelegate).getOperation();
+		String objectLabel = DomainUtil.getLabel(pperation);
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
 			DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, "Operation", "CompatibleReturn", objectLabel));
 //			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
@@ -1048,7 +1052,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
 		validateWithSeverity("evaluatingToNull", Diagnostic.ERROR, badClassInstance,
-			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, badClassInstance.eClass().getName(), "evaluatingToNull", PivotDiagnostician.INSTANCE.getObjectLabel(badClassInstance));
+			EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, badClassInstance.eClass().getName(), "evaluatingToNull", DomainUtil.getLabel(badClassInstance));
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
@@ -1341,14 +1345,14 @@ public class DelegatesTest extends PivotTestSuite
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		Object objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
+		Object objectLabel = DomainUtil.getLabel(eObject);
 		String message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_,
 			eObject.eClass().getName(), constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
 	protected void validateInvariantWithSeverity(String constraintName, int severity, EObject eObject) {
-		validateWithSeverity(constraintName, severity, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, PivotDiagnostician.INSTANCE.getObjectLabel(eObject));
+		validateWithSeverity(constraintName, severity, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, DomainUtil.getLabel(eObject));
 	}
 
 	protected void validateWithSeverity(String constraintName, int severity, EObject eObject, String messageTemplate, Object... bindings) {
@@ -1372,7 +1376,7 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
-		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(eObject);
+		String objectLabel = DomainUtil.getLabel(eObject);
 		String message1 = DomainUtil.bind(messageTemplate1, constraintName, objectLabel, "");
 		String message2 = getErrorsInMessage(source);
 		String message3 = DomainUtil.bind(messageTemplate, bindings);

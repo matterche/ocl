@@ -148,7 +148,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "xx");
 			eSet(testInstance, "l2b", "xx");
 			eSet(testInstance, "l3", "xx");
-			String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
+			String objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 			//
 			//	CompleteOCL errors all round
@@ -159,10 +159,10 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2b", "xxx");
 			eSet(testInstance, "l3", "xxx");
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				DomainUtil.bind(template,  "V1", objectLabel),
-				DomainUtil.bind(template,  "V2a", objectLabel),
-				DomainUtil.bind(template,  "V2b", objectLabel),
-				DomainUtil.bind(template,  "V3", objectLabel));
+				DomainUtil.bind(template,  "Level3", "V1", objectLabel),
+				DomainUtil.bind(template,  "Level3", "V2a", objectLabel),
+				DomainUtil.bind(template,  "Level3", "V2b", objectLabel),
+				DomainUtil.bind(template,  "Level3", "V3", objectLabel));
 			//
 			//	One CompleteOCl and one OCLinEcore
 			//
@@ -172,8 +172,8 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
-				DomainUtil.bind(template,  "L2a", objectLabel),
-				DomainUtil.bind(template,  "V2a", objectLabel));
+				DomainUtil.bind(template,  "Level3", "L2a", objectLabel),
+				DomainUtil.bind(template,  "Level3", "V2a", objectLabel));
 		}
 		finally {
 			metaModelManager1.dispose();
@@ -196,7 +196,7 @@ public class ValidateTests extends XtextTestCase
 		eSet(testInstance, "l2a", "l2a");
 		eSet(testInstance, "l2b", "l2b");
 		eSet(testInstance, "l3", "l3");
-		String objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
+		String objectLabel = DomainUtil.getLabel(testInstance);
 		//
 		//	Check EObjectValidator errors
 		//
@@ -226,7 +226,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "ok");
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
-			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
+			objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING);
 			//
 			//	Just one error
@@ -236,7 +236,7 @@ public class ValidateTests extends XtextTestCase
 			eSet(testInstance, "l2a", "ok");
 			eSet(testInstance, "l2b", "ok");
 			eSet(testInstance, "l3", "ok");
-			objectLabel = PivotDiagnostician.INSTANCE.getObjectLabel(testInstance);
+			objectLabel = DomainUtil.getLabel(testInstance);
 			checkValidationDiagnostics(testInstance, Diagnostic.WARNING,
 				DomainUtil.bind(template, "Level1", "L1", objectLabel));
 		} finally {
