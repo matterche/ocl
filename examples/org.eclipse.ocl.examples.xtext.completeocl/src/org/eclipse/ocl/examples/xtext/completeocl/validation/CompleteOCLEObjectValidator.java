@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2011 E.D.Willink and others.
+ * Copyright (c) 2011,2012 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,6 @@
  *     E.D.Willink - initial API and implementation
  *
  * </copyright>
- *
- * $Id: CompleteOCLEObjectValidator.java,v 1.4 2011/05/20 15:26:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
@@ -23,44 +21,18 @@ import org.eclipse.core.resources.IResourceStatus;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.ValueFactory;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Package;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -68,19 +40,17 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 /**
  * A CompleteOCLEObjectValidator validates CompleteOCL invariants during an EMF validation, provided
  * an CompleteOCLEObjectValidator instance has been registered as a validator in the EValidator.Registry.
+ * 
+ * Loading of the Complete OCL occurs during @link{initialize()} which may be called explicitly
+ * or lazily during validation.
  */
-public class CompleteOCLEObjectValidator extends EObjectValidator
+public class CompleteOCLEObjectValidator extends BasicCompleteOCLEObjectValidator
 {	
 	private static final Logger logger = Logger.getLogger(CompleteOCLEObjectValidator.class);
 
-	protected final Resource ecoreResource;
-	@Deprecated
-	protected EPackage ePackage;
+	protected final EPackage ePackage;
 	protected final URI oclURI;
-	protected final MetaModelManager metaModelManager;
 	private Ecore2Pivot ecore2Pivot = null;
-	private EnvironmentFactory environmentFactory = null;
-	private Environment rootEnvironment = null;
 	
 	/**
 	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
@@ -91,54 +61,39 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 	}
 	
 	/**
-	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
+	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage
+	 * for the meta-models managed by metaModelManager.
 	 */
-	@Deprecated
 	public CompleteOCLEObjectValidator(EPackage ePackage, URI oclURI, MetaModelManager metaModelManager) {
-		this(ePackage.eResource(), oclURI, metaModelManager);
+		super(metaModelManager != null ? metaModelManager : new MetaModelManager());
 		this.ePackage = ePackage;
-	}
-	
-	/**
-	 * Construct a validator to apply the CompleteOCL invariants from oclURI to ePackage.
-	 */
-	public CompleteOCLEObjectValidator(Resource ecoreResource, URI oclURI, MetaModelManager metaModelManager) {
-		this.ecoreResource =  ecoreResource;
-		this.ePackage =  null;
-		this.oclURI =  oclURI;
-		this.metaModelManager =  metaModelManager != null ? metaModelManager : new MetaModelManager();
+		this.oclURI = oclURI;
 	}
 	
 	@Override
 	protected EPackage getEPackage() {
 		return ePackage;
 	}
-
-	protected String getLabel(EClassifier eClassifier, Object object, Map<Object, Object> context) {
-		if (eClassifier instanceof EDataType) {
-			return PivotDiagnostician.INSTANCE.getValueLabel((EDataType) eClassifier, object);
-		}
-		else if (object instanceof EObject) {
-			return PivotDiagnostician.INSTANCE.getObjectLabel((EObject)object);
-		}
-		else {			// Never happens
-			return String.valueOf(object);
-		}
-	}
 	
-	protected void initialize() {
+	/**
+	 * Perform the loading and installation of the Complete OCL, returning true if successful.
+	 * @return
+	 */
+	public boolean initialize() {
+		Resource ecoreResource = ePackage.eResource();
 		ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
 		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
+			return false;
 		}
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 		Package pivotRoot = ecore2Pivot.getPivotRoot();
 		message = PivotUtil.formatResourceDiagnostics(pivotRoot.eResource().getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + ecoreResource.getURI() + message);
+			return false;
 		}
 		BaseCSResource xtextResource = null;
 		try {
@@ -165,102 +120,24 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load '" + oclURI + message);
+			return false;
 		}
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		message = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + oclURI + message);
+			return false;
 		}
-		environmentFactory = new PivotEnvironmentFactory(null, metaModelManager);
-		rootEnvironment = environmentFactory.createEnvironment();
+		return true;
 	}
 
 	@Override
-	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (eObject.eIsProxy()) {
-	        return true;
-	    }
-		return validatePivot(eClass, eObject, diagnostics, context);
-	}
-
-	@Override
-	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-	    if (!eDataType.isInstance(value))
-	    {
-	        return true;
-	    }
-		return validatePivot(eDataType, value, diagnostics, context);
-	}
-
-	protected boolean validatePivot(EClassifier eClassifier, Object object, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	protected boolean validatePivot(EClassifier eClassifier, Object object,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (ecore2Pivot == null) {
 			initialize();
 		}
-		boolean allOk = true;
-		MetaModelManager metaModelManager = ecore2Pivot.getMetaModelManager();
-		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		for (Constraint constraint : metaModelManager.getAllConstraints(type)) {
-			if (UMLReflection.INVARIANT.equals(constraint.getStereotype())) {
-				String constraintName = constraint.getName();
-				ValueSpecification specification = constraint.getSpecification();
-				if (specification instanceof ExpressionInOcl) {			// Ignore OpaqueExpression -- probably from EAnnotations
-					ExpressionInOcl query = (ExpressionInOcl)specification;
-					EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment();
-					ValueFactory valueFactory = metaModelManager.getValueFactory();
-					Value value = valueFactory.valueOf(object);
-					evaluationEnvironment.add(query.getContextVariable(), value);
-					DomainModelManager extents = evaluationEnvironment.createModelManager(object);
-					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, evaluationEnvironment, extents);
-					int severity = Diagnostic.ERROR;
-					String message = null;
-					if (query.getType() != evaluationVisitor.getMetaModelManager().getBooleanType()) {
-						message = DomainUtil.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
-					}
-					try {
-						Value expressionResult = query.accept(evaluationVisitor);
-						boolean isOk = false;
-						if (!expressionResult.isNull()) {
-							isOk = expressionResult.asBoolean();
-							severity = Diagnostic.WARNING;
-						}
-						if (!isOk) {
-							Object objectLabel = getLabel(eClassifier, object, context);
-							OclExpression messageExpression = query.getMessageExpression();
-							if (messageExpression != null) {
-								try {
-									Value messageResult = messageExpression.accept(evaluationVisitor);
-									if (!messageResult.isNull()) {
-										message = messageResult.asString();
-									}
-								} catch (InvalidValueException e) {
-									message = DomainUtil.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
-									severity = Diagnostic.ERROR;
-								}
-								catch (Exception e) {
-									message = DomainUtil.bind(OCLMessages.ValidationMessageException_ERROR_, constraintName, objectLabel, e.getMessage());
-									severity = Diagnostic.ERROR;
-								}
-							}
-							if (message == null) {
-								message = DomainUtil.bind(EvaluatorMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
-							}
-						}
-					} catch (InvalidValueException e) {
-						message = DomainUtil.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
-					} catch (InvalidEvaluationException e) {
-						message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
-					}
-					if (message != null) {
-						diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
-					    allOk = false;
-					    if (severity == Diagnostic.ERROR) {
-					    	break;		// Generate many warnings but only one error
-					    }
-					}
-				}
-			}
-		}
-		return allOk || (diagnostics != null);
+		return super.validatePivot(eClassifier, object, diagnostics, context);
 	}
 }
