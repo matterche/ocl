@@ -33,5 +33,5 @@ public interface LibraryTernaryOperation extends LibraryOperation {
 	 * @param arg2 second argument
 	 * @return the evaluated value
 	 */
-	Value evaluate(DomainEvaluator evaluator, DomainType returnTyoe, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException;
+	Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value firstArgumentValue, Value secondArgumentValue) throws InvalidValueException;
 }
