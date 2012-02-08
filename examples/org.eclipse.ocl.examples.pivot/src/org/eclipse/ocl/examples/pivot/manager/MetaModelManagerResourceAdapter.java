@@ -40,6 +40,10 @@ public class MetaModelManagerResourceAdapter implements MetaModelManagedAdapter
 	public static MetaModelManagerResourceAdapter getAdapter(Resource resource, MetaModelManager metaModelManager) {
 		List<Adapter> eAdapters = resource.eAdapters();
 		MetaModelManagerResourceAdapter adapter = PivotUtil.getAdapter(MetaModelManagerResourceAdapter.class, eAdapters);
+		if ((adapter != null) && (metaModelManager != null) && (adapter.getMetaModelManager() != metaModelManager)) {
+			eAdapters.remove(adapter);
+			adapter = null;
+		}
 		if (adapter == null) {
 			if (metaModelManager == null) {
 				metaModelManager = new MetaModelManager();
