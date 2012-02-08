@@ -55,7 +55,10 @@ public abstract class ReflectiveFragment extends AbstractFragment
 			operationMap = new HashMap<DomainOperation, LibraryFeature>();		// Optimize to reuse single super map if no local ops
 		}
 		DomainOperation localOperation = getOperationOverload(baseOperation);
-		LibraryFeature libraryFeature = localOperation != null ? localOperation.getImplementation() : null;
+		if (localOperation == null) {
+			localOperation = baseOperation;
+		}
+		LibraryFeature libraryFeature = localOperation.getImplementation();
 		if (derivedInheritance == baseInheritance) {
 			assert localOperation == baseOperation;
 		}
