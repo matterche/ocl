@@ -122,7 +122,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, targetReference, null);
 		try {
 //			computeLookupWithParents(environmentView);
-			scopeAdapter.computeLookup(target, environmentView, this);
+			ScopeView aScope = scopeAdapter.computeLookup(target, environmentView, this);
+			if (aScope != null) {
+				environmentView.computeLookups(aScope);
+			}
 		} catch (IllegalLibraryException e) {			
 		}
 		return environmentView.getDescriptions();
