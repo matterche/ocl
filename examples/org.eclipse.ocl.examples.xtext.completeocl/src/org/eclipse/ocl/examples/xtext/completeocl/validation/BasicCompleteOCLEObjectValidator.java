@@ -154,6 +154,10 @@ public class BasicCompleteOCLEObjectValidator extends EObjectValidator
 							String objectLabel = DomainUtil.getLabel(eClassifier, object, context);
 							message = DomainUtil.bind(OCLMessages.ValidationResultIsInvalid_ERROR_,
 								PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel);
+						} catch (Throwable e) {
+							String objectLabel = DomainUtil.getLabel(eClassifier, object, context);
+							message = DomainUtil.bind(OCLMessages.ValidationConstraintException_ERROR_,
+								PivotUtil.getConstraintTypeName(constraint), constraintName, objectLabel, e.getMessage());
 						}
 						if (message != null) {
 							diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
