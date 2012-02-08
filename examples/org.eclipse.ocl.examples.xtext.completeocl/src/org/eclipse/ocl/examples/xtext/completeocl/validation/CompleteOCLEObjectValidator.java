@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -142,7 +143,8 @@ public class CompleteOCLEObjectValidator extends BasicCompleteOCLEObjectValidato
 	protected boolean validatePivot(EClassifier eClassifier, Object object,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (ecore2Pivot == null) {
-			initialize();
+			initialize();	
+			install(((EObject)object).eResource().getResourceSet(), metaModelManager);
 		}
 		return super.validatePivot(eClassifier, object, diagnostics, context);
 	}
