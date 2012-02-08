@@ -208,7 +208,7 @@ public class AbstractCompleteOCLProposalProvider extends EssentialOCLProposalPro
 		// subclasses may override
 	}
 	public void complete_PrimitiveTypeIdentifier(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
+		super.complete_PrimitiveTypeIdentifier(model, ruleCall, context, acceptor);
 	}
 	public void complete_BodyCS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
