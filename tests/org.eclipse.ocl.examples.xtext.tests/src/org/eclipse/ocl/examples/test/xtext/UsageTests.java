@@ -18,8 +18,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -43,18 +45,57 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.mwe.core.ConfigurationException;
-import org.eclipse.ocl.examples.build.utilities.ResourceUtils;
 import org.eclipse.ocl.examples.codegen.ecore.OCLGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
  */
 public class UsageTests extends XtextTestCase
 {	
+	private static Logger log = Logger.getLogger(UsageTests.class);	
+
+	/**
+	 * Checks all resources in a resource set for any errors or warnings.
+	 * @param resourceSet
+	 * @throws ConfigurationException if any error present
+	 */
+	public static void checkResourceSet(ResourceSet resourceSet) throws ConfigurationException {
+		int errorCount = 0;
+		for (Resource aResource : resourceSet.getResources()) {
+			List<Resource.Diagnostic> errors = aResource.getErrors();
+			if (errors.size() > 0) {
+				for (Resource.Diagnostic error : errors) {
+					if (error instanceof ExceptionDiagnostic) {
+						log.error("Error for '" + aResource.getURI() + "'", ((ExceptionDiagnostic)error).getException());
+					}
+					else {
+						log.error(error + " for '" + aResource.getURI() + "'");
+					}
+					errorCount++;
+				}
+			}
+			List<Resource.Diagnostic> warnings = aResource.getWarnings();
+			if (warnings.size() > 0) {
+				for (Resource.Diagnostic warning : warnings) {
+					if (warning instanceof ExceptionDiagnostic) {
+						log.warn("Warning for '" + aResource.getURI() + "'", ((ExceptionDiagnostic)warning).getException());
+					}
+					else {
+						log.warn(warning + " for '" + aResource.getURI() + "'");
+					}
+				}
+			}
+		}
+		if (errorCount > 0) {
+			throw new RuntimeException("Errors in ResourceSet");
+		}
+	}
+
 	protected MetaModelManager metaModelManager = null;
 	
 	@Override
@@ -161,7 +202,7 @@ public class UsageTests extends XtextTestCase
 		// moved up the inheritance hierarchy
 		// since the proxy seems to be successfully resolved giving a double
 		// feature
-		ResourceUtils.checkResourceSet(resourceSet);
+		checkResourceSet(resourceSet);
 		EObject eObject = resource.getContents().get(0);
 		if (!(eObject instanceof GenModel)) {
 			throw new ConfigurationException("No GenModel found in '"
@@ -169,7 +210,7 @@ public class UsageTests extends XtextTestCase
 		}
 		GenModel genModel = (GenModel) eObject;
 		genModel.reconcile();
-		ResourceUtils.checkResourceSet(resourceSet);
+		checkResourceSet(resourceSet);
 		// genModel.setCanGenerate(true);
 		// validate();
 
