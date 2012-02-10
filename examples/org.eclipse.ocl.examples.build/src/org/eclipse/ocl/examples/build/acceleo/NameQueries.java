@@ -19,11 +19,13 @@ package org.eclipse.ocl.examples.build.acceleo;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 
 public class NameQueries
 {
+	public static final Logger logger = Logger.getLogger(NameQueries.class);	
 	private static Map<String, Integer> counters = new HashMap<String, Integer>();
 	private static Map<Object, String> definedSymbols = new HashMap<Object, String>();
 	
@@ -44,6 +46,9 @@ public class NameQueries
 	}
 
 	public static String getPrefixedSymbolName(String prefix, Object elem) {
+		if (elem == null) {
+			logger.error("getPrefixedSymbolName for '" + prefix + "'and null");
+		}
 		String symbol = definedSymbols.get(elem);
 		if (symbol == null) {
 			Integer count = counters.get(prefix);
@@ -53,5 +58,10 @@ public class NameQueries
 			definedSymbols.put(elem, symbol);
 		}
 		return symbol;
+	}
+	
+	public static void reset() {
+		counters = new HashMap<String, Integer>();
+		definedSymbols = new HashMap<Object, String>();
 	}
 }

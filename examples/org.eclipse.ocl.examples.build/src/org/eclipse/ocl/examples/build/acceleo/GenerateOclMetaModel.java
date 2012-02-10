@@ -361,4 +361,20 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
         
         // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
     }
+
+	@Override
+	public void initialize(EObject element, File folder, List<? extends Object> arguments) throws IOException {
+		initialize();
+		super.initialize(element, folder, arguments);
+	}
+
+	@Override
+	public void initialize(URI modelURI, File folder, List<?> arguments) throws IOException {
+		initialize();
+		super.initialize(modelURI, folder, arguments);
+	}
+
+	public void initialize() {
+		NameQueries.reset();
+	}
 }
