@@ -1971,7 +1971,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	public Type getType(DomainType dType) {
 		if (dType instanceof Type) {
-			return (Type) dType;
+			return getPrimaryType((Type) dType);
 		}
 		DomainPackage dPackage = dType.getPackage();
 		String nsURI = dPackage.getNsURI();

@@ -19,8 +19,8 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -55,8 +55,10 @@ import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlibTables;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -68,12 +70,15 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.bodies.OperationBodies;
 import org.eclipse.ocl.examples.pivot.bodies.ParameterableElementBodies;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -1183,6 +1188,32 @@ public class OperationImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOperation(this);
+	}
+
+	private LibraryFeature bodyImplementation = null;
+	
+	@Override
+	public LibraryFeature getImplementation() {
+		LibraryFeature implementation = super.getImplementation();
+		if (implementation != null) {
+			return implementation;
+		}
+		if (bodyImplementation == null) {
+//			List<Constraint> ownedRules = getOwnedRules();
+			for (Constraint rule : getOwnedRules()) {
+				if (rule.getStereotype().equals(UMLReflection.BODY)) {
+					ValueSpecification specification = rule.getSpecification();
+					if (specification instanceof ExpressionInOcl) {
+						bodyImplementation = new ConstrainedOperation((ExpressionInOcl) specification);
+					}
+					else if (specification instanceof OpaqueExpression) {
+						String body = PivotUtil.getBody((OpaqueExpression)specification);// FIXME
+					}
+					else {} // FIXME
+				}
+			}
+		}
+		return bodyImplementation;
 	}
 
 	public int getIndex() {
