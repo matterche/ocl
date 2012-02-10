@@ -32,10 +32,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.codegen.ecore.CodeGenEcorePlugin;
 import org.eclipse.emf.codegen.ecore.genmodel.GenAnnotation;
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -43,6 +41,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EMap;
@@ -137,7 +136,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 					if (OCLDelegateDomain.isDelegateURI(source)) {
 						EMap<String, String> details = eAnnotation.getDetails();
 						for (String key : details.keySet()) {
-							if (!key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
+							if ((key != null) && !key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
 								String expression = details.get(key);
 								String messageExpression = details.get(key + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
 								convertConstraintToOperation(ecore2pivot, genModel, eClassifier, key, expression, messageExpression);
@@ -161,75 +160,76 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 	}
 
-	protected void createClassBodies(GenModel genModel, Monitor monitor) {
-	  	try {
+	protected void createClassBodies(GenModel genModel, Monitor monitor) throws IOException {
 	  		File projectFolder = getProjectFolder(genModel);
-            List<String> arguments = new ArrayList<String>();
-  			Model2bodies generator = new Model2bodies(genModel, projectFolder, arguments);
-	        generator.generate(monitor);
-//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
-		} catch (Exception e) {
-	        CodeGenEcorePlugin.INSTANCE.log(e);
-		}
+        List<String> arguments = new ArrayList<String>();
+		Model2bodies generator = new Model2bodies(genModel, projectFolder, arguments);
+        generator.generate(monitor);
+//	       folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
 	}
 
-	protected void createDispatchTables(GenModel genModel, Monitor monitor) {
-	  	try {
-  			File projectFolder = getProjectFolder(genModel);
-            List<String> arguments = new ArrayList<String>();
-            Model2tables generator = new Model2tables(genModel, projectFolder, arguments);
-	        generator.generate(monitor);
-//	        folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
-		} catch (Exception e) {
-	        CodeGenEcorePlugin.INSTANCE.log(e);
-		}
+	protected void createDispatchTables(GenModel genModel, Monitor monitor) throws IOException {
+		File projectFolder = getProjectFolder(genModel);
+        List<String> arguments = new ArrayList<String>();
+        Model2tables generator = new Model2tables(genModel, projectFolder, arguments);
+        generator.generate(monitor);
+//	       folder.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(CodeGenUtil.createMonitor(monitor, 1)));
 	}
 
 	/**
 	 * Create a Map of feature identification to body to be embedded in the EMF model.
+	 * @throws IOException 
 	 */
-	protected Map<String, String> createFeatureBodies(GenModel genModel) {
+	protected Map<String, String> createFeatureBodies(GenModel genModel) throws IOException {
 		Map<String, String> results = new HashMap<String, String>();
-	  	try {
-            File folder = new File("/");       
-            List<String> arguments = new ArrayList<String>();
-			Ocl2java4genmodel generator = new Ocl2java4genmodel(genModel, folder, arguments)
-			{
-			    public IAcceleoGenerationStrategy getGenerationStrategy() {
-			        return new PreviewStrategy();
-			    }
-			};
-	        Map<String, String> result = generator.generate(new BasicMonitor());
-	        for (String key : result.keySet()) {
-	        	String key2 = "/" + key.replace('\\', '/');		// BUG 359139
-				String value = result.get(key);
-				results.put(key2, value);
-	        }
-		} catch (IOException e) {
-	        CodeGenEcorePlugin.INSTANCE.log(e);
-		}
+        File folder = new File("/");       
+        List<String> arguments = new ArrayList<String>();
+		Ocl2java4genmodel generator = new Ocl2java4genmodel(genModel, folder, arguments)
+		{
+		    public IAcceleoGenerationStrategy getGenerationStrategy() {
+		        return new PreviewStrategy();
+		    }
+		};
+        Map<String, String> result = generator.generate(new BasicMonitor());
+        for (String key : result.keySet()) {
+        	String key2 = "/" + key.replace('\\', '/');		// BUG 359139
+			String value = result.get(key);
+			results.put(key2, value);
+        }
 		return results;
 	}
 
 	@Override
 	protected Diagnostic doPreGenerate(Object object, Object projectType) {
 		GenModel genModel = (GenModel) object;
-		if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && hasDelegates(genModel)) {
-			List<String> modelPluginVariables = genModel.getModelPluginVariables();
-			if (!modelPluginVariables.contains(LibraryConstants.PLUGIN_ID)) {
-				modelPluginVariables.add(LibraryConstants.PLUGIN_ID);
+	    try {
+			if ((projectType == MODEL_PROJECT_TYPE) && !useDelegates(genModel) && hasDelegates(genModel)) {
+				List<String> modelPluginVariables = genModel.getModelPluginVariables();
+				if (!modelPluginVariables.contains(LibraryConstants.PLUGIN_ID)) {
+					modelPluginVariables.add(LibraryConstants.PLUGIN_ID);
+				}
+		    	GenPackage genPackage = genModel.getGenPackages().get(0);
+		        createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
+				Resource genResource = genModel.eResource();
+				ResourceSet resourceSet = genResource.getResourceSet();
+				MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
+				MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+				metaModelManager = adapter.getMetaModelManager();
+				convertConstraintsToOperations(metaModelManager, genModel);
+			    Map<String, String> results = createFeatureBodies(genModel);			
+				installJavaBodies(metaModelManager, genModel, results);
+				pruneDelegates(genModel);
 			}
-	    	GenPackage genPackage = genModel.getGenPackages().get(0);
-	        createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
-			Resource genResource = genModel.eResource();
-			ResourceSet resourceSet = genResource.getResourceSet();
-			MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-			metaModelManager = adapter.getMetaModelManager();
-			convertConstraintsToOperations(metaModelManager, genModel);
-		    Map<String, String> results = createFeatureBodies(genModel);			
-			installJavaBodies(metaModelManager, genModel, results);
-			pruneDelegates(genModel);
+		} catch (Exception e) {
+			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to pre-generate" + genModel, new Object[]{e});
+			Diagnostic thatDiagnostic = super.doPreGenerate(object, projectType);
+			if (thatDiagnostic.getSeverity() == Diagnostic.OK) {
+				return thisDiagnostic;
+			}
+			else {
+				thatDiagnostic.getChildren().add(thisDiagnostic);
+				return thatDiagnostic;
+			}
 		}
 		return super.doPreGenerate(object, projectType);
 	}
@@ -237,26 +237,34 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	@Override
 	protected Diagnostic generateModel(Object object, Monitor monitor) {
 		GenModel genModel = (GenModel) object;
-		if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
-		    monitor.beginTask("", 4);
-		    monitor.subTask("Generating Dispatch Tables");
-		    GenPackage genPackage = genModel.getGenPackages().get(0);
-		    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
-			createDispatchTables(genModel, monitor);
-		    monitor.worked(1);
-		    createClassBodies(genModel, monitor);
-		    monitor.worked(1);
-			if (EMFPlugin.IS_ECLIPSE_RUNNING) {
-			    IWorkspace workspace = ResourcesPlugin.getWorkspace();
-				String modelProjectDirectory = genModel.getModelProjectDirectory();
-			    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
-			    try {
-					modelProject.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(monitor));
-				} catch (CoreException e) {
-			        CodeGenEcorePlugin.INSTANCE.log(e);
+	    try {
+			if (!useDelegates(genModel) && hadDelegates.contains(genModel)) {
+			    monitor.beginTask("", 4);
+			    monitor.subTask("Generating Dispatch Tables");
+			    GenPackage genPackage = genModel.getGenPackages().get(0);
+			    createImportManager(genPackage.getReflectionPackageName(), genPackage.getFactoryInterfaceName() + "Tables");	// Only used to suppress NPE
+				createDispatchTables(genModel, monitor);
+			    monitor.worked(1);
+			    createClassBodies(genModel, monitor);
+			    monitor.worked(1);
+				if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+				    IWorkspace workspace = ResourcesPlugin.getWorkspace();
+					String modelProjectDirectory = genModel.getModelProjectDirectory();
+				    IProject modelProject = workspace.getRoot().getProject(modelProjectDirectory);
+				    modelProject.refreshLocal(IResource.DEPTH_INFINITE, BasicMonitor.toIProgressMonitor(monitor));
 				}
+			    monitor.worked(1);
 			}
-		    monitor.worked(1);
+		} catch (Exception e) {
+			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to generate" + genModel, new Object[]{e});
+			Diagnostic thatDiagnostic = super.generateModel(object, monitor);
+			if (thatDiagnostic.getSeverity() == Diagnostic.OK) {
+				return thisDiagnostic;
+			}
+			else {
+				thatDiagnostic.getChildren().add(thisDiagnostic);
+				return thatDiagnostic;
+			}
 		}
 		return super.generateModel(object, monitor);
 	}
