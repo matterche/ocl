@@ -32,6 +32,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -81,6 +84,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.PivotValueFactory;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
@@ -405,6 +409,7 @@ public class OCLConsolePage extends Page
 			monitor.subTask(ConsoleMessages.Progress_Synchronising);
 			monitor.worked(1);
 //			CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, metaModelManager);
+		    MetaModelManager metaModelManager = getMetaModelManager(contextObject);
 			ValueFactory valueFactory = metaModelManager.getValueFactory();
 //			monitor.subTask(ConsoleMessages.Progress_CST);
 //			try {
@@ -437,7 +442,7 @@ public class OCLConsolePage extends Page
 			monitor.worked(2);
 			monitor.subTask(ConsoleMessages.Progress_Evaluating);
 			try {
-				metaModelManager.setMonitor(monitor);
+//				metaModelManager.setMonitor(monitor);
 				EvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager);
 		        value = evaluationVisitor.visitExpressionInOcl(expressionInOcl);
 			} catch (EvaluationHaltedException e) {
@@ -445,7 +450,7 @@ public class OCLConsolePage extends Page
 			} catch (InvalidEvaluationException e) {
 				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationFailure, e);
 			} finally {
-				metaModelManager.setMonitor(null);
+//				metaModelManager.setMonitor(null);
 			}
 			monitor.worked(4);
 		}
@@ -544,7 +549,8 @@ public class OCLConsolePage extends Page
 	private EObject contextObject;
 	private EClassifier contextClassifier;
 	
-	private final CancelableMetaModelManager metaModelManager;
+//	private final CancelableMetaModelManager metaModelManager;
+	private  MetaModelManager nullMetaModelManager = null;
 	private DomainModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -595,7 +601,7 @@ public class OCLConsolePage extends Page
 	 */
 	OCLConsolePage(OCLConsole console) {
 		super();
-		this.metaModelManager = new CancelableMetaModelManager();
+//		this.metaModelManager = new CancelableMetaModelManager();
 		this.console = console;
 	}
 
@@ -819,7 +825,7 @@ public class OCLConsolePage extends Page
 		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
 		editor = new EmbeddedXtextEditor(editorComposite, injector, /*SWT.BORDER |*/ SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
-		MetaModelManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), metaModelManager);
+//		MetaModelManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), metaModelManager);
 
 /*		editor.getViewer().getTextWidget().addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -1054,6 +1060,25 @@ public class OCLConsolePage extends Page
 	public String getLastOCLExpression() {
 		return lastOCLExpression;
 	}
+
+	public MetaModelManager getMetaModelManager(EObject contextObject) {
+		if (contextObject != null) {
+			Resource ecoreResource = EcoreUtil.getRootContainer(contextObject).eResource();
+			if (ecoreResource != null) {
+				ResourceSet resourceSet = ecoreResource.getResourceSet();
+				if (resourceSet != null) {
+					MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+					if (adapter != null) {
+						return adapter.getMetaModelManager();
+					}
+				}
+			}
+		}
+		if (nullMetaModelManager == null) {
+			nullMetaModelManager = new MetaModelManager();
+		}
+		return nullMetaModelManager;
+	}
 	
 	/**
 	 * Prints the specified <code>object</code> to the output viewer.  The
@@ -1107,7 +1132,7 @@ public class OCLConsolePage extends Page
 		    	    if (selectedObject instanceof EObjectNode) {
 		                EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
 		                URI eObjectURI = selectedObjectNode.getEObjectURI();
-		        		contextObject = metaModelManager.loadResource(eObjectURI, null, null);
+		        		contextObject = null; // FIXME metaModelManager.loadResource(eObjectURI, null, null);
 		        		contextClassifier = selectedObjectNode.getEClass();
 		    	    }
 		    	    else if (selectedObject instanceof EStructuralFeatureNode) {
@@ -1132,6 +1157,11 @@ public class OCLConsolePage extends Page
 		            	contextClassifier = null;
 		            }
 			    }	        
+			    MetaModelManager metaModelManager = getMetaModelManager(contextObject);
+				if (contextObject != null) {
+					CS2PivotResourceAdapter.getAdapter(resource, metaModelManager);
+				}
+				MetaModelManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), metaModelManager);
 		        editorDocument.setContext((EssentialOCLCSResource) resource, contextClassifier, null);
 		        console.setSelection(contextClassifier, contextObject);
 		        return null;
