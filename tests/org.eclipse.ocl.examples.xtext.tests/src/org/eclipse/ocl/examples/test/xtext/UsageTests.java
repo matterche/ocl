@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenJDKLevel;
@@ -28,6 +31,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
@@ -40,7 +44,6 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.ocl.examples.build.utilities.ResourceUtils;
-import org.eclipse.ocl.examples.build.utilities.StandaloneASTFacadeHelper;
 import org.eclipse.ocl.examples.codegen.ecore.OCLGeneratorAdapterFactory;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -102,6 +105,13 @@ public class UsageTests extends XtextTestCase
 	} */
 
 	public void testBug370824() throws Exception {
+		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+	        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+	        IProject project = workspace.getRoot().getProject("org.eclipse.ocl.examples.xtext.tests");
+	        if (!project.exists()) {
+	        	project.create(null);
+	        }
+		}
 		metaModelManager = new MetaModelManager();
 		String oclinecoreFile =
 				"package bug370824 : bug370824 = 'http://bug370824'\n" +
@@ -172,7 +182,7 @@ public class UsageTests extends XtextTestCase
 		genModel.setCanGenerate(true);
 		// genModel.setFacadeHelperClass(null); // Non-null gives JDT
 		// default NPEs
-		genModel.setFacadeHelperClass(StandaloneASTFacadeHelper.class.getName()); // Bug 308069
+//		genModel.setFacadeHelperClass(StandaloneASTFacadeHelper.class.getName()); // Bug 308069
 		// genModel.setValidateModel(true);
 		genModel.setBundleManifest(false); // New manifests should be
 											// generated manually
