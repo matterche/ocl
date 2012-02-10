@@ -433,7 +433,7 @@ public class XtextTestCase extends PivotTestCase
 		String inputName = fileName + ".oclinecore";
 		createOCLinEcoreFile(inputName, fileContent);
 		URI inputURI = getProjectFileURI(inputName);
-		URI ecoreURI = getProjectFileURI(fileName);
+		URI ecoreURI = getProjectFileURI(fileName + ".ecore");
 		CS2PivotResourceAdapter adapter = null;
 		try {
 			ResourceSet resourceSet2 = metaModelManager.getExternalResourceSet();

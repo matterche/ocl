@@ -308,7 +308,7 @@ public class RoundTripTests extends XtextTestCase
 				"class A;\n" +
 				"}\n";
 		MetaModelManager metaModelManager1 = new MetaModelManager();
-		createEcoreFile(metaModelManager1, "Bug350894A.ecore", testFileA);
+		createEcoreFile(metaModelManager1, "Bug350894A", testFileA);
 		metaModelManager1.dispose();
 		String testFileB = 
 				"import aa : 'Bug350894A.ecore#/';\n" +

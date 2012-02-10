@@ -102,12 +102,12 @@ public class ImportTests extends XtextTestCase
 				"package E1 : E2 = 'E3'{\n" +
 				"    class E;\n" +
 				"}\n";
-		createEcoreFile(metaModelManager, "Bug353793E.ecore", testFileE);
+		createEcoreFile(metaModelManager, "Bug353793E", testFileE);
 		String testFileF =
 				"package F1 : F2 = 'F3'{\n" +
 				"    class F;\n" +
 				"}\n";
-		createEcoreFile(metaModelManager, "Bug353793F.ecore", testFileF);
+		createEcoreFile(metaModelManager, "Bug353793F", testFileF);
 		metaModelManager.dispose();
 	}	
 

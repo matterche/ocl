@@ -85,6 +85,7 @@ public class AllXtextTests
 		result.addTestSuite(EditTests.class);
 		result.addTestSuite(InheritanceTests.class);
 		result.addTestSuite(MarkupTests.class);
+		result.addTestSuite(UsageTests.class);
 		result.addTestSuite(ValidateTests.class);
 		result.addTestSuite(DocumentationExamples.class);
 		if (EMFPlugin.IS_ECLIPSE_RUNNING) {
