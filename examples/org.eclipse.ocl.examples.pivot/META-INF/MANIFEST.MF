@@ -35,6 +35,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml.profile.l3;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.common;bundle-version="[3.1.0,4.0.0)";visibility:=reexport,
  org.eclipse.ocl.examples.library;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
- org.eclipse.emf.edit;bundle-version="[2.5.0,3.0.0)";visibility:=reexport
+ org.eclipse.emf.edit;bundle-version="[2.5.0,3.0.0)";visibility:=reexport,
+ org.apache.log4j;bundle-version="[1.2.15,2.0.0)"
 Bundle-ActivationPolicy: lazy
-Import-Package: org.apache.log4j
