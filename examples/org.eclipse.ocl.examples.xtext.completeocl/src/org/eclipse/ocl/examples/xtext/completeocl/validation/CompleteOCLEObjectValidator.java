@@ -144,7 +144,10 @@ public class CompleteOCLEObjectValidator extends BasicCompleteOCLEObjectValidato
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (ecore2Pivot == null) {
 			initialize();	
-			install(((EObject)object).eResource().getResourceSet(), metaModelManager);
+			Resource eResource = ((EObject)object).eResource();
+			if (eResource != null) {
+				install(eResource.getResourceSet(), metaModelManager);
+			}
 		}
 		return super.validatePivot(eClassifier, object, diagnostics, context);
 	}
