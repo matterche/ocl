@@ -222,7 +222,7 @@ new <%ExecutorLambdaType%>(LIBRARY, "[type.name/]", [type.contextType.declarePar
 [template public declareParameterType(type : TupleType, genPackage : GenPackage)]
 new <%ExecutorTupleType%>(LIBRARY, "[type.name/]"[genPackage.declareTupleParts(type.ownedAttribute)/])[/template]
 
-[template public declareParameterType(type : Type, genPackage : GenPackage)]
+[template public declareParameterType(type : Type, genPackage : GenPackage) ?(type.owningTemplateParameter->isEmpty())]
 [type.emitQualifiedLiteralName(genPackage)/]
 [/template]
 
