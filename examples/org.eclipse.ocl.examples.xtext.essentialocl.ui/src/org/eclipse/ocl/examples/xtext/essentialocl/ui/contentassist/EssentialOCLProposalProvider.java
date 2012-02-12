@@ -31,7 +31,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalProvider
 {
 	protected static Image collectionTypeImage = null;
-	protected static Image primitiveTypeImage = null;
+	private static Image primitiveTypeImage = null;
 
 	@Override
 	public void complete_CollectionTypeIdentifier(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -62,11 +62,14 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 
 	@Override
 	public void complete_PrimitiveTypeIdentifier(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		proposeKeywordAlternatives(ruleCall, context, acceptor, getPrimitiveTypeImage());
+	}
+
+	protected Image getPrimitiveTypeImage() {
 		if (primitiveTypeImage == null) {
 			primitiveTypeImage = getImage(PivotFactory.eINSTANCE.createPrimitiveType());
 		}
-		proposeKeywordAlternatives(ruleCall, context, acceptor, primitiveTypeImage);
-		super.complete_PrimitiveTypeIdentifier(model, ruleCall, context, acceptor);
+		return primitiveTypeImage;
 	}
 
 	protected void proposeKeywordAlternatives(RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor, Image image) {
