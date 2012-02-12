@@ -96,6 +96,14 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 	public ValueFactory getValueFactory() {
 		return getDelegate().getValueFactory();
 	}
+
+	public boolean isCanceled() {
+		return getDelegate().isCanceled();
+	}
+
+	public void setCanceled(boolean isCanceled) {
+		getDelegate().setCanceled(isCanceled);
+	}
 	
 	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
 	       return getDelegate().throwInvalidEvaluation(e);

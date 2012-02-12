@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.pivot;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
+import org.eclipse.ocl.examples.domain.messages.StatusCodes;
 
 /**
  * Exception indicating a failure to parse or validate OCL constraints.
@@ -90,6 +91,6 @@ public class ParserException extends Exception {
 	 */
 	private Diagnostic createDiagnostic(String message) {
 		return new BasicDiagnostic(Diagnostic.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID,
-			OCLStatusCodes.ERROR, message, null);
+			StatusCodes.ERROR, message, null);
 	}
 }

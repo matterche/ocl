@@ -133,12 +133,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
 	}
 
-	public EvaluationVisitor createNestedVisitor() {
-		EnvironmentFactory factory = environment.getFactory();
-    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
-		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
-	}
-
 	public Value evaluate(DomainExpression body) {
 		return ((OclExpression) body).accept(this);
 	}
@@ -851,5 +845,4 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	public Value visiting(Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for EvaluationVisitor");
 	}
-
 }

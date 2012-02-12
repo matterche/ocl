@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.examples.domain.messages.StatusCodes;
 import org.eclipse.ocl.examples.pivot.OCLDebugOptions;
-import org.eclipse.ocl.examples.pivot.OCLStatusCodes;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryRegistryReader;
 import org.osgi.framework.BundleContext;
 
@@ -293,7 +293,7 @@ public final class PivotPlugin
 	 *  
 	 */
 	public static void info(String message) {
-		info(OCLStatusCodes.OK, message);
+		info(StatusCodes.OK, message);
 	}
 
 	/**

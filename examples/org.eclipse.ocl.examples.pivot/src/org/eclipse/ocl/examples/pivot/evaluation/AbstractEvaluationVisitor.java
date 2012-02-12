@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.ocl.examples.domain.elements.DomainExpression;
 import org.eclipse.ocl.examples.domain.elements.DomainStandardLibrary;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.values.NullValue;
@@ -65,6 +66,11 @@ public abstract class AbstractEvaluationVisitor
 	protected final ValueFactory valueFactory;;
 
     private EvaluationVisitor undecoratedVisitor;
+
+    /**
+     * Set true by {@link #setCanceled} to terminate execution at next call to {@link #getValuefactory()}.
+     */
+	private boolean isCanceled = false;
     
 	static {
 		BOOLEAN_CONSTRAINTS = new java.util.HashSet<String>();
@@ -125,11 +131,14 @@ public abstract class AbstractEvaluationVisitor
      * 
      * @return my delegate visitor, which may be my own self or some other
      */
-    protected final EvaluationVisitor getUndecoratedVisitor() {
+    protected EvaluationVisitor getUndecoratedVisitor() {
         return undecoratedVisitor;
     }
 
 	public ValueFactory getValueFactory() {
+		if (isCanceled) {
+			throw new EvaluationHaltedException("Canceled");
+		}
 		return valueFactory;
 	}
     
@@ -148,6 +157,14 @@ public abstract class AbstractEvaluationVisitor
     protected final EvaluationVisitor getVisitor() {
         return undecoratedVisitor;
     }
+
+	public boolean isCanceled() {
+		return isCanceled;
+	}
+
+	public void setCanceled(boolean isCanceled) {
+		this.isCanceled = isCanceled;
+	}
 
     /**
      * Sets the visitor on which I perform nested

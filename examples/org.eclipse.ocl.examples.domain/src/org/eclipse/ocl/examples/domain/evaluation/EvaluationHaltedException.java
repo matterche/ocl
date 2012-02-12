@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2011 Borland Software Corporation and others.
+ * Copyright (c) 2009,2012 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,15 +11,12 @@
  *     Radek Dvorak - initial API and implementation
  *
  * </copyright>
- *
- * $Id: EvaluationHaltedException.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.domain.evaluation;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
-import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.messages.StatusCodes;
 
 /**
  * Exception indicating a managed interruption of evaluation.
@@ -52,8 +49,8 @@ public class EvaluationHaltedException extends DomainException
 	 * 
 	 */
 	public EvaluationHaltedException(String message) {
-		this(new BasicDiagnostic(Diagnostic.CANCEL, OCLExamplesCommonPlugin.PLUGIN_ID,
-			OCLStatusCodes.EVALUATION_HALTED, message, null));
+		this(new BasicDiagnostic(Diagnostic.CANCEL, StatusCodes.PLUGIN_ID,
+			StatusCodes.EVALUATION_HALTED, message, null));
 	}
 
 	/**
@@ -80,8 +77,8 @@ public class EvaluationHaltedException extends DomainException
 	 */
 	public EvaluationHaltedException(String message, Throwable cause) {
 		super(message, cause);
-		diagnostic = new BasicDiagnostic(Diagnostic.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID,
-			OCLStatusCodes.EVALUATION_HALTED, message,
+		diagnostic = new BasicDiagnostic(Diagnostic.ERROR, StatusCodes.PLUGIN_ID,
+			StatusCodes.EVALUATION_HALTED, message,
 			new Object[]{cause});
 	}
 

@@ -20,8 +20,6 @@
 
 package org.eclipse.ocl.examples.xtext.console;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,28 +48,16 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
-import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.BooleanValue;
-import org.eclipse.ocl.examples.domain.values.IntegerValue;
-import org.eclipse.ocl.examples.domain.values.RealValue;
-import org.eclipse.ocl.examples.domain.values.StringValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 import org.eclipse.ocl.examples.domain.values.impl.InvalidValueImpl;
-import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
-import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.IteratorExp;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PropertyCallExp;
-import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
@@ -83,7 +69,6 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.values.PivotValueFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
@@ -132,7 +117,6 @@ import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
@@ -141,79 +125,10 @@ import com.google.inject.Injector;
  */
 public class OCLConsolePage extends Page
 {
-    private static int BUNDLE_AVAILABLE = Bundle.RESOLVED | Bundle.ACTIVE | Bundle.STARTING;
-	
-    /**
-     * Queries whether a bundle is available.
-     * 
-     * @param bundle a bundle
-     * @return whether it is active or resolved
-     */
-    static boolean isAvailable(Bundle bundle) {
-        return (bundle.getState() & BUNDLE_AVAILABLE) != 0;
-    }
-    
-/*    private class DropDownAction extends Action implements IMenuCreator {
-        private Menu menu;
-        private List<IAction> actions = new java.util.ArrayList<IAction>();
-        
-        private IPropertyChangeListener listener = new IPropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent event) {
-                if (IAction.CHECKED.equals(event.getProperty())) {
-                    if (Boolean.TRUE.equals(event.getNewValue())) {
-                        actionChecked((IAction) event.getSource());
-                    }
-                }
-            }};
-        
-        DropDownAction() {
-            super();
-            
-            setMenuCreator(this);
-        }
-        
-        public void addAction(IAction action) {
-            actions.add(action);
-            action.addPropertyChangeListener(listener);
-            
-            if (action.isChecked()) {
-                actionChecked(action);
-            }
-        }
-
-        private void actionChecked(IAction action) {
-            setImageDescriptor(action.getImageDescriptor());
-            setText(action.getText());
-        }
-        
-        public Menu getMenu(Control parent) {
-            if (menu == null) {
-                menu = new Menu(parent);
-                
-                for (IAction action : actions) {
-                    addAction(menu, action);
-                }
-            }
-            
-            return menu;
-        }
-        
-        private void addAction(Menu m, IAction action) {
-            ActionContributionItem contrib = new ActionContributionItem(action);
-            contrib.fill(m, -1);
-        }
-        
-        public void dispose() {
-            if (menu != null) {
-                menu.dispose();
-            }
-        }
-        
-        public Menu getMenu(Menu parent) {
-            return null;
-        }
-    } */
-
+	/**
+	 * CancelableEvaluationVisitor refines the EvaluationVisitor to poll the monitor foer cancelation at a variety of significant
+	 * evaluation events, such as feature vists and {@link #getValueFactory()}.
+	 */
     protected static class CancelableEvaluationVisitor extends EvaluationVisitorImpl
     {
 		private final IProgressMonitor monitor;
@@ -222,142 +137,28 @@ public class OCLConsolePage extends Page
 			super(env, evalEnv, modelManager);
 			this.monitor = monitor;
 		}
-
-		protected void checkMonitor() {
-			if (monitor.isCanceled()) {
-				throw new EvaluationHaltedException("Manual termination"); //$NON-NLS-1$
-			}
-		}
 		
 		@Override
-		public EvaluationVisitor createNestedVisitor() {
+		public EvaluationVisitor createNestedEvaluator() {
 			EnvironmentFactory factory = environment.getFactory();
 	    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
 			return new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
 		}
 
 		@Override
-		public Value visitAssociationClassCallExp(AssociationClassCallExp ae) {
-			checkMonitor();
-			return super.visitAssociationClassCallExp(ae);
-		}
-		
-		@Override
-		public Value visitCollectionItem(CollectionItem item) {
-			checkMonitor();
-			return super.visitCollectionItem(item);
-		}
-		
-		@Override
-		public Value visitIterateExp(IterateExp iterateExp) {
-			checkMonitor();
-			return super.visitIterateExp(iterateExp);
-		}
-		
-		@Override
-		public Value visitIteratorExp(IteratorExp iteratorExp) {
-			checkMonitor();
-			return super.visitIteratorExp(iteratorExp);
-		}
-		
-		@Override
-		public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-			checkMonitor();
-			return super.visitOperationCallExp(operationCallExp);
-		}
-		
-		@Override
-		public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
-			checkMonitor();
-			return super.visitPropertyCallExp(propertyCallExp);
-		}
-		
-		@Override
-		public Value visitTupleLiteralPart(TupleLiteralPart tp) {
-			checkMonitor();
-			return super.visitTupleLiteralPart(tp);
-		}
-	}
-    
-    protected static class CancelableMetaModelManager extends MetaModelManager
-    {       
-		private IProgressMonitor monitor = null;
-		private final ValueFactory valueFactory;
-
-		public CancelableMetaModelManager() {
-			this.valueFactory = new PivotValueFactory(this)
-			{		      	
-	        	@Override
-				public BooleanValue booleanValueOf(boolean value) {
-	        		checkMonitor();
-					return super.booleanValueOf(value);
-				}
-
-				@Override
-				public IntegerValue integerValueOf(BigInteger value) {
-	        		checkMonitor();
-					return super.integerValueOf(value);
-				}
-
-				@Override
-	    		public IntegerValue integerValueOf(long value) {
-	        		checkMonitor();
-	    			return super.integerValueOf(value);
-	    		}
-
-				@Override
-				public IntegerValue integerValueOf(String aValue) throws InvalidValueException {
-	        		checkMonitor();
-					return super.integerValueOf(aValue);
-				}
-
-				@Override
-				public RealValue realValueOf(double value) {
-	        		checkMonitor();
-					return super.realValueOf(value);
-				}
-
-				@Override
-				public RealValue realValueOf(BigDecimal value) {
-	        		checkMonitor();
-					return super.realValueOf(value);
-				}
-
-				@Override
-				public RealValue realValueOf(IntegerValue integerValue) {
-	        		checkMonitor();
-					return super.realValueOf(integerValue);
-				}
-
-				@Override
-				public RealValue realValueOf(String aValue) throws InvalidValueException {
-	        		checkMonitor();
-					return super.realValueOf(aValue);
-				}
-
-				@Override
-				public StringValue stringValueOf(String value) {
-	        		checkMonitor();
-					return super.stringValueOf(value);
-				}
-			};
-		}
-
-		protected void checkMonitor() {
-			if ((monitor != null) && monitor.isCanceled()) {
-				throw new EvaluationHaltedException(ConsoleMessages.Result_EvaluationTerminated);
-			}
+		protected EvaluationVisitor getUndecoratedVisitor() {
+			getValueFactory();
+			return super.getUndecoratedVisitor();
 		}
 
 		@Override
 		public ValueFactory getValueFactory() {
-			return valueFactory;
+			if (monitor.isCanceled()) {
+				setCanceled(true);
+			}
+			return super.getValueFactory();
 		}
-
-		public void setMonitor(IProgressMonitor monitor) {
-    		this.monitor = monitor;
-		}
-    }
+	}
 
     protected static class ExceptionValue extends InvalidValueImpl
 	{

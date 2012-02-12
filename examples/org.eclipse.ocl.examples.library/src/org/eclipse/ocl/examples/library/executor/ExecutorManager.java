@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationEnvironment;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluationVisitor;
 import org.eclipse.ocl.examples.domain.evaluation.DomainEvaluator;
 import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
+import org.eclipse.ocl.examples.domain.evaluation.EvaluationHaltedException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidEvaluationException;
 import org.eclipse.ocl.examples.domain.evaluation.InvalidValueException;
 import org.eclipse.ocl.examples.domain.library.LibraryUnaryOperation;
@@ -36,6 +37,11 @@ public abstract class ExecutorManager implements DomainEvaluator
 {	
 	protected final ValueFactory valueFactory;
 //	protected final DomainEvaluationEnvironment evaluationEnvironment;
+
+    /**
+     * Set true by {@link #setCanceled} to terminate execution at next call to {@link #getValuefactory()}.
+     */
+	private boolean isCanceled = false;
 	
 	public ExecutorManager(ValueFactory valueFactory) {
 		this.valueFactory = valueFactory;
@@ -49,7 +55,18 @@ public abstract class ExecutorManager implements DomainEvaluator
 	}
 
 	public ValueFactory getValueFactory() {
+		if (isCanceled) {
+			throw new EvaluationHaltedException("Canceled");
+		}
 		return valueFactory;
+	}
+
+	public boolean isCanceled() {
+		return isCanceled;
+	}
+
+	public void setCanceled(boolean isCanceled) {
+		this.isCanceled = isCanceled;
 	}
 	
 	public DomainType typeOf(Value value, Value... values) {

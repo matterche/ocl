@@ -33,9 +33,22 @@ public interface DomainEvaluator
 
 	/**
 	 * Return the factory for values and indirectly for types.
-	 * @return
+	 * 
+	 * @throws EvaluationHaltedException if evaluation has been canceled.
 	 */
-	ValueFactory getValueFactory();
+	ValueFactory getValueFactory() throws EvaluationHaltedException;
+	
+	/**
+	 * Return true if the evaluation has been canceled.
+	 */
+	boolean isCanceled();
+	
+	/**
+	 * Request cancelation of the current the evaluation, or reset the request for a new evaluation.
+	 * Cancelation occurs by throwing an {@link EvaluationHaltedException} when {@link #getValuefactory()}
+	 * is next invoked. 
+	 */
+	void setCanceled(boolean isCanceled);
 
 	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
 
