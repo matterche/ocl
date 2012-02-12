@@ -221,7 +221,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				pruneDelegates(genModel);
 			}
 		} catch (Exception e) {
-			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to pre-generate" + genModel, new Object[]{e});
+			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to pre-generate " + genModel.getModelPluginID() + " constraints", new Object[]{e});
 			Diagnostic thatDiagnostic = super.doPreGenerate(object, projectType);
 			if (thatDiagnostic.getSeverity() == Diagnostic.OK) {
 				return thisDiagnostic;
@@ -256,7 +256,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			    monitor.worked(1);
 			}
 		} catch (Exception e) {
-			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to generate" + genModel, new Object[]{e});
+			BasicDiagnostic thisDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, getClass().getPackage().getName(), 0, "Failed to generate " + genModel.getModelPluginID() + " tables and bodies", new Object[]{e});
 			Diagnostic thatDiagnostic = super.generateModel(object, monitor);
 			if (thatDiagnostic.getSeverity() == Diagnostic.OK) {
 				return thisDiagnostic;
