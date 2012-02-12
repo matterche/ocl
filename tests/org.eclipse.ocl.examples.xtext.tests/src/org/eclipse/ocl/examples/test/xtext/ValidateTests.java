@@ -17,6 +17,7 @@
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -28,15 +29,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Bag;
 import org.eclipse.ocl.examples.domain.values.impl.BagImpl;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
@@ -54,7 +56,8 @@ public class ValidateTests extends XtextTestCase
 		for (String message : expectedMessage) {
 			expectedMessages.add(message);
 		}
-		Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(testInstance);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic diagnostics = Diagnostician.INSTANCE.validate(testInstance, validationContext);
 		Bag<String> actualMessages = new BagImpl<String>();
 		for (Diagnostic diagnostic : diagnostics.getChildren()) {
 			assertEquals(severity, diagnostic.getSeverity());

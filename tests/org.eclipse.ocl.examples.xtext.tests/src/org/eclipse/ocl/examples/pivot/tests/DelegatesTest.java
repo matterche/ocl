@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
@@ -57,6 +58,7 @@ import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.examples.domain.elements.DomainType;
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -88,7 +90,6 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -133,7 +134,6 @@ public class DelegatesTest extends PivotTestSuite
 	public EClass badClassClass;
 	public EReference companyDetritus;
 
-	public Map<Object, Object> context = new HashMap<Object, Object>();
 	public boolean usedLocalRegistry;
 	//
 	// Test framework
@@ -1316,7 +1316,8 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithoutError(EObject eObject) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		if (validation.getSeverity() != Diagnostic.OK) {
 			List<Diagnostic> diagnostics = validation.getChildren();
 			if (!diagnostics.isEmpty()) {
@@ -1341,7 +1342,8 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateConstraintWithSeverity(String constraintName, int severity, EObject eObject) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1359,7 +1361,8 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithSeverity(String constraintName, int severity, EObject eObject, String messageTemplate, Object... bindings) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
@@ -1371,7 +1374,8 @@ public class DelegatesTest extends PivotTestSuite
 	}
 
 	protected void validateWithDelegationSeverity(String constraintName, int severity, EObject eObject, String source, String messageTemplate, Object... bindings) {
-		Diagnostic validation = PivotDiagnostician.INSTANCE.validate(eObject, context);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, validationContext);
 		assertEquals("Validation of '" + constraintName + "' severity:", severity, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
 		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());

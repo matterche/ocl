@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.pivot.delegate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -31,6 +32,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -40,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
@@ -200,8 +202,9 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	}
 
 	public void validate(EObject eObject) {
-		BasicDiagnostic diagnostics = PivotDiagnostician.INSTANCE.createDefaultDiagnostic(eObject);
-		if (!PivotDiagnostician.INSTANCE.validate(eObject, diagnostics)) {
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		BasicDiagnostic diagnostics = Diagnostician.INSTANCE.createDefaultDiagnostic(eObject);
+		if (!Diagnostician.INSTANCE.validate(eObject, diagnostics, validationContext)) {
 			StringBuilder s = null;
 			for (Diagnostic diagnostic : diagnostics.getChildren()) {
 				if (s == null) {

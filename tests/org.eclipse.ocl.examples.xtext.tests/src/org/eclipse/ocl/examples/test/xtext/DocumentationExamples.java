@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.test.xtext;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -28,8 +29,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -41,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.tests.PivotTestCase;
-import org.eclipse.ocl.examples.pivot.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
@@ -105,14 +107,15 @@ public class DocumentationExamples extends PivotTestCase
 		Object b2Available = queryEval.evaluate(b2Book);
 	    assertFalse((Boolean)b2Available);
 	    
-	    Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
+		Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+	    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 	    assertEquals(3, diagnostics.getChildren().size());
 	    
 	    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
 		b2Available = queryEval.evaluate(b2Book);
 	    assertTrue((Boolean)b2Available);
 	    
-	    diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
+	    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 	    assertEquals(2, diagnostics.getChildren().size());
 	    
 	    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
@@ -157,14 +160,15 @@ public class DocumentationExamples extends PivotTestCase
 			Value b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(b2Available.asBoolean());
 		    
-		    Diagnostic diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
+			Map<Object, Object> validationContext = DomainSubstitutionLabelProvider.createDefaultContext(Diagnostician.INSTANCE);
+		    Diagnostic diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 		    assertEquals(3, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(4));
 			b2Available = queryEval.evaluate(b2Book);
 		    assertTrue(b2Available.asBoolean());
 		    
-		    diagnostics = PivotDiagnostician.INSTANCE.validate(xmiLibrary);
+		    diagnostics = Diagnostician.INSTANCE.validate(xmiLibrary, validationContext);
 		    assertEquals(2, diagnostics.getChildren().size());
 		    
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
