@@ -76,7 +76,7 @@ public class EObjectOperation extends AbstractOperation implements LibraryUnaryO
 		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
 		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariable();
 		nestedEvaluationEnvironment.add(parameterVariables.get(0).getRepresentedParameter(), argumentValue);
 		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
 	}
@@ -88,7 +88,7 @@ public class EObjectOperation extends AbstractOperation implements LibraryUnaryO
 		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
 		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariable();
 		nestedEvaluationEnvironment.add(parameterVariables.get(0).getRepresentedParameter(), firstArgumentValue);
 		nestedEvaluationEnvironment.add(parameterVariables.get(1).getRepresentedParameter(), secondArgumentValue);
 		return nestedEvaluator.evaluate(expressionInOcl.getBodyExpression());
@@ -101,7 +101,7 @@ public class EObjectOperation extends AbstractOperation implements LibraryUnaryO
 		DomainEvaluator nestedEvaluator = evaluator.createNestedEvaluator();
 		DomainEvaluationEnvironment nestedEvaluationEnvironment = nestedEvaluator.getEvaluationEnvironment();
 		nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-		List<Variable> parameterVariables = expressionInOcl.getParameterVariables();
+		List<Variable> parameterVariables = expressionInOcl.getParameterVariable();
 		int iMax = Math.min(parameterVariables.size(), argumentValues.length);
 		for (int i = 0; i < iMax; i++) {
 			nestedEvaluationEnvironment.add(parameterVariables.get(i).getRepresentedParameter(), argumentValues[i]);

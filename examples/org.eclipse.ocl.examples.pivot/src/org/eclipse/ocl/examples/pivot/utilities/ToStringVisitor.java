@@ -201,7 +201,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			appendName(object);
 			if (object instanceof TemplateableElement) {
 				TemplateableElement templateableElement = (TemplateableElement) object;
-				appendTemplateBindings(templateableElement.getTemplateBindings());
+				appendTemplateBindings(templateableElement.getTemplateBinding());
 				appendTemplateSignature(templateableElement.getOwnedTemplateSignature());
 			}
 		}
@@ -212,7 +212,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		append("(");
 		boolean comma = false;
 		for (java.util.Iterator<Parameter> iter = operation
-			.getOwnedParameters().iterator(); iter.hasNext();) {
+			.getOwnedParameter().iterator(); iter.hasNext();) {
 			Parameter parm = iter.next();
 
 			if (comma) {
@@ -259,8 +259,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			append("<");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding
-					.getParameterSubstitutions()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					append(prefix);
 					safeVisit(templateParameterSubstitution.getActual());
 					prefix = ",";
@@ -272,7 +271,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	protected void appendTemplateSignature(TemplateSignature templateSignature) {
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			if (!templateParameters.isEmpty()) {
 				append("<");
 				String prefix = ""; //$NON-NLS-1$
@@ -320,7 +319,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		append("."); //$NON-NLS-1$
 		appendName(ac.getReferredAssociationClass()); //$NON-NLS-1$
 		appendAtPre(ac);
-        List<OclExpression> qualifiers = ac.getQualifiers();
+        List<OclExpression> qualifiers = ac.getQualifier();
 		if (!qualifiers.isEmpty()) {
 			append("[");
 			safeVisit(qualifiers.get(0));
@@ -360,7 +359,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			else {
 				appendName(cls);
 			}
-			appendTemplateBindings(cls.getTemplateBindings());
+			appendTemplateBindings(cls.getTemplateBinding());
 			appendTemplateSignature(cls.getOwnedTemplateSignature());
 		}
 		return null;
@@ -369,8 +368,8 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitClassifierType(ClassifierType object) {
 		appendName(object);
-		if (object.getTemplateBindings().size() > 0) {
-			appendTemplateBindings(object.getTemplateBindings());
+		if (object.getTemplateBinding().size() > 0) {
+			appendTemplateBindings(object.getTemplateBinding());
 		}
 		else if (object.getInstanceType() != null) {
 			append("<");
@@ -419,7 +418,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 				break;
 		}
         boolean isFirst = true;
-		for (CollectionLiteralPart part : cl.getParts()) {
+		for (CollectionLiteralPart part : cl.getPart()) {
 			if (!isFirst) {
 				append(", ");
 			}
@@ -446,7 +445,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitCollectionType(CollectionType object) {
 		appendName(object);
-		appendTemplateBindings(object.getTemplateBindings());
+		appendTemplateBindings(object.getTemplateBinding());
 		appendTemplateSignature(object.getOwnedTemplateSignature());
 		return null;
 	}
@@ -456,7 +455,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	 */
 	@Override
 	public String visitConstraint(Constraint constraint) {
-		List<? extends EObject> constrained = constraint.getConstrainedElements();
+		List<? extends EObject> constrained = constraint.getConstrainedElement();
 		if (!constrained.isEmpty()) {
 			EObject elem = constrained.get(0);
 			append("context "); //$NON-NLS-1$
@@ -505,7 +504,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		appendQualifiedName(constructorExp.getType());
 		append("{");//$NON-NLS-1$
 		String prefix = "";
-		for (ConstructorPart part : constructorExp.getParts()) {
+		for (ConstructorPart part : constructorExp.getPart()) {
 			append(prefix);
             safeVisit(part);
 			prefix = ", ";//$NON-NLS-1$
@@ -570,7 +569,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
         T resultResult = safeVisit(resultVar);
         
         List<T> parameterResults;
-        List<Variable> parameters = expression.getParameterVariables();
+        List<Variable> parameters = expression.getParameterVariable();
         
         if (parameters.isEmpty()) {
             parameterResults = Collections.emptyList();
@@ -645,7 +644,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		appendName(callExp.getReferredIteration());
 		append("("); //$NON-NLS-1$
 		boolean isFirst = true;
-		for (Variable variable : callExp.getIterators()) {
+		for (Variable variable : callExp.getIterator()) {
 			if (!isFirst) {
 				append(", ");
 			}
@@ -663,11 +662,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitIteration(Iteration iteration) {
 		appendQualifiedName(iteration.getOwningType(), ".", iteration);
-		appendTemplateBindings(iteration.getTemplateBindings());
+		appendTemplateBindings(iteration.getTemplateBinding());
 		appendTemplateSignature(iteration.getOwnedTemplateSignature());
 		append("(");
 		boolean isFirst = true;
-		for (Parameter parameter : iteration.getOwnedIterators()) {
+		for (Parameter parameter : iteration.getOwnedIterator()) {
 			if (!isFirst) {
 				append(", ");
 			}
@@ -675,7 +674,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			isFirst = false;
 		}
 		isFirst = true;
-		for (Parameter parameter : iteration.getOwnedAccumulators()) {
+		for (Parameter parameter : iteration.getOwnedAccumulator()) {
 			if (!isFirst) {
 				append(", ");
 			}
@@ -703,7 +702,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		appendName(callExp.getReferredIteration());
 		append("("); //$NON-NLS-1$
 		boolean isFirst = true;
-		for (Variable variable : callExp.getIterators()) {
+		for (Variable variable : callExp.getIterator()) {
 			if (!isFirst) {
 				append(", ");
 			}
@@ -726,7 +725,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			appendTemplateSignature(lambda.getOwnedTemplateSignature());
 			append("(");
 			boolean isFirst = true;
-			for (Type parameterType : lambda.getParameterTypes()) {
+			for (Type parameterType : lambda.getParameterType()) {
 				if (!isFirst) {
 					append(",");
 				}
@@ -770,7 +769,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		}
 		append("(");
 		String prefix = "";
-		for (OclExpression argument : messageExp.getArguments()) {
+		for (OclExpression argument : messageExp.getArgument()) {
 			append(prefix);
             safeVisit(argument);
             prefix = ", "; //$NON-NLS-1$
@@ -797,11 +796,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitOperation(Operation operation) {
 		appendQualifiedName(operation.getOwningType(), ".", operation);
-		appendTemplateBindings(operation.getTemplateBindings());
+		appendTemplateBindings(operation.getTemplateBinding());
 		appendTemplateSignature(operation.getOwnedTemplateSignature());
 		append("(");
 		boolean isFirst = true;
-		for (Parameter parameter : operation.getOwnedParameters()) {
+		for (Parameter parameter : operation.getOwnedParameter()) {
 			if (!isFirst) {
 				append(",");
 			}
@@ -849,7 +848,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		}
 		append("(");
 		String prefix = "";//$NON-NLS-1$
-		for (OclExpression argument : oc.getArguments()) {
+		for (OclExpression argument : oc.getArgument()) {
 			append(prefix);
 			safeVisit(argument);
 			prefix = ", ";//$NON-NLS-1$
@@ -909,7 +908,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
 		appendName(property);
 		appendAtPre(pc);
-        List<OclExpression> qualifiers = pc.getQualifiers();
+        List<OclExpression> qualifiers = pc.getQualifier();
 		if (!qualifiers.isEmpty()) {
 			append("["); //$NON-NLS-1$
 			String prefix = ""; //$NON-NLS-1$
@@ -1002,7 +1001,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	public String visitTupleLiteralExp(TupleLiteralExp literalExp) {
 		append("Tuple{");//$NON-NLS-1$
 		String prefix = "";
-		for (TupleLiteralPart part : literalExp.getParts()) {
+		for (TupleLiteralPart part : literalExp.getPart()) {
 			append(prefix);
             safeVisit(part);
 			prefix = ", ";//$NON-NLS-1$
@@ -1035,7 +1034,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		appendName(object);
 		append("(");
 		String prefix = "";
-		for (TypedElement part : object.getOwnedAttributes()) {
+		for (TypedElement part : object.getOwnedAttribute()) {
 			append(prefix);
 			appendName(part);
 			append(":");

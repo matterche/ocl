@@ -46,7 +46,7 @@ public class PackageDeclarationScopeAdapter extends ElementCSScopeAdapter
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(null, metaModelManager.getLocalPackages(pkg));
 				environmentView.addNamedElements(null, metaModelManager.getLocalClasses(pkg));
-//				environmentView.addNamedElements(pkge.getOwnedPrecedences());
+//				environmentView.addNamedElements(pkge.getOwnedPrecedence());
 			}
 		}
 		return scopeView.getOuterScope();

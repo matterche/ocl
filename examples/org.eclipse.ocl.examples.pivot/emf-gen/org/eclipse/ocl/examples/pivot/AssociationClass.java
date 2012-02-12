@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +54,6 @@ public interface AssociationClass
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!AssociationClass!unownedAttribute'"
 	 * @generated
 	 */
-	EList<Property> getUnownedAttributes();
+	EList<Property> getUnownedAttribute();
 
 } // AssociationClass

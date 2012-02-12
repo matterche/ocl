@@ -37,12 +37,12 @@ public class EcoreExecutorPackage extends ExecutorPackage
 		return ePackage;
 	}
 
-	public Iterable<ExecutorType> getOwnedTypes() {
+	public Iterable<ExecutorType> getOwnedType() {
 		return new ArrayIterable<ExecutorType>(types);
 	}
 
 	public ExecutorType getType(String typeName) {
-		for (ExecutorType type: getOwnedTypes()) {
+		for (ExecutorType type: getOwnedType()) {
 			if (type.getName().equals(typeName)) {
 				return type;
 			}

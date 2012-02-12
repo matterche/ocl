@@ -42,9 +42,9 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#getOwnedRules <em>Owned Rule</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#isStatic <em>Is Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#getOwnedAnnotations <em>Owned Annotation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,14 +75,14 @@ public abstract class NamedElementImpl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedRules() <em>Owned Rule</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedRule() <em>Owned Rule</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRules()
+	 * @see #getOwnedRule()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedRules;
+	protected EList<Constraint> ownedRule;
 
 	/**
 	 * The default value of the '{@link #isStatic() <em>Is Static</em>}' attribute.
@@ -105,14 +105,14 @@ public abstract class NamedElementImpl
 	protected static final int IS_STATIC_EFLAG = 1 << 8;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAnnotations() <em>Owned Annotation</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAnnotations()
+	 * @see #getOwnedAnnotation()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Annotation> ownedAnnotations;
+	protected EList<Annotation> ownedAnnotation;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,22 +138,9 @@ public abstract class NamedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Annotation> getOwnedAnnotations() {
-		if (ownedAnnotations == null)
-		{
-			ownedAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION);
-		}
-		return ownedAnnotations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Annotation createOwnedAnnotation() {
 		Annotation newOwnedAnnotation = (Annotation) create(PivotPackage.Literals.ANNOTATION);
-		getOwnedAnnotations().add(newOwnedAnnotation);
+		getOwnedAnnotation().add(newOwnedAnnotation);
 		return newOwnedAnnotation;
 	}
 
@@ -169,7 +156,7 @@ public abstract class NamedElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRule()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -200,12 +187,13 @@ public abstract class NamedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Constraint> getOwnedRules() {
-		if (ownedRules == null)
+	public EList<Constraint> getOwnedRule()
+	{
+		if (ownedRule == null)
 		{
-			ownedRules = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE, PivotPackage.CONSTRAINT__CONTEXT);
+			ownedRule = new EObjectContainmentWithInverseEList<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE, PivotPackage.CONSTRAINT__CONTEXT);
 		}
-		return ownedRules;
+		return ownedRule;
 	}
 
 	/**
@@ -215,7 +203,7 @@ public abstract class NamedElementImpl
 	 */
 	public Constraint createOwnedRule() {
 		Constraint newOwnedRule = (Constraint) create(PivotPackage.Literals.CONSTRAINT);
-		getOwnedRules().add(newOwnedRule);
+		getOwnedRule().add(newOwnedRule);
 		return newOwnedRule;
 	}
 
@@ -245,17 +233,31 @@ public abstract class NamedElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Annotation> getOwnedAnnotation()
+	{
+		if (ownedAnnotation == null)
+		{
+			ownedAnnotation = new EObjectContainmentEList<Annotation>(Annotation.class, this, PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION);
+		}
+		return ownedAnnotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -270,15 +272,15 @@ public abstract class NamedElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.NAMED_ELEMENT__NAME:
 				return getName();
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.NAMED_ELEMENT__IS_STATIC:
 				return isStatic();
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -294,22 +296,22 @@ public abstract class NamedElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.NAMED_ELEMENT__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -325,19 +327,19 @@ public abstract class NamedElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.NAMED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.NAMED_ELEMENT__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -353,15 +355,15 @@ public abstract class NamedElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.NAMED_ELEMENT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.NAMED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.NAMED_ELEMENT__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.NAMED_ELEMENT__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

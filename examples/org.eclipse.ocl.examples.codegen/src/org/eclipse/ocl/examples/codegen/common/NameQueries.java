@@ -142,7 +142,7 @@ public class NameQueries
 		if (element instanceof Operation) {
 			int sameNames = 0;
 			int myIndex = 0;
-			for (Operation operation : ((Operation)element).getOwningType().getOwnedOperations()) {
+			for (Operation operation : ((Operation)element).getOwningType().getOwnedOperation()) {
 				String rawName = rawEncodeName(operation.getName());
 				if (rawName.equals(rawEncodeName)) {
 					if (operation == element) {

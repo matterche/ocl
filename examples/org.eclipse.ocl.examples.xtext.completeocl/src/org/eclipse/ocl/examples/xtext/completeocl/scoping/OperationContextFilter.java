@@ -54,7 +54,7 @@ public class OperationContextFilter implements EnvironmentView.Filter
 			return false;
 		}
 		List<VariableCS> contextParameters = csOperationContext.getParameters();
-		List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+		List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 		int iMax = contextParameters.size();
 		if (iMax != candidateParameters.size()) {
 			return false;

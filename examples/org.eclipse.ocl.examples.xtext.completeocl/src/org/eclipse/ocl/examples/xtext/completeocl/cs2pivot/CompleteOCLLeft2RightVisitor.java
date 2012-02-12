@@ -92,16 +92,16 @@ public class CompleteOCLLeft2RightVisitor
 			else if (contextDecl instanceof OperationContextDeclCS) {
 				OperationContextDeclCS csOperationContextDecl = (OperationContextDeclCS)contextDecl;
 				Operation contextOperation = csOperationContextDecl.getOperation();
-		        pivotSpecification.getParameterVariables().clear();
+		        pivotSpecification.getParameterVariable().clear();
 				if ((contextOperation != null) && !contextOperation.eIsProxy()) {
 					context.setType(contextVariable, contextOperation.getOwningType());
-			        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+			        for (Parameter parameter : contextOperation.getOwnedParameter()) {
 						if ((parameter != null) && !parameter.eIsProxy()) {
 					        Variable param = PivotFactory.eINSTANCE.createVariable();
 					        param.setName(parameter.getName());
 							context.setTypeWithMultiplicity(param, parameter);
 					        param.setRepresentedParameter(parameter);
-					        pivotSpecification.getParameterVariables().add(param);
+					        pivotSpecification.getParameterVariable().add(param);
 						}
 			        }
 				}
@@ -132,7 +132,7 @@ public class CompleteOCLLeft2RightVisitor
 			}
 //			NamedElement pivotObject = PivotUtil.getPivot(NamedElement.class, contextDecl);
 //			if (pivotObject != null) {
-//				pivotObject.getOwnedRules().add(pivotConstraint);
+//				pivotObject.getOwnedRule().add(pivotConstraint);
 //			}
 		}
 		return pivotConstraint;
@@ -177,13 +177,13 @@ public class CompleteOCLLeft2RightVisitor
 		String selfVariableName = Environment.SELF_VARIABLE_NAME;
 		if (contextOperation != null) {
 			context.setType(contextVariable, contextOperation.getOwningType());
-	        pivotSpecification.getParameterVariables().clear();
-	        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+	        pivotSpecification.getParameterVariable().clear();
+	        for (Parameter parameter : contextOperation.getOwnedParameter()) {
 		        Variable param = PivotFactory.eINSTANCE.createVariable();
 		        param.setName(parameter.getName());
 		        param.setType(parameter.getType());
 		        param.setRepresentedParameter(parameter);
-		        pivotSpecification.getParameterVariables().add(param);
+		        pivotSpecification.getParameterVariable().add(param);
 	        }
 	/*	       if (csConstraint instanceof PostCS) {
 				Variable resultVariable = pivotSpecification.getResultVariable();
@@ -206,7 +206,7 @@ public class CompleteOCLLeft2RightVisitor
 			context.setType(pivotSpecification, bodyExpression.getType());
 		}
 		if (contextFeature != null) {
-			contextFeature.getOwnedRules().add(pivotConstraint);
+			contextFeature.getOwnedRule().add(pivotConstraint);
 		}
 		return contextFeature;
 	}

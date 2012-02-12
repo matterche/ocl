@@ -152,7 +152,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitCollectionLiteralExp(CollectionLiteralExp object) {
 		delegate.appendName(object.getType(), context.getReservedNames());
-		List<CollectionLiteralPart> parts = object.getParts();
+		List<CollectionLiteralPart> parts = object.getPart();
 		if (parts.isEmpty()) {
 			delegate.append("{}");
 		}
@@ -217,7 +217,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		delegate.appendQualifiedName(object.getType());
 		delegate.push("{", "");
 		String prefix = ""; //$NON-NLS-1$
-		for (ConstructorPart part : object.getParts()) {
+		for (ConstructorPart part : object.getPart()) {
 			delegate.append(prefix);
 			safeVisit(part);
 			prefix = ", ";
@@ -277,7 +277,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitIterateExp(IterateExp object) {
-		List<Variable> iterators = object.getIterators();
+		List<Variable> iterators = object.getIterator();
 		Operation referredOperation = object.getReferredIteration();
 		appendSourceNavigation(object);
 		delegate.appendName(referredOperation);
@@ -313,7 +313,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitIteratorExp(IteratorExp object) {
 		Iteration referredIteration = object.getReferredIteration();
-		List<Variable> iterators = object.getIterators();
+		List<Variable> iterators = object.getIterator();
 		appendSourceNavigation(object);
 		if (object.isImplicit()) {
 			assert referredIteration.getName().equals("collect");
@@ -383,7 +383,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitOperationCallExp(OperationCallExp object) {
 		OclExpression source = object.getSource();
-		List<OclExpression> arguments = object.getArguments();
+		List<OclExpression> arguments = object.getArgument();
 		Operation referredOperation = object.getReferredOperation();
 		Precedence precedence = referredOperation != null ? referredOperation.getPrecedence() : null;
 		if (precedence == null) {
@@ -465,7 +465,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		delegate.append("Tuple");
 		delegate.push("{", "");
 		String prefix = ""; //$NON-NLS-1$
-		for (TupleLiteralPart part : object.getParts()) {
+		for (TupleLiteralPart part : object.getPart()) {
 			delegate.append(prefix);
 			safeVisit(part);
 			prefix = ", ";

@@ -65,7 +65,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl#getArguments <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl#getReferredOperation <em>Referred Operation</em>}</li>
  * </ul>
  * </p>
@@ -77,14 +77,14 @@ public class OperationCallExpImpl
 		implements OperationCallExp {
 
 	/**
-	 * The cached value of the '{@link #getArguments() <em>Argument</em>}' containment reference list.
+	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArguments()
+	 * @see #getArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OclExpression> arguments;
+	protected EList<OclExpression> argument;
 
 	/**
 	 * The cached value of the '{@link #getReferredOperation() <em>Referred Operation</em>}' reference.
@@ -120,12 +120,13 @@ public class OperationCallExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OclExpression> getArguments() {
-		if (arguments == null)
+	public EList<OclExpression> getArgument()
+	{
+		if (argument == null)
 		{
-			arguments = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
+			argument = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
 		}
-		return arguments;
+		return argument;
 	}
 
 	/**
@@ -135,7 +136,7 @@ public class OperationCallExpImpl
 	 */
 	public OclExpression createArgument(EClass eClass) {
 		OclExpression newArgument = (OclExpression) create(eClass);
-		getArguments().add(newArgument);
+		getArgument().add(newArgument);
 		return newArgument;
 	}
 
@@ -225,15 +226,15 @@ public class OperationCallExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
 				return basicSetSource(null, msgs);
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -248,15 +249,15 @@ public class OperationCallExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return getName();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
 				return isStatic();
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -267,7 +268,7 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return getArguments();
+				return getArgument();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				if (resolve) return getReferredOperation();
 				return basicGetReferredOperation();
@@ -286,22 +287,22 @@ public class OperationCallExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				setType((Type)newValue);
@@ -316,8 +317,8 @@ public class OperationCallExpImpl
 				setIsPre((Boolean)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends OclExpression>)newValue);
+				getArgument().clear();
+				getArgument().addAll((Collection<? extends OclExpression>)newValue);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				setReferredOperation((Operation)newValue);
@@ -336,19 +337,19 @@ public class OperationCallExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				setType((Type)null);
@@ -363,7 +364,7 @@ public class OperationCallExpImpl
 				setIsPre(IS_PRE_EDEFAULT);
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				getArguments().clear();
+				getArgument().clear();
 				return;
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				setReferredOperation((Operation)null);
@@ -382,15 +383,15 @@ public class OperationCallExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
@@ -400,7 +401,7 @@ public class OperationCallExpImpl
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.OPERATION_CALL_EXP__ARGUMENT:
-				return arguments != null && !arguments.isEmpty();
+				return argument != null && !argument.isEmpty();
 			case PivotPackage.OPERATION_CALL_EXP__REFERRED_OPERATION:
 				return referredOperation != null;
 		}

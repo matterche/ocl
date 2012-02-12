@@ -36,19 +36,19 @@ public class IterateExpScopeAdapter extends AbstractPivotScopeAdapter
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
 			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
-			environmentView.addElements(targetExpression.getIterators());
+			environmentView.addElements(targetExpression.getIterator());
 			environmentView.addNamedElement(targetExpression.getResult());
 		}
 		else if (containmentFeature == PivotPackage.Literals.ITERATE_EXP__RESULT) {
 			OclExpression source = targetExpression.getSource();
-			environmentView.addElements(targetExpression.getIterators());
+			environmentView.addElements(targetExpression.getIterator());
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
 			OclExpression source = targetExpression.getSource();
 			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
-			for (Variable iterator : targetExpression.getIterators()) {
+			for (Variable iterator : targetExpression.getIterator()) {
 				environmentView.addNamedElement(iterator);
 				if (iterator == child) {
 					break;

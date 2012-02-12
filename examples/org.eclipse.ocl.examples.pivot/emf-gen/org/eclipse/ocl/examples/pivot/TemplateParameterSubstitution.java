@@ -141,7 +141,7 @@ public interface TemplateParameterSubstitution
 
 	/**
 	 * Returns the value of the '<em><b>Template Binding</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions <em>Parameter Substitution</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution <em>Parameter Substitution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -150,7 +150,7 @@ public interface TemplateParameterSubstitution
 	 * @return the value of the '<em>Template Binding</em>' container reference.
 	 * @see #setTemplateBinding(TemplateBinding)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_TemplateBinding()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution
 	 * @model opposite="parameterSubstitution" required="true" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameterSubstitution!templateBinding'"
 	 * @generated

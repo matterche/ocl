@@ -91,11 +91,11 @@ public class OperationFilter extends AbstractOperationFilter
 			return null;
 		}
 		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
-		bindings.put(candidateIteration.getOwningType().getOwnedTemplateSignature().getOwnedParameters().get(0), ((CollectionType)sourceType).getElementType());
+		bindings.put(candidateIteration.getOwningType().getOwnedTemplateSignature().getOwnedParameter().get(0), ((CollectionType)sourceType).getElementType());
 		PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
 		TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			int accIndex = 0;
 			for (NavigatingArgCS csArgument : csArguments) {
 				if (csArgument.getRole() == NavigationRole.ACCUMULATOR) {
@@ -129,12 +129,12 @@ public class OperationFilter extends AbstractOperationFilter
 				elementType = metaModelManager.getOclInvalidType();
 			}
 			bindings = new HashMap<TemplateParameter, ParameterableElement>();
-			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
+			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameter().get(0), elementType);
 		}			
 		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, ParameterableElement>();
 				}
@@ -147,7 +147,7 @@ public class OperationFilter extends AbstractOperationFilter
 	@Override
 	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		List<Parameter> parameters = ((Operation)eObject).getOwnedParameters();
+		List<Parameter> parameters = ((Operation)eObject).getOwnedParameter();
 		int iMax = parameters.size();
 		if (iMax > 0) {
 			for (int i = 0; i < iMax; i++) {
@@ -167,11 +167,11 @@ public class OperationFilter extends AbstractOperationFilter
 	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {
 			Iteration candidateIteration = (Iteration)eObject;
-			int iteratorCount = candidateIteration.getOwnedIterators().size();
+			int iteratorCount = candidateIteration.getOwnedIterator().size();
 			if ((0 < iterators) && (iteratorCount != iterators)) {
 				return false;
 			}
-			int accumulatorCount = candidateIteration.getOwnedAccumulators().size();
+			int accumulatorCount = candidateIteration.getOwnedAccumulator().size();
 			if (accumulatorCount != accumulators) {
 				return false;
 			}
@@ -189,7 +189,7 @@ public class OperationFilter extends AbstractOperationFilter
 				return false;
 			}
 			Operation candidateOperation = (Operation)eObject;
-			List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (expressions != candidateParameters.size()) {
 				return false;
 			}

@@ -60,7 +60,7 @@ public class Pivot2UMLReferenceVisitor
 	public EObject visitAnnotation(Annotation pivotAnnotation) {
 		EAnnotation eAnnotation = context.getCreated(EAnnotation.class, pivotAnnotation);
 		eAnnotation.getReferences().clear();
-		for (Element pivotReference : pivotAnnotation.getReferences()) {
+		for (Element pivotReference : pivotAnnotation.getReference()) {
 			EObject eReference = context.getCreated(EObject.class, pivotReference);
 			eAnnotation.getReferences().add(eReference);
 		}
@@ -70,7 +70,7 @@ public class Pivot2UMLReferenceVisitor
 	@Override
 	public EObject visitClass(Class pivotClass) {
 		org.eclipse.uml2.uml.Class umlClass = context.getCreated(org.eclipse.uml2.uml.Class.class, pivotClass);
-		safeVisitAll(umlClass.getSuperClasses(), pivotClass.getSuperClasses());
+		safeVisitAll(umlClass.getSuperClasses(), pivotClass.getSuperClass());
 		return umlClass;
 	}
 
@@ -83,7 +83,7 @@ public class Pivot2UMLReferenceVisitor
 	@Override
 	public EObject visitOperation(Operation pivotOperation) {
 		org.eclipse.uml2.uml.Operation umlOperation = context.getCreated(org.eclipse.uml2.uml.Operation.class, pivotOperation);
-		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedExceptions());
+		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedException());
 		Type pivotType = pivotOperation.getType();
 		if (pivotType == null) {
 			return null;				// Occurs for Operation return type
@@ -164,7 +164,7 @@ public class Pivot2UMLReferenceVisitor
 	@Override
 	public EObject visitTypeTemplateParameter(TypeTemplateParameter pivotTypeTemplateParameter) {
 //		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = context.getCreated(org.eclipse.uml2.uml.ClassifierTemplateParameter.class, pivotTypeTemplateParameter);
-//		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingTypes()) {
+//		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingType()) {
 //			EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 //			umlTypeParameter.getEBounds().add(eGenericType);
 //		}

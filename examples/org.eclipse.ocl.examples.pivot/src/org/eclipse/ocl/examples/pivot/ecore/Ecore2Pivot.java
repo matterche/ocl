@@ -451,7 +451,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		pivotRoot = metaModelManager.createPackage(pivotURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
-		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
+		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackage();
 		for (EObject eObject : ecoreContents) {
 			Object pivotElement = declarationPass.doInPackageSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
@@ -537,7 +537,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 /*	protected void refreshAnnotation(NamedElement pivotElement, String key, String value) {
 		String source = PIVOT_URI;
 		Annotation pivotAnnotation = null;
-		for (Annotation annotation : pivotElement.getOwnedAnnotations()) {
+		for (Annotation annotation : pivotElement.getOwnedAnnotation()) {
 			if (annotation.getName().equals(source)) {
 				pivotAnnotation = annotation;
 				break;
@@ -546,12 +546,12 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		if (pivotAnnotation == null) {
 			pivotAnnotation = PivotFactory.eINSTANCE.createAnnotation();
 			pivotAnnotation.setName(source);
-			pivotElement.getOwnedAnnotations().add(pivotAnnotation);
+			pivotElement.getOwnedAnnotation().add(pivotAnnotation);
 		}
 		Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
 		pivotDetail.setName(key);
-		pivotDetail.getValues().add(value);
-		pivotAnnotation.getOwnedDetails().add(pivotDetail);
+		pivotDetail.getValue().add(value);
+		pivotAnnotation.getOwnedDetail().add(pivotDetail);
 	} */
 
 	protected <T extends NamedElement> T refreshNamedElement(Class<T> pivotClass,

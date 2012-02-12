@@ -383,10 +383,10 @@ public class GenPackageQueries
 	
 	protected void mergeLibrary(MetaModelManager metaModelManager, org.eclipse.ocl.examples.pivot.Package primaryPackage) {
 //		primaryPackage.setName("ocl");
-		List<Type> primaryTypes = primaryPackage.getOwnedTypes();
+		List<Type> primaryTypes = primaryPackage.getOwnedType();
 		for (Library library : metaModelManager.getLibraries()) {
 			Map<Type,Type> typeMap = new HashMap<Type,Type>();
-			ArrayList<Type> libraryTypes = new ArrayList<Type>(library.getOwnedTypes());
+			ArrayList<Type> libraryTypes = new ArrayList<Type>(library.getOwnedType());
 			for (Type secondaryType : libraryTypes) {
 				Type primaryType = PivotUtil.getNamedElement(primaryTypes, secondaryType.getName());
 				if (primaryType != null) {
@@ -399,8 +399,8 @@ public class GenPackageQueries
 			for (Type secondaryType : libraryTypes) {
 				Type primaryType = typeMap.get(secondaryType);
 				if (primaryType != null) {
-					List<Type> primarySuperClasses = primaryType.getSuperClasses();
-					for (Type secondarySuperClass : secondaryType.getSuperClasses()) {
+					List<Type> primarySuperClasses = primaryType.getSuperClass();
+					for (Type secondarySuperClass : secondaryType.getSuperClass()) {
 						Type primarySuperClass = typeMap.get(secondarySuperClass);
 						if (primarySuperClass == null) {
 							primarySuperClasses.add(secondarySuperClass);
@@ -409,14 +409,14 @@ public class GenPackageQueries
 							primarySuperClasses.add(primarySuperClass);
 						}
 					}
-					primaryType.getOwnedOperations().addAll(secondaryType.getOwnedOperations());
-					primaryType.getOwnedAttributes().addAll(secondaryType.getOwnedAttributes());
+					primaryType.getOwnedOperation().addAll(secondaryType.getOwnedOperation());
+					primaryType.getOwnedAttribute().addAll(secondaryType.getOwnedAttribute());
 				}
 			}
 		}
 		for (Type primaryType : primaryTypes) {
 			if (primaryType instanceof Type) {
-				List<Type> primarySuperClasses = primaryType.getSuperClasses();
+				List<Type> primarySuperClasses = primaryType.getSuperClass();
 				Type classType = PivotUtil.getNamedElement(primarySuperClasses, "Class");
 				Type classifierType = PivotUtil.getNamedElement(primarySuperClasses, "Classifier");
 				if ((classType != null) && (classifierType != null)) {

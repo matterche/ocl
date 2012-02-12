@@ -38,7 +38,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 //	@Override
 //	public Object caseEAnnotation(EAnnotation eObject) {
 //		Annotation pivotElement = converter.getCreated(Annotation.class, eObject);
-//		doSwitchAll(Element.class, pivotElement.getReferences(), eObject.getReferences());
+//		doSwitchAll(Element.class, pivotElement.getReference(), eObject.getReferences());
 //		return null;
 //	}
 	
@@ -60,7 +60,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 				org.eclipse.uml2.uml.Type umlContainerType = umlOpposite.getType();
 				if (umlContainerType != null) {
 					Type pivotContainerType = converter.getPivotType(umlContainerType);
-					pivotContainerType.getOwnedAttributes().add(pivotElement);
+					pivotContainerType.getOwnedAttribute().add(pivotElement);
 				}
 				pivotOpposite.setOpposite(pivotElement);
 			}
@@ -71,14 +71,14 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Class caseClass(org.eclipse.uml2.uml.Class umlClass) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, umlClass);
-		doSwitchAll(Type.class, pivotElement.getSuperClasses(), umlClass.getSuperClasses());
+		doSwitchAll(Type.class, pivotElement.getSuperClass(), umlClass.getSuperClasses());
 		return null;
 	}
 
 	@Override
 	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
 		Operation pivotElement = converter.getCreated(Operation.class, umlOperation);
-		doSwitchAll(Type.class, pivotElement.getRaisedExceptions(), umlOperation.getRaisedExceptions());
+		doSwitchAll(Type.class, pivotElement.getRaisedException(), umlOperation.getRaisedExceptions());
 		return null;
 	}
 
@@ -116,7 +116,7 @@ public class UML2PivotReferenceSwitch extends UMLSwitch<Object>
 //	public Object caseETypeParameter(ETypeParameter eObject) {
 //		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
 //		TypeTemplateParameter typeTemplateParameter = (TypeTemplateParameter) pivotElement.getTemplateParameter();
-//		doSwitchAll(Type.class, typeTemplateParameter.getConstrainingTypes(), eObject.getEBounds());
+//		doSwitchAll(Type.class, typeTemplateParameter.getConstrainingType(), eObject.getEBounds());
 //		return null;
 //	}
 

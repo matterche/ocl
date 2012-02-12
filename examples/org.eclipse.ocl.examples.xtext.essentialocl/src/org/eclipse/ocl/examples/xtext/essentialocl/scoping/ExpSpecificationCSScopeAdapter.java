@@ -39,7 +39,7 @@ public class ExpSpecificationCSScopeAdapter extends ElementCSScopeAdapter
 			if (resultVariable != null) {
 				environmentView.addNamedElement(resultVariable);
 			}
-			for (Variable parameterVariable : pivot.getParameterVariables()) {
+			for (Variable parameterVariable : pivot.getParameterVariable()) {
 				environmentView.addNamedElement(parameterVariable);
 			}
 			Variable contextVariable = pivot.getContextVariable();

@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameters <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate <em>Template</em>}</li>
  * </ul>
  * </p>
@@ -58,7 +58,31 @@ public interface TemplateSignature
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!parameter'"
 	 * @generated
 	 */
-	EList<TemplateParameter> getParameters();
+	EList<TemplateParameter> getParameter();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameter() <em>Parameter</em>}'</li>
+	 * </ul>
+	 * </p>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The formal template parameters that are owned by this template signature.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
+	 * @model opposite="signature" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter'"
+	 * @generated
+	 */
+	EList<TemplateParameter> getOwnedParameter();
 
 	/**
 	 * Returns the value of the '<em><b>Template</b></em>' container reference.
@@ -89,36 +113,12 @@ public interface TemplateSignature
 	void setTemplate(TemplateableElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature <em>Signature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * <ul>
-	 *   <li>'{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameters() <em>Parameter</em>}'</li>
-	 * </ul>
-	 * </p>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The formal template parameters that are owned by this template signature.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
-	 * @model opposite="signature" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateSignature!ownedParameter'"
-	 * @generated
-	 */
-	EList<TemplateParameter> getOwnedParameters();
-
-	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateParameter} and appends it to the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.TemplateParameter} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
-	 * @see #getOwnedParameters()
+	 * @see #getOwnedParameter()
 	 * @generated
 	 */
 	TemplateParameter createOwnedParameter(EClass eClass);
@@ -128,7 +128,7 @@ public interface TemplateSignature
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameter}.
-	 * @see #getOwnedParameters()
+	 * @see #getOwnedParameter()
 	 * @generated
 	 */
 	TemplateParameter createOwnedParameter();

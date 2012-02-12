@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElements <em>Constrained Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElement <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
@@ -62,7 +62,7 @@ public interface Constraint
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!constrainedElement'"
 	 * @generated
 	 */
-	EList<Element> getConstrainedElements();
+	EList<Element> getConstrainedElement();
 
 	/**
 	 * Returns the value of the '<em><b>Specification</b></em>' containment reference.
@@ -103,7 +103,7 @@ public interface Constraint
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules <em>Owned Rule</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRule <em>Owned Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' reference isn't clear,
@@ -113,7 +113,7 @@ public interface Constraint
 	 * @return the value of the '<em>Context</em>' container reference.
 	 * @see #setContext(NamedElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Context()
-	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules
+	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRule
 	 * @model opposite="ownedRule" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Constraint!context'"
 	 * @generated

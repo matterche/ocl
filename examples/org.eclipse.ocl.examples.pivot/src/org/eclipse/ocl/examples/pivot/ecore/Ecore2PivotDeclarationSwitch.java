@@ -91,14 +91,14 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		Annotation pivotElement = PivotFactory.eINSTANCE.createAnnotation();
 		pivotElement.setName(source);
 		converter.addMapping(eObject, pivotElement);
-		doSwitchAll(pivotElement.getOwnedContents(), eObject.getContents());
+		doSwitchAll(pivotElement.getOwnedContent(), eObject.getContents());
 		for (Map.Entry<String, String> entry : details) {
 			String key = entry.getKey();
 			if (!key.equals("documentation") || !GenModelPackage.eNS_URI.equals(source)) {
 				Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
 				pivotDetail.setName(key);
-				pivotDetail.getValues().add(entry.getValue());
-				pivotElement.getOwnedDetails().add(pivotDetail);	// FIXME refreshList
+				pivotDetail.getValue().add(entry.getValue());
+				pivotElement.getOwnedDetail().add(pivotDetail);	// FIXME refreshList
 			}
 		}
 		if (!eObject.getReferences().isEmpty()) {
@@ -122,8 +122,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsAbstract(eObject.isAbstract());			
 		pivotElement.setIsInterface(eObject.isInterface());			
 		doSwitchAll(eObject.getEGenericSuperTypes());
-		List<Operation> pivotOperations = pivotElement.getOwnedOperations();
-		List<Constraint> pivotConstraints = pivotElement.getOwnedRules();
+		List<Operation> pivotOperations = pivotElement.getOwnedOperation();
+		List<Constraint> pivotConstraints = pivotElement.getOwnedRule();
 		for (EOperation eOperation : eObject.getEOperations()) {
 			if (EcoreUtil.isInvariant(eOperation)) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
@@ -135,7 +135,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				if (commentBody != null) {
 					Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 					pivotComment.setBody(commentBody.replaceAll("\\r", ""));
-					constraint.getOwnedComments().add(pivotComment);
+					constraint.getOwnedComment().add(pivotComment);
 				}				
 				EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation);
 				if (eAnnotation == null) {
@@ -148,8 +148,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					value = eAnnotation.getDetails().get("body");
 				}
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-				specification.getBodies().add(value);
-				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+				specification.getBody().add(value);
+				specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				pivotConstraints.add(constraint);
 				converter.addMapping(eOperation, constraint);
@@ -159,7 +159,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				pivotOperations.add((Operation) pivotObject);
 			}
 		}
-		doSwitchAll(pivotElement.getOwnedAttributes(), eObject.getEStructuralFeatures());
+		doSwitchAll(pivotElement.getOwnedAttribute(), eObject.getEStructuralFeatures());
 		converter.queueReference(eObject);				// For superclasses
 		return pivotElement;
 	}
@@ -245,7 +245,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Enumeration caseEEnum(EEnum eObject) {
 		Enumeration pivotElement = converter.refreshNamedElement(Enumeration.class, PivotPackage.Literals.ENUMERATION, eObject);
 		copyDataTypeOrEnum(pivotElement, eObject);
-		doSwitchAll(pivotElement.getOwnedLiterals(), eObject.getELiterals());
+		doSwitchAll(pivotElement.getOwnedLiteral(), eObject.getELiterals());
 		return pivotElement;
 	}
 
@@ -296,7 +296,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
-			List<Constraint> constraints = pivotElement.getOwnedRules();
+			List<Constraint> constraints = pivotElement.getOwnedRule();
 			for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
@@ -329,8 +329,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				if (constraint != null) {
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-					specification.getBodies().add(value);
-					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+					specification.getBody().add(value);
+					specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
@@ -339,7 +339,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			}				
 		}
 		copyTypedMultiplicityElement(pivotElement, eObject, excludedAnnotations);
-		doSwitchAll(pivotElement.getOwnedParameters(), eObject.getEParameters());
+		doSwitchAll(pivotElement.getOwnedParameter(), eObject.getEParameters());
 		copyTemplateSignature(pivotElement, eObject.getETypeParameters());
 		doSwitchAll(eObject.getEGenericExceptions());
 		converter.queueReference(eObject);				// For superclasses
@@ -365,8 +365,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamedElement(pivotElement, eObject);
 		copyAnnotatedElement(pivotElement, eObject, exclusions);
-		doSwitchAll(pivotElement.getNestedPackages(), eObject.getESubpackages());
-		doSwitchAll(pivotElement.getOwnedTypes(), eObject.getEClassifiers());
+		doSwitchAll(pivotElement.getNestedPackage(), eObject.getESubpackages());
+		doSwitchAll(pivotElement.getOwnedType(), eObject.getEClassifiers());
 		return pivotElement;
 	}
 
@@ -421,7 +421,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
-			List<Constraint> constraints = pivotElement.getOwnedRules();
+			List<Constraint> constraints = pivotElement.getOwnedRule();
 			oclAnnotationDetails = oclAnnotation.getDetails();
 			for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
 				String constraintName = entry.getKey();
@@ -434,10 +434,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					constraint.setName(constraintName);
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-					specification.getBodies().add(value);
-					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+					specification.getBody().add(value);
+					specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 					String message = oclAnnotationDetails.get(constraintName + PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX);
-					specification.getMessages().add(message != null ? message : "");
+					specification.getMessage().add(message != null ? message : "");
 					constraint.setSpecification(specification);
 					constraints.add(constraint);
 					if (constraintMap == null) {
@@ -455,7 +455,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			excludedAnnotations.add(ecoreAnnotation);
 			String constraintNameList = ecoreAnnotation.getDetails().get("constraints");
 			if (constraintNameList != null) {
-				List<Constraint> constraints = pivotElement.getOwnedRules();
+				List<Constraint> constraints = pivotElement.getOwnedRule();
 				String[] constraintNames = constraintNameList.split(" ");
 				for (String constraintName : constraintNames) {
 					if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
@@ -495,13 +495,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (!eTypeParameters.isEmpty()) {
 			TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
 			pivotElement.setOwnedTemplateSignature(pivotTemplateSignature);
-			doSwitchAll(pivotTemplateSignature.getOwnedParameters(), eTypeParameters);
+			doSwitchAll(pivotTemplateSignature.getOwnedParameter(), eTypeParameters);
 		}
 	}
 
 	protected void copyAnnotatedElement(NamedElement pivotElement,
 			EModelElement eModelElement, List<EAnnotation> excludedAnnotations) {
-		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotations();
+		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotation();
 		for (EAnnotation eAnnotation : eModelElement.getEAnnotations()) {
 			if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
 				String source = eAnnotation.getSource();
@@ -510,7 +510,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					if (details.containsKey("documentation")) {
 						Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 						pivotComment.setBody(details.get("documentation"));
-						pivotElement.getOwnedComments().add(pivotComment);
+						pivotElement.getOwnedComment().add(pivotComment);
 					}
 				}				
 				if (!eAnnotation.getContents().isEmpty()
@@ -535,7 +535,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
-			List<Constraint> constraints = pivotElement.getOwnedRules();
+			List<Constraint> constraints = pivotElement.getOwnedRule();
 			for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
@@ -556,8 +556,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				if (constraint != null) {
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-					specification.getBodies().add(value);
-					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+					specification.getBody().add(value);
+					specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);

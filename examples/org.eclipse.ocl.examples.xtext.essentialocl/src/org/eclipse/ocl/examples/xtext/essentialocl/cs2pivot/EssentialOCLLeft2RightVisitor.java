@@ -175,8 +175,8 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 /*	private TemplateParameterSubstitution findFormalParameter(TemplateParameter formalTemplateParameter, Type actualType) {
-		for (TemplateBinding actualTemplateBinding : actualType.getTemplateBindings()) {
-			for (TemplateParameterSubstitution actualTemplateParameterSubstitution : actualTemplateBinding.getParameterSubstitutions()) {
+		for (TemplateBinding actualTemplateBinding : actualType.getTemplateBinding()) {
+			for (TemplateParameterSubstitution actualTemplateParameterSubstitution : actualTemplateBinding.getParameterSubstitution()) {
 				TemplateParameter actualFormal = actualTemplateParameterSubstitution.getFormal();
 				if (actualFormal == formalTemplateParameter) {
 					return actualTemplateParameterSubstitution;
@@ -184,7 +184,7 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		if (actualType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class)actualType).getSuperClasses()) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class)actualType).getSuperClass()) {
 				TemplateParameterSubstitution actualTemplateParameterSubstitution = findFormalParameter(formalTemplateParameter, superClass);
 				if (actualTemplateParameterSubstitution != null) {
 					return actualTemplateParameterSubstitution;
@@ -196,19 +196,19 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected Operation getBadOperation() {
 		InvalidType invalidType = metaModelManager.getOclInvalidType();
-		Operation badOperation = PivotUtil.getNamedElement(invalidType.getOwnedOperations(), "oclBadOperation");
+		Operation badOperation = PivotUtil.getNamedElement(invalidType.getOwnedOperation(), "oclBadOperation");
 		return badOperation;
 	}
 
 	protected Property getBadProperty() {
 		InvalidType invalidType = metaModelManager.getOclInvalidType();
-		Property badProperty = PivotUtil.getNamedElement(invalidType.getOwnedAttributes(), "oclBadProperty");
+		Property badProperty = PivotUtil.getNamedElement(invalidType.getOwnedAttribute(), "oclBadProperty");
 		return badProperty;
 	}
 
 /*	private TemplateParameter getFormal(List<TemplateBinding> templateBindings, TemplateParameter templateParameter) {
 		for (TemplateBinding templateBinding : templateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 				if (templateParameter == templateParameterSubstitution.getFormal()) {
 					return templateParameterSubstitution.getActual().getOwningTemplateParameter();
 				}
@@ -227,7 +227,7 @@ public class EssentialOCLLeft2RightVisitor
 				NavigatingExpCS csNavigatingExp = (NavigatingExpCS) eContainer;
 				CallExp iteratorExp = PivotUtil.getPivot(CallExp.class, csNavigatingExp);
 				if (iteratorExp instanceof LoopExp) {
-					for (Variable iterator : ((LoopExp)iteratorExp).getIterators()) {
+					for (Variable iterator : ((LoopExp)iteratorExp).getIterator()) {
 						Type type = iterator.getType();
 						if (metaModelManager.conformsTo(type, namedElementType)) {
 							return iterator;
@@ -307,7 +307,7 @@ public class EssentialOCLLeft2RightVisitor
 //			}
 			ExpCS csName = csArgument.getName();
 			Variable acc = PivotUtil.getPivot(Variable.class, csName);
-			acc.setRepresentedParameter(iteration.getOwnedAccumulators().get(pivotAccumulators.size()));
+			acc.setRepresentedParameter(iteration.getOwnedAccumulator().get(pivotAccumulators.size()));
 			pivotAccumulators.add(acc);
 		}
 		//
@@ -354,7 +354,7 @@ public class EssentialOCLLeft2RightVisitor
 	protected LoopExp resolveIterationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
 		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
 		LoopExp expression;
-		if (iteration.getOwnedAccumulators().size() > 0) {
+		if (iteration.getOwnedAccumulator().size() > 0) {
 			expression = context.refreshModelElement(IterateExp.class, PivotPackage.Literals.ITERATE_EXP, csNamedExp);
 		}
 		else {
@@ -408,7 +408,7 @@ public class EssentialOCLLeft2RightVisitor
 		//
 		//	Explicit iterators
 		//
-		int iterationIteratorsSize = iteration.getOwnedIterators().size();
+		int iterationIteratorsSize = iteration.getOwnedIterator().size();
 		for (int argIndex = 0; argIndex < csNavigatingExp.getArgument().size(); argIndex++) {
 			NavigatingArgCS csArgument = csNavigatingExp.getArgument().get(argIndex);
 			if (csArgument.getRole() != NavigationRole.ITERATOR) {
@@ -432,7 +432,7 @@ public class EssentialOCLLeft2RightVisitor
 			((NameExpCS)csName).setElement(iterator);	// Resolve the reference that is actually a definition
 			context.installPivotUsage(csArgument, iterator);
 			context.refreshName(iterator, varName);
-			iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
+			iterator.setRepresentedParameter(iteration.getOwnedIterator().get(pivotIterators.size()));
 			TypedRefCS csType = csArgument.getOwnedType();
 			Type varType = csType != null ? PivotUtil.getPivot(Type.class, csType) : null;
 			if (varType == null) {
@@ -451,10 +451,10 @@ public class EssentialOCLLeft2RightVisitor
 			Type varType = getSourceElementType(csNavigatingExp, source);
 			context.setType(iterator, varType);
 			iterator.setImplicit(true);
-			iterator.setRepresentedParameter(iteration.getOwnedIterators().get(pivotIterators.size()));
+			iterator.setRepresentedParameter(iteration.getOwnedIterator().get(pivotIterators.size()));
 			pivotIterators.add(iterator);
 		}
-		context.refreshList(expression.getIterators(), pivotIterators);
+		context.refreshList(expression.getIterator(), pivotIterators);
 	}
 
 	/**
@@ -478,12 +478,12 @@ public class EssentialOCLLeft2RightVisitor
 			Iteration resolvedIteration = (Iteration)environmentView.getContent();
 			context.setReferredIteration(iteratorExp, resolvedIteration);
 			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, null); // FIXME reuse
-			Parameter resolvedIterator = resolvedIteration.getOwnedIterators().get(0);
+			Parameter resolvedIterator = resolvedIteration.getOwnedIterator().get(0);
 			iterator.setRepresentedParameter(resolvedIterator);
 			context.refreshName(iterator, "1_");
 			context.setType(iterator, elementType);
 			iterator.setImplicit(true);
-			iteratorExp.getIterators().add(iterator);
+			iteratorExp.getIterator().add(iterator);
 			VariableExp variableExp = context.refreshModelElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, null); // FIXME reuse
 			variableExp.setReferredVariable(iterator);
 			variableExp.setImplicit(true);
@@ -614,7 +614,7 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
-		List<Parameter> ownedParameters = operation.getOwnedParameters();
+		List<Parameter> ownedParameters = operation.getOwnedParameter();
 		int parametersCount = ownedParameters.size();
 		int csArgumentCount = csArguments.size();
 		if (csArgumentCount > 0) {
@@ -639,7 +639,7 @@ public class EssentialOCLLeft2RightVisitor
 			String boundMessage = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNavigatingExp, boundMessage);			
 		}
-		context.refreshList(expression.getArguments(), pivotArguments);
+		context.refreshList(expression.getArgument(), pivotArguments);
 	}
 
 	protected void resolveOperationCall(OperationCallExp expression, OperatorCS csOperator, EnvironmentView.Filter filter) {
@@ -660,7 +660,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		else {
 			StringBuilder s = new StringBuilder();
-			for (OclExpression argument : expression.getArguments()) {
+			for (OclExpression argument : expression.getArgument()) {
 				Type argumentType = argument.getType();
 				if (argumentType instanceof LambdaType) {								// FIXME Modularize this
 					argumentType = ((LambdaType)argumentType).getResultType();
@@ -714,15 +714,15 @@ public class EssentialOCLLeft2RightVisitor
 //		PivotUtil.getAllTemplateParameterSubstitutions(templateBindings, operation);
 		TemplateSignature templateSignature = operation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 				templateBindings.put(templateParameter, null);
 			}
 		}
 		@SuppressWarnings("unused")		// Should never happen; just for debugging
 		boolean isConformant = true;
 		if (callExp instanceof OperationCallExp) {
-			List<Parameter> parameters = operation.getOwnedParameters();
-			List<OclExpression> arguments = ((OperationCallExp)callExp).getArguments();
+			List<Parameter> parameters = operation.getOwnedParameter();
+			List<OclExpression> arguments = ((OperationCallExp)callExp).getArgument();
 			int iMax = Math.min(parameters.size(), arguments.size());
 			for (int i = 0; i < iMax; i++) {
 				Parameter parameter = parameters.get(i);
@@ -738,7 +738,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		else if (callExp instanceof LoopExp) {
 			if (callExp instanceof IterateExp) {
-				List<Parameter> accumulators = ((Iteration)operation).getOwnedAccumulators();
+				List<Parameter> accumulators = ((Iteration)operation).getOwnedAccumulator();
 				if (accumulators.size() >= 1) {
 					Parameter accumulator = accumulators.get(0);
 					Variable result = ((IterateExp)callExp).getResult();
@@ -751,7 +751,7 @@ public class EssentialOCLLeft2RightVisitor
 					}
 				}
 			}
-			List<Parameter> parameters = ((Iteration)operation).getOwnedParameters();
+			List<Parameter> parameters = ((Iteration)operation).getOwnedParameter();
 			if (parameters.size() >= 1) {
 				Parameter parameter = parameters.get(0);
 				OclExpression body = ((LoopExp)callExp).getBody();
@@ -837,7 +837,7 @@ public class EssentialOCLLeft2RightVisitor
 		context.refreshName(expression, csOperator.getName());
 		expression.setSource(source);
 		OclExpression argument = context.visitLeft2Right(OclExpression.class, csOperator.getArgument());
-		context.refreshList(expression.getArguments(), Collections.singletonList(argument));
+		context.refreshList(expression.getArgument(), Collections.singletonList(argument));
 		resolveOperationCall(expression, csOperator, new BinaryOperationFilter(metaModelManager, source.getType(), argument.getType()));
 		return expression;
 	}
@@ -875,7 +875,7 @@ public class EssentialOCLLeft2RightVisitor
 //			return invalidValue;
 //		}
 		CollectionLiteralExp expression = context.refreshModelElement(CollectionLiteralExp.class, PivotPackage.Literals.COLLECTION_LITERAL_EXP, csCollectionLiteralExp);
-		context.refreshPivotList(CollectionLiteralPart.class, expression.getParts(), csCollectionLiteralExp.getOwnedParts());
+		context.refreshPivotList(CollectionLiteralPart.class, expression.getPart(), csCollectionLiteralExp.getOwnedParts());
 		CollectionTypeCS ownedCollectionType = csCollectionLiteralExp.getOwnedType();
 		String collectionTypeName = ownedCollectionType.getName();
 		TypedRefCS ownedElementType = ownedCollectionType.getOwnedType();
@@ -930,7 +930,7 @@ public class EssentialOCLLeft2RightVisitor
 			@SuppressWarnings("unused")
 			ConstructorPart pivotPart = context.visitLeft2Right(ConstructorPart.class, csPart);
 		}
-		context.refreshPivotList(ConstructorPart.class, expression.getParts(), csConstructorExp.getOwnedParts());
+		context.refreshPivotList(ConstructorPart.class, expression.getPart(), csConstructorExp.getOwnedParts());
 		return expression;
 	}
 
@@ -973,7 +973,7 @@ public class EssentialOCLLeft2RightVisitor
 			if (contextVariable == null) {
 				contextVariable = PivotFactory.eINSTANCE.createVariable();
 			}
-	        List<Variable> parameterVariables = pivotElement.getParameterVariables();
+	        List<Variable> parameterVariables = pivotElement.getParameterVariable();
 	        parameterVariables.clear();
 			Type contextType;
 			if (specificationContext instanceof Type) {
@@ -983,7 +983,7 @@ public class EssentialOCLLeft2RightVisitor
 				contextType = PivotUtil.getOwningType((Feature)specificationContext);
 				if (specificationContext instanceof Operation) {
 					context.setType(contextVariable, contextType);
-					for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
+					for (Parameter parameter : ((Operation)specificationContext).getOwnedParameter()) {
 				        Variable param = PivotFactory.eINSTANCE.createVariable();
 				        param.setName(parameter.getName());
 						context.setTypeWithMultiplicity(param, parameter);
@@ -1021,9 +1021,9 @@ public class EssentialOCLLeft2RightVisitor
 	@Override
 	public Element visitExpSpecificationCS(ExpSpecificationCS object) {
 		ExpressionInOcl pivotElement = context.refreshModelElement(ExpressionInOcl.class, PivotPackage.Literals.EXPRESSION_IN_OCL, object);
-		pivotElement.getLanguages().add(PivotConstants.OCL_LANGUAGE);
-		pivotElement.getBodies().add(object.getExprString());
-		pivotElement.getMessages().add(null);
+		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+		pivotElement.getBody().add(object.getExprString());
+		pivotElement.getMessage().add(null);
 		OclExpression expression = context.visitLeft2Right(OclExpression.class, object.getOwnedExpression());
 		pivotElement.setBodyExpression(expression);
 		return pivotElement;
@@ -1315,9 +1315,9 @@ public class EssentialOCLLeft2RightVisitor
 			@SuppressWarnings("unused")
 			TupleLiteralPart pivotPart = context.visitLeft2Right(TupleLiteralPart.class, csPart);
 		}
-		context.refreshPivotList(TupleLiteralPart.class, expression.getParts(), csTupleLiteralExp.getOwnedParts());
+		context.refreshPivotList(TupleLiteralPart.class, expression.getPart(), csTupleLiteralExp.getOwnedParts());
 		String tupleTypeName = "Tuple"; //ownedCollectionType.getName();
-		Type type = metaModelManager.getTupleType(tupleTypeName, expression.getParts(), null);
+		Type type = metaModelManager.getTupleType(tupleTypeName, expression.getPart(), null);
 		context.setType(expression, type);
 		return expression;
 	}

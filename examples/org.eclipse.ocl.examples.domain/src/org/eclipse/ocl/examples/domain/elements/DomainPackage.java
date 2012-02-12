@@ -20,5 +20,5 @@ public interface DomainPackage extends DomainElement
 {
 	String getName();
 	String getNsURI();
-	Iterable<? extends DomainType> getOwnedTypes();
+	Iterable<? extends DomainType> getOwnedType();
 }

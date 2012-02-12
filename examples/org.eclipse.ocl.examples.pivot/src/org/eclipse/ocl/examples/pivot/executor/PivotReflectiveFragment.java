@@ -32,11 +32,11 @@ public class PivotReflectiveFragment extends ReflectiveFragment
 	@Override
 	protected DomainOperation getOperationOverload(DomainOperation baseOperation) {
 		Type pivotType = ((PivotReflectiveType) derivedInheritance).getPivotType();
-		IndexableIterable<? extends DomainType> baseParameterTypes = baseOperation.getParameterTypes();
+		IndexableIterable<? extends DomainType> baseParameterTypes = baseOperation.getParameterType();
 		int iMax = baseParameterTypes.size();
-		for (DomainOperation localOperation : pivotType.getOwnedOperations()) {
+		for (DomainOperation localOperation : pivotType.getOwnedOperation()) {
 			if (localOperation.getName().equals(baseOperation.getName())) {
-				IndexableIterable<? extends DomainType> localParameterTypes = localOperation.getParameterTypes();
+				IndexableIterable<? extends DomainType> localParameterTypes = localOperation.getParameterType();
 				if (iMax == localParameterTypes.size()) {
 					int i = 0;
 					for (; i < iMax; i++) {

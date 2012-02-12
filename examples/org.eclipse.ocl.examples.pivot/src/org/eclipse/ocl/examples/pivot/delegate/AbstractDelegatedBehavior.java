@@ -66,7 +66,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 	};
 
 	public Constraint getConstraintForStereotype(NamedElement namedElement, String name) {
-		for (Constraint constraint : namedElement.getOwnedRules()) {
+		for (Constraint constraint : namedElement.getOwnedRule()) {
 			String stereotype = constraint.getStereotype();
 			if (name.equals(stereotype)) {
 				return constraint;

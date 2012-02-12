@@ -181,17 +181,17 @@ public class DataTypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.DATA_TYPE__NAME:
 				return getName();
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.DATA_TYPE__IS_STATIC:
 				return isStatic();
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				return getTemplateBindings();
+				return getTemplateBinding();
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
@@ -204,11 +204,11 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage();
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
-				return getOwnedAttributes();
+				return getOwnedAttribute();
 			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
-				return getOwnedOperations();
+				return getOwnedOperation();
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				return getSuperClasses();
+				return getSuperClass();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:
@@ -236,26 +236,26 @@ public class DataTypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				getTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				getTemplateBinding().clear();
+				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -273,16 +273,16 @@ public class DataTypeImpl
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
-				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
+				getOwnedAttribute().clear();
+				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
-				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				getOwnedOperation().clear();
+				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				getSuperClasses().clear();
-				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				getSuperClass().clear();
+				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -314,22 +314,22 @@ public class DataTypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.DATA_TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.DATA_TYPE__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
+				getTemplateBinding().clear();
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -347,13 +347,13 @@ public class DataTypeImpl
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
+				getOwnedAttribute().clear();
 				return;
 			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
+				getOwnedOperation().clear();
 				return;
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				getSuperClasses().clear();
+				getSuperClass().clear();
 				return;
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -385,17 +385,17 @@ public class DataTypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.DATA_TYPE__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.DATA_TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.DATA_TYPE__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DATA_TYPE__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.DATA_TYPE__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.DATA_TYPE__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
+				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.DATA_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.DATA_TYPE__UNSPECIALIZED_ELEMENT:
@@ -407,11 +407,11 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__PACKAGE:
 				return getPackage() != null;
 			case PivotPackage.DATA_TYPE__OWNED_ATTRIBUTE:
-				return isSetOwnedAttributes();
+				return isSetOwnedAttribute();
 			case PivotPackage.DATA_TYPE__OWNED_OPERATION:
-				return isSetOwnedOperations();
+				return isSetOwnedOperation();
 			case PivotPackage.DATA_TYPE__SUPER_CLASS:
-				return isSetSuperClasses();
+				return isSetSuperClass();
 			case PivotPackage.DATA_TYPE__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.DATA_TYPE__IS_ABSTRACT:

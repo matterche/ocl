@@ -69,15 +69,15 @@ public class PivotReflectiveType extends ReflectiveType
 	}
 
 	public Iterable<? extends DomainOperation> getLocalOperations() {
-		return type.getOwnedOperations();
+		return type.getOwnedOperation();
 	}
 
 	public Iterable<? extends DomainProperty> getLocalProperties() {
-		return type.getOwnedAttributes();
+		return type.getOwnedAttribute();
 	}
 
 	public Iterable<? extends DomainType> getLocalSuperTypes() {
-		return type.getSuperClasses();
+		return type.getSuperClass();
 	}
 	
 	public final MetaModelManager getMetaModelManager() {

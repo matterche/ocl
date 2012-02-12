@@ -83,7 +83,7 @@ public class CompleteOCLSplitter
 		public EObject caseConstraint(Constraint object) {
 			NamedElement parent = (NamedElement) object.eContainer();
 			NamedElement separateParent = getSeparate(parent);
-			List<Constraint> separateSiblings = separateParent.getOwnedRules();
+			List<Constraint> separateSiblings = separateParent.getOwnedRule();
 			separateSiblings.add(object);
 			return object;
 		}
@@ -92,7 +92,7 @@ public class CompleteOCLSplitter
 		public EObject caseOperation(Operation object) {
 			Type parent = object.getOwningType();
 			Type separateParent = getSeparate(parent);
-			List<Operation> separateSiblings = separateParent.getOwnedOperations();
+			List<Operation> separateSiblings = separateParent.getOwnedOperation();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
 			{
@@ -122,7 +122,7 @@ public class CompleteOCLSplitter
 					map.put(parent, separateParent);
 					metaModelManager.addPackage(separateParent);
 				}
-				List<org.eclipse.ocl.examples.pivot.Package> separateSiblings = separateParent.getNestedPackages();
+				List<org.eclipse.ocl.examples.pivot.Package> separateSiblings = separateParent.getNestedPackage();
 				separateObject = PivotUtil.getNamedElement(separateSiblings, name);
 				if (separateObject == null) {
 					separateObject = (org.eclipse.ocl.examples.pivot.Package) object.eClass().getEPackage().getEFactoryInstance().create(object.eClass());
@@ -162,7 +162,7 @@ public class CompleteOCLSplitter
 		public EObject caseProperty(Property object) {
 			Type parent = object.getOwningType();
 			Type separateParent = getSeparate(parent);
-			List<Property> separateSiblings = separateParent.getOwnedAttributes();
+			List<Property> separateSiblings = separateParent.getOwnedAttribute();
 			@SuppressWarnings("serial")
 			EcoreUtil.Copier copier = new EcoreUtil.Copier(false, true)
 			{
@@ -180,7 +180,7 @@ public class CompleteOCLSplitter
 		public EObject caseType(Type object) {
 			org.eclipse.ocl.examples.pivot.Package parent = object.getPackage();
 			org.eclipse.ocl.examples.pivot.Package separateParent = getSeparate(parent);
-			List<Type> separateSiblings = separateParent.getOwnedTypes();
+			List<Type> separateSiblings = separateParent.getOwnedType();
 			return cloneNamedElement(separateSiblings, object);
 		}
 

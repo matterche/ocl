@@ -67,7 +67,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter
 				if (resultVariable != null) {
 					environmentView.addNamedElement(resultVariable);
 				}
-				for (Variable parameterVariable : pivot.getParameterVariables()) {
+				for (Variable parameterVariable : pivot.getParameterVariable()) {
 					environmentView.addNamedElement(parameterVariable);
 				}
 				Variable contextVariable = pivot.getContextVariable();

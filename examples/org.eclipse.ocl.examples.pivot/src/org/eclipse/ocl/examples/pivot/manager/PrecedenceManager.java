@@ -61,7 +61,7 @@ public class PrecedenceManager
 		infixToPrecedenceNameMap = new HashMap<String, String>();
 		prefixToPrecedenceNameMap = new HashMap<String, String>();
 		for (org.eclipse.ocl.examples.pivot.Package rootPackage : rootPackages) {
-			List<Precedence> precedences = rootPackage.getOwnedPrecedences();
+			List<Precedence> precedences = rootPackage.getOwnedPrecedence();
 			if (precedences.size() > 0) {
 				compilePrecedencePackage(errors, rootPackage);
 				int prevIndex = -1;
@@ -116,7 +116,7 @@ public class PrecedenceManager
 	protected void compilePrecedenceOperation(List<String> errors, Operation operation) {
 		Precedence precedence = operation.getPrecedence();
 		if (precedence != null) {
-			List<Parameter> parameters = operation.getOwnedParameters();
+			List<Parameter> parameters = operation.getOwnedParameter();
 			if (parameters.size() == 0) {
 				String newName = precedence.getName();
 				String operatorName = operation.getName();
@@ -138,10 +138,10 @@ public class PrecedenceManager
 	}
 
 	protected void compilePrecedencePackage(List<String> errors, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackage()) {
 			compilePrecedencePackage(errors, nestedPackage);
 		}
-		for (Type type : pivotPackage.getOwnedTypes()) {
+		for (Type type : pivotPackage.getOwnedType()) {
 			if (PivotUtil.isLibraryType(type)) {
 				compilePrecedenceType(errors, type);
 			}
@@ -149,7 +149,7 @@ public class PrecedenceManager
 	}
 
 	protected void compilePrecedenceType(List<String> errors, Type pivotType) {
-		for (Operation operation : pivotType.getOwnedOperations()) {
+		for (Operation operation : pivotType.getOwnedOperation()) {
 			compilePrecedenceOperation(errors, operation);
 		}
 	}

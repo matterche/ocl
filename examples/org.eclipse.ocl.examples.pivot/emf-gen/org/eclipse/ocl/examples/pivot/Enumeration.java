@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals <em>Owned Literal</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral <em>Owned Literal</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,14 +58,14 @@ public interface Enumeration
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Enumeration!ownedLiteral'"
 	 * @generated
 	 */
-	EList<EnumerationLiteral> getOwnedLiterals();
+	EList<EnumerationLiteral> getOwnedLiteral();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.EnumerationLiteral} and appends it to the '<em><b>Owned Literal</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.EnumerationLiteral}.
-	 * @see #getOwnedLiterals()
+	 * @see #getOwnedLiteral()
 	 * @generated
 	 */
 	EnumerationLiteral createOwnedLiteral();

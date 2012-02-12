@@ -70,7 +70,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			}
 			OCL.Query query = ocl.createQuery(specification);
 			EvaluationEnvironment env = query.getEvaluationEnvironment();
-			List<Parameter> parms = operation.getOwnedParameters();
+			List<Parameter> parms = operation.getOwnedParameter();
 			if (!parms.isEmpty()) {
 				// bind arguments to parameter names
 				for (int i = 0; i < parms.size(); i++) {

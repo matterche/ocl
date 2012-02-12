@@ -43,8 +43,8 @@ import org.eclipse.uml2.common.util.SubsetSupersetEObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getParameters <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwnedParameters <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getOwnedParameter <em>Owned Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl#getTemplate <em>Template</em>}</li>
  * </ul>
  * </p>
@@ -56,24 +56,24 @@ public class TemplateSignatureImpl
 		implements TemplateSignature {
 
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameter</em>}' reference list.
+	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameters()
+	 * @see #getParameter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateParameter> parameters;
+	protected EList<TemplateParameter> parameter;
 
 	/**
-	 * The cached value of the '{@link #getOwnedParameters() <em>Owned Parameter</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedParameter() <em>Owned Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameters()
+	 * @see #getOwnedParameter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateParameter> ownedParameters;
+	protected EList<TemplateParameter> ownedParameter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,23 +99,38 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateParameter> getParameters() {
-		if (parameters == null)
+	public EList<TemplateParameter> getParameter()
+	{
+		if (parameter == null)
 		{
-			parameters = new SubsetSupersetEObjectResolvingEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__PARAMETER, null, PARAMETER_ESUBSETS);
+			parameter = new SubsetSupersetEObjectResolvingEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__PARAMETER, null, PARAMETER_ESUBSETS);
 		}
-		return parameters;
+		return parameter;
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getParameters() <em>Parameter</em>}' reference list.
+	 * The array of subset feature identifiers for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameters()
+	 * @see #getParameter()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final int[] PARAMETER_ESUBSETS = new int[] {PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TemplateParameter> getOwnedParameter()
+	{
+		if (ownedParameter == null)
+		{
+			ownedParameter = new SubsetSupersetEObjectContainmentWithInverseEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, OWNED_PARAMETER_ESUPERSETS, null, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
+		}
+		return ownedParameter;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,23 +176,10 @@ public class TemplateSignatureImpl
 	}
 
 	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedParameter() <em>Owned Parameter</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<TemplateParameter> getOwnedParameters() {
-		if (ownedParameters == null)
-		{
-			ownedParameters = new SubsetSupersetEObjectContainmentWithInverseEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, OWNED_PARAMETER_ESUPERSETS, null, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
-		}
-		return ownedParameters;
-	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedParameters() <em>Owned Parameter</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedParameters()
+	 * @see #getOwnedParameter()
 	 * @generated
 	 * @ordered
 	 */
@@ -190,7 +192,7 @@ public class TemplateSignatureImpl
 	 */
 	public TemplateParameter createOwnedParameter(EClass eClass) {
 		TemplateParameter newOwnedParameter = (TemplateParameter) create(eClass);
-		getOwnedParameters().add(newOwnedParameter);
+		getOwnedParameter().add(newOwnedParameter);
 		return newOwnedParameter;
 	}
 
@@ -215,7 +217,7 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameters()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedParameter()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -235,9 +237,9 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ((InternalEList<?>)getOwnedParameters()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedParameter()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return basicSetTemplate(null, msgs);
 		}
@@ -270,11 +272,11 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
-				return getParameters();
+				return getParameter();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return getOwnedParameters();
+				return getOwnedParameter();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return getTemplate();
 		}
@@ -292,16 +294,16 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends TemplateParameter>)newValue);
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends TemplateParameter>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				getOwnedParameters().clear();
-				getOwnedParameters().addAll((Collection<? extends TemplateParameter>)newValue);
+				getOwnedParameter().clear();
+				getOwnedParameter().addAll((Collection<? extends TemplateParameter>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				setTemplate((TemplateableElement)newValue);
@@ -320,13 +322,13 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
-				getParameters().clear();
+				getParameter().clear();
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				getOwnedParameters().clear();
+				getOwnedParameter().clear();
 				return;
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				setTemplate((TemplateableElement)null);
@@ -345,11 +347,11 @@ public class TemplateSignatureImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__PARAMETER:
-				return parameters != null && !parameters.isEmpty();
+				return parameter != null && !parameter.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
-				return ownedParameters != null && !ownedParameters.isEmpty();
+				return ownedParameter != null && !ownedParameter.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
 				return getTemplate() != null;
 		}

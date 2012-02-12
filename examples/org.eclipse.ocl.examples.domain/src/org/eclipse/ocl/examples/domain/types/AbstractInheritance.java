@@ -238,7 +238,7 @@ public abstract class AbstractInheritance implements DomainInheritance
 	public DomainOperation lookupLocalOperation(DomainStandardLibrary standardLibrary, String operationName, DomainInheritance... argumentTypes) {
 		for (DomainOperation localOperation : getLocalOperations()) {
 			if (localOperation.getName().equals(operationName)) {
-				IndexableIterable<? extends DomainType> firstParameterTypes = localOperation.getParameterTypes();
+				IndexableIterable<? extends DomainType> firstParameterTypes = localOperation.getParameterType();
 				int iMax = firstParameterTypes.size();
 				if (iMax == argumentTypes.length) {
 					int i = 0;

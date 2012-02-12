@@ -80,9 +80,9 @@ public class OCLstdlibLeft2RightVisitor
 			else if (eContainer instanceof OperationCS) {
 				Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);
 				context.setType(contextVariable, contextOperation.getOwningType());
-				List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariables());
+				List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariable());
 				List<Variable> newVariables = new ArrayList<Variable>();
-		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+		        for (Parameter parameter : contextOperation.getOwnedParameter()) {
 			        String name = parameter.getName();
 					Variable param = PivotUtil.getNamedElement(oldVariables, name);
 			        if (param != null) {
@@ -96,8 +96,8 @@ public class OCLstdlibLeft2RightVisitor
 			        param.setRepresentedParameter(parameter);
 			        newVariables.add(param);
 		        }
-		        context.refreshList(pivotSpecification.getParameterVariables(), newVariables);
-//		        for (Variable parameterVariable : pivotSpecification.getParameterVariables()) {
+		        context.refreshList(pivotSpecification.getParameterVariable(), newVariables);
+//		        for (Variable parameterVariable : pivotSpecification.getParameterVariable()) {
 //					context.putPivotElement(parameterVariable);
 //		        }
 		        if ("post".equals(csConstraint.getStereotype())) {		// FIXME constant

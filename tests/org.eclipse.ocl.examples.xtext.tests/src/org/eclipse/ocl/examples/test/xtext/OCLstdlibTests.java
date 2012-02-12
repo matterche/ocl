@@ -249,8 +249,8 @@ public class OCLstdlibTests extends XtextTestCase
 				assertEquals(fileClass, javaClass);
 			}
 			if (fileElement instanceof Type) {
-				List<Element> fileTypes = new ArrayList<Element>(((Type)fileElement).getSuperClasses());
-				List<Element> javaTypes = new ArrayList<Element>(((Type)javaElement).getSuperClasses());
+				List<Element> fileTypes = new ArrayList<Element>(((Type)fileElement).getSuperClass());
+				List<Element> javaTypes = new ArrayList<Element>(((Type)javaElement).getSuperClass());
 				Collections.sort(fileTypes, MonikeredComparator.INSTANCE);
 				Collections.sort(javaTypes, MonikeredComparator.INSTANCE);
 				assertEquals(fileTypes.size(), javaTypes.size());

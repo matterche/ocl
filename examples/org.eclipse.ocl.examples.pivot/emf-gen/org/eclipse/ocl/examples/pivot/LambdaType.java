@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LambdaType#getContextType <em>Context Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.LambdaType#getParameterTypes <em>Parameter Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LambdaType#getParameterType <em>Parameter Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LambdaType#getResultType <em>Result Type</em>}</li>
  * </ul>
  * </p>
@@ -81,7 +81,7 @@ public interface LambdaType extends DataType, org.eclipse.ocl.examples.domain.el
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LambdaType!parameterType'"
 	 * @generated
 	 */
-	EList<Type> getParameterTypes();
+	EList<Type> getParameterType();
 
 	/**
 	 * Returns the value of the '<em><b>Result Type</b></em>' reference.

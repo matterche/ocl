@@ -126,7 +126,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
         Class<?> containerClass = container.getInstanceClass();
 
         // get the parameter types as java classes
-        List<Parameter> parms = operation.getOwnedParameters();
+        List<Parameter> parms = operation.getOwnedParameter();
         Class<?>[] javaParms = new Class[parms.size()];
         for (int i = 0, n = parms.size(); i < n; i++) {
             Parameter parm = parms.get(i);

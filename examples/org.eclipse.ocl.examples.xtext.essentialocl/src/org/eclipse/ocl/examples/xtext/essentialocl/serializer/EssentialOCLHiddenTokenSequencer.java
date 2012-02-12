@@ -39,7 +39,7 @@ public class EssentialOCLHiddenTokenSequencer extends HiddenTokenSequencer
 			Element pivot = ((ModelElementCS)semanticChild).getPivot();
 			if (pivot != null) {
 				String commentIndent = getCommentIndent(semanticChild);
-				for (Comment comment : pivot.getOwnedComments()) {
+				for (Comment comment : pivot.getOwnedComment()) {
 					String body = "\n" + commentIndent + "/**\n" + commentIndent + " * " + comment.getBody().replaceAll("\\n", "\n" + commentIndent + " * ") + "\n" + commentIndent + " */\n";
 					delegate.acceptComment(grammarAccess.getML_COMMENTRule(), body, null);
 				}

@@ -369,7 +369,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 			context.append(BINDINGS_PREFIX);
 			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
-				List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+				List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameter();
 				if (index < templateParameters.size()) {
 					TemplateParameter templateParameter = templateParameters.get(index);
 					context.appendName(templateParameter.getParameteredElement());

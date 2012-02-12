@@ -103,7 +103,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 
 	protected void convertConstraintToOperation(Ecore2Pivot ecore2pivot, GenModel genModel, EClassifier eClassifier, String key, String body, String message) {
 		Type pType = ecore2pivot.getCreated(Type.class, eClassifier);
-		List<Constraint> ownedRules = pType.getOwnedRules();
+		List<Constraint> ownedRules = pType.getOwnedRule();
 		for (Constraint rule : ownedRules) {
 			String ruleName = rule.getName();
 			if (ruleName == null) {

@@ -228,7 +228,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 
 	protected void copyAnnotatedElement(NamedElement pivotElement,
 			EModelElement umlElement, List<EAnnotation> excludedAnnotations) {
-		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotations();
+		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotation();
 		for (EAnnotation eAnnotation : umlElement.getEAnnotations()) {
 			if ((excludedAnnotations == null) || !excludedAnnotations.contains(eAnnotation)) {
 				Annotation pivotAnnotation = (Annotation) declarationPass.doSwitch(eAnnotation);
@@ -261,7 +261,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
-			List<Constraint> constraints = pivotElement.getOwnedRules();
+			List<Constraint> constraints = pivotElement.getOwnedRule();
 			for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
@@ -279,8 +279,8 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 				if (constraint != null) {
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-					specification.getBodies().add(value);
-					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+					specification.getBody().add(value);
+					specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
@@ -416,7 +416,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		Resource pivotResource = metaModelManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
 		pivotRoot = metaModelManager.createPackage(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
-		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
+		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackage();
 		for (EObject eObject : ecoreContents) {
 			Object pivotElement = declarationPass.doInPackageSwitch(eObject);
 			if (pivotElement instanceof org.eclipse.ocl.examples.pivot.Package) {
@@ -466,7 +466,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 /*	protected void refreshAnnotation(NamedElement pivotElement, String key, String value) {
 		String source = PIVOT_URI;
 		Annotation pivotAnnotation = null;
-		for (Annotation annotation : pivotElement.getOwnedAnnotations()) {
+		for (Annotation annotation : pivotElement.getOwnedAnnotation()) {
 			if (annotation.getName().equals(source)) {
 				pivotAnnotation = annotation;
 				break;
@@ -475,12 +475,12 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		if (pivotAnnotation == null) {
 			pivotAnnotation = PivotFactory.eINSTANCE.createAnnotation();
 			pivotAnnotation.setName(source);
-			pivotElement.getOwnedAnnotations().add(pivotAnnotation);
+			pivotElement.getOwnedAnnotation().add(pivotAnnotation);
 		}
 		Detail pivotDetail = PivotFactory.eINSTANCE.createDetail();
 		pivotDetail.setName(key);
-		pivotDetail.getValues().add(value);
-		pivotAnnotation.getOwnedDetails().add(pivotDetail);
+		pivotDetail.getValue().add(value);
+		pivotAnnotation.getOwnedDetail().add(pivotDetail);
 	} */
 
 	protected <T extends Element> T refreshElement(Class<T> pivotClass,
@@ -556,10 +556,10 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		TemplateSignature templateSignature = unspecializedPivotType.getOwnedTemplateSignature();
 		templateBinding.setSignature(templateSignature);
-		specializedPivotElement.getTemplateBindings().add(templateBinding);
+		specializedPivotElement.getTemplateBinding().add(templateBinding);
 		for (int i = 0; i < eTypeParameters.size(); i++) {
 			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-			templateParameterSubstitution.setFormal(templateSignature.getParameters().get(i));
+			templateParameterSubstitution.setFormal(templateSignature.getParameter().get(i));
 			EGenericType eTypeArgument = eTypeArguments.get(i);
 			Type typeArgument = resolveType(resolvedSpecializations, eTypeArgument);
 			if (typeArgument.eContainer() == null) {
@@ -568,7 +568,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 			else {
 				templateParameterSubstitution.setActual(typeArgument);
 			}
-			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+			templateBinding.getParameterSubstitution().add(templateParameterSubstitution);
 		}
 		//
 		//	Cache the pivot specialization

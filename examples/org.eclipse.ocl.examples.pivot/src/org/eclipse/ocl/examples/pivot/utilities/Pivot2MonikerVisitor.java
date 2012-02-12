@@ -192,7 +192,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			}
 			context.appendName(object);
 		}
-		else if (!object.getTemplateBindings().isEmpty()) {
+		else if (!object.getTemplateBinding().isEmpty()) {
 			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(templateableClass);
@@ -200,7 +200,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		}
 		else if (object.eContainer() instanceof TemplateParameterSubstitution) {
 			TemplateParameter formal = ((TemplateParameterSubstitution)object.eContainer()).getFormal();
-			int index = formal.getSignature().getParameters().indexOf(formal);
+			int index = formal.getSignature().getParameter().indexOf(formal);
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.append(WILDCARD_INDICATOR + index);
 		}
@@ -276,7 +276,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 //		appendQualifiedName(constructorExp.getReferredType());
 //		append("{");//$NON-NLS-1$
 //		String prefix = "";
-//		for (TupleLiteralPart part : constructorExp.getParts()) {
+//		for (TupleLiteralPart part : constructorExp.getPart()) {
 //			append(prefix);
 //           safeVisit(part);
 //			prefix = ", ";//$NON-NLS-1$
@@ -337,7 +337,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		context.append(object.getName());
 //		context.appendTemplateParameters(object);
 		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
-		context.appendLambdaType(object.getContextType(), object.getParameterTypes(), object.getResultType(), bindings);
+		context.appendLambdaType(object.getContextType(), object.getParameterType(), object.getResultType(), bindings);
 		return true;
 	}
 
@@ -388,7 +388,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			}
 			context.appendName(object);
 		}
-		else if (!object.getTemplateBindings().isEmpty()) {
+		else if (!object.getTemplateBinding().isEmpty()) {
 			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 			context.appendName(object);
 			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, object);
@@ -504,7 +504,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitTupleType(TupleType object) {
-		List<Property> ownedAttributes = object.getOwnedAttributes();
+		List<Property> ownedAttributes = object.getOwnedAttribute();
 		if (ownedAttributes.isEmpty()) {
 			super.visitTupleType(object);
 		}

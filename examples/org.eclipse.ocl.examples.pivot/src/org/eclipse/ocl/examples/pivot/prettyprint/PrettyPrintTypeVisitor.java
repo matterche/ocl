@@ -340,7 +340,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			for (Parameter parameter : iteration.getOwnedIterators()) {
+			for (Parameter parameter : iteration.getOwnedIterator()) {
 				append(prefix);
 				if (withNames) {
 					appendName(parameter);
@@ -349,9 +349,9 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				appendTypedMultiplicity(parameter);
 				prefix = ", ";
 			}
-			if (iteration.getOwnedAccumulators().size() > 0) {
+			if (iteration.getOwnedAccumulator().size() > 0) {
 				prefix = "; ";
-				for (Parameter parameter : iteration.getOwnedAccumulators()) {
+				for (Parameter parameter : iteration.getOwnedAccumulator()) {
 					if (withNames) {
 						appendName(parameter);
 						append(" : ");
@@ -363,7 +363,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			}
 			prefix = " | ";
 		}
-		for (Parameter parameter : operation.getOwnedParameters()) {
+		for (Parameter parameter : operation.getOwnedParameter()) {
 			append(prefix);
 			if (withNames) {
 				appendName(parameter);
@@ -498,12 +498,12 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	
 	protected void appendTemplateBindings(TemplateableElement typeRef) {
 		boolean useParentheses = context.getUseParentheses() && (typeRef instanceof CollectionType);
-		List<TemplateBinding> templateBindings = typeRef.getTemplateBindings();
+		List<TemplateBinding> templateBindings = typeRef.getTemplateBinding();
 		if (!templateBindings.isEmpty()) {
 			append(useParentheses ? "(" : "<");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					append(prefix);
 					appendElement((Namespace) typeRef, templateParameterSubstitution.getActual());
 //					appendName((NamedElement) templateParameterSubstitution.getActual());	// FIXME cast, selective scope
@@ -518,7 +518,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		boolean useParentheses = context.getUseParentheses() && (templateableElement instanceof CollectionType);
 		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			if (!templateParameters.isEmpty()) {
 				append(useParentheses ? "(" : "<");
 				String prefix = ""; //$NON-NLS-1$
@@ -617,7 +617,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		appendElement(object.getContextType());
 		append("(");
 		String prefix = ""; //$NON-NLS-1$
-		for (Type parameterType : object.getParameterTypes()) {
+		for (Type parameterType : object.getParameterType()) {
 			append(prefix);
 			appendElement(parameterType);
 //			appendMultiplicity(parameter);
@@ -645,14 +645,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			for (Parameter parameter : iteration.getOwnedIterators()) {
+			for (Parameter parameter : iteration.getOwnedIterator()) {
 				append(prefix);
 				appendTypedMultiplicity(parameter);
 				prefix = ",";
 			}
-			if (iteration.getOwnedAccumulators().size() > 0) {
+			if (iteration.getOwnedAccumulator().size() > 0) {
 				prefix = ";";
-				for (Parameter parameter : iteration.getOwnedAccumulators()) {
+				for (Parameter parameter : iteration.getOwnedAccumulator()) {
 					append(prefix);
 					appendTypedMultiplicity(parameter);
 					prefix = ",";
@@ -660,7 +660,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 			}
 			prefix = "|";
 		}
-		for (Parameter parameter : operation.getOwnedParameters()) {
+		for (Parameter parameter : operation.getOwnedParameter()) {
 			append(prefix);
 			appendTypedMultiplicity(parameter);
 			prefix = ",";
@@ -680,7 +680,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 //		appendParent(object.eContainer(), object, "::");
 		boolean useParentheses = context.getUseParentheses();
 		appendName(object, null);
-		List<Property> tupleParts = object.getOwnedAttributes();
+		List<Property> tupleParts = object.getOwnedAttribute();
 		if (!tupleParts.isEmpty()) {
 			append(useParentheses ? "(" : "<");
 			String prefix = ""; //$NON-NLS-1$

@@ -56,7 +56,7 @@ public class ExecutorOperation implements DomainOperation
 		return name;
 	}
 
-	public IndexableIterable<DomainType> getParameterTypes() {
+	public IndexableIterable<DomainType> getParameterType() {
 		return new ArrayIterable<DomainType>(parameterTypes);
 	}
 

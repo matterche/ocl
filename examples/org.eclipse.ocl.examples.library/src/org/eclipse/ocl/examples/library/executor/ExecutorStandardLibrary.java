@@ -54,8 +54,8 @@ public class ExecutorStandardLibrary extends ExecutableStandardLibrary
 		@SuppressWarnings("unused")
 		EcoreExecutorPackage oldExecPackage = ePackageMap.put(execPackage.getNsURI(), execPackage);
 //		if ((oldExecPackage != null) && (oldExecPackage != execPackage)) {
-//			Iterable<ExecutorType> newTypes = execPackage.getOwnedTypes();
-//			for (DomainType oldType : oldExecPackage.getOwnedTypes()) {
+//			Iterable<ExecutorType> newTypes = execPackage.getOwnedType();
+//			for (DomainType oldType : oldExecPackage.getOwnedType()) {
 //				-- check for type compatibility
 //			}
 //		}

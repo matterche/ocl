@@ -198,15 +198,15 @@ public abstract class Abstract2Moniker implements PivotConstants
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
-			for (Parameter parameter : iteration.getOwnedIterators()) {
+			for (Parameter parameter : iteration.getOwnedIterator()) {
 				s.append(prefix);
 				appendElement(parameter.getType(), templateBindings);
 				appendMultiplicity(parameter);
 				prefix = PARAMETER_SEPARATOR;
 			}
-			if (iteration.getOwnedAccumulators().size() > 0) {
+			if (iteration.getOwnedAccumulator().size() > 0) {
 				prefix = ITERATOR_SEPARATOR;
-				for (Parameter parameter : iteration.getOwnedAccumulators()) {
+				for (Parameter parameter : iteration.getOwnedAccumulator()) {
 					s.append(prefix);
 					appendElement(parameter.getType(), templateBindings);
 					appendMultiplicity(parameter);
@@ -215,7 +215,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			}
 			prefix = ACCUMULATOR_SEPARATOR;
 		}
-		for (Parameter parameter : operation.getOwnedParameters()) {
+		for (Parameter parameter : operation.getOwnedParameter()) {
 			s.append(prefix);
 			appendElement(parameter.getType(), templateBindings);
 			appendMultiplicity(parameter);
@@ -238,7 +238,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 				if (parent instanceof TemplateableElement) {
 					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedTemplateSignature();
 					if (ownedTemplateSignature != null) {
-						for (TemplateParameter templateParameter : ownedTemplateSignature.getParameters()) {
+						for (TemplateParameter templateParameter : ownedTemplateSignature.getParameter()) {
 							emittedTemplateParameter(templateParameter);
 					}
 					}
@@ -272,14 +272,14 @@ public abstract class Abstract2Moniker implements PivotConstants
 	}
 	
 	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, ParameterableElement> bindings) {
-		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
+		List<TemplateBinding> templateBindings = templateableElement.getTemplateBinding();
 		if (!templateBindings.isEmpty()) {
 			boolean isSpecialized = isSpecialized(templateBindings, bindings);
 			if (!isSpecialized) {			
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitution();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -296,7 +296,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 				s.append(TEMPLATE_BINDING_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateBinding templateBinding : templateBindings) {
-					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitution();
 					if (parameterSubstitutions.size() > 1) {
 						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
 						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
@@ -315,7 +315,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
 		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			if (!templateParameters.isEmpty()) {
 				s.append(TEMPLATE_SIGNATURE_PREFIX);
 				String prefix = ""; //$NON-NLS-1$
@@ -370,7 +370,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			return true;
 		}
 		for (TemplateBinding templateBinding : templateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 				ParameterableElement actual = templateParameterSubstitution.getActual();
 				if (actual == null) {
 					return true;

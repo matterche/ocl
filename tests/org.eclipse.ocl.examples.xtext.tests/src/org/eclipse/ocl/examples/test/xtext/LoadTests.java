@@ -408,7 +408,7 @@ public class LoadTests extends XtextTestCase
 		options.put(Pivot2Ecore.PRIMITIVE_TYPES_URI_PREFIX, "primitives.ecore#//");
 		org.eclipse.ocl.examples.pivot.Package root = PivotFactory.eINSTANCE.createPackage();		// FIXME Avoid this kludge
 		for (EObject aPackage : pivotResource.getContents()) {
-			root.getNestedPackages().add((org.eclipse.ocl.examples.pivot.Package) aPackage);
+			root.getNestedPackage().add((org.eclipse.ocl.examples.pivot.Package) aPackage);
 		}
 		pivotResource.getContents().add(root);
 		XMLResource ecoreResource = Pivot2Ecore.createResource(metaModelManager, pivotResource, ecoreURI, options);

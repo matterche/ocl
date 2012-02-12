@@ -44,14 +44,14 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 		}
 		else if (eObject instanceof Operation) {
 			Operation candidateOperation = (Operation)eObject;
-			List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (candidateParameters.size() != 0) {
 				return false;
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
 			TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+				for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 					if (bindings == null) {
 						bindings = new HashMap<TemplateParameter, ParameterableElement>();
 					}

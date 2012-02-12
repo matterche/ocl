@@ -42,7 +42,7 @@ public class PivotReflectiveEnumerationType extends PivotReflectiveType implemen
 			}
 		}
 		else {
-			for (EnumerationLiteral enumerationLiteral : type.getOwnedLiterals()) {
+			for (EnumerationLiteral enumerationLiteral : type.getOwnedLiteral()) {
 				String enumerationLiteralName = enumerationLiteral.getName();
 				literals.put(enumerationLiteralName, new ExecutorEnumerationLiteral(enumerationLiteralName, this, index++));
 			}

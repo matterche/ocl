@@ -47,11 +47,11 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 			return false;
 		}
 		Iteration candidateIteration = (Iteration)eObject;
-		int iteratorCount = candidateIteration.getOwnedIterators().size();
+		int iteratorCount = candidateIteration.getOwnedIterator().size();
 		if (iteratorCount != 1) {
 			return false;
 		}
-		int accumulatorCount = candidateIteration.getOwnedAccumulators().size();
+		int accumulatorCount = candidateIteration.getOwnedAccumulator().size();
 		if (accumulatorCount != 0) {
 			return false;
 		}
@@ -59,7 +59,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		if (templateSignature == null) {
 			return false;
 		}
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		if (templateParameters.size() != 1) {
 			return false;
 		}

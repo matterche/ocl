@@ -58,7 +58,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter
 			environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));
 			return null;
 		}
-		if (targetClass.getTemplateBindings().size() == 0) {
+		if (targetClass.getTemplateBinding().size() == 0) {
 			EObject scopeTarget = scopeView.getTarget();
 			if (scopeTarget instanceof Pivotable) {
 				Element pivot = ((Pivotable)scopeTarget).getPivot();

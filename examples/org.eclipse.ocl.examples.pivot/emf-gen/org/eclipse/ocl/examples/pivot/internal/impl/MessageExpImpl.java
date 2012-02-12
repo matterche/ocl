@@ -65,7 +65,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl#getArguments <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl#getCalledOperation <em>Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl#getSentSignal <em>Sent Signal</em>}</li>
  * </ul>
@@ -88,14 +88,14 @@ public class MessageExpImpl
 	protected OclExpression target;
 
 	/**
-	 * The cached value of the '{@link #getArguments() <em>Argument</em>}' containment reference list.
+	 * The cached value of the '{@link #getArgument() <em>Argument</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getArguments()
+	 * @see #getArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OclExpression> arguments;
+	protected EList<OclExpression> argument;
 
 	/**
 	 * The cached value of the '{@link #getCalledOperation() <em>Called Operation</em>}' containment reference.
@@ -199,12 +199,13 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OclExpression> getArguments() {
-		if (arguments == null)
+	public EList<OclExpression> getArgument()
+	{
+		if (argument == null)
 		{
-			arguments = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
+			argument = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
 		}
-		return arguments;
+		return argument;
 	}
 
 	/**
@@ -214,7 +215,7 @@ public class MessageExpImpl
 	 */
 	public OclExpression createArgument(EClass eClass) {
 		OclExpression newArgument = (OclExpression) create(eClass);
-		getArguments().add(newArgument);
+		getArgument().add(newArgument);
 		return newArgument;
 	}
 
@@ -413,15 +414,15 @@ public class MessageExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.MESSAGE_EXP__TARGET:
 				return basicSetTarget(null, msgs);
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
 				return basicSetCalledOperation(null, msgs);
 			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
@@ -440,22 +441,22 @@ public class MessageExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return getName();
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.MESSAGE_EXP__IS_STATIC:
 				return isStatic();
 			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.MESSAGE_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.MESSAGE_EXP__TARGET:
 				return getTarget();
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return getArguments();
+				return getArgument();
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
 				return getCalledOperation();
 			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
@@ -475,22 +476,22 @@ public class MessageExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__TYPE:
 				setType((Type)newValue);
@@ -499,8 +500,8 @@ public class MessageExpImpl
 				setTarget((OclExpression)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				getArguments().clear();
-				getArguments().addAll((Collection<? extends OclExpression>)newValue);
+				getArgument().clear();
+				getArgument().addAll((Collection<? extends OclExpression>)newValue);
 				return;
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
 				setCalledOperation((CallOperationAction)newValue);
@@ -522,19 +523,19 @@ public class MessageExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.MESSAGE_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.MESSAGE_EXP__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.MESSAGE_EXP__TYPE:
 				setType((Type)null);
@@ -543,7 +544,7 @@ public class MessageExpImpl
 				setTarget((OclExpression)null);
 				return;
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				getArguments().clear();
+				getArgument().clear();
 				return;
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
 				setCalledOperation((CallOperationAction)null);
@@ -565,21 +566,21 @@ public class MessageExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.MESSAGE_EXP__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.MESSAGE_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.MESSAGE_EXP__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.MESSAGE_EXP__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.MESSAGE_EXP__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.MESSAGE_EXP__TYPE:
 				return type != null;
 			case PivotPackage.MESSAGE_EXP__TARGET:
 				return target != null;
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
-				return arguments != null && !arguments.isEmpty();
+				return argument != null && !argument.isEmpty();
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
 				return calledOperation != null;
 			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:

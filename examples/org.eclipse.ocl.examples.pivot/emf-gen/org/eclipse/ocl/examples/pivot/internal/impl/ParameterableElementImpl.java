@@ -288,7 +288,7 @@ public abstract class ParameterableElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
@@ -323,7 +323,7 @@ public abstract class ParameterableElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter();
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
@@ -344,8 +344,8 @@ public abstract class ParameterableElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)newValue);
@@ -367,7 +367,7 @@ public abstract class ParameterableElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				setOwningTemplateParameter((TemplateParameter)null);
@@ -389,7 +389,7 @@ public abstract class ParameterableElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
 				return getOwningTemplateParameter() != null;
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:

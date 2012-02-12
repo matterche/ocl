@@ -52,7 +52,7 @@ public abstract class ReflectivePackage extends ExecutorPackage
 		return types.get(type);
 	}
 
-	public Iterable<? extends DomainType> getOwnedTypes() {
+	public Iterable<? extends DomainType> getOwnedType() {
 		if (types == null) {
 			computeClasses();
 		}

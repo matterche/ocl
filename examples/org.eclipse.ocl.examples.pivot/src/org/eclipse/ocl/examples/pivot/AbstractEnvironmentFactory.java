@@ -135,7 +135,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 			((AbstractEnvironment) result).setContextOperation(operation);
 		}
 		PivotFactory oclFactory = parent.getOCLFactory();		
-        for (Parameter next : operation.getOwnedParameters()) {
+        for (Parameter next : operation.getOwnedParameter()) {
 			// ensure that we use the OCL primitive types wherever possible
 			Variable var = oclFactory.createVariable();
 			var.setName(next.getName());

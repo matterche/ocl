@@ -62,7 +62,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getOwnedComments <em>Owned Comment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl#getOwnedComment <em>Owned Comment</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,15 +73,14 @@ public abstract class ElementImpl
 		implements Element {
 
 	/**
-	 * The cached value of the '{@link #getOwnedComments() <em>Owned Comment</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedComment() <em>Owned Comment</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedComments()
+	 * @see #getOwnedComment()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Comment> ownedComments;
-
+	protected EList<Comment> ownedComment;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,12 +105,13 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Comment> getOwnedComments() {
-		if (ownedComments == null)
+	public EList<Comment> getOwnedComment()
+	{
+		if (ownedComment == null)
 		{
-			ownedComments = new EObjectContainmentEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
+			ownedComment = new EObjectContainmentEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
 		}
-		return ownedComments;
+		return ownedComment;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public abstract class ElementImpl
 	 */
 	public Comment createOwnedComment() {
 		Comment newOwnedComment = (Comment) create(PivotPackage.Literals.COMMENT);
-		getOwnedComments().add(newOwnedComment);
+		getOwnedComment().add(newOwnedComment);
 		return newOwnedComment;
 	}
 
@@ -200,7 +200,7 @@ public abstract class ElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -215,7 +215,7 @@ public abstract class ElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -231,8 +231,8 @@ public abstract class ElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -248,7 +248,7 @@ public abstract class ElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -264,7 +264,7 @@ public abstract class ElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.ELEMENT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

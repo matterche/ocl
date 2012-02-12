@@ -34,9 +34,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getPackage <em>Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes <em>Owned Attribute</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperations <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getSuperClasses <em>Super Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperation <em>Owned Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Type#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
@@ -50,7 +50,7 @@ public interface Type
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedTypes <em>Owned Type</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -59,7 +59,7 @@ public interface Type
 	 * @return the value of the '<em>Package</em>' container reference.
 	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getType_Package()
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedTypes
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType
 	 * @model opposite="ownedType" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!package'"
 	 * @generated
@@ -93,14 +93,14 @@ public interface Type
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedAttribute'"
 	 * @generated
 	 */
-	EList<Property> getOwnedAttributes();
+	EList<Property> getOwnedAttribute();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * @see #getOwnedAttributes()
+	 * @see #getOwnedAttribute()
 	 * @generated
 	 */
 	Property createOwnedAttribute();
@@ -111,7 +111,7 @@ public interface Type
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwningType <em>Owning Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Operation</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Owned Operation</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -122,7 +122,7 @@ public interface Type
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!ownedOperation'"
 	 * @generated
 	 */
-	EList<Operation> getOwnedOperations();
+	EList<Operation> getOwnedOperation();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Operation} and appends it to the '<em><b>Owned Operation</b></em>' containment reference list.
@@ -130,7 +130,7 @@ public interface Type
 	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Operation} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
-	 * @see #getOwnedOperations()
+	 * @see #getOwnedOperation()
 	 * @generated
 	 */
 	Operation createOwnedOperation(EClass eClass);
@@ -140,7 +140,7 @@ public interface Type
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Operation}.
-	 * @see #getOwnedOperations()
+	 * @see #getOwnedOperation()
 	 * @generated
 	 */
 	Operation createOwnedOperation();
@@ -159,7 +159,7 @@ public interface Type
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Type!superClass'"
 	 * @generated
 	 */
-	EList<Type> getSuperClasses();
+	EList<Type> getSuperClass();
 
 	/**
 	 * Returns the value of the '<em><b>Instance Class Name</b></em>' attribute.

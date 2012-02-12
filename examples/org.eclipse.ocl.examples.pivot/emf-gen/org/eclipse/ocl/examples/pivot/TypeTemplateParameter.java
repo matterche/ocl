@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#isAllowSubstitutable <em>Allow Substitutable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingTypes <em>Constraining Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingType <em>Constraining Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +83,6 @@ public interface TypeTemplateParameter
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TypeTemplateParameter!constrainingType'"
 	 * @generated
 	 */
-	EList<Type> getConstrainingTypes();
+	EList<Type> getConstrainingType();
 
 } // TypeTemplateParameter

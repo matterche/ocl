@@ -41,7 +41,7 @@ public class UnaryOperationFilter extends AbstractOperationFilter
 		}
 		else if (eObject instanceof Operation) {
 			Operation candidateOperation = (Operation)eObject;
-			List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (candidateParameters.size() != 0) {
 				return false;
 			}

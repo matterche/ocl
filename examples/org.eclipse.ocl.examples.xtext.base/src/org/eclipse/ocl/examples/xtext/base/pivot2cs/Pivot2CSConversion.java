@@ -210,7 +210,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	protected <T extends ClassifierCS> T refreshClassifier(Class<T> csClass, EClass csEClass, Type object) {
 		T csElement = refreshNamedElement(csClass, csEClass, object);
-		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules(), null));
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRule(), null));
 		TemplateSignature ownedTemplateSignature = object.getOwnedTemplateSignature();
 		if (ownedTemplateSignature != null) {
 			csElement.setOwnedTemplateSignature(visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
@@ -241,7 +241,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshElement(csClass, csEClass, object);
 		String name = object.getName();
 		csElement.setName(name);
-		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotations(), null));
+		refreshList(csElement.getOwnedAnnotation(), visitDeclarations(AnnotationCS.class, object.getOwnedAnnotation(), null));
 		return csElement;
 	}
 
@@ -312,7 +312,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			TypedRefCS typeRef = visitReference(TypedRefCS.class, type);
 			csElement.setOwnedType(typeRef);
 		}
-		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRules(), null));
+		refreshList(csElement.getOwnedConstraint(), visitDeclarations(ConstraintCS.class, object.getOwnedRule(), null));
 		return csElement;
 	}
 

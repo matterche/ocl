@@ -85,7 +85,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	protected void gatherPackages(List<org.eclipse.ocl.examples.pivot.Package> allPackages, List<org.eclipse.ocl.examples.pivot.Package> nestedPackages) {
 		allPackages.addAll(nestedPackages);
 		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : nestedPackages) {
-			gatherPackages(allPackages, nestedPackage.getNestedPackages());
+			gatherPackages(allPackages, nestedPackage.getNestedPackage());
 		}
 	}
 
@@ -148,8 +148,8 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 //		csContext.getNamespace().add(owningType);
 		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
-		context.refreshList(csContext.getParameters(), context.visitDeclarations(VariableCS.class, object.getOwnedParameters(), null));
-		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRules(), null));
+		context.refreshList(csContext.getParameters(), context.visitDeclarations(VariableCS.class, object.getOwnedParameter(), null));
+		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRule(), null));
 		context.setScope(savedScope);
 		return csContext;
 	}
@@ -160,28 +160,28 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		if (object.eContainer() == null) {
 			CompleteOCLDocumentCS csDocument = context.refreshElement(CompleteOCLDocumentCS.class, CompleteOCLCSTPackage.Literals.COMPLETE_OCL_DOCUMENT_CS, object);
 			List<org.eclipse.ocl.examples.pivot.Package> allPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
-			gatherPackages(allPackages, object.getNestedPackages()); 
+			gatherPackages(allPackages, object.getNestedPackage()); 
 			context.refreshList(csDocument.getPackages(), context.visitDeclarations(PackageDeclarationCS.class, allPackages, null));
 			csElement = csDocument;
 		}
 		else {
 			PackageDeclarationCS csPackage = context.refreshElement(PackageDeclarationCS.class, CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS, object);
-//			context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedTypes(), null));
+//			context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
 			csPackage.setPackage(object);
 			context.importPackage(object);
 			List<ContextDeclCS> contexts = new ArrayList<ContextDeclCS>();
-			for (Type type : object.getOwnedTypes()) {
+			for (Type type : object.getOwnedType()) {
 				ClassifierContextDeclCS classifierContext = context.visitDeclaration(ClassifierContextDeclCS.class, type);
 				if (classifierContext !=  null) {
 					contexts.add(classifierContext);
 				}
-				for (Operation operation : type.getOwnedOperations()) {
+				for (Operation operation : type.getOwnedOperation()) {
 					OperationContextDeclCS operationContext = context.visitDeclaration(OperationContextDeclCS.class, operation);
 					if (operationContext !=  null) {
 						contexts.add(operationContext);
 					}
 				}
-				for (Property property : type.getOwnedAttributes()) {
+				for (Property property : type.getOwnedAttribute()) {
 					PropertyContextDeclCS propertyContext = context.visitDeclaration(PropertyContextDeclCS.class, property);
 					if (propertyContext !=  null) {
 						contexts.add(propertyContext);
@@ -210,7 +210,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 //		csContext.getNamespace().add(owningType);
 		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
-		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRules(), null));
+		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRule(), null));
 		context.setScope(savedScope);
 		return csContext;
 	}
@@ -220,7 +220,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
 		csContext.setClassifier(object);
 		context.importPackage(object.getPackage());
-		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRules(), null));
+		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, object.getOwnedRule(), null));
 		return csContext;
 	}
 }

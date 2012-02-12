@@ -100,7 +100,7 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 			PivotSaver saver = new PivotSaver(pivotResource);
 			org.eclipse.ocl.examples.pivot.Package orphanage = saver.localizeSpecializations();
 			if ((orphanage != null) && (pivotModel instanceof org.eclipse.ocl.examples.pivot.Package)) {
-				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackages().add(orphanage);
+				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackage().add(orphanage);
 			}
 			GenerateOCLstdlib acceleo = new GenerateOCLstdlib(pivotModel, folder, arguments);
 			log.info("Generating to ' " + folder + "'");

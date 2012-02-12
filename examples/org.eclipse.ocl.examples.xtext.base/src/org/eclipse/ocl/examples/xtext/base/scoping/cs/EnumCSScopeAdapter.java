@@ -33,7 +33,7 @@ public class EnumCSScopeAdapter extends ElementCSScopeAdapter
 		EnumerationCS targetElement = (EnumerationCS)target;
 		Enumeration pivot = PivotUtil.getPivot(Enumeration.class, targetElement);
 		if (pivot != null) {
-			environmentView.addNamedElements(pivot.getOwnedLiterals());
+			environmentView.addNamedElements(pivot.getOwnedLiteral());
 			environmentView.addElements(PivotUtil.getTemplateParameters(pivot));
 		}
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();

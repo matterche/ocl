@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.MessageExp#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.MessageExp#getArguments <em>Argument</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.MessageExp#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.MessageExp#getCalledOperation <em>Called Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.MessageExp#getSentSignal <em>Sent Signal</em>}</li>
  * </ul>
@@ -96,7 +96,7 @@ public interface MessageExp
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!MessageExp!argument'"
 	 * @generated
 	 */
-	EList<OclExpression> getArguments();
+	EList<OclExpression> getArgument();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and appends it to the '<em><b>Argument</b></em>' containment reference list.
@@ -104,7 +104,7 @@ public interface MessageExp
 	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.OclExpression} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getArguments()
+	 * @see #getArgument()
 	 * @generated
 	 */
 	OclExpression createArgument(EClass eClass);

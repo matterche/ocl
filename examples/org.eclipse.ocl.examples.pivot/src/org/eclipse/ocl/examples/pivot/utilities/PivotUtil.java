@@ -114,8 +114,8 @@ public class PivotUtil extends DomainUtil
 		public int compare(TemplateParameterSubstitution o1, TemplateParameterSubstitution o2) {
 			TemplateParameter f1 = o1.getFormal();
 			TemplateParameter f2 = o2.getFormal();
-			int i1 = f1.getSignature().getParameters().indexOf(f1);
-			int i2 = f2.getSignature().getParameters().indexOf(f2);
+			int i1 = f1.getSignature().getParameter().indexOf(f1);
+			int i2 = f2.getSignature().getParameter().indexOf(f2);
 			return i1 - i2;
 		}
 	}
@@ -451,7 +451,7 @@ public class PivotUtil extends DomainUtil
 		for (TemplateBinding templateBinding : templateBindings) {	// FIXME Establish ordering
 			TemplateSignature templateSignature = templateBinding.getSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (templateParameters.size() > 0) {
 					if (list == null) {
 						list = new ArrayList<TemplateParameter>();
@@ -476,7 +476,7 @@ public class PivotUtil extends DomainUtil
 			}
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new ArrayList<List<TemplateParameter>>();
@@ -501,7 +501,7 @@ public class PivotUtil extends DomainUtil
 			}
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new ArrayList<TemplateParameter>();
@@ -526,12 +526,12 @@ public class PivotUtil extends DomainUtil
 //			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
 			TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				List<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (templateParameters.size() > 0) {
 					if (result == null) {
 						result = new HashMap<TemplateParameter, ParameterableElement>();
 					}
-					for (TemplateParameter templateParameter : templateSignature.getParameters()) {
+					for (TemplateParameter templateParameter : templateSignature.getParameter()) {
 						result.put(templateParameter, null);
 					}
 				}
@@ -544,8 +544,8 @@ public class PivotUtil extends DomainUtil
 			TemplateableElement templateableElement) {
 		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof TemplateableElement) {
-				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getTemplateBindings()) {
-					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				for (TemplateBinding templateBinding : ((TemplateableElement) eObject).getTemplateBinding()) {
+					for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 						if (map == null) {
 							map = new HashMap<TemplateParameter, ParameterableElement>();
 						}
@@ -554,7 +554,7 @@ public class PivotUtil extends DomainUtil
 				}
 			}
 			if (eObject instanceof Type) {
-				for (Type superType : ((Type)eObject).getSuperClasses()) {
+				for (Type superType : ((Type)eObject).getSuperClass()) {
 					map = getAllTemplateParameterSubstitutions(map, superType);
 				}		
 			}
@@ -591,8 +591,8 @@ public class PivotUtil extends DomainUtil
 	}
 
 	public static String getBody(OpaqueExpression specification) {
-		List<String> bodies = specification.getBodies();
-		List<String> languages = specification.getLanguages();
+		List<String> bodies = specification.getBody();
+		List<String> languages = specification.getLanguage();
 		if ((bodies == null) || (languages == null)) {
 			return null;
 		}
@@ -675,8 +675,8 @@ public class PivotUtil extends DomainUtil
 	}
 
 	public static String getMessage(OpaqueExpression specification) {
-		List<String> messages = specification.getMessages();
-		List<String> languages = specification.getLanguages();
+		List<String> messages = specification.getMessage();
+		List<String> languages = specification.getLanguage();
 		if ((messages == null) || (languages == null)) {
 			return null;
 		}
@@ -756,7 +756,7 @@ public class PivotUtil extends DomainUtil
 		if (templateableElement != null) {
 			TemplateSignature ownedTemplateSignature = templateableElement.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
-				return ownedTemplateSignature.getParameters();
+				return ownedTemplateSignature.getParameter();
 			}
 		}
 		return Collections.emptyList();
@@ -770,7 +770,7 @@ public class PivotUtil extends DomainUtil
 		if (ownedTemplateSignature == null) {
 			return Collections.emptyList();
 		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameter();
 		if (templateParameters.size() == 0) {
 			return Collections.emptyList();
 		}
@@ -799,7 +799,7 @@ public class PivotUtil extends DomainUtil
 		if (ownedTemplateSignature == null) {
 			return Collections.emptyList();
 		}
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameter();
 		if (templateParameters.size() == 0) {
 			return Collections.emptyList();
 		}
@@ -928,7 +928,7 @@ public class PivotUtil extends DomainUtil
 			return false;			
 		}
 		else {
-			return type.getTemplateBindings().isEmpty();			
+			return type.getTemplateBinding().isEmpty();			
 		}
 	}
 

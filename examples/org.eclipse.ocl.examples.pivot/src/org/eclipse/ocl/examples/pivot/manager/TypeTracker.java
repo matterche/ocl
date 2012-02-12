@@ -64,10 +64,10 @@ public abstract class TypeTracker implements Adapter.Internal
 
 	protected void initializeContents() {
 		TypeServer typeServer = getTypeServer();
-		for (Operation pivotOperation : target.getOwnedOperations()) {
+		for (Operation pivotOperation : target.getOwnedOperation()) {
 			typeServer.addOperation(pivotOperation);
 		}
-		for (Property pivotProperty : target.getOwnedAttributes()) {
+		for (Property pivotProperty : target.getOwnedAttribute()) {
 			typeServer.addProperty(pivotProperty);
 		}
 	}		

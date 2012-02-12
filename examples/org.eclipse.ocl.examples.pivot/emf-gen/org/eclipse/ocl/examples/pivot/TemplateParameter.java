@@ -47,7 +47,7 @@ public interface TemplateParameter
 
 	/**
 	 * Returns the value of the '<em><b>Signature</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameter</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -56,7 +56,7 @@ public interface TemplateParameter
 	 * @return the value of the '<em>Signature</em>' container reference.
 	 * @see #setSignature(TemplateSignature)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_Signature()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter
 	 * @model opposite="ownedParameter" required="true" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateParameter!signature'"
 	 * @generated

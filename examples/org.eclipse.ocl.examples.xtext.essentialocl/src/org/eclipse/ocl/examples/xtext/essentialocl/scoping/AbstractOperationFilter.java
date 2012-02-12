@@ -60,7 +60,7 @@ public abstract class AbstractOperationFilter implements EnvironmentView.Filter
 //			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedParameter()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, ParameterableElement>();
 				}

@@ -281,7 +281,7 @@ public class XtextTestCase extends PivotTestCase
 //		if (pivotElement instanceof TemplateBinding) {
 //			return false;
 //		}
-//		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
+//		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBinding().size() > 0)) {
 //			return false;
 //		}
 		return true;
@@ -365,7 +365,7 @@ public class XtextTestCase extends PivotTestCase
 				return false;
 			}
 		}
-		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
+		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBinding().size() > 0)) {
 			return false;
 		}
 		if (pivotElement instanceof LambdaType) {

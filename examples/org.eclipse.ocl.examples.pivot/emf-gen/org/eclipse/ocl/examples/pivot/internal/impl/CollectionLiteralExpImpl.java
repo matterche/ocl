@@ -64,7 +64,7 @@ import org.eclipse.osgi.util.NLS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionLiteralExpImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionLiteralExpImpl#getParts <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionLiteralExpImpl#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,14 +122,14 @@ public class CollectionLiteralExpImpl
 	protected static final int KIND_EFLAG = 0x7 << KIND_EFLAG_OFFSET;
 
 	/**
-	 * The cached value of the '{@link #getParts() <em>Part</em>}' containment reference list.
+	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParts()
+	 * @see #getPart()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CollectionLiteralPart> parts;
+	protected EList<CollectionLiteralPart> part;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,12 +177,13 @@ public class CollectionLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CollectionLiteralPart> getParts() {
-		if (parts == null)
+	public EList<CollectionLiteralPart> getPart()
+	{
+		if (part == null)
 		{
-			parts = new EObjectContainmentEList<CollectionLiteralPart>(CollectionLiteralPart.class, this, PivotPackage.COLLECTION_LITERAL_EXP__PART);
+			part = new EObjectContainmentEList<CollectionLiteralPart>(CollectionLiteralPart.class, this, PivotPackage.COLLECTION_LITERAL_EXP__PART);
 		}
-		return parts;
+		return part;
 	}
 
 	/**
@@ -192,7 +193,7 @@ public class CollectionLiteralExpImpl
 	 */
 	public CollectionLiteralPart createPart(EClass eClass) {
 		CollectionLiteralPart newPart = (CollectionLiteralPart) create(eClass);
-		getParts().add(newPart);
+		getPart().add(newPart);
 		return newPart;
 	}
 
@@ -384,13 +385,13 @@ public class CollectionLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -405,22 +406,22 @@ public class CollectionLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
 				return isStatic();
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				return getKind();
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
-				return getParts();
+				return getPart();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -436,22 +437,22 @@ public class CollectionLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
@@ -460,8 +461,8 @@ public class CollectionLiteralExpImpl
 				setKind((CollectionKind)newValue);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
-				getParts().clear();
-				getParts().addAll((Collection<? extends CollectionLiteralPart>)newValue);
+				getPart().clear();
+				getPart().addAll((Collection<? extends CollectionLiteralPart>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -477,19 +478,19 @@ public class CollectionLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				setType((Type)null);
@@ -498,7 +499,7 @@ public class CollectionLiteralExpImpl
 				setKind(KIND_EDEFAULT);
 				return;
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
-				getParts().clear();
+				getPart().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -514,21 +515,21 @@ public class CollectionLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.COLLECTION_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.COLLECTION_LITERAL_EXP__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.COLLECTION_LITERAL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.COLLECTION_LITERAL_EXP__KIND:
 				return (eFlags & KIND_EFLAG) != KIND_EFLAG_DEFAULT;
 			case PivotPackage.COLLECTION_LITERAL_EXP__PART:
-				return parts != null && !parts.isEmpty();
+				return part != null && !part.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

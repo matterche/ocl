@@ -64,7 +64,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 				context.importPackage(objectPackage);
 			}
 		}
-		List<TemplateBinding> templateBindings = object.getTemplateBindings();
+		List<TemplateBinding> templateBindings = object.getTemplateBinding();
 		if (templateBindings.isEmpty()) {
 		}
 		else {
@@ -75,7 +75,7 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 			}
 			List<TemplateParameterSubstitutionCS> csParameterSubstitutions = new ArrayList<TemplateParameterSubstitutionCS>();
 			for (TemplateBinding templateBinding : templateBindings) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					TemplateParameterSubstitutionCS csTemplateParameterSubstitution = BaseCSTFactory.eINSTANCE.createTemplateParameterSubstitutionCS();
 					TypeRefCS csParameterable = context.visitReference(TypeRefCS.class, templateParameterSubstitution.getActual());
 					csTemplateParameterSubstitution.setOwnedActualParameter(csParameterable);

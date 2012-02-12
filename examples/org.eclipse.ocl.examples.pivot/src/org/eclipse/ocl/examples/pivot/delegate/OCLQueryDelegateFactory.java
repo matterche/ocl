@@ -57,14 +57,14 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		OCLDelegateDomain delegateDomain = loadDelegateDomain(context.getEPackage());
 		Type modelType = delegateDomain.getPivot(Type.class, context);
 		ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
-		specification.getBodies().add(expression);
-		specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+		specification.getBody().add(expression);
+		specification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 		Variable contextVariable = PivotFactory.eINSTANCE.createVariable();
 		contextVariable.setName(Environment.SELF_VARIABLE_NAME);
 		contextVariable.setType(modelType);
 		specification.setContextVariable(contextVariable);
 		if (parameters != null) {
-			List<Variable> parameterVariables = specification.getParameterVariables();
+			List<Variable> parameterVariables = specification.getParameterVariable();
 			for (Map.Entry<String, EClassifier> entry : parameters.entrySet()) {
 				Variable parameterVariable = PivotFactory.eINSTANCE.createVariable();
 				parameterVariable.setName(entry.getKey());

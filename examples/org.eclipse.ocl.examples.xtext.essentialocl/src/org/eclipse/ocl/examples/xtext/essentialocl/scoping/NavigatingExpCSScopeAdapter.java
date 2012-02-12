@@ -56,7 +56,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter
 			if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.EXPRESSION) {
 				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
-					for (Variable iterator : ((LoopExp)pivot).getIterators()) {
+					for (Variable iterator : ((LoopExp)pivot).getIterator()) {
 						environmentView.addNamedElement(iterator);
 						if (environmentView.hasFinalResult()) {
 							return null;
@@ -98,7 +98,7 @@ public class NavigatingExpCSScopeAdapter extends ElementCSScopeAdapter
 			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ITERATOR) {			// Happens during save
 				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof LoopExp) {
-					environmentView.addNamedElements(((LoopExp)pivot).getIterators());
+					environmentView.addNamedElements(((LoopExp)pivot).getIterator());
 				}
 			}
 			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ACCUMULATOR) {

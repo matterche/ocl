@@ -43,7 +43,7 @@ public class ValidateClosureIteration implements LibraryValidator
 		if (bodyType instanceof CollectionType) {
 			bodyType = ((CollectionType)bodyType).getElementType();
 		}
-		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
+		Type iteratorType = ((IteratorExp)callExp).getIterator().get(0).getType();
 		Map<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
 		if (!metaModelManager.conformsTo(bodyType, iteratorType, bindings)) {
 			return new ValidationWarning(OCLMessages.IncompatibleBodyType_WARNING_, bodyType, iteratorType);

@@ -85,7 +85,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				Operation pivotOperation = PivotUtil.getPivot(Operation.class, csOperation);
 				newPivotOperations.add(pivotOperation);
 			}
-			context.refreshList(pivotElement.getOwnedOperations(), newPivotOperations);
+			context.refreshList(pivotElement.getOwnedOperation(), newPivotOperations);
 			return null;
 		}
 	}
@@ -111,12 +111,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		@Override
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
-			List<Type> superClasses = pivotElement.getSuperClasses();
+			List<Type> superClasses = pivotElement.getSuperClass();
 			context.refreshList(Type.class, superClasses, csElement.getOwnedSuperType());
 			if (superClasses.isEmpty()) {
 				org.eclipse.ocl.examples.pivot.Class oclElementType = context.getMetaModelManager().getOclElementType();
 				if (oclElementType != null) {
-					pivotElement.getSuperClasses().add(oclElementType);
+					pivotElement.getSuperClass().add(oclElementType);
 				}
 			}
 			return null;
@@ -169,8 +169,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		public BasicContinuation<?> execute() {
 			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 			context.refreshTemplateSignature(csElement, pivotOperation);
-			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameters());
-			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedException());
+			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameter());
+			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedException());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
 			return null;
 		}
@@ -195,8 +195,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		@Override
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csElement);
-			context.refreshPivotList(Type.class, pivotElement.getOwnedTypes(), csElement.getOwnedType());
-			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
+			context.refreshPivotList(Type.class, pivotElement.getOwnedType(), csElement.getOwnedType());
+			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackage(), csElement.getOwnedNestedPackage());
 			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
 			return null;
 		}
@@ -393,7 +393,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			newPivotLiterals.add(pivotEnumerationLiteral);
 			pivotEnumerationLiteral.setValue(BigInteger.valueOf(csEnumerationLiteral.getValue()));
 		}
-		context.refreshList(pivotElement.getOwnedLiterals(), newPivotLiterals);
+		context.refreshList(pivotElement.getOwnedLiteral(), newPivotLiterals);
 	}
 
 	protected void refreshProperties(ClassCS csClass, org.eclipse.ocl.examples.pivot.Class pivotElement) {
@@ -402,7 +402,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			Property pivotProperty = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csProperty);
 			newPivotProperties.add(pivotProperty);
 		}
-		context.refreshList(pivotElement.getOwnedAttributes(), newPivotProperties);
+		context.refreshList(pivotElement.getOwnedAttribute(), newPivotProperties);
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {

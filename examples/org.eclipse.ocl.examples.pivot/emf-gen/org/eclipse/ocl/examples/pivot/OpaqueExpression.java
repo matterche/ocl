@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getBodies <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguages <em>Language</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessages <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessage <em>Message</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getValueExpression <em>Value Expression</em>}</li>
  * </ul>
  * </p>
@@ -58,7 +58,7 @@ public interface OpaqueExpression
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!body'"
 	 * @generated
 	 */
-	EList<String> getBodies();
+	EList<String> getBody();
 
 	/**
 	 * Returns the value of the '<em><b>Language</b></em>' attribute list.
@@ -74,7 +74,7 @@ public interface OpaqueExpression
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!language'"
 	 * @generated
 	 */
-	EList<String> getLanguages();
+	EList<String> getLanguage();
 
 	/**
 	 * Returns the value of the '<em><b>Message</b></em>' attribute list.
@@ -91,7 +91,7 @@ public interface OpaqueExpression
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!OpaqueExpression!message'"
 	 * @generated
 	 */
-	EList<String> getMessages();
+	EList<String> getMessage();
 
 	/**
 	 * Returns the value of the '<em><b>Value Expression</b></em>' reference.

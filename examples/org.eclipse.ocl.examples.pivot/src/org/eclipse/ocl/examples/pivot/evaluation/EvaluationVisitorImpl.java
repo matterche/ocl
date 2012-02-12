@@ -106,7 +106,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
 	public static boolean isSimpleRange(CollectionLiteralExp cl) {
-		List<CollectionLiteralPart> partsList = cl.getParts();
+		List<CollectionLiteralPart> partsList = cl.getPart();
 		int size = partsList.size();
 		if (size == 1) {
 			CollectionLiteralPart part = partsList.get(0);
@@ -207,7 +207,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// construct the appropriate collection from the parts
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
-		List<CollectionLiteralPart> parts = cl.getParts();
+		List<CollectionLiteralPart> parts = cl.getPart();
 		DomainCollectionType type = (DomainCollectionType) cl.getType();
 		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
@@ -322,7 +322,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	public Value visitConstructorExp(ConstructorExp ce) {
 		DomainType type = ce.getType();
 		ObjectValue objectValue = type.createInstance(valueFactory);
-		for (ConstructorPart part : ce.getParts()) {
+		for (ConstructorPart part : ce.getPart()) {
 			Value propertyValue = part.getInitExpression().accept(getUndecoratedVisitor());
 			try {
 				part.getReferredProperty().setValue(objectValue, propertyValue);
@@ -436,7 +436,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			DomainIterationManager iterationManager;
 			VariableDeclaration accumulatorVariable = accumulator.getRepresentedParameter();
 			OclExpression body = iterateExp.getBody();
-			List<Variable> iterators = iterateExp.getIterators();
+			List<Variable> iterators = iterateExp.getIterator();
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
@@ -503,7 +503,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			DomainIterationManager iterationManager;
 			OclExpression body = iteratorExp.getBody();
 			Value accumulatorValue = implementation.createAccumulatorValue(undecoratedVisitor, PivotUtil.getBehavioralType(iteratorExp.getType()), PivotUtil.getBehavioralType(body.getType()));
-			List<Variable> iterators = iteratorExp.getIterators();
+			List<Variable> iterators = iteratorExp.getIterator();
 			int iSize = iterators.size();
 			if (iSize == 1) {
 				VariableDeclaration firstIterator = iterators.get(0).getRepresentedParameter();
@@ -556,7 +556,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
 /*        T targetResult = safeVisit(messageExp.getTarget());        
         List<T> argumentResults;
-        List<OclExpression> arguments = messageExp.getArguments();       
+        List<OclExpression> arguments = messageExp.getArgument();       
         if (arguments.isEmpty()) {
             argumentResults = Collections.emptyList();
         } else {
@@ -596,9 +596,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		//	Resolve source dispatch type
 		//
  		DomainType dynamicSourceType = sourceValue.getType();
-		List<OclExpression> arguments = operationCallExp.getArguments();
+		List<OclExpression> arguments = operationCallExp.getArgument();
 		Value onlyArgument = null;
-		List<Parameter> ownedParameters = staticOperation.getOwnedParameters();
+		List<Parameter> ownedParameters = staticOperation.getOwnedParameter();
 		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
 			onlyArgument =  arguments.get(0).accept(undecoratedVisitor);
 			DomainType argType = onlyArgument.getType();
@@ -752,7 +752,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitTupleLiteralExp(TupleLiteralExp tl) {
 		DomainType type = tl.getType();
 		Map<TypedElement, Value> propertyValues = new HashMap<TypedElement, Value>();		
-		for (TupleLiteralPart part : tl.getParts()) {
+		for (TupleLiteralPart part : tl.getPart()) {
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part, part.accept(getUndecoratedVisitor()));
 		}

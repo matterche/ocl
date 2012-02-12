@@ -127,15 +127,15 @@ public class SendSignalActionImpl
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.SEND_SIGNAL_ACTION__NAME:
 				return getName();
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.SEND_SIGNAL_ACTION__IS_STATIC:
 				return isStatic();
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.SEND_SIGNAL_ACTION__SIGNAL:
 				if (resolve) return getSignal();
 				return basicGetSignal();
@@ -154,22 +154,22 @@ public class SendSignalActionImpl
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__SIGNAL:
 				setSignal((Signal)newValue);
@@ -188,19 +188,19 @@ public class SendSignalActionImpl
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.SEND_SIGNAL_ACTION__SIGNAL:
 				setSignal((Signal)null);
@@ -219,15 +219,15 @@ public class SendSignalActionImpl
 		switch (featureID)
 		{
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.SEND_SIGNAL_ACTION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.SEND_SIGNAL_ACTION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.SEND_SIGNAL_ACTION__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.SEND_SIGNAL_ACTION__SIGNAL:
 				return signal != null;
 		}

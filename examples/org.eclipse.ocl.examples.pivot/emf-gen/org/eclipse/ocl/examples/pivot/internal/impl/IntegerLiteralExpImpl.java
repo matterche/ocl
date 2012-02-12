@@ -173,15 +173,15 @@ public class IntegerLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_STATIC:
 				return isStatic();
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -202,22 +202,22 @@ public class IntegerLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
@@ -239,19 +239,19 @@ public class IntegerLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:
 				setType((Type)null);
@@ -273,15 +273,15 @@ public class IntegerLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.INTEGER_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.INTEGER_LITERAL_EXP__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.INTEGER_LITERAL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.INTEGER_LITERAL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.INTEGER_LITERAL_EXP__INTEGER_SYMBOL:

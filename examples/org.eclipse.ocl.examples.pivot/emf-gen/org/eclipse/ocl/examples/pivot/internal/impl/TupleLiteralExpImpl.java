@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl#getParts <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,15 +51,14 @@ public class TupleLiteralExpImpl
 		implements TupleLiteralExp {
 
 	/**
-	 * The cached value of the '{@link #getParts() <em>Part</em>}' containment reference list.
+	 * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParts()
+	 * @see #getPart()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TupleLiteralPart> parts;
-
+	protected EList<TupleLiteralPart> part;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,12 +83,13 @@ public class TupleLiteralExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TupleLiteralPart> getParts() {
-		if (parts == null)
+	public EList<TupleLiteralPart> getPart()
+	{
+		if (part == null)
 		{
-			parts = new EObjectContainmentEList<TupleLiteralPart>(TupleLiteralPart.class, this, PivotPackage.TUPLE_LITERAL_EXP__PART);
+			part = new EObjectContainmentEList<TupleLiteralPart>(TupleLiteralPart.class, this, PivotPackage.TUPLE_LITERAL_EXP__PART);
 		}
-		return parts;
+		return part;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class TupleLiteralExpImpl
 	 */
 	public TupleLiteralPart createPart() {
 		TupleLiteralPart newPart = (TupleLiteralPart) create(PivotPackage.Literals.TUPLE_LITERAL_PART);
-		getParts().add(newPart);
+		getPart().add(newPart);
 		return newPart;
 	}
 
@@ -114,13 +114,13 @@ public class TupleLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_EXP__PART:
-				return ((InternalEList<?>)getParts()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getPart()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,20 +135,20 @@ public class TupleLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TUPLE_LITERAL_EXP__NAME:
 				return getName();
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.TUPLE_LITERAL_EXP__IS_STATIC:
 				return isStatic();
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.TUPLE_LITERAL_EXP__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.TUPLE_LITERAL_EXP__PART:
-				return getParts();
+				return getPart();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -164,29 +164,29 @@ public class TupleLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__TYPE:
 				setType((Type)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__PART:
-				getParts().clear();
-				getParts().addAll((Collection<? extends TupleLiteralPart>)newValue);
+				getPart().clear();
+				getPart().addAll((Collection<? extends TupleLiteralPart>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -202,25 +202,25 @@ public class TupleLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__TYPE:
 				setType((Type)null);
 				return;
 			case PivotPackage.TUPLE_LITERAL_EXP__PART:
-				getParts().clear();
+				getPart().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -236,19 +236,19 @@ public class TupleLiteralExpImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_EXP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_EXP__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TUPLE_LITERAL_EXP__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_EXP__TYPE:
 				return type != null;
 			case PivotPackage.TUPLE_LITERAL_EXP__PART:
-				return parts != null && !parts.isEmpty();
+				return part != null && !part.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -101,7 +101,7 @@ public class Pivot2EcoreReferenceVisitor
 	public EObject visitAnnotation(Annotation pivotAnnotation) {
 		EAnnotation eAnnotation = context.getCreated(EAnnotation.class, pivotAnnotation);
 		eAnnotation.getReferences().clear();
-		for (Element pivotReference : pivotAnnotation.getReferences()) {
+		for (Element pivotReference : pivotAnnotation.getReference()) {
 			EObject target = context.getCreated(EObject.class, pivotReference);
 			if ((target == null) && (pivotReference instanceof PivotObjectImpl)) {
 				target = ((PivotObjectImpl)pivotReference).getTarget();
@@ -116,7 +116,7 @@ public class Pivot2EcoreReferenceVisitor
 	@Override
 	public EObject visitClass(Class pivotClass) {
 		EClass eClass = context.getCreated(EClass.class, pivotClass);
-		safeVisitAll(eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClasses());
+		safeVisitAll(eClass.getEGenericSuperTypes(), eClass.getESuperTypes(), pivotClass.getSuperClass());
 		return eClass;
 	}
 
@@ -129,7 +129,7 @@ public class Pivot2EcoreReferenceVisitor
 	@Override
 	public EObject visitOperation(Operation pivotOperation) {
 		EOperation eOperation = context.getCreated(EOperation.class, pivotOperation);
-		safeVisitAll(eOperation.getEGenericExceptions(), eOperation.getEExceptions(), pivotOperation.getRaisedExceptions());
+		safeVisitAll(eOperation.getEGenericExceptions(), eOperation.getEExceptions(), pivotOperation.getRaisedException());
 		return super.visitOperation(pivotOperation);
 	}
 
@@ -206,7 +206,7 @@ public class Pivot2EcoreReferenceVisitor
 	@Override
 	public EObject visitTypeTemplateParameter(TypeTemplateParameter pivotTypeTemplateParameter) {
 		ETypeParameter eTypeParameter = context.getCreated(ETypeParameter.class, pivotTypeTemplateParameter);
-		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingTypes()) {
+		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingType()) {
 			EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 			eTypeParameter.getEBounds().add(eGenericType);
 		}

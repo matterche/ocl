@@ -27,9 +27,9 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedContents <em>Owned Content</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetails <em>Owned Detail</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getReferences <em>Reference</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedContent <em>Owned Content</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetail <em>Owned Detail</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Annotation#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,7 +45,7 @@ public interface Annotation
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Contents</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Content</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -55,7 +55,7 @@ public interface Annotation
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedContent'"
 	 * @generated
 	 */
-	EList<Element> getOwnedContents();
+	EList<Element> getOwnedContent();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Element} and appends it to the '<em><b>Owned Content</b></em>' containment reference list.
@@ -63,33 +63,17 @@ public interface Annotation
 	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Element} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Element}.
-	 * @see #getOwnedContents()
+	 * @see #getOwnedContent()
 	 * @generated
 	 */
 	Element createOwnedContent(EClass eClass);
-
-	/**
-	 * Returns the value of the '<em><b>Reference</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>References</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_Reference()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference'"
-	 * @generated
-	 */
-	EList<Element> getReferences();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Detail</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Detail}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owned Details</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Detail</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -99,16 +83,32 @@ public interface Annotation
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!ownedDetail'"
 	 * @generated
 	 */
-	EList<Detail> getOwnedDetails();
+	EList<Detail> getOwnedDetail();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Detail} and appends it to the '<em><b>Owned Detail</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Detail}.
-	 * @see #getOwnedDetails()
+	 * @see #getOwnedDetail()
 	 * @generated
 	 */
 	Detail createOwnedDetail();
+
+	/**
+	 * Returns the value of the '<em><b>Reference</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Element}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reference</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reference</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getAnnotation_Reference()
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Annotation!reference'"
+	 * @generated
+	 */
+	EList<Element> getReference();
 
 } // Annotation

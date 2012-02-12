@@ -77,13 +77,13 @@ public class OCLinEcoreLeft2RightVisitor
 			else if (eContainer instanceof OperationCS) {
 				Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);
 				context.setType(contextVariable, contextOperation.getOwningType());
-		        pivotSpecification.getParameterVariables().clear();
-		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+		        pivotSpecification.getParameterVariable().clear();
+		        for (Parameter parameter : contextOperation.getOwnedParameter()) {
 			        Variable param = PivotFactory.eINSTANCE.createVariable();
 			        param.setName(parameter.getName());
 					context.setTypeWithMultiplicity(param, parameter);
 			        param.setRepresentedParameter(parameter);
-			        pivotSpecification.getParameterVariables().add(param);
+			        pivotSpecification.getParameterVariable().add(param);
 		        }
 		        if (UMLReflection.POSTCONDITION.equals(csConstraint.getStereotype())) {		// FIXME constant
 					Variable resultVariable = pivotSpecification.getResultVariable();

@@ -119,7 +119,7 @@ public class PivotQueries
 			return depth;
 		}
 		int myDepth = 0;
-		for (Type superClass : aClass.getSuperClasses()) {
+		for (Type superClass : aClass.getSuperClass()) {
 			int superDepth = getAllSuperClasses(results, superClass);
 			if (superDepth >= myDepth) {
 				myDepth = superDepth+1;
@@ -239,7 +239,7 @@ public class PivotQueries
 		if (operation == null) {
 			return false;
 		}
-		List<Parameter> parameters = operation.getOwnedParameters();
+		List<Parameter> parameters = operation.getOwnedParameter();
 		if (parameters.size() != 1) {
 			return false;
 		}

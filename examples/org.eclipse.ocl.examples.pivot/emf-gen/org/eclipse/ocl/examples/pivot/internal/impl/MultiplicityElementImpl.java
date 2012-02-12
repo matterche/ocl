@@ -290,7 +290,7 @@ public abstract class MultiplicityElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return isOrdered();
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:
@@ -314,8 +314,8 @@ public abstract class MultiplicityElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
@@ -343,7 +343,7 @@ public abstract class MultiplicityElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
@@ -371,7 +371,7 @@ public abstract class MultiplicityElementImpl
 		switch (featureID)
 		{
 			case PivotPackage.MULTIPLICITY_ELEMENT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return ((eFlags & IS_ORDERED_EFLAG) != 0) != IS_ORDERED_EDEFAULT;
 			case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:

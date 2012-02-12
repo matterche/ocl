@@ -127,7 +127,7 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRule()).basicAdd(otherEnd, msgs);
 			case PivotPackage.PARAMETER__OPERATION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -147,11 +147,11 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.PARAMETER__OPERATION:
 				return basicSetOperation(null, msgs);
 		}
@@ -184,15 +184,15 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.PARAMETER__NAME:
 				return getName();
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.PARAMETER__IS_STATIC:
 				return isStatic();
 			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.PARAMETER__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -221,22 +221,22 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.PARAMETER__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.PARAMETER__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.PARAMETER__TYPE:
 				setType((Type)newValue);
@@ -270,19 +270,19 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.PARAMETER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.PARAMETER__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.PARAMETER__TYPE:
 				setType((Type)null);
@@ -316,15 +316,15 @@ public class ParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.PARAMETER__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.PARAMETER__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.PARAMETER__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.PARAMETER__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.PARAMETER__TYPE:
 				return type != null;
 			case PivotPackage.PARAMETER__IS_ORDERED:

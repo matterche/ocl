@@ -32,9 +32,9 @@ import org.eclipse.ocl.examples.pivot.util.Nameable;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules <em>Owned Rule</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRule <em>Owned Rule</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#isStatic <em>Is Static</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotations <em>Owned Annotation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,28 +46,11 @@ public interface NamedElement
 		extends Element, Nameable {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Annotation}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Annotations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedAnnotation()
-	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation'"
-	 * @generated
-	 */
-	EList<Annotation> getOwnedAnnotations();
-
-	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Annotation} and appends it to the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Annotation}.
-	 * @see #getOwnedAnnotations()
+	 * @see #getOwnedAnnotation()
 	 * @generated
 	 */
 	Annotation createOwnedAnnotation();
@@ -115,14 +98,14 @@ public interface NamedElement
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedRule'"
 	 * @generated
 	 */
-	EList<Constraint> getOwnedRules();
+	EList<Constraint> getOwnedRule();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Constraint} and appends it to the '<em><b>Owned Rule</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Constraint}.
-	 * @see #getOwnedRules()
+	 * @see #getOwnedRule()
 	 * @generated
 	 */
 	Constraint createOwnedRule();
@@ -153,5 +136,22 @@ public interface NamedElement
 	 * @generated
 	 */
 	void setIsStatic(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Annotation</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Annotation</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getNamedElement_OwnedAnnotation()
+	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NamedElement!ownedAnnotation'"
+	 * @generated
+	 */
+	EList<Annotation> getOwnedAnnotation();
 
 } // NamedElement

@@ -194,7 +194,7 @@ public interface Property
 
 	/**
 	 * Returns the value of the '<em><b>Association</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attribute</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Association</em>' reference isn't clear,
@@ -204,7 +204,7 @@ public interface Property
 	 * @return the value of the '<em>Association</em>' reference.
 	 * @see #setAssociation(AssociationClass)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Association()
-	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes
+	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute
 	 * @model opposite="unownedAttribute" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!association'"
 	 * @generated
@@ -408,7 +408,7 @@ public interface Property
 
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes <em>Owned Attribute</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
@@ -418,7 +418,7 @@ public interface Property
 	 * @return the value of the '<em>Owning Type</em>' container reference.
 	 * @see #setOwningType(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_OwningType()
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes
+	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute
 	 * @model opposite="ownedAttribute" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Property!owningType'"
 	 * @generated

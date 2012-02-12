@@ -76,9 +76,9 @@ protected final TupleType [type.getPrefixedSymbolName('_'+type.partialName())/] 
 [let allClassifierTypes : OrderedSet(ClassifierType) = pkg.eAllContents(ClassifierType)->asSet()->sortedBy(getMoniker())]
 [let allContainers : Set(Package) = allClassifierTypes.eContainer()->asSet()->excluding(pkg)->filter(Package)]
 protected void installClassifierTypes() {
-	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedTypes();
+	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedType();
 [if (allContainers->notEmpty())]
-	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedTypes();
+	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedType();
 [/if]
 	ClassifierType type;
 	List<Type> superClasses;
@@ -99,9 +99,9 @@ protected void installClassifierTypes() {
 [let allCollectionTypes : OrderedSet(CollectionType) = pkg.eAllContents(CollectionType)->asSet()->sortedBy(getMoniker())]
 [let allContainers : Set(Package) = allCollectionTypes.eContainer()->asSet()->excluding(pkg)->filter(Package)]
 protected void installCollectionTypes() {
-	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedTypes();
+	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedType();
 [if (allContainers->notEmpty())]
-	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedTypes();
+	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedType();
 [/if]
 	CollectionType type;
 	List<Type> superClasses;
@@ -133,16 +133,16 @@ protected void installComments() {
 [template public defineEnumerations(pkg : Package)]
 [let allEnumerations : OrderedSet(Enumeration) = pkg.eAllContents(Enumeration)->asSet()->sortedBy(getMoniker())]
 protected void installEnumerations() {
-	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedTypes();
+	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedType();
 	Enumeration type;
 	List<EnumerationLiteral> enumerationLiterals;
 [for (enumeration : Enumeration | allEnumerations)]
 	ownedTypes.add(type = [enumeration.getSymbolName()/]);
-	enumerationLiterals = type.getOwnedLiterals();
+	enumerationLiterals = type.getOwnedLiteral();
 [for (enumerationLiteral : EnumerationLiteral | enumeration.ownedLiteral)]
 	enumerationLiterals.add(createEnumerationLiteral("[enumerationLiteral.name/]"));
 [/for]
-	type.getSuperClasses().add(_Enumeration);
+	type.getSuperClass().add(_Enumeration);
 [/for]
 }
 [/let][/template]
@@ -159,7 +159,7 @@ protected void installIterations() {
 	Iteration iteration;
 	Parameter parameter;
 [for (type : Type | allIterations.owningType->asSet()->sortedBy(getMoniker()))]
-	ownedIterations = [type.getSymbolName()/].getOwnedOperations();
+	ownedIterations = [type.getSymbolName()/].getOwnedOperation();
 [for (iteration : Iteration | type.ownedOperation->intersection(allIterations)->filter(Iteration)->sortedBy(getMoniker()))]
 	ownedIterations.add(iteration = [iteration.getSymbolName()/]);
 [if (iteration.lower <> 1)]
@@ -174,7 +174,7 @@ protected void installIterations() {
 	iteration.setIsStatic(true);
 [/if]
 [if (iteration.ownedIterator->notEmpty())]
-	ownedParameters = iteration.getOwnedIterators();
+	ownedParameters = iteration.getOwnedIterator();
 [for (parameter : Parameter | iteration.ownedIterator)]
 	ownedParameters.add(parameter = createParameter("[parameter.name/]", [parameter.type.getSymbolName()/]));
 [if (parameter.lower <> 1)]
@@ -187,7 +187,7 @@ protected void installIterations() {
 	parameter.setIsUnique(false);
 [/if][/for][/if]
 [if (iteration.ownedAccumulator->notEmpty())]
-	ownedParameters = iteration.getOwnedAccumulators();
+	ownedParameters = iteration.getOwnedAccumulator();
 [for (parameter : Parameter | iteration.ownedAccumulator)]
 	ownedParameters.add(parameter = createParameter("[parameter.name/]", [parameter.type.getSymbolName()/]));
 [if (parameter.lower <> 1)]
@@ -200,7 +200,7 @@ protected void installIterations() {
 	parameter.setIsUnique(false);
 [/if][/for][/if]
 [if (iteration.ownedParameter->notEmpty())]
-	ownedParameters = iteration.getOwnedParameters();
+	ownedParameters = iteration.getOwnedParameter();
 [for (parameter : Parameter | iteration.ownedParameter)]
 	ownedParameters.add(parameter = createParameter("[parameter.name/]", [parameter.type.getSymbolName()/]));
 [if (parameter.lower <> 1)]
@@ -227,14 +227,14 @@ protected final LambdaType [type.getPrefixedSymbolName('_'+type.partialName())/]
 [/for]
 
 protected void installLambdaTypes() {
-	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedTypes();
+	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedType();
 	LambdaType type;
 	List<Type> superClasses;
 [for (type : LambdaType | allLambdaTypes)]
 	orphanTypes.add(type = [type.getSymbolName()/]);
 	type.setContextType([type.contextType.getSymbolName()/]);
 [for (parameterType : Type| type.parameterType)]
-	type.getParameterTypes().add([parameterType.getSymbolName()/]);
+	type.getParameterType().add([parameterType.getSymbolName()/]);
 [/for]
 	type.setResultType([type.resultType.getSymbolName()/]);
 	[type.emitSuperClasses()/]
@@ -246,7 +246,7 @@ protected void installLambdaTypes() {
 [template public defineOclTypes(pkg : Package)]
 [let allOclTypes : OrderedSet(Type) = pkg.getOclTypes()->sortedBy(getMoniker())]
 protected void installOclTypes() {
-	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedTypes();
+	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedType();
 	Type type;
 	List<Type> superClasses;
 [for (type : Type | allOclTypes)]
@@ -271,7 +271,7 @@ protected void installOperations() {
 	Operation operation;
 	Parameter parameter;
 [for (type : Type | allOperations.owningType->asSet()->excluding(null)->sortedBy(getMoniker()))]
-	ownedOperations = [type.getSymbolName()/].getOwnedOperations();
+	ownedOperations = [type.getSymbolName()/].getOwnedOperation();
 [for (operation : Operation | type.ownedOperation->intersection(allOperations)->sortedBy(getMoniker()))]
 	ownedOperations.add(operation = [operation.getSymbolName()/]);
 [if (operation.lower <> 1)]
@@ -286,7 +286,7 @@ protected void installOperations() {
 	operation.setIsStatic(true);
 [/if]
 [if (operation.ownedParameter->notEmpty())]
-	ownedParameters = operation.getOwnedParameters();
+	ownedParameters = operation.getOwnedParameter();
 [for (parameter : Parameter | operation.ownedParameter)]
 	ownedParameters.add(parameter = createParameter("[parameter.name/]", [parameter.type.getSymbolName()/]));
 [if (parameter.lower <> 1)]
@@ -332,7 +332,7 @@ protected void installPrecedences() {
 	final Precedence [precedence.getPrefixedSymbolName('prec_'+precedence.partialName())/] = createPrecedence("[precedence.name/]", AssociativityKind.[precedence.associativity.toString().toUpper()/]);
 [/for]
 
-	final List<Precedence> ownedPrecedences = [pkg.getSymbolName()/].getOwnedPrecedences();
+	final List<Precedence> ownedPrecedences = [pkg.getSymbolName()/].getOwnedPrecedence();
 [for (precedence : Precedence | allPrecedences)]
 	ownedPrecedences.add([precedence.getSymbolName()/]);
 [/for]
@@ -350,13 +350,13 @@ protected void installPrecedences() {
 [template public definePrimitiveTypes(pkg : Package)]
 [let allTypes : OrderedSet(PrimitiveType) = pkg.eAllContents(PrimitiveType)->asSet()->sortedBy(getMoniker())]
 protected void installPrimitiveTypes() {
-	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedTypes();
+	final List<Type> ownedTypes = [pkg.getSymbolName()/].getOwnedType();
 	PrimitiveType type;
 [for (type : PrimitiveType | allTypes)]
 	ownedTypes.add(type = [type.getSymbolName()/]);
 [let superClasses : OrderedSet(Type) = type.superClass->select(_package.getRootPackage() = type._package.getRootPackage())]
 [for (superClass : Type | superClasses)]
-	type.getSuperClasses().add([superClass.getSymbolName()/]);
+	type.getSuperClass().add([superClass.getSymbolName()/]);
 [/for]
 [/let]
 [/for]
@@ -374,7 +374,7 @@ protected void installProperties() {
 	List<Property> ownedProperties;
 	Property property;
 [for (type : Type | allProperties.owningType->asSet()->excluding(null)->sortedBy(getMoniker()))]
-	ownedProperties = [type.getSymbolName()/].getOwnedAttributes();
+	ownedProperties = [type.getSymbolName()/].getOwnedAttribute();
 [for (property : Property | type.ownedAttribute->intersection(allProperties)->sortedBy(getMoniker()))]
 	ownedProperties.add(property = [property.getSymbolName()/]);
 [if (property.lower <> 1)]
@@ -419,7 +419,7 @@ protected void installTemplateBindings() {
 [let allTemplateableElements : OrderedSet(TemplateableElement) = pkg.eAllContents(TemplateableElement)->select(templateBinding->notEmpty())->asSet()->sortedBy(getMoniker())]
 [for (templateableElement : TemplateableElement | allTemplateableElements)]
 [for (templateBinding : TemplateBinding | templateableElement.templateBinding)]
-	[templateableElement.getSymbolName()/].getTemplateBindings().add(createTemplateBinding([templateBinding.signature.getSymbolName()/],
+	[templateableElement.getSymbolName()/].getTemplateBinding().add(createTemplateBinding([templateBinding.signature.getSymbolName()/],
 [for (templateParameterSubstitution : TemplateParameterSubstitution | templateBinding.parameterSubstitution) separator(',\n')]
 		createTemplateParameterSubstitution([templateParameterSubstitution.formal.getSymbolName()/], [templateParameterSubstitution.actual.getSymbolName()/])[/for]));
 [/for]
@@ -451,7 +451,7 @@ protected void installTemplateSignatures() {
 [let allTupleTypes : OrderedSet(TupleType) = pkg.eAllContents(TupleType)->asSet()->sortedBy(getMoniker())]
 [let allContainers : Set(Package) = allTupleTypes.eContainer()->asSet()->excluding(pkg)->filter(Package)]
 protected void installTupleTypes() {
-	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedTypes();
+	final List<Type> orphanTypes = [allContainers->any(true).getSymbolName()/].getOwnedType();
 	TupleType type;
 	List<Type> superClasses;
 [for (type : TupleType | allTupleTypes)]
@@ -471,15 +471,15 @@ protected void installTupleTypes() {
 [for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name)) separator('\n')]
 [if (nestedPackage.nestedPackage->notEmpty())]
 [emitPackage(nestedPackage)/][/if]
-[pkg.getSymbolName()/].getNestedPackages().add([nestedPackage.getSymbolName()/]);[/for][/template]
+[pkg.getSymbolName()/].getNestedPackage().add([nestedPackage.getSymbolName()/]);[/for][/template]
 
 [template public emitSuperClasses(type : Type)]
 [let superClasses : OrderedSet(Type) = type.superClass->select(_package.getRootPackage() = type._package.getRootPackage())]
 [if (superClasses->notEmpty())]
-superClasses = type.getSuperClasses();
+superClasses = type.getSuperClass();
 [for (superClass : Type | superClasses) separator('\n')]
 superClasses.add([superClass.getSymbolName()/]);[/for][elseif (not type.oclIsKindOf(AnyType))]
-superClasses = type.getSuperClasses();
+superClasses = type.getSuperClass();
 superClasses.add(_OclElement);[/if]
 [/let]
 [/template]

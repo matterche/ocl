@@ -138,7 +138,7 @@ public class ElementUtil
 		}
 		TemplateBinding templateBinding = (TemplateBinding) csTemplateBinding.getPivot();
 		TemplateSignature templateSignature = templateBinding.getSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		if (templateParameters.size() <= index) {
 			return null;
 		}

@@ -77,7 +77,7 @@ public class Pivot2Ecore extends AbstractConversion
 	public static final String PRIMITIVE_TYPES_URI_PREFIX = "PRIMITIVE_TYPES_URI_PREFIX";
 
 	public static void copyComments(EModelElement eModelElement, Element pivotElement) {
-		for (Comment comment : pivotElement.getOwnedComments()) {
+		for (Comment comment : pivotElement.getOwnedComment()) {
 			EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			eAnnotation.setSource(GenModelPackage.eNS_URI);
 			String body = comment.getBody();

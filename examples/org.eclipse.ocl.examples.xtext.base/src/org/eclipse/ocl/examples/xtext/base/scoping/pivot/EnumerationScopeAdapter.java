@@ -29,7 +29,7 @@ public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Enumeration targetEnumeration = (org.eclipse.ocl.examples.pivot.Enumeration) target;
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-		environmentView.addElements(targetEnumeration.getOwnedLiterals());
+		environmentView.addElements(targetEnumeration.getOwnedLiteral());
 		environmentView.addElementsOfScope(metaModelManager.getEnumerationType(), scopeView);
 		if (!environmentView.hasFinalResult()) {
 			environmentView.addElementsOfScope(metaModelManager.getOclAnyType(), scopeView);

@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getParts <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,7 +86,7 @@ public interface CollectionLiteralExp
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!CollectionLiteralExp!part'"
 	 * @generated
 	 */
-	EList<CollectionLiteralPart> getParts();
+	EList<CollectionLiteralPart> getPart();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart} and appends it to the '<em><b>Part</b></em>' containment reference list.
@@ -94,7 +94,7 @@ public interface CollectionLiteralExp
 	 * <!-- end-user-doc -->
 	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart} to create.
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.CollectionLiteralPart}.
-	 * @see #getParts()
+	 * @see #getPart()
 	 * @generated
 	 */
 	CollectionLiteralPart createPart(EClass eClass);

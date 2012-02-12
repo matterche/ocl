@@ -72,15 +72,15 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getTemplateBindings <em>Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getPackage <em>Package</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedAttributes <em>Owned Attribute</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedOperations <em>Owned Operation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getSuperClasses <em>Super Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getOwnedOperation <em>Owned Operation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getSuperClass <em>Super Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl#getInstanceClassName <em>Instance Class Name</em>}</li>
  * </ul>
  * </p>
@@ -92,14 +92,14 @@ public class TypeImpl
 		implements Type {
 
 	/**
-	 * The cached value of the '{@link #getTemplateBindings() <em>Template Binding</em>}' containment reference list.
+	 * The cached value of the '{@link #getTemplateBinding() <em>Template Binding</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTemplateBindings()
+	 * @see #getTemplateBinding()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TemplateBinding> templateBindings;
+	protected EList<TemplateBinding> templateBinding;
 
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateSignature() <em>Owned Template Signature</em>}' containment reference.
@@ -132,34 +132,34 @@ public class TypeImpl
 	protected TemplateParameter templateParameter;
 
 	/**
-	 * The cached value of the '{@link #getOwnedAttributes() <em>Owned Attribute</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedAttributes()
+	 * @see #getOwnedAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Property> ownedAttributes;
+	protected EList<Property> ownedAttribute;
 
 	/**
-	 * The cached value of the '{@link #getOwnedOperations() <em>Owned Operation</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedOperation() <em>Owned Operation</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedOperations()
+	 * @see #getOwnedOperation()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Operation> ownedOperations;
+	protected EList<Operation> ownedOperation;
 
 	/**
-	 * The cached value of the '{@link #getSuperClasses() <em>Super Class</em>}' reference list.
+	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuperClasses()
+	 * @see #getSuperClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> superClasses;
+	protected EList<Type> superClass;
 
 	/**
 	 * The default value of the '{@link #getInstanceClassName() <em>Instance Class Name</em>}' attribute.
@@ -205,12 +205,13 @@ public class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TemplateBinding> getTemplateBindings() {
-		if (templateBindings == null)
+	public EList<TemplateBinding> getTemplateBinding()
+	{
+		if (templateBinding == null)
 		{
-			templateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TYPE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			templateBinding = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TYPE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}
-		return templateBindings;
+		return templateBinding;
 	}
 
 	/**
@@ -220,7 +221,7 @@ public class TypeImpl
 	 */
 	public TemplateBinding createTemplateBinding() {
 		TemplateBinding newTemplateBinding = (TemplateBinding) create(PivotPackage.Literals.TEMPLATE_BINDING);
-		getTemplateBindings().add(newTemplateBinding);
+		getTemplateBinding().add(newTemplateBinding);
 		return newTemplateBinding;
 	}
 
@@ -354,13 +355,13 @@ public class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Property> getOwnedAttributes()
+	public EList<Property> getOwnedAttribute()
 	{
-		if (ownedAttributes == null)
+		if (ownedAttribute == null)
 		{
-			ownedAttributes = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.TYPE__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__OWNING_TYPE);
+			ownedAttribute = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.TYPE__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__OWNING_TYPE);
 		}
-		return ownedAttributes;
+		return ownedAttribute;
 	}
 
 	/**
@@ -371,7 +372,7 @@ public class TypeImpl
 	public Property createOwnedAttribute()
 	{
 		Property newOwnedAttribute = (Property) create(PivotPackage.Literals.PROPERTY);
-		getOwnedAttributes().add(newOwnedAttribute);
+		getOwnedAttribute().add(newOwnedAttribute);
 		return newOwnedAttribute;
 	}
 
@@ -380,13 +381,13 @@ public class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Operation> getOwnedOperations()
+	public EList<Operation> getOwnedOperation()
 	{
-		if (ownedOperations == null)
+		if (ownedOperation == null)
 		{
-			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.TYPE__OWNED_OPERATION, PivotPackage.OPERATION__OWNING_TYPE);
+			ownedOperation = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.TYPE__OWNED_OPERATION, PivotPackage.OPERATION__OWNING_TYPE);
 		}
-		return ownedOperations;
+		return ownedOperation;
 	}
 
 	/**
@@ -397,7 +398,7 @@ public class TypeImpl
 	public Operation createOwnedOperation(EClass eClass)
 	{
 		Operation newOwnedOperation = (Operation) create(eClass);
-		getOwnedOperations().add(newOwnedOperation);
+		getOwnedOperation().add(newOwnedOperation);
 		return newOwnedOperation;
 	}
 
@@ -416,13 +417,13 @@ public class TypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Type> getSuperClasses()
+	public EList<Type> getSuperClass()
 	{
-		if (superClasses == null)
+		if (superClass == null)
 		{
-			superClasses = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE__SUPER_CLASS);
+			superClass = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE__SUPER_CLASS);
 		}
-		return superClasses;
+		return superClass;
 	}
 
 	/**
@@ -667,9 +668,9 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_RULE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRule()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBindings()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplateBinding()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				if (ownedTemplateSignature != null)
 					msgs = ((InternalEObject)ownedTemplateSignature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE, null, msgs);
@@ -687,9 +688,9 @@ public class TypeImpl
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetPackage((org.eclipse.ocl.examples.pivot.Package)otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttributes()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperations()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedOperation()).basicAdd(otherEnd, msgs);
 		}
 		return eDynamicInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -705,13 +706,13 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				return ((InternalEList<?>)getTemplateBindings()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getTemplateBinding()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return basicSetOwnedTemplateSignature(null, msgs);
 			case PivotPackage.TYPE__OWNING_TEMPLATE_PARAMETER:
@@ -721,9 +722,9 @@ public class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				return basicSetPackage(null, msgs);
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ((InternalEList<?>)getOwnedAttributes()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ((InternalEList<?>)getOwnedOperations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedOperation()).basicRemove(otherEnd, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -756,17 +757,17 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TYPE__NAME:
 				return getName();
 			case PivotPackage.TYPE__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.TYPE__IS_STATIC:
 				return isStatic();
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				return getTemplateBindings();
+				return getTemplateBinding();
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return getOwnedTemplateSignature();
 			case PivotPackage.TYPE__UNSPECIALIZED_ELEMENT:
@@ -779,11 +780,11 @@ public class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				return getPackage();
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return getOwnedAttributes();
+				return getOwnedAttribute();
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				return getOwnedOperations();
+				return getOwnedOperation();
 			case PivotPackage.TYPE__SUPER_CLASS:
-				return getSuperClasses();
+				return getSuperClass();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 		}
@@ -801,26 +802,26 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TYPE__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.TYPE__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.TYPE__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
-				getTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
+				getTemplateBinding().clear();
+				getTemplateBinding().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
@@ -838,16 +839,16 @@ public class TypeImpl
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
-				getOwnedAttributes().addAll((Collection<? extends Property>)newValue);
+				getOwnedAttribute().clear();
+				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
-				getOwnedOperations().addAll((Collection<? extends Operation>)newValue);
+				getOwnedOperation().clear();
+				getOwnedOperation().addAll((Collection<? extends Operation>)newValue);
 				return;
 			case PivotPackage.TYPE__SUPER_CLASS:
-				getSuperClasses().clear();
-				getSuperClasses().addAll((Collection<? extends Type>)newValue);
+				getSuperClass().clear();
+				getSuperClass().addAll((Collection<? extends Type>)newValue);
 				return;
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName((String)newValue);
@@ -866,22 +867,22 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TYPE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.TYPE__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.TYPE__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				getTemplateBindings().clear();
+				getTemplateBinding().clear();
 				return;
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
@@ -899,13 +900,13 @@ public class TypeImpl
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				getOwnedAttributes().clear();
+				getOwnedAttribute().clear();
 				return;
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				getOwnedOperations().clear();
+				getOwnedOperation().clear();
 				return;
 			case PivotPackage.TYPE__SUPER_CLASS:
-				getSuperClasses().clear();
+				getSuperClass().clear();
 				return;
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				setInstanceClassName(INSTANCE_CLASS_NAME_EDEFAULT);
@@ -924,17 +925,17 @@ public class TypeImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TYPE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TYPE__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.TYPE__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TYPE__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TYPE__TEMPLATE_BINDING:
-				return templateBindings != null && !templateBindings.isEmpty();
+				return templateBinding != null && !templateBinding.isEmpty();
 			case PivotPackage.TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.TYPE__UNSPECIALIZED_ELEMENT:
@@ -946,11 +947,11 @@ public class TypeImpl
 			case PivotPackage.TYPE__PACKAGE:
 				return getPackage() != null;
 			case PivotPackage.TYPE__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
+				return ownedAttribute != null && !ownedAttribute.isEmpty();
 			case PivotPackage.TYPE__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
+				return ownedOperation != null && !ownedOperation.isEmpty();
 			case PivotPackage.TYPE__SUPER_CLASS:
-				return superClasses != null && !superClasses.isEmpty();
+				return superClass != null && !superClass.isEmpty();
 			case PivotPackage.TYPE__INSTANCE_CLASS_NAME:
 				return INSTANCE_CLASS_NAME_EDEFAULT == null ? instanceClassName != null : !INSTANCE_CLASS_NAME_EDEFAULT.equals(instanceClassName);
 		}
@@ -1126,15 +1127,15 @@ public class TypeImpl
 	}
 
 	public Iterable<? extends DomainOperation> getLocalOperations() {
-		return getOwnedOperations();
+		return getOwnedOperation();
 	}
 
 	public Iterable<? extends DomainProperty> getLocalProperties() {
-		return getOwnedAttributes();
+		return getOwnedAttribute();
 	}
 
 	public Iterable<? extends DomainType> getLocalSuperTypes() {
-		return getSuperClasses();
+		return getSuperClass();
 	}
 
 	public String getMetaTypeName() {

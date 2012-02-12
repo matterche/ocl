@@ -81,10 +81,10 @@ public abstract class PackageTracker implements Adapter.Internal
 	abstract TypeTracker getTypeTracker(Type pivotType);
 
 	protected void initContents(PackageServer packageServer) {
-		for (Type pivotType : target.getOwnedTypes()) {
+		for (Type pivotType : target.getOwnedType()) {
 			packageServer.addType(pivotType);
 		}
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : target.getNestedPackages()) {
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : target.getNestedPackage()) {
 			packageServer.addNestedPackage(nestedPackage);
 		}
 	}		

@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getBody <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getIterators <em>Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getIterator <em>Iterator</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.LoopExp#getReferredIteration <em>Referred Iteration</em>}</li>
  * </ul>
  * </p>
@@ -95,14 +95,14 @@ public interface LoopExp
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!LoopExp!iterator'"
 	 * @generated
 	 */
-	EList<Variable> getIterators();
+	EList<Variable> getIterator();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Variable} and appends it to the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Variable}.
-	 * @see #getIterators()
+	 * @see #getIterator()
 	 * @generated
 	 */
 	Variable createIterator();

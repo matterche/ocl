@@ -64,7 +64,7 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getConstrainedElements <em>Constrained Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getConstrainedElement <em>Constrained Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getStereotype <em>Stereotype</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
@@ -79,14 +79,14 @@ public class ConstraintImpl
 		implements Constraint {
 
 	/**
-	 * The cached value of the '{@link #getConstrainedElements() <em>Constrained Element</em>}' reference list.
+	 * The cached value of the '{@link #getConstrainedElement() <em>Constrained Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstrainedElements()
+	 * @see #getConstrainedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> constrainedElements;
+	protected EList<Element> constrainedElement;
 
 	/**
 	 * The cached value of the '{@link #getSpecification() <em>Specification</em>}' containment reference.
@@ -162,12 +162,13 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getConstrainedElements() {
-		if (constrainedElements == null)
+	public EList<Element> getConstrainedElement()
+	{
+		if (constrainedElement == null)
 		{
-			constrainedElements = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT);
+			constrainedElement = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT);
 		}
-		return constrainedElements;
+		return constrainedElement;
 	}
 
 	/**
@@ -362,7 +363,7 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRules()).basicAdd(otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRule()).basicAdd(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__CONTEXT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -382,11 +383,11 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
 			case PivotPackage.CONSTRAINT__CONTEXT:
@@ -421,17 +422,17 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.CONSTRAINT__NAME:
 				return getName();
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.CONSTRAINT__IS_STATIC:
 				return isStatic();
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				return getConstrainedElements();
+				return getConstrainedElement();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return getSpecification();
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
@@ -455,26 +456,26 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				getConstrainedElements().clear();
-				getConstrainedElements().addAll((Collection<? extends Element>)newValue);
+				getConstrainedElement().clear();
+				getConstrainedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((ValueSpecification)newValue);
@@ -502,22 +503,22 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.CONSTRAINT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.CONSTRAINT__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				getConstrainedElements().clear();
+				getConstrainedElement().clear();
 				return;
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				setSpecification((ValueSpecification)null);
@@ -545,17 +546,17 @@ public class ConstraintImpl
 		switch (featureID)
 		{
 			case PivotPackage.CONSTRAINT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.CONSTRAINT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.CONSTRAINT__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.CONSTRAINT__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.CONSTRAINT__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
-				return constrainedElements != null && !constrainedElements.isEmpty();
+				return constrainedElement != null && !constrainedElement.isEmpty();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
 				return specification != null;
 			case PivotPackage.CONSTRAINT__STEREOTYPE:

@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getResultVariable <em>Result Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariables <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}</li>
  * </ul>
  * </p>
@@ -169,14 +169,14 @@ public interface ExpressionInOcl
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ExpressionInOcl!parameterVariable'"
 	 * @generated
 	 */
-	EList<Variable> getParameterVariables();
+	EList<Variable> getParameterVariable();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Variable} and appends it to the '<em><b>Parameter Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Variable}.
-	 * @see #getParameterVariables()
+	 * @see #getParameterVariable()
 	 * @generated
 	 */
 	Variable createParameterVariable();

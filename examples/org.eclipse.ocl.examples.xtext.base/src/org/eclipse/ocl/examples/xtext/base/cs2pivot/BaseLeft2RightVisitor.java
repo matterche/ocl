@@ -78,9 +78,9 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Elemen
 	@Override
 	public Element visitSpecificationCS(SpecificationCS object) {
 		OpaqueExpression pivotElement = context.refreshModelElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, object);
-		pivotElement.getLanguages().add(PivotConstants.OCL_LANGUAGE);
-		pivotElement.getBodies().add(object.getExprString());
-		pivotElement.getMessages().add(null);
+		pivotElement.getLanguage().add(PivotConstants.OCL_LANGUAGE);
+		pivotElement.getBody().add(object.getExprString());
+		pivotElement.getMessage().add(null);
 		return pivotElement;
 	}
 

@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifiers <em>Qualifier</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getNavigationSource <em>Navigation Source</em>}</li>
  * </ul>
  * </p>
@@ -52,7 +52,7 @@ public interface NavigationCallExp
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!NavigationCallExp!qualifier'"
 	 * @generated
 	 */
-	EList<OclExpression> getQualifiers();
+	EList<OclExpression> getQualifier();
 
 	/**
 	 * Returns the value of the '<em><b>Navigation Source</b></em>' reference.

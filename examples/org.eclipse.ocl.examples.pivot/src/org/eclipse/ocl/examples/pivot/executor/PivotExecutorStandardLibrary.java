@@ -79,9 +79,9 @@ public class PivotExecutorStandardLibrary extends ExecutableStandardLibrary impl
 		org.eclipse.ocl.examples.pivot.Package pivotPackage = PivotFactory.eINSTANCE.createPackage();
 		pivotPackage.setName(domainPackage.getName());
 		pivotPackage.setNsURI(domainPackage.getNsURI());
-		for (DomainType domainType : domainPackage.getOwnedTypes()) {
+		for (DomainType domainType : domainPackage.getOwnedType()) {
 			Type pivotType = createType(domainType);
-			pivotPackage.getOwnedTypes().add(pivotType);
+			pivotPackage.getOwnedType().add(pivotType);
 		}
 		return pivotPackage;
 	}

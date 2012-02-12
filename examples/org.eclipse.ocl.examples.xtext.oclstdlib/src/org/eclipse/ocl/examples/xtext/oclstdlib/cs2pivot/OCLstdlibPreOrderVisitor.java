@@ -64,7 +64,7 @@ public class OCLstdlibPreOrderVisitor
 			ClassifierType type = PivotUtil.getPivot(ClassifierType.class, csElement);
 			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
-				List<TemplateParameter> parameters = ownedTemplateSignature.getParameters();
+				List<TemplateParameter> parameters = ownedTemplateSignature.getParameter();
 				if (parameters.size() > 0) {
 					TemplateParameter templateParameter = parameters.get(0);
 					if (templateParameter != null) {
@@ -87,7 +87,7 @@ public class OCLstdlibPreOrderVisitor
 			CollectionType type = PivotUtil.getPivot(CollectionType.class, csElement);
 			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 			if (ownedTemplateSignature != null) {
-				List<TemplateParameter> parameters = ownedTemplateSignature.getParameters();
+				List<TemplateParameter> parameters = ownedTemplateSignature.getParameter();
 				if (parameters.size() > 0) {
 					type.setElementType((Type) parameters.get(0).getParameteredElement());
 				}
@@ -106,9 +106,9 @@ public class OCLstdlibPreOrderVisitor
 		public BasicContinuation<?> execute() {
 			Iteration pivotIteration = context.refreshTypedMultiplicityElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
 			context.refreshTemplateSignature(csElement, pivotIteration);
-			refreshParameters(csElement.getOwnedIterator(), pivotIteration.getOwnedIterators());
-			refreshParameters(csElement.getOwnedAccumulator(), pivotIteration.getOwnedAccumulators());
-			refreshParameters(csElement.getOwnedParameter(), pivotIteration.getOwnedParameters());
+			refreshParameters(csElement.getOwnedIterator(), pivotIteration.getOwnedIterator());
+			refreshParameters(csElement.getOwnedAccumulator(), pivotIteration.getOwnedAccumulator());
+			refreshParameters(csElement.getOwnedParameter(), pivotIteration.getOwnedParameter());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
 //			pivotElement.setPrecedence(csIteration.getPrecedence());
 //			pivotElement.setIsStatic(csIteration.isStatic());
@@ -171,7 +171,7 @@ public class OCLstdlibPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			Library pivotElement = PivotUtil.getPivot(Library.class, csElement);
-			context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedences(), csElement.getOwnedPrecedence());
+			context.refreshPivotList(Precedence.class, pivotElement.getOwnedPrecedence(), csElement.getOwnedPrecedence());
 			return null;
 		}
 	}

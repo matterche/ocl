@@ -174,8 +174,8 @@ public abstract class AbstractStandardLibrary implements DomainStandardLibrary
 	}
 
 	public boolean isEqualToTupleType(DomainTupleType firstTupleType, DomainTupleType secondTupleType) {
-		List<? extends DomainTypedElement> firstParts = firstTupleType.getOwnedAttributes();
-		List<? extends DomainTypedElement> secondParts = secondTupleType.getOwnedAttributes();
+		List<? extends DomainTypedElement> firstParts = firstTupleType.getOwnedAttribute();
+		List<? extends DomainTypedElement> secondParts = secondTupleType.getOwnedAttribute();
 		int iMax = firstParts.size();
 		if (iMax != secondParts.size()) {
 			return false;

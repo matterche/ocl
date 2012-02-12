@@ -167,7 +167,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 		boolean useParentheses = context.getUseParentheses();
 		delegate.appendParent(context.getScope(), object, "::");
 		delegate.appendName(object);
-		List<Property> tupleParts = object.getOwnedAttributes();
+		List<Property> tupleParts = object.getOwnedAttribute();
 		if (!tupleParts.isEmpty()) {
 			delegate.append(useParentheses ? "(" : "<");
 			String prefix = ""; //$NON-NLS-1$

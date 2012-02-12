@@ -100,7 +100,7 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 			}
 			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, metaModelManager);
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
-			Package pivotPackage = pivotRoot.getNestedPackages().get(0);
+			Package pivotPackage = pivotRoot.getNestedPackage().get(0);
 			Resource pivotResource = pivotRoot.eResource();
 			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Converting " + inputURI, "\n");
 			if (pivotErrorsString != null) {
@@ -115,7 +115,7 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 //			PivotSaver saver = new PivotSaver(pivotResource);
 //			org.eclipse.ocl.examples.pivot.Package orphanage = saver.localizeSpecializations();
 //			if (orphanage != null) {
-//				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackages().add(orphanage);
+//				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackage().add(orphanage);
 //			}
 			GenerateOclMetaModel acceleo = new GenerateOclMetaModel(pivotPackage, outputFolder, arguments);
 			log.info("Generating to ' " + outputFolder + "'");

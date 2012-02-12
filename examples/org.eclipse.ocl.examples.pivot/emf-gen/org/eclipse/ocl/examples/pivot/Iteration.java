@@ -26,8 +26,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterators <em>Owned Iterator</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulators <em>Owned Accumulator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterator <em>Owned Iterator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulator <em>Owned Accumulator</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,14 +52,14 @@ public interface Iteration extends Operation
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedIterator'"
 	 * @generated
 	 */
-	EList<Parameter> getOwnedIterators();
+	EList<Parameter> getOwnedIterator();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Parameter} and appends it to the '<em><b>Owned Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Parameter}.
-	 * @see #getOwnedIterators()
+	 * @see #getOwnedIterator()
 	 * @generated
 	 */
 	Parameter createOwnedIterator();
@@ -79,14 +79,14 @@ public interface Iteration extends Operation
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Iteration!ownedAccumulator'"
 	 * @generated
 	 */
-	EList<Parameter> getOwnedAccumulators();
+	EList<Parameter> getOwnedAccumulator();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Parameter} and appends it to the '<em><b>Owned Accumulator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Parameter}.
-	 * @see #getOwnedAccumulators()
+	 * @see #getOwnedAccumulator()
 	 * @generated
 	 */
 	Parameter createOwnedAccumulator();

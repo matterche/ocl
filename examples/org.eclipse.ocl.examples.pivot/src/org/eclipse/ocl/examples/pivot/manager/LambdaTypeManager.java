@@ -64,7 +64,7 @@ public class LambdaTypeManager
 			contextMap.put(firstParameterType, lambdasList);
 		}
 		for (LambdaType candidateLambda : lambdasList) {
-			List<? extends Type> candidateTypes = candidateLambda.getParameterTypes();
+			List<? extends Type> candidateTypes = candidateLambda.getParameterType();
 			if (iMax == candidateTypes.size()) {
 			boolean gotIt = true;
 			for (int i = 1; i < iMax; i++) {
@@ -83,9 +83,9 @@ public class LambdaTypeManager
 		LambdaType lambdaType = PivotFactory.eINSTANCE.createLambdaType();
 		lambdaType.setName(typeName);
 		lambdaType.setContextType(contextType);
-		lambdaType.getParameterTypes().addAll(parameterTypes);
+		lambdaType.getParameterType().addAll(parameterTypes);
 		lambdaType.setResultType(resultType);
-		lambdaType.getSuperClasses().add(metaModelManager.getOclLambdaType());
+		lambdaType.getSuperClass().add(metaModelManager.getOclLambdaType());
 		metaModelManager.addOrphanClass(lambdaType);
 		return lambdaType;
 	}

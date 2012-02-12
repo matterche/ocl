@@ -117,7 +117,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected Iterable<Operation> getInnerIterable(Type model) {
-			return model.getOwnedOperations();
+			return model.getOwnedOperation();
 		}
 
 		@Override
@@ -142,7 +142,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected Iterable<Property> getInnerIterable(Type model) {
-			return model.getOwnedAttributes();
+			return model.getOwnedAttribute();
 		}
 
 		@Override
@@ -165,7 +165,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected Iterable<Type> getInnerIterable(Type model) {
-			return model.getSuperClasses();
+			return model.getSuperClass();
 		}
 	}
 
@@ -178,7 +178,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected Iterable<Comment> getInnerIterable(Element model) {
-			return model.getOwnedComments();
+			return model.getOwnedComment();
 		}
 	}
 
@@ -191,7 +191,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 		@Override
 		protected Iterable<Constraint> getInnerIterable(NamedElement model) {
-			return model.getOwnedRules();
+			return model.getOwnedRule();
 		}
 	}
 
@@ -204,7 +204,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		
 		@Override
 		protected Iterable<org.eclipse.ocl.examples.pivot.Package> getInnerIterable(org.eclipse.ocl.examples.pivot.Package model) {
-			return model.getNestedPackages();
+			return model.getNestedPackage();
 		}
 	}
 	
@@ -217,7 +217,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		
 		@Override
 		protected Iterable<Type> getInnerIterable(org.eclipse.ocl.examples.pivot.Package model) {
-			return model.getOwnedTypes();
+			return model.getOwnedType();
 		}
 	}
 
@@ -620,7 +620,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public int compareOperationMatches(Operation reference, Map<TemplateParameter, ParameterableElement> referenceBindings,
 			Operation candidate, Map<TemplateParameter, ParameterableElement> candidateBindings) {
 		if ((reference instanceof Iteration) && (candidate instanceof Iteration)) {
-			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterators().size() - ((Iteration)reference).getOwnedIterators().size();
+			int iteratorCountDelta = ((Iteration)candidate).getOwnedIterator().size() - ((Iteration)reference).getOwnedIterator().size();
 			if (iteratorCountDelta != 0) {
 				return iteratorCountDelta;
 			}
@@ -637,8 +637,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				}
 			}
 		}
-		List<Parameter> candidateParameters = candidate.getOwnedParameters();
-		List<Parameter> referenceParameters = reference.getOwnedParameters();
+		List<Parameter> candidateParameters = candidate.getOwnedParameter();
+		List<Parameter> referenceParameters = reference.getOwnedParameter();
 		int parameterCountDelta = candidateParameters.size() - referenceParameters.size();
 		if (parameterCountDelta != 0) {
 			return parameterCountDelta;
@@ -763,7 +763,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				return true;
 			}
 		}
-//		List<TemplateBinding> templateBindings = actualType.getTemplateBindings();
+//		List<TemplateBinding> templateBindings = actualType.getTemplateBinding();
 //		if (templateBindings.size() > 0) {
 //			TemplateableElement template = PivotUtil.getUnspecializedTemplateableElement(actualType);
 //			return conformsToClass((org.eclipse.ocl.examples.pivot.Class)template, requiredType);
@@ -910,8 +910,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 
 	protected boolean conformsToTupleType(TupleType actualType, TupleType requiredType,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		List<Property> actualProperties = actualType.getOwnedAttributes();
-		List<Property> requiredProperties = requiredType.getOwnedAttributes();
+		List<Property> actualProperties = actualType.getOwnedAttribute();
+		List<Property> requiredProperties = requiredType.getOwnedAttribute();
 		if (actualProperties.size() != requiredProperties.size()) {
 			return false;
 		}
@@ -1069,7 +1069,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	} */
 
 /*	public <T extends Type> T findOrphanClass(Class<T> unspecializedType, String moniker) {		
-		List<Type> ownedSpecializations = getOrphanPackage().getOwnedTypes();
+		List<Type> ownedSpecializations = getOrphanPackage().getOwnedType();
 		for (Type ownedSpecialization : ownedSpecializations) {
 			if (Pivot2Moniker.toString(ownedSpecialization).equals(moniker)) {
 				@SuppressWarnings("unchecked")
@@ -1081,7 +1081,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	} */
 
 /*	protected <T extends Operation> T findOrphanOperation(Class<T> unspecializedOperation, String moniker) {
-		List<Operation> ownedSpecializations = getOrphanClass().getOwnedOperations();
+		List<Operation> ownedSpecializations = getOrphanClass().getOwnedOperation();
 		for (Operation ownedSpecialization : ownedSpecializations) {
 			if (Pivot2Moniker.toString(ownedSpecialization).equals(moniker)) {
 				@SuppressWarnings("unchecked")
@@ -1262,7 +1262,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			commonClasses = new ArrayList<Type>();
 			commonClasses.add(leftClass);
 		}
-		for (Type superClass : leftClass.getSuperClasses()) {
+		for (Type superClass : leftClass.getSuperClass()) {
 			List<Type> commonSuperClasses = getCommonClasses(superClass, rightClass);
 			if (commonSuperClasses != null) {
 				if (commonClasses == null) {
@@ -1430,7 +1430,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return libraryType;
 		}
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
+		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameter() : Collections.<TemplateParameter>emptyList();
 		if (templateParameters.isEmpty()) {
 			return libraryType;
 		}
@@ -1581,7 +1581,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (oclAnyType != null) {
 				org.eclipse.ocl.examples.pivot.Package stdlibPackage = oclAnyType.getPackage();
 				for (org.eclipse.ocl.examples.pivot.Package aPackage : getAllPackages(stdlibPackage, false)) {
-					Type anyType = PivotUtil.getNamedElement(aPackage.getOwnedTypes(), PivotPackage.Literals.ELEMENT.getName());
+					Type anyType = PivotUtil.getNamedElement(aPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName());
 					if (anyType != null) {
 						pivotMetaModel = aPackage;
 						break;
@@ -1616,7 +1616,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		if (pivotMetaModel == null) {
 			return null;
 		}
-		return PivotUtil.getNamedElement(pivotMetaModel.getOwnedTypes(), className);
+		return PivotUtil.getNamedElement(pivotMetaModel.getOwnedType(), className);
 	}	
 
 	protected PrecedenceManager getPrecedenceManager() {
@@ -1627,7 +1627,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	public Iterable<? extends Nameable> getPrecedences(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		return pivotPackage.getOwnedPrecedences(); // FIXME make package independent
+		return pivotPackage.getOwnedPrecedence(); // FIXME make package independent
 	}
 	
 	public Precedence getPrefixPrecedence(String operatorName) {
@@ -1692,7 +1692,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return packageTracker.getPackageServer().getNestedPackage(subPackageName);
 		}
 		else {
-			return PivotUtil.getNamedElement(parentPackage.getNestedPackages(), subPackageName);
+			return PivotUtil.getNamedElement(parentPackage.getNestedPackage(), subPackageName);
 		}
 	}
 
@@ -1761,7 +1761,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		else {
 			return PivotUtil.getNamedElement(getLocalClasses(parentPackage), typeName);
-//			return PivotUtil.getNamedElement(parentPackage.getOwnedTypes(), typeName);
+//			return PivotUtil.getNamedElement(parentPackage.getOwnedType(), typeName);
 		}
 	}
 	
@@ -1808,7 +1808,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	protected Type getSpecializedLambdaType(LambdaType type, Map<TemplateParameter, ParameterableElement> usageBindings) {
-		LambdaType specializedLambdaType = getLambdaType(type.getName(), type.getContextType(), type.getParameterTypes(), type.getResultType(), usageBindings);
+		LambdaType specializedLambdaType = getLambdaType(type.getName(), type.getContextType(), type.getParameterType(), type.getResultType(), usageBindings);
 		return specializedLambdaType;
 	}
 
@@ -1903,7 +1903,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return Collections.<Type>singletonList(getOclAnyType());	// FIXME lower bound
 		}
 		else {
-//			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
+//			if (type.getTemplateBinding().size() > 0) {		// FIXME need lazy specialization
 //			pivotType = PivotUtil.getUnspecializedTemplateableElement(pivotType);
 //			}
 			if ((pivotMetaModel == null) && (pivotType == getClassType()))  {
@@ -1924,10 +1924,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			for (Type model : models) {
 				if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
 					org.eclipse.ocl.examples.pivot.Class thisModelClass = (org.eclipse.ocl.examples.pivot.Class)model;
-					if (thisModelClass.getTemplateBindings().size() > 0) {
+					if (thisModelClass.getTemplateBinding().size() > 0) {
 	//					thisModelClass = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)model);
 					}
-					for (Type superType : thisModelClass.getSuperClasses()) {
+					for (Type superType : thisModelClass.getSuperClass()) {
 						completeSuperTypes.add(completeEnvironment.getCompleteType(superType));
 					}
 				}
@@ -2081,7 +2081,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		Type thisType = thisProperty.getOwningType();
 		String name = thisType.getName();
 		// If there is an explicit property with the implicit name do nothing.
-		for (Property thatProperty : thatType.getOwnedAttributes()) {
+		for (Property thatProperty : thatType.getOwnedAttribute()) {
 			if (name.equals(thatProperty.getName())) {
 				if (!thatProperty.isImplicit()) {
 					return;
@@ -2098,7 +2098,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return;
 		}
 		// If there is more than one opposite-less Property to the same type don't create an Ambiguity.
-		for (Property aThisProperty : thisType.getOwnedAttributes()) {
+		for (Property aThisProperty : thisType.getOwnedAttribute()) {
 			if ((aThisProperty != thisProperty) && (aThisProperty.getType() == thatType)) {	// FIXME conformsTo
 				return;
 			}
@@ -2116,7 +2116,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		else {
 			opposite.setUpper(BigInteger.valueOf(-1));
 		}
-		thatType.getOwnedAttributes().add(opposite);		// WIP moved for debugging
+		thatType.getOwnedAttribute().add(opposite);		// WIP moved for debugging
 		opposite.setOpposite(thisProperty);
 		thisProperty.setOpposite(opposite);
 	}
@@ -2179,8 +2179,8 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return false;
 		}
 		if (type instanceof TemplateableElement) {
-			for (TemplateBinding templateBinding : ((TemplateableElement)type).getTemplateBindings()) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+			for (TemplateBinding templateBinding : ((TemplateableElement)type).getTemplateBinding()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					if (isUnderspecified((Type) templateParameterSubstitution.getActual())) {
 						return true;
 					}
@@ -2194,7 +2194,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return isUnderspecified(((CollectionType)type).getElementType());
 		}
 		if (type instanceof TupleType) {
-			for (Property part : ((TupleType)type).getOwnedAttributes()) {
+			for (Property part : ((TupleType)type).getOwnedAttribute()) {
 				if (isUnderspecified(part.getType())) {
 					return true;
 				}
@@ -2205,7 +2205,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			if (isUnderspecified(lambdaType.getContextType())) {
 				return true;
 			}
-			for (Type parameterType : lambdaType.getParameterTypes()) {
+			for (Type parameterType : lambdaType.getParameterType()) {
 				if (isUnderspecified(parameterType)) {
 					return true;
 				}
@@ -2252,10 +2252,10 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	}
 
 	protected void loadLibraryPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackages()) {
+		for (org.eclipse.ocl.examples.pivot.Package nestedPackage : pivotPackage.getNestedPackage()) {
 			loadLibraryPackage(nestedPackage);
 		}
-		for (Type type : pivotPackage.getOwnedTypes()) {
+		for (Type type : pivotPackage.getOwnedType()) {
 			if (PivotUtil.isLibraryType(type)) {
 				defineLibraryType(type);
 			}
@@ -2265,7 +2265,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	protected void loadPivotMetaModel(Library pivotLibrary) {
 //		PackageTracker libraryTracker = package2tracker.get(pivotLibrary);
 		for (org.eclipse.ocl.examples.pivot.Package libPackage : getAllPackages(pivotLibrary, false)) {
-			if (PivotUtil.getNamedElement(libPackage.getOwnedTypes(), PivotPackage.Literals.ELEMENT.getName()) != null) {
+			if (PivotUtil.getNamedElement(libPackage.getOwnedType(), PivotPackage.Literals.ELEMENT.getName()) != null) {
 				pivotMetaModel = libPackage;	// Custom meta-model
 				return;
 			}
@@ -2380,7 +2380,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			int iMax = parameters.size();
 			for (Operation candidateOperation : getLocalOperations(forType, selectStatic)) {
 				if (operationName.equals(candidateOperation.getName())) {
-					List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+					List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 					if (candidateParameters.size() == iMax) {
 						int i = 0;
 						for ( ; i < iMax; i++) {
@@ -2407,7 +2407,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	 */
 	public Operation resolveBaseOperation(Operation operation) {
 		Set<Operation> allOperations = new HashSet<Operation>();
-		resolveAllOperations(allOperations, operation.getOwningType(), operation.isStatic(), operation.getName(), operation.getOwnedParameters(), new HashSet<Type>());
+		resolveAllOperations(allOperations, operation.getOwningType(), operation.isStatic(), operation.getName(), operation.getOwnedParameter(), new HashSet<Type>());
 		Operation baseOperation = operation;
 		for (Operation candidateOperation : allOperations) {
 			if (candidateOperation != operation) {
@@ -2424,9 +2424,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 	public Set<Operation> resolveLocalOperation(Type pivotClass, String operationName, Type... pivotArguments) {
 		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = null; 	// FIXME
 		Set<Operation> pivotOperations = null;
-		for (Operation pivotOperation : pivotClass.getOwnedOperations()) {
+		for (Operation pivotOperation : pivotClass.getOwnedOperation()) {
 			if (operationName.equals(pivotOperation.getName())) {
-				List<Parameter> pivotParameters = pivotOperation.getOwnedParameters();
+				List<Parameter> pivotParameters = pivotOperation.getOwnedParameter();
 				if (pivotArguments.length == pivotParameters.size()) {
 					boolean typesConform = true;
 					for (int i = 0; i < pivotArguments.length; i++) {
@@ -2468,7 +2468,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		@SuppressWarnings("unused")
 		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, pivotClass);
 		Set<Operation> pivotOperations = resolveLocalOperation(pivotClass, operationName, pivotArguments);
-		for (TemplateBinding templateBinding : pivotClass.getTemplateBindings()) {
+		for (TemplateBinding templateBinding : pivotClass.getTemplateBinding()) {
 			TemplateSignature signature = templateBinding.getSignature();
 			TemplateableElement template = signature.getTemplate();
 			if (template instanceof Type) {
@@ -2484,7 +2484,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			}
 		}
 		if (pivotOperations == null) {
-			List<Type> superClasses = pivotClass.getSuperClasses();
+			List<Type> superClasses = pivotClass.getSuperClass();
 			if (!superClasses.isEmpty()) {
 				for (Type superClass : superClasses) {
 					Set<Operation> superOperations = resolveOperations(superClass, operationName, pivotArguments);

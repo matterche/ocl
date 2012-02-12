@@ -43,9 +43,9 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getBodies <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getLanguages <em>Language</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getMessages <em>Message</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl#getValueExpression <em>Value Expression</em>}</li>
  * </ul>
  * </p>
@@ -57,34 +57,34 @@ public class OpaqueExpressionImpl
 		implements OpaqueExpression {
 
 	/**
-	 * The cached value of the '{@link #getBodies() <em>Body</em>}' attribute list.
+	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBodies()
+	 * @see #getBody()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> bodies;
+	protected EList<String> body;
 
 	/**
-	 * The cached value of the '{@link #getLanguages() <em>Language</em>}' attribute list.
+	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLanguages()
+	 * @see #getLanguage()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> languages;
+	protected EList<String> language;
 
 	/**
-	 * The cached value of the '{@link #getMessages() <em>Message</em>}' attribute list.
+	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMessages()
+	 * @see #getMessage()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> messages;
+	protected EList<String> message;
 
 	/**
 	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' reference.
@@ -120,39 +120,41 @@ public class OpaqueExpressionImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getBodies() {
-		if (bodies == null)
-		{
-			bodies = new EDataTypeEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__BODY);
-		}
-		return bodies;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getLanguages() {
-		if (languages == null)
-		{
-			languages = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__LANGUAGE);
-		}
-		return languages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getMessages()
+	public EList<String> getBody()
 	{
-		if (messages == null)
+		if (body == null)
 		{
-			messages = new EDataTypeEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__MESSAGE);
+			body = new EDataTypeEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__BODY);
 		}
-		return messages;
+		return body;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getLanguage()
+	{
+		if (language == null)
+		{
+			language = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__LANGUAGE);
+		}
+		return language;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<String> getMessage()
+	{
+		if (message == null)
+		{
+			message = new EDataTypeEList<String>(String.class, this, PivotPackage.OPAQUE_EXPRESSION__MESSAGE);
+		}
+		return message;
 	}
 
 	/**
@@ -208,15 +210,15 @@ public class OpaqueExpressionImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				return getName();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
 				return isStatic();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -226,11 +228,11 @@ public class OpaqueExpressionImpl
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.OPAQUE_EXPRESSION__BODY:
-				return getBodies();
+				return getBody();
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
-				return getLanguages();
+				return getLanguage();
 			case PivotPackage.OPAQUE_EXPRESSION__MESSAGE:
-				return getMessages();
+				return getMessage();
 			case PivotPackage.OPAQUE_EXPRESSION__VALUE_EXPRESSION:
 				if (resolve) return getValueExpression();
 				return basicGetValueExpression();
@@ -249,22 +251,22 @@ public class OpaqueExpressionImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
 				setType((Type)newValue);
@@ -276,16 +278,16 @@ public class OpaqueExpressionImpl
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__BODY:
-				getBodies().clear();
-				getBodies().addAll((Collection<? extends String>)newValue);
+				getBody().clear();
+				getBody().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
-				getLanguages().clear();
-				getLanguages().addAll((Collection<? extends String>)newValue);
+				getLanguage().clear();
+				getLanguage().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__MESSAGE:
-				getMessages().clear();
-				getMessages().addAll((Collection<? extends String>)newValue);
+				getMessage().clear();
+				getMessage().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__VALUE_EXPRESSION:
 				setValueExpression((ExpressionInOcl)newValue);
@@ -304,19 +306,19 @@ public class OpaqueExpressionImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
 				setType((Type)null);
@@ -328,13 +330,13 @@ public class OpaqueExpressionImpl
 				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__BODY:
-				getBodies().clear();
+				getBody().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
-				getLanguages().clear();
+				getLanguage().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__MESSAGE:
-				getMessages().clear();
+				getMessage().clear();
 				return;
 			case PivotPackage.OPAQUE_EXPRESSION__VALUE_EXPRESSION:
 				setValueExpression((ExpressionInOcl)null);
@@ -353,15 +355,15 @@ public class OpaqueExpressionImpl
 		switch (featureID)
 		{
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
 				return type != null;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
@@ -369,11 +371,11 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 			case PivotPackage.OPAQUE_EXPRESSION__BODY:
-				return bodies != null && !bodies.isEmpty();
+				return body != null && !body.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__LANGUAGE:
-				return languages != null && !languages.isEmpty();
+				return language != null && !language.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__MESSAGE:
-				return messages != null && !messages.isEmpty();
+				return message != null && !message.isEmpty();
 			case PivotPackage.OPAQUE_EXPRESSION__VALUE_EXPRESSION:
 				return valueExpression != null;
 		}

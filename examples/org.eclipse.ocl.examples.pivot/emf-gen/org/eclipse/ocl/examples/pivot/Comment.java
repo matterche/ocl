@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getBody <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElements <em>Annotated Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +82,6 @@ public interface Comment
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Comment!annotatedElement'"
 	 * @generated
 	 */
-	EList<Element> getAnnotatedElements();
+	EList<Element> getAnnotatedElement();
 
 } // Comment

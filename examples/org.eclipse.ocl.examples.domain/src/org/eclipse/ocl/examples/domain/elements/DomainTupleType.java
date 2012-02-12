@@ -21,5 +21,5 @@ import java.util.List;
 
 public interface DomainTupleType extends DomainType
 {
-	List<? extends DomainTypedElement> getOwnedAttributes();
+	List<? extends DomainTypedElement> getOwnedAttribute();
 }

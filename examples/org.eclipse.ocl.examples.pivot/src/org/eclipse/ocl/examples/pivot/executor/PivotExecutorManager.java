@@ -33,7 +33,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 
 /*	protected int computeBases(List<List<Type>> bases, Type pivotClass) {
 		int depth;
-		List<Type> superClasses = pivotClass.getSuperClasses();
+		List<Type> superClasses = pivotClass.getSuperClass();
 		if (superClasses.size() > 0) {
 			depth = Integer.MAX_VALUE;
 			for (Type superClass : superClasses) {
@@ -61,7 +61,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 	
 	protected PivotExecutorClass[] computeClasses(PivotExecutorManager dispatcher, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		PivotExecutorPackage evaluationPackage = getEvaluationPackage(pivotPackage);
-		List<Type> ownedTypes = pivotPackage.getOwnedTypes();
+		List<Type> ownedTypes = pivotPackage.getOwnedType();
 		PivotExecutorClass[] classes = new PivotExecutorClass[ownedTypes.size()];
 		for (int i = 0; i < classes.length; i++) {
 			org.eclipse.ocl.examples.pivot.Class pivotClass = (org.eclipse.ocl.examples.pivot.Class) ownedTypes.get(i);
@@ -106,7 +106,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 
 	protected PivotExecutorOperation[] computeOperations(Type pivotClass) {
 		PivotExecutorType pivotInheritance = metaModelManager.getInheritance(pivotClass);
-		List<Operation> ownedOperations = pivotClass.getOwnedOperations();
+		List<Operation> ownedOperations = pivotClass.getOwnedOperation();
 		PivotExecutorOperation[] operations = new PivotExecutorOperation[ownedOperations.size()];
 		for (int i = 0; i < ownedOperations.size(); i++) {			
 			Operation pivotOperation = ownedOperations.get(i);
@@ -117,7 +117,7 @@ public class PivotExecutorManager extends ExecutorManager implements MetaModelMa
 
 	protected ExecutorProperty[] computeProperties(Type pivotClass) {
 //		PivotExecutorClass evaluationClass = getEvaluationClass(pivotClass);
-		List<Property> ownedProperties = pivotClass.getOwnedAttributes();
+		List<Property> ownedProperties = pivotClass.getOwnedAttribute();
 		ExecutorProperty[] properties = new ExecutorProperty[ownedProperties.size()];
 //		for (int i = 0; i < ownedOperations.size(); i++) {			
 //			Operation pivotOperation = ownedOperations.get(i);

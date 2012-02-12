@@ -44,7 +44,7 @@ public class DomainReflectivePackage extends ReflectivePackage
 
 	@Override
 	protected Iterable<? extends DomainType> getDomainTypes() {
-		return domainPackage.getOwnedTypes();
+		return domainPackage.getOwnedType();
 	}
 	
 	@Override

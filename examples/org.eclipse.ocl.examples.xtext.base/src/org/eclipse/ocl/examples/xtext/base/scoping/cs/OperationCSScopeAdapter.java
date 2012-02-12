@@ -40,7 +40,7 @@ public class OperationCSScopeAdapter extends ElementCSScopeAdapter
 			if (containmentFeature == BaseCSTPackage.Literals.OPERATION_CS__OWNED_PARAMETER) {
 			}
 			else {
-				environmentView.addNamedElements(pivot.getOwnedParameters());
+				environmentView.addNamedElements(pivot.getOwnedParameter());
 			}
 			for (TemplateParameter templateParameter : PivotUtil.getTemplateParameters(pivot)) {
 				environmentView.addNamedElement((Nameable)templateParameter.getParameteredElement());

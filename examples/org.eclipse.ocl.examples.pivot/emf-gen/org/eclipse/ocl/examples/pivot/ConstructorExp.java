@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.ConstructorExp#getParts <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.ConstructorExp#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,14 +49,14 @@ public interface ConstructorExp extends OclExpression
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!ConstructorExp!part'"
 	 * @generated
 	 */
-	EList<ConstructorPart> getParts();
+	EList<ConstructorPart> getPart();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.ConstructorPart} and appends it to the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.ConstructorPart}.
-	 * @see #getParts()
+	 * @see #getPart()
 	 * @generated
 	 */
 	ConstructorPart createPart();

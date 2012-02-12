@@ -174,7 +174,7 @@ public class Pivot2EcoreTypeRefVisitor
 			eGenericType.setETypeParameter(eTypeParameter);
 			return eGenericType;
 		}
-		List<TemplateBinding> templateBindings = pivotType.getTemplateBindings();
+		List<TemplateBinding> templateBindings = pivotType.getTemplateBinding();
 		if (templateBindings.size() == 0) {
 			EClassifier eClassifier = context.getCreated(EClassifier.class, pivotType);
 			if (eClassifier != null) {
@@ -186,7 +186,7 @@ public class Pivot2EcoreTypeRefVisitor
 		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement(pivotType));
 		eGenericType.setEClassifier((EClassifier) rawType);
 		// FIXME signature ordering, multiple bindings
-		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitutions());
+		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitution());
 		return eGenericType;
 	}
 

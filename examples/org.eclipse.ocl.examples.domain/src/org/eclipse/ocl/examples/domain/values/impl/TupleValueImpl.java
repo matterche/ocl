@@ -119,7 +119,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         StringBuilder result = new StringBuilder();
         result.append("Tuple{"); //$NON-NLS-1$
         
-        for (Iterator<? extends DomainTypedElement> iter =  getType().getOwnedAttributes().iterator();
+        for (Iterator<? extends DomainTypedElement> iter =  getType().getOwnedAttribute().iterator();
                 iter.hasNext();) {
             
         	DomainTypedElement p = iter.next();

@@ -101,7 +101,7 @@ public class OCLQueryDelegate implements QueryDelegate
 				String message = DomainUtil.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
 				throw new OCLDelegateException(message);
 			}
-			List<Variable> parameterVariables = specification.getParameterVariables();
+			List<Variable> parameterVariables = specification.getParameterVariable();
 			int argCount = arguments != null ? arguments.size() : 0;
 			if (parameterVariables.size() != argCount) {
 				String message = DomainUtil.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameterVariables.size());

@@ -330,7 +330,7 @@ public class TemplateParameterSubstitutionImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
 				return basicSetOwnedActual(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
@@ -365,7 +365,7 @@ public class TemplateParameterSubstitutionImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				if (resolve) return getFormal();
 				return basicGetFormal();
@@ -391,8 +391,8 @@ public class TemplateParameterSubstitutionImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)newValue);
@@ -420,7 +420,7 @@ public class TemplateParameterSubstitutionImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				setFormal((TemplateParameter)null);
@@ -448,7 +448,7 @@ public class TemplateParameterSubstitutionImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__FORMAL:
 				return formal != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__ACTUAL:

@@ -63,7 +63,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		Resource ecoreMetaModel = eClassifier.eResource();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, metaModelManager);
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		Constraint constraint = PivotUtil.getNamedElement(type.getOwnedRules(), constraintName);
+		Constraint constraint = PivotUtil.getNamedElement(type.getOwnedRule(), constraintName);
 		if (constraint != null) {
 			ExpressionInOcl expressionInOcl = getExpressionInOcl(metaModelManager, type, constraint);
 			if (expressionInOcl != null) {

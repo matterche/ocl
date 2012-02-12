@@ -33,10 +33,10 @@ public class ReferenceCSScopeAdapter extends ElementCSScopeAdapter
 
 	public void addAllReferences(EnvironmentView environmentView, Type csClass) {
 		int oldSize = environmentView.getSize();
-		environmentView.addNamedElements(csClass.getOwnedAttributes());
+		environmentView.addNamedElements(csClass.getOwnedAttribute());
 		int newSize = environmentView.getSize();
 		if ((newSize <= oldSize) || (environmentView.getName() == null)) {
-			for (Type csTypeRef : csClass.getSuperClasses()) {
+			for (Type csTypeRef : csClass.getSuperClass()) {
 				if (csTypeRef instanceof TypedTypeRefCS) {
 					Element type = ((TypedTypeRefCS)csTypeRef).getPivot();
 					if (type instanceof Type) {

@@ -177,7 +177,7 @@ public abstract class ExecutableStandardLibrary extends AbstractStandardLibrary
 			for (DomainTupleType tupleType : tupleTypes) {
 				int i = 0;
 				for (; i < parts.size(); i++) {
-					List<? extends DomainTypedElement> ownedAttributes = tupleType.getOwnedAttributes();
+					List<? extends DomainTypedElement> ownedAttributes = tupleType.getOwnedAttribute();
 					if (ownedAttributes.get(i).getType() != parts.get(i).getType()) {
 						break;
 					}

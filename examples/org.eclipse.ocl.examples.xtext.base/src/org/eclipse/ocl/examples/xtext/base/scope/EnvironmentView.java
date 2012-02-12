@@ -214,7 +214,7 @@ public class EnvironmentView
 			return;
 		}
 		addElementsOfScope(libType, scopeView);
-		for (Type superClass : libType.getSuperClasses()) {
+		for (Type superClass : libType.getSuperClass()) {
 			addLibContents(superClass, scopeView);
 		}
 	}

@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#isAllowSubstitutable <em>Allow Substitutable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#getConstrainingTypes <em>Constraining Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#getConstrainingType <em>Constraining Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl#getParameteredElement <em>Parametered Element</em>}</li>
  * </ul>
  * </p>
@@ -74,14 +74,14 @@ public class TypeTemplateParameterImpl
 	protected static final int ALLOW_SUBSTITUTABLE_EFLAG = 1 << 8;
 
 	/**
-	 * The cached value of the '{@link #getConstrainingTypes() <em>Constraining Type</em>}' reference list.
+	 * The cached value of the '{@link #getConstrainingType() <em>Constraining Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstrainingTypes()
+	 * @see #getConstrainingType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Type> constrainingTypes;
+	protected EList<Type> constrainingType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,12 +129,13 @@ public class TypeTemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Type> getConstrainingTypes() {
-		if (constrainingTypes == null)
+	public EList<Type> getConstrainingType()
+	{
+		if (constrainingType == null)
 		{
-			constrainingTypes = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE);
+			constrainingType = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE);
 		}
-		return constrainingTypes;
+		return constrainingType;
 	}
 
 	/**
@@ -225,7 +226,7 @@ public class TypeTemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
@@ -241,7 +242,7 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
 				return isAllowSubstitutable();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE:
-				return getConstrainingTypes();
+				return getConstrainingType();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -257,8 +258,8 @@ public class TypeTemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)newValue);
@@ -279,8 +280,8 @@ public class TypeTemplateParameterImpl
 				setAllowSubstitutable((Boolean)newValue);
 				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE:
-				getConstrainingTypes().clear();
-				getConstrainingTypes().addAll((Collection<? extends Type>)newValue);
+				getConstrainingType().clear();
+				getConstrainingType().addAll((Collection<? extends Type>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -296,7 +297,7 @@ public class TypeTemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)null);
@@ -317,7 +318,7 @@ public class TypeTemplateParameterImpl
 				setAllowSubstitutable(ALLOW_SUBSTITUTABLE_EDEFAULT);
 				return;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE:
-				getConstrainingTypes().clear();
+				getConstrainingType().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -333,7 +334,7 @@ public class TypeTemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature() != null;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
@@ -347,7 +348,7 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
 				return ((eFlags & ALLOW_SUBSTITUTABLE_EFLAG) != 0) != ALLOW_SUBSTITUTABLE_EDEFAULT;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE:
-				return constrainingTypes != null && !constrainingTypes.isEmpty();
+				return constrainingType != null && !constrainingType.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

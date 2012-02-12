@@ -34,7 +34,7 @@ public class ClassCSScopeAdapter extends ElementCSScopeAdapter
 	public static final ClassCSScopeAdapter INSTANCE = new ClassCSScopeAdapter();
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		List<Type> superClasses = target.getSuperClasses();
+		List<Type> superClasses = target.getSuperClass();
 		if (superClasses.size() > 0) {
 			for (Type superClass : superClasses) {
 					environmentView.addElementsOfScope(superClass, scopeView);
@@ -80,7 +80,7 @@ public class ClassCSScopeAdapter extends ElementCSScopeAdapter
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
 					addInheritedContents(environmentView, pivot, scopeView);
 //				if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
-//					for (org.eclipse.ocl.examples.pivot.Class superClass : pivot.getSuperClasses()) {
+//					for (org.eclipse.ocl.examples.pivot.Class superClass : pivot.getSuperClass()) {
 //						ScopeView nestedScopeView = scopeView;
 //	//					if (csType instanceof BoundClassifierCS) {
 //	//						nestedScopeView = new BaseScopeView(scopeView, ((BoundClassifierCS)csType).getBindings());

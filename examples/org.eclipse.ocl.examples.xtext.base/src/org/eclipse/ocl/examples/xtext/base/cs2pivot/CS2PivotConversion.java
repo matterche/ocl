@@ -289,9 +289,9 @@ public class CS2PivotConversion extends AbstractConversion
 		for (TreeIterator<Object> tit = EcoreUtil.getAllContents(allPivotResources); tit.hasNext(); ) {
 			Object object = tit.next();
 			if (object instanceof org.eclipse.ocl.examples.pivot.Package) {
-				for (Type type : ((org.eclipse.ocl.examples.pivot.Package)object).getOwnedTypes()) {
+				for (Type type : ((org.eclipse.ocl.examples.pivot.Package)object).getOwnedType()) {
 					if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-						List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClasses();
+						List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClass();
 						if (superClasses.isEmpty()) {
 							if (type != oclAny) {
 								if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
@@ -495,7 +495,7 @@ public class CS2PivotConversion extends AbstractConversion
 //				PivotUtil.debugObjectUsage("Final New residue ", element);
 //			}
 //		}
-//		for (Type orphanType : orphanPackage.getOwnedTypes()) {
+//		for (Type orphanType : orphanPackage.getOwnedType()) {
 //			if (!PivotUtil.debugWellContainedness(orphanType)) {
 //				for (Setting setting : referencesToOrphans.get(orphanType)) {
 //					PivotUtil.debugObjectUsage("Dangling reference " + setting.getEStructuralFeature().getName() + " ", setting.getEObject());				
@@ -576,7 +576,7 @@ public class CS2PivotConversion extends AbstractConversion
 						oldPackagesByName.put(name, pkg);
 					}
 				}
-				gatherOldPackages(pkg.getNestedPackages());
+				gatherOldPackages(pkg.getNestedPackage());
 			}
 		}	
 	}
@@ -736,7 +736,7 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	public void handleVisitNamedElement(NamedElementCS csNamedElement, NamedElement pivotElement) {
-		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotations();
+		List<Annotation> pivotAnnotations = pivotElement.getOwnedAnnotation();
 		List<AnnotationElementCS> csAnnotations = csNamedElement.getOwnedAnnotation();
 //		if ((csAnnotations.size() <= 1) && (pivotAnnotations.size() <= 1)) {
 			refreshPivotList(Annotation.class, pivotAnnotations, csAnnotations);
@@ -864,7 +864,7 @@ public class CS2PivotConversion extends AbstractConversion
 						documentationStrings.add(text.substring(startIndex, endIndex).trim());
 					}
 				}
-				List<Comment> ownedComments = pivotElement.getOwnedComments();
+				List<Comment> ownedComments = pivotElement.getOwnedComment();
 				int iMax = Math.min(documentationStrings.size(), ownedComments.size());
 				int i = 0;
 				for (; i < iMax; i++) {
@@ -1016,7 +1016,7 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			newPivotTemplateParameters.add(pivotTemplateParameter);
 		}
-		PivotUtil.refreshList(pivotTemplateSignature.getOwnedParameters(), newPivotTemplateParameters);
+		PivotUtil.refreshList(pivotTemplateSignature.getOwnedParameter(), newPivotTemplateParameters);
 	}
 	
 	public <T extends TypedMultiplicityElement> T  refreshTypedMultiplicityElement(Class<T> pivotClass,
@@ -1078,7 +1078,7 @@ public class CS2PivotConversion extends AbstractConversion
 		if (type instanceof TupleType) {
 			TupleType tupleType = (TupleType)type;
 			List<Property> resolvedProperties = new ArrayList<Property>();
-			for (Property part : ((TupleType)type).getOwnedAttributes()) {
+			for (Property part : ((TupleType)type).getOwnedAttribute()) {
 				if (metaModelManager.isUnderspecified(part.getType())) {
 					Property prop = PivotFactory.eINSTANCE.createProperty();
 					prop.setName(part.getName());
@@ -1194,7 +1194,7 @@ public class CS2PivotConversion extends AbstractConversion
 				}
 			}
 			installPivotReference(csTemplateBinding, templateBinding, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
-			specializeTemplateParameterSubstitutions(templateBinding.getParameterSubstitutions(), templateSignature.getOwnedParameters(), csTemplateBinding.getOwnedParameterSubstitution());
+			specializeTemplateParameterSubstitutions(templateBinding.getParameterSubstitution(), templateSignature.getOwnedParameter(), csTemplateBinding.getOwnedParameterSubstitution());
 			assert templateSignatures.get(i) == templateBindings.get(i).getSignature();
 		}
 		for (int k = templateBindings.size(); k > newMax; ) {
@@ -1291,7 +1291,7 @@ public class CS2PivotConversion extends AbstractConversion
 			templateArguments.add(templateArgument);
 		}
 		TemplateSignature templateSignature = unspecializedPivotElement.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
+		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameter() : Collections.<TemplateParameter>emptyList();
 		boolean isUnspecialized = PivotUtil.isUnspecialized(templateParameters, templateArguments);	// WIP
 		if (isUnspecialized) {
 //			int iMax = templateParameters.size();
@@ -1335,7 +1335,7 @@ public class CS2PivotConversion extends AbstractConversion
 			//
 			//	Refresh the pivot specialization bindings and parameter substitutions
 			//
-			List<TemplateBinding> templateBindings = specializedPivotElement.getTemplateBindings();
+			List<TemplateBinding> templateBindings = specializedPivotElement.getTemplateBinding();
 			List<TemplateSignature> templateSignatures = getTemplateSignatures(unspecializedPivotElement);
 			List<TemplateBindingCS> csTemplateBindings = getTemplateBindings(csElement);
 			specializeTemplateBindings(templateBindings, templateSignatures, csTemplateBindings);

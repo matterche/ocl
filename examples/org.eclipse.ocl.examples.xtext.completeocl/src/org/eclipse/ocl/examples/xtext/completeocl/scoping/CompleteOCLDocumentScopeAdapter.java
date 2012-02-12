@@ -42,15 +42,15 @@ public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter
 					environmentView.addElement(importName, namespace);
 					if (anImport.isAll() && (namespace instanceof org.eclipse.ocl.examples.pivot.Package)) {
 						org.eclipse.ocl.examples.pivot.Package rootPackage = (org.eclipse.ocl.examples.pivot.Package)namespace;
-						environmentView.addNamedElements(rootPackage.getNestedPackages());
-						environmentView.addNamedElements(rootPackage.getOwnedTypes());
+						environmentView.addNamedElements(rootPackage.getNestedPackage());
+						environmentView.addNamedElements(rootPackage.getOwnedType());
 					}
 				} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {		// FIXME This legacy behaviour needs cleaning up
 					environmentView.addNamedElement(namespace);
-					for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages()) {
+					for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackage()) {
 						environmentView.addNamedElement(rootPackage);		// FIXME Rationalize root of pivot model
-						environmentView.addNamedElements(rootPackage.getNestedPackages());
-						environmentView.addNamedElements(rootPackage.getOwnedTypes());
+						environmentView.addNamedElements(rootPackage.getNestedPackage());
+						environmentView.addNamedElements(rootPackage.getOwnedType());
 					}
 				}
 			}

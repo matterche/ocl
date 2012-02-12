@@ -47,7 +47,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getBodyExpression <em>Body Expression</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getResultVariable <em>Result Variable</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getParameterVariables <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getParameterVariable <em>Parameter Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl#getMessageExpression <em>Message Expression</em>}</li>
  * </ul>
  * </p>
@@ -89,14 +89,14 @@ public class ExpressionInOclImpl
 	protected Variable resultVariable;
 
 	/**
-	 * The cached value of the '{@link #getParameterVariables() <em>Parameter Variable</em>}' containment reference list.
+	 * The cached value of the '{@link #getParameterVariable() <em>Parameter Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameterVariables()
+	 * @see #getParameterVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> parameterVariables;
+	protected EList<Variable> parameterVariable;
 
 	/**
 	 * The cached value of the '{@link #getMessageExpression() <em>Message Expression</em>}' containment reference.
@@ -303,12 +303,13 @@ public class ExpressionInOclImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getParameterVariables() {
-		if (parameterVariables == null)
+	public EList<Variable> getParameterVariable()
+	{
+		if (parameterVariable == null)
 		{
-			parameterVariables = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+			parameterVariable = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
 		}
-		return parameterVariables;
+		return parameterVariable;
 	}
 
 	/**
@@ -318,7 +319,7 @@ public class ExpressionInOclImpl
 	 */
 	public Variable createParameterVariable() {
 		Variable newParameterVariable = (Variable) create(PivotPackage.Literals.VARIABLE);
-		getParameterVariables().add(newParameterVariable);
+		getParameterVariable().add(newParameterVariable);
 		return newParameterVariable;
 	}
 
@@ -393,11 +394,11 @@ public class ExpressionInOclImpl
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
 				return basicSetOwningTemplateParameter(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
@@ -409,7 +410,7 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
 				return basicSetResultVariable(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return ((InternalEList<?>)getParameterVariables()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getParameterVariable()).basicRemove(otherEnd, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
 				return basicSetMessageExpression(null, msgs);
 		}
@@ -426,15 +427,15 @@ public class ExpressionInOclImpl
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return getName();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.EXPRESSION_IN_OCL__IS_STATIC:
 				return isStatic();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -444,11 +445,11 @@ public class ExpressionInOclImpl
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
-				return getBodies();
+				return getBody();
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				return getLanguages();
+				return getLanguage();
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE:
-				return getMessages();
+				return getMessage();
 			case PivotPackage.EXPRESSION_IN_OCL__VALUE_EXPRESSION:
 				if (resolve) return getValueExpression();
 				return basicGetValueExpression();
@@ -459,7 +460,7 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
 				return getResultVariable();
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return getParameterVariables();
+				return getParameterVariable();
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
 				return getMessageExpression();
 		}
@@ -477,22 +478,22 @@ public class ExpressionInOclImpl
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)newValue);
@@ -504,16 +505,16 @@ public class ExpressionInOclImpl
 				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
-				getBodies().clear();
-				getBodies().addAll((Collection<? extends String>)newValue);
+				getBody().clear();
+				getBody().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				getLanguages().clear();
-				getLanguages().addAll((Collection<? extends String>)newValue);
+				getLanguage().clear();
+				getLanguage().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE:
-				getMessages().clear();
-				getMessages().addAll((Collection<? extends String>)newValue);
+				getMessage().clear();
+				getMessage().addAll((Collection<? extends String>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__VALUE_EXPRESSION:
 				setValueExpression((ExpressionInOcl)newValue);
@@ -528,8 +529,8 @@ public class ExpressionInOclImpl
 				setResultVariable((Variable)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariables().clear();
-				getParameterVariables().addAll((Collection<? extends Variable>)newValue);
+				getParameterVariable().clear();
+				getParameterVariable().addAll((Collection<? extends Variable>)newValue);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
 				setMessageExpression((OclExpression)newValue);
@@ -548,19 +549,19 @@ public class ExpressionInOclImpl
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				setType((Type)null);
@@ -572,13 +573,13 @@ public class ExpressionInOclImpl
 				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
-				getBodies().clear();
+				getBody().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				getLanguages().clear();
+				getLanguage().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE:
-				getMessages().clear();
+				getMessage().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__VALUE_EXPRESSION:
 				setValueExpression((ExpressionInOcl)null);
@@ -593,7 +594,7 @@ public class ExpressionInOclImpl
 				setResultVariable((Variable)null);
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				getParameterVariables().clear();
+				getParameterVariable().clear();
 				return;
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
 				setMessageExpression((OclExpression)null);
@@ -612,15 +613,15 @@ public class ExpressionInOclImpl
 		switch (featureID)
 		{
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				return type != null;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
@@ -628,11 +629,11 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:
-				return bodies != null && !bodies.isEmpty();
+				return body != null && !body.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__LANGUAGE:
-				return languages != null && !languages.isEmpty();
+				return language != null && !language.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE:
-				return messages != null && !messages.isEmpty();
+				return message != null && !message.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__VALUE_EXPRESSION:
 				return valueExpression != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
@@ -642,7 +643,7 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
 				return resultVariable != null;
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
-				return parameterVariables != null && !parameterVariables.isEmpty();
+				return parameterVariable != null && !parameterVariable.isEmpty();
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
 				return messageExpression != null;
 		}

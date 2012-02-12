@@ -66,14 +66,14 @@ public class IfExpBodies
 			final Value T_ClassClassifier_Boolean_ = valueFactory.createTypeValue(OCLstdlibTables.Types._Boolean);
 			
 			
-			Value A_symbol_0 = IP_IfExp_condition.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, self, P_IfExp_condition);
+			Value A_symbol_369 = IP_IfExp_condition.evaluate(evaluator, T_Pivot_ecore__pivot__OclExpression, self, P_IfExp_condition);
 			
-			Value A_symbol_1 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_0, P_TypedElement_type);
+			Value A_symbol_370 = IP_TypedElement_type.evaluate(evaluator, T_Pivot_ecore__pivot__Type, A_symbol_369, P_TypedElement_type);
 			
-			DomainType static_A_symbol_2 = valueFactory.typeOf(A_symbol_1, T_ClassClassifier_Boolean_);
-			LibraryBinaryOperation dynamic_A_symbol_2 = (LibraryBinaryOperation)static_A_symbol_2.lookupImplementation(standardLibrary, O_OclAny__eq_);
-			Value A_symbol_2 = dynamic_A_symbol_2.evaluate(evaluator, T_Boolean, A_symbol_1, T_ClassClassifier_Boolean_);
-			return A_symbol_2;
+			DomainType static_A_symbol_371 = valueFactory.typeOf(A_symbol_370, T_ClassClassifier_Boolean_);
+			LibraryBinaryOperation dynamic_A_symbol_371 = (LibraryBinaryOperation)static_A_symbol_371.lookupImplementation(standardLibrary, O_OclAny__eq_);
+			Value A_symbol_371 = dynamic_A_symbol_371.evaluate(evaluator, T_Boolean, A_symbol_370, T_ClassClassifier_Boolean_);
+			return A_symbol_371;
 		}
 	}
 

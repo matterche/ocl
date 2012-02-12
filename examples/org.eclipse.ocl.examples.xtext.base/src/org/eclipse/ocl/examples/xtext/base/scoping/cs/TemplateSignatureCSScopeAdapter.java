@@ -32,7 +32,7 @@ public class TemplateSignatureCSScopeAdapter extends ElementCSScopeAdapter
 		TemplateSignatureCS targetElement = (TemplateSignatureCS)target;
 		TemplateSignature pivot = PivotUtil.getPivot(TemplateSignature.class, targetElement);
 		if (pivot != null) {
-			environmentView.addElements(pivot.getOwnedParameters());
+			environmentView.addElements(pivot.getOwnedParameter());
 		}
 		return scopeView.getOuterScope();
 	}

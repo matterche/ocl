@@ -32,7 +32,7 @@ public class RootPackageScopeAdapter extends AbstractPivotScopeAdapter implement
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		environmentView.addNamedElements(metaModelManager.getLocalPackages(targetPackage));
 		environmentView.addNamedElements(metaModelManager.getLocalClasses(targetPackage));
-		environmentView.addNamedElements(targetPackage.getOwnedPrecedences());
+		environmentView.addNamedElements(targetPackage.getOwnedPrecedence());
 		return scopeView.getOuterScope();
 	}
 }

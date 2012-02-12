@@ -449,7 +449,7 @@ public class TemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
 				return basicSetSignature(null, msgs);
 			case PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
@@ -488,7 +488,7 @@ public class TemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature();
 			case PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
@@ -516,8 +516,8 @@ public class TemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)newValue);
@@ -548,7 +548,7 @@ public class TemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
 				setSignature((TemplateSignature)null);
@@ -579,7 +579,7 @@ public class TemplateParameterImpl
 		switch (featureID)
 		{
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
 				return getSignature() != null;
 			case PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:

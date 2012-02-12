@@ -109,7 +109,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("AnyClassifier is not a templated type");
 				}
-				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("AnyClassifier is not a templated type with a single argument");
 				}
 				anyClassifierType = (ClassifierType) type;
@@ -128,7 +128,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((BagType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("Bag is not a templated type");
 				}
-				else if (((BagType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((BagType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("Bag is not a templated type with a single argument");
 				}
 				bagType = (BagType) type;
@@ -173,7 +173,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("ClassClassifier is not a templated type");
 				}
-				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("ClassClassifier is not a templated type with a single argument");
 				}
 				classClassifierType = (ClassifierType) type;
@@ -192,7 +192,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("CollectionClassifier is not a templated type");
 				}
-				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 2) {
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameter().size() != 2) {
 					throw new IllegalLibraryException("CollectionClassifier is not a templated type with two arguments");
 				}
 				collectionClassifierType = (ClassifierType) type;
@@ -211,7 +211,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((CollectionType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("Collection is not a templated type");
 				}
-				else if (((CollectionType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((CollectionType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("Collection is not a templated type with a single argument");
 				}
 				collectionType = (CollectionType) type;
@@ -230,7 +230,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("EnumerationClassifier is not a templated type");
 				}
-				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("EnumerationClassifier is not a templated type with a single argument");
 				}
 				enumerationClassifierType = (ClassifierType) type;
@@ -404,7 +404,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((OrderedSetType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("OrderedSet is not a templated type");
 				}
-				else if (((OrderedSetType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((OrderedSetType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("OrderedSet is not a templated type with a single argument");
 				}
 				orderedSetType = (OrderedSetType) type;
@@ -451,7 +451,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((SequenceType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("Sequence is not a templated type");
 				}
-				else if (((SequenceType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((SequenceType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("Sequence is not a templated type with a single argument");
 				}
 				sequenceType = (SequenceType) type;
@@ -470,7 +470,7 @@ public abstract class PivotStandardLibrary extends AbstractStandardLibrary	// FI
 				if (((SetType) type).getOwnedTemplateSignature() == null) {
 					throw new IllegalLibraryException("Set is not a templated type");
 				}
-				else if (((SetType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+				else if (((SetType) type).getOwnedTemplateSignature().getParameter().size() != 1) {
 					throw new IllegalLibraryException("Set is not a templated type with a single argument");
 				}
 				setType = (SetType) type;

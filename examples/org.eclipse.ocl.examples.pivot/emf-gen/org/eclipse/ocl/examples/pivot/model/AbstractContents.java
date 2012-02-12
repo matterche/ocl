@@ -214,7 +214,7 @@ public class AbstractContents
 
 	protected TemplateBinding createTemplateBinding(TemplateSignature templateSignature, TemplateParameterSubstitution... templateParameterSubstitutions) {
 		TemplateBinding pivotTemplateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getParameterSubstitutions();
+		List<TemplateParameterSubstitution> parameterSubstitutions = pivotTemplateBinding.getParameterSubstitution();
 		for (TemplateParameterSubstitution templateParameterSubstitution : templateParameterSubstitutions) {
 			parameterSubstitutions.add(templateParameterSubstitution);
 		}
@@ -231,7 +231,7 @@ public class AbstractContents
 
 	protected TemplateSignature createTemplateSignature(TemplateableElement templateableElement, TemplateParameter... templateParameters) {
 		TemplateSignature pivotTemplateSignature = PivotFactory.eINSTANCE.createTemplateSignature();
-		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameters();
+		List<TemplateParameter> parameters = pivotTemplateSignature.getOwnedParameter();
 		for (TemplateParameter templateParameter : templateParameters) {
 			parameters.add(templateParameter);
 		}
@@ -242,7 +242,7 @@ public class AbstractContents
 	protected TupleType createTupleType(String name, Property... properties) {
 		TupleType pivotType = PivotFactory.eINSTANCE.createTupleType();
 		pivotType.setName(name);
-		List<Property> ownedProperties = pivotType.getOwnedAttributes();
+		List<Property> ownedProperties = pivotType.getOwnedAttribute();
 		for (Property property : properties) {
 			ownedProperties.add(property);
 		}
@@ -264,6 +264,6 @@ public class AbstractContents
 	protected void installComment(Element element, String body) {
 		Comment pivotComment = PivotFactory.eINSTANCE.createComment();
 		pivotComment.setBody(body);
-		element.getOwnedComments().add(pivotComment);
+		element.getOwnedComment().add(pivotComment);
 	}
 }

@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComments <em>Owned Comment</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComment <em>Owned Comment</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,14 +62,14 @@ public interface Element
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Element!ownedComment'"
 	 * @generated
 	 */
-	EList<Comment> getOwnedComments();
+	EList<Comment> getOwnedComment();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Comment} and appends it to the '<em><b>Owned Comment</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.Comment}.
-	 * @see #getOwnedComments()
+	 * @see #getOwnedComment()
 	 * @generated
 	 */
 	Comment createOwnedComment();

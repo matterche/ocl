@@ -37,7 +37,7 @@ public class OperationScopeAdapter extends AbstractPivotScopeAdapter
 		if (containmentFeature == PivotPackage.Literals.OPERATION__OWNED_PARAMETER) {
 		}
 		else {
-			environmentView.addNamedElements(targetOperation.getOwnedParameters());
+			environmentView.addNamedElements(targetOperation.getOwnedParameter());
 		}
 		environmentView.addElements(PivotUtil.getTypeTemplateParameterables(targetOperation));
 		return scopeView.getOuterScope();

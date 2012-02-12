@@ -63,8 +63,8 @@ public abstract class AbstractFragment implements DomainFragment
 		for (DomainOperation operation : getOperations()) {		// FIXME binary search
 			if (operation.getName().equals(operationName)) {
 				boolean gotIt = true;
-				IndexableIterable<? extends DomainType> parameterTypeArguments = operation.getParameterTypes();
-//				ExecutorTypeArgument[] parameterTypeArguments = operation.getParameterTypes();
+				IndexableIterable<? extends DomainType> parameterTypeArguments = operation.getParameterType();
+//				ExecutorTypeArgument[] parameterTypeArguments = operation.getParameterType();
 				if (parameterTypeArguments.size() == argumentTypes.length) {
 					for (int i = 0; i < parameterTypeArguments.size(); i++) {
 						DomainType argumentType = argumentTypes[i];

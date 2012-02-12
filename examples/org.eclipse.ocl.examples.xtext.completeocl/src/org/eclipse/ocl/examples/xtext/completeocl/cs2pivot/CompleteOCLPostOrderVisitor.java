@@ -89,7 +89,7 @@ public class CompleteOCLPostOrderVisitor
 			if (intermediate != null) {
 				for (NamedElement pivot : intermediate.keySet()) {
 					List<ContextConstraintCS> constraints = intermediate.get(pivot);
-					context.refreshList(Constraint.class, pivot.getOwnedRules(), constraints);
+					context.refreshList(Constraint.class, pivot.getOwnedRule(), constraints);
 				}
 			}
 			return null;

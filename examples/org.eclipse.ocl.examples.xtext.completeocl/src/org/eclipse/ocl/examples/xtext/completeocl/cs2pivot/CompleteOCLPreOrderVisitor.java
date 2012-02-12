@@ -140,11 +140,11 @@ public class CompleteOCLPreOrderVisitor
 					pivotParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
 					newPivotParameters.add(pivotParameter);
 				}
-				context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
-				classifier.getOwnedOperations().add(pivotOperation);
+				context.refreshList(pivotOperation.getOwnedParameter(), newPivotParameters);
+				classifier.getOwnedOperation().add(pivotOperation);
 			}
 			else {
-				classifier.getOwnedAttributes().add(pivotProperty);
+				classifier.getOwnedAttribute().add(pivotProperty);
 			}
 			context.refreshComments(pivotFeature, csElement);
 			return null;
@@ -188,7 +188,7 @@ public class CompleteOCLPreOrderVisitor
 //			}
 			Operation contextOperation = context.refreshModelElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 			contextOperation.setName(modelOperation.getName());
-			List<Parameter> modelParameters = modelOperation.getOwnedParameters();
+			List<Parameter> modelParameters = modelOperation.getOwnedParameter();
 			List<VariableCS> csParameters = csElement.getParameters();
 			for (int i = 0; i < csParameters.size(); i++) {
 				VariableCS csParameter = csParameters.get(i);
@@ -197,7 +197,7 @@ public class CompleteOCLPreOrderVisitor
 				contextParameter.setName(csParameter.getName());
 //				contextParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
 				contextParameter.setType(modelParameter.getType());				// FIXME consistency check
-				contextOperation.getOwnedParameters().add(contextParameter);	// FIXME multiplicity
+				contextOperation.getOwnedParameter().add(contextParameter);	// FIXME multiplicity
 			}
 			TypedRefCS csType = csElement.getOwnedType();
 			if (csType != null) {
@@ -205,7 +205,7 @@ public class CompleteOCLPreOrderVisitor
 				contextOperation.setType(modelOperation.getType());			// FIXME consistency check
 			}
 //			context.installPivotElement(csElement, contextOperation);
-			contextType.getOwnedOperations().add(contextOperation);
+			contextType.getOwnedOperation().add(contextOperation);
 			context.refreshComments(contextOperation, csElement);
 //			metaModelManager.addContextOperation(modelOperation, contextOperation);
 			return null;
@@ -229,7 +229,7 @@ public class CompleteOCLPreOrderVisitor
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelType.getPackage(), csElement.eResource(), csElement);
 		org.eclipse.ocl.examples.pivot.Class contextType = context.refreshModelElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csElement);
 		contextType.setName(modelType.getName());
-		contextPackage.getOwnedTypes().add(contextType);
+		contextPackage.getOwnedType().add(contextType);
 		// WIP Install class synonym
 		return contextType;
 	}
@@ -249,7 +249,7 @@ public class CompleteOCLPreOrderVisitor
 		contextPackage.setName(modelPackage.getName());
 		contextPackage.setNsURI(modelPackage.getNsURI());
 		if (contextNestingPackage != null) {
-			contextNestingPackage.getNestedPackages().add(contextPackage);
+			contextNestingPackage.getNestedPackage().add(contextPackage);
 		}
 		else {
 			pivotResource.getContents().add(contextPackage);
@@ -340,7 +340,7 @@ public class CompleteOCLPreOrderVisitor
 		Property contextProperty = context.refreshModelElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
-		contextType.getOwnedAttributes().add(contextProperty);
+		contextType.getOwnedAttribute().add(contextProperty);
 		context.refreshComments(contextProperty, csElement);
 //		metaModelManager.addContextProperty(modelProperty, contextProperty);
 		return null;

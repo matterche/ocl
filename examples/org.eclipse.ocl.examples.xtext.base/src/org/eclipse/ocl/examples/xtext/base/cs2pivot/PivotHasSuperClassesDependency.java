@@ -58,7 +58,7 @@ public class PivotHasSuperClassesDependency extends AbstractDependency<TypedType
 		if (type instanceof VoidType) {
 			return true;
 		}
-		List<Type> superClasses = type.getSuperClasses();
+		List<Type> superClasses = type.getSuperClass();
 		return !superClasses.isEmpty();
 	}
 }

@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions <em>Parameter Substitution</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution <em>Parameter Substitution</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement <em>Bound Element</em>}</li>
  * </ul>
  * </p>
@@ -85,21 +85,21 @@ public interface TemplateBinding
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!parameterSubstitution'"
 	 * @generated
 	 */
-	EList<TemplateParameterSubstitution> getParameterSubstitutions();
+	EList<TemplateParameterSubstitution> getParameterSubstitution();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution} and appends it to the '<em><b>Parameter Substitution</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution}.
-	 * @see #getParameterSubstitutions()
+	 * @see #getParameterSubstitution()
 	 * @generated
 	 */
 	TemplateParameterSubstitution createParameterSubstitution();
 
 	/**
 	 * Returns the value of the '<em><b>Bound Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings <em>Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -108,7 +108,7 @@ public interface TemplateBinding
 	 * @return the value of the '<em>Bound Element</em>' container reference.
 	 * @see #setBoundElement(TemplateableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_BoundElement()
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings
+	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding
 	 * @model opposite="templateBinding" required="true" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateBinding!boundElement'"
 	 * @generated

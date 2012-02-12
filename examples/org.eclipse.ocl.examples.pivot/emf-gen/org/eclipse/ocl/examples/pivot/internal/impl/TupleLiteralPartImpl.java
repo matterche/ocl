@@ -149,11 +149,11 @@ public class TupleLiteralPartImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return ((InternalEList<?>)getOwnedComments()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
-				return ((InternalEList<?>)getOwnedRules()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedRule()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return ((InternalEList<?>)getOwnedAnnotations()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getOwnedAnnotation()).basicRemove(otherEnd, msgs);
 			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
 				return basicSetInitExpression(null, msgs);
 		}
@@ -170,15 +170,15 @@ public class TupleLiteralPartImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return getName();
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.TUPLE_LITERAL_PART__IS_STATIC:
 				return isStatic();
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -199,22 +199,22 @@ public class TupleLiteralPartImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)newValue);
@@ -236,19 +236,19 @@ public class TupleLiteralPartImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				setType((Type)null);
@@ -270,15 +270,15 @@ public class TupleLiteralPartImpl
 		switch (featureID)
 		{
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_PART__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_PART__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.TUPLE_LITERAL_PART__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.TUPLE_LITERAL_PART__TYPE:
 				return type != null;
 			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:

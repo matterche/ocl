@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp#getParts <em>Part</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp#getPart <em>Part</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,14 +52,14 @@ public interface TupleLiteralExp
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TupleLiteralExp!part'"
 	 * @generated
 	 */
-	EList<TupleLiteralPart> getParts();
+	EList<TupleLiteralPart> getPart();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TupleLiteralPart} and appends it to the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TupleLiteralPart}.
-	 * @see #getParts()
+	 * @see #getPart()
 	 * @generated
 	 */
 	TupleLiteralPart createPart();

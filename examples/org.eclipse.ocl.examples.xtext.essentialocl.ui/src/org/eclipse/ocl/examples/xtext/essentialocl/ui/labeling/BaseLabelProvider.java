@@ -241,10 +241,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected void appendTemplateBindings(StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
-			for (TemplateBinding templateBinding : templateableElement.getTemplateBindings()) {
+			for (TemplateBinding templateBinding : templateableElement.getTemplateBinding()) {
 				s.append("<");
 				String prefix = "";
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					s.append(prefix);
 					ParameterableElement actual = templateParameterSubstitution.getActual();
 					if (actual instanceof Type) {
@@ -262,7 +262,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				s.append("<");
-				Collection<TemplateParameter> templateParameters = templateSignature.getParameters();
+				Collection<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
 					for (TemplateParameter templateParameter : templateParameters) {
@@ -380,7 +380,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClasses());
+		appendSuperTypes(s, ele.getSuperClass());
 		return s.toString();
 	}
 
@@ -468,7 +468,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClasses());
+		appendSuperTypes(s, ele.getSuperClass());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
@@ -486,7 +486,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendSuperTypes(s, ele.getSuperClasses());
+		appendSuperTypes(s, ele.getSuperClass());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
@@ -505,7 +505,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		s.append("\"");
 		appendString(s, ele.getName());			
 		s.append("\" : ");
-		appendString(s, ele.getValues().get(0), 40);
+		appendString(s, ele.getValue().get(0), 40);
 		return s.toString();
 	}
 
@@ -569,7 +569,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendParameters(s, ele.getOwnedIterators());
+		appendParameters(s, ele.getOwnedIterator());
 		s.append(" : ");
 		appendType(s, ele.getType());
 		appendMultiplicity(s, ele);
@@ -633,7 +633,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		StringBuilder s = new StringBuilder();
 		appendName(s, ele);
 		appendTemplateSignature(s, ele);
-		appendParameters(s, ele.getOwnedParameters());
+		appendParameters(s, ele.getOwnedParameter());
 		s.append(" : ");
 		appendType(s, ele.getType());
 		appendMultiplicity(s, ele);

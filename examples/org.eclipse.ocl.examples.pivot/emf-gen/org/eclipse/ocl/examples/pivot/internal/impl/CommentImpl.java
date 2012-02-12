@@ -36,7 +36,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl#getBody <em>Body</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl#getAnnotatedElements <em>Annotated Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,14 +67,14 @@ public class CommentImpl
 	protected String body = BODY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotatedElements() <em>Annotated Element</em>}' reference list.
+	 * The cached value of the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAnnotatedElements()
+	 * @see #getAnnotatedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> annotatedElements;
+	protected EList<Element> annotatedElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,12 +121,13 @@ public class CommentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getAnnotatedElements() {
-		if (annotatedElements == null)
+	public EList<Element> getAnnotatedElement()
+	{
+		if (annotatedElement == null)
 		{
-			annotatedElements = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.COMMENT__ANNOTATED_ELEMENT);
+			annotatedElement = new EObjectResolvingEList<Element>(Element.class, this, PivotPackage.COMMENT__ANNOTATED_ELEMENT);
 		}
-		return annotatedElements;
+		return annotatedElement;
 	}
 
 	/**
@@ -139,11 +140,11 @@ public class CommentImpl
 		switch (featureID)
 		{
 			case PivotPackage.COMMENT__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.COMMENT__BODY:
 				return getBody();
 			case PivotPackage.COMMENT__ANNOTATED_ELEMENT:
-				return getAnnotatedElements();
+				return getAnnotatedElement();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -159,15 +160,15 @@ public class CommentImpl
 		switch (featureID)
 		{
 			case PivotPackage.COMMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.COMMENT__BODY:
 				setBody((String)newValue);
 				return;
 			case PivotPackage.COMMENT__ANNOTATED_ELEMENT:
-				getAnnotatedElements().clear();
-				getAnnotatedElements().addAll((Collection<? extends Element>)newValue);
+				getAnnotatedElement().clear();
+				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -183,13 +184,13 @@ public class CommentImpl
 		switch (featureID)
 		{
 			case PivotPackage.COMMENT__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.COMMENT__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
 			case PivotPackage.COMMENT__ANNOTATED_ELEMENT:
-				getAnnotatedElements().clear();
+				getAnnotatedElement().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -205,11 +206,11 @@ public class CommentImpl
 		switch (featureID)
 		{
 			case PivotPackage.COMMENT__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.COMMENT__BODY:
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 			case PivotPackage.COMMENT__ANNOTATED_ELEMENT:
-				return annotatedElements != null && !annotatedElements.isEmpty();
+				return annotatedElement != null && !annotatedElement.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

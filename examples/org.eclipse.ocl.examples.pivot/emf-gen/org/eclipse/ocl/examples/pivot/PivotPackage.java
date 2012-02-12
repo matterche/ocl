@@ -15827,33 +15827,33 @@ public interface PivotPackage
 	EClass getAnnotation();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedContents <em>Owned Content</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedContent <em>Owned Content</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Content</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Annotation#getOwnedContents()
+	 * @see org.eclipse.ocl.examples.pivot.Annotation#getOwnedContent()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
 	EReference getAnnotation_OwnedContent();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetails <em>Owned Detail</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetail <em>Owned Detail</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Detail</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetails()
+	 * @see org.eclipse.ocl.examples.pivot.Annotation#getOwnedDetail()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
 	EReference getAnnotation_OwnedDetail();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getReferences <em>Reference</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Annotation#getReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Reference</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Annotation#getReferences()
+	 * @see org.eclipse.ocl.examples.pivot.Annotation#getReference()
 	 * @see #getAnnotation()
 	 * @generated
 	 */
@@ -15881,11 +15881,11 @@ public interface PivotPackage
 	EAttribute getNamedElement_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules <em>Owned Rule</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRule <em>Owned Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Rule</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRules()
+	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedRule()
 	 * @see #getNamedElement()
 	 * @generated
 	 */
@@ -15903,11 +15903,11 @@ public interface PivotPackage
 	EAttribute getNamedElement_IsStatic();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotations <em>Owned Annotation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotation <em>Owned Annotation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Annotation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotations()
+	 * @see org.eclipse.ocl.examples.pivot.NamedElement#getOwnedAnnotation()
 	 * @see #getNamedElement()
 	 * @generated
 	 */
@@ -15924,11 +15924,11 @@ public interface PivotPackage
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComments <em>Owned Comment</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Element#getOwnedComment <em>Owned Comment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Comment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Element#getOwnedComments()
+	 * @see org.eclipse.ocl.examples.pivot.Element#getOwnedComment()
 	 * @see #getElement()
 	 * @generated
 	 */
@@ -16162,11 +16162,11 @@ public interface PivotPackage
 	EAttribute getCollectionLiteralExp_Kind();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getParts <em>Part</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getPart <em>Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Part</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getParts()
+	 * @see org.eclipse.ocl.examples.pivot.CollectionLiteralExp#getPart()
 	 * @see #getCollectionLiteralExp()
 	 * @generated
 	 */
@@ -16328,11 +16328,11 @@ public interface PivotPackage
 	EClass getEnumeration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals <em>Owned Literal</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral <em>Owned Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Literal</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals()
+	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral()
 	 * @see #getEnumeration()
 	 * @generated
 	 */
@@ -16382,11 +16382,11 @@ public interface PivotPackage
 	EReference getExpressionInOcl_ResultVariable();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariables <em>Parameter Variable</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariable <em>Parameter Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameter Variable</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariables()
+	 * @see org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariable()
 	 * @see #getExpressionInOcl()
 	 * @generated
 	 */
@@ -16446,33 +16446,33 @@ public interface PivotPackage
 	EClass getOpaqueExpression();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getBodies <em>Body</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getBody <em>Body</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Body</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getBodies()
+	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getBody()
 	 * @see #getOpaqueExpression()
 	 * @generated
 	 */
 	EAttribute getOpaqueExpression_Body();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguages <em>Language</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguage <em>Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Language</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguages()
+	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getLanguage()
 	 * @see #getOpaqueExpression()
 	 * @generated
 	 */
 	EAttribute getOpaqueExpression_Language();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessages <em>Message</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessage <em>Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Message</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessages()
+	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessage()
 	 * @see #getOpaqueExpression()
 	 * @generated
 	 */
@@ -16708,22 +16708,22 @@ public interface PivotPackage
 	EClass getIteration();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterators <em>Owned Iterator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterator <em>Owned Iterator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Iterator</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterators()
+	 * @see org.eclipse.ocl.examples.pivot.Iteration#getOwnedIterator()
 	 * @see #getIteration()
 	 * @generated
 	 */
 	EReference getIteration_OwnedIterator();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulators <em>Owned Accumulator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulator <em>Owned Accumulator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Accumulator</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulators()
+	 * @see org.eclipse.ocl.examples.pivot.Iteration#getOwnedAccumulator()
 	 * @see #getIteration()
 	 * @generated
 	 */
@@ -17051,11 +17051,11 @@ public interface PivotPackage
 	EReference getLambdaType_ContextType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.LambdaType#getParameterTypes <em>Parameter Type</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.LambdaType#getParameterType <em>Parameter Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Parameter Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.LambdaType#getParameterTypes()
+	 * @see org.eclipse.ocl.examples.pivot.LambdaType#getParameterType()
 	 * @see #getLambdaType()
 	 * @generated
 	 */
@@ -17146,11 +17146,11 @@ public interface PivotPackage
 	EReference getLoopExp_Body();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.LoopExp#getIterators <em>Iterator</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.LoopExp#getIterator <em>Iterator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Iterator</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.LoopExp#getIterators()
+	 * @see org.eclipse.ocl.examples.pivot.LoopExp#getIterator()
 	 * @see #getLoopExp()
 	 * @generated
 	 */
@@ -17209,11 +17209,11 @@ public interface PivotPackage
 	EReference getMessageExp_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.MessageExp#getArguments <em>Argument</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.MessageExp#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Argument</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.MessageExp#getArguments()
+	 * @see org.eclipse.ocl.examples.pivot.MessageExp#getArgument()
 	 * @see #getMessageExp()
 	 * @generated
 	 */
@@ -17356,11 +17356,11 @@ public interface PivotPackage
 	EClass getOperationCallExp();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.OperationCallExp#getArguments <em>Argument</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.OperationCallExp#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Argument</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.OperationCallExp#getArguments()
+	 * @see org.eclipse.ocl.examples.pivot.OperationCallExp#getArgument()
 	 * @see #getOperationCallExp()
 	 * @generated
 	 */
@@ -17583,11 +17583,11 @@ public interface PivotPackage
 	EClass getTupleLiteralExp();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp#getParts <em>Part</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TupleLiteralExp#getPart <em>Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Part</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TupleLiteralExp#getParts()
+	 * @see org.eclipse.ocl.examples.pivot.TupleLiteralExp#getPart()
 	 * @see #getTupleLiteralExp()
 	 * @generated
 	 */
@@ -17847,33 +17847,33 @@ public interface PivotPackage
 	EReference getType_Package();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes <em>Owned Attribute</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute <em>Owned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Attribute</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttributes()
+	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedAttribute()
 	 * @see #getType()
 	 * @generated
 	 */
 	EReference getType_OwnedAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperations <em>Owned Operation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Type#getOwnedOperation <em>Owned Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedOperations()
+	 * @see org.eclipse.ocl.examples.pivot.Type#getOwnedOperation()
 	 * @see #getType()
 	 * @generated
 	 */
 	EReference getType_OwnedOperation();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Type#getSuperClasses <em>Super Class</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Type#getSuperClass <em>Super Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Super Class</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Type#getSuperClasses()
+	 * @see org.eclipse.ocl.examples.pivot.Type#getSuperClass()
 	 * @see #getType()
 	 * @generated
 	 */
@@ -17911,11 +17911,11 @@ public interface PivotPackage
 	EClass getTemplateableElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings <em>Template Binding</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Template Binding</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding()
 	 * @see #getTemplateableElement()
 	 * @generated
 	 */
@@ -17985,11 +17985,11 @@ public interface PivotPackage
 	EReference getTemplateBinding_Signature();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions <em>Parameter Substitution</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution <em>Parameter Substitution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameter Substitution</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitutions()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getParameterSubstitution()
 	 * @see #getTemplateBinding()
 	 * @generated
 	 */
@@ -18017,22 +18017,22 @@ public interface PivotPackage
 	EClass getTemplateSignature();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameters <em>Parameter</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getParameters()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getParameter()
 	 * @see #getTemplateSignature()
 	 * @generated
 	 */
 	EReference getTemplateSignature_Parameter();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters <em>Owned Parameter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameters()
+	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getOwnedParameter()
 	 * @see #getTemplateSignature()
 	 * @generated
 	 */
@@ -18231,11 +18231,11 @@ public interface PivotPackage
 	EClass getPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackages <em>Nested Package</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackage <em>Nested Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Nested Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getNestedPackages()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getNestedPackage()
 	 * @see #getPackage()
 	 * @generated
 	 */
@@ -18275,22 +18275,22 @@ public interface PivotPackage
 	EAttribute getPackage_NsURI();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPrecedences <em>Owned Precedence</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedPrecedence <em>Owned Precedence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Precedence</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedPrecedences()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedPrecedence()
 	 * @see #getPackage()
 	 * @generated
 	 */
 	EReference getPackage_OwnedPrecedence();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedTypes <em>Owned Type</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Package#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedTypes()
+	 * @see org.eclipse.ocl.examples.pivot.Package#getOwnedType()
 	 * @see #getPackage()
 	 * @generated
 	 */
@@ -18360,11 +18360,11 @@ public interface PivotPackage
 	EAttribute getTypeTemplateParameter_AllowSubstitutable();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingTypes <em>Constraining Type</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingType <em>Constraining Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Constraining Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingTypes()
+	 * @see org.eclipse.ocl.examples.pivot.TypeTemplateParameter#getConstrainingType()
 	 * @see #getTypeTemplateParameter()
 	 * @generated
 	 */
@@ -18731,11 +18731,11 @@ public interface PivotPackage
 	EClass getAssociationClass();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes <em>Unowned Attribute</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute <em>Unowned Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Unowned Attribute</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttributes()
+	 * @see org.eclipse.ocl.examples.pivot.AssociationClass#getUnownedAttribute()
 	 * @see #getAssociationClass()
 	 * @generated
 	 */
@@ -18752,22 +18752,22 @@ public interface PivotPackage
 	EClass getOperation();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Operation#getRaisedExceptions <em>Raised Exception</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Operation#getRaisedException <em>Raised Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Raised Exception</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getRaisedExceptions()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getRaisedException()
 	 * @see #getOperation()
 	 * @generated
 	 */
 	EReference getOperation_RaisedException();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters <em>Owned Parameter</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameter <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Owned Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters()
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwnedParameter()
 	 * @see #getOperation()
 	 * @generated
 	 */
@@ -18879,11 +18879,11 @@ public interface PivotPackage
 	EAttribute getComment_Body();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElements <em>Annotated Element</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement <em>Annotated Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Annotated Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElements()
+	 * @see org.eclipse.ocl.examples.pivot.Comment#getAnnotatedElement()
 	 * @see #getComment()
 	 * @generated
 	 */
@@ -18900,11 +18900,11 @@ public interface PivotPackage
 	EClass getConstraint();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElements <em>Constrained Element</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElement <em>Constrained Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Constrained Element</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElements()
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#getConstrainedElement()
 	 * @see #getConstraint()
 	 * @generated
 	 */
@@ -18975,11 +18975,11 @@ public interface PivotPackage
 	EClass getConstructorExp();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.ConstructorExp#getParts <em>Part</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.pivot.ConstructorExp#getPart <em>Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Part</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.ConstructorExp#getParts()
+	 * @see org.eclipse.ocl.examples.pivot.ConstructorExp#getPart()
 	 * @see #getConstructorExp()
 	 * @generated
 	 */
@@ -19109,11 +19109,11 @@ public interface PivotPackage
 	EClass getDetail();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.Detail#getValues <em>Value</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.Detail#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Value</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.Detail#getValues()
+	 * @see org.eclipse.ocl.examples.pivot.Detail#getValue()
 	 * @see #getDetail()
 	 * @generated
 	 */
@@ -19161,11 +19161,11 @@ public interface PivotPackage
 	EClass getNavigationCallExp();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifiers <em>Qualifier</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifier <em>Qualifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Qualifier</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifiers()
+	 * @see org.eclipse.ocl.examples.pivot.NavigationCallExp#getQualifier()
 	 * @see #getNavigationCallExp()
 	 * @generated
 	 */

@@ -52,7 +52,7 @@ public class AbstractTupleType extends AbstractType implements DomainTupleType
 		return this;
 	}
 
-	public List<? extends DomainTypedElement> getOwnedAttributes() {
+	public List<? extends DomainTypedElement> getOwnedAttribute() {
 		return parts;
 	}
 

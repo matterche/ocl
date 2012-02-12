@@ -46,7 +46,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 		}
 		else if (eObject instanceof Operation) {
 			Operation candidateOperation = (Operation)eObject;
-			List<Parameter> candidateParameters = candidateOperation.getOwnedParameters();
+			List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
 			if (candidateParameters.size() != 1) {
 				return false;
 			}

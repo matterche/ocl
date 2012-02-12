@@ -115,18 +115,18 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		Annotation pivotElement = context.refreshNamedElement(Annotation.class,
 			PivotPackage.Literals.ANNOTATION, csAnnotation);
 		context.handleVisitNamedElement(csAnnotation, pivotElement);
-		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csAnnotation.getOwnedDetail());
-		context.refreshPivotList(Element.class, pivotElement.getOwnedContents(), csAnnotation.getOwnedContent());
+		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csAnnotation.getOwnedDetail());
+		context.refreshPivotList(Element.class, pivotElement.getOwnedContent(), csAnnotation.getOwnedContent());
 		List<ModelElementRefCS> csReferences = csAnnotation.getOwnedReference();
 		if (csReferences.size() > 0) {
 			List<Element> references = new ArrayList<Element>(csReferences.size());
 			for (ModelElementRefCS csReference : csReferences) {
 				references.add(csReference.getElement());
 			}
-			context.refreshList(pivotElement.getReferences(), references);
+			context.refreshList(pivotElement.getReference(), references);
 		}
 		else {
-			pivotElement.getReferences().clear();
+			pivotElement.getReference().clear();
 		}
 		return null;
 	}
@@ -140,7 +140,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	public Continuation<?> visitClassifierCS(ClassifierCS csClassifier) {
 		Type pivotElement = PivotUtil.getPivot(Type.class, csClassifier);
 		context.handleVisitNamedElement(csClassifier, pivotElement);
-		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRules(), csClassifier.getOwnedConstraint());
+		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRule(), csClassifier.getOwnedConstraint());
 		return null;
 	}
 
@@ -161,9 +161,9 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		Detail pivotElement = context.refreshNamedElement(Detail.class,
 			PivotPackage.Literals.DETAIL, csDetail);
 		context.handleVisitNamedElement(csDetail, pivotElement);
-//			refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csDocumentation.getOwnedDetail());
+//			refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
 		List<String> newValues = csDetail.getValue();
-		List<String> pivotValues = pivotElement.getValues();
+		List<String> pivotValues = pivotElement.getValue();
 		pivotValues.clear();
 		pivotValues.addAll(newValues);
 		return null;
@@ -174,7 +174,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		Annotation pivotElement = context.refreshNamedElement(Annotation.class,
 			PivotPackage.Literals.ANNOTATION, csDocumentation);
 		context.handleVisitNamedElement(csDocumentation, pivotElement);
-		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csDocumentation.getOwnedDetail());
+		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetail(), csDocumentation.getOwnedDetail());
 		return null;
 	}
 
@@ -281,7 +281,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		TypedRefCS ownedType = csTypedElement.getOwnedType();
 		Type pivotType = ownedType != null ? PivotUtil.getPivot(Type.class, ownedType) : null;
 		context.setType(pivotElement, pivotType);
-		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRules(), csTypedElement.getOwnedConstraint());
+		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRule(), csTypedElement.getOwnedConstraint());
 		return null;
 	}
 

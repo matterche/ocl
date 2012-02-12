@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBindings <em>Template Binding</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getTemplateBinding <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.TemplateableElement#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
@@ -59,14 +59,14 @@ public interface TemplateableElement
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!TemplateableElement!templateBinding'"
 	 * @generated
 	 */
-	EList<TemplateBinding> getTemplateBindings();
+	EList<TemplateBinding> getTemplateBinding();
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.TemplateBinding} and appends it to the '<em><b>Template Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return The new {@link org.eclipse.ocl.examples.pivot.TemplateBinding}.
-	 * @see #getTemplateBindings()
+	 * @see #getTemplateBinding()
 	 * @generated
 	 */
 	TemplateBinding createTemplateBinding();

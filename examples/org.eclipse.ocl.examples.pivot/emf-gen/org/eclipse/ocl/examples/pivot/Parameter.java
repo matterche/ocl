@@ -41,7 +41,7 @@ public interface Parameter
 
 	/**
 	 * Returns the value of the '<em><b>Operation</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters <em>Owned Parameter</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Operation#getOwnedParameter <em>Owned Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -50,7 +50,7 @@ public interface Parameter
 	 * @return the value of the '<em>Operation</em>' container reference.
 	 * @see #setOperation(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getParameter_Operation()
-	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwnedParameters
+	 * @see org.eclipse.ocl.examples.pivot.Operation#getOwnedParameter
 	 * @model opposite="ownedParameter" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!Parameter!operation'"
 	 * @generated

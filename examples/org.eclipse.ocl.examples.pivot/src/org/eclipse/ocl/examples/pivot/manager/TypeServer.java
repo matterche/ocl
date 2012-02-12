@@ -150,7 +150,7 @@ public class TypeServer extends TypeTracker
 		Type unspecializedType = getTarget();
 		String typeName = unspecializedType.getName();
 		TemplateSignature templateSignature = unspecializedType.getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 		EClass eClass = unspecializedType.eClass();
 		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
 		Type specializedType = (Type) eFactoryInstance.create(eClass);		
@@ -170,9 +170,9 @@ public class TypeServer extends TypeTracker
 			else {
 				templateParameterSubstitution.setActual(actualType);
 			}
-			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+			templateBinding.getParameterSubstitution().add(templateParameterSubstitution);
 		}
-		specializedType.getTemplateBindings().add(templateBinding);
+		specializedType.getTemplateBinding().add(templateBinding);
 		resolveSuperClasses(specializedType, unspecializedType, allBindings);
 		if (specializedType instanceof CollectionType) {
 			ParameterableElement templateArgument = templateArguments.get(0);
@@ -213,10 +213,10 @@ public class TypeServer extends TypeTracker
 	private List<Operation> findOverload(List<List<Operation>> overloads, Operation requiredOperation) {
 		List<? extends TypedElement> requiredParameters;
 		if (requiredOperation instanceof Iteration) {
-			requiredParameters = ((Iteration)requiredOperation).getOwnedIterators();
+			requiredParameters = ((Iteration)requiredOperation).getOwnedIterator();
 		}
 		else {
-			requiredParameters = requiredOperation.getOwnedParameters();
+			requiredParameters = requiredOperation.getOwnedParameter();
 		}
 		int requiredSize = requiredParameters.size();
 		for (List<Operation> overload : overloads) {
@@ -224,10 +224,10 @@ public class TypeServer extends TypeTracker
 				Operation operation = overload.get(0);
 				List<? extends TypedElement> actualParameters;
 				if (operation instanceof Iteration) {
-					actualParameters = ((Iteration)operation).getOwnedIterators();
+					actualParameters = ((Iteration)operation).getOwnedIterator();
 				}
 				else {
-					actualParameters = operation.getOwnedParameters();
+					actualParameters = operation.getOwnedParameter();
 				}
 				if (requiredSize == actualParameters.size()) {
 					boolean gotIt = true;
@@ -259,8 +259,8 @@ public class TypeServer extends TypeTracker
 			else {
 				int i = 0;
 				boolean gotIt = true;
-				for (TemplateBinding templateBinding : specializedType.getTemplateBindings()) {
-					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				for (TemplateBinding templateBinding : specializedType.getTemplateBinding()) {
+					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitution()) {
 						if (i > 0) {
 							ParameterableElement requiredTemplateArgument = templateArguments.get(i);
 							ParameterableElement actualTemplateArgument = parameterSubstitution.getActual();
@@ -285,7 +285,7 @@ public class TypeServer extends TypeTracker
 
 	public synchronized Type findSpecializedType(List<? extends ParameterableElement> templateArguments) {
 		TemplateSignature templateSignature = getTarget().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getParameter();
 		int iMax = templateParameters.size();
 		if (templateArguments.size() != iMax) {
 			return null;
@@ -351,7 +351,7 @@ public class TypeServer extends TypeTracker
 
 	public synchronized Type getSpecializedType(List<? extends ParameterableElement> templateArguments) {
 		TemplateSignature templateSignature = getTarget().getOwnedTemplateSignature();
-		List<TemplateParameter> templateParameters = templateSignature.getParameters();
+		List<TemplateParameter> templateParameters = templateSignature.getParameter();
 		int iMax = templateParameters.size();
 		if (templateArguments.size() != iMax) {
 			return null;
@@ -472,13 +472,13 @@ public class TypeServer extends TypeTracker
 	}
 
 	protected void resolveSuperClasses(Type specializedClass, Type libraryClass, Map<TemplateParameter, ParameterableElement> allBindings) {
-		for (Type superType : libraryClass.getSuperClasses()) {
-			List<TemplateBinding> superTemplateBindings = superType.getTemplateBindings();
+		for (Type superType : libraryClass.getSuperClass()) {
+			List<TemplateBinding> superTemplateBindings = superType.getTemplateBinding();
 			if (superTemplateBindings.size() > 0) {
 //				Map<TemplateParameter, ParameterableElement> superTemplateArgumentMap = new HashMap<TemplateParameter, ParameterableElement>();
 				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
 				for (TemplateBinding superTemplateBinding : superTemplateBindings) {
-					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getParameterSubstitutions()) {
+					for (TemplateParameterSubstitution superParameterSubstitution : superTemplateBinding.getParameterSubstitution()) {
 						ParameterableElement superActual = superParameterSubstitution.getActual();
 //						TemplateParameter superFormal = superParameterSubstitution.getFormal();
 						TemplateParameter superTemplateParameter = superActual.getTemplateParameter();
@@ -491,16 +491,16 @@ public class TypeServer extends TypeTracker
 				TypeServer superTypeServer = getMetaModelManager().getTypeServer(unspecializedSuperType);
 /*				List<ParameterableElement> superTemplateArgumentList = new ArrayList<ParameterableElement>();
 				for (TemplateBinding templateBinding : superTemplateBindings) {
-					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					for (TemplateParameterSubstitution parameterSubstitution : templateBinding.getParameterSubstitution()) {
 						ParameterableElement templateArgument = parameterSubstitution.getActual();
 						superTemplateArgumentList.add(templateArgument);
 					}
 				} */
 				Type specializedSuperType = superTypeServer.getSpecializedType(superTemplateArgumentList);
-				specializedClass.getSuperClasses().add(specializedSuperType);
+				specializedClass.getSuperClass().add(specializedSuperType);
 			}
 			else {
-				specializedClass.getSuperClasses().add(superType);
+				specializedClass.getSuperClass().add(superType);
 			}
 		}
 	}

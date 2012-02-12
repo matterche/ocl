@@ -81,8 +81,8 @@ public class TupleTypeManager
 	}
 
     public Type getCommonType(TupleType leftType, TupleType rightType, Map<TemplateParameter, ParameterableElement> bindings) {
-		List<Property> leftProperties = leftType.getOwnedAttributes();
-		List<Property> rightProperties = rightType.getOwnedAttributes();
+		List<Property> leftProperties = leftType.getOwnedAttribute();
+		List<Property> rightProperties = rightType.getOwnedAttribute();
 		if (leftProperties.size() != rightProperties.size()) {
 			return null;
 		}
@@ -144,7 +144,7 @@ public class TupleTypeManager
 		}
 		int iMax = orderedParts.size();
 		for (TupleType candidateTupleType : tupleList) {
-			List<Property> candidateParts = candidateTupleType.getOwnedAttributes();
+			List<Property> candidateParts = candidateTupleType.getOwnedAttribute();
 			if (candidateParts.size() == iMax) {
 				int i = 0;
 				for (TuplePart orderedPart : orderedParts) {
@@ -164,14 +164,14 @@ public class TupleTypeManager
 		}
 		TupleType tupleType = PivotFactory.eINSTANCE.createTupleType();
 		tupleType.setName(name);
-		List<Property> tupleParts = tupleType.getOwnedAttributes();
+		List<Property> tupleParts = tupleType.getOwnedAttribute();
 		for (TuplePart part : orderedParts) {
 			Property tuplePart = PivotFactory.eINSTANCE.createProperty();
 			tuplePart.setName(part.getName());
 			tuplePart.setType(part.getType());
 			tupleParts.add(tuplePart);
 		}
-		tupleType.getSuperClasses().add(metaModelManager.getOclTupleType());
+		tupleType.getSuperClass().add(metaModelManager.getOclTupleType());
 		tupleList.add(tupleType);
 		metaModelManager.addOrphanClass(tupleType);
 		return tupleType;
@@ -192,7 +192,7 @@ public class TupleTypeManager
 	public TupleType getTupleType(TupleType type, Map<TemplateParameter, ParameterableElement> usageBindings) {	// FIXME Remove duplication, unify type/multiplicity
 		TupleType specializedTupleType = type;
 		Map<String, Type> resolutions =  null;
-		for (Property property : specializedTupleType.getOwnedAttributes()) {
+		for (Property property : specializedTupleType.getOwnedAttribute()) {
 			Type propertyType = metaModelManager.getTypeWithMultiplicity(property);
 			Type resolvedPropertyType = metaModelManager.getSpecializedType(propertyType, usageBindings);
 			if (resolvedPropertyType != propertyType) {
@@ -204,7 +204,7 @@ public class TupleTypeManager
 		}
 		if (resolutions != null) {
 			List<TypedElement> parts = new ArrayList<TypedElement>();
-			for (Property property : specializedTupleType.getOwnedAttributes()) {
+			for (Property property : specializedTupleType.getOwnedAttribute()) {
 				TypedElement part = property;
 				Type resolvedPropertyType = resolutions.get(property.getName());
 				if (resolvedPropertyType != null) {

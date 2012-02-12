@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl#getValues <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,15 +46,14 @@ public class DetailImpl
 		implements Detail {
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Value</em>}' attribute list.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValues()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> values;
-
+	protected EList<String> value;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,12 +78,13 @@ public class DetailImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getValues() {
-		if (values == null)
+	public EList<String> getValue()
+	{
+		if (value == null)
 		{
-			values = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUE);
+			value = new EDataTypeUniqueEList<String>(String.class, this, PivotPackage.DETAIL__VALUE);
 		}
-		return values;
+		return value;
 	}
 
 	/**
@@ -97,17 +97,17 @@ public class DetailImpl
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
-				return getOwnedComments();
+				return getOwnedComment();
 			case PivotPackage.DETAIL__NAME:
 				return getName();
 			case PivotPackage.DETAIL__OWNED_RULE:
-				return getOwnedRules();
+				return getOwnedRule();
 			case PivotPackage.DETAIL__IS_STATIC:
 				return isStatic();
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				return getOwnedAnnotations();
+				return getOwnedAnnotation();
 			case PivotPackage.DETAIL__VALUE:
-				return getValues();
+				return getValue();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -123,26 +123,26 @@ public class DetailImpl
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
-				getOwnedComments().clear();
-				getOwnedComments().addAll((Collection<? extends Comment>)newValue);
+				getOwnedComment().clear();
+				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
 				return;
 			case PivotPackage.DETAIL__NAME:
 				setName((String)newValue);
 				return;
 			case PivotPackage.DETAIL__OWNED_RULE:
-				getOwnedRules().clear();
-				getOwnedRules().addAll((Collection<? extends Constraint>)newValue);
+				getOwnedRule().clear();
+				getOwnedRule().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case PivotPackage.DETAIL__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
-				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case PivotPackage.DETAIL__VALUE:
-				getValues().clear();
-				getValues().addAll((Collection<? extends String>)newValue);
+				getValue().clear();
+				getValue().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -158,22 +158,22 @@ public class DetailImpl
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
-				getOwnedComments().clear();
+				getOwnedComment().clear();
 				return;
 			case PivotPackage.DETAIL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case PivotPackage.DETAIL__OWNED_RULE:
-				getOwnedRules().clear();
+				getOwnedRule().clear();
 				return;
 			case PivotPackage.DETAIL__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				getOwnedAnnotations().clear();
+				getOwnedAnnotation().clear();
 				return;
 			case PivotPackage.DETAIL__VALUE:
-				getValues().clear();
+				getValue().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -189,17 +189,17 @@ public class DetailImpl
 		switch (featureID)
 		{
 			case PivotPackage.DETAIL__OWNED_COMMENT:
-				return ownedComments != null && !ownedComments.isEmpty();
+				return ownedComment != null && !ownedComment.isEmpty();
 			case PivotPackage.DETAIL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PivotPackage.DETAIL__OWNED_RULE:
-				return ownedRules != null && !ownedRules.isEmpty();
+				return ownedRule != null && !ownedRule.isEmpty();
 			case PivotPackage.DETAIL__IS_STATIC:
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.DETAIL__OWNED_ANNOTATION:
-				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
+				return ownedAnnotation != null && !ownedAnnotation.isEmpty();
 			case PivotPackage.DETAIL__VALUE:
-				return values != null && !values.isEmpty();
+				return value != null && !value.isEmpty();
 		}
 		return eDynamicIsSet(featureID);
 	}

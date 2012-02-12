@@ -62,8 +62,8 @@ public class PivotSaver
 
 		@Override
 		public Object visitClass(org.eclipse.ocl.examples.pivot.Class object) {
-			for (Type superClass : object.getSuperClasses()) {
-				if (superClass.getTemplateBindings().size() > 0) {
+			for (Type superClass : object.getSuperClass()) {
+				if (superClass.getTemplateBinding().size() > 0) {
 					specializingElements.add(object);
 					break;
 				}
@@ -95,7 +95,7 @@ public class PivotSaver
 					doneIt = true;
 				}
 				if (!doneIt) {
-					for (Type parameterType : object.getParameterTypes()) {
+					for (Type parameterType : object.getParameterType()) {
 						if ((parameterType != null) && !PivotUtil.isLibraryType(parameterType)) {
 							specializingElements.add(object);
 							break;
@@ -157,7 +157,7 @@ public class PivotSaver
 
 		@Override
 		public Object visitTypeTemplateParameter(TypeTemplateParameter object) {
-			for (Type constrainingType : object.getConstrainingTypes()) {
+			for (Type constrainingType : object.getConstrainingType()) {
 				if (!PivotUtil.isLibraryType(constrainingType)) {
 					specializingElements.add(object);
 					break;
@@ -197,7 +197,7 @@ public class PivotSaver
 				return castOperation;
 			}
 			T resolvedOperation = EcoreUtil.copy(referredOperation);
-			orphanageClass.getOwnedOperations().add(resolvedOperation);
+			orphanageClass.getOwnedOperation().add(resolvedOperation);
 			operations.put(moniker, resolvedOperation);
 			String newMoniker = Pivot2Moniker.toString(resolvedOperation);
 			assert moniker.equals(newMoniker);
@@ -217,7 +217,7 @@ public class PivotSaver
 			if (resolvedType == null) {
 				resolvedType = EcoreUtil.copy(referredType);
 				specializations.put(referredType, resolvedType);
-				orphanage.getOwnedTypes().add(resolvedType);
+				orphanage.getOwnedType().add(resolvedType);
 			}
 /*			String moniker = Pivot2Moniker.toString(referredType);
 			Type type = types.get(moniker);
@@ -227,7 +227,7 @@ public class PivotSaver
 				return castType;
 			}
 			T resolvedType = EcoreUtil.copy(referredType);
-			orphanage.getOwnedTypes().add(resolvedType);
+			orphanage.getOwnedType().add(resolvedType);
 			types.put(moniker, resolvedType);
 			String newMoniker = Pivot2Moniker.toString(resolvedType);
 //			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
@@ -242,7 +242,7 @@ public class PivotSaver
 
 		@Override
 		public Object visitClass(org.eclipse.ocl.examples.pivot.Class object) {
-			List<Type> superClasses = object.getSuperClasses();
+			List<Type> superClasses = object.getSuperClass();
 			for (int i = 0; i < superClasses.size(); i++) {
 				Type referredClass = superClasses.get(i);
 				Type resolvedClass = resolveType(referredClass);
@@ -285,7 +285,7 @@ public class PivotSaver
 			if (resolvedType != null) {
 				object.setResultType(resolvedType);
 			}
-			List<Type> parameterTypes = object.getParameterTypes();
+			List<Type> parameterTypes = object.getParameterType();
 			for (int i = 0; i < parameterTypes.size(); i++) {
 				referredType = parameterTypes.get(i);
 				resolvedType = resolveType(referredType);
@@ -328,7 +328,7 @@ public class PivotSaver
 
 		@Override
 		public Object visitTypeTemplateParameter(TypeTemplateParameter object) {
-			List<Type> constrainingTypes = object.getConstrainingTypes();
+			List<Type> constrainingTypes = object.getConstrainingType();
 			for (int i = 0; i < constrainingTypes.size(); i++) {
 				Type referredType = constrainingTypes.get(i);
 				Type resolvedType = resolveType(referredType);
@@ -402,7 +402,7 @@ public class PivotSaver
 			resource.getContents().add(orphanage);
 			orphanageClass = PivotFactory.eINSTANCE.createAnyType();		// No superclasses
 			orphanageClass.setName(PivotConstants.ORPHANAGE_NAME);
-			orphanage.getOwnedTypes().add(orphanageClass);
+			orphanage.getOwnedType().add(orphanageClass);
 		}
 		return orphanage;
 	}
@@ -410,7 +410,7 @@ public class PivotSaver
 	protected boolean isOrphanOperation(Operation operation) {		// FIXME Non-static PivotUtils
 		// FIXME surely an orphan is one for which eResource() is null,
 		//  or one that is in the orphanage.
-		if (operation.getTemplateBindings().size() > 0) {
+		if (operation.getTemplateBinding().size() > 0) {
 			return true;
 		}
 		return false;
@@ -429,7 +429,7 @@ public class PivotSaver
 				Element element = specializingElements.get(i);
 				resolveVisitor.safeVisit(element);
 			}
-//			List<Type> ownedTypes = orphanage.getOwnedTypes();
+//			List<Type> ownedTypes = orphanage.getOwnedType();
 //			List<Type> sorted = ownedTypes; //WIP PivotUtil.sortByMoniker(new ArrayList<Type>(ownedTypes));
 //			ownedTypes.clear();
 //			ownedTypes.addAll(sorted);

@@ -362,8 +362,8 @@ public class EssentialOCLPostOrderVisitor
 	public Continuation<?> visitSpecificationCS(SpecificationCS csSpecification) {
 		OpaqueExpression pivotSpecification = PivotUtil.getPivot(OpaqueExpression.class, csSpecification);
 		String exprString = csSpecification.getExprString();
-		pivotSpecification.getBodies().add(exprString);
-		pivotSpecification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+		pivotSpecification.getBody().add(exprString);
+		pivotSpecification.getLanguage().add(PivotConstants.OCL_LANGUAGE);
 		return null;
 	}
 

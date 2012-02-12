@@ -129,10 +129,10 @@ public class ConstraintMerger extends AbstractProjectComponent
 					if (eObject instanceof NamedElement) {
 						NamedElement pivotNamedElement = (NamedElement)eObject;
 						NamedElement primaryNamedElement = metaModelManager.getPrimaryElement(pivotNamedElement);
-						for (Constraint constraint : pivotNamedElement.getOwnedRules()) {
+						for (Constraint constraint : pivotNamedElement.getOwnedRule()) {
 							constraint.setIsCallable(true);
 						}
-						primaryNamedElement.getOwnedRules().addAll(pivotNamedElement.getOwnedRules());
+						primaryNamedElement.getOwnedRule().addAll(pivotNamedElement.getOwnedRule());
 	//					tit.prune();
 					}
 					if (eObject instanceof Type) {
@@ -141,8 +141,8 @@ public class ConstraintMerger extends AbstractProjectComponent
 						for (TypeTracker typeTracker : typeServer.getTypeTrackers()) {
 							Type pType = typeTracker.getTarget();
 							if (pType.eResource() == pivotResource) {
-								pType.getOwnedAttributes().addAll(pivotType.getOwnedAttributes());
-								pType.getOwnedOperations().addAll(pivotType.getOwnedOperations());
+								pType.getOwnedAttribute().addAll(pivotType.getOwnedAttribute());
+								pType.getOwnedOperation().addAll(pivotType.getOwnedOperation());
 								break;
 							}
 						}
@@ -186,14 +186,14 @@ public class ConstraintMerger extends AbstractProjectComponent
 				libraryPivotResources.add(pPackage.eResource());
 			}
 			else {
-				for (Type pType : pPackage.getOwnedTypes()) {
+				for (Type pType : pPackage.getOwnedType()) {
 					TypeTracker typeTracker = metaModelManager.getTypeTracker(pType);
 					if (typeTracker instanceof TypeServer) {
 						primaryPivotResources.add(pPackage.eResource());
 						break;
 					}
 				}
-				identifyResources(metaModelManager, pPackage.getNestedPackages(),  primaryPivotResources, libraryPivotResources);
+				identifyResources(metaModelManager, pPackage.getNestedPackage(),  primaryPivotResources, libraryPivotResources);
 			}
 		}
 	} */

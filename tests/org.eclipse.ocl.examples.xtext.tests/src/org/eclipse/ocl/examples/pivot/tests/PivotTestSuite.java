@@ -177,7 +177,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected OCLHelper helper;
 
 	public void addSupertype(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class superClass) {
-		aClass.getSuperClasses().add(superClass);
+		aClass.getSuperClass().add(superClass);
 	}
     
 	/**
@@ -770,7 +770,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	public void createGeneralization(Type special, Type general) {
-		special.getSuperClasses().add(general);
+		special.getSuperClass().add(general);
 	}
 
 	protected OCLHelper createHelper() {
@@ -785,7 +785,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
 		eAttribute.setType(type);
-		aClass.getOwnedAttributes().add(eAttribute);
+		aClass.getOwnedAttribute().add(eAttribute);
 		return eAttribute;
 	}
 
@@ -793,21 +793,21 @@ public abstract class PivotTestSuite extends PivotTestCase
 		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
 		eClass.setIsAbstract(isAbstract);
-		aPackage.getOwnedTypes().add(eClass);
+		aPackage.getOwnedType().add(eClass);
 		return eClass;
 	}
 
 	protected Enumeration createOwnedEnumeration(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
 		Enumeration eEnum = PivotFactory.eINSTANCE.createEnumeration();
 		eEnum.setName(name);
-		aPackage.getOwnedTypes().add(eEnum);
+		aPackage.getOwnedType().add(eEnum);
 		return eEnum;
 	}
 
 	protected EnumerationLiteral createOwnedLiteral(Enumeration anEnumeration, String name) {
 		EnumerationLiteral eLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
 		eLiteral.setName(name);
-		anEnumeration.getOwnedLiterals().add(eLiteral);
+		anEnumeration.getOwnedLiteral().add(eLiteral);
 		return eLiteral;
 	}
 
@@ -820,7 +820,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 				createOwnedParameter(eOperation, paramNames.get(i), paramTypes.get(i));
 			}
 		}
-		aClass.getOwnedOperations().add(eOperation);
+		aClass.getOwnedOperation().add(eOperation);
 		return eOperation;
 	}
 
@@ -828,7 +828,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Parameter eParameter = PivotFactory.eINSTANCE.createParameter();
 		eParameter.setName(name);
 		eParameter.setType(type);
-		eOperation.getOwnedParameters().add(eParameter);
+		eOperation.getOwnedParameter().add(eParameter);
 		return eParameter;
 	}
 
@@ -839,7 +839,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected org.eclipse.ocl.examples.pivot.Class createOwnedPrimitiveType(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
 		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
 		eClass.setName(name);
-		aPackage.getOwnedTypes().add(eClass);
+		aPackage.getOwnedType().add(eClass);
 		return eClass;
 	}
 
@@ -847,7 +847,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		Property eReference = PivotFactory.eINSTANCE.createProperty();
 		eReference.setName(name);
 		eReference.setType(type);
-		aClass.getOwnedAttributes().add(eReference);
+		aClass.getOwnedAttribute().add(eReference);
 		return eReference;
 	}
 
@@ -860,7 +860,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	protected org.eclipse.ocl.examples.pivot.Package createPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String name) {
 		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(name, null);
 		if (parentPackage != null) {
-			parentPackage.getNestedPackages().add(aPackage);
+			parentPackage.getNestedPackage().add(aPackage);
 		}
 		else {
 			metaModelManager.installPackage(aPackage);
@@ -1019,7 +1019,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
 	 */
 	protected Property getAttribute(Type classifier, String name, Type type) {
-		Property feature = PivotUtil.getNamedElement(classifier.getOwnedAttributes(), name);
+		Property feature = PivotUtil.getNamedElement(classifier.getOwnedAttribute(), name);
 		if (feature == null)
 			return null;
 		// check type

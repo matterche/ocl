@@ -39,7 +39,7 @@ public interface DomainOperation extends DomainNamedElement
 	/**
 	 * Return the ordered list of parameters of this operation.
 	 */
-	IndexableIterable<? extends DomainType> getParameterTypes();
+	IndexableIterable<? extends DomainType> getParameterType();
 
 	/**
 	 * Return true if this is a static operation.

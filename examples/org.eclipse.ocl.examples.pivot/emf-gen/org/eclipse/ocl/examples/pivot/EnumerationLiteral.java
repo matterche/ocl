@@ -45,7 +45,7 @@ public interface EnumerationLiteral
 
 	/**
 	 * Returns the value of the '<em><b>Enumeration</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals <em>Owned Literal</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral <em>Owned Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -54,7 +54,7 @@ public interface EnumerationLiteral
 	 * @return the value of the '<em>Enumeration</em>' container reference.
 	 * @see #setEnumeration(Enumeration)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumerationLiteral_Enumeration()
-	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiterals
+	 * @see org.eclipse.ocl.examples.pivot.Enumeration#getOwnedLiteral
 	 * @model opposite="ownedLiteral" transient="false" ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.eclipse.org/ocl/3.1.0/Pivot!EnumerationLiteral!enumeration'"
 	 * @generated

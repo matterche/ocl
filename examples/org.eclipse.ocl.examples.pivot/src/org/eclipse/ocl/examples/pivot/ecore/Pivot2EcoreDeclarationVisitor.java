@@ -73,7 +73,7 @@ public class Pivot2EcoreDeclarationVisitor
 	protected void copyClassifier(EClassifier eClassifier, Type pivotType) {
 		copyNamedElement(eClassifier, pivotType);
 		copyTemplateSignature(eClassifier.getETypeParameters(), pivotType);
-		safeVisitAll(eClassifier.getEAnnotations(), pivotType.getOwnedAnnotations());
+		safeVisitAll(eClassifier.getEAnnotations(), pivotType.getOwnedAnnotation());
 		if (pivotType.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
 			eClassifier.setInstanceClassName(pivotType.getInstanceClassName());
 		}
@@ -81,7 +81,7 @@ public class Pivot2EcoreDeclarationVisitor
 			eClassifier.eUnset(EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME);
 		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
-		for (Constraint pivotConstraint : pivotType.getOwnedRules()) {
+		for (Constraint pivotConstraint : pivotType.getOwnedRule()) {
 			if (!pivotConstraint.isCallable()) {
 				safeVisit(pivotConstraint);		// Results are inserted directly
 			}
@@ -100,10 +100,10 @@ public class Pivot2EcoreDeclarationVisitor
 
 	protected void copyDetails(EAnnotation eAnnotation, Annotation pivotAnnotation) {
 		copyModelElement(eAnnotation, pivotAnnotation);
-		safeVisitAll(eAnnotation.getEAnnotations(), pivotAnnotation.getOwnedAnnotations());
-		for (Detail pivotDetail : pivotAnnotation.getOwnedDetails()) {
+		safeVisitAll(eAnnotation.getEAnnotations(), pivotAnnotation.getOwnedAnnotation());
+		for (Detail pivotDetail : pivotAnnotation.getOwnedDetail()) {
 			String name = pivotDetail.getName();
-			String value = StringUtils.splice(pivotDetail.getValues(), "");
+			String value = StringUtils.splice(pivotDetail.getValue(), "");
 			eAnnotation.getDetails().put(name, value);
 		}
 	}
@@ -121,14 +121,14 @@ public class Pivot2EcoreDeclarationVisitor
 	protected void copyTemplateSignature(List<ETypeParameter> eTypeParameters, TemplateableElement pivotElement) {
 		TemplateSignature templateSignature = pivotElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
-			List<TemplateParameter> parameters = templateSignature.getParameters();
+			List<TemplateParameter> parameters = templateSignature.getParameter();
 			safeVisitAll(eTypeParameters, parameters);
 		}
 	}
 
 	protected void copyTypedElement(ETypedElement eTypedElement, TypedMultiplicityElement pivotTypedElement) {
 		copyNamedElement(eTypedElement, pivotTypedElement);
-		safeVisitAll(eTypedElement.getEAnnotations(), pivotTypedElement.getOwnedAnnotations());
+		safeVisitAll(eTypedElement.getEAnnotations(), pivotTypedElement.getOwnedAnnotation());
 		context.defer(pivotTypedElement);		// Defer type setting
 		eTypedElement.setLowerBound(pivotTypedElement.getLower().intValue());
 		eTypedElement.setUpperBound(pivotTypedElement.getUpper().intValue());
@@ -156,8 +156,8 @@ public class Pivot2EcoreDeclarationVisitor
 		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		copyDetails(eAnnotation, pivotAnnotation);
 		eAnnotation.setSource(pivotAnnotation.getName());
-		safeVisitAll(eAnnotation.getContents(), pivotAnnotation.getOwnedContents());
-		if (!pivotAnnotation.getReferences().isEmpty()) {
+		safeVisitAll(eAnnotation.getContents(), pivotAnnotation.getOwnedContent());
+		if (!pivotAnnotation.getReference().isEmpty()) {
 			context.defer(pivotAnnotation);
 		}
 		return eAnnotation;
@@ -165,7 +165,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitClass(Class pivotClass) {
-		if (pivotClass.getTemplateBindings().size() > 0) {
+		if (pivotClass.getTemplateBinding().size() > 0) {
 			return null;
 		}
 		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
@@ -173,9 +173,9 @@ public class Pivot2EcoreDeclarationVisitor
 		eClass.setAbstract(pivotClass.isAbstract());
 		eClass.setInterface(pivotClass.isInterface());
 		context.defer(pivotClass);		// Defer superclass resolution
-		safeVisitAll(eClass.getEOperations(), pivotClass.getOwnedOperations());
-		safeVisitAll(eClass.getEStructuralFeatures(), pivotClass.getOwnedAttributes());
-		for (Constraint pivotConstraint : pivotClass.getOwnedRules()) {
+		safeVisitAll(eClass.getEOperations(), pivotClass.getOwnedOperation());
+		safeVisitAll(eClass.getEStructuralFeatures(), pivotClass.getOwnedAttribute());
+		for (Constraint pivotConstraint : pivotClass.getOwnedRule()) {
 			if (pivotConstraint.isCallable()) {
 				EOperation eOperation = Pivot2Ecore.createConstraintEOperation(pivotConstraint, pivotConstraint.getName());
 				eClass.getEOperations().add(eOperation);
@@ -195,7 +195,7 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitDataType(DataType pivotDataType) {
-		if (pivotDataType.getTemplateBindings().size() > 0) {
+		if (pivotDataType.getTemplateBinding().size() > 0) {
 			return null;
 		}
 		EDataType eDataType = EcoreFactory.eINSTANCE.createEDataType();
@@ -211,12 +211,12 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitEnumeration(Enumeration pivotEnumeration) {
-		if (pivotEnumeration.getTemplateBindings().size() > 0) {
+		if (pivotEnumeration.getTemplateBinding().size() > 0) {
 			return null;
 		}
 		EEnum eEnum = EcoreFactory.eINSTANCE.createEEnum();
 		copyDataTypeOrEnum(eEnum, pivotEnumeration);
-		safeVisitAll(eEnum.getELiterals(), pivotEnumeration.getOwnedLiterals());
+		safeVisitAll(eEnum.getELiterals(), pivotEnumeration.getOwnedLiteral());
 		return eEnum;
 	}
 
@@ -235,15 +235,15 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitOperation(Operation pivotOperation) {
-		if (pivotOperation.getTemplateBindings().size() > 0) {
+		if (pivotOperation.getTemplateBinding().size() > 0) {
 			return null;
 		}
 		EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
 		copyTypedElement(eOperation, pivotOperation);
 		copyTemplateSignature(eOperation.getETypeParameters(), pivotOperation);
-		safeVisitAll(eOperation.getEParameters(), pivotOperation.getOwnedParameters());
-//		safeVisitAll(eOperation.getEGenericExceptions(), pivotOperation.getRaisedExceptions());
-		for (Constraint pivotConstraint : pivotOperation.getOwnedRules()) {
+		safeVisitAll(eOperation.getEParameters(), pivotOperation.getOwnedParameter());
+//		safeVisitAll(eOperation.getEGenericExceptions(), pivotOperation.getRaisedException());
+		for (Constraint pivotConstraint : pivotOperation.getOwnedRule()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 		}
 		return eOperation;
@@ -253,7 +253,7 @@ public class Pivot2EcoreDeclarationVisitor
 	public EObject visitPackage(Package pivotPackage) {
 		EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
 		copyNamedElement(ePackage, pivotPackage);
-		safeVisitAll(ePackage.getEAnnotations(), pivotPackage.getOwnedAnnotations());
+		safeVisitAll(ePackage.getEAnnotations(), pivotPackage.getOwnedAnnotation());
 		context.defer(pivotPackage);		// Defer delegate annotation analysis
 		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_PREFIX)) {
 			ePackage.setNsPrefix(pivotPackage.getNsPrefix());
@@ -261,8 +261,8 @@ public class Pivot2EcoreDeclarationVisitor
 		if (pivotPackage.eIsSet(PivotPackage.Literals.PACKAGE__NS_URI)) {
 			ePackage.setNsURI(pivotPackage.getNsURI());
 		}
-		safeVisitAll(ePackage.getESubpackages(), pivotPackage.getNestedPackages());
-		safeVisitAll(ePackage.getEClassifiers(), pivotPackage.getOwnedTypes());
+		safeVisitAll(ePackage.getESubpackages(), pivotPackage.getNestedPackage());
+		safeVisitAll(ePackage.getEClassifiers(), pivotPackage.getOwnedType());
 		return ePackage;
 	}
 
@@ -306,7 +306,7 @@ public class Pivot2EcoreDeclarationVisitor
 		else {
 			eStructuralFeature.eUnset(EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL);
 		}
-		for (Constraint pivotConstraint : pivotProperty.getOwnedRules()) {
+		for (Constraint pivotConstraint : pivotProperty.getOwnedRule()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 		}
 		return eStructuralFeature;
@@ -317,7 +317,7 @@ public class Pivot2EcoreDeclarationVisitor
 		ETypeParameter eTypeParameter = EcoreFactory.eINSTANCE.createETypeParameter();
 		eTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
 		context.putCreated(pivotTypeTemplateParameter, eTypeParameter);
-		if (!pivotTypeTemplateParameter.getConstrainingTypes().isEmpty()) {
+		if (!pivotTypeTemplateParameter.getConstrainingType().isEmpty()) {
 			context.defer(pivotTypeTemplateParameter);
 		}
 		return eTypeParameter;
