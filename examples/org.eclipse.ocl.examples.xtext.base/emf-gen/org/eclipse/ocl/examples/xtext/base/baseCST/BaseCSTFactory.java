@@ -163,6 +163,15 @@ public interface BaseCSTFactory extends EFactory {
 	ModelElementRefCS createModelElementRefCS();
 
 	/**
+	 * Returns a new object of class '<em>Multiplicity CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiplicity CS</em>'.
+	 * @generated
+	 */
+	MultiplicityCS createMultiplicityCS();
+
+	/**
 	 * Returns a new object of class '<em>Operation CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

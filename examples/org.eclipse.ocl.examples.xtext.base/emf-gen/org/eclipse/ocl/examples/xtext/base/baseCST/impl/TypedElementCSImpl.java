@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -64,34 +65,14 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	protected static final int LOWER_EDEFAULT = 1;
 
 	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected int lower = LOWER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
+	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMultiplicity()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MULTIPLICITY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected String multiplicity = MULTIPLICITY_EDEFAULT;
+	protected MultiplicityCS multiplicity;
 
 	/**
 	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
@@ -112,16 +93,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @ordered
 	 */
 	protected static final int UPPER_EDEFAULT = 1;
-
-	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected int upper = UPPER_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' containment reference list.
@@ -169,30 +140,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getLower()
-	{
-		return lower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLower(int newLower)
-	{
-		int oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_ELEMENT_CS__LOWER, oldLower, lower));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getMultiplicity()
+	public MultiplicityCS getMultiplicity()
 	{
 		return multiplicity;
 	}
@@ -202,12 +150,37 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMultiplicity(String newMultiplicity)
+	public NotificationChain basicSetMultiplicity(MultiplicityCS newMultiplicity, NotificationChain msgs)
 	{
-		String oldMultiplicity = multiplicity;
+		MultiplicityCS oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY, oldMultiplicity, multiplicity));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY, oldMultiplicity, newMultiplicity);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplicity(MultiplicityCS newMultiplicity)
+	{
+		if (newMultiplicity != multiplicity)
+		{
+			NotificationChain msgs = null;
+			if (multiplicity != null)
+				msgs = ((InternalEObject)multiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY, null, msgs);
+			if (newMultiplicity != null)
+				msgs = ((InternalEObject)newMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY, null, msgs);
+			msgs = basicSetMultiplicity(newMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY, newMultiplicity, newMultiplicity));
 	}
 
 	/**
@@ -263,29 +236,6 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getUpper()
-	{
-		return upper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUpper(int newUpper)
-	{
-		int oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_ELEMENT_CS__UPPER, oldUpper, upper));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ConstraintCS> getOwnedConstraint()
 	{
 		if (ownedConstraint == null)
@@ -319,6 +269,8 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY:
+				return basicSetMultiplicity(null, msgs);
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return basicSetOwnedType(null, msgs);
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_CONSTRAINT:
@@ -364,17 +316,11 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_ELEMENT_CS__LOWER:
-				setLower((Integer)newValue);
-				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY:
-				setMultiplicity((String)newValue);
+				setMultiplicity((MultiplicityCS)newValue);
 				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)newValue);
-				return;
-			case BaseCSTPackage.TYPED_ELEMENT_CS__UPPER:
-				setUpper((Integer)newValue);
 				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_CONSTRAINT:
 				getOwnedConstraint().clear();
@@ -398,17 +344,11 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_ELEMENT_CS__LOWER:
-				setLower(LOWER_EDEFAULT);
-				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY:
-				setMultiplicity(MULTIPLICITY_EDEFAULT);
+				setMultiplicity((MultiplicityCS)null);
 				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				setOwnedType((TypedRefCS)null);
-				return;
-			case BaseCSTPackage.TYPED_ELEMENT_CS__UPPER:
-				setUpper(UPPER_EDEFAULT);
 				return;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_CONSTRAINT:
 				getOwnedConstraint().clear();
@@ -431,13 +371,13 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 		switch (featureID)
 		{
 			case BaseCSTPackage.TYPED_ELEMENT_CS__LOWER:
-				return lower != LOWER_EDEFAULT;
+				return getLower() != LOWER_EDEFAULT;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__MULTIPLICITY:
-				return MULTIPLICITY_EDEFAULT == null ? multiplicity != null : !MULTIPLICITY_EDEFAULT.equals(multiplicity);
+				return multiplicity != null;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_TYPE:
 				return ownedType != null;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__UPPER:
-				return upper != UPPER_EDEFAULT;
+				return getUpper() != UPPER_EDEFAULT;
 			case BaseCSTPackage.TYPED_ELEMENT_CS__OWNED_CONSTRAINT:
 				return ownedConstraint != null && !ownedConstraint.isEmpty();
 			case BaseCSTPackage.TYPED_ELEMENT_CS__QUALIFIER:
@@ -462,4 +402,23 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 		return visitor.visitTypedElementCS(this);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getLower()
+	{
+		return multiplicity != null ? multiplicity.getLower() : 1;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int getUpper()
+	{
+		return multiplicity != null ? multiplicity.getUpper() : 1;
+	}
 } //TypedElementCSImpl

@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
@@ -75,6 +76,12 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == BaseCSTPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case BaseCSTPackage.MULTIPLICITY_CS:
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS(context, (MultiplicityCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
 				   context == grammarAccess.getTypeExpCSRule() ||
@@ -551,6 +558,15 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *     ownedExpression=ExpCS
 	 */
 	protected void sequence_Model(EObject context, ContextCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')
+	 */
+	protected void sequence_MultiplicityCS(EObject context, MultiplicityCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

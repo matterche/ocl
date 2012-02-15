@@ -119,6 +119,7 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS: return createModelElementRefCS();
+			case BaseCSTPackage.MULTIPLICITY_CS: return createMultiplicityCS();
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
@@ -322,6 +323,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	{
 		ModelElementRefCSImpl modelElementRefCS = new ModelElementRefCSImpl();
 		return modelElementRefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiplicityCS createMultiplicityCS()
+	{
+		MultiplicityCSImpl multiplicityCS = new MultiplicityCSImpl();
+		return multiplicityCS;
 	}
 
 	/**

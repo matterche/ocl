@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
@@ -226,6 +227,13 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * @generated
 	 */
 	private EClass modelElementRefCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiplicityCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1028,6 +1036,46 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMultiplicityCS()
+	{
+		return multiplicityCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiplicityCS_Lower()
+	{
+		return (EAttribute)multiplicityCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiplicityCS_Multiplicity()
+	{
+		return (EAttribute)multiplicityCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMultiplicityCS_Upper()
+	{
+		return (EAttribute)multiplicityCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNamedElementCS() {
 		return namedElementCSEClass;
 	}
@@ -1594,8 +1642,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTypedElementCS_Multiplicity() {
-		return (EAttribute)typedElementCSEClass.getEStructuralFeatures().get(1);
+	public EReference getTypedElementCS_Multiplicity() {
+		return (EReference)typedElementCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1831,6 +1879,11 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEReference(modelElementRefCSEClass, MODEL_ELEMENT_REF_CS__NAMESPACE);
 		createEReference(modelElementRefCSEClass, MODEL_ELEMENT_REF_CS__ELEMENT);
 
+		multiplicityCSEClass = createEClass(MULTIPLICITY_CS);
+		createEAttribute(multiplicityCSEClass, MULTIPLICITY_CS__LOWER);
+		createEAttribute(multiplicityCSEClass, MULTIPLICITY_CS__MULTIPLICITY);
+		createEAttribute(multiplicityCSEClass, MULTIPLICITY_CS__UPPER);
+
 		namedElementCSEClass = createEClass(NAMED_ELEMENT_CS);
 		createEAttribute(namedElementCSEClass, NAMED_ELEMENT_CS__NAME);
 
@@ -1915,7 +1968,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		typedElementCSEClass = createEClass(TYPED_ELEMENT_CS);
 		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__LOWER);
-		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__MULTIPLICITY);
+		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__MULTIPLICITY);
 		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__OWNED_TYPE);
 		createEAttribute(typedElementCSEClass, TYPED_ELEMENT_CS__UPPER);
 		createEReference(typedElementCSEClass, TYPED_ELEMENT_CS__OWNED_CONSTRAINT);
@@ -1996,6 +2049,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		libraryCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		modelElementCSEClass.getESuperTypes().add(this.getPivotableElementCS());
 		modelElementRefCSEClass.getESuperTypes().add(this.getElementRefCS());
+		multiplicityCSEClass.getESuperTypes().add(this.getElementCS());
 		namedElementCSEClass.getESuperTypes().add(this.getModelElementCS());
 		namedElementCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		namespaceCSEClass.getESuperTypes().add(this.getNamedElementCS());
@@ -2110,6 +2164,11 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getModelElementRefCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, -1, ModelElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getModelElementRefCS_Element(), thePivotPackage.getElement(), null, "element", null, 0, 1, ModelElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(multiplicityCSEClass, MultiplicityCS.class, "MultiplicityCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getMultiplicityCS_Lower(), ecorePackage.getEInt(), "lower", "1", 0, 1, MultiplicityCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getMultiplicityCS_Multiplicity(), ecorePackage.getEString(), "multiplicity", null, 0, 1, MultiplicityCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getMultiplicityCS_Upper(), ecorePackage.getEInt(), "upper", "1", 0, 1, MultiplicityCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+
 		initEClass(namedElementCSEClass, NamedElementCS.class, "NamedElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNamedElementCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -2196,10 +2255,10 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(typeRefCSEClass, TypeRefCS.class, "TypeRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(typedElementCSEClass, TypedElementCS.class, "TypedElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getTypedElementCS_Lower(), ecorePackage.getEInt(), "lower", "1", 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEAttribute(getTypedElementCS_Multiplicity(), ecorePackage.getEString(), "multiplicity", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTypedElementCS_Lower(), ecorePackage.getEInt(), "lower", "1", 0, 1, TypedElementCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getTypedElementCS_Multiplicity(), this.getMultiplicityCS(), null, "multiplicity", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTypedElementCS_OwnedType(), this.getTypedRefCS(), null, "ownedType", null, 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTypedElementCS_Upper(), ecorePackage.getEInt(), "upper", "1", 0, 1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTypedElementCS_Upper(), ecorePackage.getEInt(), "upper", "1", 0, 1, TypedElementCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getTypedElementCS_OwnedConstraint(), this.getConstraintCS(), null, "ownedConstraint", null, 0, -1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTypedElementCS_Qualifier(), ecorePackage.getEString(), "qualifier", null, 0, -1, TypedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

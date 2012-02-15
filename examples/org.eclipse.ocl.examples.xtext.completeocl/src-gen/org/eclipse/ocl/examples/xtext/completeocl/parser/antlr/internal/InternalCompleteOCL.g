@@ -2313,6 +2313,69 @@ ruleID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 
 
 
+// Entry rule entryRuleLOWER
+entryRuleLOWER returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLOWERRule()); } 
+	 iv_ruleLOWER=ruleLOWER 
+	 { $current=$iv_ruleLOWER.current.getText(); }  
+	 EOF 
+;
+
+// Rule LOWER
+ruleLOWER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getLOWERAccess().getINTTerminalRuleCall()); 
+    }
+
+    ;
+
+
+
+
+
+// Entry rule entryRuleUPPER
+entryRuleUPPER returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getUPPERRule()); } 
+	 iv_ruleUPPER=ruleUPPER 
+	 { $current=$iv_ruleUPPER.current.getText(); }  
+	 EOF 
+;
+
+// Rule UPPER
+ruleUPPER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getUPPERAccess().getINTTerminalRuleCall_0()); 
+    }
+
+    |
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUPPERAccess().getAsteriskKeyword_1()); 
+    }
+)
+    ;
+
+
+
+
+
 // Entry rule entryRuleNUMBER_LITERAL
 entryRuleNUMBER_LITERAL returns [String current=null] 
 	:
@@ -2989,6 +3052,8 @@ ruleCollectionTypeIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDa
     }
 )
     ;
+
+
 
 
 

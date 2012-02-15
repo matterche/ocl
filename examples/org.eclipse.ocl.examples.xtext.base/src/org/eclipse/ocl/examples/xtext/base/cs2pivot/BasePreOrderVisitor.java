@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -489,6 +490,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(ModelElementRefCS object) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitMultiplicityCS(MultiplicityCS object) {
 		return null;
 	}
 

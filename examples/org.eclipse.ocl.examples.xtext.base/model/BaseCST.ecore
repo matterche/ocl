@@ -109,6 +109,13 @@
         eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Element"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicityCS" eSuperTypes="#//ElementCS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElementCS" abstract="true" eSuperTypes="#//ModelElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Nameable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -239,12 +246,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//ElementRefCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" eSuperTypes="#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        changeable="false" volatile="true" transient="true" defaultValueLiteral="1"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="#//MultiplicityCS"
+        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//TypedRefCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="1"/>
+        changeable="false" volatile="true" transient="true" defaultValueLiteral="1"
+        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConstraint" upperBound="-1"
         eType="#//ConstraintCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifier" upperBound="-1"

@@ -9,6 +9,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
@@ -135,6 +136,12 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 			case BaseCSTPackage.LIBRARY_CS:
 				if(context == grammarAccess.getLibraryCSRule()) {
 					sequence_LibraryCS(context, (LibraryCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.MULTIPLICITY_CS:
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS(context, (MultiplicityCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -921,6 +928,15 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')
+	 */
+	protected void sequence_MultiplicityCS(EObject context, MultiplicityCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
 	 *         element=[NamedElement|UnrestrictedName]
@@ -1025,7 +1041,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=Identifier ownedType=TypedRefCS ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')?)
+	 *     (name=Identifier ownedType=TypedRefCS multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

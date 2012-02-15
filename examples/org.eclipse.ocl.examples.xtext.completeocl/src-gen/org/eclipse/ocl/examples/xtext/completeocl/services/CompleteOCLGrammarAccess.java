@@ -1731,6 +1731,26 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getINTRule();
 	} 
 
+	//LOWER returns ecore::EInt:
+	//	INT;
+	public EssentialOCLGrammarAccess.LOWERElements getLOWERAccess() {
+		return gaEssentialOCL.getLOWERAccess();
+	}
+	
+	public ParserRule getLOWERRule() {
+		return getLOWERAccess().getRule();
+	}
+
+	//UPPER returns ecore::EInt:
+	//	INT | "*";
+	public EssentialOCLGrammarAccess.UPPERElements getUPPERAccess() {
+		return gaEssentialOCL.getUPPERAccess();
+	}
+	
+	public ParserRule getUPPERRule() {
+		return getUPPERAccess().getRule();
+	}
+
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//NUMBER_LITERAL returns BigNumber:
 	//	INT ("." INT)? (("e" | "E") ("+" | "-")? INT)?;
@@ -1920,6 +1940,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getCollectionTypeIdentifierRule() {
 		return getCollectionTypeIdentifierAccess().getRule();
+	}
+
+	//MultiplicityCS returns base::MultiplicityCS:
+	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+	public EssentialOCLGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
+		return gaEssentialOCL.getMultiplicityCSAccess();
+	}
+	
+	public ParserRule getMultiplicityCSRule() {
+		return getMultiplicityCSAccess().getRule();
 	}
 
 	//tuplePartCS returns base::TuplePartCS:

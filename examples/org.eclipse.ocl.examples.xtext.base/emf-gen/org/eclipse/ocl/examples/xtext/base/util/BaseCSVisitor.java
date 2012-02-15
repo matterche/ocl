@@ -66,6 +66,7 @@ public interface BaseCSVisitor<R, C>
 	R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object);
 	R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object);
 	R visitModelElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS object);
+	R visitMultiplicityCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS object);
 	R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object);
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);
 	R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object);

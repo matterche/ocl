@@ -38,6 +38,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
+					put(grammarAccess.getUPPERAccess().getAlternatives(), "rule__UPPER__Alternatives");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_1(), "rule__NUMBER_LITERAL__Alternatives_2_1");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
@@ -50,6 +51,8 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrimitiveTypeIdentifierAccess().getAlternatives(), "rule__PrimitiveTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
 					put(grammarAccess.getCollectionTypeCSAccess().getAlternatives_1(), "rule__CollectionTypeCS__Alternatives_1");
+					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_1(), "rule__MultiplicityCS__Alternatives_1");
+					put(grammarAccess.getMultiplicityCSAccess().getMultiplicityAlternatives_1_1_0(), "rule__MultiplicityCS__MultiplicityAlternatives_1_1_0");
 					put(grammarAccess.getTupleTypeCSAccess().getAlternatives_1(), "rule__TupleTypeCS__Alternatives_1");
 					put(grammarAccess.getConstructorExpCSAccess().getAlternatives_0(), "rule__ConstructorExpCS__Alternatives_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
@@ -67,6 +70,9 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionTypeCSAccess().getGroup(), "rule__CollectionTypeCS__Group__0");
 					put(grammarAccess.getCollectionTypeCSAccess().getGroup_1_0(), "rule__CollectionTypeCS__Group_1_0__0");
 					put(grammarAccess.getCollectionTypeCSAccess().getGroup_1_1(), "rule__CollectionTypeCS__Group_1_1__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup(), "rule__MultiplicityCS__Group__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup_1_0(), "rule__MultiplicityCS__Group_1_0__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup_1_0_1(), "rule__MultiplicityCS__Group_1_0_1__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup(), "rule__TupleTypeCS__Group__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_0(), "rule__TupleTypeCS__Group_1_0__0");
 					put(grammarAccess.getTupleTypeCSAccess().getGroup_1_0_1(), "rule__TupleTypeCS__Group_1_0_1__0");
@@ -137,6 +143,9 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionTypeCSAccess().getNameAssignment_0(), "rule__CollectionTypeCS__NameAssignment_0");
 					put(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_0_1(), "rule__CollectionTypeCS__OwnedTypeAssignment_1_0_1");
 					put(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_1_1(), "rule__CollectionTypeCS__OwnedTypeAssignment_1_1_1");
+					put(grammarAccess.getMultiplicityCSAccess().getLowerAssignment_1_0_0(), "rule__MultiplicityCS__LowerAssignment_1_0_0");
+					put(grammarAccess.getMultiplicityCSAccess().getUpperAssignment_1_0_1_1(), "rule__MultiplicityCS__UpperAssignment_1_0_1_1");
+					put(grammarAccess.getMultiplicityCSAccess().getMultiplicityAssignment_1_1(), "rule__MultiplicityCS__MultiplicityAssignment_1_1");
 					put(grammarAccess.getTupleTypeCSAccess().getNameAssignment_0(), "rule__TupleTypeCS__NameAssignment_0");
 					put(grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_0_1_0(), "rule__TupleTypeCS__OwnedPartsAssignment_1_0_1_0");
 					put(grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_0_1_1_1(), "rule__TupleTypeCS__OwnedPartsAssignment_1_0_1_1_1");

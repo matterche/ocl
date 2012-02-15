@@ -38,14 +38,6 @@ INTEGER returns ecore::EInt:
 	INT
 ;
 
-LOWER returns ecore::EInt:
-	INT
-;
-
-UPPER returns ecore::EInt:
-	INT | '*'
-;
-
 UnrestrictedName returns ecore::EString:
 	EssentialOCLUnrestrictedName
 |	'abstract'
@@ -132,8 +124,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 AttributeCS returns base::AttributeCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'attribute' name=UnrestrictedName
-	(':' ownedType=TypedRefCS
-		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	(':' ownedType=TypedRefCS (multiplicity=MultiplicityCS)?)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifier+='derived' | qualifier+='!derived' |
 		  qualifier+='id' | qualifier+='!id' |
@@ -236,8 +227,7 @@ OperationCS returns base::OperationCS:
 	'operation' name=UnrestrictedName
 	(ownedTemplateSignature=TemplateSignatureCS)?
 	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
-	(':' (ownedType=TypedRefCS)?
-		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	(':' (ownedType=TypedRefCS)? (multiplicity=MultiplicityCS)?)
 	('throws' ownedException+=TypedRefCS (',' ownedException+=TypedRefCS)*)?
 	('{'((qualifier+='derived' | qualifier+='!derived' |
 		  qualifier+='ordered' | qualifier+='!ordered' |
@@ -262,8 +252,7 @@ PackageCS returns base::PackageCS:
 
 ParameterCS returns base::ParameterCS:
 	name=UnrestrictedName
-	(':' ownedType=TypedRefCS
-		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	(':' ownedType=TypedRefCS (multiplicity=MultiplicityCS)?)?
 	('{'(( qualifier+='ordered' | qualifier+='!ordered' |
 		   qualifier+='unique' | qualifier+='!unique'
 		  ) ','?)+
@@ -279,8 +268,7 @@ ReferenceCS returns base::ReferenceCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'property' name=UnrestrictedName
 	('#' opposite=[pivot::Property|UnrestrictedName])?	
-	(':' ownedType=TypedRefCS
-		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
+	(':' ownedType=TypedRefCS (multiplicity=MultiplicityCS)?)?
 	('=' default=SINGLE_QUOTED_STRING)?
 	('{'((qualifier+='composes' | qualifier+='!composes' |
 		  qualifier+='derived' | qualifier+='!derived' |

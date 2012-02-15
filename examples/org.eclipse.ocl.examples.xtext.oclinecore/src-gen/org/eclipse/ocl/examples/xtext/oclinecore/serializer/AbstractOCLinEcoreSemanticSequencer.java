@@ -15,6 +15,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -181,6 +182,12 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
 				if(context == grammarAccess.getModelElementRefCSRule()) {
 					sequence_ModelElementRefCS(context, (ModelElementRefCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.MULTIPLICITY_CS:
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS(context, (MultiplicityCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -662,7 +669,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *     (
 	 *         (qualifier+='static' | qualifier+='definition')* 
 	 *         name=UnrestrictedName 
-	 *         (ownedType=TypedRefCS ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')?)? 
+	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
 	 *             qualifier+='derived' | 
@@ -965,6 +972,15 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
+	 *     ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')
+	 */
+	protected void sequence_MultiplicityCS(EObject context, MultiplicityCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
 	 *         element=[NamedElement|UnrestrictedName]
@@ -1065,7 +1081,8 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         name=UnrestrictedName 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
 	 *         (ownedParameter+=ParameterCS ownedParameter+=ParameterCS*)? 
-	 *         (ownedType=TypedRefCS? ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')?)? 
+	 *         ownedType=TypedRefCS? 
+	 *         multiplicity=MultiplicityCS? 
 	 *         (ownedException+=TypedRefCS ownedException+=TypedRefCS*)? 
 	 *         (
 	 *             qualifier+='derived' | 
@@ -1106,7 +1123,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         name=UnrestrictedName 
-	 *         (ownedType=TypedRefCS ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')?)? 
+	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
 	 *         (qualifier+='ordered' | qualifier+='!ordered' | qualifier+='unique' | qualifier+='!unique')* 
 	 *         ownedAnnotation+=AnnotationElementCS*
 	 *     )
@@ -1194,7 +1211,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (qualifier+='static' | qualifier+='definition')* 
 	 *         name=UnrestrictedName 
 	 *         opposite=[Property|UnrestrictedName]? 
-	 *         (ownedType=TypedRefCS ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')?)? 
+	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
 	 *             qualifier+='composes' | 

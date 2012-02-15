@@ -113,6 +113,62 @@ finally {
 
 
 
+// Entry rule entryRuleLOWER
+entryRuleLOWER 
+:
+{ before(grammarAccess.getLOWERRule()); }
+	 ruleLOWER
+{ after(grammarAccess.getLOWERRule()); } 
+	 EOF 
+;
+
+// Rule LOWER
+ruleLOWER
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getLOWERAccess().getINTTerminalRuleCall()); }
+	RULE_INT
+{ after(grammarAccess.getLOWERAccess().getINTTerminalRuleCall()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleUPPER
+entryRuleUPPER 
+:
+{ before(grammarAccess.getUPPERRule()); }
+	 ruleUPPER
+{ after(grammarAccess.getUPPERRule()); } 
+	 EOF 
+;
+
+// Rule UPPER
+ruleUPPER
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getUPPERAccess().getAlternatives()); }
+(rule__UPPER__Alternatives)
+{ after(grammarAccess.getUPPERAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleNUMBER_LITERAL
 entryRuleNUMBER_LITERAL 
 :
@@ -618,6 +674,8 @@ ruleCollectionTypeCS
 finally {
 	restoreStackSize(stackSize);
 }
+
+
 
 
 
@@ -1799,6 +1857,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__UPPER__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getUPPERAccess().getINTTerminalRuleCall_0()); }
+	RULE_INT
+{ after(grammarAccess.getUPPERAccess().getINTTerminalRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getUPPERAccess().getAsteriskKeyword_1()); }
+
+	'*' 
+
+{ after(grammarAccess.getUPPERAccess().getAsteriskKeyword_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__NUMBER_LITERAL__Alternatives_2_0
     @init {
 		int stackSize = keepStackSize();
@@ -2255,6 +2337,8 @@ rule__CollectionTypeCS__Alternatives_1
 finally {
 	restoreStackSize(stackSize);
 }
+
+
 
 rule__TupleTypeCS__Alternatives_1
     @init {
@@ -3070,6 +3154,9 @@ rule__CollectionTypeCS__Group_1_1__2__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
 
 
 
@@ -8690,6 +8777,9 @@ rule__CollectionTypeCS__OwnedTypeAssignment_1_1_1
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
 
 rule__TupleTypeCS__NameAssignment_0
     @init {

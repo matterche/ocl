@@ -189,8 +189,7 @@ PackageCS returns base::PackageCS:
 ;
 
 ParameterCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=TypedRefCS
-		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?
+	name=Identifier ':' ownedType=TypedRefCS (multiplicity=MultiplicityCS)?
 ;
 
 LibPropertyCS returns LibPropertyCS:

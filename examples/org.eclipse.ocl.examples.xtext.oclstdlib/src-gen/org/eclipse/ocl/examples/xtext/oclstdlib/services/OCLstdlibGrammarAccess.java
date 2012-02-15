@@ -1466,29 +1466,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedTypeTypedRefCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_1_0 = (Group)cAlternatives_3_1.eContents().get(0);
-		private final Assignment cLowerAssignment_3_1_0_0 = (Assignment)cGroup_3_1_0.eContents().get(0);
-		private final RuleCall cLowerLOWERParserRuleCall_3_1_0_0_0 = (RuleCall)cLowerAssignment_3_1_0_0.eContents().get(0);
-		private final Group cGroup_3_1_0_1 = (Group)cGroup_3_1_0.eContents().get(1);
-		private final Keyword cFullStopFullStopKeyword_3_1_0_1_0 = (Keyword)cGroup_3_1_0_1.eContents().get(0);
-		private final Assignment cUpperAssignment_3_1_0_1_1 = (Assignment)cGroup_3_1_0_1.eContents().get(1);
-		private final RuleCall cUpperUPPERParserRuleCall_3_1_0_1_1_0 = (RuleCall)cUpperAssignment_3_1_0_1_1.eContents().get(0);
-		private final Assignment cMultiplicityAssignment_3_1_1 = (Assignment)cAlternatives_3_1.eContents().get(1);
-		private final Alternatives cMultiplicityAlternatives_3_1_1_0 = (Alternatives)cMultiplicityAssignment_3_1_1.eContents().get(0);
-		private final Keyword cMultiplicityAsteriskKeyword_3_1_1_0_0 = (Keyword)cMultiplicityAlternatives_3_1_1_0.eContents().get(0);
-		private final Keyword cMultiplicityPlusSignKeyword_3_1_1_0_1 = (Keyword)cMultiplicityAlternatives_3_1_1_0.eContents().get(1);
-		private final Keyword cMultiplicityQuestionMarkKeyword_3_1_1_0_2 = (Keyword)cMultiplicityAlternatives_3_1_1_0.eContents().get(2);
-		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Assignment cMultiplicityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMultiplicityMultiplicityCSParserRuleCall_3_0 = (RuleCall)cMultiplicityAssignment_3.eContents().get(0);
 		
 		//ParameterCS returns base::ParameterCS:
-		//	name=Identifier ":" ownedType=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?"))
-		//	"]")?;
+		//	name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?;
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier ":" ownedType=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
+		//name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -1506,53 +1491,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//TypedRefCS
 		public RuleCall getOwnedTypeTypedRefCSParserRuleCall_2_0() { return cOwnedTypeTypedRefCSParserRuleCall_2_0; }
 
-		//("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?
-		public Group getGroup_3() { return cGroup_3; }
+		//multiplicity=MultiplicityCS?
+		public Assignment getMultiplicityAssignment_3() { return cMultiplicityAssignment_3; }
 
-		//"["
-		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
-
-		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
-		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
-
-		//lower=LOWER (".." upper=UPPER)?
-		public Group getGroup_3_1_0() { return cGroup_3_1_0; }
-
-		//lower=LOWER
-		public Assignment getLowerAssignment_3_1_0_0() { return cLowerAssignment_3_1_0_0; }
-
-		//LOWER
-		public RuleCall getLowerLOWERParserRuleCall_3_1_0_0_0() { return cLowerLOWERParserRuleCall_3_1_0_0_0; }
-
-		//(".." upper=UPPER)?
-		public Group getGroup_3_1_0_1() { return cGroup_3_1_0_1; }
-
-		//".."
-		public Keyword getFullStopFullStopKeyword_3_1_0_1_0() { return cFullStopFullStopKeyword_3_1_0_1_0; }
-
-		//upper=UPPER
-		public Assignment getUpperAssignment_3_1_0_1_1() { return cUpperAssignment_3_1_0_1_1; }
-
-		//UPPER
-		public RuleCall getUpperUPPERParserRuleCall_3_1_0_1_1_0() { return cUpperUPPERParserRuleCall_3_1_0_1_1_0; }
-
-		//multiplicity=("*" | "+" | "?")
-		public Assignment getMultiplicityAssignment_3_1_1() { return cMultiplicityAssignment_3_1_1; }
-
-		//"*" | "+" | "?"
-		public Alternatives getMultiplicityAlternatives_3_1_1_0() { return cMultiplicityAlternatives_3_1_1_0; }
-
-		//"*"
-		public Keyword getMultiplicityAsteriskKeyword_3_1_1_0_0() { return cMultiplicityAsteriskKeyword_3_1_1_0_0; }
-
-		//"+"
-		public Keyword getMultiplicityPlusSignKeyword_3_1_1_0_1() { return cMultiplicityPlusSignKeyword_3_1_1_0_1; }
-
-		//"?"
-		public Keyword getMultiplicityQuestionMarkKeyword_3_1_1_0_2() { return cMultiplicityQuestionMarkKeyword_3_1_1_0_2; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+		//MultiplicityCS
+		public RuleCall getMultiplicityMultiplicityCSParserRuleCall_3_0() { return cMultiplicityMultiplicityCSParserRuleCall_3_0; }
 	}
 
 	public class LibPropertyCSElements extends AbstractParserRuleElementFinder {
@@ -2504,8 +2447,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterCS returns base::ParameterCS:
-	//	name=Identifier ":" ownedType=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?"))
-	//	"]")?;
+	//	name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?;
 	public ParameterCSElements getParameterCSAccess() {
 		return (pParameterCS != null) ? pParameterCS : (pParameterCS = new ParameterCSElements());
 	}
@@ -2949,6 +2891,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getCollectionTypeCSRule() {
 		return getCollectionTypeCSAccess().getRule();
+	}
+
+	//MultiplicityCS returns base::MultiplicityCS:
+	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+	public EssentialOCLGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
+		return gaEssentialOCL.getMultiplicityCSAccess();
+	}
+	
+	public ParserRule getMultiplicityCSRule() {
+		return getMultiplicityCSAccess().getRule();
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:

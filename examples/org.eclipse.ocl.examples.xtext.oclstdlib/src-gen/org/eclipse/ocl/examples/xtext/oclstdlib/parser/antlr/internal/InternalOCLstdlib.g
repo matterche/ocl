@@ -2480,97 +2480,24 @@ ruleParameterCS returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_3='[' 
-    {
-    	newLeafNode(otherlv_3, grammarAccess.getParameterCSAccess().getLeftSquareBracketKeyword_3_0());
-    }
-(((
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterCSAccess().getLowerLOWERParserRuleCall_3_1_0_0_0()); 
+	        newCompositeNode(grammarAccess.getParameterCSAccess().getMultiplicityMultiplicityCSParserRuleCall_3_0()); 
 	    }
-		lv_lower_4_0=ruleLOWER		{
+		lv_multiplicity_3_0=ruleMultiplicityCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getParameterCSRule());
 	        }
        		set(
        			$current, 
-       			"lower",
-        		lv_lower_4_0, 
-        		"LOWER");
+       			"multiplicity",
+        		lv_multiplicity_3_0, 
+        		"MultiplicityCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_5='..' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getParameterCSAccess().getFullStopFullStopKeyword_3_1_0_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getParameterCSAccess().getUpperUPPERParserRuleCall_3_1_0_1_1_0()); 
-	    }
-		lv_upper_6_0=ruleUPPER		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterCSRule());
-	        }
-       		set(
-       			$current, 
-       			"upper",
-        		lv_upper_6_0, 
-        		"UPPER");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))?)
-    |(
-(
-(
-		lv_multiplicity_7_1=	'*' 
-    {
-        newLeafNode(lv_multiplicity_7_1, grammarAccess.getParameterCSAccess().getMultiplicityAsteriskKeyword_3_1_1_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getParameterCSRule());
-	        }
-       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_7_1, null);
-	    }
-
-    |		lv_multiplicity_7_2=	'+' 
-    {
-        newLeafNode(lv_multiplicity_7_2, grammarAccess.getParameterCSAccess().getMultiplicityPlusSignKeyword_3_1_1_0_1());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getParameterCSRule());
-	        }
-       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_7_2, null);
-	    }
-
-    |		lv_multiplicity_7_3=	'?' 
-    {
-        newLeafNode(lv_multiplicity_7_3, grammarAccess.getParameterCSAccess().getMultiplicityQuestionMarkKeyword_3_1_1_0_2());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getParameterCSRule());
-	        }
-       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_7_3, null);
-	    }
-
-)
-
-)
-))	otherlv_8=']' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getParameterCSAccess().getRightSquareBracketKeyword_3_2());
-    }
 )?)
 ;
 
@@ -4658,6 +4585,118 @@ ruleCollectionTypeCS returns [EObject current=null]
     	newLeafNode(otherlv_6, grammarAccess.getCollectionTypeCSAccess().getGreaterThanSignKeyword_1_1_2());
     }
 ))?)
+;
+
+
+
+
+
+// Entry rule entryRuleMultiplicityCS
+entryRuleMultiplicityCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMultiplicityCSRule()); }
+	 iv_ruleMultiplicityCS=ruleMultiplicityCS 
+	 { $current=$iv_ruleMultiplicityCS.current; } 
+	 EOF 
+;
+
+// Rule MultiplicityCS
+ruleMultiplicityCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='[' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getMultiplicityCSAccess().getLeftSquareBracketKeyword_0());
+    }
+(((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiplicityCSAccess().getLowerLOWERParserRuleCall_1_0_0_0()); 
+	    }
+		lv_lower_1_0=ruleLOWER		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiplicityCSRule());
+	        }
+       		set(
+       			$current, 
+       			"lower",
+        		lv_lower_1_0, 
+        		"LOWER");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_2='..' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getMultiplicityCSAccess().getFullStopFullStopKeyword_1_0_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiplicityCSAccess().getUpperUPPERParserRuleCall_1_0_1_1_0()); 
+	    }
+		lv_upper_3_0=ruleUPPER		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiplicityCSRule());
+	        }
+       		set(
+       			$current, 
+       			"upper",
+        		lv_upper_3_0, 
+        		"UPPER");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
+    |(
+(
+(
+		lv_multiplicity_4_1=	'*' 
+    {
+        newLeafNode(lv_multiplicity_4_1, grammarAccess.getMultiplicityCSAccess().getMultiplicityAsteriskKeyword_1_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiplicityCSRule());
+	        }
+       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_4_1, null);
+	    }
+
+    |		lv_multiplicity_4_2=	'+' 
+    {
+        newLeafNode(lv_multiplicity_4_2, grammarAccess.getMultiplicityCSAccess().getMultiplicityPlusSignKeyword_1_1_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiplicityCSRule());
+	        }
+       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_4_2, null);
+	    }
+
+    |		lv_multiplicity_4_3=	'?' 
+    {
+        newLeafNode(lv_multiplicity_4_3, grammarAccess.getMultiplicityCSAccess().getMultiplicityQuestionMarkKeyword_1_1_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiplicityCSRule());
+	        }
+       		setWithLastConsumed($current, "multiplicity", lv_multiplicity_4_3, null);
+	    }
+
+)
+
+)
+))	otherlv_5=']' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getMultiplicityCSAccess().getRightSquareBracketKeyword_2());
+    }
+)
 ;
 
 

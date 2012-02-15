@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -320,25 +321,35 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		T csElement = refreshTypedElement(csClass, csEClass, object);
 		int lower = object.getLower().intValue();
 		int upper = object.getUpper().intValue();
-		if (lower == 0) {
-			if (upper == 1) {
-				csElement.setMultiplicity("?");
-			}
-			else if (upper == -1) {
-				csElement.setMultiplicity("*");				
-			}
-//			else if (upper == -2) {
-//				csElement.setMultiplicity("0..?");				
-//			}
+		if ((lower == 1) && (upper == 1)) {
+			csElement.setMultiplicity(null);
 		}
-		else if (lower == 1) {
-			if (upper == -1) {
-				csElement.setMultiplicity("+");				
+		else {
+			MultiplicityCS csMultiplicity = csElement.getMultiplicity();
+			if (csMultiplicity == null) {
+				csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityCS();
+				csElement.setMultiplicity(csMultiplicity);
 			}
-		}
-		if (csElement.getMultiplicity() == null) {
-			csElement.setLower(lower);
-			csElement.setUpper(upper);
+			if (lower == 0) {
+				if (upper == 1) {
+					csMultiplicity.setMultiplicity("?");
+				}
+				else if (upper == -1) {
+					csMultiplicity.setMultiplicity("*");				
+				}
+	//			else if (upper == -2) {
+	//				csElement.setMultiplicity("0..?");				
+	//			}
+			}
+			else if (lower == 1) {
+				if (upper == -1) {
+					csMultiplicity.setMultiplicity("+");				
+				}
+			}
+			if (csMultiplicity.getMultiplicity() == null) {
+				csMultiplicity.setLower(lower);
+				csMultiplicity.setUpper(upper);
+			}
 		}
 		List<String> qualifiers = csElement.getQualifier();
 		refreshQualifiers(qualifiers, "ordered", "!ordered", object.isOrdered() ? Boolean.TRUE : null);

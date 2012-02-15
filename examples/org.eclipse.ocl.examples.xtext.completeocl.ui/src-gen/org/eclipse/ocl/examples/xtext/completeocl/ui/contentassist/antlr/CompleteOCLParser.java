@@ -49,6 +49,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSpecificationCSAccess().getAlternatives(), "rule__SpecificationCS__Alternatives");
 					put(grammarAccess.getNavigatingArgExpCSAccess().getAlternatives(), "rule__NavigatingArgExpCS__Alternatives");
 					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
+					put(grammarAccess.getUPPERAccess().getAlternatives(), "rule__UPPER__Alternatives");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_1(), "rule__NUMBER_LITERAL__Alternatives_2_1");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
@@ -59,6 +60,8 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIdentifierAccess().getAlternatives(), "rule__Identifier__Alternatives");
 					put(grammarAccess.getEssentialOCLUnreservedNameAccess().getAlternatives(), "rule__EssentialOCLUnreservedName__Alternatives");
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
+					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_1(), "rule__MultiplicityCS__Alternatives_1");
+					put(grammarAccess.getMultiplicityCSAccess().getMultiplicityAlternatives_1_1_0(), "rule__MultiplicityCS__MultiplicityAlternatives_1_1_0");
 					put(grammarAccess.getConstructorExpCSAccess().getAlternatives_0(), "rule__ConstructorExpCS__Alternatives_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getAlternatives(), "rule__BooleanLiteralExpCS__Alternatives");
@@ -112,6 +115,9 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNUMBER_LITERALAccess().getGroup(), "rule__NUMBER_LITERAL__Group__0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getGroup_1(), "rule__NUMBER_LITERAL__Group_1__0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getGroup_2(), "rule__NUMBER_LITERAL__Group_2__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup(), "rule__MultiplicityCS__Group__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup_1_0(), "rule__MultiplicityCS__Group_1_0__0");
+					put(grammarAccess.getMultiplicityCSAccess().getGroup_1_0_1(), "rule__MultiplicityCS__Group_1_0_1__0");
 					put(grammarAccess.getTuplePartCSAccess().getGroup(), "rule__TuplePartCS__Group__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup(), "rule__CollectionLiteralExpCS__Group__0");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getGroup_2(), "rule__CollectionLiteralExpCS__Group_2__0");
@@ -240,6 +246,9 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_1(), "rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");
 					put(grammarAccess.getPrimitiveTypeCSAccess().getNameAssignment(), "rule__PrimitiveTypeCS__NameAssignment");
+					put(grammarAccess.getMultiplicityCSAccess().getLowerAssignment_1_0_0(), "rule__MultiplicityCS__LowerAssignment_1_0_0");
+					put(grammarAccess.getMultiplicityCSAccess().getUpperAssignment_1_0_1_1(), "rule__MultiplicityCS__UpperAssignment_1_0_1_1");
+					put(grammarAccess.getMultiplicityCSAccess().getMultiplicityAssignment_1_1(), "rule__MultiplicityCS__MultiplicityAssignment_1_1");
 					put(grammarAccess.getTuplePartCSAccess().getNameAssignment_0(), "rule__TuplePartCS__NameAssignment_0");
 					put(grammarAccess.getTuplePartCSAccess().getOwnedTypeAssignment_2(), "rule__TuplePartCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedTypeAssignment_0(), "rule__CollectionLiteralExpCS__OwnedTypeAssignment_0");

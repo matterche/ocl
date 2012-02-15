@@ -117,6 +117,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitMultiplicityCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS object) {
+		return null;
+	}
+
 	public R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object) {
 		return null;
 	}

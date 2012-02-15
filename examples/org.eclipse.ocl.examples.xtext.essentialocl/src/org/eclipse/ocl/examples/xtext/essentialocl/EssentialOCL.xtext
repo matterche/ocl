@@ -43,6 +43,14 @@ ID: SIMPLE_ID | ESCAPED_ID;
 terminal INT: // String to allow diverse re-use
 	('0'..'9')+;
 
+LOWER returns ecore::EInt:
+	INT
+;
+
+UPPER returns ecore::EInt:
+	INT | '*'
+;
+
 NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking to sort out "5..7"
 	INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
@@ -151,6 +159,10 @@ CollectionTypeCS returns CollectionTypeCS:
 	( ('(' ownedType=TypeExpCS ')')
 	| ('<' ownedType=TypeExpCS '>')
 	)?;
+
+MultiplicityCS returns base::MultiplicityCS:
+	'[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']'
+;
 
 TupleTypeCS returns base::TupleTypeCS:
 	name='Tuple'

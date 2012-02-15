@@ -16,7 +16,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibTupleCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibraryElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ParameterCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
@@ -48,6 +47,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureIndexExpCS(c, f.getIndexExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
@@ -128,13 +128,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		    c.setIndentation(a.getLeftCurlyBracketKeyword_3(), a.getRightCurlyBracketKeyword_5());
 	    }
 	    {
-			ParameterCSElements a = f.getParameterCSAccess();
-			c.setNoSpace().around(a.getLeftSquareBracketKeyword_3_0());
-			c.setNoSpace().around(a.getFullStopFullStopKeyword_3_1_0_1_0());
-			c.setNoSpace().around(a.getMultiplicityAsteriskKeyword_3_1_1_0_0());
-			c.setNoSpace().around(a.getMultiplicityPlusSignKeyword_3_1_1_0_1());
-			c.setNoSpace().around(a.getMultiplicityQuestionMarkKeyword_3_1_1_0_2());
-			c.setNoSpace().before(a.getRightSquareBracketKeyword_3_2());
+//			ParameterCSElements a = f.getParameterCSAccess();
 	    }
 	    {
 			PreCSElements a = f.getPreCSAccess();

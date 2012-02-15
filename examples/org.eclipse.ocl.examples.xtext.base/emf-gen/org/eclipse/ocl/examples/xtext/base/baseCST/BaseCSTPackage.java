@@ -80,7 +80,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getVisitableCS()
 	 * @generated
 	 */
-	int VISITABLE_CS = 47;
+	int VISITABLE_CS = 48;
 
 	/**
 	 * The number of structural features of the '<em>Visitable CS</em>' class.
@@ -127,7 +127,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 25;
+	int PIVOTABLE_ELEMENT_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -258,7 +258,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getNamedElementCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_CS = 20;
+	int NAMED_ELEMENT_CS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -350,7 +350,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedElementCS()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_CS = 44;
+	int TYPED_ELEMENT_CS = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS <em>Feature CS</em>}' class.
@@ -370,7 +370,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getStructuralFeatureCS()
 	 * @generated
 	 */
-	int STRUCTURAL_FEATURE_CS = 33;
+	int STRUCTURAL_FEATURE_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AttributeCSImpl <em>Attribute CS</em>}' class.
@@ -410,7 +410,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getNamespaceCS()
 	 * @generated
 	 */
-	int NAMESPACE_CS = 21;
+	int NAMESPACE_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.OperationCSImpl <em>Operation CS</em>}' class.
@@ -420,7 +420,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getOperationCS()
 	 * @generated
 	 */
-	int OPERATION_CS = 22;
+	int OPERATION_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PackageCSImpl <em>Package CS</em>}' class.
@@ -430,7 +430,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPackageCS()
 	 * @generated
 	 */
-	int PACKAGE_CS = 23;
+	int PACKAGE_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ParameterCSImpl <em>Parameter CS</em>}' class.
@@ -440,7 +440,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getParameterCS()
 	 * @generated
 	 */
-	int PARAMETER_CS = 24;
+	int PARAMETER_CS = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PrimitiveTypeRefCSImpl <em>Primitive Type Ref CS</em>}' class.
@@ -450,7 +450,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 26;
+	int PRIMITIVE_TYPE_REF_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -460,7 +460,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getReferenceCS()
 	 * @generated
 	 */
-	int REFERENCE_CS = 28;
+	int REFERENCE_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS <em>Type CS</em>}' class.
@@ -470,7 +470,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeCS()
 	 * @generated
 	 */
-	int TYPE_CS = 41;
+	int TYPE_CS = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeParameterCSImpl <em>Type Parameter CS</em>}' class.
@@ -480,7 +480,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeParameterCS()
 	 * @generated
 	 */
-	int TYPE_PARAMETER_CS = 42;
+	int TYPE_PARAMETER_CS = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.
@@ -490,7 +490,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedTypeRefCS()
 	 * @generated
 	 */
-	int TYPED_TYPE_REF_CS = 46;
+	int TYPED_TYPE_REF_CS = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.WildcardTypeRefCSImpl <em>Wildcard Type Ref CS</em>}' class.
@@ -500,7 +500,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getWildcardTypeRefCS()
 	 * @generated
 	 */
-	int WILDCARD_TYPE_REF_CS = 48;
+	int WILDCARD_TYPE_REF_CS = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypeRefCSImpl <em>Type Ref CS</em>}' class.
@@ -510,7 +510,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypeRefCS()
 	 * @generated
 	 */
-	int TYPE_REF_CS = 43;
+	int TYPE_REF_CS = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedRefCSImpl <em>Typed Ref CS</em>}' class.
@@ -520,7 +520,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTypedRefCS()
 	 * @generated
 	 */
-	int TYPED_REF_CS = 45;
+	int TYPED_REF_CS = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.CollectionTypeRefCSImpl <em>Collection Type Ref CS</em>}' class.
@@ -550,7 +550,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateBindingCS()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING_CS = 34;
+	int TEMPLATE_BINDING_CS = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateParameterCSImpl <em>Template Parameter CS</em>}' class.
@@ -560,7 +560,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateParameterCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_CS = 35;
+	int TEMPLATE_PARAMETER_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateParameterSubstitutionCSImpl <em>Template Parameter Substitution CS</em>}' class.
@@ -570,7 +570,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateParameterSubstitutionCS()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 36;
+	int TEMPLATE_PARAMETER_SUBSTITUTION_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TemplateSignatureCSImpl <em>Template Signature CS</em>}' class.
@@ -580,7 +580,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateSignatureCS()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE_CS = 37;
+	int TEMPLATE_SIGNATURE_CS = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS <em>Templateable Element CS</em>}' class.
@@ -590,7 +590,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTemplateableElementCS()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT_CS = 38;
+	int TEMPLATEABLE_ELEMENT_CS = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl <em>Constraint CS</em>}' class.
@@ -859,7 +859,7 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_ELEMENT_CS__LOWER = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -976,7 +976,7 @@ public interface BaseCSTPackage extends EPackage {
 	int FEATURE_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1093,7 +1093,7 @@ public interface BaseCSTPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__LOWER = FEATURE_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1228,7 +1228,7 @@ public interface BaseCSTPackage extends EPackage {
 	int ATTRIBUTE_CS__LOWER = STRUCTURAL_FEATURE_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2662,6 +2662,61 @@ public interface BaseCSTPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_REF_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.MultiplicityCSImpl <em>Multiplicity CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.MultiplicityCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getMultiplicityCS()
+	 * @generated
+	 */
+	int MULTIPLICITY_CS = 20;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__LOWER = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__MULTIPLICITY = ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS__UPPER = ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Multiplicity CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2725,7 +2780,7 @@ public interface BaseCSTPackage extends EPackage {
 	int OPERATION_CS__LOWER = FEATURE_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2977,7 +3032,7 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3083,7 +3138,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedNamedElementRefCS()
 	 * @generated
 	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS = 27;
+	int QUALIFIED_NAMED_ELEMENT_REF_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3185,7 +3240,7 @@ public interface BaseCSTPackage extends EPackage {
 	int REFERENCE_CS__LOWER = STRUCTURAL_FEATURE_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3282,7 +3337,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRootCS()
 	 * @generated
 	 */
-	int ROOT_CS = 29;
+	int ROOT_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3364,7 +3419,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getRootPackageCS()
 	 * @generated
 	 */
-	int ROOT_PACKAGE_CS = 30;
+	int ROOT_PACKAGE_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3491,7 +3546,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSimpleNamedElementRefCS()
 	 * @generated
 	 */
-	int SIMPLE_NAMED_ELEMENT_REF_CS = 31;
+	int SIMPLE_NAMED_ELEMENT_REF_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3537,7 +3592,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getSpecificationCS()
 	 * @generated
 	 */
-	int SPECIFICATION_CS = 32;
+	int SPECIFICATION_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3898,7 +3953,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTuplePartCS()
 	 * @generated
 	 */
-	int TUPLE_PART_CS = 39;
+	int TUPLE_PART_CS = 40;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3964,7 +4019,7 @@ public interface BaseCSTPackage extends EPackage {
 	int TUPLE_PART_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4025,7 +4080,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getTupleTypeCS()
 	 * @generated
 	 */
-	int TUPLE_TYPE_CS = 40;
+	int TUPLE_TYPE_CS = 41;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4270,7 +4325,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getIteratorKind()
 	 * @generated
 	 */
-	int ITERATOR_KIND = 49;
+	int ITERATOR_KIND = 50;
 
 
 	/**
@@ -4835,6 +4890,49 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElementRefCS_Element();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS <em>Multiplicity CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multiplicity CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS
+	 * @generated
+	 */
+	EClass getMultiplicityCS();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getLower <em>Lower</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lower</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getLower()
+	 * @see #getMultiplicityCS()
+	 * @generated
+	 */
+	EAttribute getMultiplicityCS_Lower();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getMultiplicity <em>Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Multiplicity</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getMultiplicity()
+	 * @see #getMultiplicityCS()
+	 * @generated
+	 */
+	EAttribute getMultiplicityCS_Multiplicity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getUpper <em>Upper</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Upper</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS#getUpper()
+	 * @see #getMultiplicityCS()
+	 * @generated
+	 */
+	EAttribute getMultiplicityCS_Upper();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS <em>Named Element CS</em>}'.
@@ -5472,15 +5570,15 @@ public interface BaseCSTPackage extends EPackage {
 	EAttribute getTypedElementCS_Lower();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Multiplicity</em>'.
+	 * @return the meta object for the containment reference '<em>Multiplicity</em>'.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity()
 	 * @see #getTypedElementCS()
 	 * @generated
 	 */
-	EAttribute getTypedElementCS_Multiplicity();
+	EReference getTypedElementCS_Multiplicity();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedType <em>Owned Type</em>}'.
@@ -6119,6 +6217,40 @@ public interface BaseCSTPackage extends EPackage {
 		EReference MODEL_ELEMENT_REF_CS__ELEMENT = eINSTANCE.getModelElementRefCS_Element();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.MultiplicityCSImpl <em>Multiplicity CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.MultiplicityCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getMultiplicityCS()
+		 * @generated
+		 */
+		EClass MULTIPLICITY_CS = eINSTANCE.getMultiplicityCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Lower</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTIPLICITY_CS__LOWER = eINSTANCE.getMultiplicityCS_Lower();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplicity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTIPLICITY_CS__MULTIPLICITY = eINSTANCE.getMultiplicityCS_Multiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTIPLICITY_CS__UPPER = eINSTANCE.getMultiplicityCS_Upper();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl <em>Named Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6649,12 +6781,12 @@ public interface BaseCSTPackage extends EPackage {
 		EAttribute TYPED_ELEMENT_CS__LOWER = eINSTANCE.getTypedElementCS_Lower();
 
 		/**
-		 * The meta object literal for the '<em><b>Multiplicity</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Multiplicity</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TYPED_ELEMENT_CS__MULTIPLICITY = eINSTANCE.getTypedElementCS_Multiplicity();
+		EReference TYPED_ELEMENT_CS__MULTIPLICITY = eINSTANCE.getTypedElementCS_Multiplicity();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.

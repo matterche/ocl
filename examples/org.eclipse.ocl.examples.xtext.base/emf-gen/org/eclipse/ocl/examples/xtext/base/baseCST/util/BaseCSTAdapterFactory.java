@@ -234,6 +234,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createModelElementRefCSAdapter();
 			}
 			@Override
+			public Adapter caseMultiplicityCS(MultiplicityCS object)
+			{
+				return createMultiplicityCSAdapter();
+			}
+			@Override
 			public Adapter caseNamedElementCS(NamedElementCS object)
 			{
 				return createNamedElementCSAdapter();
@@ -694,6 +699,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModelElementRefCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS <em>Multiplicity CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS
+	 * @generated
+	 */
+	public Adapter createMultiplicityCSAdapter()
 	{
 		return null;
 	}

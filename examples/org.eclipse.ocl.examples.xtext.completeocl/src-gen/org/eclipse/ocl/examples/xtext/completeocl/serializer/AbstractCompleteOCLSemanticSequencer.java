@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
@@ -113,6 +114,12 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 			case BaseCSTPackage.LIBRARY_CS:
 				if(context == grammarAccess.getLibraryCSRule()) {
 					sequence_LibraryCS(context, (LibraryCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.MULTIPLICITY_CS:
+				if(context == grammarAccess.getMultiplicityCSRule()) {
+					sequence_MultiplicityCS(context, (MultiplicityCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -814,6 +821,15 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 *     ownedExpression=ExpCS
 	 */
 	protected void sequence_Model(EObject context, ContextCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((lower=LOWER upper=UPPER?) | multiplicity='*' | multiplicity='+' | multiplicity='?')
+	 */
+	protected void sequence_MultiplicityCS(EObject context, MultiplicityCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
 	}
 	

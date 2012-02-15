@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -65,7 +66,11 @@ public class ElementUtil
 	private static final Logger logger = Logger.getLogger(ElementUtil.class);
 
 	public static String getCollectionTypeName(TypedElementCS csTypedElement) {
-		String multiplicity = csTypedElement.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		if (csMultiplicity == null) {
+			return null;
+		}
+		String multiplicity = csMultiplicity.getMultiplicity();
 		if (multiplicity != null) {
 			if ("?".equals(multiplicity)) { //$NON-NLS-1$
 				return null;
@@ -162,7 +167,11 @@ public class ElementUtil
 	}
 
 	public static int getLower(TypedElementCS csTypedElement) {
-		String multiplicity = csTypedElement.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		if (csMultiplicity == null) {
+			return 1;
+		}
+		String multiplicity = csMultiplicity.getMultiplicity();
 		if ("*".equals(multiplicity)) {
 			return 0;
 		}
@@ -276,7 +285,11 @@ public class ElementUtil
 	}
 
 	public static int getUpper(TypedElementCS csTypedElement) {
-		String multiplicity = csTypedElement.getMultiplicity();
+		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		if (csMultiplicity == null) {
+			return 1;
+		}
+		String multiplicity = csMultiplicity.getMultiplicity();
 		if (multiplicity == null) {
 			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
 				return 1;

@@ -469,7 +469,7 @@ public interface OCLstdlibCSTPackage
 	int LIB_ITERATION_CS__LOWER = BaseCSTPackage.OPERATION_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -649,7 +649,7 @@ public interface OCLstdlibCSTPackage
 	int LIB_OPERATION_CS__LOWER = BaseCSTPackage.OPERATION_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -829,7 +829,7 @@ public interface OCLstdlibCSTPackage
 	int LIB_PROPERTY_CS__LOWER = BaseCSTPackage.ATTRIBUTE_CS__LOWER;
 
 	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' attribute.
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

@@ -53,6 +53,38 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getESCAPED_IDTerminalRuleCall_1() { return cESCAPED_IDTerminalRuleCall_1; }
 	}
 
+	public class LOWERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LOWER");
+		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//LOWER returns ecore::EInt:
+		//	INT;
+		public ParserRule getRule() { return rule; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall() { return cINTTerminalRuleCall; }
+	}
+
+	public class UPPERElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UPPER");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//UPPER returns ecore::EInt:
+		//	INT | "*";
+		public ParserRule getRule() { return rule; }
+
+		//INT | "*"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
+	}
+
 	public class NUMBER_LITERALElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER_LITERAL");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -607,6 +639,78 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//">"
 		public Keyword getGreaterThanSignKeyword_1_1_2() { return cGreaterThanSignKeyword_1_1_2; }
+	}
+
+	public class MultiplicityCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Assignment cLowerAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
+		private final RuleCall cLowerLOWERParserRuleCall_1_0_0_0 = (RuleCall)cLowerAssignment_1_0_0.eContents().get(0);
+		private final Group cGroup_1_0_1 = (Group)cGroup_1_0.eContents().get(1);
+		private final Keyword cFullStopFullStopKeyword_1_0_1_0 = (Keyword)cGroup_1_0_1.eContents().get(0);
+		private final Assignment cUpperAssignment_1_0_1_1 = (Assignment)cGroup_1_0_1.eContents().get(1);
+		private final RuleCall cUpperUPPERParserRuleCall_1_0_1_1_0 = (RuleCall)cUpperAssignment_1_0_1_1.eContents().get(0);
+		private final Assignment cMultiplicityAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final Alternatives cMultiplicityAlternatives_1_1_0 = (Alternatives)cMultiplicityAssignment_1_1.eContents().get(0);
+		private final Keyword cMultiplicityAsteriskKeyword_1_1_0_0 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(0);
+		private final Keyword cMultiplicityPlusSignKeyword_1_1_0_1 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(1);
+		private final Keyword cMultiplicityQuestionMarkKeyword_1_1_0_2 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(2);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//MultiplicityCS returns base::MultiplicityCS:
+		//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+		public ParserRule getRule() { return rule; }
+
+		//"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//lower=LOWER (".." upper=UPPER)?
+		public Group getGroup_1_0() { return cGroup_1_0; }
+
+		//lower=LOWER
+		public Assignment getLowerAssignment_1_0_0() { return cLowerAssignment_1_0_0; }
+
+		//LOWER
+		public RuleCall getLowerLOWERParserRuleCall_1_0_0_0() { return cLowerLOWERParserRuleCall_1_0_0_0; }
+
+		//(".." upper=UPPER)?
+		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_1_0_1_0() { return cFullStopFullStopKeyword_1_0_1_0; }
+
+		//upper=UPPER
+		public Assignment getUpperAssignment_1_0_1_1() { return cUpperAssignment_1_0_1_1; }
+
+		//UPPER
+		public RuleCall getUpperUPPERParserRuleCall_1_0_1_1_0() { return cUpperUPPERParserRuleCall_1_0_1_1_0; }
+
+		//multiplicity=("*" | "+" | "?")
+		public Assignment getMultiplicityAssignment_1_1() { return cMultiplicityAssignment_1_1; }
+
+		//"*" | "+" | "?"
+		public Alternatives getMultiplicityAlternatives_1_1_0() { return cMultiplicityAlternatives_1_1_0; }
+
+		//"*"
+		public Keyword getMultiplicityAsteriskKeyword_1_1_0_0() { return cMultiplicityAsteriskKeyword_1_1_0_0; }
+
+		//"+"
+		public Keyword getMultiplicityPlusSignKeyword_1_1_0_1() { return cMultiplicityPlusSignKeyword_1_1_0_1; }
+
+		//"?"
+		public Keyword getMultiplicityQuestionMarkKeyword_1_1_0_2() { return cMultiplicityQuestionMarkKeyword_1_1_0_2; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 
 	public class TupleTypeCSElements extends AbstractParserRuleElementFinder {
@@ -2373,6 +2477,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tESCAPED_ID;
 	private IDElements pID;
 	private TerminalRule tINT;
+	private LOWERElements pLOWER;
+	private UPPERElements pUPPER;
 	private NUMBER_LITERALElements pNUMBER_LITERAL;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
@@ -2397,6 +2503,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private PrimitiveTypeCSElements pPrimitiveTypeCS;
 	private CollectionTypeIdentifierElements pCollectionTypeIdentifier;
 	private CollectionTypeCSElements pCollectionTypeCS;
+	private MultiplicityCSElements pMultiplicityCS;
 	private TupleTypeCSElements pTupleTypeCS;
 	private TuplePartCSElements pTuplePartCS;
 	private CollectionLiteralExpCSElements pCollectionLiteralExpCS;
@@ -2509,6 +2616,26 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
+
+	//LOWER returns ecore::EInt:
+	//	INT;
+	public LOWERElements getLOWERAccess() {
+		return (pLOWER != null) ? pLOWER : (pLOWER = new LOWERElements());
+	}
+	
+	public ParserRule getLOWERRule() {
+		return getLOWERAccess().getRule();
+	}
+
+	//UPPER returns ecore::EInt:
+	//	INT | "*";
+	public UPPERElements getUPPERAccess() {
+		return (pUPPER != null) ? pUPPER : (pUPPER = new UPPERElements());
+	}
+	
+	public ParserRule getUPPERRule() {
+		return getUPPERAccess().getRule();
+	}
 
 	//// Not terminal to allow parser backtracking to sort out "5..7"
 	//NUMBER_LITERAL returns BigNumber:
@@ -2744,6 +2871,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getCollectionTypeCSRule() {
 		return getCollectionTypeCSAccess().getRule();
+	}
+
+	//MultiplicityCS returns base::MultiplicityCS:
+	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+	public MultiplicityCSElements getMultiplicityCSAccess() {
+		return (pMultiplicityCS != null) ? pMultiplicityCS : (pMultiplicityCS = new MultiplicityCSElements());
+	}
+	
+	public ParserRule getMultiplicityCSRule() {
+		return getMultiplicityCSAccess().getRule();
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:

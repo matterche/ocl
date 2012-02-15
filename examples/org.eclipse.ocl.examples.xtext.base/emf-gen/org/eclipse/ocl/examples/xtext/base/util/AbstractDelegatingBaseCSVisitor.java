@@ -137,6 +137,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitModelElementRefCS(object);
 	}
 
+	public R visitMultiplicityCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS object) {
+		return delegate.visitMultiplicityCS(object);
+	}
+
 	public R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object) {
 		return delegate.visitNamedElementCS(object);
 	}

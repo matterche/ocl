@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -193,6 +194,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
 				return validateModelElementRefCS((ModelElementRefCS)value, diagnostics, context);
+			case BaseCSTPackage.MULTIPLICITY_CS:
+				return validateMultiplicityCS((MultiplicityCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMED_ELEMENT_CS:
 				return validateNamedElementCS((NamedElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMESPACE_CS:
@@ -456,6 +459,16 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateModelElementRefCS(ModelElementRefCS modelElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(modelElementRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMultiplicityCS(MultiplicityCS multiplicityCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(multiplicityCS, diagnostics, context);
 	}
 
 	/**
