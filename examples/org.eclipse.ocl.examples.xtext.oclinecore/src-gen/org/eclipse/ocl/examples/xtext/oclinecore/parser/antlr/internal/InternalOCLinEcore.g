@@ -3713,45 +3713,6 @@ ruleParameterCS returns [EObject current=null]
 
 
 
-// Entry rule entryRulePrimitiveTypeRefCS
-entryRulePrimitiveTypeRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPrimitiveTypeRefCSRule()); }
-	 iv_rulePrimitiveTypeRefCS=rulePrimitiveTypeRefCS 
-	 { $current=$iv_rulePrimitiveTypeRefCS.current; } 
-	 EOF 
-;
-
-// Rule PrimitiveTypeRefCS
-rulePrimitiveTypeRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPrimitiveTypeRefCSAccess().getNamePrimitiveTypeIdentifierParserRuleCall_0()); 
-	    }
-		lv_name_0_0=rulePrimitiveTypeIdentifier		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPrimitiveTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"PrimitiveTypeIdentifier");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
-
-
-
-
-
 // Entry rule entryRuleReferenceCS
 entryRuleReferenceCS returns [EObject current=null] 
 	:
@@ -4762,11 +4723,11 @@ ruleTypedRefCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeCSParserRuleCall_0()); 
     }
-    this_PrimitiveTypeRefCS_0=rulePrimitiveTypeRefCS
+    this_PrimitiveTypeCS_0=rulePrimitiveTypeCS
     { 
-        $current = $this_PrimitiveTypeRefCS_0.current; 
+        $current = $this_PrimitiveTypeCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -4808,11 +4769,11 @@ ruleTypedMultiplicityRefCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0_0()); 
+        newCompositeNode(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeCSParserRuleCall_0_0()); 
     }
-    this_PrimitiveTypeRefCS_0=rulePrimitiveTypeRefCS
+    this_PrimitiveTypeCS_0=rulePrimitiveTypeCS
     { 
-        $current = $this_PrimitiveTypeRefCS_0.current; 
+        $current = $this_PrimitiveTypeCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 

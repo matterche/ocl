@@ -260,10 +260,6 @@ ParameterCS returns base::ParameterCS:
 	('{' ownedAnnotation+=AnnotationElementCS* '}')?
 ;
 
-PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
-	name=PrimitiveTypeIdentifier
-;
-
 ReferenceCS returns base::ReferenceCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'property' name=UnrestrictedName
@@ -325,11 +321,11 @@ TypeRefCS returns base::TypeRefCS:
 ;
 
 TypedRefCS returns base::TypedRefCS:
-	PrimitiveTypeRefCS /*| CollectionTypeRefCS*/ | TypedTypeRefCS
+	PrimitiveTypeCS | TypedTypeRefCS
 ;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(PrimitiveTypeRefCS /*| CollectionTypeRefCS*/ | TypedTypeRefCS)  (multiplicity=MultiplicityCS)?
+	(PrimitiveTypeCS | TypedTypeRefCS)  (multiplicity=MultiplicityCS)?
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:

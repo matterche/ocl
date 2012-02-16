@@ -213,14 +213,10 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
-				   context == grammarAccess.getTypeLiteralCSRule()) {
-					sequence_PrimitiveTypeCS(context, (PrimitiveTypeRefCS) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getPrimitiveTypeRefCSRule() ||
+				   context == grammarAccess.getTypeLiteralCSRule() ||
 				   context == grammarAccess.getTypeRefCSRule() ||
 				   context == grammarAccess.getTypedRefCSRule()) {
-					sequence_PrimitiveTypeRefCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					sequence_PrimitiveTypeCS(context, (PrimitiveTypeRefCS) semanticObject); 
 					return; 
 				}
 				else if(context == grammarAccess.getTypeExpCSRule()) {
@@ -1212,15 +1208,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 */
 	protected void sequence_PrimitiveTypeCS(EObject context, PrimitiveTypeRefCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     name=PrimitiveTypeIdentifier
-	 */
-	protected void sequence_PrimitiveTypeRefCS(EObject context, PrimitiveTypeRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

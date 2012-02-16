@@ -785,34 +785,6 @@ finally {
 
 
 
-// Entry rule entryRulePrimitiveTypeRefCS
-entryRulePrimitiveTypeRefCS 
-:
-{ before(grammarAccess.getPrimitiveTypeRefCSRule()); }
-	 rulePrimitiveTypeRefCS
-{ after(grammarAccess.getPrimitiveTypeRefCSRule()); } 
-	 EOF 
-;
-
-// Rule PrimitiveTypeRefCS
-rulePrimitiveTypeRefCS
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getPrimitiveTypeRefCSAccess().getNameAssignment()); }
-(rule__PrimitiveTypeRefCS__NameAssignment)
-{ after(grammarAccess.getPrimitiveTypeRefCSAccess().getNameAssignment()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleReferenceCS
 entryRuleReferenceCS 
 :
@@ -4442,9 +4414,9 @@ rule__TypedRefCS__Alternatives
     }
 :
 (
-{ before(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0()); }
-	rulePrimitiveTypeRefCS
-{ after(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0()); }
+{ before(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeCSParserRuleCall_0()); }
+	rulePrimitiveTypeCS
+{ after(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeCSParserRuleCall_0()); }
 )
 
     |(
@@ -4464,9 +4436,9 @@ rule__TypedMultiplicityRefCS__Alternatives_0
     }
 :
 (
-{ before(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0_0()); }
-	rulePrimitiveTypeRefCS
-{ after(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0_0()); }
+{ before(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeCSParserRuleCall_0_0()); }
+	rulePrimitiveTypeCS
+{ after(grammarAccess.getTypedMultiplicityRefCSAccess().getPrimitiveTypeCSParserRuleCall_0_0()); }
 )
 
     |(
@@ -23197,21 +23169,6 @@ rule__ParameterCS__OwnedAnnotationAssignment_3_1
 (
 { before(grammarAccess.getParameterCSAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_3_1_0()); }
 	ruleAnnotationElementCS{ after(grammarAccess.getParameterCSAccess().getOwnedAnnotationAnnotationElementCSParserRuleCall_3_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__PrimitiveTypeRefCS__NameAssignment
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPrimitiveTypeRefCSAccess().getNamePrimitiveTypeIdentifierParserRuleCall_0()); }
-	rulePrimitiveTypeIdentifier{ after(grammarAccess.getPrimitiveTypeRefCSAccess().getNamePrimitiveTypeIdentifierParserRuleCall_0()); }
 )
 
 ;
