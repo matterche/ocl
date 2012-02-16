@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  *
  * @generated
  */
-public abstract class ContextDeclCSImpl extends NamedElementDeclCSImpl implements ContextDeclCS {
+public abstract class ContextDeclCSImpl extends PathNameDeclCSImpl implements ContextDeclCS {
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

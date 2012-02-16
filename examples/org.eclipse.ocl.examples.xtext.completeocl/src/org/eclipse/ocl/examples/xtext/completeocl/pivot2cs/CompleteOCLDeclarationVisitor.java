@@ -55,7 +55,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecific
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
@@ -97,7 +97,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 	}
 
-	protected void refreshQualifiedNamedElement(NamedElementDeclCS csDecl, NamedElement object, EObject scope) {
+	protected void refreshQualifiedNamedElement(PathNameDeclCS csDecl, NamedElement object, EObject scope) {
 		PathNameCS csPathName = csDecl.getPathName();
 		if (csPathName == null) {
 			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();

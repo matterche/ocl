@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface ContextDeclCS extends NamedElementDeclCS {
+public interface ContextDeclCS extends PathNameDeclCS {
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.

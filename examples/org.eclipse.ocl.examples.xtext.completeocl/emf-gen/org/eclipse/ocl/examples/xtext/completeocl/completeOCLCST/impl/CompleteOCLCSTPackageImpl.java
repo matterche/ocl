@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextD
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
@@ -74,6 +74,13 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	private EClass packageDeclarationCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pathNameDeclCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,13 +144,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	private EClass invCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass namedElementDeclCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -339,6 +339,26 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPathNameDeclCS()
+	{
+		return pathNameDeclCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathNameDeclCS_PathName()
+	{
+		return (EReference)pathNameDeclCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getContextDeclCS() {
 		return contextDeclCSEClass;
 	}
@@ -492,26 +512,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 */
 	public EClass getInvCS() {
 		return invCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getNamedElementDeclCS()
-	{
-		return namedElementDeclCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNamedElementDeclCS_PathName()
-	{
-		return (EReference)namedElementDeclCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -729,9 +729,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 
 		invCSEClass = createEClass(INV_CS);
 
-		namedElementDeclCSEClass = createEClass(NAMED_ELEMENT_DECL_CS);
-		createEReference(namedElementDeclCSEClass, NAMED_ELEMENT_DECL_CS__PATH_NAME);
-
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
 		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
 
@@ -743,6 +740,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		packageDeclarationCSEClass = createEClass(PACKAGE_DECLARATION_CS);
 		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__PACKAGE);
 		createEReference(packageDeclarationCSEClass, PACKAGE_DECLARATION_CS__CONTEXTS);
+
+		pathNameDeclCSEClass = createEClass(PATH_NAME_DECL_CS);
+		createEReference(pathNameDeclCSEClass, PATH_NAME_DECL_CS__PATH_NAME);
 
 		postCSEClass = createEClass(POST_CS);
 
@@ -792,7 +792,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getPackageCS());
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		contextConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
-		contextDeclCSEClass.getESuperTypes().add(this.getNamedElementDeclCS());
+		contextDeclCSEClass.getESuperTypes().add(this.getPathNameDeclCS());
 		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 		defCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		derCSEClass.getESuperTypes().add(this.getContextConstraintCS());
@@ -800,11 +800,11 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		includeCSEClass.getESuperTypes().add(theBaseCSTPackage.getNamespaceCS());
 		initCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		invCSEClass.getESuperTypes().add(this.getContextConstraintCS());
-		namedElementDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
-		namedElementDeclCSEClass.getESuperTypes().add(thePivotPackage.getMorePivotable());
 		oclMessageArgCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpCS());
 		operationContextDeclCSEClass.getESuperTypes().add(this.getFeatureContextDeclCS());
-		packageDeclarationCSEClass.getESuperTypes().add(this.getNamedElementDeclCS());
+		packageDeclarationCSEClass.getESuperTypes().add(this.getPathNameDeclCS());
+		pathNameDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getModelElementCS());
+		pathNameDeclCSEClass.getESuperTypes().add(thePivotPackage.getMorePivotable());
 		postCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		preExpCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getDecoratedNamedExpCS());
@@ -850,9 +850,6 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 
 		initEClass(invCSEClass, InvCS.class, "InvCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(namedElementDeclCSEClass, NamedElementDeclCS.class, "NamedElementDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedElementDeclCS_PathName(), theBaseCSTPackage.getPathNameCS(), null, "pathName", null, 0, 1, NamedElementDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(oclMessageArgCSEClass, OclMessageArgCS.class, "OclMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclMessageArgCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, OclMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -864,6 +861,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEClass(packageDeclarationCSEClass, PackageDeclarationCS.class, "PackageDeclarationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPackageDeclarationCS_Package(), thePivotPackage.getPackage(), null, "package", null, 0, 1, PackageDeclarationCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPackageDeclarationCS_Contexts(), this.getContextDeclCS(), null, "contexts", null, 0, -1, PackageDeclarationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pathNameDeclCSEClass, PathNameDeclCS.class, "PathNameDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPathNameDeclCS_PathName(), theBaseCSTPackage.getPathNameCS(), null, "pathName", null, 0, 1, PathNameDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(postCSEClass, PostCS.class, "PostCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

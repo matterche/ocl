@@ -188,7 +188,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPackageDeclarationCS()
 	 * @generated
 	 */
-	int PACKAGE_DECLARATION_CS = 15;
+	int PACKAGE_DECLARATION_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -268,7 +268,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOperationContextDeclCS()
 	 * @generated
 	 */
-	int OPERATION_CONTEXT_DECL_CS = 14;
+	int OPERATION_CONTEXT_DECL_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreCSImpl <em>Pre CS</em>}' class.
@@ -400,14 +400,14 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int BODY_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl <em>Named Element Decl CS</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PathNameDeclCSImpl <em>Path Name Decl CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getNamedElementDeclCS()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PathNameDeclCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPathNameDeclCS()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_DECL_CS = 12;
+	int PATH_NAME_DECL_CS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -416,7 +416,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__LOGICAL_PARENT = BaseCSTPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
+	int PATH_NAME_DECL_CS__LOGICAL_PARENT = BaseCSTPackage.MODEL_ELEMENT_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -425,7 +425,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__PIVOT = BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT;
+	int PATH_NAME_DECL_CS__PIVOT = BaseCSTPackage.MODEL_ELEMENT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -434,7 +434,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__OWNED_ANNOTATION = BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION;
+	int PATH_NAME_DECL_CS__OWNED_ANNOTATION = BaseCSTPackage.MODEL_ELEMENT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -443,7 +443,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
+	int PATH_NAME_DECL_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -452,7 +452,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__CSI = BaseCSTPackage.MODEL_ELEMENT_CS__CSI;
+	int PATH_NAME_DECL_CS__CSI = BaseCSTPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
@@ -461,16 +461,16 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__PATH_NAME = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int PATH_NAME_DECL_CS__PATH_NAME = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Named Element Decl CS</em>' class.
+	 * The number of structural features of the '<em>Path Name Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
+	int PATH_NAME_DECL_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -479,7 +479,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__LOGICAL_PARENT = NAMED_ELEMENT_DECL_CS__LOGICAL_PARENT;
+	int CONTEXT_DECL_CS__LOGICAL_PARENT = PATH_NAME_DECL_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -488,7 +488,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__PIVOT = NAMED_ELEMENT_DECL_CS__PIVOT;
+	int CONTEXT_DECL_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -497,7 +497,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__OWNED_ANNOTATION = NAMED_ELEMENT_DECL_CS__OWNED_ANNOTATION;
+	int CONTEXT_DECL_CS__OWNED_ANNOTATION = PATH_NAME_DECL_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -506,7 +506,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_DECL_CS__ORIGINAL_XMI_ID;
+	int CONTEXT_DECL_CS__ORIGINAL_XMI_ID = PATH_NAME_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -515,7 +515,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__CSI = NAMED_ELEMENT_DECL_CS__CSI;
+	int CONTEXT_DECL_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
@@ -524,7 +524,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__PATH_NAME = NAMED_ELEMENT_DECL_CS__PATH_NAME;
+	int CONTEXT_DECL_CS__PATH_NAME = PATH_NAME_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -533,7 +533,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__RULES = NAMED_ELEMENT_DECL_CS_FEATURE_COUNT + 0;
+	int CONTEXT_DECL_CS__RULES = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Context Decl CS</em>' class.
@@ -542,7 +542,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS_FEATURE_COUNT = NAMED_ELEMENT_DECL_CS_FEATURE_COUNT + 1;
+	int CONTEXT_DECL_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1501,7 +1501,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOclMessageArgCS()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG_CS = 13;
+	int OCL_MESSAGE_ARG_CS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1699,7 +1699,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__LOGICAL_PARENT = NAMED_ELEMENT_DECL_CS__LOGICAL_PARENT;
+	int PACKAGE_DECLARATION_CS__LOGICAL_PARENT = PATH_NAME_DECL_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1708,7 +1708,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__PIVOT = NAMED_ELEMENT_DECL_CS__PIVOT;
+	int PACKAGE_DECLARATION_CS__PIVOT = PATH_NAME_DECL_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1717,7 +1717,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATION = NAMED_ELEMENT_DECL_CS__OWNED_ANNOTATION;
+	int PACKAGE_DECLARATION_CS__OWNED_ANNOTATION = PATH_NAME_DECL_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1726,7 +1726,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_DECL_CS__ORIGINAL_XMI_ID;
+	int PACKAGE_DECLARATION_CS__ORIGINAL_XMI_ID = PATH_NAME_DECL_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1735,7 +1735,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__CSI = NAMED_ELEMENT_DECL_CS__CSI;
+	int PACKAGE_DECLARATION_CS__CSI = PATH_NAME_DECL_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
@@ -1744,7 +1744,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__PATH_NAME = NAMED_ELEMENT_DECL_CS__PATH_NAME;
+	int PACKAGE_DECLARATION_CS__PATH_NAME = PATH_NAME_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' reference.
@@ -1753,7 +1753,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__PACKAGE = NAMED_ELEMENT_DECL_CS_FEATURE_COUNT + 0;
+	int PACKAGE_DECLARATION_CS__PACKAGE = PATH_NAME_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Contexts</b></em>' containment reference list.
@@ -1762,7 +1762,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__CONTEXTS = NAMED_ELEMENT_DECL_CS_FEATURE_COUNT + 1;
+	int PACKAGE_DECLARATION_CS__CONTEXTS = PATH_NAME_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Package Declaration CS</em>' class.
@@ -1771,7 +1771,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = NAMED_ELEMENT_DECL_CS_FEATURE_COUNT + 2;
+	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = PATH_NAME_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2239,6 +2239,27 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EReference getPackageDeclarationCS_Contexts();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS <em>Path Name Decl CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Path Name Decl CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS
+	 * @generated
+	 */
+	EClass getPathNameDeclCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS#getPathName <em>Path Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS#getPathName()
+	 * @see #getPathNameDeclCS()
+	 * @generated
+	 */
+	EReference getPathNameDeclCS_PathName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS <em>Context Decl CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2415,27 +2436,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInvCS();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS <em>Named Element Decl CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Element Decl CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS
-	 * @generated
-	 */
-	EClass getNamedElementDeclCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path Name</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName()
-	 * @see #getNamedElementDeclCS()
-	 * @generated
-	 */
-	EReference getNamedElementDeclCS_PathName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS <em>Def CS</em>}'.
@@ -2699,6 +2699,24 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		EReference PACKAGE_DECLARATION_CS__CONTEXTS = eINSTANCE.getPackageDeclarationCS_Contexts();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PathNameDeclCSImpl <em>Path Name Decl CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PathNameDeclCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPathNameDeclCS()
+		 * @generated
+		 */
+		EClass PATH_NAME_DECL_CS = eINSTANCE.getPathNameDeclCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_NAME_DECL_CS__PATH_NAME = eINSTANCE.getPathNameDeclCS_PathName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2851,24 +2869,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INV_CS = eINSTANCE.getInvCS();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl <em>Named Element Decl CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getNamedElementDeclCS()
-		 * @generated
-		 */
-		EClass NAMED_ELEMENT_DECL_CS = eINSTANCE.getNamedElementDeclCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NAMED_ELEMENT_DECL_CS__PATH_NAME = eINSTANCE.getNamedElementDeclCS_PathName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl <em>Def CS</em>}' class.

@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PackageDeclarationCS extends NamedElementDeclCS {
+public interface PackageDeclarationCS extends PathNameDeclCS {
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' reference.
 	 * <!-- begin-user-doc -->

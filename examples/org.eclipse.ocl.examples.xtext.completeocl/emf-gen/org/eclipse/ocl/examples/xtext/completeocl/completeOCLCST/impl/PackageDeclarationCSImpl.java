@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  *
  * @generated
  */
-public class PackageDeclarationCSImpl extends NamedElementDeclCSImpl implements PackageDeclarationCS {
+public class PackageDeclarationCSImpl extends PathNameDeclCSImpl implements PackageDeclarationCS {
 	/**
 	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

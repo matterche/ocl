@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
@@ -37,13 +37,13 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PathNameDeclCSImpl#getPathName <em>Path Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implements NamedElementDeclCS
+public abstract class PathNameDeclCSImpl extends ModelElementCSImpl implements PathNameDeclCS
 {
 	/**
 	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
@@ -59,7 +59,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NamedElementDeclCSImpl()
+	protected PathNameDeclCSImpl()
 	{
 		super();
 	}
@@ -72,7 +72,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	@Override
 	protected EClass eStaticClass()
 	{
-		return CompleteOCLCSTPackage.Literals.NAMED_ELEMENT_DECL_CS;
+		return CompleteOCLCSTPackage.Literals.PATH_NAME_DECL_CS;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 		pathName = newPathName;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, oldPathName, newPathName);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME, oldPathName, newPathName);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -113,14 +113,14 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 		{
 			NotificationChain msgs = null;
 			if (pathName != null)
-				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, null, msgs);
+				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME, null, msgs);
 			if (newPathName != null)
-				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, null, msgs);
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME, null, msgs);
 			msgs = basicSetPathName(newPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, newPathName, newPathName));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME, newPathName, newPathName));
 	}
 
 	/**
@@ -133,7 +133,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME:
 				return basicSetPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -149,7 +149,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME:
 				return getPathName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -165,7 +165,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME:
 				setPathName((PathNameCS)newValue);
 				return;
 		}
@@ -182,7 +182,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME:
 				setPathName((PathNameCS)null);
 				return;
 		}
@@ -199,7 +199,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS__PATH_NAME:
 				return pathName != null;
 		}
 		return super.eIsSet(featureID);
@@ -208,7 +208,7 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
-		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitNamedElementDeclCS(this);
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPathNameDeclCS(this);
 	}
 
 	public Iterable<Element> getMorePivots() {

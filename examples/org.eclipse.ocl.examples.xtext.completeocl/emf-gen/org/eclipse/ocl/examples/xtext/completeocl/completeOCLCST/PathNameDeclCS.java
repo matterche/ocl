@@ -27,15 +27,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS#getPathName <em>Path Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getNamedElementDeclCS()
+ * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPathNameDeclCS()
  * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS org.eclipse.ocl.examples.pivot.MorePivotable"
  * @generated
  */
-public interface NamedElementDeclCS extends ModelElementCS, MorePivotable
+public interface PathNameDeclCS extends ModelElementCS, MorePivotable
 {
 	/**
 	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
@@ -47,14 +47,14 @@ public interface NamedElementDeclCS extends ModelElementCS, MorePivotable
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path Name</em>' containment reference.
 	 * @see #setPathName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getNamedElementDeclCS_PathName()
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPathNameDeclCS_PathName()
 	 * @model containment="true"
 	 * @generated
 	 */
 	PathNameCS getPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS#getPathName <em>Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Path Name</em>' containment reference.

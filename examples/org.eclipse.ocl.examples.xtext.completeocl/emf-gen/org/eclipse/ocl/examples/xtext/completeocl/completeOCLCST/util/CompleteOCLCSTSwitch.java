@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextD
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
@@ -143,7 +143,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				ClassifierContextDeclCS classifierContextDeclCS = (ClassifierContextDeclCS)theEObject;
 				T result = caseClassifierContextDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseContextDeclCS(classifierContextDeclCS);
-				if (result == null) result = caseNamedElementDeclCS(classifierContextDeclCS);
+				if (result == null) result = casePathNameDeclCS(classifierContextDeclCS);
 				if (result == null) result = caseModelElementCS(classifierContextDeclCS);
 				if (result == null) result = caseMorePivotable(classifierContextDeclCS);
 				if (result == null) result = casePivotableElementCS(classifierContextDeclCS);
@@ -189,7 +189,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				ContextDeclCS contextDeclCS = (ContextDeclCS)theEObject;
 				T result = caseContextDeclCS(contextDeclCS);
-				if (result == null) result = caseNamedElementDeclCS(contextDeclCS);
+				if (result == null) result = casePathNameDeclCS(contextDeclCS);
 				if (result == null) result = caseModelElementCS(contextDeclCS);
 				if (result == null) result = caseMorePivotable(contextDeclCS);
 				if (result == null) result = casePivotableElementCS(contextDeclCS);
@@ -250,7 +250,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				FeatureContextDeclCS featureContextDeclCS = (FeatureContextDeclCS)theEObject;
 				T result = caseFeatureContextDeclCS(featureContextDeclCS);
 				if (result == null) result = caseContextDeclCS(featureContextDeclCS);
-				if (result == null) result = caseNamedElementDeclCS(featureContextDeclCS);
+				if (result == null) result = casePathNameDeclCS(featureContextDeclCS);
 				if (result == null) result = caseModelElementCS(featureContextDeclCS);
 				if (result == null) result = caseMorePivotable(featureContextDeclCS);
 				if (result == null) result = casePivotableElementCS(featureContextDeclCS);
@@ -307,19 +307,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS:
-			{
-				NamedElementDeclCS namedElementDeclCS = (NamedElementDeclCS)theEObject;
-				T result = caseNamedElementDeclCS(namedElementDeclCS);
-				if (result == null) result = caseModelElementCS(namedElementDeclCS);
-				if (result == null) result = caseMorePivotable(namedElementDeclCS);
-				if (result == null) result = casePivotableElementCS(namedElementDeclCS);
-				if (result == null) result = caseElementCS(namedElementDeclCS);
-				if (result == null) result = casePivotable(namedElementDeclCS);
-				if (result == null) result = caseVisitableCS(namedElementDeclCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS:
 			{
 				OclMessageArgCS oclMessageArgCS = (OclMessageArgCS)theEObject;
@@ -339,7 +326,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = caseOperationContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseFeatureContextDeclCS(operationContextDeclCS);
 				if (result == null) result = caseContextDeclCS(operationContextDeclCS);
-				if (result == null) result = caseNamedElementDeclCS(operationContextDeclCS);
+				if (result == null) result = casePathNameDeclCS(operationContextDeclCS);
 				if (result == null) result = caseModelElementCS(operationContextDeclCS);
 				if (result == null) result = caseMorePivotable(operationContextDeclCS);
 				if (result == null) result = casePivotableElementCS(operationContextDeclCS);
@@ -353,13 +340,26 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				PackageDeclarationCS packageDeclarationCS = (PackageDeclarationCS)theEObject;
 				T result = casePackageDeclarationCS(packageDeclarationCS);
-				if (result == null) result = caseNamedElementDeclCS(packageDeclarationCS);
+				if (result == null) result = casePathNameDeclCS(packageDeclarationCS);
 				if (result == null) result = caseModelElementCS(packageDeclarationCS);
 				if (result == null) result = caseMorePivotable(packageDeclarationCS);
 				if (result == null) result = casePivotableElementCS(packageDeclarationCS);
 				if (result == null) result = caseElementCS(packageDeclarationCS);
 				if (result == null) result = casePivotable(packageDeclarationCS);
 				if (result == null) result = caseVisitableCS(packageDeclarationCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CompleteOCLCSTPackage.PATH_NAME_DECL_CS:
+			{
+				PathNameDeclCS pathNameDeclCS = (PathNameDeclCS)theEObject;
+				T result = casePathNameDeclCS(pathNameDeclCS);
+				if (result == null) result = caseModelElementCS(pathNameDeclCS);
+				if (result == null) result = caseMorePivotable(pathNameDeclCS);
+				if (result == null) result = casePivotableElementCS(pathNameDeclCS);
+				if (result == null) result = caseElementCS(pathNameDeclCS);
+				if (result == null) result = casePivotable(pathNameDeclCS);
+				if (result == null) result = caseVisitableCS(pathNameDeclCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -416,7 +416,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				T result = casePropertyContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseFeatureContextDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseContextDeclCS(propertyContextDeclCS);
-				if (result == null) result = caseNamedElementDeclCS(propertyContextDeclCS);
+				if (result == null) result = casePathNameDeclCS(propertyContextDeclCS);
 				if (result == null) result = caseModelElementCS(propertyContextDeclCS);
 				if (result == null) result = caseMorePivotable(propertyContextDeclCS);
 				if (result == null) result = casePivotableElementCS(propertyContextDeclCS);
@@ -655,22 +655,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element Decl CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element Decl CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedElementDeclCS(NamedElementDeclCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ocl Message Arg CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -719,6 +703,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Name Decl CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Name Decl CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathNameDeclCS(PathNameDeclCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Post CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
