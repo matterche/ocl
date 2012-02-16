@@ -1485,22 +1485,34 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class TypeExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeExpCS");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cTypeNameExpCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cTypeLiteralCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cTypeNameExpCSParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cTypeLiteralCSParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final Assignment cMultiplicityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMultiplicityMultiplicityCSParserRuleCall_1_0 = (RuleCall)cMultiplicityAssignment_1.eContents().get(0);
 		
 		//TypeExpCS returns base::TypedRefCS:
-		//	TypeNameExpCS | TypeLiteralCS;
+		//	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
 		public ParserRule getRule() { return rule; }
 
+		//(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?
+		public Group getGroup() { return cGroup; }
+
 		//TypeNameExpCS | TypeLiteralCS
-		public Alternatives getAlternatives() { return cAlternatives; }
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//TypeNameExpCS
-		public RuleCall getTypeNameExpCSParserRuleCall_0() { return cTypeNameExpCSParserRuleCall_0; }
+		public RuleCall getTypeNameExpCSParserRuleCall_0_0() { return cTypeNameExpCSParserRuleCall_0_0; }
 
 		//TypeLiteralCS
-		public RuleCall getTypeLiteralCSParserRuleCall_1() { return cTypeLiteralCSParserRuleCall_1; }
+		public RuleCall getTypeLiteralCSParserRuleCall_0_1() { return cTypeLiteralCSParserRuleCall_0_1; }
+
+		//multiplicity=MultiplicityCS?
+		public Assignment getMultiplicityAssignment_1() { return cMultiplicityAssignment_1; }
+
+		//MultiplicityCS
+		public RuleCall getMultiplicityMultiplicityCSParserRuleCall_1_0() { return cMultiplicityMultiplicityCSParserRuleCall_1_0; }
 	}
 
 	public class ExpCSElements extends AbstractParserRuleElementFinder {
@@ -3073,7 +3085,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	TypeNameExpCS | TypeLiteralCS;
+	//	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
 	public TypeExpCSElements getTypeExpCSAccess() {
 		return (pTypeExpCS != null) ? pTypeExpCS : (pTypeExpCS = new TypeExpCSElements());
 	}

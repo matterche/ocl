@@ -319,38 +319,42 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 
 	public <T extends TypedElementCS> T refreshTypedMultiplicityElement(Class<T> csClass, EClass csEClass, TypedMultiplicityElement object) {
 		T csElement = refreshTypedElement(csClass, csEClass, object);
-		int lower = object.getLower().intValue();
-		int upper = object.getUpper().intValue();
-		if ((lower == 1) && (upper == 1)) {
-			csElement.setMultiplicity(null);
+		TypedRefCS csTypeRef = csElement.getOwnedType();
+		if (csTypeRef != null) {
+			int lower = object.getLower().intValue();
+			int upper = object.getUpper().intValue();
+			if ((lower == 1) && (upper == 1)) {
+				csTypeRef.setMultiplicity(null);
+			}
+			else {
+				MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
+				if (csMultiplicity == null) {
+					csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityCS();
+					csTypeRef.setMultiplicity(csMultiplicity);
+				}
+				if (lower == 0) {
+					if (upper == 1) {
+						csMultiplicity.setMultiplicity("?");
+					}
+					else if (upper == -1) {
+						csMultiplicity.setMultiplicity("*");				
+					}
+		//			else if (upper == -2) {
+		//				csElement.setMultiplicity("0..?");				
+		//			}
+				}
+				else if (lower == 1) {
+					if (upper == -1) {
+						csMultiplicity.setMultiplicity("+");				
+					}
+				}
+				if (csMultiplicity.getMultiplicity() == null) {
+					csMultiplicity.setLower(lower);
+					csMultiplicity.setUpper(upper);
+				}
+			}
 		}
-		else {
-			MultiplicityCS csMultiplicity = csElement.getMultiplicity();
-			if (csMultiplicity == null) {
-				csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityCS();
-				csElement.setMultiplicity(csMultiplicity);
-			}
-			if (lower == 0) {
-				if (upper == 1) {
-					csMultiplicity.setMultiplicity("?");
-				}
-				else if (upper == -1) {
-					csMultiplicity.setMultiplicity("*");				
-				}
-	//			else if (upper == -2) {
-	//				csElement.setMultiplicity("0..?");				
-	//			}
-			}
-			else if (lower == 1) {
-				if (upper == -1) {
-					csMultiplicity.setMultiplicity("+");				
-				}
-			}
-			if (csMultiplicity.getMultiplicity() == null) {
-				csMultiplicity.setLower(lower);
-				csMultiplicity.setUpper(upper);
-			}
-		}
+		// FIXME Obsolete
 		List<String> qualifiers = csElement.getQualifier();
 		refreshQualifiers(qualifiers, "ordered", "!ordered", object.isOrdered() ? Boolean.TRUE : null);
 		refreshQualifiers(qualifiers, "unique", "!unique", object.isUnique() ? null : Boolean.FALSE);

@@ -916,6 +916,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_TYPE_CS__PIVOT = BaseCSTPackage.TYPED_REF_CS__PIVOT;
 
 	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE_CS__MULTIPLICITY = BaseCSTPackage.TYPED_REF_CS__MULTIPLICITY;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3213,6 +3222,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_NAME_EXP_CS__PIVOT = BaseCSTPackage.TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_NAME_EXP_CS__MULTIPLICITY = BaseCSTPackage.TYPED_REF_CS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.

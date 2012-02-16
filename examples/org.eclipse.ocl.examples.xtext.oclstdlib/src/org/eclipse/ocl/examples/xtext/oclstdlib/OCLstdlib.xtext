@@ -189,7 +189,7 @@ PackageCS returns base::PackageCS:
 ;
 
 ParameterCS returns base::ParameterCS:
-	name=Identifier ':' ownedType=TypedRefCS (multiplicity=MultiplicityCS)?
+	name=Identifier ':' ownedType=TypedMultiplicityRefCS
 ;
 
 LibPropertyCS returns LibPropertyCS:
@@ -249,6 +249,10 @@ TypeRefCS returns base::TypeRefCS:
 
 TypedRefCS returns base::TypedRefCS:
 	LibTupleCS | TypedTypeRefCS | LambdaTypeCS
+;
+
+TypedMultiplicityRefCS returns base::TypedRefCS:
+	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) (multiplicity=MultiplicityCS)?
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:

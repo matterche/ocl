@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
@@ -46,6 +48,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -66,7 +69,18 @@ public class ElementUtil
 	private static final Logger logger = Logger.getLogger(ElementUtil.class);
 
 	public static String getCollectionTypeName(TypedElementCS csTypedElement) {
-		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		TypedRefCS csTypeRef = csTypedElement.getOwnedType();
+		if (csTypeRef == null) {
+			return null;
+		}
+		if (csTypeRef instanceof CollectionTypeRefCS) {
+			Type csType = ((CollectionTypeRefCS)csTypeRef).getType();
+			if (csType instanceof CollectionType) {
+				return ((CollectionType)csType).getName();
+			}
+		}
+		//FIXME Obsolete compatibility
+		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
 		if (csMultiplicity == null) {
 			return null;
 		}
@@ -77,7 +91,7 @@ public class ElementUtil
 			}
 		}
 		else {
-			int upper = csTypedElement.getUpper();
+			int upper = csMultiplicity.getUpper();
 			if (upper == 1) {
 				return null;
 			}
@@ -167,7 +181,11 @@ public class ElementUtil
 	}
 
 	public static int getLower(TypedElementCS csTypedElement) {
-		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		TypedRefCS csTypeRef = csTypedElement.getOwnedType();
+		if (csTypeRef == null) {
+			return 0;		// e.g. missing Operation return type
+		}
+		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
 		if (csMultiplicity == null) {
 			return 1;
 		}
@@ -181,7 +199,7 @@ public class ElementUtil
 		else if ("?".equals(multiplicity)) {
 			return 0;
 		}
-		return csTypedElement.getLower();
+		return csMultiplicity.getLower();
 	}
 
 	/**
@@ -285,7 +303,11 @@ public class ElementUtil
 	}
 
 	public static int getUpper(TypedElementCS csTypedElement) {
-		MultiplicityCS csMultiplicity = csTypedElement.getMultiplicity();
+		TypedRefCS csTypeRef = csTypedElement.getOwnedType();
+		if (csTypeRef == null) {
+			return 1;
+		}
+		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
 		if (csMultiplicity == null) {
 			return 1;
 		}
@@ -304,7 +326,7 @@ public class ElementUtil
 		else if ("?".equals(multiplicity)) {
 			return 1;
 		}
-		return csTypedElement.getUpper();
+		return csMultiplicity.getUpper();
 	}
 
 	public static boolean hasSyntaxError(List<Diagnostic> diagnostics) {

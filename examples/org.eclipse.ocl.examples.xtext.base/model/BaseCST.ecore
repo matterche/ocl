@@ -245,22 +245,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//ElementRefCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" eSuperTypes="#//NamedElementCS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        changeable="false" volatile="true" transient="true" defaultValueLiteral="1"
-        derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="#//MultiplicityCS"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//TypedRefCS"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        changeable="false" volatile="true" transient="true" defaultValueLiteral="1"
-        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConstraint" upperBound="-1"
         eType="#//ConstraintCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifier" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedRefCS" abstract="true" eSuperTypes="#//TypeRefCS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedRefCS" abstract="true" eSuperTypes="#//TypeRefCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" eType="#//MultiplicityCS"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedTypeRefCS" eSuperTypes="#//TypedRefCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Namespace"/>

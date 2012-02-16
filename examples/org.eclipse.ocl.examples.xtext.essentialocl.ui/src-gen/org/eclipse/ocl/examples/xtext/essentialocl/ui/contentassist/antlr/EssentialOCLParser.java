@@ -59,7 +59,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getAlternatives(), "rule__BooleanLiteralExpCS__Alternatives");
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
 					put(grammarAccess.getTypeNameExpCSAccess().getAlternatives(), "rule__TypeNameExpCS__Alternatives");
-					put(grammarAccess.getTypeExpCSAccess().getAlternatives(), "rule__TypeExpCS__Alternatives");
+					put(grammarAccess.getTypeExpCSAccess().getAlternatives_0(), "rule__TypeExpCS__Alternatives_0");
 					put(grammarAccess.getBinaryOperatorCSAccess().getAlternatives(), "rule__BinaryOperatorCS__Alternatives");
 					put(grammarAccess.getPrefixedExpCSAccess().getAlternatives(), "rule__PrefixedExpCS__Alternatives");
 					put(grammarAccess.getPrimaryExpCSAccess().getAlternatives(), "rule__PrimaryExpCS__Alternatives");
@@ -102,6 +102,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_0(), "rule__TypeNameExpCS__Group_0__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_0_0(), "rule__TypeNameExpCS__Group_0_0__0");
 					put(grammarAccess.getTypeNameExpCSAccess().getGroup_0_0_2(), "rule__TypeNameExpCS__Group_0_0_2__0");
+					put(grammarAccess.getTypeExpCSAccess().getGroup(), "rule__TypeExpCS__Group__0");
 					put(grammarAccess.getInfixedExpCSAccess().getGroup(), "rule__InfixedExpCS__Group__0");
 					put(grammarAccess.getInfixedExpCSAccess().getGroup_1(), "rule__InfixedExpCS__Group_1__0");
 					put(grammarAccess.getInfixedExpCSAccess().getGroup_1_1(), "rule__InfixedExpCS__Group_1_1__0");
@@ -180,6 +181,7 @@ public class EssentialOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeNameExpCSAccess().getNamespaceAssignment_0_0_2_0(), "rule__TypeNameExpCS__NamespaceAssignment_0_0_2_0");
 					put(grammarAccess.getTypeNameExpCSAccess().getElementAssignment_0_1(), "rule__TypeNameExpCS__ElementAssignment_0_1");
 					put(grammarAccess.getTypeNameExpCSAccess().getElementAssignment_1(), "rule__TypeNameExpCS__ElementAssignment_1");
+					put(grammarAccess.getTypeExpCSAccess().getMultiplicityAssignment_1(), "rule__TypeExpCS__MultiplicityAssignment_1");
 					put(grammarAccess.getInfixedExpCSAccess().getOwnedOperatorAssignment_1_1_0(), "rule__InfixedExpCS__OwnedOperatorAssignment_1_1_0");
 					put(grammarAccess.getInfixedExpCSAccess().getOwnedExpressionAssignment_1_1_1(), "rule__InfixedExpCS__OwnedExpressionAssignment_1_1_1");
 					put(grammarAccess.getInfixOperatorCSAccess().getNameAssignment(), "rule__InfixOperatorCS__NameAssignment");

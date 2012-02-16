@@ -27,10 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getLower <em>Lower</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedConstraint <em>Owned Constraint</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getQualifier <em>Qualifier</em>}</li>
  * </ul>
@@ -41,48 +38,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface TypedElementCS extends NamedElementCS {
-	/**
-	 * Returns the value of the '<em><b>Lower</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Lower</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower</em>' attribute.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Lower()
-	 * @model default="1" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	int getLower();
-
-	/**
-	 * Returns the value of the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Multiplicity</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplicity</em>' containment reference.
-	 * @see #setMultiplicity(MultiplicityCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Multiplicity()
-	 * @model containment="true"
-	 * @generated
-	 */
-	MultiplicityCS getMultiplicity();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Multiplicity</em>' containment reference.
-	 * @see #getMultiplicity()
-	 * @generated
-	 */
-	void setMultiplicity(MultiplicityCS value);
-
 	/**
 	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -108,22 +63,6 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @generated
 	 */
 	void setOwnedType(TypedRefCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Upper</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Upper</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper</em>' attribute.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Upper()
-	 * @model default="1" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	int getUpper();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Constraint</b></em>' containment reference list.

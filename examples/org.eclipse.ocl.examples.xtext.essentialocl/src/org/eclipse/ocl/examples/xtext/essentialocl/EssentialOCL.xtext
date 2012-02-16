@@ -242,8 +242,7 @@ TypeNameExpCS returns TypeNameExpCS:
 	| element=[pivot::Type|UnrestrictedName]);
 
 TypeExpCS returns base::TypedRefCS:
-	TypeNameExpCS
-	| TypeLiteralCS;
+	(TypeNameExpCS | TypeLiteralCS) (multiplicity=MultiplicityCS)?;
 
 	//---------------------------------------------------------------------
 //  Expressions

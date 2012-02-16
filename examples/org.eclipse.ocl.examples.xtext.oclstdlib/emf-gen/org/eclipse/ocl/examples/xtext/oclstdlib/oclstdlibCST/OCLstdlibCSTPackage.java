@@ -460,24 +460,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_ITERATION_CS__NAME = BaseCSTPackage.OPERATION_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__LOWER = BaseCSTPackage.OPERATION_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__MULTIPLICITY = BaseCSTPackage.OPERATION_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -485,15 +467,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_ITERATION_CS__OWNED_TYPE = BaseCSTPackage.OPERATION_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__UPPER = BaseCSTPackage.OPERATION_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -640,24 +613,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_OPERATION_CS__NAME = BaseCSTPackage.OPERATION_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__LOWER = BaseCSTPackage.OPERATION_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__MULTIPLICITY = BaseCSTPackage.OPERATION_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -665,15 +620,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__OWNED_TYPE = BaseCSTPackage.OPERATION_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__UPPER = BaseCSTPackage.OPERATION_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -820,24 +766,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_PROPERTY_CS__NAME = BaseCSTPackage.ATTRIBUTE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__LOWER = BaseCSTPackage.ATTRIBUTE_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__MULTIPLICITY = BaseCSTPackage.ATTRIBUTE_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -845,15 +773,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_PROPERTY_CS__OWNED_TYPE = BaseCSTPackage.ATTRIBUTE_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__UPPER = BaseCSTPackage.ATTRIBUTE_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.

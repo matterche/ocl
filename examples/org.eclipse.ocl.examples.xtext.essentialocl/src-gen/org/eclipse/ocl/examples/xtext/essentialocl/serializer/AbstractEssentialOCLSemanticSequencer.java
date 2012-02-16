@@ -84,9 +84,12 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_PrimitiveTypeCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (PrimitiveTypeRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -98,9 +101,12 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				else break;
 			case BaseCSTPackage.TUPLE_TYPE_CS:
 				if(context == grammarAccess.getTupleTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_TupleTypeCS(context, (TupleTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (TupleTypeCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -146,9 +152,12 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				else break;
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS:
 				if(context == grammarAccess.getCollectionTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_CollectionTypeCS(context, (CollectionTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (CollectionTypeCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -400,8 +409,11 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				}
 				else break;
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS:
-				if(context == grammarAccess.getTypeExpCSRule() ||
-				   context == grammarAccess.getTypeNameExpCSRule()) {
+				if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (TypeNameExpCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeNameExpCSRule()) {
 					sequence_TypeNameExpCS(context, (TypeNameExpCS) semanticObject); 
 					return; 
 				}
@@ -743,6 +755,52 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *     (name='Tuple' ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)? multiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_TypeExpCS(EObject context, CollectionTypeCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_TypeExpCS(EObject context, PrimitiveTypeRefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         name='Tuple' 
+	 *         ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)? 
+	 *         multiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
+	 *             element=[Type|UnrestrictedName]
+	 *         ) 
+	 *         multiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_TypeExpCS(EObject context, TypeNameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

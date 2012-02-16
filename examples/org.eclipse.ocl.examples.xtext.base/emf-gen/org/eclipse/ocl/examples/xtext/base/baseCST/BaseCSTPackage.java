@@ -850,40 +850,13 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_ELEMENT_CS__NAME = NAMED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__LOWER = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__MULTIPLICITY = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__UPPER = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
+	int TYPED_ELEMENT_CS__OWNED_TYPE = NAMED_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -892,7 +865,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__OWNED_CONSTRAINT = NAMED_ELEMENT_CS_FEATURE_COUNT + 4;
+	int TYPED_ELEMENT_CS__OWNED_CONSTRAINT = NAMED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' attribute list.
@@ -901,7 +874,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS__QUALIFIER = NAMED_ELEMENT_CS_FEATURE_COUNT + 5;
+	int TYPED_ELEMENT_CS__QUALIFIER = NAMED_ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element CS</em>' class.
@@ -910,7 +883,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 6;
+	int TYPED_ELEMENT_CS_FEATURE_COUNT = NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -967,24 +940,6 @@ public interface BaseCSTPackage extends EPackage {
 	int FEATURE_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__MULTIPLICITY = TYPED_ELEMENT_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -992,15 +947,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__UPPER = TYPED_ELEMENT_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -1084,24 +1030,6 @@ public interface BaseCSTPackage extends EPackage {
 	int STRUCTURAL_FEATURE_CS__NAME = FEATURE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__LOWER = FEATURE_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__MULTIPLICITY = FEATURE_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1109,15 +1037,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__UPPER = FEATURE_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -1219,24 +1138,6 @@ public interface BaseCSTPackage extends EPackage {
 	int ATTRIBUTE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__LOWER = STRUCTURAL_FEATURE_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__MULTIPLICITY = STRUCTURAL_FEATURE_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1244,15 +1145,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__UPPER = STRUCTURAL_FEATURE_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -1654,13 +1546,22 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_REF_CS__PIVOT = TYPE_REF_CS__PIVOT;
 
 	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_REF_CS__MULTIPLICITY = TYPE_REF_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Typed Ref CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPED_REF_CS_FEATURE_COUNT = TYPE_REF_CS_FEATURE_COUNT + 0;
+	int TYPED_REF_CS_FEATURE_COUNT = TYPE_REF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1679,6 +1580,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_TYPE_REF_CS__PIVOT = TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_TYPE_REF_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -1733,6 +1643,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_TYPE_REF_CS__PIVOT = TYPED_TYPE_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_TYPE_REF_CS__MULTIPLICITY = TYPED_TYPE_REF_CS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
@@ -2491,6 +2410,15 @@ public interface BaseCSTPackage extends EPackage {
 	int LAMBDA_TYPE_CS__PIVOT = TYPED_REF_CS__PIVOT;
 
 	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_TYPE_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
+
+	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2771,24 +2699,6 @@ public interface BaseCSTPackage extends EPackage {
 	int OPERATION_CS__NAME = FEATURE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__LOWER = FEATURE_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__MULTIPLICITY = FEATURE_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2796,15 +2706,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CS__OWNED_TYPE = FEATURE_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__UPPER = FEATURE_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -3023,24 +2924,6 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__MULTIPLICITY = TYPED_ELEMENT_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3048,15 +2931,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__UPPER = TYPED_ELEMENT_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -3111,6 +2985,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE_REF_CS__PIVOT = TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_TYPE_REF_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3231,24 +3114,6 @@ public interface BaseCSTPackage extends EPackage {
 	int REFERENCE_CS__NAME = STRUCTURAL_FEATURE_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__LOWER = STRUCTURAL_FEATURE_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__MULTIPLICITY = STRUCTURAL_FEATURE_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3256,15 +3121,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__OWNED_TYPE = STRUCTURAL_FEATURE_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__UPPER = STRUCTURAL_FEATURE_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -4010,24 +3866,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TUPLE_PART_CS__NAME = TYPED_ELEMENT_CS__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__LOWER = TYPED_ELEMENT_CS__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__MULTIPLICITY = TYPED_ELEMENT_CS__MULTIPLICITY;
-
-	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4035,15 +3873,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__OWNED_TYPE = TYPED_ELEMENT_CS__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__UPPER = TYPED_ELEMENT_CS__UPPER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -4099,6 +3928,15 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_TYPE_CS__PIVOT = TYPED_REF_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_CS__MULTIPLICITY = TYPED_REF_CS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5559,28 +5397,6 @@ public interface BaseCSTPackage extends EPackage {
 	EClass getTypedElementCS();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getLower <em>Lower</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lower</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getLower()
-	 * @see #getTypedElementCS()
-	 * @generated
-	 */
-	EAttribute getTypedElementCS_Lower();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity <em>Multiplicity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Multiplicity</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getMultiplicity()
-	 * @see #getTypedElementCS()
-	 * @generated
-	 */
-	EReference getTypedElementCS_Multiplicity();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedType <em>Owned Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5590,17 +5406,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTypedElementCS_OwnedType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getUpper <em>Upper</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Upper</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getUpper()
-	 * @see #getTypedElementCS()
-	 * @generated
-	 */
-	EAttribute getTypedElementCS_Upper();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS#getOwnedConstraint <em>Owned Constraint</em>}'.
@@ -5633,6 +5438,17 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTypedRefCS();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS#getMultiplicity <em>Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Multiplicity</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS#getMultiplicity()
+	 * @see #getTypedRefCS()
+	 * @generated
+	 */
+	EReference getTypedRefCS_Multiplicity();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS <em>Typed Type Ref CS</em>}'.
@@ -6773,36 +6589,12 @@ public interface BaseCSTPackage extends EPackage {
 		EClass TYPED_ELEMENT_CS = eINSTANCE.getTypedElementCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT_CS__LOWER = eINSTANCE.getTypedElementCS_Lower();
-
-		/**
-		 * The meta object literal for the '<em><b>Multiplicity</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPED_ELEMENT_CS__MULTIPLICITY = eINSTANCE.getTypedElementCS_Multiplicity();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference TYPED_ELEMENT_CS__OWNED_TYPE = eINSTANCE.getTypedElementCS_OwnedType();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TYPED_ELEMENT_CS__UPPER = eINSTANCE.getTypedElementCS_Upper();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Constraint</b></em>' containment reference list feature.
@@ -6829,6 +6621,14 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TYPED_REF_CS = eINSTANCE.getTypedRefCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplicity</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_REF_CS__MULTIPLICITY = eINSTANCE.getTypedRefCS_Multiplicity();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl <em>Typed Type Ref CS</em>}' class.

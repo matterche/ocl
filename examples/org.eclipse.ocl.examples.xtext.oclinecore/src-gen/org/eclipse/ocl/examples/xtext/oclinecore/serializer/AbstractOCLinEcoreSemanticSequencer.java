@@ -213,7 +213,6 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_PrimitiveTypeCS(context, (PrimitiveTypeRefCS) semanticObject); 
 					return; 
@@ -222,6 +221,14 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				   context == grammarAccess.getTypeRefCSRule() ||
 				   context == grammarAccess.getTypedRefCSRule()) {
 					sequence_PrimitiveTypeRefCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypedMultiplicityRefCSRule()) {
+					sequence_TypedMultiplicityRefCS(context, (PrimitiveTypeRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -265,9 +272,12 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				else break;
 			case BaseCSTPackage.TUPLE_TYPE_CS:
 				if(context == grammarAccess.getTupleTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_TupleTypeCS(context, (TupleTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (TupleTypeCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -278,7 +288,11 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				}
 				else break;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS:
-				if(context == grammarAccess.getTypeRefCSRule() ||
+				if(context == grammarAccess.getTypedMultiplicityRefCSRule()) {
+					sequence_TypedMultiplicityRefCS(context, (TypedTypeRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeRefCSRule() ||
 				   context == grammarAccess.getTypedRefCSRule() ||
 				   context == grammarAccess.getTypedTypeRefCSRule()) {
 					sequence_TypedTypeRefCS(context, (TypedTypeRefCS) semanticObject); 
@@ -334,9 +348,12 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				else break;
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS:
 				if(context == grammarAccess.getCollectionTypeCSRule() ||
-				   context == grammarAccess.getTypeExpCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
 					sequence_CollectionTypeCS(context, (CollectionTypeCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (CollectionTypeCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -588,8 +605,11 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				}
 				else break;
 			case EssentialOCLCSTPackage.TYPE_NAME_EXP_CS:
-				if(context == grammarAccess.getTypeExpCSRule() ||
-				   context == grammarAccess.getTypeNameExpCSRule()) {
+				if(context == grammarAccess.getTypeExpCSRule()) {
+					sequence_TypeExpCS(context, (TypeNameExpCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypeNameExpCSRule()) {
 					sequence_TypeNameExpCS(context, (TypeNameExpCS) semanticObject); 
 					return; 
 				}
@@ -669,7 +689,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *     (
 	 *         (qualifier+='static' | qualifier+='definition')* 
 	 *         name=UnrestrictedName 
-	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
+	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
 	 *             qualifier+='derived' | 
@@ -1081,8 +1101,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         name=UnrestrictedName 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
 	 *         (ownedParameter+=ParameterCS ownedParameter+=ParameterCS*)? 
-	 *         ownedType=TypedRefCS? 
-	 *         multiplicity=MultiplicityCS? 
+	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         (ownedException+=TypedRefCS ownedException+=TypedRefCS*)? 
 	 *         (
 	 *             qualifier+='derived' | 
@@ -1123,7 +1142,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         name=UnrestrictedName 
-	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
+	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         (qualifier+='ordered' | qualifier+='!ordered' | qualifier+='unique' | qualifier+='!unique')* 
 	 *         ownedAnnotation+=AnnotationElementCS*
 	 *     )
@@ -1211,7 +1230,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *         (qualifier+='static' | qualifier+='definition')* 
 	 *         name=UnrestrictedName 
 	 *         opposite=[Property|UnrestrictedName]? 
-	 *         (ownedType=TypedRefCS multiplicity=MultiplicityCS?)? 
+	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
 	 *         (
 	 *             qualifier+='composes' | 
@@ -1329,6 +1348,52 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
+	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)? multiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_TypeExpCS(EObject context, CollectionTypeCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_TypeExpCS(EObject context, PrimitiveTypeRefCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         name='Tuple' 
+	 *         ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)? 
+	 *         multiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
+	 *             element=[Type|UnrestrictedName]
+	 *         ) 
+	 *         multiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_TypeExpCS(EObject context, TypeNameExpCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     ownedType=TypeLiteralCS
 	 */
 	protected void sequence_TypeLiteralExpCS(EObject context, TypeLiteralExpCS semanticObject) {
@@ -1353,6 +1418,28 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 *     (name=UnrestrictedName ((ownedExtends+=TypedRefCS ownedExtends+=TypedRefCS*) | ownedSuper=TypedRefCS)?)
 	 */
 	protected void sequence_TypeParameterCS(EObject context, TypeParameterCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=PrimitiveTypeIdentifier multiplicity=MultiplicityCS?)
+	 */
+	protected void sequence_TypedMultiplicityRefCS(EObject context, PrimitiveTypeRefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         ((namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* type=[Type|UnreservedName]) | type=[Type|UnrestrictedName]) 
+	 *         ownedTemplateBinding=TemplateBindingCS? 
+	 *         multiplicity=MultiplicityCS?
+	 *     )
+	 */
+	protected void sequence_TypedMultiplicityRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

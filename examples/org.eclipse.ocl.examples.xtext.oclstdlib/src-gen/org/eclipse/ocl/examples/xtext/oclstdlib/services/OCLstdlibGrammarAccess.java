@@ -1465,15 +1465,13 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIdentifierParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedTypeTypedRefCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
-		private final Assignment cMultiplicityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cMultiplicityMultiplicityCSParserRuleCall_3_0 = (RuleCall)cMultiplicityAssignment_3.eContents().get(0);
+		private final RuleCall cOwnedTypeTypedMultiplicityRefCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
 		
 		//ParameterCS returns base::ParameterCS:
-		//	name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?;
+		//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?
+		//name=Identifier ":" ownedType=TypedMultiplicityRefCS
 		public Group getGroup() { return cGroup; }
 
 		//name=Identifier
@@ -1485,17 +1483,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//ownedType=TypedRefCS
+		//ownedType=TypedMultiplicityRefCS
 		public Assignment getOwnedTypeAssignment_2() { return cOwnedTypeAssignment_2; }
 
-		//TypedRefCS
-		public RuleCall getOwnedTypeTypedRefCSParserRuleCall_2_0() { return cOwnedTypeTypedRefCSParserRuleCall_2_0; }
-
-		//multiplicity=MultiplicityCS?
-		public Assignment getMultiplicityAssignment_3() { return cMultiplicityAssignment_3; }
-
-		//MultiplicityCS
-		public RuleCall getMultiplicityMultiplicityCSParserRuleCall_3_0() { return cMultiplicityMultiplicityCSParserRuleCall_3_0; }
+		//TypedMultiplicityRefCS
+		public RuleCall getOwnedTypeTypedMultiplicityRefCSParserRuleCall_2_0() { return cOwnedTypeTypedMultiplicityRefCSParserRuleCall_2_0; }
 	}
 
 	public class LibPropertyCSElements extends AbstractParserRuleElementFinder {
@@ -2047,6 +2039,42 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLambdaTypeCSParserRuleCall_2() { return cLambdaTypeCSParserRuleCall_2; }
 	}
 
+	public class TypedMultiplicityRefCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedMultiplicityRefCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cLibTupleCSParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cTypedTypeRefCSParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final RuleCall cLambdaTypeCSParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
+		private final Assignment cMultiplicityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMultiplicityMultiplicityCSParserRuleCall_1_0 = (RuleCall)cMultiplicityAssignment_1.eContents().get(0);
+		
+		//TypedMultiplicityRefCS returns base::TypedRefCS:
+		//	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) multiplicity=MultiplicityCS?;
+		public ParserRule getRule() { return rule; }
+
+		//(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) multiplicity=MultiplicityCS?
+		public Group getGroup() { return cGroup; }
+
+		//LibTupleCS | TypedTypeRefCS | LambdaTypeCS
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//LibTupleCS
+		public RuleCall getLibTupleCSParserRuleCall_0_0() { return cLibTupleCSParserRuleCall_0_0; }
+
+		//TypedTypeRefCS
+		public RuleCall getTypedTypeRefCSParserRuleCall_0_1() { return cTypedTypeRefCSParserRuleCall_0_1; }
+
+		//LambdaTypeCS
+		public RuleCall getLambdaTypeCSParserRuleCall_0_2() { return cLambdaTypeCSParserRuleCall_0_2; }
+
+		//multiplicity=MultiplicityCS?
+		public Assignment getMultiplicityAssignment_1() { return cMultiplicityAssignment_1; }
+
+		//MultiplicityCS
+		public RuleCall getMultiplicityMultiplicityCSParserRuleCall_1_0() { return cMultiplicityMultiplicityCSParserRuleCall_1_0; }
+	}
+
 	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2191,6 +2219,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private TypeParameterCSElements pTypeParameterCS;
 	private TypeRefCSElements pTypeRefCS;
 	private TypedRefCSElements pTypedRefCS;
+	private TypedMultiplicityRefCSElements pTypedMultiplicityRefCS;
 	private TypedTypeRefCSElements pTypedTypeRefCS;
 	private WildcardTypeRefCSElements pWildcardTypeRefCS;
 	
@@ -2447,7 +2476,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterCS returns base::ParameterCS:
-	//	name=Identifier ":" ownedType=TypedRefCS multiplicity=MultiplicityCS?;
+	//	name=Identifier ":" ownedType=TypedMultiplicityRefCS;
 	public ParameterCSElements getParameterCSAccess() {
 		return (pParameterCS != null) ? pParameterCS : (pParameterCS = new ParameterCSElements());
 	}
@@ -2587,6 +2616,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTypedRefCSRule() {
 		return getTypedRefCSAccess().getRule();
+	}
+
+	//TypedMultiplicityRefCS returns base::TypedRefCS:
+	//	(LibTupleCS | TypedTypeRefCS | LambdaTypeCS) multiplicity=MultiplicityCS?;
+	public TypedMultiplicityRefCSElements getTypedMultiplicityRefCSAccess() {
+		return (pTypedMultiplicityRefCS != null) ? pTypedMultiplicityRefCS : (pTypedMultiplicityRefCS = new TypedMultiplicityRefCSElements());
+	}
+	
+	public ParserRule getTypedMultiplicityRefCSRule() {
+		return getTypedMultiplicityRefCSAccess().getRule();
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
@@ -3093,7 +3132,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeExpCS returns base::TypedRefCS:
-	//	TypeNameExpCS | TypeLiteralCS;
+	//	(TypeNameExpCS | TypeLiteralCS) multiplicity=MultiplicityCS?;
 	public EssentialOCLGrammarAccess.TypeExpCSElements getTypeExpCSAccess() {
 		return gaEssentialOCL.getTypeExpCSAccess();
 	}
