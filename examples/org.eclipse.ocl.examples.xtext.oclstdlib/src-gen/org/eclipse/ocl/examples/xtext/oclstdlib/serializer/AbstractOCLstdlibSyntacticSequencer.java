@@ -71,7 +71,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_LibOperationCS_SemicolonKeyword_11_1_or___LeftCurlyBracketKeyword_11_0_0_RightCurlyBracketKeyword_11_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -95,7 +95,7 @@ public class AbstractOCLstdlibSyntacticSequencer extends AbstractSyntacticSequen
 	
 	/**
 	 * Syntax:
-	 *     (('<' '>') | ('(' ')'))?
+	 *     (('(' ')') | ('<' '>'))?
 	 */
 	protected void emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

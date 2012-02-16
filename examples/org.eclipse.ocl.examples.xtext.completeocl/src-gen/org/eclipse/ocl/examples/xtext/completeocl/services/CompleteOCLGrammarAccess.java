@@ -1155,49 +1155,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0() { return cExprStringUNQUOTED_STRINGTerminalRuleCall_1_0; }
 	}
 
-	public class CollectionTypeCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CollectionTypeCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameCollectionTypeIdentifierParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_1_0 = (RuleCall)cOwnedTypeAssignment_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		////---------------------------------------------------------------------------------
-		////	EssentialOCL overrides
-		////---------------------------------------------------------------------------------
-		//CollectionTypeCS returns essentialocl::CollectionTypeCS:
-		//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
-		public ParserRule getRule() { return rule; }
-
-		//name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?
-		public Group getGroup() { return cGroup; }
-
-		//name=CollectionTypeIdentifier
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//CollectionTypeIdentifier
-		public RuleCall getNameCollectionTypeIdentifierParserRuleCall_0_0() { return cNameCollectionTypeIdentifierParserRuleCall_0_0; }
-
-		//("(" ownedType=TypeExpCS ")")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
-
-		//ownedType=TypeExpCS
-		public Assignment getOwnedTypeAssignment_1_1() { return cOwnedTypeAssignment_1_1; }
-
-		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
-	}
-
 	public class NavigatingExpCS_BaseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingExpCS_Base");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1207,6 +1164,12 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommercialAtKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Keyword cPreKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
+		////---------------------------------------------------------------------------------
+		////	EssentialOCL overrides
+		////---------------------------------------------------------------------------------
+		////CollectionTypeCS returns essentialocl::CollectionTypeCS:
+		////	name=CollectionTypeIdentifier
+		////	('(' ownedType=TypeExpCS ')')?;
 		//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
 		//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
 		public ParserRule getRule() { return rule; }
@@ -1238,6 +1201,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQuestionMarkKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final RuleCall cExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		////TupleTypeCS returns base::TupleTypeCS:
+		////	name='Tuple'
+		////	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
 		//NavigatingArgExpCS returns essentialocl::ExpCS:
 		//	{OclMessageArgCS} "?" | ExpCS;
 		public ParserRule getRule() { return rule; }
@@ -1256,66 +1222,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ExpCS
 		public RuleCall getExpCSParserRuleCall_1() { return cExpCSParserRuleCall_1; }
-	}
-
-	public class TupleTypeCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TupleTypeCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cNameTupleKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedPartsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
-		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_0_0 = (RuleCall)cOwnedPartsAssignment_1_1_0.eContents().get(0);
-		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_1_0 = (Keyword)cGroup_1_1_1.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
-		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0 = (RuleCall)cOwnedPartsAssignment_1_1_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//TupleTypeCS returns base::TupleTypeCS:
-		//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
-		public ParserRule getRule() { return rule; }
-
-		//name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
-		public Group getGroup() { return cGroup; }
-
-		//name="Tuple"
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//"Tuple"
-		public Keyword getNameTupleKeyword_0_0() { return cNameTupleKeyword_0_0; }
-
-		//("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
-
-		//(ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
-		public Group getGroup_1_1() { return cGroup_1_1; }
-
-		//ownedParts+=tuplePartCS
-		public Assignment getOwnedPartsAssignment_1_1_0() { return cOwnedPartsAssignment_1_1_0; }
-
-		//tuplePartCS
-		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_0_0; }
-
-		//("," ownedParts+=tuplePartCS)*
-		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
-
-		//","
-		public Keyword getCommaKeyword_1_1_1_0() { return cCommaKeyword_1_1_1_0; }
-
-		//ownedParts+=tuplePartCS
-		public Assignment getOwnedPartsAssignment_1_1_1_1() { return cOwnedPartsAssignment_1_1_1_1; }
-
-		//tuplePartCS
-		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
 	}
 	
 	
@@ -1344,10 +1250,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private UnreservedNamedElementRefCSElements pUnreservedNamedElementRefCS;
 	private UnrestrictedNamedElementRefCSElements pUnrestrictedNamedElementRefCS;
 	private SpecificationCSElements pSpecificationCS;
-	private CollectionTypeCSElements pCollectionTypeCS;
 	private NavigatingExpCS_BaseElements pNavigatingExpCS_Base;
 	private NavigatingArgExpCSElements pNavigatingArgExpCS;
-	private TupleTypeCSElements pTupleTypeCS;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -1633,16 +1537,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////---------------------------------------------------------------------------------
 	////	EssentialOCL overrides
 	////---------------------------------------------------------------------------------
-	//CollectionTypeCS returns essentialocl::CollectionTypeCS:
-	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
-	public CollectionTypeCSElements getCollectionTypeCSAccess() {
-		return (pCollectionTypeCS != null) ? pCollectionTypeCS : (pCollectionTypeCS = new CollectionTypeCSElements());
-	}
-	
-	public ParserRule getCollectionTypeCSRule() {
-		return getCollectionTypeCSAccess().getRule();
-	}
-
+	////CollectionTypeCS returns essentialocl::CollectionTypeCS:
+	////	name=CollectionTypeIdentifier
+	////	('(' ownedType=TypeExpCS ')')?;
 	//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
 	//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
 	public NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
@@ -1653,6 +1550,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingExpCS_BaseAccess().getRule();
 	}
 
+	////TupleTypeCS returns base::TupleTypeCS:
+	////	name='Tuple'
+	////	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
 	//NavigatingArgExpCS returns essentialocl::ExpCS:
 	//	{OclMessageArgCS} "?" | ExpCS;
 	public NavigatingArgExpCSElements getNavigatingArgExpCSAccess() {
@@ -1661,16 +1561,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getNavigatingArgExpCSRule() {
 		return getNavigatingArgExpCSAccess().getRule();
-	}
-
-	//TupleTypeCS returns base::TupleTypeCS:
-	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
-	public TupleTypeCSElements getTupleTypeCSAccess() {
-		return (pTupleTypeCS != null) ? pTupleTypeCS : (pTupleTypeCS = new TupleTypeCSElements());
-	}
-	
-	public ParserRule getTupleTypeCSRule() {
-		return getTupleTypeCSAccess().getRule();
 	}
 
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
@@ -1942,6 +1832,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionTypeIdentifierAccess().getRule();
 	}
 
+	//CollectionTypeCS:
+	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?;
+	public EssentialOCLGrammarAccess.CollectionTypeCSElements getCollectionTypeCSAccess() {
+		return gaEssentialOCL.getCollectionTypeCSAccess();
+	}
+	
+	public ParserRule getCollectionTypeCSRule() {
+		return getCollectionTypeCSAccess().getRule();
+	}
+
 	//MultiplicityCS returns base::MultiplicityCS:
 	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
 	public EssentialOCLGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
@@ -1950,6 +1850,17 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getMultiplicityCSRule() {
 		return getMultiplicityCSAccess().getRule();
+	}
+
+	//TupleTypeCS returns base::TupleTypeCS:
+	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+	//	ownedParts+=tuplePartCS)*)? ">")?;
+	public EssentialOCLGrammarAccess.TupleTypeCSElements getTupleTypeCSAccess() {
+		return gaEssentialOCL.getTupleTypeCSAccess();
+	}
+	
+	public ParserRule getTupleTypeCSRule() {
+		return getTupleTypeCSAccess().getRule();
 	}
 
 	//tuplePartCS returns base::TuplePartCS:

@@ -138,9 +138,9 @@ SpecificationCS returns ContextSpecificationCS:
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
-CollectionTypeCS returns essentialocl::CollectionTypeCS:
-	name=CollectionTypeIdentifier
-	('(' ownedType=TypeExpCS ')')?;
+//CollectionTypeCS returns essentialocl::CollectionTypeCS:
+//	name=CollectionTypeIdentifier
+//	('(' ownedType=TypeExpCS ')')?;
 
 NavigatingExpCS_Base returns essentialocl::NamedExpCS:
 	IndexExpCS
@@ -152,6 +152,6 @@ NavigatingArgExpCS returns essentialocl::ExpCS:
 	| ExpCS
 ;
 
-TupleTypeCS returns base::TupleTypeCS:
-	name='Tuple'
-	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
+//TupleTypeCS returns base::TupleTypeCS:
+//	name='Tuple'
+//	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
