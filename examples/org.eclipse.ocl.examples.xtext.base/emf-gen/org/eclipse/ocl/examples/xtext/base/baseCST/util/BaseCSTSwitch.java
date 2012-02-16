@@ -506,6 +506,16 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.PATH_NAME_CS:
+			{
+				PathNameCS pathNameCS = (PathNameCS)theEObject;
+				T result = casePathNameCS(pathNameCS);
+				if (result == null) result = caseElementCS(pathNameCS);
+				if (result == null) result = casePivotable(pathNameCS);
+				if (result == null) result = caseVisitableCS(pathNameCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.PIVOTABLE_ELEMENT_CS:
 			{
 				PivotableElementCS pivotableElementCS = (PivotableElementCS)theEObject;
@@ -528,16 +538,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(primitiveTypeRefCS);
 				if (result == null) result = casePivotable(primitiveTypeRefCS);
 				if (result == null) result = caseVisitableCS(primitiveTypeRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS:
-			{
-				QualifiedNamedElementRefCS qualifiedNamedElementRefCS = (QualifiedNamedElementRefCS)theEObject;
-				T result = caseQualifiedNamedElementRefCS(qualifiedNamedElementRefCS);
-				if (result == null) result = caseElementCS(qualifiedNamedElementRefCS);
-				if (result == null) result = casePivotable(qualifiedNamedElementRefCS);
-				if (result == null) result = caseVisitableCS(qualifiedNamedElementRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1213,6 +1213,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Name CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Name CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathNameCS(PathNameCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Pivotable Element CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1240,22 +1256,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Qualified Named Element Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Qualified Named Element Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object)
-	{
 		return null;
 	}
 

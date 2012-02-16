@@ -101,9 +101,9 @@ public class PropertyContextDeclCSImpl extends FeatureContextDeclCSImpl implemen
 	 */
 	public Property getProperty()
 	{
-		if (qualifiedElementRef == null) {
+		if (pathName == null) {
 			return null;
 		}
-		return (Property) qualifiedElementRef.getElement();
+		return (Property) pathName.getElement();
 	}
 } //PropertyContextDeclCSImpl

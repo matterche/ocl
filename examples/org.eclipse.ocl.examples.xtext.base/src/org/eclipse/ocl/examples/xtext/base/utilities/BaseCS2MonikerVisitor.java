@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
@@ -246,14 +246,14 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	@Override
-	public Boolean visitPrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
-		context.appendNameCS(object);
+	public Boolean visitPathNameCS(PathNameCS object) {
+		safeAppendMonikerOf(object.getElement());
 		return true;
 	}
 
 	@Override
-	public Boolean visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object) {
-		safeAppendMonikerOf(object.getElement());
+	public Boolean visitPrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
+		context.appendNameCS(object);
 		return true;
 	}
 

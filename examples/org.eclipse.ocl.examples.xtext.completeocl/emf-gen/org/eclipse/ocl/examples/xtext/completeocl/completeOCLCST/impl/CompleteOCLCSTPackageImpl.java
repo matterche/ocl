@@ -509,7 +509,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNamedElementDeclCS_QualifiedElementRef()
+	public EReference getNamedElementDeclCS_PathName()
 	{
 		return (EReference)namedElementDeclCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -730,7 +730,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		invCSEClass = createEClass(INV_CS);
 
 		namedElementDeclCSEClass = createEClass(NAMED_ELEMENT_DECL_CS);
-		createEReference(namedElementDeclCSEClass, NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF);
+		createEReference(namedElementDeclCSEClass, NAMED_ELEMENT_DECL_CS__PATH_NAME);
 
 		oclMessageArgCSEClass = createEClass(OCL_MESSAGE_ARG_CS);
 		createEReference(oclMessageArgCSEClass, OCL_MESSAGE_ARG_CS__TYPE);
@@ -851,7 +851,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEClass(invCSEClass, InvCS.class, "InvCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(namedElementDeclCSEClass, NamedElementDeclCS.class, "NamedElementDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedElementDeclCS_QualifiedElementRef(), theBaseCSTPackage.getQualifiedNamedElementRefCS(), null, "qualifiedElementRef", null, 0, 1, NamedElementDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedElementDeclCS_PathName(), theBaseCSTPackage.getPathNameCS(), null, "pathName", null, 0, 1, NamedElementDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclMessageArgCSEClass, OclMessageArgCS.class, "OclMessageArgCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclMessageArgCS_Type(), theBaseCSTPackage.getTypeCS(), null, "type", null, 0, 1, OclMessageArgCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

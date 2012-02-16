@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
@@ -36,14 +36,14 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements QualifiedNamedElementRefCS
+public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 {
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list.
@@ -60,7 +60,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected QualifiedNamedElementRefCSImpl()
+	protected PathNameCSImpl()
 	{
 		super();
 	}
@@ -73,7 +73,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	@Override
 	protected EClass eStaticClass()
 	{
-		return BaseCSTPackage.Literals.QUALIFIED_NAMED_ELEMENT_REF_CS;
+		return BaseCSTPackage.Literals.PATH_NAME_CS;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		if (path == null)
 		{
-			path = new EObjectContainmentWithInverseEList<SimpleNamedElementRefCS>(SimpleNamedElementRefCS.class, this, BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME);
+			path = new EObjectContainmentWithInverseEList<SimpleNamedElementRefCS>(SimpleNamedElementRefCS.class, this, BaseCSTPackage.PATH_NAME_CS__PATH, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME);
 		}
 		return path;
 	}
@@ -100,7 +100,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return ((InternalEList<?>)getPath()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -116,9 +116,9 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return getPath();
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
 				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -135,7 +135,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				getPath().clear();
 				getPath().addAll((Collection<? extends SimpleNamedElementRefCS>)newValue);
 				return;
@@ -153,7 +153,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				getPath().clear();
 				return;
 		}
@@ -170,9 +170,9 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return path != null && !path.isEmpty();
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
 				return getElement() != null;
 		}
 		return super.eIsSet(featureID);
@@ -189,7 +189,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH:
+			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPath()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -197,7 +197,7 @@ public class QualifiedNamedElementRefCSImpl extends ElementCSImpl implements Qua
 
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
-		return visitor.visitQualifiedNamedElementRefCS(this);
+		return visitor.visitPathNameCS(this);
 	}
 
 	/**

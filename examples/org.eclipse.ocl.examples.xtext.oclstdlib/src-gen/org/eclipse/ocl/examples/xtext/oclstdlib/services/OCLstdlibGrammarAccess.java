@@ -2889,6 +2889,36 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnreservedNameAccess().getRule();
 	}
 
+	//PathNameCS returns base::PathNameCS:
+	//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+	public EssentialOCLGrammarAccess.PathNameCSElements getPathNameCSAccess() {
+		return gaEssentialOCL.getPathNameCSAccess();
+	}
+	
+	public ParserRule getPathNameCSRule() {
+		return getPathNameCSAccess().getRule();
+	}
+
+	//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnrestrictedName];
+	public EssentialOCLGrammarAccess.FirstNamedElementRefCSElements getFirstNamedElementRefCSAccess() {
+		return gaEssentialOCL.getFirstNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getFirstNamedElementRefCSRule() {
+		return getFirstNamedElementRefCSAccess().getRule();
+	}
+
+	//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnreservedName];
+	public EssentialOCLGrammarAccess.LaterNamedElementRefCSElements getLaterNamedElementRefCSAccess() {
+		return gaEssentialOCL.getLaterNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getLaterNamedElementRefCSRule() {
+		return getLaterNamedElementRefCSAccess().getRule();
+	}
+
 	////---------------------------------------------------------------------
 	////  Types
 	////---------------------------------------------------------------------

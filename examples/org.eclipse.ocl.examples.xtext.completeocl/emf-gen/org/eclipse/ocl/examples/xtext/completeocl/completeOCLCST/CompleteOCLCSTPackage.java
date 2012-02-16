@@ -455,13 +455,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int NAMED_ELEMENT_DECL_CS__CSI = BaseCSTPackage.MODEL_ELEMENT_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
+	int NAMED_ELEMENT_DECL_CS__PATH_NAME = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element Decl CS</em>' class.
@@ -518,13 +518,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CONTEXT_DECL_CS__CSI = NAMED_ELEMENT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF = NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int CONTEXT_DECL_CS__PATH_NAME = NAMED_ELEMENT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -590,13 +590,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int CLASSIFIER_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF = CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME = CONTEXT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -1169,13 +1169,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int FEATURE_CONTEXT_DECL_CS__CSI = CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF = CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int FEATURE_CONTEXT_DECL_CS__PATH_NAME = CONTEXT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -1621,13 +1621,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int OPERATION_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF = FEATURE_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int OPERATION_CONTEXT_DECL_CS__PATH_NAME = FEATURE_CONTEXT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -1738,13 +1738,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PACKAGE_DECLARATION_CS__CSI = NAMED_ELEMENT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_DECLARATION_CS__QUALIFIED_ELEMENT_REF = NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int PACKAGE_DECLARATION_CS__PATH_NAME = NAMED_ELEMENT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' reference.
@@ -2099,13 +2099,13 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PROPERTY_CONTEXT_DECL_CS__CSI = FEATURE_CONTEXT_DECL_CS__CSI;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF = FEATURE_CONTEXT_DECL_CS__QUALIFIED_ELEMENT_REF;
+	int PROPERTY_CONTEXT_DECL_CS__PATH_NAME = FEATURE_CONTEXT_DECL_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
@@ -2427,15 +2427,15 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EClass getNamedElementDeclCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getQualifiedElementRef <em>Qualified Element Ref</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Qualified Element Ref</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getQualifiedElementRef()
+	 * @return the meta object for the containment reference '<em>Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName()
 	 * @see #getNamedElementDeclCS()
 	 * @generated
 	 */
-	EReference getNamedElementDeclCS_QualifiedElementRef();
+	EReference getNamedElementDeclCS_PathName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS <em>Def CS</em>}'.
@@ -2863,12 +2863,12 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		EClass NAMED_ELEMENT_DECL_CS = eINSTANCE.getNamedElementDeclCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualified Element Ref</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF = eINSTANCE.getNamedElementDeclCS_QualifiedElementRef();
+		EReference NAMED_ELEMENT_DECL_CS__PATH_NAME = eINSTANCE.getNamedElementDeclCS_PathName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl <em>Def CS</em>}' class.

@@ -547,17 +547,17 @@ ruleClassifierContextDeclCS returns [EObject current=null]
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getClassifierContextDeclCSAccess().getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getClassifierContextDeclCSAccess().getPathNamePathNameCSParserRuleCall_2_0()); 
 	    }
-		lv_qualifiedElementRef_3_0=ruleQualifiedNamedElementRefCS		{
+		lv_pathName_3_0=rulePathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getClassifierContextDeclCSRule());
 	        }
        		set(
        			$current, 
-       			"qualifiedElementRef",
-        		lv_qualifiedElementRef_3_0, 
-        		"QualifiedNamedElementRefCS");
+       			"pathName",
+        		lv_pathName_3_0, 
+        		"PathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1268,17 +1268,17 @@ ruleOperationContextDeclCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getOperationContextDeclCSAccess().getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getOperationContextDeclCSAccess().getPathNamePathNameCSParserRuleCall_1_0()); 
 	    }
-		lv_qualifiedElementRef_1_0=ruleQualifiedNamedElementRefCS		{
+		lv_pathName_1_0=rulePathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getOperationContextDeclCSRule());
 	        }
        		set(
        			$current, 
-       			"qualifiedElementRef",
-        		lv_qualifiedElementRef_1_0, 
-        		"QualifiedNamedElementRefCS");
+       			"pathName",
+        		lv_pathName_1_0, 
+        		"PathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1437,17 +1437,17 @@ rulePackageDeclarationCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPackageDeclarationCSAccess().getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getPackageDeclarationCSAccess().getPathNamePathNameCSParserRuleCall_1_0()); 
 	    }
-		lv_qualifiedElementRef_1_0=ruleQualifiedNamedElementRefCS		{
+		lv_pathName_1_0=rulePathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPackageDeclarationCSRule());
 	        }
        		set(
        			$current, 
-       			"qualifiedElementRef",
-        		lv_qualifiedElementRef_1_0, 
-        		"QualifiedNamedElementRefCS");
+       			"pathName",
+        		lv_pathName_1_0, 
+        		"PathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1715,17 +1715,17 @@ rulePropertyContextDeclCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPropertyContextDeclCSAccess().getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getPropertyContextDeclCSAccess().getPathNamePathNameCSParserRuleCall_1_0()); 
 	    }
-		lv_qualifiedElementRef_1_0=ruleQualifiedNamedElementRefCS		{
+		lv_pathName_1_0=rulePathNameCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPropertyContextDeclCSRule());
 	        }
        		set(
        			$current, 
-       			"qualifiedElementRef",
-        		lv_qualifiedElementRef_1_0, 
-        		"QualifiedNamedElementRefCS");
+       			"pathName",
+        		lv_pathName_1_0, 
+        		"PathNameCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1826,145 +1826,6 @@ rulePropertyContextDeclCS returns [EObject current=null]
 
 )
 )?)))
-;
-
-
-
-
-
-// Entry rule entryRuleQualifiedNamedElementRefCS
-entryRuleQualifiedNamedElementRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getQualifiedNamedElementRefCSRule()); }
-	 iv_ruleQualifiedNamedElementRefCS=ruleQualifiedNamedElementRefCS 
-	 { $current=$iv_ruleQualifiedNamedElementRefCS.current; } 
-	 EOF 
-;
-
-// Rule QualifiedNamedElementRefCS
-ruleQualifiedNamedElementRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedNamedElementRefCSAccess().getPathUnrestrictedNamedElementRefCSParserRuleCall_0_0()); 
-	    }
-		lv_path_0_0=ruleUnrestrictedNamedElementRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedNamedElementRefCSRule());
-	        }
-       		add(
-       			$current, 
-       			"path",
-        		lv_path_0_0, 
-        		"UnrestrictedNamedElementRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_1='::' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getQualifiedNamedElementRefCSAccess().getColonColonKeyword_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedNamedElementRefCSAccess().getPathUnreservedNamedElementRefCSParserRuleCall_1_1_0()); 
-	    }
-		lv_path_2_0=ruleUnreservedNamedElementRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedNamedElementRefCSRule());
-	        }
-       		add(
-       			$current, 
-       			"path",
-        		lv_path_2_0, 
-        		"UnreservedNamedElementRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*)
-;
-
-
-
-
-
-// Entry rule entryRuleUnreservedNamedElementRefCS
-entryRuleUnreservedNamedElementRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getUnreservedNamedElementRefCSRule()); }
-	 iv_ruleUnreservedNamedElementRefCS=ruleUnreservedNamedElementRefCS 
-	 { $current=$iv_ruleUnreservedNamedElementRefCS.current; } 
-	 EOF 
-;
-
-// Rule UnreservedNamedElementRefCS
-ruleUnreservedNamedElementRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getUnreservedNamedElementRefCSRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getUnreservedNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
-	    }
-		ruleUnreservedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRuleUnrestrictedNamedElementRefCS
-entryRuleUnrestrictedNamedElementRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getUnrestrictedNamedElementRefCSRule()); }
-	 iv_ruleUnrestrictedNamedElementRefCS=ruleUnrestrictedNamedElementRefCS 
-	 { $current=$iv_ruleUnrestrictedNamedElementRefCS.current; } 
-	 EOF 
-;
-
-// Rule UnrestrictedNamedElementRefCS
-ruleUnrestrictedNamedElementRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getUnrestrictedNamedElementRefCSRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getUnrestrictedNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
-	    }
-		ruleUnrestrictedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
 ;
 
 
@@ -2809,6 +2670,145 @@ ruleUnreservedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
     }
 
     ;
+
+
+
+
+
+// Entry rule entryRulePathNameCS
+entryRulePathNameCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPathNameCSRule()); }
+	 iv_rulePathNameCS=rulePathNameCS 
+	 { $current=$iv_rulePathNameCS.current; } 
+	 EOF 
+;
+
+// Rule PathNameCS
+rulePathNameCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPathNameCSAccess().getPathFirstNamedElementRefCSParserRuleCall_0_0()); 
+	    }
+		lv_path_0_0=ruleFirstNamedElementRefCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPathNameCSRule());
+	        }
+       		add(
+       			$current, 
+       			"path",
+        		lv_path_0_0, 
+        		"FirstNamedElementRefCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_1='::' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getPathNameCSAccess().getColonColonKeyword_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPathNameCSAccess().getPathLaterNamedElementRefCSParserRuleCall_1_1_0()); 
+	    }
+		lv_path_2_0=ruleLaterNamedElementRefCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPathNameCSRule());
+	        }
+       		add(
+       			$current, 
+       			"path",
+        		lv_path_2_0, 
+        		"LaterNamedElementRefCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*)
+;
+
+
+
+
+
+// Entry rule entryRuleFirstNamedElementRefCS
+entryRuleFirstNamedElementRefCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFirstNamedElementRefCSRule()); }
+	 iv_ruleFirstNamedElementRefCS=ruleFirstNamedElementRefCS 
+	 { $current=$iv_ruleFirstNamedElementRefCS.current; } 
+	 EOF 
+;
+
+// Rule FirstNamedElementRefCS
+ruleFirstNamedElementRefCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFirstNamedElementRefCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
+	    }
+		ruleUnrestrictedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleLaterNamedElementRefCS
+entryRuleLaterNamedElementRefCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLaterNamedElementRefCSRule()); }
+	 iv_ruleLaterNamedElementRefCS=ruleLaterNamedElementRefCS 
+	 { $current=$iv_ruleLaterNamedElementRefCS.current; } 
+	 EOF 
+;
+
+// Rule LaterNamedElementRefCS
+ruleLaterNamedElementRefCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLaterNamedElementRefCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
+	    }
+		ruleUnreservedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
 
 
 

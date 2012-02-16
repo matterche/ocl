@@ -70,6 +70,7 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNavigationOperatorCS(c, f.getNavigationOperatorCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
+	    configurePathNameCS(c, f.getPathNameCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureTypeNameExpCS(c, f.getTypeNameExpCSAccess());

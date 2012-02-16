@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl#getQualifiedElementRef <em>Qualified Element Ref</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.NamedElementDeclCSImpl#getPathName <em>Path Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,15 +46,14 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implements NamedElementDeclCS
 {
 	/**
-	 * The cached value of the '{@link #getQualifiedElementRef() <em>Qualified Element Ref</em>}' containment reference.
+	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifiedElementRef()
+	 * @see #getPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected QualifiedNamedElementRefCS qualifiedElementRef;
-
+	protected PathNameCS pathName;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,9 +80,9 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifiedNamedElementRefCS getQualifiedElementRef()
+	public PathNameCS getPathName()
 	{
-		return qualifiedElementRef;
+		return pathName;
 	}
 
 	/**
@@ -91,13 +90,13 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetQualifiedElementRef(QualifiedNamedElementRefCS newQualifiedElementRef, NotificationChain msgs)
+	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
 	{
-		QualifiedNamedElementRefCS oldQualifiedElementRef = qualifiedElementRef;
-		qualifiedElementRef = newQualifiedElementRef;
+		PathNameCS oldPathName = pathName;
+		pathName = newPathName;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF, oldQualifiedElementRef, newQualifiedElementRef);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, oldPathName, newPathName);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -108,20 +107,20 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQualifiedElementRef(QualifiedNamedElementRefCS newQualifiedElementRef)
+	public void setPathName(PathNameCS newPathName)
 	{
-		if (newQualifiedElementRef != qualifiedElementRef)
+		if (newPathName != pathName)
 		{
 			NotificationChain msgs = null;
-			if (qualifiedElementRef != null)
-				msgs = ((InternalEObject)qualifiedElementRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF, null, msgs);
-			if (newQualifiedElementRef != null)
-				msgs = ((InternalEObject)newQualifiedElementRef).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF, null, msgs);
-			msgs = basicSetQualifiedElementRef(newQualifiedElementRef, msgs);
+			if (pathName != null)
+				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, null, msgs);
+			if (newPathName != null)
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, null, msgs);
+			msgs = basicSetPathName(newPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF, newQualifiedElementRef, newQualifiedElementRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME, newPathName, newPathName));
 	}
 
 	/**
@@ -134,8 +133,8 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF:
-				return basicSetQualifiedElementRef(null, msgs);
+			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+				return basicSetPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -150,8 +149,8 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF:
-				return getQualifiedElementRef();
+			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+				return getPathName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,8 +165,8 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF:
-				setQualifiedElementRef((QualifiedNamedElementRefCS)newValue);
+			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+				setPathName((PathNameCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,8 +182,8 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF:
-				setQualifiedElementRef((QualifiedNamedElementRefCS)null);
+			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+				setPathName((PathNameCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -200,8 +199,8 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__QUALIFIED_ELEMENT_REF:
-				return qualifiedElementRef != null;
+			case CompleteOCLCSTPackage.NAMED_ELEMENT_DECL_CS__PATH_NAME:
+				return pathName != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -213,10 +212,10 @@ public abstract class NamedElementDeclCSImpl extends ModelElementCSImpl implemen
 	}
 
 	public Iterable<Element> getMorePivots() {
-		if (qualifiedElementRef == null) {
+		if (pathName == null) {
 			return Collections.<Element>emptyList();
 		}
-		NamedElement pNamedElement = qualifiedElementRef.getElement();
+		NamedElement pNamedElement = pathName.getElement();
 		if (pNamedElement == null) {
 			return Collections.<Element>emptyList();
 		}

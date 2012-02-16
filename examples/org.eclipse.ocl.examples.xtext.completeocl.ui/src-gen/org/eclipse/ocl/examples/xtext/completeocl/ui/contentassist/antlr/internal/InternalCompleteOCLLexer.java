@@ -1258,11 +1258,10 @@ public class InternalCompleteOCLLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:7: ( '::' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:9: '::'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:7: ( '@' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:66:9: '@'
             {
-            match("::"); 
-
+            match('@'); 
 
             }
 
@@ -1279,10 +1278,11 @@ public class InternalCompleteOCLLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:7: ( '@' )
-            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:9: '@'
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:7: ( '::' )
+            // ../org.eclipse.ocl.examples.xtext.completeocl.ui/src-gen/org/eclipse/ocl/examples/xtext/completeocl/ui/contentassist/antlr/internal/InternalCompleteOCL.g:67:9: '::'
             {
-            match('@'); 
+            match("::"); 
+
 
             }
 
@@ -2965,11 +2965,11 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\154\1\172\1\uffff";
     static final String DFA11_acceptS =
         "\16\uffff\1\30\2\uffff\1\33\5\uffff\1\43\6\uffff\1\61\1\uffff\1"+
-        "\63\1\64\1\65\1\71\1\72\1\73\1\75\1\76\3\uffff\1\113\1\114\4\uffff"+
+        "\63\1\64\1\65\1\70\1\72\1\73\1\75\1\76\3\uffff\1\113\1\114\4\uffff"+
         "\1\121\1\123\1\126\1\127\1\2\1\1\1\uffff\1\121\23\uffff\1\30\2\uffff"+
         "\1\31\1\32\1\33\1\52\1\125\1\34\2\uffff\1\120\1\124\1\36\1\41\1"+
-        "\37\1\42\1\44\1\40\1\43\3\uffff\1\74\1\51\2\uffff\1\61\1\70\1\62"+
-        "\1\63\1\64\1\65\1\71\1\72\1\73\1\75\1\76\5\uffff\1\113\1\114\1\115"+
+        "\37\1\42\1\44\1\40\1\43\3\uffff\1\74\1\51\2\uffff\1\61\1\71\1\62"+
+        "\1\63\1\64\1\65\1\70\1\72\1\73\1\75\1\76\5\uffff\1\113\1\114\1\115"+
         "\1\116\1\117\1\122\1\123\1\126\10\uffff\1\106\1\101\24\uffff\1\46"+
         "\12\uffff\1\5\6\uffff\1\12\1\uffff\1\105\1\uffff\1\15\2\uffff\1"+
         "\55\3\uffff\1\54\13\uffff\1\35\1\uffff\1\45\1\47\7\uffff\1\3\5\uffff"+
@@ -2979,7 +2979,7 @@ public class InternalCompleteOCLLexer extends Lexer {
         "\66\1\16\1\17\5\uffff\1\27\3\uffff\1\56\3\uffff\1\26\12\uffff\1"+
         "\24\1\25\1\60\1\67\1\57\5\uffff\1\22";
     static final String DFA11_specialS =
-        "\1\2\55\uffff\1\1\1\0\u011d\uffff}>";
+        "\1\1\55\uffff\1\2\1\0\u011d\uffff}>";
     static final String[] DFA11_transitionS = {
             "\11\64\2\63\2\64\1\63\22\64\1\63\1\64\1\56\4\64\1\57\1\42\1"+
             "\40\1\16\1\21\1\41\1\22\1\33\1\24\12\62\1\37\1\54\1\26\1\27"+
@@ -3372,16 +3372,6 @@ public class InternalCompleteOCLLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA11_46 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA11_46>='\u0000' && LA11_46<='\uFFFF')) ) {s = 122;}
-
-                        else s = 52;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA11_0 = input.LA(1);
 
                         s = -1;
@@ -3488,6 +3478,16 @@ public class InternalCompleteOCLLexer extends Lexer {
                         else if ( ((LA11_0>='\t' && LA11_0<='\n')||LA11_0=='\r'||LA11_0==' ') ) {s = 51;}
 
                         else if ( ((LA11_0>='\u0000' && LA11_0<='\b')||(LA11_0>='\u000B' && LA11_0<='\f')||(LA11_0>='\u000E' && LA11_0<='\u001F')||LA11_0=='!'||(LA11_0>='#' && LA11_0<='&')||LA11_0=='\\'||LA11_0=='`'||(LA11_0>='~' && LA11_0<='\u00C1')||(LA11_0>='\u00C3' && LA11_0<='\uFFFF')) ) {s = 52;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA11_46 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA11_46>='\u0000' && LA11_46<='\uFFFF')) ) {s = 122;}
+
+                        else s = 52;
 
                         if ( s>=0 ) return s;
                         break;

@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
@@ -80,10 +80,10 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifiedNamedElementRefCS getQualifiedName()
+	public PathNameCS getQualifiedName()
 	{
 		if (eContainerFeatureID() != BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME) return null;
-		return (QualifiedNamedElementRefCS)eContainer();
+		return (PathNameCS)eContainer();
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetQualifiedName(QualifiedNamedElementRefCS newQualifiedName, NotificationChain msgs)
+	public NotificationChain basicSetQualifiedName(PathNameCS newQualifiedName, NotificationChain msgs)
 	{
 		msgs = eBasicSetContainer((InternalEObject)newQualifiedName, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME, msgs);
 		return msgs;
@@ -102,7 +102,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQualifiedName(QualifiedNamedElementRefCS newQualifiedName)
+	public void setQualifiedName(PathNameCS newQualifiedName)
 	{
 		if (newQualifiedName != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME && newQualifiedName != null))
 		{
@@ -112,7 +112,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQualifiedName != null)
-				msgs = ((InternalEObject)newQualifiedName).eInverseAdd(this, BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH, QualifiedNamedElementRefCS.class, msgs);
+				msgs = ((InternalEObject)newQualifiedName).eInverseAdd(this, BaseCSTPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
 			msgs = basicSetQualifiedName(newQualifiedName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -176,7 +176,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetQualifiedName((QualifiedNamedElementRefCS)otherEnd, msgs);
+				return basicSetQualifiedName((PathNameCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -208,7 +208,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 		switch (eContainerFeatureID())
 		{
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS__PATH, QualifiedNamedElementRefCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -243,7 +243,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 		switch (featureID)
 		{
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				setQualifiedName((QualifiedNamedElementRefCS)newValue);
+				setQualifiedName((PathNameCS)newValue);
 				return;
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				setElement((NamedElement)newValue);
@@ -263,7 +263,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 		switch (featureID)
 		{
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				setQualifiedName((QualifiedNamedElementRefCS)null);
+				setQualifiedName((PathNameCS)null);
 				return;
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				setElement((NamedElement)null);

@@ -127,7 +127,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPivotableElementCS()
 	 * @generated
 	 */
-	int PIVOTABLE_ELEMENT_CS = 26;
+	int PIVOTABLE_ELEMENT_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -450,7 +450,7 @@ public interface BaseCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPrimitiveTypeRefCS()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_REF_CS = 27;
+	int PRIMITIVE_TYPE_REF_CS = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ReferenceCSImpl <em>Reference CS</em>}' class.
@@ -2969,6 +2969,52 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS_FEATURE_COUNT = TYPED_ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPathNameCS()
+	 * @generated
+	 */
+	int PATH_NAME_CS = 26;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__PATH = ELEMENT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Path Name CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3012,52 +3058,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE_REF_CS_FEATURE_COUNT = TYPED_REF_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl <em>Qualified Named Element Ref CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedNamedElementRefCS()
-	 * @generated
-	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS = 28;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS__LOGICAL_PARENT = ELEMENT_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS__PATH = ELEMENT_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Qualified Named Element Ref CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAMED_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4922,6 +4922,38 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getParameterCS_Owner();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS <em>Path Name CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Path Name CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS
+	 * @generated
+	 */
+	EClass getPathNameCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Path</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath()
+	 * @see #getPathNameCS()
+	 * @generated
+	 */
+	EReference getPathNameCS_Path();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getElement <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getElement()
+	 * @see #getPathNameCS()
+	 * @generated
+	 */
+	EReference getPathNameCS_Element();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4962,38 +4994,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPrimitiveTypeRefCS_Name();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS <em>Qualified Named Element Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Qualified Named Element Ref CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS
-	 * @generated
-	 */
-	EClass getQualifiedNamedElementRefCS();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getPath <em>Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Path</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getPath()
-	 * @see #getQualifiedNamedElementRefCS()
-	 * @generated
-	 */
-	EReference getQualifiedNamedElementRefCS_Path();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getElement()
-	 * @see #getQualifiedNamedElementRefCS()
-	 * @generated
-	 */
-	EReference getQualifiedNamedElementRefCS_Element();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS <em>Reference CS</em>}'.
@@ -6189,6 +6189,32 @@ public interface BaseCSTPackage extends EPackage {
 		EReference PARAMETER_CS__OWNER = eINSTANCE.getParameterCS_Owner();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getPathNameCS()
+		 * @generated
+		 */
+		EClass PATH_NAME_CS = eINSTANCE.getPathNameCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_NAME_CS__PATH = eINSTANCE.getPathNameCS_Path();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_NAME_CS__ELEMENT = eINSTANCE.getPathNameCS_Element();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PivotableElementCSImpl <em>Pivotable Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6223,32 +6249,6 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PRIMITIVE_TYPE_REF_CS__NAME = eINSTANCE.getPrimitiveTypeRefCS_Name();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl <em>Qualified Named Element Ref CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedNamedElementRefCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getQualifiedNamedElementRefCS()
-		 * @generated
-		 */
-		EClass QUALIFIED_NAMED_ELEMENT_REF_CS = eINSTANCE.getQualifiedNamedElementRefCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Path</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference QUALIFIED_NAMED_ELEMENT_REF_CS__PATH = eINSTANCE.getQualifiedNamedElementRefCS_Path();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference QUALIFIED_NAMED_ELEMENT_REF_CS__ELEMENT = eINSTANCE.getQualifiedNamedElementRefCS_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ReferenceCSImpl <em>Reference CS</em>}' class.

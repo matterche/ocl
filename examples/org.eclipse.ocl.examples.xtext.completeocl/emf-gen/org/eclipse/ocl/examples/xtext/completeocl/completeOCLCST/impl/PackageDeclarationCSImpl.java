@@ -183,9 +183,9 @@ public class PackageDeclarationCSImpl extends NamedElementDeclCSImpl implements 
 	 */
 	public org.eclipse.ocl.examples.pivot.Package getPackage()
 	{
-		if (qualifiedElementRef == null) {
+		if (pathName == null) {
 			return null;
 		}
-		return (org.eclipse.ocl.examples.pivot.Package) qualifiedElementRef.getElement();
+		return (org.eclipse.ocl.examples.pivot.Package) pathName.getElement();
 	}
 } //PackageDeclarationCSImpl

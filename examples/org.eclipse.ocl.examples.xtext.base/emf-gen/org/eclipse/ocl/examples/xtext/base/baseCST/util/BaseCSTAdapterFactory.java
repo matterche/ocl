@@ -264,6 +264,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createParameterCSAdapter();
 			}
 			@Override
+			public Adapter casePathNameCS(PathNameCS object)
+			{
+				return createPathNameCSAdapter();
+			}
+			@Override
 			public Adapter casePivotableElementCS(PivotableElementCS object)
 			{
 				return createPivotableElementCSAdapter();
@@ -272,11 +277,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter casePrimitiveTypeRefCS(PrimitiveTypeRefCS object)
 			{
 				return createPrimitiveTypeRefCSAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object)
-			{
-				return createQualifiedNamedElementRefCSAdapter();
 			}
 			@Override
 			public Adapter caseReferenceCS(ReferenceCS object)
@@ -789,6 +789,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS <em>Path Name CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS
+	 * @generated
+	 */
+	public Adapter createPathNameCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -814,21 +829,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPrimitiveTypeRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS <em>Qualified Named Element Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedNamedElementRefCSAdapter()
-	{
 		return null;
 	}
 

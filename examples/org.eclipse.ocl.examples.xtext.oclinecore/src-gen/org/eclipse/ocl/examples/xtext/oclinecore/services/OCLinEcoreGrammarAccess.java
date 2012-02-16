@@ -3024,10 +3024,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypedTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TypedRefCS returns base::TypedRefCS:
-		//	PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS;
+		//	PrimitiveTypeCS | TypedTypeRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS
+		//PrimitiveTypeCS | TypedTypeRefCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PrimitiveTypeCS
@@ -3047,13 +3047,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMultiplicityMultiplicityCSParserRuleCall_1_0 = (RuleCall)cMultiplicityAssignment_1.eContents().get(0);
 		
 		//TypedMultiplicityRefCS returns base::TypedRefCS:
-		//	(PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS) multiplicity=MultiplicityCS?;
+		//	(PrimitiveTypeCS | TypedTypeRefCS) multiplicity=MultiplicityCS?;
 		public ParserRule getRule() { return rule; }
 
-		//(PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS) multiplicity=MultiplicityCS?
+		//(PrimitiveTypeCS | TypedTypeRefCS) multiplicity=MultiplicityCS?
 		public Group getGroup() { return cGroup; }
 
-		//PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS
+		//PrimitiveTypeCS | TypedTypeRefCS
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//PrimitiveTypeCS
@@ -3679,7 +3679,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedRefCS returns base::TypedRefCS:
-	//	PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS;
+	//	PrimitiveTypeCS | TypedTypeRefCS;
 	public TypedRefCSElements getTypedRefCSAccess() {
 		return (pTypedRefCS != null) ? pTypedRefCS : (pTypedRefCS = new TypedRefCSElements());
 	}
@@ -3689,7 +3689,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedMultiplicityRefCS returns base::TypedRefCS:
-	//	(PrimitiveTypeCS / *| CollectionTypeRefCS* / | TypedTypeRefCS) multiplicity=MultiplicityCS?;
+	//	(PrimitiveTypeCS | TypedTypeRefCS) multiplicity=MultiplicityCS?;
 	public TypedMultiplicityRefCSElements getTypedMultiplicityRefCSAccess() {
 		return (pTypedMultiplicityRefCS != null) ? pTypedMultiplicityRefCS : (pTypedMultiplicityRefCS = new TypedMultiplicityRefCSElements());
 	}
@@ -3977,6 +3977,36 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnreservedNameRule() {
 		return getUnreservedNameAccess().getRule();
+	}
+
+	//PathNameCS returns base::PathNameCS:
+	//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+	public EssentialOCLGrammarAccess.PathNameCSElements getPathNameCSAccess() {
+		return gaEssentialOCL.getPathNameCSAccess();
+	}
+	
+	public ParserRule getPathNameCSRule() {
+		return getPathNameCSAccess().getRule();
+	}
+
+	//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnrestrictedName];
+	public EssentialOCLGrammarAccess.FirstNamedElementRefCSElements getFirstNamedElementRefCSAccess() {
+		return gaEssentialOCL.getFirstNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getFirstNamedElementRefCSRule() {
+		return getFirstNamedElementRefCSAccess().getRule();
+	}
+
+	//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnreservedName];
+	public EssentialOCLGrammarAccess.LaterNamedElementRefCSElements getLaterNamedElementRefCSAccess() {
+		return gaEssentialOCL.getLaterNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getLaterNamedElementRefCSRule() {
+		return getLaterNamedElementRefCSAccess().getRule();
 	}
 
 	////---------------------------------------------------------------------

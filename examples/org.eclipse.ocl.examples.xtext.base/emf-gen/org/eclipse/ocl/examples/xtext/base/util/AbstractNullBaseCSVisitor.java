@@ -137,15 +137,15 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitPathNameCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS object) {
+		return null;
+	}
+
 	public R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object) {
 		return null;
 	}
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
 		return null;
 	}
 

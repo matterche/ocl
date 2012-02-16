@@ -19,7 +19,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -129,7 +129,7 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 //		else if (currentModel instanceof SimpleNamedElementRefCS) {
 //			currentModel = getPathScope(currentModel, contentAssistContext);
 //		}
-		else if (currentModel instanceof QualifiedNamedElementRefCS) {
+		else if (currentModel instanceof PathNameCS) {
 			currentModel = getPathScope(currentModel, contentAssistContext);
 		}
 		String ruleName = null;

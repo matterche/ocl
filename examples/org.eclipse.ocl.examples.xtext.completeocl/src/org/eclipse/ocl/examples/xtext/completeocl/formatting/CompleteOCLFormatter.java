@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAcc
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.PostCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.PreCSElements;
 import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.PropertyContextDeclCSElements;
-import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLGrammarAccess.QualifiedNamedElementRefCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
@@ -41,13 +40,8 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
-
-//	protected void configureCollectionTypeCS(FormattingConfig c, CollectionTypeCSElements a) {
-//		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
-//		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
-//	}
-	
+public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter
+{
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
 
@@ -66,6 +60,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
 	    configureNavigationOperatorCS(c, f.getNavigationOperatorCSAccess());
 	    configureNestedExpCS(c, f.getNestedExpCSAccess());
+	    configurePathNameCS(c, f.getPathNameCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
 	    configureTypeNameExpCS(c, f.getTypeNameExpCSAccess());
@@ -155,29 +150,8 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 		    c.setLinewrap(2).before(a.getContextKeyword_0());
 		    c.setLinewrap(1).after(a.getOwnedTypeAssignment_3());
 	    }
-	    {
-	    	QualifiedNamedElementRefCSElements a = f.getQualifiedNamedElementRefCSAccess();
-		    c.setNoSpace().around(a.getColonColonKeyword_1_0());
-	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());
 	    }
 	}
-
-//	protected void configureNavigatingExpCS(FormattingConfig c, NavigatingExpCSElements a) {
-//	    c.setNoSpace().around(a.getOpFullStopKeyword_1_0_1_0_0());
-//	    c.setNoSpace().around(a.getOpHyphenMinusGreaterThanSignKeyword_1_0_1_0_1());
-//	}
-
-//	protected void configureNavigationExpCS(FormattingConfig c, NavigationExpCSElements a) {
-//	    c.setNoSpace().around(a.getOpFullStopKeyword_1_0_1_0_0());
-//	    c.setNoSpace().around(a.getOpHyphenMinusGreaterThanSignKeyword_1_0_1_0_1());
-//	}
-
-//	protected void configureTupleTypeCS(FormattingConfig c, TupleTypeCSElements a) {
-//		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
-//		c.setNoSpace().before(a.getCommaKeyword_1_1_1_0());
-//		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
-//		c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_2());
-//	}
 }

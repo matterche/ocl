@@ -111,7 +111,7 @@ InfixOperator: // Intended to be overridden
 NavigationOperator: // Intended to be overridden
 	EssentialOCLNavigationOperator;
 
-	//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 //  Names
 //---------------------------------------------------------------------
 
@@ -131,7 +131,16 @@ EssentialOCLUnreservedName returns ecore::EString:
 UnreservedName returns ecore::EString: // Intended to be overridden
 	EssentialOCLUnreservedName;
 
-	//---------------------------------------------------------------------
+PathNameCS returns base::PathNameCS:
+	path+=FirstNamedElementRefCS ('::' path+=LaterNamedElementRefCS)*;
+
+FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	element=[pivot::NamedElement|UnrestrictedName];
+
+LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	element=[pivot::NamedElement|UnreservedName];
+
+//---------------------------------------------------------------------
 //  Types
 //---------------------------------------------------------------------
 PrimitiveTypeIdentifier:

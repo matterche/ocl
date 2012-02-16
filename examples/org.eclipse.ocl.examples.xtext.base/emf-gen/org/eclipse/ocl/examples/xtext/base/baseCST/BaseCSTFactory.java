@@ -199,6 +199,15 @@ public interface BaseCSTFactory extends EFactory {
 	ParameterCS createParameterCS();
 
 	/**
+	 * Returns a new object of class '<em>Path Name CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Name CS</em>'.
+	 * @generated
+	 */
+	PathNameCS createPathNameCS();
+
+	/**
 	 * Returns a new object of class '<em>Primitive Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,15 +215,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	PrimitiveTypeRefCS createPrimitiveTypeRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Qualified Named Element Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Named Element Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedNamedElementRefCS createQualifiedNamedElementRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Reference CS</em>'.

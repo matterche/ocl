@@ -309,7 +309,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
-		NamedElement modelElement = csElement.getQualifiedElementRef().getElement();
+		NamedElement modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
 		}

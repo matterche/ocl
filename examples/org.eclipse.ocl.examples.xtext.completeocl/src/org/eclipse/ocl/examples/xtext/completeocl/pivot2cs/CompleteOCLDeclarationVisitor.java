@@ -40,7 +40,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
@@ -98,15 +98,15 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 	}
 
 	protected void refreshQualifiedNamedElement(NamedElementDeclCS csDecl, NamedElement object, EObject scope) {
-		QualifiedNamedElementRefCS csQualifiedRef = csDecl.getQualifiedElementRef();
-		if (csQualifiedRef == null) {
-			csQualifiedRef = BaseCSTFactory.eINSTANCE.createQualifiedNamedElementRefCS();
-			csDecl.setQualifiedElementRef(csQualifiedRef);
+		PathNameCS csPathName = csDecl.getPathName();
+		if (csPathName == null) {
+			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();
+			csDecl.setPathName(csPathName);
 		}
 		else {
-			csQualifiedRef.getPath().clear();		// FIXME re-use
+			csPathName.getPath().clear();		// FIXME re-use
 		}
-		List<SimpleNamedElementRefCS> csPath = csQualifiedRef.getPath();
+		List<SimpleNamedElementRefCS> csPath = csPathName.getPath();
 		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
 			if (n == scope) {
 				break;

@@ -5,7 +5,9 @@ import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
@@ -82,6 +84,12 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 					return; 
 				}
 				else break;
+			case BaseCSTPackage.PATH_NAME_CS:
+				if(context == grammarAccess.getPathNameCSRule()) {
+					sequence_PathNameCS(context, (PathNameCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
@@ -90,6 +98,16 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				}
 				else if(context == grammarAccess.getTypeExpCSRule()) {
 					sequence_TypeExpCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
+				if(context == grammarAccess.getFirstNamedElementRefCSRule()) {
+					sequence_FirstNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getLaterNamedElementRefCSRule()) {
+					sequence_LaterNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -513,6 +531,15 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
+	 *     element=[NamedElement|UnrestrictedName]
+	 */
+	protected void sequence_FirstNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (condition=ExpCS thenExpression=ExpCS elseExpression=ExpCS)
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
@@ -543,6 +570,15 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *     (ownedExpression+=InfixedExpCS_InfixExpCS_1_0 (ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)+)
 	 */
 	protected void sequence_InfixedExpCS(EObject context, InfixExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     element=[NamedElement|UnreservedName]
+	 */
+	protected void sequence_LaterNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -674,6 +710,15 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *     name=NUMBER_LITERAL
 	 */
 	protected void sequence_NumberLiteralExpCS(EObject context, NumberLiteralExpCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path+=FirstNamedElementRefCS path+=LaterNamedElementRefCS*)
+	 */
+	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

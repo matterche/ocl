@@ -54,7 +54,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -206,12 +206,12 @@ public class BaseCSTValidator extends EObjectValidator
 				return validatePackageCS((PackageCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETER_CS:
 				return validateParameterCS((ParameterCS)value, diagnostics, context);
+			case BaseCSTPackage.PATH_NAME_CS:
+				return validatePathNameCS((PathNameCS)value, diagnostics, context);
 			case BaseCSTPackage.PIVOTABLE_ELEMENT_CS:
 				return validatePivotableElementCS((PivotableElementCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS:
-				return validateQualifiedNamedElementRefCS((QualifiedNamedElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_CS:
@@ -526,6 +526,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validatePathNameCS(PathNameCS pathNameCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(pathNameCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validatePivotableElementCS(PivotableElementCS pivotableElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(pivotableElementCS, diagnostics, context);
@@ -539,16 +549,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validatePrimitiveTypeRefCS(PrimitiveTypeRefCS primitiveTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(primitiveTypeRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedNamedElementRefCS(QualifiedNamedElementRefCS qualifiedNamedElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedNamedElementRefCS, diagnostics, context);
 	}
 
 	/**

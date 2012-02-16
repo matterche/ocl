@@ -157,16 +157,16 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitParameterCS(object);
 	}
 
+	public R visitPathNameCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS object) {
+		return delegate.visitPathNameCS(object);
+	}
+
 	public R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object) {
 		return delegate.visitPivotableElementCS(object);
 	}
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
 		return delegate.visitPrimitiveTypeRefCS(object);
-	}
-
-	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
-		return delegate.visitQualifiedNamedElementRefCS(object);
 	}
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {

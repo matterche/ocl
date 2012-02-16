@@ -123,8 +123,8 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
+			case BaseCSTPackage.PATH_NAME_CS: return createPathNameCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS: return createQualifiedNamedElementRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS: return createSimpleNamedElementRefCS();
@@ -372,9 +372,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
-		PrimitiveTypeRefCSImpl primitiveTypeRefCS = new PrimitiveTypeRefCSImpl();
-		return primitiveTypeRefCS;
+	public PathNameCS createPathNameCS()
+	{
+		PathNameCSImpl pathNameCS = new PathNameCSImpl();
+		return pathNameCS;
 	}
 
 	/**
@@ -382,10 +383,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifiedNamedElementRefCS createQualifiedNamedElementRefCS()
-	{
-		QualifiedNamedElementRefCSImpl qualifiedNamedElementRefCS = new QualifiedNamedElementRefCSImpl();
-		return qualifiedNamedElementRefCS;
+	public PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
+		PrimitiveTypeRefCSImpl primitiveTypeRefCS = new PrimitiveTypeRefCSImpl();
+		return primitiveTypeRefCS;
 	}
 
 	/**

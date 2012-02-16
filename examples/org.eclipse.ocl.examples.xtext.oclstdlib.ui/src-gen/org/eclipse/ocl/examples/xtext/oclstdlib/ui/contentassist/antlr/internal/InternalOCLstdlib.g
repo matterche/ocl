@@ -1571,6 +1571,64 @@ finally {
 
 
 
+
+
+// Entry rule entryRuleFirstNamedElementRefCS
+entryRuleFirstNamedElementRefCS 
+:
+{ before(grammarAccess.getFirstNamedElementRefCSRule()); }
+	 ruleFirstNamedElementRefCS
+{ after(grammarAccess.getFirstNamedElementRefCSRule()); } 
+	 EOF 
+;
+
+// Rule FirstNamedElementRefCS
+ruleFirstNamedElementRefCS
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getFirstNamedElementRefCSAccess().getElementAssignment()); }
+(rule__FirstNamedElementRefCS__ElementAssignment)
+{ after(grammarAccess.getFirstNamedElementRefCSAccess().getElementAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleLaterNamedElementRefCS
+entryRuleLaterNamedElementRefCS 
+:
+{ before(grammarAccess.getLaterNamedElementRefCSRule()); }
+	 ruleLaterNamedElementRefCS
+{ after(grammarAccess.getLaterNamedElementRefCSRule()); } 
+	 EOF 
+;
+
+// Rule LaterNamedElementRefCS
+ruleLaterNamedElementRefCS
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getLaterNamedElementRefCSAccess().getElementAssignment()); }
+(rule__LaterNamedElementRefCS__ElementAssignment)
+{ after(grammarAccess.getLaterNamedElementRefCSAccess().getElementAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRulePrimitiveTypeIdentifier
 entryRulePrimitiveTypeIdentifier 
 :
@@ -11804,6 +11862,8 @@ finally {
 
 
 
+
+
 rule__CollectionTypeCS__Group__0
     @init {
 		int stackSize = keepStackSize();
@@ -19565,6 +19625,46 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+
+
+
+rule__FirstNamedElementRefCS__ElementAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); }
+(
+{ before(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementUnrestrictedNameParserRuleCall_0_1()); }
+	ruleUnrestrictedName{ after(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementUnrestrictedNameParserRuleCall_0_1()); }
+)
+{ after(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LaterNamedElementRefCS__ElementAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); }
+(
+{ before(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementUnreservedNameParserRuleCall_0_1()); }
+	ruleUnreservedName{ after(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementUnreservedNameParserRuleCall_0_1()); }
+)
+{ after(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 rule__PrimitiveTypeCS__NameAssignment
     @init {

@@ -141,16 +141,16 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitTypedElementCS(object);
 	}
 
+	public R visitPathNameCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS object) {
+		return visitElementCS(object);
+	}
+
 	public R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object) {
 		return visitElementCS(object);
 	}
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
 		return visitTypedRefCS(object);
-	}
-
-	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
-		return visitElementCS(object);
 	}
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {

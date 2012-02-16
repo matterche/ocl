@@ -17,7 +17,7 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 import org.eclipse.ocl.examples.pivot.util.MorePivotable;
 
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getQualifiedElementRef <em>Qualified Element Ref</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,29 +38,29 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 public interface NamedElementDeclCS extends ModelElementCS, MorePivotable
 {
 	/**
-	 * Returns the value of the '<em><b>Qualified Element Ref</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Qualified Element Ref</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualified Element Ref</em>' containment reference.
-	 * @see #setQualifiedElementRef(QualifiedNamedElementRefCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getNamedElementDeclCS_QualifiedElementRef()
+	 * @return the value of the '<em>Path Name</em>' containment reference.
+	 * @see #setPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getNamedElementDeclCS_PathName()
 	 * @model containment="true"
 	 * @generated
 	 */
-	QualifiedNamedElementRefCS getQualifiedElementRef();
+	PathNameCS getPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getQualifiedElementRef <em>Qualified Element Ref</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS#getPathName <em>Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Qualified Element Ref</em>' containment reference.
-	 * @see #getQualifiedElementRef()
+	 * @param value the new value of the '<em>Path Name</em>' containment reference.
+	 * @see #getPathName()
 	 * @generated
 	 */
-	void setQualifiedElementRef(QualifiedNamedElementRefCS value);
+	void setPathName(PathNameCS value);
 
 } // NamedElementDeclCS

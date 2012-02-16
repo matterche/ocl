@@ -26,16 +26,16 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getQualifiedNamedElementRefCS()
+ * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS()
  * @model superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS org.eclipse.ocl.examples.pivot.Pivotable"
  * @generated
  */
-public interface QualifiedNamedElementRefCS extends ElementCS, Pivotable
+public interface PathNameCS extends ElementCS, Pivotable
 {
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
@@ -48,7 +48,7 @@ public interface QualifiedNamedElementRefCS extends ElementCS, Pivotable
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getQualifiedNamedElementRefCS_Path()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_Path()
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName
 	 * @model opposite="qualifiedName" containment="true" required="true"
 	 * @generated
@@ -64,7 +64,7 @@ public interface QualifiedNamedElementRefCS extends ElementCS, Pivotable
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getQualifiedNamedElementRefCS_Element()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_Element()
 	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */

@@ -832,6 +832,86 @@ ruleUnreservedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 
 
 
+
+
+// Entry rule entryRuleFirstNamedElementRefCS
+entryRuleFirstNamedElementRefCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFirstNamedElementRefCSRule()); }
+	 iv_ruleFirstNamedElementRefCS=ruleFirstNamedElementRefCS 
+	 { $current=$iv_ruleFirstNamedElementRefCS.current; } 
+	 EOF 
+;
+
+// Rule FirstNamedElementRefCS
+ruleFirstNamedElementRefCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFirstNamedElementRefCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getFirstNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
+	    }
+		ruleUnrestrictedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleLaterNamedElementRefCS
+entryRuleLaterNamedElementRefCS returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLaterNamedElementRefCSRule()); }
+	 iv_ruleLaterNamedElementRefCS=ruleLaterNamedElementRefCS 
+	 { $current=$iv_ruleLaterNamedElementRefCS.current; } 
+	 EOF 
+;
+
+// Rule LaterNamedElementRefCS
+ruleLaterNamedElementRefCS returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLaterNamedElementRefCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getLaterNamedElementRefCSAccess().getElementNamedElementCrossReference_0()); 
+	    }
+		ruleUnreservedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
 // Entry rule entryRulePrimitiveTypeIdentifier
 entryRulePrimitiveTypeIdentifier returns [String current=null] 
 	:

@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
@@ -144,7 +144,7 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<CSScopeAdap
 	}
 
 	@Override
-	public CSScopeAdapter visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS eObject) {
+	public CSScopeAdapter visitPathNameCS(PathNameCS eObject) {
 		return EmptyCSScopeAdapter.INSTANCE;
 	}
 

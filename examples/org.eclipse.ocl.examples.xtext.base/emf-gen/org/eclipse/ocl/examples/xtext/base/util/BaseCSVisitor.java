@@ -71,9 +71,9 @@ public interface BaseCSVisitor<R, C>
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);
 	R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object);
 	R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object);
+	R visitPathNameCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS object);
 	R visitPivotableElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS object);
 	R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object);
-	R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object);
 	R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object);
 	R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object);
 	R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object);

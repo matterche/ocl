@@ -272,8 +272,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSelfNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cSelfNameUnrestrictedNameParserRuleCall_1_0_0 = (RuleCall)cSelfNameAssignment_1_0.eContents().get(0);
 		private final Keyword cColonKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cQualifiedElementRefAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_2_0 = (RuleCall)cQualifiedElementRefAssignment_2.eContents().get(0);
+		private final Assignment cPathNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_2_0 = (RuleCall)cPathNameAssignment_2.eContents().get(0);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Assignment cRulesAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cRulesInvCSParserRuleCall_3_0_0 = (RuleCall)cRulesAssignment_3_0.eContents().get(0);
@@ -281,11 +281,10 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRulesDefCSParserRuleCall_3_1_0 = (RuleCall)cRulesAssignment_3_1.eContents().get(0);
 		
 		//ClassifierContextDeclCS:
-		//	"context" (selfName=UnrestrictedName ":")? qualifiedElementRef=QualifiedNamedElementRefCS (rules+=InvCS |
-		//	rules+=DefCS)*;
+		//	"context" (selfName=UnrestrictedName ":")? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)*;
 		public ParserRule getRule() { return rule; }
 
-		//"context" (selfName=UnrestrictedName ":")? qualifiedElementRef=QualifiedNamedElementRefCS (rules+=InvCS | rules+=DefCS)*
+		//"context" (selfName=UnrestrictedName ":")? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)*
 		public Group getGroup() { return cGroup; }
 
 		//"context"
@@ -303,11 +302,11 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1_1() { return cColonKeyword_1_1; }
 
-		//qualifiedElementRef=QualifiedNamedElementRefCS
-		public Assignment getQualifiedElementRefAssignment_2() { return cQualifiedElementRefAssignment_2; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_2() { return cPathNameAssignment_2; }
 
-		//QualifiedNamedElementRefCS
-		public RuleCall getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_2_0() { return cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_2_0; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_2_0() { return cPathNamePathNameCSParserRuleCall_2_0; }
 
 		//(rules+=InvCS | rules+=DefCS)*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -719,8 +718,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationContextDeclCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cContextKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cQualifiedElementRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0 = (RuleCall)cQualifiedElementRefAssignment_1.eContents().get(0);
+		private final Assignment cPathNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_1_0 = (RuleCall)cPathNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cParametersAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
@@ -742,22 +741,22 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRulesBodyCSParserRuleCall_7_2_0 = (RuleCall)cRulesAssignment_7_2.eContents().get(0);
 		
 		//OperationContextDeclCS:
-		//	"context" qualifiedElementRef=QualifiedNamedElementRefCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
-		//	")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
+		//	"context" pathName=PathNameCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":"
+		//	ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
 		public ParserRule getRule() { return rule; }
 
-		//"context" qualifiedElementRef=QualifiedNamedElementRefCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
-		//")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
+		//"context" pathName=PathNameCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":" ownedType=TypeExpCS?
+		//(rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
 		public Group getGroup() { return cGroup; }
 
 		//"context"
 		public Keyword getContextKeyword_0() { return cContextKeyword_0; }
 
-		//qualifiedElementRef=QualifiedNamedElementRefCS
-		public Assignment getQualifiedElementRefAssignment_1() { return cQualifiedElementRefAssignment_1; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_1() { return cPathNameAssignment_1; }
 
-		//QualifiedNamedElementRefCS
-		public RuleCall getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0() { return cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_1_0() { return cPathNamePathNameCSParserRuleCall_1_0; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
@@ -821,27 +820,27 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDeclarationCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cQualifiedElementRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0 = (RuleCall)cQualifiedElementRefAssignment_1.eContents().get(0);
+		private final Assignment cPathNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_1_0 = (RuleCall)cPathNameAssignment_1.eContents().get(0);
 		private final Assignment cContextsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContextsContextDeclCSParserRuleCall_2_0 = (RuleCall)cContextsAssignment_2.eContents().get(0);
 		private final Keyword cEndpackageKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//PackageDeclarationCS:
-		//	"package" qualifiedElementRef=QualifiedNamedElementRefCS contexts+=ContextDeclCS* "endpackage";
+		//	"package" pathName=PathNameCS contexts+=ContextDeclCS* "endpackage";
 		public ParserRule getRule() { return rule; }
 
-		//"package" qualifiedElementRef=QualifiedNamedElementRefCS contexts+=ContextDeclCS* "endpackage"
+		//"package" pathName=PathNameCS contexts+=ContextDeclCS* "endpackage"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
 		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 
-		//qualifiedElementRef=QualifiedNamedElementRefCS
-		public Assignment getQualifiedElementRefAssignment_1() { return cQualifiedElementRefAssignment_1; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_1() { return cPathNameAssignment_1; }
 
-		//QualifiedNamedElementRefCS
-		public RuleCall getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0() { return cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_1_0() { return cPathNamePathNameCSParserRuleCall_1_0; }
 
 		//contexts+=ContextDeclCS*
 		public Assignment getContextsAssignment_2() { return cContextsAssignment_2; }
@@ -973,8 +972,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyContextDeclCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cContextKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cQualifiedElementRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0 = (RuleCall)cQualifiedElementRefAssignment_1.eContents().get(0);
+		private final Assignment cPathNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_1_0 = (RuleCall)cPathNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cOwnedTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_3_0 = (RuleCall)cOwnedTypeAssignment_3.eContents().get(0);
@@ -991,22 +990,20 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRulesInitCSParserRuleCall_4_1_1_0 = (RuleCall)cRulesAssignment_4_1_1.eContents().get(0);
 		
 		//PropertyContextDeclCS:
-		//	"context" qualifiedElementRef=QualifiedNamedElementRefCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? |
-		//	rules+=DerCS rules+=InitCS?);
+		//	"context" pathName=PathNameCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?);
 		public ParserRule getRule() { return rule; }
 
-		//"context" qualifiedElementRef=QualifiedNamedElementRefCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? |
-		//rules+=DerCS rules+=InitCS?)
+		//"context" pathName=PathNameCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?)
 		public Group getGroup() { return cGroup; }
 
 		//"context"
 		public Keyword getContextKeyword_0() { return cContextKeyword_0; }
 
-		//qualifiedElementRef=QualifiedNamedElementRefCS
-		public Assignment getQualifiedElementRefAssignment_1() { return cQualifiedElementRefAssignment_1; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_1() { return cPathNameAssignment_1; }
 
-		//QualifiedNamedElementRefCS
-		public RuleCall getQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0() { return cQualifiedElementRefQualifiedNamedElementRefCSParserRuleCall_1_0; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_1_0() { return cPathNamePathNameCSParserRuleCall_1_0; }
 
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
@@ -1049,82 +1046,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//InitCS
 		public RuleCall getRulesInitCSParserRuleCall_4_1_1_0() { return cRulesInitCSParserRuleCall_4_1_1_0; }
-	}
-
-	public class QualifiedNamedElementRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNamedElementRefCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPathUnrestrictedNamedElementRefCSParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cPathAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPathUnreservedNamedElementRefCSParserRuleCall_1_1_0 = (RuleCall)cPathAssignment_1_1.eContents().get(0);
-		
-		//QualifiedNamedElementRefCS returns base::QualifiedNamedElementRefCS:
-		//	path+=UnrestrictedNamedElementRefCS ("::" path+=UnreservedNamedElementRefCS)*;
-		public ParserRule getRule() { return rule; }
-
-		//path+=UnrestrictedNamedElementRefCS ("::" path+=UnreservedNamedElementRefCS)*
-		public Group getGroup() { return cGroup; }
-
-		//path+=UnrestrictedNamedElementRefCS
-		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
-
-		//UnrestrictedNamedElementRefCS
-		public RuleCall getPathUnrestrictedNamedElementRefCSParserRuleCall_0_0() { return cPathUnrestrictedNamedElementRefCSParserRuleCall_0_0; }
-
-		//("::" path+=UnreservedNamedElementRefCS)*
-		public Group getGroup_1() { return cGroup_1; }
-
-		//"::"
-		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
-
-		//path+=UnreservedNamedElementRefCS
-		public Assignment getPathAssignment_1_1() { return cPathAssignment_1_1; }
-
-		//UnreservedNamedElementRefCS
-		public RuleCall getPathUnreservedNamedElementRefCSParserRuleCall_1_1_0() { return cPathUnreservedNamedElementRefCSParserRuleCall_1_1_0; }
-	}
-
-	public class UnreservedNamedElementRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnreservedNamedElementRefCS");
-		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
-		private final RuleCall cElementNamedElementUnreservedNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
-		
-		//UnreservedNamedElementRefCS returns base::SimpleNamedElementRefCS:
-		//	element=[pivot::NamedElement|UnreservedName];
-		public ParserRule getRule() { return rule; }
-
-		//element=[pivot::NamedElement|UnreservedName]
-		public Assignment getElementAssignment() { return cElementAssignment; }
-
-		//[pivot::NamedElement|UnreservedName]
-		public CrossReference getElementNamedElementCrossReference_0() { return cElementNamedElementCrossReference_0; }
-
-		//UnreservedName
-		public RuleCall getElementNamedElementUnreservedNameParserRuleCall_0_1() { return cElementNamedElementUnreservedNameParserRuleCall_0_1; }
-	}
-
-	public class UnrestrictedNamedElementRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnrestrictedNamedElementRefCS");
-		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
-		private final RuleCall cElementNamedElementUnrestrictedNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
-		
-		//UnrestrictedNamedElementRefCS returns base::SimpleNamedElementRefCS:
-		//	element=[pivot::NamedElement|UnrestrictedName];
-		public ParserRule getRule() { return rule; }
-
-		//element=[pivot::NamedElement|UnrestrictedName]
-		public Assignment getElementAssignment() { return cElementAssignment; }
-
-		//[pivot::NamedElement|UnrestrictedName]
-		public CrossReference getElementNamedElementCrossReference_0() { return cElementNamedElementCrossReference_0; }
-
-		//UnrestrictedName
-		public RuleCall getElementNamedElementUnrestrictedNameParserRuleCall_0_1() { return cElementNamedElementUnrestrictedNameParserRuleCall_0_1; }
 	}
 
 	public class SpecificationCSElements extends AbstractParserRuleElementFinder {
@@ -1246,9 +1167,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private PostCSElements pPostCS;
 	private PreCSElements pPreCS;
 	private PropertyContextDeclCSElements pPropertyContextDeclCS;
-	private QualifiedNamedElementRefCSElements pQualifiedNamedElementRefCS;
-	private UnreservedNamedElementRefCSElements pUnreservedNamedElementRefCS;
-	private UnrestrictedNamedElementRefCSElements pUnrestrictedNamedElementRefCS;
 	private SpecificationCSElements pSpecificationCS;
 	private NavigatingExpCS_BaseElements pNavigatingExpCS_Base;
 	private NavigatingArgExpCSElements pNavigatingArgExpCS;
@@ -1339,8 +1257,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassifierContextDeclCS:
-	//	"context" (selfName=UnrestrictedName ":")? qualifiedElementRef=QualifiedNamedElementRefCS (rules+=InvCS |
-	//	rules+=DefCS)*;
+	//	"context" (selfName=UnrestrictedName ":")? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)*;
 	public ClassifierContextDeclCSElements getClassifierContextDeclCSAccess() {
 		return (pClassifierContextDeclCS != null) ? pClassifierContextDeclCS : (pClassifierContextDeclCS = new ClassifierContextDeclCSElements());
 	}
@@ -1433,8 +1350,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OperationContextDeclCS:
-	//	"context" qualifiedElementRef=QualifiedNamedElementRefCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
-	//	")" ":" ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
+	//	"context" pathName=PathNameCS "(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")" ":"
+	//	ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*;
 	public OperationContextDeclCSElements getOperationContextDeclCSAccess() {
 		return (pOperationContextDeclCS != null) ? pOperationContextDeclCS : (pOperationContextDeclCS = new OperationContextDeclCSElements());
 	}
@@ -1444,7 +1361,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageDeclarationCS:
-	//	"package" qualifiedElementRef=QualifiedNamedElementRefCS contexts+=ContextDeclCS* "endpackage";
+	//	"package" pathName=PathNameCS contexts+=ContextDeclCS* "endpackage";
 	public PackageDeclarationCSElements getPackageDeclarationCSAccess() {
 		return (pPackageDeclarationCS != null) ? pPackageDeclarationCS : (pPackageDeclarationCS = new PackageDeclarationCSElements());
 	}
@@ -1484,44 +1401,13 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyContextDeclCS:
-	//	"context" qualifiedElementRef=QualifiedNamedElementRefCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? |
-	//	rules+=DerCS rules+=InitCS?);
+	//	"context" pathName=PathNameCS ":" ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | rules+=DerCS rules+=InitCS?);
 	public PropertyContextDeclCSElements getPropertyContextDeclCSAccess() {
 		return (pPropertyContextDeclCS != null) ? pPropertyContextDeclCS : (pPropertyContextDeclCS = new PropertyContextDeclCSElements());
 	}
 	
 	public ParserRule getPropertyContextDeclCSRule() {
 		return getPropertyContextDeclCSAccess().getRule();
-	}
-
-	//QualifiedNamedElementRefCS returns base::QualifiedNamedElementRefCS:
-	//	path+=UnrestrictedNamedElementRefCS ("::" path+=UnreservedNamedElementRefCS)*;
-	public QualifiedNamedElementRefCSElements getQualifiedNamedElementRefCSAccess() {
-		return (pQualifiedNamedElementRefCS != null) ? pQualifiedNamedElementRefCS : (pQualifiedNamedElementRefCS = new QualifiedNamedElementRefCSElements());
-	}
-	
-	public ParserRule getQualifiedNamedElementRefCSRule() {
-		return getQualifiedNamedElementRefCSAccess().getRule();
-	}
-
-	//UnreservedNamedElementRefCS returns base::SimpleNamedElementRefCS:
-	//	element=[pivot::NamedElement|UnreservedName];
-	public UnreservedNamedElementRefCSElements getUnreservedNamedElementRefCSAccess() {
-		return (pUnreservedNamedElementRefCS != null) ? pUnreservedNamedElementRefCS : (pUnreservedNamedElementRefCS = new UnreservedNamedElementRefCSElements());
-	}
-	
-	public ParserRule getUnreservedNamedElementRefCSRule() {
-		return getUnreservedNamedElementRefCSAccess().getRule();
-	}
-
-	//UnrestrictedNamedElementRefCS returns base::SimpleNamedElementRefCS:
-	//	element=[pivot::NamedElement|UnrestrictedName];
-	public UnrestrictedNamedElementRefCSElements getUnrestrictedNamedElementRefCSAccess() {
-		return (pUnrestrictedNamedElementRefCS != null) ? pUnrestrictedNamedElementRefCS : (pUnrestrictedNamedElementRefCS = new UnrestrictedNamedElementRefCSElements());
-	}
-	
-	public ParserRule getUnrestrictedNamedElementRefCSRule() {
-		return getUnrestrictedNamedElementRefCSAccess().getRule();
 	}
 
 	//SpecificationCS returns ContextSpecificationCS:
@@ -1810,6 +1696,36 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getUnreservedNameRule() {
 		return getUnreservedNameAccess().getRule();
+	}
+
+	//PathNameCS returns base::PathNameCS:
+	//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+	public EssentialOCLGrammarAccess.PathNameCSElements getPathNameCSAccess() {
+		return gaEssentialOCL.getPathNameCSAccess();
+	}
+	
+	public ParserRule getPathNameCSRule() {
+		return getPathNameCSAccess().getRule();
+	}
+
+	//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnrestrictedName];
+	public EssentialOCLGrammarAccess.FirstNamedElementRefCSElements getFirstNamedElementRefCSAccess() {
+		return gaEssentialOCL.getFirstNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getFirstNamedElementRefCSRule() {
+		return getFirstNamedElementRefCSAccess().getRule();
+	}
+
+	//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//	element=[pivot::NamedElement|UnreservedName];
+	public EssentialOCLGrammarAccess.LaterNamedElementRefCSElements getLaterNamedElementRefCSAccess() {
+		return gaEssentialOCL.getLaterNamedElementRefCSAccess();
+	}
+	
+	public ParserRule getLaterNamedElementRefCSRule() {
+		return getLaterNamedElementRefCSAccess().getRule();
 	}
 
 	//PrimitiveTypeCS returns base::PrimitiveTypeRefCS:

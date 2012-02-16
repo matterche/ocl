@@ -38,7 +38,7 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 {
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getPath <em>Path</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Qualified Name</em>' container reference isn't clear,
@@ -46,13 +46,13 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' container reference.
-	 * @see #setQualifiedName(QualifiedNamedElementRefCS)
+	 * @see #setQualifiedName(PathNameCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getSimpleNamedElementRefCS_QualifiedName()
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS#getPath
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath
 	 * @model opposite="path" required="true" transient="false"
 	 * @generated
 	 */
-	QualifiedNamedElementRefCS getQualifiedName();
+	PathNameCS getQualifiedName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName <em>Qualified Name</em>}' container reference.
@@ -62,7 +62,7 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * @see #getQualifiedName()
 	 * @generated
 	 */
-	void setQualifiedName(QualifiedNamedElementRefCS value);
+	void setQualifiedName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.

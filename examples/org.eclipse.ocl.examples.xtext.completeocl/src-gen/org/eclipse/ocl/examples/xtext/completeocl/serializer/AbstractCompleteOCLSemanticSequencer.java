@@ -7,8 +7,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
@@ -123,6 +123,12 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 					return; 
 				}
 				else break;
+			case BaseCSTPackage.PATH_NAME_CS:
+				if(context == grammarAccess.getPathNameCSRule()) {
+					sequence_PathNameCS(context, (PathNameCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
@@ -134,19 +140,13 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 					return; 
 				}
 				else break;
-			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS:
-				if(context == grammarAccess.getQualifiedNamedElementRefCSRule()) {
-					sequence_QualifiedNamedElementRefCS(context, (QualifiedNamedElementRefCS) semanticObject); 
-					return; 
-				}
-				else break;
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
-				if(context == grammarAccess.getUnreservedNamedElementRefCSRule()) {
-					sequence_UnreservedNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
+				if(context == grammarAccess.getFirstNamedElementRefCSRule()) {
+					sequence_FirstNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getUnrestrictedNamedElementRefCSRule()) {
-					sequence_UnrestrictedNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
+				else if(context == grammarAccess.getLaterNamedElementRefCSRule()) {
+					sequence_LaterNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -635,7 +635,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (selfName=UnrestrictedName? qualifiedElementRef=QualifiedNamedElementRefCS (rules+=InvCS | rules+=DefCS)*)
+	 *     (selfName=UnrestrictedName? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)*)
 	 */
 	protected void sequence_ClassifierContextDeclCS(EObject context, ClassifierContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -731,6 +731,15 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
+	 *     element=[NamedElement|UnrestrictedName]
+	 */
+	protected void sequence_FirstNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (condition=ExpCS thenExpression=ExpCS elseExpression=ExpCS)
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
@@ -798,6 +807,15 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 */
 	protected void sequence_InvCS(EObject context, InvCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     element=[NamedElement|UnreservedName]
+	 */
+	protected void sequence_LaterNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -997,12 +1015,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         qualifiedElementRef=QualifiedNamedElementRefCS 
-	 *         (parameters+=ParameterCS parameters+=ParameterCS*)? 
-	 *         ownedType=TypeExpCS? 
-	 *         (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*
-	 *     )
+	 *     (pathName=PathNameCS (parameters+=ParameterCS parameters+=ParameterCS*)? ownedType=TypeExpCS? (rules+=PreCS | rules+=PostCS | rules+=BodyCS)*)
 	 */
 	protected void sequence_OperationContextDeclCS(EObject context, OperationContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1011,7 +1024,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (qualifiedElementRef=QualifiedNamedElementRefCS contexts+=ContextDeclCS*)
+	 *     (pathName=PathNameCS contexts+=ContextDeclCS*)
 	 */
 	protected void sequence_PackageDeclarationCS(EObject context, PackageDeclarationCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1024,6 +1037,15 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 */
 	protected void sequence_ParameterCS(EObject context, VariableCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path+=FirstNamedElementRefCS path+=LaterNamedElementRefCS*)
+	 */
+	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1065,18 +1087,9 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (qualifiedElementRef=QualifiedNamedElementRefCS ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | (rules+=DerCS rules+=InitCS?)))
+	 *     (pathName=PathNameCS ownedType=TypeExpCS? ((rules+=InitCS rules+=DerCS?)? | (rules+=DerCS rules+=InitCS?)))
 	 */
 	protected void sequence_PropertyContextDeclCS(EObject context, PropertyContextDeclCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (path+=UnrestrictedNamedElementRefCS path+=UnreservedNamedElementRefCS*)
-	 */
-	protected void sequence_QualifiedNamedElementRefCS(EObject context, QualifiedNamedElementRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1199,24 +1212,6 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 */
 	protected void sequence_UnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     element=[NamedElement|UnreservedName]
-	 */
-	protected void sequence_UnreservedNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     element=[NamedElement|UnrestrictedName]
-	 */
-	protected void sequence_UnrestrictedNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -12,7 +12,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -169,6 +171,12 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 					return; 
 				}
 				else break;
+			case BaseCSTPackage.PATH_NAME_CS:
+				if(context == grammarAccess.getPathNameCSRule()) {
+					sequence_PathNameCS(context, (PathNameCS) semanticObject); 
+					return; 
+				}
+				else break;
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				if(context == grammarAccess.getPrimitiveTypeCSRule() ||
 				   context == grammarAccess.getTypeLiteralCSRule()) {
@@ -177,6 +185,16 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 				}
 				else if(context == grammarAccess.getTypeExpCSRule()) {
 					sequence_TypeExpCS(context, (PrimitiveTypeRefCS) semanticObject); 
+					return; 
+				}
+				else break;
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
+				if(context == grammarAccess.getFirstNamedElementRefCSRule()) {
+					sequence_FirstNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getLaterNamedElementRefCSRule()) {
+					sequence_LaterNamedElementRefCS(context, (SimpleNamedElementRefCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -769,6 +787,15 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     element=[NamedElement|UnrestrictedName]
+	 */
+	protected void sequence_FirstNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (condition=ExpCS thenExpression=ExpCS elseExpression=ExpCS)
 	 */
 	protected void sequence_IfExpCS(EObject context, IfExpCS semanticObject) {
@@ -833,6 +860,15 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	 */
 	protected void sequence_LambdaTypeCS(EObject context, LambdaTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     element=[NamedElement|UnreservedName]
+	 */
+	protected void sequence_LaterNamedElementRefCS(EObject context, SimpleNamedElementRefCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1069,6 +1105,15 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	 */
 	protected void sequence_ParameterCS(EObject context, ParameterCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path+=FirstNamedElementRefCS path+=LaterNamedElementRefCS*)
+	 */
+	protected void sequence_PathNameCS(EObject context, PathNameCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	

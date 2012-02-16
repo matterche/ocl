@@ -50,7 +50,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="InvCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElementDeclCS" abstract="true"
       eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//MorePivotable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifiedElementRef" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//QualifiedNamedElementRefCS"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pathName" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//PathNameCS"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclMessageArgCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//ExpCS">

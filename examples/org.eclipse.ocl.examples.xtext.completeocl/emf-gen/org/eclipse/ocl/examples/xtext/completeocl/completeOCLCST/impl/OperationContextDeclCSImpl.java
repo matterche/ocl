@@ -264,9 +264,9 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 */
 	public Operation getOperation()
 	{
-		if (qualifiedElementRef == null) {
+		if (pathName == null) {
 			return null;
 		}
-		return (Operation) qualifiedElementRef.getElement();
+		return (Operation) pathName.getElement();
 	}
 } //OperationContextDeclCSImpl

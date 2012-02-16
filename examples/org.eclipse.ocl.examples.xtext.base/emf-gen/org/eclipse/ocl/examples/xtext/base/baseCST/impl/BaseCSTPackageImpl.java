@@ -57,7 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -275,6 +275,13 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass pathNameCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass pivotableElementCSEClass = null;
 
 	/**
@@ -283,13 +290,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * @generated
 	 */
 	private EClass primitiveTypeRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass qualifiedNamedElementRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1207,6 +1207,36 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPathNameCS()
+	{
+		return pathNameCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathNameCS_Path()
+	{
+		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPathNameCS_Element()
+	{
+		return (EReference)pathNameCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPivotableElementCS()
 	{
 		return pivotableElementCSEClass;
@@ -1239,36 +1269,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	public EAttribute getPrimitiveTypeRefCS_Name()
 	{
 		return (EAttribute)primitiveTypeRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getQualifiedNamedElementRefCS()
-	{
-		return qualifiedNamedElementRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getQualifiedNamedElementRefCS_Path()
-	{
-		return (EReference)qualifiedNamedElementRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getQualifiedNamedElementRefCS_Element()
-	{
-		return (EReference)qualifiedNamedElementRefCSEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1886,15 +1886,15 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		parameterCSEClass = createEClass(PARAMETER_CS);
 		createEReference(parameterCSEClass, PARAMETER_CS__OWNER);
 
+		pathNameCSEClass = createEClass(PATH_NAME_CS);
+		createEReference(pathNameCSEClass, PATH_NAME_CS__PATH);
+		createEReference(pathNameCSEClass, PATH_NAME_CS__ELEMENT);
+
 		pivotableElementCSEClass = createEClass(PIVOTABLE_ELEMENT_CS);
 		createEReference(pivotableElementCSEClass, PIVOTABLE_ELEMENT_CS__PIVOT);
 
 		primitiveTypeRefCSEClass = createEClass(PRIMITIVE_TYPE_REF_CS);
 		createEAttribute(primitiveTypeRefCSEClass, PRIMITIVE_TYPE_REF_CS__NAME);
-
-		qualifiedNamedElementRefCSEClass = createEClass(QUALIFIED_NAMED_ELEMENT_REF_CS);
-		createEReference(qualifiedNamedElementRefCSEClass, QUALIFIED_NAMED_ELEMENT_REF_CS__PATH);
-		createEReference(qualifiedNamedElementRefCSEClass, QUALIFIED_NAMED_ELEMENT_REF_CS__ELEMENT);
 
 		referenceCSEClass = createEClass(REFERENCE_CS);
 		createEReference(referenceCSEClass, REFERENCE_CS__OPPOSITE);
@@ -2038,12 +2038,12 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		operationCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		packageCSEClass.getESuperTypes().add(this.getNamespaceCS());
 		parameterCSEClass.getESuperTypes().add(this.getTypedElementCS());
+		pathNameCSEClass.getESuperTypes().add(this.getElementCS());
+		pathNameCSEClass.getESuperTypes().add(thePivotPackage.getPivotable());
 		pivotableElementCSEClass.getESuperTypes().add(this.getElementCS());
 		pivotableElementCSEClass.getESuperTypes().add(thePivotPackage.getPivotable());
 		primitiveTypeRefCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		primitiveTypeRefCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
-		qualifiedNamedElementRefCSEClass.getESuperTypes().add(this.getElementCS());
-		qualifiedNamedElementRefCSEClass.getESuperTypes().add(thePivotPackage.getPivotable());
 		referenceCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
 		rootCSEClass.getESuperTypes().add(this.getModelElementCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getPackageCS());
@@ -2172,15 +2172,15 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(parameterCSEClass, ParameterCS.class, "ParameterCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getParameterCS_Owner(), this.getOperationCS(), this.getOperationCS_OwnedParameter(), "owner", null, 0, 1, ParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(pathNameCSEClass, PathNameCS.class, "PathNameCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPathNameCS_Path(), this.getSimpleNamedElementRefCS(), this.getSimpleNamedElementRefCS_QualifiedName(), "path", null, 1, -1, PathNameCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPathNameCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 1, 1, PathNameCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(pivotableElementCSEClass, PivotableElementCS.class, "PivotableElementCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPivotableElementCS_Pivot(), thePivotPackage.getElement(), null, "pivot", null, 0, 1, PivotableElementCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(primitiveTypeRefCSEClass, PrimitiveTypeRefCS.class, "PrimitiveTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPrimitiveTypeRefCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, PrimitiveTypeRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(qualifiedNamedElementRefCSEClass, QualifiedNamedElementRefCS.class, "QualifiedNamedElementRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getQualifiedNamedElementRefCS_Path(), this.getSimpleNamedElementRefCS(), this.getSimpleNamedElementRefCS_QualifiedName(), "path", null, 1, -1, QualifiedNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getQualifiedNamedElementRefCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 1, 1, QualifiedNamedElementRefCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(referenceCSEClass, ReferenceCS.class, "ReferenceCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getReferenceCS_Opposite(), thePivotPackage.getProperty(), null, "opposite", null, 0, 1, ReferenceCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2193,7 +2193,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(rootPackageCSEClass, RootPackageCS.class, "RootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(simpleNamedElementRefCSEClass, SimpleNamedElementRefCS.class, "SimpleNamedElementRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSimpleNamedElementRefCS_QualifiedName(), this.getQualifiedNamedElementRefCS(), this.getQualifiedNamedElementRefCS_Path(), "qualifiedName", null, 1, 1, SimpleNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSimpleNamedElementRefCS_QualifiedName(), this.getPathNameCS(), this.getPathNameCS_Path(), "qualifiedName", null, 1, 1, SimpleNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSimpleNamedElementRefCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 1, 1, SimpleNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(specificationCSEClass, SpecificationCS.class, "SpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

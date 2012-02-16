@@ -189,9 +189,9 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 */
 	public Type getClassifier()
 	{
-		if (qualifiedElementRef == null) {
+		if (pathName == null) {
 			return null;
 		}
-		return (Type) qualifiedElementRef.getElement();
+		return (Type) pathName.getElement();
 	}
 } //ClassifierContextDeclCSImpl
