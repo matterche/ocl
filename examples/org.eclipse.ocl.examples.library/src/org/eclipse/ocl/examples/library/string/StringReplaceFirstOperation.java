@@ -33,6 +33,11 @@ public class StringReplaceFirstOperation extends AbstractTernaryOperation
 		String sourceString = sourceValue.asString();
 		String regex = firstArgumentValue.asString();
 		String replacement = secondArgumentValue.asString();
-		return valueFactory.stringValueOf(sourceString.replaceFirst(regex, replacement));
+		try {
+			return valueFactory.stringValueOf(sourceString.replaceFirst(regex, replacement));
+		}
+		catch (RuntimeException e) {
+			throw e;
+		}
 	}
 }

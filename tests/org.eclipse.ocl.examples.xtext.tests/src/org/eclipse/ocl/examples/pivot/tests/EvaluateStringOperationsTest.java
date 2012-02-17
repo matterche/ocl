@@ -17,7 +17,10 @@
 
 package org.eclipse.ocl.examples.pivot.tests;
 
+import java.util.regex.PatternSyntaxException;
+
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -204,6 +207,24 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s1 : String = null, s2 : String = null in s1 <= s2");
 	}
 
+	public void testStringMatches() {
+		assertQueryTrue(null, "'characters and spaces'.matches('[\\\\w\\\\s]+')");		// *2 for Java, *2 for OCL
+		assertQueryFalse(null, "'characters and 3 digits'.matches('[\\\\p{Alpha}\\\\s]+')");
+		//
+		assertQueryTrue(null, "''.matches('')");
+		assertQueryTrue(null, "''.matches('')");
+		assertQueryFalse(null, "'a'.matches('')");
+		assertQueryFalse(null, "''.matches('b')");
+		//
+		assertQueryInvalid(null, "'repla ce operation'.matches('a[b-')", null, PatternSyntaxException.class);
+		//
+		assertQueryInvalid(null, "null.matches('(\\\\w+)\\\\s*')");
+		assertQueryInvalid(null, "'repla ce operation'.matches(null)");
+		//
+		assertQueryInvalid(null, "invalid.matches('(\\\\w+)\\\\s*')");
+		assertQueryInvalid(null, "'repla ce operation'.matches(invalid)");
+	}
+
 	public void testStringNotEqual() {
 		assertQueryTrue(null, "'test' <> 'se'");
 		assertQueryFalse(null, "'test' <> 'test'");
@@ -262,6 +283,48 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = null in s + 'concatenation'");
 	}
 
+	public void testStringReplaceAll() {
+		assertQueryEquals(null, "rePlaceAll oPeration", "'replaceAll operation'.replaceAll('p', 'P')");
+		assertQueryEquals(null, "ReplaceAllOperation", "'Repla ce All Operation'.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		//
+		assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
+		assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.replaceAll('', 'xx')");
+		assertQueryEquals(null, "", "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', '')");
+		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceAll('', '')");
+		//
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll('a[b-', '$1')", null, PatternSyntaxException.class);
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll('', '$1')", "No group 1", IndexOutOfBoundsException.class);
+		//
+		assertQueryInvalid(null, "null.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll(null, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', null)");
+		//
+		assertQueryInvalid(null, "invalid.replaceAll('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll(invalid, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceAll('(\\\\w+)\\\\s*', invalid)");
+	}
+
+	public void testStringReplaceFirst() {
+		assertQueryEquals(null, "rePlace operation", "'replace operation'.replaceFirst('p', 'P')");
+		assertQueryEquals(null, "replace operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		//
+		assertQueryEquals(null, "xx", "''.replaceFirst('', 'xx')");
+		assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.replaceFirst('', 'xx')");
+		assertQueryEquals(null, "ce operation", "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', '')");
+		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.replaceFirst('', '')");
+		//
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('a[b-', '$1')", null, PatternSyntaxException.class);
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('', '$1')", "No group 1", IndexOutOfBoundsException.class);
+		//
+		assertQueryInvalid(null, "null.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst(null, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', null)");
+		//
+		assertQueryInvalid(null, "invalid.replaceFirst('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst(invalid, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.replaceFirst('(\\\\w+)\\\\s*', invalid)");
+	}
+
 	public void testStringSize() {
 		assertQueryEquals(null, Integer.valueOf(4), "'test'.size()"); //$NON-NLS-2$
 		assertQueryEquals(null, Integer.valueOf(0), "''.size()"); //$NON-NLS-2$
@@ -269,6 +332,47 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = invalid in s.size()"); //$NON-NLS-2$
 		// null
 		assertQueryInvalid(null, "let s : String = null in s.size()"); //$NON-NLS-2$
+	}
+
+	public void testStringSubstituteAll() {
+		assertQueryEquals(null, "subsTiTuTeAll operaTion", "'substituteAll operation'.substituteAll('t', 'T')");
+		//
+		assertQueryEquals(null, "xx", "''.replaceAll('', 'xx')");
+		assertQueryEquals(null, "xxrxxexxpxxlxxaxx xxcxxexx xxoxxpxxexxrxxaxxtxxixxoxxnxx", "'repla ce operation'.substituteAll('', 'xx')");
+		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', '')");
+		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteAll('', '')");
+		//
+		assertQueryInvalid(null, "null.substituteAll('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteAll(null, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', null)");
+		//
+		assertQueryInvalid(null, "invalid.substituteAll('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteAll(invalid, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteAll('(\\\\w+)\\\\s*', invalid)");
+	}
+
+	public void testStringSubstituteFirst() {
+		assertQueryEquals(null, "subsTiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('t', 'T')");
+		assertQueryEquals(null, "SubstiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('s', 'S')");
+		assertQueryEquals(null, "substiTuTeFirst operaTioN", "'substiTuTeFirst operaTion'.substituteFirst('n', 'N')");
+		assertQueryEquals(null, "substiTuTeFirst operaTion", "'substiTuTeFirst operaTion'.substituteFirst('n', 'n')");
+		assertQueryEquals(null, "substiTuTeFirst operaTiON", "'substiTuTeFirst operaTion'.substituteFirst('on', 'ON')");
+		assertQueryEquals(null, "a[b-c]d\r\n*", "'a[b-c]d\\\\w*'.substituteFirst('\\\\w', '\r\n')");
+		//
+		assertQueryEquals(null, "xx", "''.substituteFirst('', 'xx')");
+		assertQueryEquals(null, "xxrepla ce operation", "'repla ce operation'.substituteFirst('', 'xx')");
+		assertQueryEquals(null, "repla ce operation", "'repla ce operation'.substituteFirst('', '')");
+		//
+		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', '')",
+			DomainUtil.bind(EvaluatorMessages.MissingSubstring, "(\\w+)\\s*", "repla ce operation"), null);
+		//
+		assertQueryInvalid(null, "null.substituteFirst('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(null, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', null)");
+		//
+		assertQueryInvalid(null, "invalid.substituteFirst('(\\\\w+)\\\\s*', '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteFirst(invalid, '$1')");
+		assertQueryInvalid(null, "'repla ce operation'.substituteFirst('(\\\\w+)\\\\s*', invalid)");
 	}
 
 	public void testStringSubstring() {

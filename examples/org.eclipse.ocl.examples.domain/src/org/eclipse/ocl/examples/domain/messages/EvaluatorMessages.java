@@ -45,6 +45,7 @@ public class EvaluatorMessages
 	public static String MissingResult;
 	public static String MissingSourceType;
 	public static String MissingSourceValue;
+	public static String MissingSubstring;
 	public static String MissingValue;
 	public static String NonBinaryOperation;
 	public static String NonFiniteIntegerValue;

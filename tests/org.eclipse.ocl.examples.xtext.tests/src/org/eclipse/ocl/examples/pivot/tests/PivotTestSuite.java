@@ -480,9 +480,23 @@ public abstract class PivotTestSuite extends PivotTestCase
 			fail(expression + " expected: invalid but was: " + value);
 //           fail("Expected invalid for \"" + expression + "\"");
 		} catch (DomainException e) {
-			assertEquals("Invalid Value Reason", reason, e.getMessage());
+			Throwable ex = e;
+			Throwable cause = e.getCause();
+			String message = e.getMessage();
+			if (cause != null) {
+				ex = cause;
+				if (!(cause instanceof NumberFormatException)) {
+					String m = ex.getMessage();
+					if (m != null) {
+						message = m;
+					}
+				}
+			}
+			if (reason != null) {
+				assertEquals("Invalid Value Reason", reason, message);
+			}
 			if (exceptionClass != null) {
-				assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
+				assertEquals("Invalid Value Throwable", exceptionClass, ex.getClass());
 			}
 		} catch (Exception e) {
 			failOn(expression, e);

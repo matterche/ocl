@@ -876,27 +876,42 @@ public class OCLstdlibTables
 		public static final ExecutorOperation _String__indexOf = new ExecutorOperation("indexOf",
 			Types._String, 12, org.eclipse.ocl.examples.library.string.StringIndexOfOperation.INSTANCE,
 				OCLstdlibTables.Types._String);
+		public static final ExecutorOperation _String__matches = new ExecutorOperation("matches",
+			Types._String, 13, org.eclipse.ocl.examples.library.string.StringMatchesOperation.INSTANCE,
+				OCLstdlibTables.Types._String);
+		public static final ExecutorOperation _String__replaceAll = new ExecutorOperation("replaceAll",
+			Types._String, 14, org.eclipse.ocl.examples.library.string.StringReplaceAllOperation.INSTANCE,
+				OCLstdlibTables.Types._String);
+		public static final ExecutorOperation _String__replaceFirst = new ExecutorOperation("replaceFirst",
+			Types._String, 15, org.eclipse.ocl.examples.library.string.StringReplaceFirstOperation.INSTANCE,
+				OCLstdlibTables.Types._String);
 		public static final ExecutorOperation _String__size = new ExecutorOperation("size",
-			Types._String, 13, org.eclipse.ocl.examples.library.string.StringSizeOperation.INSTANCE);
+			Types._String, 16, org.eclipse.ocl.examples.library.string.StringSizeOperation.INSTANCE);
+		public static final ExecutorOperation _String__substituteAll = new ExecutorOperation("substituteAll",
+			Types._String, 17, org.eclipse.ocl.examples.library.string.StringSubstituteAllOperation.INSTANCE,
+				OCLstdlibTables.Types._String);
+		public static final ExecutorOperation _String__substituteFirst = new ExecutorOperation("substituteFirst",
+			Types._String, 18, org.eclipse.ocl.examples.library.string.StringSubstituteFirstOperation.INSTANCE,
+				OCLstdlibTables.Types._String);
 		public static final ExecutorOperation _String__substring = new ExecutorOperation("substring",
-			Types._String, 14, org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE,
+			Types._String, 19, org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE,
 				OCLstdlibTables.Types._Integer);
 		public static final ExecutorOperation _String__toBoolean = new ExecutorOperation("toBoolean",
-			Types._String, 15, org.eclipse.ocl.examples.library.string.StringToBooleanOperation.INSTANCE);
+			Types._String, 20, org.eclipse.ocl.examples.library.string.StringToBooleanOperation.INSTANCE);
 		public static final ExecutorOperation _String__toInteger = new ExecutorOperation("toInteger",
-			Types._String, 16, org.eclipse.ocl.examples.library.string.StringToIntegerOperation.INSTANCE);
+			Types._String, 21, org.eclipse.ocl.examples.library.string.StringToIntegerOperation.INSTANCE);
 		public static final ExecutorOperation _String__toLower = new ExecutorOperation("toLower",
-			Types._String, 17, org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
+			Types._String, 22, org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
 		public static final ExecutorOperation _String__toLowerCase = new ExecutorOperation("toLowerCase",
-			Types._String, 18, org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
+			Types._String, 23, org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
 		public static final ExecutorOperation _String__toReal = new ExecutorOperation("toReal",
-			Types._String, 19, org.eclipse.ocl.examples.library.string.StringToRealOperation.INSTANCE);
+			Types._String, 24, org.eclipse.ocl.examples.library.string.StringToRealOperation.INSTANCE);
 		public static final ExecutorOperation _String__toString = new ExecutorOperation("toString",
-			Types._String, 20, org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
+			Types._String, 25, org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 		public static final ExecutorOperation _String__toUpper = new ExecutorOperation("toUpper",
-			Types._String, 21, org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
+			Types._String, 26, org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
 		public static final ExecutorOperation _String__toUpperCase = new ExecutorOperation("toUpperCase",
-			Types._String, 22, org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
+			Types._String, 27, org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
 	
 		public static final ExecutorOperation _UniqueCollection___sub_ = new ExecutorOperation("-",
 			Types._UniqueCollection, 0, org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE,
@@ -2161,7 +2176,12 @@ public class OCLstdlibTables
 		    OCLstdlibTables.Operations._String__concat /* concat(String) */,
 		    OCLstdlibTables.Operations._String__equalsIgnoreCase /* equalsIgnoreCase(String) */,
 		    OCLstdlibTables.Operations._String__indexOf /* indexOf(String) */,
+		    OCLstdlibTables.Operations._String__matches /* matches(String) */,
+		    OCLstdlibTables.Operations._String__replaceAll /* replaceAll(String,String) */,
+		    OCLstdlibTables.Operations._String__replaceFirst /* replaceFirst(String,String) */,
 		    OCLstdlibTables.Operations._String__size /* size() */,
+		    OCLstdlibTables.Operations._String__substituteAll /* substituteAll(String,String) */,
+		    OCLstdlibTables.Operations._String__substituteFirst /* substituteFirst(String,String) */,
 		    OCLstdlibTables.Operations._String__substring /* substring(Integer,Integer) */,
 		    OCLstdlibTables.Operations._String__toBoolean /* toBoolean() */,
 		    OCLstdlibTables.Operations._String__toInteger /* toInteger() */,
