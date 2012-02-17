@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
 
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -26,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
@@ -184,6 +186,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
+		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE);
 		return new TypeNameExpContinuation(context, csTypeNameExp);
 	}
 

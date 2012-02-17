@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -43,6 +44,8 @@ import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
@@ -218,6 +221,18 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	
 	public static MessageBinder getMessageBinder() {
 		return messageBinder;
+	}
+
+	public static void setElementType(PathNameCS pathNameCS, EClass elementType) {
+		List<SimpleNamedElementRefCS> path = pathNameCS.getPath();
+		int iMax = path.size()-1;
+		path.get(iMax).setElementType(elementType);
+		if (PivotPackage.Literals.FEATURE.isSuperTypeOf(elementType) && (iMax > 0)) {
+			path.get(--iMax).setElementType(PivotPackage.Literals.TYPE);
+		}
+		for (int i = 0; i < iMax; i++) {
+			path.get(i).setElementType(PivotPackage.Literals.NAMESPACE);
+		}
 	}
 	
 	/**

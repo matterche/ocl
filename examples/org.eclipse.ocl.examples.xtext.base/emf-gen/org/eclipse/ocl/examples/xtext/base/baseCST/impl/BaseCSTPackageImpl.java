@@ -1374,6 +1374,16 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSimpleNamedElementRefCS_ElementType()
+	{
+		return (EReference)simpleNamedElementRefCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSpecificationCS()
 	{
 		return specificationCSEClass;
@@ -1909,6 +1919,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		simpleNamedElementRefCSEClass = createEClass(SIMPLE_NAMED_ELEMENT_REF_CS);
 		createEReference(simpleNamedElementRefCSEClass, SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME);
 		createEReference(simpleNamedElementRefCSEClass, SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT);
+		createEReference(simpleNamedElementRefCSEClass, SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE);
 
 		specificationCSEClass = createEClass(SPECIFICATION_CS);
 		createEAttribute(specificationCSEClass, SPECIFICATION_CS__EXPR_STRING);
@@ -2195,6 +2206,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(simpleNamedElementRefCSEClass, SimpleNamedElementRefCS.class, "SimpleNamedElementRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getSimpleNamedElementRefCS_QualifiedName(), this.getPathNameCS(), this.getPathNameCS_Path(), "qualifiedName", null, 1, 1, SimpleNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSimpleNamedElementRefCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 1, 1, SimpleNamedElementRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSimpleNamedElementRefCS_ElementType(), ecorePackage.getEClassifier(), null, "elementType", null, 0, 1, SimpleNamedElementRefCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(specificationCSEClass, SpecificationCS.class, "SpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSpecificationCS_ExprString(), ecorePackage.getEString(), "exprString", null, 0, 1, SpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

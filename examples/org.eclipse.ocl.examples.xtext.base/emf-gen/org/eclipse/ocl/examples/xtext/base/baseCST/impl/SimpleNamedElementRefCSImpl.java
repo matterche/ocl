@@ -17,6 +17,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -37,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,6 +55,16 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * @ordered
 	 */
 	protected NamedElement element;
+
+	/**
+	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElementType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EClassifier elementType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,6 +180,29 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClassifier getElementType()
+	{
+		return elementType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setElementType(EClassifier newElementType)
+	{
+		EClassifier oldElementType = elementType;
+		elementType = newElementType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE, oldElementType, elementType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -228,6 +263,8 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				if (resolve) return getElement();
 				return basicGetElement();
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+				return getElementType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,6 +284,9 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 				return;
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				setElement((NamedElement)newValue);
+				return;
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+				setElementType((EClassifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,6 +308,9 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				setElement((NamedElement)null);
 				return;
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+				setElementType((EClassifier)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -286,6 +329,8 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 				return getQualifiedName() != null;
 			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
 				return element != null;
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+				return elementType != null;
 		}
 		return super.eIsSet(featureID);
 	}

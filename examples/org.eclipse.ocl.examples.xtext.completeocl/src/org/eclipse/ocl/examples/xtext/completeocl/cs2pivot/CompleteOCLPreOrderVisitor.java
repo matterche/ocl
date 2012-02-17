@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
@@ -177,6 +178,7 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
+			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION);
 			Operation modelOperation = csElement.getOperation();
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
@@ -261,6 +263,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE);
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
@@ -309,6 +312,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE);
 		NamedElement modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
@@ -326,6 +330,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY);
 		Property modelProperty = csElement.getProperty();
 		if (modelProperty == null) {
 			return null;

@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -90,10 +91,14 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 		}
 		List<SimpleNamedElementRefCS> csPath = csPathName.getPath();
 		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
+			if (n.eContainer() == null) {
+				break;				// Skip root package
+			}
 //FIXME			if (n == scope) {
 //				break;
 //			}
 			SimpleNamedElementRefCS csSimpleRef = BaseCSTFactory.eINSTANCE.createSimpleNamedElementRefCS();
+			csSimpleRef.setElementType(n == object ? PivotPackage.Literals.TYPE : PivotPackage.Literals.NAMESPACE);
 			csPath.add(0, csSimpleRef);
 			csSimpleRef.setElement((NamedElement) n);
 		}

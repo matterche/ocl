@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
@@ -81,9 +83,10 @@ public class BaseCS2Pivot extends CS2Pivot
 	{
 		private Factory() {
 			CS2Pivot.addFactory(this);
-			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
 			addUnresolvedProxyMessageProvider(new ImportCSNamespaceUnresolvedProxyMessageProvider());			
 			addUnresolvedProxyMessageProvider(new LibraryCSPackageUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(new SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
 		}
 
 		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
@@ -142,6 +145,20 @@ public class BaseCS2Pivot extends CS2Pivot
 				}
 			}
 			return null;
+		}
+	}
+	
+	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	{		
+		private SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider() {
+			super(BaseCSTPackage.Literals.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT);
+		}
+		
+		@Override
+		public String getMessage(EObject context, String linkText) {
+			EClassifier elementType = ((SimpleNamedElementRefCS)context).getElementType();
+			String element = elementType != null ? elementType.getName() : "unknown";
+			return getMessageBinder().bind(context, OCLMessages.Unresolved_ERROR_, element, linkText);
 		}
 	}
 	

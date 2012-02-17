@@ -3432,13 +3432,22 @@ public interface BaseCSTPackage extends EPackage {
 	int SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Element Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE = ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Simple Named Element Ref CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 2;
+	int SIMPLE_NAMED_ELEMENT_REF_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SpecificationCSImpl <em>Specification CS</em>}' class.
@@ -5102,6 +5111,17 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getSimpleNamedElementRefCS_Element();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElementType <em>Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Element Type</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElementType()
+	 * @see #getSimpleNamedElementRefCS()
+	 * @generated
+	 */
+	EReference getSimpleNamedElementRefCS_ElementType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS <em>Specification CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6337,6 +6357,14 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT = eINSTANCE.getSimpleNamedElementRefCS_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE = eINSTANCE.getSimpleNamedElementRefCS_ElementType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SpecificationCSImpl <em>Specification CS</em>}' class.

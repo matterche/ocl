@@ -14,9 +14,15 @@
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class SimpleNamedElementRefScopeAdapter extends ElementCSScopeAdapter
 {
@@ -24,23 +30,23 @@ public class SimpleNamedElementRefScopeAdapter extends ElementCSScopeAdapter
 
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
-/*		SimpleNamedElementRefCS targetElement = (SimpleNamedElementRefCS)target;
-		PathNameCS qualifiedNamedElement = targetElement.getQualifiedName();
-		InternalEList<SimpleNamedElementRefCS> path = (InternalEList<SimpleNamedElementRefCS>) qualifiedNamedElement.getPath();
-		int index = path.indexOf(targetElement);
-		if (index <= 0) {
+		SimpleNamedElementRefCS targetElement = (SimpleNamedElementRefCS)target;
+		EClassifier eClassifier = targetElement.getElementType();
+		if (eClassifier == null) {
 			return scopeView.getOuterScope();
 		}
-		else {
-			NamedElement parentNamedElement = path.get(index-1).getElement();
-			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(parentNamedElement);
-			if (scopeAdapter != null) {
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				BaseScopeView nestedScopeView = new BaseScopeView(metaModelManager, parentNamedElement, scopeAdapter, null, scopeView.getTargetReference(), null);
-				environmentView.computeLookups(nestedScopeView);
-			}
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		EClassifier savedRequiredType = environmentView.getRequiredType();
+		try {
+			environmentView.setRequiredType(eClassifier);
+			ElementCS scopeTarget = targetElement.getLogicalParent();
+			CSScopeAdapter scopeAdapter = scopeTarget != null ? ElementUtil.getScopeAdapter(scopeTarget) : null;
+			BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, null, null);
+			environmentView.computeLookups(baseScopeView);
 			return null;
-		} */
-		return scopeView.getOuterScope();
+		}
+		finally {
+			environmentView.setRequiredType(savedRequiredType);
+		}
 	}
 }
