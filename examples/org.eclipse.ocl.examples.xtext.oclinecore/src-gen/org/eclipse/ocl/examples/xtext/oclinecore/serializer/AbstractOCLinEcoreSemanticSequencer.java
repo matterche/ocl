@@ -1411,13 +1411,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
-	 *             element=[Type|UnrestrictedName]
-	 *         ) 
-	 *         multiplicity=MultiplicityCS?
-	 *     )
+	 *     (pathName=PathNameCS multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TypeNameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1435,10 +1429,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
-	 *         element=[Type|UnrestrictedName]
-	 *     )
+	 *     pathName=PathNameCS
 	 */
 	protected void sequence_TypeNameExpCS(EObject context, TypeNameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

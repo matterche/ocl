@@ -125,7 +125,7 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			context.resolveNamespaces(csElement.getNamespace());
+//			context.resolveNamespaces(csElement.getNamespace());
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = context.bind(csElement, OCLMessages.UnresolvedType_ERROR_, csElement.toString());

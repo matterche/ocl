@@ -81,6 +81,7 @@ public class EnvironmentView
 
 	protected final MetaModelManager metaModelManager;
 	protected final EStructuralFeature reference;
+	private EClassifier requiredType;
 	protected final String name;
 
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>(); // Single
@@ -97,11 +98,12 @@ public class EnvironmentView
 	public EnvironmentView(MetaModelManager metaModelManager, EStructuralFeature reference, String name) {
 		this.metaModelManager = metaModelManager;
 		this.reference = reference;
+		this.requiredType = reference != null ? reference.getEType() : null;
 		this.name = name;
 	}
 
 	public boolean accepts(EClass eClass) {
-		return PivotUtil.conformsTo(reference, eClass);
+		return PivotUtil.conformsTo(requiredType, eClass);
 	}
 
 	/**
@@ -131,8 +133,7 @@ public class EnvironmentView
 				}
 			}
 		}
-		if (reference != null) {
-			EClassifier requiredType = reference.getEType();
+		if (requiredType != null) {
 			if (!requiredType.isInstance(element)) {
 				return 0;
 			}
@@ -337,9 +338,7 @@ public class EnvironmentView
 	}
 
 	public EClassifier getRequiredType() {
-		return reference != null
-			? reference.getEType()
-			: null;
+		return requiredType;
 	}
 
 	public int getSize() {
@@ -420,13 +419,21 @@ public class EnvironmentView
 		templateBindings.put(eObject, bindings);
 	}
 
+	public void setRequiredType(EClassifier requiredType) {
+		assert PivotUtil.conformsTo(reference.getEType(), requiredType);
+		this.requiredType = requiredType;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		if (reference != null) {
 			s.append(reference.getName());
 			s.append(" : "); //$NON-NLS-1$
-			s.append(reference.getEType().getName());
+//			s.append(reference.getEType().getName());
+		}
+		if (requiredType != null) {
+			s.append(requiredType.getName());
 		}
 		s.append(" \""); //$NON-NLS-1$
 		if (name != null) {

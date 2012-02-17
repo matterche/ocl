@@ -73,7 +73,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    configurePathNameCS(c, f.getPathNameCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
-	    configureTypeNameExpCS(c, f.getTypeNameExpCSAccess());
 
 	    c.setLinewrap(1).after(f.getRootPackageCSAccess().getNameAssignment_1_1());
 

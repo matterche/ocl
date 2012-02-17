@@ -169,6 +169,19 @@ public class PivotUtil extends DomainUtil
 		if (!(contentType instanceof EClass)) {
 			return false;
 		}
+		return conformsTo(targetType, contentType);
+	}
+
+	public static boolean conformsTo(EClassifier targetType, EClassifier contentType) {
+		if (targetType == contentType) {
+			return true;
+		}
+		if (!(targetType instanceof EClass)) {
+			return false;
+		}
+		if (!(contentType instanceof EClass)) {
+			return false;
+		}
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
 	}
 

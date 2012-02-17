@@ -16,12 +16,17 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
 public class TypeNameExpCSScopeAdapter extends ElementCSScopeAdapter
@@ -31,13 +36,21 @@ public class TypeNameExpCSScopeAdapter extends ElementCSScopeAdapter
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		TypeNameExpCS targetElement = (TypeNameExpCS)target;
-		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__ELEMENT) {
-			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
+		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+		EClassifier savedRequiredType = environmentView.getRequiredType();
+		if (savedRequiredType == PivotPackage.Literals.NAMESPACE) {
+			return scopeView.getOuterScope();
 		}
-		else if (containmentFeature == EssentialOCLCSTPackage.Literals.TYPE_NAME_EXP_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
+		try {
+			environmentView.setRequiredType(PivotPackage.Literals.TYPE);
+			ElementCS scopeTarget = targetElement.getLogicalParent();
+			CSScopeAdapter scopeAdapter = scopeTarget != null ? ElementUtil.getScopeAdapter(scopeTarget) : null;
+			BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, null, null);
+			environmentView.computeLookups(baseScopeView);
+			return null;
 		}
-		return scopeView.getOuterScope();
+		finally {
+			environmentView.setRequiredType(savedRequiredType);
+		}
 	}
 }

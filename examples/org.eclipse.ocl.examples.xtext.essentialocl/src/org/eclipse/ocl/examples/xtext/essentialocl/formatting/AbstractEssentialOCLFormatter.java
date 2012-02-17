@@ -173,9 +173,4 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setIndentation(a.getLeftParenthesisKeyword_1_0_0(), a.getRightParenthesisKeyword_1_0_2());
 		c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
 	}
-
-	protected void configureTypeNameExpCS(FormattingConfig c, TypeNameExpCSElements a) {
-		c.setNoSpace().around(a.getColonColonKeyword_0_0_1());
-		c.setNoSpace().around(a.getColonColonKeyword_0_0_2_1());
-	}
 }

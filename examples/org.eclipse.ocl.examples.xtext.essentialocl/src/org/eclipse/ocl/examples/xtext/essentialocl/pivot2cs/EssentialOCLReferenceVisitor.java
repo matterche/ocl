@@ -16,15 +16,21 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
@@ -73,7 +79,27 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 	public ElementCS visitType(Type object) {
 		TypeNameExpCS csRef = EssentialOCLCSTFactory.eINSTANCE.createTypeNameExpCS();
 		csRef.setPivot(object);
-		csRef.setElement(object);
+//		csRef.setElement(object);
+		PathNameCS csPathName = csRef.getPathName();
+		if (csPathName == null) {
+			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();
+			csRef.setPathName(csPathName);
+		}
+		else {
+			csPathName.getPath().clear();		// FIXME re-use
+		}
+		List<SimpleNamedElementRefCS> csPath = csPathName.getPath();
+		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
+//FIXME			if (n == scope) {
+//				break;
+//			}
+			SimpleNamedElementRefCS csSimpleRef = BaseCSTFactory.eINSTANCE.createSimpleNamedElementRefCS();
+			csPath.add(0, csSimpleRef);
+			csSimpleRef.setElement((NamedElement) n);
+		}
+
+		
+		
 		context.importPackage(object.getPackage());
 		return csRef;
 	}

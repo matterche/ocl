@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementRefCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.OperationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.PackageCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.PathNameCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ReferenceCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.SimpleNamedElementRefScopeAdapter;
@@ -145,7 +146,7 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<CSScopeAdap
 
 	@Override
 	public CSScopeAdapter visitPathNameCS(PathNameCS eObject) {
-		return EmptyCSScopeAdapter.INSTANCE;
+		return PathNameCSScopeAdapter.INSTANCE;
 	}
 
 	@Override

@@ -4241,8 +4241,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	////TypeNameExpCS returns base::QualifiedTypeRefCS:
 	//TypeNameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
+	//	pathName=PathNameCS;
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return gaEssentialOCL.getTypeNameExpCSAccess();
 	}

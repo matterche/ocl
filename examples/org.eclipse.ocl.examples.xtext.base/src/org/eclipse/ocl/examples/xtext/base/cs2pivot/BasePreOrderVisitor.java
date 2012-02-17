@@ -219,6 +219,23 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			return null;
 		}
 	}
+
+	protected static class SimpleNamedElementRefContinuation extends SingleContinuation<SimpleNamedElementRefCS>
+	{
+		
+		public SimpleNamedElementRefContinuation(CS2PivotConversion context, SimpleNamedElementRefCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+//			Type type = context.getMetaModelManager().getLibraryType(csElement.getName());
+//			context.installPivotReference(csElement, type, BaseCSTPackage.Literals.PIVOTABLE_ELEMENT_CS__PIVOT);
+			@SuppressWarnings("unused")
+			NamedElement namedElement = csElement.getElement();
+			return null;
+		}
+	}
 	
 	protected static class SpecializedTypeRefContinuation1 extends SingleContinuation<TypedTypeRefCS>
 	{
@@ -543,9 +560,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitSimpleNamedElementRefCS(SimpleNamedElementRefCS csElement) {
-		@SuppressWarnings("unused")
-		NamedElement namedElement = csElement.getElement();
-		return null;
+		return new SimpleNamedElementRefContinuation(context, csElement);
 	}
 
 	@Override

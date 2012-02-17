@@ -244,11 +244,8 @@ TypeLiteralCS returns base::TypedRefCS:
 TypeLiteralExpCS returns TypeLiteralExpCS:
 	ownedType=TypeLiteralCS;
 
-	//TypeNameExpCS returns base::QualifiedTypeRefCS:
 TypeNameExpCS returns TypeNameExpCS:
-	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
-	element=[pivot::Type|UnreservedName])
-	| element=[pivot::Type|UnrestrictedName]);
+	pathName=PathNameCS;
 
 TypeExpCS returns base::TypedRefCS:
 	(TypeNameExpCS | TypeLiteralCS) (multiplicity=MultiplicityCS)?;
