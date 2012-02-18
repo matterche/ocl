@@ -24,10 +24,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,15 +39,15 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getQualifiedName <em>Qualified Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getElement <em>Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.SimpleNamedElementRefCSImpl#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathElementCSImpl#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathElementCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathElementCSImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements SimpleNamedElementRefCS
+public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 {
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
@@ -71,7 +74,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SimpleNamedElementRefCSImpl()
+	protected PathElementCSImpl()
 	{
 		super();
 	}
@@ -84,7 +87,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	@Override
 	protected EClass eStaticClass()
 	{
-		return BaseCSTPackage.Literals.SIMPLE_NAMED_ELEMENT_REF_CS;
+		return BaseCSTPackage.Literals.PATH_ELEMENT_CS;
 	}
 
 	/**
@@ -92,9 +95,9 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PathNameCS getQualifiedName()
+	public PathNameCS getPathName()
 	{
-		if (eContainerFeatureID() != BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME) return null;
+		if (eContainerFeatureID() != BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME) return null;
 		return (PathNameCS)eContainer();
 	}
 
@@ -103,9 +106,9 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetQualifiedName(PathNameCS newQualifiedName, NotificationChain msgs)
+	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
 	{
-		msgs = eBasicSetContainer((InternalEObject)newQualifiedName, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newPathName, BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME, msgs);
 		return msgs;
 	}
 
@@ -114,22 +117,22 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQualifiedName(PathNameCS newQualifiedName)
+	public void setPathName(PathNameCS newPathName)
 	{
-		if (newQualifiedName != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME && newQualifiedName != null))
+		if (newPathName != eInternalContainer() || (eContainerFeatureID() != BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME && newPathName != null))
 		{
-			if (EcoreUtil.isAncestor(this, newQualifiedName))
+			if (EcoreUtil.isAncestor(this, newPathName))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newQualifiedName != null)
-				msgs = ((InternalEObject)newQualifiedName).eInverseAdd(this, BaseCSTPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
-			msgs = basicSetQualifiedName(newQualifiedName, msgs);
+			if (newPathName != null)
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, BaseCSTPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
+			msgs = basicSetPathName(newPathName, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME, newQualifiedName, newQualifiedName));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME, newPathName, newPathName));
 	}
 
 	/**
@@ -137,7 +140,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement getElement()
+	public NamedElement getElementGen()
 	{
 		if (element != null && ((EObject)element).eIsProxy())
 		{
@@ -146,7 +149,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 			if (element != oldElement)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT, oldElement, element));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT, oldElement, element));
 			}
 		}
 		return element;
@@ -172,7 +175,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 		NamedElement oldElement = element;
 		element = newElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT, oldElement, element));
 	}
 
 	/**
@@ -195,7 +198,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 		EClassifier oldElementType = elementType;
 		elementType = newElementType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE, oldElementType, elementType));
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE, oldElementType, elementType));
 	}
 
 	/**
@@ -208,10 +211,10 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetQualifiedName((PathNameCS)otherEnd, msgs);
+				return basicSetPathName((PathNameCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -226,8 +229,8 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				return basicSetQualifiedName(null, msgs);
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
+				return basicSetPathName(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -242,7 +245,7 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (eContainerFeatureID())
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
 				return eInternalContainer().eInverseRemove(this, BaseCSTPackage.PATH_NAME_CS__PATH, PathNameCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -258,12 +261,12 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				return getQualifiedName();
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
+				return getPathName();
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
 				if (resolve) return getElement();
 				return basicGetElement();
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				return getElementType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -279,13 +282,13 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				setQualifiedName((PathNameCS)newValue);
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
+				setPathName((PathNameCS)newValue);
 				return;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
 				setElement((NamedElement)newValue);
 				return;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)newValue);
 				return;
 		}
@@ -302,13 +305,13 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				setQualifiedName((PathNameCS)null);
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
+				setPathName((PathNameCS)null);
 				return;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
 				setElement((NamedElement)null);
 				return;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)null);
 				return;
 		}
@@ -325,11 +328,11 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME:
-				return getQualifiedName() != null;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT:
+			case BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME:
+				return getPathName() != null;
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
 				return element != null;
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT_TYPE:
+			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				return elementType != null;
 		}
 		return super.eIsSet(featureID);
@@ -337,11 +340,37 @@ public class SimpleNamedElementRefCSImpl extends ElementCSImpl implements Simple
 
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
-		return visitor.visitSimpleNamedElementRefCS(this);
+		return visitor.visitPathElementCS(this);
+	}
+	
+	public NamedElement getElement()
+	{
+		NamedElement element = getElementGen();
+		if ((element == null) || ((EObject)element).eIsProxy())
+		{
+			MetaModelManager metaModelManager = ElementUtil.findMetaModelManager(this);
+			if (metaModelManager != null) {
+				if (isType()) {
+					element = metaModelManager.getOclInvalidType();
+				}
+			}
+//			InternalEObject oldElement = (InternalEObject)element;
+//			element = (NamedElement)eResolveProxy(oldElement);
+//			if (element != oldElement)
+//			{
+//				if (eNotificationRequired())
+//					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT, oldElement, element));
+//			}
+		}
+		return element;
 	}
 
 	public Element getPivot() {
 		return getElement();
+	}
+
+	public boolean isType() {
+		return elementType == PivotPackage.Literals.TYPE;
 	}
 
 	public void resetPivot() {}

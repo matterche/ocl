@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateSignatureCSElements;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -47,7 +46,9 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureIndexExpCS(c, f.getIndexExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
+		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
 	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
@@ -171,10 +172,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().before(a.getCommaKeyword_2_1_0());
 			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
 		    c.setIndentation(a.getLessThanSignKeyword_1(), a.getGreaterThanSignKeyword_3());
-	    }
-	    {
-			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
-			c.setNoSpace().around(a.getColonColonKeyword_0_1());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

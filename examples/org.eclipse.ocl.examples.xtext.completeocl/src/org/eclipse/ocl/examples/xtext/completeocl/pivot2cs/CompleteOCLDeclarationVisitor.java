@@ -41,7 +41,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -55,9 +54,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecific
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
@@ -97,24 +96,13 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		}
 	}
 
-	protected void refreshQualifiedNamedElement(PathNameDeclCS csDecl, NamedElement object, EObject scope) {
+	protected void refreshPathNamedElement(PathNameDeclCS csDecl, NamedElement namedElement, EObject scope) {
 		PathNameCS csPathName = csDecl.getPathName();
 		if (csPathName == null) {
 			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();
 			csDecl.setPathName(csPathName);
 		}
-		else {
-			csPathName.getPath().clear();		// FIXME re-use
-		}
-		List<SimpleNamedElementRefCS> csPath = csPathName.getPath();
-		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
-			if (n == scope) {
-				break;
-			}
-			SimpleNamedElementRefCS csSimpleRef = BaseCSTFactory.eINSTANCE.createSimpleNamedElementRefCS();
-			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((NamedElement) n);
-		}
+		context.refreshPathName(csPathName, namedElement, scope);
 	}
 
 	@Override
@@ -173,7 +161,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		Package modelPackage = modelType.getPackage();
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope((org.eclipse.ocl.examples.pivot.Class)modelType);
 		OperationContextDeclCS csContext = context.refreshElement(OperationContextDeclCS.class, CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS, object);
-		refreshQualifiedNamedElement(csContext, object, modelPackage);
+		refreshPathNamedElement(csContext, object, modelPackage);
 //		csContext.getNamespace().add(owningType);
 		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(object.getOwningType().getPackage());
@@ -196,7 +184,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		else {
 			PackageDeclarationCS csPackage = context.refreshElement(PackageDeclarationCS.class, CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS, object);
 //			context.refreshList(csPackage.getOwnedType(), context.visitDeclarations(ClassifierCS.class, object.getOwnedType(), null));
-			refreshQualifiedNamedElement(csPackage, object, EcoreUtil.getRootContainer(object));
+			refreshPathNamedElement(csPackage, object, EcoreUtil.getRootContainer(object));
 			context.importPackage(object);
 			List<ContextDeclCS> contexts = new ArrayList<ContextDeclCS>();
 			for (Type type : object.getOwnedType()) {
@@ -236,7 +224,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 		Package modelPackage = modelType.getPackage();
 		org.eclipse.ocl.examples.pivot.Class savedScope = context.setScope((org.eclipse.ocl.examples.pivot.Class)modelType);
 		PropertyContextDeclCS csContext = context.refreshElement(PropertyContextDeclCS.class, CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS, object);
-		refreshQualifiedNamedElement(csContext, object, modelPackage);
+		refreshPathNamedElement(csContext, object, modelPackage);
 //		csContext.getNamespace().add(owningType);
 		csContext.setOwnedType(convertTypeRef(object));
 		context.importPackage(modelPackage);
@@ -252,7 +240,7 @@ public class CompleteOCLDeclarationVisitor extends EssentialOCLDeclarationVisito
 			return null;
 		}
 		ClassifierContextDeclCS csContext = context.refreshElement(ClassifierContextDeclCS.class, CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS, object);
-		refreshQualifiedNamedElement(csContext, object, object.getPackage());
+		refreshPathNamedElement(csContext, object, object.getPackage());
 		context.importPackage(object.getPackage());
 		context.refreshList(csContext.getRules(), context.visitDeclarations(ContextConstraintCS.class, ownedRule, null));
 		return csContext;

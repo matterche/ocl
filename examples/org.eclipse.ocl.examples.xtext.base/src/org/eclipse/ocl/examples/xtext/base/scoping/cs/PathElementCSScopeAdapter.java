@@ -18,19 +18,19 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
-public class SimpleNamedElementRefScopeAdapter extends ElementCSScopeAdapter
+public class PathElementCSScopeAdapter extends ElementCSScopeAdapter
 {
-	public static final SimpleNamedElementRefScopeAdapter INSTANCE = new SimpleNamedElementRefScopeAdapter();
+	public static final PathElementCSScopeAdapter INSTANCE = new PathElementCSScopeAdapter();
 
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
-		SimpleNamedElementRefCS targetElement = (SimpleNamedElementRefCS)target;
+		PathElementCS targetElement = (PathElementCS)target;
 		EClassifier eClassifier = targetElement.getElementType();
 		if (eClassifier == null) {
 			return scopeView.getOuterScope();

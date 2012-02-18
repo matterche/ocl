@@ -325,14 +325,11 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedMultiplicityRefCS returns base::TypedRefCS:
-	(PrimitiveTypeCS | TypedTypeRefCS)  (multiplicity=MultiplicityCS)?
+	TypedRefCS (multiplicity=MultiplicityCS)?
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-	  type=[pivot::Type|UnreservedName])
-	| type=[pivot::Type|UnrestrictedName])
-	(ownedTemplateBinding=TemplateBindingCS)?
+	pathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
 ;
 
 WildcardTypeRefCS returns base::WildcardTypeRefCS:

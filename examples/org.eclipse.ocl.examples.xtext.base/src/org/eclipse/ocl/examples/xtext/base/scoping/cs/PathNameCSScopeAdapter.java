@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -35,7 +35,7 @@ public class PathNameCSScopeAdapter extends ElementCSScopeAdapter
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		PathNameCS targetElement = (PathNameCS)target;
 		EObject child = scopeView.getChild();
-		List<SimpleNamedElementRefCS> path = targetElement.getPath();
+		List<PathElementCS> path = targetElement.getPath();
 		int index = path.indexOf(child);
 		if (index <= 0) {						// First path element is resolved in parent scope
 			return scopeView.getOuterScope();

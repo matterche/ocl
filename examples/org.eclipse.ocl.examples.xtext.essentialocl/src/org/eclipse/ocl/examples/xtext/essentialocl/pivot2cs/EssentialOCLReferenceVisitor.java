@@ -16,13 +16,8 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.pivot2cs;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -31,7 +26,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseReferenceVisitor;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CSConversion;
@@ -55,7 +49,7 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 	public ElementCS visitCollectionType(CollectionType object) {
 		CollectionTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createCollectionTypeRefCS();
 		csRef.setPivot(object);	
-		csRef.setType(object.getElementType());
+// FIXME		csRef.setType(object.getElementType());
 		context.importPackage(object.getElementType().getPackage());
 		return csRef;
 	}
@@ -86,25 +80,7 @@ public class EssentialOCLReferenceVisitor extends BaseReferenceVisitor
 			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();
 			csRef.setPathName(csPathName);
 		}
-		else {
-			csPathName.getPath().clear();		// FIXME re-use
-		}
-		List<SimpleNamedElementRefCS> csPath = csPathName.getPath();
-		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
-			if (n.eContainer() == null) {
-				break;				// Skip root package
-			}
-//FIXME			if (n == scope) {
-//				break;
-//			}
-			SimpleNamedElementRefCS csSimpleRef = BaseCSTFactory.eINSTANCE.createSimpleNamedElementRefCS();
-			csSimpleRef.setElementType(n == object ? PivotPackage.Literals.TYPE : PivotPackage.Literals.NAMESPACE);
-			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((NamedElement) n);
-		}
-
-		
-		
+		context.refreshPathName(csPathName, object, null);
 		context.importPackage(object.getPackage());
 		return csRef;
 	}

@@ -121,7 +121,11 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitElementRefCS(object);
 	}
 
-	public R visitMultiplicityCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS object) {
+	public R visitMultiplicityBoundsCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS object) {
+		return visitElementCS(object);
+	}
+
+	public R visitMultiplicityStringCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS object) {
 		return visitElementCS(object);
 	}
 
@@ -139,6 +143,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object) {
 		return visitTypedElementCS(object);
+	}
+
+	public R visitPathElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS object) {
+		return visitElementCS(object);
 	}
 
 	public R visitPathNameCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS object) {
@@ -159,10 +167,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
 		return visitPackageCS(object);
-	}
-
-	public R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object) {
-		return visitElementCS(object);
 	}
 
 	public R visitSpecificationCS(org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS object) {

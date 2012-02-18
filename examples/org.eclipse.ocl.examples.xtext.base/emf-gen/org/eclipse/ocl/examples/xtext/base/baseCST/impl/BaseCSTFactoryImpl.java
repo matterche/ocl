@@ -119,15 +119,16 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS: return createModelElementRefCS();
-			case BaseCSTPackage.MULTIPLICITY_CS: return createMultiplicityCS();
+			case BaseCSTPackage.MULTIPLICITY_BOUNDS_CS: return createMultiplicityBoundsCS();
+			case BaseCSTPackage.MULTIPLICITY_STRING_CS: return createMultiplicityStringCS();
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
+			case BaseCSTPackage.PATH_ELEMENT_CS: return createPathElementCS();
 			case BaseCSTPackage.PATH_NAME_CS: return createPathNameCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS: return createSimpleNamedElementRefCS();
 			case BaseCSTPackage.SPECIFICATION_CS: return createSpecificationCS();
 			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
@@ -330,10 +331,21 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiplicityCS createMultiplicityCS()
+	public MultiplicityBoundsCS createMultiplicityBoundsCS()
 	{
-		MultiplicityCSImpl multiplicityCS = new MultiplicityCSImpl();
-		return multiplicityCS;
+		MultiplicityBoundsCSImpl multiplicityBoundsCS = new MultiplicityBoundsCSImpl();
+		return multiplicityBoundsCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiplicityStringCS createMultiplicityStringCS()
+	{
+		MultiplicityStringCSImpl multiplicityStringCS = new MultiplicityStringCSImpl();
+		return multiplicityStringCS;
 	}
 
 	/**
@@ -365,6 +377,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public ParameterCS createParameterCS() {
 		ParameterCSImpl parameterCS = new ParameterCSImpl();
 		return parameterCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PathElementCS createPathElementCS()
+	{
+		PathElementCSImpl pathElementCS = new PathElementCSImpl();
+		return pathElementCS;
 	}
 
 	/**
@@ -408,17 +431,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
 		return rootPackageCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleNamedElementRefCS createSimpleNamedElementRefCS()
-	{
-		SimpleNamedElementRefCSImpl simpleNamedElementRefCS = new SimpleNamedElementRefCSImpl();
-		return simpleNamedElementRefCS;
 	}
 
 	/**

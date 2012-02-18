@@ -40,6 +40,9 @@ public class EssentialOCLFormatter extends AbstractEssentialOCLFormatter
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureIndexExpCS(c, f.getIndexExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
+		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
+		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
 	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());

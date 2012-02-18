@@ -117,7 +117,11 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitMultiplicityCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS object) {
+	public R visitMultiplicityBoundsCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS object) {
+		return null;
+	}
+
+	public R visitMultiplicityStringCS(org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS object) {
 		return null;
 	}
 
@@ -134,6 +138,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object) {
+		return null;
+	}
+
+	public R visitPathElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS object) {
 		return null;
 	}
 
@@ -154,10 +162,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
-		return null;
-	}
-
-	public R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object) {
 		return null;
 	}
 

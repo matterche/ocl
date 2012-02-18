@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -39,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -48,8 +50,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -61,7 +64,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -215,6 +218,24 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	@Override
+	public Boolean visitMultiplicityBoundsCS(MultiplicityBoundsCS object) {
+		context.append("[");
+		context.append(object.getLowerBound());
+		context.append("..");
+		context.append(object.getUpperBound());
+		context.append("]");
+		return true;
+	}
+
+	@Override
+	public Boolean visitMultiplicityStringCS(MultiplicityStringCS object) {
+		context.append("[");
+		context.append(object.getStringBounds());
+		context.append("]");
+		return true;
+	}
+
+	@Override
 	public Boolean visitNamedElementCS(NamedElementCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
@@ -246,6 +267,12 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	@Override
+	public Boolean visitPathElementCS(PathElementCS object) {
+		safeAppendMonikerOf(object.getElement());
+		return true;
+	}
+
+	@Override
 	public Boolean visitPathNameCS(PathNameCS object) {
 		safeAppendMonikerOf(object.getElement());
 		return true;
@@ -261,12 +288,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	public Boolean visitReferenceCS(ReferenceCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
-		return true;
-	}
-
-	@Override
-	public Boolean visitSimpleNamedElementRefCS(SimpleNamedElementRefCS object) {
-		safeAppendMonikerOf(object.getElement());
 		return true;
 	}
 	
@@ -358,12 +379,12 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 				}
 			}
 			else {
-//				Type type = object.getType();
-				Type type = ((TypedTypeRefCSImpl)object).basicGetType();	// Don't resolve types referenced in diagnostics.
-				if (type.eIsProxy()) {										// It can break to OCL stdlib generator
+				NamedElement typeElement = CS2Pivot.basicGetType(object);	// Don't resolve types referenced in diagnostics.
+				if (typeElement.eIsProxy()) {								// It can break to OCL stdlib generator
 					context.append("???");
 					return true;
 				}
+				Type type = object.getType();
 				TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
 				if (owningTemplateParameter != null) {
 					context.appendElement(type);

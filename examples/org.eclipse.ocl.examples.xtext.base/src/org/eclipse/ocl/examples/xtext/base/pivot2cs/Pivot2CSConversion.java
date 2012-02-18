@@ -56,11 +56,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -246,6 +249,22 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElement;
 	}
 
+	public void refreshPathName(PathNameCS csPathName, NamedElement object, EObject scope) {
+		List<PathElementCS> csPath = csPathName.getPath();
+		csPath.clear();		// FIXME re-use
+		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
+			if (n.eContainer() == null) {
+				break;				// Skip root package
+			}
+			if ((n == scope) && (n != object)) {
+				break;
+			}
+			PathElementCS csSimpleRef = BaseCSTFactory.eINSTANCE.createPathElementCS();
+			csPath.add(0, csSimpleRef);
+			csSimpleRef.setElement((NamedElement) n);
+		}
+	}
+
 	public void refreshQualifiers(List<String> qualifiers, String string, boolean polarity) {
 		for (String qualifier : qualifiers) {
 			if (qualifier.equals(string)) {
@@ -327,30 +346,37 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				csTypeRef.setMultiplicity(null);
 			}
 			else {
-				MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
-				if (csMultiplicity == null) {
-					csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityCS();
-					csTypeRef.setMultiplicity(csMultiplicity);
-				}
+				String stringValue = null;
 				if (lower == 0) {
 					if (upper == 1) {
-						csMultiplicity.setMultiplicity("?");
+						stringValue = "?";
 					}
 					else if (upper == -1) {
-						csMultiplicity.setMultiplicity("*");				
+						stringValue = "*";				
 					}
 		//			else if (upper == -2) {
-		//				csElement.setMultiplicity("0..?");				
+		//				stringValue = "0..?";				
 		//			}
 				}
 				else if (lower == 1) {
 					if (upper == -1) {
-						csMultiplicity.setMultiplicity("+");				
+						stringValue = "+";				
 					}
 				}
-				if (csMultiplicity.getMultiplicity() == null) {
-					csMultiplicity.setLower(lower);
-					csMultiplicity.setUpper(upper);
+				if (stringValue != null) {
+					MultiplicityStringCS csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityStringCS();
+					csMultiplicity.setStringBounds(stringValue);
+					csTypeRef.setMultiplicity(csMultiplicity);
+				}
+				else {
+					MultiplicityBoundsCS csMultiplicity = BaseCSTFactory.eINSTANCE.createMultiplicityBoundsCS();
+					if (lower != 1) {
+						csMultiplicity.setLowerBound(lower);
+					}
+					if (upper != 1) {
+						csMultiplicity.setUpperBound(upper);
+					}
+					csTypeRef.setMultiplicity(csMultiplicity);
 				}
 			}
 		}

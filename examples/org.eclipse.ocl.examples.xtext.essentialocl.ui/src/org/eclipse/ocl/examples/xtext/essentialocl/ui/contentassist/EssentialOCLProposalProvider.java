@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
@@ -88,11 +88,11 @@ public class EssentialOCLProposalProvider extends AbstractEssentialOCLProposalPr
 		INode currentNode = context.getCurrentNode();
 		INode offsetNode = NodeModelUtils.findLeafNodeAtOffset(currentNode, offset);
 		EObject eObject = NodeModelUtils.findActualSemanticObjectFor(offsetNode);
-		if (!(eObject instanceof SimpleNamedElementRefCS)) {
+		if (!(eObject instanceof PathElementCS)) {
 			offsetNode = NodeModelUtils.findLeafNodeAtOffset(currentNode, offset-1);
 			eObject = NodeModelUtils.findActualSemanticObjectFor(offsetNode);
 		}
-		if (eObject instanceof SimpleNamedElementRefCS) {
+		if (eObject instanceof PathElementCS) {
 			model = eObject;
 		}
 		return model;

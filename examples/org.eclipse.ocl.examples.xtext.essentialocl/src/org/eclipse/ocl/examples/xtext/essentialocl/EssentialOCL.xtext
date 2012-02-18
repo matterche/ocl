@@ -132,12 +132,12 @@ UnreservedName returns ecore::EString: // Intended to be overridden
 	EssentialOCLUnreservedName;
 
 PathNameCS returns base::PathNameCS:
-	path+=FirstNamedElementRefCS ('::' path+=LaterNamedElementRefCS)*;
+	path+=FirstPathElementCS ('::' path+=NextPathElementCS)*;
 
-FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+FirstPathElementCS returns base::PathElementCS:
 	element=[pivot::NamedElement|UnrestrictedName];
 
-LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+NextPathElementCS returns base::PathElementCS:
 	element=[pivot::NamedElement|UnreservedName];
 
 //---------------------------------------------------------------------
@@ -169,9 +169,14 @@ CollectionTypeCS returns CollectionTypeCS:
 	| ('<' ownedType=TypeExpCS '>')
 	)?;
 
+MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
+	lowerBound=LOWER ('..' upperBound=UPPER)?;
+
 MultiplicityCS returns base::MultiplicityCS:
-	'[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']'
-;
+	'[' (MultiplicityBoundsCS | MultiplicityStringCS) ']';
+
+MultiplicityStringCS returns base::MultiplicityStringCS:
+	stringBounds=('*'|'+'|'?');
 
 TupleTypeCS returns base::TupleTypeCS:
 	name='Tuple'

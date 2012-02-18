@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -56,7 +57,12 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		org.eclipse.ocl.examples.pivot.Package scopePackage = PivotUtil.getPackage(scopeClass);
 		TypedTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createTypedTypeRefCS();
 		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
-		csRef.setType(type);
+		PathNameCS csPathName = csRef.getPathName();
+		if (csPathName == null) {
+			csPathName = BaseCSTFactory.eINSTANCE.createPathNameCS();
+			csRef.setPathName(csPathName);
+		}
+		context.refreshPathName(csPathName, type, context.getScope());
 		csRef.setPivot(type);		// FIXME object ??
 		if (!(type instanceof PrimitiveType)) {
 			org.eclipse.ocl.examples.pivot.Package objectPackage = PivotUtil.getPackage(type);

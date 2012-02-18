@@ -29,19 +29,18 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PathElement;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 /**
  * An AliasAnalysis is dynamically created to support the serialization
@@ -73,7 +72,7 @@ public class AliasAnalysis extends AdapterImpl
 			adapter = new AliasAnalysis(resource);
 			Set<org.eclipse.ocl.examples.pivot.Package> localPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
 			Set<org.eclipse.ocl.examples.pivot.Package> otherPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
-			MetaModelManager metaModelManager = adapter.getMetaModelManager();
+			MetaModelManager metaModelManager = ElementUtil.findMetaModelManager(resource);
 			adapter.computePackages(metaModelManager, localPackages, otherPackages);
 			adapter.computeAliases(metaModelManager, localPackages, otherPackages);
 		}
@@ -231,7 +230,7 @@ public class AliasAnalysis extends AdapterImpl
 			if (alias != null) {
 				return alias;
 			}
-			MetaModelManager metaModelManager = getMetaModelManager();
+			MetaModelManager metaModelManager = ElementUtil.findMetaModelManager((Resource)getTarget());
 			if (metaModelManager != null) {
 				eObject = metaModelManager.getPrimaryElement(eObject);
 				return allAliases.get(eObject);
@@ -263,18 +262,6 @@ public class AliasAnalysis extends AdapterImpl
 			}
 		}
 		return s.toString();
-	}
-
-	public MetaModelManager getMetaModelManager() {
-		ResourceSet resourceSet = ((Resource)getTarget()).getResourceSet();
-		MetaModelManager metaModelManager = MetaModelManager.findAdapter(resourceSet);
-		if (metaModelManager == null) {
-			MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
-			if (adapter != null) {
-				metaModelManager = adapter.getMetaModelManager();
-			}
-		}
-		return metaModelManager;
 	}
 
 	public List<PathElement> getPath(Element eObject) {

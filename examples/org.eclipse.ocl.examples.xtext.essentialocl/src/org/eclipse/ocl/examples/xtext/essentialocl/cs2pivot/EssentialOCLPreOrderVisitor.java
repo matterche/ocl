@@ -18,13 +18,14 @@ package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
 
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -60,8 +61,8 @@ public class EssentialOCLPreOrderVisitor
 			if (csTypedRef == null) {
 				return true;
 			}
-			if (csTypedRef instanceof TypedTypeRefCSImpl) {
-				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csTypedRef).basicGetType();
+			if (csTypedRef instanceof TypedTypeRefCS) {
+				NamedElement unspecializedPivotElement = CS2Pivot.basicGetType((TypedTypeRefCS)csTypedRef);
 				if (unspecializedPivotElement == null) {
 					return false;
 				}
@@ -127,7 +128,6 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-//			context.resolveNamespaces(csElement.getNamespace());
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = context.bind(csElement, OCLMessages.UnresolvedType_ERROR_, csElement.toString());

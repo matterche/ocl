@@ -39,8 +39,8 @@ public interface PathNameCS extends ElementCS, Pivotable
 {
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName <em>Qualified Name</em>}'.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getPathName <em>Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' reference list isn't clear,
@@ -49,11 +49,11 @@ public interface PathNameCS extends ElementCS, Pivotable
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_Path()
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName
-	 * @model opposite="qualifiedName" containment="true" required="true"
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getPathName
+	 * @model opposite="pathName" containment="true" required="true"
 	 * @generated
 	 */
-	EList<SimpleNamedElementRefCS> getPath();
+	EList<PathElementCS> getPath();
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.

@@ -1699,7 +1699,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PathNameCS returns base::PathNameCS:
-	//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+	//	path+=FirstPathElementCS ("::" path+=NextPathElementCS)*;
 	public EssentialOCLGrammarAccess.PathNameCSElements getPathNameCSAccess() {
 		return gaEssentialOCL.getPathNameCSAccess();
 	}
@@ -1708,24 +1708,24 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPathNameCSAccess().getRule();
 	}
 
-	//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//FirstPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnrestrictedName];
-	public EssentialOCLGrammarAccess.FirstNamedElementRefCSElements getFirstNamedElementRefCSAccess() {
-		return gaEssentialOCL.getFirstNamedElementRefCSAccess();
+	public EssentialOCLGrammarAccess.FirstPathElementCSElements getFirstPathElementCSAccess() {
+		return gaEssentialOCL.getFirstPathElementCSAccess();
 	}
 	
-	public ParserRule getFirstNamedElementRefCSRule() {
-		return getFirstNamedElementRefCSAccess().getRule();
+	public ParserRule getFirstPathElementCSRule() {
+		return getFirstPathElementCSAccess().getRule();
 	}
 
-	//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//NextPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnreservedName];
-	public EssentialOCLGrammarAccess.LaterNamedElementRefCSElements getLaterNamedElementRefCSAccess() {
-		return gaEssentialOCL.getLaterNamedElementRefCSAccess();
+	public EssentialOCLGrammarAccess.NextPathElementCSElements getNextPathElementCSAccess() {
+		return gaEssentialOCL.getNextPathElementCSAccess();
 	}
 	
-	public ParserRule getLaterNamedElementRefCSRule() {
-		return getLaterNamedElementRefCSAccess().getRule();
+	public ParserRule getNextPathElementCSRule() {
+		return getNextPathElementCSAccess().getRule();
 	}
 
 	//PrimitiveTypeCS returns base::PrimitiveTypeRefCS:
@@ -1758,14 +1758,34 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionTypeCSAccess().getRule();
 	}
 
+	//MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
+	//	lowerBound=LOWER (".." upperBound=UPPER)?;
+	public EssentialOCLGrammarAccess.MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
+		return gaEssentialOCL.getMultiplicityBoundsCSAccess();
+	}
+	
+	public ParserRule getMultiplicityBoundsCSRule() {
+		return getMultiplicityBoundsCSAccess().getRule();
+	}
+
 	//MultiplicityCS returns base::MultiplicityCS:
-	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
 	public EssentialOCLGrammarAccess.MultiplicityCSElements getMultiplicityCSAccess() {
 		return gaEssentialOCL.getMultiplicityCSAccess();
 	}
 	
 	public ParserRule getMultiplicityCSRule() {
 		return getMultiplicityCSAccess().getRule();
+	}
+
+	//MultiplicityStringCS returns base::MultiplicityStringCS:
+	//	stringBounds=("*" | "+" | "?");
+	public EssentialOCLGrammarAccess.MultiplicityStringCSElements getMultiplicityStringCSAccess() {
+		return gaEssentialOCL.getMultiplicityStringCSAccess();
+	}
+	
+	public ParserRule getMultiplicityStringCSRule() {
+		return getMultiplicityStringCSAccess().getRule();
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
@@ -1945,7 +1965,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeLiteralExpCSAccess().getRule();
 	}
 
-	////TypeNameExpCS returns base::QualifiedTypeRefCS:
 	//TypeNameExpCS:
 	//	pathName=PathNameCS;
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {

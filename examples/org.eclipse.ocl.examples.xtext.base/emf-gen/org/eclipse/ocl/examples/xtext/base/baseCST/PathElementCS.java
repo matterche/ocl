@@ -26,20 +26,20 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName <em>Qualified Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElement <em>Element</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElementType <em>Element Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getSimpleNamedElementRefCS()
+ * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathElementCS()
  * @model superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS org.eclipse.ocl.examples.pivot.Pivotable"
  * @generated
  */
-public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
+public interface PathElementCS extends ElementCS, Pivotable
 {
 	/**
-	 * Returns the value of the '<em><b>Qualified Name</b></em>' container reference.
+	 * Returns the value of the '<em><b>Path Name</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -47,24 +47,24 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Qualified Name</em>' container reference.
-	 * @see #setQualifiedName(PathNameCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getSimpleNamedElementRefCS_QualifiedName()
+	 * @return the value of the '<em>Path Name</em>' container reference.
+	 * @see #setPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathElementCS_PathName()
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath
 	 * @model opposite="path" required="true" transient="false"
 	 * @generated
 	 */
-	PathNameCS getQualifiedName();
+	PathNameCS getPathName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getQualifiedName <em>Qualified Name</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getPathName <em>Path Name</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Qualified Name</em>' container reference.
-	 * @see #getQualifiedName()
+	 * @param value the new value of the '<em>Path Name</em>' container reference.
+	 * @see #getPathName()
 	 * @generated
 	 */
-	void setQualifiedName(PathNameCS value);
+	void setPathName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.
@@ -76,14 +76,14 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(NamedElement)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getSimpleNamedElementRefCS_Element()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathElementCS_Element()
 	 * @model required="true"
 	 * @generated
 	 */
 	NamedElement getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElement <em>Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element</em>' reference.
@@ -102,14 +102,14 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Type</em>' reference.
 	 * @see #setElementType(EClassifier)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getSimpleNamedElementRefCS_ElementType()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathElementCS_ElementType()
 	 * @model resolveProxies="false" transient="true"
 	 * @generated
 	 */
 	EClassifier getElementType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS#getElementType <em>Element Type</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getElementType <em>Element Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element Type</em>' reference.
@@ -117,5 +117,14 @@ public interface SimpleNamedElementRefCS extends ElementCS, Pivotable
 	 * @generated
 	 */
 	void setElementType(EClassifier value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	NamedElement basicGetElement();
+
+	boolean isType();
 
 } // SimpleNamedElementRefCS

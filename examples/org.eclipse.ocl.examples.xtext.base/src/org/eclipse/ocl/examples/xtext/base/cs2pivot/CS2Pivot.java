@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
@@ -45,7 +46,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
@@ -151,9 +153,25 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
 	}
 
+	public static NamedElement basicGetType(TypedTypeRefCS csTypedRef) {
+		List<PathElementCS> path = csTypedRef.getPathName().getPath();
+		int iLast = path.size()-1;
+		for (int i = 0; i < iLast; i++) {
+			NamedElement element = path.get(i).basicGetElement();
+			if (element == null) {
+				return null;
+			}
+		}
+		NamedElement element = path.get(iLast).basicGetElement();
+		if (element == null) {
+			return null;
+		}
+		return element;
+	}
+
 	public static DiagnosticMessage getUnresolvedProxyMessage(EReference eReference, EObject csContext, String linkText) {
 		String message = getUnresolvedProxyText(eReference, csContext, linkText);
-		return new DiagnosticMessage(message, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
+		return message != null ? new DiagnosticMessage(message, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC) : null;
 	}	
 
 	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
@@ -163,10 +181,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		}
 		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
 		if (unresolvedProxyMessageProvider != null) {
-			String message = unresolvedProxyMessageProvider.getMessage(csContext, linkText);
-			if (message != null) {
-				return message;
-			}
+			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
 		}
 		String messageTemplate = OCLMessages.Unresolved_ERROR_;
 		String errorContext = "Unknown";
@@ -224,7 +239,7 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	}
 
 	public static void setElementType(PathNameCS pathNameCS, EClass elementType) {
-		List<SimpleNamedElementRefCS> path = pathNameCS.getPath();
+		List<PathElementCS> path = pathNameCS.getPath();
 		int iMax = path.size()-1;
 		path.get(iMax).setElementType(elementType);
 		if (PivotPackage.Literals.FEATURE.isSuperTypeOf(elementType) && (iMax > 0)) {

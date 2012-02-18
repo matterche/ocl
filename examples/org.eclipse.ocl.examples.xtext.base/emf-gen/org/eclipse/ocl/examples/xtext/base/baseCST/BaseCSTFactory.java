@@ -163,13 +163,22 @@ public interface BaseCSTFactory extends EFactory {
 	ModelElementRefCS createModelElementRefCS();
 
 	/**
-	 * Returns a new object of class '<em>Multiplicity CS</em>'.
+	 * Returns a new object of class '<em>Multiplicity Bounds CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Multiplicity CS</em>'.
+	 * @return a new object of class '<em>Multiplicity Bounds CS</em>'.
 	 * @generated
 	 */
-	MultiplicityCS createMultiplicityCS();
+	MultiplicityBoundsCS createMultiplicityBoundsCS();
+
+	/**
+	 * Returns a new object of class '<em>Multiplicity String CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiplicity String CS</em>'.
+	 * @generated
+	 */
+	MultiplicityStringCS createMultiplicityStringCS();
 
 	/**
 	 * Returns a new object of class '<em>Operation CS</em>'.
@@ -197,6 +206,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ParameterCS createParameterCS();
+
+	/**
+	 * Returns a new object of class '<em>Path Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Element CS</em>'.
+	 * @generated
+	 */
+	PathElementCS createPathElementCS();
 
 	/**
 	 * Returns a new object of class '<em>Path Name CS</em>'.
@@ -233,15 +251,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	RootPackageCS createRootPackageCS();
-
-	/**
-	 * Returns a new object of class '<em>Simple Named Element Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Named Element Ref CS</em>'.
-	 * @generated
-	 */
-	SimpleNamedElementRefCS createSimpleNamedElementRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Specification CS</em>'.

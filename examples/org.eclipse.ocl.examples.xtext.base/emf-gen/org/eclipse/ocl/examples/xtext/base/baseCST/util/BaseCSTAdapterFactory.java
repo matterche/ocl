@@ -234,9 +234,19 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createModelElementRefCSAdapter();
 			}
 			@Override
+			public Adapter caseMultiplicityBoundsCS(MultiplicityBoundsCS object)
+			{
+				return createMultiplicityBoundsCSAdapter();
+			}
+			@Override
 			public Adapter caseMultiplicityCS(MultiplicityCS object)
 			{
 				return createMultiplicityCSAdapter();
+			}
+			@Override
+			public Adapter caseMultiplicityStringCS(MultiplicityStringCS object)
+			{
+				return createMultiplicityStringCSAdapter();
 			}
 			@Override
 			public Adapter caseNamedElementCS(NamedElementCS object)
@@ -262,6 +272,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseParameterCS(ParameterCS object)
 			{
 				return createParameterCSAdapter();
+			}
+			@Override
+			public Adapter casePathElementCS(PathElementCS object)
+			{
+				return createPathElementCSAdapter();
 			}
 			@Override
 			public Adapter casePathNameCS(PathNameCS object)
@@ -292,11 +307,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseRootPackageCS(RootPackageCS object)
 			{
 				return createRootPackageCSAdapter();
-			}
-			@Override
-			public Adapter caseSimpleNamedElementRefCS(SimpleNamedElementRefCS object)
-			{
-				return createSimpleNamedElementRefCSAdapter();
 			}
 			@Override
 			public Adapter caseSpecificationCS(SpecificationCS object)
@@ -704,6 +714,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS <em>Multiplicity Bounds CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS
+	 * @generated
+	 */
+	public Adapter createMultiplicityBoundsCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS <em>Multiplicity CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -714,6 +739,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMultiplicityCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS <em>Multiplicity String CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS
+	 * @generated
+	 */
+	public Adapter createMultiplicityStringCSAdapter()
 	{
 		return null;
 	}
@@ -785,6 +825,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterCSAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS <em>Path Element CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS
+	 * @generated
+	 */
+	public Adapter createPathElementCSAdapter()
+	{
 		return null;
 	}
 
@@ -872,21 +927,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRootPackageCSAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS <em>Simple Named Element Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS
-	 * @generated
-	 */
-	public Adapter createSimpleNamedElementRefCSAdapter()
 	{
 		return null;
 	}

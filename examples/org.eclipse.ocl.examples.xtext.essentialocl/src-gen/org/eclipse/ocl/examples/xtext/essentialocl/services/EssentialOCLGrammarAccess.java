@@ -486,45 +486,45 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PathNameCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPathFirstNamedElementRefCSParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
+		private final RuleCall cPathFirstPathElementCSParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cPathAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPathLaterNamedElementRefCSParserRuleCall_1_1_0 = (RuleCall)cPathAssignment_1_1.eContents().get(0);
+		private final RuleCall cPathNextPathElementCSParserRuleCall_1_1_0 = (RuleCall)cPathAssignment_1_1.eContents().get(0);
 		
 		//PathNameCS returns base::PathNameCS:
-		//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+		//	path+=FirstPathElementCS ("::" path+=NextPathElementCS)*;
 		public ParserRule getRule() { return rule; }
 
-		//path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*
+		//path+=FirstPathElementCS ("::" path+=NextPathElementCS)*
 		public Group getGroup() { return cGroup; }
 
-		//path+=FirstNamedElementRefCS
+		//path+=FirstPathElementCS
 		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
 
-		//FirstNamedElementRefCS
-		public RuleCall getPathFirstNamedElementRefCSParserRuleCall_0_0() { return cPathFirstNamedElementRefCSParserRuleCall_0_0; }
+		//FirstPathElementCS
+		public RuleCall getPathFirstPathElementCSParserRuleCall_0_0() { return cPathFirstPathElementCSParserRuleCall_0_0; }
 
-		//("::" path+=LaterNamedElementRefCS)*
+		//("::" path+=NextPathElementCS)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"::"
 		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
 
-		//path+=LaterNamedElementRefCS
+		//path+=NextPathElementCS
 		public Assignment getPathAssignment_1_1() { return cPathAssignment_1_1; }
 
-		//LaterNamedElementRefCS
-		public RuleCall getPathLaterNamedElementRefCSParserRuleCall_1_1_0() { return cPathLaterNamedElementRefCSParserRuleCall_1_1_0; }
+		//NextPathElementCS
+		public RuleCall getPathNextPathElementCSParserRuleCall_1_1_0() { return cPathNextPathElementCSParserRuleCall_1_1_0; }
 	}
 
-	public class FirstNamedElementRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FirstNamedElementRefCS");
+	public class FirstPathElementCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FirstPathElementCS");
 		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
 		private final RuleCall cElementNamedElementUnrestrictedNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
 		
-		//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+		//FirstPathElementCS returns base::PathElementCS:
 		//	element=[pivot::NamedElement|UnrestrictedName];
 		public ParserRule getRule() { return rule; }
 
@@ -538,13 +538,13 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getElementNamedElementUnrestrictedNameParserRuleCall_0_1() { return cElementNamedElementUnrestrictedNameParserRuleCall_0_1; }
 	}
 
-	public class LaterNamedElementRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LaterNamedElementRefCS");
+	public class NextPathElementCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NextPathElementCS");
 		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
 		private final RuleCall cElementNamedElementUnreservedNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
 		
-		//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+		//NextPathElementCS returns base::PathElementCS:
 		//	element=[pivot::NamedElement|UnreservedName];
 		public ParserRule getRule() { return rule; }
 
@@ -717,76 +717,100 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getGreaterThanSignKeyword_1_1_2() { return cGreaterThanSignKeyword_1_1_2; }
 	}
 
+	public class MultiplicityBoundsCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityBoundsCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cLowerBoundAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLowerBoundLOWERParserRuleCall_0_0 = (RuleCall)cLowerBoundAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cUpperBoundAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cUpperBoundUPPERParserRuleCall_1_1_0 = (RuleCall)cUpperBoundAssignment_1_1.eContents().get(0);
+		
+		//MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
+		//	lowerBound=LOWER (".." upperBound=UPPER)?;
+		public ParserRule getRule() { return rule; }
+
+		//lowerBound=LOWER (".." upperBound=UPPER)?
+		public Group getGroup() { return cGroup; }
+
+		//lowerBound=LOWER
+		public Assignment getLowerBoundAssignment_0() { return cLowerBoundAssignment_0; }
+
+		//LOWER
+		public RuleCall getLowerBoundLOWERParserRuleCall_0_0() { return cLowerBoundLOWERParserRuleCall_0_0; }
+
+		//(".." upperBound=UPPER)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_1_0() { return cFullStopFullStopKeyword_1_0; }
+
+		//upperBound=UPPER
+		public Assignment getUpperBoundAssignment_1_1() { return cUpperBoundAssignment_1_1; }
+
+		//UPPER
+		public RuleCall getUpperBoundUPPERParserRuleCall_1_1_0() { return cUpperBoundUPPERParserRuleCall_1_1_0; }
+	}
+
 	public class MultiplicityCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Assignment cLowerAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
-		private final RuleCall cLowerLOWERParserRuleCall_1_0_0_0 = (RuleCall)cLowerAssignment_1_0_0.eContents().get(0);
-		private final Group cGroup_1_0_1 = (Group)cGroup_1_0.eContents().get(1);
-		private final Keyword cFullStopFullStopKeyword_1_0_1_0 = (Keyword)cGroup_1_0_1.eContents().get(0);
-		private final Assignment cUpperAssignment_1_0_1_1 = (Assignment)cGroup_1_0_1.eContents().get(1);
-		private final RuleCall cUpperUPPERParserRuleCall_1_0_1_1_0 = (RuleCall)cUpperAssignment_1_0_1_1.eContents().get(0);
-		private final Assignment cMultiplicityAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final Alternatives cMultiplicityAlternatives_1_1_0 = (Alternatives)cMultiplicityAssignment_1_1.eContents().get(0);
-		private final Keyword cMultiplicityAsteriskKeyword_1_1_0_0 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(0);
-		private final Keyword cMultiplicityPlusSignKeyword_1_1_0_1 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(1);
-		private final Keyword cMultiplicityQuestionMarkKeyword_1_1_0_2 = (Keyword)cMultiplicityAlternatives_1_1_0.eContents().get(2);
+		private final RuleCall cMultiplicityBoundsCSParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cMultiplicityStringCSParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//MultiplicityCS returns base::MultiplicityCS:
-		//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+		//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
 		public ParserRule getRule() { return rule; }
 
-		//"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]"
+		//"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]"
 		public Group getGroup() { return cGroup; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
-		//lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")
+		//MultiplicityBoundsCS | MultiplicityStringCS
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//lower=LOWER (".." upper=UPPER)?
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//MultiplicityBoundsCS
+		public RuleCall getMultiplicityBoundsCSParserRuleCall_1_0() { return cMultiplicityBoundsCSParserRuleCall_1_0; }
 
-		//lower=LOWER
-		public Assignment getLowerAssignment_1_0_0() { return cLowerAssignment_1_0_0; }
-
-		//LOWER
-		public RuleCall getLowerLOWERParserRuleCall_1_0_0_0() { return cLowerLOWERParserRuleCall_1_0_0_0; }
-
-		//(".." upper=UPPER)?
-		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
-
-		//".."
-		public Keyword getFullStopFullStopKeyword_1_0_1_0() { return cFullStopFullStopKeyword_1_0_1_0; }
-
-		//upper=UPPER
-		public Assignment getUpperAssignment_1_0_1_1() { return cUpperAssignment_1_0_1_1; }
-
-		//UPPER
-		public RuleCall getUpperUPPERParserRuleCall_1_0_1_1_0() { return cUpperUPPERParserRuleCall_1_0_1_1_0; }
-
-		//multiplicity=("*" | "+" | "?")
-		public Assignment getMultiplicityAssignment_1_1() { return cMultiplicityAssignment_1_1; }
-
-		//"*" | "+" | "?"
-		public Alternatives getMultiplicityAlternatives_1_1_0() { return cMultiplicityAlternatives_1_1_0; }
-
-		//"*"
-		public Keyword getMultiplicityAsteriskKeyword_1_1_0_0() { return cMultiplicityAsteriskKeyword_1_1_0_0; }
-
-		//"+"
-		public Keyword getMultiplicityPlusSignKeyword_1_1_0_1() { return cMultiplicityPlusSignKeyword_1_1_0_1; }
-
-		//"?"
-		public Keyword getMultiplicityQuestionMarkKeyword_1_1_0_2() { return cMultiplicityQuestionMarkKeyword_1_1_0_2; }
+		//MultiplicityStringCS
+		public RuleCall getMultiplicityStringCSParserRuleCall_1_1() { return cMultiplicityStringCSParserRuleCall_1_1; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+	}
+
+	public class MultiplicityStringCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityStringCS");
+		private final Assignment cStringBoundsAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cStringBoundsAlternatives_0 = (Alternatives)cStringBoundsAssignment.eContents().get(0);
+		private final Keyword cStringBoundsAsteriskKeyword_0_0 = (Keyword)cStringBoundsAlternatives_0.eContents().get(0);
+		private final Keyword cStringBoundsPlusSignKeyword_0_1 = (Keyword)cStringBoundsAlternatives_0.eContents().get(1);
+		private final Keyword cStringBoundsQuestionMarkKeyword_0_2 = (Keyword)cStringBoundsAlternatives_0.eContents().get(2);
+		
+		//MultiplicityStringCS returns base::MultiplicityStringCS:
+		//	stringBounds=("*" | "+" | "?");
+		public ParserRule getRule() { return rule; }
+
+		//stringBounds=("*" | "+" | "?")
+		public Assignment getStringBoundsAssignment() { return cStringBoundsAssignment; }
+
+		//"*" | "+" | "?"
+		public Alternatives getStringBoundsAlternatives_0() { return cStringBoundsAlternatives_0; }
+
+		//"*"
+		public Keyword getStringBoundsAsteriskKeyword_0_0() { return cStringBoundsAsteriskKeyword_0_0; }
+
+		//"+"
+		public Keyword getStringBoundsPlusSignKeyword_0_1() { return cStringBoundsPlusSignKeyword_0_1; }
+
+		//"?"
+		public Keyword getStringBoundsQuestionMarkKeyword_0_2() { return cStringBoundsQuestionMarkKeyword_0_2; }
 	}
 
 	public class TupleTypeCSElements extends AbstractParserRuleElementFinder {
@@ -1480,7 +1504,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPathNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cPathNamePathNameCSParserRuleCall_0 = (RuleCall)cPathNameAssignment.eContents().get(0);
 		
-		////TypeNameExpCS returns base::QualifiedTypeRefCS:
 		//TypeNameExpCS:
 		//	pathName=PathNameCS;
 		public ParserRule getRule() { return rule; }
@@ -2521,13 +2544,15 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private EssentialOCLUnreservedNameElements pEssentialOCLUnreservedName;
 	private UnreservedNameElements pUnreservedName;
 	private PathNameCSElements pPathNameCS;
-	private FirstNamedElementRefCSElements pFirstNamedElementRefCS;
-	private LaterNamedElementRefCSElements pLaterNamedElementRefCS;
+	private FirstPathElementCSElements pFirstPathElementCS;
+	private NextPathElementCSElements pNextPathElementCS;
 	private PrimitiveTypeIdentifierElements pPrimitiveTypeIdentifier;
 	private PrimitiveTypeCSElements pPrimitiveTypeCS;
 	private CollectionTypeIdentifierElements pCollectionTypeIdentifier;
 	private CollectionTypeCSElements pCollectionTypeCS;
+	private MultiplicityBoundsCSElements pMultiplicityBoundsCS;
 	private MultiplicityCSElements pMultiplicityCS;
+	private MultiplicityStringCSElements pMultiplicityStringCS;
 	private TupleTypeCSElements pTupleTypeCS;
 	private TuplePartCSElements pTuplePartCS;
 	private CollectionLiteralExpCSElements pCollectionLiteralExpCS;
@@ -2855,7 +2880,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PathNameCS returns base::PathNameCS:
-	//	path+=FirstNamedElementRefCS ("::" path+=LaterNamedElementRefCS)*;
+	//	path+=FirstPathElementCS ("::" path+=NextPathElementCS)*;
 	public PathNameCSElements getPathNameCSAccess() {
 		return (pPathNameCS != null) ? pPathNameCS : (pPathNameCS = new PathNameCSElements());
 	}
@@ -2864,24 +2889,24 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPathNameCSAccess().getRule();
 	}
 
-	//FirstNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//FirstPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnrestrictedName];
-	public FirstNamedElementRefCSElements getFirstNamedElementRefCSAccess() {
-		return (pFirstNamedElementRefCS != null) ? pFirstNamedElementRefCS : (pFirstNamedElementRefCS = new FirstNamedElementRefCSElements());
+	public FirstPathElementCSElements getFirstPathElementCSAccess() {
+		return (pFirstPathElementCS != null) ? pFirstPathElementCS : (pFirstPathElementCS = new FirstPathElementCSElements());
 	}
 	
-	public ParserRule getFirstNamedElementRefCSRule() {
-		return getFirstNamedElementRefCSAccess().getRule();
+	public ParserRule getFirstPathElementCSRule() {
+		return getFirstPathElementCSAccess().getRule();
 	}
 
-	//LaterNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	//NextPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|UnreservedName];
-	public LaterNamedElementRefCSElements getLaterNamedElementRefCSAccess() {
-		return (pLaterNamedElementRefCS != null) ? pLaterNamedElementRefCS : (pLaterNamedElementRefCS = new LaterNamedElementRefCSElements());
+	public NextPathElementCSElements getNextPathElementCSAccess() {
+		return (pNextPathElementCS != null) ? pNextPathElementCS : (pNextPathElementCS = new NextPathElementCSElements());
 	}
 	
-	public ParserRule getLaterNamedElementRefCSRule() {
-		return getLaterNamedElementRefCSAccess().getRule();
+	public ParserRule getNextPathElementCSRule() {
+		return getNextPathElementCSAccess().getRule();
 	}
 
 	////---------------------------------------------------------------------
@@ -2927,14 +2952,34 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionTypeCSAccess().getRule();
 	}
 
+	//MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
+	//	lowerBound=LOWER (".." upperBound=UPPER)?;
+	public MultiplicityBoundsCSElements getMultiplicityBoundsCSAccess() {
+		return (pMultiplicityBoundsCS != null) ? pMultiplicityBoundsCS : (pMultiplicityBoundsCS = new MultiplicityBoundsCSElements());
+	}
+	
+	public ParserRule getMultiplicityBoundsCSRule() {
+		return getMultiplicityBoundsCSAccess().getRule();
+	}
+
 	//MultiplicityCS returns base::MultiplicityCS:
-	//	"[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]";
+	//	"[" (MultiplicityBoundsCS | MultiplicityStringCS) "]";
 	public MultiplicityCSElements getMultiplicityCSAccess() {
 		return (pMultiplicityCS != null) ? pMultiplicityCS : (pMultiplicityCS = new MultiplicityCSElements());
 	}
 	
 	public ParserRule getMultiplicityCSRule() {
 		return getMultiplicityCSAccess().getRule();
+	}
+
+	//MultiplicityStringCS returns base::MultiplicityStringCS:
+	//	stringBounds=("*" | "+" | "?");
+	public MultiplicityStringCSElements getMultiplicityStringCSAccess() {
+		return (pMultiplicityStringCS != null) ? pMultiplicityStringCS : (pMultiplicityStringCS = new MultiplicityStringCSElements());
+	}
+	
+	public ParserRule getMultiplicityStringCSRule() {
+		return getMultiplicityStringCSAccess().getRule();
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
@@ -3114,7 +3159,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTypeLiteralExpCSAccess().getRule();
 	}
 
-	////TypeNameExpCS returns base::QualifiedTypeRefCS:
 	//TypeNameExpCS:
 	//	pathName=PathNameCS;
 	public TypeNameExpCSElements getTypeNameExpCSAccess() {

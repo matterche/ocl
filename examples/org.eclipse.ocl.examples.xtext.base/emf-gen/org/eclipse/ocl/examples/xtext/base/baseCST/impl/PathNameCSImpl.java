@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -53,7 +53,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SimpleNamedElementRefCS> path;
+	protected EList<PathElementCS> path;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,11 +81,11 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SimpleNamedElementRefCS> getPath()
+	public EList<PathElementCS> getPath()
 	{
 		if (path == null)
 		{
-			path = new EObjectContainmentWithInverseEList<SimpleNamedElementRefCS>(SimpleNamedElementRefCS.class, this, BaseCSTPackage.PATH_NAME_CS__PATH, BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS__QUALIFIED_NAME);
+			path = new EObjectContainmentWithInverseEList<PathElementCS>(PathElementCS.class, this, BaseCSTPackage.PATH_NAME_CS__PATH, BaseCSTPackage.PATH_ELEMENT_CS__PATH_NAME);
 		}
 		return path;
 	}
@@ -137,7 +137,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 		{
 			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				getPath().clear();
-				getPath().addAll((Collection<? extends SimpleNamedElementRefCS>)newValue);
+				getPath().addAll((Collection<? extends PathElementCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -215,7 +215,10 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			return null;
 		}
 		for (int i = 0; i < iMax-1; i++) {
-			path.get(i).getElement();
+			NamedElement element = path.get(i).getElement();
+			if (element == null) {
+				return null;
+			}
 		}
 		NamedElement element = path.get(iMax-1).getElement();
 		if (element == null) {

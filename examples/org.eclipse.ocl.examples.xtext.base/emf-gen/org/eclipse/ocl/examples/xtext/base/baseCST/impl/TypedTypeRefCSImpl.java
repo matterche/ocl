@@ -16,19 +16,14 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -40,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
  * </ul>
@@ -50,24 +45,14 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  */
 public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS {
 	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
+	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
+	 * @see #getPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Namespace> namespace;
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type;
-
+	protected PathNameCS pathName;
 	/**
 	 * The cached value of the '{@link #getOwnedTemplateBinding() <em>Owned Template Binding</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -102,13 +87,9 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Namespace> getNamespace()
+	public PathNameCS getPathName()
 	{
-		if (namespace == null)
-		{
-			namespace = new EObjectResolvingEList<Namespace>(Namespace.class, this, BaseCSTPackage.TYPED_TYPE_REF_CS__NAMESPACE);
-		}
-		return namespace;
+		return pathName;
 	}
 
 	/**
@@ -116,40 +97,37 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getType() {
-		if (type != null && ((EObject)type).eIsProxy())
-		{
-			InternalEObject oldType = (InternalEObject)type;
-			type = (Type)eResolveProxy(oldType);
-			if (type != oldType)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE, oldType, type));
-			}
-		}
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(Type newType)
+	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
 	{
-		Type oldType = type;
-		type = newType;
+		PathNameCS oldPathName = pathName;
+		pathName = newPathName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE, oldType, type));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME, oldPathName, newPathName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPathName(PathNameCS newPathName)
+	{
+		if (newPathName != pathName)
+		{
+			NotificationChain msgs = null;
+			if (pathName != null)
+				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME, null, msgs);
+			if (newPathName != null)
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME, null, msgs);
+			msgs = basicSetPathName(newPathName, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME, newPathName, newPathName));
 	}
 
 	/**
@@ -228,6 +206,8 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	{
 		switch (featureID)
 		{
+			case BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME:
+				return basicSetPathName(null, msgs);
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				return basicSetOwnedTemplateBinding(null, msgs);
 		}
@@ -243,11 +223,10 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__NAMESPACE:
-				return getNamespace();
+			case BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME:
+				return getPathName();
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+				return getType();
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				return getOwnedTemplateBinding();
 		}
@@ -264,12 +243,8 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__NAMESPACE:
-				getNamespace().clear();
-				getNamespace().addAll((Collection<? extends Namespace>)newValue);
-				return;
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				setType((Type)newValue);
+			case BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME:
+				setPathName((PathNameCS)newValue);
 				return;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				setOwnedTemplateBinding((TemplateBindingCS)newValue);
@@ -287,11 +262,8 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__NAMESPACE:
-				getNamespace().clear();
-				return;
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				setType((Type)null);
+			case BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME:
+				setPathName((PathNameCS)null);
 				return;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				setOwnedTemplateBinding((TemplateBindingCS)null);
@@ -309,10 +281,10 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case BaseCSTPackage.TYPED_TYPE_REF_CS__NAMESPACE:
-				return namespace != null && !namespace.isEmpty();
+			case BaseCSTPackage.TYPED_TYPE_REF_CS__PATH_NAME:
+				return pathName != null;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				return type != null;
+				return getType() != null;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__OWNED_TEMPLATE_BINDING:
 				return ownedTemplateBinding != null;
 		}
@@ -322,5 +294,17 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return visitor.visitTypedTypeRefCS(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type getType() {
+		if (pathName == null) {
+			return null;
+		}
+		return (Type) pathName.getElement();
 	}
 } //TypedTypeRefCSImpl

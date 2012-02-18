@@ -16,17 +16,20 @@
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
@@ -151,12 +154,22 @@ public class BaseCS2Pivot extends CS2Pivot
 	private static final class SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
 	{		
 		private SimpleNamedElementRefCSTypeUnresolvedProxyMessageProvider() {
-			super(BaseCSTPackage.Literals.SIMPLE_NAMED_ELEMENT_REF_CS__ELEMENT);
+			super(BaseCSTPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
 		}
 		
 		@Override
 		public String getMessage(EObject context, String linkText) {
-			EClassifier elementType = ((SimpleNamedElementRefCS)context).getElementType();
+			PathElementCS pathElement = (PathElementCS)context;
+			EClassifier elementType = pathElement.getElementType();
+			PathNameCS pathName = pathElement.getPathName();
+			List<PathElementCS> path = pathName.getPath();
+			int index = path.indexOf(pathElement);
+			if (index > 0) {
+				NamedElement pathScope = path.get(index-1).getElement();
+				if ((pathScope == null) || pathScope.eIsProxy()) {
+					return null;		// Suppress message for child when parent has error
+				}
+			}
 			String element = elementType != null ? elementType.getName() : "unknown";
 			return getMessageBinder().bind(context, OCLMessages.Unresolved_ERROR_, element, linkText);
 		}

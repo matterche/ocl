@@ -16,8 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 
 /**
@@ -28,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}</li>
  * </ul>
@@ -40,20 +38,30 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 public interface TypedTypeRefCS extends TypedRefCS {
 	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.
+	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Namespace</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedTypeRefCS_Namespace()
-	 * @model
+	 * @return the value of the '<em>Path Name</em>' containment reference.
+	 * @see #setPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedTypeRefCS_PathName()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Namespace> getNamespace();
+	PathNameCS getPathName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getPathName <em>Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Path Name</em>' containment reference.
+	 * @see #getPathName()
+	 * @generated
+	 */
+	void setPathName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -64,22 +72,11 @@ public interface TypedTypeRefCS extends TypedRefCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Type)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedTypeRefCS_Type()
-	 * @model
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Type getType();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Template Binding</b></em>' containment reference.

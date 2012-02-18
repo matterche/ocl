@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -36,6 +37,9 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
@@ -68,6 +72,34 @@ public class ElementUtil
 {
 	private static final Logger logger = Logger.getLogger(ElementUtil.class);
 
+	public static MetaModelManager findMetaModelManager(EObject eObject) {
+		EObject eRoot = EcoreUtil.getRootContainer(eObject);
+		if (eRoot != null) {
+			Resource resource = eRoot.eResource();
+			if (eObject instanceof ElementCS) {
+				MetaModelManagerResourceAdapter adapter = MetaModelManagerResourceAdapter.findAdapter(resource);
+				if (adapter != null) {
+					return adapter.getMetaModelManager();
+				}
+			}
+			return findMetaModelManager(resource);
+		}
+		return null;
+	}
+
+	public static MetaModelManager findMetaModelManager(Resource resource) {
+		if (resource != null) {
+			ResourceSet resourceSet = resource.getResourceSet();
+			if (resourceSet != null) {
+				MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
+				if (adapter != null) {
+					return adapter.getMetaModelManager();
+				}
+			}
+		}
+		return null;
+	}
+
 	public static String getCollectionTypeName(TypedElementCS csTypedElement) {
 		TypedRefCS csTypeRef = csTypedElement.getOwnedType();
 		if (csTypeRef == null) {
@@ -84,17 +116,9 @@ public class ElementUtil
 		if (csMultiplicity == null) {
 			return null;
 		}
-		String multiplicity = csMultiplicity.getMultiplicity();
-		if (multiplicity != null) {
-			if ("?".equals(multiplicity)) { //$NON-NLS-1$
-				return null;
-			}
-		}
-		else {
-			int upper = csMultiplicity.getUpper();
-			if (upper == 1) {
-				return null;
-			}
+		int upper = csMultiplicity.getUpper();
+		if (upper == 1) {
+			return null;
 		}
 		List<String> qualifiers = csTypedElement.getQualifier();
 		boolean isOrdered = true;
@@ -188,16 +212,6 @@ public class ElementUtil
 		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
 		if (csMultiplicity == null) {
 			return 1;
-		}
-		String multiplicity = csMultiplicity.getMultiplicity();
-		if ("*".equals(multiplicity)) {
-			return 0;
-		}
-		else if ("+".equals(multiplicity)) {
-			return 1;
-		}
-		else if ("?".equals(multiplicity)) {
-			return 0;
 		}
 		return csMultiplicity.getLower();
 	}
@@ -309,21 +323,6 @@ public class ElementUtil
 		}
 		MultiplicityCS csMultiplicity = csTypeRef.getMultiplicity();
 		if (csMultiplicity == null) {
-			return 1;
-		}
-		String multiplicity = csMultiplicity.getMultiplicity();
-		if (multiplicity == null) {
-			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
-				return 1;
-			}
-		}
-		else if ("*".equals(multiplicity)) {
-			return -1;
-		}
-		else if ("+".equals(multiplicity)) {
-			return -1;
-		}
-		else if ("?".equals(multiplicity)) {
 			return 1;
 		}
 		return csMultiplicity.getUpper();

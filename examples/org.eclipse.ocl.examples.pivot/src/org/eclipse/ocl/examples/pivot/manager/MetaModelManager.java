@@ -2031,6 +2031,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 				collectionType = getBagType();
 			}
 		}
+		assert elementType != null;
 		return getLibraryType(collectionType, Collections.singletonList(elementType));
 	}
 

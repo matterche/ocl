@@ -423,12 +423,32 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.MULTIPLICITY_BOUNDS_CS:
+			{
+				MultiplicityBoundsCS multiplicityBoundsCS = (MultiplicityBoundsCS)theEObject;
+				T result = caseMultiplicityBoundsCS(multiplicityBoundsCS);
+				if (result == null) result = caseMultiplicityCS(multiplicityBoundsCS);
+				if (result == null) result = caseElementCS(multiplicityBoundsCS);
+				if (result == null) result = caseVisitableCS(multiplicityBoundsCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.MULTIPLICITY_CS:
 			{
 				MultiplicityCS multiplicityCS = (MultiplicityCS)theEObject;
 				T result = caseMultiplicityCS(multiplicityCS);
 				if (result == null) result = caseElementCS(multiplicityCS);
 				if (result == null) result = caseVisitableCS(multiplicityCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.MULTIPLICITY_STRING_CS:
+			{
+				MultiplicityStringCS multiplicityStringCS = (MultiplicityStringCS)theEObject;
+				T result = caseMultiplicityStringCS(multiplicityStringCS);
+				if (result == null) result = caseMultiplicityCS(multiplicityStringCS);
+				if (result == null) result = caseElementCS(multiplicityStringCS);
+				if (result == null) result = caseVisitableCS(multiplicityStringCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -503,6 +523,16 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(parameterCS);
 				if (result == null) result = casePivotable(parameterCS);
 				if (result == null) result = caseVisitableCS(parameterCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.PATH_ELEMENT_CS:
+			{
+				PathElementCS pathElementCS = (PathElementCS)theEObject;
+				T result = casePathElementCS(pathElementCS);
+				if (result == null) result = caseElementCS(pathElementCS);
+				if (result == null) result = casePivotable(pathElementCS);
+				if (result == null) result = caseVisitableCS(pathElementCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -584,16 +614,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(rootPackageCS);
 				if (result == null) result = casePivotable(rootPackageCS);
 				if (result == null) result = caseVisitableCS(rootPackageCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
-			{
-				SimpleNamedElementRefCS simpleNamedElementRefCS = (SimpleNamedElementRefCS)theEObject;
-				T result = caseSimpleNamedElementRefCS(simpleNamedElementRefCS);
-				if (result == null) result = caseElementCS(simpleNamedElementRefCS);
-				if (result == null) result = casePivotable(simpleNamedElementRefCS);
-				if (result == null) result = caseVisitableCS(simpleNamedElementRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1122,6 +1142,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity Bounds CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiplicity Bounds CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiplicityBoundsCS(MultiplicityBoundsCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1133,6 +1169,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMultiplicityCS(MultiplicityCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiplicity String CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiplicity String CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiplicityStringCS(MultiplicityStringCS object)
 	{
 		return null;
 	}
@@ -1209,6 +1261,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameterCS(ParameterCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Path Element CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Path Element CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePathElementCS(PathElementCS object)
+	{
 		return null;
 	}
 
@@ -1302,22 +1370,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRootPackageCS(RootPackageCS object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Named Element Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Named Element Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleNamedElementRefCS(SimpleNamedElementRefCS object)
 	{
 		return null;
 	}

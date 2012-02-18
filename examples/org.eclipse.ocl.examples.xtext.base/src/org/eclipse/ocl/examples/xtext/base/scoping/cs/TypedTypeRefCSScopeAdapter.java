@@ -42,11 +42,8 @@ public class TypedTypeRefCSScopeAdapter extends ElementCSScopeAdapter
 			CSScopeAdapter parentScope = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
 			return new BaseScopeView(metaModelManager, parent, parentScope, target, target.eContainingFeature(), null);
 		}
-		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE) {
-			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
+		else if (containmentFeature == BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__PATH_NAME) {
+			return scopeView.getOuterScope();
 		}
 		else {
 			Type type = targetElement.getType();

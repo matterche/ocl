@@ -47,7 +47,6 @@ import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
-import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
@@ -183,18 +182,6 @@ public class CS2PivotConversion extends AbstractConversion
 		return invalidLiteralExp;
 	}
 
-	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
-		InvalidType invalidType = metaModelManager.getOclInvalidType();
-		csElement.setPivot(invalidType);
-		return invalidType;
-	}
-
-	public InvalidType addBadTypeError(ElementRefCS csElement, String message, Object... bindings) {
-		InvalidType invalidType = metaModelManager.getOclInvalidType();
-		csElement.setPivot(invalidType);
-		return invalidType;
-	}
-
 	public void addDiagnostic(ModelElementCS csElement, Diagnostic diagnostic) {
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, diagnostic.getMessage());
@@ -213,10 +200,6 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		underspecifiedTypedElements.add(pivotElement);
 	}
-
-//	public void addWarning(ModelElementCS csElement, String message) {
-//		csElement.getError().add(message);
-//	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)

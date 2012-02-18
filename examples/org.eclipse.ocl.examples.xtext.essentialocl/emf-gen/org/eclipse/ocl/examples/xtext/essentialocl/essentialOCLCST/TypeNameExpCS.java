@@ -16,9 +16,6 @@
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;

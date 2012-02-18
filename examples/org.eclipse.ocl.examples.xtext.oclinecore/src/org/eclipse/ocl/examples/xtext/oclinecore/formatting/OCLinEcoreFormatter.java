@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAcces
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ReferenceCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateBindingCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateSignatureCSElements;
-import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -63,7 +62,9 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 		configureIfExpCS(c, f.getIfExpCSAccess());
 		configureIndexExpCS(c, f.getIndexExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
+		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
+		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
 	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
@@ -229,11 +230,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().before(a.getCommaKeyword_2_0());
 			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
 		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
-	    }
-	    {
-	    	TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
-			c.setNoSpace().around(a.getColonColonKeyword_0_0_1());	
-			c.setNoSpace().around(a.getColonColonKeyword_0_0_2_1());	
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

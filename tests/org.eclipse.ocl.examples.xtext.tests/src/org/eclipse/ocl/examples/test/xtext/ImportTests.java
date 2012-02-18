@@ -309,23 +309,31 @@ public class ImportTests extends XtextTestCase
 				"}\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A1"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A2"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "A3"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "A"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B0"));
-//BUG353966		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
-//BUG353966		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+//		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B1"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B2"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "B3"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "B"));
+		//
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "C1"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
+//		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "GD01"));
 		doBadLoadFromString("Bug353793bad.oclinecore", testFileBad, bag);
 	}
 	
@@ -344,7 +352,6 @@ public class ImportTests extends XtextTestCase
 			"}\n";
 		Bag<String> bag = new BagImpl<String>();
 		bag.add(DomainUtil.bind(OCLMessages.Unresolved_ERROR_, "Namespace", "xyzzy"));
-		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
 		bag.add(DomainUtil.bind(OCLMessages.UnresolvedType_ERROR_, "Named"));
 		doBadLoadFromString("string.oclinecore", testFile, bag);
 	}

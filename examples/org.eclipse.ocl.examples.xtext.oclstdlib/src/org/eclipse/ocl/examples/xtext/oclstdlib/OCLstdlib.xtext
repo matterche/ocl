@@ -37,14 +37,6 @@ Library returns LibRootPackageCS:
 	'}'
 ;
 
-LOWER returns ecore::EInt:
-	INT
-;
-
-UPPER returns ecore::EInt:
-	INT | '*'
-;
-
 Identifier:
 	ID
 |	RestrictedKeywords
@@ -83,6 +75,14 @@ Name:
 |	PrimitiveTypeIdentifier
 |	CollectionTypeIdentifier
 ;
+
+// Overrides to allow any Name
+FirstPathElementCS returns base::PathElementCS:
+	element=[pivot::NamedElement|Name];
+
+// Overrides to allow any Name
+NextPathElementCS returns base::PathElementCS:
+	element=[pivot::NamedElement|Name];
 
 AccumulatorCS returns base::ParameterCS:
 	name=Identifier ':' ownedType=TypedRefCS
@@ -256,9 +256,7 @@ TypedMultiplicityRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	(namespace+=[pivot::Namespace|Name] '::')*
-	type=[pivot::Type|Name]
-	(ownedTemplateBinding=TemplateBindingCS)?
+	pathName=PathNameCS (ownedTemplateBinding=TemplateBindingCS)?
 ;
 
 WildcardTypeRefCS returns base::WildcardTypeRefCS:

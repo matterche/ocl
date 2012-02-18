@@ -58,7 +58,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -194,8 +194,12 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS:
 				return validateModelElementRefCS((ModelElementRefCS)value, diagnostics, context);
+			case BaseCSTPackage.MULTIPLICITY_BOUNDS_CS:
+				return validateMultiplicityBoundsCS((MultiplicityBoundsCS)value, diagnostics, context);
 			case BaseCSTPackage.MULTIPLICITY_CS:
 				return validateMultiplicityCS((MultiplicityCS)value, diagnostics, context);
+			case BaseCSTPackage.MULTIPLICITY_STRING_CS:
+				return validateMultiplicityStringCS((MultiplicityStringCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMED_ELEMENT_CS:
 				return validateNamedElementCS((NamedElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMESPACE_CS:
@@ -206,6 +210,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validatePackageCS((PackageCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETER_CS:
 				return validateParameterCS((ParameterCS)value, diagnostics, context);
+			case BaseCSTPackage.PATH_ELEMENT_CS:
+				return validatePathElementCS((PathElementCS)value, diagnostics, context);
 			case BaseCSTPackage.PATH_NAME_CS:
 				return validatePathNameCS((PathNameCS)value, diagnostics, context);
 			case BaseCSTPackage.PIVOTABLE_ELEMENT_CS:
@@ -218,8 +224,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateRootCS((RootCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_PACKAGE_CS:
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
-			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
-				return validateSimpleNamedElementRefCS((SimpleNamedElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.SPECIFICATION_CS:
 				return validateSpecificationCS((SpecificationCS)value, diagnostics, context);
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS:
@@ -466,9 +470,29 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateMultiplicityBoundsCS(MultiplicityBoundsCS multiplicityBoundsCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(multiplicityBoundsCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMultiplicityCS(MultiplicityCS multiplicityCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(multiplicityCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMultiplicityStringCS(MultiplicityStringCS multiplicityStringCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(multiplicityStringCS, diagnostics, context);
 	}
 
 	/**
@@ -519,6 +543,16 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateParameterCS(ParameterCS parameterCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(parameterCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePathElementCS(PathElementCS pathElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(pathElementCS, diagnostics, context);
 	}
 
 	/**
@@ -669,16 +703,6 @@ public class BaseCSTValidator extends EObjectValidator
 			return false;
 		}
 		return validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimpleNamedElementRefCS(SimpleNamedElementRefCS simpleNamedElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(simpleNamedElementRefCS, diagnostics, context);
 	}
 
 	/**

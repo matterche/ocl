@@ -27,9 +27,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -67,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
@@ -863,17 +861,9 @@ public class OCLConsolePage extends Page
 	}
 
 	public MetaModelManager getMetaModelManager(EObject contextObject) {
-		if (contextObject != null) {
-			Resource ecoreResource = EcoreUtil.getRootContainer(contextObject).eResource();
-			if (ecoreResource != null) {
-				ResourceSet resourceSet = ecoreResource.getResourceSet();
-				if (resourceSet != null) {
-					MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
-					if (adapter != null) {
-						return adapter.getMetaModelManager();
-					}
-				}
-			}
+		MetaModelManager metaModelManager = ElementUtil.findMetaModelManager(contextObject);
+		if (metaModelManager != null) {
+			return metaModelManager;
 		}
 		if (nullMetaModelManager == null) {
 			nullMetaModelManager = new MetaModelManager();

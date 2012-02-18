@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.utilities.PathElement;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.xtext.naming.QualifiedName;
@@ -65,6 +66,9 @@ public class QualifiedPath extends QualifiedName
 		}
 		int i = PathElement.getCommonLength(thisPath, thatPath);
 		if (i <= 0) {
+			return this;
+		}
+		if (i >= iSize) {
 			return this;
 		}
 		final List<PathElement> newPath = new ArrayList<PathElement>();
@@ -117,7 +121,13 @@ public class QualifiedPath extends QualifiedName
 				EObject root2 = ((RootPackageCS)root).getPivot();
 				asResource = EcoreUtil.getRootContainer(root2).eResource();
 			}
-			EObject firstElement = pathElements.get(0).getElement();
+			EObject firstElement = null;
+			if (csObject instanceof PathElementCS) {
+				firstElement = ((PathElementCS)csObject).getElement();
+			}
+			else {
+				firstElement = pathElements.get(0).getElement();
+			}
 			if (firstElement instanceof org.eclipse.ocl.examples.pivot.Package) {
 				Resource elementResource = firstElement.eResource();
 				if ((elementResource != csResource) && (elementResource != asResource)) {

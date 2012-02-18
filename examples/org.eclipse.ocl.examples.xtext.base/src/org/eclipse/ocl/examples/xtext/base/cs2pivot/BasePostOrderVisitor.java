@@ -43,13 +43,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -212,7 +213,12 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	@Override
-	public Continuation<?> visitMultiplicityCS(MultiplicityCS object) {
+	public Continuation<?> visitMultiplicityBoundsCS(MultiplicityBoundsCS object) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitMultiplicityStringCS(MultiplicityStringCS object) {
 		return null;
 	}
 
@@ -227,6 +233,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	public Continuation<?> visitPackageCS(PackageCS csPackage) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Package.class, csPackage);
 		context.handleVisitNamedElement(csPackage, pivotElement);
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitPathElementCS(PathElementCS object) {
 		return null;
 	}
 
@@ -254,11 +265,6 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		if (pivotOpposite == null) {
 			context.getMetaModelManager().installPropertyDeclaration(pivotElement);
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitSimpleNamedElementRefCS(SimpleNamedElementRefCS object) {
 		return null;
 	}
 
