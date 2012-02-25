@@ -1,0 +1,226 @@
+[comment encoding = UTF-8 /]
+[module org::eclipse::ocl::examples::xtext2lpg::acceleo::generateBNF2LPG('http://www.eclipse.org/ocl/XBNF','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generate(syntax : Syntax)]
+[comment @main /]
+[for (grammar : Grammar | syntax.grammars)]
+[grammar.generateGrammar()/] 
+[/for]
+[/template]
+
+[template public generateGrammar(grammar : Grammar)]
+[/template]
+
+[template public generateGrammar(grammar : LexerGrammar)]
+[grammar.generateKWLexerGrammar()/] 
+[grammar.generateLexerGrammar()/] 
+[/template]
+
+[template public generateKWLexerGrammar(grammar : LexerGrammar)]
+[let syntaxName : String = grammar.syntax.getSyntaxName()]
+
+[file (syntaxName + 'KWLexer.gi', false, 'UTF-8')]
+%options slr
+%options fp=[syntaxName/]KWLexer,prefix=Char_
+%options noserialize
+%options package=[grammar.syntax.getSyntaxPackage()/]
+%options template=../lpg/KeywordTemplateF.gi
+%options export_terminals=("[syntaxName/]Parsersym.java", "TK_")
+%options include_directory="../lpg"
+
+%Import
+	KWLexerMapF.gi
+%End
+
+%Define
+
+	--
+	-- Definition of macros used in the template
+	--
+	$action_class /.$file_prefix./
+	$eof_char /.Char_EOF./
+	$copyright_contributions /.*./
+
+%End
+
+%Notice
+	/./**
+ * [syntax.name/] Keyword Lexer
+ * <copyright>
+ * </copyright>
+ */
+	./
+%End
+
+%Globals
+	/../
+%End
+
+%Export
+[for (keywordValue : String | syntax.getKWValues())]
+	[keywordValue.getLabel()/]
+[/for]
+%End
+
+%Start
+	KeyWord
+%End
+
+%Rules
+
+-- The Goal for the parser is a single Keyword
+
+KeyWord ::=
+[for (keywordValue : String | syntax.getKWValues()) separator('|\n')]
+	[keywordValue.replaceAll('\\w','$0 ')/]
+	/.$BeginAction
+		$setResult($_[keywordValue.getLabel()/]);
+	  $EndAction
+	./
+[/for]
+%End
+[/file]
+[/let]
+[/template]
+
+[template public generateLexerGrammar(lexer : LexerGrammar)]
+[let syntaxName : String = lexer.syntax.getSyntaxName()]
+[file (syntaxName + 'Lexer.gi', false, 'UTF-8')]
+[/file]
+[/let]
+[/template]
+
+[template public generateGrammar(grammar : ParserGrammar)]
+[grammar.generateParserGrammar()/] 
+[/template]
+
+[template public generateParserGrammar(parser : ParserGrammar)]
+[let syntaxName : String = parser.syntax.getSyntaxName()]
+[file (syntaxName + '.g', false, 'UTF-8')]
+%options escape=$
+%options la=1
+%options fp=[syntaxName/]Parser,prefix=TK_
+%options noserialize
+%options package=[parser.syntax.getSyntaxPackage()/]
+%options import_terminals=[syntaxName/]Lexer.gi
+%options ast_type=CSTNode
+%options template=dtParserTemplateF.gi
+%options include_directory=".;../lpg"
+
+%Start
+[for (rule : TypedRule | parser.goals)]
+[rule.name/] 
+[/for]
+%End
+
+%Import
+	/* import.gi */
+%End
+
+%Notice
+	/./**
+ * </copyright>
+ */
+	./
+%End
+
+%Define
+	/* overrides */
+%End
+
+%Globals
+	/.
+	/* imports */
+	./
+%End
+
+%KeyWords
+-- Reserved keywords
+	body context def derive endpackage init inv package post pre static
+
+-- Restricted keywords
+	OclMessage
+%End
+
+%Terminals
+[for (text : String | parser.syntax.eAllContents(TerminalRule).name->asSet()->sortedBy(n | n))]
+	[text/]
+[/for]
+%End
+
+%Rules
+[for (name : String | parser.rules->reject(oclIsKindOf(TerminalRule)).name->asSet()->sortedBy(n | n)) separator('\n')]
+[for (rule : TypedRule | parser.rules->select(r | r.name = name))]
+	[rule.generateRule()/][/for]
+[/for]
+%End
+[/file]
+[/let]
+[/template]
+
+[template public generateRule(rule : TypedRule)]
+[rule.generateDisjunction()/]
+[for (subrule : UntypedRule | rule.subrules->sortedBy(name))]
+[subrule.generateDisjunction()/]
+[/for]
+[/template]
+
+[template public generateDisjunction(rule : AbstractRule)]
+[for (conjunction : Conjunction | rule.element.oclAsType(Disjunction).conjunctions->sortedBy(elements->size()))]
+[rule.name/] ::=[if (conjunction.elements->isEmpty())] %empty[else][for (element : AbstractElement | conjunction.elements)] [element.generateTerm()/][/for][/if]
+[/for]
+[/template]
+
+[template public generateRule1(rule : AbstractRule)]
+[for (conjunction : Conjunction | rule.element.oclAsType(Disjunction).conjunctions)]
+[rule.name/] ::=[for (element : AbstractElement | conjunction.elements)] [element.generateTerm()/][/for]
+    /.$BeginCode
+      $EndCode
+    ./
+[/for]
+[/template]
+
+[template public generateTerm(element : AbstractElement)]
+?[element.eClass().name/]?[/template]
+
+[template public generateTerm(element : ActionAssignment)]
+[/template]
+
+[template public generateTerm(element : Epsilon)]
+%empty[/template]
+
+[template public generateTerm(element : RuleCall)]
+[element.rule.name/][/template]
+
+[template public generateTerm(element : RuleCallAssignment)]
+[element.rule.name/][/template]
+
+[template public generateTerm(element : Keyword)]
+'[element.value/]'[/template]
+
+[template public generateTerm(element : KeywordAssignment)]
+'[element.value/]'[/template]
+
+[query public getKeywordValues(syntax : Syntax) : OrderedSet(String) =
+eAllContents(Keyword).value->asSet()->sortedBy(n | n)/]
+
+[query public getKWValues(syntax : Syntax) : OrderedSet(String) =
+syntax.getKeywordValues()->select(matches('[a-zA-Z]+'))/]
+
+[query public getLabel(keywordValue : String) : String =
+if keywordValue.matches('[a-zA-Z]*')
+then keywordValue
+else '_' + keywordValue + '_'
+endif/]
+
+[query public getSyntaxName(syntax : Syntax) : String = 
+let name : String = syntax.name in
+let lastDot : Integer = name.lastIndex('.') in
+let firstCharacter : Integer = if lastDot > 0 then lastDot+1 else 1 endif in
+name.substring(firstCharacter, name.size())/]
+
+[query public getSyntaxPackage(syntax : Syntax) : String = 
+let name : String = syntax.name in
+let lastDot : Integer = name.lastIndex('.') in
+let lastCharacter : Integer = if lastDot > 0 then lastDot-1 else name.size() endif in
+name.substring(1, lastCharacter)/]
