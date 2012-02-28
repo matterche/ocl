@@ -25,7 +25,6 @@ For instance in the OCLinEcoreTutorial Example
 bc.. 
 invariant SufficientCopies:
 	library.loans->select((book = self))->size() <= copies;
-invariant SizeOk('Expected 4 ' + rather than  
 p. 
 
 may be changed to
