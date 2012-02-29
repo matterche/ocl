@@ -1,0 +1,79 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2012 E.D.Willink and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     E.D.Willink - initial API and implementation
+ *
+ * </copyright>
+ *
+ * Run As->MWE2 Workflow to regenerate the LPG files.
+ */
+module GenerateLPG
+
+import org.eclipse.ocl.examples.build.qvto.*
+import org.eclipse.ocl.examples.build.utilities.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.emf.ecore.resource.impl.*
+import org.eclipse.m2m.internal.qvt.oml.runtime.ant.QvtoAntTransformationTask
+
+var projectName = "org.eclipse.ocl.examples.xtext2lpg"
+var xtextXBNF = "/${projectName}/generatedModels/EssentialOCL.xtext.XBNF"
+var normalXBNF = "/${projectName}/generatedModels/EssentialOCL.normal.XBNF"
+var inlineXBNF = "/${projectName}/generatedModels/EssentialOCL.inline.XBNF"
+
+/**
+ *	Generate the Concrete Syntax Models used by the Xtext editors.
+ */
+Workflow {
+	bean = ResourceSetImpl : resourceSet {}
+    bean = StandaloneSetup { resourceSet = resourceSet
+    	extensionMap = Mapping {
+    		from = "XBNF"
+    		to = "org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
+    	}
+//    	platformUri = "./META-INF"		// A local folder to minimize workspace searching
+//    	scanClassPath = true			// But we do need to search the plugin-space
+//    	registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
+//    	uriMap = Mapping {
+//    		from = "platform:/plugin/org.eclipse.xtext.common.types/"
+//    		to = "platform:/resource/org.eclipse.xtext.common.types/"
+//    	}
+	}
+	bean = XtextStandaloneSetupBean {}
+    bean = ProjectMapSetup { resourceSet = resourceSet }
+    bean = DynamicEPackageSetup { resourceSet = resourceSet
+		dynamicEPackage = "/${projectName}/model/XBNF.ecore"
+		dynamicEPackage = "/${projectName}/model/XBNFwithCardinality.ecore"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/xtext2xbnf.qvto"
+    	in = "org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
+    	out = "${xtextXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/normalize.qvto"
+    	in = "${xtextXBNF}"
+    	out = "${normalXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/inline.qvto"
+    	in = "${normalXBNF}"
+    	out = "${inlineXBNF}"
+    }
+    component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
+    	in = "${inlineXBNF}"
+    	javaFolder = "../${projectName}/generatedModels"
+    	javaPackageName = "${projectName}"
+    }
+}
+
