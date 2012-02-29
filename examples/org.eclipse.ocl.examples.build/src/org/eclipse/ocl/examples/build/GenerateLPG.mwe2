@@ -16,7 +16,6 @@
  */
 module GenerateLPG
 
-import org.eclipse.ocl.examples.build.qvto.*
 import org.eclipse.ocl.examples.build.utilities.*
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.emf.mwe.utils.*
