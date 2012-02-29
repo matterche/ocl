@@ -67,7 +67,11 @@ public class ProblemOptionTest
 
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(), BasicEnvironment.class);
         
-    	// default severity is warning
+    	// default severity is OK
+    	assertOK("self->closure(eSuperPackage)");
+        
+    	// ignore the closure iterator
+    	benv.setOption(ProblemOption.CLOSURE_ITERATOR, ProblemHandler.Severity.WARNING);
     	assertWarning("self->closure(eSuperPackage)");
         
     	// ignore the closure iterator

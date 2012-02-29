@@ -394,7 +394,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // non-recursive reference
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"self->closure(%ownedType)",
-        	OCLMessages.NonStd_Iterator_, "closure");
+        	OCLMessages.ElementTypeConformanceClosure_ERROR_, denormalize("%Type"), denormalize("%Package"));
     }
 
     /**
@@ -423,7 +423,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         // assigned recursively
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"self->closure(getFakes())",
-        	OCLMessages.NonStd_Iterator_, "closure");
+        	OCLMessages.ElementTypeConformanceClosure_ERROR_, "Fake", "Subfake");
 
         // this should parse OK because the result of the closure expression
         // is more specific than the iterator variable, so it can be

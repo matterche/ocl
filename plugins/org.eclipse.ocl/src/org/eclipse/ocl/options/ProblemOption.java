@@ -31,7 +31,7 @@ public enum ProblemOption implements Option<Severity> {
 	 * Severity of using the non-spec <tt>closure</tt> iterator.
 	 * The default severity is <tt>WARNING</tt>.
 	 */
-	CLOSURE_ITERATOR("iterators.closure", Severity.WARNING), //$NON-NLS-1$
+	CLOSURE_ITERATOR("iterators.closure", Severity.OK), //$NON-NLS-1$
 	
 	/**
 	 * Severity of using the non-spec <tt>toUpper()</tt> and <tt>toLower()</tt>
