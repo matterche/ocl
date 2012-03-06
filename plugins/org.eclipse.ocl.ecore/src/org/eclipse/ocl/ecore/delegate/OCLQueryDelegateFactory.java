@@ -94,7 +94,7 @@ public class OCLQueryDelegateFactory
 	public static class Global extends OCLQueryDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 		}
 
 		public QueryDelegate createQueryDelegate(EClassifier context,
@@ -109,5 +109,35 @@ public class OCLQueryDelegateFactory
 			}
 			return super.createQueryDelegate(context, parameters, expression);
 		}	
+	}
+	
+	/**
+	 * Mapping provides a Factory entry that maps one delegate URI key to another.
+	 * 
+	 * @since 3.2
+	 */
+	public static class Mapping extends Global implements QueryDelegate.Factory.Descriptor
+	{
+		protected final QueryDelegate.Factory.Registry registry;
+		
+		public Mapping() {
+			this(QueryDelegate.Factory.Registry.INSTANCE);
+		}
+		
+		public Mapping(QueryDelegate.Factory.Registry registry) {
+			this.registry = registry;
+		}
+
+		@Override
+		public QueryDelegate createQueryDelegate(EClassifier context,
+				Map<String, EClassifier> parameters, String expression) {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return super.createQueryDelegate(context, parameters, expression);
+		}
+
+		public QueryDelegate.Factory getFactory() {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return registry.getFactory(delegateURI);
+		}
 	}
 }

@@ -105,7 +105,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLValidationDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 		}
 
 		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
@@ -119,5 +119,42 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 			}
 			return super.createValidationDelegate(classifier);
 		}	
+	}
+	
+	/**
+	 * Mapping provides a Factory entry that maps one delegate URI key to another.
+	 * 
+	 * @since 3.2
+	 */
+	public static class Mapping extends Global implements EValidator.ValidationDelegate.Descriptor
+	{
+		protected final EValidator.ValidationDelegate.Registry registry;
+		
+		public Mapping() {
+			this(EValidator.ValidationDelegate.Registry.INSTANCE);
+		}
+		
+		public Mapping(EValidator.ValidationDelegate.Registry registry) {
+			this.registry = registry;
+		}
+
+		@Override
+		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return super.createValidationDelegate(classifier);
+		}
+
+		public  EValidator.ValidationDelegate getValidationDelegate() {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return (EValidator.ValidationDelegate) registry.get(delegateURI);
+		}
+
+		@Override
+		protected ValidationDelegate getValidationDelegate(EClassifier eClassifier) {
+			if (delegateDomain == null) {
+				VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			}
+			return super.getValidationDelegate(eClassifier);
+		}
 	}
 }

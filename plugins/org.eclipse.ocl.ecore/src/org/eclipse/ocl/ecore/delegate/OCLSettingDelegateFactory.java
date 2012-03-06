@@ -18,6 +18,7 @@ package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
@@ -69,7 +70,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLSettingDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 		}
 
 		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
@@ -83,5 +84,34 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 			}
 			return super.createSettingDelegate(structuralFeature);
 		}	
+	}
+	
+	/**
+	 * Mapping provides a Factory entry that maps one delegate URI key to another.
+	 * 
+	 * @since 3.2
+	 */
+	public static class Mapping extends Global implements EStructuralFeature.Internal.SettingDelegate.Factory.Descriptor
+	{
+		protected final EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry;
+		
+		public Mapping() {
+			this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE);
+		}
+		
+		public Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry) {
+			this.registry = registry;
+		}
+
+		@Override
+		public SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return super.createSettingDelegate(structuralFeature);
+		}
+
+		public EStructuralFeature.Internal.SettingDelegate.Factory getFactory() {
+			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
+			return registry.getFactory(delegateURI);
+		}
 	}
 }

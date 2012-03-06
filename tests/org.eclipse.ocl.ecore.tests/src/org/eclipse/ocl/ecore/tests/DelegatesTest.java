@@ -139,7 +139,11 @@ public class DelegatesTest extends AbstractTestSuite
 		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;
 
-		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
+		initializeResourceSet(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);			
+		OCLDelegateDomain.initializeMappingFrom(null, OCLDelegateDomain.OCL_DELEGATE_URI);			
+	}
+
+	protected void initializeResourceSet(String oclDelegateURI) {
 		if (!eclipseIsRunning) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
 				new OCLInvocationDelegateFactory.Global());
@@ -217,7 +221,7 @@ public class DelegatesTest extends AbstractTestSuite
 				usedLocalRegistry = true;
 				return super.createQueryDelegate(context, parameters, expression);
 			}});
-		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);			
+		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 	}
 
 	protected void initModel(String testModelName) {
@@ -371,7 +375,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 
 		String n = "n";
 		String expression = "self.employees->select(employee | employee.manager <> null and employee.manager.name = n)";
@@ -419,7 +423,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 
 		String okName = "ok";
 		String badName = "xyzzy";
@@ -621,7 +625,7 @@ public class DelegatesTest extends AbstractTestSuite
 		EStructuralFeature directReportsRef = employeeClass.getEStructuralFeature("directReports");
 		// Now cache a NullLiteralExp as the derivation expression for directReports:
 		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
-		EAnnotation directReportsAnn = directReportsRef.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation directReportsAnn = OCLDelegateDomain.getDelegateAnnotation(directReportsRef);
 		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
 		String derivationExpression =  directReportsAnn.getDetails().get(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
 		try {
@@ -682,7 +686,7 @@ public class DelegatesTest extends AbstractTestSuite
 		Resource res = resourceSet.getResource(uri, true);
 		res.eAdapters().add(new ECrossReferenceAdapter());
 		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
-		EAnnotation anno = hiddenOppositesPackage.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation anno = OCLDelegateDomain.getDelegateAnnotation(hiddenOppositesPackage);
 		anno.getDetails().put("environmentFactoryClass", getClass().getName()+"$LocalEnvironmentFactory");
 		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
 		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
@@ -712,7 +716,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_invariantCacheBeingUsed() throws ParserException {
 		initPackageRegistrations();
 		initModel(COMPANY_XMI);
-		EAnnotation annotation = employeeClass.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation annotation = OCLDelegateDomain.getDelegateAnnotation(employeeClass);
 		
 		DiagnosticChain diagnostics = new BasicDiagnostic();
 		// first ensure that contents are padded up to where we need it:
@@ -886,7 +890,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Now cache a BooleanLiteralExp with the "false" literal as the implementation for reportsTo:
 		BooleanLiteralExp falseLiteralExp = EcoreFactory.eINSTANCE.createBooleanLiteralExp();
 		falseLiteralExp.setBooleanSymbol(false);
-		EAnnotation reportsToAnn = reportsToOp.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation reportsToAnn = OCLDelegateDomain.getDelegateAnnotation(reportsToOp);
 		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
 		String body = reportsToAnn.getDetails().get(InvocationBehavior.BODY_CONSTRAINT_KEY);
 		try {
@@ -950,7 +954,7 @@ public class DelegatesTest extends AbstractTestSuite
 	 */
 	public void test_queryExecution_Bug353171() {
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 		String n = "n";
 		String expression = "self.name";
 		Library library = EXTLibraryFactory.eINSTANCE.createLibrary();

@@ -20,6 +20,7 @@ package org.eclipse.ocl.ecore.delegate;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -28,7 +29,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
@@ -89,6 +89,10 @@ public class OCLDelegateDomain implements DelegateDomain
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
 	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	/**
+	 * @since 3.2
+	 */
+	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI_SLASH + "LPG"; //$NON-NLS-1$
 
 	 /**
 	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
@@ -149,7 +153,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @since 3.2
 	 */
 	public static void initialize(ResourceSet resourceSet) {
-		initialize(resourceSet, OCL_DELEGATE_URI);
+		initialize(resourceSet, OCL_DELEGATE_URI_LPG);
+		initializeMappingFrom(resourceSet, OCL_DELEGATE_URI);
 	}
 	
 	/**
@@ -159,7 +164,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @since 3.2
 	 */
 	public static void initialize(ResourceSet resourceSet, String oclDelegateURI) {
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLInvocationDelegateFactory.Global());
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLSettingDelegateFactory.Global());
 			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI, new OCLValidationDelegateFactory.Global());
@@ -195,9 +200,25 @@ public class OCLDelegateDomain implements DelegateDomain
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
 	}
+	
+	/**
+	 * @since 3.2
+	 */
+	public static void initializeMappingFrom(ResourceSet resourceSet, String oclDelegateURI) {
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
+			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+				new OCLInvocationDelegateFactory.Mapping(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE));
+			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+				new OCLSettingDelegateFactory.Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE));
+			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
+				new OCLValidationDelegateFactory.Mapping(EValidator.ValidationDelegate.Registry.INSTANCE));
+			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
+				new OCLQueryDelegateFactory.Mapping(QueryDelegate.Factory.Registry.INSTANCE));
+		}
+	}
 
 	/**
-	 * Return true if eAnnortation is an OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
+	 * Return true if eAnnotation is an OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
 	 * as its source, or with a source whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
 	 *  
 	 * @since 3.2
