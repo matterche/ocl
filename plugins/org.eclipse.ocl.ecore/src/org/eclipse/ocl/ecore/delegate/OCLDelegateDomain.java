@@ -176,22 +176,22 @@ public class OCLDelegateDomain implements DelegateDomain
 					
 			// Install a local ValidationDelegate.Factory
 			ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry = new ValidationDelegate.Factory.Registry.Impl();
-			validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory());
+			validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(ValidationDelegate.Factory.Registry.class, validationDelegateFactoryRegistry);
 	
 			// Install a local SettingDelegate.Factory
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry = new EStructuralFeature.Internal.SettingDelegate.Factory.Registry.Impl();
-			settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory());
+			settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, settingDelegateFactoryRegistry);
 	
 			// Install a local InvocationDelegate.Factory
 			EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry = new EOperation.Internal.InvocationDelegate.Factory.Registry.Impl();
-			invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory());
+			invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class, invocationDelegateFactoryRegistry);	
 	
 			// Install a local QueryDelegate.Factory
 			QueryDelegate.Factory.Registry queryDelegateFactoryRegistry = new QueryDelegate.Factory.Registry.Impl();
-			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory());
+			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
 	}

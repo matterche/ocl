@@ -31,7 +31,10 @@ public abstract class AbstractOCLDelegateFactory
 
 	/**
 	 * Construct a factory for an unknown delegate domain; often the global factory.
+	 * 
+	 * @deprecated Specify explicit delegateURI
 	 */
+	@Deprecated
 	protected AbstractOCLDelegateFactory() {
 		this.delegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
 		this.delegateDomain = null;
@@ -41,7 +44,20 @@ public abstract class AbstractOCLDelegateFactory
 	 * Construct a factory for a known delegate domain.
 	 * 
 	 * @param delegateDomain the delegate domain.
+	 * @since 3.2
 	 */
+	protected AbstractOCLDelegateFactory(String delegateURI) {
+		this.delegateURI = delegateURI;
+		this.delegateDomain = null;
+	}
+
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @deprecated Use String argument to avoid leak hazards
+	 */
+	@Deprecated
 	protected AbstractOCLDelegateFactory(OCLDelegateDomain delegateDomain) {
 		this.delegateURI = delegateDomain.getURI();
 		this.delegateDomain = delegateDomain;

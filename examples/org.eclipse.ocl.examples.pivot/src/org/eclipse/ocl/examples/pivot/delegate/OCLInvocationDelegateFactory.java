@@ -25,6 +25,10 @@ import org.eclipse.emf.ecore.EPackage;
 public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		implements EOperation.Internal.InvocationDelegate.Factory
 {
+	public OCLInvocationDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
+
 	public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 		EPackage ePackage = operation.getEContainingClass().getEPackage();
 		return new OCLInvocationDelegate(getDelegateDomain(ePackage), operation);
@@ -37,6 +41,10 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLInvocationDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		}
+
 		@Override
 		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 			EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(

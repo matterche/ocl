@@ -25,6 +25,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		implements EStructuralFeature.Internal.SettingDelegate.Factory
 {
+	public OCLSettingDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
+
 	public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 		EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
 		return new OCLSettingDelegate(getDelegateDomain(ePackage), structuralFeature);
@@ -37,6 +41,10 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLSettingDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		}
+
 		@Override
 		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(

@@ -27,8 +27,31 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		implements EStructuralFeature.Internal.SettingDelegate.Factory
 {
+	/**
+	 * Construct a factory for an unknown delegate domain; often the global factory.
+	 * 
+	 * @deprecated Specify explicit delegateURI
+	 */
+	@Deprecated
 	public OCLSettingDelegateFactory() {}
+	
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @since 3.2
+	 */
+	public OCLSettingDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
 
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @deprecated Use String argument to avoid leak hazards
+	 */
+	@Deprecated
 	public OCLSettingDelegateFactory(OCLDelegateDomain delegateDomain) {
 		super(delegateDomain);
 	}
@@ -45,6 +68,10 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLSettingDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+		}
+
 		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);

@@ -53,6 +53,10 @@ import org.eclipse.ocl.examples.pivot.Variable;
  */
 public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		implements QueryDelegate.Factory {
+	public OCLQueryDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
+
 	public QueryDelegate createQueryDelegate(EClassifier context, Map<String, EClassifier> parameters, String expression) {
 		OCLDelegateDomain delegateDomain = loadDelegateDomain(context.getEPackage());
 		Type modelType = delegateDomain.getPivot(Type.class, context);
@@ -83,6 +87,10 @@ public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLQueryDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		}
+
 		@Override
 		public QueryDelegate createQueryDelegate(EClassifier context,
 				Map<String, EClassifier> parameters, String expression) {

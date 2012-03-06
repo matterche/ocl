@@ -50,9 +50,32 @@ public class OCLQueryDelegateFactory
 		extends AbstractOCLDelegateFactory
 		implements QueryDelegate.Factory {
 
+	/**
+	 * Construct a factory for an unknown delegate domain; often the global factory.
+	 * 
+	 * @deprecated Specify explicit delegateURI
+	 */
+	@Deprecated
 	public OCLQueryDelegateFactory() {
 	}
+	
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @since 3.2
+	 */
+	public OCLQueryDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
 
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @deprecated Use String argument to avoid leak hazards
+	 */
+	@Deprecated
 	public OCLQueryDelegateFactory(OCLDelegateDomain delegateDomain) {
 		super(delegateDomain);
 	}
@@ -70,6 +93,10 @@ public class OCLQueryDelegateFactory
 	 */
 	public static class Global extends OCLQueryDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+		}
+
 		public QueryDelegate createQueryDelegate(EClassifier context,
 				Map<String, EClassifier> parameters, String expression) {
 			QueryDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(

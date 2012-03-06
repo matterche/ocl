@@ -169,7 +169,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Install a local ValidationDelegate.Factory
 		ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry =
 			new ValidationDelegate.Factory.Registry.Impl();
-		validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory() {
+		validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory(oclDelegateURI) {
 
 			@Override
 			public ValidationDelegate createValidationDelegate(EClassifier classifier) {
@@ -183,7 +183,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Install a local SettingDelegate.Factory
 		EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry =
 			new EStructuralFeature.Internal.SettingDelegate.Factory.Registry.Impl();
-		settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory() {
+		settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory(oclDelegateURI) {
 
 			@Override
 			public SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
@@ -197,7 +197,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Install a local InvocationDelegate.Factory
 		EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry =
 			new EOperation.Internal.InvocationDelegate.Factory.Registry.Impl();
-		invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory() {
+		invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory(oclDelegateURI) {
 			@Override
 			public InvocationDelegate createInvocationDelegate(EOperation operation) {
 				usedLocalRegistry = true;
@@ -210,7 +210,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Install a local QueryDelegate.Factory
 		QueryDelegate.Factory.Registry queryDelegateFactoryRegistry =
 			new QueryDelegate.Factory.Registry.Impl();
-		queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory() {
+		queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory(oclDelegateURI) {
 			@Override
 			public QueryDelegate createQueryDelegate(EClassifier context,
 					Map<String, EClassifier> parameters, String expression) {

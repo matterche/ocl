@@ -32,6 +32,10 @@ import org.eclipse.emf.ecore.EPackage;
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		implements ValidationDelegate.Factory, ValidationDelegate
 {
+	public OCLValidationDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
+
 	public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 		EPackage ePackage = classifier.getEPackage();
 		return new OCLValidationDelegate(getDelegateDomain(ePackage), classifier);
@@ -89,6 +93,10 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLValidationDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		}
+
 		@Override
 		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 			ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(

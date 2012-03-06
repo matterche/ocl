@@ -29,8 +29,8 @@ public abstract class AbstractOCLDelegateFactory
 	/**
 	 * Construct a factory for an unknown delegate domain; often the global factory.
 	 */
-	protected AbstractOCLDelegateFactory() {
-		this.delegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
+	protected AbstractOCLDelegateFactory(String delegateURI) {
+		this.delegateURI = delegateURI;
 	}
 
 	protected OCLDelegateDomain getDelegateDomain(EPackage ePackage) {

@@ -27,8 +27,31 @@ import org.eclipse.emf.ecore.EPackage;
 public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 		implements EOperation.Internal.InvocationDelegate.Factory {
 	
+	/**
+	 * Construct a factory for an unknown delegate domain; often the global factory.
+	 * 
+	 * @deprecated Specify explicit delegateURI
+	 */
+	@Deprecated
 	public OCLInvocationDelegateFactory() {}
 	
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @since 3.2
+	 */
+	public OCLInvocationDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
+	
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @deprecated Use String argument to avoid leak hazards
+	 */
+	@Deprecated
 	public OCLInvocationDelegateFactory(OCLDelegateDomain delegateDomain) {
 		super(delegateDomain);
 	}
@@ -45,6 +68,10 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLInvocationDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+		}
+
 		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 			EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);

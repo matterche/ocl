@@ -34,8 +34,31 @@ import org.eclipse.emf.ecore.EValidator;
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValidator.ValidationDelegate.Descriptor
 
+	/**
+	 * Construct a factory for an unknown delegate domain; often the global factory.
+	 * 
+	 * @deprecated Specify explicit delegateURI
+	 */
+	@Deprecated
 	public OCLValidationDelegateFactory() {}
+	
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @since 3.2
+	 */
+	public OCLValidationDelegateFactory(String delegateURI) {
+		super(delegateURI);
+	}
 
+	/**
+	 * Construct a factory for a known delegate domain.
+	 * 
+	 * @param delegateDomain the delegate domain.
+	 * @deprecated Use String argument to avoid leak hazards
+	 */
+	@Deprecated
 	public OCLValidationDelegateFactory(OCLDelegateDomain delegateDomain) {
 		super(delegateDomain);
 	}
@@ -81,6 +104,10 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLValidationDelegateFactory
 	{
+		public Global() {
+			super(OCLDelegateDomain.OCL_DELEGATE_URI);
+		}
+
 		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 			ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				classifier, ValidationDelegate.Factory.Registry.class, null);
