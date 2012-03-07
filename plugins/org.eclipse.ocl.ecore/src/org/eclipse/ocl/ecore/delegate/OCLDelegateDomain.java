@@ -173,6 +173,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		if (resourceSet != null) {
 			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
 			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(VirtualDelegateMapping.INSTANCE.getDefaultValue()));
 	
 			// Install a local DelegateDomain.Factory
 			DelegateDomain.Factory.Registry.Impl delegateDomainFactory = new DelegateDomain.Factory.Registry.Impl();
@@ -207,13 +208,51 @@ public class OCLDelegateDomain implements DelegateDomain
 	public static void initializeMappingFrom(ResourceSet resourceSet, String oclDelegateURI) {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLInvocationDelegateFactory.Mapping(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE));
+				new OCLInvocationDelegateFactory.Mapping());
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLSettingDelegateFactory.Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE));
+				new OCLSettingDelegateFactory.Mapping());
 			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLValidationDelegateFactory.Mapping(EValidator.ValidationDelegate.Registry.INSTANCE));
+				new OCLValidationDelegateFactory.Mapping());
 			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLQueryDelegateFactory.Mapping(QueryDelegate.Factory.Registry.INSTANCE));
+				new OCLQueryDelegateFactory.Mapping());
+		}
+		if (resourceSet != null) {
+			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
+			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+			VirtualDelegateMapping virtualDelegateMapping = adapter.getRegistry(VirtualDelegateMapping.class);
+			if (virtualDelegateMapping == null) {
+				virtualDelegateMapping = VirtualDelegateMapping.INSTANCE;
+			}
+	
+			// Install a local DelegateDomain.Factory
+			DelegateDomain.Factory.Registry delegateDomainFactory = adapter.getRegistry(DelegateDomain.Factory.Registry.class);
+			if (delegateDomainFactory != null) {
+				delegateDomainFactory.put(oclDelegateURI, new OCLDelegateDomainFactory.Mapping(delegateDomainFactory));
+			}
+					
+			// Install a local ValidationDelegate.Mapping
+			ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry = adapter.getRegistry(ValidationDelegate.Factory.Registry.class);
+			if (validationDelegateFactoryRegistry != null) {
+				validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory.Mapping(validationDelegateFactoryRegistry, virtualDelegateMapping));
+			}
+	
+			// Install a local SettingDelegate.Mapping
+			EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry = adapter.getRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class);
+			if (settingDelegateFactoryRegistry != null) {
+				settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory.Mapping(settingDelegateFactoryRegistry, virtualDelegateMapping));
+			}
+	
+			// Install a local InvocationDelegate.Mapping
+			EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry = adapter.getRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class);
+			if (invocationDelegateFactoryRegistry != null) {
+				invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory.Mapping(invocationDelegateFactoryRegistry, virtualDelegateMapping));
+			}
+	
+			// Install a local QueryDelegate.Mapping
+			QueryDelegate.Factory.Registry queryDelegateFactoryRegistry = adapter.getRegistry(QueryDelegate.Factory.Registry.class);
+			if (queryDelegateFactoryRegistry != null) {
+				queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory.Mapping(queryDelegateFactoryRegistry, virtualDelegateMapping));
+			}
 		}
 	}
 

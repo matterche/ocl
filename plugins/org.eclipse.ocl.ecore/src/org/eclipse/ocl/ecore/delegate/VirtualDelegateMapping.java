@@ -14,51 +14,35 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
-
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.ocl.options.BasicOption;
+import org.eclipse.ocl.options.Option;
 
 /**
  * @since 3.2
  */
-public class VirtualDelegateMapping
+public class VirtualDelegateMapping extends BasicOption<String>
 {
-	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping();
+	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+	public static final Option<String> VIRTUAL_DELEGATE = INSTANCE;    
 
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {
 		VirtualDelegateMapping registry = DelegateResourceSetAdapter.getRegistry(
 			modelElement, VirtualDelegateMapping.class, INSTANCE);
 		return registry;
 	}
-	
-	private Map<String,String> map = new HashMap<String,String>();
-	
-	public String get(String key) {
-		return map.get(key);
-	}
 
-	public static void installMapping(Set<Entry<String, Object>> entries, String delegateURI, Object virtualDelegate) {
-		for (Map.Entry<String,Object> entry : entries) {
-			if (entry.getValue() == virtualDelegate) {
-				INSTANCE.put(entry.getKey(), delegateURI);
-			}
-		}
-	}
-
-	public void put(String key, String value) {
-		map.put(key, value);
+	public VirtualDelegateMapping(String delegatedURI) {
+		super("virtual.delegate.mapping", delegatedURI); //$NON-NLS-1$
 	}
 
 	public String resolve(String delegateURI) {
-		String resolvedURI = get(delegateURI);
-		if (resolvedURI != null) {
-			return resolvedURI;
+		if (OCLDelegateDomain.OCL_DELEGATE_URI.equals(delegateURI)) {
+			String defaultValue = getDefaultValue();
+			if (defaultValue != null) {
+				return defaultValue;
+			}
 		}
-		else {
-			return delegateURI;
-		}
+		return delegateURI;
 	}
 }

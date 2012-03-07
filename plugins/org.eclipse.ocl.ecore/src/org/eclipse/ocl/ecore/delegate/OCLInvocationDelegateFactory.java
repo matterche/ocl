@@ -91,27 +91,24 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	 * 
 	 * @since 3.2
 	 */
-	public static class Mapping extends Global implements EOperation.Internal.InvocationDelegate.Factory.Descriptor
+	public static class Mapping implements EOperation.Internal.InvocationDelegate.Factory
 	{
 		protected final EOperation.Internal.InvocationDelegate.Factory.Registry registry;
+		protected final VirtualDelegateMapping virtualDelegateMapping;
 		
 		public Mapping() {
-			this(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE);
+			this(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
 		}
 		
-		public Mapping(EOperation.Internal.InvocationDelegate.Factory.Registry registry) {
+		public Mapping(EOperation.Internal.InvocationDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
 			this.registry = registry;
+			this.virtualDelegateMapping = virtualDelegateMapping;
 		}
 
-		@Override
 		public InvocationDelegate createInvocationDelegate(EOperation operation) {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return super.createInvocationDelegate(operation);
-		}
-
-		public EOperation.Internal.InvocationDelegate.Factory getFactory() {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return registry.getFactory(delegateURI);
+			String delegateURI = virtualDelegateMapping.getDefaultValue();
+			EOperation.Internal.InvocationDelegate.Factory factory = registry.getFactory(delegateURI);
+			return factory.createInvocationDelegate(operation);
 		}
 	}
 }

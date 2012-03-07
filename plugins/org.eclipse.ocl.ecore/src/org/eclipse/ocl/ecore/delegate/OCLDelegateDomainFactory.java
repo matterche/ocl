@@ -30,4 +30,30 @@ public class OCLDelegateDomainFactory implements DelegateDomain.Factory
 	public OCLDelegateDomain createDelegateDomain(String delegateURI, EPackage ePackage) {
 		return new OCLDelegateDomain(delegateURI, ePackage);
 	}
+	
+	/**
+	 * Mapping provides a Factory entry that maps one delegate URI key to another.
+	 * 
+	 * @since 3.2
+	 */
+	public static class Mapping implements DelegateDomain.Factory
+	{
+		protected final DelegateDomain.Factory.Registry registry;
+		
+		public Mapping() {
+			this(DelegateDomain.Factory.Registry.INSTANCE);
+		}
+		
+		public Mapping(DelegateDomain.Factory.Registry registry) {
+			this.registry = registry;
+		}
+
+		public DelegateDomain createDelegateDomain(String delegateURI, EPackage ePackage) {
+			DelegateDomain.Factory factory = registry.getFactory(delegateURI);
+			if (factory == null) {
+				factory = OCLDelegateDomainFactory.INSTANCE;
+			}
+			return factory.createDelegateDomain(delegateURI, ePackage);
+		}
+	}
 }

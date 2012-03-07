@@ -91,27 +91,24 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	 * 
 	 * @since 3.2
 	 */
-	public static class Mapping extends Global implements EStructuralFeature.Internal.SettingDelegate.Factory.Descriptor
+	public static class Mapping implements EStructuralFeature.Internal.SettingDelegate.Factory/*, EStructuralFeature.Internal.SettingDelegate.Factory.Descriptor*/
 	{
 		protected final EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry;
+		protected final VirtualDelegateMapping virtualDelegateMapping;
 		
 		public Mapping() {
-			this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE);
+			this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
 		}
 		
-		public Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry) {
+		public Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
 			this.registry = registry;
+			this.virtualDelegateMapping = virtualDelegateMapping;
 		}
 
-		@Override
-		public SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return super.createSettingDelegate(structuralFeature);
-		}
-
-		public EStructuralFeature.Internal.SettingDelegate.Factory getFactory() {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return registry.getFactory(delegateURI);
+		public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
+			String delegateURI = virtualDelegateMapping.getDefaultValue();
+			EStructuralFeature.Internal.SettingDelegate.Factory factory = registry.getFactory(delegateURI);
+			return factory.createSettingDelegate(eStructuralFeature);
 		}
 	}
 }

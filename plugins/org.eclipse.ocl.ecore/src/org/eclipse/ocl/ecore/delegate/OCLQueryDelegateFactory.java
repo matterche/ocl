@@ -116,28 +116,25 @@ public class OCLQueryDelegateFactory
 	 * 
 	 * @since 3.2
 	 */
-	public static class Mapping extends Global implements QueryDelegate.Factory.Descriptor
+	public static class Mapping implements QueryDelegate.Factory
 	{
 		protected final QueryDelegate.Factory.Registry registry;
+		protected final VirtualDelegateMapping virtualDelegateMapping;
 		
 		public Mapping() {
-			this(QueryDelegate.Factory.Registry.INSTANCE);
+			this(QueryDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
 		}
 		
-		public Mapping(QueryDelegate.Factory.Registry registry) {
+		public Mapping(QueryDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
 			this.registry = registry;
+			this.virtualDelegateMapping = virtualDelegateMapping;
 		}
 
-		@Override
 		public QueryDelegate createQueryDelegate(EClassifier context,
 				Map<String, EClassifier> parameters, String expression) {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return super.createQueryDelegate(context, parameters, expression);
-		}
-
-		public QueryDelegate.Factory getFactory() {
-			VirtualDelegateMapping.installMapping(registry.entrySet(), delegateURI, this);
-			return registry.getFactory(delegateURI);
+			String delegateURI = virtualDelegateMapping.getDefaultValue();
+			QueryDelegate.Factory factory = registry.getFactory(delegateURI);
+			return factory.createQueryDelegate(context, parameters, expression);
 		}
 	}
 }
