@@ -20,10 +20,12 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -39,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCL.Query;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -73,6 +77,20 @@ public class DocumentationExamples extends PivotTestCase
 		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
 		doTestOCLinEcoreTutorialUsingPivot(getTestModelURI("/model/OCLinEcoreTutorialForPivot.xmi"));
 	}
+	public void testOCLinEcoreTutorialUsingLPGForDefault() throws Exception {
+		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("/model/OCLinEcoreTutorial.xmi"));
+	}
+	public void testOCLinEcoreTutorialUsingPivotForDefault() throws Exception {
+		org.eclipse.ocl.ecore.delegate.VirtualDelegateMapping.INSTANCE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		org.eclipse.ocl.examples.pivot.delegate.VirtualDelegateMapping.INSTANCE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
+		OCL.initialize(resourceSet);
+		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
+		OCLDelegateDomain.initialize(resourceSet, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);			
+		doTestOCLinEcoreTutorialUsingPivot(getTestModelURI("/model/OCLinEcoreTutorial.xmi"));
+	}
 	
 	protected void doTestOCLinEcoreTutorialUsingLPG(URI testModelURI) throws Exception {
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
@@ -85,6 +103,8 @@ public class DocumentationExamples extends PivotTestCase
 		EClass ecoreBook = (EClass) ecoreBooks.getEType();
 		EStructuralFeature bookName = ecoreBook.getEStructuralFeature("name");
 		EStructuralFeature bookCopies = ecoreBook.getEStructuralFeature("copies");
+		EStructuralFeature bookLoans = ecoreBook.getEStructuralFeature("loans");
+		EOperation bookIsAvailable = EcoreUtils.getNamedElement(ecoreBook.getEOperations(), "isAvailable");
 		@SuppressWarnings("unchecked")
 		List<EObject> xmiBooks = (List<EObject>) xmiLibrary.eGet(ecoreBooks);
 		EObject b2Book = null;
@@ -101,6 +121,19 @@ public class DocumentationExamples extends PivotTestCase
 		org.eclipse.ocl.ecore.OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(environmentFactory);
 		org.eclipse.ocl.ecore.OCL.Helper helper = ocl.createOCLHelper();
 
+	    Object b2Copies = b2Book.eGet(bookCopies);			// Static eGet
+		assertEquals(2, ((Number)b2Copies).intValue());
+		
+	    Object b2Loans = b2Book.eGet(bookLoans);			// Dynamic eGet
+//		SettingDelegate settingDelegate = ((EStructuralFeature.Internal) bookLoans).getSettingDelegate();
+//		assert settingDelegate instanceof org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
+		assertEquals(3, ((List<?>)b2Loans).size());
+		
+	    Object b2IsAvailable = b2Book.eInvoke(bookIsAvailable, new BasicEList<EObject>());			// Dynamic eInvoke
+//		SettingDelegate settingDelegate = ((EStructuralFeature.Internal) bookLoans).getSettingDelegate();
+//		assert settingDelegate instanceof org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
+		assertEquals(false, ((Boolean)b2IsAvailable).booleanValue());
+		
 		helper.setContext(b2Book.eClass());
 		org.eclipse.ocl.ecore.OCLExpression query = helper.createQuery("isAvailable()");
 		org.eclipse.ocl.ecore.OCL.Query queryEval = ocl.createQuery(query);
@@ -122,6 +155,10 @@ public class DocumentationExamples extends PivotTestCase
 		b2Available = queryEval.evaluate(b2Book);
 	    assertFalse((Boolean)b2Available);
 	    
+	    List<?> b2loans = (List<?>)b2Book.eGet(bookLoans);
+	    assertEquals(3, b2loans.size());
+	    assertTrue(b2loans.get(1) instanceof EObject);
+
 	    ocl.dispose();
 	}
 	
@@ -134,6 +171,8 @@ public class DocumentationExamples extends PivotTestCase
 		EClass ecoreBook = (EClass) ecoreBooks.getEType();
 		EStructuralFeature bookName = ecoreBook.getEStructuralFeature("name");
 		EStructuralFeature bookCopies = ecoreBook.getEStructuralFeature("copies");
+		EStructuralFeature bookLoans = ecoreBook.getEStructuralFeature("loans");
+		EOperation bookIsAvailable = EcoreUtils.getNamedElement(ecoreBook.getEOperations(), "isAvailable");
 		@SuppressWarnings("unchecked")
 		List<EObject> xmiBooks = (List<EObject>) xmiLibrary.eGet(ecoreBooks);
 		EObject b2Book = null;
@@ -154,6 +193,20 @@ public class DocumentationExamples extends PivotTestCase
 	
 			Ecore2Pivot ecore2pivot = Ecore2Pivot.getAdapter(b2Book.eClass().eResource(), metaModelManager);
 			Type bookType = ecore2pivot.getCreated(Type.class, b2Book.eClass());
+
+		    Object b2Copies = b2Book.eGet(bookCopies);			// Static eGet
+			assertEquals(2, ((Number)b2Copies).intValue());
+			
+		    Object b2Loans = b2Book.eGet(bookLoans);			// Dynamic eGet
+//			SettingDelegate settingDelegate = ((EStructuralFeature.Internal) bookLoans).getSettingDelegate();
+//			assert settingDelegate instanceof org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
+			assertEquals(3, ((List<?>)b2Loans).size());
+			
+		    Object b2IsAvailable = b2Book.eInvoke(bookIsAvailable, new BasicEList<EObject>());			// Dynamic eInvoke
+//			SettingDelegate settingDelegate = ((EStructuralFeature.Internal) bookLoans).getSettingDelegate();
+//			assert settingDelegate instanceof org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegate;
+			assertEquals(false, ((Boolean)b2IsAvailable).booleanValue());
+			
 			helper.setContext(bookType);
 			ExpressionInOcl query = helper.createQuery("isAvailable()");
 			Query queryEval = ocl.createQuery(query);
@@ -174,16 +227,28 @@ public class DocumentationExamples extends PivotTestCase
 		    b2Book.eSet(bookCopies, BigInteger.valueOf(3));
 			b2Available = queryEval.evaluate(b2Book);
 		    assertFalse(b2Available.asBoolean());
+		    
+		    List<?> b2loans = (List<?>)b2Book.eGet(bookLoans);
+		    assertEquals(3, b2loans.size());
+		    assertTrue(b2loans.get(1) instanceof EObject);
 		} finally {
 			metaModelManager.dispose();
 		}
 	}
 	
 	private ResourceSet resourceSet;
+
+	public void resetRegistries() {
+		final Object object = ValidationDelegate.Factory.Registry.INSTANCE.get(OCLDelegateDomain.OCL_DELEGATE_URI);
+		if (object instanceof org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory.Mapping) {
+			((org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory.Mapping)object).reset();
+		}
+	}
 	
 	@Override
     protected void setUp() throws Exception {
 		super.setUp();
+		resetRegistries();
 		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
 		resourceSet = new ResourceSetImpl();
