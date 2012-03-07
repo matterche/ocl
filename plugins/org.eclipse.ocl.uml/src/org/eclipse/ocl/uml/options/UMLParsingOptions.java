@@ -17,10 +17,11 @@
 
 package org.eclipse.ocl.uml.options;
 
-import org.eclipse.ocl.options.BasicOption;
+import org.eclipse.ocl.options.ClassOption;
 import org.eclipse.ocl.options.Customizable;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.uml.UMLEnvironment;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Extension;
@@ -48,8 +49,7 @@ public class UMLParsingOptions {
      * @since 1.2
      */
     public static final Option<java.lang.Class<? extends Association>> ASSOCIATION_CLASS_TYPE =
-            new BasicOption<java.lang.Class<? extends Association>>(
-                    "association.class.type", AssociationClass.class); //$NON-NLS-1$
+    		new ClassOption<Association>(OCLUMLUtil.PLUGIN_ID, "association.class.type", AssociationClass.class, Association.class); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

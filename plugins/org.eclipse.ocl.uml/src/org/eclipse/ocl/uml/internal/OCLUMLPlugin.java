@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -59,7 +60,7 @@ public class OCLUMLPlugin
 	public static String getPluginId() {
 		return (getPlugin() != null)
 			? getPlugin().getBundle().getSymbolicName()
-			: "org.eclipse.ocl.uml"; // last known bundle ID //$NON-NLS-1$
+			: OCLUMLUtil.PLUGIN_ID; // last known bundle ID
 	}
 
 	// implements the inherited method

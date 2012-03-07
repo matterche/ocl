@@ -17,10 +17,11 @@
 
 package org.eclipse.ocl.uml.options;
 
-import org.eclipse.ocl.options.BasicOption;
 import org.eclipse.ocl.options.Customizable;
+import org.eclipse.ocl.options.EnumeratedOption;
 import org.eclipse.ocl.options.Option;
 import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
+import org.eclipse.ocl.uml.util.OCLUMLUtil;
 
 
 /**
@@ -44,8 +45,8 @@ public class UMLEvaluationOptions {
      * this option is {@link EvaluationMode#ADAPTIVE}.
      * </p>
      */
-    public static final Option<EvaluationMode> EVALUATION_MODE = new
-        BasicOption<EvaluationMode>("uml.evaluation.mode", EvaluationMode.ADAPTIVE); //$NON-NLS-1$
+    public static final Option<EvaluationMode> EVALUATION_MODE = new EnumeratedOption<EvaluationMode>(
+        OCLUMLUtil.PLUGIN_ID, "uml.evaluation.mode", EvaluationMode.ADAPTIVE, EvaluationMode.class); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

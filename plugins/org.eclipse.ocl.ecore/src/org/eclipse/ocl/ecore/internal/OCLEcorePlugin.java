@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.ecore.util.OCLEcoreUtil;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -67,7 +68,7 @@ public class OCLEcorePlugin
 	public static String getPluginId() {
 		return (getPlugin() != null)
 			? getPlugin().getBundle().getSymbolicName()
-			: "org.eclipse.ocl.ecore"; // last known bundle ID //$NON-NLS-1$
+			: OCLEcoreUtil.PLUGIN_ID; // last known bundle ID
 	}
 
 	// implements the inherited method

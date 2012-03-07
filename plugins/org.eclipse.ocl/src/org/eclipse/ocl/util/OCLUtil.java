@@ -51,6 +51,12 @@ import org.eclipse.ocl.utilities.TypedElement;
  * @since 1.2
  */
 public final class OCLUtil {
+	/**
+	 * The shared Ecore and UML binding plugin identification.
+	 * @since 3.2
+	 */
+	public static final String PLUGIN_ID = "org.eclipse.ocl"; //$NON-NLS-1$
+	
     /** Use weak references as the keys to avoid memory leaks. */
 	private static final Map<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment2>> environments = new java.util.WeakHashMap<Environment<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Reference<BasicEnvironment2>>();
 

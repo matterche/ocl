@@ -24,6 +24,7 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.util.OCLUtil;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -70,7 +71,7 @@ public class OCLPlugin
 	public static String getPluginId() {
 		return (getPlugin() != null)
 			? getPlugin().getBundle().getSymbolicName()
-			: "org.eclipse.ocl"; // last known bundle ID //$NON-NLS-1$
+			: OCLUtil.PLUGIN_ID; // last known bundle ID
 	}
 
 	// implements the inherited method

@@ -23,4 +23,8 @@
        class = "org.eclipse.ocl.common.delegate.OCLQueryDelegateMapping" />
   </extension>
   
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.ocl.common.options.PreferenceInitializer"/>
+   </extension>
+  
 </plugin>

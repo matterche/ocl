@@ -117,5 +117,8 @@
            type="text">
      </fileTypes>
   </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.ocl.internal.PreferenceInitializer"/>
+   </extension>
 
 </plugin>

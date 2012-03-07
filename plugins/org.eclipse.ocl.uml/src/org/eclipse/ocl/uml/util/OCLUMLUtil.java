@@ -58,6 +58,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author Christian W. Damus (cdamus)
  */
 public class OCLUMLUtil extends UMLUtil {
+	/**
+	 * The shared UML binding plugin identification.
+	 * @since 4.0
+	 */
+	public static final String PLUGIN_ID = "org.eclipse.ocl.uml"; //$NON-NLS-1$
+	
     // not instantiable by clients
 	private OCLUMLUtil() {
 		super();

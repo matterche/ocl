@@ -53,7 +53,7 @@ public class ParsingOptions {
      * </p>
      */
     public static final Option<Boolean> DEFINITION_CONSTRAINS_FEATURE =
-        new BasicOption<Boolean>("definition.constraints.feature", false); //$NON-NLS-1$
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "definition.constraints.feature", false); //$NON-NLS-1$
 
     /**
      * <p>
@@ -66,7 +66,7 @@ public class ParsingOptions {
      * </p>
      */
     public static final Option<Boolean> USE_COMPARE_TO_OPERATION =
-        new BasicOption<Boolean>("use.compare.to.operation", false); //$NON-NLS-1$
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "use.compare.to.operation", false); //$NON-NLS-1$
 
     /**
      * <p>
@@ -80,7 +80,7 @@ public class ParsingOptions {
      * @since 3.0
      */
     public static final Option<Boolean> WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE =
-        new BasicOption<Boolean>("warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "warn.of.xor.or.and.precedence.change", false); //$NON-NLS-1$
 
     /**
      * <p>
@@ -89,7 +89,7 @@ public class ParsingOptions {
      * </p>
      */
     public static final Option<?> IMPLICIT_ROOT_CLASS =
-        new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
+    		new ClassOption<Object>(OCLUtil.PLUGIN_ID, "implict.root.class", null, Object.class); //$NON-NLS-1$
 
     
     /**
@@ -163,7 +163,8 @@ public class ParsingOptions {
      * @since 3.1
      */
     public static final Option<PACKAGE_LOOKUP_STRATEGIES> PACKAGE_LOOKUP_STRATEGY =
-        new BasicOption<PACKAGE_LOOKUP_STRATEGIES>("lookup.package.by.alias", PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_NAME); //$NON-NLS-1$
+    		new EnumeratedOption<PACKAGE_LOOKUP_STRATEGIES>(OCLUtil.PLUGIN_ID, "lookup.package.by.alias", //$NON-NLS-1$
+    				PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_NAME, PACKAGE_LOOKUP_STRATEGIES.class);
 
 	/**
 	 * <p>
@@ -178,7 +179,7 @@ public class ParsingOptions {
 	 * @since 1.3
 	 */
     public static final Option<Boolean> USE_BACKSLASH_ESCAPE_PROCESSING =
-        new BasicOption<Boolean>("use.backslash.escape.processing", true); //$NON-NLS-1$
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "use.backslash.escape.processing", true); //$NON-NLS-1$
 
     /**
      * <p>
@@ -225,7 +226,7 @@ public class ParsingOptions {
      * @see UMLReflection#setIsStatic(Object, boolean)
      */
     public static final Option<Boolean> SUPPORT_STATIC_FEATURES =
-        new BasicOption<Boolean>("support.static.features", true); //$NON-NLS-1$
+    		new BooleanOption(OCLUtil.PLUGIN_ID, "support.static.features", true); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

@@ -22,10 +22,13 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.common.OCLCommon;
+import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.internal.OCLPlugin;
 import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -339,15 +342,30 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
     }
     
     public <T> T getValue(Option<T> option) {
+		Map<Option<?>, Object> options = basicGetOptions();
         @SuppressWarnings("unchecked")
-        T result = (T) getOptions().get(option);
-        
-        if (result == null) {
+        T result = (T) options.get(option);
+		if ((result == null) && !options.containsKey(option)) {
             Customizable parent = (getParent() != null)?
                 OCLUtil.getAdapter(getParent(), Customizable.class) : null;
                 
-            result = (parent != null)? parent.getValue(option)
-                : option.getDefaultValue();
+            if (parent != null) {
+            	result = parent.getValue(option);
+            }
+			else {
+				if (option instanceof PreferenceableOption<?>) {
+					IScopeContext[] contexts = null;
+					// FIXME BUG 360354 contexts = new IScopeContext[] {new ProjectScope(project), DefaultScope.INSTANCE}
+				    @SuppressWarnings("unchecked")
+					PreferenceableOption<T> preferenceOption = (PreferenceableOption<T>)option;
+					result = OCLCommon.getPreference(preferenceOption, contexts);
+					options.put(option, result);
+				}
+	            else {
+	            	result = option.getDefaultValue();
+	            }
+				options.put(option, result);
+			}
         }
         
         return result;
