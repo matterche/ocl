@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
@@ -194,6 +195,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	/**
 	 * @since 3.1
 	 */
+	@SuppressWarnings("deprecation")
 	public OCLExpression getInvariant(EClassifier cls, String constraintName, OCL ocl) {
 		OCLExpression result = getCachedOCLExpression(cls, constraintName);
 		if (result != null) {
@@ -210,7 +212,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		try {
 			constraint = helper.createInvariant(expr);
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(e.getLocalizedMessage(), e);
 		}
 		if (constraint == null) {
 			return null;

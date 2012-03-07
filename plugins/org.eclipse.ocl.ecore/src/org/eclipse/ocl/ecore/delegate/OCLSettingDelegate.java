@@ -53,6 +53,7 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			: ValueConverter.VERBATIM;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		OCL ocl = delegateDomain.getOCL();
@@ -61,17 +62,17 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 		}
 		if (derivation == null) {
 			String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, getFeatureName());
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 		OCL.Query query = ocl.createQuery(derivation);
 		Object result = query.evaluate(owner);
 		if (ocl.isInvalid(result)) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getFeatureName());
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 //		if ((result == null) /* || ocl.isInvalid(result) */) {
 //			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getFeatureName());
-//			throw new OCLDelegateException(message);
+//			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 //		}
 		return converter.convert(ocl, result);
 	}

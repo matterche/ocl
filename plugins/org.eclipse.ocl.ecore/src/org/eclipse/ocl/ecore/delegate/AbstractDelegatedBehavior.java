@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.impl.NullLiteralExpImpl;
 

@@ -14,7 +14,7 @@
  *
  * $Id: OCLDelegateException.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot.delegate;
+package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.common.util.WrappedException;
 

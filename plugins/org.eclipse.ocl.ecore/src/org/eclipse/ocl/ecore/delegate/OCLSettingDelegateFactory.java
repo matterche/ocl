@@ -18,7 +18,8 @@ package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
@@ -70,7 +71,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLSettingDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			super(CommonConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
@@ -84,31 +85,5 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 			}
 			return super.createSettingDelegate(structuralFeature);
 		}	
-	}
-	
-	/**
-	 * Mapping provides a Factory entry that maps one delegate URI key to another.
-	 * 
-	 * @since 3.2
-	 */
-	public static class Mapping implements EStructuralFeature.Internal.SettingDelegate.Factory/*, EStructuralFeature.Internal.SettingDelegate.Factory.Descriptor*/
-	{
-		protected final EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry;
-		protected final VirtualDelegateMapping virtualDelegateMapping;
-		
-		public Mapping() {
-			this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
-		}
-		
-		public Mapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
-			this.registry = registry;
-			this.virtualDelegateMapping = virtualDelegateMapping;
-		}
-
-		public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
-			String delegateURI = virtualDelegateMapping.getDefaultValue();
-			EStructuralFeature.Internal.SettingDelegate.Factory factory = registry.getFactory(delegateURI);
-			return factory.createSettingDelegate(eStructuralFeature);
-		}
 	}
 }

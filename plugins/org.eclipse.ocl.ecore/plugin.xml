@@ -76,29 +76,21 @@
   </extension>
 
   <extension point = "org.eclipse.emf.ecore.validation_delegate">
-    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
-       class = "org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory$Mapping" />
     <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/LPG"
        class = "org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory$Global" />
   </extension>
 
   <extension point = "org.eclipse.emf.ecore.setting_delegate">
-    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
-       class = "org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory$Mapping" />
     <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/LPG"
        class = "org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory$Global" />
   </extension>
 
   <extension point = "org.eclipse.emf.ecore.invocation_delegate">
-    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
-       class = "org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory$Mapping" />
     <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/LPG"
        class = "org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory$Global" />
   </extension>
  
   <extension point = "org.eclipse.emf.ecore.query_delegate">
-    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL"
-       class = "org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory$Mapping" />
     <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/LPG"
        class = "org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory$Global" />
   </extension>

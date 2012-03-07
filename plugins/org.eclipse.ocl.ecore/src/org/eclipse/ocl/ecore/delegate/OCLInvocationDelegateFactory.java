@@ -17,8 +17,9 @@
 package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
  * Factory for OCL operation-invocation delegates.
@@ -70,7 +71,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLInvocationDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			super(CommonConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
@@ -84,31 +85,5 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 			}
 			return super.createInvocationDelegate(operation);
 		}	
-	}
-	
-	/**
-	 * Mapping provides a Factory entry that maps one delegate URI key to another.
-	 * 
-	 * @since 3.2
-	 */
-	public static class Mapping implements EOperation.Internal.InvocationDelegate.Factory
-	{
-		protected final EOperation.Internal.InvocationDelegate.Factory.Registry registry;
-		protected final VirtualDelegateMapping virtualDelegateMapping;
-		
-		public Mapping() {
-			this(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
-		}
-		
-		public Mapping(EOperation.Internal.InvocationDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
-			this.registry = registry;
-			this.virtualDelegateMapping = virtualDelegateMapping;
-		}
-
-		public InvocationDelegate createInvocationDelegate(EOperation operation) {
-			String delegateURI = virtualDelegateMapping.getDefaultValue();
-			EOperation.Internal.InvocationDelegate.Factory factory = registry.getFactory(delegateURI);
-			return factory.createInvocationDelegate(operation);
-		}
 	}
 }

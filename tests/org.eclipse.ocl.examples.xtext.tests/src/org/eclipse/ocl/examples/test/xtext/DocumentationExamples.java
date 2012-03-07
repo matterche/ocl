@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
@@ -83,8 +84,7 @@ public class DocumentationExamples extends PivotTestCase
 		doTestOCLinEcoreTutorialUsingLPG(getTestModelURI("/model/OCLinEcoreTutorial.xmi"));
 	}
 	public void testOCLinEcoreTutorialUsingPivotForDefault() throws Exception {
-		org.eclipse.ocl.ecore.delegate.VirtualDelegateMapping.INSTANCE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		org.eclipse.ocl.examples.pivot.delegate.VirtualDelegateMapping.INSTANCE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		VirtualDelegateMapping.INSTANCE.setDefaultValue(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		org.eclipse.ocl.ecore.OCL.initialize(resourceSet);
 		OCL.initialize(resourceSet);
 		org.eclipse.ocl.ecore.delegate.OCLDelegateDomain.initialize(resourceSet);			
@@ -240,8 +240,8 @@ public class DocumentationExamples extends PivotTestCase
 
 	public void resetRegistries() {
 		final Object object = ValidationDelegate.Factory.Registry.INSTANCE.get(OCLDelegateDomain.OCL_DELEGATE_URI);
-		if (object instanceof org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory.Mapping) {
-			((org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory.Mapping)object).reset();
+		if (object instanceof org.eclipse.ocl.common.delegate.OCLValidationDelegateMapping) {
+			((org.eclipse.ocl.common.delegate.OCLValidationDelegateMapping)object).reset();
 		}
 	}
 	

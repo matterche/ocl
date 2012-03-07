@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
@@ -103,6 +104,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * <code>ocl</code> to create the relevant parsing environment for a textual
 	 * definition.
 	 */
+	@SuppressWarnings("deprecation")
 	public OCLExpression getOperationBody(OCL ocl, EOperation operation) {
 		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(operation);
 		if (result != null) {
@@ -120,7 +122,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		try {
 			constraint = helper.createBodyCondition(expr);
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(e.getLocalizedMessage(), e);
 		}
 		if (constraint == null) {
 			return null;

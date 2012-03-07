@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
+import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 
 /**
  * DelegateEPackageAdapter extends an EPackage to cache its DelegateDomain

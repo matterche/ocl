@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
@@ -95,6 +96,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * Return the feature body associated with structuralFeature, if necessary using ocl to
 	 * create the relevant parsing environment for a textual definition..
 	 */
+	@SuppressWarnings("deprecation")
 	public OCLExpression getFeatureBody(OCL ocl, EStructuralFeature structuralFeature) {
 		OCLExpression result = ExpressionCacheAdapter.getCachedOCLExpression(structuralFeature);
 		if (result != null){
@@ -120,7 +122,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		try {
 			constraint = helper.createDerivedValueExpression(expr);
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(e.getLocalizedMessage(), e);
 		}
 		if (constraint == null) {
 			return null;

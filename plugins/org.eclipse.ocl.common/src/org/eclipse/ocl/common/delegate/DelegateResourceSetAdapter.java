@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,8 @@
  *   E.D.Willink - Initial API and implementation
  *
  * </copyright>
- *
- * $Id: DelegateResourceSetAdapter.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot.delegate;
+package org.eclipse.ocl.common.delegate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +82,7 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == DelegateResourceSetAdapter.class;
+		return (type instanceof Class<?>) && ((Class<?>)type).isAssignableFrom(getClass());
 	}
 
 	public <T> T putRegistry(Class<T> registryClass, T newRegistry) {

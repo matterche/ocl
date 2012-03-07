@@ -12,13 +12,14 @@
  * 
  * </copyright>
  */
-package org.eclipse.ocl.examples.pivot.delegate;
+package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.ocl.common.CommonConstants;
 
 public class VirtualDelegateMapping
 {
-	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(CommonConstants.OCL_DELEGATE_URI_LPG);
 //	public static final Option<String> VIRTUAL_DELEGATE = INSTANCE;    
 
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {
@@ -39,7 +40,7 @@ public class VirtualDelegateMapping
 	}
 
 	public String resolve(String delegateURI) {
-		if (OCLDelegateDomain.OCL_DELEGATE_URI.equals(delegateURI)) {
+		if (CommonConstants.OCL_DELEGATE_URI.equals(delegateURI)) {
 			String defaultValue = getDefaultValue();
 			if (defaultValue != null) {
 				return defaultValue;

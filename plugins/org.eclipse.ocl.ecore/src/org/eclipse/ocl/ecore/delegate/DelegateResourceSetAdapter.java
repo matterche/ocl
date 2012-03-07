@@ -16,11 +16,6 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -31,8 +26,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * registries.
  * 
  * @since 3.0
+ * @deprecated use org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter
  */
-public class DelegateResourceSetAdapter extends AdapterImpl
+@Deprecated
+public class DelegateResourceSetAdapter extends org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter
 {
 	public static DelegateResourceSetAdapter getAdapter(EModelElement modelElement) {
 		Resource resource = modelElement.eResource();
@@ -70,30 +67,5 @@ public class DelegateResourceSetAdapter extends AdapterImpl
 			registry = adapter.getRegistry(registryClass);
 		}
 		return registry != null ? registry : defaultRegistry;
-	}
-		
-	private Map<Class<? extends Object>, Object> registryRegistry = new HashMap<Class<? extends Object>, Object>();
-	
-	public <T> T getRegistry(Class<T> registryClass) {
-		@SuppressWarnings("unchecked")
-		T registry = (T) registryRegistry.get(registryClass);
-		return registry;
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type == DelegateResourceSetAdapter.class;
-	}
-
-	public <T> T putRegistry(Class<T> registryClass, T newRegistry) {
-		@SuppressWarnings("unchecked")
-		T oldRegistry = (T) registryRegistry.put(registryClass, newRegistry);
-		return oldRegistry;
-	}
-
-	@Override
-	public void setTarget(Notifier newTarget) {
-		ResourceSet resourceSet = (ResourceSet)newTarget;
-		super.setTarget(resourceSet);
 	}
 }

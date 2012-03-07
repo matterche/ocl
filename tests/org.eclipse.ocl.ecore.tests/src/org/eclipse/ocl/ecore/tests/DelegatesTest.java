@@ -62,6 +62,9 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
+import org.eclipse.ocl.common.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
@@ -72,11 +75,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.DelegateDomain;
-import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomainFactory;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
@@ -92,8 +93,6 @@ import org.eclipse.osgi.util.NLS;
 import company.CompanyPackage;
 import company.Employee;
 import company.util.CompanyValidator;
-
-
 
 /**
  * Tests for the OCL delegate implementations.
@@ -139,8 +138,8 @@ public class DelegatesTest extends AbstractTestSuite
 		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;
 
-		initializeResourceSet(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);			
-		OCLDelegateDomain.initializeMappingFrom(null, OCLDelegateDomain.OCL_DELEGATE_URI);			
+		initializeResourceSet(CommonConstants.OCL_DELEGATE_URI_LPG);			
+		OCLDelegateDomain.initializeMappingFrom(null, CommonConstants.OCL_DELEGATE_URI);			
 	}
 
 	protected void initializeResourceSet(String oclDelegateURI) {
@@ -375,7 +374,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
 
 		String n = "n";
 		String expression = "self.employees->select(employee | employee.manager <> null and employee.manager.name = n)";
@@ -423,7 +422,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
 
 		String okName = "ok";
 		String badName = "xyzzy";
@@ -954,7 +953,7 @@ public class DelegatesTest extends AbstractTestSuite
 	 */
 	public void test_queryExecution_Bug353171() {
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
 		String n = "n";
 		String expression = "self.name";
 		Library library = EXTLibraryFactory.eINSTANCE.createLibrary();

@@ -34,6 +34,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
+import org.eclipse.ocl.common.delegate.OCLInvocationDelegateMapping;
+import org.eclipse.ocl.common.delegate.OCLQueryDelegateMapping;
+import org.eclipse.ocl.common.delegate.OCLSettingDelegateMapping;
+import org.eclipse.ocl.common.delegate.OCLValidationDelegateMapping;
+import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
@@ -87,17 +94,13 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
-	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
-	/**
-	 * @since 3.2
-	 */
-	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI_SLASH + "LPG"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI = CommonConstants.OCL_DELEGATE_URI;
+	private static final String OCL_DELEGATE_URI_SLASH = CommonConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
 
 	 /**
 	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
 	 * the value is the fully qualified name of the class to be used as the {@link EnvironmentFactory}
-	 * for parsing and evaluation for OCL constrinats defined in the EPackage. The class must have a
+	 * for parsing and evaluation for OCL constraints defined in the EPackage. The class must have a
 	 * a constructor that takes a single {@link EPackage.Registry} argument.
 	 * 
 	 * @since 3.1
@@ -125,7 +128,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
 		for (EAnnotation eAnnotation : eAnnotations) {
 			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(OCL_DELEGATE_URI)) {
+			if ((source != null) && source.equals(CommonConstants.OCL_DELEGATE_URI)) {
 				return eAnnotation;
 			}
 		}
@@ -153,8 +156,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @since 3.2
 	 */
 	public static void initialize(ResourceSet resourceSet) {
-		initialize(resourceSet, OCL_DELEGATE_URI_LPG);
-		initializeMappingFrom(resourceSet, OCL_DELEGATE_URI);
+		initialize(resourceSet, CommonConstants.OCL_DELEGATE_URI_LPG);
+		initializeMappingFrom(resourceSet, CommonConstants.OCL_DELEGATE_URI);
 	}
 	
 	/**
@@ -208,13 +211,13 @@ public class OCLDelegateDomain implements DelegateDomain
 	public static void initializeMappingFrom(ResourceSet resourceSet, String oclDelegateURI) {
 		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLInvocationDelegateFactory.Mapping());
+				new OCLInvocationDelegateMapping());
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLSettingDelegateFactory.Mapping());
+				new OCLSettingDelegateMapping());
 			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLValidationDelegateFactory.Mapping());
+				new OCLValidationDelegateMapping());
 			QueryDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
-				new OCLQueryDelegateFactory.Mapping());
+				new OCLQueryDelegateMapping());
 		}
 		if (resourceSet != null) {
 			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
@@ -233,25 +236,25 @@ public class OCLDelegateDomain implements DelegateDomain
 			// Install a local ValidationDelegate.Mapping
 			ValidationDelegate.Factory.Registry validationDelegateFactoryRegistry = adapter.getRegistry(ValidationDelegate.Factory.Registry.class);
 			if (validationDelegateFactoryRegistry != null) {
-				validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateFactory.Mapping(validationDelegateFactoryRegistry, virtualDelegateMapping));
+				validationDelegateFactoryRegistry.put(oclDelegateURI, new OCLValidationDelegateMapping(validationDelegateFactoryRegistry, virtualDelegateMapping));
 			}
 	
 			// Install a local SettingDelegate.Mapping
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry settingDelegateFactoryRegistry = adapter.getRegistry(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class);
 			if (settingDelegateFactoryRegistry != null) {
-				settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateFactory.Mapping(settingDelegateFactoryRegistry, virtualDelegateMapping));
+				settingDelegateFactoryRegistry.put(oclDelegateURI, new OCLSettingDelegateMapping(settingDelegateFactoryRegistry, virtualDelegateMapping));
 			}
 	
 			// Install a local InvocationDelegate.Mapping
 			EOperation.Internal.InvocationDelegate.Factory.Registry invocationDelegateFactoryRegistry = adapter.getRegistry(EOperation.Internal.InvocationDelegate.Factory.Registry.class);
 			if (invocationDelegateFactoryRegistry != null) {
-				invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateFactory.Mapping(invocationDelegateFactoryRegistry, virtualDelegateMapping));
+				invocationDelegateFactoryRegistry.put(oclDelegateURI, new OCLInvocationDelegateMapping(invocationDelegateFactoryRegistry, virtualDelegateMapping));
 			}
 	
 			// Install a local QueryDelegate.Mapping
 			QueryDelegate.Factory.Registry queryDelegateFactoryRegistry = adapter.getRegistry(QueryDelegate.Factory.Registry.class);
 			if (queryDelegateFactoryRegistry != null) {
-				queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory.Mapping(queryDelegateFactoryRegistry, virtualDelegateMapping));
+				queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateMapping(queryDelegateFactoryRegistry, virtualDelegateMapping));
 			}
 		}
 	}
@@ -265,7 +268,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	public static boolean isDelegateAnnotation(EAnnotation eAnnotation) {
 		String source = eAnnotation.getSource();
 		if (source != null) {
-			if (source.equals(OCL_DELEGATE_URI)) {
+			if (source.equals(CommonConstants.OCL_DELEGATE_URI)) {
 				return true;
 			}
 			if (source.startsWith(OCL_DELEGATE_URI_SLASH)) {

@@ -21,6 +21,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
  * Factory for OCL query delegates.
@@ -94,7 +96,7 @@ public class OCLQueryDelegateFactory
 	public static class Global extends OCLQueryDelegateFactory
 	{
 		public Global() {
-			super(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			super(CommonConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public QueryDelegate createQueryDelegate(EClassifier context,
@@ -109,32 +111,5 @@ public class OCLQueryDelegateFactory
 			}
 			return super.createQueryDelegate(context, parameters, expression);
 		}	
-	}
-	
-	/**
-	 * Mapping provides a Factory entry that maps one delegate URI key to another.
-	 * 
-	 * @since 3.2
-	 */
-	public static class Mapping implements QueryDelegate.Factory
-	{
-		protected final QueryDelegate.Factory.Registry registry;
-		protected final VirtualDelegateMapping virtualDelegateMapping;
-		
-		public Mapping() {
-			this(QueryDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
-		}
-		
-		public Mapping(QueryDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
-			this.registry = registry;
-			this.virtualDelegateMapping = virtualDelegateMapping;
-		}
-
-		public QueryDelegate createQueryDelegate(EClassifier context,
-				Map<String, EClassifier> parameters, String expression) {
-			String delegateURI = virtualDelegateMapping.getDefaultValue();
-			QueryDelegate.Factory factory = registry.getFactory(delegateURI);
-			return factory.createQueryDelegate(context, parameters, expression);
-		}
 	}
 }

@@ -53,29 +53,31 @@ public class OCLValidationDelegate implements ValidationDelegate
 		this.eClassifier = classifier;
 	}
 
+	@SuppressWarnings("deprecation")
 	protected boolean check(Object object, String constraint, OCLExpression query) {
 		OCL ocl = delegateDomain.getOCL();
 		OCLStandardLibrary<EClassifier> stdlib = ocl.getEnvironment().getOCLStandardLibrary();
 		if (query.getType() != stdlib.getBoolean()) {
 			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraint);
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 		Object result = ocl.evaluate(object, query);
 		if (ocl.isInvalid(result)) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraint);
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 		if ((result == null) /* || ocl.isInvalid(result) */) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraint);
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 		if (!(result instanceof Boolean)) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraint);
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}		
 		return Boolean.TRUE.equals(result);
 	}
 
+	@SuppressWarnings("deprecation")
 	protected OCLExpression createQuery(String expression) {
 		OCL ocl = delegateDomain.getOCL();
 		Helper helper = ocl.createOCLHelper();
@@ -83,7 +85,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 		try {
 			return helper.createQuery(/*(String)*/expression);
 		} catch (ParserException e) {
-			throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(e.getLocalizedMessage(), e);
 		}
 	}
 

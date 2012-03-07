@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
  * Factory for OCL derived-classifier validation delegates.

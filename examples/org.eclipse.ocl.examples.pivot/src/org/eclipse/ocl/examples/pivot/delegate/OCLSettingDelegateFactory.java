@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
  * Factory for OCL derived-attribute setting delegates.

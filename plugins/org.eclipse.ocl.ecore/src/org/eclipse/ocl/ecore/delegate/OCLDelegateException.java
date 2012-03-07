@@ -1,11 +1,11 @@
 package org.eclipse.ocl.ecore.delegate;
 
-import org.eclipse.emf.common.util.WrappedException;
-
 /**
  * @since 3.0
+ * @deprecated use org.eclipse.ocl.common.delegate.OCLDelegateException
  */
-public class OCLDelegateException extends WrappedException {
+@Deprecated
+public class OCLDelegateException extends org.eclipse.ocl.common.delegate.OCLDelegateException {
 
 	/**
 	 * 

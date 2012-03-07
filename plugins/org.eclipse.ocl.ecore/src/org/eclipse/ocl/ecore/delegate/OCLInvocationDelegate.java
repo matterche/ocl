@@ -60,6 +60,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 			: ValueConverter.VERBATIM;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
 			throws InvocationTargetException {
@@ -69,7 +70,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		}
 		if (body == null) {
 			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, getOperationName());
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 		OCL.Query query = ocl.createQuery(body);
 		EList<EParameter> parms = eOperation.getEParameters();
@@ -86,7 +87,7 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 		Object result = query.evaluate(target);
 		if (ocl.isInvalid(result)) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
-			throw new OCLDelegateException(message);
+			throw new org.eclipse.ocl.ecore.delegate.OCLDelegateException(message);
 		}
 //		if ((result == null) /* || ocl.isInvalid(result) */) {
 //			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
