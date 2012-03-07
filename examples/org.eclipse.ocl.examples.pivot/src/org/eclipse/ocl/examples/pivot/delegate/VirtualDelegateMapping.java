@@ -12,14 +12,11 @@
  * 
  * </copyright>
  */
-package org.eclipse.ocl.ecore.delegate;
+package org.eclipse.ocl.examples.pivot.delegate;
 
 import org.eclipse.emf.ecore.EModelElement;
 
-/**
- * @since 3.2
- */
-public class VirtualDelegateMapping /*extends BasicOption<String> */
+public class VirtualDelegateMapping
 {
 	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
 //	public static final Option<String> VIRTUAL_DELEGATE = INSTANCE;    

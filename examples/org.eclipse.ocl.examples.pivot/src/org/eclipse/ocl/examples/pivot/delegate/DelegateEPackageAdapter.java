@@ -26,6 +26,7 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -99,13 +100,16 @@ public class DelegateEPackageAdapter extends AdapterImpl
 			EPackage ePackage = getTarget();
 			EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
 			if (eAnnotation != null) {
+				VirtualDelegateMapping registry = VirtualDelegateMapping.getRegistry(ePackage);
+				EMap<String, String> details = eAnnotation.getDetails();
 				for (DelegatedBehavior<?, ?, ?> delegatedBehavior : AbstractDelegatedBehavior.getDelegatedBehaviors()) {
 					String behaviorName = delegatedBehavior.getName();
-					String delegateURIs = eAnnotation.getDetails().get(behaviorName);
+					String delegateURIs = details.get(behaviorName);
 					if (delegateURIs != null) {
 						for (StringTokenizer stringTokenizer = new StringTokenizer(delegateURIs); stringTokenizer.hasMoreTokens();) {
 							String delegateURI = stringTokenizer.nextToken();
-							initializeDelegatedBehavior(delegateURI, delegatedBehavior);
+							String resolvedURI = registry.resolve(delegateURI);
+							initializeDelegatedBehavior(resolvedURI, delegatedBehavior);
 						}
 					}
 				}

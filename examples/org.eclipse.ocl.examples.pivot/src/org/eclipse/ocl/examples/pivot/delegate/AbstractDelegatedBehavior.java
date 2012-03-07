@@ -81,7 +81,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		List<DelegateDomain> delegateDomains = new ArrayList<DelegateDomain>();
 		for (DelegateDomain delegateDomain : adapter.getDelegateDomains(this)) {
 			String uri = delegateDomain.getURI();
-			if (eObject.getEAnnotation(uri) != null) {
+			if (hasDelegateAnnotation(eObject, ePackage, uri)) {
 				delegateDomains.add(delegateDomain);
 			}
 		}
@@ -94,7 +94,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		List<F> factories = new ArrayList<F>();
 		for (DelegateDomain delegateDomain : adapter.getDelegateDomains(this)) {
 			String uri = delegateDomain.getURI();
-			if (eObject.getEAnnotation(uri) != null) {
+			if (hasDelegateAnnotation(eObject, ePackage, uri)) {
 				F factory = getFactory(delegateDomain, eObject);
 				if (factory == null) {
 					factory = getDefaultFactory();
@@ -170,6 +170,21 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			}
 		}
 		return null;
+	}
+
+	private boolean hasDelegateAnnotation(E eObject, EPackage ePackage, String uri) {
+		if (eObject.getEAnnotation(uri) != null) {
+			return true;
+		}
+		EAnnotation delegateAnnotation = OCLDelegateDomain.getDelegateAnnotation(eObject);
+		if (delegateAnnotation != null) {
+			VirtualDelegateMapping registry = VirtualDelegateMapping.getRegistry(ePackage);
+			String resolvedURI = registry.getDefaultValue();
+			if (resolvedURI == uri) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void setDelegates(EPackage ePackage, List<String> delegateURIs) {

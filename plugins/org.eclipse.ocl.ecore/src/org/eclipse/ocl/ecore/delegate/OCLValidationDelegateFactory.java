@@ -119,6 +119,17 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 			}
 			return super.createValidationDelegate(classifier);
 		}	
+		
+		protected ValidationDelegate getValidationDelegate(EClassifier eClassifier) {
+//			if (delegateDomain == null) {
+//				EPackage ePackage = eClassifier.getEPackage();
+//				DelegateEPackageAdapter epAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
+//				delegateDomain = (OCLDelegateDomain) epAdapter.getDelegateDomain(delegateURI);
+//			}
+			DelegateEClassifierAdapter ecAdapter = DelegateEClassifierAdapter.getAdapter(eClassifier);
+			ValidationDelegate validationDelegate = ecAdapter.getValidationDelegate(delegateURI);
+			return validationDelegate;
+		}
 	}
 	
 	/**
@@ -139,6 +150,10 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		public Mapping(EValidator.ValidationDelegate.Registry validationDelegateRegistry, VirtualDelegateMapping virtualDelegateMapping) {
 			this.validationDelegateRegistry = validationDelegateRegistry;
 			this.virtualDelegateMapping = virtualDelegateMapping;
+		}
+		
+		public void reset() {
+			delegate = null;
 		}
 
 		protected EValidator.ValidationDelegate resolveDelegate(Map<Object, Object> context) {

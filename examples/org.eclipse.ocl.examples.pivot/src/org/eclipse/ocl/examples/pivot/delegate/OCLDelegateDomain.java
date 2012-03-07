@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.delegate;
 
 import java.util.List;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +26,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
@@ -119,7 +119,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 * to support usage of the Pivot OCL Delegate Evaluator for the oclDelegateURI. 
 	 */
 	public static void initialize(ResourceSet resourceSet, String oclDelegateURI) {
-		if (!EcorePlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLInvocationDelegateFactory.Global());
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI, new OCLSettingDelegateFactory.Global());
 			EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI, new OCLValidationDelegateFactory.Global());
@@ -128,6 +128,7 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		if (resourceSet != null) {
 			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
 			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
+			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(VirtualDelegateMapping.INSTANCE.getDefaultValue()));
 	
 			// Install a local DelegateDomain.Factory
 			DelegateDomain.Factory.Registry.Impl delegateDomainFactory = new DelegateDomain.Factory.Registry.Impl();
