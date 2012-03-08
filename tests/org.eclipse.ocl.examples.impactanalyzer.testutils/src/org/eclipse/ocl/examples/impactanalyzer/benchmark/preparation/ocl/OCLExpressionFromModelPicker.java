@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCL;
@@ -67,7 +67,7 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	                allConstraints.add(new OCLExpressionWithContext(invariant, (EClass) c));
 	            }
                     for (EAttribute at : ((EClass) c).getEAttributes()) {
-                        EAnnotation a = OCLDelegateDomain.getDelegateAnnotation(at);
+                        EAnnotation a = OCLCommon.getDelegateAnnotation(at);
                         if (a != null) {
                             System.out.println("hurra");
                             allConstraints.add(new OCLExpressionWithContext(SettingBehavior.INSTANCE.getFeatureBody(
