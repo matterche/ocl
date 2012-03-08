@@ -50,7 +50,7 @@ public class EvaluationOptions {
      * 
      * @since 1.2
      */
-    public static final Option<Boolean> LAX_NULL_HANDLING = new BasicOption<Boolean>(
+    public static final Option<Boolean> LAX_NULL_HANDLING = new BooleanOption(
     		OCLUtil.PLUGIN_ID, "lax.null.handling", true); //$NON-NLS-1$
 
     /**
