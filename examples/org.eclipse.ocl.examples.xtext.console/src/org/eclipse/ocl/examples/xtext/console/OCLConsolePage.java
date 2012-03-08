@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005,2011 IBM Corporation and others.
+ * Copyright (c) 2005,2012 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,10 +14,7 @@
  *   E.D.Willink - rework of LPG OCL Console for Xtext
  *
  * </copyright>
- *
- * $Id: OCLConsolePage.java,v 1.9 2011/05/07 17:18:05 ewillink Exp $
  */
-
 package org.eclipse.ocl.examples.xtext.console;
 
 import java.util.ArrayList;
@@ -182,9 +179,12 @@ public class OCLConsolePage extends Page
 		@Override
 		public String toString() {
 			StringBuilder s = new StringBuilder();
-			if (exception != null) {
+			for (Throwable t = exception; t != null; t = t.getCause()) {
 //				s.append(" : "); //$NON-NLS-1$
-				s.append(exception.getMessage());
+				s.append(t.getMessage());
+				if (t.getCause() != null) {
+					s.append("\n"); //$NON-NLS-1$
+				}
 			}
 			return s.toString();
 		}

@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.ocl.common.CommonConstants;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -219,11 +220,11 @@ public class Pivot2Ecore extends AbstractConversion
 		else {
 //			error("Unsupported " + pivotConstraint);
 		}
-		oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		oclAnnotation = eModelElement.getEAnnotation(CommonConstants.OCL_DELEGATE_URI);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
-		oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		oclAnnotation = eModelElement.getEAnnotation(CommonConstants.OCL_DELEGATE_URI_LPG);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}

@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.values.BooleanValue;
 import org.eclipse.ocl.examples.domain.values.CollectionValue;
 import org.eclipse.ocl.examples.domain.values.IntegerValue;
+import org.eclipse.ocl.examples.domain.values.InvalidValue;
 import org.eclipse.ocl.examples.domain.values.ObjectValue;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.impl.SequenceRangeImpl;
@@ -832,10 +833,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		Value value = evaluationEnvironment.getValueOf(variableDeclaration);
 		if (value == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Undefined variable", variableExp);
+			return evaluationEnvironment.throwInvalidEvaluation("Undefined variable '" + variableDeclaration.getName() + "'", variableExp);
 		}
 		else if (value.isInvalid()) {
-			return evaluationEnvironment.throwInvalidEvaluation("Invalid variable", variableExp);
+			Exception e = ((InvalidValue)value).getException();
+			return evaluationEnvironment.throwInvalidEvaluation(e, variableExp, null, "Invalid variable '" + variableDeclaration.getName() +"'");
 		}
 		else {
 			return value;
