@@ -12,8 +12,10 @@
 
 
    <extension point="org.eclipse.ui.propertyPages">
-      <page id="org.eclipse.ocl.modelregistry.properties.ModelRegistryPropertyPage"
-            class="org.eclipse.ocl.examples.modelregistry.ui.properties.PropertyPage"           
+      <page
+            category="org.eclipse.ocl.common.ui.properties.ProjectPropertyPage"
+            class="org.eclipse.ocl.examples.modelregistry.ui.properties.PropertyPage"
+            id="org.eclipse.ocl.modelregistry.properties.ModelRegistryPropertyPage"
             name="%modelRegistryPageName">
          <enabledWhen>
             <adapt type="org.eclipse.core.resources.IResource"/>

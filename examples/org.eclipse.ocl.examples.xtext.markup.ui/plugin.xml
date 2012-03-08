@@ -11,7 +11,7 @@
             default="true"
             extensions="markupocl"
             id="org.eclipse.ocl.examples.xtext.markup.Markup"
-            name="Markup Editor">
+            name="%MF_MarkupEditor">
         </editor>
     </extension>
     <extension
@@ -49,24 +49,25 @@
     </extension>
     <extension
             point="org.eclipse.ui.preferencePages">
-        <page
+        <!--page
+            category="org.eclipse.ocl.common.ui.preferences.ProjectPreferencePage"
             class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.ocl.examples.xtext.markup.Markup"
-            name="Markup">
+            name="%MF_Markup">
             <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
-        </page>
+        </page-->
         <page
-            category="org.eclipse.ocl.examples.xtext.markup.Markup"
+            category="org.eclipse.ocl.common.ui.preferences.SyntaxColoringPreferencePage"
             class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="org.eclipse.ocl.examples.xtext.markup.Markup.coloring"
-            name="Syntax Coloring">
+            name="%MF_Markup">
             <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
         </page>
         <page
-            category="org.eclipse.ocl.examples.xtext.markup.Markup"
+            category="org.eclipse.ocl.common.ui.preferences.TemplatePreferencePage"
             class="org.eclipse.ocl.examples.xtext.markup.ui.MarkupExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.eclipse.ocl.examples.xtext.markup.Markup.templates"
-            name="Templates">
+            name="%MF_Markup">
             <keywordReference id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"/>
         </page>
     </extension>
@@ -74,14 +75,14 @@
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipse.ocl.examples.xtext.markup.ui.keyword_Markup"
-            label="Markup"/>
+            label="%MF_Markup"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
-            description="Trigger expensive validation"
+            description="%MF_TriggerExpensiveValidation"
             id="org.eclipse.ocl.examples.xtext.markup.Markup.validate"
-            name="Validate">
+            name="%MF_Validate">
       </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
@@ -90,7 +91,7 @@
              <command
                  commandId="org.eclipse.ocl.examples.xtext.markup.Markup.validate"
                  style="push"
-                 tooltip="Trigger expensive validation">
+                 tooltip="%MF_TriggerExpensiveValidation">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened">
@@ -155,9 +156,9 @@
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
-			description="Open the quick outline."
+			description="%MF_OpenQuickOutline"
 			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
-			name="Quick Outline">
+			name="%MF_QuickOutline">
 		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -165,7 +166,7 @@
 			locationURI="popup:#TextEditorContext?after=group.open">
 			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
 				style="push"
-				tooltip="Open Quick Outline">
+				tooltip="%MF_OpenQuickOutline">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.ocl.examples.xtext.markup.Markup.Editor.opened"/>
 				</visibleWhen>

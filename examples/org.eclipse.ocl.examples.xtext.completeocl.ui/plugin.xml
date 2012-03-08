@@ -50,25 +50,25 @@
     </extension>
     <extension
             point="org.eclipse.ui.preferencePages">
-        <page
-            category="org.eclipse.ocl.examples.xtext.OCL"
+        <!--page
+            category="org.eclipse.ocl.common.ui.preferences.ProjectPreferencePage"
             class="org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL"
             name="%MF_CompleteOCL">
             <keywordReference id="org.eclipse.ocl.examples.xtext.completeocl.ui.keyword_CompleteOCL"/>
-        </page>
+        </page-->
         <page
-            category="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL"
+            category="org.eclipse.ocl.common.ui.preferences.SyntaxColoringPreferencePage"
             class="org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL.coloring"
-            name="%MF_SyntaxColoring">
+            name="%MF_CompleteOCL">
             <keywordReference id="org.eclipse.ocl.examples.xtext.completeocl.ui.keyword_CompleteOCL"/>
         </page>
         <page
-            category="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL"
+            category="org.eclipse.ocl.common.ui.preferences.TemplatePreferencePage"
             class="org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL.templates"
-            name="%MF_Templates">
+            name="%MF_CompleteOCL">
             <keywordReference id="org.eclipse.ocl.examples.xtext.completeocl.ui.keyword_CompleteOCL"/>
         </page>
     </extension>
