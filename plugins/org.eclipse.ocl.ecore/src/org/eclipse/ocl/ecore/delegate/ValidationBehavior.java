@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -203,7 +204,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		}
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setContext(cls);
-		String expr = OCLDelegateDomain.getDelegateAnnotation(cls, constraintName);
+		String expr = OCLCommon.getDelegateAnnotation(cls, constraintName);
 		if (expr == null) {
 			cacheOCLExpression(cls, constraintName, NO_OCL_DEFINITION);
 			return null;

@@ -62,6 +62,7 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.OCLDelegateException;
@@ -624,7 +625,7 @@ public class DelegatesTest extends AbstractTestSuite
 		EStructuralFeature directReportsRef = employeeClass.getEStructuralFeature("directReports");
 		// Now cache a NullLiteralExp as the derivation expression for directReports:
 		NullLiteralExp nullLiteralExp = EcoreFactory.eINSTANCE.createNullLiteralExp();
-		EAnnotation directReportsAnn = OCLDelegateDomain.getDelegateAnnotation(directReportsRef);
+		EAnnotation directReportsAnn = OCLCommon.getDelegateAnnotation(directReportsRef);
 		assertTrue(directReportsAnn.getDetails().containsKey(SettingBehavior.DERIVATION_CONSTRAINT_KEY));
 		String derivationExpression =  directReportsAnn.getDetails().get(SettingBehavior.DERIVATION_CONSTRAINT_KEY);
 		try {
@@ -685,7 +686,7 @@ public class DelegatesTest extends AbstractTestSuite
 		Resource res = resourceSet.getResource(uri, true);
 		res.eAdapters().add(new ECrossReferenceAdapter());
 		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
-		EAnnotation anno = OCLDelegateDomain.getDelegateAnnotation(hiddenOppositesPackage);
+		EAnnotation anno = OCLCommon.getDelegateAnnotation(hiddenOppositesPackage);
 		anno.getDetails().put("environmentFactoryClass", getClass().getName()+"$LocalEnvironmentFactory");
 		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
 		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
@@ -715,7 +716,7 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_invariantCacheBeingUsed() throws ParserException {
 		initPackageRegistrations();
 		initModel(COMPANY_XMI);
-		EAnnotation annotation = OCLDelegateDomain.getDelegateAnnotation(employeeClass);
+		EAnnotation annotation = OCLCommon.getDelegateAnnotation(employeeClass);
 		
 		DiagnosticChain diagnostics = new BasicDiagnostic();
 		// first ensure that contents are padded up to where we need it:
@@ -889,7 +890,7 @@ public class DelegatesTest extends AbstractTestSuite
 		// Now cache a BooleanLiteralExp with the "false" literal as the implementation for reportsTo:
 		BooleanLiteralExp falseLiteralExp = EcoreFactory.eINSTANCE.createBooleanLiteralExp();
 		falseLiteralExp.setBooleanSymbol(false);
-		EAnnotation reportsToAnn = OCLDelegateDomain.getDelegateAnnotation(reportsToOp);
+		EAnnotation reportsToAnn = OCLCommon.getDelegateAnnotation(reportsToOp);
 		assertTrue(reportsToAnn.getDetails().containsKey(InvocationBehavior.BODY_CONSTRAINT_KEY));
 		String body = reportsToAnn.getDetails().get(InvocationBehavior.BODY_CONSTRAINT_KEY);
 		try {

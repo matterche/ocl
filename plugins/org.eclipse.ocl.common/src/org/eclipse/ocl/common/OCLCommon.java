@@ -14,9 +14,13 @@
  */
 package org.eclipse.ocl.common;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
 import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 
 
@@ -26,6 +30,38 @@ import org.eclipse.ocl.common.preferences.PreferenceableOption;
 public class OCLCommon implements OCLConstants
 {
 	public static final String PLUGIN_ID = OCLCommon.class.getPackage().getName();
+
+	/**
+	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
+	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
+	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
+	 */
+	public static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
+		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.equals(OCL_DELEGATE_URI)) {
+				return eAnnotation;
+			}
+		}
+		for (EAnnotation eAnnotation : eAnnotations) {
+			String source = eAnnotation.getSource();
+			if ((source != null) && source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return eAnnotation;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Return the keyed detail of an OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
+	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
+	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
+	 */
+	public static String getDelegateAnnotation(EModelElement eModelElement, String key) {
+	    EAnnotation eAnnotation = getDelegateAnnotation(eModelElement);
+	    return eAnnotation == null ? null : (String)eAnnotation.getDetails().get(key);
+	}
 	
 	/**
 	 * Return the preference value for 
@@ -46,5 +82,21 @@ public class OCLCommon implements OCLConstants
 			String string = preferencesService.getString(qualifier, key, defaultValue != null ? defaultValue.toString() : "", contexts); //$NON-NLS-1$
 			return option.getValueOf(string);
 		}
+	}
+
+	/**
+	 * Return true if string denotes an OCL Delegate, which is the string {@link #OCL_DELEGATE_URI},
+	 * or a string starting with {@link #OCL_DELEGATE_URI} and a / character.
+	 */
+	public static boolean isDelegateURI(String string) {
+		if (string != null) {
+			if (string.equals(OCL_DELEGATE_URI)) {
+				return true;
+			}
+			if (string.startsWith(OCL_DELEGATE_URI_SLASH)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

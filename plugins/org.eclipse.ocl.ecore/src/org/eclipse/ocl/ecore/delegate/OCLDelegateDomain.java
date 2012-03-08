@@ -18,13 +18,11 @@
 package org.eclipse.ocl.ecore.delegate;
 
 import java.lang.reflect.Constructor;
-import java.util.List;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -34,6 +32,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.OCLInvocationDelegateMapping;
@@ -93,9 +92,11 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * of invariant <tt><i>constraintName</i></tt>s as the value of the <tt>constraints</tt> details key. 
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
+	 * 
+	 * @deprecated use OCLConstants.OCL_DELEGATE_URI
 	 */
+	@Deprecated
 	public static final String OCL_DELEGATE_URI = OCLConstants.OCL_DELEGATE_URI;
-	private static final String OCL_DELEGATE_URI_SLASH = OCLConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
 
 	 /**
 	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
@@ -116,38 +117,6 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @since 3.1
 	 */
 	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites"; //$NON-NLS-1$
-
-	/**
-	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
-	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
-	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
-	 *  
-	 * @since 3.2
-	 */
-	public static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
-		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
-		for (EAnnotation eAnnotation : eAnnotations) {
-			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(OCLConstants.OCL_DELEGATE_URI)) {
-				return eAnnotation;
-			}
-		}
-		for (EAnnotation eAnnotation : eAnnotations) {
-			String source = eAnnotation.getSource();
-			if ((source != null) && source.startsWith(OCL_DELEGATE_URI_SLASH)) {
-				return eAnnotation;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @since 3.2
-	 */
-	public static String getDelegateAnnotation(EModelElement eModelElement, String key) {
-	    EAnnotation eAnnotation = getDelegateAnnotation(eModelElement);
-	    return eAnnotation == null ? null : (String)eAnnotation.getDetails().get(key);
-	}
 
 	/**
 	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
@@ -258,25 +227,6 @@ public class OCLDelegateDomain implements DelegateDomain
 			}
 		}
 	}
-
-	/**
-	 * Return true if eAnnotation is an OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
-	 * as its source, or with a source whose URI starts with {@link #OCL_DELEGATE_URI} and a / character.
-	 *  
-	 * @since 3.2
-	 */
-	public static boolean isDelegateAnnotation(EAnnotation eAnnotation) {
-		String source = eAnnotation.getSource();
-		if (source != null) {
-			if (source.equals(OCLConstants.OCL_DELEGATE_URI)) {
-				return true;
-			}
-			if (source.startsWith(OCL_DELEGATE_URI_SLASH)) {
-				return true;
-			}
-		}
-		return false;
-	}
 	
 	protected final String uri;
 	protected final EPackage ePackage;
@@ -310,7 +260,7 @@ public class OCLDelegateDomain implements DelegateDomain
 			packageRegistry = EPackage.Registry.INSTANCE;
 		}
 		EcoreEnvironmentFactory envFactory = null;
-		EAnnotation eAnnotation = getDelegateAnnotation(ePackage);
+		EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(ePackage);
 		if (eAnnotation != null) {
 			EMap<String, String> details = eAnnotation.getDetails();
 			String clsName = details.get(KEY_FOR_ENVIRONMENT_FACTORY_CLASS);

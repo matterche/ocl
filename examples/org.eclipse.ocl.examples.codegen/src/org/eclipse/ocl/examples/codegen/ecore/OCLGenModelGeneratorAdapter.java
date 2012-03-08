@@ -140,7 +140,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 				List<EAnnotation> obsoleteAnnotations = null;
 				for (EAnnotation eAnnotation : eClassifier.getEAnnotations()) {
 					String source = eAnnotation.getSource();
-					if (OCLDelegateDomain.isDelegateURI(source)) {
+					if (OCLCommon.isDelegateURI(source)) {
 						EMap<String, String> details = eAnnotation.getDetails();
 						for (String key : details.keySet()) {
 							if ((key != null) && !key.endsWith(PivotConstants.MESSAGE_ANNOTATION_DETAIL_SUFFIX)) {
@@ -311,19 +311,19 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected boolean hasDelegates(EPackage ePackage) {
 		List<String> validationDelegates = EcoreUtil.getValidationDelegates(ePackage);
 		for (String validationDelegate : validationDelegates) {
-			if (OCLDelegateDomain.isDelegateURI(validationDelegate)) {
+			if (OCLCommon.isDelegateURI(validationDelegate)) {
 				return true;
 			}
 		}
 		List<String> settingDelegates = EcoreUtil.getSettingDelegates(ePackage);
 		for (String settingDelegate : settingDelegates) {
-			if (OCLDelegateDomain.isDelegateURI(settingDelegate)) {
+			if (OCLCommon.isDelegateURI(settingDelegate)) {
 				return true;
 			}
 		}
 		List<String> invocationDelegates = EcoreUtil.getInvocationDelegates(ePackage);
 		for (String invocationDelegate : invocationDelegates) {
-			if (OCLDelegateDomain.isDelegateURI(invocationDelegate)) {
+			if (OCLCommon.isDelegateURI(invocationDelegate)) {
 				return true;
 			}
 		}
@@ -428,7 +428,7 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	protected List<String> pruneDelegates(List<String> oldDelegates) {
 		List<String> newDelegates = new ArrayList<String>();
 		for (String aDelegate : oldDelegates) {
-			if (!OCLDelegateDomain.isDelegateURI(aDelegate)) {
+			if (!OCLCommon.isDelegateURI(aDelegate)) {
 				newDelegates.add(aDelegate);
 			}
 		}

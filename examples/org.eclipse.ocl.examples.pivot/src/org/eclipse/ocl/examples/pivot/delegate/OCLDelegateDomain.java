@@ -16,11 +16,7 @@
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
-import java.util.List;
-
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -48,65 +44,9 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListener
 {
 	/**
-	 * The EAnnotation source URI for delegate OCL annotations.
-	 * <p>
-	 * For an EOperation, the EAnnotation details may include
-	 * <br>
-	 * a <tt>body</tt> key to provide an OCL expression value that specifies <tt>body:</tt> of the operation.
-	 * <br>
-	 * a <tt>precondition</tt> key to provide an OCL expression value that specifies <tt>pre:</tt> for the operation.
-	 * <br>
-	 * a <tt>postcondition</tt> key to provide an OCL expression value that specifies <tt>post:</tt> for the operation.
-	 * <p>
-	 * For an EStructuralFeature, the EAnnotation details may include
-	 * <br>
-	 * a <tt>derivation</tt> key to provide an OCL expression value that specifies <tt>derive:</tt> for the property.
-	 * <br>
-	 * a <tt>initial</tt> key to provide an OCL expression value that specifies <tt>initial:</tt> for the operation.
-	 * <p>
-	 * For an EClassifier (EClass, EDataType), the EAnnotation details may include
-	 * <br>
-	 * a <tt><i>constraintName</i></tt> key to provide an OCL expression value that specifies <tt>inv <i>constraintName</i>:</tt> for the classifier.
-	 * <p>
-	 * Note that the delegate OCL functionality must be enabled by an EPackage Ecore annotation specifying this URI
-	 * as the value of <tt>invocationDelegates</tt>, <tt>settingDelegates</tt> and <tt>validationDelegates</tt> details
-	 * keys.
-	 * <p>
-	 * Note also that validation must be enabled by specifying an EClassifier Ecore annotation with a space separated list
-	 * of invariant <tt><i>constraintName</i></tt>s as the value of the <tt>constraints</tt> details key. 
-	 * <p>
-	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
+	 * The delegate URI for Ecore annotations using the Pivot evaluator.
 	 */
-//	public static final String OCL_DELEGATE_URI1 = CommonConstants.OCL_DELEGATE_URI; //$NON-NLS-1$
-//	private static final String OCL_DELEGATE_URI_SLASH = CommonConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
 	public static final String OCL_DELEGATE_URI_PIVOT = OCLConstants.OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
-
-	/**
-	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
-	 * as its source, or if no such EAnnotation is present, then the first EAnnotation with a source
-	 * whose URI starts with {@link #OCL_DELEGATE_URI} and a / character/
-	 */
-	public static EAnnotation getDelegateAnnotation(EModelElement eModelElement) {
-		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
-		for (EAnnotation eAnnotation : eAnnotations) {
-			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(OCLConstants.OCL_DELEGATE_URI)) {
-				return eAnnotation;
-			}
-		}
-		for (EAnnotation eAnnotation : eAnnotations) {
-			String source = eAnnotation.getSource();
-			if ((source != null) && source.startsWith(OCLConstants.OCL_DELEGATE_URI_SLASH)) {
-				return eAnnotation;
-			}
-		}
-		return null;
-	}
-
-	public static String getDelegateAnnotation(EModelElement eModelElement, String key) {
-	    EAnnotation eAnnotation = getDelegateAnnotation(eModelElement);
-	    return eAnnotation == null ? null : (String)eAnnotation.getDetails().get(key);
-	}
 	
 	/**
 	 * Initialize the resourceSet registries, if non-null, or the global registries, if null,
@@ -157,22 +97,6 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 			queryDelegateFactoryRegistry.put(oclDelegateURI, new OCLQueryDelegateFactory(oclDelegateURI));
 			adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);
 		}
-	}
-
-	/**
-	 * Return true if string denotes an OCL Delegate, which is the string {@link #OCL_DELEGATE_URI},
-	 * or a string starting with {@link #OCL_DELEGATE_URI} and a / character.
-	 */
-	public static boolean isDelegateURI(String string) {
-		if (string != null) {
-			if (string.equals(OCLConstants.OCL_DELEGATE_URI)) {
-				return true;
-			}
-			if (string.startsWith(OCLConstants.OCL_DELEGATE_URI_SLASH)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	protected final String uri;

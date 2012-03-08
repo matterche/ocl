@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -102,7 +103,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		if (result != null){
 			return result != NO_OCL_DEFINITION ? result : null;
 		}
-	    EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(structuralFeature);
+	    EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(structuralFeature);
 	    if (eAnnotation == null) {
 			cacheOCLExpression(structuralFeature, NO_OCL_DEFINITION);
 	    	return null;
@@ -151,6 +152,6 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 	 * @since 3.1
 	 */
 	public boolean hasCompileableFeatureBody(EStructuralFeature structuralFeature) {
-		return OCLDelegateDomain.getDelegateAnnotation(structuralFeature) != null;
+		return OCLCommon.getDelegateAnnotation(structuralFeature) != null;
 	}
 }

@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -57,7 +58,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
@@ -257,7 +257,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 	}
 
 	protected void copyProperty(Property pivotElement, org.eclipse.uml2.uml.Property umlProperty, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlProperty);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(umlProperty);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

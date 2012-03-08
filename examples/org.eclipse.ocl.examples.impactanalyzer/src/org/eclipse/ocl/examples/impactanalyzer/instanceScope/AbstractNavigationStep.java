@@ -25,9 +25,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.HighlightingToStringVisitor;
 import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
@@ -306,7 +306,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         EOperation result = null;
         if (rootExpression.eContainer() instanceof EAnnotation) {
             EAnnotation annotation = (EAnnotation) rootExpression.eContainer();
-            if (OCLDelegateDomain.isDelegateAnnotation(annotation) &&
+            if (OCLCommon.isDelegateURI(annotation.getSource()) &&
                     annotation.eContainer() instanceof EOperation) {
                 result = (EOperation) annotation.eContainer();
             }

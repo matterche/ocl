@@ -40,9 +40,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.common.label.AbstractLabelGenerator;
 import org.eclipse.ocl.examples.common.label.ILabelGenerator;
@@ -256,7 +256,7 @@ public class EcoreUtils
 		else {
 			keyName = null;
 		}
-	    EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(constrainedElement);
+	    EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(constrainedElement);
 	    if (eAnnotation == null) {
 	    	return null;
 	    }

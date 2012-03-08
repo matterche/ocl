@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
@@ -40,7 +41,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	public static final String NAME = "invocationDelegates"; //$NON-NLS-1$
 
 	public boolean appliesTo(EOperation operation) {
-      	String annotation = OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
+      	String annotation = OCLCommon.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
 		return annotation != null;
 	}
 	
@@ -110,7 +111,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		if (result != null) {
 			return result != NO_OCL_DEFINITION ? result : null;
 		}
-		String expr = OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
+		String expr = OCLCommon.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY);
 		if (expr == null) {
 			ExpressionCacheAdapter.cacheOCLExpression(operation, NO_OCL_DEFINITION);
 			return null;
@@ -147,6 +148,6 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 	 * @since 3.1
 	 */
 	public boolean hasCompileableOperationBody(EOperation operation) {
-		return OCLDelegateDomain.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY) != null;
+		return OCLCommon.getDelegateAnnotation(operation, BODY_CONSTRAINT_KEY) != null;
 	}
 }

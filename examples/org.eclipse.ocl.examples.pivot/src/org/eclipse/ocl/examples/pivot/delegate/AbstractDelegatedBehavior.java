@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.delegate.OCLDelegateException;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
@@ -178,7 +179,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		if (eObject.getEAnnotation(uri) != null) {
 			return true;
 		}
-		EAnnotation delegateAnnotation = OCLDelegateDomain.getDelegateAnnotation(eObject);
+		EAnnotation delegateAnnotation = OCLCommon.getDelegateAnnotation(eObject);
 		if (delegateAnnotation != null) {
 			VirtualDelegateMapping registry = VirtualDelegateMapping.getRegistry(ePackage);
 			String resolvedURI = registry.getDefaultValue();

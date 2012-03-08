@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -49,7 +50,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
@@ -193,7 +193,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, umlOperation);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlOperation);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(umlOperation);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -305,7 +305,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, org.eclipse.uml2.uml.Classifier umlClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(umlClassifier);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(umlClassifier);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

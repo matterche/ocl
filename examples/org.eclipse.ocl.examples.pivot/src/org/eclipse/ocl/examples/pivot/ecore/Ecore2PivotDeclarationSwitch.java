@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -70,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
@@ -137,7 +137,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					pivotComment.setBody(commentBody.replaceAll("\\r", ""));
 					constraint.getOwnedComment().add(pivotComment);
 				}				
-				EAnnotation eAnnotation = OCLDelegateDomain.getDelegateAnnotation(eOperation);
+				EAnnotation eAnnotation = OCLCommon.getDelegateAnnotation(eOperation);
 				if (eAnnotation == null) {
 					eAnnotation = eOperation.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
 				}
@@ -286,7 +286,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Operation caseEOperation(EOperation eObject) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(eObject);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(eObject);
 		if (oclAnnotation == null) {
 			oclAnnotation = eObject.getEAnnotation(org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage.eNS_URI);
 		}
@@ -417,7 +417,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
 		Map<String, Constraint> constraintMap = null;
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(eClassifier);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(eClassifier);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -531,7 +531,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected void copyStructuralFeature(Property pivotElement, EStructuralFeature eObject, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = OCLDelegateDomain.getDelegateAnnotation(eObject);
+		EAnnotation oclAnnotation = OCLCommon.getDelegateAnnotation(eObject);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
