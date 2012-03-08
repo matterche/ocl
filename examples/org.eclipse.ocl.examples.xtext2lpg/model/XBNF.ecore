@@ -51,6 +51,8 @@
         lowerBound="1" upperBound="-1" eType="#//TypedRule"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//TypedRule" containment="true" eOpposite="#//TypedRule/grammar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Keyword" eSuperTypes="#//AbstractElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -74,6 +76,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="grammars" ordered="false"
         upperBound="-1" eType="#//Grammar" containment="true" eOpposite="#//Grammar/syntax"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TerminalRule" eSuperTypes="#//TypedRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedRule" abstract="true" eSuperTypes="#//AbstractRule">

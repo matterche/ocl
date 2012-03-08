@@ -49,24 +49,30 @@ main() {
 
 mapping XBNF::Syntax::syntax2syntax() : XBNF::Syntax {
 	name := self.name;
-	grammars := self.grammars->map grammar2grammar();
+	grammars := Sequence { self.map grammars2lexerGrammar(), self.map grammars2parserGrammar() };
 }
 
-mapping XBNF::Grammar::grammar2grammar() : XBNF::Grammar
-disjuncts
-LexerGrammar::lexerGrammar2grammar,
-ParserGrammar::parserGrammar2grammar
-{}
+--mapping XBNF::Grammar::grammar2grammar() : XBNF::Grammar
+--disjuncts
+--LexerGrammar::lexerGrammar2grammar,
+--ParserGrammar::parserGrammar2grammar
+--{}
 
 ---------------------------------------------------------------------------------------
 --	Copy the lexer rules
 ---------------------------------------------------------------------------------------
 
-mapping XBNF::LexerGrammar::lexerGrammar2grammar() : XBNF::LexerGrammar {
+mapping XBNF::Syntax::grammars2lexerGrammar() : XBNF::LexerGrammar {
 	name := self.name;
-	rules := self.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
-	goals := self.goals.resolveone(TypedRule);
+	rules := self.grammars.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
+	goals := self.grammars.goals.resolveone(TypedRule);
 }
+
+--mapping XBNF::LexerGrammar::lexerGrammar2grammar() : XBNF::LexerGrammar {
+--	name := self.name;
+--	rules := self.rules->select(oclIsKindOf(TerminalRule)).oclAsType(TerminalRule)->map terminalRule2rule();
+--	goals := self.goals.resolveone(TypedRule);
+--}
 
 mapping XBNF::TerminalRule::terminalRule2rule() : XBNF::TerminalRule
 {
@@ -158,12 +164,30 @@ mapping XBNFwc::ZeroOrOne::zeroOrOne2lexerElement() : XBNFwc::Succession {
 ---------------------------------------------------------------------------------------
 --	Create the extra parser rules for XBNF compounds
 ---------------------------------------------------------------------------------------
-mapping XBNF::ParserGrammar::parserGrammar2grammar() : XBNF::ParserGrammar {
+
+mapping XBNF::Syntax::grammars2parserGrammar() : XBNF::ParserGrammar {
 	name := self.name;
-	var parserRules : Sequence(ParserRule) = self.rules->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule)->sortedBy(name);
-	rules := parserRules->map parserRule2rule();
-	goals := self.goals.resolveone(TypedRule);
+--	var parserRules : Sequence(ParserRule) = self.grammars.rules->asSequence()->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule);
+--	var parserRuleNames : Set(String) = parserRules.name->asSet()->sortedBy(n | n);
+--	rules := parserRuleNames->iterate(n; acc : OrderedSet(ParserRule) = Set{} |
+--		let firstRule : ParserRule = parserRules->select(name = n)->first() in
+--		let mappedRule : ParserRule = firstRule.map parserRule2rule() in
+--		acc->append(mappedRule));
+	var parserRules : Bag(ParserRule) = self.grammars.rules->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule);
+	var parserRuleNames : OrderedSet(String) = parserRules.name->asSet()->sortedBy(n | n);
+	var sortedParserRules : Sequence(ParserRule) = parserRules->sortedBy(name);
+	rules := parserRuleNames->iterate(prn; acc : OrderedSet(ParserRule) = OrderedSet{} |
+		let pr : ParserRule = parserRules->select(name = prn)->any(true) in acc->append(pr.map parserRule2rule()));
+--	rules := sortedParserRules->iterate(pr; acc : Sequence(ParserRule) = Sequence{} | acc->append(pr.map parserRule2rule()));
+	goals := self.grammars.goals.resolveone(TypedRule);
 }
+
+--mapping XBNF::ParserGrammar::parserGrammar2grammar() : XBNF::ParserGrammar {
+--	name := self.name;
+--	var parserRules : Sequence(ParserRule) = self.rules->select(oclIsKindOf(ParserRule)).oclAsType(ParserRule)->sortedBy(name);
+--	rules := parserRules->map parserRule2rule();
+--	goals := self.goals.resolveone(TypedRule);
+--}
 
 mapping XBNF::ParserRule::parserRule2rule() : XBNF::ParserRule
 {

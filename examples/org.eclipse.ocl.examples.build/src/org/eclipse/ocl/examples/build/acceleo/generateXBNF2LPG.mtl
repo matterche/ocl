@@ -151,7 +151,7 @@ KeyWord ::=
 %Rules
 [for (name : String | parser.rules->reject(oclIsKindOf(TerminalRule)).name->asSet()->sortedBy(n | n)) separator('\n')]
 [for (rule : TypedRule | parser.rules->select(r | r.name = name))]
-	[rule.generateRule()/][/for]
+[rule.generateRule()/][/for]
 [/for]
 %End
 [/file]

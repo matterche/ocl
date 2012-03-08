@@ -16,7 +16,9 @@ package org.eclipse.ocl.examples.build.utilities;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -24,6 +26,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
@@ -33,6 +37,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotResource;
 
 public class QvtoWorkflowComponent extends AbstractWorkflowComponent
 {
@@ -80,7 +85,13 @@ public class QvtoWorkflowComponent extends AbstractWorkflowComponent
 		TransformationExecutor transformationExecutor = new TransformationExecutor(txURI);
 		Diagnostic diagnostic = transformationExecutor.loadTransformation();
 		if (diagnostic.getSeverity() != Diagnostic.OK) {
-			issues.addError(this, "Failed to load", txURI, null, null);
+			StringBuilder s = new StringBuilder();
+			s.append("Failed to load ");
+			s.append(txURI);
+			for (Diagnostic child : diagnostic.getChildren()) {
+				s.append("\n  " + child.getMessage());
+			}
+			issues.addError(this, s.toString(), txURI, null, null);
 			return;
 		}
 		ModelExtent[] modelExtents = new ModelExtent[ins.size()+1];
@@ -107,7 +118,13 @@ public class QvtoWorkflowComponent extends AbstractWorkflowComponent
 //			executionContext.setMonitor();
 			ExecutionDiagnostic executionDiagnostic = transformationExecutor.execute(executionContext, modelExtents);
 			if (executionDiagnostic.getSeverity() != Diagnostic.OK) {
-				issues.addError(this, "Failed to execute", txURI, null, null);
+				StringBuilder s = new StringBuilder();
+				s.append("Failed to execute ");
+				s.append(txURI);
+				for (Diagnostic child : diagnostic.getChildren()) {
+					s.append("\n  " + child.getMessage());
+				}
+				issues.addError(this, s.toString(), txURI, null, null);
 				return;
 			}
 		} catch (Exception e) {
@@ -116,9 +133,15 @@ public class QvtoWorkflowComponent extends AbstractWorkflowComponent
 		}
 		try {
 			logger.info("Creating '" + outURI + "'");
-			Resource outResource = resourceSet.createResource(outURI, null);
+			XMLResource outResource = (XMLResource) resourceSet.createResource(outURI, null);
 			outResource.getContents().addAll(modelExtents[modelExtents.length-1].getContents());
-			outResource.save(null);
+			outResource.setEncoding(PivotResource.DEFAULT_ENCODING);
+			Map<String, Object> options = new HashMap<String, Object>();
+			options.put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+			options.put(XMLResource.OPTION_LINE_WIDTH, 80);
+			options.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());
+			options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+			outResource.save(options);
 		} catch (IOException e) {
 			issues.addError(this, "Failed to save ", outURI, e, null);
 			return;
