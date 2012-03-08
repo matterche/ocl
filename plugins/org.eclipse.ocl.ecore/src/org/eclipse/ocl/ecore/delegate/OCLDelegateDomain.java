@@ -145,7 +145,8 @@ public class OCLDelegateDomain implements DelegateDomain
 		if (resourceSet != null) {
 			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
 			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
-			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(VirtualDelegateMapping.INSTANCE.getDefaultValue()));
+			VirtualDelegateMapping delegationMode = VirtualDelegateMapping.INSTANCE;
+			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(delegationMode.getPluginId(), delegationMode.getKey(), delegationMode.getDefaultValue()));
 	
 			// Install a local DelegateDomain.Factory
 			DelegateDomain.Factory.Registry.Impl delegateDomainFactory = new DelegateDomain.Factory.Registry.Impl();

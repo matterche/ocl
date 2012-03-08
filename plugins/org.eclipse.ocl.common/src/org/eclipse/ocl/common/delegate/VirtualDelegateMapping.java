@@ -16,27 +16,21 @@ package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.ocl.common.OCLConstants;
+import org.eclipse.ocl.common.options.CommonOptions;
+import org.eclipse.ocl.common.preferences.StringPreference;
 
-public class VirtualDelegateMapping
+public class VirtualDelegateMapping extends StringPreference
 {
-	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(OCLConstants.OCL_DELEGATE_URI_LPG);
-//	public static final Option<String> VIRTUAL_DELEGATE = INSTANCE;    
+	public static VirtualDelegateMapping INSTANCE = CommonOptions.DEFAULT_DELEGATION_MODE;
 
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {
 		VirtualDelegateMapping registry = DelegateResourceSetAdapter.getRegistry(
 			modelElement, VirtualDelegateMapping.class, INSTANCE);
 		return registry;
 	}
-
-	private String delegatedURI;
 	
-	public VirtualDelegateMapping(String delegatedURI) {
-//		super("virtual.delegate.mapping", delegatedURI); //$NON-NLS-1$
-		this.delegatedURI = delegatedURI;
-	}
-
-	public String getDefaultValue() {
-		return delegatedURI;
+	public VirtualDelegateMapping(String pluginId, String key, String defaultValue) {
+		super(pluginId, key, defaultValue);
 	}
 
 	public String resolve(String delegateURI) {
@@ -47,9 +41,5 @@ public class VirtualDelegateMapping
 			}
 		}
 		return delegateURI;
-	}
-
-	public void setDefaultValue(String delegatedURI) {
-		this.delegatedURI = delegatedURI;
 	}
 }

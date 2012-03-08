@@ -15,15 +15,15 @@
 package org.eclipse.ocl.common.options;
 
 import org.eclipse.ocl.common.OCLConstants;
+import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.common.preferences.EnumerationPreference;
-import org.eclipse.ocl.common.preferences.StringPreference;
 
 public class CommonOptions {
 
     public static final EnumerationPreference<CodeGenerationMode> CODE_GENERATION_MODE = new EnumerationPreference<CodeGenerationMode>(
     		OCLConstants.PLUGIN_ID, "code.generation.mode", CodeGenerationMode.DELEGATED, CodeGenerationMode.class); //$NON-NLS-1$
 
-    public static final StringPreference DEFAULT_DELEGATION_MODE = new StringPreference(
+    public static final VirtualDelegateMapping DEFAULT_DELEGATION_MODE = new VirtualDelegateMapping(
     		OCLConstants.PLUGIN_ID, "default.delegation.mode", OCLConstants.OCL_DELEGATE_URI_LPG); //$NON-NLS-1$
 
     /**
