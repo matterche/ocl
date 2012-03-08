@@ -15,11 +15,11 @@
 package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 
 public class VirtualDelegateMapping
 {
-	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(CommonConstants.OCL_DELEGATE_URI_LPG);
+	public static VirtualDelegateMapping INSTANCE = new VirtualDelegateMapping(OCLConstants.OCL_DELEGATE_URI_LPG);
 //	public static final Option<String> VIRTUAL_DELEGATE = INSTANCE;    
 
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {
@@ -40,7 +40,7 @@ public class VirtualDelegateMapping
 	}
 
 	public String resolve(String delegateURI) {
-		if (CommonConstants.OCL_DELEGATE_URI.equals(delegateURI)) {
+		if (OCLConstants.OCL_DELEGATE_URI.equals(delegateURI)) {
 			String defaultValue = getDefaultValue();
 			if (defaultValue != null) {
 				return defaultValue;

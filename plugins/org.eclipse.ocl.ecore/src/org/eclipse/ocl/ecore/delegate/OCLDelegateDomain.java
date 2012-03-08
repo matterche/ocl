@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.OCLInvocationDelegateMapping;
 import org.eclipse.ocl.common.delegate.OCLQueryDelegateMapping;
@@ -94,8 +94,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI = CommonConstants.OCL_DELEGATE_URI;
-	private static final String OCL_DELEGATE_URI_SLASH = CommonConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI = OCLConstants.OCL_DELEGATE_URI;
+	private static final String OCL_DELEGATE_URI_SLASH = OCLConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
 
 	 /**
 	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
@@ -128,7 +128,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
 		for (EAnnotation eAnnotation : eAnnotations) {
 			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(CommonConstants.OCL_DELEGATE_URI)) {
+			if ((source != null) && source.equals(OCLConstants.OCL_DELEGATE_URI)) {
 				return eAnnotation;
 			}
 		}
@@ -156,8 +156,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @since 3.2
 	 */
 	public static void initialize(ResourceSet resourceSet) {
-		initialize(resourceSet, CommonConstants.OCL_DELEGATE_URI_LPG);
-		initializeMappingFrom(resourceSet, CommonConstants.OCL_DELEGATE_URI);
+		initialize(resourceSet, OCLConstants.OCL_DELEGATE_URI_LPG);
+		initializeMappingFrom(resourceSet, OCLConstants.OCL_DELEGATE_URI);
 	}
 	
 	/**
@@ -268,7 +268,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	public static boolean isDelegateAnnotation(EAnnotation eAnnotation) {
 		String source = eAnnotation.getSource();
 		if (source != null) {
-			if (source.equals(CommonConstants.OCL_DELEGATE_URI)) {
+			if (source.equals(OCLConstants.OCL_DELEGATE_URI)) {
 				return true;
 			}
 			if (source.startsWith(OCL_DELEGATE_URI_SLASH)) {

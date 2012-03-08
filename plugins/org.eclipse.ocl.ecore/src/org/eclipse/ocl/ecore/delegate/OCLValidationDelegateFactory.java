@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
@@ -107,7 +107,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLValidationDelegateFactory
 	{
 		public Global() {
-			super(CommonConstants.OCL_DELEGATE_URI_LPG);
+			super(OCLConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public ValidationDelegate createValidationDelegate(EClassifier classifier) {

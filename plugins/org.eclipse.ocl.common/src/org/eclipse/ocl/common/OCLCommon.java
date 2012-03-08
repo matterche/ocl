@@ -23,7 +23,7 @@ import org.eclipse.ocl.common.preferences.PreferenceableOption;
 /**
  * The Facade for common Eclipse OCL facilities.
  */
-public class OCLCommon implements CommonConstants
+public class OCLCommon implements OCLConstants
 {
 	public static final String PLUGIN_ID = OCLCommon.class.getPackage().getName();
 	

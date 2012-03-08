@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
@@ -96,7 +96,7 @@ public class OCLQueryDelegateFactory
 	public static class Global extends OCLQueryDelegateFactory
 	{
 		public Global() {
-			super(CommonConstants.OCL_DELEGATE_URI_LPG);
+			super(OCLConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public QueryDelegate createQueryDelegate(EClassifier context,

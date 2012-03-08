@@ -62,7 +62,7 @@ import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryPackage;
 import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
@@ -138,8 +138,8 @@ public class DelegatesTest extends AbstractTestSuite
 		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;
 
-		initializeResourceSet(CommonConstants.OCL_DELEGATE_URI_LPG);			
-		OCLDelegateDomain.initializeMappingFrom(null, CommonConstants.OCL_DELEGATE_URI);			
+		initializeResourceSet(OCLConstants.OCL_DELEGATE_URI_LPG);			
+		OCLDelegateDomain.initializeMappingFrom(null, OCLConstants.OCL_DELEGATE_URI);			
 	}
 
 	protected void initializeResourceSet(String oclDelegateURI) {
@@ -374,7 +374,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
+			.getFactory(OCLConstants.OCL_DELEGATE_URI_LPG);
 
 		String n = "n";
 		String expression = "self.employees->select(employee | employee.manager <> null and employee.manager.name = n)";
@@ -422,7 +422,7 @@ public class DelegatesTest extends AbstractTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
+			.getFactory(OCLConstants.OCL_DELEGATE_URI_LPG);
 
 		String okName = "ok";
 		String badName = "xyzzy";
@@ -953,7 +953,7 @@ public class DelegatesTest extends AbstractTestSuite
 	 */
 	public void test_queryExecution_Bug353171() {
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(CommonConstants.OCL_DELEGATE_URI_LPG);
+			.getFactory(OCLConstants.OCL_DELEGATE_URI_LPG);
 		String n = "n";
 		String expression = "self.name";
 		Library library = EXTLibraryFactory.eINSTANCE.createLibrary();

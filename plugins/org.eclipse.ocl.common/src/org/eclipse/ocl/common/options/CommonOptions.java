@@ -14,17 +14,17 @@
  */
 package org.eclipse.ocl.common.options;
 
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.preferences.EnumerationPreference;
 import org.eclipse.ocl.common.preferences.StringPreference;
 
 public class CommonOptions {
 
     public static final EnumerationPreference<CodeGenerationMode> CODE_GENERATION_MODE = new EnumerationPreference<CodeGenerationMode>(
-    		CommonConstants.PLUGIN_ID, "code.generation.mode", CodeGenerationMode.DELEGATED, CodeGenerationMode.class); //$NON-NLS-1$
+    		OCLConstants.PLUGIN_ID, "code.generation.mode", CodeGenerationMode.DELEGATED, CodeGenerationMode.class); //$NON-NLS-1$
 
     public static final StringPreference DEFAULT_DELEGATION_MODE = new StringPreference(
-    		CommonConstants.PLUGIN_ID, "default.delegation.mode", CommonConstants.OCL_DELEGATE_URI_LPG); //$NON-NLS-1$
+    		OCLConstants.PLUGIN_ID, "default.delegation.mode", OCLConstants.OCL_DELEGATE_URI_LPG); //$NON-NLS-1$
 
     /**
      * Not instantiable by clients.

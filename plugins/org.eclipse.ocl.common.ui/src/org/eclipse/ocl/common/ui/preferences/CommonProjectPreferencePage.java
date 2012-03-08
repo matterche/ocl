@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.options.CodeGenerationMode;
 import org.eclipse.ocl.common.options.CommonOptions;
 import org.eclipse.ocl.common.ui.messages.CommonUIMessages;
@@ -82,7 +82,7 @@ public class CommonProjectPreferencePage extends AbstractProjectPreferencePage
 	
 	
 	public CommonProjectPreferencePage() {
-		super(CommonConstants.PLUGIN_ID, CommonUIMessages.Common_PageTitle);
+		super(OCLConstants.PLUGIN_ID, CommonUIMessages.Common_PageTitle);
 	}
 
 	@Override

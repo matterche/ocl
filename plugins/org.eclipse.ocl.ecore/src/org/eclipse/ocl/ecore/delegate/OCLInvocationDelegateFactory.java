@@ -18,7 +18,7 @@ package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 
 /**
@@ -71,7 +71,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	public static class Global extends OCLInvocationDelegateFactory
 	{
 		public Global() {
-			super(CommonConstants.OCL_DELEGATE_URI_LPG);
+			super(OCLConstants.OCL_DELEGATE_URI_LPG);
 		}
 
 		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {

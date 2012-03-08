@@ -18,7 +18,7 @@
 package org.eclipse.ocl.ecore.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLConstants;
 
 /**
  * Partial implementation of a factory of OCL delegates for Ecore features.
@@ -37,7 +37,7 @@ public abstract class AbstractOCLDelegateFactory
 	 */
 	@Deprecated
 	protected AbstractOCLDelegateFactory() {
-		this.delegateURI = CommonConstants.OCL_DELEGATE_URI;
+		this.delegateURI = OCLConstants.OCL_DELEGATE_URI;
 		this.delegateDomain = null;
 	}
 

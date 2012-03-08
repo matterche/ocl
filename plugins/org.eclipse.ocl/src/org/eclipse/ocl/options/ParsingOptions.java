@@ -163,7 +163,7 @@ public class ParsingOptions {
      * @since 3.1
      */
     public static final Option<PACKAGE_LOOKUP_STRATEGIES> PACKAGE_LOOKUP_STRATEGY =
-    		new EnumeratedOption<PACKAGE_LOOKUP_STRATEGIES>(OCLUtil.PLUGIN_ID, "lookup.package.by.alias", //$NON-NLS-1$
+    		new EnumeratedOption<PACKAGE_LOOKUP_STRATEGIES>(OCLUtil.PLUGIN_ID, "lookup.package", //$NON-NLS-1$
     				PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_NAME, PACKAGE_LOOKUP_STRATEGIES.class);
 
 	/**

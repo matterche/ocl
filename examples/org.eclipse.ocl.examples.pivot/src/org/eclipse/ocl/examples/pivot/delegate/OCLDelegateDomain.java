@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.QueryDelegate;
+import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -76,10 +77,9 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
-	private static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
-	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI_SLASH + "LPG"; //$NON-NLS-1$
-	public static final String OCL_DELEGATE_URI_PIVOT = OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
+//	public static final String OCL_DELEGATE_URI1 = CommonConstants.OCL_DELEGATE_URI; //$NON-NLS-1$
+//	private static final String OCL_DELEGATE_URI_SLASH = CommonConstants.OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_PIVOT = OCLConstants.OCL_DELEGATE_URI_SLASH + "Pivot"; //$NON-NLS-1$
 
 	/**
 	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}
@@ -90,13 +90,13 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 		List<EAnnotation> eAnnotations = eModelElement.getEAnnotations();
 		for (EAnnotation eAnnotation : eAnnotations) {
 			String source = eAnnotation.getSource();
-			if ((source != null) && source.equals(OCL_DELEGATE_URI)) {
+			if ((source != null) && source.equals(OCLConstants.OCL_DELEGATE_URI)) {
 				return eAnnotation;
 			}
 		}
 		for (EAnnotation eAnnotation : eAnnotations) {
 			String source = eAnnotation.getSource();
-			if ((source != null) && source.startsWith(OCL_DELEGATE_URI_SLASH)) {
+			if ((source != null) && source.startsWith(OCLConstants.OCL_DELEGATE_URI_SLASH)) {
 				return eAnnotation;
 			}
 		}
@@ -165,10 +165,10 @@ public class OCLDelegateDomain implements DelegateDomain, MetaModelManagerListen
 	 */
 	public static boolean isDelegateURI(String string) {
 		if (string != null) {
-			if (string.equals(OCL_DELEGATE_URI)) {
+			if (string.equals(OCLConstants.OCL_DELEGATE_URI)) {
 				return true;
 			}
-			if (string.startsWith(OCL_DELEGATE_URI_SLASH)) {
+			if (string.startsWith(OCLConstants.OCL_DELEGATE_URI_SLASH)) {
 				return true;
 			}
 		}

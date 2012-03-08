@@ -17,9 +17,9 @@ package org.eclipse.ocl.common;
 /**
  * Constants common to all Eclipse OCL facilities.
  */
-public interface CommonConstants
+public interface OCLConstants
 {
-	public static final String PLUGIN_ID = CommonConstants.class.getPackage().getName();
+	public static final String PLUGIN_ID = OCLConstants.class.getPackage().getName();
 
 	/**
 	 * The EAnnotation source URI for delegate OCL annotations.
@@ -62,6 +62,7 @@ public interface CommonConstants
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_SLASH = OCL_DELEGATE_URI + "/"; //$NON-NLS-1$
 
-	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI + "/LPG"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_LPG = OCL_DELEGATE_URI_SLASH + "LPG"; //$NON-NLS-1$
 }
