@@ -83,9 +83,62 @@ KeyWord ::=
 [/let]
 [/template]
 
-[template public generateLexerGrammar(lexer : LexerGrammar)]
-[let syntaxName : String = lexer.syntax.getSyntaxName()]
+[template public generateLexerGrammar(grammar : LexerGrammar)]
+[let syntaxName : String = grammar.syntax.getSyntaxName()]
 [file (syntaxName + 'Lexer.gi', false, 'UTF-8')]
+%options escape=$
+%options la=2
+%options fp=[syntaxName/]Lexer,prefix=Char_
+%options single-productions
+%options noserialize
+%options package=[grammar.syntax.getSyntaxPackage()/]
+%options template=../lpg/LexerTemplateF.gi
+%options filter=[syntaxName/]KWLexer.gi
+%options export_terminals=("[syntaxName/]Parsersym.java", "TK_")
+%options include_directory="../lpg"
+
+%Define
+
+	--
+	-- Definition of macro used in the included file LexerBasicMap.g
+	-- We redefine that one defined by EssentialOCLLexer
+	--
+	$kw_lexer_class /.[syntaxName/]KWLexer./
+
+%End
+
+%Export
+	AT
+	CARET
+	CARETCARET
+	QUESTIONMARK
+%End
+
+%Rules
+	Token ::= '@'
+		/.$BeginAction
+					makeToken($_AT);
+		  $EndAction
+		./
+
+	Token ::= '^'
+		/.$BeginAction
+					makeToken($_CARET);
+		  $EndAction
+		./
+
+	Token ::= '^' '^'
+		/.$BeginAction
+					makeToken($_CARETCARET);
+		  $EndAction
+		./
+		
+	Token ::= '?'
+		/.$BeginAction
+					makeToken($_QUESTIONMARK);
+		  $EndAction
+		./
+%End
 [/file]
 [/let]
 [/template]
@@ -113,19 +166,11 @@ KeyWord ::=
 [/for]
 %End
 
-%Import
-	/* import.gi */
-%End
-
 %Notice
 	/./**
  * </copyright>
  */
 	./
-%End
-
-%Define
-	/* overrides */
 %End
 
 %Globals
