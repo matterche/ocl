@@ -58,6 +58,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.common.CommonConstants;
+import org.eclipse.ocl.common.OCLCommon;
+import org.eclipse.ocl.common.options.CodeGenerationMode;
+import org.eclipse.ocl.common.options.CommonOptions;
 import org.eclipse.ocl.examples.codegen.tables.Model2bodies;
 import org.eclipse.ocl.examples.codegen.tables.Model2tables;
 import org.eclipse.ocl.examples.library.LibraryConstants;
@@ -86,13 +90,16 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 	 * {@link USE_DELEGATES_KEY} detail set to true.
 	 */
 	public static boolean useDelegates(GenModel genModel) {
-		boolean useDelegates = false;
 		GenAnnotation genAnnotation = genModel.getGenAnnotation(OCL_GENMODEL_URI);
 		if (genAnnotation != null) {
 			EMap<String, String> details = genAnnotation.getDetails();
-			useDelegates = Boolean.valueOf(details.get(USE_DELEGATES_KEY));
+			return Boolean.valueOf(details.get(USE_DELEGATES_KEY));
 		}
-		return useDelegates;
+		CodeGenerationMode preference = OCLCommon.getPreference(CommonOptions.CODE_GENERATION_MODE, null);
+		if (preference == CodeGenerationMode.DELEGATED) {
+			return true;
+		}
+		return false;
 	}
 
 	private Set<GenModel> hadDelegates = new HashSet<GenModel>();
@@ -356,11 +363,11 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 		}
 		EcoreUtil.setAnnotation(eOperation, GenModelPackage.eNS_URI, "body", body);
 		List<EAnnotation> eAnnotations = eOperation.getEAnnotations();
-		EAnnotation oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eOperation.getEAnnotation(CommonConstants.OCL_DELEGATE_URI);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
-		oclAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		oclAnnotation = eOperation.getEAnnotation(CommonConstants.OCL_DELEGATE_URI_LPG);
 		if (oclAnnotation != null) {
 			eAnnotations.remove(oclAnnotation);
 		}
@@ -385,11 +392,11 @@ public class OCLGenModelGeneratorAdapter extends GenBaseGeneratorAdapter
 			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "get", body);
 //			EcoreUtil.setAnnotation(eFeature, GenModelPackage.eNS_URI, "body", body);
 			List<EAnnotation> eAnnotations = eFeature.getEAnnotations();
-			EAnnotation oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+			EAnnotation oclAnnotation = eFeature.getEAnnotation(CommonConstants.OCL_DELEGATE_URI);
 			if (oclAnnotation != null) {
 				eAnnotations.remove(oclAnnotation);
 			}
-			oclAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+			oclAnnotation = eFeature.getEAnnotation(CommonConstants.OCL_DELEGATE_URI_LPG);
 			if (oclAnnotation != null) {
 				eAnnotations.remove(oclAnnotation);
 			}
