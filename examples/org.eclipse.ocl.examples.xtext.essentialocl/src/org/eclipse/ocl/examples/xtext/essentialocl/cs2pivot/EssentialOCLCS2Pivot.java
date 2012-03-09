@@ -105,6 +105,9 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 					for (NavigatingArgCS csArgument : arguments) {
 						TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
 						if ((pivot != null) && !pivot.eIsProxy()) {
+							if (s.length() > 0) {
+								s.append(", ");
+							}
 							Type type = pivot.getType();
 							if (pivot instanceof TypedMultiplicityElement) {
 								TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)pivot;

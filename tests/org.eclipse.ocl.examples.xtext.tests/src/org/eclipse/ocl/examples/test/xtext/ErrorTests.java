@@ -67,7 +67,7 @@ public class ErrorTests extends PivotTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<test.oclinecore::test::Test>' and 'w, hString| true"));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<test.oclinecore::test::Test>' and 'w, h, String| true"));
         //
 		metaModelManager.dispose();
 	}
@@ -93,7 +93,7 @@ public class ErrorTests extends PivotTestCase
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
 			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "allInstances", "ClassClassifier<test.oclinecore::test::Test>"),
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<OclInvalid>' and 'w, hString| true"));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<OclInvalid>' and 'w, h, String| true"));
         //
 		metaModelManager.dispose();
 	}
