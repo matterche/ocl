@@ -21,6 +21,7 @@ import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.ocl.examples.domain.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -69,6 +70,26 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		// null
 		assertQueryInvalid(null, "let s : String = null in 'concatenation'.concat(s)");
 		assertQueryInvalid(null, "let s : String = null in s.concat('concatenation')");
+	}
+
+	public void testStringEndsWith() {
+		assertQueryFalse(null, "'abcdef'.endsWith('aabcdef')");
+		assertQueryTrue(null, "'abcdef'.endsWith('abcdef')");
+		assertQueryTrue(null, "'abcdef'.endsWith('cdef')");
+		assertQueryTrue(null, "'abcdef'.endsWith('f')");
+		assertQueryTrue(null, "'abcdef'.endsWith('')");
+		assertQueryTrue(null, "''.endsWith('')");
+		assertQueryFalse(null, "''.endsWith('a')");
+		assertQueryTrue(null, "'abcdef'.endsWith('')");
+		assertQueryFalse(null, "'abcdef'.endsWith('bcd')");
+		assertQueryFalse(null, "'abcdef'.endsWith('ab')");
+		assertQueryFalse(null, "'abcdef'.endsWith('a')");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.endsWith('')");
+		assertQueryInvalid(null, "let s : String = invalid in ''.endsWith(s)");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.endsWith('')");
+		assertQueryInvalid(null, "let s : String = null in ''.endsWith(s)");
 	}
 
 	public void testStringEqual() {
@@ -151,7 +172,7 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, 0, "'test'.indexOf('est2')");
 		// empty
 		assertQueryEquals(null, 1, "'test'.indexOf('')");
-		assertQueryEquals(null, 0, "''.indexOf('')");
+		assertQueryEquals(null, 1, "''.indexOf('')");
 		assertQueryEquals(null, 0, "''.indexOf('t')");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in 'test'.indexOf(s)");
@@ -159,6 +180,28 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		// null
 		assertQueryInvalid(null, "let s : String = null in 'test'.indexOf(s)");
 		assertQueryInvalid(null, "let s : String = null in s.indexOf('s')");
+	}
+
+	public void testStringLastIndexOf() {
+		assertQueryEquals(null, 4, "'test'.lastIndexOf('t')");
+		assertQueryEquals(null, 1, "'test'.lastIndexOf('te')");
+		assertQueryEquals(null, 2, "'test'.lastIndexOf('es')");
+		assertQueryEquals(null, 3, "'test'.lastIndexOf('st')");
+		assertQueryEquals(null, 5, "'tesla'.lastIndexOf('a')");
+		assertQueryEquals(null, 1, "'ates'.lastIndexOf('a')");
+		// out of bounds
+		assertQueryEquals(null, 0, "'test'.lastIndexOf('xyzzy')");
+		assertQueryEquals(null, 0, "'test'.lastIndexOf('est2')");
+		// empty
+		assertQueryEquals(null, 5, "'test'.lastIndexOf('')");
+		assertQueryEquals(null, 1, "''.lastIndexOf('')");
+		assertQueryEquals(null, 0, "''.lastIndexOf('t')");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in 'test'.lastIndexOf(s)");
+		assertQueryInvalid(null, "let s : String = invalid in s.lastIndexOf('s')");
+		// null
+		assertQueryInvalid(null, "let s : String = null in 'test'.lastIndexOf(s)");
+		assertQueryInvalid(null, "let s : String = null in s.lastIndexOf('s')");
 	}
 
 	public void testStringLessThan() {
@@ -334,6 +377,26 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = null in s.size()"); //$NON-NLS-2$
 	}
 
+	public void testStringStartsWith() {
+		assertQueryFalse(null, "'abcdef'.startsWith('abcdefg')");
+		assertQueryTrue(null, "'abcdef'.startsWith('abcdef')");
+		assertQueryTrue(null, "'abcdef'.startsWith('abcd')");
+		assertQueryTrue(null, "'abcdef'.startsWith('a')");
+		assertQueryTrue(null, "'abcdef'.startsWith('')");
+		assertQueryTrue(null, "''.startsWith('')");
+		assertQueryFalse(null, "''.startsWith('a')");
+		assertQueryTrue(null, "'abcdef'.startsWith('')");
+		assertQueryFalse(null, "'abcdef'.startsWith('bcd')");
+		assertQueryFalse(null, "'abcdef'.startsWith('ef')");
+		assertQueryFalse(null, "'abcdef'.startsWith('f')");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.startsWith('')");
+		assertQueryInvalid(null, "let s : String = invalid in ''.startsWith(s)");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.startsWith('')");
+		assertQueryInvalid(null, "let s : String = null in ''.startsWith(s)");
+	}
+
 	public void testStringSubstituteAll() {
 		assertQueryEquals(null, "subsTiTuTeAll operaTion", "'substituteAll operation'.substituteAll('t', 'T')");
 		//
@@ -468,5 +531,45 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = invalid in s.toUpperCase()");
 		// null
 		assertQueryInvalid(null, "let s : String = null in s.toUpperCase()");
+	}
+
+	public void testStringTokenize() {
+//		assertQueryResults(null, "Sequence{'', 'a','b','c','d', ''}", "'\na b\tc\fd\r'.tokenize()");
+		assertQueryResults(null, "Sequence{'a','b','c','d'}", "'\na b\tc\fd\r'.tokenize()");
+		assertQueryResults(null, "Sequence{'a','b','c','d'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize()");
+		assertQueryResults(null, "Sequence{' ','\t','\n','\r','\f','a',' ','b','\t','c','\f','d',' ','\t','\n','\r','\f'}", "' \t\n\r\fa b\tc\fd \t\n\r\f'.tokenize(' \t\n\r\f', true)");
+		assertQueryResults(null, "Sequence{'\na',' ', 'b\tc\fd\r'}", "'\na b\tc\fd\r'.tokenize(' ', true)");
+		assertQueryResults(null, "Sequence{}", "''.tokenize(' ', true)");
+		assertQueryResults(null, "Sequence{' \t\n\r\f'}", "' \t\n\r\f'.tokenize('', true)");
+		assertQueryResults(null, "Sequence{}", "''.tokenize('', true)");
+		assertQueryResults(null, "Sequence{}", "''.tokenize(' \t\n\r\f', true)");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.tokenize()");
+		assertQueryInvalid(null, "let s : String = invalid in s.tokenize('')");
+		assertQueryInvalid(null, "let s : String = invalid in s.tokenize('',true)");
+		assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s)");
+		assertQueryInvalid(null, "let s : String = invalid in ''.tokenize(s,true)");
+		assertQueryInvalid(null, "let b : Boolean = invalid in ''.tokenize('',b)");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.tokenize()");
+		assertQueryInvalid(null, "let s : String = null in s.tokenize('')");
+		assertQueryInvalid(null, "let s : String = null in s.tokenize('',true)");
+		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s)");
+		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s,true)");
+		assertQueryInvalid(null, "let b : Boolean = null in ''.tokenize('',b)");
+		//
+		assertSemanticErrorQuery("''.tokenize('',false,null)", OCLMessages.UnresolvedOperation_ERROR_, "tokenize", "String' and 'String, Boolean, OclVoid");
+	}
+
+	public void testStringTrim() {
+		assertQueryEquals(null, "ab", "'ab'.trim()");
+		assertQueryEquals(null, "a", "'a'.trim()");
+		assertQueryEquals(null, "", "''.trim()");
+		assertQueryEquals(null, "a \t\n\r\fb", "'\na \t\n\r\fb\n'.trim()");
+		assertQueryEquals(null, "", "' \t\n\r\f \t\n\r\f'.trim()");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.trim()");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.trim()");
 	}
 }

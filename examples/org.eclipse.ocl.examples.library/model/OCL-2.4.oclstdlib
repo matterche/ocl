@@ -1146,15 +1146,24 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	**/
 	operation concat(s : String) : String => 'org.eclipse.ocl.examples.library.string.StringConcatOperation';
 	/**
+	Returns true if oclText[self] ends with the string s.
+	Every string ends with the empty string.
+	**/
+	operation endsWith(s : String) : Boolean => 'org.eclipse.ocl.examples.library.string.StringEndsWithOperation';
+	/**
 	Queries whether s and oclText[self] are equivalent under case-insensitive collation.
 	**/
 	operation equalsIgnoreCase(s : String) : Boolean => 'org.eclipse.ocl.examples.library.string.StringEqualsIgnoreCaseOperation';
 	/**
-	Queries the index in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].
-	The empty string is considered to be a substring of every string but the empty string, at index 1.
-	No string is a substring of the empty string.
+	Queries the first index in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].
+	The empty string is a substring of every string at index 1 (and also at all other indexes).
 	**/
 	operation indexOf(s : String) : Integer => 'org.eclipse.ocl.examples.library.string.StringIndexOfOperation';
+	/**
+	Queries the last in oclText[self] at which s is a substring of oclText[self], or zero if s is not a substring of oclText[self].
+	The empty string is a substring of every string at index oclText[self]-size()+1 (and also at all other indexes).
+	**/
+	operation lastIndexOf(s : String) : Integer => 'org.eclipse.ocl.examples.library.string.StringLastIndexOfOperation';
 	/**
 	Use a regular expression match and return true if self matches regex, false otherwise.
 	**/
@@ -1171,6 +1180,11 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	The number of characters in oclText[self].
 	**/
 	operation size() : Integer => 'org.eclipse.ocl.examples.library.string.StringSizeOperation';
+	/**
+	Returns true if oclText[self] starts with the string s.
+	Every string starts with the empty string.
+	**/
+	operation startsWith(s : String) : Boolean => 'org.eclipse.ocl.examples.library.string.StringStartsWithOperation';
 	/**
 	Return a string derived from self by replacing all occurrences of oldSubstring by newSubstring.
 	**/
@@ -1218,6 +1232,24 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	Otherwise, returns the same string as oclText[self]. 
 	**/
 	operation toUpperCase() : String => 'org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation';
+	/**
+	Partition oclText[self] into a sequence substrings separated by any of space, line-feed, carriage-return, form-feed and horizontal-tab delimiters.
+	The delimiters are omitted from the return.
+	**/
+	operation tokenize() : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	/**
+	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.
+	**/
+	operation tokenize(delimiters : String) : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	/**
+	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. If returnDelimeters is
+	true the returned sequence includes the delimiters, otherwise the delimiters are omitted.
+	**/
+	operation tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	/**
+	Return oclText[self] with leading and trailing whitespace removed.
+	**/
+	operation trim() : String => 'org.eclipse.ocl.examples.library.string.StringTrimOperation';
 	/**
 	True if oclText[self] is greater than s, using the locale defined by looking up oclLocale in the current environment.
 	**/
