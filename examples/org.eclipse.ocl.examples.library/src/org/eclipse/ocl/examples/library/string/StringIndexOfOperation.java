@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010,2011 E.D.Willink and others.
+ * Copyright (c) 2010,2012 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.domain.values.ValueFactory;
 
 /**
- * OrderedSetSubOrderedSetOperation realises the OrderedSet::subOrderedSet() library operation.
+ * StringIndexOfOperation realises the String::indexOf() library operation.
  */
 public class StringIndexOfOperation extends AbstractBinaryOperation
 {
@@ -34,10 +34,10 @@ public class StringIndexOfOperation extends AbstractBinaryOperation
 		ValueFactory valueFactory = evaluator.getValueFactory();
 		String leftString = left.asString();
 		String rightString = right.asString();
-		if (leftString.length() <= 0) {
+		/*if (leftString.length() <= 0) {
 			return valueFactory.integerValueOf(0);
 		}
-		else if (rightString.length() <= 0) {
+		else*/ if (rightString.length() <= 0) {
 			return valueFactory.integerValueOf(1);
 		}
 		else {
