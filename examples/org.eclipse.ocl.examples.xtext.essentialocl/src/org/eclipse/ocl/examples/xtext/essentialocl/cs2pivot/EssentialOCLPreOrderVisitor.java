@@ -93,20 +93,6 @@ public class EssentialOCLPreOrderVisitor
 		}
 	}
 
-	protected static class ConstructorExpContinuation extends SingleContinuation<ConstructorExpCS>
-	{
-		public ConstructorExpContinuation(CS2PivotConversion context, ConstructorExpCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			context.resolveNamespaces(csElement.getNamespace());
-			csElement.getElement();
-			return null;
-		}
-	}
-
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
 		public TypeNameExpContinuation(CS2PivotConversion context, TypeNameExpCS csElement) {
@@ -138,7 +124,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitConstructorExpCS(ConstructorExpCS csConstructorExp) {
-		return new ConstructorExpContinuation(context, csConstructorExp);
+		return null;
 	}
 
 	@Override

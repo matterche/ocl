@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -1028,13 +1027,6 @@ public class CS2PivotConversion extends AbstractConversion
 					pivotable.resetPivot();
 				}				
 			}
-		}
-	}
-
-	public void resolveNamespaces(List<Namespace> namespaces) {
-		for (Namespace namespace : namespaces) {
-			@SuppressWarnings("unused")
-			Namespace dummy = namespace;	// Resolves the proxies from the outside.
 		}
 	}
 
