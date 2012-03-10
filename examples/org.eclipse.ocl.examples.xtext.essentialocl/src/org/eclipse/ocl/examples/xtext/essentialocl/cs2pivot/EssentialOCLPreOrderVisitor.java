@@ -154,7 +154,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
-		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE);
+		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE, csTypeNameExp);
 		return new TypeNameExpContinuation(context, csTypeNameExp);
 	}
 

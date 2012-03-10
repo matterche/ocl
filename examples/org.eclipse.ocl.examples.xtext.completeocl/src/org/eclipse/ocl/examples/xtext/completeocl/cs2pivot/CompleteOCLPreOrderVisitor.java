@@ -178,7 +178,7 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION);
+			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement);
 			Operation modelOperation = csElement.getOperation();
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
@@ -263,7 +263,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement);
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
@@ -312,7 +312,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement);
 		NamedElement modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
@@ -330,7 +330,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY, csElement);
 		Property modelProperty = csElement.getProperty();
 		if (modelProperty == null) {
 			return null;

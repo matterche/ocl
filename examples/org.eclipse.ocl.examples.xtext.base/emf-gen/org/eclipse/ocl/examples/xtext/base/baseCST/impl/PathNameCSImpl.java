@@ -16,15 +16,18 @@ package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -38,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +58,25 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * @ordered
 	 */
 	protected EList<PathElementCS> path;
+
+	/**
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected ElementCS context;
+
+	/**
+	 * This is true if the Context reference has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean contextESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +143,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				return getPath();
 			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
 				return getElement();
+			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
+				return getContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,6 +164,9 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				getPath().clear();
 				getPath().addAll((Collection<? extends PathElementCS>)newValue);
 				return;
+			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
+				setContext((ElementCS)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -155,6 +183,9 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 		{
 			case BaseCSTPackage.PATH_NAME_CS__PATH:
 				getPath().clear();
+				return;
+			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
+				unsetContext();
 				return;
 		}
 		super.eUnset(featureID);
@@ -174,6 +205,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				return path != null && !path.isEmpty();
 			case BaseCSTPackage.PATH_NAME_CS__ELEMENT:
 				return getElement() != null;
+			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
+				return isSetContext();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,6 +261,56 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			return null;
 		}
 		return element;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementCS getContext()
+	{
+		return context;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContext(ElementCS newContext)
+	{
+		ElementCS oldContext = context;
+		context = newContext;
+		boolean oldContextESet = contextESet;
+		contextESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_NAME_CS__CONTEXT, oldContext, context, !oldContextESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetContext()
+	{
+		ElementCS oldContext = context;
+		boolean oldContextESet = contextESet;
+		context = null;
+		contextESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, BaseCSTPackage.PATH_NAME_CS__CONTEXT, oldContext, null, oldContextESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetContext()
+	{
+		return contextESet;
 	}
 
 	public Element getPivot() {

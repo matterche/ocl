@@ -572,7 +572,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS csTypedTypeRef) {
-		CS2Pivot.setElementType(csTypedTypeRef.getPathName(), PivotPackage.Literals.TYPE);
+		CS2Pivot.setElementType(csTypedTypeRef.getPathName(), PivotPackage.Literals.TYPE, csTypedTypeRef);
 		if (csTypedTypeRef.getOwnedTemplateBinding() == null) {
 			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
 		}

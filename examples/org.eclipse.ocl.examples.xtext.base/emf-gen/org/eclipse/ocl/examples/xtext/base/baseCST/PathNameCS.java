@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,5 +70,58 @@ public interface PathNameCS extends ElementCS, Pivotable
 	 * @generated
 	 */
 	NamedElement getElement();
+
+	/**
+	 * Returns the value of the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Context</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Context</em>' reference.
+	 * @see #isSetContext()
+	 * @see #unsetContext()
+	 * @see #setContext(ElementCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_Context()
+	 * @model resolveProxies="false" unsettable="true" transient="true"
+	 * @generated
+	 */
+	ElementCS getContext();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Context</em>' reference.
+	 * @see #isSetContext()
+	 * @see #unsetContext()
+	 * @see #getContext()
+	 * @generated
+	 */
+	void setContext(ElementCS value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetContext()
+	 * @see #getContext()
+	 * @see #setContext(ElementCS)
+	 * @generated
+	 */
+	void unsetContext();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Context</em>' reference is set.
+	 * @see #unsetContext()
+	 * @see #getContext()
+	 * @see #setContext(ElementCS)
+	 * @generated
+	 */
+	boolean isSetContext();
 
 } // QualifiedElementRefCS

@@ -3117,13 +3117,22 @@ public interface BaseCSTPackage extends EPackage {
 	int PATH_NAME_CS__ELEMENT = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__CONTEXT = ELEMENT_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Path Name CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 2;
+	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -5082,6 +5091,17 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getPathNameCS_Element();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext()
+	 * @see #getPathNameCS()
+	 * @generated
+	 */
+	EReference getPathNameCS_Context();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6363,6 +6383,14 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PATH_NAME_CS__ELEMENT = eINSTANCE.getPathNameCS_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PATH_NAME_CS__CONTEXT = eINSTANCE.getPathNameCS_Context();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PivotableElementCSImpl <em>Pivotable Element CS</em>}' class.

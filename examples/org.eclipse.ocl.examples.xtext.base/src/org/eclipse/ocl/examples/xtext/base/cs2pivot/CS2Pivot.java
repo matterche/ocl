@@ -43,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
@@ -238,7 +239,8 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		return messageBinder;
 	}
 
-	public static void setElementType(PathNameCS pathNameCS, EClass elementType) {
+	public static void setElementType(PathNameCS pathNameCS, EClass elementType, ElementCS csContext) {
+		pathNameCS.setContext(csContext);
 		List<PathElementCS> path = pathNameCS.getPath();
 		int iMax = path.size()-1;
 		path.get(iMax).setElementType(elementType);
