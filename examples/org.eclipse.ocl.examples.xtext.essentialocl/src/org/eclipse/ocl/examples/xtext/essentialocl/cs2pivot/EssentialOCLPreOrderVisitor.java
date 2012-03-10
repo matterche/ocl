@@ -107,19 +107,6 @@ public class EssentialOCLPreOrderVisitor
 		}
 	}
 
-	protected static class NameExpContinuation extends SingleContinuation<NameExpCS>
-	{
-		public NameExpContinuation(CS2PivotConversion context, NameExpCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			context.resolveNamespaces(csElement.getNamespace());
-			return null;
-		}
-	}
-
 	protected static class TypeNameExpContinuation extends SingleContinuation<TypeNameExpCS>
 	{
 		public TypeNameExpContinuation(CS2PivotConversion context, TypeNameExpCS csElement) {
@@ -166,12 +153,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csNameExp) {
-		if (csNameExp.getNamespace().isEmpty()) {
-			return null;
-		}
-		else {
-			return new NameExpContinuation(context, csNameExp);
-		}
+		return null;
 	}
 
 	@Override

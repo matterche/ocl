@@ -106,7 +106,7 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement getElement()
+	public NamedElement getElementGen()
 	{
 		if (element != null && ((EObject)element).eIsProxy())
 		{
@@ -119,6 +119,17 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 			}
 		}
 		return element;
+	}
+	public NamedElement getElement()
+	{
+		if (element != null && ((EObject)element).eIsProxy())
+		{
+			for (Namespace namespace : getNamespace()) {
+				@SuppressWarnings("unused")
+				Namespace dummy = namespace;	// Resolves the proxies from the outside.
+			}
+		}
+		return getElementGen();
 	}
 
 	/**

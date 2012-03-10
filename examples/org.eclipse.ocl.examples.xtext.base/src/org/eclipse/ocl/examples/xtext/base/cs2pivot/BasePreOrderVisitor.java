@@ -205,20 +205,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 
-	protected static class PathElementCSContinuation extends SingleContinuation<PathElementCS>
-	{		
-		public PathElementCSContinuation(CS2PivotConversion context, PathElementCS csElement) {
-			super(context, null, null, csElement, csElement.isType() ? context.getTypesHaveSignaturesInterDependency() : context.getPackagesHaveTypesInterDependency());
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			@SuppressWarnings("unused")
-			NamedElement namedElement = csElement.getElement();
-			return null;
-		}
-	}
-
 	protected static class PrimitiveTypeRefContinuation extends SingleContinuation<PrimitiveTypeRefCS>
 	{		
 		public PrimitiveTypeRefContinuation(CS2PivotConversion context, PrimitiveTypeRefCS csElement) {
@@ -523,7 +509,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPathElementCS(PathElementCS csElement) {
-		return new PathElementCSContinuation(context, csElement);
+		return null;
 	}
 
 	@Override

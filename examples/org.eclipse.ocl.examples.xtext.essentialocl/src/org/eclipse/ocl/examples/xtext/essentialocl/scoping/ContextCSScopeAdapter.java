@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -76,8 +77,8 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter
 					if (!environmentView.hasFinalResult()) {
 						Type type = contextVariable.getType();
 						environmentView.addElementsOfScope(type, scopeView);
-						if (!environmentView.hasFinalResult()) {
-							environmentView.addElementsOfScope(type.getPackage(), scopeView);
+						for (Package pPackage = type.getPackage(); !environmentView.hasFinalResult() && (pPackage != null); pPackage = pPackage.getNestingPackage()) {
+							environmentView.addElementsOfScope(pPackage, scopeView);
 						}
 					}
 				}
