@@ -558,7 +558,7 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let s : String = null in ''.tokenize(s,true)");
 		assertQueryInvalid(null, "let b : Boolean = null in ''.tokenize('',b)");
 		//
-		assertSemanticErrorQuery("''.tokenize('',false,null)", OCLMessages.UnresolvedOperation_ERROR_, "tokenize", "String' and 'String, Boolean, OclVoid");
+		assertSemanticErrorQuery("''.tokenize('',false,null)", OCLMessages.UnresolvedOperationCall_ERROR_, "tokenize", "String", "String, Boolean, OclVoid");
 	}
 
 	public void testStringTrim() {
