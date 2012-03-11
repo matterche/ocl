@@ -132,7 +132,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		List<Object> treeFruits = (List<Object>) appleTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
 //		
-//WIP		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");
+		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");//
 		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
 		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<Fruit>)");
 		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<fruit::Apple>)");
