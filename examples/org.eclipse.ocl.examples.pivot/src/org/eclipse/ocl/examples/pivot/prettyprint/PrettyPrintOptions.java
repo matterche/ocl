@@ -37,7 +37,6 @@ public abstract class PrettyPrintOptions
 	{
 		private String indentStep = "  ";
 		private int linelength = Integer.MAX_VALUE;
-		private boolean useParentheses = true;
 		private final Set<String> reservedNames = new HashSet<String>();
 		private final Set<String> restrictedNames = new HashSet<String>();
 		private Map<Namespace, String> namespace2alias = new HashMap<Namespace, String>();
@@ -113,11 +112,6 @@ public abstract class PrettyPrintOptions
 		public Set<String> getRestrictedNames() {
 			return restrictedNames;
 		}
-
-		@Override
-		public boolean getUseParentheses() {
-			return useParentheses;
-		}
 		
 		public void setAliases(Map<Namespace,String> namespace2alias) {
 			this.namespace2alias = namespace2alias;
@@ -139,11 +133,6 @@ public abstract class PrettyPrintOptions
 
 		public void setMetaModelManager(MetaModelManager metaModelManager) {
 			this.metaModelManager = metaModelManager;
-		}
-
-		@Override
-		public void setUseParentheses(boolean useParentheses) {
-			this.useParentheses = useParentheses;
 		}
 	}
 	
@@ -251,10 +240,6 @@ public abstract class PrettyPrintOptions
 		return scope;
 	}
 
-	public boolean getUseParentheses() {
-		return getGlobalOptions().getUseParentheses();
-	}
-
 	public void setIndentStep(String indentStep) {
 		getGlobalOptions().setIndentStep(indentStep);
 	}
@@ -263,7 +248,6 @@ public abstract class PrettyPrintOptions
 		getGlobalOptions().setLinelength(linelength);
 	}
 
-	public void setUseParentheses(boolean useParentheses) {
-		getGlobalOptions().setUseParentheses(useParentheses);
-	}
+	@Deprecated
+	public void setUseParentheses(boolean useParentheses) {}
 }

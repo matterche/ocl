@@ -293,7 +293,8 @@ StructuralFeatureCS returns base::StructuralFeatureCS:
 ;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
+	('(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')')	
+|	('<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>')	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -301,7 +302,8 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
+	('(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')')
+|	('<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>')
 ;
 
 TypeIdentifier:

@@ -91,7 +91,7 @@ annotation 'http://www.omg.org/ocl'(
 	ClassGroup_PrimitiveTypes='The primitive types defined in the OCL standard library are UnlimitedNatural, Integer, Real, String, and Boolean. They are all instances of the metaclass Primitive from the UML core package.'
 );
 
-type AnyClassifier<T> : ClassifierType conformsTo Class, OclType {
+type AnyClassifier(T) : ClassifierType conformsTo Class, OclType {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 }
 
@@ -100,40 +100,40 @@ A bag is a collection with duplicates allowed. That is, one object can be an ele
 There is no ordering defined on the elements in a bag.
 Bag is itself an instance of the metatype BagType.
 **/
-type Bag<T> : BagType conformsTo Collection<T> {
+type Bag(T) : BagType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | body : Lambda T() : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T | body : Lambda T() : V) : Bag<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	iteration closure(i : T | body : Lambda T() : Set(T)) : Set(T) => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
+	iteration collect(V)(i : T | body : Lambda T() : V) : Bag(V) => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
 	/**
 	The Bag of elements which results from applying body to every member of the source nonordered collection.
 	**/
-	iteration collectNested<V>(i : T | body : Lambda T() : V) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration collectNested(V)(i : T | body : Lambda T() : V) : Bag(T) => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[false].
 	
 	oclCode[self->reject(iterator | body) = self->select(iterator | not body)].	
 	**/
-	iteration reject(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Bag(T) => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	/**
 	The sub-bag of the source bag for which body is oclText[true].
 
 	oclCode[self->select(iterator | body) =
-        self->iterate(iterator; result : Bag<T> = Bag{} |
+        self->iterate(iterator; result : Bag(T) = Bag{} |
                         if body then result->including(iterator)
                                 else result
                         endif)]
 	**/
-	iteration select(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Bag(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	/**
 	True if oclText[self] and bag contain the same elements, the same number of times.
 	**/
@@ -142,34 +142,34 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	/**
 	The bag containing all elements of oclText[self] apart from all occurrences of object.
 	**/
-	operation excluding(object : OclAny) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	operation excluding(object : OclAny) : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	/**
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as oclText[self].
 	If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of oclText[self]. 
 	**/
-	operation flatten<T2>() : Bag<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	operation flatten(T2)() : Bag(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	/**
 	The bag containing all elements of oclText[self] plus object.
 	**/
-	operation including(object : T) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	operation including(object : T) : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 	/**
 	The intersection of oclText[self] and bag; the bag of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(bag : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation intersection(bag : Collection(T)) : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The intersection of oclText[self] and s; the set of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(s : UniqueCollection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
-	operation selectByKind<TT>(type : AnyClassifier<TT>) : Bag<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : AnyClassifier<TT>) : Bag<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
+	operation intersection(s : UniqueCollection(T)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation selectByKind(TT)(type : AnyClassifier(TT)) : Bag(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType(TT)(type : AnyClassifier(TT)) : Bag(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The union of oclText[self] and bag; the bag of all elements that are in oclText[self] and all elements that are in bag.
 	**/
-	operation union(bag : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(bag : Collection(T)) : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 	/**
 	The union of oclText[self] and s; the set of all elements that are in oclText[self] and all elements that are in s.
 	**/
-	operation union(s : UniqueCollection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(s : UniqueCollection(T)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
 /**
@@ -189,7 +189,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	/**
 	Returns oclText[Set{false, true}].
 	*/
-	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
 	/**
 	True if both b1 and b are oclText[true].
 	**/
@@ -220,10 +220,10 @@ type Class conformsTo OclAny {
 	/**
 	Evaluates to the type of which self is an instance.
 	**/
-	operation oclType() : ClassClassifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';	
+	operation oclType() : ClassClassifier(OclSelf) => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';	
 }
 
-type ClassClassifier<T> : ClassifierType conformsTo AnyClassifier<T> {}
+type ClassClassifier(T) : ClassifierType conformsTo AnyClassifier(T) {}
 
 /**
 Collection is the abstract supertype of all collection types in the OCL Standard Library.
@@ -250,7 +250,7 @@ Well-formedness rules
 	context Collection
 	inv: self->forAll(not oclIsInvalid())
 */
-type Collection<T> : CollectionType conformsTo OclAny {
+type Collection(T) : CollectionType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Returns any element in the source collection for which body evaluates to oclText[true].
@@ -263,11 +263,11 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
 	collectNested is defined individually for each subclass of CollectionType.
 	**/
-	iteration collect<V>(i : T | body : Lambda T() : V) : Collection<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	iteration collect(V)(i : T | body : Lambda T() : V) : Collection(V) => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
 	/**
 	The Collection of elements which results from applying body to every member of the source collection.
 	**/
-	iteration collectNested<V>(i : T | body : Lambda T() : V) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration collectNested(V)(i : T | body : Lambda T() : V) : Collection(T) => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
 	/**
 	Results in oclText[true] if body evaluates to oclText[true] for at least one element in the source collection.
 	**/
@@ -282,7 +282,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	Results in oclText[true] if body evaluates to a different value for each element in the source collection; otherwise, result is oclText[false].
 	**/
 	iteration isUnique(i : T | body : Lambda T() : OclAny) : Boolean => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
-	iteration iterate<Tacc>(i : T; acc : Tacc | body : Lambda T() : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IterateIteration';
+	iteration iterate(Tacc)(i : T; acc : Tacc | body : Lambda T() : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IterateIteration';
 	/**
 	Results in oclText[true] if there is exactly one element in the source collection for which body is oclText[true].
 	**/
@@ -290,18 +290,18 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	The sub-collection of the source collection for which body is oclText[false].
 	**/
-	iteration reject(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Collection(T) => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	/**
 	The sub-collection of the source collection for which body is oclText[true].
 	**/
-	iteration select(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Collection(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	/**
 	Results in the Collection containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	/**
 	True if c is a collection of the same kind as oclText[self] and contains the same elements in the same quantities and in the same order,
 	in the case of an ordered collection type.
@@ -314,20 +314,20 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	The Bag that contains all the elements from oclText[self]. 
 	**/
-	operation asBag() : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation';
+	operation asBag() : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation';
 	/**
 	An OrderedSet that contains all the elements from oclText[self], with duplicates removed,
 	in an order dependent on the particular concrete collection type.
 	**/
-	operation asOrderedSet() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation';
+	operation asOrderedSet() : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation';
 	/**
 	A Sequence that contains all the elements from oclText[self], in an order dependent on the particular concrete collection type. 
 	**/
-	operation asSequence() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation';
+	operation asSequence() : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation';
 	/**
 	The Set containing all the elements from oclText[self], with duplicates removed.
 	**/
-	operation asSet() : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation';
+	operation asSet() : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation';
 	/**
 	The number of times that object occurs in the collection oclText[self].
 	**/
@@ -339,16 +339,16 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	Does oclText[self] contain none of the elements of c2 ?
 	**/
-	operation excludesAll<T2>(c2 : Collection<T2>) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation';
+	operation excludesAll(T2)(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation';
 	/**
 	The collection containing all elements of oclText[self] apart from object.
 	**/
-	operation excluding(object : OclAny) : Collection<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	operation excluding(object : OclAny) : Collection(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	/**
 	If the element type is not a collection type, this results in the same collection as oclText[self].
 	If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of oclText[self].
 	**/
-	operation flatten<T2>() : Collection<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	operation flatten(T2)() : Collection(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	/**
 	True if object is an element of oclText[self], oclText[false] otherwise.
 	**/
@@ -356,11 +356,11 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	Does oclText[self] contain all the elements of c2 ?
 	**/
-	operation includesAll<T2>(c2 : Collection<T2>) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation';
+	operation includesAll(T2)(c2 : Collection(T2)) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation';
 	/**
 	The collection containing all elements of oclText[self] plus object.
 	**/
-	operation including(object : T) : Collection<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	operation including(object : T) : Collection(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 	/**
 	Is oclText[self] the empty collection?
 
@@ -390,13 +390,13 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	/**
 	Evaluates to the type of which oclText[self] is an instance.
 	**/
-	operation oclType() : CollectionClassifier<OclSelf,T> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : CollectionClassifier(OclSelf,T) => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 	/**
 	The cartesian product operation of oclText[self] and c2.
 	**/
-	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>> => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
-	operation selectByKind<TT>(type : AnyClassifier<TT>) : Collection<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : AnyClassifier<TT>) : Collection<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
+	operation product(T2)(c2 : Collection(T2)) : Set(Tuple(first:T,second:T2)) => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
+	operation selectByKind(TT)(type : AnyClassifier(TT)) : Collection(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType(TT)(type : AnyClassifier(TT)) : Collection(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The number of elements in the collection oclText[self].
 	**/
@@ -413,10 +413,10 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	the implementation may bypass the evaluation and return an oclText[invalid] result.
 	**/
 	operation sum() : T => 'org.eclipse.ocl.examples.library.collection.CollectionSumOperation';
---	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+--	operation "->"(T)(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
-type CollectionClassifier<T,E> : ClassifierType conformsTo AnyClassifier<T> {
+type CollectionClassifier(T,E) : ClassifierType conformsTo AnyClassifier(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Evaluates to the type of the collection elements.
@@ -432,22 +432,22 @@ type Enumeration conformsTo OclAny {
 	/**
 	Return a set of all enumeration values of oclText[self].
 	*/
-	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
 	/**
 	Evaluates to the type of which oclText[self] is an instance.
 	**/
-	operation oclType() : EnumerationClassifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : EnumerationClassifier(OclSelf) => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 }
 
 /**
  The standard type EnumerationClassifier represents the metatype of an Enumeration.
  **/
-type EnumerationClassifier<T> : ClassifierType conformsTo AnyClassifier<T> {
+type EnumerationClassifier(T) : ClassifierType conformsTo AnyClassifier(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='OCL');
 	/**
 	Evaluates to the literals of the enumeration.
 	**/
-	property ownedLiteral : OrderedSet<EnumerationLiteral> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationClassifierOwnedLiteralProperty';
+	property ownedLiteral : OrderedSet(EnumerationLiteral) => 'org.eclipse.ocl.examples.library.enumeration.EnumerationClassifierOwnedLiteralProperty';
 }
 
 /**
@@ -549,7 +549,7 @@ type OclAny : AnyType {
 	/**
 	Returns a Set with oclText[self] as the sole content, unless oclText[self] is oclText[null] in which case returns an empty set,
 	*/
-	operation oclAsSet() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
 	/**
 	Evaluates to oclText[self], where oclText[self] is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -562,7 +562,7 @@ type OclAny : AnyType {
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
 	**/
-	operation oclAsType<TT>(type : AnyClassifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation'
+	operation oclAsType(TT)(type : AnyClassifier(TT)) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation'
 	{
 		post IsSelf: result = self;
 		post IsType: result.oclIsTypeOf(type);
@@ -582,7 +582,7 @@ type OclAny : AnyType {
 	Evaluates to oclText[true] if the type of oclText[self] conforms to t.
 	That is, oclText[self] is of type t or a subtype of t. 
 	**/
-	operation oclIsKindOf<T>(type : AnyClassifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
+	operation oclIsKindOf(T)(type : AnyClassifier(T)) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
 	/**
 	Can only be used in a postcondition.
 	Evaluates to oclText[true] if the oclText[self] is created during performing the operation (for instance, it didn’t exist at precondition time). 
@@ -594,7 +594,7 @@ type OclAny : AnyType {
 	/**
 	Evaluates to oclText[true] if oclText[self] is of the type t but not a subtype of t 
 	*/
-	operation oclIsTypeOf<T>(type : AnyClassifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
+	operation oclIsTypeOf(T)(type : AnyClassifier(T)) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
 	/**
 	Evaluates to oclText[true] if the oclText[self] is equal to oclText[invalid] or equal to oclText[null]. 
 	**/
@@ -605,8 +605,8 @@ type OclAny : AnyType {
 	/**
 	Evaluates to the type of which oclText[self] is an instance.
 	**/
-	operation oclType() : AnyClassifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
---	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	operation oclType() : AnyClassifier(OclSelf) => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+--	operation "."(T)(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
 /**
@@ -632,7 +632,7 @@ type OclElement conformsTo OclAny {
 	/**
 	Return a set of all instances of the type and derived types of self.
 	*/
-	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
 	/**
 	Returns the object for which self is a composed content or null if there is no such object.
 	*/
@@ -640,7 +640,7 @@ type OclElement conformsTo OclAny {
 	/**
 	Returns the composed contents of self.
 	*/
-	operation oclContents() : Set<OclElement> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
+	operation oclContents() : Set(OclElement) => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
 }
 
 /**
@@ -654,7 +654,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	/**
 	Returns oclText[invalid].
 	*/
-	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
 	/**
 	Returns oclText[invalid].
 	*/
@@ -788,7 +788,7 @@ type OclVoid : VoidType conformsTo OclAny {
 	/**
 	Returns oclText[Set{null}].
 	*/
-	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
+	static operation allInstances() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
 	/**
 	Redefines the OclAny operation, returning oclText[true] if object is oclText[null], oclText[invalid]
 	if object is oclText[invalid], oclText[false] otherwise.
@@ -810,53 +810,53 @@ It contains no duplicates. OrderedSet is itself an instance of the metatype Orde
 An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
 The common supertype of Sets and OrderedSets is Collection.
 **/
-type OrderedSet<T> : OrderedSetType conformsTo Sequence<T>,UniqueCollection<T> {
+type OrderedSet(T) : OrderedSetType conformsTo Sequence(T),UniqueCollection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The ordered set of the source ordered set for which body is oclText[false].
 	**/
-	iteration reject(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	/**
 	The ordered set of the source ordered set for which body is oclText[true]
 	**/
-	iteration select(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The elements of oclText[self], which are not in s.
 	**/
-	operation "-"(s : UniqueCollection<OclAny>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	operation "-"(s : UniqueCollection(OclAny)) : OrderedSet(T) precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	/**
 	The set of elements, consisting of all elements of oclText[self], followed by object.
 	**/
-	operation append(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
+	operation append(object : T) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
 	/**
 	The ordered set  containing all elements of oclText[self] apart from object.
 
 	The order of the remaining elements is not changed.
 	**/
-	operation excluding(object : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
-	operation flatten<T2>() : OrderedSet<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	operation excluding(object : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	operation flatten(T2)() : OrderedSet(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	/**
 	The ordered set containing all elements of oclText[self] plus object added as the last element if not already present.
 	**/
-	operation including(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	operation including(object : T) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 	/**
 	The ordered set consisting of oclText[self] with object present at position index.
 	**/
-	operation insertAt(index : Integer, object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
-	operation intersection(o : Collection<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation insertAt(index : Integer, object : T) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
+	operation intersection(o : Collection(T)) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The sequence consisting of object, followed by all elements in oclText[self].
 	**/
-	operation prepend(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation'
+	operation prepend(object : T) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation'
 	{
 		post IsSizePlusOne: result->size() = self->size() + 1;
 		post IsAtStart: result->at(1) = object;
@@ -865,17 +865,17 @@ type OrderedSet<T> : OrderedSetType conformsTo Sequence<T>,UniqueCollection<T> {
 	/**
 	The ordered set of elements with same elements but with the opposite order.
 	**/
-	operation reverse() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind<TT>(type : AnyClassifier<TT>) : OrderedSet<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : AnyClassifier<TT>) : OrderedSet<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
+	operation reverse() : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	operation selectByKind(TT)(type : AnyClassifier(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType(TT)(type : AnyClassifier(TT)) : OrderedSet(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-set of oclText[self] starting at number lower, up to and including element number upper.
 	**/
-	operation subOrderedSet(lower : Integer, upper : Integer) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation';
+	operation subOrderedSet(lower : Integer, upper : Integer) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation';
 	/**
 	The ordered set consisting of all elements in oclText[self] and all elements in o.
 	**/
-	operation union(o : Sequence<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(o : Sequence(T)) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
 /**
@@ -967,32 +967,32 @@ Sequence is itself an instance of the metatype SequenceType.
 A Sentence is not a subtype of Bag.
 The common supertype of Sentence and Bags is Collection.
 **/
-type Sequence<T> : SequenceType conformsTo Collection<T> {
+type Sequence(T) : SequenceType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The closure of applying body transitively to every distinct element of the source collection.
 	**/
-	iteration closure(i : T | body : Lambda T() : OrderedSet<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
-	iteration collect<V>(i : T | body : Lambda T() : V) : Sequence<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	iteration closure(i : T | body : Lambda T() : OrderedSet(T)) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
+	iteration collect(V)(i : T | body : Lambda T() : V) : Sequence(V) => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
 	/**
 	The sequence of elements that results from applying body to every member of the source ordered collection.
 	**/
-	iteration collectNested<V>(i : T | body : Lambda T() : V) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration collectNested(V)(i : T | body : Lambda T() : V) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[false].
 	**/
-	iteration reject(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	/**
 	The subsequence of the source sequence for which body is oclText[true].
 	**/
-	iteration select(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	/**
 	Results in the Sequence containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	/**
 	True if oclText[self] contains the same elements as s in the same order.
 	**/
@@ -1001,7 +1001,7 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	/**
 	The sequence of elements, consisting of all elements of oclText[self], followed by object.
 	**/
-	operation append(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
+	operation append(object : T) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
 	/**
 	The i-th element of sequence.
 	**/
@@ -1011,7 +1011,7 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 
 	The order of the remaining elements is not changed.
 	**/
-	operation excluding(object : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	operation excluding(object : OclAny) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	/**
 	The first element in oclText[self].
 	**/
@@ -1021,11 +1021,11 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	If the element type is a collection type, the result is the sequence containing all the elements
 	of all the recursively flattened elements of oclText[self]. The order of the elements is partial. 
 	**/
-	operation flatten<T2>() : Sequence<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	operation flatten(T2)() : Sequence(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	/**
 	The sequence containing all elements of oclText[self] plus object added as the last element.
 	**/
-	operation including(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	operation including(object : T) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 	/**
 	The index of object obj in the ordered collection.
 	**/
@@ -1033,15 +1033,15 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	/**
 	The sequence consisting of oclText[self] with object inserted at position index.
 	**/
-	operation insertAt(index : Integer, object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
+	operation insertAt(index : Integer, object : T) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
 	/**
 	The intersection of oclText[self] and bag; the bag of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(c : Collection<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation intersection(c : Collection(T)) : Bag(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The intersection of oclText[self] and s; the set of all elements that are in both oclText[self] and s.
 	**/
-	operation intersection(s : UniqueCollection<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation intersection(s : UniqueCollection(T)) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
 	/**
 	The last element in oclText[self].
 	**/
@@ -1049,40 +1049,40 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	/**
 	The sequence consisting of object, followed by all elements in oclText[self].
 	**/
-	operation prepend(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation';
+	operation prepend(object : T) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation';
 	/**
 	The sequence containing the same elements but with the opposite order.
 	**/
-	operation reverse() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
-	operation selectByKind<TT>(type : AnyClassifier<TT>) : Sequence<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : AnyClassifier<TT>) : Sequence<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
+	operation reverse() : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	operation selectByKind(TT)(type : AnyClassifier(TT)) : Sequence(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType(TT)(type : AnyClassifier(TT)) : Sequence(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The sub-sequence of oclText[self] starting at number lower, up to and including element number upper.
 	**/
-	operation subSequence(lower : Integer, upper : Integer) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation';
+	operation subSequence(lower : Integer, upper : Integer) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation';
 	/**
 	The sequence consisting of all elements in oclText[self], followed by all elements in s.
 	**/
-	operation union(s : Sequence<T>) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(s : Sequence(T)) : Sequence(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
-type Set<T> : SetType conformsTo Bag<T>,UniqueCollection<T> {
+type Set(T) : SetType conformsTo Bag(T),UniqueCollection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	The subset of the source set for which body is oclText[false].
 	**/
-	iteration reject(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Set(T) => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
 	/**
 	The subset of set for which expr is oclText[true].
 	**/
-	iteration select(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Set(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	/**
 	Results in the ordered set containing all elements of the source collection.
 	The element for which body has the lowest value comes first, and so on.
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	/**
 	Evaluates to oclText[true] if oclText[self] and s contain the same elements.
 	**/
@@ -1091,30 +1091,30 @@ type Set<T> : SetType conformsTo Bag<T>,UniqueCollection<T> {
 	/**
 	The elements of oclText[self], which are not in s.
 	**/
-	operation "-"(s : UniqueCollection<OclAny>) : Set<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	operation "-"(s : UniqueCollection(OclAny)) : Set(T) precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	/**
 	The set containing all elements of oclText[self] without object.
 	**/
-	operation excluding(object : OclAny) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	operation excluding(object : OclAny) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	/**
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same set as oclText[self].
 	If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of oclText[self].
 	**/
-	operation flatten<T2>() : Set<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	operation flatten(T2)() : Set(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	/**
 	The set containing all elements of oclText[self] plus object.
 	**/
-	operation including(object : T) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	operation including(object : T) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 	/**
 	The intersection of oclText[self] and s (i.e., the set of all elements that are in both oclText[self] and s).
 	**/
-	operation intersection(s : Collection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
-	operation selectByKind<TT>(type : AnyClassifier<TT>) : Set<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
-	operation selectByType<TT>(type : AnyClassifier<TT>) : Set<TT> => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
+	operation intersection(s : Collection(T)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIntersectionOperation';
+	operation selectByKind(TT)(type : AnyClassifier(TT)) : Set(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByKindOperation';
+	operation selectByType(TT)(type : AnyClassifier(TT)) : Set(TT) => 'org.eclipse.ocl.examples.library.collection.CollectionSelectByTypeOperation';
 	/**
 	The set consisting of all elements in oclText[self] and all elements in s.
 	**/
-	operation union(s : Collection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(s : Collection(T)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
 /**
@@ -1136,7 +1136,7 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	/**
 	Obtains the characters of oclText[self] as a sequence.
 	**/
-	operation characters() : Sequence<String>  => 'org.eclipse.ocl.examples.library.string.StringCharactersOperation';
+	operation characters() : Sequence(String)  => 'org.eclipse.ocl.examples.library.string.StringCharactersOperation';
 	/**
 	The comparison of oclText[self] with oclText[that]. -ve if less than, 0 if equal, +ve if greater than.
 	**/ 
@@ -1236,16 +1236,16 @@ type String : PrimitiveType conformsTo OclComparable, OclSummable {
 	Partition oclText[self] into a sequence substrings separated by any of space, line-feed, carriage-return, form-feed and horizontal-tab delimiters.
 	The delimiters are omitted from the return.
 	**/
-	operation tokenize() : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	operation tokenize() : Sequence(String) => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
 	/**
 	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. The delimiters are omitted from the return.
 	**/
-	operation tokenize(delimiters : String) : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	operation tokenize(delimiters : String) : Sequence(String) => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
 	/**
 	Partition oclText[self] into a sequence substrings separated by characters in the delimiters. If returnDelimeters is
 	true the returned sequence includes the delimiters, otherwise the delimiters are omitted.
 	**/
-	operation tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence<String> => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
+	operation tokenize(delimiters : String, returnDelimiters : Boolean) : Sequence(String) => 'org.eclipse.ocl.examples.library.string.StringTokenizeOperation';
 	/**
 	Return oclText[self] with leading and trailing whitespace removed.
 	**/
@@ -1276,7 +1276,7 @@ The UniqueCollection type provides the shared functionality of the OrderedSet an
 collections for which the elements are unique.
 The common supertype of UniqueCollection is Collection.
 **/
-type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
+type UniqueCollection(T) : CollectionType conformsTo Collection(T) {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='Collection');
 	/**
 	Results in the ordered set containing all elements of the source collection.
@@ -1284,19 +1284,19 @@ type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
 	The type of the body expression must have the < operation defined.
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 	**/
-	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet(T) => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	/**
 	The elements of oclText[self], which are not in s.
 	**/
-	operation "-"(s : UniqueCollection<OclAny>) : UniqueCollection<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	operation "-"(s : UniqueCollection(OclAny)) : UniqueCollection(T) precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	/**
 	The set containing all the elements that are in oclText[self] or s, but not in both.
 	**/
-	operation symmetricDifference(s : UniqueCollection<OclAny>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
+	operation symmetricDifference(s : UniqueCollection(OclAny)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
 	/**
 	The set consisting of all elements in oclText[self] and all elements in s.
 	**/
-	operation union(s : Collection<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	operation union(s : Collection(T)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
 /**
@@ -1320,7 +1320,7 @@ type UnlimitedNatural : PrimitiveType conformsTo Integer {
 	Conversion of e[unlimited] to Real or Integer returns oclText[invalid].
 	
 	**/
-	operation oclAsType<TT>(type : AnyClassifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
+	operation oclAsType(TT)(type : AnyClassifier(TT)) : TT => 'org.eclipse.ocl.examples.library.numeric.UnlimitedNaturalOclAsTypeOperation';
 }
 
 }

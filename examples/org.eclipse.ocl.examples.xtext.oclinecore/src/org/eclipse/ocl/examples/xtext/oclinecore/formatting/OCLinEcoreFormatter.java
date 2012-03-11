@@ -219,17 +219,25 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
-			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
-			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
+			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
+			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
+			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {
 			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
-			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
-			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0_0());	
+			c.setNoSpace().before(a.getCommaKeyword_0_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_0_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_0_0(), a.getRightParenthesisKeyword_0_3());
+			c.setNoSpace().around(a.getLessThanSignKeyword_1_0());	
+			c.setNoSpace().before(a.getCommaKeyword_1_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_1_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_1_0(), a.getGreaterThanSignKeyword_1_3());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

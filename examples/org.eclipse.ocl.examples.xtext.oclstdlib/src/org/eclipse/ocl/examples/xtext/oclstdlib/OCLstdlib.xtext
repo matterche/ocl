@@ -217,7 +217,7 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
+	'(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')'	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -225,11 +225,11 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
+	'(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')'
 ;
 
 LibTupleCS returns base::TupleTypeCS:
-	name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
+	name='Tuple' '(' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? ')'
 ;
 
 LibTuplePartCS returns base::TuplePartCS:

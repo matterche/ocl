@@ -240,8 +240,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
 		assertQueryInvalid(null, "invalid.oclAsType(AnyClassifier)");
-		assertQueryInvalid(null, "invalid.oclAsType(Set<String>)");
-		assertQueryInvalid(null, "invalid.oclAsType(Tuple<a:String>)");
+		assertQueryInvalid(null, "invalid.oclAsType(Set(String))");
+		assertQueryInvalid(null, "invalid.oclAsType(Tuple(a:String))");
 		assertQueryInvalid(null, "invalid.oclAsType(ocl::Package)");
 		//
 		assertQueryNull(null, "null.oclAsType(String)");
@@ -250,8 +250,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryNull(null, "null.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
 		assertQueryNull(null, "null.oclAsType(AnyClassifier)");
-		assertQueryNull(null, "null.oclAsType(Set<String>)");
-		assertQueryNull(null, "null.oclAsType(Tuple<a:String>)");
+		assertQueryNull(null, "null.oclAsType(Set(String))");
+		assertQueryNull(null, "null.oclAsType(Tuple(a:String))");
 		assertQueryNull(null, "null.oclAsType(ocl::Package)");
 		//
 		assertQueryInvalid(null, "true.oclAsType(Integer)");
@@ -285,22 +285,22 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(null, "*.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "*.oclAsType(OclInvalid)");
 		//
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<UnlimitedNatural>)");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<Integer>)");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection<Real>)");
-		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection<UnlimitedNatural>)");
-		assertQueryInvalid(null, "Set{1.0,2}->oclAsType(Collection<UnlimitedNatural>)");
-		assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence<UnlimitedNatural>)");
-		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set<UnlimitedNatural>)");		// Cannot cast non-collection (elements) to collection
+		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(UnlimitedNatural))");
+		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set(Integer))");
+		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(Real))");
+		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection(UnlimitedNatural))");
+		assertQueryInvalid(null, "Set{1.0,2}->oclAsType(Collection(UnlimitedNatural))");
+		assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence(UnlimitedNatural))");
+		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(UnlimitedNatural))");		// Cannot cast non-collection (elements) to collection
 		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(UnlimitedNatural)");
-		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set<Integer>)");				// Cannot cast non-collection (elements) to collection
+		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set(Integer))");				// Cannot cast non-collection (elements) to collection
 		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(Integer)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Set<UnlimitedNatural>>)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Collection<UnlimitedNatural>>)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection<Set<UnlimitedNatural>>)");
-		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Set<Integer>>)");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Sequence<UnlimitedNatural>>)");
-		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence<Set<UnlimitedNatural>>)");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(UnlimitedNatural)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Collection(UnlimitedNatural)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Collection(Set(UnlimitedNatural)))");
+		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Set(Integer)))");
+		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set(Sequence(UnlimitedNatural)))");
+		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence(Set(UnlimitedNatural)))");
 		//
 		assertSemanticErrorQuery("3.oclAsType(OclAny).abs()", OCLMessages.UnresolvedOperation_ERROR_, "abs", "OclAny");
 		assertSemanticErrorQuery("let v : OclAny = 3 in v.abs()", OCLMessages.UnresolvedOperation_ERROR_, "abs", "OclAny");
@@ -336,7 +336,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryTrue(null, "invalid.oclIsKindOf(String)");
 		assertQueryTrue(null, "invalid.oclIsKindOf(Integer)");
 		assertQueryTrue(null, "invalid.oclIsKindOf(AnyClassifier)");
-		assertQueryTrue(null, "invalid.oclIsKindOf(Bag<Boolean>)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(Bag(Boolean))");
 		assertQueryTrue(null, "invalid.oclIsKindOf(Tuple(a:Integer))");
         assertQueryTrue(null, "invalid.oclIsKindOf(ocl::Package)");
         //
@@ -346,7 +346,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryTrue(null, "null.oclIsKindOf(String)");
 		assertQueryTrue(null, "null.oclIsKindOf(Integer)");
 		assertQueryTrue(null, "null.oclIsKindOf(AnyClassifier)");
-		assertQueryTrue(null, "null.oclIsKindOf(Bag<Boolean>)");
+		assertQueryTrue(null, "null.oclIsKindOf(Bag(Boolean))");
 		assertQueryTrue(null, "null.oclIsKindOf(Tuple(a:Integer))");
         assertQueryTrue(null, "null.oclIsKindOf(ocl::Package)");
         //
@@ -419,7 +419,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryFalse(null, "invalid.oclIsTypeOf(Integer)");
 		assertQueryFalse(null, "invalid.oclIsTypeOf(String)");
 		assertQueryFalse(null, "invalid.oclIsTypeOf(AnyClassifier)");
-		assertQueryFalse(null, "invalid.oclIsTypeOf(Set<String>)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(Set(String))");
         assertQueryFalse(null, "invalid.oclIsTypeOf(ocl::Package)");
         //
         assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
@@ -428,7 +428,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
 		assertQueryFalse(null, "null.oclIsTypeOf(String)");
 		assertQueryFalse(null, "null.oclIsTypeOf(AnyClassifier)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Set<String>)");
+		assertQueryFalse(null, "null.oclIsTypeOf(Set(String))");
         assertQueryFalse(null, "null.oclIsTypeOf(ocl::Package)");
         //
         assertQueryFalse(null, "true.oclIsTypeOf(OclInvalid)");
@@ -552,10 +552,10 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, metaModelManager.getSetType(metaModelManager.getUnlimitedNaturalType()), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
     	assertQueryEquals(null, "Set", "Set{1}->oclType().name");
-    	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural>");
-    	assertSemanticErrorQuery("Set{1}->allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural>");
-    	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Bag<AnyClassifier<UnlimitedNatural>>");
-    	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "CollectionClassifier<Set<UnlimitedNatural>,UnlimitedNatural>");
+    	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set(UnlimitedNatural)");
+    	assertSemanticErrorQuery("Set{1}->allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set(UnlimitedNatural)");
+    	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Bag(AnyClassifier(UnlimitedNatural))");
+    	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "CollectionClassifier(Set(UnlimitedNatural),UnlimitedNatural)");
     	assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
     	assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "Set{1}->oclType().elementType");
     }
@@ -573,7 +573,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
     	assertQueryEquals(null, getClassifierType(collectionKindType), "CollectionKind.oclType()");
     	assertQueryEquals(null, 5, "CollectionKind.ownedLiteral->size()");
-    	assertSemanticErrorQuery("CollectionKind.oclType().ownedLiteral", OCLMessages.UnresolvedProperty_ERROR_, "ownedLiteral", "ClassClassifier<EnumerationClassifier<CollectionKind>>");
+    	assertSemanticErrorQuery("CollectionKind.oclType().ownedLiteral", OCLMessages.UnresolvedProperty_ERROR_, "ownedLiteral", "ClassClassifier(EnumerationClassifier(CollectionKind))");
     	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
     	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::OrderedSet,CollectionKind::Sequence,CollectionKind::Set}", "CollectionKind::Set.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "CollectionKind.oclType().allInstances()");
@@ -590,8 +590,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, metaModelManager.getUnlimitedNaturalType(), "*.oclType()");
 		assertQueryEquals(null, getClassifierType(integerType), "Integer.oclType()");
     	assertQueryEquals(null, integerType, "Integer");
-    	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier<Integer>");
-    	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier<UnlimitedNatural>");
+    	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier(Integer)");
+    	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier(UnlimitedNatural)");
     	assertQueryResults(null, "Set{}", "Integer.oclType().allInstances()");
 		assertQueryEquals(null, "UnlimitedNatural", "4.oclType().name");
      }
@@ -606,8 +606,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(null, anyType, "OclAny");
     	assertQueryEquals(null, "OclAny", "OclAny.name");
     	assertQueryEquals(null, getClassifierType(anyType), "OclAny.oclType()");
-    	assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier<OclAny>");
-    	assertSemanticErrorQuery("null.oclAsType(OclAny).oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier<OclAny>");
+    	assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier(OclAny)");
+    	assertSemanticErrorQuery("null.oclAsType(OclAny).oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier(OclAny)");
     	assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
     }
 
@@ -653,8 +653,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(null, tupleType, "Tuple{a:Integer=3}.oclType()");
     	assertQueryEquals(null, tupleType, "Tuple(a:Integer)");
 		assertQueryEquals(null, getClassifierType(tupleType), "Tuple(a:Integer).oclType()");
-    	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier<Tuple(a:Integer)>");
-    	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier<Tuple(a:Integer)>");	// FIXME
+    	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "ClassClassifier(Tuple(a:Integer))");
+    	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "AnyClassifier(Tuple(a:Integer))");	// FIXME
     	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
 		assertQueryEquals(null, "Tuple", "Tuple{a:Integer=3}.oclType().name");
      }
@@ -669,7 +669,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, getClassifierType(getClassifierType(metaModelManager.getUnlimitedNaturalType())), "3.oclType().oclType().oclType()");
     	assertQueryEquals(null, getClassifierType(metaModelManager.getBooleanType()), "Boolean.oclType()");
     	assertQueryEquals(null, "ClassClassifier", "Boolean.oclType().name");
-    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural", "ClassClassifier<OclAny>");
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural", "ClassClassifier(OclAny)");
     }
 
 	public Type getCollectionType(String collectionName, Type type) {

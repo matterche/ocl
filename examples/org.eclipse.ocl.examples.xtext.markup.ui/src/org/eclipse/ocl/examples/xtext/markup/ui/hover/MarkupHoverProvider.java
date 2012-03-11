@@ -174,7 +174,6 @@ public class MarkupHoverProvider extends DefaultEObjectHoverProvider
 					return null;
 				}				
 			};
-			prettyPrintOptions.setUseParentheses(true);
 			if (namespace != null) {
 				Resource eResource = EcoreUtil.getRootContainer(namespace).eResource();
 				if (eResource != null) {

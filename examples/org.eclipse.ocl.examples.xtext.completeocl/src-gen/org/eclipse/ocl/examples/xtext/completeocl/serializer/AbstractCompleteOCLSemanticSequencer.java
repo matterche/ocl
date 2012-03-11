@@ -671,7 +671,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)?)
+	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS?)
 	 */
 	protected void sequence_CollectionTypeCS(EObject context, CollectionTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1150,7 +1150,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)?)
+	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1159,7 +1159,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name=CollectionTypeIdentifier (ownedType=TypeExpCS | ownedType=TypeExpCS)? multiplicity=MultiplicityCS?)
+	 *     (name=CollectionTypeIdentifier ownedType=TypeExpCS? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, CollectionTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1177,11 +1177,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name='Tuple' 
-	 *         ((ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? | (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)? 
-	 *         multiplicity=MultiplicityCS?
-	 *     )
+	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

@@ -164,19 +164,18 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Pret
 
 	@Override
 	public Object visitTupleType(TupleType object) {
-		boolean useParentheses = context.getUseParentheses();
 		delegate.appendParent(context.getScope(), object, "::");
 		delegate.appendName(object);
 		List<Property> tupleParts = object.getOwnedAttribute();
 		if (!tupleParts.isEmpty()) {
-			delegate.append(useParentheses ? "(" : "<");
+			delegate.append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (Property tuplePart : tupleParts) {
 				delegate.append(prefix);
 				delegate.appendElement(tuplePart);
 				prefix = ",";
 			}
-			delegate.append(useParentheses ? ")" : ">");
+			delegate.append(")");
 		}
 		return null;
 	}

@@ -164,10 +164,7 @@ CollectionTypeIdentifier returns ecore::EString:
 	| 'OrderedSet';
 
 CollectionTypeCS returns CollectionTypeCS:
-	name=CollectionTypeIdentifier
-	( ('(' ownedType=TypeExpCS ')')
-	| ('<' ownedType=TypeExpCS '>')
-	)?;
+	name=CollectionTypeIdentifier ('(' ownedType=TypeExpCS ')')?;
 
 MultiplicityBoundsCS returns base::MultiplicityBoundsCS:
 	lowerBound=LOWER ('..' upperBound=UPPER)?;
@@ -179,10 +176,7 @@ MultiplicityStringCS returns base::MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');
 
 TupleTypeCS returns base::TupleTypeCS:
-	name='Tuple'
-	( ('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')
-	| ('<' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? '>')
-	)?;
+	name='Tuple' ('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
 
 tuplePartCS returns base::TuplePartCS:
 	name=UnrestrictedName ':' ownedType=TypeExpCS;

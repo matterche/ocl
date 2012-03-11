@@ -41,22 +41,24 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	 * Tests the basic name accesses
 	 */
 	public void test_bad_navigation() throws InvocationTargetException {
+		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
+//WIP
 		assertSemanticErrorQuery("let a : Type = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type");
-		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "ClassClassifier<Type>");
-		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "ClassClassifier<Type>");
-		assertSemanticErrorQuery("Set<Type>.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
-		assertSemanticErrorQuery("Set<Type>.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "CollectionClassifier<Set<Type>,Type>");
-		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type>");
-		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<ClassClassifier<Type>>");
-		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<ClassClassifier<Type>>");
-		assertSemanticErrorQuery("Set<Type>->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<CollectionClassifier<Set<Type>,Type>>");
-		assertSemanticErrorQuery("Set<Type>->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<CollectionClassifier<Set<Type>,Type>>");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "ClassClassifier(Type)");
+		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "ClassClassifier(Type)");
+		assertSemanticErrorQuery("Set(Type).Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "CollectionClassifier(Set(Type),Type)");
+		assertSemanticErrorQuery("Set(Type).Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "CollectionClassifier(Set(Type),Type)");
+		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("let a : Set(Type) = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set(Type)");
+		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(ClassClassifier(Type))");
+		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set(ClassClassifier(Type))");
+		assertSemanticErrorQuery("Set(Type)->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(CollectionClassifier(Set(Type),Type))");
+		assertSemanticErrorQuery("Set(Type)->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set(CollectionClassifier(Set(Type),Type))");
 		assertSemanticErrorQuery("let a : Type = null in a.if", "missing EOF at ''.''");
 		assertSemanticErrorQuery("let a : Type = null in a->if", "missing EOF at ''->''");
 	}
@@ -134,14 +136,14 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 //		
 		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");//
 		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
-		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<Fruit>)");
-		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<fruit::Apple>)");
-		assertSemanticErrorQuery("self->oclAsType(Set<fruit::apple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set<fruit::apple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set<fruit::badapple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Namespace", "badapple");
-		assertSemanticErrorQuery("self->oclAsType(Set<badfruit::badapple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Namespace", "badfruit");
-		assertQueryInvalid(redApple, "self->oclAsType(Set<fruit::apple::EatingApple>)");
-		assertQueryInvalid(redApple, "self->oclAsType(Set<fruit::Tree>)");		
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set(Fruit))");
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set(fruit::Apple))");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::badapple::BadApple))", OCLMessages.Unresolved_ERROR_, "Namespace", "badapple");
+		assertSemanticErrorQuery("self->oclAsType(Set(badfruit::badapple::BadApple))", OCLMessages.Unresolved_ERROR_, "Namespace", "badfruit");
+		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::apple::EatingApple))");
+		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::Tree))");		
 		//
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Tree.allInstances()");
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "fruit::Tree.allInstances()");
@@ -151,7 +153,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "zz::Tree.allInstances()");
 //
 		assertQueryEquals(redApple, valueFactory.createBagOf(redApple), "Fruit.allInstances().oclAsType(Apple)");		
-		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "Fruit.allInstances()->oclAsType(Set<Apple>)");		
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "Fruit.allInstances()->oclAsType(Set(Apple))");		
 	}
 	
 	/**

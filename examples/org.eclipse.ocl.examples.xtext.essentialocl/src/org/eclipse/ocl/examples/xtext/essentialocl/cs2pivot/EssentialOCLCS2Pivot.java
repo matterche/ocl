@@ -113,22 +113,22 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 								TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)pivot;
 								if (typedMultiplicityElement.isOrdered()) {
 									if (typedMultiplicityElement.isUnique()) {
-										s.append("OrderedSet<");
+										s.append("OrderedSet(");
 									}
 									else {
-										s.append("Sequence<");
+										s.append("Sequence(");
 									}
 								}
 								else {
 									if (typedMultiplicityElement.isUnique()) {
-										s.append("Set<");
+										s.append("Set(");
 									}
 									else {
-										s.append("Bag<");
+										s.append("Bag(");
 									}
 								}
 								s.append(String.valueOf(type));
-								s.append(">");
+								s.append(")");
 								BigInteger lower = typedMultiplicityElement.getLower();
 								BigInteger upper = typedMultiplicityElement.getUpper();
 								PivotUtil.appendMultiplicity(s, lower.intValue(), upper.intValue());
@@ -193,7 +193,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				if (sourceType != null) {
 					OperatorCS csParent = navigationArgument != null ? navigationArgument.getParent() : null;
 					if (!(sourceType instanceof CollectionType) && (csParent instanceof NavigationOperatorCS) && PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csParent).getName())) {
-						typeText = "Set<" + sourceType.toString() + ">";
+						typeText = "Set(" + sourceType.toString() + ")";
 					}
 					else {
 						typeText = sourceType.toString();

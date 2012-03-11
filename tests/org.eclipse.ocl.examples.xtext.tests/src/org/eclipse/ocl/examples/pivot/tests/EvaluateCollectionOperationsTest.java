@@ -903,7 +903,7 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->intersection(Bag{4})");
 
 		assertSemanticErrorQuery("let s : Set(Integer) = invalid in Set{4}->intersection(s)",
-			OCLMessages.UnresolvedOperationCall_ERROR_, "intersection", "Set<UnlimitedNatural>", "Set<Integer>");
+			OCLMessages.UnresolvedOperationCall_ERROR_, "intersection", "Set(UnlimitedNatural)", "Set(Integer)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Set{4}->intersection(s)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Bag{4}->intersection(s)");
 		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Set{4}->intersection(b)");

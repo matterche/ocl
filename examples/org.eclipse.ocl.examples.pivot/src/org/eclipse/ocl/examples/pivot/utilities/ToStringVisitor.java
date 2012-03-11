@@ -256,7 +256,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	protected void appendTemplateBindings(List<TemplateBinding> templateBindings) {
 		if (templateBindings.size() > 0) {
-			append("<");
+			append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
@@ -265,7 +265,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 					prefix = ",";
 				}
 			}
-			append(">");
+			append(")");
 		}
 	}
 
@@ -273,14 +273,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			if (!templateParameters.isEmpty()) {
-				append("<");
+				append("(");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
 					safeVisit(templateParameter.getParameteredElement());
 					prefix = ",";
 				}
-				append(">");
+				append(")");
 			}
 		}
 	}

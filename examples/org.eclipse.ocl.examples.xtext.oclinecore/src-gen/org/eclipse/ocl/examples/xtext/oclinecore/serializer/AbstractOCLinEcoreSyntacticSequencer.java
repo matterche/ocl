@@ -35,7 +35,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	protected AbstractElementAlias match_ParameterCS___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q;
 	protected AbstractElementAlias match_ReferenceCS_CommaKeyword_6_1_1_q;
 	protected AbstractElementAlias match_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__;
-	protected AbstractElementAlias match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q;
+	protected AbstractElementAlias match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -56,7 +56,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 		match_ParameterCS___LeftCurlyBracketKeyword_3_0_RightCurlyBracketKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getLeftCurlyBracketKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getParameterCSAccess().getRightCurlyBracketKeyword_3_2()));
 		match_ReferenceCS_CommaKeyword_6_1_1_q = new TokenAlias(false, true, grammarAccess.getReferenceCSAccess().getCommaKeyword_6_1_1());
 		match_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getLeftCurlyBracketKeyword_7_0_0()), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2())), new TokenAlias(false, false, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1()));
-		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(false, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
+		match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()));
 	}
 	
 	@Override
@@ -103,8 +103,8 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 				emit_ReferenceCS_CommaKeyword_6_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__.equals(syntax))
 				emit_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q.equals(syntax))
-				emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q.equals(syntax))
+				emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -119,7 +119,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_AttributeCS_SemicolonKeyword_6_1_or___LeftCurlyBracketKeyword_6_0_0_RightCurlyBracketKeyword_6_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -151,7 +151,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ('{' '}') | ';'
+	 *     ';' | ('{' '}')
 	 */
 	protected void emit_EnumerationCS_SemicolonKeyword_5_1_or___LeftCurlyBracketKeyword_5_0_0_RightCurlyBracketKeyword_5_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -167,7 +167,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_EnumerationLiteralCS_SemicolonKeyword_2_1_or___LeftCurlyBracketKeyword_2_0_0_RightCurlyBracketKeyword_2_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -191,7 +191,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_OperationCS_SemicolonKeyword_10_1_or___LeftCurlyBracketKeyword_10_0_0_RightCurlyBracketKeyword_10_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -231,7 +231,7 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     ';' | ('{' '}')
+	 *     ('{' '}') | ';'
 	 */
 	protected void emit_ReferenceCS_SemicolonKeyword_7_1_or___LeftCurlyBracketKeyword_7_0_0_RightCurlyBracketKeyword_7_0_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -239,9 +239,9 @@ public class AbstractOCLinEcoreSyntacticSequencer extends AbstractSyntacticSeque
 	
 	/**
 	 * Syntax:
-	 *     (('<' '>') | ('(' ')'))?
+	 *     ('(' ')')?
 	 */
-	protected void emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

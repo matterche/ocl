@@ -8,7 +8,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
@@ -19,12 +18,12 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AbstractCompleteOCLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected CompleteOCLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q;
+	protected AbstractElementAlias match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (CompleteOCLGrammarAccess) access;
-		match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q = new AlternativeAlias(false, true, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2())));
+		match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2()));
 	}
 	
 	@Override
@@ -39,17 +38,17 @@ public class AbstractCompleteOCLSyntacticSequencer extends AbstractSyntacticSequ
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q.equals(syntax))
-				emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if(match_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q.equals(syntax))
+				emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
 	/**
 	 * Syntax:
-	 *     (('(' ')') | ('<' '>'))?
+	 *     ('(' ')')?
 	 */
-	protected void emit_TupleTypeCS_____LeftParenthesisKeyword_1_0_0_RightParenthesisKeyword_1_0_2___or___LessThanSignKeyword_1_1_0_GreaterThanSignKeyword_1_1_2____q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TupleTypeCS___LeftParenthesisKeyword_1_0_RightParenthesisKeyword_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

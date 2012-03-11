@@ -2799,48 +2799,94 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedParameterSubstitutionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cOwnedParameterSubstitutionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_2_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_2_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cOwnedParameterSubstitutionAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_0_1.eContents().get(0);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Keyword cCommaKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
+		private final Assignment cOwnedParameterSubstitutionAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
+		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_0_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedParameterSubstitutionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOwnedParameterSubstitutionAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_1_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//TemplateBindingCS returns base::TemplateBindingCS:
-		//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//	"(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")" | "<"
+		//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 		//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
 		public ParserRule getRule() { return rule; }
 
-		//"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//"(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")" | "<"
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">"
-		public Group getGroup() { return cGroup; }
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"<"
-		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		//"(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")"
+		public Group getGroup_0() { return cGroup_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0_0() { return cLeftParenthesisKeyword_0_0; }
 
 		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedParameterSubstitutionAssignment_1() { return cOwnedParameterSubstitutionAssignment_1; }
+		public Assignment getOwnedParameterSubstitutionAssignment_0_1() { return cOwnedParameterSubstitutionAssignment_0_1; }
 
 		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_0; }
+		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_1_0; }
 
 		//("," ownedParameterSubstitution+=TemplateParameterSubstitutionCS)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_0_2() { return cGroup_0_2; }
 
 		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_0_2_0() { return cCommaKeyword_0_2_0; }
 
 		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS
-		public Assignment getOwnedParameterSubstitutionAssignment_2_1() { return cOwnedParameterSubstitutionAssignment_2_1; }
+		public Assignment getOwnedParameterSubstitutionAssignment_0_2_1() { return cOwnedParameterSubstitutionAssignment_0_2_1; }
 
 		//TemplateParameterSubstitutionCS
-		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_2_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_2_1_0; }
+		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_0_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
+
+		//"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">"
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
+
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS
+		public Assignment getOwnedParameterSubstitutionAssignment_1_1() { return cOwnedParameterSubstitutionAssignment_1_1; }
+
+		//TemplateParameterSubstitutionCS
+		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_1_0; }
+
+		//("," ownedParameterSubstitution+=TemplateParameterSubstitutionCS)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//","
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+
+		//ownedParameterSubstitution+=TemplateParameterSubstitutionCS
+		public Assignment getOwnedParameterSubstitutionAssignment_1_2_1() { return cOwnedParameterSubstitutionAssignment_1_2_1; }
+
+		//TemplateParameterSubstitutionCS
+		public RuleCall getOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0() { return cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_1_2_1_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
+		public Keyword getGreaterThanSignKeyword_1_3() { return cGreaterThanSignKeyword_1_3; }
 	}
 
 	public class TemplateParameterSubstitutionCSElements extends AbstractParserRuleElementFinder {
@@ -2861,46 +2907,88 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class TemplateSignatureCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateSignatureCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedTemplateParameterAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cOwnedTemplateParameterAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_2_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cOwnedTemplateParameterAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_0_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_0_1.eContents().get(0);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Keyword cCommaKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
+		private final Assignment cOwnedTemplateParameterAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
+		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_0_2_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_0_2_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedTemplateParameterAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOwnedTemplateParameterAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_2_1_0 = (RuleCall)cOwnedTemplateParameterAssignment_1_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//TemplateSignatureCS returns base::TemplateSignatureCS:
-		//	"<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">";
+		//	"(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")" | "<"
+		//	ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">";
 		public ParserRule getRule() { return rule; }
 
-		//"<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">"
-		public Group getGroup() { return cGroup; }
+		//"(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")" | "<"
+		//ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">"
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"<"
-		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		//"(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")"
+		public Group getGroup_0() { return cGroup_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_0_0() { return cLeftParenthesisKeyword_0_0; }
 
 		//ownedTemplateParameter+=TypeParameterCS
-		public Assignment getOwnedTemplateParameterAssignment_1() { return cOwnedTemplateParameterAssignment_1; }
+		public Assignment getOwnedTemplateParameterAssignment_0_1() { return cOwnedTemplateParameterAssignment_0_1; }
 
 		//TypeParameterCS
-		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_0; }
+		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_0_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_0_1_0; }
 
 		//("," ownedTemplateParameter+=TypeParameterCS)*
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_0_2() { return cGroup_0_2; }
 
 		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_0_2_0() { return cCommaKeyword_0_2_0; }
 
 		//ownedTemplateParameter+=TypeParameterCS
-		public Assignment getOwnedTemplateParameterAssignment_2_1() { return cOwnedTemplateParameterAssignment_2_1; }
+		public Assignment getOwnedTemplateParameterAssignment_0_2_1() { return cOwnedTemplateParameterAssignment_0_2_1; }
 
 		//TypeParameterCS
-		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_2_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_2_1_0; }
+		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_0_2_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_0_2_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
+
+		//"<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">"
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
+
+		//ownedTemplateParameter+=TypeParameterCS
+		public Assignment getOwnedTemplateParameterAssignment_1_1() { return cOwnedTemplateParameterAssignment_1_1; }
+
+		//TypeParameterCS
+		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_1_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_1_0; }
+
+		//("," ownedTemplateParameter+=TypeParameterCS)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//","
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+
+		//ownedTemplateParameter+=TypeParameterCS
+		public Assignment getOwnedTemplateParameterAssignment_1_2_1() { return cOwnedTemplateParameterAssignment_1_2_1; }
+
+		//TypeParameterCS
+		public RuleCall getOwnedTemplateParameterTypeParameterCSParserRuleCall_1_2_1_0() { return cOwnedTemplateParameterTypeParameterCSParserRuleCall_1_2_1_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
+		public Keyword getGreaterThanSignKeyword_1_3() { return cGreaterThanSignKeyword_1_3; }
 	}
 
 	public class TypeIdentifierElements extends AbstractParserRuleElementFinder {
@@ -3545,7 +3633,9 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateBindingCS returns base::TemplateBindingCS:
-	//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+	//	"(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+	//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")" | "<"
+	//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 	//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
 	public TemplateBindingCSElements getTemplateBindingCSAccess() {
 		return (pTemplateBindingCS != null) ? pTemplateBindingCS : (pTemplateBindingCS = new TemplateBindingCSElements());
@@ -3566,7 +3656,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemplateSignatureCS returns base::TemplateSignatureCS:
-	//	"<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">";
+	//	"(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")" | "<"
+	//	ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">";
 	public TemplateSignatureCSElements getTemplateSignatureCSAccess() {
 		return (pTemplateSignatureCS != null) ? pTemplateSignatureCS : (pTemplateSignatureCS = new TemplateSignatureCSElements());
 	}
@@ -3970,7 +4061,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeCS:
-	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?;
+	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
 	public EssentialOCLGrammarAccess.CollectionTypeCSElements getCollectionTypeCSAccess() {
 		return gaEssentialOCL.getCollectionTypeCSAccess();
 	}
@@ -4010,8 +4101,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
-	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
-	//	ownedParts+=tuplePartCS)*)? ">")?;
+	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
 	public EssentialOCLGrammarAccess.TupleTypeCSElements getTupleTypeCSAccess() {
 		return gaEssentialOCL.getTupleTypeCSAccess();
 	}

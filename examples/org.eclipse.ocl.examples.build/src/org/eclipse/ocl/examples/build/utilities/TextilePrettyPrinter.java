@@ -83,8 +83,8 @@ public class TextilePrettyPrinter
 				return null;
 			}			
 		};
-		options.setUseParentheses(false);
-		options.setUseParentheses(false);
+//		options.setUseParentheses(false);
+//		options.setUseParentheses(false);
 		return options;
 	}
 }

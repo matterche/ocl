@@ -497,10 +497,9 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
     }
 	
 	protected void appendTemplateBindings(TemplateableElement typeRef) {
-		boolean useParentheses = context.getUseParentheses() && (typeRef instanceof CollectionType);
 		List<TemplateBinding> templateBindings = typeRef.getTemplateBinding();
 		if (!templateBindings.isEmpty()) {
-			append(useParentheses ? "(" : "<");
+			append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
@@ -510,17 +509,16 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 					prefix = ", ";
 				}
 			}
-			append(useParentheses ? ")" : ">");
+			append(")");
 		}
 	}
 
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
-		boolean useParentheses = context.getUseParentheses() && (templateableElement instanceof CollectionType);
 		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameter();
 			if (!templateParameters.isEmpty()) {
-				append(useParentheses ? "(" : "<");
+				append("(");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
@@ -529,7 +527,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 					appendElement((Namespace) templateableElement, templateParameter);
 					prefix = ", ";
 				}
-				append(useParentheses ? ")" : ">");
+				append(")");
 			}
 		}
 	}
@@ -538,7 +536,6 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 		int lower = object.getLower().intValue();
 		int upper = object.getUpper().intValue();
 		if (upper != 1) {
-			boolean useParentheses = context.getUseParentheses();
 			if (object.isOrdered()) {
 				if (object.isUnique()) {
 					append("OrderedSet");
@@ -555,12 +552,12 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 					append("Bag");
 				}
 			}
-			append(useParentheses ? "(" : "<");
+			append("(");
 			appendElement(object.getType());
 			if ((lower > 0) || (upper >= 0)) {
 				appendMultiplicity(lower, upper);
 			}
-			append(useParentheses ? ")" : ">");
+			append(")");
 		}
 		else {
 			appendElement(object.getType());
@@ -678,11 +675,10 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 	@Override
 	public Object visitTupleType(TupleType object) {
 //		appendParent(object.eContainer(), object, "::");
-		boolean useParentheses = context.getUseParentheses();
 		appendName(object, null);
 		List<Property> tupleParts = object.getOwnedAttribute();
 		if (!tupleParts.isEmpty()) {
-			append(useParentheses ? "(" : "<");
+			append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (Property tuplePart : tupleParts) {
 				append(prefix);
@@ -691,7 +687,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Pret
 				appendElement(tuplePart.getType());
 				prefix = ", ";
 			}
-			append(useParentheses ? ")" : ">");
+			append(")");
 		}
 		return null;
 	}

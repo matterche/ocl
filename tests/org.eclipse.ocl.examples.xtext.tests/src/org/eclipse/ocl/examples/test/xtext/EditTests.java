@@ -298,11 +298,11 @@ public class EditTests extends XtextTestCase
 		WeakReference<Type> sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNull(sequenceMyType.get()); 
 		//
-		doRename(xtextResource, pivotResource, "Boolean", "Sequence<MyType>");
+		doRename(xtextResource, pivotResource, "Boolean", "Sequence(MyType)");
 		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNotNull(sequenceMyType.get()); 
 		//		
-		doRename(xtextResource, pivotResource, "Sequence<MyType>", "Set<MyType>");
+		doRename(xtextResource, pivotResource, "Sequence(MyType)", "Set(MyType)");
 		System.gc();
 		sequenceMyType = new WeakReference<Type>(sequenceTypeServer.findSpecializedType(Collections.singletonList(myType)));
 		assertNull(sequenceMyType.get()); 

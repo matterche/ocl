@@ -154,24 +154,24 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
-			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
 			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
 	    }
 	    {
 			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
-			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_0());	
 			c.setNoSpace().before(a.getCommaKeyword_2_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_0(), a.getRightParenthesisKeyword_3());
 	    }
 	    {
 			LibTupleCSElements a = f.getLibTupleCSAccess();
-			c.setNoSpace().around(a.getLessThanSignKeyword_1());	
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_1());	
 			c.setNoSpace().before(a.getCommaKeyword_2_1_0());
-			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
-		    c.setIndentation(a.getLessThanSignKeyword_1(), a.getGreaterThanSignKeyword_3());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3());	
+		    c.setIndentation(a.getLeftParenthesisKeyword_1(), a.getRightParenthesisKeyword_3());
 	    }
 	    {	// comments
 	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());

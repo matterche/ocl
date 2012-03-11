@@ -109,6 +109,6 @@ public class AbstractCollectionType extends AbstractSpecializedType implements D
 
 	@Override
 	public String toString() {
-		return String.valueOf(containerType) + "<" + String.valueOf(elementType) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+		return String.valueOf(containerType) + "(" + String.valueOf(elementType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

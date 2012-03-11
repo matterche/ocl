@@ -111,6 +111,6 @@ public class AbstractClassifierType extends AbstractSpecializedType implements D
 
 	@Override
 	public String toString() {
-		return String.valueOf(containerType) + "<" + String.valueOf(instanceType) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+		return String.valueOf(containerType) + "(" + String.valueOf(instanceType) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

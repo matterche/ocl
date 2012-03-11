@@ -242,7 +242,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected void appendTemplateBindings(StringBuilder s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			for (TemplateBinding templateBinding : templateableElement.getTemplateBinding()) {
-				s.append("<");
+				s.append("(");
 				String prefix = "";
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitution()) {
 					s.append(prefix);
@@ -252,7 +252,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 					}
 					prefix = ", ";
 				}
-				s.append(">");
+				s.append(")");
 			}
 		}
 	}
@@ -261,7 +261,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		if (templateableElement != null) {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				s.append("<");
+				s.append("(");
 				Collection<TemplateParameter> templateParameters = templateSignature.getParameter();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
@@ -271,7 +271,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 						prefix = ", ";
 					}
 				}
-				s.append(">");
+				s.append(")");
 			}
 		}
 	}

@@ -273,7 +273,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set<Package>");
+        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set(Package)");
    }
 
     /**
@@ -284,7 +284,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package>", "Package");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set(Package)", "Package");
    }
 
     /**
@@ -681,35 +681,35 @@ public class IteratorsTest extends PivotTestSuite
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence<String>", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence(String)", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence<String>", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence(String)", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence<String>", "e1, e2| Tuple{a : String = e1, b : String = e2}");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence(String)", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence<String>", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence(String)", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence<String>", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence(String)", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence<String>", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence(String)", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence<String>", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence(String)", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence<String>", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence(String)", "e1, e2| e1 = e2");
     }
 
 	/**
@@ -729,7 +729,7 @@ public class IteratorsTest extends PivotTestSuite
         // EDate defines an OclComparable::compareTo by having a java.lang.Comparable instance class
         assertQuery(context, "let dates : Sequence(ecore::EDate) = Sequence{} in dates->sortedBy(e | e)");
         // EInt defines OclComparable::compareTo by having a behavioral mapping to the Integer type
-        assertQueryResults(context, "Sequence{1,7,9}", "let values : Sequence<ecore::EInt> = Sequence{1,9,7} in values->sortedBy(e | e)");
+        assertQueryResults(context, "Sequence{1,7,9}", "let values : Sequence(ecore::EInt) = Sequence{1,9,7} in values->sortedBy(e | e)");
     }
 	
 	public void loadEPackage(String alias, EPackage ePackage) {		

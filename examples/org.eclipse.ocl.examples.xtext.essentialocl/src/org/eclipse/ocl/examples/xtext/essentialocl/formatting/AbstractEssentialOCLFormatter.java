@@ -54,10 +54,8 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureCollectionTypeCS(FormattingConfig c, CollectionTypeCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());
-		c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());
-		c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
 	}
 
 	protected void configureIfExpCS(FormattingConfig c, IfExpCSElements a) {
@@ -171,13 +169,9 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureTupleTypeCS(FormattingConfig c, TupleTypeCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());
-		c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());
-		c.setNoSpace().before(a.getCommaKeyword_1_0_1_1_0());
-		c.setNoSpace().before(a.getCommaKeyword_1_1_1_1_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());
-		c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());
-		c.setIndentation(a.getLeftParenthesisKeyword_1_0_0(), a.getRightParenthesisKeyword_1_0_2());
-		c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
+		c.setNoSpace().before(a.getCommaKeyword_1_1_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
+		c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_2());
 	}
 }
