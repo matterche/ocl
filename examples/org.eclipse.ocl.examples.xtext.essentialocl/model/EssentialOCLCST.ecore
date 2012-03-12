@@ -84,7 +84,7 @@
         eOpposite="#//LetExpCS/variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralExpCS" eSuperTypes="#//ExpCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//SimpleNamedExpCS">
+  <eClassifiers xsi:type="ecore:EClass" name="NameExpCS" eSuperTypes="#//NamedExpCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pathName" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//PathNameCS"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NamedElement"
@@ -92,8 +92,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedExpCS" abstract="true" interface="true"
       eSuperTypes="#//ExpCS">
+    <eOperations name="getNameExp" eType="#//NameExpCS"/>
     <eOperations name="getNamedElement" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//NamedElement"/>
-    <eOperations name="getSimpleNamedExp" eType="#//SimpleNamedExpCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NavigatingArgCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="navigatingExp" eType="#//NavigatingExpCS"
@@ -135,8 +135,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="SelfExpCS" eSuperTypes="#//ExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleNamedExpCS" abstract="true" interface="true"
-      eSuperTypes="#//NamedExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="StringLiteralExpCS" eSuperTypes="#//PrimitiveLiteralExpCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

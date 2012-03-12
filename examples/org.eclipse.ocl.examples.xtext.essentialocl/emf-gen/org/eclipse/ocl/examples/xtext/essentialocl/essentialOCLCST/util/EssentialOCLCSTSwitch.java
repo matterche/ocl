@@ -31,12 +31,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -61,7 +62,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
@@ -211,7 +211,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				ConstructorExpCS constructorExpCS = (ConstructorExpCS)theEObject;
 				T result = caseConstructorExpCS(constructorExpCS);
 				if (result == null) result = caseNameExpCS(constructorExpCS);
-				if (result == null) result = caseSimpleNamedExpCS(constructorExpCS);
 				if (result == null) result = caseNamedExpCS(constructorExpCS);
 				if (result == null) result = caseExpCS(constructorExpCS);
 				if (result == null) result = caseModelElementCS(constructorExpCS);
@@ -391,7 +390,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				NameExpCS nameExpCS = (NameExpCS)theEObject;
 				T result = caseNameExpCS(nameExpCS);
-				if (result == null) result = caseSimpleNamedExpCS(nameExpCS);
 				if (result == null) result = caseNamedExpCS(nameExpCS);
 				if (result == null) result = caseExpCS(nameExpCS);
 				if (result == null) result = caseModelElementCS(nameExpCS);
@@ -554,20 +552,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(selfExpCS);
 				if (result == null) result = casePivotable(selfExpCS);
 				if (result == null) result = caseVisitableCS(selfExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSTPackage.SIMPLE_NAMED_EXP_CS:
-			{
-				SimpleNamedExpCS simpleNamedExpCS = (SimpleNamedExpCS)theEObject;
-				T result = caseSimpleNamedExpCS(simpleNamedExpCS);
-				if (result == null) result = caseNamedExpCS(simpleNamedExpCS);
-				if (result == null) result = caseExpCS(simpleNamedExpCS);
-				if (result == null) result = caseModelElementCS(simpleNamedExpCS);
-				if (result == null) result = casePivotableElementCS(simpleNamedExpCS);
-				if (result == null) result = caseElementCS(simpleNamedExpCS);
-				if (result == null) result = casePivotable(simpleNamedExpCS);
-				if (result == null) result = caseVisitableCS(simpleNamedExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1173,22 +1157,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Named Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Named Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleNamedExpCS(SimpleNamedExpCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>String Literal Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;

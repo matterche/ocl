@@ -38,7 +38,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
  * @model
  * @generated
  */
-public interface NameExpCS extends SimpleNamedExpCS {
+public interface NameExpCS extends NamedExpCS {
 
 	/**
 	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.

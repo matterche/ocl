@@ -46,6 +46,6 @@ public interface NamedExpCS extends ExpCS {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	SimpleNamedExpCS getSimpleNamedExp();
+	NameExpCS getNameExp();
 
 } // NamedExpCS

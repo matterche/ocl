@@ -154,7 +154,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
-		NameExpCS namedExp = (NameExpCS) csNavigatingExp.getSimpleNamedExp();
+		NameExpCS namedExp = csNavigatingExp.getNameExp();
 		if (namedExp != null) {
 			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp);
 		}

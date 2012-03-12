@@ -19,15 +19,13 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,7 +126,7 @@ public abstract class DecoratedNamedExpCSImpl extends ExpCSImpl implements Decor
 	 * @generated NOT
 	 */
 	public NamedElement getNamedElement() {
-		SimpleNamedExpCS simpleNamedExp = getSimpleNamedExp();
+		NameExpCS simpleNamedExp = getNameExp();
 		return simpleNamedExp != null ? simpleNamedExp.getNamedElement() : null;
 	}
 
@@ -137,10 +135,10 @@ public abstract class DecoratedNamedExpCSImpl extends ExpCSImpl implements Decor
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public SimpleNamedExpCS getSimpleNamedExp()
+	public NameExpCS getNameExp()
 	{
 		NamedExpCS namedExp = getNamedExp();
-		return namedExp != null ? namedExp.getSimpleNamedExp() : null;
+		return namedExp != null ? namedExp.getNameExp() : null;
 	}
 
 	/**

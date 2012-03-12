@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
@@ -136,7 +135,7 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public SimpleNamedExpCS getSimpleNamedExp()
+	public NameExpCS getNameExp()
 	{
 		return this;
 	}

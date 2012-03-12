@@ -140,7 +140,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 32;
+	int TUPLE_LITERAL_EXP_CS = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -150,7 +150,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 31;
+	int STRING_LITERAL_EXP_CS = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -260,7 +260,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 35;
+	int TYPE_NAME_EXP_CS = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -1052,7 +1052,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 38;
+	int VARIABLE_CS = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -1065,23 +1065,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int LET_VARIABLE_CS = 16;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS <em>Simple Named Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSimpleNamedExpCS()
-	 * @generated
-	 */
-	int SIMPLE_NAMED_EXP_CS = 30;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__LOGICAL_PARENT = NAMED_EXP_CS__LOGICAL_PARENT;
+	int NAME_EXP_CS__LOGICAL_PARENT = NAMED_EXP_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1090,7 +1080,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__PIVOT = NAMED_EXP_CS__PIVOT;
+	int NAME_EXP_CS__PIVOT = NAMED_EXP_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1099,7 +1089,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__OWNED_ANNOTATION = NAMED_EXP_CS__OWNED_ANNOTATION;
+	int NAME_EXP_CS__OWNED_ANNOTATION = NAMED_EXP_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1108,7 +1098,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
+	int NAME_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1117,7 +1107,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__CSI = NAMED_EXP_CS__CSI;
+	int NAME_EXP_CS__CSI = NAMED_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1126,70 +1116,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_NAMED_EXP_CS__PARENT = NAMED_EXP_CS__PARENT;
-
-	/**
-	 * The number of structural features of the '<em>Simple Named Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_NAMED_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__LOGICAL_PARENT = SIMPLE_NAMED_EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__PIVOT = SIMPLE_NAMED_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__OWNED_ANNOTATION = SIMPLE_NAMED_EXP_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__ORIGINAL_XMI_ID = SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__CSI = SIMPLE_NAMED_EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__PARENT = SIMPLE_NAMED_EXP_CS__PARENT;
+	int NAME_EXP_CS__PARENT = NAMED_EXP_CS__PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
@@ -1198,7 +1125,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__PATH_NAME = SIMPLE_NAMED_EXP_CS_FEATURE_COUNT + 0;
+	int NAME_EXP_CS__PATH_NAME = NAMED_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1207,7 +1134,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__ELEMENT = SIMPLE_NAMED_EXP_CS_FEATURE_COUNT + 1;
+	int NAME_EXP_CS__ELEMENT = NAMED_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Name Exp CS</em>' class.
@@ -1216,7 +1143,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS_FEATURE_COUNT = SIMPLE_NAMED_EXP_CS_FEATURE_COUNT + 2;
+	int NAME_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
@@ -3040,7 +2967,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 33;
+	int TUPLE_LITERAL_PART_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3131,7 +3058,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 34;
+	int TYPE_LITERAL_EXP_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3267,7 +3194,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnaryOperatorCS()
 	 * @generated
 	 */
-	int UNARY_OPERATOR_CS = 36;
+	int UNARY_OPERATOR_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3358,7 +3285,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 37;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3431,7 +3358,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 39;
+	int NAVIGATION_ROLE = 38;
 
 	/**
 	 * The meta object id for the '<em>Big Number</em>' data type.
@@ -3441,7 +3368,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 40;
+	int BIG_NUMBER = 39;
 
 
 	/**
@@ -4055,16 +3982,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSelfExpCS_Name();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS <em>Simple Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simple Named Exp CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS
-	 * @generated
-	 */
-	EClass getSimpleNamedExpCS();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS <em>Tuple Literal Exp CS</em>}'.
@@ -4909,16 +4826,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SELF_EXP_CS__NAME = eINSTANCE.getSelfExpCS_Name();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS <em>Simple Named Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSimpleNamedExpCS()
-		 * @generated
-		 */
-		EClass SIMPLE_NAMED_EXP_CS = eINSTANCE.getSimpleNamedExpCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
