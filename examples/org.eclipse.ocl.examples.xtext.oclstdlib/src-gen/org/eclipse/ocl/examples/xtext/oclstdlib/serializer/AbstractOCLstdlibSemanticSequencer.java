@@ -995,7 +995,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
+	 *     (name=NavigatingArgExpCS (ownedType=TypeExpCS init=ExpCS?)?)
 	 */
 	protected void sequence_NavigatingArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1004,7 +1004,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (prefix='|' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
+	 *     (prefix='|' name=NavigatingArgExpCS (ownedType=TypeExpCS init=ExpCS?)?)
 	 */
 	protected void sequence_NavigatingBarArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1013,7 +1013,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (prefix=',' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
+	 *     (prefix=',' name=NavigatingArgExpCS (ownedType=TypeExpCS init=ExpCS?)?)
 	 */
 	protected void sequence_NavigatingCommaArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1022,7 +1022,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (prefix=';' name=NavigatingArgExpCS ownedType=TypeExpCS? init=ExpCS?)
+	 *     (prefix=';' name=NavigatingArgExpCS (ownedType=TypeExpCS init=ExpCS?)?)
 	 */
 	protected void sequence_NavigatingSemiArgCS(EObject context, NavigatingArgCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

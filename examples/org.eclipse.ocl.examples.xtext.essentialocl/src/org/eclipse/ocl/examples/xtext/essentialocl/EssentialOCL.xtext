@@ -295,16 +295,16 @@ PrimaryExpCS returns ExpCS:	// These rules are ordered most rejectable first
 | 	NestedExpCS;
 
 NavigatingArgCS returns NavigatingArgCS:
-	name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+	name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingBarArgCS returns NavigatingArgCS:
-	prefix='|' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+	prefix='|' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingCommaArgCS returns NavigatingArgCS:
-	prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+	prefix=',' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingSemiArgCS returns NavigatingArgCS:
-	prefix=';' name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;
+	prefix=';' name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression
 
 NavigatingArgExpCS returns ExpCS: // Intended to be overridden
 	ExpCS

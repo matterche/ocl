@@ -3055,9 +3055,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
-	////ConstructorExpCS returns ConstructorExpCS:
-	////	pathName=PathNameCS
-	////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 	//ConstructorPartCS:
 	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
@@ -3295,22 +3292,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
-	////IndexExpCS returns IndexExpCS:
-	////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
-	////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
-	////	(atPre?='@' 'pre')?;
-	////NameExpCS returns NameExpCS:
-	////	pathName=PathNameCS;
-	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-	////  keep it as simple as possible and avoid backtracking.
-	////NavigatingExpCS returns NavigatingExpCS:
-	////	pathName=PathNameCS (atPre?='@' 'pre')?
-	////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
-	////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
-	////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
-	////	')';
+	//// Type-less init is an infix expression
 	//NavigatingArgCS:
-	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingArgCSElements getNavigatingArgCSAccess() {
 		return gaEssentialOCL.getNavigatingArgCSAccess();
 	}
@@ -3319,8 +3303,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingBarArgCS returns NavigatingArgCS:
-	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
 		return gaEssentialOCL.getNavigatingBarArgCSAccess();
 	}
@@ -3329,8 +3314,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingBarArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingCommaArgCS returns NavigatingArgCS:
-	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
 		return gaEssentialOCL.getNavigatingCommaArgCSAccess();
 	}
@@ -3339,8 +3325,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingCommaArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingSemiArgCS returns NavigatingArgCS:
-	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public EssentialOCLGrammarAccess.NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
 		return gaEssentialOCL.getNavigatingSemiArgCSAccess();
 	}

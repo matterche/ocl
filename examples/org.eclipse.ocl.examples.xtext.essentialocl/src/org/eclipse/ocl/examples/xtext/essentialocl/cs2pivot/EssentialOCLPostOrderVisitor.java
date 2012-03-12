@@ -248,13 +248,13 @@ public class EssentialOCLPostOrderVisitor
 
 	private void setParameterRole(NavigatingArgCS csArgument, NavigationRole aRole) {
 		csArgument.setRole(aRole);
-		if ((csArgument.getOwnedType() == null) && (csArgument.getInit() == null)) {
+/*		if ((csArgument.getOwnedType() == null) && (csArgument.getInit() == null)) {
 			ExpCS csExp = csArgument.getName();
 			if (csExp instanceof InfixExpCS) {
 				InfixExpCS csInfixExp = (InfixExpCS)csExp;
-				// Fixup a = b				
+				// If init without type is ever legal; Fixup a = b				
 			}
-		}
+		} */
 		ExpCS csName = csArgument.getName();
 		if (csName instanceof NameExpCS) {
 			PathNameCS csPathName = ((NameExpCS)csName).getPathName();

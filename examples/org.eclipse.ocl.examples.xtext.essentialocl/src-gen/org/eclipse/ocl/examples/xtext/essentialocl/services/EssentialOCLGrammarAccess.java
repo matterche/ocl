@@ -986,9 +986,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cInitExpressionExpCSParserRuleCall_2_0 = (RuleCall)cInitExpressionAssignment_2.eContents().get(0);
 		
-		////ConstructorExpCS returns ConstructorExpCS:
-		////	pathName=PathNameCS
-		////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 		//ConstructorPartCS:
 		//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
@@ -1880,30 +1877,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cOwnedTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_1_0 = (RuleCall)cOwnedTypeAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cEqualsSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cInitAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cInitExpCSParserRuleCall_2_1_0 = (RuleCall)cInitAssignment_2_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cInitAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_1_2_1_0 = (RuleCall)cInitAssignment_1_2_1.eContents().get(0);
 		
-		////IndexExpCS returns IndexExpCS:
-		////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
-		////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
-		////	(atPre?='@' 'pre')?;
-		////NameExpCS returns NameExpCS:
-		////	pathName=PathNameCS;
-		//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-		////  keep it as simple as possible and avoid backtracking.
-		////NavigatingExpCS returns NavigatingExpCS:
-		////	pathName=PathNameCS (atPre?='@' 'pre')?
-		////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
-		////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
-		////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
-		////	')';
+		//// Type-less init is an infix expression
 		//NavigatingArgCS:
-		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		//name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup() { return cGroup; }
 
 		//name=NavigatingArgExpCS
@@ -1912,7 +1896,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//NavigatingArgExpCS
 		public RuleCall getNameNavigatingArgExpCSParserRuleCall_0_0() { return cNameNavigatingArgExpCSParserRuleCall_0_0; }
 
-		//(":" ownedType=TypeExpCS)?
+		//(":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//":"
@@ -1925,16 +1909,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_1_0; }
 
 		//("=" init=ExpCS)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_2_0() { return cEqualsSignKeyword_2_0; }
+		public Keyword getEqualsSignKeyword_1_2_0() { return cEqualsSignKeyword_1_2_0; }
 
 		//init=ExpCS
-		public Assignment getInitAssignment_2_1() { return cInitAssignment_2_1; }
+		public Assignment getInitAssignment_1_2_1() { return cInitAssignment_1_2_1; }
 
 		//ExpCS
-		public RuleCall getInitExpCSParserRuleCall_2_1_0() { return cInitExpCSParserRuleCall_2_1_0; }
+		public RuleCall getInitExpCSParserRuleCall_1_2_1_0() { return cInitExpCSParserRuleCall_1_2_1_0; }
 	}
 
 	public class NavigatingBarArgCSElements extends AbstractParserRuleElementFinder {
@@ -1948,16 +1932,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		//// Type-less init is an infix expression
 		//NavigatingBarArgCS returns NavigatingArgCS:
-		//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 		public ParserRule getRule() { return rule; }
 
-		//prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		//prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup() { return cGroup; }
 
 		//prefix="|"
@@ -1972,7 +1957,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//NavigatingArgExpCS
 		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
 
-		//(":" ownedType=TypeExpCS)?
+		//(":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//":"
@@ -1985,16 +1970,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
 
 		//("=" init=ExpCS)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+		public Keyword getEqualsSignKeyword_2_2_0() { return cEqualsSignKeyword_2_2_0; }
 
 		//init=ExpCS
-		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+		public Assignment getInitAssignment_2_2_1() { return cInitAssignment_2_2_1; }
 
 		//ExpCS
-		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
+		public RuleCall getInitExpCSParserRuleCall_2_2_1_0() { return cInitExpCSParserRuleCall_2_2_1_0; }
 	}
 
 	public class NavigatingCommaArgCSElements extends AbstractParserRuleElementFinder {
@@ -2008,16 +1993,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		//// Type-less init is an infix expression
 		//NavigatingCommaArgCS returns NavigatingArgCS:
-		//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 		public ParserRule getRule() { return rule; }
 
-		//prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		//prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup() { return cGroup; }
 
 		//prefix=","
@@ -2032,7 +2018,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//NavigatingArgExpCS
 		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
 
-		//(":" ownedType=TypeExpCS)?
+		//(":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//":"
@@ -2045,16 +2031,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
 
 		//("=" init=ExpCS)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+		public Keyword getEqualsSignKeyword_2_2_0() { return cEqualsSignKeyword_2_2_0; }
 
 		//init=ExpCS
-		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+		public Assignment getInitAssignment_2_2_1() { return cInitAssignment_2_2_1; }
 
 		//ExpCS
-		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
+		public RuleCall getInitExpCSParserRuleCall_2_2_1_0() { return cInitExpCSParserRuleCall_2_2_1_0; }
 	}
 
 	public class NavigatingSemiArgCSElements extends AbstractParserRuleElementFinder {
@@ -2068,16 +2054,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cOwnedTypeAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_1_0 = (RuleCall)cOwnedTypeAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cEqualsSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cInitAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cInitExpCSParserRuleCall_3_1_0 = (RuleCall)cInitAssignment_3_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cInitAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cInitExpCSParserRuleCall_2_2_1_0 = (RuleCall)cInitAssignment_2_2_1.eContents().get(0);
 		
+		//// Type-less init is an infix expression
 		//NavigatingSemiArgCS returns NavigatingArgCS:
-		//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+		//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 		public ParserRule getRule() { return rule; }
 
-		//prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?
+		//prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup() { return cGroup; }
 
 		//prefix=";"
@@ -2092,7 +2079,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//NavigatingArgExpCS
 		public RuleCall getNameNavigatingArgExpCSParserRuleCall_1_0() { return cNameNavigatingArgExpCSParserRuleCall_1_0; }
 
-		//(":" ownedType=TypeExpCS)?
+		//(":" ownedType=TypeExpCS ("=" init=ExpCS)?)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//":"
@@ -2105,16 +2092,16 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_2_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_2_1_0; }
 
 		//("=" init=ExpCS)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_3_0() { return cEqualsSignKeyword_3_0; }
+		public Keyword getEqualsSignKeyword_2_2_0() { return cEqualsSignKeyword_2_2_0; }
 
 		//init=ExpCS
-		public Assignment getInitAssignment_3_1() { return cInitAssignment_3_1; }
+		public Assignment getInitAssignment_2_2_1() { return cInitAssignment_2_2_1; }
 
 		//ExpCS
-		public RuleCall getInitExpCSParserRuleCall_3_1_0() { return cInitExpCSParserRuleCall_3_1_0; }
+		public RuleCall getInitExpCSParserRuleCall_2_2_1_0() { return cInitExpCSParserRuleCall_2_2_1_0; }
 	}
 
 	public class NavigatingArgExpCSElements extends AbstractParserRuleElementFinder {
@@ -2839,9 +2826,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
-	////ConstructorExpCS returns ConstructorExpCS:
-	////	pathName=PathNameCS
-	////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 	//ConstructorPartCS:
 	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 	public ConstructorPartCSElements getConstructorPartCSAccess() {
@@ -3079,22 +3063,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
-	////IndexExpCS returns IndexExpCS:
-	////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
-	////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
-	////	(atPre?='@' 'pre')?;
-	////NameExpCS returns NameExpCS:
-	////	pathName=PathNameCS;
-	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-	////  keep it as simple as possible and avoid backtracking.
-	////NavigatingExpCS returns NavigatingExpCS:
-	////	pathName=PathNameCS (atPre?='@' 'pre')?
-	////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
-	////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
-	////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
-	////	')';
+	//// Type-less init is an infix expression
 	//NavigatingArgCS:
-	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingArgCSElements getNavigatingArgCSAccess() {
 		return (pNavigatingArgCS != null) ? pNavigatingArgCS : (pNavigatingArgCS = new NavigatingArgCSElements());
 	}
@@ -3103,8 +3074,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingBarArgCS returns NavigatingArgCS:
-	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix="|" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingBarArgCSElements getNavigatingBarArgCSAccess() {
 		return (pNavigatingBarArgCS != null) ? pNavigatingBarArgCS : (pNavigatingBarArgCS = new NavigatingBarArgCSElements());
 	}
@@ -3113,8 +3085,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingBarArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingCommaArgCS returns NavigatingArgCS:
-	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix="," name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingCommaArgCSElements getNavigatingCommaArgCSAccess() {
 		return (pNavigatingCommaArgCS != null) ? pNavigatingCommaArgCS : (pNavigatingCommaArgCS = new NavigatingCommaArgCSElements());
 	}
@@ -3123,8 +3096,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getNavigatingCommaArgCSAccess().getRule();
 	}
 
+	//// Type-less init is an infix expression
 	//NavigatingSemiArgCS returns NavigatingArgCS:
-	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
+	//	prefix=";" name=NavigatingArgExpCS (":" ownedType=TypeExpCS ("=" init=ExpCS)?)?;
 	public NavigatingSemiArgCSElements getNavigatingSemiArgCSAccess() {
 		return (pNavigatingSemiArgCS != null) ? pNavigatingSemiArgCS : (pNavigatingSemiArgCS = new NavigatingSemiArgCSElements());
 	}
