@@ -68,35 +68,35 @@ Workflow {
     	in = "${OCLinEcorextext}"
     	out = "${OCLinEcorextextXBNF}"
     }
-/*    component = QvtoWorkflowComponent {
+    component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/normalize.qvto"
     	in = "${EssentialOCLxtextXBNF}"
     	out = "${EssentialOCLnormalXBNF}"
-    } */
+    }
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/normalize.qvto"
     	in = "${OCLinEcorextextXBNF}"
     	out = "${OCLinEcorenormalXBNF}"
     }
-/*    component = QvtoWorkflowComponent {
+    component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/inline.qvto"
     	in = "${EssentialOCLnormalXBNF}"
     	out = "${EssentialOCLinlineXBNF}"
-    } */
+    }
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/inline.qvto"
     	in = "${OCLinEcorenormalXBNF}"
     	out = "${OCLinEcoreinlineXBNF}"
     }
-/*    component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
+    component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
     	in = "${EssentialOCLinlineXBNF}"
     	javaFolder = "../${projectName}/generatedModels"
     	javaPackageName = "${projectName}"
-    } */
+    }
     component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
     	in = "${OCLinEcoreinlineXBNF}"
     	javaFolder = "../${projectName}/generatedModels"

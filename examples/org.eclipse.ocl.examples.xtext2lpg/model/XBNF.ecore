@@ -4,14 +4,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" eType="#//AbstractRule"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentRule" eType="#//AbstractRule"
         resolveProxies="false" eOpposite="#//AbstractRule/element"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
-        eType="#//AbstractElement" containment="true" eOpposite="#//AbstractElement/rule"/>
+        eType="#//AbstractElement" containment="true" eOpposite="#//AbstractElement/parentRule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -67,8 +67,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="ParserGrammar" eSuperTypes="#//Grammar"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParserRule" eSuperTypes="#//TypedRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="RuleCall" eSuperTypes="#//AbstractElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" ordered="false" lowerBound="1"
-        eType="#//AbstractRule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referredRule" ordered="false"
+        lowerBound="1" eType="#//AbstractRule"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuleCallAssignment" eSuperTypes="#//Assignment #//RuleCall"/>
   <eClassifiers xsi:type="ecore:EClass" name="Syntax">

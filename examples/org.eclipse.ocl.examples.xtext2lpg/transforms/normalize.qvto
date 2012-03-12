@@ -179,7 +179,7 @@ mapping XBNF::Syntax::grammars2parserGrammar() : XBNF::ParserGrammar {
 	rules := parserRuleNames->iterate(prn; acc : OrderedSet(ParserRule) = OrderedSet{} |
 		let pr : ParserRule = parserRules->select(name = prn)->any(true) in acc->append(pr.map parserRule2rule()));
 --	rules := sortedParserRules->iterate(pr; acc : Sequence(ParserRule) = Sequence{} | acc->append(pr.map parserRule2rule()));
-	goals := self.grammars.goals.resolveone(TypedRule);
+	goals := self.grammars->select(oclIsKindOf(ParserGrammar)).goals.resolveone(TypedRule);
 }
 
 --mapping XBNF::ParserGrammar::parserGrammar2grammar() : XBNF::ParserGrammar {
@@ -246,7 +246,7 @@ mapping XBNF::ActionAssignment::actionAssignment2element(parentRule : String, su
 }
 
 mapping XBNFwc::Alternatives::alternativesAtRoot2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::Disjunction
-when { self.rule <> null }
+when { self.parentRule <> null }
 {
 	debug := self.debug;
 	conjunctions := self.elements->iterate(e; acc : Sequence(Conjunction) = Sequence {} |
@@ -272,7 +272,7 @@ mapping XBNFwc::Alternatives::alternativesNested2element(parentRule : String, su
 	};
 	subRules->add(oneRule);
 	debug := oneRule.name;
-	rule := oneRule;
+	referredRule := oneRule;
 }
 
 mapping XBNF::CharacterRange::characterRange2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::CharacterRange {
@@ -304,19 +304,19 @@ mapping XBNFwc::OneOrMore::oneOrMore2element(parentRule : String, subRules : Lis
 	var oneOrMoreRule : XBNF::UntypedRule = oneRule.map rule2oneOrMoreSubRule(parentRule, subRules);
 	subRules->add(oneOrMoreRule);
 	debug := oneOrMoreRule.name;
-	rule := oneOrMoreRule;
+	referredRule := oneOrMoreRule;
 }
 
 mapping XBNF::RuleCall::ruleCall2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::RuleCall {
 	debug := self.debug;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XBNF::RuleCallAssignment::ruleCallAssignment2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::RuleCallAssignment {
 	debug := self.debug;
 	feature := self.feature;
 	operator := self.operator;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XBNFwc::Succession::succession2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::Conjunction {
@@ -351,7 +351,7 @@ mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, subRules : L
 					elements := Sequence {
 						object XBNF::RuleCall {
 							debug := oneOrMoreRule.name;
-							rule := oneOrMoreRule;
+							referredRule := oneOrMoreRule;
 						}
 					};
 				}
@@ -361,7 +361,7 @@ mapping XBNFwc::ZeroOrMore::zeroOrMore2element(parentRule : String, subRules : L
 	};
 	subRules->add(zeroOrMoreRule);
 	debug := zeroOrMoreRule.name;
-	rule := zeroOrMoreRule
+	referredRule := zeroOrMoreRule
 }
 
 mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, subRules : List(XBNF::UntypedRule), disambiguator : OclAny) : XBNF::RuleCall {
@@ -385,7 +385,7 @@ mapping XBNFwc::ZeroOrOne::zeroOrOne2element(parentRule : String, subRules : Lis
 	};
 	subRules->add(zeroOrOneRule);
 	debug := zeroOrOneRule.name;
-	rule := zeroOrOneRule
+	referredRule := zeroOrOneRule
 }
 
 -- Helpers
@@ -412,7 +412,7 @@ mapping XBNF::AbstractRule::rule2oneOrMoreSubRule(parentRule : String, subRules 
 				elements := Sequence {
 					object RuleCall {
 						debug := self.name;
-						rule := self;
+						referredRule := self;
 					}
 				};
 			},
@@ -420,11 +420,11 @@ mapping XBNF::AbstractRule::rule2oneOrMoreSubRule(parentRule : String, subRules 
 				elements := Sequence {
 					object XBNF::RuleCall {
 						debug := result.name;
-						rule := result;
+						referredRule := result;
 					},
 					object XBNF::RuleCall {
 						debug := self.name;
-						rule := self;
+						referredRule := self;
 					}
 				};
 			}

@@ -206,7 +206,7 @@ mapping XTEXT::NegatedToken::negatedToken2element() : XBNF::NegatedToken {
 
 mapping XTEXT::RuleCall::ruleCall2element() : XBNF::RuleCall {
 	debug := self.rule.name;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	referredRule := self.rule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XTEXT::UnorderedGroup::unorderedGroup2element() : XBNF::RuleCall {
@@ -243,7 +243,7 @@ mapping XTEXT::CrossReference::crossReference2assignments(assignment : Assignmen
 	debug := theFeature.name + assignment.operator + theRule.name;
 	feature := theFeature;
 	operator := assignment.operator;
-	rule := theRule.late resolveone(XBNF::AbstractRule);
+	referredRule := theRule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XTEXT::Keyword::keyword2assignments(assignment : Assignment, theFeature : EStructuralFeature) : XBNF::KeywordAssignment
@@ -259,7 +259,7 @@ mapping XTEXT::RuleCall::ruleCall2assignments(assignment : Assignment, theFeatur
 	debug := theFeature.name + assignment.operator + self.rule.name;
 	feature := theFeature;
 	operator := assignment.operator;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	referredRule := self.rule.late resolveone(XBNF::AbstractRule);
 }
 
 ---------------------------------------------------------------------------------------

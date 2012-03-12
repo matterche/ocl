@@ -16,7 +16,9 @@
  */
 package org.eclipse.ocl.examples.build.acceleo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -28,6 +30,24 @@ public class NameQueries
 	public static final Logger logger = Logger.getLogger(NameQueries.class);	
 	private static Map<String, Integer> counters = new HashMap<String, Integer>();
 	private static Map<Object, String> definedSymbols = new HashMap<Object, String>();
+
+	public static List<Integer> codePoints(String s) {
+		List<Integer> results = new ArrayList<Integer>();
+		for (int i = 0; i < s.length(); i++) {
+			int c = s.charAt(i);
+			results.add(c);
+		}
+		return results;
+	}
+
+	public static List<String> convertStrings(String s) {
+		List<String> results = new ArrayList<String>();
+		for (int i = 0; i < s.length(); i++) {
+			String c = s.substring(i, i+1);
+			results.add(c);
+		}
+		return results;
+	}
 	
 	public static String getMoniker(Element element) {
 		return Pivot2Moniker.toString(element);

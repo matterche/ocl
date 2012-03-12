@@ -95,8 +95,8 @@ mapping XBNF::NegatedToken::negatedToken2lexerElement() : XBNF::UntilToken {
 }
 
 mapping XBNF::RuleCall::ruleCall2lexerElement() : XBNF::RuleCall {
-	debug := self.rule.name;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	debug := self.referredRule.name;
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XBNF::UntilToken::untilToken2lexerElement() : XBNF::UntilToken {
@@ -168,7 +168,7 @@ helper TypedRule::getInlineables() : Set(UntypedRule)
 		let disjunction : Disjunction = r.element.oclAsType(Disjunction) in
 		let elements : Collection(AbstractElement) = disjunction.conjunctions.elements in
 		let ruleCalls : Collection(RuleCall) = elements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall) in
-		let calledRules : Set(AbstractRule) = ruleCalls.rule->asSet() in
+		let calledRules : Set(AbstractRule) = ruleCalls.referredRule->asSet() in
 		calledRules->includes(r));
 	var maybeInlineables : Set(UntypedRule) = self.subrules - recursions;
 	return self.getInlineables_getMore(Set{}, maybeInlineables);
@@ -179,7 +179,7 @@ helper TypedRule::getInlineables_getMore(knownInlineables : Set(UntypedRule), ma
 		let disjunction : Disjunction = element.oclAsType(Disjunction) in
 		let elements : Collection(AbstractElement) = disjunction.conjunctions.elements in
 		let ruleCalls : Collection(RuleCall) = elements->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall) in
-		let calledRules : Set(AbstractRule) = ruleCalls.rule->asSet() in
+		let calledRules : Set(AbstractRule) = ruleCalls.referredRule->asSet() in
 		calledRules->intersection(maybeInlineables)->isEmpty());
 	return	if moreInlineables->isEmpty()
 			then knownInlineables
@@ -252,8 +252,8 @@ helper Epsilon::inlineInlineables(conjunction : Conjunction, inlineables : Set(A
 }
 helper RuleCall::inlineInlineables(conjunction : Conjunction, inlineables : Set(AbstractRule)) : Set(ElementRun)
 {
-	return	if inlineables->includes(self.rule)
-			then self.rule.inlineInlineables_getSeqSeq(inlineables)
+	return	if inlineables->includes(self.referredRule)
+			then self.referredRule.inlineInlineables_getSeqSeq(inlineables)
 			else Set{object ElementRun { elements := Sequence{self}; }}
 			endif;
 }
@@ -314,7 +314,7 @@ inherits XBNF::Keyword::keyword2element
 
 mapping XBNF::RuleCall::ruleCall2element(disambiguator : ElementRun) : XBNF::RuleCall {
 	debug := self.debug;
-	rule := self.rule.late resolveone(XBNF::AbstractRule);
+	referredRule := self.referredRule.late resolveone(XBNF::AbstractRule);
 }
 
 mapping XBNF::RuleCallAssignment::ruleCallAssignment2element(disambiguator : ElementRun) : XBNF::RuleCallAssignment

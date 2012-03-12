@@ -108,36 +108,48 @@ KeyWord ::=
 %End
 
 %Export
-	AT
-	CARET
-	CARETCARET
-	QUESTIONMARK
+[for (text : String | syntax.getTerminalRules().name->asSet()->sortedBy(n | n))]
+	[text/]
+[/for]
+
+[for (keywordValue : String | syntax.getPunctValues())]
+	[keywordValue.getLabel()/]
+[/for]
+%End
+
+%Terminals
+[let chars : OrderedSet(String) = syntax.getPunctValues().charSeq()->asSet()->sortedBy(n | n)]
+[let alphas : OrderedSet(String) = chars->select(matches('[0-9a-zA-Z]*'))]
+[let puncts : OrderedSet(String) = chars->reject(matches('[0-9a-zA-Z]*'))]
+	[for (c : String | alphas) separator(' ')][c/][/for]
+[for (c : String | puncts)]
+	[c.getLabel()/] ::= '[c/]'
+[/for]
+[/let]
+[/let]
+[/let]
+%End
+
+%Start
+	Token
 %End
 
 %Rules
-	Token ::= '@'
+[for (keywordValue : String | syntax.getPunctValues())]
+	Token ::= [for (c : String | keywordValue.charSeq()) separator(' ')]'[c/]'[/for]
 		/.$BeginAction
-					makeToken($_AT);
+			makeToken($_[keywordValue.getLabel()/]);
 		  $EndAction
 		./
 
-	Token ::= '^'
+[/for]
+[for (text : String | syntax.getTerminalRules().name->asSet()->sortedBy(n | n))]
+	[text/] ::= '#'
 		/.$BeginAction
-					makeToken($_CARET);
+			makeToken($_[text/]);
 		  $EndAction
 		./
-
-	Token ::= '^' '^'
-		/.$BeginAction
-					makeToken($_CARETCARET);
-		  $EndAction
-		./
-		
-	Token ::= '?'
-		/.$BeginAction
-					makeToken($_QUESTIONMARK);
-		  $EndAction
-		./
+[/for]
 %End
 [/file]
 [/let]
@@ -179,17 +191,20 @@ KeyWord ::=
 	./
 %End
 
-%KeyWords
+--%KeyWords
 -- Reserved keywords
-	body context def derive endpackage init inv package post pre static
+--	body context def derive endpackage init inv package post pre static
 
 -- Restricted keywords
-	OclMessage
-%End
+--	OclMessage
+--%End
 
 %Terminals
-[for (text : String | parser.syntax.eAllContents(TerminalRule).name->asSet()->sortedBy(n | n))]
+[for (text : String | parser.syntax.getTerminalRules().name->asSet()->sortedBy(n | n))]
 	[text/]
+[/for]
+[for (keywordValue : String | parser.syntax.getPunctValues())]
+	[keywordValue.getLabel()/] ::= '[keywordValue/]'
 [/for]
 %End
 
@@ -235,27 +250,60 @@ KeyWord ::=
 %empty[/template]
 
 [template public generateTerm(element : RuleCall)]
-[element.rule.name/][/template]
+[element.referredRule.name/][/template]
 
 [template public generateTerm(element : RuleCallAssignment)]
-[element.rule.name/][/template]
+[element.referredRule.name/][/template]
 
 [template public generateTerm(element : Keyword)]
-'[element.value/]'[/template]
+[element.value.getLabel()/][/template]
 
 [template public generateTerm(element : KeywordAssignment)]
-'[element.value/]'[/template]
+[element.value.getLabel()/][/template]
 
 [query public getKeywordValues(syntax : Syntax) : OrderedSet(String) =
 eAllContents(Keyword).value->asSet()->sortedBy(n | n)/]
 
+[query public getTerminalRules(syntax : Syntax) : OrderedSet(TerminalRule) =
+syntax.eAllContents(TerminalRule)->asSet()->sortedBy(name)/]
+
 [query public getKWValues(syntax : Syntax) : OrderedSet(String) =
 syntax.getKeywordValues()->select(matches('[a-zA-Z]+'))/]
+[query public getPunctValues(syntax : Syntax) : OrderedSet(String) =
+syntax.getKeywordValues()->reject(matches('[a-zA-Z]+'))/]
 
 [query public getLabel(keywordValue : String) : String =
-if keywordValue.matches('[a-zA-Z]*')
+if keywordValue.matches('[0-9a-zA-Z]*')
 then keywordValue
-else '_' + keywordValue + '_'
+else let label : String = keywordValue
+	.substituteAll('&', 'AND')
+	.substituteAll('@', 'AT')
+	.substituteAll('|', 'BAR')
+	.substituteAll('^', 'CARET')
+	.substituteAll(':', 'COLON')
+	.substituteAll(',', 'COMMA')
+	.substituteAll('.', 'DOT')
+	.substituteAll('=', 'EQUALS')
+	.substituteAll('#', 'HASH')
+	.substituteAll('<', 'LANGLE')
+	.substituteAll('{', 'LBRACE')
+	.substituteAll('(', 'LPAREN')
+	.substituteAll('[', 'LSQUARE')
+	.substituteAll('-', 'MINUS')
+	.substituteAll('!', 'PLING')
+	.substituteAll('+', 'PLUS')
+	.substituteAll('?', 'QUERY')
+	.substituteAll('>', 'RANGLE')
+	.substituteAll('}', 'RBRACE')
+	.substituteAll(')', 'RPAREN')
+	.substituteAll(']', 'RSQUARE')
+	.substituteAll(';', 'SEMICOLON')
+	.substituteAll('/', 'SLASH')
+	.substituteAll('*', 'STAR') in
+	if label.matches('[a-zA-Z]*')
+	then label
+	else keywordValue.codePoints()->iterate(c : Integer; acc : String = '' | acc + '_' + c.toString())
+	endif
 endif/]
 
 [query public getSyntaxName(syntax : Syntax) : String = 
@@ -269,3 +317,9 @@ let name : String = syntax.name in
 let lastDot : Integer = name.lastIndex('.') in
 let lastCharacter : Integer = if lastDot > 0 then lastDot-1 else name.size() endif in
 name.substring(1, lastCharacter)/]
+
+[query public charSeq(s : String) : Sequence(String) =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'convertStrings(java.lang.String)', Sequence{s}) /]
+
+[query public codePoints(s : String) : Sequence(Integer) =
+invoke('org.eclipse.ocl.examples.build.acceleo.NameQueries', 'codePoints(java.lang.String)', Sequence{s}) /]
