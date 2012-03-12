@@ -767,7 +767,10 @@
     <type metamodel="//@metamodelDeclarations.3">
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST#//ExpCS"/>
     </type>
-    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.59"/>
+    <alternatives xsi:type="xtext:Alternatives">
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.59"/>
+      <elements xsi:type="xtext:RuleCall" rule="//@rules.72"/>
+    </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="InfixedExpCS">
     <type metamodel="//@metamodelDeclarations.3">
@@ -975,7 +978,6 @@
       <elements xsi:type="xtext:RuleCall" rule="//@rules.46"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.42"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.55"/>
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.72"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.71"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.74"/>
     </alternatives>

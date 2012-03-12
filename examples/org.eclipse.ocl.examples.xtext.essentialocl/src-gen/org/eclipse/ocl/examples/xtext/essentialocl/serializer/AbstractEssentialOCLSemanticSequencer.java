@@ -268,12 +268,8 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				else break;
 			case EssentialOCLCSTPackage.LET_EXP_CS:
 				if(context == grammarAccess.getExpCSRule() ||
-				   context == grammarAccess.getInfixedExpCSRule() ||
-				   context == grammarAccess.getInfixedExpCSAccess().getInfixExpCSOwnedExpressionAction_1_0() ||
 				   context == grammarAccess.getLetExpCSRule() ||
-				   context == grammarAccess.getNavigatingArgExpCSRule() ||
-				   context == grammarAccess.getPrefixedExpCSRule() ||
-				   context == grammarAccess.getPrimaryExpCSRule()) {
+				   context == grammarAccess.getNavigatingArgExpCSRule()) {
 					sequence_LetExpCS(context, (LetExpCS) semanticObject); 
 					return; 
 				}

@@ -252,7 +252,8 @@ TypeExpCS returns base::TypedRefCS:
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
-	InfixedExpCS;
+	InfixedExpCS
+| 	LetExpCS;
 
 InfixedExpCS returns ExpCS:
 	PrefixedExpCS
@@ -290,7 +291,6 @@ PrimaryExpCS returns ExpCS:	// These rules are ordered most rejectable first
 | 	TupleLiteralExpCS
 | 	CollectionLiteralExpCS
 | 	TypeLiteralExpCS
-| 	LetExpCS
 | 	IfExpCS
 | 	NestedExpCS;
 
