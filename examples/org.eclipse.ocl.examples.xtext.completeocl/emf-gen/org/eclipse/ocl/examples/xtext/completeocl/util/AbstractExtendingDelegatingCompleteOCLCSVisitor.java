@@ -116,10 +116,6 @@ public abstract class AbstractExtendingDelegatingCompleteOCLCSVisitor<R, C, D ex
 		return visitContextConstraintCS(object);
 	}
 
-	public R visitPreExpCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS object) {
-		return delegate.visitDecoratedNamedExpCS(object);
-	}
-
 	public R visitPropertyContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS object) {
 		return visitFeatureContextDeclCS(object);
 	}

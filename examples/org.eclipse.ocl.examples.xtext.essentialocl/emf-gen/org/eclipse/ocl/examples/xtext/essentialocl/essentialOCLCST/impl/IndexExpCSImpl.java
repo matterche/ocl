@@ -44,7 +44,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  *
  * @generated
  */
-public class IndexExpCSImpl extends DecoratedNamedExpCSImpl implements IndexExpCS
+public class IndexExpCSImpl extends NameExpCSImpl implements IndexExpCS
 {
 	/**
 	 * The cached value of the '{@link #getFirstIndexes() <em>First Indexes</em>}' containment reference list.

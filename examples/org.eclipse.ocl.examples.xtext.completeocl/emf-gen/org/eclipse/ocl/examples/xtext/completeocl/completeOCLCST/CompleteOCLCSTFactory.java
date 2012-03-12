@@ -144,15 +144,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	PreCS createPreCS();
 
 	/**
-	 * Returns a new object of class '<em>Pre Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pre Exp CS</em>'.
-	 * @generated
-	 */
-	PreExpCS createPreExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Post CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

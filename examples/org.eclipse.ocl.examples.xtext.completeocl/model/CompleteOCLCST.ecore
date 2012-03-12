@@ -73,7 +73,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PostCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PreCS" eSuperTypes="#//ContextConstraintCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PreExpCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//DecoratedNamedExpCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyContextDeclCS" eSuperTypes="#//FeatureContextDeclCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/Pivot.ecore#//Property"
         changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>

@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTyp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
@@ -48,13 +47,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
@@ -176,11 +175,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createContextCSAdapter();
 			}
 			@Override
-			public Adapter caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
-			{
-				return createDecoratedNamedExpCSAdapter();
-			}
-			@Override
 			public Adapter caseExpCS(ExpCS object)
 			{
 				return createExpCSAdapter();
@@ -211,6 +205,11 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createInvalidLiteralExpCSAdapter();
 			}
 			@Override
+			public Adapter caseInvocationExpCS(InvocationExpCS object)
+			{
+				return createInvocationExpCSAdapter();
+			}
+			@Override
 			public Adapter caseLetExpCS(LetExpCS object)
 			{
 				return createLetExpCSAdapter();
@@ -239,11 +238,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseNavigatingArgCS(NavigatingArgCS object)
 			{
 				return createNavigatingArgCSAdapter();
-			}
-			@Override
-			public Adapter caseNavigatingExpCS(NavigatingExpCS object)
-			{
-				return createNavigatingExpCSAdapter();
 			}
 			@Override
 			public Adapter caseNavigationOperatorCS(NavigationOperatorCS object)
@@ -528,21 +522,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS <em>Decorated Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS
-	 * @generated
-	 */
-	public Adapter createDecoratedNamedExpCSAdapter()
-	{
-		return null;
-	}
-
-/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS <em>Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -633,6 +612,21 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS <em>Invocation Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS
+	 * @generated
+	 */
+	public Adapter createInvocationExpCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS <em>Let Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -718,21 +712,6 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNavigatingArgCSAdapter()
-	{
-		return null;
-	}
-
-/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS <em>Navigating Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS
-	 * @generated
-	 */
-	public Adapter createNavigatingExpCSAdapter()
 	{
 		return null;
 	}

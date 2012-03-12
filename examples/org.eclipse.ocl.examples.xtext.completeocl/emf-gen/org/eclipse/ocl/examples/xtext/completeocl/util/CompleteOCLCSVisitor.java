@@ -47,6 +47,5 @@ public interface CompleteOCLCSVisitor<R, C> extends org.eclipse.ocl.examples.xte
 	R visitPathNameDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS object);
 	R visitPostCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS object);
 	R visitPreCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS object);
-	R visitPreExpCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS object);
 	R visitPropertyContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS object);
 }

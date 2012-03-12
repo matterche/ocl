@@ -49,11 +49,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -141,8 +141,8 @@ public class EssentialOCLCS2MonikerVisitor
 		int index = 0;
 		if (pivotingFeature.isMany()) {
 			index = ((List<?>)pivotingParent.eGet(pivotingFeature)).indexOf(pivotingChild);
-			if (pivotingFeature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT) {
-				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)pivotingParent;
+			if (pivotingFeature == EssentialOCLCSTPackage.Literals.INVOCATION_EXP_CS__ARGUMENT) {
+				InvocationExpCS csNavigatingExp = (InvocationExpCS)pivotingParent;
 				NavigatingArgCS csNavigatingArg = csNavigatingExp.getArgument().get(index);
 				switch (csNavigatingArg.getRole()) {
 					case ITERATOR: pivotingFeature = PivotPackage.Literals.LOOP_EXP__ITERATOR; break;
@@ -307,6 +307,13 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	@Override
+	public Boolean visitInvocationExpCS(InvocationExpCS object) {
+		appendExpPrefix(object);
+		context.append("navexp");
+		return true;
+	}
+
+	@Override
 	public Boolean visitLetExpCS(LetExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_LET_EXP);
@@ -344,13 +351,6 @@ public class EssentialOCLCS2MonikerVisitor
 	public Boolean visitNavigatingArgCS(NavigatingArgCS object) {
 		appendExpPrefix(object);
 		context.append("navarg");		
-		return true;
-	}
-
-	@Override
-	public Boolean visitNavigatingExpCS(NavigatingExpCS object) {
-		appendExpPrefix(object);
-		context.append("navexp");
 		return true;
 	}
 

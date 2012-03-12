@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTyp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
@@ -47,13 +46,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
@@ -249,20 +248,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS:
-			{
-				DecoratedNamedExpCS decoratedNamedExpCS = (DecoratedNamedExpCS)theEObject;
-				T result = caseDecoratedNamedExpCS(decoratedNamedExpCS);
-				if (result == null) result = caseNamedExpCS(decoratedNamedExpCS);
-				if (result == null) result = caseExpCS(decoratedNamedExpCS);
-				if (result == null) result = caseModelElementCS(decoratedNamedExpCS);
-				if (result == null) result = casePivotableElementCS(decoratedNamedExpCS);
-				if (result == null) result = caseElementCS(decoratedNamedExpCS);
-				if (result == null) result = casePivotable(decoratedNamedExpCS);
-				if (result == null) result = caseVisitableCS(decoratedNamedExpCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EssentialOCLCSTPackage.EXP_CS:
 			{
 				ExpCS expCS = (ExpCS)theEObject;
@@ -305,7 +290,7 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				IndexExpCS indexExpCS = (IndexExpCS)theEObject;
 				T result = caseIndexExpCS(indexExpCS);
-				if (result == null) result = caseDecoratedNamedExpCS(indexExpCS);
+				if (result == null) result = caseNameExpCS(indexExpCS);
 				if (result == null) result = caseNamedExpCS(indexExpCS);
 				if (result == null) result = caseExpCS(indexExpCS);
 				if (result == null) result = caseModelElementCS(indexExpCS);
@@ -341,6 +326,21 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(invalidLiteralExpCS);
 				if (result == null) result = casePivotable(invalidLiteralExpCS);
 				if (result == null) result = caseVisitableCS(invalidLiteralExpCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EssentialOCLCSTPackage.INVOCATION_EXP_CS:
+			{
+				InvocationExpCS invocationExpCS = (InvocationExpCS)theEObject;
+				T result = caseInvocationExpCS(invocationExpCS);
+				if (result == null) result = caseNameExpCS(invocationExpCS);
+				if (result == null) result = caseNamedExpCS(invocationExpCS);
+				if (result == null) result = caseExpCS(invocationExpCS);
+				if (result == null) result = caseModelElementCS(invocationExpCS);
+				if (result == null) result = casePivotableElementCS(invocationExpCS);
+				if (result == null) result = caseElementCS(invocationExpCS);
+				if (result == null) result = casePivotable(invocationExpCS);
+				if (result == null) result = caseVisitableCS(invocationExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -422,21 +422,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(navigatingArgCS);
 				if (result == null) result = casePivotable(navigatingArgCS);
 				if (result == null) result = caseVisitableCS(navigatingArgCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS:
-			{
-				NavigatingExpCS navigatingExpCS = (NavigatingExpCS)theEObject;
-				T result = caseNavigatingExpCS(navigatingExpCS);
-				if (result == null) result = caseDecoratedNamedExpCS(navigatingExpCS);
-				if (result == null) result = caseNamedExpCS(navigatingExpCS);
-				if (result == null) result = caseExpCS(navigatingExpCS);
-				if (result == null) result = caseModelElementCS(navigatingExpCS);
-				if (result == null) result = casePivotableElementCS(navigatingExpCS);
-				if (result == null) result = caseElementCS(navigatingExpCS);
-				if (result == null) result = casePivotable(navigatingExpCS);
-				if (result == null) result = caseVisitableCS(navigatingExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -805,22 +790,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -917,6 +886,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Invocation Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Invocation Exp CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInvocationExpCS(InvocationExpCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Let Exp CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1008,22 +993,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	 * @generated
 	 */
 	public T caseNavigatingArgCS(NavigatingArgCS object)
-	{
-		return null;
-	}
-
-/**
-	 * Returns the result of interpreting the object as an instance of '<em>Navigating Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Navigating Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNavigatingExpCS(NavigatingExpCS object)
 	{
 		return null;
 	}

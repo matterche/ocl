@@ -73,10 +73,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitDecoratedNamedExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS object) {
-		return null;
-	}
-
 	public R visitExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS object) {
 		return null;
 	}
@@ -101,6 +97,10 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitInvocationExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS object) {
+		return null;
+	}
+
 	public R visitLetExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS object) {
 		return null;
 	}
@@ -118,10 +118,6 @@ public abstract class AbstractNullEssentialOCLCSVisitor<R, C>
 	}
 
 	public R visitNavigatingArgCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS object) {
-		return null;
-	}
-
-	public R visitNavigatingExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS object) {
 		return null;
 	}
 

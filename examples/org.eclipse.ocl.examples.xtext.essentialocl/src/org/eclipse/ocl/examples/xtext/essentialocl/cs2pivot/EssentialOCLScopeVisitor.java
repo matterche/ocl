@@ -29,10 +29,10 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
@@ -43,8 +43,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ConstructorPartCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.InvocationExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.LetExpCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigatingExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigationOperatorCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TupleLiteralExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
@@ -107,6 +107,11 @@ public class EssentialOCLScopeVisitor
 	}
 
 	@Override
+	public CSScopeAdapter visitInvocationExpCS(InvocationExpCS eObject) {
+		return InvocationExpCSScopeAdapter.INSTANCE;
+	}
+
+	@Override
 	public CSScopeAdapter visitLetExpCS(LetExpCS eObject) {
 		return LetExpCSScopeAdapter.INSTANCE;
 	}
@@ -119,11 +124,6 @@ public class EssentialOCLScopeVisitor
 	@Override
 	public CSScopeAdapter visitNavigatingArgCS(NavigatingArgCS eObject) {
 		return EmptyCSScopeAdapter.INSTANCE;		// FIXME iterators
-	}
-
-	@Override
-	public CSScopeAdapter visitNavigatingExpCS(NavigatingExpCS eObject) {
-		return NavigatingExpCSScopeAdapter.INSTANCE;
 	}
 
 	@Override

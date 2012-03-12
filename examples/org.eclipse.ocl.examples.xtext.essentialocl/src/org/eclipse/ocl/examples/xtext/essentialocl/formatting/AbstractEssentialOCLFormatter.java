@@ -20,17 +20,18 @@ import org.eclipse.ocl.examples.xtext.base.formatting.AbstractBaseFormatter;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionLiteralExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.CollectionTypeCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IfExpCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IndexExpCSElements;
+//import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.IndexExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.LetExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityBoundsCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityStringCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingCommaArgCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingExpCSElements;
+//import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingSemiArgCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigationOperatorCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NestedExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.PathNameCSElements;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.PrimaryExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.TupleLiteralExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.TupleTypeCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -64,15 +65,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setIndentation(a.getIfKeyword_0(), a.getEndifKeyword_6());
 	}
 
-	protected void configureIndexExpCS(FormattingConfig c, IndexExpCSElements a) {
-		c.setNoSpace().around(a.getLeftSquareBracketKeyword_1_1());
-		c.setNoSpace().after(a.getCommaKeyword_1_3_0());
-		c.setNoSpace().before(a.getRightSquareBracketKeyword_1_4());
-		c.setNoSpace().around(a.getLeftSquareBracketKeyword_1_5_0());
-		c.setNoSpace().after(a.getCommaKeyword_1_5_2_0());
-		c.setNoSpace().before(a.getRightSquareBracketKeyword_1_5_3());
-	}
-
 	protected void configureLetExpCS(FormattingConfig c, LetExpCSElements a) {
 		c.setIndentation(a.getLetKeyword_0(), a.getInKeyword_3());
 		c.setLinewrap().before(a.getLetKeyword_0());
@@ -100,11 +92,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setNoSpace().before(a.getPrefixCommaKeyword_0_0());
 	}
 
-	protected void configureNavigatingExpCS(FormattingConfig c, NavigatingExpCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_1());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_3());
-	}
-
 	protected void configureNavigatingSemiArgCS(FormattingConfig c, NavigatingSemiArgCSElements a) {
 		c.setNoSpace().before(a.getPrefixSemicolonKeyword_0_0());
 	}
@@ -112,11 +99,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	protected void configureNavigationOperatorCS(FormattingConfig c, NavigationOperatorCSElements a) {
 		c.setNoSpace().around(a.getNameAssignment());
 	}
-
-//	protected void configureNavigationExpCS(FormattingConfig c, NavigationExpCSElements a) {
-//		c.setNoSpace().around(a.getOpFullStopKeyword_1_1_0_0());
-//		c.setNoSpace().around(a.getOpHyphenMinusGreaterThanSignKeyword_1_1_0_1());
-//	}
 
 	protected void configureNestedExpCS(FormattingConfig c, NestedExpCSElements a) {
 		c.setNoSpace().after(a.getLeftParenthesisKeyword_0());
@@ -127,9 +109,22 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	    c.setNoSpace().around(a.getColonColonKeyword_1_0());
 	}
 
-//	protected void configurePreExpCS(FormattingConfig c, PreExpCSElements a) {
-//		c.setNoSpace().after(a.getCommercialAtKeyword_1());
-//	}
+	protected void configurePrimaryExpCS(FormattingConfig c, PrimaryExpCSElements a) {
+		c.setNoSpace().around(a.getLeftSquareBracketKeyword_0_2());
+		c.setNoSpace().after(a.getCommaKeyword_0_4_0());
+		c.setNoSpace().before(a.getRightSquareBracketKeyword_0_5());
+		c.setNoSpace().around(a.getLeftSquareBracketKeyword_0_6_0());
+		c.setNoSpace().after(a.getCommaKeyword_0_6_2_0());
+		c.setNoSpace().before(a.getRightSquareBracketKeyword_0_6_3());
+		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_0_7_0_0());
+		c.setNoSpace().around(a.getLeftCurlyBracketKeyword_1_2());
+		c.setNoSpace().after(a.getCommaKeyword_1_4_0());
+		c.setNoSpace().around(a.getRightCurlyBracketKeyword_1_5());
+		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_2_2_0_0());
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_2_3());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_2_5());
+		c.setNoSpace().after(a.getAtPreCommercialAtKeyword_3_2_0_0());
+	}
 
 /*	protected void configureRoundBracketExpCS(FormattingConfig c, RoundBracketExpCSElements a) {
 		c.setNoSpace().around(a.getLeftParenthesisKeyword_2());

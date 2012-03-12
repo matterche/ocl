@@ -37,7 +37,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContex
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 
 /**
@@ -102,7 +101,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS: return createPackageDeclarationCS();
 			case CompleteOCLCSTPackage.POST_CS: return createPostCS();
 			case CompleteOCLCSTPackage.PRE_CS: return createPreCS();
-			case CompleteOCLCSTPackage.PRE_EXP_CS: return createPreExpCS();
 			case CompleteOCLCSTPackage.PROPERTY_CONTEXT_DECL_CS: return createPropertyContextDeclCS();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -229,17 +227,6 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public PreCS createPreCS() {
 		PreCSImpl preCS = new PreCSImpl();
 		return preCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PreExpCS createPreExpCS()
-	{
-		PreExpCSImpl preExpCS = new PreExpCSImpl();
-		return preExpCS;
 	}
 
 	/**

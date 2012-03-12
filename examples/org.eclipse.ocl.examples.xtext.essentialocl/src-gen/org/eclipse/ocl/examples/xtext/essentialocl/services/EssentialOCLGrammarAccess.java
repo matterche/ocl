@@ -976,58 +976,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getLastExpressionCSExpCSParserRuleCall_1_1_0() { return cLastExpressionCSExpCSParserRuleCall_1_1_0; }
 	}
 
-	public class ConstructorExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstructorExpCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cPathNameAssignment_0.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedPartsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedPartsConstructorPartCSParserRuleCall_2_0 = (RuleCall)cOwnedPartsAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOwnedPartsConstructorPartCSParserRuleCall_3_1_0 = (RuleCall)cOwnedPartsAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//ConstructorExpCS:
-		//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
-		public ParserRule getRule() { return rule; }
-
-		//pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}"
-		public Group getGroup() { return cGroup; }
-
-		//pathName=PathNameCS
-		public Assignment getPathNameAssignment_0() { return cPathNameAssignment_0; }
-
-		//PathNameCS
-		public RuleCall getPathNamePathNameCSParserRuleCall_0_0() { return cPathNamePathNameCSParserRuleCall_0_0; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-
-		//ownedParts+=ConstructorPartCS
-		public Assignment getOwnedPartsAssignment_2() { return cOwnedPartsAssignment_2; }
-
-		//ConstructorPartCS
-		public RuleCall getOwnedPartsConstructorPartCSParserRuleCall_2_0() { return cOwnedPartsConstructorPartCSParserRuleCall_2_0; }
-
-		//("," ownedParts+=ConstructorPartCS)*
-		public Group getGroup_3() { return cGroup_3; }
-
-		//","
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
-
-		//ownedParts+=ConstructorPartCS
-		public Assignment getOwnedPartsAssignment_3_1() { return cOwnedPartsAssignment_3_1; }
-
-		//ConstructorPartCS
-		public RuleCall getOwnedPartsConstructorPartCSParserRuleCall_3_1_0() { return cOwnedPartsConstructorPartCSParserRuleCall_3_1_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
-	}
-
 	public class ConstructorPartCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstructorPartCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1038,6 +986,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cInitExpressionExpCSParserRuleCall_2_0 = (RuleCall)cInitExpressionAssignment_2.eContents().get(0);
 		
+		////ConstructorExpCS returns ConstructorExpCS:
+		////	pathName=PathNameCS
+		////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 		//ConstructorPartCS:
 		//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
@@ -1582,280 +1533,342 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class PrimaryExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimaryExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cNavigatingExpCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cSelfExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPrimitiveLiteralExpCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cTupleLiteralExpCSParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cCollectionLiteralExpCSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cConstructorExpCSParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cTypeLiteralExpCSParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cLetExpCSParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cIfExpCSParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cNestedExpCSParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cIndexExpCSAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cPathNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_0_1_0 = (RuleCall)cPathNameAssignment_0_1.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cFirstIndexesAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cFirstIndexesExpCSParserRuleCall_0_3_0 = (RuleCall)cFirstIndexesAssignment_0_3.eContents().get(0);
+		private final Group cGroup_0_4 = (Group)cGroup_0.eContents().get(4);
+		private final Keyword cCommaKeyword_0_4_0 = (Keyword)cGroup_0_4.eContents().get(0);
+		private final Assignment cFirstIndexesAssignment_0_4_1 = (Assignment)cGroup_0_4.eContents().get(1);
+		private final RuleCall cFirstIndexesExpCSParserRuleCall_0_4_1_0 = (RuleCall)cFirstIndexesAssignment_0_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_0_5 = (Keyword)cGroup_0.eContents().get(5);
+		private final Group cGroup_0_6 = (Group)cGroup_0.eContents().get(6);
+		private final Keyword cLeftSquareBracketKeyword_0_6_0 = (Keyword)cGroup_0_6.eContents().get(0);
+		private final Assignment cSecondIndexesAssignment_0_6_1 = (Assignment)cGroup_0_6.eContents().get(1);
+		private final RuleCall cSecondIndexesExpCSParserRuleCall_0_6_1_0 = (RuleCall)cSecondIndexesAssignment_0_6_1.eContents().get(0);
+		private final Group cGroup_0_6_2 = (Group)cGroup_0_6.eContents().get(2);
+		private final Keyword cCommaKeyword_0_6_2_0 = (Keyword)cGroup_0_6_2.eContents().get(0);
+		private final Assignment cSecondIndexesAssignment_0_6_2_1 = (Assignment)cGroup_0_6_2.eContents().get(1);
+		private final RuleCall cSecondIndexesExpCSParserRuleCall_0_6_2_1_0 = (RuleCall)cSecondIndexesAssignment_0_6_2_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_0_6_3 = (Keyword)cGroup_0_6.eContents().get(3);
+		private final Group cGroup_0_7 = (Group)cGroup_0.eContents().get(7);
+		private final Assignment cAtPreAssignment_0_7_0 = (Assignment)cGroup_0_7.eContents().get(0);
+		private final Keyword cAtPreCommercialAtKeyword_0_7_0_0 = (Keyword)cAtPreAssignment_0_7_0.eContents().get(0);
+		private final Keyword cPreKeyword_0_7_1 = (Keyword)cGroup_0_7.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cConstructorExpCSAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cPathNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_1_1_0 = (RuleCall)cPathNameAssignment_1_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cOwnedPartsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cOwnedPartsConstructorPartCSParserRuleCall_1_3_0 = (RuleCall)cOwnedPartsAssignment_1_3.eContents().get(0);
+		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
+		private final Keyword cCommaKeyword_1_4_0 = (Keyword)cGroup_1_4.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
+		private final RuleCall cOwnedPartsConstructorPartCSParserRuleCall_1_4_1_0 = (RuleCall)cOwnedPartsAssignment_1_4_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cInvocationExpCSAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Assignment cPathNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_2_1_0 = (RuleCall)cPathNameAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Assignment cAtPreAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
+		private final Keyword cAtPreCommercialAtKeyword_2_2_0_0 = (Keyword)cAtPreAssignment_2_2_0.eContents().get(0);
+		private final Keyword cPreKeyword_2_2_1 = (Keyword)cGroup_2_2.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
+		private final Group cGroup_2_4 = (Group)cGroup_2.eContents().get(4);
+		private final Assignment cArgumentAssignment_2_4_0 = (Assignment)cGroup_2_4.eContents().get(0);
+		private final RuleCall cArgumentNavigatingArgCSParserRuleCall_2_4_0_0 = (RuleCall)cArgumentAssignment_2_4_0.eContents().get(0);
+		private final Assignment cArgumentAssignment_2_4_1 = (Assignment)cGroup_2_4.eContents().get(1);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_2_4_1_0 = (RuleCall)cArgumentAssignment_2_4_1.eContents().get(0);
+		private final Group cGroup_2_4_2 = (Group)cGroup_2_4.eContents().get(2);
+		private final Assignment cArgumentAssignment_2_4_2_0 = (Assignment)cGroup_2_4_2.eContents().get(0);
+		private final RuleCall cArgumentNavigatingSemiArgCSParserRuleCall_2_4_2_0_0 = (RuleCall)cArgumentAssignment_2_4_2_0.eContents().get(0);
+		private final Assignment cArgumentAssignment_2_4_2_1 = (Assignment)cGroup_2_4_2.eContents().get(1);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_2_4_2_1_0 = (RuleCall)cArgumentAssignment_2_4_2_1.eContents().get(0);
+		private final Group cGroup_2_4_3 = (Group)cGroup_2_4.eContents().get(3);
+		private final Assignment cArgumentAssignment_2_4_3_0 = (Assignment)cGroup_2_4_3.eContents().get(0);
+		private final RuleCall cArgumentNavigatingBarArgCSParserRuleCall_2_4_3_0_0 = (RuleCall)cArgumentAssignment_2_4_3_0.eContents().get(0);
+		private final Assignment cArgumentAssignment_2_4_3_1 = (Assignment)cGroup_2_4_3.eContents().get(1);
+		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_2_4_3_1_0 = (RuleCall)cArgumentAssignment_2_4_3_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_5 = (Keyword)cGroup_2.eContents().get(5);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Action cNameExpCSAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Assignment cPathNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_3_1_0 = (RuleCall)cPathNameAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Assignment cAtPreAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
+		private final Keyword cAtPreCommercialAtKeyword_3_2_0_0 = (Keyword)cAtPreAssignment_3_2_0.eContents().get(0);
+		private final Keyword cPreKeyword_3_2_1 = (Keyword)cGroup_3_2.eContents().get(1);
+		private final RuleCall cSelfExpCSParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cPrimitiveLiteralExpCSParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cTupleLiteralExpCSParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cCollectionLiteralExpCSParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cTypeLiteralExpCSParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cLetExpCSParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cIfExpCSParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cNestedExpCSParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		
+		//// These rules are ordered most rejectable first
 		//PrimaryExpCS returns ExpCS:
-		//	NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | ConstructorExpCS |
-		//	TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
+		//	{IndexExpCS} pathName=PathNameCS "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
+		//	secondIndexes+=ExpCS)* "]")? (atPre?="@" "pre")? | {ConstructorExpCS} pathName=PathNameCS "{"
+		//	ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}" | {InvocationExpCS} pathName=PathNameCS
+		//	(atPre?="@" "pre")? "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
+		//	argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")" | {NameExpCS}
+		//	pathName=PathNameCS (atPre?="@" "pre")? | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+		//	CollectionLiteralExpCS | TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | ConstructorExpCS |
-		//TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS
+		//{IndexExpCS} pathName=PathNameCS "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
+		//secondIndexes+=ExpCS)* "]")? (atPre?="@" "pre")? | {ConstructorExpCS} pathName=PathNameCS "{"
+		//ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}" | {InvocationExpCS} pathName=PathNameCS
+		//(atPre?="@" "pre")? "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
+		//argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")" | {NameExpCS}
+		//pathName=PathNameCS (atPre?="@" "pre")? | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+		//CollectionLiteralExpCS | TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//NavigatingExpCS
-		public RuleCall getNavigatingExpCSParserRuleCall_0() { return cNavigatingExpCSParserRuleCall_0; }
+		//{IndexExpCS} pathName=PathNameCS "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
+		//secondIndexes+=ExpCS)* "]")? (atPre?="@" "pre")?
+		public Group getGroup_0() { return cGroup_0; }
 
-		//SelfExpCS
-		public RuleCall getSelfExpCSParserRuleCall_1() { return cSelfExpCSParserRuleCall_1; }
-
-		//PrimitiveLiteralExpCS
-		public RuleCall getPrimitiveLiteralExpCSParserRuleCall_2() { return cPrimitiveLiteralExpCSParserRuleCall_2; }
-
-		//TupleLiteralExpCS
-		public RuleCall getTupleLiteralExpCSParserRuleCall_3() { return cTupleLiteralExpCSParserRuleCall_3; }
-
-		//CollectionLiteralExpCS
-		public RuleCall getCollectionLiteralExpCSParserRuleCall_4() { return cCollectionLiteralExpCSParserRuleCall_4; }
-
-		//ConstructorExpCS
-		public RuleCall getConstructorExpCSParserRuleCall_5() { return cConstructorExpCSParserRuleCall_5; }
-
-		//TypeLiteralExpCS
-		public RuleCall getTypeLiteralExpCSParserRuleCall_6() { return cTypeLiteralExpCSParserRuleCall_6; }
-
-		//LetExpCS
-		public RuleCall getLetExpCSParserRuleCall_7() { return cLetExpCSParserRuleCall_7; }
-
-		//IfExpCS
-		public RuleCall getIfExpCSParserRuleCall_8() { return cIfExpCSParserRuleCall_8; }
-
-		//NestedExpCS
-		public RuleCall getNestedExpCSParserRuleCall_9() { return cNestedExpCSParserRuleCall_9; }
-	}
-
-	public class NameExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NameExpCS");
-		private final Assignment cPathNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cPathNamePathNameCSParserRuleCall_0 = (RuleCall)cPathNameAssignment.eContents().get(0);
-		
-		//NameExpCS:
-		//	pathName=PathNameCS;
-		public ParserRule getRule() { return rule; }
+		//{IndexExpCS}
+		public Action getIndexExpCSAction_0_0() { return cIndexExpCSAction_0_0; }
 
 		//pathName=PathNameCS
-		public Assignment getPathNameAssignment() { return cPathNameAssignment; }
+		public Assignment getPathNameAssignment_0_1() { return cPathNameAssignment_0_1; }
 
 		//PathNameCS
-		public RuleCall getPathNamePathNameCSParserRuleCall_0() { return cPathNamePathNameCSParserRuleCall_0; }
-	}
-
-	public class IndexExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IndexExpCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cNameExpCSParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cIndexExpCSNamedExpAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cFirstIndexesAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cFirstIndexesExpCSParserRuleCall_1_2_0 = (RuleCall)cFirstIndexesAssignment_1_2.eContents().get(0);
-		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
-		private final Keyword cCommaKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
-		private final Assignment cFirstIndexesAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
-		private final RuleCall cFirstIndexesExpCSParserRuleCall_1_3_1_0 = (RuleCall)cFirstIndexesAssignment_1_3_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
-		private final Group cGroup_1_5 = (Group)cGroup_1.eContents().get(5);
-		private final Keyword cLeftSquareBracketKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
-		private final Assignment cSecondIndexesAssignment_1_5_1 = (Assignment)cGroup_1_5.eContents().get(1);
-		private final RuleCall cSecondIndexesExpCSParserRuleCall_1_5_1_0 = (RuleCall)cSecondIndexesAssignment_1_5_1.eContents().get(0);
-		private final Group cGroup_1_5_2 = (Group)cGroup_1_5.eContents().get(2);
-		private final Keyword cCommaKeyword_1_5_2_0 = (Keyword)cGroup_1_5_2.eContents().get(0);
-		private final Assignment cSecondIndexesAssignment_1_5_2_1 = (Assignment)cGroup_1_5_2.eContents().get(1);
-		private final RuleCall cSecondIndexesExpCSParserRuleCall_1_5_2_1_0 = (RuleCall)cSecondIndexesAssignment_1_5_2_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_5_3 = (Keyword)cGroup_1_5.eContents().get(3);
-		
-		//IndexExpCS returns NamedExpCS:
-		//	NameExpCS ({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("["
-		//	secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?)?;
-		public ParserRule getRule() { return rule; }
-
-		//NameExpCS ({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("["
-		//secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?)?
-		public Group getGroup() { return cGroup; }
-
-		//NameExpCS
-		public RuleCall getNameExpCSParserRuleCall_0() { return cNameExpCSParserRuleCall_0; }
-
-		//({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
-		//secondIndexes+=ExpCS)* "]")?)?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//{IndexExpCS.namedExp=current}
-		public Action getIndexExpCSNamedExpAction_1_0() { return cIndexExpCSNamedExpAction_1_0; }
+		public RuleCall getPathNamePathNameCSParserRuleCall_0_1_0() { return cPathNamePathNameCSParserRuleCall_0_1_0; }
 
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1_1() { return cLeftSquareBracketKeyword_1_1; }
+		public Keyword getLeftSquareBracketKeyword_0_2() { return cLeftSquareBracketKeyword_0_2; }
 
 		//firstIndexes+=ExpCS
-		public Assignment getFirstIndexesAssignment_1_2() { return cFirstIndexesAssignment_1_2; }
+		public Assignment getFirstIndexesAssignment_0_3() { return cFirstIndexesAssignment_0_3; }
 
 		//ExpCS
-		public RuleCall getFirstIndexesExpCSParserRuleCall_1_2_0() { return cFirstIndexesExpCSParserRuleCall_1_2_0; }
+		public RuleCall getFirstIndexesExpCSParserRuleCall_0_3_0() { return cFirstIndexesExpCSParserRuleCall_0_3_0; }
 
 		//("," firstIndexes+=ExpCS)*
-		public Group getGroup_1_3() { return cGroup_1_3; }
+		public Group getGroup_0_4() { return cGroup_0_4; }
 
 		//","
-		public Keyword getCommaKeyword_1_3_0() { return cCommaKeyword_1_3_0; }
+		public Keyword getCommaKeyword_0_4_0() { return cCommaKeyword_0_4_0; }
 
 		//firstIndexes+=ExpCS
-		public Assignment getFirstIndexesAssignment_1_3_1() { return cFirstIndexesAssignment_1_3_1; }
+		public Assignment getFirstIndexesAssignment_0_4_1() { return cFirstIndexesAssignment_0_4_1; }
 
 		//ExpCS
-		public RuleCall getFirstIndexesExpCSParserRuleCall_1_3_1_0() { return cFirstIndexesExpCSParserRuleCall_1_3_1_0; }
+		public RuleCall getFirstIndexesExpCSParserRuleCall_0_4_1_0() { return cFirstIndexesExpCSParserRuleCall_0_4_1_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_1_4() { return cRightSquareBracketKeyword_1_4; }
+		public Keyword getRightSquareBracketKeyword_0_5() { return cRightSquareBracketKeyword_0_5; }
 
 		//("[" secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?
-		public Group getGroup_1_5() { return cGroup_1_5; }
+		public Group getGroup_0_6() { return cGroup_0_6; }
 
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1_5_0() { return cLeftSquareBracketKeyword_1_5_0; }
+		public Keyword getLeftSquareBracketKeyword_0_6_0() { return cLeftSquareBracketKeyword_0_6_0; }
 
 		//secondIndexes+=ExpCS
-		public Assignment getSecondIndexesAssignment_1_5_1() { return cSecondIndexesAssignment_1_5_1; }
+		public Assignment getSecondIndexesAssignment_0_6_1() { return cSecondIndexesAssignment_0_6_1; }
 
 		//ExpCS
-		public RuleCall getSecondIndexesExpCSParserRuleCall_1_5_1_0() { return cSecondIndexesExpCSParserRuleCall_1_5_1_0; }
+		public RuleCall getSecondIndexesExpCSParserRuleCall_0_6_1_0() { return cSecondIndexesExpCSParserRuleCall_0_6_1_0; }
 
 		//("," secondIndexes+=ExpCS)*
-		public Group getGroup_1_5_2() { return cGroup_1_5_2; }
+		public Group getGroup_0_6_2() { return cGroup_0_6_2; }
 
 		//","
-		public Keyword getCommaKeyword_1_5_2_0() { return cCommaKeyword_1_5_2_0; }
+		public Keyword getCommaKeyword_0_6_2_0() { return cCommaKeyword_0_6_2_0; }
 
 		//secondIndexes+=ExpCS
-		public Assignment getSecondIndexesAssignment_1_5_2_1() { return cSecondIndexesAssignment_1_5_2_1; }
+		public Assignment getSecondIndexesAssignment_0_6_2_1() { return cSecondIndexesAssignment_0_6_2_1; }
 
 		//ExpCS
-		public RuleCall getSecondIndexesExpCSParserRuleCall_1_5_2_1_0() { return cSecondIndexesExpCSParserRuleCall_1_5_2_1_0; }
+		public RuleCall getSecondIndexesExpCSParserRuleCall_0_6_2_1_0() { return cSecondIndexesExpCSParserRuleCall_0_6_2_1_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_1_5_3() { return cRightSquareBracketKeyword_1_5_3; }
-	}
+		public Keyword getRightSquareBracketKeyword_0_6_3() { return cRightSquareBracketKeyword_0_6_3; }
 
-	public class NavigatingExpCS_BaseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingExpCS_Base");
-		private final RuleCall cIndexExpCSParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		////	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
-		//NavigatingExpCS_Base returns NamedExpCS:
-		//	IndexExpCS;
-		public ParserRule getRule() { return rule; }
+		//(atPre?="@" "pre")?
+		public Group getGroup_0_7() { return cGroup_0_7; }
 
-		//IndexExpCS
-		public RuleCall getIndexExpCSParserRuleCall() { return cIndexExpCSParserRuleCall; }
-	}
+		//atPre?="@"
+		public Assignment getAtPreAssignment_0_7_0() { return cAtPreAssignment_0_7_0; }
 
-	public class NavigatingExpCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingExpCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cNavigatingExpCS_BaseParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cNavigatingExpCSNamedExpAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Assignment cArgumentAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
-		private final RuleCall cArgumentNavigatingArgCSParserRuleCall_1_2_0_0 = (RuleCall)cArgumentAssignment_1_2_0.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0 = (RuleCall)cArgumentAssignment_1_2_1.eContents().get(0);
-		private final Group cGroup_1_2_2 = (Group)cGroup_1_2.eContents().get(2);
-		private final Assignment cArgumentAssignment_1_2_2_0 = (Assignment)cGroup_1_2_2.eContents().get(0);
-		private final RuleCall cArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0 = (RuleCall)cArgumentAssignment_1_2_2_0.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_2_1 = (Assignment)cGroup_1_2_2.eContents().get(1);
-		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0 = (RuleCall)cArgumentAssignment_1_2_2_1.eContents().get(0);
-		private final Group cGroup_1_2_3 = (Group)cGroup_1_2.eContents().get(3);
-		private final Assignment cArgumentAssignment_1_2_3_0 = (Assignment)cGroup_1_2_3.eContents().get(0);
-		private final RuleCall cArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0 = (RuleCall)cArgumentAssignment_1_2_3_0.eContents().get(0);
-		private final Assignment cArgumentAssignment_1_2_3_1 = (Assignment)cGroup_1_2_3.eContents().get(1);
-		private final RuleCall cArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0 = (RuleCall)cArgumentAssignment_1_2_3_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		
-		//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-		////  keep it as simple as possible and avoid backtracking.
-		//NavigatingExpCS returns NamedExpCS:
-		//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
-		//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
-		//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
-		public ParserRule getRule() { return rule; }
+		//"@"
+		public Keyword getAtPreCommercialAtKeyword_0_7_0_0() { return cAtPreCommercialAtKeyword_0_7_0_0; }
 
-		//NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS*
-		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS
-		//argument+=NavigatingCommaArgCS*)?)? ")")?
-		public Group getGroup() { return cGroup; }
+		//"pre"
+		public Keyword getPreKeyword_0_7_1() { return cPreKeyword_0_7_1; }
 
-		//NavigatingExpCS_Base
-		public RuleCall getNavigatingExpCS_BaseParserRuleCall_0() { return cNavigatingExpCS_BaseParserRuleCall_0; }
-
-		//({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS*
-		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS
-		//argument+=NavigatingCommaArgCS*)?)? ")")?
+		//{ConstructorExpCS} pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}"
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{NavigatingExpCS.namedExp=current}
-		public Action getNavigatingExpCSNamedExpAction_1_0() { return cNavigatingExpCSNamedExpAction_1_0; }
+		//{ConstructorExpCS}
+		public Action getConstructorExpCSAction_1_0() { return cConstructorExpCSAction_1_0; }
+
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_1_1() { return cPathNameAssignment_1_1; }
+
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_1_1_0() { return cPathNamePathNameCSParserRuleCall_1_1_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_2() { return cLeftCurlyBracketKeyword_1_2; }
+
+		//ownedParts+=ConstructorPartCS
+		public Assignment getOwnedPartsAssignment_1_3() { return cOwnedPartsAssignment_1_3; }
+
+		//ConstructorPartCS
+		public RuleCall getOwnedPartsConstructorPartCSParserRuleCall_1_3_0() { return cOwnedPartsConstructorPartCSParserRuleCall_1_3_0; }
+
+		//("," ownedParts+=ConstructorPartCS)*
+		public Group getGroup_1_4() { return cGroup_1_4; }
+
+		//","
+		public Keyword getCommaKeyword_1_4_0() { return cCommaKeyword_1_4_0; }
+
+		//ownedParts+=ConstructorPartCS
+		public Assignment getOwnedPartsAssignment_1_4_1() { return cOwnedPartsAssignment_1_4_1; }
+
+		//ConstructorPartCS
+		public RuleCall getOwnedPartsConstructorPartCSParserRuleCall_1_4_1_0() { return cOwnedPartsConstructorPartCSParserRuleCall_1_4_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_5() { return cRightCurlyBracketKeyword_1_5; }
+
+		//{InvocationExpCS} pathName=PathNameCS (atPre?="@" "pre")? "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS*
+		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS
+		//argument+=NavigatingCommaArgCS*)?)? ")"
+		public Group getGroup_2() { return cGroup_2; }
+
+		//{InvocationExpCS}
+		public Action getInvocationExpCSAction_2_0() { return cInvocationExpCSAction_2_0; }
+
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_2_1() { return cPathNameAssignment_2_1; }
+
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_2_1_0() { return cPathNamePathNameCSParserRuleCall_2_1_0; }
+
+		//(atPre?="@" "pre")?
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//atPre?="@"
+		public Assignment getAtPreAssignment_2_2_0() { return cAtPreAssignment_2_2_0; }
+
+		//"@"
+		public Keyword getAtPreCommercialAtKeyword_2_2_0_0() { return cAtPreCommercialAtKeyword_2_2_0_0; }
+
+		//"pre"
+		public Keyword getPreKeyword_2_2_1() { return cPreKeyword_2_2_1; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
+		public Keyword getLeftParenthesisKeyword_2_3() { return cLeftParenthesisKeyword_2_3; }
 
 		//(argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
 		//argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)?
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		public Group getGroup_2_4() { return cGroup_2_4; }
 
 		//argument+=NavigatingArgCS
-		public Assignment getArgumentAssignment_1_2_0() { return cArgumentAssignment_1_2_0; }
+		public Assignment getArgumentAssignment_2_4_0() { return cArgumentAssignment_2_4_0; }
 
 		//NavigatingArgCS
-		public RuleCall getArgumentNavigatingArgCSParserRuleCall_1_2_0_0() { return cArgumentNavigatingArgCSParserRuleCall_1_2_0_0; }
+		public RuleCall getArgumentNavigatingArgCSParserRuleCall_2_4_0_0() { return cArgumentNavigatingArgCSParserRuleCall_2_4_0_0; }
 
 		//argument+=NavigatingCommaArgCS*
-		public Assignment getArgumentAssignment_1_2_1() { return cArgumentAssignment_1_2_1; }
+		public Assignment getArgumentAssignment_2_4_1() { return cArgumentAssignment_2_4_1; }
 
 		//NavigatingCommaArgCS
-		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_1_0; }
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_2_4_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_2_4_1_0; }
 
 		//(argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
-		public Group getGroup_1_2_2() { return cGroup_1_2_2; }
+		public Group getGroup_2_4_2() { return cGroup_2_4_2; }
 
 		//argument+=NavigatingSemiArgCS
-		public Assignment getArgumentAssignment_1_2_2_0() { return cArgumentAssignment_1_2_2_0; }
+		public Assignment getArgumentAssignment_2_4_2_0() { return cArgumentAssignment_2_4_2_0; }
 
 		//NavigatingSemiArgCS
-		public RuleCall getArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0() { return cArgumentNavigatingSemiArgCSParserRuleCall_1_2_2_0_0; }
+		public RuleCall getArgumentNavigatingSemiArgCSParserRuleCall_2_4_2_0_0() { return cArgumentNavigatingSemiArgCSParserRuleCall_2_4_2_0_0; }
 
 		//argument+=NavigatingCommaArgCS*
-		public Assignment getArgumentAssignment_1_2_2_1() { return cArgumentAssignment_1_2_2_1; }
+		public Assignment getArgumentAssignment_2_4_2_1() { return cArgumentAssignment_2_4_2_1; }
 
 		//NavigatingCommaArgCS
-		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_2_1_0; }
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_2_4_2_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_2_4_2_1_0; }
 
 		//(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?
-		public Group getGroup_1_2_3() { return cGroup_1_2_3; }
+		public Group getGroup_2_4_3() { return cGroup_2_4_3; }
 
 		//argument+=NavigatingBarArgCS
-		public Assignment getArgumentAssignment_1_2_3_0() { return cArgumentAssignment_1_2_3_0; }
+		public Assignment getArgumentAssignment_2_4_3_0() { return cArgumentAssignment_2_4_3_0; }
 
 		//NavigatingBarArgCS
-		public RuleCall getArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0() { return cArgumentNavigatingBarArgCSParserRuleCall_1_2_3_0_0; }
+		public RuleCall getArgumentNavigatingBarArgCSParserRuleCall_2_4_3_0_0() { return cArgumentNavigatingBarArgCSParserRuleCall_2_4_3_0_0; }
 
 		//argument+=NavigatingCommaArgCS*
-		public Assignment getArgumentAssignment_1_2_3_1() { return cArgumentAssignment_1_2_3_1; }
+		public Assignment getArgumentAssignment_2_4_3_1() { return cArgumentAssignment_2_4_3_1; }
 
 		//NavigatingCommaArgCS
-		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_1_2_3_1_0; }
+		public RuleCall getArgumentNavigatingCommaArgCSParserRuleCall_2_4_3_1_0() { return cArgumentNavigatingCommaArgCSParserRuleCall_2_4_3_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+		public Keyword getRightParenthesisKeyword_2_5() { return cRightParenthesisKeyword_2_5; }
+
+		//{NameExpCS} pathName=PathNameCS (atPre?="@" "pre")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//{NameExpCS}
+		public Action getNameExpCSAction_3_0() { return cNameExpCSAction_3_0; }
+
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_3_1() { return cPathNameAssignment_3_1; }
+
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_3_1_0() { return cPathNamePathNameCSParserRuleCall_3_1_0; }
+
+		//(atPre?="@" "pre")?
+		public Group getGroup_3_2() { return cGroup_3_2; }
+
+		//atPre?="@"
+		public Assignment getAtPreAssignment_3_2_0() { return cAtPreAssignment_3_2_0; }
+
+		//"@"
+		public Keyword getAtPreCommercialAtKeyword_3_2_0_0() { return cAtPreCommercialAtKeyword_3_2_0_0; }
+
+		//"pre"
+		public Keyword getPreKeyword_3_2_1() { return cPreKeyword_3_2_1; }
+
+		//SelfExpCS
+		public RuleCall getSelfExpCSParserRuleCall_4() { return cSelfExpCSParserRuleCall_4; }
+
+		//PrimitiveLiteralExpCS
+		public RuleCall getPrimitiveLiteralExpCSParserRuleCall_5() { return cPrimitiveLiteralExpCSParserRuleCall_5; }
+
+		//TupleLiteralExpCS
+		public RuleCall getTupleLiteralExpCSParserRuleCall_6() { return cTupleLiteralExpCSParserRuleCall_6; }
+
+		//CollectionLiteralExpCS
+		public RuleCall getCollectionLiteralExpCSParserRuleCall_7() { return cCollectionLiteralExpCSParserRuleCall_7; }
+
+		//TypeLiteralExpCS
+		public RuleCall getTypeLiteralExpCSParserRuleCall_8() { return cTypeLiteralExpCSParserRuleCall_8; }
+
+		//LetExpCS
+		public RuleCall getLetExpCSParserRuleCall_9() { return cLetExpCSParserRuleCall_9; }
+
+		//IfExpCS
+		public RuleCall getIfExpCSParserRuleCall_10() { return cIfExpCSParserRuleCall_10; }
+
+		//NestedExpCS
+		public RuleCall getNestedExpCSParserRuleCall_11() { return cNestedExpCSParserRuleCall_11; }
 	}
 
 	public class NavigatingArgCSElements extends AbstractParserRuleElementFinder {
@@ -1872,6 +1885,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cInitAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cInitExpCSParserRuleCall_2_1_0 = (RuleCall)cInitAssignment_2_1.eContents().get(0);
 		
+		////IndexExpCS returns IndexExpCS:
+		////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
+		////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
+		////	(atPre?='@' 'pre')?;
+		////NameExpCS returns NameExpCS:
+		////	pathName=PathNameCS;
+		//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
+		////  keep it as simple as possible and avoid backtracking.
+		////NavigatingExpCS returns NavigatingExpCS:
+		////	pathName=PathNameCS (atPre?='@' 'pre')?
+		////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
+		////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
+		////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
+		////	')';
 		//NavigatingArgCS:
 		//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
 		public ParserRule getRule() { return rule; }
@@ -2349,7 +2376,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TuplePartCSElements pTuplePartCS;
 	private CollectionLiteralExpCSElements pCollectionLiteralExpCS;
 	private CollectionLiteralPartCSElements pCollectionLiteralPartCS;
-	private ConstructorExpCSElements pConstructorExpCS;
 	private ConstructorPartCSElements pConstructorPartCS;
 	private PrimitiveLiteralExpCSElements pPrimitiveLiteralExpCS;
 	private TupleLiteralExpCSElements pTupleLiteralExpCS;
@@ -2372,10 +2398,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private PrefixedExpCSElements pPrefixedExpCS;
 	private UnaryOperatorCSElements pUnaryOperatorCS;
 	private PrimaryExpCSElements pPrimaryExpCS;
-	private NameExpCSElements pNameExpCS;
-	private IndexExpCSElements pIndexExpCS;
-	private NavigatingExpCS_BaseElements pNavigatingExpCS_Base;
-	private NavigatingExpCSElements pNavigatingExpCS;
 	private NavigatingArgCSElements pNavigatingArgCS;
 	private NavigatingBarArgCSElements pNavigatingBarArgCS;
 	private NavigatingCommaArgCSElements pNavigatingCommaArgCS;
@@ -2817,16 +2839,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
-	//ConstructorExpCS:
-	//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
-	public ConstructorExpCSElements getConstructorExpCSAccess() {
-		return (pConstructorExpCS != null) ? pConstructorExpCS : (pConstructorExpCS = new ConstructorExpCSElements());
-	}
-	
-	public ParserRule getConstructorExpCSRule() {
-		return getConstructorExpCSAccess().getRule();
-	}
-
+	////ConstructorExpCS returns ConstructorExpCS:
+	////	pathName=PathNameCS
+	////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 	//ConstructorPartCS:
 	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 	public ConstructorPartCSElements getConstructorPartCSAccess() {
@@ -3047,9 +3062,15 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnaryOperatorCSAccess().getRule();
 	}
 
+	//// These rules are ordered most rejectable first
 	//PrimaryExpCS returns ExpCS:
-	//	NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | ConstructorExpCS |
-	//	TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
+	//	{IndexExpCS} pathName=PathNameCS "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
+	//	secondIndexes+=ExpCS)* "]")? (atPre?="@" "pre")? | {ConstructorExpCS} pathName=PathNameCS "{"
+	//	ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}" | {InvocationExpCS} pathName=PathNameCS
+	//	(atPre?="@" "pre")? "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
+	//	argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")" | {NameExpCS}
+	//	pathName=PathNameCS (atPre?="@" "pre")? | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+	//	CollectionLiteralExpCS | TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
 	public PrimaryExpCSElements getPrimaryExpCSAccess() {
 		return (pPrimaryExpCS != null) ? pPrimaryExpCS : (pPrimaryExpCS = new PrimaryExpCSElements());
 	}
@@ -3058,52 +3079,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
-	//NameExpCS:
-	//	pathName=PathNameCS;
-	public NameExpCSElements getNameExpCSAccess() {
-		return (pNameExpCS != null) ? pNameExpCS : (pNameExpCS = new NameExpCSElements());
-	}
-	
-	public ParserRule getNameExpCSRule() {
-		return getNameExpCSAccess().getRule();
-	}
-
-	//IndexExpCS returns NamedExpCS:
-	//	NameExpCS ({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("["
-	//	secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?)?;
-	public IndexExpCSElements getIndexExpCSAccess() {
-		return (pIndexExpCS != null) ? pIndexExpCS : (pIndexExpCS = new IndexExpCSElements());
-	}
-	
-	public ParserRule getIndexExpCSRule() {
-		return getIndexExpCSAccess().getRule();
-	}
-
-	////	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
-	//NavigatingExpCS_Base returns NamedExpCS:
-	//	IndexExpCS;
-	public NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
-		return (pNavigatingExpCS_Base != null) ? pNavigatingExpCS_Base : (pNavigatingExpCS_Base = new NavigatingExpCS_BaseElements());
-	}
-	
-	public ParserRule getNavigatingExpCS_BaseRule() {
-		return getNavigatingExpCS_BaseAccess().getRule();
-	}
-
+	////IndexExpCS returns IndexExpCS:
+	////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
+	////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
+	////	(atPre?='@' 'pre')?;
+	////NameExpCS returns NameExpCS:
+	////	pathName=PathNameCS;
 	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
 	////  keep it as simple as possible and avoid backtracking.
-	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
-	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
-	//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
-	public NavigatingExpCSElements getNavigatingExpCSAccess() {
-		return (pNavigatingExpCS != null) ? pNavigatingExpCS : (pNavigatingExpCS = new NavigatingExpCSElements());
-	}
-	
-	public ParserRule getNavigatingExpCSRule() {
-		return getNavigatingExpCSAccess().getRule();
-	}
-
+	////NavigatingExpCS returns NavigatingExpCS:
+	////	pathName=PathNameCS (atPre?='@' 'pre')?
+	////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
+	////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
+	////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
+	////	')';
 	//NavigatingArgCS:
 	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
 	public NavigatingArgCSElements getNavigatingArgCSAccess() {

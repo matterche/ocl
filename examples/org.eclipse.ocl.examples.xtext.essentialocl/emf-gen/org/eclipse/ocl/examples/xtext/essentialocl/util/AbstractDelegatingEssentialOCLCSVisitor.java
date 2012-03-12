@@ -73,10 +73,6 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitContextCS(object);
 	}
 
-	public R visitDecoratedNamedExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS object) {
-		return delegate.visitDecoratedNamedExpCS(object);
-	}
-
 	public R visitExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS object) {
 		return delegate.visitExpCS(object);
 	}
@@ -101,6 +97,10 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 		return delegate.visitInvalidLiteralExpCS(object);
 	}
 
+	public R visitInvocationExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS object) {
+		return delegate.visitInvocationExpCS(object);
+	}
+
 	public R visitLetExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS object) {
 		return delegate.visitLetExpCS(object);
 	}
@@ -119,10 +119,6 @@ public abstract class AbstractDelegatingEssentialOCLCSVisitor<R, C, D extends Es
 
 	public R visitNavigatingArgCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS object) {
 		return delegate.visitNavigatingArgCS(object);
-	}
-
-	public R visitNavigatingExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS object) {
-		return delegate.visitNavigatingExpCS(object);
 	}
 
 	public R visitNavigationOperatorCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS object) {

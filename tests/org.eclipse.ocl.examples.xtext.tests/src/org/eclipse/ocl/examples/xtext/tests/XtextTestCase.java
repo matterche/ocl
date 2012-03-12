@@ -88,8 +88,8 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
@@ -316,7 +316,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof NavigatingArgCS) {
 			return false;
 		}
-		if (csElement instanceof NavigatingExpCS) {
+		if (csElement instanceof InvocationExpCS) {
 			return false;
 		}
 		if (csElement instanceof NavigationOperatorCS) {
@@ -347,7 +347,7 @@ public class XtextTestCase extends PivotTestCase
 		if (csElement instanceof PrefixExpCS) {
 			return false;
 		}
-		if (csElement instanceof NavigatingExpCS) {
+		if (csElement instanceof InvocationExpCS) {
 			return false;
 		}
 		if (csElement instanceof NavigationOperatorCS) {

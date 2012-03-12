@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
@@ -48,9 +48,6 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		}
 		else if (csElement instanceof NavigatingArgCS) {
 			return getPivotedCS(((NavigatingArgCS)csElement).getName());
-		}
-		else if (csElement instanceof NavigatingExpCS) {
-			return getPivotedCS(((NavigatingExpCS)csElement).getNamedExp());
 		}
 		else if (csElement instanceof NavigationOperatorCS) {
 			return getPivotedCS(((NavigationOperatorCS)csElement).getArgument());
@@ -110,9 +107,9 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 			return (NavigatingArgCS) csParent;
 //			return getPivotingChildCS((NavigatingArgCS) csParent);
 		}
-		else if (csParent instanceof NavigatingExpCS) {
-			return getPivotingChildCS((NavigatingExpCS) csParent);
-//			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+		else if (csParent instanceof InvocationExpCS) {
+			return getPivotingChildCS((InvocationExpCS) csParent);
+//			InvocationExpCS csNavigatingExp = (InvocationExpCS)csParent;
 //			if (csElement == csNavigatingExp.getNamedExp()) {
 //				return getChildCS(csNavigatingExp.getParent());
 //			}
@@ -150,8 +147,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 		else if (csParent instanceof NavigatingArgCS) {
 			return getPivotingParentCS((NavigatingArgCS)csParent);
 		}
-		else if (csParent instanceof NavigatingExpCS) {
-			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+		else if (csParent instanceof InvocationExpCS) {
+			InvocationExpCS csNavigatingExp = (InvocationExpCS)csParent;
 			if (csElement == csNavigatingExp.getNamedExp()) {
 				return getPivotingParentCS(csNavigatingExp.getParent());
 			}
@@ -198,8 +195,8 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 //			return EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGS; //getParentChildFeature((NavigatingArgCS) csParent);
 			return getPivotingFeature((NavigatingArgCS) csParent);
 		}
-		else if (csParent instanceof NavigatingExpCS) {
-			NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csParent;
+		else if (csParent instanceof InvocationExpCS) {
+			InvocationExpCS csNavigatingExp = (InvocationExpCS)csParent;
 			if (csChildElement == csNavigatingExp.getNamedExp()) {
 				return getPivotingFeature(csNavigatingExp.getParent());
 			}

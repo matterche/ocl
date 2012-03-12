@@ -193,10 +193,6 @@ CollectionLiteralExpCS returns CollectionLiteralExpCS:
 CollectionLiteralPartCS returns CollectionLiteralPartCS:
 	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?;
 
-ConstructorExpCS returns ConstructorExpCS:
-	pathName=PathNameCS
-	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
-
 ConstructorPartCS returns ConstructorPartCS:
 	property=[pivot::Property|UnrestrictedName] '=' initExpression=ExpCS;
 
@@ -278,41 +274,25 @@ PrefixedExpCS returns ExpCS:
 UnaryOperatorCS returns UnaryOperatorCS:
 	name=PrefixOperator;
 
-PrimaryExpCS returns ExpCS:
-	NavigatingExpCS
-	| SelfExpCS
-	| PrimitiveLiteralExpCS
-	| TupleLiteralExpCS
-	| CollectionLiteralExpCS
-	| ConstructorExpCS
-	| TypeLiteralExpCS
-	| LetExpCS
-	| IfExpCS
-	| NestedExpCS;
-
-NameExpCS returns NameExpCS:
-	pathName=PathNameCS;
-
-IndexExpCS returns NamedExpCS:
-	NameExpCS
-	({IndexExpCS.namedExp=current}
-	'[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
-	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?)?;
-
-NavigatingExpCS_Base returns NamedExpCS:
-	IndexExpCS
-	//	({PreExpCS.name=current} '@' 'pre')?	-- defined by Complete OCL
-;
-
-// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
-//  keep it as simple as possible and avoid backtracking.
-NavigatingExpCS returns NamedExpCS:
-	NavigatingExpCS_Base
-	({NavigatingExpCS.namedExp=current}
-	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
-	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
-	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
-	')')?;
+PrimaryExpCS returns ExpCS:	// These rules are ordered most rejectable first
+	({IndexExpCS} pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
+		('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')? (atPre?='@' 'pre')?)
+|	({ConstructorExpCS} pathName=PathNameCS
+		'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}')
+| 	({InvocationExpCS} pathName=PathNameCS (atPre?='@' 'pre')?
+		'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
+		(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
+		(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
+		')')
+|	({NameExpCS} pathName=PathNameCS (atPre?='@' 'pre')?)
+|	SelfExpCS
+| 	PrimitiveLiteralExpCS
+| 	TupleLiteralExpCS
+| 	CollectionLiteralExpCS
+| 	TypeLiteralExpCS
+| 	LetExpCS
+| 	IfExpCS
+| 	NestedExpCS;
 
 NavigatingArgCS returns NavigatingArgCS:
 	name=NavigatingArgExpCS (':' ownedType=TypeExpCS)? ('=' init=ExpCS)?;

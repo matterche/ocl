@@ -27,8 +27,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
@@ -143,10 +143,10 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NavigatingExpCS getNavigatingExp()
+	public InvocationExpCS getNavigatingExp()
 	{
 		if (eContainerFeatureID() != EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP) return null;
-		return (NavigatingExpCS)eContainer();
+		return (InvocationExpCS)eContainer();
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetNavigatingExp(NavigatingExpCS newNavigatingExp, NotificationChain msgs)
+	public NotificationChain basicSetNavigatingExp(InvocationExpCS newNavigatingExp, NotificationChain msgs)
 	{
 		msgs = eBasicSetContainer((InternalEObject)newNavigatingExp, EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP, msgs);
 		return msgs;
@@ -165,7 +165,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNavigatingExp(NavigatingExpCS newNavigatingExp)
+	public void setNavigatingExp(InvocationExpCS newNavigatingExp)
 	{
 		if (newNavigatingExp != eInternalContainer() || (eContainerFeatureID() != EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP && newNavigatingExp != null))
 		{
@@ -175,7 +175,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newNavigatingExp != null)
-				msgs = ((InternalEObject)newNavigatingExp).eInverseAdd(this, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT, NavigatingExpCS.class, msgs);
+				msgs = ((InternalEObject)newNavigatingExp).eInverseAdd(this, EssentialOCLCSTPackage.INVOCATION_EXP_CS__ARGUMENT, InvocationExpCS.class, msgs);
 			msgs = basicSetNavigatingExp(newNavigatingExp, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -386,7 +386,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetNavigatingExp((NavigatingExpCS)otherEnd, msgs);
+				return basicSetNavigatingExp((InvocationExpCS)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -424,7 +424,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 		switch (eContainerFeatureID())
 		{
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				return eInternalContainer().eInverseRemove(this, EssentialOCLCSTPackage.NAVIGATING_EXP_CS__ARGUMENT, NavigatingExpCS.class, msgs);
+				return eInternalContainer().eInverseRemove(this, EssentialOCLCSTPackage.INVOCATION_EXP_CS__ARGUMENT, InvocationExpCS.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -466,7 +466,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 		switch (featureID)
 		{
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				setNavigatingExp((NavigatingExpCS)newValue);
+				setNavigatingExp((InvocationExpCS)newValue);
 				return;
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole((NavigationRole)newValue);
@@ -498,7 +498,7 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 		switch (featureID)
 		{
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__NAVIGATING_EXP:
-				setNavigatingExp((NavigatingExpCS)null);
+				setNavigatingExp((InvocationExpCS)null);
 				return;
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS__ROLE:
 				setRole(ROLE_EDEFAULT);

@@ -39,9 +39,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorEx
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
@@ -143,6 +143,15 @@ public class EssentialOCLPreOrderVisitor
 	}
 
 	@Override
+	public Continuation<?> visitInvocationExpCS(InvocationExpCS csNavigatingExp) {
+		NameExpCS namedExp = csNavigatingExp; //.getNameExp();
+		if (namedExp != null) {
+			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp);
+		}
+		return super.visitInvocationExpCS(csNavigatingExp);
+	}
+
+	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csNameExp) {
 		return null;
 	}
@@ -150,15 +159,6 @@ public class EssentialOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitNavigatingArgCS(NavigatingArgCS csNavigatingArg) {
 		return null;
-	}
-
-	@Override
-	public Continuation<?> visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
-		NameExpCS namedExp = csNavigatingExp.getNameExp();
-		if (namedExp != null) {
-			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp);
-		}
-		return super.visitNavigatingExpCS(csNavigatingExp);
 	}
 
 	@Override
@@ -171,7 +171,7 @@ public class EssentialOCLPreOrderVisitor
 				List<ExpCS> expressions = csInfixExp.getOwnedExpression();
 				if ((index+1) < expressions.size()) {
 					ExpCS csExp = expressions.get(index+1);
-					if (csExp instanceof NameExpCS) {
+					if ((csExp instanceof NameExpCS) && !(csExp instanceof InvocationExpCS)) {
 						CS2Pivot.setElementType(((NameExpCS) csExp).getPathName(), PivotPackage.Literals.PROPERTY, csExp);
 					}
 				}

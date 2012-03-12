@@ -52,12 +52,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -213,11 +210,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createPreCSAdapter();
 			}
 			@Override
-			public Adapter casePreExpCS(PreExpCS object)
-			{
-				return createPreExpCSAdapter();
-			}
-			@Override
 			public Adapter casePropertyContextDeclCS(PropertyContextDeclCS object)
 			{
 				return createPropertyContextDeclCSAdapter();
@@ -296,16 +288,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseExpCS(ExpCS object)
 			{
 				return createExpCSAdapter();
-			}
-			@Override
-			public Adapter caseNamedExpCS(NamedExpCS object)
-			{
-				return createNamedExpCSAdapter();
-			}
-			@Override
-			public Adapter caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
-			{
-				return createDecoratedNamedExpCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -630,21 +612,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS <em>Pre Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS
-	 * @generated
-	 */
-	public Adapter createPreExpCSAdapter()
-	{
-		return null;
-	}
-
-/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS <em>Property Context Decl CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -855,36 +822,6 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS <em>Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS
-	 * @generated
-	 */
-	public Adapter createNamedExpCSAdapter()
-	{
-		return null;
-	}
-
-/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS <em>Decorated Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS
-	 * @generated
-	 */
-	public Adapter createDecoratedNamedExpCSAdapter()
-	{
-		return null;
-	}
-
-/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null.

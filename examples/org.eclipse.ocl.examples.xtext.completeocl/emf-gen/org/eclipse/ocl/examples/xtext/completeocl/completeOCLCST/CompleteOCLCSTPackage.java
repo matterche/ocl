@@ -208,7 +208,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPropertyContextDeclCS()
 	 * @generated
 	 */
-	int PROPERTY_CONTEXT_DECL_CS = 19;
+	int PROPERTY_CONTEXT_DECL_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.InitCSImpl <em>Init CS</em>}' class.
@@ -1972,88 +1972,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int PRE_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl <em>Pre Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreExpCS()
-	 * @generated
-	 */
-	int PRE_EXP_CS = 18;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__LOGICAL_PARENT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__PIVOT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__CSI = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__PARENT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Named Exp</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS__NAMED_EXP = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS__NAMED_EXP;
-
-	/**
-	 * The number of structural features of the '<em>Pre Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_EXP_CS_FEATURE_COUNT = EssentialOCLCSTPackage.DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2556,16 +2474,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EClass getPreCS();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS <em>Pre Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Pre Exp CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS
-	 * @generated
-	 */
-	EClass getPreExpCS();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS <em>Post CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2963,16 +2871,6 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PRE_CS = eINSTANCE.getPreCS();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl <em>Pre Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreExpCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreExpCS()
-		 * @generated
-		 */
-		EClass PRE_EXP_CS = eINSTANCE.getPreExpCS();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PostCSImpl <em>Post CS</em>}' class.

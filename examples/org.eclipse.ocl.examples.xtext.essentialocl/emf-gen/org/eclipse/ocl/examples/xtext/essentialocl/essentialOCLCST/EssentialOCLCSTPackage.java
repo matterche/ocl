@@ -80,7 +80,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpCS()
 	 * @generated
 	 */
-	int EXP_CS = 9;
+	int EXP_CS = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl <em>Collection Type CS</em>}' class.
@@ -130,7 +130,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP_CS = 28;
+	int PRIMITIVE_LITERAL_EXP_CS = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TupleLiteralExpCSImpl <em>Tuple Literal Exp CS</em>}' class.
@@ -140,7 +140,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralExpCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP_CS = 31;
+	int TUPLE_LITERAL_EXP_CS = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.StringLiteralExpCSImpl <em>String Literal Exp CS</em>}' class.
@@ -150,7 +150,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getStringLiteralExpCS()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP_CS = 30;
+	int STRING_LITERAL_EXP_CS = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.BooleanLiteralExpCSImpl <em>Boolean Literal Exp CS</em>}' class.
@@ -170,7 +170,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP_CS = 14;
+	int INVALID_LITERAL_EXP_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.
@@ -180,7 +180,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNullLiteralExpCS()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP_CS = 24;
+	int NULL_LITERAL_EXP_CS = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IfExpCSImpl <em>If Exp CS</em>}' class.
@@ -190,7 +190,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIfExpCS()
 	 * @generated
 	 */
-	int IF_EXP_CS = 11;
+	int IF_EXP_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LetExpCSImpl <em>Let Exp CS</em>}' class.
@@ -210,7 +210,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getInfixExpCS()
 	 * @generated
 	 */
-	int INFIX_EXP_CS = 13;
+	int INFIX_EXP_CS = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl <em>Name Exp CS</em>}' class.
@@ -233,16 +233,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAMED_EXP_CS = 19;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl <em>Navigating Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingExpCS()
-	 * @generated
-	 */
-	int NAVIGATING_EXP_CS = 21;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.IndexExpCSImpl <em>Index Exp CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,7 +240,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getIndexExpCS()
 	 * @generated
 	 */
-	int INDEX_EXP_CS = 12;
+	int INDEX_EXP_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeNameExpCSImpl <em>Type Name Exp CS</em>}' class.
@@ -260,7 +250,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeNameExpCS()
 	 * @generated
 	 */
-	int TYPE_NAME_EXP_CS = 34;
+	int TYPE_NAME_EXP_CS = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingArgCSImpl <em>Navigating Arg CS</em>}' class.
@@ -280,7 +270,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNestedExpCS()
 	 * @generated
 	 */
-	int NESTED_EXP_CS = 23;
+	int NESTED_EXP_CS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NumberLiteralExpCSImpl <em>Number Literal Exp CS</em>}' class.
@@ -290,7 +280,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNumberLiteralExpCS()
 	 * @generated
 	 */
-	int NUMBER_LITERAL_EXP_CS = 25;
+	int NUMBER_LITERAL_EXP_CS = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.OperatorCSImpl <em>Operator CS</em>}' class.
@@ -300,7 +290,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getOperatorCS()
 	 * @generated
 	 */
-	int OPERATOR_CS = 26;
+	int OPERATOR_CS = 25;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1025,16 +1015,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAMED_EXP_CS_FEATURE_COUNT = EXP_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DecoratedNamedExpCSImpl <em>Decorated Named Exp CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DecoratedNamedExpCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getDecoratedNamedExpCS()
-	 * @generated
-	 */
-	int DECORATED_NAMED_EXP_CS = 8;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1042,7 +1022,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpSpecificationCS()
 	 * @generated
 	 */
-	int EXP_SPECIFICATION_CS = 10;
+	int EXP_SPECIFICATION_CS = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.VariableCSImpl <em>Variable CS</em>}' class.
@@ -1052,7 +1032,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getVariableCS()
 	 * @generated
 	 */
-	int VARIABLE_CS = 37;
+	int VARIABLE_CS = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.LetVariableCSImpl <em>Let Variable CS</em>}' class.
@@ -1128,13 +1108,22 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAME_EXP_CS__PATH_NAME = NAMED_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>At Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXP_CS__AT_PRE = NAMED_EXP_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__ELEMENT = NAMED_EXP_CS_FEATURE_COUNT + 1;
+	int NAME_EXP_CS__ELEMENT = NAMED_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Name Exp CS</em>' class.
@@ -1143,7 +1132,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 2;
+	int NAME_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
@@ -1217,6 +1206,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__PATH_NAME = NAME_EXP_CS__PATH_NAME;
+
+	/**
+	 * The feature id for the '<em><b>At Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTOR_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1424,78 +1422,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECORATED_NAMED_EXP_CS__LOGICAL_PARENT = NAMED_EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__PIVOT = NAMED_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__OWNED_ANNOTATION = NAMED_EXP_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__CSI = NAMED_EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__PARENT = NAMED_EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Named Exp</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__NAMED_EXP = NAMED_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Decorated Named Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int EXP_SPECIFICATION_CS__LOGICAL_PARENT = BaseCSTPackage.SPECIFICATION_CS__LOGICAL_PARENT;
 
 	/**
@@ -1658,7 +1584,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__LOGICAL_PARENT = DECORATED_NAMED_EXP_CS__LOGICAL_PARENT;
+	int INDEX_EXP_CS__LOGICAL_PARENT = NAME_EXP_CS__LOGICAL_PARENT;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1667,7 +1593,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__PIVOT = DECORATED_NAMED_EXP_CS__PIVOT;
+	int INDEX_EXP_CS__PIVOT = NAME_EXP_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1676,7 +1602,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__OWNED_ANNOTATION = DECORATED_NAMED_EXP_CS__OWNED_ANNOTATION;
+	int INDEX_EXP_CS__OWNED_ANNOTATION = NAME_EXP_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1685,7 +1611,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
+	int INDEX_EXP_CS__ORIGINAL_XMI_ID = NAME_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Csi</b></em>' attribute.
@@ -1694,7 +1620,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__CSI = DECORATED_NAMED_EXP_CS__CSI;
+	int INDEX_EXP_CS__CSI = NAME_EXP_CS__CSI;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -1703,16 +1629,34 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__PARENT = DECORATED_NAMED_EXP_CS__PARENT;
+	int INDEX_EXP_CS__PARENT = NAME_EXP_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Named Exp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__NAMED_EXP = DECORATED_NAMED_EXP_CS__NAMED_EXP;
+	int INDEX_EXP_CS__PATH_NAME = NAME_EXP_CS__PATH_NAME;
+
+	/**
+	 * The feature id for the '<em><b>At Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXP_CS__ELEMENT = NAME_EXP_CS__ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>First Indexes</b></em>' containment reference list.
@@ -1721,7 +1665,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__FIRST_INDEXES = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
+	int INDEX_EXP_CS__FIRST_INDEXES = NAME_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Second Indexes</b></em>' containment reference list.
@@ -1730,7 +1674,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS__SECOND_INDEXES = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 1;
+	int INDEX_EXP_CS__SECOND_INDEXES = NAME_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Index Exp CS</em>' class.
@@ -1739,7 +1683,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_EXP_CS_FEATURE_COUNT = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 2;
+	int INDEX_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -1884,6 +1828,115 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVALID_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InvocationExpCSImpl <em>Invocation Exp CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InvocationExpCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getInvocationExpCS()
+	 * @generated
+	 */
+	int INVOCATION_EXP_CS = 14;
+
+	/**
+	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__LOGICAL_PARENT = NAME_EXP_CS__LOGICAL_PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__PIVOT = NAME_EXP_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__OWNED_ANNOTATION = NAME_EXP_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__ORIGINAL_XMI_ID = NAME_EXP_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Csi</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__CSI = NAME_EXP_CS__CSI;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__PARENT = NAME_EXP_CS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__PATH_NAME = NAME_EXP_CS__PATH_NAME;
+
+	/**
+	 * The feature id for the '<em><b>At Pre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__ELEMENT = NAME_EXP_CS__ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS__ARGUMENT = NAME_EXP_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Invocation Exp CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXP_CS_FEATURE_COUNT = NAME_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2255,87 +2308,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_ARG_CS_FEATURE_COUNT = BaseCSTPackage.MODEL_ELEMENT_CS_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__LOGICAL_PARENT = DECORATED_NAMED_EXP_CS__LOGICAL_PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Pivot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__PIVOT = DECORATED_NAMED_EXP_CS__PIVOT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__OWNED_ANNOTATION = DECORATED_NAMED_EXP_CS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Csi</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__CSI = DECORATED_NAMED_EXP_CS__CSI;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__PARENT = DECORATED_NAMED_EXP_CS__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Named Exp</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__NAMED_EXP = DECORATED_NAMED_EXP_CS__NAMED_EXP;
-
-	/**
-	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__ARGUMENT = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Navigating Exp CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS_FEATURE_COUNT = DECORATED_NAMED_EXP_CS_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigationOperatorCSImpl <em>Navigation Operator CS</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2343,7 +2315,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigationOperatorCS()
 	 * @generated
 	 */
-	int NAVIGATION_OPERATOR_CS = 22;
+	int NAVIGATION_OPERATOR_CS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2650,7 +2622,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getPrefixExpCS()
 	 * @generated
 	 */
-	int PREFIX_EXP_CS = 27;
+	int PREFIX_EXP_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2741,7 +2713,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getSelfExpCS()
 	 * @generated
 	 */
-	int SELF_EXP_CS = 29;
+	int SELF_EXP_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -2967,7 +2939,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTupleLiteralPartCS()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART_CS = 32;
+	int TUPLE_LITERAL_PART_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3058,7 +3030,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getTypeLiteralExpCS()
 	 * @generated
 	 */
-	int TYPE_LITERAL_EXP_CS = 33;
+	int TYPE_LITERAL_EXP_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3194,7 +3166,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnaryOperatorCS()
 	 * @generated
 	 */
-	int UNARY_OPERATOR_CS = 35;
+	int UNARY_OPERATOR_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3285,7 +3257,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 36;
+	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -3358,7 +3330,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigationRole()
 	 * @generated
 	 */
-	int NAVIGATION_ROLE = 38;
+	int NAVIGATION_ROLE = 37;
 
 	/**
 	 * The meta object id for the '<em>Big Number</em>' data type.
@@ -3368,7 +3340,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getBigNumber()
 	 * @generated
 	 */
-	int BIG_NUMBER = 39;
+	int BIG_NUMBER = 38;
 
 
 	/**
@@ -3529,27 +3501,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getContextCS_OwnedExpression();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS <em>Decorated Named Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Decorated Named Exp CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS
-	 * @generated
-	 */
-	EClass getDecoratedNamedExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS#getNamedExp <em>Named Exp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Named Exp</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS#getNamedExp()
-	 * @see #getDecoratedNamedExpCS()
-	 * @generated
-	 */
-	EReference getDecoratedNamedExpCS_NamedExp();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS <em>Exp CS</em>}'.
@@ -3740,6 +3691,17 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EReference getNameExpCS_PathName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#isAtPre <em>At Pre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>At Pre</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#isAtPre()
+	 * @see #getNameExpCS()
+	 * @generated
+	 */
+	EAttribute getNameExpCS_AtPre();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3835,27 +3797,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNavigatingArgCS_Init();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS <em>Navigating Exp CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Navigating Exp CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS
-	 * @generated
-	 */
-	EClass getNavigatingExpCS();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument <em>Argument</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Argument</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument()
-	 * @see #getNavigatingExpCS()
-	 * @generated
-	 */
-	EReference getNavigatingExpCS_Argument();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS <em>Navigation Operator CS</em>}'.
@@ -4065,6 +4006,27 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInvalidLiteralExpCS();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS <em>Invocation Exp CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Invocation Exp CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS
+	 * @generated
+	 */
+	EClass getInvocationExpCS();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS#getArgument <em>Argument</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Argument</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS#getArgument()
+	 * @see #getInvocationExpCS()
+	 * @generated
+	 */
+	EReference getInvocationExpCS_Argument();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS <em>Null Literal Exp CS</em>}'.
@@ -4444,24 +4406,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EReference CONTEXT_CS__OWNED_EXPRESSION = eINSTANCE.getContextCS_OwnedExpression();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DecoratedNamedExpCSImpl <em>Decorated Named Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.DecoratedNamedExpCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getDecoratedNamedExpCS()
-		 * @generated
-		 */
-		EClass DECORATED_NAMED_EXP_CS = eINSTANCE.getDecoratedNamedExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Named Exp</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DECORATED_NAMED_EXP_CS__NAMED_EXP = eINSTANCE.getDecoratedNamedExpCS_NamedExp();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpCSImpl <em>Exp CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4626,6 +4570,14 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EReference NAME_EXP_CS__PATH_NAME = eINSTANCE.getNameExpCS_PathName();
 
 		/**
+		 * The meta object literal for the '<em><b>At Pre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAME_EXP_CS__AT_PRE = eINSTANCE.getNameExpCS_AtPre();
+
+		/**
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4700,24 +4652,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NAVIGATING_ARG_CS__INIT = eINSTANCE.getNavigatingArgCS_Init();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl <em>Navigating Exp CS</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigatingExpCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getNavigatingExpCS()
-		 * @generated
-		 */
-		EClass NAVIGATING_EXP_CS = eINSTANCE.getNavigatingExpCS();
-
-		/**
-		 * The meta object literal for the '<em><b>Argument</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NAVIGATING_EXP_CS__ARGUMENT = eINSTANCE.getNavigatingExpCS_Argument();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NavigationOperatorCSImpl <em>Navigation Operator CS</em>}' class.
@@ -4900,6 +4834,24 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INVALID_LITERAL_EXP_CS = eINSTANCE.getInvalidLiteralExpCS();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InvocationExpCSImpl <em>Invocation Exp CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.InvocationExpCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getInvocationExpCS()
+		 * @generated
+		 */
+		EClass INVOCATION_EXP_CS = eINSTANCE.getInvocationExpCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Argument</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INVOCATION_EXP_CS__ARGUMENT = eINSTANCE.getInvocationExpCS_Argument();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NullLiteralExpCSImpl <em>Null Literal Exp CS</em>}' class.

@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#isAtPre <em>At Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
@@ -53,6 +54,24 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	 * @ordered
 	 */
 	protected PathNameCS pathName;
+	/**
+	 * The default value of the '{@link #isAtPre() <em>At Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAtPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean AT_PRE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isAtPre() <em>At Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAtPre()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean atPre = AT_PRE_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,6 +142,29 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAtPre()
+	{
+		return atPre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAtPre(boolean newAtPre)
+	{
+		boolean oldAtPre = atPre;
+		atPre = newAtPre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE, oldAtPre, atPre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public NamedElement getNamedElement()
@@ -168,6 +210,8 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 		{
 			case EssentialOCLCSTPackage.NAME_EXP_CS__PATH_NAME:
 				return getPathName();
+			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
+				return isAtPre();
 			case EssentialOCLCSTPackage.NAME_EXP_CS__ELEMENT:
 				return getElement();
 		}
@@ -187,6 +231,9 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 			case EssentialOCLCSTPackage.NAME_EXP_CS__PATH_NAME:
 				setPathName((PathNameCS)newValue);
 				return;
+			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
+				setAtPre((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -204,6 +251,9 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 			case EssentialOCLCSTPackage.NAME_EXP_CS__PATH_NAME:
 				setPathName((PathNameCS)null);
 				return;
+			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
+				setAtPre(AT_PRE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -220,10 +270,23 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 		{
 			case EssentialOCLCSTPackage.NAME_EXP_CS__PATH_NAME:
 				return pathName != null;
+			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
+				return atPre != AT_PRE_EDEFAULT;
 			case EssentialOCLCSTPackage.NAME_EXP_CS__ELEMENT:
 				return getElement() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String toString()
+	{
+		return super.toString();
 	}
 
 	@SuppressWarnings("unchecked")

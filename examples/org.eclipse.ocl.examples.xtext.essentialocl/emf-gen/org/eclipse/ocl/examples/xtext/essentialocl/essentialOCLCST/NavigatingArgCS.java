@@ -44,7 +44,7 @@ public interface NavigatingArgCS extends ModelElementCS
 {
 	/**
 	 * Returns the value of the '<em><b>Navigating Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument <em>Argument</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Navigating Exp</em>' container reference isn't clear,
@@ -52,13 +52,13 @@ public interface NavigatingArgCS extends ModelElementCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Navigating Exp</em>' container reference.
-	 * @see #setNavigatingExp(NavigatingExpCS)
+	 * @see #setNavigatingExp(InvocationExpCS)
 	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNavigatingArgCS_NavigatingExp()
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS#getArgument
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS#getArgument
 	 * @model opposite="argument" transient="false"
 	 * @generated
 	 */
-	NavigatingExpCS getNavigatingExp();
+	InvocationExpCS getNavigatingExp();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS#getNavigatingExp <em>Navigating Exp</em>}' container reference.
@@ -68,7 +68,7 @@ public interface NavigatingArgCS extends ModelElementCS
 	 * @see #getNavigatingExp()
 	 * @generated
 	 */
-	void setNavigatingExp(NavigatingExpCS value);
+	void setNavigatingExp(InvocationExpCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Role</b></em>' attribute.

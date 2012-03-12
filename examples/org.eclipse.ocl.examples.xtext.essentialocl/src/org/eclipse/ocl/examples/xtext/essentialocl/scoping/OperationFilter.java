@@ -36,8 +36,8 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 
 public class OperationFilter extends AbstractOperationFilter
@@ -47,7 +47,7 @@ public class OperationFilter extends AbstractOperationFilter
 	private final int accumulators;
 	private final int expressions;
 	
-	public OperationFilter(MetaModelManager metaModelManager, Type sourceType, NavigatingExpCS csNavigatingExp) {
+	public OperationFilter(MetaModelManager metaModelManager, Type sourceType, InvocationExpCS csNavigatingExp) {
 		super(metaModelManager, sourceType);
 		int accumulators = 0;
 		int iterators = 0;

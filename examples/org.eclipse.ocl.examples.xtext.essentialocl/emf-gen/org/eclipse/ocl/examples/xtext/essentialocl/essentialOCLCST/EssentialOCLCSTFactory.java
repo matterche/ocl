@@ -180,15 +180,6 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	NavigatingArgCS createNavigatingArgCS();
 
 	/**
-	 * Returns a new object of class '<em>Navigating Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Navigating Exp CS</em>'.
-	 * @generated
-	 */
-	NavigatingExpCS createNavigatingExpCS();
-
-	/**
 	 * Returns a new object of class '<em>Navigation Operator CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,6 +277,15 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	InvalidLiteralExpCS createInvalidLiteralExpCS();
+
+	/**
+	 * Returns a new object of class '<em>Invocation Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invocation Exp CS</em>'.
+	 * @generated
+	 */
+	InvocationExpCS createInvocationExpCS();
 
 	/**
 	 * Returns a new object of class '<em>Null Literal Exp CS</em>'.

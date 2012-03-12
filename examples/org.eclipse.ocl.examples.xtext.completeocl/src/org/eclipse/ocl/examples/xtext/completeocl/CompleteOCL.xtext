@@ -133,11 +133,6 @@ SpecificationCS returns ContextSpecificationCS:
 //	name=CollectionTypeIdentifier
 //	('(' ownedType=TypeExpCS ')')?;
 
-NavigatingExpCS_Base returns essentialocl::NamedExpCS:
-	IndexExpCS
-	({PreExpCS.namedExp=current} '@' 'pre')?
-;
-
 NavigatingArgExpCS returns essentialocl::ExpCS:
 	({OclMessageArgCS} '?')
 	| ExpCS

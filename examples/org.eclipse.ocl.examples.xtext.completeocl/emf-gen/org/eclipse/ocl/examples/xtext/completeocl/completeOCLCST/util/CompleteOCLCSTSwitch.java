@@ -51,12 +51,9 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PathNameDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -391,21 +388,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(preCS);
 				if (result == null) result = casePivotable(preCS);
 				if (result == null) result = caseVisitableCS(preCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CompleteOCLCSTPackage.PRE_EXP_CS:
-			{
-				PreExpCS preExpCS = (PreExpCS)theEObject;
-				T result = casePreExpCS(preExpCS);
-				if (result == null) result = caseDecoratedNamedExpCS(preExpCS);
-				if (result == null) result = caseNamedExpCS(preExpCS);
-				if (result == null) result = caseExpCS(preExpCS);
-				if (result == null) result = caseModelElementCS(preExpCS);
-				if (result == null) result = casePivotableElementCS(preExpCS);
-				if (result == null) result = caseElementCS(preExpCS);
-				if (result == null) result = casePivotable(preExpCS);
-				if (result == null) result = caseVisitableCS(preExpCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -750,22 +732,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Pre Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pre Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePreExpCS(PreExpCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Property Context Decl CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -990,38 +956,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedExpCS(NamedExpCS object)
-	{
-		return null;
-	}
-
-/**
-	 * Returns the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Decorated Named Exp CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDecoratedNamedExpCS(DecoratedNamedExpCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;

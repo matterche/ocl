@@ -48,8 +48,8 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
@@ -118,8 +118,8 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			if ((index + 1) < path.size()) {
 				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
 			}
-			else if (csContext instanceof NavigatingExpCS) {
-				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csContext;
+			else if (csContext instanceof InvocationExpCS) {
+				InvocationExpCS csNavigatingExp = (InvocationExpCS)csContext;
 				navigationArgument = csNavigatingExp;
 				argumentText = getOperationArguments(csNavigatingExp);
 				messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
@@ -193,7 +193,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			}
 		}
 		
-		public String getOperationArguments(NavigatingExpCS csNavigatingExp) {
+		public String getOperationArguments(InvocationExpCS csNavigatingExp) {
 			List<NavigatingArgCS> arguments = csNavigatingExp.getArgument();
 			StringBuilder s = new StringBuilder();
 			for (NavigatingArgCS csArgument : arguments) {

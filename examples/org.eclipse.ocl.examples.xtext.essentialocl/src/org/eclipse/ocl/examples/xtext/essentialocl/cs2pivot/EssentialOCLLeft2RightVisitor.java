@@ -111,12 +111,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -216,12 +216,31 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected VariableDeclaration getImplicitSource(ModelElementCS csExp, Feature feature) {
 		EObject eContainer = csExp.eContainer();
-		if (eContainer instanceof NavigatingExpCS) {
+		if (csExp instanceof InvocationExpCS) {
+			Type namedElementType = PivotUtil.getOwningType(feature);
+			InvocationExpCS csNavigatingExp = (InvocationExpCS) csExp;
+			CallExp iteratorExp = PivotUtil.getPivot(CallExp.class, csNavigatingExp);
+			if (iteratorExp instanceof LoopExp) {
+				for (Variable iterator : ((LoopExp)iteratorExp).getIterator()) {
+					Type type = iterator.getType();
+					if (metaModelManager.conformsTo(type, namedElementType)) {
+						return iterator;
+					}
+				}
+				if (iteratorExp instanceof IterateExp) {
+					Variable iterator = ((IterateExp)iteratorExp).getResult();
+					Type type = iterator.getType();
+					if (metaModelManager.conformsTo(type, namedElementType)) {
+						return iterator;
+					}
+				}
+			}
+		}
+		else if (eContainer instanceof InvocationExpCS) {
 			EReference eContainmentFeature = csExp.eContainmentFeature();
-			if ((eContainmentFeature == EssentialOCLCSTPackage.Literals.DECORATED_NAMED_EXP_CS__NAMED_EXP)
-			 || (eContainmentFeature == EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT)) {
+			if (eContainmentFeature == EssentialOCLCSTPackage.Literals.INVOCATION_EXP_CS__ARGUMENT) {
 				Type namedElementType = PivotUtil.getOwningType(feature);
-				NavigatingExpCS csNavigatingExp = (NavigatingExpCS) eContainer;
+				InvocationExpCS csNavigatingExp = (InvocationExpCS) eContainer;
 				CallExp iteratorExp = PivotUtil.getPivot(CallExp.class, csNavigatingExp);
 				if (iteratorExp instanceof LoopExp) {
 					for (Variable iterator : ((LoopExp)iteratorExp).getIterator()) {
@@ -264,7 +283,7 @@ public class EssentialOCLLeft2RightVisitor
 		return null;
 	}
 
-	protected Type getSourceElementType(NavigatingExpCS csNavigatingExp, OclExpression source) {
+	protected Type getSourceElementType(InvocationExpCS csNavigatingExp, OclExpression source) {
 		Type sourceType = source.getType();
 		boolean isCollectionNavigation = PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(csNavigatingExp.getParent().getName());
 		if (!isCollectionNavigation) {
@@ -285,7 +304,7 @@ public class EssentialOCLLeft2RightVisitor
 		return expression;
 	}
 
-	protected void resolveIterationAccumulators(NavigatingExpCS csNavigatingExp, LoopExp expression) {
+	protected void resolveIterationAccumulators(InvocationExpCS csNavigatingExp, LoopExp expression) {
 		Iteration iteration = expression.getReferredIteration();
 		List<Variable> pivotAccumulators = new ArrayList<Variable>();
 		//
@@ -324,7 +343,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 	}
 
-	protected void resolveIterationBody(NavigatingExpCS csNavigatingExp, LoopExp expression) {
+	protected void resolveIterationBody(InvocationExpCS csNavigatingExp, LoopExp expression) {
 		List<OclExpression> pivotBodies = new ArrayList<OclExpression>();
 		for (NavigatingArgCS csArgument : csNavigatingExp.getArgument()) {
 			if (csArgument.getRole() == NavigationRole.EXPRESSION) {
@@ -348,8 +367,8 @@ public class EssentialOCLLeft2RightVisitor
 		}
 	}
 
-	protected LoopExp resolveIterationCall(NavigatingExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
+	protected LoopExp resolveIterationCall(InvocationExpCS csNavigatingExp, OclExpression source, Iteration iteration) {
+		NamedExpCS csNamedExp = csNavigatingExp; //.getNamedExp();
 		LoopExp expression;
 		if (iteration.getOwnedAccumulator().size() > 0) {
 			expression = context.refreshModelElement(IterateExp.class, PivotPackage.Literals.ITERATE_EXP, csNamedExp);
@@ -367,7 +386,7 @@ public class EssentialOCLLeft2RightVisitor
 		return expression;
 	}
 
-	protected void resolveIterationExplicitAccumulators(NavigatingExpCS csNavigatingExp) {
+	protected void resolveIterationExplicitAccumulators(InvocationExpCS csNavigatingExp) {
 		//
 		//	Explicit accumulator
 		//
@@ -393,7 +412,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 	}
 
-	protected void resolveIterationIterators(NavigatingExpCS csNavigatingExp,
+	protected void resolveIterationIterators(InvocationExpCS csNavigatingExp,
 			OclExpression source, LoopExp expression) {
 		Iteration iteration = expression.getReferredIteration();
 		List<Variable> pivotIterators = new ArrayList<Variable>();
@@ -521,8 +540,8 @@ public class EssentialOCLLeft2RightVisitor
 		return source;
 	}
 
-	protected OclExpression resolveOperation(NavigatingExpCS csNavigatingExp) {
-		NamedExpCS csNamedExp = csNavigatingExp.getNamedExp();
+	protected OclExpression resolveOperation(InvocationExpCS csNavigatingExp) {
+		NamedExpCS csNamedExp = csNavigatingExp; //.getNamedExp();
 		//
 		//	Need to resolve types for operation arguments in order to disambiguate
 		//	operation names. No need to resolve iteration arguments since for those
@@ -577,7 +596,7 @@ public class EssentialOCLLeft2RightVisitor
 	 * Determine the type of each operation argument so that the appropriate operation overload can be selected.
 	 * Iterator bodies are left unresolved.
 	 */
-	protected void resolveOperationArgumentTypes(NavigatingExpCS csNavigatingExp) {
+	protected void resolveOperationArgumentTypes(InvocationExpCS csNavigatingExp) {
 		for (NavigatingArgCS csArgument : csNavigatingExp.getArgument()) {
 			if (csArgument.getRole() == NavigationRole.ITERATOR) {
 				break;
@@ -597,7 +616,7 @@ public class EssentialOCLLeft2RightVisitor
 	/**
 	 * Complete the installation of each operation argument in its operation call.
 	 */
-	protected void resolveOperationArguments(NavigatingExpCS csNavigatingExp,
+	protected void resolveOperationArguments(InvocationExpCS csNavigatingExp,
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
@@ -1063,6 +1082,18 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	@Override
+	public Element visitInvocationExpCS(InvocationExpCS csNavigatingExp) {
+		OperatorCS csParent = csNavigatingExp.getParent();
+		if ((csParent instanceof NavigationOperatorCS)
+		 && (csNavigatingExp != csParent.getSource())) {
+			return PivotUtil.getPivot(OclExpression.class, csNavigatingExp);
+		}
+		else {
+			return resolveOperation(csNavigatingExp);
+		}
+	}
+
+	@Override
 	public Element visitLetExpCS(LetExpCS csLetExp) {
 		// Each CS Let Variable becomes a Pivot LetExpression and Variable
 		// The CS Let therefore just re-uses the Pivot of the first CS Let Variable
@@ -1119,7 +1150,7 @@ public class EssentialOCLLeft2RightVisitor
 	@Override
 	public Element visitNameExpCS(NameExpCS csNameExp) {
 		EObject eContainer = csNameExp.eContainer();
-		if (eContainer instanceof NavigatingExpCS) {
+		if (eContainer instanceof InvocationExpCS) {
 			EObject eContainerContainer = eContainer.eContainer();
 			if (eContainerContainer instanceof NamedExpCS) {
 				logger.warn("Unsupported '" + eContainerContainer.eClass().getName() + "' for () navigation");
@@ -1174,25 +1205,13 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	@Override
-	public Element visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
-		OperatorCS csParent = csNavigatingExp.getParent();
-		if ((csParent instanceof NavigationOperatorCS)
-		 && (csNavigatingExp != csParent.getSource())) {
-			return PivotUtil.getPivot(OclExpression.class, csNavigatingExp);
-		}
-		else {
-			return resolveOperation(csNavigatingExp);
-		}
-	}
-
-	@Override
 	public OclExpression visitNavigationOperatorCS(NavigationOperatorCS csOperator) {
 		@SuppressWarnings("unused")
 		OclExpression sourceExp = context.visitLeft2Right(OclExpression.class, csOperator.getSource());
 		OclExpression navigatingExp = null;
 		ExpCS argument = csOperator.getArgument();
-		if (argument instanceof NavigatingExpCS) {
-			navigatingExp = resolveOperation((NavigatingExpCS) argument);
+		if (argument instanceof InvocationExpCS) {
+			navigatingExp = resolveOperation((InvocationExpCS) argument);
 		}
 		else if (argument instanceof NamedExpCS) {
 			navigatingExp = resolvePropertyNavigation((NamedExpCS) argument);

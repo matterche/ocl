@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IndexExpCS extends DecoratedNamedExpCS
+public interface IndexExpCS extends NameExpCS
 {
 	/**
 	 * Returns the value of the '<em><b>First Indexes</b></em>' containment reference list.

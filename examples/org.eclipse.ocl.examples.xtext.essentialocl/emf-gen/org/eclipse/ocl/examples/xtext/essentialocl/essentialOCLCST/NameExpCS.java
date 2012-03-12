@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getPathName <em>Path Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#isAtPre <em>At Pre</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
@@ -65,6 +66,33 @@ public interface NameExpCS extends NamedExpCS {
 	 * @generated
 	 */
 	void setPathName(PathNameCS value);
+
+	/**
+	 * Returns the value of the '<em><b>At Pre</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>At Pre</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>At Pre</em>' attribute.
+	 * @see #setAtPre(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNameExpCS_AtPre()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isAtPre();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#isAtPre <em>At Pre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>At Pre</em>' attribute.
+	 * @see #isAtPre()
+	 * @generated
+	 */
+	void setAtPre(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.

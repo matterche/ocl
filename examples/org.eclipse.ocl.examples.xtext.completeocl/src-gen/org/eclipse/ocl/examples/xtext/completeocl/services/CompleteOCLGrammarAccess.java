@@ -1076,44 +1076,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0() { return cExprStringUNQUOTED_STRINGTerminalRuleCall_1_0; }
 	}
 
-	public class NavigatingExpCS_BaseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingExpCS_Base");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cIndexExpCSParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cPreExpCSNamedExpAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cCommercialAtKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Keyword cPreKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		////---------------------------------------------------------------------------------
-		////	EssentialOCL overrides
-		////---------------------------------------------------------------------------------
-		////CollectionTypeCS returns essentialocl::CollectionTypeCS:
-		////	name=CollectionTypeIdentifier
-		////	('(' ownedType=TypeExpCS ')')?;
-		//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
-		//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
-		public ParserRule getRule() { return rule; }
-
-		//IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?
-		public Group getGroup() { return cGroup; }
-
-		//IndexExpCS
-		public RuleCall getIndexExpCSParserRuleCall_0() { return cIndexExpCSParserRuleCall_0; }
-
-		//({PreExpCS.namedExp=current} "@" "pre")?
-		public Group getGroup_1() { return cGroup_1; }
-
-		//{PreExpCS.namedExp=current}
-		public Action getPreExpCSNamedExpAction_1_0() { return cPreExpCSNamedExpAction_1_0; }
-
-		//"@"
-		public Keyword getCommercialAtKeyword_1_1() { return cCommercialAtKeyword_1_1; }
-
-		//"pre"
-		public Keyword getPreKeyword_1_2() { return cPreKeyword_1_2; }
-	}
-
 	public class NavigatingArgExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NavigatingArgExpCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1122,6 +1084,12 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cQuestionMarkKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final RuleCall cExpCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
+		////---------------------------------------------------------------------------------
+		////	EssentialOCL overrides
+		////---------------------------------------------------------------------------------
+		////CollectionTypeCS returns essentialocl::CollectionTypeCS:
+		////	name=CollectionTypeIdentifier
+		////	('(' ownedType=TypeExpCS ')')?;
 		////TupleTypeCS returns base::TupleTypeCS:
 		////	name='Tuple'
 		////	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
@@ -1168,7 +1136,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private PreCSElements pPreCS;
 	private PropertyContextDeclCSElements pPropertyContextDeclCS;
 	private SpecificationCSElements pSpecificationCS;
-	private NavigatingExpCS_BaseElements pNavigatingExpCS_Base;
 	private NavigatingArgExpCSElements pNavigatingArgExpCS;
 	
 	private final GrammarProvider grammarProvider;
@@ -1426,16 +1393,6 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////CollectionTypeCS returns essentialocl::CollectionTypeCS:
 	////	name=CollectionTypeIdentifier
 	////	('(' ownedType=TypeExpCS ')')?;
-	//NavigatingExpCS_Base returns essentialocl::NamedExpCS:
-	//	IndexExpCS ({PreExpCS.namedExp=current} "@" "pre")?;
-	public NavigatingExpCS_BaseElements getNavigatingExpCS_BaseAccess() {
-		return (pNavigatingExpCS_Base != null) ? pNavigatingExpCS_Base : (pNavigatingExpCS_Base = new NavigatingExpCS_BaseElements());
-	}
-	
-	public ParserRule getNavigatingExpCS_BaseRule() {
-		return getNavigatingExpCS_BaseAccess().getRule();
-	}
-
 	////TupleTypeCS returns base::TupleTypeCS:
 	////	name='Tuple'
 	////	('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
@@ -1831,16 +1788,9 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCollectionLiteralPartCSAccess().getRule();
 	}
 
-	//ConstructorExpCS:
-	//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
-	public EssentialOCLGrammarAccess.ConstructorExpCSElements getConstructorExpCSAccess() {
-		return gaEssentialOCL.getConstructorExpCSAccess();
-	}
-	
-	public ParserRule getConstructorExpCSRule() {
-		return getConstructorExpCSAccess().getRule();
-	}
-
+	////ConstructorExpCS returns ConstructorExpCS:
+	////	pathName=PathNameCS
+	////	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 	//ConstructorPartCS:
 	//	property=[pivot::Property|UnrestrictedName] "=" initExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ConstructorPartCSElements getConstructorPartCSAccess() {
@@ -2061,9 +2011,15 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnaryOperatorCSAccess().getRule();
 	}
 
+	//// These rules are ordered most rejectable first
 	//PrimaryExpCS returns ExpCS:
-	//	NavigatingExpCS | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS | CollectionLiteralExpCS | ConstructorExpCS |
-	//	TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
+	//	{IndexExpCS} pathName=PathNameCS "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("[" secondIndexes+=ExpCS (","
+	//	secondIndexes+=ExpCS)* "]")? (atPre?="@" "pre")? | {ConstructorExpCS} pathName=PathNameCS "{"
+	//	ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}" | {InvocationExpCS} pathName=PathNameCS
+	//	(atPre?="@" "pre")? "(" (argument+=NavigatingArgCS argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS
+	//	argument+=NavigatingCommaArgCS*)? (argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")" | {NameExpCS}
+	//	pathName=PathNameCS (atPre?="@" "pre")? | SelfExpCS | PrimitiveLiteralExpCS | TupleLiteralExpCS |
+	//	CollectionLiteralExpCS | TypeLiteralExpCS | LetExpCS | IfExpCS | NestedExpCS;
 	public EssentialOCLGrammarAccess.PrimaryExpCSElements getPrimaryExpCSAccess() {
 		return gaEssentialOCL.getPrimaryExpCSAccess();
 	}
@@ -2072,41 +2028,20 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimaryExpCSAccess().getRule();
 	}
 
-	//NameExpCS:
-	//	pathName=PathNameCS;
-	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
-		return gaEssentialOCL.getNameExpCSAccess();
-	}
-	
-	public ParserRule getNameExpCSRule() {
-		return getNameExpCSAccess().getRule();
-	}
-
-	//IndexExpCS returns NamedExpCS:
-	//	NameExpCS ({IndexExpCS.namedExp=current} "[" firstIndexes+=ExpCS ("," firstIndexes+=ExpCS)* "]" ("["
-	//	secondIndexes+=ExpCS ("," secondIndexes+=ExpCS)* "]")?)?;
-	public EssentialOCLGrammarAccess.IndexExpCSElements getIndexExpCSAccess() {
-		return gaEssentialOCL.getIndexExpCSAccess();
-	}
-	
-	public ParserRule getIndexExpCSRule() {
-		return getIndexExpCSAccess().getRule();
-	}
-
+	////IndexExpCS returns IndexExpCS:
+	////	pathName=PathNameCS '[' firstIndexes+=ExpCS (',' firstIndexes+=ExpCS)* ']'
+	////	('[' secondIndexes+=ExpCS (',' secondIndexes+=ExpCS)* ']')?
+	////	(atPre?='@' 'pre')?;
+	////NameExpCS returns NameExpCS:
+	////	pathName=PathNameCS;
 	//// For Xtext 1.0.0, this rule is very sensitive to the 65536 byte limit, so
 	////  keep it as simple as possible and avoid backtracking.
-	//NavigatingExpCS returns NamedExpCS:
-	//	NavigatingExpCS_Base ({NavigatingExpCS.namedExp=current} "(" (argument+=NavigatingArgCS
-	//	argument+=NavigatingCommaArgCS* (argument+=NavigatingSemiArgCS argument+=NavigatingCommaArgCS*)?
-	//	(argument+=NavigatingBarArgCS argument+=NavigatingCommaArgCS*)?)? ")")?;
-	public EssentialOCLGrammarAccess.NavigatingExpCSElements getNavigatingExpCSAccess() {
-		return gaEssentialOCL.getNavigatingExpCSAccess();
-	}
-	
-	public ParserRule getNavigatingExpCSRule() {
-		return getNavigatingExpCSAccess().getRule();
-	}
-
+	////NavigatingExpCS returns NavigatingExpCS:
+	////	pathName=PathNameCS (atPre?='@' 'pre')?
+	////	'(' (argument+=NavigatingArgCS (argument+=NavigatingCommaArgCS)*
+	////	(argument+=NavigatingSemiArgCS (argument+=NavigatingCommaArgCS)*)?
+	////	(argument+=NavigatingBarArgCS (argument+=NavigatingCommaArgCS)*)?)?
+	////	')';
 	//NavigatingArgCS:
 	//	name=NavigatingArgExpCS (":" ownedType=TypeExpCS)? ("=" init=ExpCS)?;
 	public EssentialOCLGrammarAccess.NavigatingArgCSElements getNavigatingArgCSAccess() {

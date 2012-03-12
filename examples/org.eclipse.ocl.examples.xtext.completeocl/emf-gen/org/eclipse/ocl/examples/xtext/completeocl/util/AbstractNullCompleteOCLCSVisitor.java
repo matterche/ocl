@@ -113,10 +113,6 @@ public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitPreExpCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS object) {
-		return null;
-	}
-
 	public R visitPropertyContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS object) {
 		return null;
 	}

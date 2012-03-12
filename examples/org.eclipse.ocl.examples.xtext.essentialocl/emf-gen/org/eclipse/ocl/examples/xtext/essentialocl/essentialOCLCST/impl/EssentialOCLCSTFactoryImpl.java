@@ -22,12 +22,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
@@ -37,12 +38,12 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvalidLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InvocationExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
@@ -122,12 +123,12 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.INDEX_EXP_CS: return createIndexExpCS();
 			case EssentialOCLCSTPackage.INFIX_EXP_CS: return createInfixExpCS();
 			case EssentialOCLCSTPackage.INVALID_LITERAL_EXP_CS: return createInvalidLiteralExpCS();
+			case EssentialOCLCSTPackage.INVOCATION_EXP_CS: return createInvocationExpCS();
 			case EssentialOCLCSTPackage.LET_EXP_CS: return createLetExpCS();
 			case EssentialOCLCSTPackage.LET_VARIABLE_CS: return createLetVariableCS();
 			case EssentialOCLCSTPackage.LITERAL_EXP_CS: return createLiteralExpCS();
 			case EssentialOCLCSTPackage.NAME_EXP_CS: return createNameExpCS();
 			case EssentialOCLCSTPackage.NAVIGATING_ARG_CS: return createNavigatingArgCS();
-			case EssentialOCLCSTPackage.NAVIGATING_EXP_CS: return createNavigatingExpCS();
 			case EssentialOCLCSTPackage.NAVIGATION_OPERATOR_CS: return createNavigationOperatorCS();
 			case EssentialOCLCSTPackage.NESTED_EXP_CS: return createNestedExpCS();
 			case EssentialOCLCSTPackage.NULL_LITERAL_EXP_CS: return createNullLiteralExpCS();
@@ -383,17 +384,6 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NavigatingExpCS createNavigatingExpCS()
-	{
-		NavigatingExpCSImpl navigatingExpCS = new NavigatingExpCSImpl();
-		return navigatingExpCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NavigationOperatorCS createNavigationOperatorCS()
 	{
 		NavigationOperatorCSImpl navigationOperatorCS = new NavigationOperatorCSImpl();
@@ -499,6 +489,17 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	public InvalidLiteralExpCS createInvalidLiteralExpCS() {
 		InvalidLiteralExpCSImpl invalidLiteralExpCS = new InvalidLiteralExpCSImpl();
 		return invalidLiteralExpCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InvocationExpCS createInvocationExpCS()
+	{
+		InvocationExpCSImpl invocationExpCS = new InvocationExpCSImpl();
+		return invocationExpCS;
 	}
 
 	/**

@@ -38,6 +38,14 @@ public interface NamedExpCS extends ExpCS {
 	 * @model kind="operation"
 	 * @generated
 	 */
+	NameExpCS getNameExp();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
 	NamedElement getNamedElement();
 
 	/**
@@ -46,6 +54,6 @@ public interface NamedExpCS extends ExpCS {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	NameExpCS getNameExp();
+//	NameExpCS getNameExp();
 
 } // NamedExpCS
