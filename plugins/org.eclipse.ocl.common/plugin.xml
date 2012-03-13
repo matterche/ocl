@@ -24,7 +24,7 @@
   </extension>
   
    <extension point="org.eclipse.core.runtime.preferences">
-      <initializer class="org.eclipse.ocl.common.options.PreferenceInitializer"/>
+      <initializer class="org.eclipse.ocl.common.preferences.CommonPreferenceInitializer"/>
    </extension>
   
 </plugin>
