@@ -74,8 +74,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Syntax">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="grammars" ordered="false"
-        upperBound="-1" eType="#//Grammar" containment="true" eOpposite="#//Grammar/syntax"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="grammars" upperBound="-1"
+        eType="#//Grammar" containment="true" eOpposite="#//Grammar/syntax"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="debug" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

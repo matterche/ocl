@@ -43,7 +43,7 @@ mapping XTEXT::Grammar::grammar2syntax() : XBNF::Syntax {
 	var allRules : OrderedSet(AbstractRule) = ruleCalls.rule->asSet()->union(selfRules)->sortedBy(name);
 	var lexerRules : Sequence(TypedRule) = allRules->reject(oclIsKindOf(ParserRule))->map typedRule2rule();
 	var parserRules : Sequence(TypedRule) = allRules->select(oclIsKindOf(ParserRule))->map typedRule2rule(); */
-	var allGrammars : Set(Grammar) = self->asSet()->closure(usedGrammars->asSet())->including(self);
+	var allGrammars : Sequence(Grammar) = self->asSet()->closure(usedGrammars->asSet())->asSequence()->prepend(self);
 	name := self.name;
 --	var ruleCalls : Set(RuleCall) = self.oclAsType(EObject)->closure(eContents())->select(oclIsKindOf(RuleCall)).oclAsType(RuleCall)->asSet();
 --	debug := XTEXT::Grammar.allInstances()->size().toString() + ' ' + ruleCalls->size().toString();
