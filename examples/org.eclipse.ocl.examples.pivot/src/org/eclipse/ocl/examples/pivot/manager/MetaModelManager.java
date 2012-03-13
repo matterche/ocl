@@ -1779,7 +1779,7 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		}
 		URI uri;
 		if (uniqueContext instanceof Element) {
-			uri = URI.createURI(Pivot2Moniker.toString((Element) uniqueContext) + subContext + ".essentialocl");
+			uri = URI.createURI(Pivot2Moniker.toString((Element) uniqueContext) + "///" + subContext + ".essentialocl");
 		}
 		else {
 			if (uriMap == null) {
