@@ -359,7 +359,6 @@ public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
 				    @SuppressWarnings("unchecked")
 					PreferenceableOption<T> preferenceOption = (PreferenceableOption<T>)option;
 					result = OCLCommon.getPreference(preferenceOption, contexts);
-					options.put(option, result);
 				}
 	            else {
 	            	result = option.getDefaultValue();

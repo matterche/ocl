@@ -40,6 +40,7 @@ import org.eclipse.ocl.common.delegate.OCLQueryDelegateMapping;
 import org.eclipse.ocl.common.delegate.OCLSettingDelegateMapping;
 import org.eclipse.ocl.common.delegate.OCLValidationDelegateMapping;
 import org.eclipse.ocl.common.delegate.VirtualDelegateMapping;
+import org.eclipse.ocl.common.options.CommonOptions;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
@@ -145,7 +146,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		if (resourceSet != null) {
 			// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
 			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
-			VirtualDelegateMapping delegationMode = VirtualDelegateMapping.INSTANCE;
+			VirtualDelegateMapping delegationMode = CommonOptions.DEFAULT_DELEGATION_MODE;
 			adapter.putRegistry(VirtualDelegateMapping.class, new VirtualDelegateMapping(delegationMode.getPluginId(), delegationMode.getKey(), delegationMode.getDefaultValue()));
 	
 			// Install a local DelegateDomain.Factory
@@ -194,7 +195,7 @@ public class OCLDelegateDomain implements DelegateDomain
 			DelegateResourceSetAdapter adapter = DelegateResourceSetAdapter.getAdapter(resourceSet);
 			VirtualDelegateMapping virtualDelegateMapping = adapter.getRegistry(VirtualDelegateMapping.class);
 			if (virtualDelegateMapping == null) {
-				virtualDelegateMapping = VirtualDelegateMapping.INSTANCE;
+				virtualDelegateMapping = CommonOptions.DEFAULT_DELEGATION_MODE;
 			}
 	
 			// Install a local DelegateDomain.Factory

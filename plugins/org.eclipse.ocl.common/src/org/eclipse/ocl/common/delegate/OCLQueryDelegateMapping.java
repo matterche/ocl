@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
+import org.eclipse.ocl.common.options.CommonOptions;
 
 /**
  * OCLQueryDelegateMapping provides a Factory entry that maps one delegate URI key to another.
@@ -28,7 +29,7 @@ public class OCLQueryDelegateMapping implements QueryDelegate.Factory
 	protected final VirtualDelegateMapping virtualDelegateMapping;
 	
 	public OCLQueryDelegateMapping() {
-		this(QueryDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
+		this(QueryDelegate.Factory.Registry.INSTANCE, CommonOptions.DEFAULT_DELEGATION_MODE);
 	}
 	
 	public OCLQueryDelegateMapping(QueryDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {

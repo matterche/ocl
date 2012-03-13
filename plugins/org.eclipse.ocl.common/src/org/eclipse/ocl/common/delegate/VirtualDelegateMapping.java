@@ -21,11 +21,9 @@ import org.eclipse.ocl.common.preferences.StringPreference;
 
 public class VirtualDelegateMapping extends StringPreference
 {
-	public static VirtualDelegateMapping INSTANCE = CommonOptions.DEFAULT_DELEGATION_MODE;
-
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {
 		VirtualDelegateMapping registry = DelegateResourceSetAdapter.getRegistry(
-			modelElement, VirtualDelegateMapping.class, INSTANCE);
+			modelElement, VirtualDelegateMapping.class, CommonOptions.DEFAULT_DELEGATION_MODE);
 		return registry;
 	}
 	

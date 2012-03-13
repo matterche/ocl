@@ -16,6 +16,7 @@ package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
+import org.eclipse.ocl.common.options.CommonOptions;
 
 /**
  * OCLInvocationDelegateMapping provides a Factory entry that maps one delegate URI key to another.
@@ -26,7 +27,7 @@ public class OCLInvocationDelegateMapping implements EOperation.Internal.Invocat
 	protected final VirtualDelegateMapping virtualDelegateMapping;
 	
 	public OCLInvocationDelegateMapping() {
-		this(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
+		this(EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE, CommonOptions.DEFAULT_DELEGATION_MODE);
 	}
 	
 	public OCLInvocationDelegateMapping(EOperation.Internal.InvocationDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {

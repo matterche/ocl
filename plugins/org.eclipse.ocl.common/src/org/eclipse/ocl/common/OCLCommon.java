@@ -29,7 +29,7 @@ import org.eclipse.ocl.common.preferences.PreferenceableOption;
  */
 public class OCLCommon implements OCLConstants
 {
-	public static final String PLUGIN_ID = OCLCommon.class.getPackage().getName();
+	public static final String PLUGIN_ID = "org.eclipse.ocl.common"; //$NON-NLS-1$
 
 	/**
 	 * Return the OCL Delegate EAnnotation, which is an EAnnotation with {@link #OCL_DELEGATE_URI}

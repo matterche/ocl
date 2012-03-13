@@ -16,6 +16,6 @@ package org.eclipse.ocl.common.ui;
 
 public interface CommonUIConstants
 {
-	public static final String PLUGIN_ID = CommonUIConstants.class.getPackage().getName();
+	public static final String PLUGIN_ID = "org.eclipse.ocl.common.ui"; //$NON-NLS-1$
 	public static final String NATURE_ID = PLUGIN_ID + ".nature"; //$NON-NLS-1$
 }

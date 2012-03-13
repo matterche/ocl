@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.ocl.common.options.CommonOptions;
 
 /**
  * OCLValidationDelegateMapping provides a ValidationDelegate that maps one delegate URI key to another.
@@ -32,7 +33,7 @@ public class OCLValidationDelegateMapping implements EValidator.ValidationDelega
 	private EValidator.ValidationDelegate delegate = null;
 	
 	public OCLValidationDelegateMapping() {
-		this(EValidator.ValidationDelegate.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
+		this(EValidator.ValidationDelegate.Registry.INSTANCE, CommonOptions.DEFAULT_DELEGATION_MODE);
 	}
 	
 	public OCLValidationDelegateMapping(EValidator.ValidationDelegate.Registry validationDelegateRegistry, VirtualDelegateMapping virtualDelegateMapping) {

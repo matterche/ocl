@@ -47,6 +47,13 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public static final ValidationBehavior INSTANCE = new ValidationBehavior();
 	public static final String NAME = "validationDelegates"; //$NON-NLS-1$
 
+	/**
+	 * A WorkaroundValidationDelegate is required to provide an org.eclipse.ocl.ecore.delegate.ValidationDelegate
+	 * compatible interface for an org.eclipse.emf.ecore.EValidator.ValidationDelegate when such a ValidationDelegate
+	 * is in use as the target for the retargetable {@link OCLConstants.OCL_DELEGATE_URI}.
+	 * 
+	 * This class may be eliminated once an API change has been made.
+	 */
 	private static final class WorkaroundValidationDelegate
 			implements ValidationDelegate, ValidationDelegate.Factory {
 

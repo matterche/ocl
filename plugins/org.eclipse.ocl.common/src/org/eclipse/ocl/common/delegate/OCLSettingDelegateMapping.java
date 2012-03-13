@@ -16,6 +16,7 @@ package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
+import org.eclipse.ocl.common.options.CommonOptions;
 
 /**
  * OCLSettingDelegateMapping provides a Factory entry that maps one delegate URI key to another.
@@ -26,7 +27,7 @@ public class OCLSettingDelegateMapping implements EStructuralFeature.Internal.Se
 	protected final VirtualDelegateMapping virtualDelegateMapping;
 	
 	public OCLSettingDelegateMapping() {
-		this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE, VirtualDelegateMapping.INSTANCE);
+		this(EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE, CommonOptions.DEFAULT_DELEGATION_MODE);
 	}
 	
 	public OCLSettingDelegateMapping(EStructuralFeature.Internal.SettingDelegate.Factory.Registry registry, VirtualDelegateMapping virtualDelegateMapping) {
