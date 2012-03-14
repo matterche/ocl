@@ -32,19 +32,19 @@ public class OCLDelegateDomainFactory implements DelegateDomain.Factory
 	}
 	
 	/**
-	 * Mapping provides a Factory entry that maps one delegate URI key to another.
+	 * Delegator provides a Factory entry that maps one delegate URI key to another.
 	 * 
 	 * @since 3.2
 	 */
-	public static class Mapping implements DelegateDomain.Factory
+	public static class Delegator implements DelegateDomain.Factory
 	{
 		protected final DelegateDomain.Factory.Registry registry;
 		
-		public Mapping() {
+		public Delegator() {
 			this(DelegateDomain.Factory.Registry.INSTANCE);
 		}
 		
-		public Mapping(DelegateDomain.Factory.Registry registry) {
+		public Delegator(DelegateDomain.Factory.Registry registry) {
 			this.registry = registry;
 		}
 

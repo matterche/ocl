@@ -201,7 +201,7 @@ public class OCLDelegateDomain implements DelegateDomain
 			// Install a local DelegateDomain.Factory
 			DelegateDomain.Factory.Registry delegateDomainFactory = adapter.getRegistry(DelegateDomain.Factory.Registry.class);
 			if (delegateDomainFactory != null) {
-				delegateDomainFactory.put(oclDelegateURI, new OCLDelegateDomainFactory.Mapping(delegateDomainFactory));
+				delegateDomainFactory.put(oclDelegateURI, new OCLDelegateDomainFactory.Delegator(delegateDomainFactory));
 			}
 					
 			// Install a local ValidationDelegate.Mapping
