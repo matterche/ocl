@@ -246,18 +246,17 @@ TypeExpCS returns base::TypedRefCS:
 	//---------------------------------------------------------------------
 //  Expressions
 //---------------------------------------------------------------------
-// An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
+// An ExpCS permits a LetExpCS only in the final term to ensure
 //  that let is right associative, whereas infix operators are left associative.
 //   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
-	InfixedExpCS
-| 	LetExpCS;
-
-InfixedExpCS returns ExpCS:
-	PrefixedExpCS
-	({InfixExpCS.ownedExpression+=current} (ownedOperator+=BinaryOperatorCS ownedExpression+=PrefixedExpCS)+)?;
+	({InfixExpCS} ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS
+		(ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)*
+		ownedExpression+=PrefixedExpOrLetExpCS)
+| 	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpOrLetExpCS)
+|	PrimaryExpOrLetExpCS;
 
 BinaryOperatorCS returns BinaryOperatorCS:
 	InfixOperatorCS | NavigationOperatorCS;
@@ -271,6 +270,10 @@ NavigationOperatorCS returns NavigationOperatorCS:
 PrefixedExpCS returns ExpCS:
 	PrimaryExpCS
 	| ({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpCS);
+
+PrefixedExpOrLetExpCS returns ExpCS:
+	PrimaryExpOrLetExpCS
+	| ({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpOrLetExpCS);
 
 UnaryOperatorCS returns UnaryOperatorCS:
 	name=PrefixOperator;
@@ -293,6 +296,10 @@ PrimaryExpCS returns ExpCS:	// These rules are ordered most rejectable first
 | 	TypeLiteralExpCS
 | 	IfExpCS
 | 	NestedExpCS;
+
+PrimaryExpOrLetExpCS returns ExpCS:
+	PrimaryExpCS
+|	LetExpCS;
 
 NavigatingArgCS returns NavigatingArgCS:
 	name=NavigatingArgExpCS (':' ownedType=TypeExpCS ('=' init=ExpCS)?)?;	// Type-less init is an illegal infix expression

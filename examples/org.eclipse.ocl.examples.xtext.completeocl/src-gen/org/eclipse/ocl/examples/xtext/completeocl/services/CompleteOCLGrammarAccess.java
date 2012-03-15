@@ -1932,30 +1932,21 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////---------------------------------------------------------------------
 	////  Expressions
 	////---------------------------------------------------------------------
-	//// An OclExpressionCS comprising one or more LetExpCS is kept separate to ensure
+	//// An ExpCS permits a LetExpCS only in the final term to ensure
 	////  that let is right associative, whereas infix operators are left associative.
 	////   a = 64 / 16 / let b : Integer in 8 / let c : Integer in 4 
 	//// is
 	////   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 	//ExpCS:
-	//	InfixedExpCS | LetExpCS;
+	//	{InfixExpCS} ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS (ownedExpression+=PrefixedExpCS
+	//	ownedOperator+=BinaryOperatorCS)* ownedExpression+=PrefixedExpOrLetExpCS | {PrefixExpCS}
+	//	ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpOrLetExpCS | PrimaryExpOrLetExpCS;
 	public EssentialOCLGrammarAccess.ExpCSElements getExpCSAccess() {
 		return gaEssentialOCL.getExpCSAccess();
 	}
 	
 	public ParserRule getExpCSRule() {
 		return getExpCSAccess().getRule();
-	}
-
-	//InfixedExpCS returns ExpCS:
-	//	PrefixedExpCS ({InfixExpCS.ownedExpression+=current} (ownedOperator+=BinaryOperatorCS
-	//	ownedExpression+=PrefixedExpCS)+)?;
-	public EssentialOCLGrammarAccess.InfixedExpCSElements getInfixedExpCSAccess() {
-		return gaEssentialOCL.getInfixedExpCSAccess();
-	}
-	
-	public ParserRule getInfixedExpCSRule() {
-		return getInfixedExpCSAccess().getRule();
 	}
 
 	//BinaryOperatorCS:
@@ -1998,6 +1989,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrefixedExpCSAccess().getRule();
 	}
 
+	//PrefixedExpOrLetExpCS returns ExpCS:
+	//	PrimaryExpOrLetExpCS | {PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpOrLetExpCS;
+	public EssentialOCLGrammarAccess.PrefixedExpOrLetExpCSElements getPrefixedExpOrLetExpCSAccess() {
+		return gaEssentialOCL.getPrefixedExpOrLetExpCSAccess();
+	}
+	
+	public ParserRule getPrefixedExpOrLetExpCSRule() {
+		return getPrefixedExpOrLetExpCSAccess().getRule();
+	}
+
 	//UnaryOperatorCS:
 	//	name=PrefixOperator;
 	public EssentialOCLGrammarAccess.UnaryOperatorCSElements getUnaryOperatorCSAccess() {
@@ -2023,6 +2024,16 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPrimaryExpCSRule() {
 		return getPrimaryExpCSAccess().getRule();
+	}
+
+	//PrimaryExpOrLetExpCS returns ExpCS:
+	//	PrimaryExpCS | LetExpCS;
+	public EssentialOCLGrammarAccess.PrimaryExpOrLetExpCSElements getPrimaryExpOrLetExpCSAccess() {
+		return gaEssentialOCL.getPrimaryExpOrLetExpCSAccess();
+	}
+	
+	public ParserRule getPrimaryExpOrLetExpCSRule() {
+		return getPrimaryExpOrLetExpCSAccess().getRule();
 	}
 
 	//// Type-less init is an illegal infix expression

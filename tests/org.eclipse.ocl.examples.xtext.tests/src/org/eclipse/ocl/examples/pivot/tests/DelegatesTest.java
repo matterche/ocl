@@ -613,7 +613,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage("gh##jk") +
-			DomainUtil.bind("no viable alternative at input ''{0}''", "#"));
+			DomainUtil.bind("missing EOF at ''{0}''", "#"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
@@ -629,7 +629,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
 			getErrorsInMessage("invalid null") +
-			DomainUtil.bind("no viable alternative at input ''{0}''", "null"));
+			DomainUtil.bind("extraneous input ''{0}'' expecting EOF", "null"));
 	}
 
 	/**
