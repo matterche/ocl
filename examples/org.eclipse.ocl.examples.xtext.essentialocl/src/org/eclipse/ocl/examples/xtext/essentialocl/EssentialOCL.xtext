@@ -23,17 +23,26 @@ import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/Ess
 Model returns ContextCS:
 	ownedExpression=ExpCS;
 
+terminal fragment ESCAPED_CHARACTER:
+	'\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\');
+
+terminal fragment LETTER_CHARACTER:
+	'a'..'z' | 'A'..'Z' | '_';
+
+terminal fragment DIGIT_CHARACTER:
+	'0'..'9';
+
 terminal DOUBLE_QUOTED_STRING:
-	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
+	'"' (ESCAPED_CHARACTER | !('\\' | '"'))* '"';
 
 terminal SINGLE_QUOTED_STRING:
-	"'" ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | "'"))* "'";
+	"'" (ESCAPED_CHARACTER | !('\\' | "'"))* "'";
 
 terminal ML_SINGLE_QUOTED_STRING:
 	"/'"->"'/";
 
 terminal SIMPLE_ID:
-	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
 
 terminal ESCAPED_ID:
 	"_" SINGLE_QUOTED_STRING;
@@ -41,7 +50,7 @@ terminal ESCAPED_ID:
 ID: SIMPLE_ID | ESCAPED_ID;
 
 terminal INT: // String to allow diverse re-use
-	('0'..'9')+;
+	DIGIT_CHARACTER+;
 
 LOWER returns ecore::EInt:
 	INT
@@ -176,9 +185,9 @@ MultiplicityStringCS returns base::MultiplicityStringCS:
 	stringBounds=('*'|'+'|'?');
 
 TupleTypeCS returns base::TupleTypeCS:
-	name='Tuple' ('(' (ownedParts+=tuplePartCS (',' ownedParts+=tuplePartCS)*)? ')')?;
+	name='Tuple' ('(' (ownedParts+=TuplePartCS (',' ownedParts+=TuplePartCS)*)? ')')?;
 
-tuplePartCS returns base::TuplePartCS:
+TuplePartCS returns base::TuplePartCS:
 	name=UnrestrictedName ':' ownedType=TypeExpCS;
 
 //---------------------------------------------------------------------

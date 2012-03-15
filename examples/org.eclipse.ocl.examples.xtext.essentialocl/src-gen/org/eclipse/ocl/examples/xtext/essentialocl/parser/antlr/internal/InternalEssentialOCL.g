@@ -1422,7 +1422,7 @@ ruleTupleTypeCS returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); 
 	    }
-		lv_ownedParts_2_0=ruletuplePartCS		{
+		lv_ownedParts_2_0=ruleTuplePartCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTupleTypeCSRule());
 	        }
@@ -1430,7 +1430,7 @@ ruleTupleTypeCS returns [EObject current=null]
        			$current, 
        			"ownedParts",
         		lv_ownedParts_2_0, 
-        		"tuplePartCS");
+        		"TuplePartCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1444,7 +1444,7 @@ ruleTupleTypeCS returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); 
 	    }
-		lv_ownedParts_4_0=ruletuplePartCS		{
+		lv_ownedParts_4_0=ruleTuplePartCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTupleTypeCSRule());
 	        }
@@ -1452,7 +1452,7 @@ ruleTupleTypeCS returns [EObject current=null]
        			$current, 
        			"ownedParts",
         		lv_ownedParts_4_0, 
-        		"tuplePartCS");
+        		"TuplePartCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1468,17 +1468,17 @@ ruleTupleTypeCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuletuplePartCS
-entryRuletuplePartCS returns [EObject current=null] 
+// Entry rule entryRuleTuplePartCS
+entryRuleTuplePartCS returns [EObject current=null] 
 	:
 	{ newCompositeNode(grammarAccess.getTuplePartCSRule()); }
-	 iv_ruletuplePartCS=ruletuplePartCS 
-	 { $current=$iv_ruletuplePartCS.current; } 
+	 iv_ruleTuplePartCS=ruleTuplePartCS 
+	 { $current=$iv_ruleTuplePartCS.current; } 
 	 EOF 
 ;
 
-// Rule tuplePartCS
-ruletuplePartCS returns [EObject current=null] 
+// Rule TuplePartCS
+ruleTuplePartCS returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -4263,17 +4263,23 @@ ruleSelfExpCS returns [EObject current=null]
 
 
 
-RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
+fragment RULE_ESCAPED_CHARACTER : '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\');
 
-RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+fragment RULE_LETTER_CHARACTER : ('a'..'z'|'A'..'Z'|'_');
+
+fragment RULE_DIGIT_CHARACTER : '0'..'9';
+
+RULE_DOUBLE_QUOTED_STRING : '"' (RULE_ESCAPED_CHARACTER|~(('\\'|'"')))* '"';
+
+RULE_SINGLE_QUOTED_STRING : '\'' (RULE_ESCAPED_CHARACTER|~(('\\'|'\'')))* '\'';
 
 RULE_ML_SINGLE_QUOTED_STRING : '/\'' ( options {greedy=false;} : . )*'\'/';
 
-RULE_SIMPLE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_SIMPLE_ID : RULE_LETTER_CHARACTER (RULE_LETTER_CHARACTER|RULE_DIGIT_CHARACTER)*;
 
 RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
-RULE_INT : ('0'..'9')+;
+RULE_INT : RULE_DIGIT_CHARACTER+;
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

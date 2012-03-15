@@ -873,17 +873,17 @@ finally {
 
 
 
-// Entry rule entryRuletuplePartCS
-entryRuletuplePartCS 
+// Entry rule entryRuleTuplePartCS
+entryRuleTuplePartCS 
 :
 { before(grammarAccess.getTuplePartCSRule()); }
-	 ruletuplePartCS
+	 ruleTuplePartCS
 { after(grammarAccess.getTuplePartCSRule()); } 
 	 EOF 
 ;
 
-// Rule tuplePartCS
-ruletuplePartCS
+// Rule TuplePartCS
+ruleTuplePartCS
     @init {
 		int stackSize = keepStackSize();
     }
@@ -8960,7 +8960,7 @@ rule__TupleTypeCS__OwnedPartsAssignment_1_1_0
 :
 (
 { before(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
-	ruletuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
+	ruleTuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
 )
 
 ;
@@ -8975,7 +8975,7 @@ rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1
 :
 (
 { before(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
-	ruletuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
+	ruleTuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
 )
 
 ;
@@ -10237,17 +10237,23 @@ finally {
 }
 
 
-RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
+fragment RULE_ESCAPED_CHARACTER : '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\');
 
-RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+fragment RULE_LETTER_CHARACTER : ('a'..'z'|'A'..'Z'|'_');
+
+fragment RULE_DIGIT_CHARACTER : '0'..'9';
+
+RULE_DOUBLE_QUOTED_STRING : '"' (RULE_ESCAPED_CHARACTER|~(('\\'|'"')))* '"';
+
+RULE_SINGLE_QUOTED_STRING : '\'' (RULE_ESCAPED_CHARACTER|~(('\\'|'\'')))* '\'';
 
 RULE_ML_SINGLE_QUOTED_STRING : '/\'' ( options {greedy=false;} : . )*'\'/';
 
-RULE_SIMPLE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_SIMPLE_ID : RULE_LETTER_CHARACTER (RULE_LETTER_CHARACTER|RULE_DIGIT_CHARACTER)*;
 
 RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
-RULE_INT : ('0'..'9')+;
+RULE_INT : RULE_DIGIT_CHARACTER+;
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

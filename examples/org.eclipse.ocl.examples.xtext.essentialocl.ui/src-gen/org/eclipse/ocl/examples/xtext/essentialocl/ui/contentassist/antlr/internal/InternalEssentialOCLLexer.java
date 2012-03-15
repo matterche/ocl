@@ -16,17 +16,21 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T__28=28;
     public static final int T__57=57;
     public static final int T__23=23;
+    public static final int RULE_DIGIT_CHARACTER=10;
     public static final int T__51=51;
+    public static final int RULE_LETTER_CHARACTER=9;
     public static final int T__47=47;
     public static final int T__69=69;
+    public static final int T__73=73;
     public static final int T__50=50;
     public static final int T__21=21;
-    public static final int RULE_ML_SINGLE_QUOTED_STRING=9;
+    public static final int RULE_ML_SINGLE_QUOTED_STRING=12;
     public static final int T__19=19;
     public static final int T__65=65;
     public static final int T__72=72;
     public static final int T__70=70;
     public static final int T__67=67;
+    public static final int T__74=74;
     public static final int T__39=39;
     public static final int T__30=30;
     public static final int T__46=46;
@@ -40,14 +44,14 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T__49=49;
     public static final int RULE_SINGLE_QUOTED_STRING=5;
     public static final int T__61=61;
-    public static final int RULE_DOUBLE_QUOTED_STRING=8;
+    public static final int RULE_DOUBLE_QUOTED_STRING=11;
     public static final int T__59=59;
-    public static final int T__54=54;
     public static final int T__48=48;
+    public static final int T__54=54;
     public static final int T__34=34;
     public static final int T__56=56;
-    public static final int T__15=15;
-    public static final int RULE_ML_COMMENT=10;
+    public static final int RULE_ESCAPED_CHARACTER=8;
+    public static final int RULE_ML_COMMENT=13;
     public static final int T__35=35;
     public static final int T__36=36;
     public static final int T__20=20;
@@ -57,27 +61,26 @@ public class InternalEssentialOCLLexer extends Lexer {
     public static final int T__44=44;
     public static final int T__66=66;
     public static final int T__33=33;
-    public static final int T__14=14;
     public static final int T__22=22;
+    public static final int T__55=55;
     public static final int T__45=45;
     public static final int T__29=29;
-    public static final int T__55=55;
     public static final int RULE_ESCAPED_ID=7;
     public static final int T__63=63;
-    public static final int RULE_WS=12;
+    public static final int RULE_WS=15;
     public static final int T__43=43;
+    public static final int T__75=75;
     public static final int T__31=31;
     public static final int T__40=40;
     public static final int EOF=-1;
     public static final int T__53=53;
     public static final int T__32=32;
-    public static final int T__16=16;
     public static final int T__38=38;
     public static final int T__37=37;
     public static final int T__26=26;
-    public static final int RULE_ANY_OTHER=13;
+    public static final int RULE_ANY_OTHER=16;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=11;
+    public static final int RULE_SL_COMMENT=14;
     public static final int T__60=60;
     public static final int T__41=41;
     public static final int T__18=18;
@@ -96,75 +99,15 @@ public class InternalEssentialOCLLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g"; }
 
-    // $ANTLR start "T__14"
-    public final void mT__14() throws RecognitionException {
-        try {
-            int _type = T__14;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11:7: ( '*' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11:9: '*'
-            {
-            match('*'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__14"
-
-    // $ANTLR start "T__15"
-    public final void mT__15() throws RecognitionException {
-        try {
-            int _type = T__15;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12:7: ( 'e' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12:9: 'e'
-            {
-            match('e'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__15"
-
-    // $ANTLR start "T__16"
-    public final void mT__16() throws RecognitionException {
-        try {
-            int _type = T__16;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13:7: ( 'E' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13:9: 'E'
-            {
-            match('E'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__16"
-
     // $ANTLR start "T__17"
     public final void mT__17() throws RecognitionException {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14:7: ( '+' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14:9: '+'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11:7: ( '*' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:11:9: '*'
             {
-            match('+'); 
+            match('*'); 
 
             }
 
@@ -181,10 +124,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:15:7: ( '-' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:15:9: '-'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12:7: ( 'e' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:12:9: 'e'
             {
-            match('-'); 
+            match('e'); 
 
             }
 
@@ -201,11 +144,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:16:7: ( 'not' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:16:9: 'not'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13:7: ( 'E' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:13:9: 'E'
             {
-            match("not"); 
-
+            match('E'); 
 
             }
 
@@ -222,10 +164,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:17:7: ( '/' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:17:9: '/'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14:7: ( '+' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:14:9: '+'
             {
-            match('/'); 
+            match('+'); 
 
             }
 
@@ -242,10 +184,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:18:7: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:18:9: '>'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:15:7: ( '-' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:15:9: '-'
             {
-            match('>'); 
+            match('-'); 
 
             }
 
@@ -262,10 +204,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:19:7: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:19:9: '<'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:16:7: ( 'not' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:16:9: 'not'
             {
-            match('<'); 
+            match("not"); 
+
 
             }
 
@@ -282,11 +225,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:20:7: ( '>=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:20:9: '>='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:17:7: ( '/' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:17:9: '/'
             {
-            match(">="); 
-
+            match('/'); 
 
             }
 
@@ -303,11 +245,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:21:7: ( '<=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:21:9: '<='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:18:7: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:18:9: '>'
             {
-            match("<="); 
-
+            match('>'); 
 
             }
 
@@ -324,10 +265,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:22:7: ( '=' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:22:9: '='
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:19:7: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:19:9: '<'
             {
-            match('='); 
+            match('<'); 
 
             }
 
@@ -344,10 +285,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:23:7: ( '<>' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:23:9: '<>'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:20:7: ( '>=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:20:9: '>='
             {
-            match("<>"); 
+            match(">="); 
 
 
             }
@@ -365,10 +306,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:24:7: ( 'and' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:24:9: 'and'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:21:7: ( '<=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:21:9: '<='
             {
-            match("and"); 
+            match("<="); 
 
 
             }
@@ -386,11 +327,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:25:7: ( 'or' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:25:9: 'or'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:22:7: ( '=' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:22:9: '='
             {
-            match("or"); 
-
+            match('='); 
 
             }
 
@@ -407,10 +347,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:26:7: ( 'xor' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:26:9: 'xor'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:23:7: ( '<>' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:23:9: '<>'
             {
-            match("xor"); 
+            match("<>"); 
 
 
             }
@@ -428,10 +368,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:27:7: ( 'implies' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:27:9: 'implies'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:24:7: ( 'and' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:24:9: 'and'
             {
-            match("implies"); 
+            match("and"); 
 
 
             }
@@ -449,10 +389,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:28:7: ( '.' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:28:9: '.'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:25:7: ( 'or' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:25:9: 'or'
             {
-            match('.'); 
+            match("or"); 
+
 
             }
 
@@ -469,10 +410,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:29:7: ( '->' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:29:9: '->'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:26:7: ( 'xor' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:26:9: 'xor'
             {
-            match("->"); 
+            match("xor"); 
 
 
             }
@@ -490,10 +431,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:30:7: ( 'Tuple' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:30:9: 'Tuple'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:27:7: ( 'implies' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:27:9: 'implies'
             {
-            match("Tuple"); 
+            match("implies"); 
 
 
             }
@@ -511,11 +452,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:31:7: ( 'Boolean' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:31:9: 'Boolean'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:28:7: ( '.' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:28:9: '.'
             {
-            match("Boolean"); 
-
+            match('.'); 
 
             }
 
@@ -532,10 +472,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:32:7: ( 'Integer' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:32:9: 'Integer'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:29:7: ( '->' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:29:9: '->'
             {
-            match("Integer"); 
+            match("->"); 
 
 
             }
@@ -553,10 +493,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:33:7: ( 'Real' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:33:9: 'Real'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:30:7: ( 'Tuple' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:30:9: 'Tuple'
             {
-            match("Real"); 
+            match("Tuple"); 
 
 
             }
@@ -574,10 +514,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:34:7: ( 'String' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:34:9: 'String'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:31:7: ( 'Boolean' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:31:9: 'Boolean'
             {
-            match("String"); 
+            match("Boolean"); 
 
 
             }
@@ -595,10 +535,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:35:7: ( 'UnlimitedNatural' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:35:9: 'UnlimitedNatural'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:32:7: ( 'Integer' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:32:9: 'Integer'
             {
-            match("UnlimitedNatural"); 
+            match("Integer"); 
 
 
             }
@@ -616,10 +556,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:36:7: ( 'OclAny' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:36:9: 'OclAny'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:33:7: ( 'Real' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:33:9: 'Real'
             {
-            match("OclAny"); 
+            match("Real"); 
 
 
             }
@@ -637,10 +577,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:37:7: ( 'OclInvalid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:37:9: 'OclInvalid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:34:7: ( 'String' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:34:9: 'String'
             {
-            match("OclInvalid"); 
+            match("String"); 
 
 
             }
@@ -658,10 +598,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:38:7: ( 'OclVoid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:38:9: 'OclVoid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:35:7: ( 'UnlimitedNatural' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:35:9: 'UnlimitedNatural'
             {
-            match("OclVoid"); 
+            match("UnlimitedNatural"); 
 
 
             }
@@ -679,10 +619,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:39:7: ( 'Set' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:39:9: 'Set'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:36:7: ( 'OclAny' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:36:9: 'OclAny'
             {
-            match("Set"); 
+            match("OclAny"); 
 
 
             }
@@ -700,10 +640,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:40:7: ( 'Bag' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:40:9: 'Bag'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:37:7: ( 'OclInvalid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:37:9: 'OclInvalid'
             {
-            match("Bag"); 
+            match("OclInvalid"); 
 
 
             }
@@ -721,10 +661,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:41:7: ( 'Sequence' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:41:9: 'Sequence'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:38:7: ( 'OclVoid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:38:9: 'OclVoid'
             {
-            match("Sequence"); 
+            match("OclVoid"); 
 
 
             }
@@ -742,10 +682,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:42:7: ( 'Collection' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:42:9: 'Collection'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:39:7: ( 'Set' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:39:9: 'Set'
             {
-            match("Collection"); 
+            match("Set"); 
 
 
             }
@@ -763,10 +703,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:43:7: ( 'OrderedSet' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:43:9: 'OrderedSet'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:40:7: ( 'Bag' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:40:9: 'Bag'
             {
-            match("OrderedSet"); 
+            match("Bag"); 
 
 
             }
@@ -784,10 +724,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:44:7: ( '?' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:44:9: '?'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:41:7: ( 'Sequence' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:41:9: 'Sequence'
             {
-            match('?'); 
+            match("Sequence"); 
+
 
             }
 
@@ -804,10 +745,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:45:7: ( '::' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:45:9: '::'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:42:7: ( 'Collection' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:42:9: 'Collection'
             {
-            match("::"); 
+            match("Collection"); 
 
 
             }
@@ -825,10 +766,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:46:7: ( '(' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:46:9: '('
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:43:7: ( 'OrderedSet' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:43:9: 'OrderedSet'
             {
-            match('('); 
+            match("OrderedSet"); 
+
 
             }
 
@@ -845,10 +787,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:47:7: ( ')' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:47:9: ')'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:44:7: ( '?' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:44:9: '?'
             {
-            match(')'); 
+            match('?'); 
 
             }
 
@@ -865,10 +807,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:48:7: ( '..' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:48:9: '..'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:45:7: ( '::' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:45:9: '::'
             {
-            match(".."); 
+            match("::"); 
 
 
             }
@@ -886,10 +828,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:49:7: ( '[' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:49:9: '['
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:46:7: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:46:9: '('
             {
-            match('['); 
+            match('('); 
 
             }
 
@@ -906,10 +848,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:50:7: ( ']' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:50:9: ']'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:47:7: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:47:9: ')'
             {
-            match(']'); 
+            match(')'); 
 
             }
 
@@ -926,10 +868,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:51:7: ( ',' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:51:9: ','
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:48:7: ( '..' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:48:9: '..'
             {
-            match(','); 
+            match(".."); 
+
 
             }
 
@@ -946,10 +889,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:52:7: ( ':' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:52:9: ':'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:49:7: ( '[' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:49:9: '['
             {
-            match(':'); 
+            match('['); 
 
             }
 
@@ -966,10 +909,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:53:7: ( '{' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:53:9: '{'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:50:7: ( ']' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:50:9: ']'
             {
-            match('{'); 
+            match(']'); 
 
             }
 
@@ -986,10 +929,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:54:7: ( '}' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:54:9: '}'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:51:7: ( ',' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:51:9: ','
             {
-            match('}'); 
+            match(','); 
 
             }
 
@@ -1006,11 +949,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:55:7: ( 'invalid' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:55:9: 'invalid'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:52:7: ( ':' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:52:9: ':'
             {
-            match("invalid"); 
-
+            match(':'); 
 
             }
 
@@ -1027,11 +969,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:56:7: ( 'null' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:56:9: 'null'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:53:7: ( '{' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:53:9: '{'
             {
-            match("null"); 
-
+            match('{'); 
 
             }
 
@@ -1048,11 +989,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:57:7: ( 'pre' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:57:9: 'pre'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:54:7: ( '}' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:54:9: '}'
             {
-            match("pre"); 
-
+            match('}'); 
 
             }
 
@@ -1069,10 +1009,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:58:7: ( 'if' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:58:9: 'if'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:55:7: ( 'invalid' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:55:9: 'invalid'
             {
-            match("if"); 
+            match("invalid"); 
 
 
             }
@@ -1090,10 +1030,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:59:7: ( 'then' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:59:9: 'then'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:56:7: ( 'null' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:56:9: 'null'
             {
-            match("then"); 
+            match("null"); 
 
 
             }
@@ -1111,10 +1051,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:60:7: ( 'else' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:60:9: 'else'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:57:7: ( 'pre' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:57:9: 'pre'
             {
-            match("else"); 
+            match("pre"); 
 
 
             }
@@ -1132,10 +1072,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:61:7: ( 'endif' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:61:9: 'endif'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:58:7: ( 'if' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:58:9: 'if'
             {
-            match("endif"); 
+            match("if"); 
 
 
             }
@@ -1153,10 +1093,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:62:7: ( 'let' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:62:9: 'let'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:59:7: ( 'then' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:59:9: 'then'
             {
-            match("let"); 
+            match("then"); 
 
 
             }
@@ -1174,10 +1114,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:63:7: ( 'in' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:63:9: 'in'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:60:7: ( 'else' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:60:9: 'else'
             {
-            match("in"); 
+            match("else"); 
 
 
             }
@@ -1195,10 +1135,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:64:7: ( 'self' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:64:9: 'self'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:61:7: ( 'endif' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:61:9: 'endif'
             {
-            match("self"); 
+            match("endif"); 
 
 
             }
@@ -1216,10 +1156,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:65:7: ( 'true' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:65:9: 'true'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:62:7: ( 'let' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:62:9: 'let'
             {
-            match("true"); 
+            match("let"); 
 
 
             }
@@ -1237,10 +1177,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:66:7: ( 'false' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:66:9: 'false'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:63:7: ( 'in' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:63:9: 'in'
             {
-            match("false"); 
+            match("in"); 
 
 
             }
@@ -1258,10 +1198,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:67:7: ( '@' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:67:9: '@'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:64:7: ( 'self' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:64:9: 'self'
             {
-            match('@'); 
+            match("self"); 
+
 
             }
 
@@ -1278,10 +1219,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:68:7: ( '|' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:68:9: '|'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:65:7: ( 'true' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:65:9: 'true'
             {
-            match('|'); 
+            match("true"); 
+
 
             }
 
@@ -1298,6 +1240,67 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:66:7: ( 'false' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:66:9: 'false'
+            {
+            match("false"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__72"
+
+    // $ANTLR start "T__73"
+    public final void mT__73() throws RecognitionException {
+        try {
+            int _type = T__73;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:67:7: ( '@' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:67:9: '@'
+            {
+            match('@'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__73"
+
+    // $ANTLR start "T__74"
+    public final void mT__74() throws RecognitionException {
+        try {
+            int _type = T__74;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:68:7: ( '|' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:68:9: '|'
+            {
+            match('|'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__74"
+
+    // $ANTLR start "T__75"
+    public final void mT__75() throws RecognitionException {
+        try {
+            int _type = T__75;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:69:7: ( ';' )
             // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:69:9: ';'
             {
@@ -1311,18 +1314,83 @@ public class InternalEssentialOCLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__72"
+    // $ANTLR end "T__75"
+
+    // $ANTLR start "RULE_ESCAPED_CHARACTER"
+    public final void mRULE_ESCAPED_CHARACTER() throws RecognitionException {
+        try {
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            {
+            match('\\'); 
+            if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_ESCAPED_CHARACTER"
+
+    // $ANTLR start "RULE_LETTER_CHARACTER"
+    public final void mRULE_LETTER_CHARACTER() throws RecognitionException {
+        try {
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:32: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:34: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            {
+            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_LETTER_CHARACTER"
+
+    // $ANTLR start "RULE_DIGIT_CHARACTER"
+    public final void mRULE_DIGIT_CHARACTER() throws RecognitionException {
+        try {
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:31: ( '0' .. '9' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:33: '0' .. '9'
+            {
+            matchRange('0','9'); 
+
+            }
+
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_DIGIT_CHARACTER"
 
     // $ANTLR start "RULE_DOUBLE_QUOTED_STRING"
     public final void mRULE_DOUBLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_DOUBLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:27: ( '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:29: '\"' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:33: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -1338,23 +1406,14 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:34: RULE_ESCAPED_CHARACTER
             	    {
-            	    match('\\'); 
-            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
-            	        input.consume();
-
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
-
+            	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10240:79: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:57: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1391,11 +1450,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:27: ( '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:29: '\\'' ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:34: ( RULE_ESCAPED_CHARACTER | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -1411,23 +1470,14 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:35: RULE_ESCAPED_CHARACTER
             	    {
-            	    match('\\'); 
-            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
-            	        input.consume();
-
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
-
+            	    mRULE_ESCAPED_CHARACTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10242:80: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:58: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1464,12 +1514,12 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_ML_SINGLE_QUOTED_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:30: ( '/\\'' ( options {greedy=false; } : . )* '\\'/' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:32: '/\\'' ( options {greedy=false; } : . )* '\\'/'
             {
             match("/'"); 
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:38: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:38: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -1494,7 +1544,7 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10244:66: .
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:66: .
             	    {
             	    matchAny(); 
 
@@ -1524,19 +1574,11 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_SIMPLE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:16: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:18: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:16: ( RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )* )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:18: RULE_LETTER_CHARACTER ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )*
             {
-            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10246:42: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            mRULE_LETTER_CHARACTER(); 
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:40: ( RULE_LETTER_CHARACTER | RULE_DIGIT_CHARACTER )*
             loop4:
             do {
                 int alt4=2;
@@ -1585,8 +1627,8 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_ESCAPED_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:17: ( '_' RULE_SINGLE_QUOTED_STRING )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10248:19: '_' RULE_SINGLE_QUOTED_STRING
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:17: ( '_' RULE_SINGLE_QUOTED_STRING )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:19: '_' RULE_SINGLE_QUOTED_STRING
             {
             match('_'); 
             mRULE_SINGLE_QUOTED_STRING(); 
@@ -1606,10 +1648,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:12: ( '0' .. '9' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:10: ( ( RULE_DIGIT_CHARACTER )+ )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:12: ( RULE_DIGIT_CHARACTER )+
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:12: ( '0' .. '9' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:12: ( RULE_DIGIT_CHARACTER )+
             int cnt5=0;
             loop5:
             do {
@@ -1623,9 +1665,9 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10250:13: '0' .. '9'
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:12: RULE_DIGIT_CHARACTER
             	    {
-            	    matchRange('0','9'); 
+            	    mRULE_DIGIT_CHARACTER(); 
 
             	    }
             	    break;
@@ -1655,12 +1697,12 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1685,7 +1727,7 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10252:52: .
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:52: .
             	    {
             	    matchAny(); 
 
@@ -1715,12 +1757,12 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:17: ( '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:19: '--' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("--"); 
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1733,7 +1775,7 @@ public class InternalEssentialOCLLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1753,7 +1795,7 @@ public class InternalEssentialOCLLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1762,9 +1804,9 @@ public class InternalEssentialOCLLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:41: ( '\\r' )?
+                    // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -1773,7 +1815,7 @@ public class InternalEssentialOCLLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10254:41: '\\r'
+                            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10260:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1805,10 +1847,10 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10262:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10262:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10256:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10262:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -1862,8 +1904,8 @@ public class InternalEssentialOCLLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:16: ( . )
-            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10258:18: .
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10264:16: ( . )
+            // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:10264:18: .
             {
             matchAny(); 
 
@@ -1878,420 +1920,420 @@ public class InternalEssentialOCLLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:8: ( T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt11=69;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:10: T__14
-                {
-                mT__14(); 
-
-                }
-                break;
-            case 2 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:16: T__15
-                {
-                mT__15(); 
-
-                }
-                break;
-            case 3 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:22: T__16
-                {
-                mT__16(); 
-
-                }
-                break;
-            case 4 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:28: T__17
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:10: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
-            case 5 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:34: T__18
+            case 2 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:16: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
-            case 6 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:40: T__19
+            case 3 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:22: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:46: T__20
+            case 4 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:28: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:52: T__21
+            case 5 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:34: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:58: T__22
+            case 6 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:40: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:64: T__23
+            case 7 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:46: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 11 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:70: T__24
+            case 8 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:52: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:76: T__25
+            case 9 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:58: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:82: T__26
+            case 10 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:64: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 14 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:88: T__27
+            case 11 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:70: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:94: T__28
+            case 12 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:76: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 16 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:100: T__29
+            case 13 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:82: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:106: T__30
+            case 14 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:88: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:112: T__31
+            case 15 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:94: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:118: T__32
+            case 16 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:100: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:124: T__33
+            case 17 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:106: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:130: T__34
+            case 18 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:112: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:136: T__35
+            case 19 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:118: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:142: T__36
+            case 20 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:124: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:148: T__37
+            case 21 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:130: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:154: T__38
+            case 22 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:136: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:160: T__39
+            case 23 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:142: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:166: T__40
+            case 24 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:148: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
-            case 28 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:172: T__41
+            case 25 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:154: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
-            case 29 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:178: T__42
+            case 26 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:160: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
-            case 30 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:184: T__43
+            case 27 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:166: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
-            case 31 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:190: T__44
+            case 28 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:172: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
-            case 32 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:196: T__45
+            case 29 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:178: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 33 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:202: T__46
+            case 30 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:184: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 34 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:208: T__47
+            case 31 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:190: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
-            case 35 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:214: T__48
+            case 32 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:196: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
-            case 36 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:220: T__49
+            case 33 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:202: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
-            case 37 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:226: T__50
+            case 34 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:208: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
-            case 38 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:232: T__51
+            case 35 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:214: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
-            case 39 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:238: T__52
+            case 36 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:220: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
-            case 40 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:244: T__53
+            case 37 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:226: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:250: T__54
+            case 38 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:232: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:256: T__55
+            case 39 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:238: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:262: T__56
+            case 40 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:244: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:268: T__57
+            case 41 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:250: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
-            case 45 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:274: T__58
+            case 42 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:256: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
-            case 46 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:280: T__59
+            case 43 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:262: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
-            case 47 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:286: T__60
+            case 44 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:268: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
-            case 48 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:292: T__61
+            case 45 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:274: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
-            case 49 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:298: T__62
+            case 46 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:280: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
-            case 50 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:304: T__63
+            case 47 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:286: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
-            case 51 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:310: T__64
+            case 48 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:292: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
-            case 52 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:316: T__65
+            case 49 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:298: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
-            case 53 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:322: T__66
+            case 50 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:304: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
-            case 54 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:328: T__67
+            case 51 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:310: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
-            case 55 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:334: T__68
+            case 52 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:316: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
-            case 56 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:340: T__69
+            case 53 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:322: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
-            case 57 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:346: T__70
+            case 54 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:328: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
-            case 58 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:352: T__71
+            case 55 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:334: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
-            case 59 :
-                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:358: T__72
+            case 56 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:340: T__72
                 {
                 mT__72(); 
+
+                }
+                break;
+            case 57 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:346: T__73
+                {
+                mT__73(); 
+
+                }
+                break;
+            case 58 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:352: T__74
+                {
+                mT__74(); 
+
+                }
+                break;
+            case 59 :
+                // ../org.eclipse.ocl.examples.xtext.essentialocl.ui/src-gen/org/eclipse/ocl/examples/xtext/essentialocl/ui/contentassist/antlr/internal/InternalEssentialOCL.g:1:358: T__75
+                {
+                mT__75(); 
 
                 }
                 break;
@@ -2438,7 +2480,7 @@ public class InternalEssentialOCLLexer extends Lexer {
         "\1\25\1\26\3\uffff\1\34\2\uffff\1\37\11\uffff\1\33\1\41\1\40\5\uffff"+
         "\1\31";
     static final String DFA11_specialS =
-        "\1\1\50\uffff\1\2\1\0\u00cb\uffff}>";
+        "\1\1\50\uffff\1\0\1\2\u00cb\uffff}>";
     static final String[] DFA11_transitionS = {
             "\11\57\2\56\2\57\1\56\22\57\1\56\1\57\1\51\4\57\1\52\1\32\1"+
             "\33\1\1\1\4\1\36\1\5\1\17\1\7\12\55\1\31\1\50\1\11\1\12\1\10"+
@@ -2724,17 +2766,17 @@ public class InternalEssentialOCLLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ML_SINGLE_QUOTED_STRING | RULE_SIMPLE_ID | RULE_ESCAPED_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA11_42 = input.LA(1);
+                        int LA11_41 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_42>='\u0000' && LA11_42<='\uFFFF')) ) {s = 108;}
+                        if ( ((LA11_41>='\u0000' && LA11_41<='\uFFFF')) ) {s = 107;}
 
                         else s = 47;
 
@@ -2841,10 +2883,10 @@ public class InternalEssentialOCLLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA11_41 = input.LA(1);
+                        int LA11_42 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA11_41>='\u0000' && LA11_41<='\uFFFF')) ) {s = 107;}
+                        if ( ((LA11_42>='\u0000' && LA11_42<='\uFFFF')) ) {s = 108;}
 
                         else s = 47;
 

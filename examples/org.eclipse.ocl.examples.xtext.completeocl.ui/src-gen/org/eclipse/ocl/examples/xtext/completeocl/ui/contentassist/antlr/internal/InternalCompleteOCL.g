@@ -1405,17 +1405,17 @@ finally {
 
 
 
-// Entry rule entryRuletuplePartCS
-entryRuletuplePartCS 
+// Entry rule entryRuleTuplePartCS
+entryRuleTuplePartCS 
 :
 { before(grammarAccess.getTuplePartCSRule()); }
-	 ruletuplePartCS
+	 ruleTuplePartCS
 { after(grammarAccess.getTuplePartCSRule()); } 
 	 EOF 
 ;
 
-// Rule tuplePartCS
-ruletuplePartCS
+// Rule TuplePartCS
+ruleTuplePartCS
     @init {
 		int stackSize = keepStackSize();
     }
@@ -2487,91 +2487,43 @@ rule__UnrestrictedName__Alternatives
 )
 
     |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getBodyKeyword_1()); }
-
-	'body' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getBodyKeyword_1()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getContextKeyword_2()); }
-
-	'context' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getContextKeyword_2()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getDefKeyword_3()); }
-
-	'def' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getDefKeyword_3()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getDeriveKeyword_4()); }
+{ before(grammarAccess.getUnrestrictedNameAccess().getDeriveKeyword_1()); }
 
 	'derive' 
 
-{ after(grammarAccess.getUnrestrictedNameAccess().getDeriveKeyword_4()); }
+{ after(grammarAccess.getUnrestrictedNameAccess().getDeriveKeyword_1()); }
 )
 
     |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getImportKeyword_5()); }
+{ before(grammarAccess.getUnrestrictedNameAccess().getImportKeyword_2()); }
 
 	'import' 
 
-{ after(grammarAccess.getUnrestrictedNameAccess().getImportKeyword_5()); }
+{ after(grammarAccess.getUnrestrictedNameAccess().getImportKeyword_2()); }
 )
 
     |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_6()); }
+{ before(grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_3()); }
 
 	'include' 
 
-{ after(grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_6()); }
+{ after(grammarAccess.getUnrestrictedNameAccess().getIncludeKeyword_3()); }
 )
 
     |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getInitKeyword_7()); }
+{ before(grammarAccess.getUnrestrictedNameAccess().getInitKeyword_4()); }
 
 	'init' 
 
-{ after(grammarAccess.getUnrestrictedNameAccess().getInitKeyword_7()); }
+{ after(grammarAccess.getUnrestrictedNameAccess().getInitKeyword_4()); }
 )
 
     |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getInvKeyword_8()); }
-
-	'inv' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getInvKeyword_8()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_9()); }
+{ before(grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_5()); }
 
 	'library' 
 
-{ after(grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_9()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getPostKeyword_10()); }
-
-	'post' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getPostKeyword_10()); }
-)
-
-    |(
-{ before(grammarAccess.getUnrestrictedNameAccess().getPreKeyword_11()); }
-
-	'pre' 
-
-{ after(grammarAccess.getUnrestrictedNameAccess().getPreKeyword_11()); }
+{ after(grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_5()); }
 )
 
 ;
@@ -3823,9 +3775,9 @@ rule__ClassifierContextDeclCS__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getClassifierContextDeclCSAccess().getGroup_1()); }
-(rule__ClassifierContextDeclCS__Group_1__0)?
-{ after(grammarAccess.getClassifierContextDeclCSAccess().getGroup_1()); }
+{ before(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1()); }
+(rule__ClassifierContextDeclCS__SelfNameAssignment_1)?
+{ after(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1()); }
 )
 
 ;
@@ -3880,46 +3832,16 @@ rule__ClassifierContextDeclCS__Group__3__Impl
     }
 :
 (
+(
+{ before(grammarAccess.getClassifierContextDeclCSAccess().getAlternatives_3()); }
+(rule__ClassifierContextDeclCS__Alternatives_3)
+{ after(grammarAccess.getClassifierContextDeclCSAccess().getAlternatives_3()); }
+)
+(
 { before(grammarAccess.getClassifierContextDeclCSAccess().getAlternatives_3()); }
 (rule__ClassifierContextDeclCS__Alternatives_3)*
 { after(grammarAccess.getClassifierContextDeclCSAccess().getAlternatives_3()); }
 )
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-
-
-
-
-
-
-rule__ClassifierContextDeclCS__Group_1__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ClassifierContextDeclCS__Group_1__0__Impl
-	rule__ClassifierContextDeclCS__Group_1__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ClassifierContextDeclCS__Group_1__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1_0()); }
-(rule__ClassifierContextDeclCS__SelfNameAssignment_1_0)
-{ after(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1_0()); }
 )
 
 ;
@@ -3928,34 +3850,8 @@ finally {
 }
 
 
-rule__ClassifierContextDeclCS__Group_1__1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ClassifierContextDeclCS__Group_1__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
-rule__ClassifierContextDeclCS__Group_1__1__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getClassifierContextDeclCSAccess().getColonKeyword_1_1()); }
 
-	':' 
-
-{ after(grammarAccess.getClassifierContextDeclCSAccess().getColonKeyword_1_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 
 
@@ -12713,14 +12609,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ClassifierContextDeclCS__SelfNameAssignment_1_0
+rule__ClassifierContextDeclCS__SelfNameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameUnrestrictedNameParserRuleCall_1_0_0()); }
-	ruleUnrestrictedName{ after(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameUnrestrictedNameParserRuleCall_1_0_0()); }
+{ before(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameUnrestrictedNameParserRuleCall_1_0()); }
+	ruleUnrestrictedName{ after(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameUnrestrictedNameParserRuleCall_1_0()); }
 )
 
 ;
@@ -13752,7 +13648,7 @@ rule__TupleTypeCS__OwnedPartsAssignment_1_1_0
 :
 (
 { before(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
-	ruletuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
+	ruleTuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); }
 )
 
 ;
@@ -13767,7 +13663,7 @@ rule__TupleTypeCS__OwnedPartsAssignment_1_1_1_1
 :
 (
 { before(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
-	ruletuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
+	ruleTuplePartCS{ after(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); }
 )
 
 ;
@@ -15031,17 +14927,23 @@ finally {
 
 RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
 
-RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
+fragment RULE_ESCAPED_CHARACTER : '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\');
 
-RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+fragment RULE_LETTER_CHARACTER : ('a'..'z'|'A'..'Z'|'_');
+
+fragment RULE_DIGIT_CHARACTER : '0'..'9';
+
+RULE_DOUBLE_QUOTED_STRING : '"' (RULE_ESCAPED_CHARACTER|~(('\\'|'"')))* '"';
+
+RULE_SINGLE_QUOTED_STRING : '\'' (RULE_ESCAPED_CHARACTER|~(('\\'|'\'')))* '\'';
 
 RULE_ML_SINGLE_QUOTED_STRING : '/\'' ( options {greedy=false;} : . )*'\'/';
 
-RULE_SIMPLE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_SIMPLE_ID : RULE_LETTER_CHARACTER (RULE_LETTER_CHARACTER|RULE_DIGIT_CHARACTER)*;
 
 RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
-RULE_INT : ('0'..'9')+;
+RULE_INT : RULE_DIGIT_CHARACTER+;
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

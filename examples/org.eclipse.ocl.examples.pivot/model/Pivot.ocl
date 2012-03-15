@@ -5,7 +5,7 @@ include 'Types.ocl'
 package ocl
 
 context Constraint
-inv UniqueName: context.ownedRule->excluding(self)->forAll(name <> self.name or stereotype <> self.stereotype)
+inv UniqueName: _'context'.ownedRule->excluding(self)->forAll(name <> self.name or stereotype <> self.stereotype)
 
 context Element
 def: allOwnedElements() : Set(Element) =
@@ -143,7 +143,7 @@ inv AnyTypeIsSourceElementType: name = 'any' implies type = source.type.oclAsTyp
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv AnyBodyTypeIsBoolean: name = 'any' implies body.type = 'Boolean'
+inv AnyBodyTypeIsBoolean: name = 'any' implies _'body'.type = 'Boolean'
 
 context IteratorExp
 /** There is exactly one iterator. */ 
@@ -163,9 +163,9 @@ context IteratorExp
 /** The source element type is the same as type of the body elements or element. */
 inv ClosureSourceElementTypeIsBodyElementType: name = 'closure' implies
 source.type.oclAsType(CollectionType).elementType =
-if body.type.oclIsKindOf(CollectionType)
-then body.type.oclAsType(CollectionType).elementType
-else body.type
+if _'body'.type.oclIsKindOf(CollectionType)
+then _'body'.type.oclAsType(CollectionType).elementType
+else _'body'.type
 endif
 
 context IteratorExp
@@ -193,7 +193,7 @@ context IteratorExp
 /** The element type is the type of the body elements. */
 inv CollectElementTypeIsSourceElementType: name = 'collect' implies
 type.oclAsType(CollectionType).elementType =
-body.type.oclAsType(CollectionType).elementType
+_'body'.type.oclAsType(CollectionType).elementType
 
 context IteratorExp
 /** There is exactly one iterator. */
@@ -205,7 +205,7 @@ inv CollectNestedTypeIsBag: name = 'collectNested' implies type.oclIsKindOf(BagT
 
 context IteratorExp
 /** The type is the type of source. */
-inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = body.type
+inv CollectNestedTypeIsBodyType: name = 'collectNested' implies type = _'body'.type
 
 context IteratorExp
 /** The type must be Boolean. */
@@ -213,7 +213,7 @@ inv ExistsTypeIsBoolean: name = 'exists' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv ExistsBodyTypeIsBoolean: name = 'exists' implies body.type = Boolean
+inv ExistsBodyTypeIsBoolean: name = 'exists' implies _'body'.type = Boolean
 
 context IteratorExp
 /** The type must be Boolean. */
@@ -221,7 +221,7 @@ inv ForAllTypeIsBoolean: name = 'forAll' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv ForAllBodyTypeIsBoolean: name = 'forAll' implies body.type = Boolean
+inv ForAllBodyTypeIsBoolean: name = 'forAll' implies _'body'.type = Boolean
 
 context IteratorExp
 /** There is exactly one iterator. */
@@ -241,7 +241,7 @@ inv OneTypeIsBoolean: name = 'one' implies type = Boolean
 
 context IteratorExp
 /** The type of the body must be Boolean. */
-inv OneBodyTypeIsBoolean: name = 'one' implies body.type = Boolean
+inv OneBodyTypeIsBoolean: name = 'one' implies _'body'.type = Boolean
 
 context IteratorExp
 /** There is exactly one iterator. */
@@ -272,7 +272,7 @@ context IteratorExp
 /** The element type is the type of the body elements. */
 inv SortedByElementTypeIsSourceElementType: name = 'sortedBy' implies
 type.oclAsType(CollectionType).elementType =
-body.type.oclAsType(CollectionType).elementType
+_'body'.type.oclAsType(CollectionType).elementType
 
 context IterateExp
 /** The type of the iterate is the type of the result variable. */
@@ -280,7 +280,7 @@ inv TypeIsResultType: type = result.type
 
 context IterateExp
 /** The type of the body expression must conform to the declared type of the result variable. */
-inv BodyTypeConformsToResultType: body.type.conformsTo(result.type)
+inv BodyTypeConformsToResultType: _'body'.type.conformsTo(result.type)
 
 context IterateExp
 /** A result variable must have an init expression. */

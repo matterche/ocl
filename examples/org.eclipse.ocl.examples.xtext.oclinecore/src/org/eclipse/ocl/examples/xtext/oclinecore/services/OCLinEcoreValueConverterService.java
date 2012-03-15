@@ -16,7 +16,13 @@
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
+import org.eclipse.xtext.Grammar;
+import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -26,6 +32,35 @@ import org.eclipse.xtext.util.Strings;
 
 public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterService
 {
+	protected static class EnumerationLiteralNameConverter extends AbstractIDConverter
+	{
+		private final Set<String> enumerationLiteralKeywords;
+
+		protected static Set<String> computeEnumerationLiteralKeywords(Grammar grammar) {
+			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
+			Set<String> enumerationLiteralNames = getAllKeywords(grammar, "EnumerationLiteralName");
+			keywords.removeAll(enumerationLiteralNames);
+			return keywords;
+		}
+
+		public EnumerationLiteralNameConverter(Grammar grammar) {
+			enumerationLiteralKeywords = computeEnumerationLiteralKeywords(grammar);
+		}
+		
+		@Override
+		protected String internalToString(String value) {
+			if (enumerationLiteralKeywords.contains(value)) {
+				return escapeIdentifier(value);
+			}
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
+		}
+	}
+
 	protected static class IntegerConverter extends AbstractNullSafeConverter<Integer>
 	{
 		@Override
@@ -80,9 +115,18 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		}
 	}
 
+	private static EnumerationLiteralNameConverter enumerationLiteralNameConverter = null;
 	private static IntegerConverter integerConverter = null;
 	private static PrimitiveTypeIdentifierConverter primitiveTypeIdentifier = null;
 	private static UpperConverter upperConverter = null;
+
+	@ValueConverter(rule = "EnumerationLiteralName")
+	public IValueConverter<String> EnumerationLiteralName() {
+		if (enumerationLiteralNameConverter == null) {
+			enumerationLiteralNameConverter = new EnumerationLiteralNameConverter(getGrammar());
+		}
+		return enumerationLiteralNameConverter;
+	}
 
 	@ValueConverter(rule = "LOWER")
 	public IValueConverter<Integer> LOWER() {

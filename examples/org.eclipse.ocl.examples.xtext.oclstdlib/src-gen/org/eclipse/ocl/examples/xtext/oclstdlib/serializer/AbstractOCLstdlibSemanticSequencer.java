@@ -239,7 +239,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 					return; 
 				}
 				else if(context == grammarAccess.getTuplePartCSRule()) {
-					sequence_tuplePartCS(context, (TuplePartCS) semanticObject); 
+					sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -271,7 +271,11 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 				}
 				else break;
 			case BaseCSTPackage.TYPED_TYPE_REF_CS:
-				if(context == grammarAccess.getTypedMultiplicityRefCSRule()) {
+				if(context == grammarAccess.getLambdaContextTypeRefCSRule()) {
+					sequence_LambdaContextTypeRefCS(context, (TypedTypeRefCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getTypedMultiplicityRefCSRule()) {
 					sequence_TypedMultiplicityRefCS(context, (TypedTypeRefCS) semanticObject); 
 					return; 
 				}
@@ -701,9 +705,9 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	/**
 	 * Constraint:
 	 *     (
-	 *         name=Name 
+	 *         name=AnyName 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
-	 *         metaTypeName=[MetaTypeName|Name]? 
+	 *         metaTypeName=[MetaTypeName|AnyName]? 
 	 *         (ownedSuperType+=TypedRefCS ownedSuperType+=TypedRefCS*)? 
 	 *         (ownedOperation+=OperationCS | ownedProperty+=LibPropertyCS | ownedConstraint+=InvCS | ownedAnnotation+=AnnotationElementCS)*
 	 *     )
@@ -846,10 +850,19 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     pathName=LibPathNameCS
+	 */
+	protected void sequence_LambdaContextTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         name='Lambda' 
-	 *         ownedContextType=TypedRefCS 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         ownedContextType=LambdaContextTypeRefCS 
 	 *         (ownedParameterType+=TypedRefCS ownedParameterType+=TypedRefCS*)? 
 	 *         ownedResultType=TypedRefCS
 	 *     )
@@ -1299,7 +1312,16 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_TuplePartCS(EObject context, TuplePartCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1326,7 +1348,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1373,8 +1395,8 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	 * Constraint:
 	 *     (
 	 *         name='Lambda' 
-	 *         ownedContextType=TypedRefCS 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         ownedContextType=LambdaContextTypeRefCS 
 	 *         (ownedParameterType+=TypedRefCS ownedParameterType+=TypedRefCS*)? 
 	 *         ownedResultType=TypedRefCS 
 	 *         multiplicity=MultiplicityCS?
@@ -1427,14 +1449,5 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 */
-	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
-		superSequencer.createSequence(context, semanticObject);
 	}
 }

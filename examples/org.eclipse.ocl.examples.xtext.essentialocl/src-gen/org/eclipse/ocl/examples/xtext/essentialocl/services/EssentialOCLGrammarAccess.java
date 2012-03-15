@@ -806,10 +806,10 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//TupleTypeCS returns base::TupleTypeCS:
-		//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
+		//	name="Tuple" ("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?;
 		public ParserRule getRule() { return rule; }
 
-		//name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
+		//name="Tuple" ("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?
 		public Group getGroup() { return cGroup; }
 
 		//name="Tuple"
@@ -818,31 +818,31 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"Tuple"
 		public Keyword getNameTupleKeyword_0_0() { return cNameTupleKeyword_0_0; }
 
-		//("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
+		//("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 
-		//(ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
+		//(ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)?
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//ownedParts+=tuplePartCS
+		//ownedParts+=TuplePartCS
 		public Assignment getOwnedPartsAssignment_1_1_0() { return cOwnedPartsAssignment_1_1_0; }
 
-		//tuplePartCS
+		//TuplePartCS
 		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_0_0; }
 
-		//("," ownedParts+=tuplePartCS)*
+		//("," ownedParts+=TuplePartCS)*
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 
 		//","
 		public Keyword getCommaKeyword_1_1_1_0() { return cCommaKeyword_1_1_1_0; }
 
-		//ownedParts+=tuplePartCS
+		//ownedParts+=TuplePartCS
 		public Assignment getOwnedPartsAssignment_1_1_1_1() { return cOwnedPartsAssignment_1_1_1_1; }
 
-		//tuplePartCS
+		//TuplePartCS
 		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0; }
 
 		//")"
@@ -850,7 +850,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TuplePartCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "tuplePartCS");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TuplePartCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -858,7 +858,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
 		
-		//tuplePartCS returns base::TuplePartCS:
+		//TuplePartCS returns base::TuplePartCS:
 		//	name=UnrestrictedName ":" ownedType=TypeExpCS;
 		public ParserRule getRule() { return rule; }
 
@@ -2416,6 +2416,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private ModelElements pModel;
+	private TerminalRule tESCAPED_CHARACTER;
+	private TerminalRule tLETTER_CHARACTER;
+	private TerminalRule tDIGIT_CHARACTER;
 	private TerminalRule tDOUBLE_QUOTED_STRING;
 	private TerminalRule tSINGLE_QUOTED_STRING;
 	private TerminalRule tML_SINGLE_QUOTED_STRING;
@@ -2517,14 +2520,32 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 
+	//terminal fragment ESCAPED_CHARACTER:
+	//	"\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\");
+	public TerminalRule getESCAPED_CHARACTERRule() {
+		return (tESCAPED_CHARACTER != null) ? tESCAPED_CHARACTER : (tESCAPED_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_CHARACTER"));
+	} 
+
+	//terminal fragment LETTER_CHARACTER:
+	//	"a".."z" | "A".."Z" | "_";
+	public TerminalRule getLETTER_CHARACTERRule() {
+		return (tLETTER_CHARACTER != null) ? tLETTER_CHARACTER : (tLETTER_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER_CHARACTER"));
+	} 
+
+	//terminal fragment DIGIT_CHARACTER:
+	//	"0".."9";
+	public TerminalRule getDIGIT_CHARACTERRule() {
+		return (tDIGIT_CHARACTER != null) ? tDIGIT_CHARACTER : (tDIGIT_CHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DIGIT_CHARACTER"));
+	} 
+
 	//terminal DOUBLE_QUOTED_STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//	"\"" (ESCAPED_CHARACTER | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return (tDOUBLE_QUOTED_STRING != null) ? tDOUBLE_QUOTED_STRING : (tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING"));
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\'" (ESCAPED_CHARACTER | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return (tSINGLE_QUOTED_STRING != null) ? tSINGLE_QUOTED_STRING : (tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING"));
 	} 
@@ -2536,7 +2557,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal SIMPLE_ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	LETTER_CHARACTER (LETTER_CHARACTER | DIGIT_CHARACTER)*;
 	public TerminalRule getSIMPLE_IDRule() {
 		return (tSIMPLE_ID != null) ? tSIMPLE_ID : (tSIMPLE_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_ID"));
 	} 
@@ -2559,7 +2580,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// String to allow diverse re-use
 	//terminal INT:
-	//	"0".."9"+;
+	//	DIGIT_CHARACTER+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
@@ -2881,7 +2902,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
-	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
+	//	name="Tuple" ("(" (ownedParts+=TuplePartCS ("," ownedParts+=TuplePartCS)*)? ")")?;
 	public TupleTypeCSElements getTupleTypeCSAccess() {
 		return (pTupleTypeCS != null) ? pTupleTypeCS : (pTupleTypeCS = new TupleTypeCSElements());
 	}
@@ -2890,7 +2911,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return getTupleTypeCSAccess().getRule();
 	}
 
-	//tuplePartCS returns base::TuplePartCS:
+	//TuplePartCS returns base::TuplePartCS:
 	//	name=UnrestrictedName ":" ownedType=TypeExpCS;
 	public TuplePartCSElements getTuplePartCSAccess() {
 		return (pTuplePartCS != null) ? pTuplePartCS : (pTuplePartCS = new TuplePartCSElements());

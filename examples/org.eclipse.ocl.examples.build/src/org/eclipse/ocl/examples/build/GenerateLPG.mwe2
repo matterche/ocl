@@ -23,6 +23,10 @@ import org.eclipse.emf.ecore.resource.impl.*
 import org.eclipse.m2m.internal.qvt.oml.runtime.ant.QvtoAntTransformationTask
 
 var projectName = "org.eclipse.ocl.examples.xtext2lpg"
+var CompleteOCLxtext = "org.eclipse.ocl.examples.xtext.completeocl/src/org/eclipse/ocl/examples/xtext/completeocl/CompleteOCL.xtext"
+var CompleteOCLxtextXBNF = "/${projectName}/generatedModels/CompleteOCL.xtext.XBNF"
+var CompleteOCLnormalXBNF = "/${projectName}/generatedModels/CompleteOCL.normal.XBNF"
+var CompleteOCLinlineXBNF = "/${projectName}/generatedModels/CompleteOCL.inline.XBNF"
 var EssentialOCLxtext = "org.eclipse.ocl.examples.xtext.essentialocl/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext"
 var EssentialOCLxtextXBNF = "/${projectName}/generatedModels/EssentialOCL.xtext.XBNF"
 var EssentialOCLnormalXBNF = "/${projectName}/generatedModels/EssentialOCL.normal.XBNF"
@@ -31,6 +35,10 @@ var OCLinEcorextext = "org.eclipse.ocl.examples.xtext.oclinecore/src/org/eclipse
 var OCLinEcorextextXBNF = "/${projectName}/generatedModels/OCLinEcore.xtext.XBNF"
 var OCLinEcorenormalXBNF = "/${projectName}/generatedModels/OCLinEcore.normal.XBNF"
 var OCLinEcoreinlineXBNF = "/${projectName}/generatedModels/OCLinEcore.inline.XBNF"
+var OCLstdlibxtext = "org.eclipse.ocl.examples.xtext.oclstdlib/src/org/eclipse/ocl/examples/xtext/oclstdlib/OCLstdlib.xtext"
+var OCLstdlibxtextXBNF = "/${projectName}/generatedModels/OCLstdlib.xtext.XBNF"
+var OCLstdlibnormalXBNF = "/${projectName}/generatedModels/OCLstdlib.normal.XBNF"
+var OCLstdlibinlineXBNF = "/${projectName}/generatedModels/OCLstdlib.inline.XBNF"
 
 /**
  *	Generate the Concrete Syntax Models used by the Xtext editors.
@@ -65,8 +73,20 @@ Workflow {
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/xtext2xbnf.qvto"
+    	in = "${CompleteOCLxtext}"
+    	out = "${CompleteOCLxtextXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/xtext2xbnf.qvto"
     	in = "${OCLinEcorextext}"
     	out = "${OCLinEcorextextXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/xtext2xbnf.qvto"
+    	in = "${OCLstdlibxtext}"
+    	out = "${OCLstdlibxtextXBNF}"
     }
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
@@ -77,8 +97,20 @@ Workflow {
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/normalize.qvto"
+    	in = "${CompleteOCLxtextXBNF}"
+    	out = "${CompleteOCLnormalXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/normalize.qvto"
     	in = "${OCLinEcorextextXBNF}"
     	out = "${OCLinEcorenormalXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/normalize.qvto"
+    	in = "${OCLstdlibxtextXBNF}"
+    	out = "${OCLstdlibnormalXBNF}"
     }
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
@@ -89,8 +121,20 @@ Workflow {
     component = QvtoWorkflowComponent {
     	resourceSet = resourceSet
     	uri = "/${projectName}/transforms/inline.qvto"
+    	in = "${CompleteOCLnormalXBNF}"
+    	out = "${CompleteOCLinlineXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/inline.qvto"
     	in = "${OCLinEcorenormalXBNF}"
     	out = "${OCLinEcoreinlineXBNF}"
+    }
+    component = QvtoWorkflowComponent {
+    	resourceSet = resourceSet
+    	uri = "/${projectName}/transforms/inline.qvto"
+    	in = "${OCLstdlibnormalXBNF}"
+    	out = "${OCLstdlibinlineXBNF}"
     }
     component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
     	in = "${EssentialOCLinlineXBNF}"
@@ -98,7 +142,17 @@ Workflow {
     	javaPackageName = "${projectName}"
     }
     component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
+    	in = "${CompleteOCLinlineXBNF}"
+    	javaFolder = "../${projectName}/generatedModels"
+    	javaPackageName = "${projectName}"
+    }
+    component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
     	in = "${OCLinEcoreinlineXBNF}"
+    	javaFolder = "../${projectName}/generatedModels"
+    	javaPackageName = "${projectName}"
+    }
+    component = XBNF2LPGCodeGenerator { resourceSet = resourceSet
+    	in = "${OCLstdlibinlineXBNF}"
     	javaFolder = "../${projectName}/generatedModels"
     	javaPackageName = "${projectName}"
     }

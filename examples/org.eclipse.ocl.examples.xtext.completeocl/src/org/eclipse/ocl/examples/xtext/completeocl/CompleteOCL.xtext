@@ -37,19 +37,19 @@ NavigationOperator:						// Intended to be overridden
 
 UnrestrictedName returns ecore::EString:
 	EssentialOCLUnrestrictedName
-	| 'body'
-	| 'context'
-	| 'def'
+	//| 'body'
+	//| 'context'
+	//| 'def'
 	| 'derive'
 	//|	'endpackage'
 	| 'import'
 	| 'include'
 	| 'init'
-	| 'inv'
+	//| 'inv'
 	| 'library'
 	//|	'package'
-	|	'post'
-	|	'pre'
+	//|	'post'
+	//|	'pre'
 	//|	'static'
 ;
 
@@ -69,9 +69,9 @@ BodyCS returns BodyCS:
 	stereotype='body' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
-	'context' (selfName=UnrestrictedName ':')?
+	'context' (selfName=UnrestrictedName)?
 	pathName=PathNameCS
-	(rules+=InvCS | rules+=DefCS)*;
+	(rules+=InvCS | rules+=DefCS)+;
 
 ContextDeclCS returns ContextDeclCS:
 	PropertyContextDeclCS

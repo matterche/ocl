@@ -75,7 +75,6 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCompleteOCLDocumentCSAccess().getGroup(), "rule__CompleteOCLDocumentCS__Group__0");
 					put(grammarAccess.getBodyCSAccess().getGroup(), "rule__BodyCS__Group__0");
 					put(grammarAccess.getClassifierContextDeclCSAccess().getGroup(), "rule__ClassifierContextDeclCS__Group__0");
-					put(grammarAccess.getClassifierContextDeclCSAccess().getGroup_1(), "rule__ClassifierContextDeclCS__Group_1__0");
 					put(grammarAccess.getDefCSAccess().getGroup(), "rule__DefCS__Group__0");
 					put(grammarAccess.getDefCSAccess().getGroup_5(), "rule__DefCS__Group_5__0");
 					put(grammarAccess.getDefCSAccess().getGroup_5_1(), "rule__DefCS__Group_5_1__0");
@@ -177,7 +176,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBodyCSAccess().getStereotypeAssignment_0(), "rule__BodyCS__StereotypeAssignment_0");
 					put(grammarAccess.getBodyCSAccess().getNameAssignment_1(), "rule__BodyCS__NameAssignment_1");
 					put(grammarAccess.getBodyCSAccess().getSpecificationAssignment_3(), "rule__BodyCS__SpecificationAssignment_3");
-					put(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1_0(), "rule__ClassifierContextDeclCS__SelfNameAssignment_1_0");
+					put(grammarAccess.getClassifierContextDeclCSAccess().getSelfNameAssignment_1(), "rule__ClassifierContextDeclCS__SelfNameAssignment_1");
 					put(grammarAccess.getClassifierContextDeclCSAccess().getPathNameAssignment_2(), "rule__ClassifierContextDeclCS__PathNameAssignment_2");
 					put(grammarAccess.getClassifierContextDeclCSAccess().getRulesAssignment_3_0(), "rule__ClassifierContextDeclCS__RulesAssignment_3_0");
 					put(grammarAccess.getClassifierContextDeclCSAccess().getRulesAssignment_3_1(), "rule__ClassifierContextDeclCS__RulesAssignment_3_1");

@@ -160,7 +160,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 				else break;
 			case BaseCSTPackage.TUPLE_PART_CS:
 				if(context == grammarAccess.getTuplePartCSRule()) {
-					sequence_tuplePartCS(context, (TuplePartCS) semanticObject); 
+					sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -617,7 +617,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (selfName=UnrestrictedName? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)*)
+	 *     (selfName=UnrestrictedName? pathName=PathNameCS (rules+=InvCS | rules+=DefCS)+)
 	 */
 	protected void sequence_ClassifierContextDeclCS(EObject context, ClassifierContextDeclCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1125,7 +1125,16 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_TuplePartCS(EObject context, TuplePartCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1152,7 +1161,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1191,15 +1200,6 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	 *     name=PrefixOperator
 	 */
 	protected void sequence_UnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
-		superSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 */
-	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
 	}
 }

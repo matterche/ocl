@@ -437,7 +437,19 @@ public class PivotUtil extends DomainUtil
 		s.append(messagePrefix);
 		for (Resource.Diagnostic diagnostic : diagnostics) {
 			s.append(newLine);
-			s.append(diagnostic.getMessage());	// WIP Xtext diagnostics could have a line number
+			String location = diagnostic.getLocation();
+			if (location != null) {
+				s.append(location);
+				s.append(":");
+			}
+			s.append(diagnostic.getLine());
+			try {
+				int column = diagnostic.getColumn();
+				s.append(":");
+				s.append(column);
+			} catch (Exception e) {}	// UnsupportedOperationException is normal
+			s.append(": ");
+			s.append(diagnostic.getMessage());
 		}
 		return s.toString();
 	}

@@ -499,13 +499,13 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
 		executeWithException(delegate, amy, null, getErrorsInMessage("'n='") + 
-			DomainUtil.bind("extraneous input ''{0}'' expecting {1}", "'='", "EOF"));
+			DomainUtil.bind("1: extraneous input ''{0}'' expecting {1}", "'='", "EOF"));
 		//
 		//	Undeclared variable
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
 		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
-			DomainUtil.bind(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'" + PivotConstants.UNKNOWN_TYPE_TEXT + "'"));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'" + PivotConstants.UNKNOWN_TYPE_TEXT + "'"));
 		//
 		//	Definition of undeclared variable
 		//
@@ -613,7 +613,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
 			getErrorsInMessage("gh##jk") +
-			DomainUtil.bind("missing EOF at ''{0}''", "#"));
+			DomainUtil.bind("1: missing EOF at ''{0}''", "#"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
@@ -621,7 +621,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
 			getErrorsInMessage("'5' and 6") +
-			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
+			DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "and", "String", "UnlimitedNatural"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {
@@ -629,7 +629,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
 			getErrorsInMessage("invalid null") +
-			DomainUtil.bind("extraneous input ''{0}'' expecting EOF", "null"));
+			DomainUtil.bind("1: extraneous input ''{0}'' expecting EOF", "null"));
 	}
 
 	/**
@@ -867,21 +867,21 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			getErrorsInMessage("@@") + DomainUtil.bind("no viable alternative at input ''{0}''", "@"));
+			getErrorsInMessage("@@") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "@"));
 	}
 
 	public void test_operationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("self->at(1)") + DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set(ModelWithErrors.ecore::modelWithErrors::BadClass)", "UnlimitedNatural"));
+			getErrorsInMessage("self->at(1)") + DomainUtil.bind("1: " + OCLMessages.UnresolvedOperationCall_ERROR_, "at", "Set(ModelWithErrors.ecore::modelWithErrors::BadClass)", "UnlimitedNatural"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			getErrorsInMessage("let in") + DomainUtil.bind("no viable alternative at input ''{0}''", "in"));
+			getErrorsInMessage("let in") + DomainUtil.bind("1: no viable alternative at input ''{0}''", "in"));
 	}
 
 	/**
@@ -1069,21 +1069,21 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToLexicalError"), null);
 		validateWithDelegationSeverity("parsingToLexicalError", Diagnostic.ERROR, badClassInstance, "'part",
-			"mismatched character ''{0}'' expecting ''{1}''", "<EOF>", "'");
+			"1: mismatched character ''{0}'' expecting ''{1}''", "<EOF>", "'");
 	}
 	
 	public void test_validationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
 		validateWithDelegationSeverity("parsingToSemanticError", Diagnostic.ERROR, badClassInstance, "not '5'",
-			OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
+			"1: " + OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
 	}
 	
 	public void test_validationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSyntacticError"), null);
 		validateWithDelegationSeverity("parsingToSyntacticError", Diagnostic.ERROR, badClassInstance, "else", 
-			"no viable alternative at input ''{0}''", "else");
+			"1: no viable alternative at input ''{0}''", "else");
 	}
 	
 	public void test_validationWithMessage() {

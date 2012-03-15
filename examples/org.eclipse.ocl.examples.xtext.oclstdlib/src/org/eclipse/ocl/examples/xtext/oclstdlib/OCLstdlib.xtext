@@ -63,17 +63,22 @@ RestrictedKeywords:
 |	'static'
 |	'super'
 |	'type'
-|	'Lambda'
-|	'Tuple'
+//|	'Lambda'
+//|	'Tuple'
 ;
 
 Name:
 	Identifier
 |	DOUBLE_QUOTED_STRING
 |	EssentialOCLReservedKeyword
-|	RestrictedKeywords
 |	PrimitiveTypeIdentifier
 |	CollectionTypeIdentifier
+;
+
+AnyName:
+	Name
+|	'Lambda'
+|	'Tuple'
 ;
 
 LibPathNameCS returns base::PathNameCS:
@@ -99,9 +104,9 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 ClassCS returns LibClassCS:
-	'type' name=Name
+	'type' name=AnyName
 	(ownedTemplateSignature=TemplateSignatureCS)?
-	(':' metaTypeName=[MetaTypeName|Name])?
+	(':' metaTypeName=[MetaTypeName|AnyName])?
 	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
 	'{' (ownedOperation+=OperationCS
 	   | ownedProperty+=LibPropertyCS
@@ -148,10 +153,13 @@ IteratorCS returns base::ParameterCS:
 ;
 
 LambdaTypeCS returns base::LambdaTypeCS:
-	name='Lambda' ownedContextType=TypedRefCS
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	name='Lambda' (ownedTemplateSignature=TemplateSignatureCS)? ownedContextType=LambdaContextTypeRefCS	
 	'(' (ownedParameterType+=TypedRefCS (',' ownedParameterType+=TypedRefCS)*)? ')'
 	':' ownedResultType=TypedRefCS
+;
+
+LambdaContextTypeRefCS returns base::TypedTypeRefCS:
+	pathName=LibPathNameCS
 ;
 
 LibraryCS returns base::LibraryCS :

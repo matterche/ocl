@@ -289,7 +289,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 				else break;
 			case BaseCSTPackage.TUPLE_PART_CS:
 				if(context == grammarAccess.getTuplePartCSRule()) {
-					sequence_tuplePartCS(context, (TuplePartCS) semanticObject); 
+					sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -700,7 +700,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (
-	 *         (qualifier+='static' | qualifier+='definition')* 
+	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
 	 *         name=UnrestrictedName 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         default=SINGLE_QUOTED_STRING? 
@@ -860,7 +860,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name=UnrestrictedName value=INTEGER? ownedAnnotation+=AnnotationElementCS*)
+	 *     ((name=UnrestrictedName | name=EnumerationLiteralName) value=INTEGER? ownedAnnotation+=AnnotationElementCS*)
 	 */
 	protected void sequence_EnumerationLiteralCS(EObject context, EnumerationLiteralCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1094,9 +1094,9 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (
-	 *         (qualifier+='static' | qualifier+='definition')* 
-	 *         name=UnrestrictedName 
+	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
 	 *         ownedTemplateSignature=TemplateSignatureCS? 
+	 *         name=UnrestrictedName 
 	 *         (ownedParameter+=ParameterCS ownedParameter+=ParameterCS*)? 
 	 *         ownedType=TypedMultiplicityRefCS? 
 	 *         (ownedException+=TypedRefCS ownedException+=TypedRefCS*)? 
@@ -1278,7 +1278,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	/**
 	 * Constraint:
 	 *     (
-	 *         (qualifier+='static' | qualifier+='definition')* 
+	 *         ((qualifier+='static' qualifier+='definition'?) | (qualifier+='definition' qualifier+='static'?))? 
 	 *         name=UnrestrictedName 
 	 *         opposite=[Property|UnrestrictedName]? 
 	 *         ownedType=TypedMultiplicityRefCS? 
@@ -1396,7 +1396,16 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_TuplePartCS(EObject context, TuplePartCS semanticObject) {
+		superSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1423,7 +1432,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1508,14 +1517,5 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	 */
 	protected void sequence_WildcardTypeRefCS(EObject context, WildcardTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 */
-	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
-		superSequencer.createSequence(context, semanticObject);
 	}
 }

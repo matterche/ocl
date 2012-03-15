@@ -38,10 +38,9 @@ INTEGER returns ecore::EInt:
 	INT
 ;
 
-UnrestrictedName returns ecore::EString:
+EnumerationLiteralName returns ecore::EString:
 	EssentialOCLUnrestrictedName
 |	'abstract'
-|	'annotation'
 |	'attribute'
 |	'body'
 |	'callable'
@@ -51,14 +50,12 @@ UnrestrictedName returns ecore::EString:
 |	'definition'
 |	'derivation'
 |	'derived'
-|	'documentation'
 |	'enum'
 |	'extends'
 |	'id'
 |	'import'
 |	'initial'
 |	'interface'
-|	'invariant'
 |	'key'
 |	'library'
 |	'module'
@@ -71,7 +68,6 @@ UnrestrictedName returns ecore::EString:
 |	'readonly'
 |	'reference'
 |	'resolve'
-|	'serializable'
 |	'static'
 |	'super'
 |	'throws'
@@ -79,6 +75,15 @@ UnrestrictedName returns ecore::EString:
 |	'unique'
 |	'unsettable'
 |	'volatile'
+;
+
+UnrestrictedName returns ecore::EString:
+	EnumerationLiteralName
+|	'annotation'
+|	'documentation'
+|	'invariant'
+|	'literal'
+|	'serializable'
 ;
 
 BodyConstraintCS returns OCLinEcoreConstraintCS:
@@ -122,7 +127,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ;
 
 AttributeCS returns base::AttributeCS:
-	(qualifier+='static' | qualifier+='definition')*
+	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
 	'attribute' name=UnrestrictedName
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('=' default=SINGLE_QUOTED_STRING)?
@@ -196,7 +201,7 @@ EnumerationCS returns base::EnumerationCS:
 ;
 
 EnumerationLiteralCS returns base::EnumerationLiteralCS:
-	name=UnrestrictedName ('=' value=INTEGER)?
+	(('literal' name=UnrestrictedName) | name=EnumerationLiteralName) ('=' value=INTEGER)?
 	(('{' ownedAnnotation+=AnnotationElementCS* '}')
 	|';'
 	)
@@ -223,9 +228,8 @@ ModelElementRefCS returns base::ModelElementRefCS:
 ;
 
 OperationCS returns base::OperationCS:
-	(qualifier+='static' | qualifier+='definition')*
-	'operation' name=UnrestrictedName
-	(ownedTemplateSignature=TemplateSignatureCS)?
+	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
+	'operation' (ownedTemplateSignature=TemplateSignatureCS)? name=UnrestrictedName
 	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
 	(':' ownedType=TypedMultiplicityRefCS)?
 	('throws' ownedException+=TypedRefCS (',' ownedException+=TypedRefCS)*)?
@@ -261,7 +265,7 @@ ParameterCS returns base::ParameterCS:
 ;
 
 ReferenceCS returns base::ReferenceCS:
-	(qualifier+='static' | qualifier+='definition')*
+	((qualifier+='static' (qualifier+='definition')?) | (qualifier+='definition' (qualifier+='static')?))?
 	'property' name=UnrestrictedName
 	('#' opposite=[pivot::Property|UnrestrictedName])?	
 	(':' ownedType=TypedMultiplicityRefCS)?

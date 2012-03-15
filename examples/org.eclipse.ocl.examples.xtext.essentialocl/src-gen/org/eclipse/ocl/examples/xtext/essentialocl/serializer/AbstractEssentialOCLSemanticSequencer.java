@@ -122,7 +122,7 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 				else break;
 			case BaseCSTPackage.TUPLE_PART_CS:
 				if(context == grammarAccess.getTuplePartCSRule()) {
-					sequence_tuplePartCS(context, (TuplePartCS) semanticObject); 
+					sequence_TuplePartCS(context, (TuplePartCS) semanticObject); 
 					return; 
 				}
 				else break;
@@ -816,7 +816,16 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)?)
+	 *     (name=UnrestrictedName ownedType=TypeExpCS)
+	 */
+	protected void sequence_TuplePartCS(EObject context, TuplePartCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)?)
 	 */
 	protected void sequence_TupleTypeCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -843,7 +852,7 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (name='Tuple' (ownedParts+=tuplePartCS ownedParts+=tuplePartCS*)? multiplicity=MultiplicityCS?)
+	 *     (name='Tuple' (ownedParts+=TuplePartCS ownedParts+=TuplePartCS*)? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypeExpCS(EObject context, TupleTypeCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -882,15 +891,6 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	 *     name=PrefixOperator
 	 */
 	protected void sequence_UnaryOperatorCS(EObject context, UnaryOperatorCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=UnrestrictedName ownedType=TypeExpCS)
-	 */
-	protected void sequence_tuplePartCS(EObject context, TuplePartCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }
