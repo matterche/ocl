@@ -16,7 +16,7 @@
  */
 package org.eclipse.ocl.uml.internal;
 
-import org.eclipse.ocl.common.preferences.AnnotatedPreferenceInitializer;
+import org.eclipse.ocl.common.internal.preferences.AnnotatedPreferenceInitializer;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.uml.options.UMLEvaluationOptions;
 import org.eclipse.ocl.uml.options.UMLParsingOptions;

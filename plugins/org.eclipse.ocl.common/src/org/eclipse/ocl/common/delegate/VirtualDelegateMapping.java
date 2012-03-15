@@ -16,9 +16,14 @@ package org.eclipse.ocl.common.delegate;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.ocl.common.OCLConstants;
-import org.eclipse.ocl.common.options.CommonOptions;
-import org.eclipse.ocl.common.preferences.StringPreference;
+import org.eclipse.ocl.common.internal.options.CommonOptions;
+import org.eclipse.ocl.common.internal.preferences.StringPreference;
 
+/**
+ * VirtualDelegateMapping provides the preference option to support mapping of the virtual delegate URI
+ * {@link OCLConstants#OCL_DELEGATE_URI} (http://www.eclipse.org/emf/2002/Ecore/OCL) to a physical delegate URI such as 
+ * http://www.eclipse.org/emf/2002/Ecore/OCL/LPG or http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot.
+ */
 public class VirtualDelegateMapping extends StringPreference
 {
 	public static VirtualDelegateMapping getRegistry(EModelElement modelElement) {

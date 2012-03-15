@@ -5,13 +5,13 @@
       <page id="org.eclipse.ocl.uml.ui.preferences.ProjectPreferencePage"
             category="org.eclipse.ocl.common.ui.preferences.ProjectPreferencePage"
             name="%MF_UML"
-            class="org.eclipse.ocl.uml.ui.preferences.UMLProjectPreferencePage"/>
+            class="org.eclipse.ocl.uml.ui.internal.preferences.UMLProjectPreferencePage"/>
    </extension>
    <extension point="org.eclipse.ui.propertyPages">
       <page id="org.eclipse.ocl.uml.ui.properties.ProjectPropertyPage"
             category="org.eclipse.ocl.common.ui.properties.ProjectPropertyPage"
             name="%MF_UML"
-            class="org.eclipse.ocl.uml.ui.preferences.UMLProjectPreferencePage">
+            class="org.eclipse.ocl.uml.ui.internal.preferences.UMLProjectPreferencePage">
          <enabledWhen>
             <adapt type="org.eclipse.core.resources.IProject"/>
          </enabledWhen>

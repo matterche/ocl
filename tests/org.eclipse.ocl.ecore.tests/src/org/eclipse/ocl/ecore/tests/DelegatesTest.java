@@ -65,7 +65,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.common.OCLConstants;
 import org.eclipse.ocl.common.delegate.DelegateResourceSetAdapter;
-import org.eclipse.ocl.common.delegate.OCLDelegateException;
+import org.eclipse.ocl.common.internal.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.EvaluationVisitorImpl;

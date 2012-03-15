@@ -14,7 +14,7 @@
  */
 package org.eclipse.ocl.internal;
 
-import org.eclipse.ocl.common.preferences.AnnotatedPreferenceInitializer;
+import org.eclipse.ocl.common.internal.preferences.AnnotatedPreferenceInitializer;
 import org.eclipse.ocl.common.preferences.PreferenceableOption;
 import org.eclipse.ocl.options.EvaluationOptions;
 import org.eclipse.ocl.options.ParsingOptions;

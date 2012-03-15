@@ -2,10 +2,8 @@ package org.eclipse.ocl.ecore.delegate;
 
 /**
  * @since 3.0
- * @deprecated use org.eclipse.ocl.common.delegate.OCLDelegateException
  */
-@Deprecated
-public class OCLDelegateException extends org.eclipse.ocl.common.delegate.OCLDelegateException {
+public class OCLDelegateException extends org.eclipse.ocl.common.internal.delegate.OCLDelegateException {
 
 	/**
 	 * 
