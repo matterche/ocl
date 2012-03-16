@@ -6,6 +6,7 @@
     <cq:property key="target.ws" value="*"/>
     <cq:advisorNode namePattern="^org\.eclipse\.ocl\.examples.*\.source$" skipComponent="true"/>
     <cq:advisorNode namePattern="^org\.eclipse\.ocl\.edit\.source$" skipComponent="true"/>
+    <cq:advisorNode namePattern="^org\.eclipse\.ocl\.ui\.source$" skipComponent="true"/>
     <cq:advisorNode namePattern="^org\.eclipse\.ocl\.doc\.source$" skipComponent="true"/>
     <cq:advisorNode namePattern="^org\.eclipse\.ocl.*\.source$" filter="(resolve.ocl.core=false)" skipComponent="true"/>
     <cq:advisorNode filter="(resolve.target.platform=true)" useTargetPlatform="false"/>
