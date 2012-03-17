@@ -261,8 +261,7 @@ TypeExpCS returns base::TypedRefCS:
 // is
 //   a = (64 / 16) / (let b : Integer in 8 / (let c : Integer in 4 ))
 ExpCS returns ExpCS:
-	({InfixExpCS} ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS
-		(ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)*
+	({InfixExpCS} (ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)+
 		ownedExpression+=PrefixedExpOrLetExpCS)
 | 	({PrefixExpCS} ownedOperator+=UnaryOperatorCS+ ownedExpression=PrimaryExpOrLetExpCS)
 |	PrimaryExpOrLetExpCS;
