@@ -53,7 +53,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 
 /**
@@ -63,10 +66,12 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 	protected class ResourceDialog extends ExtendedLoadResourceDialog
 	{
 		protected final Shell parent;
+		protected final ResourceSet resourceSet;
 		
-		protected ResourceDialog(Shell parent, EditingDomain domain) {
+		protected ResourceDialog(Shell parent, EditingDomain domain, ResourceSet resourceSet) {
 			super(parent, domain);
 			this.parent = parent;
+			this.resourceSet = resourceSet;
 		}
 
 		protected boolean error(String message, Diagnostic diagnostic) {
@@ -118,17 +123,6 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 			if (message != null) {
 				return error("Failed to load Pivot from '" + oclURI, message);
 			}
-	/*				try {
-				Resource csResource = csResourceSet.createResource(uri, "org.eclipse.ocl.examples.completeOCL");
-				csResource.load(null);
-				if (!processResource(csResource)) {
-					return false;
-				}
-			} catch (RuntimeException e) {
-				EMFEditUIPlugin.INSTANCE.log(e);
-			} catch (IOException e) {
-				EMFEditUIPlugin.INSTANCE.log(e);
-			} */
 			return true;
 		}
 
@@ -145,7 +139,6 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 
 		@Override
 		protected boolean processResources() {
-			ResourceSet resourceSet = domain.getResourceSet();
 			Set<EPackage> mmPackages = new HashSet<EPackage>();
 			for (Resource resource : resourceSet.getResources()) {
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
@@ -196,40 +189,16 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		}
 	}
 
-/*	public void run(IAction action) {
-		if (ecoreResource != null) {
-			Shell shell = editor.getSite().getShell();
-			ResourceDialog dialog = new ResourceDialog(shell, domain);
-			dialog.open();
-	  / *	      if (loadResourceDialog.open() == Window.OK && !loadResourceDialog.getRegisteredPackages().isEmpty())
-	  	      {
-	  	        String source = EcoreEditorPlugin.INSTANCE.getSymbolicName();
-	  	        BasicDiagnostic diagnosic = 
-	  	          new BasicDiagnostic(Diagnostic.INFO, source, 0, EcoreEditorPlugin.INSTANCE.getString("_UI_RuntimePackageDetail_message"), null);
-	  	        for (EPackage ePackage : loadResourceDialog.getRegisteredPackages())
-	  	        {
-	  	          diagnosic.add(new BasicDiagnostic(Diagnostic.INFO, source, 0, ePackage.getNsURI(), null));
-	  	        }
-	  	        new DiagnosticDialog
-	  	         (shell, 
-	  	          EcoreEditorPlugin.INSTANCE.getString("_UI_Information_title"), 
-	  	          EcoreEditorPlugin.INSTANCE.getString("_UI_RuntimePackageHeader_message"),
-	  	          diagnosic,
-	  	          Diagnostic.INFO).open();
-	  	      } * /
-	  	     
-    	}
-	} */
-
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Object applicationContext = event.getApplicationContext();
 		EditingDomain editingDomain = getEditingDomain(applicationContext);
+		ResourceSet resourceSet = getResourceSet(applicationContext);
 		System.out.println("execute " + event);
 		Object shell = HandlerUtil.getVariable(applicationContext, ISources.ACTIVE_SHELL_NAME);
 		if (!(shell instanceof Shell)) {
 			return null;
 		}
-		ResourceDialog dialog = new ResourceDialog((Shell)shell, editingDomain);
+		ResourceDialog dialog = new ResourceDialog((Shell)shell, editingDomain, resourceSet);
 		dialog.open();
 		return null;
 	}
@@ -266,7 +235,17 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 		}
 		XtextEditor xtextEditor = (XtextEditor) ((IEditorPart)o).getAdapter(XtextEditor.class);
 		if (xtextEditor != null) {
-			return null;
+			IXtextDocument document = xtextEditor.getDocument();
+			ResourceSet resourceSet = document.readOnly(new IUnitOfWork<ResourceSet, XtextResource>() {
+				public ResourceSet exec(XtextResource xtextResource) {
+					if (xtextResource == null) {
+						return null;
+					}
+					ResourceSet resourceSet = xtextResource.getResourceSet();
+					return resourceSet;
+				}					
+			});
+			return resourceSet;
 		}
 		return null;
 	}
