@@ -212,7 +212,7 @@
         	    icon="$nl$/icons/OCLModelFile.gif"
 				tooltip="%MF_LoadOCLResource">
 				<visibleWhen checkEnabled="false">
-					<test property="org.eclipse.ocl.examples.xtext.completeocl.ui.resourceSetAvailable" forcePluginActivation="true"/>
+					<test property="org.eclipse.ocl.examples.ui.resourceSetAvailable" forcePluginActivation="true"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -222,15 +222,5 @@
 			locationURI="popup:#TextEditorContext?after=group.open"  TextEditor, Xtexteditor, not Ecore editor
 		-->
 	</extension>
- <extension
-       point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-          class="org.eclipse.ocl.examples.xtext.completeocl.ui.commands.CompleteOCLPropertyTester"
-          id="org.eclipse.ocl.examples.xtext.completeocl.ui.propertyTester"
-          namespace="org.eclipse.ocl.examples.xtext.completeocl.ui"
-          properties="resourceSetAvailable"
-          type="java.lang.Object">
-    </propertyTester>
- </extension>
 
 </plugin>

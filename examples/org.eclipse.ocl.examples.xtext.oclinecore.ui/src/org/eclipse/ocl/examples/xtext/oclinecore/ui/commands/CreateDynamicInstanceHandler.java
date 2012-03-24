@@ -33,12 +33,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.ui.OCLPropertyTester;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -102,7 +100,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		selectedClass = null;
 		if (evaluationContext instanceof IEvaluationContext) {
 			IEvaluationContext evalContext = (IEvaluationContext) evaluationContext;
-			XtextEditor xtextEditor = getActiveXtextEditor(evalContext);
+			XtextEditor xtextEditor = OCLPropertyTester.getActiveXtextEditor(evalContext);
 			if (xtextEditor != null) {
 				final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();	// FIXME this is the 'double-clicked' selection
 				IXtextDocument document = xtextEditor.getDocument();
@@ -131,14 +129,5 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 				});
 			}
 		}
-	}
-	
-	public static XtextEditor getActiveXtextEditor(IEvaluationContext evaluationContext) {
-		Object o = HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_EDITOR_NAME);
-		if (!(o instanceof IEditorPart)) {
-			return null;
-		}
-		XtextEditor xtextEditor = (XtextEditor) ((IEditorPart)o).getAdapter(XtextEditor.class);
-		return xtextEditor;
 	}
 }

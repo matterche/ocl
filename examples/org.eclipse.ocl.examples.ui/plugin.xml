@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+ <extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester id="org.eclipse.ocl.examples.ui.propertyTester"
+          class="org.eclipse.ocl.examples.ui.OCLPropertyTester"      
+          namespace="org.eclipse.ocl.examples.ui"
+          properties="resourceSetAvailable"
+          type="java.lang.Object"/>
+ </extension>
+
+</plugin>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.ocl.examples.xtext.completeocl.ui.commands;
+package org.eclipse.ocl.examples.ui;
 
 import java.util.Collection;
 
@@ -22,20 +22,35 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.TextSelection;
-import org.eclipse.ocl.examples.xtext.oclinecore.ui.commands.CreateDynamicInstanceHandler;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.services.IEvaluationService;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
-public class CompleteOCLPropertyTester extends PropertyTester
+public class OCLPropertyTester extends PropertyTester
 {
 	private static final String RESOURCE_SET_AVAILABLE = "resourceSetAvailable"; //$NON-NLS-1$
+	
+	public static XtextEditor getActiveXtextEditor(IEvaluationContext evaluationContext) {
+		Object o = HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_EDITOR_NAME);
+		if (!(o instanceof IEditorPart)) {
+			return null;
+		}
+		XtextEditor xtextEditor = (XtextEditor) ((IEditorPart)o).getAdapter(XtextEditor.class);
+		return xtextEditor;
+	}
 
-	public CompleteOCLPropertyTester() {
+	public OCLPropertyTester() {
 		super();
 	}
 
 	private boolean hasResourceSet(Object receiver) {
+		if (receiver instanceof IStructuredSelection) {
+			receiver = ((IStructuredSelection)receiver).getFirstElement();
+		}
 		if (receiver instanceof EObject) {
 			Resource resource = ((EObject)receiver).eResource();
 			return (resource != null) && (resource.getResourceSet() != null);
@@ -48,7 +63,7 @@ public class CompleteOCLPropertyTester extends PropertyTester
 		}
 		else if (receiver instanceof TextSelection) {
 			IEvaluationContext evaluationContext = getApplicationContext();
-			XtextEditor xtextEditor = CreateDynamicInstanceHandler.getActiveXtextEditor(evaluationContext);
+			XtextEditor xtextEditor = getActiveXtextEditor(evaluationContext);
 			return xtextEditor != null;
 		}
 		return false;
