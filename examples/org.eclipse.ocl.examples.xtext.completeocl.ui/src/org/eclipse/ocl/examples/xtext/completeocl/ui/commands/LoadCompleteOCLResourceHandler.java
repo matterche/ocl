@@ -192,6 +192,7 @@ public class LoadCompleteOCLResourceHandler extends AbstractHandler
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Object applicationContext = event.getApplicationContext();
 		EditingDomain editingDomain = getEditingDomain(applicationContext);
+		ResourceSet resourceSet = getResourceSet(applicationContext);
 //		System.out.println("execute " + event);
 		Object shell = HandlerUtil.getVariable(applicationContext, ISources.ACTIVE_SHELL_NAME);
 		if (!(shell instanceof Shell)) {
