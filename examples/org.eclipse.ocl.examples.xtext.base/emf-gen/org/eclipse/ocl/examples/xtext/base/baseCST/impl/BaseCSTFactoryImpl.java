@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -122,8 +123,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
+			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS: return createQualifiedNamedElementRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS: return createSimpleNamedElementRefCS();
 			case BaseCSTPackage.SPECIFICATION_CS: return createSpecificationCS();
 			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
@@ -367,6 +370,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public QualifiedNamedElementRefCS createQualifiedNamedElementRefCS()
+	{
+		QualifiedNamedElementRefCSImpl qualifiedNamedElementRefCS = new QualifiedNamedElementRefCSImpl();
+		return qualifiedNamedElementRefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReferenceCS createReferenceCS()
 	{
 		ReferenceCSImpl referenceCS = new ReferenceCSImpl();
@@ -382,6 +396,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
 		return rootPackageCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimpleNamedElementRefCS createSimpleNamedElementRefCS()
+	{
+		SimpleNamedElementRefCSImpl simpleNamedElementRefCS = new SimpleNamedElementRefCSImpl();
+		return simpleNamedElementRefCS;
 	}
 
 	/**

@@ -70,9 +70,7 @@ BodyCS returns BodyCS:
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (selfName=UnrestrictedName ':')?
-	((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-	classifier=[pivot::Type|UnreservedName])
-	| classifier=[pivot::Type|UnrestrictedName])
+	qualifiedElementRef=QualifiedNamedElementRefCS
 	(rules+=InvCS | rules+=DefCS)*;
 
 ContextDeclCS returns ContextDeclCS:
@@ -104,17 +102,13 @@ LibraryCS returns base::LibraryCS:
 	'library' package=[pivot::Package|URI];
 
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' (namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)?
-	  operation=[pivot::Operation|UnreservedName] '(' 
+	'context' qualifiedElementRef=QualifiedNamedElementRefCS '(' 
 	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
 	')' ':' (ownedType=TypeExpCS)?
 	((rules+=PreCS) | (rules+=PostCS) | (rules+=BodyCS))*;
 
 PackageDeclarationCS returns PackageDeclarationCS:
-	'package' ((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-	package=[pivot::Package|UnreservedName])
-	| package=[pivot::Package|UnrestrictedName])
-	(contexts+=ContextDeclCS)* 'endpackage';
+	'package' qualifiedElementRef=QualifiedNamedElementRefCS (contexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns essentialocl::VariableCS:
 	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
@@ -126,9 +120,17 @@ PreCS returns PreCS:
 	stereotype='pre' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' (namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)?
-	property=[pivot::Property|UnreservedName] ':' (ownedType=TypeExpCS)?
+	'context' qualifiedElementRef=QualifiedNamedElementRefCS ':' (ownedType=TypeExpCS)?
 	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
+
+QualifiedNamedElementRefCS returns base::QualifiedNamedElementRefCS:
+	path+=UnrestrictedNamedElementRefCS ('::' path+=UnreservedNamedElementRefCS)*;
+
+UnreservedNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	element=[pivot::NamedElement|UnreservedName];
+
+UnrestrictedNamedElementRefCS returns base::SimpleNamedElementRefCS:
+	element=[pivot::NamedElement|UnrestrictedName];
 
 SpecificationCS returns ContextSpecificationCS:
 	ownedExpression=ExpCS | exprString=UNQUOTED_STRING;

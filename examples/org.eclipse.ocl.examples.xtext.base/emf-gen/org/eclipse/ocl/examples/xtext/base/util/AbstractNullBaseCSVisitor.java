@@ -141,11 +141,19 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
+		return null;
+	}
+
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
 		return null;
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
+		return null;
+	}
+
+	public R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object) {
 		return null;
 	}
 

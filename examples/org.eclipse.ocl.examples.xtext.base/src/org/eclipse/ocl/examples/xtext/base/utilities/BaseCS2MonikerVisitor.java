@@ -46,7 +46,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -82,6 +84,18 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 			
 	public BaseCS2MonikerVisitor(CS2Moniker context) {
 		super(context);
+	}
+
+	public void safeAppendMonikerOf(Element element) {
+		if (element == null) {
+			context.append(NULL_MARKER);
+		}
+		else if (element.eIsProxy()) {
+			context.append(UNRESOLVED_PROXY_MARKER);
+		}
+		else {
+			context.appendElement(element);
+		}
 	}
 
 	@Override
@@ -238,12 +252,23 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	@Override
+	public Boolean visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object) {
+		safeAppendMonikerOf(object.getElement());
+		return true;
+	}
+
+	@Override
 	public Boolean visitReferenceCS(ReferenceCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
 
+	@Override
+	public Boolean visitSimpleNamedElementRefCS(SimpleNamedElementRefCS object) {
+		safeAppendMonikerOf(object.getElement());
+		return true;
+	}
 	
 	@Override
 	public Boolean visitSpecificationCS(SpecificationCS object) {

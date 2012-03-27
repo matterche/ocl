@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -260,7 +261,6 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
-		context.resolveNamespaces(csElement.getNamespace());
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
@@ -303,18 +303,17 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS object) {
-		context.resolveNamespaces(object.getNamespace());
 		// Must wait till parameters have types before resolving operation name
 		return new OperationContextDeclCSContinuation(context, object);
 	}
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
-		context.resolveNamespaces(csElement.getNamespace());
-		org.eclipse.ocl.examples.pivot.Package modelPackage = csElement.getPackage();
-		if ((modelPackage == null) || modelPackage.eIsProxy()) {
+		NamedElement modelElement = csElement.getQualifiedElementRef().getElement();
+		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
 		}
+		org.eclipse.ocl.examples.pivot.Package modelPackage = (org.eclipse.ocl.examples.pivot.Package)modelElement;
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, csElement.eResource(), csElement);
 		context.refreshComments(contextPackage, csElement);
 //		if ((element == null) || element.eIsProxy()) {
@@ -327,9 +326,8 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
-		context.resolveNamespaces(csElement.getNamespace());
 		Property modelProperty = csElement.getProperty();
-		if ((modelProperty == null) || modelProperty.eIsProxy()) {
+		if (modelProperty == null) {
 			return null;
 		}
 		Type contextType = getContextClassifier(modelProperty.getOwningType(), csElement);

@@ -38,16 +38,9 @@ public class ClassifierContextScopeAdapter extends ElementCSScopeAdapter
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		ClassifierContextDeclCS targetElement = (ClassifierContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
-			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
-//			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
 			Type type = targetElement.getClassifier();
-			if ((type != null) && !type.eIsProxy()) {
+			if (type != null) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));
 				environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));
@@ -61,37 +54,5 @@ public class ClassifierContextScopeAdapter extends ElementCSScopeAdapter
 			}
 		}
 		return scopeView.getOuterScope();
-
-		
-/*		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
-			return scopeView.getOuterScope();
-		}
-		else {
-			ClassifierRefCS csClassifierRef = target.getClassifier();
-			if (csClassifierRef != null) {
-				ClassifierCS csClassifier = csClassifierRef.getClassifier();
-				environmentView.addElementsOfScope(csClassifier, scopeView);
-				String selfName = target.getSelfName();
-				if (selfName == null) {
-					selfName = Environment.SELF_VARIABLE_NAME;
-				}
-				environmentView.addElement(selfName, csClassifier);
-				RootCS document = getRootScopeAdapter().getTarget();
-				for (Iterator<EObject> it = document.eAllContents(); it.hasNext(); ) {
-					EObject eObject = it.next();	// FIXME Need to create the csClassifier features
-					if (eObject instanceof ClassifierContextDeclCS) {
-						ClassifierContextDeclCS csClassifierContext2 = (ClassifierContextDeclCS)eObject;
-						ClassifierRefCS csClassifierRef2 = csClassifierContext2.getClassifier();
-						ClassifierCS csClassifier2 = csClassifierRef2 != null ? csClassifierRef2.getClassifier() : null;
-						if (csClassifier == csClassifier2) {
-							for (DefCS def : csClassifierContext2.getDefs()) {
-								environmentView.addElement(def.getConstrainedName(), def);
-							}
-						}
-					}
-				}
-			}
-			return scopeView.getOuterScope();
-		} */
 	}
 }

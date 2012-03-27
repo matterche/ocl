@@ -40,6 +40,7 @@ public class CompleteOCLDocumentScopeAdapter extends AbstractRootCSScopeAdapter
 				String importName = anImport.getName();
 				if (importName != null) {
 					environmentView.addElement(importName, namespace);
+					environmentView.addNamedElement(namespace);
 					if (anImport.isAll() && (namespace instanceof org.eclipse.ocl.examples.pivot.Package)) {
 						org.eclipse.ocl.examples.pivot.Package rootPackage = (org.eclipse.ocl.examples.pivot.Package)namespace;
 						environmentView.addNamedElements(rootPackage.getNestedPackage());

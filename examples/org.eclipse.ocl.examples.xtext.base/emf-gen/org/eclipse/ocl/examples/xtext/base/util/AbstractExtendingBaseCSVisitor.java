@@ -145,12 +145,20 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitTypedRefCS(object);
 	}
 
+	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
+		return visitElementCS(object);
+	}
+
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
 		return visitStructuralFeatureCS(object);
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
 		return visitPackageCS(object);
+	}
+
+	public R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object) {
+		return visitElementCS(object);
 	}
 
 	public R visitSpecificationCS(org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS object) {

@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -38,16 +39,10 @@ public class PropertyContextScopeAdapter extends ElementCSScopeAdapter
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		PropertyContextDeclCS targetElement = (PropertyContextDeclCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
-			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
-//			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			Type type = targetElement.getProperty().getOwningType();
-			if ((type != null) && !type.eIsProxy()) {
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
+			Property property = targetElement.getProperty();
+			if (property != null) {
+				Type type = property.getOwningType();
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));
 				environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));

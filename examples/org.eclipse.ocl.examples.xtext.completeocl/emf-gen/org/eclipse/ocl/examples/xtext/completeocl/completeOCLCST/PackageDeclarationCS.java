@@ -17,9 +17,6 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.util.MorePivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,33 +26,16 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getContexts <em>Contexts</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS()
- * @model superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS org.eclipse.ocl.examples.pivot.MorePivotable"
+ * @model
  * @generated
  */
-public interface PackageDeclarationCS extends ModelElementCS, MorePivotable {
-	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Namespace</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Namespace()
-	 * @model
-	 * @generated
-	 */
-	EList<Namespace> getNamespace();
-
+public interface PackageDeclarationCS extends NamedElementDeclCS {
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -65,22 +45,11 @@ public interface PackageDeclarationCS extends ModelElementCS, MorePivotable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Package</em>' reference.
-	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Package()
-	 * @model
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Package getPackage();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' reference.
-	 * @see #getPackage()
-	 * @generated
-	 */
-	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.

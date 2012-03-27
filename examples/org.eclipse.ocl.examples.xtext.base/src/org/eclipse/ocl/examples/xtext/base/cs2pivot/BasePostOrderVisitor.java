@@ -46,7 +46,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -228,6 +230,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	@Override
+	public Continuation<?> visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object) {
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitReferenceCS(ReferenceCS csReference) {
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
 		Property pivotOpposite = csReference.getOpposite();
@@ -241,6 +248,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		if (pivotOpposite == null) {
 			context.getMetaModelManager().installPropertyDeclaration(pivotElement);
 		}
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitSimpleNamedElementRefCS(SimpleNamedElementRefCS object) {
 		return null;
 	}
 

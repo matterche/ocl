@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -173,13 +174,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		}
 		else if (targetReference == BaseCSTPackage.Literals.MODEL_ELEMENT_REF_CS__ELEMENT) {
 			descriptiveName = getNonPivotURI(object);
-//			ModelElementRefCS csRef = (ModelElementRefCS) object;
-//			List<Namespace> namespaces = csRef.getNamespace();
-//			if (ElementUtil.isReferenceable(object) || (namespaces.size() != 0)) {
-//				String name = ((NamedElement)object).getName();
-//				IEObjectDescription objectDescription = EObjectDescription.create(name, object);
-//				return Collections.singletonList(objectDescription);
-//			}
 		}
 		else if (targetReference == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
 			descriptiveName = ((NamedElement)object).getName();
@@ -221,7 +215,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 					|| (csRef.eContainer() instanceof TemplateBindingCS)) {
 				csRef = csRef.eContainer();
 			}
-			ModelElementCS csContext = (ModelElementCS) csRef.eContainer();
+			Pivotable csContext = (Pivotable) csRef.eContainer();
 			AliasAnalysis aliasAnalysis = AliasAnalysis.getAdapter(csContext.eResource());
 			Element context = csContext.getPivot();
 			while ((context != null) && !(context instanceof Namespace) && !(context instanceof Type)) {
@@ -238,7 +232,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 			QualifiedPath qualifiedRelativeName = objectPath.deresolve(contextPath);
 			IEObjectDescription objectDescription = EObjectDescription.create(qualifiedRelativeName, object);
 			return Collections.singletonList(objectDescription);
-//			descriptiveName = ((NamedElement)object).getName();
 		}
 		if (descriptiveName != null) {
 			IEObjectDescription objectDescription = EObjectDescription.create(descriptiveName, object);

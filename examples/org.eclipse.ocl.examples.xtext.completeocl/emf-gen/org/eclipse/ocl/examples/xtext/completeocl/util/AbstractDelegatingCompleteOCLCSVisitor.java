@@ -89,6 +89,10 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 		return delegate.visitInvCS(object);
 	}
 
+	public R visitNamedElementDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS object) {
+		return delegate.visitNamedElementDeclCS(object);
+	}
+
 	public R visitOclMessageArgCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS object) {
 		return delegate.visitOclMessageArgCS(object);
 	}

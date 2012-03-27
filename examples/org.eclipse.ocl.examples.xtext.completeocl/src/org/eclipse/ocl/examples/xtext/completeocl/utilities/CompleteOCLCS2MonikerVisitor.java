@@ -94,7 +94,10 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	public void safeAppendMonikerOf(Element element) {
-		if (element.eIsProxy()) {
+		if (element == null) {
+			context.append(NULL_MARKER);
+		}
+		else if (element.eIsProxy()) {
 			context.append(UNRESOLVED_PROXY_MARKER);
 		}
 		else {

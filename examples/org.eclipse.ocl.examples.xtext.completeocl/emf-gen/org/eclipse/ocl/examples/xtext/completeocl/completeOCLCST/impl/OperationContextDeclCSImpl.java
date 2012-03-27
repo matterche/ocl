@@ -17,18 +17,15 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -54,16 +51,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * @generated
  */
 public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl implements OperationContextDeclCS {
-	/**
-	 * The cached value of the '{@link #getOperation() <em>Operation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Operation operation;
-
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -101,48 +88,6 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	@Override
 	protected EClass eStaticClass() {
 		return CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation getOperation() {
-		if (operation != null && ((EObject)operation).eIsProxy())
-		{
-			InternalEObject oldOperation = (InternalEObject)operation;
-			operation = (Operation)eResolveProxy(oldOperation);
-			if (operation != oldOperation)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, oldOperation, operation));
-			}
-		}
-		return operation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation basicGetOperation()
-	{
-		return operation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOperation(Operation newOperation)
-	{
-		Operation oldOperation = operation;
-		operation = newOperation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, oldOperation, operation));
 	}
 
 	/**
@@ -238,8 +183,7 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		switch (featureID)
 		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				if (resolve) return getOperation();
-				return basicGetOperation();
+				return getOperation();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return getParameters();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
@@ -258,9 +202,6 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				setOperation((Operation)newValue);
-				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends VariableCS>)newValue);
@@ -281,9 +222,6 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				setOperation((Operation)null);
-				return;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				getParameters().clear();
 				return;
@@ -304,7 +242,7 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		switch (featureID)
 		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
-				return operation != null;
+				return getOperation() != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT:
@@ -319,8 +257,16 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitOperationContextDeclCS(this);
 	}
 
-	public Iterable<Element> getMorePivots() {
-		Operation operation = getOperation();
-		return operation != null ? Collections.<Element>singletonList(operation) :  Collections.<Element>emptyList();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Operation getOperation()
+	{
+		if (qualifiedElementRef == null) {
+			return null;
+		}
+		return (Operation) qualifiedElementRef.getElement();
 	}
 } //OperationContextDeclCSImpl

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -268,6 +269,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createPrimitiveTypeRefCSAdapter();
 			}
 			@Override
+			public Adapter caseQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object)
+			{
+				return createQualifiedNamedElementRefCSAdapter();
+			}
+			@Override
 			public Adapter caseReferenceCS(ReferenceCS object)
 			{
 				return createReferenceCSAdapter();
@@ -281,6 +287,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseRootPackageCS(RootPackageCS object)
 			{
 				return createRootPackageCSAdapter();
+			}
+			@Override
+			public Adapter caseSimpleNamedElementRefCS(SimpleNamedElementRefCS object)
+			{
+				return createSimpleNamedElementRefCSAdapter();
 			}
 			@Override
 			public Adapter caseSpecificationCS(SpecificationCS object)
@@ -787,6 +798,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS <em>Qualified Named Element Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS
+	 * @generated
+	 */
+	public Adapter createQualifiedNamedElementRefCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS <em>Reference CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -826,6 +852,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRootPackageCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS <em>Simple Named Element Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS
+	 * @generated
+	 */
+	public Adapter createSimpleNamedElementRefCSAdapter()
 	{
 		return null;
 	}

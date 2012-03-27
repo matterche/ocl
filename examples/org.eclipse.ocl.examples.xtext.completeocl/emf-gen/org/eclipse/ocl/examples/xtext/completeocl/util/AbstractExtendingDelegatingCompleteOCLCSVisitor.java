@@ -61,7 +61,7 @@ public abstract class AbstractExtendingDelegatingCompleteOCLCSVisitor<R, C, D ex
 	}
 
 	public R visitContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS object) {
-		return delegate.visitModelElementCS(object);
+		return visitNamedElementDeclCS(object);
 	}
 
 	public R visitContextSpecificationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS object) {
@@ -92,6 +92,10 @@ public abstract class AbstractExtendingDelegatingCompleteOCLCSVisitor<R, C, D ex
 		return visitContextConstraintCS(object);
 	}
 
+	public R visitNamedElementDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS object) {
+		return delegate.visitModelElementCS(object);
+	}
+
 	public R visitOclMessageArgCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS object) {
 		return delegate.visitExpCS(object);
 	}
@@ -101,7 +105,7 @@ public abstract class AbstractExtendingDelegatingCompleteOCLCSVisitor<R, C, D ex
 	}
 
 	public R visitPackageDeclarationCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS object) {
-		return delegate.visitModelElementCS(object);
+		return visitNamedElementDeclCS(object);
 	}
 
 	public R visitPostCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS object) {

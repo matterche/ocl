@@ -33,16 +33,9 @@ public class PackageDeclarationScopeAdapter extends ElementCSScopeAdapter
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
 		PackageDeclarationCS targetElement = (PackageDeclarationCS)target;
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
-			return getNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__NAMESPACE) {
-			return getNextNamespaceScope(environmentView, scopeView, targetElement.getNamespace());
-		}
-		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS) {
-//			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS) {
 			org.eclipse.ocl.examples.pivot.Package pkg = targetElement.getPackage();
-			if ((pkg != null) && !pkg.eIsProxy()) {
+			if (pkg != null) {
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 				environmentView.addNamedElements(null, metaModelManager.getLocalPackages(pkg));
 				environmentView.addNamedElements(null, metaModelManager.getLocalClasses(pkg));

@@ -24,10 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
@@ -41,24 +38,13 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl#getRules <em>Rules</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements ContextDeclCS {
-	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Namespace> namespace;
-
+public abstract class ContextDeclCSImpl extends NamedElementDeclCSImpl implements ContextDeclCS {
 	/**
 	 * The cached value of the '{@link #getRules() <em>Rules</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -86,20 +72,6 @@ public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements Co
 	@Override
 	protected EClass eStaticClass() {
 		return CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Namespace> getNamespace()
-	{
-		if (namespace == null)
-		{
-			namespace = new EObjectResolvingEList<Namespace>(Namespace.class, this, CompleteOCLCSTPackage.CONTEXT_DECL_CS__NAMESPACE);
-		}
-		return namespace;
 	}
 
 	/**
@@ -159,8 +131,6 @@ public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements Co
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__NAMESPACE:
-				return getNamespace();
 			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__RULES:
 				return getRules();
 		}
@@ -178,10 +148,6 @@ public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements Co
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__NAMESPACE:
-				getNamespace().clear();
-				getNamespace().addAll((Collection<? extends Namespace>)newValue);
-				return;
 			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__RULES:
 				getRules().clear();
 				getRules().addAll((Collection<? extends ContextConstraintCS>)newValue);
@@ -200,9 +166,6 @@ public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements Co
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__NAMESPACE:
-				getNamespace().clear();
-				return;
 			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__RULES:
 				getRules().clear();
 				return;
@@ -220,8 +183,6 @@ public abstract class ContextDeclCSImpl extends ModelElementCSImpl implements Co
 	{
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__NAMESPACE:
-				return namespace != null && !namespace.isEmpty();
 			case CompleteOCLCSTPackage.CONTEXT_DECL_CS__RULES:
 				return rules != null && !rules.isEmpty();
 		}

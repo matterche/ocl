@@ -26,8 +26,8 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS#getClassifier <em>Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS#getSelfName <em>Self Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS#getClassifier <em>Classifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,32 +36,6 @@ import org.eclipse.ocl.examples.pivot.Type;
  * @generated
  */
 public interface ClassifierContextDeclCS extends ContextDeclCS {
-	/**
-	 * Returns the value of the '<em><b>Classifier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Classifier</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classifier</em>' reference.
-	 * @see #setClassifier(Type)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getClassifierContextDeclCS_Classifier()
-	 * @model
-	 * @generated
-	 */
-	Type getClassifier();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS#getClassifier <em>Classifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Classifier</em>' reference.
-	 * @see #getClassifier()
-	 * @generated
-	 */
-	void setClassifier(Type value);
-
 	/**
 	 * Returns the value of the '<em><b>Self Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,5 +61,20 @@ public interface ClassifierContextDeclCS extends ContextDeclCS {
 	 * @generated
 	 */
 	void setSelfName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Classifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Classifier</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Classifier</em>' reference.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getClassifierContextDeclCS_Classifier()
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	Type getClassifier();
 
 } // ClassifierContextDeclCS

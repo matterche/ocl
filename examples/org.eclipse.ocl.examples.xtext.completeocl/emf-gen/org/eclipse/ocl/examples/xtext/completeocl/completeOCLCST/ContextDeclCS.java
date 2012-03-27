@@ -17,9 +17,6 @@
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.Namespace;
-import org.eclipse.ocl.examples.pivot.util.MorePivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,32 +26,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS#getRules <em>Rules</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getContextDeclCS()
- * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS org.eclipse.ocl.examples.pivot.MorePivotable"
+ * @model abstract="true"
  * @generated
  */
-public interface ContextDeclCS extends ModelElementCS, MorePivotable {
-
-	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Namespace</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getContextDeclCS_Namespace()
-	 * @model
-	 * @generated
-	 */
-	EList<Namespace> getNamespace();
+public interface ContextDeclCS extends NamedElementDeclCS {
 
 	/**
 	 * Returns the value of the '<em><b>Rules</b></em>' containment reference list.

@@ -54,7 +54,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -518,6 +520,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
+	public Continuation<?> visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS csElement) {
+		return null;
+	}
+
+	@Override
 	public Continuation<?> visitRootPackageCS(RootPackageCS object) {
 		for (LibraryCS csLibrary : object.getOwnedLibrary()) {
 			csLibrary.getPackage();						// Resolve the proxy to perform the import.
@@ -526,6 +533,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			csImport.getNamespace();					// Resolve the proxy to perform the import.
 		}
 		return super.visitRootPackageCS(object);
+	}
+
+	@Override
+	public Continuation<?> visitSimpleNamedElementRefCS(SimpleNamedElementRefCS csElement) {
+		@SuppressWarnings("unused")
+		NamedElement namedElement = csElement.getElement();
+		return null;
 	}
 
 	@Override

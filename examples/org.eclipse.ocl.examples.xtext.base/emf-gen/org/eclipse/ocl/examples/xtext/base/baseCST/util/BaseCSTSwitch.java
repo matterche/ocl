@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -521,6 +522,16 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS:
+			{
+				QualifiedNamedElementRefCS qualifiedNamedElementRefCS = (QualifiedNamedElementRefCS)theEObject;
+				T result = caseQualifiedNamedElementRefCS(qualifiedNamedElementRefCS);
+				if (result == null) result = caseElementCS(qualifiedNamedElementRefCS);
+				if (result == null) result = casePivotable(qualifiedNamedElementRefCS);
+				if (result == null) result = caseVisitableCS(qualifiedNamedElementRefCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.REFERENCE_CS:
 			{
 				ReferenceCS referenceCS = (ReferenceCS)theEObject;
@@ -564,6 +575,16 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(rootPackageCS);
 				if (result == null) result = casePivotable(rootPackageCS);
 				if (result == null) result = caseVisitableCS(rootPackageCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
+			{
+				SimpleNamedElementRefCS simpleNamedElementRefCS = (SimpleNamedElementRefCS)theEObject;
+				T result = caseSimpleNamedElementRefCS(simpleNamedElementRefCS);
+				if (result == null) result = caseElementCS(simpleNamedElementRefCS);
+				if (result == null) result = casePivotable(simpleNamedElementRefCS);
+				if (result == null) result = caseVisitableCS(simpleNamedElementRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1198,6 +1219,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Qualified Named Element Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Qualified Named Element Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQualifiedNamedElementRefCS(QualifiedNamedElementRefCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Reference CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1240,6 +1277,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRootPackageCS(RootPackageCS object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Named Element Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Named Element Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimpleNamedElementRefCS(SimpleNamedElementRefCS object)
 	{
 		return null;
 	}

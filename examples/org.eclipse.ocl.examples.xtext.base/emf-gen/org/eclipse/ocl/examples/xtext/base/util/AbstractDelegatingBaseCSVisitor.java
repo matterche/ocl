@@ -161,12 +161,20 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitPrimitiveTypeRefCS(object);
 	}
 
+	public R visitQualifiedNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS object) {
+		return delegate.visitQualifiedNamedElementRefCS(object);
+	}
+
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
 		return delegate.visitReferenceCS(object);
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {
 		return delegate.visitRootPackageCS(object);
+	}
+
+	public R visitSimpleNamedElementRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS object) {
+		return delegate.visitSimpleNamedElementRefCS(object);
 	}
 
 	public R visitSpecificationCS(org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS object) {

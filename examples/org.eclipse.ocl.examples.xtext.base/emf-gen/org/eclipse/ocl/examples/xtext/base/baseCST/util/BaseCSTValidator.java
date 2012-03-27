@@ -53,9 +53,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -205,12 +207,16 @@ public class BaseCSTValidator extends EObjectValidator
 				return validatePivotableElementCS((PivotableElementCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
+			case BaseCSTPackage.QUALIFIED_NAMED_ELEMENT_REF_CS:
+				return validateQualifiedNamedElementRefCS((QualifiedNamedElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_CS:
 				return validateRootCS((RootCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_PACKAGE_CS:
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
+			case BaseCSTPackage.SIMPLE_NAMED_ELEMENT_REF_CS:
+				return validateSimpleNamedElementRefCS((SimpleNamedElementRefCS)value, diagnostics, context);
 			case BaseCSTPackage.SPECIFICATION_CS:
 				return validateSpecificationCS((SpecificationCS)value, diagnostics, context);
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS:
@@ -527,6 +533,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateQualifiedNamedElementRefCS(QualifiedNamedElementRefCS qualifiedNamedElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(qualifiedNamedElementRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateReferenceCS(ReferenceCS referenceCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(referenceCS, diagnostics, context);
@@ -640,6 +656,16 @@ public class BaseCSTValidator extends EObjectValidator
 			return false;
 		}
 		return validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSimpleNamedElementRefCS(SimpleNamedElementRefCS simpleNamedElementRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(simpleNamedElementRefCS, diagnostics, context);
 	}
 
 	/**

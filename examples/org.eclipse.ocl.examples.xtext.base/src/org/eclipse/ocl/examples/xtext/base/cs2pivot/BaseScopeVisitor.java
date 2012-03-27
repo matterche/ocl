@@ -29,8 +29,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleNamedElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -52,6 +54,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.OperationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.PackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ReferenceCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.SimpleNamedElementRefScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateParameterSubstitutionCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateSignatureCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TupleTypeCSScopeAdapter;
@@ -138,6 +141,16 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<CSScopeAdap
 	@Override
 	public CSScopeAdapter visitRootPackageCS(RootPackageCS eObject) {
 		return RootPackageCSScopeAdapter.INSTANCE;
+	}
+
+	@Override
+	public CSScopeAdapter visitQualifiedNamedElementRefCS(QualifiedNamedElementRefCS eObject) {
+		return EmptyCSScopeAdapter.INSTANCE;
+	}
+
+	@Override
+	public CSScopeAdapter visitSimpleNamedElementRefCS(SimpleNamedElementRefCS eObject) {
+		return SimpleNamedElementRefScopeAdapter.INSTANCE;
 	}
 
 	@Override

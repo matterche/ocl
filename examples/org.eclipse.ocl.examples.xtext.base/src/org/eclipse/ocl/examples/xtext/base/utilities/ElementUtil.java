@@ -259,7 +259,7 @@ public class ElementUtil
 
 	public static String getText(TypedTypeRefCS csElement, EReference feature) {
 		List<INode> nodes = NodeModelUtils.findNodesForFeature(csElement, feature);
-		assert nodes.size() == 1;
+//		assert (nodes.size() == 1;
 		if ((nodes == null) || nodes.isEmpty()) {
 			return null;
 		}

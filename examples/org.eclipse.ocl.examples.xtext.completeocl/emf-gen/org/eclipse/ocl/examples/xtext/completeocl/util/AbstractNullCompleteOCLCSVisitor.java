@@ -89,6 +89,10 @@ public abstract class AbstractNullCompleteOCLCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitNamedElementDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.NamedElementDeclCS object) {
+		return null;
+	}
+
 	public R visitOclMessageArgCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS object) {
 		return null;
 	}

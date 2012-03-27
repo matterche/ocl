@@ -16,14 +16,9 @@
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
-import java.util.Collections;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -37,24 +32,14 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ClassifierContextDeclCSImpl#getClassifier <em>Classifier</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ClassifierContextDeclCSImpl#getSelfName <em>Self Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ClassifierContextDeclCSImpl#getClassifier <em>Classifier</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements ClassifierContextDeclCS {
-	/**
-	 * The cached value of the '{@link #getClassifier() <em>Classifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type classifier;
-
 	/**
 	 * The default value of the '{@link #getSelfName() <em>Self Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -99,48 +84,6 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getClassifier() {
-		if (classifier != null && ((EObject)classifier).eIsProxy())
-		{
-			InternalEObject oldClassifier = (InternalEObject)classifier;
-			classifier = (Type)eResolveProxy(oldClassifier);
-			if (classifier != oldClassifier)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER, oldClassifier, classifier));
-			}
-		}
-		return classifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetClassifier()
-	{
-		return classifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClassifier(Type newClassifier)
-	{
-		Type oldClassifier = classifier;
-		classifier = newClassifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER, oldClassifier, classifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getSelfName() {
 		return selfName;
 	}
@@ -166,11 +109,10 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
-				if (resolve) return getClassifier();
-				return basicGetClassifier();
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				return getSelfName();
+			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
+				return getClassifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,9 +126,6 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
-				setClassifier((Type)newValue);
-				return;
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				setSelfName((String)newValue);
 				return;
@@ -203,9 +142,6 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
-				setClassifier((Type)null);
-				return;
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				setSelfName(SELF_NAME_EDEFAULT);
 				return;
@@ -222,10 +158,10 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
-				return classifier != null;
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__SELF_NAME:
 				return SELF_NAME_EDEFAULT == null ? selfName != null : !SELF_NAME_EDEFAULT.equals(selfName);
+			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER:
+				return getClassifier() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -246,8 +182,16 @@ public class ClassifierContextDeclCSImpl extends ContextDeclCSImpl implements Cl
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitClassifierContextDeclCS(this);
 	}
 
-	public Iterable<Element> getMorePivots() {
-		Type type = getClassifier();
-		return type != null ? Collections.<Element>singletonList(type) :  Collections.<Element>emptyList();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type getClassifier()
+	{
+		if (qualifiedElementRef == null) {
+			return null;
+		}
+		return (Type) qualifiedElementRef.getElement();
 	}
 } //ClassifierContextDeclCSImpl
