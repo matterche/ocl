@@ -23,6 +23,7 @@ import java.io.InputStream;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -67,7 +68,7 @@ public class ErrorTests extends PivotTestCase
 		MetaModelManagerResourceAdapter.getAdapter(xtextResource, metaModelManager);
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<test.oclinecore::test::Test>' and 'w, h, String| true"));
+			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "iterate", "Set<test.oclinecore::test::Test>", "w, h, String| true"));
         //
 		metaModelManager.dispose();
 	}
@@ -93,7 +94,7 @@ public class ErrorTests extends PivotTestCase
 		xtextResource.load(inputStream, null);
 		assertResourceErrors("Loading Xtext", xtextResource,
 			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "allInstances", "ClassClassifier<test.oclinecore::test::Test>"),
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "iterate", "Set<OclInvalid>' and 'w, h, String| true"));
+			DomainUtil.bind(OCLMessages.UnresolvedOperationCall_ERROR_, "iterate", "Set<OclInvalid>", "w, h, String| true"));
         //
 		metaModelManager.dispose();
 	}
