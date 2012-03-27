@@ -54,6 +54,9 @@ public class LetExpCSScopeAdapter extends ElementCSScopeAdapter
 					environmentView.addNamedElement(variable);
 				}
 			}
+			if (environmentView.hasFinalResult()) {
+				return null;							// Let variables occlude outer scopes
+			}
 		}
 		return scopeView.getOuterScope();
 	}

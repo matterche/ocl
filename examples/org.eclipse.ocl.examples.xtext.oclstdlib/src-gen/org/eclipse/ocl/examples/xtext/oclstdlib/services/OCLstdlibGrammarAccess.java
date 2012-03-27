@@ -311,35 +311,49 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getCollectionTypeIdentifierParserRuleCall_5() { return cCollectionTypeIdentifierParserRuleCall_5; }
 	}
 
-	public class FirstPathElementCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FirstPathElementCS");
-		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
-		private final RuleCall cElementNamedElementNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
+	public class LibPathNameCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibPathNameCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathLibPathElementCSParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPathAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPathLibPathElementCSParserRuleCall_1_1_0 = (RuleCall)cPathAssignment_1_1.eContents().get(0);
 		
-		//// Overrides to allow any Name
-		//FirstPathElementCS returns base::PathElementCS:
-		//	element=[pivot::NamedElement|Name];
+		//LibPathNameCS returns base::PathNameCS:
+		//	path+=LibPathElementCS ("::" path+=LibPathElementCS)*;
 		public ParserRule getRule() { return rule; }
 
-		//element=[pivot::NamedElement|Name]
-		public Assignment getElementAssignment() { return cElementAssignment; }
+		//path+=LibPathElementCS ("::" path+=LibPathElementCS)*
+		public Group getGroup() { return cGroup; }
 
-		//[pivot::NamedElement|Name]
-		public CrossReference getElementNamedElementCrossReference_0() { return cElementNamedElementCrossReference_0; }
+		//path+=LibPathElementCS
+		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
 
-		//Name
-		public RuleCall getElementNamedElementNameParserRuleCall_0_1() { return cElementNamedElementNameParserRuleCall_0_1; }
+		//LibPathElementCS
+		public RuleCall getPathLibPathElementCSParserRuleCall_0_0() { return cPathLibPathElementCSParserRuleCall_0_0; }
+
+		//("::" path+=LibPathElementCS)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+
+		//path+=LibPathElementCS
+		public Assignment getPathAssignment_1_1() { return cPathAssignment_1_1; }
+
+		//LibPathElementCS
+		public RuleCall getPathLibPathElementCSParserRuleCall_1_1_0() { return cPathLibPathElementCSParserRuleCall_1_1_0; }
 	}
 
-	public class NextPathElementCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NextPathElementCS");
+	public class LibPathElementCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibPathElementCS");
 		private final Assignment cElementAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cElementNamedElementCrossReference_0 = (CrossReference)cElementAssignment.eContents().get(0);
 		private final RuleCall cElementNamedElementNameParserRuleCall_0_1 = (RuleCall)cElementNamedElementCrossReference_0.eContents().get(1);
 		
-		//// Overrides to allow any Name
-		//NextPathElementCS returns base::PathElementCS:
+		//LibPathElementCS returns base::PathElementCS:
 		//	element=[pivot::NamedElement|Name];
 		public ParserRule getRule() { return rule; }
 
@@ -2089,22 +2103,22 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cPathNameAssignment_0.eContents().get(0);
+		private final RuleCall cPathNameLibPathNameCSParserRuleCall_0_0 = (RuleCall)cPathNameAssignment_0.eContents().get(0);
 		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
-		//	pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+		//	pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?;
 		public ParserRule getRule() { return rule; }
 
-		//pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?
+		//pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?
 		public Group getGroup() { return cGroup; }
 
-		//pathName=PathNameCS
+		//pathName=LibPathNameCS
 		public Assignment getPathNameAssignment_0() { return cPathNameAssignment_0; }
 
-		//PathNameCS
-		public RuleCall getPathNamePathNameCSParserRuleCall_0_0() { return cPathNamePathNameCSParserRuleCall_0_0; }
+		//LibPathNameCS
+		public RuleCall getPathNameLibPathNameCSParserRuleCall_0_0() { return cPathNameLibPathNameCSParserRuleCall_0_0; }
 
 		//ownedTemplateBinding=TemplateBindingCS?
 		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
@@ -2174,8 +2188,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private IdentifierElements pIdentifier;
 	private RestrictedKeywordsElements pRestrictedKeywords;
 	private NameElements pName;
-	private FirstPathElementCSElements pFirstPathElementCS;
-	private NextPathElementCSElements pNextPathElementCS;
+	private LibPathNameCSElements pLibPathNameCS;
+	private LibPathElementCSElements pLibPathElementCS;
 	private AccumulatorCSElements pAccumulatorCS;
 	private AnnotationCSElements pAnnotationCS;
 	private AnnotationElementCSElements pAnnotationElementCS;
@@ -2278,26 +2292,24 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameAccess().getRule();
 	}
 
-	//// Overrides to allow any Name
-	//FirstPathElementCS returns base::PathElementCS:
-	//	element=[pivot::NamedElement|Name];
-	public FirstPathElementCSElements getFirstPathElementCSAccess() {
-		return (pFirstPathElementCS != null) ? pFirstPathElementCS : (pFirstPathElementCS = new FirstPathElementCSElements());
+	//LibPathNameCS returns base::PathNameCS:
+	//	path+=LibPathElementCS ("::" path+=LibPathElementCS)*;
+	public LibPathNameCSElements getLibPathNameCSAccess() {
+		return (pLibPathNameCS != null) ? pLibPathNameCS : (pLibPathNameCS = new LibPathNameCSElements());
 	}
 	
-	public ParserRule getFirstPathElementCSRule() {
-		return getFirstPathElementCSAccess().getRule();
+	public ParserRule getLibPathNameCSRule() {
+		return getLibPathNameCSAccess().getRule();
 	}
 
-	//// Overrides to allow any Name
-	//NextPathElementCS returns base::PathElementCS:
+	//LibPathElementCS returns base::PathElementCS:
 	//	element=[pivot::NamedElement|Name];
-	public NextPathElementCSElements getNextPathElementCSAccess() {
-		return (pNextPathElementCS != null) ? pNextPathElementCS : (pNextPathElementCS = new NextPathElementCSElements());
+	public LibPathElementCSElements getLibPathElementCSAccess() {
+		return (pLibPathElementCS != null) ? pLibPathElementCS : (pLibPathElementCS = new LibPathElementCSElements());
 	}
 	
-	public ParserRule getNextPathElementCSRule() {
-		return getNextPathElementCSAccess().getRule();
+	public ParserRule getLibPathElementCSRule() {
+		return getLibPathElementCSAccess().getRule();
 	}
 
 	//AccumulatorCS returns base::ParameterCS:
@@ -2617,7 +2629,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
-	//	pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?;
+	//	pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return (pTypedTypeRefCS != null) ? pTypedTypeRefCS : (pTypedTypeRefCS = new TypedTypeRefCSElements());
 	}
@@ -2907,6 +2919,26 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPathNameCSAccess().getRule();
 	}
 
+	//FirstPathElementCS returns base::PathElementCS:
+	//	element=[pivot::NamedElement|UnrestrictedName];
+	public EssentialOCLGrammarAccess.FirstPathElementCSElements getFirstPathElementCSAccess() {
+		return gaEssentialOCL.getFirstPathElementCSAccess();
+	}
+	
+	public ParserRule getFirstPathElementCSRule() {
+		return getFirstPathElementCSAccess().getRule();
+	}
+
+	//NextPathElementCS returns base::PathElementCS:
+	//	element=[pivot::NamedElement|UnreservedName];
+	public EssentialOCLGrammarAccess.NextPathElementCSElements getNextPathElementCSAccess() {
+		return gaEssentialOCL.getNextPathElementCSAccess();
+	}
+	
+	public ParserRule getNextPathElementCSRule() {
+		return getNextPathElementCSAccess().getRule();
+	}
+
 	////---------------------------------------------------------------------
 	////  Types
 	////---------------------------------------------------------------------
@@ -3024,9 +3056,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstructorExpCS:
-	//	((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
-	//	ownedParts+=ConstructorPartCS)* "}";
+	//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
 	public EssentialOCLGrammarAccess.ConstructorExpCSElements getConstructorExpCSAccess() {
 		return gaEssentialOCL.getConstructorExpCSAccess();
 	}
@@ -3267,8 +3297,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName];
+	//	pathName=PathNameCS;
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
 	}

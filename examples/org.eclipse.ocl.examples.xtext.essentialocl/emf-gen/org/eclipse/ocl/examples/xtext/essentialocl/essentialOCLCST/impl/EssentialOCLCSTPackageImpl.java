@@ -766,7 +766,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNameExpCS_Namespace()
+	public EReference getNameExpCS_PathName()
 	{
 		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(0);
 	}
@@ -1364,7 +1364,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		literalExpCSEClass = createEClass(LITERAL_EXP_CS);
 
 		nameExpCSEClass = createEClass(NAME_EXP_CS);
-		createEReference(nameExpCSEClass, NAME_EXP_CS__NAMESPACE);
+		createEReference(nameExpCSEClass, NAME_EXP_CS__PATH_NAME);
 		createEReference(nameExpCSEClass, NAME_EXP_CS__ELEMENT);
 
 		namedExpCSEClass = createEClass(NAMED_EXP_CS);
@@ -1574,8 +1574,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(literalExpCSEClass, LiteralExpCS.class, "LiteralExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNameExpCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, -1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNameExpCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_PathName(), theBaseCSTPackage.getPathNameCS(), null, "pathName", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNameExpCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 0, 1, NameExpCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(namedExpCSEClass, NamedExpCS.class, "NamedExpCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

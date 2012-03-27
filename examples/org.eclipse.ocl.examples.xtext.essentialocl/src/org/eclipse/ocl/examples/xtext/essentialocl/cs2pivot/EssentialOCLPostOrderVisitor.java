@@ -27,21 +27,26 @@ import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil.PrecedenceComparator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRole;
@@ -51,6 +56,9 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLPostOrderVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePostOrderVisitor>
@@ -238,6 +246,27 @@ public class EssentialOCLPostOrderVisitor
 		}
 	}
 
+	private void setParameterRole(NavigatingArgCS csArgument, NavigationRole aRole) {
+		csArgument.setRole(aRole);
+		if ((csArgument.getOwnedType() == null) && (csArgument.getInit() == null)) {
+			ExpCS csExp = csArgument.getName();
+			if (csExp instanceof InfixExpCS) {
+				InfixExpCS csInfixExp = (InfixExpCS)csExp;
+				// Fixup a = b				
+			}
+		}
+		ExpCS csName = csArgument.getName();
+		if (csName instanceof NameExpCS) {
+			PathNameCS csPathName = ((NameExpCS)csName).getPathName();
+			Variable parameter = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
+			ICompositeNode node = NodeModelUtils.getNode(csName);
+			ILeafNode leafNode = ElementUtil.getLeafNode(node);
+			String varName = leafNode.getText();
+			context.refreshName(parameter, varName);
+			ElementUtil.setPathName(csPathName, parameter, null);	// Resolve the reference that is actually a definition
+		}
+	}
+
 	private void setSource(OperatorCS csParent, ExpCS csSource) {
 		if (csSource != null) {
 			csSource.setParent(csParent);
@@ -324,19 +353,19 @@ public class EssentialOCLPostOrderVisitor
 					}
 					case ACCUMULATOR: {
 						if (csArgument.getInit() != null) {
-							csArgument.setRole(NavigationRole.ACCUMULATOR);
+							setParameterRole(csArgument, NavigationRole.ACCUMULATOR);
 							if (";".equals(csArgument.getPrefix())) {
 								role = NavigationRole.ITERATOR;
 							}
 						}
 						else {
 							role = NavigationRole.ITERATOR;
-							csArgument.setRole(NavigationRole.ITERATOR);
+							setParameterRole(csArgument, NavigationRole.ITERATOR);
 						}
 						break;
 					}
 					case ITERATOR: {
-						csArgument.setRole(NavigationRole.ITERATOR);
+						setParameterRole(csArgument, NavigationRole.ITERATOR);
 						break;
 					}
 				}

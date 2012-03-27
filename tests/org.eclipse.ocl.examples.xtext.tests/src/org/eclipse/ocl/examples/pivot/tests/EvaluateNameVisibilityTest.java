@@ -41,8 +41,6 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	 * Tests the basic name accesses
 	 */
 	public void test_bad_navigation() throws InvocationTargetException {
-		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
-//WIP
 		assertSemanticErrorQuery("let a : Type = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type");
 		assertSemanticErrorQuery("let a : Set(Type) = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set(Type)");
@@ -71,6 +69,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	 * Tests the let in operator.
 	 */
 	public void test_let() {
+		assertQueryEquals(null, 4, "let a : Integer = 4 in a");
 		assertQueryEquals(null, 11, "let a : Integer = 4, b : Integer = 7, c : Integer = a + b in c");
 		assertSemanticErrorQuery("let a : Boolean = true, b : Boolean = a and b, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", "Boolean");
 		assertSemanticErrorQuery("let a : Boolean = b and c, b : Boolean = true, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", PivotConstants.UNKNOWN_TYPE_TEXT);
@@ -138,10 +137,10 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
 		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set(Fruit))");
 		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set(fruit::Apple))");
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
-		assertSemanticErrorQuery("self->oclAsType(Set(fruit::badapple::BadApple))", OCLMessages.Unresolved_ERROR_, "Namespace", "badapple");
-		assertSemanticErrorQuery("self->oclAsType(Set(badfruit::badapple::BadApple))", OCLMessages.Unresolved_ERROR_, "Namespace", "badfruit");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.UnresolvedType_ERROR_, "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::apple::BadApple))", OCLMessages.UnresolvedType_ERROR_, "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set(fruit::badapple::BadApple))", OCLMessages.UnresolvedNamespace_ERROR_, "badapple");
+		assertSemanticErrorQuery("self->oclAsType(Set(badfruit::badapple::BadApple))", OCLMessages.UnresolvedNamespace_ERROR_, "badfruit");
 		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::apple::EatingApple))");
 		assertQueryInvalid(redApple, "self->oclAsType(Set(fruit::Tree))");		
 		//

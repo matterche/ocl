@@ -40,17 +40,13 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralP
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ConstructorExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ConstructorPartCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.LetExpCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NameExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigatingExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigationOperatorCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TupleLiteralExpCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TypeNameExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
 public class EssentialOCLScopeVisitor
@@ -82,7 +78,7 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public CSScopeAdapter visitConstructorExpCS(ConstructorExpCS eObject) {
-		return ConstructorExpCSScopeAdapter.INSTANCE;
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 
 	@Override
@@ -97,7 +93,7 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public CSScopeAdapter visitExpCS(ExpCS eObject) {
-		return ExpCSScopeAdapter.INSTANCE;
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 
 	@Override
@@ -117,7 +113,7 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public CSScopeAdapter visitNameExpCS(NameExpCS eObject) {
-		return NameExpCSScopeAdapter.INSTANCE;
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 
 	@Override
@@ -152,7 +148,7 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public CSScopeAdapter visitTypeNameExpCS(TypeNameExpCS eObject) {
-		return TypeNameExpCSScopeAdapter.INSTANCE;
+		return EmptyCSScopeAdapter.INSTANCE;
 	}
 	
 	@Override

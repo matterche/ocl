@@ -506,14 +506,7 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
-	 *             element=[Type|UnrestrictedName]
-	 *         ) 
-	 *         ownedParts+=ConstructorPartCS 
-	 *         ownedParts+=ConstructorPartCS*
-	 *     )
+	 *     (pathName=PathNameCS ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)
 	 */
 	protected void sequence_ConstructorExpCS(EObject context, ConstructorExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -630,10 +623,7 @@ public class AbstractEssentialOCLSemanticSequencer extends AbstractSemanticSeque
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
-	 *         element=[NamedElement|UnrestrictedName]
-	 *     )
+	 *     pathName=PathNameCS
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

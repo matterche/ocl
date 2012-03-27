@@ -194,9 +194,7 @@ CollectionLiteralPartCS returns CollectionLiteralPartCS:
 	expressionCS=ExpCS ('..' lastExpressionCS=ExpCS)?;
 
 ConstructorExpCS returns ConstructorExpCS:
-	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
-	element=[pivot::Type|UnreservedName])
-	| element=[pivot::Type|UnrestrictedName])
+	pathName=PathNameCS
 	'{' ownedParts+=ConstructorPartCS (',' ownedParts+=ConstructorPartCS)* '}';
 
 ConstructorPartCS returns ConstructorPartCS:
@@ -293,9 +291,7 @@ PrimaryExpCS returns ExpCS:
 	| NestedExpCS;
 
 NameExpCS returns NameExpCS:
-	(((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*)
-	element=[pivot::NamedElement|UnreservedName])
-	| element=[pivot::NamedElement|UnrestrictedName]);
+	pathName=PathNameCS;
 
 IndexExpCS returns NamedExpCS:
 	NameExpCS

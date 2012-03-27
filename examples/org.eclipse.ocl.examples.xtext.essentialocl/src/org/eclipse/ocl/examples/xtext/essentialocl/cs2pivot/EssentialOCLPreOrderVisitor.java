@@ -17,7 +17,9 @@
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -36,8 +38,11 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTyp
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ConstructorExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
@@ -144,6 +149,34 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitNavigatingArgCS(NavigatingArgCS csNavigatingArg) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
+		NameExpCS namedExp = (NameExpCS) csNavigatingExp.getSimpleNamedExp();
+		if (namedExp != null) {
+			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp);
+		}
+		return super.visitNavigatingExpCS(csNavigatingExp);
+	}
+
+	@Override
+	public Continuation<?> visitNavigationOperatorCS(NavigationOperatorCS object) {
+		EObject eContainer = object.eContainer();
+		if (eContainer instanceof InfixExpCS) {
+			InfixExpCS csInfixExp = (InfixExpCS)eContainer;
+			int index = csInfixExp.getOwnedOperator().indexOf(object);
+			if (index >= 0) {
+				List<ExpCS> expressions = csInfixExp.getOwnedExpression();
+				if ((index+1) < expressions.size()) {
+					ExpCS csExp = expressions.get(index+1);
+					if (csExp instanceof NameExpCS) {
+						CS2Pivot.setElementType(((NameExpCS) csExp).getPathName(), PivotPackage.Literals.PROPERTY, csExp);
+					}
+				}
+			}
+		}
 		return null;
 	}
 

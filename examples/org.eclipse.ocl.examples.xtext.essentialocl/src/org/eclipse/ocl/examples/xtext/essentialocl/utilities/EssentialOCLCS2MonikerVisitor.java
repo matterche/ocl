@@ -33,6 +33,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCS2MonikerVisitor;
@@ -66,7 +68,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralP
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnlimitedNaturalLiteralExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -174,7 +175,8 @@ public class EssentialOCLCS2MonikerVisitor
 		if ((pivotingChild instanceof NavigatingArgCS)
 		 && (((NavigatingArgCS)pivotingChild).getRole() == NavigationRole.ACCUMULATOR)) {
 			if ((object != pivotingChild) && (object != ((NavigatingArgCS)pivotingChild).getName())) {
-				appendNameExpCSName((NameExpCS) ((NavigatingArgCS)pivotingChild).getName());
+				NameExpCS csNameExp = (NameExpCS) ((NavigatingArgCS)pivotingChild).getName();
+				appendPathNameCS(csNameExp.getPathName());
 				context.append(MONIKER_SCOPE_SEPARATOR);
 				context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
 				context.append(MONIKER_OPERATOR_SEPARATOR);
@@ -182,13 +184,32 @@ public class EssentialOCLCS2MonikerVisitor
 		}
 	}
 
-	protected void appendNameExpCSName(NameExpCS object) {
-		NamedElement element = ((NameExpCSImpl)object).basicGetElement();
-		if (!element.eIsProxy()) {
+	protected void appendPathNameCS(PathNameCS pathName) {
+		NamedElement element = null;
+		if (pathName != null) {
+			List<PathElementCS> path = pathName.getPath();
+			if (path != null) {
+				int iMax = path.size();
+				if (iMax > 0) {
+					boolean scopeIsResolved = true;
+					for (int i = 0; i < iMax-1; i++) {
+						NamedElement scopeElement = path.get(i).basicGetElement();
+						if ((scopeElement == null) || scopeElement.eIsProxy()) {
+							scopeIsResolved = false;
+							break;
+						}
+					}
+					if (scopeIsResolved) {
+						element = path.get(iMax-1).basicGetElement();
+					}
+				}
+			}
+		}
+		if ((element != null) && !element.eIsProxy()) {
 			context.appendName(element);
 		}
 		else {
-			ICompositeNode node = NodeModelUtils.getNode(object);
+			ICompositeNode node = NodeModelUtils.getNode(pathName);
 			String text = node.getText().trim();
 			int length = text.length();
 			if (text.startsWith("_'") && text.endsWith("'") && (length >= 3)) {
@@ -242,7 +263,7 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Boolean visitConstructorExpCS(ConstructorExpCS object) {
 		appendExpPrefix(object);
-		appendNameExpCSName(object);
+		appendPathNameCS(object.getPathName());
 //		List<TupleLiteralPartCS> parts = new ArrayList<TupleLiteralPartCS>(object.getOwnedParts());
 //		Collections.sort(parts, new Comparator<TupleLiteralPartCS>()
 //		{
@@ -315,7 +336,7 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Boolean visitNameExpCS(NameExpCS object) {
 		appendExpPrefix(object);
-		appendNameExpCSName(object);
+		appendPathNameCS(object.getPathName());
 		return true;
 	}
 

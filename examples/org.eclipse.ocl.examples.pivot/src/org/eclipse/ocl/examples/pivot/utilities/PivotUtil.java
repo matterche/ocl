@@ -437,7 +437,7 @@ public class PivotUtil extends DomainUtil
 		s.append(messagePrefix);
 		for (Resource.Diagnostic diagnostic : diagnostics) {
 			s.append(newLine);
-			s.append(diagnostic.getMessage());
+			s.append(diagnostic.getMessage());	// WIP Xtext diagnostics could have a line number
 		}
 		return s.toString();
 	}

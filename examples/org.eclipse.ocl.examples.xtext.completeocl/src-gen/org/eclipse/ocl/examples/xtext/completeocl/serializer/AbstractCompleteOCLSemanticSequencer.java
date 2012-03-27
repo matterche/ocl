@@ -689,14 +689,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
-	 *             element=[Type|UnrestrictedName]
-	 *         ) 
-	 *         ownedParts+=ConstructorPartCS 
-	 *         ownedParts+=ConstructorPartCS*
-	 *     )
+	 *     (pathName=PathNameCS ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)
 	 */
 	protected void sequence_ConstructorExpCS(EObject context, ConstructorExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -875,10 +868,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
-	 *         element=[NamedElement|UnrestrictedName]
-	 *     )
+	 *     pathName=PathNameCS
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

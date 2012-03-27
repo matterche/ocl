@@ -1192,13 +1192,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAME_EXP_CS__PARENT = SIMPLE_NAMED_EXP_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS__NAMESPACE = SIMPLE_NAMED_EXP_CS_FEATURE_COUNT + 0;
+	int NAME_EXP_CS__PATH_NAME = SIMPLE_NAMED_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -1283,13 +1283,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int CONSTRUCTOR_EXP_CS__PARENT = NAME_EXP_CS__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTOR_EXP_CS__NAMESPACE = NAME_EXP_CS__NAMESPACE;
+	int CONSTRUCTOR_EXP_CS__PATH_NAME = NAME_EXP_CS__PATH_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -3802,15 +3802,15 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EClass getNameExpCS();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getPathName <em>Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Namespace</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getNamespace()
+	 * @return the meta object for the containment reference '<em>Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getPathName()
 	 * @see #getNameExpCS()
 	 * @generated
 	 */
-	EReference getNameExpCS_Namespace();
+	EReference getNameExpCS_PathName();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement <em>Element</em>}'.
@@ -4701,12 +4701,12 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EClass NAME_EXP_CS = eINSTANCE.getNameExpCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NAME_EXP_CS__NAMESPACE = eINSTANCE.getNameExpCS_Namespace();
+		EReference NAME_EXP_CS__PATH_NAME = eINSTANCE.getNameExpCS_PathName();
 
 		/**
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.

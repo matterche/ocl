@@ -138,9 +138,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ImplicitCollectionFil
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.UnaryOperationFilter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLUtils;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.ILeafNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLLeft2RightVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Element, CS2PivotConversion, BaseLeft2RightVisitor>
@@ -380,13 +377,8 @@ public class EssentialOCLLeft2RightVisitor
 				continue;
 			}
 			ExpCS csName = csArgument.getName();
-			ICompositeNode node = NodeModelUtils.getNode(csName);
-			ILeafNode leafNode = ElementUtil.getLeafNode(node);
-			String varName = leafNode.getText();
-			Variable acc = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
-			((NameExpCS)csName).setElement(acc);	// Resolve the reference that is actually a definition
+			Variable acc = PivotUtil.getPivot(Variable.class, csName);
 			context.installPivotUsage(csArgument, acc);
-			context.refreshName(acc, varName);
 			OclExpression initExpression = context.visitLeft2Right(OclExpression.class, csArgument.getInit());
 			acc.setInitExpression(initExpression);
 			TypedRefCS csAccType = csArgument.getOwnedType();
@@ -425,13 +417,8 @@ public class EssentialOCLLeft2RightVisitor
 //				context.addError(csArgument, "Missing type for iterator");
 //			}
 			ExpCS csName = csArgument.getName();
-			ICompositeNode node = NodeModelUtils.getNode(csName);
-			ILeafNode leafNode = ElementUtil.getLeafNode(node);
-			String varName = leafNode.getText();
-			Variable iterator = context.refreshModelElement(Variable.class, PivotPackage.Literals.VARIABLE, csName);
-			((NameExpCS)csName).setElement(iterator);	// Resolve the reference that is actually a definition
+			Variable iterator = PivotUtil.getPivot(Variable.class, csName);
 			context.installPivotUsage(csArgument, iterator);
-			context.refreshName(iterator, varName);
 			iterator.setRepresentedParameter(iteration.getOwnedIterator().get(pivotIterators.size()));
 			TypedRefCS csType = csArgument.getOwnedType();
 			Type varType = csType != null ? PivotUtil.getPivot(Type.class, csType) : null;
@@ -1147,8 +1134,8 @@ public class EssentialOCLLeft2RightVisitor
 //			return new IndexExpCSCompletion(context, (IndexExpCS) eContainer);
 //		}
 		else {
-			NamedElement element = csNameExp.getElement();
-			if (element.eIsProxy()) {
+			NamedElement element = csNameExp.getPathName().getElement();
+			if ((element == null) || element.eIsProxy()) {
 				Element pivot = csNameExp.getPivot();
 				if (pivot instanceof InvalidLiteralExp) {
 					return pivot;

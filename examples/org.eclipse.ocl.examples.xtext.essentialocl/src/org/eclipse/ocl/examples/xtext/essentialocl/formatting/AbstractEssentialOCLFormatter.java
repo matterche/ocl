@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarA
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityBoundsCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.MultiplicityStringCSElements;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NameExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingCommaArgCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingExpCSElements;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLGrammarAccess.NavigatingSemiArgCSElements;
@@ -96,11 +95,6 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 		c.setNoSpace().around(a.getStringBoundsPlusSignKeyword_0_1());
 		c.setNoSpace().around(a.getStringBoundsQuestionMarkKeyword_0_2());
     }
-
-	protected void configureNameExpCS(FormattingConfig c, NameExpCSElements a) {
-		c.setNoSpace().around(a.getColonColonKeyword_0_0_1());
-		c.setNoSpace().around(a.getColonColonKeyword_0_0_2_1());
-	}
 
 	protected void configureNavigatingCommaArgCS(FormattingConfig c, NavigatingCommaArgCSElements a) {
 		c.setNoSpace().before(a.getPrefixCommaKeyword_0_0());

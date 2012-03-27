@@ -56,14 +56,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -71,6 +70,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class Pivot2CSConversion extends AbstractConversion implements PivotConstants
 {	
@@ -250,19 +250,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 	}
 
 	public void refreshPathName(PathNameCS csPathName, NamedElement object, EObject scope) {
-		List<PathElementCS> csPath = csPathName.getPath();
-		csPath.clear();		// FIXME re-use
-		for (EObject n = object; n instanceof NamedElement; n = n.eContainer()) {
-			if (n.eContainer() == null) {
-				break;				// Skip root package
-			}
-			if ((n == scope) && (n != object)) {
-				break;
-			}
-			PathElementCS csSimpleRef = BaseCSTFactory.eINSTANCE.createPathElementCS();
-			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((NamedElement) n);
-		}
+		ElementUtil.setPathName(csPathName, object, scope);
 	}
 
 	public void refreshQualifiers(List<String> qualifiers, String string, boolean polarity) {

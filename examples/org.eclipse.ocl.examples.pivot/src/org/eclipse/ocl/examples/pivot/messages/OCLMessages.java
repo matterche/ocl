@@ -267,6 +267,7 @@ public class OCLMessages
 	public static String UnresolvedImport_ERROR_;
 	public static String UnresolvedInclude_ERROR_;
 	public static String UnresolvedLibrary_ERROR_;
+	public static String UnresolvedNamespace_ERROR_;
 	public static String UnresolvedOperation_ERROR_;
 	public static String UnresolvedOperationCall_ERROR_;
 	public static String UnresolvedProperty_ERROR_;

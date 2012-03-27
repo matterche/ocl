@@ -185,13 +185,21 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 					sequence_FirstPathElementCS(context, (PathElementCS) semanticObject); 
 					return; 
 				}
+				else if(context == grammarAccess.getLibPathElementCSRule()) {
+					sequence_LibPathElementCS(context, (PathElementCS) semanticObject); 
+					return; 
+				}
 				else if(context == grammarAccess.getNextPathElementCSRule()) {
 					sequence_NextPathElementCS(context, (PathElementCS) semanticObject); 
 					return; 
 				}
 				else break;
 			case BaseCSTPackage.PATH_NAME_CS:
-				if(context == grammarAccess.getPathNameCSRule()) {
+				if(context == grammarAccess.getLibPathNameCSRule()) {
+					sequence_LibPathNameCS(context, (PathNameCS) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getPathNameCSRule()) {
 					sequence_PathNameCS(context, (PathNameCS) semanticObject); 
 					return; 
 				}
@@ -744,14 +752,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (
-	 *             (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Type|UnreservedName]) | 
-	 *             element=[Type|UnrestrictedName]
-	 *         ) 
-	 *         ownedParts+=ConstructorPartCS 
-	 *         ownedParts+=ConstructorPartCS*
-	 *     )
+	 *     (pathName=PathNameCS ownedParts+=ConstructorPartCS ownedParts+=ConstructorPartCS*)
 	 */
 	protected void sequence_ConstructorExpCS(EObject context, ConstructorExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -796,10 +797,10 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     element=[NamedElement|Name]
+	 *     element=[NamedElement|UnrestrictedName]
 	 */
 	protected void sequence_FirstPathElementCS(EObject context, PathElementCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -929,6 +930,24 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     element=[NamedElement|Name]
+	 */
+	protected void sequence_LibPathElementCS(EObject context, PathElementCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (path+=LibPathElementCS path+=LibPathElementCS*)
+	 */
+	protected void sequence_LibPathNameCS(EObject context, PathNameCS semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (static?='static'? name=Name ownedType=TypedRefCS implementation=[JvmType|SINGLE_QUOTED_STRING]? ownedAnnotation+=AnnotationElementCS*)
 	 */
 	protected void sequence_LibPropertyCS(EObject context, LibPropertyCS semanticObject) {
@@ -1006,10 +1025,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[NamedElement|UnreservedName]) | 
-	 *         element=[NamedElement|UnrestrictedName]
-	 *     )
+	 *     pathName=PathNameCS
 	 */
 	protected void sequence_NameExpCS(EObject context, NameExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -1092,10 +1108,10 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     element=[NamedElement|Name]
+	 *     element=[NamedElement|UnreservedName]
 	 */
 	protected void sequence_NextPathElementCS(EObject context, PathElementCS semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		superSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1369,7 +1385,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS? multiplicity=MultiplicityCS?)
+	 *     (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS? multiplicity=MultiplicityCS?)
 	 */
 	protected void sequence_TypedMultiplicityRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1378,7 +1394,7 @@ public class AbstractOCLstdlibSemanticSequencer extends AbstractSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (pathName=PathNameCS ownedTemplateBinding=TemplateBindingCS?)
+	 *     (pathName=LibPathNameCS ownedTemplateBinding=TemplateBindingCS?)
 	 */
 	protected void sequence_TypedTypeRefCS(EObject context, TypedTypeRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

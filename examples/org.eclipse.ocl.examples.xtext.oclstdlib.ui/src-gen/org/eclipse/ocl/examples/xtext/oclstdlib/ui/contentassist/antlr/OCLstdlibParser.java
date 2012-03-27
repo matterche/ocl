@@ -74,7 +74,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionTypeIdentifierAccess().getAlternatives(), "rule__CollectionTypeIdentifier__Alternatives");
 					put(grammarAccess.getMultiplicityCSAccess().getAlternatives_1(), "rule__MultiplicityCS__Alternatives_1");
 					put(grammarAccess.getMultiplicityStringCSAccess().getStringBoundsAlternatives_0(), "rule__MultiplicityStringCS__StringBoundsAlternatives_0");
-					put(grammarAccess.getConstructorExpCSAccess().getAlternatives_0(), "rule__ConstructorExpCS__Alternatives_0");
 					put(grammarAccess.getPrimitiveLiteralExpCSAccess().getAlternatives(), "rule__PrimitiveLiteralExpCS__Alternatives");
 					put(grammarAccess.getBooleanLiteralExpCSAccess().getAlternatives(), "rule__BooleanLiteralExpCS__Alternatives");
 					put(grammarAccess.getTypeLiteralCSAccess().getAlternatives(), "rule__TypeLiteralCS__Alternatives");
@@ -82,11 +81,12 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBinaryOperatorCSAccess().getAlternatives(), "rule__BinaryOperatorCS__Alternatives");
 					put(grammarAccess.getPrefixedExpCSAccess().getAlternatives(), "rule__PrefixedExpCS__Alternatives");
 					put(grammarAccess.getPrimaryExpCSAccess().getAlternatives(), "rule__PrimaryExpCS__Alternatives");
-					put(grammarAccess.getNameExpCSAccess().getAlternatives(), "rule__NameExpCS__Alternatives");
 					put(grammarAccess.getLibraryAccess().getGroup(), "rule__Library__Group__0");
 					put(grammarAccess.getLibraryAccess().getGroup_0(), "rule__Library__Group_0__0");
 					put(grammarAccess.getLibraryAccess().getGroup_3(), "rule__Library__Group_3__0");
 					put(grammarAccess.getLibraryAccess().getGroup_5_1(), "rule__Library__Group_5_1__0");
+					put(grammarAccess.getLibPathNameCSAccess().getGroup(), "rule__LibPathNameCS__Group__0");
+					put(grammarAccess.getLibPathNameCSAccess().getGroup_1(), "rule__LibPathNameCS__Group_1__0");
 					put(grammarAccess.getAccumulatorCSAccess().getGroup(), "rule__AccumulatorCS__Group__0");
 					put(grammarAccess.getAnnotationCSAccess().getGroup(), "rule__AnnotationCS__Group__0");
 					put(grammarAccess.getAnnotationCSAccess().getGroup_2(), "rule__AnnotationCS__Group_2__0");
@@ -167,9 +167,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getGroup(), "rule__CollectionLiteralPartCS__Group__0");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getGroup_1(), "rule__CollectionLiteralPartCS__Group_1__0");
 					put(grammarAccess.getConstructorExpCSAccess().getGroup(), "rule__ConstructorExpCS__Group__0");
-					put(grammarAccess.getConstructorExpCSAccess().getGroup_0_0(), "rule__ConstructorExpCS__Group_0_0__0");
-					put(grammarAccess.getConstructorExpCSAccess().getGroup_0_0_0(), "rule__ConstructorExpCS__Group_0_0_0__0");
-					put(grammarAccess.getConstructorExpCSAccess().getGroup_0_0_0_2(), "rule__ConstructorExpCS__Group_0_0_0_2__0");
 					put(grammarAccess.getConstructorExpCSAccess().getGroup_3(), "rule__ConstructorExpCS__Group_3__0");
 					put(grammarAccess.getConstructorPartCSAccess().getGroup(), "rule__ConstructorPartCS__Group__0");
 					put(grammarAccess.getTupleLiteralExpCSAccess().getGroup(), "rule__TupleLiteralExpCS__Group__0");
@@ -184,9 +181,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInfixedExpCSAccess().getGroup_1(), "rule__InfixedExpCS__Group_1__0");
 					put(grammarAccess.getInfixedExpCSAccess().getGroup_1_1(), "rule__InfixedExpCS__Group_1_1__0");
 					put(grammarAccess.getPrefixedExpCSAccess().getGroup_1(), "rule__PrefixedExpCS__Group_1__0");
-					put(grammarAccess.getNameExpCSAccess().getGroup_0(), "rule__NameExpCS__Group_0__0");
-					put(grammarAccess.getNameExpCSAccess().getGroup_0_0(), "rule__NameExpCS__Group_0_0__0");
-					put(grammarAccess.getNameExpCSAccess().getGroup_0_0_2(), "rule__NameExpCS__Group_0_0_2__0");
 					put(grammarAccess.getIndexExpCSAccess().getGroup(), "rule__IndexExpCS__Group__0");
 					put(grammarAccess.getIndexExpCSAccess().getGroup_1(), "rule__IndexExpCS__Group_1__0");
 					put(grammarAccess.getIndexExpCSAccess().getGroup_1_3(), "rule__IndexExpCS__Group_1_3__0");
@@ -224,8 +218,9 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLibraryAccess().getOwnedPrecedenceAssignment_5_1_1(), "rule__Library__OwnedPrecedenceAssignment_5_1_1");
 					put(grammarAccess.getLibraryAccess().getOwnedTypeAssignment_5_2(), "rule__Library__OwnedTypeAssignment_5_2");
 					put(grammarAccess.getLibraryAccess().getOwnedAnnotationAssignment_5_3(), "rule__Library__OwnedAnnotationAssignment_5_3");
-					put(grammarAccess.getFirstPathElementCSAccess().getElementAssignment(), "rule__FirstPathElementCS__ElementAssignment");
-					put(grammarAccess.getNextPathElementCSAccess().getElementAssignment(), "rule__NextPathElementCS__ElementAssignment");
+					put(grammarAccess.getLibPathNameCSAccess().getPathAssignment_0(), "rule__LibPathNameCS__PathAssignment_0");
+					put(grammarAccess.getLibPathNameCSAccess().getPathAssignment_1_1(), "rule__LibPathNameCS__PathAssignment_1_1");
+					put(grammarAccess.getLibPathElementCSAccess().getElementAssignment(), "rule__LibPathElementCS__ElementAssignment");
 					put(grammarAccess.getAccumulatorCSAccess().getNameAssignment_0(), "rule__AccumulatorCS__NameAssignment_0");
 					put(grammarAccess.getAccumulatorCSAccess().getOwnedTypeAssignment_2(), "rule__AccumulatorCS__OwnedTypeAssignment_2");
 					put(grammarAccess.getAnnotationCSAccess().getNameAssignment_1(), "rule__AnnotationCS__NameAssignment_1");
@@ -326,6 +321,8 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");
 					put(grammarAccess.getPathNameCSAccess().getPathAssignment_0(), "rule__PathNameCS__PathAssignment_0");
 					put(grammarAccess.getPathNameCSAccess().getPathAssignment_1_1(), "rule__PathNameCS__PathAssignment_1_1");
+					put(grammarAccess.getFirstPathElementCSAccess().getElementAssignment(), "rule__FirstPathElementCS__ElementAssignment");
+					put(grammarAccess.getNextPathElementCSAccess().getElementAssignment(), "rule__NextPathElementCS__ElementAssignment");
 					put(grammarAccess.getPrimitiveTypeCSAccess().getNameAssignment(), "rule__PrimitiveTypeCS__NameAssignment");
 					put(grammarAccess.getCollectionTypeCSAccess().getNameAssignment_0(), "rule__CollectionTypeCS__NameAssignment_0");
 					put(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_1(), "rule__CollectionTypeCS__OwnedTypeAssignment_1_1");
@@ -342,10 +339,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCollectionLiteralExpCSAccess().getOwnedPartsAssignment_2_1_1(), "rule__CollectionLiteralExpCS__OwnedPartsAssignment_2_1_1");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getExpressionCSAssignment_0(), "rule__CollectionLiteralPartCS__ExpressionCSAssignment_0");
 					put(grammarAccess.getCollectionLiteralPartCSAccess().getLastExpressionCSAssignment_1_1(), "rule__CollectionLiteralPartCS__LastExpressionCSAssignment_1_1");
-					put(grammarAccess.getConstructorExpCSAccess().getNamespaceAssignment_0_0_0_0(), "rule__ConstructorExpCS__NamespaceAssignment_0_0_0_0");
-					put(grammarAccess.getConstructorExpCSAccess().getNamespaceAssignment_0_0_0_2_0(), "rule__ConstructorExpCS__NamespaceAssignment_0_0_0_2_0");
-					put(grammarAccess.getConstructorExpCSAccess().getElementAssignment_0_0_1(), "rule__ConstructorExpCS__ElementAssignment_0_0_1");
-					put(grammarAccess.getConstructorExpCSAccess().getElementAssignment_0_1(), "rule__ConstructorExpCS__ElementAssignment_0_1");
+					put(grammarAccess.getConstructorExpCSAccess().getPathNameAssignment_0(), "rule__ConstructorExpCS__PathNameAssignment_0");
 					put(grammarAccess.getConstructorExpCSAccess().getOwnedPartsAssignment_2(), "rule__ConstructorExpCS__OwnedPartsAssignment_2");
 					put(grammarAccess.getConstructorExpCSAccess().getOwnedPartsAssignment_3_1(), "rule__ConstructorExpCS__OwnedPartsAssignment_3_1");
 					put(grammarAccess.getConstructorPartCSAccess().getPropertyAssignment_0(), "rule__ConstructorPartCS__PropertyAssignment_0");
@@ -369,10 +363,7 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedOperatorAssignment_1_1(), "rule__PrefixedExpCS__OwnedOperatorAssignment_1_1");
 					put(grammarAccess.getPrefixedExpCSAccess().getOwnedExpressionAssignment_1_2(), "rule__PrefixedExpCS__OwnedExpressionAssignment_1_2");
 					put(grammarAccess.getUnaryOperatorCSAccess().getNameAssignment(), "rule__UnaryOperatorCS__NameAssignment");
-					put(grammarAccess.getNameExpCSAccess().getNamespaceAssignment_0_0_0(), "rule__NameExpCS__NamespaceAssignment_0_0_0");
-					put(grammarAccess.getNameExpCSAccess().getNamespaceAssignment_0_0_2_0(), "rule__NameExpCS__NamespaceAssignment_0_0_2_0");
-					put(grammarAccess.getNameExpCSAccess().getElementAssignment_0_1(), "rule__NameExpCS__ElementAssignment_0_1");
-					put(grammarAccess.getNameExpCSAccess().getElementAssignment_1(), "rule__NameExpCS__ElementAssignment_1");
+					put(grammarAccess.getNameExpCSAccess().getPathNameAssignment(), "rule__NameExpCS__PathNameAssignment");
 					put(grammarAccess.getIndexExpCSAccess().getFirstIndexesAssignment_1_2(), "rule__IndexExpCS__FirstIndexesAssignment_1_2");
 					put(grammarAccess.getIndexExpCSAccess().getFirstIndexesAssignment_1_3_1(), "rule__IndexExpCS__FirstIndexesAssignment_1_3_1");
 					put(grammarAccess.getIndexExpCSAccess().getSecondIndexesAssignment_1_5_1(), "rule__IndexExpCS__SecondIndexesAssignment_1_5_1");

@@ -979,24 +979,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class ConstructorExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstructorExpCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final Group cGroup_0_0_0 = (Group)cGroup_0_0.eContents().get(0);
-		private final Assignment cNamespaceAssignment_0_0_0_0 = (Assignment)cGroup_0_0_0.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0_0_0_0 = (CrossReference)cNamespaceAssignment_0_0_0_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_0_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_0_0_0_1 = (Keyword)cGroup_0_0_0.eContents().get(1);
-		private final Group cGroup_0_0_0_2 = (Group)cGroup_0_0_0.eContents().get(2);
-		private final Assignment cNamespaceAssignment_0_0_0_2_0 = (Assignment)cGroup_0_0_0_2.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0_0_2_0_0 = (CrossReference)cNamespaceAssignment_0_0_0_2_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_0_0_0_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_0_2_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_0_0_0_2_1 = (Keyword)cGroup_0_0_0_2.eContents().get(1);
-		private final Assignment cElementAssignment_0_0_1 = (Assignment)cGroup_0_0.eContents().get(1);
-		private final CrossReference cElementTypeCrossReference_0_0_1_0 = (CrossReference)cElementAssignment_0_0_1.eContents().get(0);
-		private final RuleCall cElementTypeUnreservedNameParserRuleCall_0_0_1_0_1 = (RuleCall)cElementTypeCrossReference_0_0_1_0.eContents().get(1);
-		private final Assignment cElementAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
-		private final CrossReference cElementTypeCrossReference_0_1_0 = (CrossReference)cElementAssignment_0_1.eContents().get(0);
-		private final RuleCall cElementTypeUnrestrictedNameParserRuleCall_0_1_0_1 = (RuleCall)cElementTypeCrossReference_0_1_0.eContents().get(1);
+		private final Assignment cPathNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_0_0 = (RuleCall)cPathNameAssignment_0.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOwnedPartsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedPartsConstructorPartCSParserRuleCall_2_0 = (RuleCall)cOwnedPartsAssignment_2.eContents().get(0);
@@ -1007,71 +991,17 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ConstructorExpCS:
-		//	((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
-		//	ownedParts+=ConstructorPartCS)* "}";
+		//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
-		//ownedParts+=ConstructorPartCS)* "}"
+		//pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}"
 		public Group getGroup() { return cGroup; }
 
-		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment_0() { return cPathNameAssignment_0; }
 
-		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//element=[pivot::Type|UnreservedName]
-		public Group getGroup_0_0() { return cGroup_0_0; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_0_0_0() { return cGroup_0_0_0; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName]
-		public Assignment getNamespaceAssignment_0_0_0_0() { return cNamespaceAssignment_0_0_0_0; }
-
-		//[pivot::Namespace|UnrestrictedName]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0_0_0_0() { return cNamespaceNamespaceCrossReference_0_0_0_0_0; }
-
-		//UnrestrictedName
-		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_0_1; }
-
-		//"::"
-		public Keyword getColonColonKeyword_0_0_0_1() { return cColonColonKeyword_0_0_0_1; }
-
-		//(namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_0_0_0_2() { return cGroup_0_0_0_2; }
-
-		//namespace+=[pivot::Namespace|UnreservedName]
-		public Assignment getNamespaceAssignment_0_0_0_2_0() { return cNamespaceAssignment_0_0_0_2_0; }
-
-		//[pivot::Namespace|UnreservedName]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0_0_2_0_0() { return cNamespaceNamespaceCrossReference_0_0_0_2_0_0; }
-
-		//UnreservedName
-		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_0_0_0_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_0_0_0_2_0_0_1; }
-
-		//"::"
-		public Keyword getColonColonKeyword_0_0_0_2_1() { return cColonColonKeyword_0_0_0_2_1; }
-
-		//element=[pivot::Type|UnreservedName]
-		public Assignment getElementAssignment_0_0_1() { return cElementAssignment_0_0_1; }
-
-		//[pivot::Type|UnreservedName]
-		public CrossReference getElementTypeCrossReference_0_0_1_0() { return cElementTypeCrossReference_0_0_1_0; }
-
-		//UnreservedName
-		public RuleCall getElementTypeUnreservedNameParserRuleCall_0_0_1_0_1() { return cElementTypeUnreservedNameParserRuleCall_0_0_1_0_1; }
-
-		//element=[pivot::Type|UnrestrictedName]
-		public Assignment getElementAssignment_0_1() { return cElementAssignment_0_1; }
-
-		//[pivot::Type|UnrestrictedName]
-		public CrossReference getElementTypeCrossReference_0_1_0() { return cElementTypeCrossReference_0_1_0; }
-
-		//UnrestrictedName
-		public RuleCall getElementTypeUnrestrictedNameParserRuleCall_0_1_0_1() { return cElementTypeUnrestrictedNameParserRuleCall_0_1_0_1; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_0_0() { return cPathNamePathNameCSParserRuleCall_0_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
@@ -1705,85 +1635,18 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class NameExpCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NameExpCS");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cGroup_0.eContents().get(0);
-		private final Assignment cNamespaceAssignment_0_0_0 = (Assignment)cGroup_0_0.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0_0_0 = (CrossReference)cNamespaceAssignment_0_0_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cGroup_0_0.eContents().get(2);
-		private final Assignment cNamespaceAssignment_0_0_2_0 = (Assignment)cGroup_0_0_2.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0_2_0_0 = (CrossReference)cNamespaceAssignment_0_0_2_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnreservedNameParserRuleCall_0_0_2_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_2_0_0.eContents().get(1);
-		private final Keyword cColonColonKeyword_0_0_2_1 = (Keyword)cGroup_0_0_2.eContents().get(1);
-		private final Assignment cElementAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final CrossReference cElementNamedElementCrossReference_0_1_0 = (CrossReference)cElementAssignment_0_1.eContents().get(0);
-		private final RuleCall cElementNamedElementUnreservedNameParserRuleCall_0_1_0_1 = (RuleCall)cElementNamedElementCrossReference_0_1_0.eContents().get(1);
-		private final Assignment cElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final CrossReference cElementNamedElementCrossReference_1_0 = (CrossReference)cElementAssignment_1.eContents().get(0);
-		private final RuleCall cElementNamedElementUnrestrictedNameParserRuleCall_1_0_1 = (RuleCall)cElementNamedElementCrossReference_1_0.eContents().get(1);
+		private final Assignment cPathNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cPathNamePathNameCSParserRuleCall_0 = (RuleCall)cPathNameAssignment.eContents().get(0);
 		
 		//NameExpCS:
-		//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName];
+		//	pathName=PathNameCS;
 		public ParserRule getRule() { return rule; }
 
-		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName]
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//pathName=PathNameCS
+		public Assignment getPathNameAssignment() { return cPathNameAssignment; }
 
-		//(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-		//element=[pivot::NamedElement|UnreservedName]
-		public Group getGroup_0() { return cGroup_0; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_0_0() { return cGroup_0_0; }
-
-		//namespace+=[pivot::Namespace|UnrestrictedName]
-		public Assignment getNamespaceAssignment_0_0_0() { return cNamespaceAssignment_0_0_0; }
-
-		//[pivot::Namespace|UnrestrictedName]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0_0_0() { return cNamespaceNamespaceCrossReference_0_0_0_0; }
-
-		//UnrestrictedName
-		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_0_1; }
-
-		//"::"
-		public Keyword getColonColonKeyword_0_0_1() { return cColonColonKeyword_0_0_1; }
-
-		//(namespace+=[pivot::Namespace|UnreservedName] "::")*
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-
-		//namespace+=[pivot::Namespace|UnreservedName]
-		public Assignment getNamespaceAssignment_0_0_2_0() { return cNamespaceAssignment_0_0_2_0; }
-
-		//[pivot::Namespace|UnreservedName]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0_2_0_0() { return cNamespaceNamespaceCrossReference_0_0_2_0_0; }
-
-		//UnreservedName
-		public RuleCall getNamespaceNamespaceUnreservedNameParserRuleCall_0_0_2_0_0_1() { return cNamespaceNamespaceUnreservedNameParserRuleCall_0_0_2_0_0_1; }
-
-		//"::"
-		public Keyword getColonColonKeyword_0_0_2_1() { return cColonColonKeyword_0_0_2_1; }
-
-		//element=[pivot::NamedElement|UnreservedName]
-		public Assignment getElementAssignment_0_1() { return cElementAssignment_0_1; }
-
-		//[pivot::NamedElement|UnreservedName]
-		public CrossReference getElementNamedElementCrossReference_0_1_0() { return cElementNamedElementCrossReference_0_1_0; }
-
-		//UnreservedName
-		public RuleCall getElementNamedElementUnreservedNameParserRuleCall_0_1_0_1() { return cElementNamedElementUnreservedNameParserRuleCall_0_1_0_1; }
-
-		//element=[pivot::NamedElement|UnrestrictedName]
-		public Assignment getElementAssignment_1() { return cElementAssignment_1; }
-
-		//[pivot::NamedElement|UnrestrictedName]
-		public CrossReference getElementNamedElementCrossReference_1_0() { return cElementNamedElementCrossReference_1_0; }
-
-		//UnrestrictedName
-		public RuleCall getElementNamedElementUnrestrictedNameParserRuleCall_1_0_1() { return cElementNamedElementUnrestrictedNameParserRuleCall_1_0_1; }
+		//PathNameCS
+		public RuleCall getPathNamePathNameCSParserRuleCall_0() { return cPathNamePathNameCSParserRuleCall_0; }
 	}
 
 	public class IndexExpCSElements extends AbstractParserRuleElementFinder {
@@ -2955,9 +2818,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstructorExpCS:
-	//	((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
-	//	ownedParts+=ConstructorPartCS)* "}";
+	//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
 	public ConstructorExpCSElements getConstructorExpCSAccess() {
 		return (pConstructorExpCS != null) ? pConstructorExpCS : (pConstructorExpCS = new ConstructorExpCSElements());
 	}
@@ -3198,8 +3059,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName];
+	//	pathName=PathNameCS;
 	public NameExpCSElements getNameExpCSAccess() {
 		return (pNameExpCS != null) ? pNameExpCS : (pNameExpCS = new NameExpCSElements());
 	}

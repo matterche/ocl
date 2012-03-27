@@ -1832,9 +1832,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstructorExpCS:
-	//	((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]) "{" ownedParts+=ConstructorPartCS (","
-	//	ownedParts+=ConstructorPartCS)* "}";
+	//	pathName=PathNameCS "{" ownedParts+=ConstructorPartCS ("," ownedParts+=ConstructorPartCS)* "}";
 	public EssentialOCLGrammarAccess.ConstructorExpCSElements getConstructorExpCSAccess() {
 		return gaEssentialOCL.getConstructorExpCSAccess();
 	}
@@ -2075,8 +2073,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName];
+	//	pathName=PathNameCS;
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
 	}

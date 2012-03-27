@@ -12,6 +12,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibIterationCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibOperationCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPathNameCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPropertyCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibTupleCSElements;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibraryElements;
@@ -49,7 +50,6 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 		configureMultiplicityBoundsCS(c, f.getMultiplicityBoundsCSAccess());
 		configureMultiplicityCS(c, f.getMultiplicityCSAccess());
 		configureMultiplicityStringCS(c, f.getMultiplicityStringCSAccess());
-	    configureNameExpCS(c, f.getNameExpCSAccess());
 	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
 	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
@@ -123,6 +123,10 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_11_1());
 		    c.setIndentation(a.getEqualsSignGreaterThanSignKeyword_10_0(), a.getSemicolonKeyword_11_1());
 	    }
+	    {
+			LibPathNameCSElements a = f.getLibPathNameCSAccess();
+		    c.setNoSpace().around(a.getColonColonKeyword_1_0());
+		}
 	    {
 			PackageCSElements a = f.getPackageCSAccess();
 			setBraces(c, a.getLeftCurlyBracketKeyword_3(), a.getRightCurlyBracketKeyword_5());

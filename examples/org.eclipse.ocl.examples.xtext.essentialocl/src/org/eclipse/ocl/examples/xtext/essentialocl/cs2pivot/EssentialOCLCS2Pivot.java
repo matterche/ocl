@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -33,7 +34,12 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -48,6 +54,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationOpe
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
 public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 {	
@@ -56,7 +63,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		private Factory() {
 			BaseCS2Pivot.FACTORY.getClass();
 			addFactory(this);
-			addUnresolvedProxyMessageProvider(new NameExpCSUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(new PathElementCSUnresolvedProxyMessageProvider());			
 		}
 
 		public EssentialOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
@@ -82,68 +89,46 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
 	
-	private static final class NameExpCSUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	private static final class PathElementCSUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
 	{		
-		private NameExpCSUnresolvedProxyMessageProvider() {
-			super(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT);
+		private PathElementCSUnresolvedProxyMessageProvider() {
+			super(BaseCSTPackage.Literals.PATH_ELEMENT_CS__ELEMENT);
 		}
 		
 		@Override
-		public String getMessage(EObject csContext, String linkText) {
+		public String getMessage(EObject eObject, String linkText) {
+			PathElementCS csPathElement = (PathElementCS) eObject;
+			PathNameCS pathName = csPathElement.getPathName();
+			List<PathElementCS> path = pathName.getPath();
+			int index = path.indexOf(csPathElement);
+			for (int i = 0; i < index; i++) {
+				PathElementCS csElement = path.get(i);
+				NamedElement element = csElement.basicGetElement();
+				if ((element == null) || element.eIsProxy()) {
+					return null;		// Suppress nested unresolved message
+				}
+			}
+			ElementCS csContext = pathName.getContext();
+			if (csContext == null) {
+				csContext = (ElementCS) pathName.eContainer();
+			}
 			String messageTemplate;
 			String argumentText = null;
 			ExpCS navigationArgument = null;
-			if (csContext.eContainer() instanceof NavigatingExpCS) {
-				NavigatingExpCS eContainer = (NavigatingExpCS)csContext.eContainer();
-				navigationArgument = eContainer;
-				List<NavigatingArgCS> arguments = eContainer.getArgument();
-				if (arguments.size() <= 0) {
-					messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
-				}
-				else {
-					StringBuilder s = new StringBuilder();
-					for (NavigatingArgCS csArgument : arguments) {
-						TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
-						if ((pivot != null) && !pivot.eIsProxy()) {
-							if (s.length() > 0) {
-								s.append(", ");
-							}
-							Type type = pivot.getType();
-							if (pivot instanceof TypedMultiplicityElement) {
-								TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)pivot;
-								if (typedMultiplicityElement.isOrdered()) {
-									if (typedMultiplicityElement.isUnique()) {
-										s.append("OrderedSet(");
-									}
-									else {
-										s.append("Sequence(");
-									}
-								}
-								else {
-									if (typedMultiplicityElement.isUnique()) {
-										s.append("Set(");
-									}
-									else {
-										s.append("Bag(");
-									}
-								}
-								s.append(String.valueOf(type));
-								s.append(")");
-								BigInteger lower = typedMultiplicityElement.getLower();
-								BigInteger upper = typedMultiplicityElement.getUpper();
-								PivotUtil.appendMultiplicity(s, lower.intValue(), upper.intValue());
-							}
-							else {
-								s.append(String.valueOf(type));
-							}
-						}
-						else {
-							s.append(csArgument.toString());
-						}
-					}
-					argumentText = s.toString();
-					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
-				}
+			if ((index + 1) < path.size()) {
+				messageTemplate = OCLMessages.UnresolvedNamespace_ERROR_;
+			}
+			else if (csContext instanceof NavigatingExpCS) {
+				NavigatingExpCS csNavigatingExp = (NavigatingExpCS)csContext;
+				navigationArgument = csNavigatingExp;
+				argumentText = getOperationArguments(csNavigatingExp);
+				messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+			}
+			else if (csContext instanceof TypeNameExpCS) {
+				messageTemplate = OCLMessages.UnresolvedType_ERROR_;
+			}
+			else if (csContext instanceof TypedTypeRefCS) {
+				messageTemplate = OCLMessages.UnresolvedType_ERROR_;
 			}
 			else if (csContext instanceof ExpCS) {
 				navigationArgument = (ExpCS)csContext;
@@ -207,8 +192,52 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				return CS2Pivot.getMessageBinder().bind(csContext, messageTemplate, linkText, typeText, argumentText);
 			}
 		}
-	}
 		
+		public String getOperationArguments(NavigatingExpCS csNavigatingExp) {
+			List<NavigatingArgCS> arguments = csNavigatingExp.getArgument();
+			StringBuilder s = new StringBuilder();
+			for (NavigatingArgCS csArgument : arguments) {
+				TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
+				if ((pivot != null) && !pivot.eIsProxy()) {
+					if (s.length() > 0) {
+						s.append(", ");
+					}
+					Type type = pivot.getType();
+					if (pivot instanceof TypedMultiplicityElement) {
+						TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)pivot;
+						if (typedMultiplicityElement.isOrdered()) {
+							if (typedMultiplicityElement.isUnique()) {
+								s.append("OrderedSet(");
+							}
+							else {
+								s.append("Sequence(");
+							}
+						}
+						else {
+							if (typedMultiplicityElement.isUnique()) {
+								s.append("Set(");
+							}
+							else {
+								s.append("Bag(");
+							}
+						}
+						s.append(String.valueOf(type));
+						s.append(")");
+						BigInteger lower = typedMultiplicityElement.getLower();
+						BigInteger upper = typedMultiplicityElement.getUpper();
+						PivotUtil.appendMultiplicity(s, lower.intValue(), upper.intValue());
+					}
+					else {
+						s.append(String.valueOf(type));
+					}
+				}
+				else {
+					s.append(csArgument.toString());
+				}
+			}
+			return s.toString();
+		}
+	}		
 	public EssentialOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		super(cs2pivotResourceMap, metaModelManager);
 	}
