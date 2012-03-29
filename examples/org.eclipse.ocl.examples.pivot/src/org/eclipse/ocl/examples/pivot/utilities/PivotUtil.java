@@ -386,13 +386,17 @@ public class PivotUtil extends DomainUtil
 			s.append("@");
 			s.append(Integer.toHexString(element.hashCode()));
 			Resource eResource = element.eResource();
-			if (element instanceof Element) {
-				s.append(" ");
-				s.append(Pivot2Moniker.toString((Element) element));
-			}
 			if (eResource != null) {
+				if (element instanceof Element) {
+					s.append(" ");
+					s.append(Pivot2Moniker.toString((Element) element));
+				}
 				s.append(" ");
 				s.append(eResource.getURI());
+			}
+			else if (element instanceof NamedElement) {
+				s.append(" ");
+				s.append(String.valueOf(((NamedElement) element).getName()));
 			}
 		}
 		else {
