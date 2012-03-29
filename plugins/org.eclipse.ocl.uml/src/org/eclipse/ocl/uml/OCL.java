@@ -109,14 +109,27 @@ public class OCL extends org.eclipse.ocl.OCL<
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
-		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), createURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), createURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), createURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), createURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
 		return null;
 	}
 
-    /**
+	/**
+	 * First try to create a File URI for comaptibility, the try a direct URI to pick up the
+	 * case where the string is an archive::file: URI.
+	 */
+    private static URI createURI(String string) {
+		try {
+			URI uri = URI.createFileURI(string);
+			return uri;
+		} catch (IllegalArgumentException e) {
+			return URI.createURI(string);
+		}
+	}
+
+	/**
      * Initializes me with an environment factory for the UML metamodel.
      *  
      * @param envFactory my environment factory

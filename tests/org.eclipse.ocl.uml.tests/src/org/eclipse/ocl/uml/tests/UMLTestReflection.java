@@ -17,8 +17,11 @@
  */
 package org.eclipse.ocl.uml.tests;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 import junit.framework.TestCase;
 
@@ -26,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -88,6 +90,10 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		public ResourceSet createResourceSet() {
 			Environment.Registry.INSTANCE.registerEnvironment(
 				new UMLEnvironmentFactory().createEnvironment());
+			if (!GenericTestSuite.eclipseIsRunning()) {
+				String umlURI = findOnClassPath("org.eclipse.uml2.uml.resources");
+				System.setProperty("org.eclipse.uml2.uml.resources", umlURI); //$NON-NLS-1$
+			}
 			ResourceSet resourceSet = new ResourceSetImpl();
 		    OCL.initialize(resourceSet);
 //			URI oclPluginURI;
@@ -129,6 +135,40 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 		public String getTestPlugInId() {
 			return PLUGIN_ID;
+		}
+
+		protected String findOnClassPath(String wantedProject) { // FIXME Stolen from StandaloneProjectMap
+			String property = System.getProperty("java.class.path");
+			String separator = System.getProperty("path.separator");
+			if (property!=null) {
+				String[] entries = property.split(separator);
+				for (String entry : entries) {
+					File fileEntry = new File(entry);
+					try {
+						File f = fileEntry.getCanonicalFile();
+						if (f.getPath().endsWith(".jar")) {
+							JarFile jarFile = new JarFile(f);
+							Manifest manifest = jarFile.getManifest();
+							if (manifest == null) {
+								return null;
+							}
+							String project = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
+							if (project != null) {
+								final int indexOf = project.indexOf(';');
+								if (indexOf > 0) {
+									project = project.substring(0, indexOf);
+								}
+								if (project.equals(wantedProject)) {
+									return "archive:"+f.toURI() + "!";
+								}
+							}	
+						}
+					}
+					catch (Exception e) {
+					}
+				}
+			}
+			return null;
 		}
 	}
 
