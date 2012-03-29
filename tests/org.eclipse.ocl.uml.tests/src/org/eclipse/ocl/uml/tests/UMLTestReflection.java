@@ -20,10 +20,13 @@ package org.eclipse.ocl.uml.tests;
 import java.util.HashMap;
 import java.util.Map;
 
+import junit.framework.TestCase;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -88,26 +91,30 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 			ResourceSet resourceSet = new ResourceSetImpl();
 		    OCL.initialize(resourceSet);
 //			URI oclPluginURI;
-			URI umlPluginURI;
+//			URI umlPluginURI;
 //			URI umlResourcesPluginURI;
+			URI testPluginURI;
 			if (!GenericTestSuite.eclipseIsRunning()) {
 //				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+				String urlString = System.getProperty(getTestPlugInId());
+				if (urlString == null)
+					TestCase.fail("'" + getTestPlugInId() + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
+				testPluginURI = URI.createFileURI(urlString + "/model/UML.merged.uml");
 //				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
 //				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
-				umlPluginURI = URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/");
+//				umlPluginURI = URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/");
 //				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
 			}
 			else {
+				testPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml.tests/model/UML.merged.uml", true);
 //				oclPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml/", true);
-				umlPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml/", true);
+//				umlPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml/", true);
 //				umlResourcesPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/", true);				
 			}
 					
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
-			umlModelMetamodel = (Package) resourceSet.getResource(
-				URI.createURI("model/UML.merged.uml").resolve(umlPluginURI),
-				true).getContents().get(0);
+			umlModelMetamodel = (Package) resourceSet.getResource(testPluginURI, true).getContents().get(0);
 			umlMetamodel = (Package) resourceSet.getResource(
 				URI.createURI(UMLResource.UML_METAMODEL_URI),
 				true).getContents().get(0);
