@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface PivotConstants
 {
-	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PivotConstants.class.getPackage().getName() + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
+	static final String PLUGIN_ID = PivotConstants.class.getPackage().getName();
+	static final String PIVOT_ECORE = PivotConstants.class.getPackage().getName() + "/model/Pivot.ecore";
+	static final URI GEN_MODEL_URI = URI.createPlatformPluginURI("/" + PLUGIN_ID + "/model/Pivot.merged.genmodel", true); //$NON-NLS-1$
 
 	static final String MESSAGE_ANNOTATION_DETAIL_SUFFIX = "$message";
 

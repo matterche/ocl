@@ -24,6 +24,10 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLUiModule;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiModule;
@@ -33,6 +37,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
@@ -46,6 +51,12 @@ public class EditorTests extends XtextTestCase
 {	
 
 	public void doTestEditor(String editorId, String testFile, String testContent) throws Exception {
+		InputStream inputStream = new ByteArrayInputStream(testContent.getBytes());
+		String content = doTestEditor(editorId, testFile, inputStream);
+		assertEquals(testContent, content);
+	}
+
+	private String doTestEditor(String editorId, String testFile, InputStream inputStream) throws CoreException, PartInitException {
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
 		IProject project = root.getProject("test");
@@ -54,7 +65,6 @@ public class EditorTests extends XtextTestCase
 		}
 		project.open(null);
 		IFile file = project.getFile(testFile);
-		InputStream inputStream = new ByteArrayInputStream(testContent.getBytes());
 		file.create(inputStream, true, null);
 		IEditorInput input = new FileEditorInput(file);
 		IWorkbench workbench = PlatformUI.getWorkbench();
@@ -65,7 +75,7 @@ public class EditorTests extends XtextTestCase
 		assertEquals(editorId, languageName);
 		IXtextDocument document = editor.getDocument();
 		String content = document.get();
-		assertEquals(testContent, content);
+		return content;
 	}	
 	
 	public void testEditor_OpenCompleteOCLEditor() throws Exception {
@@ -86,5 +96,12 @@ public class EditorTests extends XtextTestCase
 	
 	public void testEditor_OpenOCLStdLibEditor() throws Exception {
 		doTestEditor(OCLstdlibUiModule.EDITOR_ID, "test.oclstdlib", "test");
+	}	
+	
+	public void testEditor_OpenOCLinEcoreEditor4Pivot_Ecore() throws Exception {
+		URI uri = URI.createPlatformPluginURI(PivotConstants.PIVOT_ECORE, true);
+		InputStream inputStream = URIConverter.INSTANCE.createInputStream(uri);
+		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, "Pivot.ecore", inputStream);
+		assertTrue(documentText.contains("abstract class Visitable : 'org.eclipse.ocl.examples.pivot.util.Visitable' { interface };"));
 	}	
 }

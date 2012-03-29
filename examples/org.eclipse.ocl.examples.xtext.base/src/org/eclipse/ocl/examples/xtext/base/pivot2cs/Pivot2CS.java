@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
 
 /**
  * CS2Pivot manages the equivalence between a Concrete Syntax Resources
@@ -67,6 +69,11 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	 * The pivot element for CS monikers
 	 */
 	protected Map<String, ModelElementCS> moniker2PivotCSMap1 = null;
+
+	/**
+	 * CS to Pivot mapping controller for aliases and CSIs.
+	 */
+	protected CSI2PivotMapping cs2PivotMapping = null;
 	
 	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
@@ -87,6 +94,15 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();
+	}
+
+	public CSI2PivotMapping getCs2PivotMapping() {
+		if (cs2PivotMapping == null) {
+			Set<? extends Resource> csResources = cs2pivotResourceMap.keySet();
+			cs2PivotMapping = new CSI2PivotMapping(csResources);
+			cs2PivotMapping.update(csResources);
+		}
+		return cs2PivotMapping;
 	}
 
 	public Factory getFactory(EClass eClass) {

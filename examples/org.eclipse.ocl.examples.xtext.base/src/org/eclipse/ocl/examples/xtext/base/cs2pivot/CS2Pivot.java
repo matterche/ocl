@@ -46,11 +46,13 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.diagnostics.Diagnostic;
@@ -270,18 +272,11 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	protected final Map<? extends Resource, ? extends Resource> cs2pivotResourceMap;
 
 	/**
-	 * Mapping of each CS resource to a short alias used in URI maps.
+	 * CS to Pivot mapping controller for aliases and CSIs.
 	 */
-	protected final Map<Resource, String> csResource2aliasMap;
+	protected final CSI2PivotMapping cs2PivotMapping;
 
 	private final Map<EPackage, BaseCSVisitor<CSScopeAdapter, Object>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<CSScopeAdapter, Object>>();
-
-	/**
-	 * The map from CS element (identified by URI) to pivot element at the end of the last update. This map enables
-	 * the next update from a potentially different CS Resource and elements but the same URIs to re-use the pivot elements
-	 * and to kill off the obsolete elements. 
-	 */
-	private Map<String, Element> csi2pivot = new HashMap<String, Element>();
 
 	/**
 	 * A lazily created inverse map that may be required for navigation from an outline.
@@ -289,12 +284,14 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	private Map<Element, ModelElementCS> pivot2cs = null;
 
 	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, MetaModelManager metaModelManager) {
-		this.cs2pivotResourceMap = cs2pivotResourceMap;
-		this.csResource2aliasMap = new HashMap<Resource, String>();
-		int i = 0;
-		for (Resource csResource : cs2pivotResourceMap.keySet()) {
-			csResource2aliasMap.put(csResource, Integer.toString(i++));
+		Pivot2CS pivot2cs = Pivot2CS.findAdapter(metaModelManager.getPivotResourceSet());
+		if (pivot2cs != null) {
+			this.cs2PivotMapping = pivot2cs.getCs2PivotMapping();
 		}
+		else {
+			this.cs2PivotMapping = new CSI2PivotMapping(cs2pivotResourceMap.keySet());
+		}
+		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.metaModelManager = metaModelManager;
 		metaModelManager.addListener(this);
 		metaModelManager.getPivotResourceSet().eAdapters().add(this);
@@ -302,49 +299,12 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	
 	public CS2Pivot(CS2Pivot aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
-		this.csResource2aliasMap = aConverter.csResource2aliasMap;
+		this.cs2PivotMapping = new CSI2PivotMapping(aConverter.cs2PivotMapping);
 		this.metaModelManager = aConverter.metaModelManager;
-		for (Map.Entry<String, Element> entry : aConverter.csi2pivot.entrySet()) {
-			csi2pivot.put(entry.getKey(), entry.getValue());
-		}
 	}
 
 	public String bind(EObject csContext, String messageTemplate, Object... bindings) {
 		return messageBinder.bind(csContext, messageTemplate, bindings);
-	}
-
-	public Map<String, Element> computeCSI2PivotMap() {
-		Map<String, Element> map = new HashMap<String, Element>();
-		for (Resource csResource : cs2pivotResourceMap.keySet()) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof ModelElementCS) {
-					ModelElementCS csElement = (ModelElementCS)eObject;
-					Element pivotElement = csElement.getPivot();
-					String csURI = getCSI(csElement);
-//					if (pivotElement == null) {
-//						System.out.println("No pivot for " + csElement.getClass().getSimpleName() + " " + csElement);
-//					}
-					map.put(csURI, pivotElement);
-				}
-			}
-		}
-		return map;
-	}
-
-	public Set<String> computeCSIs() {
-		Set<String> map = new HashSet<String>();
-		for (Resource csResource : cs2pivotResourceMap.keySet()) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
-				EObject eObject = it.next();
-				if (eObject instanceof ModelElementCS) {
-					ModelElementCS csElement = (ModelElementCS)eObject;
-					String csURI = getCSI(csElement);
-					map.add(csURI);
-				}
-			}
-		}
-		return map;
 	}
 
 	public Map<Element, ModelElementCS> computePivot2CSMap() {
@@ -364,9 +324,8 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 
 	public void dispose() {
 		cs2pivotResourceMap.clear();
-		csResource2aliasMap.clear();
+		cs2PivotMapping.clear();
 		scopeVisitorMap.clear();
-		csi2pivot.clear();
 		pivot2cs = null;
 		metaModelManager.getPivotResourceSet().eAdapters().remove(this);
 	}
@@ -378,21 +337,6 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		return pivot2cs.get(pivotElement);
 	}
 
-	/**
-	 * Get the Concrete Syntax Identifier for a CS element. This is a form of URI. It is significantly compacted to
-	 * save on memory.
-	 */
-	public String getCSI(ModelElementCS csElement) {
-		String csi = csElement.getCsi();
-		if (csi == null) {
-			Resource csResource = csElement.eResource();
-			String fragment = csResource.getURIFragment(csElement);
-			csi = csResource2aliasMap.get(csResource) + '#' + fragment;
-			csElement.setCsi(csi);
-		}
-		return csi;
-	}
-
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();
 	}
@@ -402,13 +346,15 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	}
 
 	public Element getPivotElement(ModelElementCS csElement) {
-		String csi = getCSI(csElement);
-		return csi2pivot.get(csi);
+//		String csi = cs2PivotMapping.getCSI(csElement);
+//		return csi2pivot.get(csi);
+		return cs2PivotMapping.get(csElement);
 	}
 
 	public <T extends Element> T getPivotElement(Class<T> pivotClass, ModelElementCS csElement) {
-		String csi = getCSI(csElement);
-		Element pivotElement = csi2pivot.get(csi);
+//		String csi = cs2PivotMapping.getCSI(csElement);
+//		Element pivotElement = csi2pivot.get(csi);
+		Element pivotElement = cs2PivotMapping.get(csElement);
 		if (pivotElement == null) {
 			return null;
 		}
@@ -468,8 +414,9 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 				// WIP Queue dead element
 			}
 		}
-		String csi = getCSI(csElement);
-		csi2pivot.put(csi, newPivotElement);
+//		String csi = cs2PivotMapping.getCSI(csElement);
+//		csi2pivot.put(csi, newPivotElement);
+		cs2PivotMapping.put(csElement, newPivotElement);
 	}
 	
 	/**
@@ -548,8 +495,8 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 	}
 	
 	public synchronized void update(IDiagnosticConsumer diagnosticsConsumer) {
-		Map<String, Element> oldCSI2Pivot = csi2pivot;
-		Set<String> newCSIs  = computeCSIs();
+		Map<String, Element> oldCSI2Pivot = cs2PivotMapping.getMapping();
+		Set<String> newCSIs = cs2PivotMapping.computeCSIs(cs2pivotResourceMap.keySet());
 //		System.out.println("==========================================================================");
 		Collection<? extends Resource> csResources = getCSResources();
 //		for (Resource csResource : csResources) {
@@ -564,14 +511,14 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 //			Resource pivotResource = entry.getValue();
 //			System.out.println("CS " + csResource.getClass().getName() + "@" + csResource.hashCode() + " => " + pivotResource.getClass().getName() + "@" + pivotResource.hashCode());
 //		}
-		Set<String> deadCSIs = new HashSet<String>(oldCSI2Pivot.keySet());
+/*		Set<String> deadCSIs = new HashSet<String>(oldCSI2Pivot.keySet());
 		deadCSIs.removeAll(newCSIs);
 		for (String deadCSI : deadCSIs) {
 			Element deadPivot = oldCSI2Pivot.get(deadCSI);	// WIP
 //			metaModelManager.kill(deadPivot);
-		}
+		} */
 		conversion.garbageCollect(cs2pivotResourceMap);
-		csi2pivot = computeCSI2PivotMap();
+		cs2PivotMapping.update(cs2pivotResourceMap.keySet());
 		pivot2cs = null;
 	}
 }
