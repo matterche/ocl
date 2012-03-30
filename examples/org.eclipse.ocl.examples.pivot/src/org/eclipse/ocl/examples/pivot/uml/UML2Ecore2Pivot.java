@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.ocl.examples.domain.utilities.StandaloneProjectMap;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
@@ -183,13 +184,6 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 *<p> 
 	 * A non-null resourceSet may be provided to identify specific package
 	 * and global URI mapping registries.
-	 *<p> 
-	 * The locations of the org.eclipse.ocl.uml and org.eclipse.uml2.uml.resources
-	 * plugins must be identified by the correspondingly named Java properties.
-	 * A standalone application command line might do this by incorporating
-	 * 
-	 * <p><tt>-Dorg.eclipse.ocl.uml=C:/Eclipse/plugins/org.eclipse.ocl.uml</tt>
-	 * <br><tt>-Dorg.eclipse.uml2.uml.resources=C:/Eclipse/plugins/org.eclipse.uml2.uml.resources</tt>
 	 * <p>
 	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
 
@@ -197,12 +191,20 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	 * @return a failure reason, null if successful
 	 */
 	public static String initialize(ResourceSet resourceSet) {
-//		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
-//		if (oclLocation == null)
-//			return "'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
-		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
+		final String resourcesPluginId = "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
+		String resourcesLocation = null;
+		StandaloneProjectMap projectMap = StandaloneProjectMap.findAdapter(resourceSet);
+		if (projectMap != null) {
+			URI locationURI = projectMap.getLocation(resourcesPluginId);
+			if (locationURI != null) {
+				resourcesLocation = locationURI.toString();
+				while (resourcesLocation.endsWith("/")) {
+					resourcesLocation = resourcesLocation.substring(0, resourcesLocation.length()-1);
+				}
+			}
+		}
 		if (resourcesLocation == null)
-			return "'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+			return "'" + resourcesPluginId + "' not found on class-path"; //$NON-NLS-1$
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
 			? resourceSet.getResourceFactoryRegistry()
 			: Resource.Factory.Registry.INSTANCE;
@@ -211,11 +213,9 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
-// FIXME try something like classpath:/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xmi
-//		uriMap.put(URI.createURI(OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
 		return null;
 	}
 

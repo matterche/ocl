@@ -20,8 +20,6 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +39,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.ocl.examples.domain.evaluation.DomainException;
+import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.domain.validation.DomainSubstitutionLabelProvider;
 import org.eclipse.ocl.examples.domain.values.Value;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
@@ -61,6 +60,7 @@ import org.eclipse.xtext.resource.XtextResource;
 public class PivotTestCase extends TestCase
 {
 	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
+	private static ProjectMap projectMap = null;
 
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
 		List<Diagnostic> diagnostics = xtextResource.validateConcreteSyntax();
@@ -205,30 +205,14 @@ public class PivotTestCase extends TestCase
 		Resource ecoreResource = savePivotAsEcore(metaModelManager, pivotResource, ecoreURI, true);
 		return ecoreResource;
 	}
-
-	public static String getTestPlugInId() {
-		return PLUGIN_ID;
-	}
 	
-	public static URI getTestModelURI(String localFileName) {
-		String testPlugInId = getTestPlugInId();
-		try {
-			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform");
-			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class});
-			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
-			
-			if (bundle != null) {
-				Method getEntry = bundle.getClass().getMethod("getEntry", new java.lang.Class[] {String.class});
-				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
-				return URI.createURI(url.toString());
-			}
-		} catch (Exception e) {
-			// not running in Eclipse
+	public URI getTestModelURI(String localFileName) {
+		if (projectMap == null) {
+			projectMap = new ProjectMap();
 		}
-		String urlString = System.getProperty(testPlugInId);
-		if (urlString == null)
-			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
-		return URI.createFileURI(urlString + "/" + localFileName);
+		String urlString = projectMap.getLocation(PLUGIN_ID).toString();
+		TestCase.assertNotNull(urlString);
+		return URI.createURI(urlString + "/" + localFileName);
 	}
 
 	public static Resource savePivotAsEcore(MetaModelManager metaModelManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {

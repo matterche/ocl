@@ -54,6 +54,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.internal.helper.PluginFinder;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -808,9 +809,12 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		} catch (Exception e) {
 			// not running in Eclipse
 		}
-		String urlString = System.getProperty(testPlugInId);
-		if (urlString == null)
-			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
+		PluginFinder pluginFinder = new PluginFinder(testPlugInId);
+		pluginFinder.resolve();
+		String urlString = pluginFinder.get(testPlugInId, true);
+		if (urlString == null) {
+			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		return URI.createFileURI(urlString + "/" + localFileName);
 	}
 	

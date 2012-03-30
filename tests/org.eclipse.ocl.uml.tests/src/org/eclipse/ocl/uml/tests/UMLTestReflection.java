@@ -17,14 +17,12 @@
  */
 package org.eclipse.ocl.uml.tests;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.jar.JarFile;
-import java.util.jar.Manifest;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -34,7 +32,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.tests.GenericTestSuite;
+import org.eclipse.ocl.internal.helper.PluginFinder;
 import org.eclipse.ocl.tests.TestReflection;
 import org.eclipse.ocl.uml.ExpressionInOCL;
 import org.eclipse.ocl.uml.OCL;
@@ -90,32 +88,21 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 		public ResourceSet createResourceSet() {
 			Environment.Registry.INSTANCE.registerEnvironment(
 				new UMLEnvironmentFactory().createEnvironment());
-			if (!GenericTestSuite.eclipseIsRunning()) {
-				String umlURI = findOnClassPath("org.eclipse.uml2.uml.resources");
-				System.setProperty("org.eclipse.uml2.uml.resources", umlURI); //$NON-NLS-1$
-			}
 			ResourceSet resourceSet = new ResourceSetImpl();
 		    OCL.initialize(resourceSet);
-//			URI oclPluginURI;
-//			URI umlPluginURI;
-//			URI umlResourcesPluginURI;
 			URI testPluginURI;
-			if (!GenericTestSuite.eclipseIsRunning()) {
-//				Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
-				String urlString = System.getProperty(getTestPlugInId());
-				if (urlString == null)
-					TestCase.fail("'" + getTestPlugInId() + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
+			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+				final String testPlugInId = getTestPlugInId();
+				PluginFinder pluginFinder = new PluginFinder(testPlugInId);
+				pluginFinder.resolve();
+				String urlString = pluginFinder.get(testPlugInId, true);
+				if (urlString == null) {
+					TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
+				}
 				testPluginURI = URI.createFileURI(urlString + "/model/UML.merged.uml");
-//				oclPluginURI = platformResourceMap.get("org.eclipse.ocl.uml");
-//				umlPluginURI = platformResourceMap.get("org.eclipse.uml2.uml");
-//				umlPluginURI = URI.createURI(UMLResource.METAMODELS_PATHMAP + "../../org.eclipse.uml2.uml/");
-//				umlResourcesPluginURI = platformResourceMap.get("org.eclipse.uml2.uml.resources");
 			}
 			else {
 				testPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml.tests/model/UML.merged.uml", true);
-//				oclPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml/", true);
-//				umlPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml/", true);
-//				umlResourcesPluginURI = URI.createPlatformPluginURI("/org.eclipse.uml2.uml.resources/", true);				
 			}
 					
 			// Make sure that the UML metamodel and primitive types
@@ -135,40 +122,6 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 
 		public String getTestPlugInId() {
 			return PLUGIN_ID;
-		}
-
-		protected String findOnClassPath(String wantedProject) { // FIXME Stolen from StandaloneProjectMap
-			String property = System.getProperty("java.class.path");
-			String separator = System.getProperty("path.separator");
-			if (property!=null) {
-				String[] entries = property.split(separator);
-				for (String entry : entries) {
-					File fileEntry = new File(entry);
-					try {
-						File f = fileEntry.getCanonicalFile();
-						if (f.getPath().endsWith(".jar")) {
-							JarFile jarFile = new JarFile(f);
-							Manifest manifest = jarFile.getManifest();
-							if (manifest == null) {
-								return null;
-							}
-							String project = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
-							if (project != null) {
-								final int indexOf = project.indexOf(';');
-								if (indexOf > 0) {
-									project = project.substring(0, indexOf);
-								}
-								if (project.equals(wantedProject)) {
-									return "archive:"+f.toURI() + "!";
-								}
-							}	
-						}
-					}
-					catch (Exception e) {
-					}
-				}
-			}
-			return null;
 		}
 	}
 

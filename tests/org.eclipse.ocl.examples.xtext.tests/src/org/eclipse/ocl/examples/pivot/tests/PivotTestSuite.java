@@ -1244,7 +1244,7 @@ public abstract class PivotTestSuite extends PivotTestCase
         	disposeResourceSet();
         }
 		if (!initialized) {
-			noDebug = System.getProperty(getTestPlugInId() + ".nodebug") != null;
+			noDebug = System.getProperty(PLUGIN_ID + ".nodebug") != null;
 			if (!eclipseIsRunning()) {
 				initializeStandalone();
 			}
@@ -1256,7 +1256,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 		ocl = createOCL();
 		environment = ocl.getEnvironment();
 //		reflection = staticReflection.createReflection(environment);
-		String repairs = System.getProperty(getTestPlugInId() + ".repairs");
+		String repairs = System.getProperty(PLUGIN_ID + ".repairs");
 		if (repairs != null)
 			ocl.setParserRepairCount(Integer.parseInt(repairs));
 //        ocl.setParseTracingEnabled(true);

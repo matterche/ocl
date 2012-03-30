@@ -28,6 +28,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.internal.helper.PluginFinder;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
@@ -79,13 +80,6 @@ public class OCL extends org.eclipse.ocl.OCL<
 	 *<p> 
 	 * A non-null resourceSet may be provided to identify specific package
 	 * and global URI mapping registries.
-	 *<p> 
-	 * The locations of the org.eclipse.ocl.uml and org.eclipse.uml2.uml.resources
-	 * plugins must be identified by the correspondingly named Java properties.
-	 * A standalone application command line might do this by incorporating
-	 * 
-	 * <p><tt>-Dorg.eclipse.ocl.uml=C:/Eclipse/plugins/org.eclipse.ocl.uml</tt>
-	 * <br><tt>-Dorg.eclipse.uml2.uml.resources=C:/Eclipse/plugins/org.eclipse.uml2.uml.resources</tt>
 	 * <p>
 	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
 
@@ -95,12 +89,18 @@ public class OCL extends org.eclipse.ocl.OCL<
 	 * @since 3.0
 	 */
 	public static String initialize(ResourceSet resourceSet) {
-		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
-		if (oclLocation == null)
-			return "'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
-		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
-		if (resourcesLocation == null)
-			return "'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		final String oclPluginId = "org.eclipse.ocl.uml"; //$NON-NLS-1$
+		final String resourcesPluginId = "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
+		PluginFinder pluginFinder = new PluginFinder(oclPluginId, resourcesPluginId);
+		pluginFinder.resolve();
+		String oclLocation = pluginFinder.get(oclPluginId, true);
+		if (oclLocation == null) {
+			return "'" + oclPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		String resourcesLocation = pluginFinder.get(resourcesPluginId, true);
+		if (resourcesLocation == null) {
+			return "'" + resourcesPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
 			? resourceSet.getResourceFactoryRegistry()
 			: Resource.Factory.Registry.INSTANCE;
@@ -109,23 +109,21 @@ public class OCL extends org.eclipse.ocl.OCL<
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
-		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), createURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), createURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), createURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
-		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), createURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLEnvironment.OCL_STANDARD_LIBRARY_NS_URI), createURI(oclLocation, "/model/oclstdlib.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), createURI(resourcesLocation, "/profiles/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), createURI(resourcesLocation, "/metamodels/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), createURI(resourcesLocation, "/libraries/")); //$NON-NLS-1$
 		return null;
 	}
 
-	/**
-	 * First try to create a File URI for comaptibility, the try a direct URI to pick up the
-	 * case where the string is an archive::file: URI.
-	 */
-    private static URI createURI(String string) {
-		try {
-			URI uri = URI.createFileURI(string);
-			return uri;
-		} catch (IllegalArgumentException e) {
-			return URI.createURI(string);
+    private static URI createURI(String locationURI, String string) {
+		while (locationURI.endsWith("/")) { //$NON-NLS-1$
+			locationURI = locationURI.substring(0, locationURI.length()-1);
+		}
+		if (locationURI.endsWith(".jar!")) { //$NON-NLS-1$
+			return URI.createURI(locationURI + string);
+		} else {
+			return URI.createFileURI(locationURI + string);
 		}
 	}
 
