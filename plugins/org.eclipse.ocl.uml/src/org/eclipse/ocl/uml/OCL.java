@@ -91,15 +91,23 @@ public class OCL extends org.eclipse.ocl.OCL<
 	public static String initialize(ResourceSet resourceSet) {
 		final String oclPluginId = "org.eclipse.ocl.uml"; //$NON-NLS-1$
 		final String resourcesPluginId = "org.eclipse.uml2.uml.resources"; //$NON-NLS-1$
-		PluginFinder pluginFinder = new PluginFinder(oclPluginId, resourcesPluginId);
-		pluginFinder.resolve();
-		String oclLocation = pluginFinder.get(oclPluginId, true);
-		if (oclLocation == null) {
-			return "'" + oclPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		String resourcesLocation = pluginFinder.get(resourcesPluginId, true);
-		if (resourcesLocation == null) {
-			return "'" + resourcesPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+		String oclLocation = System.getProperty(oclPluginId);
+		String resourcesLocation = System.getProperty(resourcesPluginId);
+		if ((oclLocation == null) || (resourcesLocation == null)) {
+			PluginFinder pluginFinder = new PluginFinder(oclPluginId, resourcesPluginId);
+			pluginFinder.resolve();
+			if (oclLocation == null) {
+				oclLocation = pluginFinder.get(oclPluginId);
+				if (oclLocation == null) {
+					return "'" + oclPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+				}
+			}
+			if (resourcesLocation == null) {
+				resourcesLocation = pluginFinder.get(resourcesPluginId);
+				if (resourcesLocation == null) {
+					return "'" + resourcesPluginId + "' not found on class-path"; //$NON-NLS-1$ //$NON-NLS-2$
+				}
+			}
 		}
 		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
 			? resourceSet.getResourceFactoryRegistry()

@@ -95,7 +95,7 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 				final String testPlugInId = getTestPlugInId();
 				PluginFinder pluginFinder = new PluginFinder(testPlugInId);
 				pluginFinder.resolve();
-				String urlString = pluginFinder.get(testPlugInId, true);
+				String urlString = pluginFinder.get(testPlugInId);
 				if (urlString == null) {
 					TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
 				}

@@ -51,12 +51,8 @@ public class PluginFinder // FIXME Stolen from StandaloneProjectMap
 		requiredMappings.add(requiredProject);
 	}
 
-	public String get(String pluginId, boolean fallBackOnSystemProperty) {
-		String location = resolvedMappings.get(pluginId);
-		if ((location == null) && fallBackOnSystemProperty) {
-			location = System.getProperty(pluginId);
-		}
-		return location;
+	public String get(String pluginId) {
+		return resolvedMappings.get(pluginId);
 	}
 
 	private boolean registerBundle(File f) throws IOException {
