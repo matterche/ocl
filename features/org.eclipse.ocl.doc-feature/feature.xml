@@ -20,10 +20,6 @@
       <discovery label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.help" version="3.2.0" match="compatible"/>
-   </requires>
-
    <plugin
          id="org.eclipse.ocl.doc"
          download-size="0"
