@@ -10,8 +10,6 @@
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="ocl-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf\.examples\.library.*$" searchPathRef="emf-source-code"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
-  <!--rm:locator pattern="^org\.eclipse\.uml2\.uml$" searchPathRef="uml-source-code"/>
-  <rm:locator pattern="^org\.eclipse\.uml2\.uml\.resources$" searchPathRef="uml-source-code"/-->
   <rm:locator pattern="^org\.eclipse\.uml2.*" searchPathRef="uml"/>
   <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse-tests-source-code"/>
   <rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipse-tests-source-code"/>
@@ -71,16 +69,6 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <!--rm:searchPath name="uml-source-code">
-    <rm:provider componentTypes="osgi.bundle" readerType="git" mutable="false">
-      <rm:property key="buckminster.mutable" value="false"/>
-      <rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/uml2/org.eclipse.uml2.git"/>
-      <rm:property key="git.auto.fetch" value="true"/>
-      <rm:uri format="${checkout.location}/org.eclipse.uml2.git,plugins/{0}">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath-->
   <rm:searchPath name="eclipse-tests-source-code">
     <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>

@@ -30,9 +30,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 
 /**
+ * PluginFinder assists in the resolution of plugin locations in a standalone environment.
+ * It should be replaced by StandaloneProjectMap once promoted to ocl.common.
+ * 
  * @since 3.2
  */
-public class PluginFinder // FIXME Stolen from StandaloneProjectMap
+public class PluginFinder // BUG 375640 Stolen from StandaloneProjectMap
 {
 	private final Set<String> requiredMappings;
 	private final Map<String, String> resolvedMappings = new HashMap<String, String>();

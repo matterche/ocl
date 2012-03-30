@@ -90,24 +90,24 @@ EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint>
 				new UMLEnvironmentFactory().createEnvironment());
 			ResourceSet resourceSet = new ResourceSetImpl();
 		    OCL.initialize(resourceSet);
-			URI testPluginURI;
+			URI testUMLmodelURI;
 			if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
 				final String testPlugInId = getTestPlugInId();
 				PluginFinder pluginFinder = new PluginFinder(testPlugInId);
 				pluginFinder.resolve();
 				String urlString = pluginFinder.get(testPlugInId);
 				if (urlString == null) {
-					TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
+					TestCase.fail("'" + testPlugInId + "' cannot be found on the class-path"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
-				testPluginURI = URI.createFileURI(urlString + "/model/UML.merged.uml");
+				testUMLmodelURI = URI.createFileURI(urlString + "/model/UML.merged.uml");
 			}
 			else {
-				testPluginURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml.tests/model/UML.merged.uml", true);
+				testUMLmodelURI = URI.createPlatformPluginURI("/org.eclipse.ocl.uml.tests/model/UML.merged.uml", true);
 			}
 					
 			// Make sure that the UML metamodel and primitive types
 			//   libraries are loaded
-			umlModelMetamodel = (Package) resourceSet.getResource(testPluginURI, true).getContents().get(0);
+			umlModelMetamodel = (Package) resourceSet.getResource(testUMLmodelURI, true).getContents().get(0);
 			umlMetamodel = (Package) resourceSet.getResource(
 				URI.createURI(UMLResource.UML_METAMODEL_URI),
 				true).getContents().get(0);
