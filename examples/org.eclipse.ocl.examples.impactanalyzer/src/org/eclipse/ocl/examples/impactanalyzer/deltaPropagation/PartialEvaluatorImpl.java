@@ -299,6 +299,7 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
                 case PredefinedType.COLLECT:
                 case PredefinedType.SELECT:
                 case PredefinedType.REJECT:
+                    // the iterator's delta can be computed from the source delta by applying the iterator to the source delta collection
                     result = new IteratorSourcePropagationStrategy(loopExp, this);
                     break;
                 }
@@ -318,6 +319,7 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
                 case PredefinedType.AS_SET:
                 case PredefinedType.FLATTEN:
                 // case PredefinedType.REVERSE  // not supported as of now
+                    // the iterator's delta (superset) equals the source's delta
                     result = new IdentityPropagationStrategy(callExp);
                     break;
                 }

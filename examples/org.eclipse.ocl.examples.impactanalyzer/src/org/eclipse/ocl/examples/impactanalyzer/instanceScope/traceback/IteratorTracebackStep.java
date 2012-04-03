@@ -35,8 +35,6 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-
-
 public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
     private enum Strategy { EMPTY, MAP, PASSTHROUGH };
     private final Strategy strategy;
