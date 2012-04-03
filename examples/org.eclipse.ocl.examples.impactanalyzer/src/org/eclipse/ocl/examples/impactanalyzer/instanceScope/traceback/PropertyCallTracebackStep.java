@@ -140,6 +140,8 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
                 result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(resultSets);
             }
             break;
+        default:
+            throw new RuntimeException("Unknown property call traceback strategy "+strategy);
         }
         return result;
     }
