@@ -85,10 +85,10 @@ public class CS2PivotLinker extends LazyLinker
 //			    DiagnosticWrappedException wrappedException = new DiagnosticWrappedException(cause);
 //				eResource.getErrors().add(wrappedException);
 			    if (cause instanceof IllegalLibraryException) {
-				    diagnosticsConsumer.consume(new LibraryDiagnostic(cause), Severity.ERROR);
+			    	eResource.getErrors().add(new LibraryDiagnostic(cause));
 			    }
 			    else {
-			    	diagnosticsConsumer.consume(new ExceptionDiagnostic(cause), Severity.ERROR);
+			    	eResource.getErrors().add(new ExceptionDiagnostic(cause));
 			    	BasePlugin.error(0, csResource.getEditorName() + " Editor linking error", cause);
 			    }
 			}
