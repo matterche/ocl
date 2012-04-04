@@ -176,6 +176,9 @@ public class XtextTestCase extends PivotTestCase
 	}
 	
 	public static void assertSameModel(Resource expectedResource, Resource actualResource, Map<String,Object> options) throws IOException, InterruptedException {
+/*BUG376050		String expected = EmfFormatter.listToStr(expectedResource.getContents());
+		String actual = EmfFormatter.listToStr(actualResource.getContents());
+		assertEquals(expected, actual); */
         MatchModel match = MatchService.doResourceMatch(actualResource, expectedResource, options);
         List<UnmatchElement> unmatchedElements = match.getUnmatchedElements();
         int unmatchedSize = unmatchedElements.size();

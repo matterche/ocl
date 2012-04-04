@@ -173,7 +173,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
 			context.refreshTemplateSignature(csElement, pivotOperation);
 			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameter());
-			context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedException());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
 			return null;
 		}

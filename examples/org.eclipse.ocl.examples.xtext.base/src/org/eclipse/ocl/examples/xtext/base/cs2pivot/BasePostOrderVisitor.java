@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -46,6 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityBoundsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MultiplicityStringCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
@@ -227,6 +229,13 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		NamedElement pivotElement = PivotUtil.getPivot(NamedElement.class, csNamedElement);
 		context.handleVisitNamedElement(csNamedElement, pivotElement);
 		return null;
+	}
+
+	@Override
+	public Continuation<?> visitOperationCS(OperationCS csElement) {
+		Operation pivotOperation = PivotUtil.getPivot(Operation.class, csElement);
+		context.refreshList(Type.class, pivotOperation.getRaisedException(), csElement.getOwnedException());
+		return super.visitOperationCS(csElement);
 	}
 
 	@Override
