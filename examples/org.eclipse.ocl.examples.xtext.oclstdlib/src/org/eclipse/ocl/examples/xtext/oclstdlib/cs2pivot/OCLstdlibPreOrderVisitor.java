@@ -113,7 +113,7 @@ public class OCLstdlibPreOrderVisitor
 //			pivotElement.setPrecedence(csIteration.getPrecedence());
 //			pivotElement.setIsStatic(csIteration.isStatic());
 			JvmType implementation = csElement.getImplementation();
-			if (implementation != null) {
+			if ((implementation != null) && !implementation.eIsProxy()) {
 				pivotIteration.setImplementationClass(implementation.getIdentifier());
 			}
 			return null;
@@ -137,7 +137,7 @@ public class OCLstdlibPreOrderVisitor
 			pivotElement.setPrecedence(precedence);
 			pivotElement.setIsStatic(csElement.isStatic());
 			JvmType implementation = csElement.getImplementation();
-			if (implementation != null) {
+			if ((implementation != null) && !implementation.eIsProxy()) {
 				pivotElement.setImplementationClass(implementation.getIdentifier());
 			}
 			return continuation;
@@ -155,7 +155,7 @@ public class OCLstdlibPreOrderVisitor
 			Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
 			pivotElement.setIsStatic(csElement.isStatic());
 			JvmType implementation = csElement.getImplementation();
-			if (implementation != null) {
+			if ((implementation != null) && !implementation.eIsProxy()) {
 				pivotElement.setImplementationClass(implementation.getIdentifier());
 			}
 			return null;
