@@ -135,7 +135,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
 			}
 			else {
-				messageTemplate = "Unknown unresolved context";
+				messageTemplate = "Unresolved ''{1}'' ''{0}''";
 			}
 			TypedElement source = null;
 			ExpCS csSource = navigationArgument;
