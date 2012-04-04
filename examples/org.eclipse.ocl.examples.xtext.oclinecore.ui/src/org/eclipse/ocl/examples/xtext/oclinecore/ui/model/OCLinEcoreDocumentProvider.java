@@ -264,6 +264,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 //				Resource csResource = csResourceSet.createResource(uri);
 				URI oclinecoreURI = xmiResource.getURI().appendFileExtension("oclinecore");
 				Resource csResource = resourceSet.createResource(oclinecoreURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
+				csResource.setURI(xmiResource.getURI());
 				Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
 				if (pivotResource != null) {
 					cs2PivotResourceMap.put(csResource, pivotResource);
