@@ -2083,6 +2083,9 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			return;
 		}
 		Type thisType = thisProperty.getOwningType();
+		if (thisType == null) {								// e.g. an EAnnotation
+			return;
+		}
 		String name = thisType.getName();
 		// If there is an explicit property with the implicit name do nothing.
 		for (Property thatProperty : thatType.getOwnedAttribute()) {
