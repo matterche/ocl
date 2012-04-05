@@ -17,11 +17,7 @@
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
@@ -406,14 +402,17 @@ public class ElementUtil
 			csPath.add(0, csSimpleRef);
 			csSimpleRef.setElement((NamedElement) n);
 			n = n.eContainer();
+			for (EObject aScope = scope; aScope != null; aScope = aScope.eContainer()) {
+				if (aScope == n) {
+					n = null;
+					break;
+				}
+			}
 			if (!(n instanceof NamedElement)) {
 				break;
 			}
 			if (n.eContainer() == null) {
 				break;				// Skip root package
-			}
-			if (n == scope) {
-				break;
 			}
 		}
 	}

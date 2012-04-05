@@ -179,7 +179,7 @@ public class EditorTests extends XtextTestCase
 	public void testEditor_OpenOCLinEcoreEditor4Ecore_Ecore() throws Exception {
 		URI uri = URI.createPlatformPluginURI("org.eclipse.emf.ecore/model/Ecore.ecore", true);
 		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
-		assertTrue(documentText.contains("abstract class ETypedElement extends ecore::ENamedElement"));
+		assertTrue(documentText.contains("abstract class ETypedElement extends ENamedElement"));		// No ecore:: qualification
 	}	
 	
 	public void testEditor_OpenOCLinEcoreEditor4Pivot_Ecore() throws Exception {
