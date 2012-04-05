@@ -249,7 +249,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElement;
 	}
 
-	public void refreshPathName(PathNameCS csPathName, NamedElement object, EObject scope) {
+	public void refreshPathName(PathNameCS csPathName, Element object, EObject scope) {
 		ElementUtil.setPathName(csPathName, object, scope);
 	}
 

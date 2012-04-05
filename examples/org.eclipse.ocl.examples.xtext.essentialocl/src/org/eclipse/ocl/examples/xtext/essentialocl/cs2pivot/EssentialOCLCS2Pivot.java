@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
@@ -103,7 +104,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			int index = path.indexOf(csPathElement);
 			for (int i = 0; i < index; i++) {
 				PathElementCS csElement = path.get(i);
-				NamedElement element = csElement.basicGetElement();
+				Element element = csElement.basicGetElement();
 				if ((element == null) || element.eIsProxy()) {
 					return null;		// Suppress nested unresolved message
 				}
@@ -133,6 +134,9 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			else if (csContext instanceof ExpCS) {
 				navigationArgument = (ExpCS)csContext;
 				messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
+			}
+			else if (csContext instanceof ModelElementRefCS) {
+				messageTemplate = "Unresolved ModelElement ''{0}''";
 			}
 			else {
 				messageTemplate = "Unresolved ''{1}'' ''{0}''";

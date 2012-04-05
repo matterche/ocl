@@ -30,8 +30,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -361,11 +362,22 @@ public class ElementUtil
 	}
 
 	/**
-	 * Return true if element is able to be referenced by OCLinEcore. Other elements await FIXME Bug 354608.
+	 * Return true if element is able to be accessed by a qualified path OCLinEcore. Other elements must use a quoted URI.
 	 */
-	@Deprecated
-	public static boolean isReferenceable(EObject reference) {
-		return (reference instanceof Property) || (reference instanceof Type) || (reference instanceof org.eclipse.ocl.examples.pivot.Package);
+	@Deprecated  // find and extensible solution
+	public static NamedElement isPathable(EObject element) {
+		if (element instanceof Feature) {
+			return (Feature)element;
+		}
+		else if (element instanceof Type) {
+			return (Type)element;
+		}
+		else if (element instanceof Namespace) {
+			return (Namespace)element;
+		}
+		else {
+			return null;
+		}
 	}
 
 	public static boolean isUnique(TypedElementCS csTypedElement) {
@@ -394,26 +406,35 @@ public class ElementUtil
 		return false;
 	}
 
-	public static void setPathName(PathNameCS csPathName, NamedElement object, EObject scope) {
+	public static void setPathName(PathNameCS csPathName, Element element, EObject scope) {
 		List<PathElementCS> csPath = csPathName.getPath();
 		csPath.clear();		// FIXME re-use
-		for (EObject n = object; true; ) {
-			PathElementCS csSimpleRef = BaseCSTFactory.eINSTANCE.createPathElementCS();
-			csPath.add(0, csSimpleRef);
-			csSimpleRef.setElement((NamedElement) n);
-			n = n.eContainer();
-			for (EObject aScope = scope; aScope != null; aScope = aScope.eContainer()) {
-				if (aScope == n) {
-					n = null;
+		NamedElement namedElement = isPathable(element);
+		if (namedElement != null) {
+			while (true) {
+				PathElementCS csSimpleRef = BaseCSTFactory.eINSTANCE.createPathElementCS();
+				csPath.add(0, csSimpleRef);
+				csSimpleRef.setElement(namedElement);
+				EObject eContainer = namedElement.eContainer();
+				for (EObject aScope = scope; aScope != null; aScope = aScope.eContainer()) {
+					if (aScope == eContainer) {
+						eContainer = null;
+						break;
+					}
+				}
+				if (!(eContainer instanceof NamedElement)) {
 					break;
 				}
+				if (eContainer.eContainer() == null) {
+					break;				// Skip root package
+				}
+				namedElement = (NamedElement) eContainer;
 			}
-			if (!(n instanceof NamedElement)) {
-				break;
-			}
-			if (n.eContainer() == null) {
-				break;				// Skip root package
-			}
+		}
+		else {
+			PathElementCS csSimpleRef = BaseCSTFactory.eINSTANCE.createPathElementCS();
+			csPath.add(csSimpleRef);
+			csSimpleRef.setElement(element);
 		}
 	}
 }

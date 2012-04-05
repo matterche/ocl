@@ -750,16 +750,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNameExpCS_Element()
-	{
-		return (EReference)nameExpCSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getNamedExpCS() {
 		return namedExpCSEClass;
 	}
@@ -1330,7 +1320,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		nameExpCSEClass = createEClass(NAME_EXP_CS);
 		createEReference(nameExpCSEClass, NAME_EXP_CS__PATH_NAME);
 		createEAttribute(nameExpCSEClass, NAME_EXP_CS__AT_PRE);
-		createEReference(nameExpCSEClass, NAME_EXP_CS__ELEMENT);
 
 		namedExpCSEClass = createEClass(NAMED_EXP_CS);
 
@@ -1534,7 +1523,6 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(nameExpCSEClass, NameExpCS.class, "NameExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getNameExpCS_PathName(), theBaseCSTPackage.getPathNameCS(), null, "pathName", null, 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNameExpCS_AtPre(), ecorePackage.getEBoolean(), "atPre", "false", 0, 1, NameExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getNameExpCS_Element(), thePivotPackage.getNamedElement(), null, "element", null, 0, 1, NameExpCS.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(namedExpCSEClass, NamedExpCS.class, "NamedExpCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -67,7 +67,7 @@ public class EssentialOCLPreOrderVisitor
 				return true;
 			}
 			if (csTypedRef instanceof TypedTypeRefCS) {
-				NamedElement unspecializedPivotElement = CS2Pivot.basicGetType((TypedTypeRefCS)csTypedRef);
+				Element unspecializedPivotElement = CS2Pivot.basicGetType((TypedTypeRefCS)csTypedRef);
 				if (unspecializedPivotElement == null) {
 					return false;
 				}

@@ -869,12 +869,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         ownedExpression+=PrefixedExpCS 
-	 *         ownedOperator+=BinaryOperatorCS 
-	 *         (ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)* 
-	 *         ownedExpression+=PrefixedExpOrLetExpCS
-	 *     )
+	 *     ((ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)+ ownedExpression+=PrefixedExpOrLetExpCS)
 	 */
 	protected void sequence_ExpCS(EObject context, InfixExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);
@@ -982,10 +977,7 @@ public class AbstractOCLinEcoreSemanticSequencer extends AbstractSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         (namespace+=[Namespace|UnrestrictedName] namespace+=[Namespace|UnreservedName]* element=[Element|UnreservedName]) | 
-	 *         element=[Element|UnrestrictedName]
-	 *     )
+	 *     pathName=PathNameCS
 	 */
 	protected void sequence_ModelElementRefCS(EObject context, ModelElementRefCS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

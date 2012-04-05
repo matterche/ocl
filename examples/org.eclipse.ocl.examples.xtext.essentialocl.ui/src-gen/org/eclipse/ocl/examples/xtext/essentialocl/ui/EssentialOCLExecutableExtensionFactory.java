@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class EssentialOCLExecutableExtensionFactory extends AbstractGuiceAwareEx
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator.getInstance().getBundle();
+		return EssentialOCLActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator.getInstance().getInjector("org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL");
+		return EssentialOCLActivator.getInstance().getInjector(EssentialOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_ESSENTIALOCL_ESSENTIALOCL);
 	}
 	
 }

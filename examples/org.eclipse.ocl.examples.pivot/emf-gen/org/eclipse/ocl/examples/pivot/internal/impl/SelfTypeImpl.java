@@ -18,6 +18,7 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
@@ -75,6 +76,7 @@ public class SelfTypeImpl extends ClassImpl implements SelfType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type resolveSelfType(Type selfType)
 	{
 		/*

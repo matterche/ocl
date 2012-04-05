@@ -1165,7 +1165,7 @@ public class EssentialOCLLeft2RightVisitor
 //			return new IndexExpCSCompletion(context, (IndexExpCS) eContainer);
 //		}
 		else {
-			NamedElement element = csNameExp.getPathName().getElement();
+			Element element = csNameExp.getPathName().getElement();
 			if ((element == null) || element.eIsProxy()) {
 				Element pivot = csNameExp.getPivot();
 				if (pivot instanceof InvalidLiteralExp) {
@@ -1183,7 +1183,7 @@ public class EssentialOCLLeft2RightVisitor
 				return resolvePropertyCallExp(csNameExp, (Property) element);
 			}
 			else if (element instanceof Operation) {
-				return context.addBadExpressionError(csNameExp, "No parameters for operation " + element.getName());
+				return context.addBadExpressionError(csNameExp, "No parameters for operation " + ((Operation)element).getName());
 			}
 			else if (element instanceof Type) {
 				return resolveTypeExp(csNameExp, (Type) element);

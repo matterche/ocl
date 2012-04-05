@@ -2593,13 +2593,13 @@ public interface BaseCSTPackage extends EPackage {
 	int MODEL_ELEMENT_REF_CS__PIVOT = ELEMENT_REF_CS__PIVOT;
 
 	/**
-	 * The feature id for the '<em><b>Namespace</b></em>' reference list.
+	 * The feature id for the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_REF_CS__NAMESPACE = ELEMENT_REF_CS_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT_REF_CS__PATH_NAME = ELEMENT_REF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -4782,15 +4782,15 @@ public interface BaseCSTPackage extends EPackage {
 	EClass getModelElementRefCS();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getNamespace <em>Namespace</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getPathName <em>Path Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Namespace</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getNamespace()
+	 * @return the meta object for the containment reference '<em>Path Name</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getPathName()
 	 * @see #getModelElementRefCS()
 	 * @generated
 	 */
-	EReference getModelElementRefCS_Namespace();
+	EReference getModelElementRefCS_PathName();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getElement <em>Element</em>}'.
@@ -6133,12 +6133,12 @@ public interface BaseCSTPackage extends EPackage {
 		EClass MODEL_ELEMENT_REF_CS = eINSTANCE.getModelElementRefCS();
 
 		/**
-		 * The meta object literal for the '<em><b>Namespace</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Path Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_REF_CS__NAMESPACE = eINSTANCE.getModelElementRefCS_Namespace();
+		EReference MODEL_ELEMENT_REF_CS__PATH_NAME = eINSTANCE.getModelElementRefCS_PathName();
 
 		/**
 		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.

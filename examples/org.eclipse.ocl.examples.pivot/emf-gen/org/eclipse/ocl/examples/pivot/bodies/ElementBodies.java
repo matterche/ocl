@@ -63,17 +63,17 @@ public class ElementBodies
 			final ExecutorOperation O_Element_allOwnedElements = PivotTables.Operations._Element__allOwnedElements;
 			
 			
-			DomainType static_A_symbol_305 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_305 = (LibraryUnaryOperation)static_A_symbol_305.lookupImplementation(standardLibrary, O_Element_allOwnedElements);
-			Value A_symbol_305 = dynamic_A_symbol_305.evaluate(evaluator, T_Set_Pivot_ecore__pivot__Element_, self);
+			DomainType static_A_symbol_0 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_0 = (LibraryUnaryOperation)static_A_symbol_0.lookupImplementation(standardLibrary, O_Element_allOwnedElements);
+			Value A_symbol_0 = dynamic_A_symbol_0.evaluate(evaluator, T_Set_Pivot_ecore__pivot__Element_, self);
 			
-			DomainType static_A_symbol_306 = valueFactory.typeOf(A_symbol_305);
-			LibraryBinaryOperation dynamic_A_symbol_306 = (LibraryBinaryOperation)static_A_symbol_306.lookupImplementation(standardLibrary, O_Collection_includes);
-			Value A_symbol_306 = dynamic_A_symbol_306.evaluate(evaluator, T_Boolean, A_symbol_305, self);
-			DomainType static_A_symbol_307 = valueFactory.typeOf(A_symbol_306);
-			LibraryUnaryOperation dynamic_A_symbol_307 = (LibraryUnaryOperation)static_A_symbol_307.lookupImplementation(standardLibrary, O_Boolean_not);
-			Value A_symbol_307 = dynamic_A_symbol_307.evaluate(evaluator, T_Boolean, A_symbol_306);
-			return A_symbol_307;
+			DomainType static_A_symbol_1 = valueFactory.typeOf(A_symbol_0);
+			LibraryBinaryOperation dynamic_A_symbol_1 = (LibraryBinaryOperation)static_A_symbol_1.lookupImplementation(standardLibrary, O_Collection_includes);
+			Value A_symbol_1 = dynamic_A_symbol_1.evaluate(evaluator, T_Boolean, A_symbol_0, self);
+			DomainType static_A_symbol_2 = valueFactory.typeOf(A_symbol_1);
+			LibraryUnaryOperation dynamic_A_symbol_2 = (LibraryUnaryOperation)static_A_symbol_2.lookupImplementation(standardLibrary, O_Boolean_not);
+			Value A_symbol_2 = dynamic_A_symbol_2.evaluate(evaluator, T_Boolean, A_symbol_1);
+			return A_symbol_2;
 		}
 	}
 
@@ -95,10 +95,10 @@ public class ElementBodies
 			final ExecutorOperation O_OclElement_oclContents = OCLstdlibTables.Operations._OclElement__oclContents;
 			
 			
-			DomainType static_A_symbol_308 = valueFactory.typeOf(self);
-			LibraryUnaryOperation dynamic_A_symbol_308 = (LibraryUnaryOperation)static_A_symbol_308.lookupImplementation(standardLibrary, O_OclElement_oclContents);
-			Value A_symbol_308 = dynamic_A_symbol_308.evaluate(evaluator, T_Set_OclElement_, self);
-			return A_symbol_308;
+			DomainType static_A_symbol_3 = valueFactory.typeOf(self);
+			LibraryUnaryOperation dynamic_A_symbol_3 = (LibraryUnaryOperation)static_A_symbol_3.lookupImplementation(standardLibrary, O_OclElement_oclContents);
+			Value A_symbol_3 = dynamic_A_symbol_3.evaluate(evaluator, T_Set_OclElement_, self);
+			return A_symbol_3;
 		}
 	}
 

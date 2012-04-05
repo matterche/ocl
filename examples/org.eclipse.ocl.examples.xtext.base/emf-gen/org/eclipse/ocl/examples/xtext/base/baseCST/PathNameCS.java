@@ -15,7 +15,7 @@
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 /**
@@ -69,7 +69,7 @@ public interface PathNameCS extends ElementCS, Pivotable
 	 * @model resolveProxies="false" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
-	NamedElement getElement();
+	Element getElement();
 
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' reference.

@@ -697,12 +697,7 @@ public class AbstractCompleteOCLSemanticSequencer extends AbstractSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         ownedExpression+=PrefixedExpCS 
-	 *         ownedOperator+=BinaryOperatorCS 
-	 *         (ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)* 
-	 *         ownedExpression+=PrefixedExpOrLetExpCS
-	 *     )
+	 *     ((ownedExpression+=PrefixedExpCS ownedOperator+=BinaryOperatorCS)+ ownedExpression+=PrefixedExpOrLetExpCS)
 	 */
 	protected void sequence_ExpCS(EObject context, InfixExpCS semanticObject) {
 		superSequencer.createSequence(context, semanticObject);

@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.ocl.examples.xtext.completeocl.ui.internal.CompleteOCLActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class CompleteOCLExecutableExtensionFactory extends AbstractGuiceAwareExe
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.ocl.examples.xtext.completeocl.ui.internal.CompleteOCLActivator.getInstance().getBundle();
+		return CompleteOCLActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.ocl.examples.xtext.completeocl.ui.internal.CompleteOCLActivator.getInstance().getInjector("org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL");
+		return CompleteOCLActivator.getInstance().getInjector(CompleteOCLActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_COMPLETEOCL_COMPLETEOCL);
 	}
 	
 }

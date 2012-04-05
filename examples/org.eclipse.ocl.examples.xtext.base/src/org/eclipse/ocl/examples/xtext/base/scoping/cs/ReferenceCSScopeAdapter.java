@@ -19,33 +19,21 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class ReferenceCSScopeAdapter extends ElementCSScopeAdapter
 {
 	public static final ReferenceCSScopeAdapter INSTANCE = new ReferenceCSScopeAdapter();
-
-	public void addAllReferences(EnvironmentView environmentView, Type csClass) {
-		int oldSize = environmentView.getSize();
-		environmentView.addNamedElements(csClass.getOwnedAttribute());
-		int newSize = environmentView.getSize();
-		if ((newSize <= oldSize) || (environmentView.getName() == null)) {
-			for (Type csTypeRef : csClass.getSuperClass()) {
-				if (csTypeRef instanceof TypedTypeRefCS) {
-					Element type = ((TypedTypeRefCS)csTypeRef).getPivot();
-					if (type instanceof Type) {
-						addAllReferences(environmentView, (Type)type);
-					}
-				}
-			}
-		}
-	}
 
 	@Override
 	public ScopeView computeLookup(EObject target, EnvironmentView environmentView, ScopeView scopeView) {
@@ -56,7 +44,10 @@ public class ReferenceCSScopeAdapter extends ElementCSScopeAdapter
 			if (typeRef instanceof TypedTypeRefCS) {
 				Element type = ((TypedTypeRefCS)typeRef).getPivot();
 				if (type instanceof Type) {
-					addAllReferences(environmentView, (Type)type);
+					ScopeAdapter typeScope = ElementUtil.getScopeAdapter(type);
+					BaseScopeView baseScopeView = new BaseScopeView(environmentView.getMetaModelManager(), type, typeScope, target, PivotPackage.Literals.PROPERTY__OPPOSITE, null);
+					environmentView.computeLookups(baseScopeView);
+					return null;
 				}
 			}
 			return null;

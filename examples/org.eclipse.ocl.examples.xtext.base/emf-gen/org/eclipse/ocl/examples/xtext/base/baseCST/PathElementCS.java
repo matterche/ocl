@@ -15,7 +15,7 @@
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 /**
@@ -75,12 +75,12 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
-	 * @see #setElement(NamedElement)
+	 * @see #setElement(Element)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathElementCS_Element()
 	 * @model required="true"
 	 * @generated
 	 */
-	NamedElement getElement();
+	Element getElement();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS#getElement <em>Element</em>}' reference.
@@ -90,7 +90,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * @see #getElement()
 	 * @generated
 	 */
-	void setElement(NamedElement value);
+	void setElement(Element value);
 
 	/**
 	 * Returns the value of the '<em><b>Element Type</b></em>' reference.
@@ -123,7 +123,7 @@ public interface PathElementCS extends ElementCS, Pivotable
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	NamedElement basicGetElement();
+	Element basicGetElement();
 
 	boolean isType();
 

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -38,7 +39,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#isAtPre <em>At Pre</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.NameExpCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -169,7 +169,8 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	 */
 	public NamedElement getNamedElement()
 	{
-		return getElement();
+		Element element = getPathName().getElement();
+		return element instanceof NamedElement ? (NamedElement)element : null;
 	}
 
 	/**
@@ -212,8 +213,6 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 				return getPathName();
 			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
 				return isAtPre();
-			case EssentialOCLCSTPackage.NAME_EXP_CS__ELEMENT:
-				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -272,8 +271,6 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 				return pathName != null;
 			case EssentialOCLCSTPackage.NAME_EXP_CS__AT_PRE:
 				return atPre != AT_PRE_EDEFAULT;
-			case EssentialOCLCSTPackage.NAME_EXP_CS__ELEMENT:
-				return getElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -299,12 +296,12 @@ public class NameExpCSImpl extends ExpCSImpl implements NameExpCS {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
-	 */
-	public NamedElement getElement()
+	 *
+	public Element getElement()
 	{
 		if (pathName == null) {
 			return null;
 		}
 		return pathName.getElement();
-	}
+	} */
 } //NamedElementRefCSImpl

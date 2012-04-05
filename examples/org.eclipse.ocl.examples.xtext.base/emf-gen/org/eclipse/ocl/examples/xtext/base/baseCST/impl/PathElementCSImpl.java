@@ -23,12 +23,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
@@ -57,7 +56,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * @generated
 	 * @ordered
 	 */
-	protected NamedElement element;
+	protected Element element;
 
 	/**
 	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' reference.
@@ -140,12 +139,12 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement getElementGen()
+	public Element getElementGen()
 	{
 		if (element != null && ((EObject)element).eIsProxy())
 		{
 			InternalEObject oldElement = (InternalEObject)element;
-			element = (NamedElement)eResolveProxy(oldElement);
+			element = (Element)eResolveProxy(oldElement);
 			if (element != oldElement)
 			{
 				if (eNotificationRequired())
@@ -160,7 +159,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedElement basicGetElement()
+	public Element basicGetElement()
 	{
 		return element;
 	}
@@ -170,9 +169,9 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElement(NamedElement newElement)
+	public void setElement(Element newElement)
 	{
-		NamedElement oldElement = element;
+		Element oldElement = element;
 		element = newElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT, oldElement, element));
@@ -286,7 +285,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 				setPathName((PathNameCS)newValue);
 				return;
 			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
-				setElement((NamedElement)newValue);
+				setElement((Element)newValue);
 				return;
 			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)newValue);
@@ -309,7 +308,7 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 				setPathName((PathNameCS)null);
 				return;
 			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT:
-				setElement((NamedElement)null);
+				setElement((Element)null);
 				return;
 			case BaseCSTPackage.PATH_ELEMENT_CS__ELEMENT_TYPE:
 				setElementType((EClassifier)null);
@@ -343,9 +342,9 @@ public class PathElementCSImpl extends ElementCSImpl implements PathElementCS
 		return visitor.visitPathElementCS(this);
 	}
 	
-	public NamedElement getElement()
+	public Element getElement()
 	{
-		NamedElement element = getElementGen();
+		Element element = getElementGen();
 		if ((element == null) || ((EObject)element).eIsProxy())
 		{
 			MetaModelManager metaModelManager = ElementUtil.findMetaModelManager(this);

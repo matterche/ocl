@@ -17,7 +17,6 @@
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 
 
@@ -31,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#isAtPre <em>At Pre</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,19 +91,4 @@ public interface NameExpCS extends NamedExpCS {
 	 * @generated
 	 */
 	void setAtPre(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' reference.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNameExpCS_Element()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
-	 * @generated
-	 */
-	NamedElement getElement();
 } // NamedElementRefCS

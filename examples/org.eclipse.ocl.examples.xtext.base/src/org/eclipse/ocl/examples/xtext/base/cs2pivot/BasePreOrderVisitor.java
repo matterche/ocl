@@ -470,7 +470,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
-	public Continuation<?> visitModelElementRefCS(ModelElementRefCS object) {
+	public Continuation<?> visitModelElementRefCS(ModelElementRefCS csModelElementRef) {
+		CS2Pivot.setElementType(csModelElementRef.getPathName(), PivotPackage.Literals.ELEMENT, csModelElementRef);
 		return null;
 	}
 

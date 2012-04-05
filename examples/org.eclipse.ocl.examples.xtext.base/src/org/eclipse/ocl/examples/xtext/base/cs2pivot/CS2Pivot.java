@@ -19,7 +19,6 @@ package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +34,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
@@ -156,16 +154,16 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
 	}
 
-	public static NamedElement basicGetType(TypedTypeRefCS csTypedRef) {
+	public static Element basicGetType(TypedTypeRefCS csTypedRef) {
 		List<PathElementCS> path = csTypedRef.getPathName().getPath();
 		int iLast = path.size()-1;
 		for (int i = 0; i < iLast; i++) {
-			NamedElement element = path.get(i).basicGetElement();
+			Element element = path.get(i).basicGetElement();
 			if (element == null) {
 				return null;
 			}
 		}
-		NamedElement element = path.get(iLast).basicGetElement();
+		Element element = path.get(iLast).basicGetElement();
 		if (element == null) {
 			return null;
 		}

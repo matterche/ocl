@@ -220,11 +220,7 @@ ModelElementCS returns base::ModelElementCS:
 ;
 
 ModelElementRefCS returns base::ModelElementRefCS:
-	'reference' (
-		((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
-		 element=[pivot::Element|UnreservedName])
-		| element=[pivot::Element|UnrestrictedName])
-	) ';'
+	'reference' pathName=PathNameCS ';'
 ;
 
 OperationCS returns base::OperationCS:

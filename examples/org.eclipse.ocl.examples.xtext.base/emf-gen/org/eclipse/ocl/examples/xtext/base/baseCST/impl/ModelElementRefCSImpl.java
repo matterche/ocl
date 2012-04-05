@@ -16,25 +16,15 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
-
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -44,7 +34,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementRefCSImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementRefCSImpl#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementRefCSImpl#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
@@ -54,24 +44,14 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElementRefCS
 {
 	/**
-	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
+	 * The cached value of the '{@link #getPathName() <em>Path Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNamespace()
+	 * @see #getPathName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Namespace> namespace;
-
-	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element element;
+	protected PathNameCS pathName;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -99,13 +79,9 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Namespace> getNamespace()
+	public PathNameCS getPathName()
 	{
-		if (namespace == null)
-		{
-			namespace = new EObjectResolvingEList<Namespace>(Namespace.class, this, BaseCSTPackage.MODEL_ELEMENT_REF_CS__NAMESPACE);
-		}
-		return namespace;
+		return pathName;
 	}
 
 	/**
@@ -113,42 +89,53 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getElement()
+	public NotificationChain basicSetPathName(PathNameCS newPathName, NotificationChain msgs)
 	{
-		if (element != null && ((EObject)element).eIsProxy())
-		{
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (Element)eResolveProxy(oldElement);
-			if (element != oldElement)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT, oldElement, element));
-			}
-		}
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element basicGetElement()
-	{
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElement(Element newElement)
-	{
-		Element oldElement = element;
-		element = newElement;
+		PathNameCS oldPathName = pathName;
+		pathName = newPathName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT, oldElement, element));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, oldPathName, newPathName);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPathName(PathNameCS newPathName)
+	{
+		if (newPathName != pathName)
+		{
+			NotificationChain msgs = null;
+			if (pathName != null)
+				msgs = ((InternalEObject)pathName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, null, msgs);
+			if (newPathName != null)
+				msgs = ((InternalEObject)newPathName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, null, msgs);
+			msgs = basicSetPathName(newPathName, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME, newPathName, newPathName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
+				return basicSetPathName(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -161,11 +148,10 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__NAMESPACE:
-				return getNamespace();
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
+				return getPathName();
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
+				return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -175,18 +161,13 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__NAMESPACE:
-				getNamespace().clear();
-				getNamespace().addAll((Collection<? extends Namespace>)newValue);
-				return;
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				setElement((Element)newValue);
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
+				setPathName((PathNameCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,11 +183,8 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__NAMESPACE:
-				getNamespace().clear();
-				return;
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				setElement((Element)null);
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
+				setPathName((PathNameCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -222,10 +200,10 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	{
 		switch (featureID)
 		{
-			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__NAMESPACE:
-				return namespace != null && !namespace.isEmpty();
+			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__PATH_NAME:
+				return pathName != null;
 			case BaseCSTPackage.MODEL_ELEMENT_REF_CS__ELEMENT:
-				return element != null;
+				return getElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -233,5 +211,18 @@ public class ModelElementRefCSImpl extends ElementRefCSImpl implements ModelElem
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return visitor.visitModelElementRefCS(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Element getElement()
+	{
+		if (pathName == null) {
+			return null;
+		}
+		return pathName.getElement();
 	}
 } //ModelElementRefCSImpl

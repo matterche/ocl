@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -313,7 +313,7 @@ public class CompleteOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
 		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement);
-		NamedElement modelElement = csElement.getPathName().getElement();
+		Element modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
 		}

@@ -1232,13 +1232,7 @@
               <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST#//InfixExpCS"/>
             </type>
           </elements>
-          <elements xsi:type="xtext:Assignment" feature="ownedExpression" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.65"/>
-          </elements>
-          <elements xsi:type="xtext:Assignment" feature="ownedOperator" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.62"/>
-          </elements>
-          <elements xsi:type="xtext:Group" cardinality="*">
+          <elements xsi:type="xtext:Group" cardinality="+">
             <elements xsi:type="xtext:Assignment" feature="ownedExpression" operator="+=">
               <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.65"/>
             </elements>

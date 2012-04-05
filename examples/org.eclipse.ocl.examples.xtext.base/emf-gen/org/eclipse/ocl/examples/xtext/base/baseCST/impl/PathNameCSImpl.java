@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
@@ -238,7 +237,7 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public NamedElement getElement()
+	public Element getElement()
 	{
 		if (path == null) {
 			return null;
@@ -248,12 +247,12 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			return null;
 		}
 		for (int i = 0; i < iMax-1; i++) {
-			NamedElement element = path.get(i).getElement();
+			Element element = path.get(i).getElement();
 			if (element == null) {
 				return null;
 			}
 		}
-		NamedElement element = path.get(iMax-1).getElement();
+		Element element = path.get(iMax-1).getElement();
 		if (element == null) {
 			return null;
 		}

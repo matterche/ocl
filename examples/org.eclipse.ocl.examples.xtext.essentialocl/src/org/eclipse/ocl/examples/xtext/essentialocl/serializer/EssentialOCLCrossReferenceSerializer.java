@@ -22,12 +22,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
 import org.eclipse.ocl.examples.xtext.base.scope.QualifiedPath;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -74,28 +76,44 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			PathElementCS pathElement = (PathElementCS)semanticObject;
 			PathNameCS pathName = pathElement.getPathName();
 			int index = pathName.getPath().indexOf(pathElement);
-			NamedElement namedElement = pathElement.getElement();
-			String name = namedElement.getName();
-			if ((index == 0) && (namedElement instanceof org.eclipse.ocl.examples.pivot.Package)) {
-				EObject root = EcoreUtil.getRootContainer(semanticObject);
-				Resource csResource = root.eResource();
-				Resource asResource = null;
-				if (root instanceof RootPackageCS) {
-					EObject root2 = ((RootPackageCS)root).getPivot();
-					asResource = EcoreUtil.getRootContainer(root2).eResource();
+			Element element = pathElement.getElement();
+			NamedElement namedElement = ElementUtil.isPathable(element);
+			if (namedElement != null) {
+				String name = namedElement.getName();
+				if ((index == 0) && (namedElement instanceof org.eclipse.ocl.examples.pivot.Package)) {
+					EObject root = EcoreUtil.getRootContainer(semanticObject);
+					Resource csResource = root.eResource();
+					Resource asResource = null;
+					if (root instanceof RootPackageCS) {
+						EObject root2 = ((RootPackageCS)root).getPivot();
+						asResource = EcoreUtil.getRootContainer(root2).eResource();
+					}
+					Resource elementResource = namedElement.eResource();
+					if ((elementResource != csResource) && (elementResource != asResource)) {
+						AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);
+						if (adapter != null) {
+							String alias = adapter.getAlias(namedElement);
+							if (alias != null) {
+								name = alias;
+							}
+						}	
+					}
 				}
-				Resource elementResource = namedElement.eResource();
-				if ((elementResource != csResource) && (elementResource != asResource)) {
-					AliasAnalysis adapter = AliasAnalysis.getAdapter(csResource);
-					if (adapter != null) {
-						String alias = adapter.getAlias(namedElement);
-						if (alias != null) {
-							name = alias;
-						}
-					}	
-				}
+				return valueConverter.toString(name, ruleName);
 			}
-			return valueConverter.toString(name, ruleName);
+			else {
+				URI uri;
+				EObject eTarget = element.getETarget();
+				if (eTarget != null) {
+					uri = EcoreUtil.getURI(eTarget);
+				}
+				else {
+					uri = EcoreUtil.getURI(element);
+				}
+				URI baseURI = semanticObject.eResource().getURI();
+				URI deresolvedURI = uri.deresolve(baseURI, true, true, false);
+				return valueConverter.toString(deresolvedURI.toString(), ruleName);
+			}
 		}
 		boolean foundOne = false;
 		List<ISerializationDiagnostic> recordedErrros = null;

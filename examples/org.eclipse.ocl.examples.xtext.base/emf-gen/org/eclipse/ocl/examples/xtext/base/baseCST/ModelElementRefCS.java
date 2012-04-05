@@ -16,10 +16,7 @@
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Namespace;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.Namespace;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getPathName <em>Path Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
@@ -41,20 +38,30 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 public interface ModelElementRefCS extends ElementRefCS
 {
 	/**
-	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.
+	 * Returns the value of the '<em><b>Path Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Namespace</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Path Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Namespace</em>' reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementRefCS_Namespace()
-	 * @model
+	 * @return the value of the '<em>Path Name</em>' containment reference.
+	 * @see #setPathName(PathNameCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementRefCS_PathName()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Namespace> getNamespace();
+	PathNameCS getPathName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getPathName <em>Path Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Path Name</em>' containment reference.
+	 * @see #getPathName()
+	 * @generated
+	 */
+	void setPathName(PathNameCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' reference.
@@ -65,21 +72,10 @@ public interface ModelElementRefCS extends ElementRefCS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
-	 * @see #setElement(Element)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementRefCS_Element()
-	 * @model
+	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Element getElement();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementRefCS#getElement <em>Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Element</em>' reference.
-	 * @see #getElement()
-	 * @generated
-	 */
-	void setElement(Element value);
 
 } // ModelElementRefCS

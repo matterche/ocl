@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class OCLinEcoreExecutableExtensionFactory extends AbstractGuiceAwareExec
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator.getInstance().getBundle();
+		return OCLinEcoreActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator.getInstance().getInjector("org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore");
+		return OCLinEcoreActivator.getInstance().getInjector(OCLinEcoreActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLINECORE_OCLINECORE);
 	}
 	
 }

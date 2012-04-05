@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -165,7 +165,7 @@ public class BaseCS2Pivot extends CS2Pivot
 			List<PathElementCS> path = pathName.getPath();
 			int index = path.indexOf(pathElement);
 			if (index > 0) {
-				NamedElement pathScope = path.get(index-1).getElement();
+				Element pathScope = path.get(index-1).getElement();
 				if ((pathScope == null) || pathScope.eIsProxy()) {
 					return null;		// Suppress message for child when parent has error
 				}

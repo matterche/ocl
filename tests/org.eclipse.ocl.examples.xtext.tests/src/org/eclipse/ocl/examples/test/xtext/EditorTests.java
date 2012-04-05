@@ -28,8 +28,11 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnosticConverter;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotResourceValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.ui.CompleteOCLUiModule;
@@ -133,6 +136,11 @@ public class EditorTests extends XtextTestCase
 		{
 			public Object exec(XtextResource resource) throws Exception {
 				assertNoResourceErrors("Loaded CS", resource);
+				CS2Pivot cs2Pivot = PivotUtil.getAdapter(CS2Pivot.class, resource);
+				if (cs2Pivot != null) {
+					Resource pivotResource = cs2Pivot.getPivotResource(resource);
+					assertNoResourceErrors("Loaded pivot", pivotResource);
+				}
 				return null;
 			}
 		});
@@ -186,5 +194,6 @@ public class EditorTests extends XtextTestCase
 		URI uri = URI.createPlatformPluginURI(PivotConstants.PIVOT_ECORE, true);
 		String documentText = doTestEditor(OCLinEcoreUiModule.EDITOR_ID, uri);
 		assertTrue(documentText.contains("abstract class Visitable : 'org.eclipse.ocl.examples.pivot.util.Visitable' { interface };"));
+		assertTrue(documentText.contains("reference Type::ownedAttribute"));							// Bug 363141 EAnnotation reference
 	}	
 }

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -215,10 +214,10 @@ public abstract class PathNameDeclCSImpl extends ModelElementCSImpl implements P
 		if (pathName == null) {
 			return Collections.<Element>emptyList();
 		}
-		NamedElement pNamedElement = pathName.getElement();
-		if (pNamedElement == null) {
+		Element pElement = pathName.getElement();
+		if (pElement == null) {
 			return Collections.<Element>emptyList();
 		}
-		return Collections.<Element>singletonList(pNamedElement);
+		return Collections.<Element>singletonList(pElement);
 	}
 } //NamedElementDeclCSImpl

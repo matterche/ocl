@@ -22,6 +22,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementsMarkupElementParserRuleCall_0 = (RuleCall)cElementsAssignment.eContents().get(0);
 		
 		//Markup:
+		//
 		//	elements+=MarkupElement*;
 		public ParserRule getRule() { return rule; }
 
@@ -47,6 +48,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOclTextKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
 		
 		//MarkupKeyword:
+		//
 		//	"b" | "e" | "bullet" | "figure" | "figureRef" | "footnote" | "heading" | "oclCode" | "oclEval" | "oclText";
 		public ParserRule getRule() { return rule; }
 
@@ -101,13 +103,20 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTextElementParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		
 		//MarkupElement:
+		//
 		//	FontElement | NewLineElement | BulletElement | FigureElement | FigureRefElement | FootnoteElement | HeadingElement |
+		//
 		//	NullElement | OclCodeElement | OclEvalElement | OclTextElement | // Last to give everything else a try first
+		//
+		//
 		//	TextElement;
 		public ParserRule getRule() { return rule; }
 
 		//FontElement | NewLineElement | BulletElement | FigureElement | FigureRefElement | FootnoteElement | HeadingElement |
+		//
 		//NullElement | OclCodeElement | OclEvalElement | OclTextElement | // Last to give everything else a try first
+		//
+		//
 		//TextElement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -145,7 +154,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOclTextElementParserRuleCall_10() { return cOclTextElementParserRuleCall_10; }
 
 		//// Last to give everything else a try first
-		//TextElement
+		// TextElement
 		public RuleCall getTextElementParserRuleCall_11() { return cTextElementParserRuleCall_11; }
 	}
 
@@ -164,6 +173,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//BulletElement:
+		//
 		//	{BulletElement} "bullet" (":" level=INT)? "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -214,6 +224,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//FontElement:
+		//
 		//	font=("b" | "e") "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -271,6 +282,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//FigureElement:
+		//
 		//	"figure" ("#" def=ID)? "[" src=STRING ("," alt=STRING ("," requiredWidth=INT ("," requiredHeight=INT)?)?)? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -352,6 +364,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//FigureRefElement:
+		//
 		//	"figureRef" "[" ref=[FigureElement] "]";
 		public ParserRule getRule() { return rule; }
 
@@ -388,6 +401,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//FootnoteElement:
+		//
 		//	{FootnoteElement} "footnote" "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -428,6 +442,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//HeadingElement:
+		//
 		//	{HeadingElement} "heading" (":" level=INT)? "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -471,6 +486,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTextNLTerminalRuleCall_0 = (RuleCall)cTextAssignment.eContents().get(0);
 		
 		//NewLineElement:
+		//
 		//	text=NL;
 		public ParserRule getRule() { return rule; }
 
@@ -491,6 +507,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//NullElement:
+		//
 		//	{NullElement} "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -524,6 +541,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//OclCodeElement:
+		//
 		//	{OclCodeElement} "oclCode" "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -560,6 +578,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//OclEvalElement:
+		//
 		//	{OclEvalElement} "oclEval" "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -596,6 +615,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//OclTextElement:
+		//
 		//	{OclTextElement} "oclText" "[" elements+=MarkupElement* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -637,6 +657,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTextMarkupKeywordParserRuleCall_1_0 = (RuleCall)cTextAssignment_1.eContents().get(0);
 		
 		//TextElement:
+		//
 		//	text+=(ID | WORD | INT | WS | ":" | "#" | ",")+ | text+=MarkupKeyword;
 		public ParserRule getRule() { return rule; }
 
@@ -720,6 +741,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Markup:
+	//
 	//	elements+=MarkupElement*;
 	public MarkupElements getMarkupAccess() {
 		return (pMarkup != null) ? pMarkup : (pMarkup = new MarkupElements());
@@ -730,78 +752,91 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal fragment NUMBER:
+	//
 	//	"0".."9";
 	public TerminalRule getNUMBERRule() {
 		return (tNUMBER != null) ? tNUMBER : (tNUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER"));
 	} 
 
 	//terminal fragment LETTER:
+	//
 	//	"a".."z" | "A".."Z" | "_";
 	public TerminalRule getLETTERRule() {
 		return (tLETTER != null) ? tLETTER : (tLETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LETTER"));
 	} 
 
 	//terminal fragment ESCAPED:
+	//
 	//	"\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" | "<" | ">" | "[" | "]");
 	public TerminalRule getESCAPEDRule() {
 		return (tESCAPED != null) ? tESCAPED : (tESCAPED = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED"));
 	} 
 
 	//terminal fragment VERTICAL_WS:
+	//
 	//	"\n" | "\r";
 	public TerminalRule getVERTICAL_WSRule() {
 		return (tVERTICAL_WS != null) ? tVERTICAL_WS : (tVERTICAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "VERTICAL_WS"));
 	} 
 
 	//terminal fragment HORIZONTAL_WS:
+	//
 	//	" " | "\t";
 	public TerminalRule getHORIZONTAL_WSRule() {
 		return (tHORIZONTAL_WS != null) ? tHORIZONTAL_WS : (tHORIZONTAL_WS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HORIZONTAL_WS"));
 	} 
 
 	//terminal INT:
+	//
 	//	NUMBER+;
 	public TerminalRule getINTRule() {
 		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
 
 	//terminal STRING:
+	//
 	//	"\"" (ESCAPED | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
 
 	//terminal ID:
+	//
 	//	LETTER (LETTER | NUMBER)*;
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal WORD:
+	//
 	//	(ESCAPED | !("\\" | "\"" | "[" | "]" | ":" | "#" | "," | HORIZONTAL_WS | VERTICAL_WS))+;
 	public TerminalRule getWORDRule() {
 		return (tWORD != null) ? tWORD : (tWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WORD"));
 	} 
 
 	//terminal NL:
+	//
 	//	(HORIZONTAL_WS* VERTICAL_WS)+;
 	public TerminalRule getNLRule() {
 		return (tNL != null) ? tNL : (tNL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NL"));
 	} 
 
 	//terminal WS:
+	//
 	//	HORIZONTAL_WS+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal ANY_OTHER:
+	//
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
 	} 
 
 	//MarkupKeyword:
+	//
 	//	"b" | "e" | "bullet" | "figure" | "figureRef" | "footnote" | "heading" | "oclCode" | "oclEval" | "oclText";
 	public MarkupKeywordElements getMarkupKeywordAccess() {
 		return (pMarkupKeyword != null) ? pMarkupKeyword : (pMarkupKeyword = new MarkupKeywordElements());
@@ -812,8 +847,12 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MarkupElement:
+	//
 	//	FontElement | NewLineElement | BulletElement | FigureElement | FigureRefElement | FootnoteElement | HeadingElement |
+	//
 	//	NullElement | OclCodeElement | OclEvalElement | OclTextElement | // Last to give everything else a try first
+	//
+	//
 	//	TextElement;
 	public MarkupElementElements getMarkupElementAccess() {
 		return (pMarkupElement != null) ? pMarkupElement : (pMarkupElement = new MarkupElementElements());
@@ -824,6 +863,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BulletElement:
+	//
 	//	{BulletElement} "bullet" (":" level=INT)? "[" elements+=MarkupElement* "]";
 	public BulletElementElements getBulletElementAccess() {
 		return (pBulletElement != null) ? pBulletElement : (pBulletElement = new BulletElementElements());
@@ -834,6 +874,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FontElement:
+	//
 	//	font=("b" | "e") "[" elements+=MarkupElement* "]";
 	public FontElementElements getFontElementAccess() {
 		return (pFontElement != null) ? pFontElement : (pFontElement = new FontElementElements());
@@ -844,6 +885,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FigureElement:
+	//
 	//	"figure" ("#" def=ID)? "[" src=STRING ("," alt=STRING ("," requiredWidth=INT ("," requiredHeight=INT)?)?)? "]";
 	public FigureElementElements getFigureElementAccess() {
 		return (pFigureElement != null) ? pFigureElement : (pFigureElement = new FigureElementElements());
@@ -854,6 +896,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FigureRefElement:
+	//
 	//	"figureRef" "[" ref=[FigureElement] "]";
 	public FigureRefElementElements getFigureRefElementAccess() {
 		return (pFigureRefElement != null) ? pFigureRefElement : (pFigureRefElement = new FigureRefElementElements());
@@ -864,6 +907,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FootnoteElement:
+	//
 	//	{FootnoteElement} "footnote" "[" elements+=MarkupElement* "]";
 	public FootnoteElementElements getFootnoteElementAccess() {
 		return (pFootnoteElement != null) ? pFootnoteElement : (pFootnoteElement = new FootnoteElementElements());
@@ -874,6 +918,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//HeadingElement:
+	//
 	//	{HeadingElement} "heading" (":" level=INT)? "[" elements+=MarkupElement* "]";
 	public HeadingElementElements getHeadingElementAccess() {
 		return (pHeadingElement != null) ? pHeadingElement : (pHeadingElement = new HeadingElementElements());
@@ -884,6 +929,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NewLineElement:
+	//
 	//	text=NL;
 	public NewLineElementElements getNewLineElementAccess() {
 		return (pNewLineElement != null) ? pNewLineElement : (pNewLineElement = new NewLineElementElements());
@@ -894,6 +940,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NullElement:
+	//
 	//	{NullElement} "[" elements+=MarkupElement* "]";
 	public NullElementElements getNullElementAccess() {
 		return (pNullElement != null) ? pNullElement : (pNullElement = new NullElementElements());
@@ -904,6 +951,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OclCodeElement:
+	//
 	//	{OclCodeElement} "oclCode" "[" elements+=MarkupElement* "]";
 	public OclCodeElementElements getOclCodeElementAccess() {
 		return (pOclCodeElement != null) ? pOclCodeElement : (pOclCodeElement = new OclCodeElementElements());
@@ -914,6 +962,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OclEvalElement:
+	//
 	//	{OclEvalElement} "oclEval" "[" elements+=MarkupElement* "]";
 	public OclEvalElementElements getOclEvalElementAccess() {
 		return (pOclEvalElement != null) ? pOclEvalElement : (pOclEvalElement = new OclEvalElementElements());
@@ -924,6 +973,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OclTextElement:
+	//
 	//	{OclTextElement} "oclText" "[" elements+=MarkupElement* "]";
 	public OclTextElementElements getOclTextElementAccess() {
 		return (pOclTextElement != null) ? pOclTextElement : (pOclTextElement = new OclTextElementElements());
@@ -934,6 +984,7 @@ public class MarkupGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TextElement:
+	//
 	//	text+=(ID | WORD | INT | WS | ":" | "#" | ",")+ | text+=MarkupKeyword;
 	public TextElementElements getTextElementAccess() {
 		return (pTextElement != null) ? pTextElement : (pTextElement = new TextElementElements());

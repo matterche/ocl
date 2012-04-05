@@ -18,8 +18,8 @@ package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -50,10 +50,10 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PivotTables;
 import org.eclipse.ocl.examples.pivot.bodies.ElementBodies;
 import org.eclipse.ocl.examples.pivot.util.PivotValidator;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,6 +130,7 @@ public abstract class ElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Element> allOwnedElements()
 	{
 		/*
@@ -145,7 +146,6 @@ public abstract class ElementImpl
 			
 			final DomainType returnType = T_Set_OclElement_;
 			final Value result = ElementBodies._allOwnedElements_body_.INSTANCE.evaluate(evaluator, returnType, self);
-			@SuppressWarnings("unchecked")
 			EList<Element> ecoreResult = (EList<Element>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {

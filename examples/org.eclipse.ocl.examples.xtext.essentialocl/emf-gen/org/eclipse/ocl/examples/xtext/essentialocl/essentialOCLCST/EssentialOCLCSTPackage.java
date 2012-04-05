@@ -1117,22 +1117,13 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAME_EXP_CS__AT_PRE = NAMED_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__ELEMENT = NAMED_EXP_CS_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Name Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 3;
+	int NAME_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ConstructorExpCSImpl <em>Constructor Exp CS</em>}' class.
@@ -1215,15 +1206,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRUCTOR_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRUCTOR_EXP_CS__ELEMENT = NAME_EXP_CS__ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Parts</b></em>' containment reference list.
@@ -1650,15 +1632,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INDEX_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_EXP_CS__ELEMENT = NAME_EXP_CS__ELEMENT;
-
-	/**
 	 * The feature id for the '<em><b>First Indexes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1910,15 +1883,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVOCATION_EXP_CS__AT_PRE = NAME_EXP_CS__AT_PRE;
-
-	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXP_CS__ELEMENT = NAME_EXP_CS__ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
@@ -3702,17 +3666,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EAttribute getNameExpCS_AtPre();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement <em>Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Element</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS#getElement()
-	 * @see #getNameExpCS()
-	 * @generated
-	 */
-	EReference getNameExpCS_Element();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS <em>Named Exp CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4576,14 +4529,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAME_EXP_CS__AT_PRE = eINSTANCE.getNameExpCS_AtPre();
-
-		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NAME_EXP_CS__ELEMENT = eINSTANCE.getNameExpCS_Element();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS <em>Named Exp CS</em>}' class.

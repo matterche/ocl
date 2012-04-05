@@ -17,10 +17,10 @@ package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -42,7 +42,7 @@ public class PathNameCSScopeAdapter extends ElementCSScopeAdapter
 		}
 		else {									// Subsequent elements in previous scope
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			NamedElement scopeTarget = path.get(index-1).getElement();
+			Element scopeTarget = path.get(index-1).getElement();
 			if ((scopeTarget != null) && !scopeTarget.eIsProxy()) {
 				ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(scopeTarget);
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, null, null);

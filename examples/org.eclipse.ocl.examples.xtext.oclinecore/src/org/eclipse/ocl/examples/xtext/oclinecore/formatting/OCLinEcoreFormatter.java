@@ -169,8 +169,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 	    	ModelElementRefCSElements a = f.getModelElementRefCSAccess();
-			c.setNoSpace().around(a.getColonColonKeyword_1_0_1());	
-			c.setNoSpace().around(a.getColonColonKeyword_1_0_2_1());	
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_2());
 	    }
 	    {

@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class OCLstdlibExecutableExtensionFactory extends AbstractGuiceAwareExecu
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator.getInstance().getBundle();
+		return OCLstdlibActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.ocl.examples.xtext.oclstdlib.ui.internal.OCLstdlibActivator.getInstance().getInjector("org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib");
+		return OCLstdlibActivator.getInstance().getInjector(OCLstdlibActivator.ORG_ECLIPSE_OCL_EXAMPLES_XTEXT_OCLSTDLIB_OCLSTDLIB);
 	}
 	
 }

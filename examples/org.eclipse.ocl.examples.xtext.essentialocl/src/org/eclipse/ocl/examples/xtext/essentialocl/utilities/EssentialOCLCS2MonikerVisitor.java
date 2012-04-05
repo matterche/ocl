@@ -23,8 +23,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -185,7 +185,7 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	protected void appendPathNameCS(PathNameCS pathName) {
-		NamedElement element = null;
+		Element element = null;
 		if (pathName != null) {
 			List<PathElementCS> path = pathName.getPath();
 			if (path != null) {
@@ -193,7 +193,7 @@ public class EssentialOCLCS2MonikerVisitor
 				if (iMax > 0) {
 					boolean scopeIsResolved = true;
 					for (int i = 0; i < iMax-1; i++) {
-						NamedElement scopeElement = path.get(i).basicGetElement();
+						Element scopeElement = path.get(i).basicGetElement();
 						if ((scopeElement == null) || scopeElement.eIsProxy()) {
 							scopeIsResolved = false;
 							break;
