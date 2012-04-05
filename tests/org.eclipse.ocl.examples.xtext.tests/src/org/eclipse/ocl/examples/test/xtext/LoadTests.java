@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +34,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.utilities.ProjectMap;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
+import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -52,6 +55,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class LoadTests extends XtextTestCase
 {	
 	protected MetaModelManager metaModelManager = null;
+	CS2PivotResourceAdapter cs2PivotAdapter = null;
 
 	public void checkMonikers(Resource resource) {
 		Map<String, NamedElementCS> sigMap = new HashMap<String, NamedElementCS>();
@@ -242,34 +246,23 @@ public class LoadTests extends XtextTestCase
 		URI cstURI = getProjectFileURI(cstName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
-//		MetaModelManager metaModelManager = new MetaModelManager();
-//		MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
-		CS2PivotResourceAdapter adapter = null;
-		try {
-			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
-			assertNoResourceErrors("Load failed", xtextResource);
-			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-			Resource pivotResource = adapter.getPivotResource(xtextResource);
-			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
-	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
-			xtextResource.setURI(savedURI);
-			xtextResource.save(null);
-			xtextResource.setURI(inputURI);
-			assertNoResourceErrors("Save failed", xtextResource);
-			saveAsXMI(xtextResource, cstURI);
-			pivotResource.setURI(pivotURI);
-			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-			pivotResource.save(null);
-			return pivotResource;
-		}
-		finally {
-			if (adapter != null) {
-				adapter.dispose();
-				adapter.getMetaModelManager().dispose();
-			}
-		}
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
+		assertNoResourceErrors("Load failed", xtextResource);
+		cs2PivotAdapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+		Resource pivotResource = cs2PivotAdapter.getPivotResource(xtextResource);
+		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+		xtextResource.setURI(savedURI);
+		xtextResource.save(null);
+		xtextResource.setURI(inputURI);
+		assertNoResourceErrors("Save failed", xtextResource);
+		saveAsXMI(xtextResource, cstURI);
+		pivotResource.setURI(pivotURI);
+		assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+		pivotResource.save(null);
+		return pivotResource;
 	}
 	
 	public Resource doLoad_Pivot(String stem, String extension) throws IOException {
@@ -334,6 +327,11 @@ public class LoadTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
+		if (cs2PivotAdapter != null) {
+			cs2PivotAdapter.dispose();
+			cs2PivotAdapter.getMetaModelManager().dispose();
+			cs2PivotAdapter = null;
+		}
 		MetaModelManagerResourceSetAdapter adapter = MetaModelManagerResourceSetAdapter.findAdapter(resourceSet);
 		if (adapter != null) {
 			MetaModelManager metaModelManager = adapter.getMetaModelManager();
@@ -481,6 +479,27 @@ public class LoadTests extends XtextTestCase
 	
 	public void testLoad_Bug323741_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Bug323741", "oclinecore");
+	}
+	
+	public void testLoad_Bug328480_oclinecore() throws IOException, InterruptedException {
+		doLoad_Concrete("Bug328480", "oclinecore");
+	}
+	
+	public void testLoad_Bug328485_oclinecore() throws IOException, InterruptedException {
+		Resource pivotResource = doLoad_Concrete("Bug328485", "oclinecore");
+		VariableDeclaration referredVariable = null;
+		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext();  ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof VariableExp) {
+				assertNull(referredVariable);
+				VariableExp variableExp = (VariableExp)eObject;
+				if ("name".equals(variableExp.getReferredVariable().getName())) {
+					referredVariable = variableExp.getReferredVariable();
+					assertEquals("Named", referredVariable.getType().getName());
+				}
+			}
+		}
+		assertNotNull(referredVariable);
 	}
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
