@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManagedAdapter;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
@@ -470,11 +469,13 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		Element pivotElement = csElement != null ? getPivotElement(csElement) : null;
 		if (pivotElement == null) {
 //			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
+			pivotElement = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+//			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
 		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
 //			logger.trace("Recreating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
+			pivotElement = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
+//			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
 		if (csElement != null) {
 			installPivotDefinition(csElement, pivotElement);
