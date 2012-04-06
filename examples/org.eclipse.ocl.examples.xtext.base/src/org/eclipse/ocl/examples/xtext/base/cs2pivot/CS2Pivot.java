@@ -470,12 +470,10 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		if (pivotElement == null) {
 //			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			pivotElement = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
-//			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
 		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
 //			logger.trace("Recreating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			pivotElement = (Element) pivotEClass.getEPackage().getEFactoryInstance().create(pivotEClass);
-//			pivotElement = (Element) PivotFactory.eINSTANCE.create(pivotEClass);
 		}
 		if (csElement != null) {
 			installPivotDefinition(csElement, pivotElement);
