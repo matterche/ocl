@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.EMOFResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.domain.elements.DomainCollectionType;
 import org.eclipse.ocl.examples.domain.elements.DomainElement;
@@ -1321,12 +1322,13 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 			externalResourceSet = new ResourceSetImpl();
 			ProjectMap projectMap = ProjectMap.findAdapter(pivotResourceSet);
 			if (projectMap == null) {
-				ProjectMap.getAdapter(externalResourceSet);
+				projectMap = ProjectMap.getAdapter(externalResourceSet);
 			}
 			else {
 				externalResourceSet.eAdapters().add(projectMap);
-				projectMap.initializeResourceSet(externalResourceSet);			
 			}
+			projectMap.initializeResourceSet(externalResourceSet);			
+			externalResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("emof", new EMOFResourceFactoryImpl()); //$NON-NLS-1$
 			MetaModelManagerResourceSetAdapter.getAdapter(externalResourceSet, this);
 			for (Factory factory : factoryMap) {
 				factory.configure(externalResourceSet);
