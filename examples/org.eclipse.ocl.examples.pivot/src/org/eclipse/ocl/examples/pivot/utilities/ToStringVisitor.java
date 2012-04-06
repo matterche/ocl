@@ -21,9 +21,13 @@ package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.math.BigInteger;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -38,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.ConstructorExp;
 import org.eclipse.ocl.examples.pivot.ConstructorPart;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -96,7 +99,47 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  * @author Edward Willink (ewillink)
  */
 public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
-{
+{	
+	private static final Logger logger = Logger.getLogger(ToStringVisitor.class);
+
+	public static interface Factory {
+		ToStringVisitor createToStringVisitor();
+		EPackage getEPackage();
+	}
+	
+	private static Map<EPackage, Factory> factoryMap = new HashMap<EPackage, Factory>();
+	
+	public static void addFactory(Factory factory) {
+		factoryMap.put(factory.getEPackage(), factory);
+	}
+
+	public static ToStringVisitor create(EObject eObject) {
+		EPackage ePackage = eObject.eClass().getEPackage();
+		Factory factory = factoryMap.get(ePackage);
+		if (factory != null) {
+			return factory.createToStringVisitor();
+		}
+		logger.error("No ToStringVisitor Factory registered for " + ePackage.getName());
+		return null;
+	}
+
+	private static final class MyFactory implements ToStringVisitor.Factory
+	{
+		private MyFactory() {
+			ToStringVisitor.addFactory(this);
+		}
+
+		public ToStringVisitor createToStringVisitor() {
+			return new ToStringVisitor();
+		}
+
+		public EPackage getEPackage() {
+			return PivotPackage.eINSTANCE;
+		}
+	}
+
+	public static ToStringVisitor.Factory FACTORY = new MyFactory();
+	
 	/**
 	 * Indicates where a required element in the AST was <code>null</code>, so
 	 * that it is evident in the debugger that something was missing. We don't
@@ -105,40 +148,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	 */
 	protected static String NULL_PLACEHOLDER = "\"<null>\""; //$NON-NLS-1$
 
-	/**
-	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * environment.
-	 * 
-	 * @param env
-	 *            an OCL environment
-	 * 
-	 * @return the corresponding instance
-	 */
-	@Deprecated
-	public static ToStringVisitor getInstance(Environment env) {
-		return new ToStringVisitor();
-	}
-
-	/**
-	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * expression or other typed element.
-	 * 
-	 * @param element
-	 *            an OCL expression or other typed element such as a variable
-	 * 
-	 * @return the corresponding instance
-	 */
-	@Deprecated
-	public static ToStringVisitor getInstance(TypedElement element) {
-		return new ToStringVisitor();
-	}
-
 	protected StringBuilder result = new StringBuilder();
 
 	/**
 	 * Initializes me.
 	 */
-	public ToStringVisitor() {
+	protected ToStringVisitor() {
 		super(null);
 	}
 

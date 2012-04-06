@@ -312,7 +312,10 @@ public abstract class ElementImpl
 	 */
 	@Override
 	public String toString() {
-		ToStringVisitor v = new ToStringVisitor();
+		ToStringVisitor v = ToStringVisitor.create(this);
+		if (v == null) {
+			return "null";
+		}
 		String s = accept(v);
 		return s != null
 			? s
