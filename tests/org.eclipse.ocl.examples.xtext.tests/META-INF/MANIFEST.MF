@@ -7,7 +7,7 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.ocl.examples.xtext.tests.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.junit,
+ org.junit;visibility:=reexport,
  org.eclipse.emf.compare,
  org.eclipse.emf.compare.diff,
  org.eclipse.emf.compare.match,
@@ -23,4 +23,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
-Export-Package: org.eclipse.ocl.examples.xtext.tests
+Export-Package: org.eclipse.ocl.examples.pivot.tests,
+ org.eclipse.ocl.examples.test.xtext,
+ org.eclipse.ocl.examples.xtext.tests
