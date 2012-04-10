@@ -241,7 +241,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._directReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__directReports);
-			@SuppressWarnings("unchecked")
 			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
@@ -270,7 +269,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_Set_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._allReports_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__allReports);
-			@SuppressWarnings("unchecked")
 			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
@@ -302,7 +300,6 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			
 			final DomainType returnType = T_OrderedSet_Company_ecore__company__Employee_;
 			final Value result = EmployeeBodies._reportingChain_derivation_.INSTANCE.evaluate(evaluator, returnType, self, CodegencompanyTables.Properties._Employee__reportingChain);
-			@SuppressWarnings("unchecked")
 			EList<Employee> ecoreResult = (EList<Employee>) result.asEcoreObject();
 			return ecoreResult;
 		} catch (InvalidValueException e) {
