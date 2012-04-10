@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Label;
 public class CommonProjectPreferencePage extends AbstractProjectPreferencePage
 {
 	static final String delegateExtensionPoints[] = {
-		EcorePlugin.CONVERSION_DELEGATE_PPID,
+//		EcorePlugin.CONVERSION_DELEGATE_PPID, -- not available in EMF 2.7
 		EcorePlugin.INVOCATION_DELEGATE_PPID,
 		EcorePlugin.QUERY_DELEGATE_PPID,
 		EcorePlugin.SETTING_DELEGATE_PPID,
