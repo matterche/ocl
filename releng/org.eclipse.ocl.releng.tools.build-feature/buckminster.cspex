@@ -104,7 +104,7 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.mdt-ocl-Update" />
-			<--
+			<!--
 			<cs:attribute name="package.mdt-ocl-SDK" /> 
 			<cs:attribute name="package.mdt-ocl-examples" /> 
 			-->
