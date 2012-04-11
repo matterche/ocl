@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.eventmanager;singleton:=true
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -20,4 +20,4 @@ Export-Package: org.eclipse.ocl.examples.eventmanager;
  org.eclipse.ocl.examples.eventmanager.framework;x-friends:="org.eclipse.ocl.examples.eventmanager.tests",
  org.eclipse.ocl.examples.eventmanager.util;x-friends:="org.eclipse.ocl.examples.impactanalyzer.tests,org.eclipse.ocl.examples.eventmanager.tests"
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.emf.ecore
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.6.0,3.0.0)"
