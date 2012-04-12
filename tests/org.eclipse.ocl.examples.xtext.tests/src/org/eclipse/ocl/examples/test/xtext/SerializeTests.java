@@ -48,16 +48,16 @@ public class SerializeTests extends XtextTestCase
 	}
 	
 	public XtextResource doSerialize(String stem) throws Exception {
-		return doSerialize(stem, stem, null, true);
+		return doSerialize(stem, stem, null, true, true);
 	}
-	public XtextResource doSerialize(String stem, String referenceStem, Map<String, Object> options, boolean doCompare) throws Exception {
+	public XtextResource doSerialize(String stem, String referenceStem, Map<String, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		String inputName = stem + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		String referenceName = referenceStem + ".ecore";
 		URI referenceURI = getProjectFileURI(referenceName);
-		return doSerialize(inputURI, stem, referenceURI, options, doCompare);
+		return doSerialize(inputURI, stem, referenceURI, options, doCompare, validateSaved);
 	}
-	public XtextResource doSerialize(URI inputURI, String stem, URI referenceURI, Map<String, Object> options, boolean doCompare) throws Exception {
+	public XtextResource doSerialize(URI inputURI, String stem, URI referenceURI, Map<String, Object> options, boolean doCompare, boolean validateSaved) throws Exception {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		getProjectMap().initializeResourceSet(resourceSet);
 		String outputName = stem + ".serialized.oclinecore";
@@ -101,7 +101,7 @@ public class SerializeTests extends XtextTestCase
 			//		
 			String inputName2 = stem + "2.ecore";
 			URI ecoreURI2 = getProjectFileURI(inputName2);
-			Resource ecoreResource2 = savePivotAsEcore(metaModelManager2, pivotResource2, ecoreURI2, options, true);
+			Resource ecoreResource2 = savePivotAsEcore(metaModelManager2, pivotResource2, ecoreURI2, options, validateSaved);
 			//
 			//
 			//
@@ -196,11 +196,15 @@ public class SerializeTests extends XtextTestCase
 	}
 	
 	public void testSerialize_Bug354336() throws Exception {
-		doSerialize("Bug354336", "Bug354336", null, false);		// FIXME Model check suppressed because of Bug 354621
+		doSerialize("Bug354336", "Bug354336", null, false, true);		// FIXME Model check suppressed because of Bug 354621
 	}
 	
 	public void testSerialize_Bug362620() throws Exception {
 		doSerialize("Bug362620");
+	}
+	
+	public void testSerialize_Bug376488() throws Exception {
+		doSerialize("Bug376488", "Bug376488", null, true, false);
 	}
 
 	public void testSerialize_Company() throws Exception {
@@ -211,7 +215,7 @@ public class SerializeTests extends XtextTestCase
 //		DocumentScopeAdapter.WORK.setState(true);
 //		CS2PivotConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doSerialize("Company", "Company.reference", null, true);
+		doSerialize("Company", "Company.reference", null, true, true);
 	}
 
 	public void testSerialize_ConstraintMessages() throws Exception {

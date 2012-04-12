@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -184,7 +186,7 @@ public class PackageManager
 	protected void putPackage(String nsURI, org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		uri2package.put(nsURI, pivotPackage);
 		String name = pivotPackage.getName();
-		if (name != null) {
+		if ((name != null) && ((pivotPackage instanceof Library) || !(pivotPackage instanceof Model))) { // BUG 376596
 			List<String> uriList = name2uris.get(name);
 			if (uriList == null) {
 				uriList = new ArrayList<String>();
