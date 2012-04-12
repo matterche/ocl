@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -425,9 +427,12 @@ public class ElementUtil
 				if (!(eContainer instanceof NamedElement)) {
 					break;
 				}
-				if (eContainer.eContainer() == null) {
-					break;				// Skip root package
+				if ((eContainer instanceof Model) && !(eContainer instanceof Library)) { // BUG 376596
+					break;				// Skip root non-package
 				}
+//				if (eContainer.eContainer() == null) {
+//					break;				// Skip root package
+//				}
 				namedElement = (NamedElement) eContainer;
 			}
 		}
