@@ -27,6 +27,6 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface Library extends org.eclipse.ocl.examples.pivot.Package
+public interface Library extends Model
 {
 } // Library

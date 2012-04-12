@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public class LibraryImpl extends PackageImpl implements Library
+public class LibraryImpl extends ModelImpl implements Library
 {
 	/**
 	 * <!-- begin-user-doc -->

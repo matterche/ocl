@@ -62,6 +62,7 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -188,6 +189,7 @@ public class PivotFactoryImpl
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
+			case PivotPackage.MODEL: return (EObject)createModel();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
 			case PivotPackage.OPAQUE_EXPRESSION: return (EObject)createOpaqueExpression();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
@@ -809,6 +811,17 @@ public class PivotFactoryImpl
 	public MessageType createMessageType() {
 		MessageTypeImpl messageType = new MessageTypeImpl();
 		return messageType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Model createModel()
+	{
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**

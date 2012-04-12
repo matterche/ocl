@@ -61,6 +61,7 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -384,6 +385,11 @@ public class PivotAdapterFactory
 			public Adapter caseMessageType(MessageType object)
 			{
 				return createMessageTypeAdapter();
+			}
+			@Override
+			public Adapter caseModel(Model object)
+			{
+				return createModelAdapter();
 			}
 			@Override
 			public Adapter caseMorePivotable(MorePivotable object)
@@ -1224,6 +1230,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createMessageTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.Model
+	 * @generated
+	 */
+	public Adapter createModelAdapter()
+	{
 		return null;
 	}
 

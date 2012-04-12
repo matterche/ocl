@@ -80,69 +80,69 @@ public class ConstraintBodies
 			final LibraryProperty IP_Constraint_stereotype = P_Constraint_stereotype.getImplementation();
 			
 			
-			Value A_symbol_332 = IP_Constraint_context.evaluate(evaluator, T_Pivot_ecore__pivot__NamedElement, self, P_Constraint_context);
+			Value A_symbol_381 = IP_Constraint_context.evaluate(evaluator, T_Pivot_ecore__pivot__NamedElement, self, P_Constraint_context);
 			
-			Value A_symbol_333 = IP_NamedElement_ownedRule.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_332, P_NamedElement_ownedRule);
+			Value A_symbol_382 = IP_NamedElement_ownedRule.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_381, P_NamedElement_ownedRule);
 			
 			
-			DomainType static_A_symbol_330 = valueFactory.typeOf(A_symbol_333);
-			LibraryBinaryOperation dynamic_A_symbol_330 = (LibraryBinaryOperation)static_A_symbol_330.lookupImplementation(standardLibrary, O_OrderedSet_excluding);
-			Value A_symbol_330 = dynamic_A_symbol_330.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_333, self);
+			DomainType static_A_symbol_379 = valueFactory.typeOf(A_symbol_382);
+			LibraryBinaryOperation dynamic_A_symbol_379 = (LibraryBinaryOperation)static_A_symbol_379.lookupImplementation(standardLibrary, O_OrderedSet_excluding);
+			Value A_symbol_379 = dynamic_A_symbol_379.evaluate(evaluator, T_OrderedSet_Pivot_ecore__pivot__Constraint_, A_symbol_382, self);
 			
 			/** 
 			 * Implementation of the iterator body.
 			 */
-			AbstractBinaryOperation body_A_symbol_331 = new AbstractBinaryOperation()
+			AbstractBinaryOperation body_A_symbol_380 = new AbstractBinaryOperation()
 			{
 			/*
 			name <> self.name or stereotype <> self.stereotype
 			*/
 				public Value evaluate(DomainEvaluator evaluator, DomainType returnType, Value sourceValue, Value iterator1) throws InvalidValueException {
 					final Value V_1_ = iterator1;	// iterator: 1_
-					Value leftA_symbol_334;
+					Value leftA_symbol_383;
 					try {
 						
-						Value A_symbol_335 = IP_NamedElement_name.evaluate(evaluator, T_String, V_1_, P_NamedElement_name);
+						Value A_symbol_384 = IP_NamedElement_name.evaluate(evaluator, T_String, V_1_, P_NamedElement_name);
 						
 						
-						Value A_symbol_336 = IP_NamedElement_name.evaluate(evaluator, T_String, self, P_NamedElement_name);
+						Value A_symbol_385 = IP_NamedElement_name.evaluate(evaluator, T_String, self, P_NamedElement_name);
 						
-						DomainType static_A_symbol_337 = valueFactory.typeOf(A_symbol_335, A_symbol_336);
-						LibraryBinaryOperation dynamic_A_symbol_337 = (LibraryBinaryOperation)static_A_symbol_337.lookupImplementation(standardLibrary, O_String__lt__gt_);
-						Value A_symbol_337 = dynamic_A_symbol_337.evaluate(evaluator, T_Boolean, A_symbol_335, A_symbol_336);
-						leftA_symbol_334 = A_symbol_337;
+						DomainType static_A_symbol_386 = valueFactory.typeOf(A_symbol_384, A_symbol_385);
+						LibraryBinaryOperation dynamic_A_symbol_386 = (LibraryBinaryOperation)static_A_symbol_386.lookupImplementation(standardLibrary, O_String__lt__gt_);
+						Value A_symbol_386 = dynamic_A_symbol_386.evaluate(evaluator, T_Boolean, A_symbol_384, A_symbol_385);
+						leftA_symbol_383 = A_symbol_386;
 					} catch (InvalidValueException e) {
-						leftA_symbol_334 = valueFactory.createInvalidValue(e);
+						leftA_symbol_383 = valueFactory.createInvalidValue(e);
 					}
-					Value A_symbol_337 = leftA_symbol_334;
-					Value rightA_symbol_334;
+					Value A_symbol_386 = leftA_symbol_383;
+					Value rightA_symbol_383;
 					try {
 						
-						Value A_symbol_338 = IP_Constraint_stereotype.evaluate(evaluator, T_String, V_1_, P_Constraint_stereotype);
+						Value A_symbol_387 = IP_Constraint_stereotype.evaluate(evaluator, T_String, V_1_, P_Constraint_stereotype);
 						
 						
-						Value A_symbol_339 = IP_Constraint_stereotype.evaluate(evaluator, T_String, self, P_Constraint_stereotype);
+						Value A_symbol_388 = IP_Constraint_stereotype.evaluate(evaluator, T_String, self, P_Constraint_stereotype);
 						
-						DomainType static_A_symbol_340 = valueFactory.typeOf(A_symbol_338, A_symbol_339);
-						LibraryBinaryOperation dynamic_A_symbol_340 = (LibraryBinaryOperation)static_A_symbol_340.lookupImplementation(standardLibrary, O_String__lt__gt_);
-						Value A_symbol_340 = dynamic_A_symbol_340.evaluate(evaluator, T_Boolean, A_symbol_338, A_symbol_339);
-						rightA_symbol_334 = A_symbol_340;
+						DomainType static_A_symbol_389 = valueFactory.typeOf(A_symbol_387, A_symbol_388);
+						LibraryBinaryOperation dynamic_A_symbol_389 = (LibraryBinaryOperation)static_A_symbol_389.lookupImplementation(standardLibrary, O_String__lt__gt_);
+						Value A_symbol_389 = dynamic_A_symbol_389.evaluate(evaluator, T_Boolean, A_symbol_387, A_symbol_388);
+						rightA_symbol_383 = A_symbol_389;
 					} catch (InvalidValueException e) {
-						rightA_symbol_334 = valueFactory.createInvalidValue(e);
+						rightA_symbol_383 = valueFactory.createInvalidValue(e);
 					}
-					Value A_symbol_340 = rightA_symbol_334;
-					DomainType static_A_symbol_334 = valueFactory.typeOf(A_symbol_337);
-					LibraryBinaryOperation dynamic_A_symbol_334 = (LibraryBinaryOperation)static_A_symbol_334.lookupImplementation(standardLibrary, O_Boolean_or);
-					Value A_symbol_334 = dynamic_A_symbol_334.evaluate(evaluator, T_Boolean, A_symbol_337, A_symbol_340);
-					return A_symbol_334;
+					Value A_symbol_389 = rightA_symbol_383;
+					DomainType static_A_symbol_383 = valueFactory.typeOf(A_symbol_386);
+					LibraryBinaryOperation dynamic_A_symbol_383 = (LibraryBinaryOperation)static_A_symbol_383.lookupImplementation(standardLibrary, O_Boolean_or);
+					Value A_symbol_383 = dynamic_A_symbol_383.evaluate(evaluator, T_Boolean, A_symbol_386, A_symbol_389);
+					return A_symbol_383;
 				}
 			};
-			DomainType static_A_symbol_331 = A_symbol_330.getType();
-			LibraryIteration dynamic_A_symbol_331 = (LibraryIteration)static_A_symbol_331.lookupImplementation(standardLibrary, O_Collection_forAll);
-			Value acc_A_symbol_331 = dynamic_A_symbol_331.createAccumulatorValue(evaluator, T_Boolean, T_Boolean);
-			ExecutorSingleIterationManager manager_A_symbol_331 = new ExecutorSingleIterationManager(evaluator, T_Boolean, body_A_symbol_331, (CollectionValue)A_symbol_330, acc_A_symbol_331);
-			Value A_symbol_331 = dynamic_A_symbol_331.evaluateIteration(manager_A_symbol_331);
-			return A_symbol_331;
+			DomainType static_A_symbol_380 = A_symbol_379.getType();
+			LibraryIteration dynamic_A_symbol_380 = (LibraryIteration)static_A_symbol_380.lookupImplementation(standardLibrary, O_Collection_forAll);
+			Value acc_A_symbol_380 = dynamic_A_symbol_380.createAccumulatorValue(evaluator, T_Boolean, T_Boolean);
+			ExecutorSingleIterationManager manager_A_symbol_380 = new ExecutorSingleIterationManager(evaluator, T_Boolean, body_A_symbol_380, (CollectionValue)A_symbol_379, acc_A_symbol_380);
+			Value A_symbol_380 = dynamic_A_symbol_380.evaluateIteration(manager_A_symbol_380);
+			return A_symbol_380;
 		}
 	}
 

@@ -49,6 +49,7 @@ import org.eclipse.ocl.common.OCLCommon;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
@@ -414,7 +415,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = metaModelManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = metaModelManager.createPackage(ecoreURI.lastSegment(), null);
+		pivotRoot = metaModelManager.createModel(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackage();
 		for (EObject eObject : ecoreContents) {

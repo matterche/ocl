@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotConstants;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -449,7 +450,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			OCLstdlib library = OCLstdlib.create(OCLstdlib.STDLIB_URI, "ocl", "ocl", ((EPackage)ecoreContents.iterator().next()).getNsURI());
 			metaModelManager.loadLibrary(library);
 		}
-		pivotRoot = metaModelManager.createPackage(pivotURI.lastSegment(), null);
+		pivotRoot = metaModelManager.createModel(pivotURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackage();
 		for (EObject eObject : ecoreContents) {

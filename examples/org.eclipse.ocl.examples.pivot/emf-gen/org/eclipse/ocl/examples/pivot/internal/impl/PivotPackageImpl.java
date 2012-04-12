@@ -74,6 +74,7 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -409,6 +410,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass messageTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modelEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2359,6 +2367,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getMessageType_ReferredOperation() {
 		return (EReference)messageTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModel()
+	{
+		return modelEClass;
 	}
 
 	/**
@@ -4370,6 +4388,8 @@ public class PivotPackageImpl
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_SIGNAL);
 		createEReference(messageTypeEClass, MESSAGE_TYPE__REFERRED_OPERATION);
 
+		modelEClass = createEClass(MODEL);
+
 		morePivotableEClass = createEClass(MORE_PIVOTABLE);
 
 		multiplicityElementEClass = createEClass(MULTIPLICITY_ELEMENT);
@@ -4682,11 +4702,12 @@ public class PivotPackageImpl
 		iteratorExpEClass.getESuperTypes().add(this.getLoopExp());
 		lambdaTypeEClass.getESuperTypes().add(this.getDataType());
 		letExpEClass.getESuperTypes().add(this.getOclExpression());
-		libraryEClass.getESuperTypes().add(this.getPackage());
+		libraryEClass.getESuperTypes().add(this.getModel());
 		literalExpEClass.getESuperTypes().add(this.getOclExpression());
 		loopExpEClass.getESuperTypes().add(this.getCallExp());
 		messageExpEClass.getESuperTypes().add(this.getOclExpression());
 		messageTypeEClass.getESuperTypes().add(this.getType());
+		modelEClass.getESuperTypes().add(this.getPackage());
 		multiplicityElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		namedElementEClass.getESuperTypes().add(this.getNameable());
@@ -5343,6 +5364,8 @@ public class PivotPackageImpl
 		initEClass(messageTypeEClass, MessageType.class, "MessageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredSignal(), this.getSignal(), null, "referredSignal", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getMessageType_ReferredOperation(), this.getOperation(), null, "referredOperation", null, 0, 1, MessageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(morePivotableEClass, MorePivotable.class, "MorePivotable", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

@@ -364,25 +364,25 @@ public class IteratorsTest extends PivotTestSuite
     // pkg1::pkg3::pkg5::george
     public void test_closure() {
     	CollectionValue expected1 = valueFactory.createSetOf(pkg1, pkg3, pkg5); // closure does not include self (george)
-        assertQueryEquals(george, expected1, "self->closure(nestingPackage)");
+        assertQueryEquals(george, expected1, "self.oclAsType(Package)->closure(nestingPackage)");
 
         CollectionValue expected2 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
 //        CollectionValue expected2a = valueFactory.createOrderedSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(nestedPackage)");
 // FIXME not a valid test for UML's unordered nested packages
 //        assertQueryEquals(pkg1, expected2a, "self->asSequence()->closure(nestedPackage)");
-        assertQueryEquals(pkg1, expected2, "self->closure(nestedPackage->asSequence())");
+        assertQueryEquals(pkg1, expected2, "self.oclAsType(Package)->closure(nestedPackage->asSequence())");
 	    SetValue expected3 = valueFactory.createSetOf(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
-        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(nestedPackage)");
-        assertQueryEquals(pkg1, expected3, "self->closure(nestedPackage->asBag())");
+        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->asBag()->closure(nestedPackage)");
+        assertQueryEquals(pkg1, expected3, "self.oclAsType(Package)->closure(nestedPackage->asBag())");
 
         // empty closure
         DomainCollectionType collectionType = expected1.getCollectionType();
         DomainType elementType = collectionType.getElementType();
-		assertQueryEquals(pkg1, valueFactory.createSetValue(collectionType), "self->closure(nestingPackage)");
+		assertQueryEquals(pkg1, valueFactory.createSetValue(collectionType), "self.oclAsType(Package)->closure(nestingPackage)");
 //WIP        assertQueryNotEquals(pkg1, getEmptySetValue(), "self->closure(nestingPackage)");
         // empty closure
-        assertQueryEquals(pkg1, getEmptyOrderedSetValue(), "self->asSequence()->closure(nestingPackage)");
+        assertQueryEquals(pkg1, getEmptyOrderedSetValue(), "self.oclAsType(Package)->asSequence()->closure(nestingPackage)");
 //WIP 		assertQueryNotEquals(pkg1, valueFactory.createOrderedSetValue(metaModelManager.getOrderedSetType(elementType)), "self->asSequence()->closure(nestingPackage)");
     }
 
@@ -403,7 +403,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closure_operations() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createModel("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         createGeneralization(fake, metaModelManager.getOclAnyType());
@@ -430,7 +430,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closureValidation_typeConformance_154695() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(URI.createURI("fake"));
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createPackage("fake", null);
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = metaModelManager.createModel("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);

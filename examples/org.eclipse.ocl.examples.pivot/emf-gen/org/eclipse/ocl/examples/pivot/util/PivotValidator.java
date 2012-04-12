@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -698,6 +699,8 @@ public class PivotValidator
 				return validateMessageExp((MessageExp)value, diagnostics, context);
 			case PivotPackage.MESSAGE_TYPE:
 				return validateMessageType((MessageType)value, diagnostics, context);
+			case PivotPackage.MODEL:
+				return validateModel((Model)value, diagnostics, context);
 			case PivotPackage.MORE_PIVOTABLE:
 				return validateMorePivotable((MorePivotable)value, diagnostics, context);
 			case PivotPackage.MULTIPLICITY_ELEMENT:
@@ -2895,6 +2898,26 @@ public class PivotValidator
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)messageType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)messageType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateElement_validateNotOwnSelf(messageType, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModel(Model model, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		if (!validate_NoCircularContainment((EObject)model, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)model, diagnostics, context);
+		if (result || diagnostics != null) result &= validateElement_validateNotOwnSelf(model, diagnostics, context);
 		return result;
 	}
 

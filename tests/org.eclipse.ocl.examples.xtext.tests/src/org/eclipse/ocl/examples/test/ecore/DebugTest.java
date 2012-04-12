@@ -31,8 +31,8 @@ public class DebugTest extends GenericDebugTest {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        pkg1 = metaModelManager.createPackage("pkg1", null);
-        helper.setContext(getMetaclass("Package"));
+        pkg1 = metaModelManager.createModel("pkg1", null);
+        helper.setContext(getMetaclass("Model"));
     }
 
 	/**

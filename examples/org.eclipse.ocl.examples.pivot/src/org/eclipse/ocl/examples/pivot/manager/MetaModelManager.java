@@ -68,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -945,12 +946,12 @@ public class MetaModelManager extends PivotStandardLibrary implements Adapter.In
 		return new LambdaTypeManager(this);
 	}
 
-	protected Resource createOrphanage() {
-		return Orphanage.getOrphanage(pivotResourceSet);
+	public Model createModel(String string, String nsURI) {
+		return createPackage(Model.class, PivotPackage.Literals.MODEL, string, nsURI);
 	}
 
-	public org.eclipse.ocl.examples.pivot.Package createPackage(String string, String nsURI) {
-		return createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, string, nsURI);
+	protected Resource createOrphanage() {
+		return Orphanage.getOrphanage(pivotResourceSet);
 	}
 
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(Class<T> pivotClass,

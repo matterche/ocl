@@ -204,8 +204,8 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_-o2IsAbiEeC3-uphdlDm-Q" name="ownedAccumulator" type="_2vcHMI9nEd-UToJjGuajxg" lower="0" upper="*" isComposite="true"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_Moz7QBGeEeCsy5gumoi3HA" name="Library" superClass="_PSf6UBGeEeCsy5gumoi3HA"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_PSf6UBGeEeCsy5gumoi3HA" name="Model"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_l0ihkAbiEeC3-uphdlDm-Q" name="Operation"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_PSf6UBGeEeCsy5gumoi3HA" name="Package"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_2vcHMI9nEd-UToJjGuajxg" name="Parameter"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_tASF0IgKEd-aGOJuUCcZBA" name="OCL_PrimitiveTypes">

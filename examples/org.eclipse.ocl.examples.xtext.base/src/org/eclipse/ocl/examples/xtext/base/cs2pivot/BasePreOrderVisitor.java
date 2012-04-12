@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -530,6 +531,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		for (ImportCS csImport : object.getOwnedImport()) {
 			csImport.getNamespace();					// Resolve the proxy to perform the import.
 		}
+		@SuppressWarnings("unused")
+		Model pivotElement = context.refreshPackage(Model.class, PivotPackage.Literals.MODEL, object);
 		return super.visitRootPackageCS(object);
 	}
 

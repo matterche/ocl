@@ -872,7 +872,7 @@ public abstract class PivotTestSuite extends PivotTestCase
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package createPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String name) {
-		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createPackage(name, null);
+		org.eclipse.ocl.examples.pivot.Package aPackage = metaModelManager.createModel(name, null);
 		if (parentPackage != null) {
 			parentPackage.getNestedPackage().add(aPackage);
 		}

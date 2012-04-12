@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.Model;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -694,6 +695,7 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				Library library = (Library)theEObject;
 				T result = caseLibrary(library);
+				if (result == null) result = caseModel(library);
 				if (result == null) result = casePackage(library);
 				if (result == null) result = caseNamespace(library);
 				if (result == null) result = caseTemplateableElement(library);
@@ -755,6 +757,20 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElement(messageType);
 				if (result == null) result = caseNameable(messageType);
 				if (result == null) result = caseVisitable(messageType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.MODEL:
+			{
+				Model model = (Model)theEObject;
+				T result = caseModel(model);
+				if (result == null) result = casePackage(model);
+				if (result == null) result = caseNamespace(model);
+				if (result == null) result = caseTemplateableElement(model);
+				if (result == null) result = caseNamedElement(model);
+				if (result == null) result = caseElement(model);
+				if (result == null) result = caseNameable(model);
+				if (result == null) result = caseVisitable(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2021,6 +2037,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMessageType(MessageType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModel(Model object)
+	{
 		return null;
 	}
 

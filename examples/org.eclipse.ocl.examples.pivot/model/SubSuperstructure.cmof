@@ -520,6 +520,10 @@
         </ownedMember>
         <ownedMember xmi:type="cmof:Class" xmi:id="_OS2UMMitEd-sJIf4tYBt-g" name="Signal"/>
       </ownedMember>
+      <ownedMember xmi:type="cmof:Package" xmi:id="_VymA8IQLEeGSY6MLEc_weQ" name="Models">
+        <ownedMember xmi:type="cmof:Class" xmi:id="_ZE--wIQLEeGSY6MLEc_weQ" name="Package"/>
+        <ownedMember xmi:type="cmof:Class" xmi:id="_d4OrUIQLEeGSY6MLEc_weQ" name="Model" superClass="_ZE--wIQLEeGSY6MLEc_weQ"/>
+      </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_xg6fUPF8Ed-BXqn3guNB1A" name="Sub_IsStatic">
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_KrFBsPF9Ed-BXqn3guNB1A" name="Boolean"/>
@@ -541,6 +545,7 @@
   <cmof:Tag xmi:id="_5" name="org.omg.xmi.nsPrefix" value="Namespaces" element="_97IzMLB0Ed-sntd82PWy7Q"/>
   <cmof:Tag xmi:id="_6" name="org.omg.xmi.nsPrefix" value="States" element="_0lPd4Mf5Ed-sJIf4tYBt-g"/>
   <cmof:Tag xmi:id="_7" name="org.omg.xmi.nsPrefix" value="Actions" element="_AD6JQMitEd-sJIf4tYBt-g"/>
-  <cmof:Tag xmi:id="_8" name="org.omg.xmi.nsPrefix" value="Sub_IsStatic" element="_xg6fUPF8Ed-BXqn3guNB1A"/>
-  <cmof:Tag xmi:id="_9" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_KrFBsPF9Ed-BXqn3guNB1A"/>
+  <cmof:Tag xmi:id="_8" name="org.omg.xmi.nsPrefix" value="Models" element="_VymA8IQLEeGSY6MLEc_weQ"/>
+  <cmof:Tag xmi:id="_9" name="org.omg.xmi.nsPrefix" value="Sub_IsStatic" element="_xg6fUPF8Ed-BXqn3guNB1A"/>
+  <cmof:Tag xmi:id="_10" name="org.omg.xmi.schemaType" value="http://www.w3.org/2001/XMLSchema#boolean" element="_KrFBsPF9Ed-BXqn3guNB1A"/>
 </xmi:XMI>

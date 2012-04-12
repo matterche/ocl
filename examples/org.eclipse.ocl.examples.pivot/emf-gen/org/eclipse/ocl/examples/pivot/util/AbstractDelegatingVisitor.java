@@ -229,6 +229,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 		return delegate.visitMessageType(object);
 	}
 
+	public R visitModel(org.eclipse.ocl.examples.pivot.Model object) {
+		return delegate.visitModel(object);
+	}
+
 	public R visitMultiplicityElement(org.eclipse.ocl.examples.pivot.MultiplicityElement object) {
 		return delegate.visitMultiplicityElement(object);
 	}
