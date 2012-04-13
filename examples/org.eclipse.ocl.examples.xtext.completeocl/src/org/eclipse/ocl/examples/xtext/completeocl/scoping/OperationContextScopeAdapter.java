@@ -17,13 +17,16 @@
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
@@ -61,17 +64,24 @@ public class OperationContextScopeAdapter extends ElementCSScopeAdapter
 		}
 		else*/ if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__RULES) {
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
-			Operation operation = targetElement.getOperation();
-			if (operation != null) {
-				Type type = operation.getOwningType();
-				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-				environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));
-				environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));
-				if (!environmentView.hasFinalResult()) {
-					Set<Type> alreadyVisitedTypes = new HashSet<Type>();
-//					org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
-					for (Type superClass : metaModelManager.getSuperClasses(type)) {
-						ClassScopeAdapter.addAllContents(environmentView, type, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
+//			Operation operation = targetElement.getOperation();
+			PathNameCS pathName = targetElement.getPathName();
+			if (pathName != null) {
+				List<PathElementCS> path = pathName.getPath();
+				if (path.size() > 1) {
+					Element element = path.get(path.size()-2).getElement();
+					if (element instanceof Type) {
+						Type type = (Type) element;
+						MetaModelManager metaModelManager = environmentView.getMetaModelManager();
+						environmentView.addNamedElements(type, metaModelManager.getLocalOperations(type, Boolean.FALSE));
+						environmentView.addNamedElements(type, metaModelManager.getLocalProperties(type, Boolean.FALSE));
+						if (!environmentView.hasFinalResult()) {
+							Set<Type> alreadyVisitedTypes = new HashSet<Type>();
+		//					org.eclipse.ocl.examples.pivot.Class unspecializedTarget = PivotUtil.getUnspecializedTemplateableElement(target);	// FIXME
+							for (Type superClass : metaModelManager.getSuperClasses(type)) {
+								ClassScopeAdapter.addAllContents(environmentView, type, scopeView, superClass, Boolean.FALSE, alreadyVisitedTypes);
+							}
+						}
 					}
 				}
 			}

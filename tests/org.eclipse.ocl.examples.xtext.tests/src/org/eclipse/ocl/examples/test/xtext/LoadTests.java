@@ -87,6 +87,9 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public Resource doLoad(String stem, String extension) throws IOException {
+		return doLoad(stem, extension, true);
+	}	
+	public Resource doLoad(String stem, String extension, boolean doSave) throws IOException {
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
 		String inputName = stem + "." + extension;
@@ -111,12 +114,14 @@ public class LoadTests extends XtextTestCase
 			if (xtextResource.getContents().size() > 0) {
 				assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 			}
-	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
-			xtextResource.setURI(output2URI);
-	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
-			xtextResource.save(null);
-	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-			assertNoResourceErrors("Save failed", xtextResource);
+			if (doSave) {
+		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+				xtextResource.setURI(output2URI);
+		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+				xtextResource.save(null);
+		//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+				assertNoResourceErrors("Save failed", xtextResource);
+			}
 		}
 		finally {
 			if (xtextResource instanceof BaseCSResource) {
@@ -524,9 +529,9 @@ public class LoadTests extends XtextTestCase
 		doLoad_OCL(URI.createPlatformResourceURI("org.eclipse.ocl.examples.pivot/model/Pivot.ocl", true));
 	}	
 
-/* FIXME waiting for BUG 361649
+
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doLoad("RoyalAndLoyal", "ocl");
-	} */
+		doLoad("RoyalAndLoyal", "ocl", false);	/* FIXME waiting for BUG 361649 */
+	}
 }

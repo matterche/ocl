@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
@@ -36,13 +35,9 @@ public class PathElementCSScopeAdapter extends ElementCSScopeAdapter
 		if (eClassifier == null) {
 			return scopeView.getOuterScope();
 		}
-		ScopeFilter scopeFilter = targetElement.getPathName().getScopeFilter();
 		MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 		EClassifier savedRequiredType = environmentView.getRequiredType();
 		try {
-			if (scopeFilter != null) {
-				environmentView.addFilter(scopeFilter);
-			}
 			environmentView.setRequiredType(eClassifier);
 			ElementCS scopeTarget = targetElement.getLogicalParent();
 			CSScopeAdapter scopeAdapter = scopeTarget != null ? ElementUtil.getScopeAdapter(scopeTarget) : null;
@@ -52,9 +47,6 @@ public class PathElementCSScopeAdapter extends ElementCSScopeAdapter
 		}
 		finally {
 			environmentView.setRequiredType(savedRequiredType);
-			if (scopeFilter != null) {
-				environmentView.removeFilter(scopeFilter);
-			}
 		}
 	}
 }

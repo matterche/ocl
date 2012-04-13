@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
@@ -44,9 +45,20 @@ public class PathNameCSScopeAdapter extends ElementCSScopeAdapter
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
 			Element scopeTarget = path.get(index-1).getElement();
 			if ((scopeTarget != null) && !scopeTarget.eIsProxy()) {
-				ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(scopeTarget);
-				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, null, null);
-				environmentView.computeLookups(baseScopeView);
+				ScopeFilter scopeFilter = targetElement.getScopeFilter();
+				try {
+					if (scopeFilter != null) {
+						environmentView.addFilter(scopeFilter);
+					}
+					ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(scopeTarget);
+					BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, null, null);
+					environmentView.computeLookups(baseScopeView);
+				}
+				finally {
+					if (scopeFilter != null) {
+						environmentView.removeFilter(scopeFilter);
+					}
+				}
 			}
 			return null;
 		}

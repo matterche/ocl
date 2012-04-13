@@ -18,15 +18,21 @@ package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SelfType;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -39,6 +45,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
@@ -49,10 +56,64 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContext
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.AbstractOperationFilter;
 
 public class CompleteOCLPreOrderVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
 {	
+	
+	public class OperationDeclScopeFilter extends AbstractOperationFilter
+	{
+		private final List<VariableCS> csParameters;
+		
+		public OperationDeclScopeFilter(MetaModelManager metaModelManager, Type sourceType, List<VariableCS> csParameters) {
+			super(metaModelManager, sourceType);
+			this.csParameters = csParameters;
+		}
+
+		public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
+			if (eObject instanceof Iteration) {
+				return false;
+			}
+			if (eObject instanceof Operation) {
+				Operation candidateOperation = (Operation)eObject;
+				List<Parameter> candidateParameters = candidateOperation.getOwnedParameter();
+				int iMax = csParameters.size();
+				if (iMax != candidateParameters.size()) {
+					return false;
+				}
+				Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(candidateOperation);
+				for (int i = 0; i < iMax; i++) {
+					Parameter candidateParameter = candidateParameters.get(i);
+					VariableCS csVariable = csParameters.get(i);
+					if (csVariable == null) {
+						return false;
+					}
+					TypedRefCS csType = csVariable.getOwnedType();
+					Type pType = PivotUtil.getPivot(Type.class, csType);
+					if (pType == null) {
+						return false;
+					}
+					Type candidateType = metaModelManager.getTypeWithMultiplicity(candidateParameter);
+					if (candidateType instanceof SelfType) {
+						candidateType = candidateOperation.getOwningType();
+					}
+					pType = PivotUtil.getBehavioralType(pType);			// FIXME make this a general facility
+					if (!metaModelManager.conformsTo(pType, candidateType, bindings)) {
+						return false;
+					}
+				}
+				if (bindings != null) {
+					installBindings(environmentView, forType, eObject, bindings);
+				}
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
+
 	protected class DefCSContinuation extends SingleContinuation<DefCS>
 	{
 		private DefCSContinuation(CS2PivotConversion context, DefCS csElement) {
@@ -178,7 +239,6 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement, null);
 			Operation modelOperation = csElement.getOperation();
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
@@ -307,7 +367,8 @@ public class CompleteOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS csElement) {
 		// Must wait till parameters have types before resolving operation name
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement, null);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement,
+				new OperationDeclScopeFilter(metaModelManager, null, csElement.getParameters()));
 		return new OperationContextDeclCSContinuation(context, csElement);
 	}
 
