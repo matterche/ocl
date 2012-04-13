@@ -57,6 +57,14 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter
 					}
 				}
 			}
+			if (!environmentView.hasFinalResult()) {
+				for (org.eclipse.ocl.examples.pivot.Package pPackage : metaModelManager.getPackageManager().getAllPackages()) {
+					String nsURI = pPackage.getNsURI();
+					if (nsURI != null) {
+						environmentView.addElement(nsURI, pPackage);
+					}
+				}
+			}
 			if ((pivotPackage != null) && !environmentView.hasFinalResult()) {
 				URI baseURI = pivotPackage.eResource().getURI();
             	if (baseURI != null) {

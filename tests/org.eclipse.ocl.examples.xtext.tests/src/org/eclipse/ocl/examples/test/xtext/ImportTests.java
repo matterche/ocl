@@ -89,22 +89,22 @@ public class ImportTests extends XtextTestCase
 			throws IOException {
 		MetaModelManager metaModelManager = new MetaModelManager();
 		String testFileA =
-				"package A1 : A2 = 'A3'{\n" +
+				"package A1 : A2 = 'http://A3'{\n" +
 				"    class A;\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug353793A.oclinecore", testFileA);
 		String testFileB =
-				"package B1 : B2 = 'B3'{\n" +
+				"package B1 : B2 = 'http://B3'{\n" +
 				"    class B;\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug353793B.oclinecore", testFileB);
 		String testFileE =
-				"package E1 : E2 = 'E3'{\n" +
+				"package E1 : E2 = 'http://E3'{\n" +
 				"    class E;\n" +
 				"}\n";
 		createEcoreFile(metaModelManager, "Bug353793E", testFileE);
 		String testFileF =
-				"package F1 : F2 = 'F3'{\n" +
+				"package F1 : F2 = 'http://F3'{\n" +
 				"    class F;\n" +
 				"}\n";
 		createEcoreFile(metaModelManager, "Bug353793F", testFileF);

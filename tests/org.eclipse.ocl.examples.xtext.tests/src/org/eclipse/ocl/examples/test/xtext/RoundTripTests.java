@@ -316,7 +316,9 @@ public class RoundTripTests extends XtextTestCase
 				"{\n" +
 				"class B\n" +
 				"{\n" +
-				"invariant : not oclIsKindOf(aa::A);\n" +
+				"invariant alias: not oclIsKindOf(aa::A);\n" +
+				"invariant nsURI: not oclIsKindOf(aaa::A);\n" +
+				"invariant file: not oclIsKindOf(_'Bug350894A.ecore#/'::A);\n" +
 				"}\n" +
 				"}\n";
 		createOCLinEcoreFile("Bug350894B.oclinecore", testFileB);
