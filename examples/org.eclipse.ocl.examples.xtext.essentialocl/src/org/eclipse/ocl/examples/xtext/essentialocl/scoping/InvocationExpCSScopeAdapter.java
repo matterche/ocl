@@ -55,22 +55,24 @@ public class InvocationExpCSScopeAdapter extends ElementCSScopeAdapter
 				CallExp pivot = PivotUtil.getPivot(CallExp.class, targetElement);
 				if (pivot instanceof LoopExp) {				// FIXME This is null for nested iteration
 					for (Variable iterator : ((LoopExp)pivot).getIterator()) {
-						environmentView.addNamedElement(iterator);
-						if (environmentView.hasFinalResult()) {
-							return null;
+						if (iterator.isImplicit()) {
+							environmentView.addElementsOfScope(iterator.getType(), scopeView);
 						}
-						environmentView.addElementsOfScope(iterator.getType(), scopeView);
+						else {
+							environmentView.addNamedElement(iterator);
+						}
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}
 					}
 					if (pivot instanceof IterateExp) {
 						Variable result = ((IterateExp)pivot).getResult();
-						environmentView.addNamedElement(result);
-						if (environmentView.hasFinalResult()) {
-							return null;
+						if (result.isImplicit()) {
+							environmentView.addElementsOfScope(result.getType(), scopeView);
 						}
-						environmentView.addElementsOfScope(result.getType(), scopeView);
+						else {
+							environmentView.addNamedElement(result);
+						}
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}

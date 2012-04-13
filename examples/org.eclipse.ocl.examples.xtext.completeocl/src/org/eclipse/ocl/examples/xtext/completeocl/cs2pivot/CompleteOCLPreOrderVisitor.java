@@ -305,9 +305,10 @@ public class CompleteOCLPreOrderVisitor
 	}
 
 	@Override
-	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS object) {
+	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS csElement) {
 		// Must wait till parameters have types before resolving operation name
-		return new OperationContextDeclCSContinuation(context, object);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement);
+		return new OperationContextDeclCSContinuation(context, csElement);
 	}
 
 	@Override

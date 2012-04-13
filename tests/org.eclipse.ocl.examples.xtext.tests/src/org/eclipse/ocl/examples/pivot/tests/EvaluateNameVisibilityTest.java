@@ -62,6 +62,7 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	}
 
 	public void test_iterator_scope() {
+		assertQueryEquals(null, 6, "Set{1, 2, 3 }->iterate(i : Integer; sum : Integer = 0 | sum + i)");
 		assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->union(s)");
 	}
 
