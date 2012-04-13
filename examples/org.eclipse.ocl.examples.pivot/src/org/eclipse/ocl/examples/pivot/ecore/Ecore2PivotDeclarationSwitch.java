@@ -423,7 +423,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			excludedAnnotations.add(oclAnnotation);
 			List<Constraint> constraints = pivotElement.getOwnedRule();
 			oclAnnotationDetails = oclAnnotation.getDetails();
-			for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
+			int iMax = oclAnnotationDetails.size();
+			for (int i = 0; i < iMax; i++) {
+				Map.Entry<String,String> entry = oclAnnotationDetails.get(i);
 				String constraintName = entry.getKey();
 				if (constraintName == null) {
 					constraintName = "";
