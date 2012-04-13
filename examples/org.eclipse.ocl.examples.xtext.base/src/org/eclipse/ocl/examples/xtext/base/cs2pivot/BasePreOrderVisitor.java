@@ -472,7 +472,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitModelElementRefCS(ModelElementRefCS csModelElementRef) {
-		CS2Pivot.setElementType(csModelElementRef.getPathName(), PivotPackage.Literals.ELEMENT, csModelElementRef);
+		CS2Pivot.setElementType(csModelElementRef.getPathName(), PivotPackage.Literals.ELEMENT, csModelElementRef, null);
 		return null;
 	}
 
@@ -575,7 +575,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS csTypedTypeRef) {
-		CS2Pivot.setElementType(csTypedTypeRef.getPathName(), PivotPackage.Literals.TYPE, csTypedTypeRef);
+		CS2Pivot.setElementType(csTypedTypeRef.getPathName(), PivotPackage.Literals.TYPE, csTypedTypeRef, null);
 		if (csTypedTypeRef.getOwnedTemplateBinding() == null) {
 			return new UnspecializedTypeRefContinuation(context, csTypedTypeRef);
 		}

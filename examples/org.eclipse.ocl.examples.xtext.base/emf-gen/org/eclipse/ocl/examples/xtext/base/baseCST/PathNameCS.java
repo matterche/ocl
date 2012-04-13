@@ -17,6 +17,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,5 +125,31 @@ public interface PathNameCS extends ElementCS, Pivotable
 	 * @generated
 	 */
 	boolean isSetContext();
+
+	/**
+	 * Returns the value of the '<em><b>Scope Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scope Filter</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scope Filter</em>' attribute.
+	 * @see #setScopeFilter(ScopeFilter)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getPathNameCS_ScopeFilter()
+	 * @model dataType="org.eclipse.ocl.examples.xtext.base.baseCST.ScopeFilter" transient="true"
+	 * @generated
+	 */
+	ScopeFilter getScopeFilter();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getScopeFilter <em>Scope Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scope Filter</em>' attribute.
+	 * @see #getScopeFilter()
+	 * @generated
+	 */
+	void setScopeFilter(ScopeFilter value);
 
 } // QualifiedElementRefCS

@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PivotScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -44,7 +45,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter
 {
 	public static final ContextCSScopeAdapter INSTANCE = new ContextCSScopeAdapter();
 
-	public static final class NoImplicitProperties implements EnvironmentView.Filter
+	public static final class NoImplicitProperties implements ScopeFilter
 	{	// FIXME should gather both implicit property and type and then fix in resolveDuplicates
 		public static NoImplicitProperties INSTANCE = new NoImplicitProperties();
 		

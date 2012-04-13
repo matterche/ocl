@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CSI2PivotMapping;
@@ -238,8 +239,9 @@ public class CS2Pivot extends AbstractConversion implements MetaModelManagedAdap
 		return messageBinder;
 	}
 
-	public static void setElementType(PathNameCS pathNameCS, EClass elementType, ElementCS csContext) {
+	public static void setElementType(PathNameCS pathNameCS, EClass elementType, ElementCS csContext, ScopeFilter scopeFilter) {
 		pathNameCS.setContext(csContext);
+		pathNameCS.setScopeFilter(scopeFilter);
 		List<PathElementCS> path = pathNameCS.getPath();
 		int iMax = path.size()-1;
 		path.get(iMax).setElementType(elementType);

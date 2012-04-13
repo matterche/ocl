@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.ocl.examples.xtext.base.baseCST.*;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -155,6 +156,8 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 		{
 			case BaseCSTPackage.ITERATOR_KIND:
 				return createIteratorKindFromString(eDataType, initialValue);
+			case BaseCSTPackage.SCOPE_FILTER:
+				return createScopeFilterFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -172,6 +175,8 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 		{
 			case BaseCSTPackage.ITERATOR_KIND:
 				return convertIteratorKindToString(eDataType, instanceValue);
+			case BaseCSTPackage.SCOPE_FILTER:
+				return convertScopeFilterToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -546,6 +551,26 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public String convertIteratorKindToString(EDataType eDataType, Object instanceValue)
 	{
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScopeFilter createScopeFilterFromString(EDataType eDataType, String initialValue)
+	{
+		return (ScopeFilter)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertScopeFilterToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

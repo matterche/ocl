@@ -146,14 +146,14 @@ public class EssentialOCLPreOrderVisitor
 	public Continuation<?> visitInvocationExpCS(InvocationExpCS csNavigatingExp) {
 		NameExpCS namedExp = csNavigatingExp; //.getNameExp();
 		if (namedExp != null) {
-			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp);
+			CS2Pivot.setElementType(namedExp.getPathName(), PivotPackage.Literals.OPERATION, csNavigatingExp, null);
 		}
 		return super.visitInvocationExpCS(csNavigatingExp);
 	}
 
 	@Override
 	public Continuation<?> visitNameExpCS(NameExpCS csNameExp) {
-		CS2Pivot.setElementType(csNameExp.getPathName(), PivotPackage.Literals.ELEMENT, csNameExp);
+		CS2Pivot.setElementType(csNameExp.getPathName(), PivotPackage.Literals.ELEMENT, csNameExp, null);
 		return null;
 	}
 
@@ -173,7 +173,7 @@ public class EssentialOCLPreOrderVisitor
 				if ((index+1) < expressions.size()) {
 					ExpCS csExp = expressions.get(index+1);
 					if ((csExp instanceof NameExpCS) && !(csExp instanceof InvocationExpCS)) {
-						CS2Pivot.setElementType(((NameExpCS) csExp).getPathName(), PivotPackage.Literals.PROPERTY, csExp);
+						CS2Pivot.setElementType(((NameExpCS) csExp).getPathName(), PivotPackage.Literals.PROPERTY, csExp, null);
 					}
 				}
 			}
@@ -188,7 +188,7 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitTypeNameExpCS(TypeNameExpCS csTypeNameExp) {
-		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE, csTypeNameExp);
+		CS2Pivot.setElementType(csTypeNameExp.getPathName(), PivotPackage.Literals.TYPE, csTypeNameExp, null);
 		return new TypeNameExpContinuation(context, csTypeNameExp);
 	}
 

@@ -19,6 +19,7 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -3126,13 +3127,22 @@ public interface BaseCSTPackage extends EPackage {
 	int PATH_NAME_CS__CONTEXT = ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Scope Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATH_NAME_CS__SCOPE_FILTER = ELEMENT_CS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Path Name CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 3;
+	int PATH_NAME_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Logical Parent</b></em>' reference.
@@ -4241,6 +4251,17 @@ public interface BaseCSTPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Scope Filter</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getScopeFilter()
+	 * @generated
+	 */
+	int SCOPE_FILTER = 53;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS <em>Annotation CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5102,6 +5123,17 @@ public interface BaseCSTPackage extends EPackage {
 	EReference getPathNameCS_Context();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getScopeFilter <em>Scope Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope Filter</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS#getScopeFilter()
+	 * @see #getPathNameCS()
+	 * @generated
+	 */
+	EAttribute getPathNameCS_ScopeFilter();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PivotableElementCS <em>Pivotable Element CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5661,6 +5693,17 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getIteratorKind();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter <em>Scope Filter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Scope Filter</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+	 * @model instanceClass="org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter"
+	 * @generated
+	 */
+	EDataType getScopeFilter();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6393,6 +6436,14 @@ public interface BaseCSTPackage extends EPackage {
 		EReference PATH_NAME_CS__CONTEXT = eINSTANCE.getPathNameCS_Context();
 
 		/**
+		 * The meta object literal for the '<em><b>Scope Filter</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATH_NAME_CS__SCOPE_FILTER = eINSTANCE.getPathNameCS_ScopeFilter();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PivotableElementCSImpl <em>Pivotable Element CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6861,6 +6912,16 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ITERATOR_KIND = eINSTANCE.getIteratorKind();
+
+		/**
+		 * The meta object literal for the '<em>Scope Filter</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter
+		 * @see org.eclipse.ocl.examples.xtext.base.baseCST.impl.BaseCSTPackageImpl#getScopeFilter()
+		 * @generated
+		 */
+		EDataType SCOPE_FILTER = eINSTANCE.getScopeFilter();
 
 	}
 

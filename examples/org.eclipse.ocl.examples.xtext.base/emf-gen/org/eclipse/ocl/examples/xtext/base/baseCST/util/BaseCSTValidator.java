@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.xtext.base.baseCST.*;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -260,6 +261,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateWildcardTypeRefCS((WildcardTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.ITERATOR_KIND:
 				return validateIteratorKind((IteratorKind)value, diagnostics, context);
+			case BaseCSTPackage.SCOPE_FILTER:
+				return validateScopeFilter((ScopeFilter)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -881,6 +884,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * @generated
 	 */
 	public boolean validateIteratorKind(IteratorKind iteratorKind, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateScopeFilter(ScopeFilter scopeFilter, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return true;
 	}

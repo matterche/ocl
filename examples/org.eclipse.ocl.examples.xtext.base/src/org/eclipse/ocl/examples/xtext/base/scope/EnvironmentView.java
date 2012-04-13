@@ -62,23 +62,6 @@ public class EnvironmentView
 {
 	private static final Logger logger = Logger.getLogger(EnvironmentView.class);
 
-	public static interface Filter
-	{
-		/**
-		 * Return -ve if match1 is inferior to match2, +ve if match2 is inferior to match1, or
-		 * zero if both matches are of equal validity.
-		 */
-		int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1, EObject match2, Map<TemplateParameter, ParameterableElement> bindings2);
-
-		/**
-		 * Return true if the filter accepts eObject as a candidate for
-		 * inclusion in the EnvironmentView.
-		 * 
-		 * @param eObject
-		 */
-		boolean matches(EnvironmentView environmentView, Type forType, EObject eObject);
-	}
-
 	protected final MetaModelManager metaModelManager;
 	protected final EStructuralFeature reference;
 	private EClassifier requiredType;
@@ -92,8 +75,8 @@ public class EnvironmentView
 
 	private int contentsSize = 0; // Deep size of contentsByName;
 
-	private List<Filter> matchers = null;	// Prevailing filters for matching
-	private Set<Filter> resolvers = null;	// Successful filters for resolving
+	private List<ScopeFilter> matchers = null;	// Prevailing filters for matching
+	private Set<ScopeFilter> resolvers = null;	// Successful filters for resolving
 
 	public EnvironmentView(MetaModelManager metaModelManager, EStructuralFeature reference, String name) {
 		this.metaModelManager = metaModelManager;
@@ -127,7 +110,7 @@ public class EnvironmentView
 			return 0;
 		}
 		if ((name != null) && (matchers != null)) {
-			for (Filter filter : matchers) {
+			for (ScopeFilter filter : matchers) {
 				if (!filter.matches(this, forType, element)) {
 					return 0;
 				}
@@ -140,7 +123,7 @@ public class EnvironmentView
 		}
 		if (matchers != null) {
 			if (resolvers == null) {
-				resolvers = new HashSet<Filter>();
+				resolvers = new HashSet<ScopeFilter>();
 			}
 			resolvers.addAll(matchers);
 		}
@@ -203,9 +186,9 @@ public class EnvironmentView
 		}
 	}
 
-	public void addFilter(Filter filter) {
+	public void addFilter(ScopeFilter filter) {
 		if (matchers == null) {
-			matchers = new ArrayList<Filter>();
+			matchers = new ArrayList<ScopeFilter>();
 		}
 		matchers.add(filter);
 	}
@@ -364,7 +347,7 @@ public class EnvironmentView
 		return true;
 	}
 
-	public void removeFilter(Filter filter) {
+	public void removeFilter(ScopeFilter filter) {
 		if (matchers != null) {
 			matchers.remove(filter);
 		}
@@ -378,7 +361,7 @@ public class EnvironmentView
 				if (value instanceof List<?>) {
 					@SuppressWarnings("unchecked")
 					List<EObject> values = (List<EObject>) value;
-					for (Filter filter : resolvers) {
+					for (ScopeFilter filter : resolvers) {
 						for (int i = 0; i < values.size()-1;) {
 							EObject reference = values.get(i);
 							Map<TemplateParameter, ParameterableElement> referenceBindings = templateBindings != null ? templateBindings.get(reference) : null;

@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
@@ -107,7 +108,7 @@ public class InvocationExpCSScopeAdapter extends ElementCSScopeAdapter
 					environmentView.addNamedElement(((IterateExp)pivot).getResult());
 				}
 			}
-			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
+			ScopeFilter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();
@@ -146,7 +147,7 @@ public class InvocationExpCSScopeAdapter extends ElementCSScopeAdapter
 				}
 			}
 			MetaModelManager metaModelManager = environmentView.getMetaModelManager();
-			EnvironmentView.Filter filter = new OperationFilter(metaModelManager, type, targetElement);
+			ScopeFilter filter = new OperationFilter(metaModelManager, type, targetElement);
 			try {
 				environmentView.addFilter(filter);
 				BaseScopeView baseScopeView = new BaseScopeView(metaModelManager, scopeTarget, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);

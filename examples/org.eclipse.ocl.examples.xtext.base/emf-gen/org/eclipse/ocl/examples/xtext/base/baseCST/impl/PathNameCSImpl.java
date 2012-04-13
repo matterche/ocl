@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PathNameCS;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -41,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getPath <em>Path</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.PathNameCSImpl#getScopeFilter <em>Scope Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +78,26 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	 * @ordered
 	 */
 	protected boolean contextESet;
+
+	/**
+	 * The default value of the '{@link #getScopeFilter() <em>Scope Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScopeFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ScopeFilter SCOPE_FILTER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getScopeFilter() <em>Scope Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScopeFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected ScopeFilter scopeFilter = SCOPE_FILTER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +166,8 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				return getElement();
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				return getContext();
+			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
+				return getScopeFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +190,9 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				setContext((ElementCS)newValue);
 				return;
+			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
+				setScopeFilter((ScopeFilter)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -185,6 +212,9 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				return;
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				unsetContext();
+				return;
+			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
+				setScopeFilter(SCOPE_FILTER_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -206,8 +236,27 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 				return getElement() != null;
 			case BaseCSTPackage.PATH_NAME_CS__CONTEXT:
 				return isSetContext();
+			case BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER:
+				return SCOPE_FILTER_EDEFAULT == null ? scopeFilter != null : !SCOPE_FILTER_EDEFAULT.equals(scopeFilter);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (scopeFilter: "); //$NON-NLS-1$
+		result.append(scopeFilter);
+		result.append(')');
+		return result.toString();
 	}
 
 	/**
@@ -310,6 +359,29 @@ public class PathNameCSImpl extends ElementCSImpl implements PathNameCS
 	public boolean isSetContext()
 	{
 		return contextESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScopeFilter getScopeFilter()
+	{
+		return scopeFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScopeFilter(ScopeFilter newScopeFilter)
+	{
+		ScopeFilter oldScopeFilter = scopeFilter;
+		scopeFilter = newScopeFilter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.PATH_NAME_CS__SCOPE_FILTER, oldScopeFilter, scopeFilter));
 	}
 
 	public Element getPivot() {

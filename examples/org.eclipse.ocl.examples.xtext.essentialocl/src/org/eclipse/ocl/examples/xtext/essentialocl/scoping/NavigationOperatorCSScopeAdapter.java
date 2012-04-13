@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ElementCSScopeAdapter;
@@ -85,7 +86,7 @@ public class NavigationOperatorCSScopeAdapter extends ElementCSScopeAdapter
 		else {
 			ElementCS parent = targetElement.getLogicalParent();
 			CSScopeAdapter scopeAdapter = parent != null ? ElementUtil.getScopeAdapter(parent) : null;
-			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
+			ScopeFilter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
 			try {
 				environmentView.addFilter(filter);
 				MetaModelManager metaModelManager = environmentView.getMetaModelManager();

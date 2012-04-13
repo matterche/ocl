@@ -178,7 +178,7 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement);
+			CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement, null);
 			Operation modelOperation = csElement.getOperation();
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
@@ -263,7 +263,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.TYPE, csElement, null);
 		Type modelClassifier = csElement.getClassifier();
 		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
 			return null;
@@ -307,13 +307,13 @@ public class CompleteOCLPreOrderVisitor
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS csElement) {
 		// Must wait till parameters have types before resolving operation name
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.OPERATION, csElement, null);
 		return new OperationContextDeclCSContinuation(context, csElement);
 	}
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PACKAGE, csElement, null);
 		Element modelElement = csElement.getPathName().getElement();
 		if ((modelElement == null) || modelElement.eIsProxy()) {
 			return null;
@@ -331,7 +331,7 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS csElement) {
-		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY, csElement);
+		CS2Pivot.setElementType(csElement.getPathName(), PivotPackage.Literals.PROPERTY, csElement, null);
 		Property modelProperty = csElement.getProperty();
 		if (modelProperty == null) {
 			return null;

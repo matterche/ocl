@@ -93,6 +93,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseLeft2RightVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.CSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
@@ -648,7 +649,7 @@ public class EssentialOCLLeft2RightVisitor
 		context.refreshList(expression.getArgument(), pivotArguments);
 	}
 
-	protected void resolveOperationCall(OperationCallExp expression, OperatorCS csOperator, EnvironmentView.Filter filter) {
+	protected void resolveOperationCall(OperationCallExp expression, OperatorCS csOperator, ScopeFilter filter) {
 		EnvironmentView environmentView = new EnvironmentView(metaModelManager, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, expression.getName());
 		environmentView.addFilter(filter);
 		Type sourceType = expression.getSource().getType();

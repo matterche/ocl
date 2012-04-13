@@ -29,8 +29,9 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeFilter;
 
-public abstract class AbstractOperationFilter implements EnvironmentView.Filter
+public abstract class AbstractOperationFilter implements ScopeFilter
 {
 	protected final MetaModelManager metaModelManager;
 	protected final Type sourceType;
